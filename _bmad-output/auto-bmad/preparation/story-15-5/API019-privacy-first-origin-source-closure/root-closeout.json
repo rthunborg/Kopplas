@@ -1,0 +1,28 @@
+{
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "parent": "104976f7fc88844394abd48d02f1a8392c25ad8b",
+  "status": "PASS_API019_PRIVACY_FIRST_ORIGIN_SOURCE_ONLY",
+  "independent_review_sha256": "53747652a4d270646964277c6b45c09dca2df7fb97fbd6bffae00bc47aa276c2",
+  "scope": "Five existing paths; fixed first child/predicate pair through existing observation/stage seam; contract SHA literal and author SRO only.",
+  "meaningful_controls": "RED0P4F to GREEN4P0F;195 affected passed/0failed/0skipped; TypeScript0/scopedlint0; SRO216/errors[]",
+  "fixed_stage_boundary": "28 literal labels; maximum80 admitted by unchanged1..80 guard;41 private reader AST segments unchanged",
+  "privacy_preserved": true,
+  "functional_repair": false,
+  "hosted_first_origin": "UNKNOWN",
+  "hosted_cause": "UNKNOWN",
+  "whole_Spec_raw_inverse": false,
+  "Spec_inverse_limit": "Only owned SRO line-ending serialization differs; outsideSRO raw exact/fullSpecLF inverse exact. Four executable raw inverses pass.",
+  "last_qualified95": "93 passed; API019 privacy-refused failed; API020 pending at39975009683/sourcee525",
+  "DB_custody": "key retained; deletion unverified; backend settlement UNKNOWN",
+  "P5": "OPEN",
+  "review_counter": 3,
+  "development_complete": false,
+  "release_ready": false,
+  "inert_preparation": "head/source NULL, no executable target or effect admission; final materialization, independent review and finite allocation required",
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/root-fold-manifest.json",
+    "bytes": 4947,
+    "sha256": "0b81a603e555c5a7eeb311450fd902302cb63d63188b3a8db1fc105e2c3f4bd5"
+  },
+  "no_deployment": true
+}

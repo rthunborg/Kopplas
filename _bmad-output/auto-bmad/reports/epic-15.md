@@ -7980,3 +7980,44 @@ Development completion is separate from release readiness.
 **⚠️ Needs human:** (none)
 
 **Next:** Independently review the minimum closed discriminator within the existing observer/source-label seam, then use evidence-backed repair and required95/custody/delivery beforeP6/P7,15.6 and epic gates.
+
+## Report — 2026-10-23T16:30:33Z (continuing — privacy first-origin source independently reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `48a7c32`).
+**Pipeline status:** Story15.5 P5 remains open; no development-complete or release-ready claim.
+**Continues:** True
+
+**Summary:** Committed the independently reviewed fixed first-privacy-origin evidence change in five existing files. The change preserves the privacy guard, failure semantics and timing; it does not establish a functional repair or hosted cause.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 339h 32m (≈77h 24m AI-run, ≈262h 08m human/idle wait); resumed 242×.
+
+**Stories:**
+1. 15.1–15.4 remain landed.
+2. 15.5 source48a7c32: meaningful RED0P4F to GREEN4P;195 affected tests passed with no skips; TypeScript, scoped lint and216 review-note references passed. Independent targeted High review found no defects.
+3. Last qualified native result remains93 passed, API019 privacy-refused failed, API020 pending. Direct recovery passed separately; DB key deletion and backend settlement are unverified.
+4. 15.2 retains its inherited review flag with all3 broad rounds consumed; bounded final provenance reconciliation remains.
+5. 15.6 remains unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending required development evidence and remaining story.
+
+**TEA:** ATDD complete; P6 automation and epic trace remain required.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; October7 is historical. Epic15 retrospective pending.
+
+**Overrides:** Owner design defaults, sequential ownership, independent High sensitive review, three-round cap, one final PR, retained branches and no deployment remain enforced.
+
+**Open questions:**
+1. Hosted first privacy predicate, emitting child and cause remain UNKNOWN.
+2. DB key deletion/backend settlement, final15.2 metadata reconciliation and actual main auto-deployment containment remain pending.
+3. Whole Spec raw inverse differs within owned SRO line-ending serialization; outside-SRO raw equality and full LF inverse pass.
+
+**Deferred work:**
+1. Exhaustive visual/manual matrices and live release validation remain explicitly deferred with owners; none is counted as passed.
+Development completion is separate from release readiness.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Materialize and independently verify the existing operational procedure against the committed source and metadata head. Obtain the finite allocation before the next bounded observation; then close required95/custody/delivery and continueP6/P7,15.6 and epic gates.

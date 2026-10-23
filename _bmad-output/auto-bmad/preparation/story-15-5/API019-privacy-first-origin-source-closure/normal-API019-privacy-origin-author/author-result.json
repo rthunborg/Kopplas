@@ -1,0 +1,639 @@
+{
+  "outcome": "AUTHOR_COMPLETE_PENDING_INDEPENDENT_TARGETED_REVIEW",
+  "scope": {
+    "base_HEAD": "104976f7fc88844394abd48d02f1a8392c25ad8b",
+    "base_source": "e52568795789034c556f64b0721318f75aa13691",
+    "tracked_paths": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 49378,
+        "sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb",
+        "LF_bytes": 48686,
+        "LF_sha256": "8798c1ba86885a6fec5214c2a18da4844e5716a3795370b53ed47422085f3eac",
+        "prospective_LF_git_blob": "ff918a3057a5dcf53bf2e7b86a6812c73bb0e626",
+        "LF_inverse": true,
+        "raw_inverse": true,
+        "unchanged": false
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 143615,
+        "sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b",
+        "LF_bytes": 142170,
+        "LF_sha256": "d89c354efa97b8710f125a98e557f69ad3d6d9d20933be26b69ca44614ee23a3",
+        "prospective_LF_git_blob": "e88ac532c7bfb1192cd34087bac947a4588e46b7",
+        "LF_inverse": true,
+        "raw_inverse": true,
+        "unchanged": false
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 340518,
+        "sha256": "7c8e4e2684de09b7dee376af393a618677a2db16f35abfd968593dffcdc17fd0",
+        "LF_bytes": 337393,
+        "LF_sha256": "e0a317ddaef8ed436cc1f898e142ca2d6f2d0a9dbb96ee10268c34b789a82245",
+        "prospective_LF_git_blob": "8712fdb2bcb93688322168e595fa328ff7ef15be",
+        "LF_inverse": true,
+        "raw_inverse": true,
+        "unchanged": false
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8135,
+        "sha256": "bbbea7f1f12d0662b2b7e09fa6c6648c82cee2797d72357aa47bc62130bccd72",
+        "LF_bytes": 8024,
+        "LF_sha256": "3e4adaf1060424ad80ee2477ab6fcf8ab3b1ce9bc94d5204482383465a09156e",
+        "prospective_LF_git_blob": "e3bfa37f57e29468b71531e0cb98705952ec78fa",
+        "LF_inverse": true,
+        "raw_inverse": true,
+        "unchanged": false
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 262876,
+        "sha256": "fa16e59053bbc01435a9b38694976d3bbff7c0619271d05f4f4e45de21bb6a02",
+        "LF_bytes": 259770,
+        "LF_sha256": "8f2b28c58132ea91da3f046c1864ced662e4763be1eceaf375076af208262a50",
+        "prospective_LF_git_blob": "5118ffe354686567f078dd690ff802fe7c41fe90",
+        "LF_inverse": true,
+        "raw_inverse": false,
+        "unchanged": false
+      }
+    ],
+    "writes_stopped": true,
+    "only_assigned_five_paths": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "plan": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-refusal-minimum-plan-independent-review.json",
+      "bytes": 14161,
+      "sha256": "7249e6a7eb55afb675ea4b435dfa897ad4e53a566937b088fda3041ce6177ca0"
+    }
+  },
+  "change": {
+    "purpose": "Evidence-only first privacy increment attribution; no functional repair or certified hosted cause.",
+    "observer": "Preserve detector expressions/precedence and boolean facade; snapshot first fixed child/predicate synchronously and immutably on existing increment; no raw content retained.",
+    "children": [
+      "build",
+      "production-server",
+      "integration",
+      "unknown"
+    ],
+    "predicates": [
+      "known-credential",
+      "feed-path-or-security-field",
+      "hex64",
+      "canonical32",
+      "ip-literal",
+      "unexpected-response-shape",
+      "unknown"
+    ],
+    "source_labels": 28,
+    "longest_ASCII_label": 80,
+    "helper": "Exact static own-label lookup only after original privacy refusal; missing/malformed/injected data retains generic refusal and one owned leaf.",
+    "contract": "Only exact wrapper LF hash literal refreshed; argv and drift guards preserved.",
+    "unit": "Four actual-source regressions; downstream old expectations updated for added metadata; one type-only mock return annotation.",
+    "SRO": "Only Suggested Review Order rationale/stops/evidence refreshed; actual216refs/errors[].",
+    "private_reader": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/reader-stage-data-successor.py",
+      "bytes": 52622,
+      "sha256": "f6d39f15c21a643850909790d7cd9b90b42a5ceb5457a2b6d6fdeb926daedb31"
+    },
+    "reader_delta": "Only28 finite stage constants. Full raw inverse and all41 function AST source segments unchanged. Historical consumed identities retained: stage-only, not operational enrollment/admission."
+  },
+  "verification": {
+    "checks": {
+      "RED": {
+        "phase": "RED",
+        "native_exit": 1,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 0,
+          "fail": 4,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_selected_names": [
+          "API019 first privacy origin preserves preimage boolean predicates precedence and clean observation shape",
+          "API019 first privacy origin is synchronous immutable across interleaved children and rejected persistence",
+          "API019 first privacy origin actual db child closures preserve promise and error identity without launch changes",
+          "API019 first privacy origin maps exactly28 static pairs one safe leaf inclusive80 and invalid metadata fallback"
+        ],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false
+      },
+      "GREEN": {
+        "phase": "GREEN",
+        "native_exit": 1,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 3,
+          "fail": 1,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_selected_names": [
+          "API019 first privacy origin maps exactly28 static pairs one safe leaf inclusive80 and invalid metadata fallback"
+        ],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false
+      },
+      "GREEN-corrected-extractor": {
+        "phase": "GREEN-corrected-extractor",
+        "native_exit": 0,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 4,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_selected_names": [],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false
+      },
+      "affected": {
+        "phase": "affected",
+        "native_exit": 0,
+        "counts": {
+          "tests": 195,
+          "suites": 0,
+          "pass": 195,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_selected_names": [],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false
+      },
+      "typecheck": {
+        "phase": "typecheck",
+        "native_exit": 2,
+        "counts": {},
+        "failed_selected_names": [],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false
+      },
+      "typecheck-diagnostic": {
+        "phase": "typecheck-diagnostic",
+        "native_exit": 1,
+        "counts": {},
+        "failed_selected_names": [],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false,
+        "closed_TS_diagnostics": [
+          {
+            "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+            "line": 1393,
+            "column": 205,
+            "code": "TS2322"
+          }
+        ]
+      },
+      "typecheck-corrected": {
+        "phase": "typecheck-corrected",
+        "native_exit": 0,
+        "counts": {},
+        "failed_selected_names": [],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false,
+        "closed_TS_diagnostics": []
+      },
+      "lint": {
+        "phase": "lint",
+        "native_exit": 0,
+        "counts": {},
+        "failed_selected_names": [],
+        "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+        "settled": true,
+        "raw_persisted": false,
+        "closed_TS_diagnostics": []
+      },
+      "review-order": {
+        "native_exit": 0,
+        "settled": true,
+        "raw_persisted": false,
+        "report": {
+          "reports": [
+            {
+              "filePath": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+              "sectionPresent": true,
+              "mode": "full-trail-candidate",
+              "refsCount": 216,
+              "errors": []
+            }
+          ]
+        }
+      },
+      "diff-check": {
+        "native_exit": 0,
+        "settled": true,
+        "raw_persisted": false
+      },
+      "changed-paths": {
+        "native_exit": 0,
+        "settled": true,
+        "raw_persisted": false,
+        "paths": [
+          "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+          "scripts/ci/with-calendar-feed-runtime.mjs",
+          "tests/support/calendar-feed-atdd.ts",
+          "tests/support/calendar-feed-ci-contract.ts",
+          "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+        ],
+        "SQL_dirty_count": 0
+      }
+    },
+    "primary_closure": {
+      "GREEN-corrected-extractor": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-GREEN-corrected-extractor-native.json",
+          "bytes": 1215,
+          "sha256": "ba046cc4e9fa188fa99d549aa5446fb45679cdc505732e8a580a7fd8ee5ee1dd"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.371964,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      },
+      "affected": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-affected-native.json",
+          "bytes": 1142,
+          "sha256": "5ed62e9ecf769a8e6dce315cb661760c5cb881c1c774cd84ae46da72434e70d8"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 13.71698,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      },
+      "typecheck-corrected": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-corrected-native.json",
+          "bytes": 1224,
+          "sha256": "a0569ed4875f350171ff4e485fa6a06bdfa73f60606522b346d891fc748ded25"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 4.076426,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      },
+      "lint": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-lint-native.json",
+          "bytes": 1412,
+          "sha256": "307b09cf4e96ca756dfb711c2475487ef2f3542b60841fe971f1b98f44abf6cb"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 3.0799,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      },
+      "review-order": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-review-order-native.json",
+          "bytes": 1122,
+          "sha256": "3c9a5d5380d660f82b6a6c899d626692112d4ca604467ddc45edd40c490b9110"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.188128,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      },
+      "diff-check": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-diff-check-native.json",
+          "bytes": 952,
+          "sha256": "66ec753235a3fc6184451099438235a5cb8113e601f6da3c26dd8f94d9011d1d"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.064241,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      },
+      "changed-paths": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-changed-paths-native.json",
+          "bytes": 961,
+          "sha256": "136aa2d624f4d9149de7ec17ce174ba96d3908433190911ce2378362547f3cb1"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.097172,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      },
+      "parser-type-compatibility-corrected": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-parser-type-compatibility-corrected-native.json",
+          "bytes": 2713,
+          "sha256": "c991d07f91f14ce961f895afffacabbbc8c9676520c5bf43dd9f235b705c9907"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.13008,
+        "full_EOF": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "raw_persisted": false
+      }
+    },
+    "nonadditive": "Focused4P are included in affected195P, not199. Affected195P predates only type annotation whose runtime prefix/body/suffix erasure equivalence is proven; corrected wholeTS0 and lint0 run after annotation. No duplicate whole suite.",
+    "parser": {
+      "actual_producer_to_actual_failure_facts": 28,
+      "one_leaf_each": true,
+      "ASCII80_accepted": true,
+      "ASCII81_refused": true,
+      "injected_label_refused": true,
+      "reader_invocations": 0,
+      "API": 0
+    },
+    "native_provenance": {
+      "RED": {
+        "outer_chunk": "33b813",
+        "outer_exit": 0,
+        "outer_seconds": 0.5069281,
+        "child_exit": 1,
+        "counts": "0P4F0skip"
+      },
+      "corrected_GREEN": {
+        "outer_chunk": "192c33",
+        "outer_exit": 0,
+        "outer_seconds": 0.5824591,
+        "child_exit": 0,
+        "counts": "4P0F0skip"
+      },
+      "affected": {
+        "initial_chunk": "50dcc2",
+        "session": 70653,
+        "waits": 1,
+        "completion_chunk": "a7e282",
+        "outer_exit": 0,
+        "child_exit": 0,
+        "counts": "195P0F0skip"
+      },
+      "corrected_TS": {
+        "outer_chunk": "193353",
+        "outer_exit": 0,
+        "outer_seconds": 4.3454462,
+        "child_exit": 0
+      },
+      "lint": {
+        "outer_chunk": "f67de5",
+        "outer_exit": 0,
+        "outer_seconds": 3.3138173,
+        "child_exit": 0
+      },
+      "parser_type": {
+        "outer_chunk": "7b84ef",
+        "outer_exit": 0,
+        "outer_seconds": 0.43218,
+        "child_exit": 0
+      },
+      "SRO_diff_paths": {
+        "outer_chunk": "facaa0",
+        "outer_exit": 0,
+        "outer_seconds": 0.6006933,
+        "all_three_child_exits": 0
+      },
+      "inverse": {
+        "outer_chunk": "469ad9",
+        "outer_exit": 0,
+        "outer_seconds": 0.1560952
+      }
+    }
+  },
+  "limitations": {
+    "history": [
+      "Initial427ad2 local receipt path error: child outcome UNKNOWN; no RED/pass credit.",
+      "First GREEN347890 3P1F was a new extractor missing the static table dependency; corrected in owned unit companion.",
+      "Initial wholeTS native2, then retained diagnostic TS2322 at unit1393:205; corrected type-only return annotation.",
+      "Token-scanner erasure checks refused; precise actual stripped signature/prefix/body/suffix comparison passed.",
+      "Whole raw Spec inverse probes refused; no source modifications from probes. Final proof explicitly records full LF inverse and outsideSRO raw equality."
+    ],
+    "conservation": {
+      "four_executable_source_raw_inverses": true,
+      "all_ten_LF_inverses": true,
+      "whole_Spec_raw_inverse": false,
+      "SRO_serialization_limit": "Author SRO was serialized with CRLF while refreshing exact anchored stops; canonicalLF inverse matches entire preimage and outsideSRO raw bytes exact. Failed raw-baseline serialization probes c71f8c/704819 did not modify source or establish rawwholeSpecinverse. Do not claim entireSpecrawinverse. OnlyassignedSRO text/lineending changed.",
+      "outside_SRO_raw_equal": true,
+      "ownerFacts_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+      "other_five_direct_raw_pins_unchanged": true,
+      "SQL118": "No edits; actual changed SQL paths0; no raw SQL rescan.",
+      "unchanged": "Privacy thresholds/detection order/count, raw I/O UNKNOWN,3s/20ms timing, error/promise identity, custody/lifecycle/argv, workflow/app/deps, approved kernel/status/counter3."
+    },
+    "last_qualified_required95": "93P1F(API019)1zero(API020pending); separate recovery1P; DB retained key/backendUNKNOWN. No new native acceptance.",
+    "P5": "OPEN",
+    "acceptance": 0,
+    "delivery_complete": false,
+    "hosted_first_increment_or_cause": "UNKNOWN"
+  },
+  "next": {
+    "action": "Independent targeted actual five-path diff review; Root alone owns commits and any later finite effect admission.",
+    "reader": "Stage-only compatibility; current tuple/proof/review/grant/exclusive activation still required before any future acquisition.",
+    "effects_performed": "Only scoped pure local tests/static checks and owned file writes. No network/API/DB/browser/services/resources/dependencies/Git mutation/CI/publication/deploy.",
+    "release_authority": false
+  },
+  "proof_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/final-source-inverses.json",
+      "bytes": 5534,
+      "sha256": "4e2726667469759a85755cd31347b6268206a4053fda5371fbbd342a40166f4e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/initial-local-receipt-stop.json",
+      "bytes": 377,
+      "sha256": "07a19cc5cc1b7a013e852e9c8792f7d9ce4858c0d239b7cbf8aef888b35ebab5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-affected-native.json",
+      "bytes": 1142,
+      "sha256": "5ed62e9ecf769a8e6dce315cb661760c5cb881c1c774cd84ae46da72434e70d8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-affected-summary.json",
+      "bytes": 362,
+      "sha256": "76f186e4abe183847fa9005de70940e7d66c4090501b8d641db2424def3c28b7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-changed-paths-native.json",
+      "bytes": 961,
+      "sha256": "136aa2d624f4d9149de7ec17ce174ba96d3908433190911ce2378362547f3cb1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-changed-paths-summary.json",
+      "bytes": 415,
+      "sha256": "1e6395b1de486f10e1ff3d1743b6b82207e089483cf5dd4846f3bd5000c1f782"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-diff-check-native.json",
+      "bytes": 952,
+      "sha256": "66ec753235a3fc6184451099438235a5cb8113e601f6da3c26dd8f94d9011d1d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-diff-check-summary.json",
+      "bytes": 68,
+      "sha256": "f638a2935debb92b9ad99e273b05383fdef563d6cf446df95d7c7f4fa3f0995a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-GREEN-corrected-extractor-native.json",
+      "bytes": 1215,
+      "sha256": "ba046cc4e9fa188fa99d549aa5446fb45679cdc505732e8a580a7fd8ee5ee1dd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-GREEN-corrected-extractor-summary.json",
+      "bytes": 375,
+      "sha256": "cf8720e76e280889c5d94f1d462381582f51c5285b5087578dc5d57bd5d463be"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-GREEN-native.json",
+      "bytes": 1195,
+      "sha256": "89830f66bcc6210a919b0a0dae3c7e9070da6367e0a99e0136d28fb02902b7c3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-GREEN-summary.json",
+      "bytes": 478,
+      "sha256": "e4a642772e92f49e8930d0ad5e1aab0c9aee059df9599890191bf0f3f5356dc4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-lint-native.json",
+      "bytes": 1412,
+      "sha256": "307b09cf4e96ca756dfb711c2475487ef2f3542b60841fe971f1b98f44abf6cb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-lint-summary.json",
+      "bytes": 260,
+      "sha256": "a63bfe18373db7e86cb93a5f55bf7986cf88c10bcfbcf5c29e9fc99a0703601f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-parser-type-compatibility-corrected-native.json",
+      "bytes": 2713,
+      "sha256": "c991d07f91f14ce961f895afffacabbbc8c9676520c5bf43dd9f235b705c9907"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-parser-type-compatibility-native.json",
+      "bytes": 2813,
+      "sha256": "cf645ab8da31176da1c0778e41aeb2847a877e42bdf90be65deebb5b4b031b3a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-RED-native.json",
+      "bytes": 1193,
+      "sha256": "1cb02f1d463bc50d54f502ca2353882012fe287f7c7b228e6fdcdd05ff31e2d9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-RED-summary.json",
+      "bytes": 823,
+      "sha256": "8551aee93a7a936f21f53968507431fd06b00c3540b2d02807f83ea0ebce2653"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-review-order-native.json",
+      "bytes": 1122,
+      "sha256": "3c9a5d5380d660f82b6a6c899d626692112d4ca604467ddc45edd40c490b9110"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-review-order-summary.json",
+      "bytes": 361,
+      "sha256": "c644bf964dc325affc6b2b6111830e46f84554f798e5e63c4f9234f6b0ecd1a9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-corrected-native.json",
+      "bytes": 1224,
+      "sha256": "a0569ed4875f350171ff4e485fa6a06bdfa73f60606522b346d891fc748ded25"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-corrected-summary.json",
+      "bytes": 275,
+      "sha256": "65e85a618f2a7ed89234eb783fe9ed1c25b48f563d56443da0587c891df8d63e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-diagnostic-native.json",
+      "bytes": 1225,
+      "sha256": "14c5aab454a513330e2c12cebbee3df5b31a38e88b40ca630f4888fef69afb8f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-diagnostic-summary.json",
+      "bytes": 436,
+      "sha256": "c0d7f4295870a6b48218dcd36bbe0bbfe5f40baea079f7d073e784344a0f216c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-native.json",
+      "bytes": 1214,
+      "sha256": "e6f0a3f80e0f0d61b208b3aedf76752567c64496232c19a9367cffa1c10d90fe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-summary.json",
+      "bytes": 233,
+      "sha256": "2aa29a88bc68f1af17c26f00bf04926ce6b81370a6b1aaa65d1a9d4bb30d850f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/pre-edit-bindings.json",
+      "bytes": 4496,
+      "sha256": "18f113375c09c074edef2c328ea619d8c0c17ab0bf3aef81b3e772dc6ea046fc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/producer-deltas.json",
+      "bytes": 13200,
+      "sha256": "5e252b85b7ac9b95d4f825e85aa40b631bb96e6069f5e3162649df0b181666ad"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/reader-and-type-compatibility-proof.json",
+      "bytes": 5146,
+      "sha256": "2cb109940242c94b76dfd2c0839a9f8ae31193080b5755aff0bed7b9d2dbdf1e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/SRO-coordinate-delta.json",
+      "bytes": 19902,
+      "sha256": "2819972cfa8a0a3b8abcb8f1b74c2a0942e98da293995827336160ca30bafd4d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/unit-companion-deltas.json",
+      "bytes": 2470,
+      "sha256": "bd5ebe62974b541df15686905b297a887e8cdddb22344ad7e0c9106bad0eaf7a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/unit-insertion.json",
+      "bytes": 246,
+      "sha256": "fcbffaa82f0bd00bc992dea2ea8d3fcb279316067e0b0f5c4f3df10dfbb0d950"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/unit-type-only-delta.json",
+      "bytes": 627,
+      "sha256": "44007f02cd2dbab2cae8e1be30d68a6408f52ddbcc045395cf1f528b834c5516"
+    }
+  ]
+}

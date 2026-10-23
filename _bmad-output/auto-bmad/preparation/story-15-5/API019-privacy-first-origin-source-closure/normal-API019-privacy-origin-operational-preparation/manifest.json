@@ -1,0 +1,17 @@
+{
+  "schema": "PRIVACY_ORIGIN_INERT_DESCRIPTOR_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-operational-preparation/inert-descriptor.json",
+      "bytes": 12631,
+      "sha256": "cfceb9b76d07aace1601a0ed67c41cfd6640d979bc196e4eb6e41629cf5f2572"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-operational-preparation/source-catalog-overlay.json",
+      "bytes": 36296,
+      "sha256": "0f380478361b0c94e685df8fd151690d1a409b12b7ccbf4c2919bff4ddfdd600"
+    }
+  ]
+}

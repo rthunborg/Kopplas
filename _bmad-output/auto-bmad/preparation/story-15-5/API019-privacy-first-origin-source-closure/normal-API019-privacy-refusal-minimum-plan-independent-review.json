@@ -1,0 +1,185 @@
+{
+  "schema": "kopplas.targeted-minimum-first-privacy-increment-plan-review.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T16:02:15.724983+00:00",
+  "status": "PASS_MINIMUM_SAFE_FACT_PLAN_ONLY",
+  "outcome": "PASS_MINIMUM_SAFE_FACT_PLAN_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "route": "Root P5-sensitive-API019-privacy-refusal-minimum-plan-independent-review; explicit gpt-6.1-sol High",
+  "scope": "Bounded minimum evidence-plan qualification, not a functional repair, actual patch review, fourth broad review or runtime/effect grant.",
+  "assessment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-refusal-source-assessment.json",
+    "bytes": 11193,
+    "sha256": "d05437078dd0ee68f2d7fbf552f4524ee5780c00881c87818d6236e2fa0bfb3c"
+  },
+  "actual_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-native-qualification.json",
+    "bytes": 24754,
+    "sha256": "9525eff4ea62388c62f1e4adea432083426280cc95ce1796c8154e8e894065eb"
+  },
+  "source_context": {
+    "current_HEAD": "104976f7fc88844394abd48d02f1a8392c25ad8b",
+    "bridge": "Root-attributed metadata-only103JSON+closeout/docs fold, parentedce; actual relevant source bytes independently match frozen assessment.",
+    "functional_source": "e52568795789034c556f64b0721318f75aa13691",
+    "base_runtime_HEAD": "edce7b8725ad379224bfa9fea517ad097f3906cb"
+  },
+  "decision": {
+    "necessary": "Current actualAPI019 privacy refusal has no flag/predicate/child detail. Both conservative detector match and unexpected-response shape increment the same monotone counter, shared across build/server/integration. The original first increment was discarded; closed5GETslots cannot recover it.",
+    "sufficient_for_next_fact": "Record only first increment winning existing predicate plus owned child, then carry validated finite classification through existing observer observation and fixture-owned native stage wire. This discriminates the missing source boundary; it does not identify matched content or prove actualsecret/falsepositive/rootcause.",
+    "materially_simpler": "Reuse observer,3existing db child callsites, fixture-owned stage and existing private parser stage set. No raw-log acquisition/newcollector/schemafamily/driver/workflow/focusedcapability or opaque repeat needed for this source plan.",
+    "no_source_proven_fix": "Actual emitter/observer source contract works for four statuses/three benign vectors. Those bounded author controls do not dismiss a hosted leak, establish exhaustive detector correctness or identify hosted first increment."
+  },
+  "exact_prospective_tracked_scope": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "permitted": "Small closed classifier bookkeeping at existing detector/observer increment; retain public hasSensitiveOutput boolean API. Attach source-owned context at ONLY existing db build, production-server, integration observe callbacks. Preserve scanner branches/precedence, raw-scan-before-filter, counts/flag, per-child output queue, exact launches/argv/env/awaits/settlement/refusal/custody. Other existing callsites defaultunknown; no newmode."
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "permitted": "Only closed origin/table additions and existing telemetry privacy-refusal branch: read/validate first fact after current parse and original privacy refusal condition. Use exact static pair-to-owned-stage lookup; missing/invalid fields fall back existing scenario-telemetry-privacy-refused. Keep success returned bytes, timeout/parse/IO behavior,3s/20ms and every integration assertion unchanged."
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "permitted": "Existing actual-source/observer/runtime controls for boolean/count parity, predicate precedence, first-event immutability/child attribution, raw exclusion, unknown/injection refusal and producer/native-stage roundtrip. Update only relevant expected observation metadata while retaining all original assertions/guards/custody tests."
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "permitted": "ONLY compute/refresh wrapperSha256 literal from exact final LF wrapper. Keep literal argv comparisons, full-source SHA equality, CI workflow inverse and unrelated-source-drift negative guard unchanged. No normalization/bypass/allowextra/options."
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "permitted": "Author refresh ONLY existing Suggested Review Order with rationale/stops/actual evidence and shifted anchors. OutsideSRO/kernel/statusinreview/counter3 remain exact."
+    }
+  ],
+  "private_consumer_scope": "After Root assigns author-private namespace, NEW immutable successor of existing qualified reader adds exactly matching28 finite stage literals only, plus compact inverse/actualproducer-to-parser proof. Preserve frozen historical packets. All failure_facts/regex/schema/transport/ZIP/caps functions unchanged; historical tuple is not newruntime enrollment. Later actual tuple/source data/final operational review/newgrant still mandatory.",
+  "closed_fact_contract": {
+    "child": [
+      "build",
+      "production-server",
+      "integration",
+      "unknown"
+    ],
+    "predicate": [
+      "known-credential",
+      "feed-path-or-security-field",
+      "hex64",
+      "canonical32",
+      "ip-literal",
+      "unexpected-response-shape",
+      "unknown"
+    ],
+    "classifier": "Return one existing winning branch in original order, with sensitive predicate taking precedence over unexpected-response under original OR order. Do not evaluate detector twice, add a matcher, coerce raw values or retain a match/index/subclass/detail. Boolean facade equivalent to original detector; infrastructure exemption remains exactly at its existing position.",
+    "attribution": "Per-child callback closure contains only fixed child enum and returns same observe promise; no mutable globalcurrentchild because server/test output can interleave. No command/argv/env/path/process/log-derived labels. Unknown caller staysunknown.",
+    "first_increment": "Set first fixed pair synchronously at first counter increment before first await; never overwrite, reset, upgradeunknown, phasefilter or make counter per-child. First pair persists through later observations/childphases. No extra writes/listeners/waits or altered error/promise/settlement behavior.",
+    "internal_wire": "Accompany existing runtime_observation only with bounded first enum pair, never rawline/substrings/URLs/IPs/hashes/tokens/key IDs/errors/stacks. Keep clean observation byte shape if no first event; all original responseCount/sensitiveOutputCount/sensitiveOutputDetected semantics unchanged.",
+    "native_wire": "Use STATIC28 pair-to-stage literal table, no dynamic interpolation/rawfallback. Same existing Calendar fixture failure stage/category/sqlstate wire and one ownedError/oneleaf/precedence. Invalid/missing first pair still unconditionally fails original privacyguard using existing baseorigin; never turns failure into success.",
+    "longest_spelled_stage": "scenario-telemetry-privacy-refused-production-server-feed-path-or-security-field",
+    "maximum_stage_ASCII_characters": 80,
+    "limit_note": "Existing parser accepts1..80 inclusive. Natural longest name is exactly80, not strictlybelow80; no cap/regex increase. Shorter table aliases are permissible only if equally fixed and mapped identically in producer/consumer."
+  },
+  "meaningful_author_checks_after_assignment": [
+    "Actual preimage detector versus new classifier/boolean facade on every existing predicate, all existing benign/positive vectors and actual4status emitter. Assert exact before/after boolean/count/refusal parity and branchprecedence for multihit cases, infrastructure exception unchanged. Source review confirms regex/literal semantics unchanged; selectedvectors not exhaustiveproof.",
+    "First event persists after later predicates/children, including two interleaved callbacks with firstpersist unresolved; unknownfirst cannot be overwritten. Same increment/write count, output ordering, thrown/promise identity and rejectedpersist/custody behavior; rawtestmarkers absent from metadata/nativeoutput.",
+    "Real runtime3db childcallsite attribution using existing inert launch harness; no extra launch/listener/request or changed argv/environment/lifecycle. Existing browser/causeproof paths remain unmodified/defaultunknown and original telemetry success/privacy/parse/IO regressions retained.",
+    "Actual helper telemetry privacyrefusal maps exactly28 permitted pairs through existing calendarFixtureOrigin/Diagnostic plus production failure_facts with stage-data-only successor. Test longest80-boundary, invalid/injected/missing metadata fallbackbaseorigin and sameprivacyfailure; no raw errors/values/extra leaf.",
+    "Existing whole-source wrapper hash/argv/CI inverse and unrelated-source negative checks continue enforced after exact LF hash refresh. Relevant existing affected wrapper/unit CI contract checks, TypeScript/scopedlint/SRO validations with executed counts/provenance; no blind unrelated suite/catalog reruns."
+  ],
+  "guard_companion_evidence": {
+    "current_contract": {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63"
+    },
+    "current_wrapper_LF_SHA256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+    "exact_guard_site": "tests/support/calendar-feed-ci-contract.ts:6,83-88; current hash equals actual LF wrapper.",
+    "search": "091d69/5866fa bounded source inventory: scripts/tests/.github references route through same projector; one exact wrapper LFhash pin. Existing consumers checkpoint/pilot/native/fixedChromium need no source edit; no workflow/dispatcher/current argv change authorized.",
+    "source_refs_verified": [
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 140182,
+        "sha256": "31238ec8852e5636d1d0dab3391a7224da50c2349f39cd28711ca85dba81968a",
+        "LF_bytes": 138786,
+        "LF_sha256": "571b4cb4d939e66e850303873f577f2256a11084330863ea5f303f7d2cb470e3"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 48616,
+        "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "LF_bytes": 47931,
+        "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+        "LF_bytes": 26504,
+        "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+      },
+      {
+        "path": "src/server/calendar-feed/public-feed.ts",
+        "bytes": 4421,
+        "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+        "LF_bytes": 4421,
+        "LF_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 331036,
+        "sha256": "e6ce95880d24c7908f5f708dedb3671c554ff087d8e652a6aa135bbd21c0dfba",
+        "LF_bytes": 327960,
+        "LF_sha256": "aa80e7440037b0ae0b8c68a0e416ceba4f10a611695a251653f8dc1b9a536278"
+      },
+      {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+        "LF_bytes": 2509,
+        "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+      }
+    ]
+  },
+  "author_control_attribution": {
+    "tool": "f7af02",
+    "native_exit": 0,
+    "wall_seconds": 0.1459141,
+    "reported_result": "Actualsource reply statuses200/404/429/503 ->4responses0sensitive; three source-owned benign startup/version vectors clean; separate syntheticsecret and unexpected-response refused.",
+    "scope": "Native-author source extraction/inmemoryconsole+persist only, not hostedcause. Reviewer read actual emitter/observer sources and reused this author record without rerunning controls or importing application modules."
+  },
+  "prohibited_expansion": [
+    "No app/SQL/RLS/auth/provisioning/money/key/query/cleanup/retirement/backendcustody changes;118SQLimmutable.",
+    "No reset/phaseexception/threshold/rule/response-schema/secret-recognizer relaxation; no counttimeoutincrease or assertion/skip/95change.",
+    "No additional workflow/dispatcher/mode/CIinput/config/collector/dependency/newgenericdiagnostic.",
+    "No runtime command/effects assigned here; firstfact source must be implemented/frozen/meaningfullytested and independently reviewed before any separately admitted finite attempt. Unknown/nonreproductionSTOP/no automaticretry; oldslots remainclosed."
+  ],
+  "limits": {
+    "current95": "93P1F(API019)1zero(API020pending); separate recovery1P/browser14retry0P",
+    "hosted_first_predicate_child": "UNKNOWN",
+    "actual_secret_disclosure_vs_falsepositive": "UNKNOWN",
+    "underlying_cause": "UNKNOWN",
+    "main_DB": "Retainedkey/keyDeletedfalse/dbClosedtrue; backendsettlementUNKNOWN",
+    "P5": "OPEN",
+    "counter": 3,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "source_write_authority_from_review": false,
+    "runtime_effect_authority": false
+  },
+  "reviewer_checks": {
+    "reads": [
+      "2c6fd4/native0",
+      "091d69/native0",
+      "557f9f/native0",
+      "5866fa/native0",
+      "a78963/native0"
+    ],
+    "final": "Read-only source/hash/fixed-enum length/uniqueness checks. No detector/control/test/module execution, API/GET/Git/resource/source/spec/foreigncheckout edits.",
+    "API": 0,
+    "tests": 0,
+    "Git_mutations": 0,
+    "source_edits": 0
+  },
+  "blockers_to_minimum_plan": []
+}

@@ -1,0 +1,125 @@
+{
+  "source_bindings": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 49378,
+      "sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb",
+      "LF_bytes": 48686,
+      "LF_sha256": "8798c1ba86885a6fec5214c2a18da4844e5716a3795370b53ed47422085f3eac",
+      "prospective_LF_git_blob": "ff918a3057a5dcf53bf2e7b86a6812c73bb0e626",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 143615,
+      "sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b",
+      "LF_bytes": 142170,
+      "LF_sha256": "d89c354efa97b8710f125a98e557f69ad3d6d9d20933be26b69ca44614ee23a3",
+      "prospective_LF_git_blob": "e88ac532c7bfb1192cd34087bac947a4588e46b7",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 340518,
+      "sha256": "7c8e4e2684de09b7dee376af393a618677a2db16f35abfd968593dffcdc17fd0",
+      "LF_bytes": 337393,
+      "LF_sha256": "e0a317ddaef8ed436cc1f898e142ca2d6f2d0a9dbb96ee10268c34b789a82245",
+      "prospective_LF_git_blob": "8712fdb2bcb93688322168e595fa328ff7ef15be",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "bbbea7f1f12d0662b2b7e09fa6c6648c82cee2797d72357aa47bc62130bccd72",
+      "LF_bytes": 8024,
+      "LF_sha256": "3e4adaf1060424ad80ee2477ab6fcf8ab3b1ce9bc94d5204482383465a09156e",
+      "prospective_LF_git_blob": "e3bfa37f57e29468b71531e0cb98705952ec78fa",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 262876,
+      "sha256": "fa16e59053bbc01435a9b38694976d3bbff7c0619271d05f4f4e45de21bb6a02",
+      "LF_bytes": 259770,
+      "LF_sha256": "8f2b28c58132ea91da3f046c1864ced662e4763be1eceaf375076af208262a50",
+      "prospective_LF_git_blob": "5118ffe354686567f078dd690ff802fe7c41fe90",
+      "LF_inverse": true,
+      "raw_inverse": false,
+      "unchanged": false
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "LF_bytes": 26504,
+      "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+      "prospective_LF_git_blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "prospective_LF_git_blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "LF_bytes": 162159,
+      "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "prospective_LF_git_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": true
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "bytes": 4421,
+      "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "LF_bytes": 4421,
+      "LF_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "prospective_LF_git_blob": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "LF_bytes": 75930,
+      "LF_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "prospective_LF_git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": true
+    }
+  ],
+  "source4_raw_inverse": true,
+  "all10_LF_inverse": true,
+  "SRO_raw_inverse": false,
+  "SRO_limit": "Author SRO was serialized with CRLF while refreshing exact anchored stops; canonicalLF inverse matches entire preimage and outsideSRO raw bytes exact. Failed raw-baseline serialization probes c71f8c/704819 did not modify source or establish rawwholeSpecinverse. Do not claim entireSpecrawinverse. OnlyassignedSRO text/lineending changed.",
+  "ownerFacts_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+  "outsideSRO_raw_equal": true,
+  "producer_inverse": "Reverse exact producer-deltas.json replacements; original scanner branches/order/exception expressions preserved.",
+  "unit_inverse": "Reverse typeannotation;reverse unit-companion-deltas;remove unique api019PreimageDetector+4test region.",
+  "SRO_inverse": "Reverse recordedanchorprefix pairs in order;remove unique firstprivacy subsection; compare canonicalLF +outsideSRO raw.",
+  "unchanged_other5": true,
+  "SQL118": "No edits;actualchangedpathSQL0/no rawscan."
+}

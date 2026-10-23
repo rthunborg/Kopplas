@@ -1,0 +1,16 @@
+{
+  "schema": "ROOT_FUTURE_INERT_IDENTITIES_V1",
+  "head": null,
+  "source": null,
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "base_local_head": "104976f7fc88844394abd48d02f1a8392c25ad8b",
+  "last_published_head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "mode": "NORMAL",
+  "cause_proof": false,
+  "release_validation": false,
+  "all_execution_slots": "UNALLOCATED",
+  "effects_authorized": false,
+  "reader": "existing qualified lineage only; updated fixed-stage constants are data only"
+}

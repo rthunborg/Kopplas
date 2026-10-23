@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-23T15:56:57Z"
+updated_at: "2026-10-23T16:30:32Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -379,6 +379,9 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Qualify actual required95, reached failure, direct recovery and scoped key/backend custody; no inferred cause or coverage from job status.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-NORMAL-actual-evidence-independent-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-review\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual reached API019 telemetry privacy-refused origin; localize observer/privacy producer path without raw secrets, weakening guards or inferring a confirmed leak.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-refusal-actual-source-assessment\",\"profile\":\"sensitive\",\"role\":\"native-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Review source-proven privacy observer/producer contract or minimum first-increment provenance plan; preserve guards and avoid speculative leakage/fix claims or opaque repeated runs.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-refusal-minimum-plan-independent-review\",\"profile\":\"sensitive\",\"role\":\"independent-review\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual API019 privacy refusal requires minimal fixed first-origin evidence in owned child observer without secret retention or weakening security/custody guards. Independently approved five-path plan only; preserve cap3, no fourth broad review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-first-origin-author\",\"profile\":\"sensitive\",\"role\":\"implementation-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent targeted actual five-path privacy first-origin change review; preserve public-token/secret custody, predicate equivalence, fixed label boundaries and failure semantics. Broad cap3 exhausted; changed lines and consequential regressions only.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-first-origin-actual-patch-review\",\"profile\":\"sensitive\",\"role\":\"independent-changed-diff-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Inert data/source rebinding of already independently qualified provider/publisher/canonical dispatcher/poller, parallel only to frozen-source review. Head/source NULL until Rootcommit; no execution/effect allocation/new collector.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-API019-privacy-origin-inert-operational-reuse\",\"profile\":\"sensitive\",\"role\":\"operational-preparation\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -404,7 +407,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3, ca240693, 5e0b6363, 215078e7, bd4121e5, a9489663, 2c8e8077, c4c195d9, e5256879, edce7b87]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3, ca240693, 5e0b6363, 215078e7, bd4121e5, a9489663, 2c8e8077, c4c195d9, e5256879, edce7b87, 104976f7, 48a7c32f]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -430,7 +433,7 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "15.5 P5 remains open: actual NORMAL39975009683 at edce7b87/sourcee525 independently qualifies93 passed, API019 failed, API020 pending. API019 reached scenario-telemetry-privacy-refused; the first privacy increment predicate and owned child remain UNKNOWN. No secret leak or functional repair is proven. Separate direct recovery passed; DB key retained/deletion unverified/backend settlement UNKNOWN. Independent minimum-plan review precedes any patch or fresh observation; required95/custody/delivery, P6/P7,15.6 and epic gates remain."
+  - "15.5 P5 remains open. Source48a7c32 adds independently reviewed fixed first-privacy-origin evidence only, verified195P/0F/0skip, TypeScript/lint/SRO. It proves no functional repair or hosted cause. Last actual39975009683/sourcee525 remains93 passed, API019 privacy-refused failed, API020 pending; DB key retained/deletion unverified/backend settlement UNKNOWN. Final exact operational enrollment/review and finite checkpoint allocation precede any observation. Required95/custody/delivery, P6/P7,15.6 and epic gates remain."
 overrides:
   oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
   ownership: "Own15.5spec/ownedepic15context/preparationonly initially; exactsharedsource/schema/test/resource handoff withCoordinator before overlappingimplementation; no foreigncheckoutwrites or pausedsessionresume"
@@ -2347,3 +2350,27 @@ p5_API019_NORMAL_actual_result:
   release_ready: false
   no_deployment: true
   next: "Independent minimum-plan check for closed first-increment predicate and owned-child origin; preserve privacy guard and timing. No unchanged opaque NORMAL repeat."
+p5_API019_privacy_first_origin_source:
+  source: 48a7c32faa1be7ae2b6d81095282521cebfaa621
+  parent: 104976f7fc88844394abd48d02f1a8392c25ad8b
+  status: PASS_API019_PRIVACY_FIRST_ORIGIN_SOURCE_ONLY
+  independent_review_sha256: 53747652a4d270646964277c6b45c09dca2df7fb97fbd6bffae00bc47aa276c2
+  scope: "Five existing paths; fixed first child/predicate pair through existing observation/stage seam; contract SHA literal and author SRO only."
+  meaningful_controls: "RED0P4F to GREEN4P0F;195 affected passed/0failed/0skipped; TypeScript0/scopedlint0; SRO216/errors[]"
+  fixed_stage_boundary: "28 literal labels; maximum80 admitted by unchanged1..80 guard;41 private reader AST segments unchanged"
+  privacy_preserved: true
+  functional_repair: false
+  hosted_first_origin: UNKNOWN
+  hosted_cause: UNKNOWN
+  whole_Spec_raw_inverse: false
+  Spec_inverse_limit: "Only owned SRO line-ending serialization differs; outsideSRO raw exact/fullSpecLF inverse exact. Four executable raw inverses pass."
+  last_qualified95: "93 passed; API019 privacy-refused failed; API020 pending at39975009683/sourcee525"
+  DB_custody: "key retained; deletion unverified; backend settlement UNKNOWN"
+  P5: OPEN
+  review_counter: 3
+  development_complete: false
+  release_ready: false
+  inert_preparation: "head/source NULL, no executable target or effect admission; final materialization, independent review and finite allocation required"
+  manifest: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/root-fold-manifest.json\", \"bytes\": 4947, \"sha256\": \"0b81a603e555c5a7eeb311450fd902302cb63d63188b3a8db1fc105e2c3f4bd5\"}"
+  no_deployment: true
+  closeout: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/root-closeout.json\", \"bytes\": 1722, \"sha256\": \"6af0a6cb965af38f3574bcead3b97a2956f8f8c2744460cbfea2e22b6bbef28f\"}"
