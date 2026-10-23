@@ -413,7 +413,7 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
       const physical = await adminQuery<{ token_hash: string }>("select token_hash from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) and token_hash is not null", [base.tenantIds]);
       if ([...trackedRaw, ...trackedProof, key.secret, isolatedTrustedIp, ...physical.map(row => row.token_hash)].some(value => value && serialized.includes(value)) || /calendar\/feed\//.test(serialized)) throw new Error("Raw calendar status RPC privacy failed");
       const status = await readCalendarFeedStatus(clients[subject] as never,subjects[subject].tenantId,attemptId);
-      return {...status,publicDto:data};
+      return {...status,lastUsedAt:iso(status.lastUsedAt),publicDto:data};
     },
     rawManage: async (name,intent,overrides={},attack) => {
       const subject = subjects[name === "anon" ? "own" : name], now = new Date();

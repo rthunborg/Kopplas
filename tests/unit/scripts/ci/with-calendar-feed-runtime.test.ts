@@ -1436,6 +1436,66 @@ function actualFeedRegion(path: string, start: string, end: string | undefined, 
   const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
   return new Function(...Object.keys(dependencies),strip(region)+"\nreturn "+exported+";")(...Object.values(dependencies));
 }
+// Execute the real fixture status method, real mapper and existing iso observation.
+function actualFixtureStatusObservation(value: string | null, usageCount = 1, replies?: Array<{data: unknown; error: unknown}>) {
+  const data = Object.freeze({membershipId:"owned-membership",active:true,revision:1,lastUsedAt:value,usageCount,
+    attemptOutcome:null,attemptAction:null,attemptRevision:null});
+  const calls: Array<{name:string;args:unknown}> = [], order: string[] = [];
+  const rpc = async (name:string,args:unknown) => {calls.push({name,args});order.push("rpc");return replies?.[calls.length-1] ?? {data,error:null};};
+  const mapper=actualFeedRegion("../../../../src/server/read-models/calendar-feed.ts","export async function readCalendarFeedStatus","export async function readCalendarFeedSettings","readCalendarFeedStatus",{recordCalendarFeedTrace:(event:string)=>order.push(event),CommandError});
+  const actualIso=actualFeedRegion("../../../support/calendar-feed-atdd.ts","const iso =","function normalizedRpc","iso",{});
+  const source=readFileSync(new URL("../../../support/calendar-feed-atdd.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  const start="    status: async (subject,attemptId) => {",end="    rawManage:";
+  assert.equal(source.split(start).length,2);assert.equal(source.split(end).length,2);
+  const method=source.slice(source.indexOf(start),source.indexOf(end));
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const dependencies={clients:{own:{rpc}},subjects:{own:{tenantId:"owned-tenant"}},base:{tenantIds:["owned-tenant"]},
+    trackedRaw:["PRIVATE_TOKEN_SENTINEL"],trackedProof:["PRIVATE_PROOF_SENTINEL"],key:{secret:"PRIVATE_SECRET_SENTINEL"},isolatedTrustedIp:"PRIVATE_IP_SENTINEL",
+    adminQuery:async()=>{order.push("physical-privacy");return[{token_hash:"PRIVATE_HASH_SENTINEL"}];},readCalendarFeedStatus:mapper,
+    iso:(input:unknown)=>{order.push("iso");return actualIso(input);}};
+  const read=new Function(...Object.keys(dependencies),"return ("+strip("({"+method+"})")+").status;")(...Object.values(dependencies)) as (subject:string,attemptId?:string)=>Promise<{lastUsedAt:string|null;usageCount:number;publicDto:typeof data}>;
+  return {read,data,calls,order};
+}
+
+test("actual fixture status observation normalizes equivalent timestamps after both RPCs without mutating the raw DTO",async()=>{
+  for(const [value,expected,count,attempt]of [
+    ["2026-10-20T14:07:00+02:00","2026-10-20T12:07:00.000Z",7,"owned-attempt"],
+    [null,null,0,undefined],
+    ["2026-10-20T12:07:00.000Z","2026-10-20T12:07:00.000Z",1,"owned-attempt"],
+    ["2026-10-20T12:07:00Z","2026-10-20T12:07:00.000Z",2,"owned-attempt"],
+    ["2026-10-20T12:07:00.123000+00:00","2026-10-20T12:07:00.123Z",9007199254740991,"owned-attempt"],
+  ]as const){
+    const f=actualFixtureStatusObservation(value,count),result=await f.read("own",attempt);
+    assert.equal(result.lastUsedAt,expected);assert.equal(result.usageCount,count);
+    assert.equal(result.publicDto,f.data);assert.equal(result.publicDto.lastUsedAt,value);assert.ok(Object.isFrozen(f.data));
+    assert.deepEqual(f.calls,[{name:"read_calendar_feed_status",args:{p_tenant_id:"owned-tenant",p_attempt_id:attempt??null}},{name:"read_calendar_feed_status",args:{p_tenant_id:"owned-tenant",p_attempt_id:attempt??null}}]);
+    assert.deepEqual(f.order,["rpc","physical-privacy","rpc","status-valid","iso"]);
+  }
+});
+
+test("actual fixture status observation preserves different admitted instants and exact usage counts",async()=>{
+  const f=actualFixtureStatusObservation("2026-10-20T12:07:00.001+00:00",3),result=await f.read("own");
+  assert.equal(result.lastUsedAt,"2026-10-20T12:07:00.001Z");assert.notEqual(result.lastUsedAt,"2026-10-20T12:07:00.000Z");
+  assert.equal(result.usageCount,3);assert.notEqual(result.usageCount,1);assert.equal(result.publicDto,f.data);
+});
+
+test("actual fixture status observation refuses raw privacy schema and mapper failures before normalization",async()=>{
+  const valid={membershipId:"owned-membership",active:true,revision:1,lastUsedAt:"2026-10-20T12:07:00Z",usageCount:1,attemptOutcome:null,attemptAction:null,attemptRevision:null};
+  for(const [replies,count,event,earlyOrder]of [
+    [[{data:{...valid,extra:"PRIVATE"},error:null}],1,null,["rpc"]],
+    [[{data:{...valid,lastUsedAt:"PRIVATE_TOKEN_SENTINEL"},error:null}],1,null,["rpc","physical-privacy"]],
+    [[{data:valid,error:{code:"42501"}}],1,null,["rpc"]],
+    [[{data:valid,error:null},{data:{...valid,lastUsedAt:"not-a-time"},error:null}],2,"status-schema-invalid",null],
+    [[{data:valid,error:null},{data:{...valid,lastUsedAt:"2026-99-99"},error:null}],2,"status-schema-invalid",null],
+    [[{data:valid,error:null},{data:{...valid,usageCount:-1},error:null}],2,"status-schema-invalid",null],
+    [[{data:valid,error:null},{data:valid,error:{code:"42501"}}],2,"status-rpc42501",null],
+  ]as const){
+    const f=actualFixtureStatusObservation(valid.lastUsedAt,1,[...replies]);await assert.rejects(f.read("own"));
+    assert.equal(f.calls.length,count);assert.ok(!f.order.includes("iso"));
+    if(event)assert.equal(f.order.at(-1),event);else assert.deepEqual(f.order,earlyOrder);
+  }
+});
+
 test("actual status mapper distinguishes existing RPC and schema erasure after one await without exposing native error fields",async()=>{
   const status=actualFeedRegion("../../../../src/server/read-models/calendar-feed.ts","export async function readCalendarFeedStatus","export async function readCalendarFeedSettings","readCalendarFeedStatus",{recordCalendarFeedTrace,CommandError});
   for(const [reply,event]of [[{data:null,error:{code:"42501",detail:"PRIVATE"}},"status-rpc42501"],[{data:null,error:{code:"other",message:"PRIVATE"}},"status-rpc-error"],[{data:{active:"PRIVATE"},error:null},"status-schema-invalid"]] as const){let calls=0;const result=await captureCalendarFeedTrace(traceExpected,()=>status({rpc:async()=>{calls++;return reply;}},"owned-tenant","owned-attempt"));assert.equal(calls,1);assert.equal(result.ok,false);assert.deepEqual(result.events,[event]);assert.ok(!JSON.stringify(result.events).includes("PRIVATE"));}
