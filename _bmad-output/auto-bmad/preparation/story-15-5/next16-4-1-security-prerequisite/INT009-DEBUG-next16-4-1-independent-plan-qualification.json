@@ -1,0 +1,189 @@
+{
+  "schema": "INT009_NEXT1641_INDEPENDENT_SECURITY_PLAN_QUALIFICATION_V1",
+  "status": "PASS_PLAN_ONLY",
+  "outcome": "PASS_PLAN_ONLY",
+  "independent": true,
+  "model_route": "Explicit gpt-6.1-sol High; Root route1c6f9c before dispatch. Targeted security plan qualification, not actual patch review or fourth broad story round.",
+  "source_write_authorized": false,
+  "tool_download_install_authorized": false,
+  "execution_authorized": false,
+  "effect_authority": false,
+  "assessment": {
+    "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\INT009-DEBUG-dependency-security-blocker-assessment.json",
+    "bytes": 16907,
+    "sha256": "4d1a129bb2dcb1dbfde4f22d01c3280b083ff0998366bb809c6875c8590db16e",
+    "LF_sha256": "4d1a129bb2dcb1dbfde4f22d01c3280b083ff0998366bb809c6875c8590db16e"
+  },
+  "baseline_three_paths": {
+    "MAIN": [
+      {
+        "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json",
+        "bytes": 2509,
+        "sha256": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3",
+        "LF_sha256": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3"
+      },
+      {
+        "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+        "LF_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f"
+      },
+      {
+        "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\unit\\scripts\\verify\\fixed-chromium-application-admission.test.ts",
+        "bytes": 140788,
+        "sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+        "LF_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5"
+      }
+    ],
+    "DEBUG": [
+      {
+        "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas\\package.json",
+        "bytes": 2562,
+        "sha256": "790f9ddeda122073fbcb6752f08ad8536e2a6cd70fdd4722687ff6fa43e3089d",
+        "LF_sha256": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3"
+      },
+      {
+        "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas\\pnpm-lock.yaml",
+        "bytes": 167080,
+        "sha256": "5cb69abe1efce180545f64a5670381042dcddceca20f1b156d217f5b1de25ffb",
+        "LF_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f"
+      },
+      {
+        "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas\\tests\\unit\\scripts\\verify\\fixed-chromium-application-admission.test.ts",
+        "bytes": 142039,
+        "sha256": "1556d949d34d39b07dc2c0161ad5c4b3757a468dde12f1ec903882f09a9fba27",
+        "LF_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5"
+      }
+    ]
+  },
+  "workspace_preserved": {
+    "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\pnpm-workspace.yaml",
+    "bytes": 434,
+    "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+    "LF_sha256": "8aa3509d64e2ea496258100228fba8120bb754cab9a7c0c26ea1dc55b3c3df41"
+  },
+  "primary_qualification": {
+    "date": "2026-10-23",
+    "advisories": [
+      {
+        "id": "GHSA-2464-fhr4-w9xw",
+        "url": "https://github.com/vercel/next.js/security/advisories/GHSA-2464-fhr4-w9xw",
+        "severity": "critical",
+        "vendor_16x_range": ">16.0.0 <=16.4.0",
+        "patched": "16.4.1",
+        "limit": "Image optimization glibc/Linux upstream issue; vendor workaround sharp>=0.35.5 is already pinned, but this does not fix the other advisories or waive audit."
+      },
+      {
+        "id": "GHSA-p3m5-59mp-jv5r",
+        "url": "https://github.com/vercel/next.js/security/advisories/GHSA-p3m5-59mp-jv5r",
+        "severity": "high",
+        "vendor_16x_range": ">=16.0.0 <=16.4.0",
+        "patched": "16.4.1",
+        "limit": "App Router with Server Action CPU denial of service; vendor identifies upgrade as required mitigation for affected applications."
+      },
+      {
+        "id": "GHSA-673q-mjm6-r5xr",
+        "url": "https://github.com/vercel/next.js/security/advisories/GHSA-673q-mjm6-r5xr",
+        "severity": "critical",
+        "vendor_16x_range": ">=16.0.0 <=16.4.0",
+        "patched": "16.4.1",
+        "limit": "App Router cache functions returning multiple typed arrays; vendor recommends upgrade. No application exploitation or deployment behavior assessed."
+      }
+    ],
+    "compatibility": {
+      "next_tag": "https://raw.githubusercontent.com/vercel/next.js/v16.4.1/packages/next/package.json",
+      "node_engine": ">=20.9.0",
+      "react_peer": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+      "current_Node22_and_React19_2_4_declared_compatible": true,
+      "meaning": "Declared range compatibility only;16.3->16.4 is a minor framework update requiring actual install/build/test evidence.",
+      "lint_tag": "https://raw.githubusercontent.com/vercel/next.js/v16.3.8/packages/eslint-config-next/package.json",
+      "lint_No_Next_peer": true,
+      "retain_lint_reason": "Existing eslint-config-next16.3.8 plugin/override/patch is a separate graph with ESLint/TS peers; no requirement to change it for the next package advisory. Unnecessary bump would expand protected workspace/patch scope."
+    },
+    "writer_source": "https://raw.githubusercontent.com/vercel/next.js/v16.4.1/packages/next/src/lib/typescript/writeAppTypeDeclarations.ts",
+    "writer_source_assessment": "Tagged function retains direct fs.readFile then fs.writeFile(next-env.d.ts), unchanged no-mkdir pathway and error propagation. Supports testing the planned constant-only update; not a substitute for inspecting and running the actual installed16.4.1 compiled module.",
+    "registry_limit": "Direct registry URLs were inaccessible to web tool. Assessment retains actual official registry metadata receipts; independently corroborated version/engines/peers through vendor16.4.1 tag. No new registry fetch/download/install claimed.",
+    "primary_tool_docs": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-exec/",
+      "https://pnpm.io/10.x/cli/install"
+    ],
+    "docs_relevant_facts": "npm exec exact --package installs a missing tool in cache and can keep local bins on PATH; version/resolved entry proof is needed. pnpm lockfile-only can update package.json+lock and does not write node_modules; --ignore-scripts suppresses project/dependency scripts. Frozen install refuses out-of-sync lock. No --force/store server/lifecycle approval expansion is needed."
+  },
+  "exact_source_bounds": {
+    "package.json": "Only dependencies.next exact16.3.8->16.4.1; retain packageManager pnpm@10.24.0, React19.2.4 and all other pins/scripts.",
+    "pnpm-lock.yaml": "Generate using actual pnpm10.24.0, scripts disabled, lock-only; permit only Next16.4.1 and required dependency/optionalSWC/@next/env closure/integrity/peer snapshots and removal of now-unused old graph. Review every changed entry; do not refresh unrelated allowed ranges or remove Linux/other supported platform SWC entries. No --latest/prod-only/no-optional/audit-fix/lockfile deletion/force.",
+    "test": "Only exact expected Next version string at line876, after actual newly installed module inspection; preserve title, VM actual-module loading, denied imports, mock readFile/writeFile sequence, readonly-parent EACCES refusal and existing-file success assertions at875-890. No synthetic replacement or weakened oracle.",
+    "excluded": "No app/SQL/workflow/selector/auditignore/threshold/workspaceoverride/lintpatch/other version changes. New unexpected tracked output/churn is a boundary to inspect, not permission to add a fourth source file."
+  },
+  "practical_tool_bounds": {
+    "existing_tool_read": "Existing npm package metadata12.0.2 under Node22.23.2; its engines accept^22.22.2 and exec source forwards exact --package and flatoptions to libnpmexec. No npm/pnpm command was run here.",
+    "acquisition": "After separate bounded grant, existing npm exec with explicit --package=pnpm@10.24.0, official registry URL, operation-owned ignored B cache and --ignore-scripts; no global install, shim, npm config write or tool upgrade. Verify resolved pnpm package/entry path+bytes/hash and actual --version10.24.0 before any lock write; local PATH candidates must not silently select11.25.0. Same pinned entry used for lock/install/audit/gates.",
+    "lock_only": "Bounded exact10.24.0 install --lockfile-only --ignore-scripts after single manifest pin edit. Preserve workspace overrides/patch. Check only authorized package/lock changed; retain log/native completion and exact hashes. No dependency install side effects during this phase.",
+    "installed_tree": "DEBUG node_modules resolves actual MAIN node_modules. Existing .modules.yaml records pnpm@10.24.0, layout5/isolated, pendingBuilds[], virtualStore MAIN/node_modules/.pnpm and store C:/Users/Rasmus/AppData/Local/pnpm/store/v10. Treat one MAIN install as a mutation of both checkouts shared installed state.",
+    "store_lifecycle": "Future tool/install grant must name actual shared tree and existing v10 store/cache writes needed for package fetches. Preserve ignoredBuiltDependencies sharp/unrs-resolver and existing build policy; no global approve-builds/config changes, store server, prune/delete, forced recreation, or silent store migration. If declared store/tool scope cannot support the ordinary frozen install, stop and reconcile rather than force.",
+    "runtime_boundaries": "Only bounded installation/verification processes and normal generated ignored outputs, with exact versions/native exit/capture evidence. No service/DB/browser/CI/Gitremote/provider/deployment allocation follows from this plan."
+  },
+  "authoritative_install_replay_order": [
+    "Root/Coordinator first grants the exact three-source scope plus bounded tool/cache/shared-installed-dependency effects; records both heads and all source baselines. No source/tool writes are granted by this qualification.",
+    "Pause DEBUG strictly and confirm no source/test readers or concurrent dependency mutators across either checkout. Author edits MAIN package and creates MAIN lock with the qualified exact CI tool. No premature DEBUG test-pin edit/replay is required.",
+    "Perform ONE coordinated MAIN shared frozen dependency install under the admitted existing lifecycle policy. DEBUG source manifests temporarily remain old while its junction exposes new installed modules; explicitly record that paused mismatch and claim no DEBUG validity/tests/sourceproof during it.",
+    "Inspect actual installedNext16.4.1 compiled writer. Only if the preserved readonly-parent/existing-file oracles remain valid, update MAIN exact test version constant and execute actual writer-focused test and required MAIN gates. A writer behavior incompatibility is a stop/assessment, not permission to weaken assertions.",
+    "Distinct independent High actual three-path package/lock/test review binds final source diff, required graph/integrity and actual command evidence before checkpoint.",
+    "Root owns Git commits and replays ONLY that reviewed three-source patch into ownedDEBUG, preserving unrelated diagnostic/SQL files and line-ending semantics. Verify normalized source equality/installed version then resume DEBUG checks or prepare any fresh CI/sourceproof. No second install merely to repair the intentionally paused temporary manifest mismatch."
+  ],
+  "required_future_evidence": [
+    "Actual10.24.0 tool version+resolved entry/integrity and no global/config mutation; bounded lock-generation/install receipts.",
+    "Actual frozen install with the exact CI tool and existing lifecycle policy; unchanged all-dependency pnpm audit --audit-level=high native0. No ignore, production-only filter, suppression or threshold change. A newly reported high/critical requires assessment within scope rather than waiver.",
+    "Actual installed16.4.1 writer and preserved focused test must pass. Run whole TypeScript, lint, verify:lockfiles, production build and appropriate full Node unit suite. Package script test invokes integration too: choose canonical full Node unit lane deliberately; do not invent DB coverage or start unallocated services.",
+    "Final independent High exact three-source patch review and Root replay/sourcebinding refresh; later fresh CI/effects separately admitted. Existing full DB/RLS/directStorage/essential functionality development gates remain required; no skipped coverage credit."
+  ],
+  "terminal_and_acceptance_limits": {
+    "actual_terminal_run": 39924479291,
+    "verify_audit_step": 8,
+    "later_tests_and_DB": "skipped/INT009unexecuted",
+    "historical_exact_CI_advisory_response": "UNKNOWN; no hosted logs read",
+    "assessment_current_audit": "pnpm11.25.0 equivalent current-lock scope, not exact CI10.24 or historical response; no rerun here",
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "P5": "OPEN",
+    "INT009_cause": "UNKNOWN",
+    "DB_custody": "retained/unverified",
+    "acceptance": 0,
+    "development_complete": false
+  },
+  "actual_read_receipts": [
+    {
+      "tool": "de9190",
+      "native_exit": 0,
+      "scope": "Assessment metadata and source read; oversized test output truncated, relevant writer section subsequently read narrowly."
+    },
+    {
+      "tool": "fe334b",
+      "native_exit": 0,
+      "scope": "Actual baseline rawLF metadata, workspace, writer875-890 and installedoldNext writer; DEBUG junction resolution."
+    },
+    {
+      "tool": "4b8c1a",
+      "native_exit": 0,
+      "scope": "CI command/lock pins, existing npm metadata/exec source, Node test runner bounds."
+    },
+    {
+      "tool": "b50d5d",
+      "native_exit": 0,
+      "scope": "Bounded version-reference search: only Next expected test constant plus retained lint pins/overrides."
+    },
+    {
+      "tool": "19436a",
+      "native_exit": 0,
+      "scope": "Read shared installed-tree layout/store metadata only."
+    }
+  ],
+  "public_primary_reads": "Three vendor advisories, vendor tagged package/lint/writer source, npm/pnpm docs; no tool package acquisition, endpoint attack, hosted logs or runtime. No raw credentials read/persisted.",
+  "findings": [],
+  "open_questions": [],
+  "blockers": [],
+  "next_owner": "Root requests explicit bounded source/tool/shared-install grant; Native author then implements, distinct High exact-patch review follows."
+}

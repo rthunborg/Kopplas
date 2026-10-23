@@ -1,0 +1,69 @@
+{
+  "schema": "ROOT_DISPATCH_ONLY_ACTUAL_TERMINAL_OWNERSHIP_V1",
+  "at": "2026-10-23T08:27:20.167600+00:00",
+  "run_id": 39924479291,
+  "url": "https://github.com/rthunborg/Kopplas/actions/runs/39924479291",
+  "head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+  "checkpoint_id": "8167a3f6-c1f5-4324-b720-a85e9e50b803",
+  "attempt": 1,
+  "actor": "rthunborg",
+  "workflow_id": 296219797,
+  "mode": "original-int009",
+  "operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-root-operation/operation.json",
+    "bytes": 637,
+    "sha256": "5049a31ac25b219df29e8b5cdb2651340d3c8668dd0d9a479c83e8fe7aa1c7d0"
+  },
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-root-operation/terminal.json",
+    "bytes": 9919,
+    "sha256": "ccc6247740b879cf1e5260a4d9f02729b3d06afa0b456911dffdc85855e322de"
+  },
+  "actual_resolver": "794653/native0",
+  "actual_terminal_poll": "153019/native0",
+  "Root_actual_terminal_read": "9e6777/native0",
+  "provider_host": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-provider-host-attribution.json",
+    "bytes": 1026,
+    "sha256": "bb3151a366369bd12580a264daea798de0e0a2f8afafc891dab033c0ca0b0945"
+  },
+  "dispatch_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-root-operation/dispatch-receipt.json",
+    "bytes": 696,
+    "sha256": "2e0d0d68d9a480cc055e14ca4c6aa823588237e1486c7c66f2b0dcdc1a8f422f"
+  },
+  "actual_dispatch_outer": {
+    "start_tool": "4a47b5",
+    "start_session": 2903,
+    "start_wall_seconds": 10.0020212,
+    "wait_tools": [
+      "92e5d8",
+      "ffbae3"
+    ],
+    "completion_tool": "ffbae3",
+    "exit": 0
+  },
+  "local_wrong_path_command": {
+    "tool": "69c169",
+    "exit": 1,
+    "controller_not_started": true,
+    "effects": 0,
+    "corrected_before_firstactualcontroller_invocation": true
+  },
+  "provider_GET": 1,
+  "prePOST_GET": 4,
+  "POST": 1,
+  "resolver_GET": 1,
+  "poll_pairs": 1,
+  "artifact_GET": 0,
+  "Root_poller": "STOPPED",
+  "all_remaining_slots_closed": true,
+  "actual9terminal": true,
+  "verify_job_id": 120317432861,
+  "verify_failure_step": 8,
+  "verify_failure_step_name": "Audit dependencies (blocking, high severity)",
+  "INT009": "UNEXECUTED_DB_SKIPPED",
+  "normal_acceptance": 0,
+  "required95_last_NORMAL": "68P1F26zero",
+  "next": "High readonly current dependency audit reproduction/sourceassessment; boundedpatchproposal needs sharedfilecoordination and independentreview; no log/artifactGET allocated"
+}

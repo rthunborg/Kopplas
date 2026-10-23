@@ -1,0 +1,286 @@
+{
+  "schema": "NEXT1641_TARGETED_FINAL_FOUR_SOURCE_INDEPENDENT_PATCH_REVIEW_V1",
+  "status": "PASS_FOUR_SOURCE_PATCH_CHECKPOINT_ELIGIBLE",
+  "outcome": "PASS_FOUR_SOURCE_PATCH_CHECKPOINT_ELIGIBLE",
+  "verdict": "PASS",
+  "independent": true,
+  "model_route": "Root 3bc9bf; explicit gpt-6.1-sol High",
+  "review_scope": "Targeted security-fix follow-up of actual four-source patch; story review counter remains 3. No fourth broad review.",
+  "reviewed_base_HEAD": "987edccdafee51e59b7d63376e36dadd220409ae",
+  "author_receipt": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/author-result-final-four-source.json",
+    "bytes": 21640,
+    "sha256": "9c9c3c386cebe04226d76f139e438b807faa679e23cbc36cdbe8727e3b965f0e"
+  },
+  "reviewed_sources": [
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "prospective_Git_blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "LF_bytes": 162159,
+      "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "prospective_Git_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a"
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "bytes": 140788,
+      "sha256": "62f4cd651de979264ddfce282d3b958346fa9b2003df8015889de59845946044",
+      "LF_bytes": 140788,
+      "LF_sha256": "62f4cd651de979264ddfce282d3b958346fa9b2003df8015889de59845946044",
+      "prospective_Git_blob": "33b3efb90b5b787dda5ed4daae730a36437746a8"
+    },
+    {
+      "path": "tests/unit/dependencies/next-image-optimizer.test.ts",
+      "bytes": 1928,
+      "sha256": "e94f75454692db3e4341a51432579447b551f8ac29ea8ddce0d151cab6f9e108",
+      "LF_bytes": 1894,
+      "LF_sha256": "1f487754eb834bca75118743ae05e8dcecd61f0f180e564c344bc109b19b2bc5",
+      "prospective_Git_blob": "54c1af95d689c20489ca43f198a0ede4df12e5d2"
+    }
+  ],
+  "findings": [],
+  "source_checks": {
+    "actual_diff_receipt": "6cc6ec/native0",
+    "three_nonlock_inverse_receipt": "db2482/native0",
+    "lock_exact_inverse_receipt": "9aaaab/native0",
+    "actual_oracles_read_receipt": "ce873b/native0",
+    "package": "Only dependencies.next 16.3.8 -> 16.4.1; scripts, all other dependency pins and engines byte-preserved.",
+    "lock": "Independent full-text forward reconstruction equals actual lock: only Next, @next/env, all eight platform SWC package/snapshot/importer references and exactly ten SHA512 integrity values change. No other graph changes. Existing eslint-config-next/plugin 16.3.8, workspace override, patch, ignoredBuiltDependencies, peer graph and sharp remain unchanged.",
+    "platforms": [
+      "darwin-arm64",
+      "darwin-x64",
+      "linux-arm64-gnu",
+      "linux-arm64-musl",
+      "linux-x64-gnu",
+      "linux-x64-musl",
+      "win32-arm64-msvc",
+      "win32-x64-msvc"
+    ],
+    "writer_test": "Only exact installed Next version assertion changed. Actual compiled writer remains 3523 bytes/SHA3973ebf0093b08136059a790442951ba498421627a52bfcf06e1584360e034c9; VM import denial, readonly-parent EACCES, existing-file write and exact read/write call oracles remain byte-preserved.",
+    "optimizer_test": "Only typeof import and require module strings add /transform. The actual typed optimizeImage export and both real synthetic PNG->WebP/SVG->PNG resize, format, channels and all pixel assertions are retained; no cast, stub, suppression or exclusion introduced.",
+    "conservation": "Only four source paths plus Root-owned canonical state bookkeeping differ from HEAD; index empty. Thus no workflow/config/spec/kernel/SRO/app/SQL changes, including no new SQL118 diff; prior inventories reused without raw SQL scan.",
+    "workspace_and_patch_byte_preservation": "Independently compared normalized current bytes to HEAD; PASS.",
+    "installed_dependency_identity": "Actual MAIN installed Next package 16.4.1 and author-pinned package/metadata/writer bytes verified; DEBUG not accessed.",
+    "normalization": "Raw/LF/SHA256/prospective Git blobs independently checked; image unit retains CRLF raw bytes and LF-normalized commit identity."
+  },
+  "executed_evidence": {
+    "actual_receipt_read": "813398/native0",
+    "receipts": [
+      {
+        "name": "install",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/shared-frozen-install-native-store-native.json",
+          "bytes": 1389,
+          "sha256": "c7257b5d8cb87031607631b13a5b1da63ee9528a669e51774256ae07e55b6f1d"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 46.693979,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "audit_high",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/audit-high-native.json",
+          "bytes": 1218,
+          "sha256": "2c126c7a1a652bd36aa591ce2b7214be8bfc21be71f8a851e91c0aaaf5a6b782"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.938861,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "actual_writer",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/focused-installed-writer-native.json",
+          "bytes": 1268,
+          "sha256": "2f7e103da831a6d4f1d1ee5cbaa723e70ac554dcb67b06b4caf9e4ba18a74eb9"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.797033,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "actual_optimizer_images",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/focused-real-image-optimizer-native.json",
+          "bytes": 1151,
+          "sha256": "1f99ff0fafee2ad4b1e1bdb1fea7075d499c08dcbfd7d2f764c503636790048b"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.837263,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "whole_TypeScript",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/whole-typecheck-after-source4-native.json",
+          "bytes": 1227,
+          "sha256": "0b881f76c84691e4c7f38ac7ef680f892256ffabf830fa2e1737b36929088de8"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 2.874344,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "local_lint_input_aligned",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/whole-lint-local-input-aligned-native.json",
+          "bytes": 1502,
+          "sha256": "fe9386444792f3ee8fa2e8f406017bebdca190aefcd9d34bc1306769c5f20ff2"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 16.606003,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "verify_lockfiles",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/verify-lockfiles-native.json",
+          "bytes": 1220,
+          "sha256": "d91e3b574d0674a35eaa6a5a4cfea3f770dafd4009e2d3d5e12165596375bf6d"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.329113,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "production_build",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/production-build-native.json",
+          "bytes": 1247,
+          "sha256": "d8daa376ff41d7ec80d599fe3ca983dd0448b2265ae5551ec3638737286ee3c8"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 23.908992,
+        "complete_EOF_joined_closed_directsettled": true
+      },
+      {
+        "name": "canonical_full_Node",
+        "receipt": {
+          "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/canonical-full-Node-native.json",
+          "bytes": 1118,
+          "sha256": "e0dba4c3dba2d6e64d7ee28f9a8270143fcf545ee812c49748eae42240cd29c7"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 24.898363,
+        "complete_EOF_joined_closed_directsettled": true
+      }
+    ],
+    "focused_writer": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "focused_real_images": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "local_lint": {
+      "result": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/lint-local-input-aligned-result.json",
+        "bytes": 5976,
+        "sha256": "27fe31e2333485ea15a8d9e89eee30f6571fd22d385be6d5f648d6497672aa72"
+      },
+      "files": 1272,
+      "errors": 0,
+      "warnings": 28,
+      "fatal": 0,
+      "scope": "Reviewed local-only exact ignored runtime subtree exclusion, zero tracked paths excluded. Unchanged rules/config/script/exit threshold; 28 warnings are not a zero-warning claim.",
+      "qualification": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-local-lint-input-isolation-independent-qualification.json",
+        "bytes": 7610,
+        "sha256": "6989153991d03eb90903d1acdcfdb90fcfc305bdfc62b10e25a4a68e08e2e72a"
+      },
+      "canonical_clean_CI_lint_required": true
+    },
+    "production_build": {
+      "native_exit": 0,
+      "extra_process_environment_only": [
+        "NEXT_TELEMETRY_DISABLED=1",
+        "NODE_DISABLE_COMPILE_CACHE=1 inheritedcapture"
+      ],
+      "env_files_written": 0,
+      "deployment": false
+    },
+    "canonical_full_Node": {
+      "files": 314,
+      "suites": 103,
+      "tests": 3425,
+      "passed": 3424,
+      "failed": 0,
+      "skipped": 1,
+      "cancelled": 0,
+      "native_exit": 0,
+      "skip_identity": "UNKNOWN",
+      "skip_reason": "UNKNOWN",
+      "skip_coverage": 0,
+      "identity_provenance": "Author confirms raw TAP RAM-only/not retained; summary only. No inference from static skip candidates, and no rerun."
+    }
+  },
+  "reused_qualification": "Previous advisory/compatibility, pnpm/store, actual module/writer, formatter/caller, local input-isolation and transport/capture qualifications retained with references in bound author receipt; unchanged matrices not rerun.",
+  "eligibility": {
+    "source_eligible_for_Root_exact_four_path_commit": true,
+    "source_eligible_for_Root_reviewed_replay_into_owned_DEBUG": true,
+    "conditions": [
+      "Replay only these four reviewed Git-normalized blobs; preserve existing DEBUG diagnostic deltas.",
+      "Verify source/lock/shared install alignment before lifting DEBUG hold or executing DEBUG work.",
+      "Any checkpoint remote effect requires its separate actual finite allocation, source proof, review admission and ownership gates."
+    ],
+    "remote_effect_authority_from_review": false
+  },
+  "development_and_acceptance_limits": {
+    "development_complete": false,
+    "release_ready": false,
+    "normal_acceptance": 0,
+    "canonical_clean_exact_new_head_CI_required": true,
+    "new_head_full_unit_evidence_required": true,
+    "story_Node30_current_dependency_coverage": "UNKNOWN; these are 30 acceptance-case IDs, not Node.js version 30. Local aggregate unit summary is not an ID-level acceptance proof.",
+    "historical_Node30": "Prior source0ed NORMAL39816833651 had 30 distinct IDs/32 occurrences; predecessor only, not current-dependency coverage.",
+    "local_Node": "22.23.2; .nvmrc/CI Node22; exact-head CI remains authoritative.",
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "P5": "OPEN",
+    "INT009_cause": "UNKNOWN",
+    "DB_custody": "Retained/unverified; unchanged",
+    "source_review_does_not_waive_integrity_or_essential_functionality_gates": true
+  },
+  "required_next_steps": [
+    "Root commit/replay/alignment of exactly reviewed four-source patch, preserving held DEBUG ownership.",
+    "Separately admitted exact-source clean CI lint/full-unit and applicable remaining canonical gates, with actual acceptance IDs/skips reconciled.",
+    "Author refreshes spec/delivery/Suggested Review Order later; no development-complete claim from this report."
+  ],
+  "nonexecution": {
+    "reviewer_test_or_lint_runs": 0,
+    "network_API_provider_Git_mutations": 0,
+    "dependency_mutations_or_install_audit": 0,
+    "DEBUG_activity": 0,
+    "source_changes": 0,
+    "SQL_raw_rescan": 0,
+    "managed_resources": 0
+  },
+  "open_questions": [
+    "Local full-Node skipped test identity/reason UNKNOWN; zero coverage.",
+    "Current-dependency Story15.5 Node30 and full95 evidence requires exact-head canonical CI."
+  ],
+  "deferred_work": [
+    "Canonical exact-head CI and later author delivery/spec/review-order refresh."
+  ],
+  "blockers": {
+    "source_commit_replay_eligibility": [],
+    "development_completion": [
+      "Required exact-head canonical evidence and original consequential story gates remain outstanding."
+    ]
+  }
+}

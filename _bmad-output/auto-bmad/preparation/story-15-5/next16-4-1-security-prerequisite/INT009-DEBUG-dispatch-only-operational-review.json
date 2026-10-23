@@ -1,0 +1,249 @@
+{
+  "schema": "INT009_DEBUG_DISPATCH_ONLY_INDEPENDENT_OPERATIONAL_SOURCE_REVIEW_V1",
+  "status": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority": false,
+  "normal_acceptance": 0,
+  "scope": "Explicit gpt-6.1-sol High same targeted OP03 closure plus smaller dispatch-only source/privacy review. Root route17844a recorded before dispatch. Not a fourth broad story review, native fulfillment, finite allocation or effect activation.",
+  "candidate_files": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/provider-readonly.py",
+      "bytes": 16243,
+      "sha256": "184bc7b911f77e901859787da4a3e55aa1be3cdad9722be243ec17312b250803"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/root-driver.py",
+      "bytes": 18216,
+      "sha256": "ea2b527fc528f491196f35c79785f54f9971379184a284f4a0408dcf7509b7eb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/fixed-dispatch-body.json",
+      "bytes": 265,
+      "sha256": "38c7817896072ba93c968251c01ad26c8fdebac52c6a2e650f4596f3a8dd5157"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/proposal.json",
+      "bytes": 27757,
+      "sha256": "d4dab87b15ffdd9648dd2a65e3bbce898758195349639b71ac97eeb27e235e76"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/pure-controls.json",
+      "bytes": 20289,
+      "sha256": "fb8ca633a862e446bc5155091d6f4558b47b94e29b78644eabadc1f045fa7657"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/manifest.json",
+      "bytes": 2292,
+      "sha256": "978832b25b11768fda3fc49c5b12c3e2abb52fac96255c43d54890c72534759e"
+    }
+  ],
+  "prior_actual_stop_immutable": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-published-prePOST-stop-independent-audit.json",
+    "bytes": 14519,
+    "sha256": "73a1d58f2d25e9235da33ed7da4b735afda275e9455990a0d3cda065cea55329"
+  },
+  "source_inventory_authority": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-bytepin-operational-preparation/proposal.json",
+    "bytes": 200439,
+    "sha256": "3eb4065d74ba146d38a771bd4266c4d651a8b1759ff8ac8d1e73339c177aae9b"
+  },
+  "findings": [],
+  "closed_finding": {
+    "id": "INT009-DEBUG-OP-03",
+    "status": "CLOSED_IN_REVIEWED_DISPATCH_ONLY_SOURCE",
+    "prior": "Old production insertion-order serialization and differently ordered proposal produced unequal265-byte hashes. The historical last thrown remote/body guard remains UNKNOWN; this review does not reinterpret it.",
+    "repair": "Runtime no longer assembles body JSON. Actual main reads verify_pin(body_ref), checks exact expected JSON semantics+265B+SHA, journals mode/body identity and consumes dispatch state. Actual api requires the absolute frozen PREP bodypath equal ROOT/body_ref path, verifies its bytes again immediately before bounded POST and passes that same path unchanged to gh --input. No serialization-order dependency.",
+    "fixed_body": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/fixed-dispatch-body.json",
+      "bytes": 265,
+      "sha256": "38c7817896072ba93c968251c01ad26c8fdebac52c6a2e650f4596f3a8dd5157"
+    },
+    "semantic_identity": {
+      "ref": "codex/epic-15-int009-debug",
+      "inputs": {
+        "expected_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+        "checkpoint_id": "8167a3f6-c1f5-4324-b720-a85e9e50b803",
+        "release_validation": "false",
+        "calendar_feed_cause_proof": "false",
+        "calendar_feed_original_int009": "true"
+      }
+    },
+    "actual_control": "Independent reproduction executed the frozen actual main/api/entry functions with memory-only future capabilities and HTTP; mocked native opened the actual supplied --input path, verified byte-for-byte equality with the frozen disk body and confirmed mode+POST intents and DISPATCH_CONSUMED_BEFORE_POST precede the solePOST."
+  },
+  "conservation": {
+    "complete_provider_and_controller_inverse_to_bytepin_predecessor": true,
+    "inverse_authority": {
+      "proposal": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-preparation/proposal.json",
+        "bytes": 27757,
+        "sha256": "d4dab87b15ffdd9648dd2a65e3bbce898758195349639b71ac97eeb27e235e76"
+      },
+      "key": "inverse_proof",
+      "each_current_span_SHA_and_full_restored_actual_bytes_verified": true
+    },
+    "all_provider_function_defs_byteequal": true,
+    "controller_unchanged14_defs_byteequal": [
+      "now",
+      "binding",
+      "write",
+      "native",
+      "required",
+      "git",
+      "read",
+      "verify_pin",
+      "checkref",
+      "fresh",
+      "save",
+      "mutation_fresh",
+      "ownedrun",
+      "wait_result"
+    ],
+    "controller_changed_defs": [
+      "admit",
+      "localproof",
+      "api",
+      "main"
+    ],
+    "full_resolver_poller_STOP_and_exception_tail_byteequal": true,
+    "manifest_all5_members_actual_bytes_SHA_verified": true,
+    "input_and_source_bindings_and_fixed_body_refs_actual_bytes_SHA_verified": true,
+    "source_data": "Pinned prior source_bindings object only: MAIN203/DEBUG85nonSQL/118sharedSQL, same170nonSQL rawLF/tenprovidertriggers. No new catalog or SQL rawscan. Old proposal operation/body data is not imported as dispatch authority.",
+    "scope_reduction": "Docs companion and MAIN/DEBUG push/ls-remote/preimage stages removed. Remaining git calls are unchanged local source/status/object/diff/ancestry checks. No remoteGit/push call is reachable from dispatch/observe. Both heads stay MAIN987/DEBUG3e6; fresh checkpoint8167/new private namespace isolates closed old slots."
+  },
+  "identity": {
+    "DEBUG": {
+      "actor": "rthunborg",
+      "actual_run_id": null,
+      "attempt": 1,
+      "cause_proof": false,
+      "checkpoint_id": "8167a3f6-c1f5-4324-b720-a85e9e50b803",
+      "event": "workflow_dispatch",
+      "expected_remote_preimage": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "mode": "original-int009",
+      "original_int009": true,
+      "ref": "codex/epic-15-int009-debug",
+      "release_validation": false,
+      "repo": "rthunborg/Kopplas",
+      "source": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "triggering_actor": "rthunborg",
+      "workflow_id": 296219797
+    },
+    "MAIN": {
+      "branch": "codex/epic-15-scheduling-time-calendar",
+      "head": "987edccdafee51e59b7d63376e36dadd220409ae",
+      "source": "0ed3710929ea09afae49ef7b8d3266975331e827"
+    },
+    "actual_run_id": null,
+    "published_predecessor_operation": "Both pushes/readbacks already completed; prior audit/ten settled receipts remain evidence. No repetition or old-slot reopening."
+  },
+  "source_and_operational_checks": [
+    {
+      "gate": "Default admission and mixed pins",
+      "result": "Exact provider argv and closed typed activation with selfpin,6 JSON reference paths, UUIDv4/freshness/identity, independent operationalPASS bothfields, producerSOURCEPASS/readerPASS and actual completed grant remain required. Provider byte-only verify_pin still handles heterogeneous refs; genuine JSON decoders unchanged. Controller exact dispatch/resolve/poll/observe activation/pins/selfhash and allocation/review checks precede action."
+    },
+    {
+      "gate": "Source and publication provenance",
+      "result": "Provider consumes strict pinned source_bindings_ref and actual170nonSQL source/lock/config guards; controller consumes same source rows and local Git proof. published_remote_MAIN/DEBUG fields mean qualified prior exact publication/readback receipts plus current local tracking, as Root clarified. They do not imply fresh MAIN network observation. Main HEAD has no live role in the fixed DEBUG CI dispatch; the fresh DEBUG branch endpoint checks its actual head within the fourGET budget. Root fresh sourceproof must disclose this provenance."
+    },
+    {
+      "gate": "Provider and capture privacy",
+      "result": "One exact fixed project/team providerGET with prior qualified CLIentry/caps/predicate and all functions conserved. Full native0/EOF/join/handles/directsettled required. Persist only closed safe validated fields/hashes and boolean identity/capture facts; rawresponsesRAMonly. Point-in-time ordinary Git push containment statement remains limited, no blanket manual/CLI/production deployment disable claim."
+    },
+    {
+      "gate": "Dispatch-only authorization and once custody",
+      "result": "Exclusive new OWN mkdir/journal before four strict GETs: exact current userrthunborg, collaboratorwrite/maintain/admin, ownedDEBUGbranch3e6, workflow296219797/pathci.yml/active. No accepted state before sole empty-successful POST. Body is fixed disk bytes, exact semantic mode releasefalse/causefalse/originaltrue with SHA3e6/newUUID. Modeintent, state consumption and exclusive POSTintent are fsynced before native. Failure/timeout/partial capture becomes UNKNOWN_STOP/allslotsclosed; repeated dispatch/observe cannot replay POST."
+    },
+    {
+      "gate": "Immediate freshness",
+      "result": "Unchanged mutation_fresh binds activation/proof/provider0..300s; actual api rereads pinned proposal/provider, requires provider<=180 before20sPOST, revalidates exact bodypath and bytepin, then calls native. Root freshprovider qualification and actual fresh completed allocation/activations are absent future requirements, never supplied by offline virtual aliases."
+    },
+    {
+      "gate": "Bounded observation and privacy",
+      "result": "Unchanged exact tuple/actor/workflow/attempt resolver6/min5 and poll90pairs/min30/original90min. Observe selects one stage; unregistered/earlyWAIT0GET; ambiguity/exhaustion/uncertaintySTOP. Exact9terminaljobset+ownedcompletedrun freeze closed projection and close allslots. No artifacts/logs/variables/resources/deploy or new query family. Registration/STOP controls use synthetic run data, no actual run is claimed."
+    }
+  ],
+  "controls": {
+    "independent_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-independent-controls.json",
+      "bytes": 5136,
+      "sha256": "04967f78c6fe9a96dba57048d7c63c4f98746d0450181175c789b2afe073a8de"
+    },
+    "independent_source_groups": 6,
+    "reproduced_frozen_author_actual_path_groups": 29,
+    "failed": 0,
+    "attribution": "Entire14211-byte author harness read before execution. Independently reproduced exact frozen provider prefix/main/api/write/entry/body/registration/terminal paths under additional real-process/write fences. Only final author receiptwrite/print excluded to preserve immutable inputs. Additional inverse/helper/tail/pin assertions independently checked. No invented new transport family.",
+    "coverage": "Complete actualprovider pre-intent prefix with170actualsourceguards; exact4GET\u2192pinnedbody\u2192mode/POSTintents\u2192actualapi using diskbytes/mockempty204\u2192registration\u21929jobSTOP; default refusal, wrongactor/permission/branch/workflow, tamperedbody, partialPOST, duplicate dispatch and no retry afterUNKNOWN.",
+    "virtual_inputs": "Only futuregrant/review/proof/provider/activation/clock and localGit/HTTP answers virtual/RAM; no current capability or remote result. Actual scripts/body/proposal/pins/sourcefiles and strict byte identity are real disk. NativeGit0/realtransport0/filesystemruntimewrites0.",
+    "history": "Initial draft harness syntax/providervirtual-output ordering/__name__ and bodypath comparison corrections retained in frozen proposal local_control_history; only29 finalactualchecks count, no additive failed-draft credit.",
+    "tools": [
+      {
+        "tool": "0161aa",
+        "native_exit": 0,
+        "purpose": "sixpins/manifest/actual source and interface read"
+      },
+      {
+        "tool": "9bfef2",
+        "native_exit": 0,
+        "purpose": "complete controlharness and providerdelta/inverse/protocol read"
+      },
+      {
+        "tool": "d5d1e4",
+        "native_exit": 0,
+        "elapsed_seconds": 0.4406062,
+        "purpose": "full offline reproduction29PASS plus6sourcechecks; no real effects"
+      }
+    ]
+  },
+  "finite_future_caps": {
+    "provider_GET": 1,
+    "push": 0,
+    "remote_Git": 0,
+    "prePOST_GET": 4,
+    "POST": 1,
+    "POST_seconds": 20,
+    "resolver_GET_max": 6,
+    "resolver_page": 20,
+    "resolver_min_seconds": 5,
+    "poll_pairs_max": 90,
+    "poll_min_seconds": 30,
+    "wall_seconds": 5400,
+    "artifact_log_GET": 0
+  },
+  "Root_interfaces": {
+    "enforced_review_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-operational-review.json",
+    "required_status": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+    "required_outcome": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+    "independent": true,
+    "direct_admission": "Reviewer writes this NEW enforced path exclusively; Root independently fullreads actual report/fullpins and records its exactref in a small review admission. No extra copy interface; old reviewcopies untouched. Sourceproof pins both actualreport/admission.",
+    "future_allocation": "NEW actual completed Coordinator dispatch-only finite grant bound current exact6/newUUID/ownedheads; providerGET1+preGET4+POST1/resolver6/poll90pairs within90min. push0/remoteGit0/artifactlogGET0. Old allocations/oncecaps/operations remain closed; sourcePASS is no effect authority.",
+    "fresh_proof": "Root soleoperator freshly verifies current localheads/branches/clean/index/sourceobjects/rawLF/118SQLvector/trigger bindings and records qualified completed published-readback receipts/currenttracking provenance for published fields. No freshMAINremoteGET invented. Future DEBUGbranchGET is already one of four strict preGETs.",
+    "activation": "Actual freshproviderPASS with complete Rootoutertool/native/elapsed/EOF/join/handles/settled evidence required after completed new allocation and exclusive provideractivation; only then new exclusive dispatcheffectsactivation with actual6/report/admission/grant/proof/provider pins and one operationID. Exact immutable265B body pin must remain unchanged through POST. Any failure/uncertainty STOP; no freshcapability retry to rescue closed slots.",
+    "future_reader": "Only actual owned9terminal permits later tuple/job/reader binding review and separate finite artifactread allocation/Rootactivation. No CI/job/cause/custody/acceptance inference from this source review."
+  },
+  "continuity": {
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "story_feed_browser_retry0_passed": 14,
+    "normal_acceptance": 0,
+    "functional_cause": "UNKNOWN",
+    "DB_custody": "retained/unverified",
+    "P5": "OPEN"
+  },
+  "limits": "Only new private controls and this report written. No source/Spec/tracked/state/oldpacket/grant/activation/journal edits, API/network/Gitremote/push/POST/provider reexecution/CI/resources/testsuites/deployment. Root sole future operator/poller.",
+  "open_questions": [],
+  "blockers": [],
+  "deferred_work": [
+    "Independent exact source/privacy/once/full-offline-path review",
+    "Fresh actual completed finiteCoordinatorallocation",
+    "Root actualfreshsourceproof andexclusive new provideractivation",
+    "Qualified actualfreshprovider+Rootexclusive dispatchactivation",
+    "Later actualterminal andseparate artifactallocation/qualification"
+  ]
+}

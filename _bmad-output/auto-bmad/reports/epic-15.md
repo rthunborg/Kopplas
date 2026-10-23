@@ -7679,3 +7679,40 @@ No archive ran this resume.
 **⚠️ Needs human:** (none)
 
 **Next:** Freeze successor with complete offline actual-pin preflight, obtain targeted independent High review and fresh finite operation admission. Required95 remains68P/1F/26unexecuted; functional cause UNKNOWN, DB custody retained/unverified. No deployment.
+
+## Report — 2026-10-23T10:27:00Z (working)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `e3069de`).
+**Pipeline status:** 15.5 P5 remains OPEN. Next16.4.1 security prerequisite passed targeted independentHigh review and exactsource/install alignment; requiredruntime evidence remains outstanding.
+**Continues:** Closed bytepin publication stop and audit-blocked diagnostic39924479291; all oldeffectslots remainclosed.
+
+**Summary:** MAINe3069dee exactfour-source security/compatibility patch replayed to DEBUG1eeb3d2. Audit, writer1P, image2P, TypeScript, localinput-alignedlint(0E28W), lock/build allnative0; fullNode3424P0F1skip(unknownidentity,zero coverage). Canonical exact-head cleanCI stillrequired. Evidence: _bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/root-closeout.json
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 333h 29m (≈77h 24m AI-run, ≈256h 04m human/idle wait); resumed 234×.
+
+**Stories:**
+1. 15.1–15.4 landed; inherited review_unverified caveat preserved.
+2. 15.5: reviewcounter3; targetedsecuritypatch sourceeligible, P5/required95 open.
+3. 15.6: unstarted; sequential specification/validation remains required.
+
+**Skipped:** (none)
+
+**Epic gate:** Notrun. Last qualified fullNORMAL39816833651 remains68P/1F/26unexecuted; latestdiagnostic39924479291 added0coverage because blockingaudit failedbeforetests.
+
+**TEA:** 15.5 ATDD retained; P6automation/P7tail remain pending afterP5delivery.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remainsauthoritative; October7 rejection historical. Epic15 retrospective notrun.
+
+**Overrides:** No legacybrowsing/evidence; owner-authorizeddesigndefaults. Sol6.1Lowordinary/explicitHighsensitive; onefinalPR, reviewcap3, mergecommit/retainbranches aftergates; no deployment.
+
+**Open questions:**
+1. CurrentINT009causeUNKNOWN and DBcustody retained/unverified.
+2. One localNode skip identity/reasonUNKNOWN andzero coverage; Story15.5 current30NodeIDs requireexactheadCI.
+
+**Deferred work:**
+1. Exhaustivevisual/manual/releasevalidation remainsdeferred in existingledger; no release-readyclaim.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare minimalfresh reviewed source-bound checkpoint/push and isolatedINT009 diagnostic; obtain actualcause, repairwithinapprovedscope, runfullNORMAL95/recovery, finish15.5P5–P7, then15.6 andepicgates.

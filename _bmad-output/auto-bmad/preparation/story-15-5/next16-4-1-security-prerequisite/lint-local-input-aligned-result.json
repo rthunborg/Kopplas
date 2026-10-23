@@ -1,0 +1,184 @@
+{
+  "schema": "ACTUAL_ONE_BOUNDED_LINT_PRESENTATION_RESULT_V1",
+  "status": "QUALIFIED_NATIVE0",
+  "normal_acceptance": 0,
+  "new_slot_consumed_closed": true,
+  "native": {
+    "label": "whole-lint-local-input-aligned",
+    "argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+      "run",
+      "lint",
+      "--format",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\lint-presentation-preparation\\closed-lint-formatter.cjs",
+      "--ignore-pattern",
+      ".env.epic15.mail-runtime/**"
+    ],
+    "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "native_exit": 0,
+    "elapsed_seconds": 16.606003,
+    "reason": null,
+    "caps": {
+      "seconds": 300,
+      "stdout": 2097152,
+      "stderr": 262144
+    },
+    "direct_process_settled": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "streams": [
+      {
+        "bytes": 2976,
+        "sha256": "311d4e2fcb7b8d77173e0ae399624f56c96f45fa4afbc9b83b75ef7b6732db05",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ],
+    "raw_persisted": false,
+    "extra_environment_keys": []
+  },
+  "projection_status": "VALIDATED_CLOSED_PROJECTION",
+  "projection": {
+    "schema": "NEXT1641_CLOSED_LINT_PRESENTATION_V1",
+    "status": "CLOSED",
+    "counts": {
+      "global": {
+        "files": 1272,
+        "messages": 28,
+        "errorCount": 0,
+        "warningCount": 28,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      },
+      "privateB": {
+        "files": 0,
+        "messages": 0,
+        "errorCount": 0,
+        "warningCount": 0,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      },
+      "otherMAIN": {
+        "files": 1272,
+        "messages": 28,
+        "errorCount": 0,
+        "warningCount": 28,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      },
+      "unbound": {
+        "files": 0,
+        "messages": 0,
+        "errorCount": 0,
+        "warningCount": 0,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      }
+    },
+    "firstFindings": [
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/guard.config.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "line": 4,
+        "column": 60,
+        "severity": 1,
+        "unknown": false
+      },
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/guard.config.mjs",
+        "rule": "import/no-anonymous-default-export",
+        "line": 5,
+        "column": 1,
+        "severity": 1,
+        "unknown": false
+      },
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/guard.config.mjs",
+        "rule": "import/no-anonymous-default-export",
+        "line": 5,
+        "column": 1,
+        "severity": 1,
+        "unknown": false
+      },
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-caught-inner.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "line": 1,
+        "column": 14,
+        "severity": 1,
+        "unknown": false
+      },
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-caught-outer.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "line": 1,
+        "column": 14,
+        "severity": 1,
+        "unknown": false
+      },
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-healthy.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "line": 2,
+        "column": 17,
+        "severity": 1,
+        "unknown": false
+      },
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-uncertain.test.mjs",
+        "rule": "@typescript-eslint/no-unused-vars",
+        "line": 1,
+        "column": 14,
+        "severity": 1,
+        "unknown": false
+      },
+      {
+        "group": "otherMAIN",
+        "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/caught-inner.config.mjs",
+        "rule": "import/no-anonymous-default-export",
+        "line": 5,
+        "column": 1,
+        "severity": 1,
+        "unknown": false
+      }
+    ],
+    "omittedFindings": 20,
+    "omittedDetailsUnknown": true,
+    "unknownPublishedRows": 0,
+    "limits": {
+      "rows": 8,
+      "ASCIIbytes": 8192
+    },
+    "originalMessagesSourceFixStackNotPublished": true,
+    "acceptance": 0
+  },
+  "failure_error_name_if_no_projection": "UNKNOWN",
+  "cause_limit": "Counts/first8 are actualboundedlintfacts. Omittedtargets/rules/cause remainUNKNOWN; CLOSEDpresentation is notpass. No arbitraryrawsource/message/fix/stack/stream persisted.",
+  "local_ignore_pattern": ".env.epic15.mail-runtime/**",
+  "zero_tracked_paths_excluded": true,
+  "canonical_clean_CI_lint_still_required": true,
+  "DEBUG_HOLD": true,
+  "further_gates_executed": false
+}
