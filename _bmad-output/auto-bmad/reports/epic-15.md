@@ -7899,3 +7899,44 @@ No deferred release work is counted as passed.
 **⚠️ Needs human:** (none)
 
 **Next:** Finish the active read-only API019 source assessment, independently review a minimal evidence-backed next step, then close95/custody/delivery beforeP6/P7 and15.6.
+
+## Report — 2026-10-23T14:46:22Z (continuing — API019 evidence seam reviewed)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `e525687`).
+**Pipeline status:** Story15.5 P5 remains open; no development-complete or release-ready claim.
+**Continues:** True
+
+**Summary:** Committed the independently reviewed three-label telemetry evidence amendment. The change makes the next failure boundary observable while preserving production behavior, assertions and timing.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 337h 48m (≈77h 24m AI-run, ≈260h 23m human/idle wait); resumed 240×.
+
+**Stories:**
+1. 15.1–15.4 remain landed.
+2. 15.5 evidence source e5256879 passed focused4 tests and affected191 tests, TypeScript and scoped lint. Independent targeted High review passed with zero findings.
+3. Last qualified95 remains93 passed, API019 failed, API020 pending. Cause and DB backend settlement remain unknown.
+4. 15.6 remains unstarted.
+
+**Skipped:** (none)
+
+**Epic gate:** Not started; required development evidence remains incomplete.
+
+**TEA:** ATDD complete; post-development automation and epic trace remain pending.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; Epic15 retrospective pending.
+
+**Overrides:** Sequential story work, owner-authorized design defaults, exact source provenance, independent High sensitive review, three-round cap, one final epic PR, retained branches and no deployment remain enforced.
+
+**Open questions:**
+1. API019 exact failing branch and cause remain UNKNOWN.
+2. Main DB key deletion and backend settlement remain unverified.
+3. Story15.2 already used all3 broad review rounds; inherited review_unverified remains until bounded final provenance reconciliation.
+4. Actual current production auto-deployment containment remains UNKNOWN; a reviewed plan alone grants no merge.
+
+**Deferred work:**
+1. Exhaustive visual/manual and live release validation remain explicitly deferred; no passed or waived credit.
+Release validation is separate from required development gates.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare and independently validate the existing operational lineage against the reviewed evidence source, then obtain the finite checkpoint allocation and observe the missing boundary. Continue required95/custody/delivery, P6/P7,15.6 and epic gates.

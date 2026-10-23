@@ -1,0 +1,21 @@
+{
+  "schema": "ROOT_API019_EVIDENCE_SOURCE_CLOSURE_V1",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "parent": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+  "purpose": "Distinguish telemetry timeout, privacy refusal and parse refusal through the existing closed source-label channel. No product behavior or functional repair claim.",
+  "exact_source_scope": "Existing helper, existing unit companion, existing author Suggested Review Order only.",
+  "actual_checks": "Semantic RED1pass/3fail then GREEN4pass; whole affected191pass/0fail/0skip; TypeScript/scopedlint/diff pass. All12 native captures complete/settled.",
+  "review": "Independent High PASS_API019_MINIMUM_EVIDENCE_PATCH_SOURCE_ONLY;0findings; source eligible only.",
+  "review_order": "Actual pinned corrected summary216 references/errors[]. Author prose217 is preserved as a discrepancy, not verified217.",
+  "conservation": "Exact three full raw inverses, LF Git blobs, ownerFacts and outside-SRO preservation independently verified; SQL118/app/dependencies/acceptance assertions/timing unchanged.",
+  "stage_only_reader": "Historical consumed tuple retained; three finite tags and41 unchanged AST function segments qualified for compatibility only. New operational enrollment and finite allocation still required.",
+  "current_required95": "93P/1F(API019)/1zero(API020pending); cause UNKNOWN; DB key custody retained, deletion unverified/backendUNKNOWN.",
+  "inherited_15_2": "Third broad pass already completed, cap3/3. No unresolved consequential final finding in retained reports; recommendationtrue and review_unverified are preserved. Current changed-blob applicability map remains a bounded readiness task. Old remaining-third-pass wording is historical.",
+  "next_action": "Bind current source/catalog and future clean checkpoint to the existing operational lineage; independent source review and exact finite effects allocation before provider/push/CI.",
+  "P5": "OPEN",
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/root-fold-manifest.json",
+    "bytes": 20885,
+    "sha256": "e1a826b835515b69a1bbf3982941b630a1cba83a84b9600b942c419eb29a34ad"
+  }
+}

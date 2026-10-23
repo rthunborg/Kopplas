@@ -1,0 +1,17 @@
+{
+  "phase": "affected",
+  "native_exit": 0,
+  "counts": {
+    "tests": 191,
+    "suites": 0,
+    "pass": 191,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failed_selected_names": [],
+  "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+  "settled": true,
+  "raw_persisted": false
+}

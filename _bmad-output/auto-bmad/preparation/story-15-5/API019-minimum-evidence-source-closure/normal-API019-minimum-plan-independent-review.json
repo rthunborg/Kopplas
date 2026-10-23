@@ -1,0 +1,186 @@
+{
+  "schema": "kopplas.targeted-independent-minimum-evidence-plan-review.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T14:29:38.088319+00:00",
+  "status": "PASS_MINIMUM_EVIDENCE_PLAN_ONLY",
+  "outcome": "PASS_MINIMUM_EVIDENCE_PLAN_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "scope": "API019 existing owned-origin observability plan only; no functional repair is established; not a fourth broad story review.",
+  "route": "Root80d459; explicit gpt-6.1-sol High",
+  "source_context": {
+    "root": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "docs_only_HEAD": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+    "functional_source": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+    "head_provenance": "Root-attributed; current relevant source bytes independently verified rather than new Git operation"
+  },
+  "assessment": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/normal-API019-first-failure-source-assessment.json",
+    "bytes": 15468,
+    "sha256": "889630120740d1d8145667622067a43befc520cee85bb0c296004bb5e0d9c806"
+  },
+  "actual_evidence": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-native-qualification.json",
+    "bytes": 21439,
+    "sha256": "6783122e9760501c82ad7c6691ad16a7bb4fc714c0765bf4519c7fdcbbe53c04",
+    "required95": {
+      "passed": 93,
+      "failed": 1,
+      "zero_coverage": 1,
+      "failed_id": "API019",
+      "zero_coverage_id": "API020"
+    },
+    "API019_boundary": "scenario/unknown/sqlstate null; duration3009.291689999998ms",
+    "cause": "UNKNOWN",
+    "exact_matcher_or_value": "UNKNOWN",
+    "body_reach": "No exact failing operation established",
+    "main_DB_custody": "retained; keyDeleted false; backend settlement UNKNOWN"
+  },
+  "findings": [],
+  "independent_source_conclusions": [
+    {
+      "site": "tests/support/calendar-feed-atdd.ts:549-561",
+      "conclusion": "Final timeout and sensitive-observation refusal are ordinary Errors; JSON.parse rejection also lacks owned origin. Existing redaction reduces these branches to scenario/unknown. Duration does not select a branch."
+    },
+    {
+      "site": "tests/support/calendar-feed-atdd.ts:230-298",
+      "conclusion": "The existing closed-origin WeakMap wire preserves module-owned fixed errors through calendarFixtureDiagnostic, including bounded aggregates, without inspecting native message/stack/cause. Exactly three additional fixed origins fit the existing stage length and shape."
+    },
+    {
+      "site": "scripts/ci/with-calendar-feed-runtime.mjs:247-282,399-420",
+      "conclusion": "Raw privacy detection precedes filtering; only closed response/observation records persist. Serialized output observation and settlement remain unchanged. Tagging helper refusal branches does not establish server delivery or recover destroyed raw data."
+    },
+    {
+      "site": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py:125-138",
+      "conclusion": "failure_facts admits only finite stages/categories/sqlstates. A producer-only update would yield invalid headers. A new immutable reader successor must add the same three stage literals; unchanged parser/shape/caps are sufficient."
+    }
+  ],
+  "qualified_minimum_plan": {
+    "prospective_tracked_paths": [
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "producer_delta": {
+      "closed_origins": [
+        "scenario-telemetry-observation-timeout",
+        "scenario-telemetry-privacy-refused",
+        "scenario-telemetry-parse-refused"
+      ],
+      "scope": "Add these to existing calendarFixtureOwnedOrigins. Replace only existing final telemetry timeout and privacy refusal throws. Wrap only the synchronous JSON.parse transformation, with await readFile outside that catch. Use existing calendarFixtureOrigin; no native text/cause added."
+    },
+    "consumer_delta": {
+      "baseline": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+        "bytes": 50733,
+        "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+      },
+      "scope": "A NEW separately frozen/reviewed private successor adds exactly these three strings to existing stages. Frozen current packet stays immutable. No failure_facts/function/regex/category/sqlstate/shape/cap change."
+    },
+    "optional_spec": "Only author Suggested Review Order refresh if separately assigned by Root; kernel/outsideSRO/status/review counter unchanged.",
+    "explicit_limits": "Missing path, readFile rejection, malformed nonparse records or failures elsewhere may remain scenario/UNKNOWN. This is a scoped telemetry discriminator, not guaranteed diagnosis of API019 or proof of a functional defect."
+  },
+  "required_actual_patch_controls": [
+    "Use existing controlled actual-source compilation/extraction in existing wrapper unit; run the real telemetry method and existing observer with inert injected readFile/clock/sleep/persist. Valid marker and observation return original bytes unchanged.",
+    "Missing marker and missing/zero observation reach only existing deadline refusal; verify three-second deadline,20ms sleep, same calls/order and no added success or timing extension.",
+    "Privacy flag/count mismatch and malformed JSON select distinct fixed origins. Confirm readFile rejection stays UNKNOWN, not parse-refused; missing path stays UNKNOWN.",
+    "Pass each origin through actual calendarFixtureDiagnostic and production failure_facts with only stage-data additions. Exact three accepted; unknown/injected/raw-error payloads do not become output. Preserve existing scenario/assertion and primary/cleanup handling.",
+    "Demonstrate meaningful old-source failure/new-source success for the added discrimination; synthetic success is not hosted cause proof. Preserve raw privacy-first scan, output queue, reporter/native closure and all integration assertions."
+  ],
+  "invariants": [
+    "No application mapper/route/SQL/RLS/auth/role/key/rollback/cleanup/custody/privilege changes; all118SQL remain immutable. Approved kernel/SRO boundaries/review counter3 remain unchanged.",
+    "Same RPC/request arguments/counts/await order,3sdeadline/20mssleep, JSONL source/shape and privacy threshold. Do not catch broad IO or change suppression/throw precedence. No extra listener/timer/request/poll/success marker.",
+    "No raw message/stack/cause/source/secret/error fallback; only fixed labels. No schema expansion/cap increase/new collector/framework.",
+    "Original95 IDs/assertions/skips/retry0 semantics preserved. Required API020 pending remains zero coverage; direct recovery separate. No development-complete/release/cause/custody claim."
+  ],
+  "focused_native_alternative": {
+    "status": "NOT_EXECUTABLE_OR_ALLOCATED_BY_THIS_REVIEW",
+    "assessment_stock_argv": "Retained as candidate only; current wrapper pins INTEGRATION_ARGS and supports db/browser/cause-proof. It does not admit arbitrary API019 filters.",
+    "next_requirement": "After producer/consumer actual patch review, prepare the smallest exact fixed API019 capability and enumerate its necessary existing guard companions/source ownership. Separately qualify its actual C4 two-project admission and exact anchored title, one executed P+F/retry0, original production-server/JWT/privileged setup/key retirement/custody/cleanup and native report. No global parallelism/project/maxWorkers override, new generic dispatcher or reuse of NORMAL/DIAG001/originalINT009 semantics.",
+    "finite_effects": "Only a subsequent concrete independent source review and actual completed finite allocation/fresh proof/exclusive admission can authorize one attempt. UNKNOWN or nonreproduction stops; no blind fullNORMAL repeat or automatic retry.",
+    "current_action": "Implement/review the evidence seam only under Root source allocation; no runtime command is approved here."
+  },
+  "read_only_checks": {
+    "source_raw_and_LF_pins_matched": 8,
+    "source_bindings": [
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+        "LF_bytes": 26504,
+        "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 139901,
+        "sha256": "74721f43ece77fac70414592317ce06556b5cfc0718d9d6014afbec32bdf2c25",
+        "LF_bytes": 138508,
+        "LF_sha256": "d3d7a13919233a6bbd75646449a4de80257c015aa718a16616c513c6c5e8cef5"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 48616,
+        "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "LF_bytes": 47931,
+        "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+      },
+      {
+        "path": "src/server/calendar-feed/public-feed.ts",
+        "bytes": 4421,
+        "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+        "LF_bytes": 4421,
+        "LF_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 325812,
+        "sha256": "8594bcc0bfb6fcd9c721868c93ee39a8b0744bca3d8df673f6ea050b2e0941b7",
+        "LF_bytes": 322787,
+        "LF_sha256": "fa217e6880476974af32babd14ad9991cff3d9877d4e37cdc99f53975f233e63"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8135,
+        "sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+        "LF_bytes": 8024,
+        "LF_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677"
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 4805,
+        "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+        "LF_bytes": 4725,
+        "LF_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd"
+      },
+      {
+        "path": "next.config.ts",
+        "bytes": 684,
+        "sha256": "19cfa8297557128a416ec4a3b526a04c41ba4a6d032aefbd31ad393cd6bd83aa",
+        "LF_bytes": 664,
+        "LF_sha256": "883694123b99fc52c8e3459568bed4965a551c92988705759daff124c645f48a"
+      }
+    ],
+    "reader_pin_matched": true,
+    "assessment_and_actual_qualification_pins_matched": true,
+    "finite_origin_syntax": "3 unique fixed strings, each under existing80-character limit",
+    "commands": [
+      "7eb33d/native0 bounded helper source read",
+      "f3a409/native0 bounded observer/diagnostic/parser/policy read",
+      "5357c5/native0 frozen plan/companion/capability source reads",
+      "final bounded Python metadata/hash assertions; native result returned with report pin"
+    ],
+    "execution": "No source/module import, source extractor, test or runtime workload executed; these are source/metadata controls, not test passes."
+  },
+  "effects": {
+    "API": 0,
+    "GET": 0,
+    "tests": 0,
+    "CI": 0,
+    "Git": 0,
+    "source_edits": 0,
+    "dependency_mutation": 0,
+    "managed_resources": 0,
+    "execution_authority": false
+  },
+  "deferred": "Actual authorized implementation/red-green/focused checks, distinct targeted actual patch review, concrete fixed capability/source/effect allocation, and actual evidence remain future work. P5 OPEN; final development/release/merge/deployment gates retained.",
+  "blockers_to_plan": []
+}

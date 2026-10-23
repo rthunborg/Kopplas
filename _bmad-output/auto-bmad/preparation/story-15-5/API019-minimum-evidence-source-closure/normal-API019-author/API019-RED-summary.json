@@ -1,0 +1,22 @@
+{
+  "phase": "RED",
+  "native_exit": 1,
+  "counts": {
+    "tests": 4,
+    "suites": 0,
+    "pass": 0,
+    "fail": 4,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failed_selected_names": [
+    "API019 actual telemetry returns observer bytes unchanged without extra reads or sleeps",
+    "API019 actual telemetry absence retains exact deadline cadence and owned timeout origin",
+    "API019 actual telemetry privacy refusals retain detection and publish only fixed owned origin",
+    "API019 actual telemetry parse origin never exposes raw text and IO or missing path remain unknown"
+  ],
+  "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+  "settled": true,
+  "raw_persisted": false
+}

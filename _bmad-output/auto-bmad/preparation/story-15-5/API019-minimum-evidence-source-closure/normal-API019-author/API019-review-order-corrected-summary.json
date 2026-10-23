@@ -1,0 +1,15 @@
+{
+  "native_exit": 0,
+  "report": {
+    "reports": [
+      {
+        "filePath": "_bmad-output\\implementation-artifacts\\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "sectionPresent": true,
+        "mode": "full-trail-candidate",
+        "refsCount": 216,
+        "errors": []
+      }
+    ]
+  },
+  "raw_persisted": false
+}

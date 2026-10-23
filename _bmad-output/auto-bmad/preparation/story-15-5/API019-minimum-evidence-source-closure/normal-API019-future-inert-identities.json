@@ -1,0 +1,15 @@
+{
+  "schema": "ROOT_API019_FUTURE_INERT_IDENTITIES_V1",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+  "expected_remote_head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "head": null,
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "original_e2e001": false,
+  "authority": false,
+  "phase5": "OPEN",
+  "purpose": "Observed API019 erased boundary; reviewed evidence-only source amendment, no functional fix/cause claim"
+}

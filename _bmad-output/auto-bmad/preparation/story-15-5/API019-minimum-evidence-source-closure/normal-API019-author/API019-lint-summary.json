@@ -1,0 +1,9 @@
+{
+  "phase": "lint",
+  "native_exit": 0,
+  "counts": {},
+  "failed_selected_names": [],
+  "diagnostic_details": "Raw streams RAM only; no arbitrary error/source persisted",
+  "settled": true,
+  "raw_persisted": false
+}

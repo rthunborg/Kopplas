@@ -1,0 +1,418 @@
+{
+  "updates": [
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:621` \u2014 `has_schema_privilege(oid,'public','CREATE')`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:624` \u2014 `has_schema_privilege(oid,'public','CREATE')`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "has_schema_privilege(oid,'public','CREATE')",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:992` \u2014 `const outcome = result.outcome`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:999` \u2014 `const outcome = result.outcome`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "const outcome = result.outcome",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1002` \u2014 `export function calendarCauseProofSelection`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1009` \u2014 `export function calendarCauseProofSelection`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export function calendarCauseProofSelection",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1008` \u2014 `export async function calendarCauseProofIdle`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1015` \u2014 `export async function calendarCauseProofIdle`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export async function calendarCauseProofIdle",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1068` \u2014 `export async function runCalendarFeedCauseProof`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1075` \u2014 `export async function runCalendarFeedCauseProof`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export async function runCalendarFeedCauseProof",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1357` \u2014 `actual per-invocation trace preserves once-call value`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1408` \u2014 `actual per-invocation trace preserves once-call value`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual per-invocation trace preserves once-call value",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1378` \u2014 `actual baseline decision chooses one observed boundary`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1429` \u2014 `actual baseline decision chooses one observed boundary`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual baseline decision chooses one observed boundary",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1403` \u2014 `actual installed failed native report and closed observation`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1454` \u2014 `actual installed failed native report and closed observation`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual installed failed native report and closed observation",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1184` \u2014 `(select r.rolsuper or r.rolbypassrls`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1191` \u2014 `(select r.rolsuper or r.rolbypassrls`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "(select r.rolsuper or r.rolbypassrls",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1190` \u2014 `if (!Array.isArray(rows)`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1197` \u2014 `if (!Array.isArray(rows)`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "if (!Array.isArray(rows)",
+      "candidate_count": 2
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1494` \u2014 `actual diagnostic caller requires same-statement`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1605` \u2014 `actual diagnostic caller requires same-statement`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual diagnostic caller requires same-statement",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1017` \u2014 `export function calendarStatusErrorOrigin`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1024` \u2014 `export function calendarStatusErrorOrigin`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export function calendarStatusErrorOrigin",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1024` \u2014 `export async function calendarCauseProofRestricted`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1031` \u2014 `export async function calendarCauseProofRestricted`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export async function calendarCauseProofRestricted",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1139` \u2014 `Object.assign(report, await calendarCauseProofBaseline`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1146` \u2014 `Object.assign(report, await calendarCauseProofBaseline`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "Object.assign(report, await calendarCauseProofBaseline",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1554` \u2014 `status discriminator classifies actual installed pg-protocol frames`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1665` \u2014 `status discriminator classifies actual installed pg-protocol frames`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "status discriminator classifies actual installed pg-protocol frames",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1593` \u2014 `status strict wire schema preserves false TABLE_ACL_ONLY`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1704` \u2014 `status strict wire schema preserves false TABLE_ACL_ONLY`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "status strict wire schema preserves false TABLE_ACL_ONLY",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1036` \u2014 `export function calendarCauseProofExpectedBody`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1043` \u2014 `export function calendarCauseProofExpectedBody`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export function calendarCauseProofExpectedBody",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1673` \u2014 `actual ACL source and existing RLS010 reject actor`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1784` \u2014 `actual ACL source and existing RLS010 reject actor`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual ACL source and existing RLS010 reject actor",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1683` \u2014 `new atomic migration cross-validates exact original bodies`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1794` \u2014 `new atomic migration cross-validates exact original bodies`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "new atomic migration cross-validates exact original bodies",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1730` \u2014 `actual owner guard admits parallel native creator ADMIN`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1841` \u2014 `actual owner guard admits parallel native creator ADMIN`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual owner guard admits parallel native creator ADMIN",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1738` \u2014 `actual owner guard retains foreign outbound inherited`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1849` \u2014 `actual owner guard retains foreign outbound inherited`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual owner guard retains foreign outbound inherited",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1810` \u2014 `actual unchanged original guard emits the named eleven-bit`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1921` \u2014 `actual unchanged original guard emits the named eleven-bit`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual unchanged original guard emits the named eleven-bit",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1827` \u2014 `failure-message inverse restores exact original migration`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1938` \u2014 `failure-message inverse restores exact original migration`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "failure-message inverse restores exact original migration",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1886` \u2014 `all-eight actual preflight cross-validates`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1997` \u2014 `all-eight actual preflight cross-validates`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "all-eight actual preflight cross-validates",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1203` \u2014 `export async function calendarOwnerAclRegression()`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1210` \u2014 `export async function calendarOwnerAclRegression()`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export async function calendarOwnerAclRegression()",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:1337` \u2014 `export async function calendarOwnerAclExercise(`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:1344` \u2014 `export async function calendarOwnerAclExercise(`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export async function calendarOwnerAclExercise(",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2006` \u2014 `actual native cleanup preserves the primary and ALL`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2117` \u2014 `actual native cleanup preserves the primary and ALL`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual native cleanup preserves the primary and ALL",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2187` \u2014 `actual RLS002 uses a different spoof`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2342` \u2014 `actual RLS002 uses a different spoof`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual RLS002 uses a different spoof",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:766` \u2014 `export async function calendarOwnerAtomic`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:769` \u2014 `export async function calendarOwnerAtomic`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "export async function calendarOwnerAtomic",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2198` \u2014 `actual withDatabaseTime awaits committed retired publication`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2353` \u2014 `actual withDatabaseTime awaits committed retired publication`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual withDatabaseTime awaits committed retired publication",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2055` \u2014 `actual owned error gate preserves foreign listeners`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2166` \u2014 `actual owned error gate preserves foreign listeners`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual owned error gate preserves foreign listeners",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2180` \u2014 `actual composition cleans after seed failure`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2335` \u2014 `actual composition cleans after seed failure`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual composition cleans after seed failure",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2218` \u2014 `failed DB signal cancellation launch timeout`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2373` \u2014 `failed DB signal cancellation launch timeout`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "failed DB signal cancellation launch timeout",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:680` \u2014 `function calendarRetainTransportCustody`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:683` \u2014 `function calendarRetainTransportCustody`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "function calendarRetainTransportCustody",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:693` \u2014 `function calendarFetchPort`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:696` \u2014 `function calendarFetchPort`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "function calendarFetchPort",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:712` \u2014 `if(!settled||calendarSharedCustody)`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:715` \u2014 `if(!settled||calendarSharedCustody)`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "if(!settled||calendarSharedCustody)",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2253` \u2014 `actual clock scope retains caught HTTP rejection`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2408` \u2014 `actual clock scope retains caught HTTP rejection`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual clock scope retains caught HTTP rejection",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2279` \u2014 `installed Postgrest status zero`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2434` \u2014 `installed Postgrest status zero`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "installed Postgrest status zero",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2319` \u2014 `actual opted-in outer nudge boundary`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2474` \u2014 `actual opted-in outer nudge boundary`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual opted-in outer nudge boundary",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2393` \u2014 `actual browser readback failure native failure`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2548` \u2014 `actual browser readback failure native failure`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual browser readback failure native failure",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2429` \u2014 `installed Node test runner receives only fixed`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2584` \u2014 `installed Node test runner receives only fixed`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "installed Node test runner receives only fixed",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2473` \u2014 `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2628` \u2014 `SOURCE-LABEL-01 actual helper and enclosing NUDGE004`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "SOURCE-LABEL-01 actual helper and enclosing NUDGE004",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2505` \u2014 `async function actualMetaJsonReport`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2660` \u2014 `async function actualMetaJsonReport`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "async function actualMetaJsonReport",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2529` \u2014 `VITEST-META actual helper and public NUDGE callback`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2684` \u2014 `VITEST-META actual helper and public NUDGE callback`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "VITEST-META actual helper and public NUDGE callback",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2410` \u2014 `label instrumentation preserves actual promise`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2565` \u2014 `label instrumentation preserves actual promise`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "label instrumentation preserves actual promise",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2443` \u2014 `actual labelled caller assertions match`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2598` \u2014 `actual labelled caller assertions match`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual labelled caller assertions match",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2620` \u2014 `browser v3 actual enclosing selected case catches`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2775` \u2014 `browser v3 actual enclosing selected case catches`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "browser v3 actual enclosing selected case catches",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2598` \u2014 `browser v3 closed producer rows match`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2753` \u2014 `browser v3 closed producer rows match`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "browser v3 closed producer rows match",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2661` \u2014 `browser v3 actual matched request`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2816` \u2014 `browser v3 actual matched request`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "browser v3 actual matched request",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2673` \u2014 `browser v3 unavailable omitted malformed`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2828` \u2014 `browser v3 unavailable omitted malformed`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "browser v3 unavailable omitted malformed",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2700` \u2014 `managed admission freezes exact Request`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2855` \u2014 `managed admission freezes exact Request`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "managed admission freezes exact Request",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2770` \u2014 `actual owned fault callback joins`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2925` \u2014 `actual owned fault callback joins`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "actual owned fault callback joins",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:772` \u2014 `trace?.at(\"BEGIN\")`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:775` \u2014 `trace?.at(\"BEGIN\")`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "trace?.at(\"BEGIN\")",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:950` \u2014 `if(authority)calendarInt009Subject(\"subject\")?.close()`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:957` \u2014 `if(authority)calendarInt009Subject(\"subject\")?.close()`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "if(authority)calendarInt009Subject(\"subject\")?.close()",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2877` \u2014 `INT009 actual fixture final errors`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3032` \u2014 `INT009 actual fixture final errors`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "INT009 actual fixture final errors",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2883` \u2014 `INT009 actual entire subject barrier setup`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3038` \u2014 `INT009 actual entire subject barrier setup`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "INT009 actual entire subject barrier setup",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/support/calendar-feed-atdd.ts:755` \u2014 `'proargtypes',p.proargtypes::text`",
+      "new": "- `tests/support/calendar-feed-atdd.ts:758` \u2014 `'proargtypes',p.proargtypes::text`",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "anchor": "'proargtypes',p.proargtypes::text",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2893` \u2014 `function actualCanonicalCatalogProjection`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3048` \u2014 `function actualCanonicalCatalogProjection`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "function actualCanonicalCatalogProjection",
+      "candidate_count": 1
+    },
+    {
+      "old": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2908` \u2014 `canonical catalog synthetic PG17 array`",
+      "new": "- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3063` \u2014 `canonical catalog synthetic PG17 array`",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "anchor": "canonical catalog synthetic PG17 array",
+      "candidate_count": 1
+    }
+  ],
+  "scope": "Only existing helper/unit anchored stops after changed line coordinates; no other SRO prose or outsideSRO changed."
+}
