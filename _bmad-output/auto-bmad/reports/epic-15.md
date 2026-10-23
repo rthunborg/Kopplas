@@ -8060,3 +8060,43 @@ Development completion remains separate from release readiness.
 **⚠️ Needs human:** (none)
 
 **Next:** Independent minimum-plan review passed for one fresh unchanged NORMAL observation. Prepare new exact bindings, fresh proofs and completed finite allocation. A second consecutive startup7 failure stops this approach. Then close95/custody/delivery and continueP6/P7,15.6 and epic gates.
+
+## Report — 2026-10-23T18:27:52Z (continuing — current integration privacy origin qualified)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `edf966c`).
+**Pipeline status:** Story15.5 P5 remains open; required development evidence and custody are incomplete.
+**Continues:** True
+
+**Summary:** The fresh unchanged NORMAL run passed startup and reset, then reached API019 privacy refusal. Independent qualification confirms93 required cases passed, API019 failed and API020 unexecuted. The first recorded observer origin is integration/ip-literal; the underlying cause remains unknown.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 341h 30m (≈77h 24m AI-run, ≈264h 05m human/idle wait); resumed 244×.
+
+**Stories:**
+1. 15.1–15.4 remain landed.
+2. 15.5 current39998246278/source48a7: Node30 distinct required cases, DB49 and browser14 passed. API019 failed; API020 is pending. Separate direct recovery passed.
+3. MainDB key custody remains retained/unverified and backend settlement unknown. Browser fixture key deletion proves only its own cleanup. All operational and acquisition slots are closed.
+4. 15.2 retains its inherited recommendation/unverified flag;3 broad rounds exhausted, final author evidence and supported independent closure disposition pending.
+5. 15.6 remains unstarted until15.5 completes.
+
+**Skipped:** (none)
+
+**Epic gate:** Pending required development evidence and remaining story.
+
+**TEA:** ATDD complete; P6 automation and epic trace remain required.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; October7 is historical. Epic15 retrospective pending.
+
+**Overrides:** Owner design defaults, sequential ownership, independent sensitive High review, three-round cap, one final PR, retained branches and no deployment remain enforced. One new startup observation was consumed; no automatic repeat authority remains.
+
+**Open questions:**
+1. The integration emitter/message class responsible for the first IP-literal match and its underlying cause remain UNKNOWN.
+2. API020 coverage, mainDB key/backend settlement, final15.2 metadata reconciliation and main production deployment containment remain pending.
+
+**Deferred work:**
+1. Exhaustive visual/manual matrices and live release validation remain explicitly deferred with owners; none is counted as passed.
+Development completion remains separate from release readiness.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Finish the active read-only source assessment of the observed refusal and independently review a concrete minimum next step. Close95/custody/delivery, then continueP6/P7,15.6 and epic gates.

@@ -1,0 +1,96 @@
+{
+  "actual_jobs": {
+    "checkpoint-admission": "success",
+    "verify": "success",
+    "e2e": "success",
+    "db": "failure",
+    "recovery-storage-loader": "success",
+    "dashboard-e2e": "skipped",
+    "fixed-chromium-paired-probe": "skipped",
+    "fixed-chromium-application-verification": "skipped",
+    "native-stream-probe": "skipped"
+  },
+  "actual_run_id": 39998246278,
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/actual-terminal-envelope.json",
+    "bytes": 26118,
+    "sha256": "4413a9d5c3b18bd78e93c59597a4dc191339893c8b7053c12046772e8033a104"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-terminal-effects-allocation.json",
+    "bytes": 6169,
+    "sha256": "f8372657b6e2274fc4308242068d116cb8b8e2caa09569ebb99a58126ebe8cb8"
+  },
+  "attempt": 1,
+  "cause_proof": false,
+  "checkpoint_id": "06c4e602-246c-465d-b858-802be78c9ba1",
+  "current_review_readiness": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-fresh-source-proof.json",
+      "bytes": 59883,
+      "sha256": "9ac400762906f946939002b976011b961cd9d737ef5d9efc347aa6223d33eb0a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-reader-operational-review.json",
+      "bytes": 16956,
+      "sha256": "69a532d8903b71153b5c8138bb98a6be336614b6f6e8ffc5124f6666320be905"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/manifest.json",
+      "bytes": 1177,
+      "sha256": "77608d38874c01f6b68b4c8a4dcd6133c13ebf3a83d500f6e1499d12c8d8d743"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "b6dbe3fd16cf64cb0f63ed3d146db4b45e2078516ae86d33c8497f99864d1e22"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-root-ownership.json",
+      "bytes": 79518,
+      "sha256": "7baf9adcead6efd03f2795982bd36f71bcf4fbf8f7ccc748315464c85368ac24"
+    }
+  ],
+  "execution_authorized": true,
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "maximum_logical_requests": 5,
+  "mode": "normal",
+  "no_retry": true,
+  "normal_acceptance_credit": 0,
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/proposal.json",
+    "bytes": 114155,
+    "sha256": "776efa41a4cf89059f20fac7f54d783fc2dc1b38c2ca82c45ad17249c9783ca4"
+  },
+  "operator_review": {
+    "status": "PASS",
+    "independent": true,
+    "evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-reader-operational-review.json",
+        "bytes": 16956,
+        "sha256": "69a532d8903b71153b5c8138bb98a6be336614b6f6e8ffc5124f6666320be905"
+      }
+    ]
+  },
+  "operator_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/reader.py",
+    "bytes": 52636,
+    "sha256": "a17536afc1210860ab0dc30eb81192eb73649f36ad5926ee8fb739834deb3350"
+  },
+  "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent",
+  "pushed_source_head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "pushed_source_objects_equal": true,
+  "release_validation": false,
+  "source_Git_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-fresh-source-proof.json",
+    "bytes": 59883,
+    "sha256": "9ac400762906f946939002b976011b961cd9d737ef5d9efc347aa6223d33eb0a"
+  },
+  "source_head": "48a7c32faa1be7ae2b6d81095282521cebfaa621"
+}

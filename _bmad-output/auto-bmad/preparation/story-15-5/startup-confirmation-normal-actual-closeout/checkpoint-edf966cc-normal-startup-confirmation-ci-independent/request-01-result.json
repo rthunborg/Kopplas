@@ -1,0 +1,44 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "--method",
+    "GET",
+    "repos/rthunborg/Kopplas/actions/runs/39998246278/logs"
+  ],
+  "capture_complete": true,
+  "category": null,
+  "custody": "OWN_GH_CHILD_AND_OUTPUT_SETTLED",
+  "elapsed_seconds": 3.44,
+  "handles_closed": true,
+  "inline_source_sha256": "a17536afc1210860ab0dc30eb81192eb73649f36ad5926ee8fb739834deb3350",
+  "intent_persisted_before_spawn": true,
+  "label": "normal-run-archive",
+  "native_exit": 0,
+  "raw_persisted": false,
+  "sequence": 1,
+  "settled": true,
+  "stderr_cap": 65536,
+  "stdout_cap": 33554432,
+  "streams": [
+    {
+      "joined": true,
+      "observed_bytes": 824567,
+      "overflow": false,
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "sha256": "ab0dbc7c1b1b843ab47983b83292aec6f236e3abb1e0eef9faa8f486c684de1e"
+    },
+    {
+      "joined": true,
+      "observed_bytes": 0,
+      "overflow": false,
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "timeout_seconds": 15
+}

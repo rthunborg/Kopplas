@@ -1,0 +1,1318 @@
+{
+  "archive_bytes": 824567,
+  "archive_sha256": "ab0dbc7c1b1b843ab47983b83292aec6f236e3abb1e0eef9faa8f486c684de1e",
+  "declared_total_bytes": 4515159,
+  "jobs": {
+    "db": [
+      {
+        "bytes": 2401,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/1_Set up job.txt",
+        "migration111_apply_marker": false,
+        "sha256": "d49d32adf111d44c67679d912277b69329b2a60cf1063ad1577c70a25c530708",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 8196,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/2_Checkout.txt",
+        "migration111_apply_marker": false,
+        "sha256": "96583c7493fd7092fd291ffd3fb7fb42bb93c3822194ff3d731ba02a21fc48ff",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1533,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/3_Install pnpm.txt",
+        "migration111_apply_marker": false,
+        "sha256": "e07fa692da1f2f42bdad6007e4face3c5cd824736c8fda830a25996cc020cfff",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2466,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/4_Setup Node.txt",
+        "migration111_apply_marker": false,
+        "sha256": "c49ae94397df013cdfd8fb5b4fccdd8646584abdd48f1feb5db420658e5c6905",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2064,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/5_Install dependencies.txt",
+        "migration111_apply_marker": false,
+        "sha256": "c089fea42ca0dffdf059c37b6d76bc604e663f8f3daf3b027331de0710e88eca",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 590,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/6_Install Supabase CLI.txt",
+        "migration111_apply_marker": false,
+        "sha256": "54cb4a473a442a2101f46ddf78fb36b7a868873ea4fc84f81600aa940a10bc3d",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 55990,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/7_Start local Supabase stack.txt",
+        "migration111_apply_marker": true,
+        "sha256": "3bc3558cba0f4d085bf014aa7beaad1e6ae0f1a26585bdf271076ba33c6965d8",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 14716,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/8_Migration reset (empty DB \u2192 migrate \u2192 seed).txt",
+        "migration111_apply_marker": true,
+        "sha256": "e25087a07f7892a9fe1e4da8a481bd479c7c5d8a2a30ccb6bed7ca732c54cf38",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2339,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [
+          {
+            "childExitCodes": [
+              0,
+              1
+            ],
+            "childLaunchState": "not-attempted",
+            "custody_retained": true,
+            "dbClosed": true,
+            "diagnostic_count": 1,
+            "diagnostics": [],
+            "failure_count": 1,
+            "keyDeleted": false,
+            "keyOutcome": "unverified",
+            "launchAttempted": false,
+            "mode": "db",
+            "privacy_controls": [
+              {
+                "canSet": true,
+                "context": "superuser",
+                "matchesRequired": true,
+                "name": "log_min_error_statement"
+              },
+              {
+                "canSet": true,
+                "context": "superuser",
+                "matchesRequired": true,
+                "name": "log_parameter_max_length"
+              },
+              {
+                "canSet": true,
+                "context": "user",
+                "matchesRequired": true,
+                "name": "log_parameter_max_length_on_error"
+              },
+              {
+                "canSet": true,
+                "context": "superuser",
+                "matchesRequired": true,
+                "name": "log_statement"
+              }
+            ],
+            "ready": true,
+            "setupAuthority": {
+              "current_is_setup_admin": true,
+              "current_login": true,
+              "current_superuser": true,
+              "same_identity": true,
+              "session_is_setup_admin": true,
+              "session_login": true,
+              "session_superuser": true
+            }
+          }
+        ],
+        "member": "db/11_Integration, RLS, and Epic 11 pilot performance gates (local stack).txt",
+        "migration111_apply_marker": false,
+        "sha256": "18fed4c2cd68906a964613ccc4023ad4a4db586e62d22be59a598004695195d0",
+        "step_conclusion": "failure"
+      },
+      {
+        "bytes": 2236,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/12_Upload native full integration JSON.txt",
+        "migration111_apply_marker": false,
+        "sha256": "be7ffbc0c6aebff8aaacc0b169394b2e3babcdd6c38b526efe0e6dab83ee197f",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 957,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/13_Stop local Supabase stack.txt",
+        "migration111_apply_marker": false,
+        "sha256": "0525bf436b88c5c15e3e1b13d4962fcfd62c7aa80e8560d23bc957707f0cc827",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 103,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/25_Post Install pnpm.txt",
+        "migration111_apply_marker": false,
+        "sha256": "d27e3dbf18af48a33a13236d4616ce16ee644927cd367b65a8f2936d6389524e",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1528,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/26_Post Checkout.txt",
+        "migration111_apply_marker": false,
+        "sha256": "9dc8e12c1d9b6ed1f0212c4e957ca09a9d525b3037a286b99b5726fb00021fdd",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 444,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "db/27_Complete job.txt",
+        "migration111_apply_marker": false,
+        "sha256": "700a5354207449cc6a1f41c3cddd872e64a5c2c02a05cf3a181482a501eae723",
+        "step_conclusion": "success"
+      }
+    ],
+    "e2e": [
+      {
+        "bytes": 2409,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/1_Set up job.txt",
+        "migration111_apply_marker": false,
+        "sha256": "45ef806aa22d8326d905cfe8f6762039e0128c240606878285156c98c82c5f76",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 8400,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/2_Checkout.txt",
+        "migration111_apply_marker": false,
+        "sha256": "e821cfb2b0941e3f0a5f048cb4366d48524f122ec548112213369752fcbfc06e",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1737,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/3_Install pnpm.txt",
+        "migration111_apply_marker": false,
+        "sha256": "0a89f3f3ec57ea49c2753e67b57ba810d3bbd6e9b33a3d315f455bfd0da36b86",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2590,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/4_Setup Node.txt",
+        "migration111_apply_marker": false,
+        "sha256": "8c136844e16d4bf8b2d38142af22f7d4550e0609cb5b90a5b7499bb8cb44ead4",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2268,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/5_Install dependencies.txt",
+        "migration111_apply_marker": false,
+        "sha256": "568b4be6dd2429c6e901925c6d6f198dbff30cac3a15ccca83b9537ccab88820",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 26996,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/6_Install Playwright browser (chromium + OS deps).txt",
+        "migration111_apply_marker": false,
+        "sha256": "a61b30ff3b94a4dfe54cdec34a9451d9736ed6e5180af6f02a4fb5c05e21bdab",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 794,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/7_Install Supabase CLI.txt",
+        "migration111_apply_marker": false,
+        "sha256": "d38047ca7261f02f139c9485a055689dc4bbec721097653035ff82381f33afd7",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 58707,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/8_Start local Supabase stack.txt",
+        "migration111_apply_marker": true,
+        "sha256": "86afaf59532e4852b4cc2ea1b38b37197460ca9419dd1fdc0e51b8dfcd5a1ba2",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 14920,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/9_Migration reset (empty DB \u2192 migrate \u2192 seed).txt",
+        "migration111_apply_marker": true,
+        "sha256": "296fc1b17af665524e0625fadb10b038c59fe6c738bd4dc9edba77da09ef8317",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1934,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [
+          {
+            "childExitCodes": [
+              0
+            ],
+            "childLaunchState": "not-attempted",
+            "custody_retained": false,
+            "dbClosed": true,
+            "diagnostic_count": 0,
+            "diagnostics": [],
+            "failure_count": 0,
+            "keyDeleted": true,
+            "keyOutcome": "deleted-confirmed",
+            "launchAttempted": false,
+            "mode": "browser",
+            "privacy_controls": [
+              {
+                "canSet": true,
+                "context": "superuser",
+                "matchesRequired": true,
+                "name": "log_min_error_statement"
+              },
+              {
+                "canSet": true,
+                "context": "superuser",
+                "matchesRequired": true,
+                "name": "log_parameter_max_length"
+              },
+              {
+                "canSet": true,
+                "context": "user",
+                "matchesRequired": true,
+                "name": "log_parameter_max_length_on_error"
+              },
+              {
+                "canSet": true,
+                "context": "superuser",
+                "matchesRequired": true,
+                "name": "log_statement"
+              }
+            ],
+            "ready": false,
+            "setupAuthority": {
+              "current_is_setup_admin": true,
+              "current_login": true,
+              "current_superuser": true,
+              "same_identity": true,
+              "session_is_setup_admin": true,
+              "session_login": true,
+              "session_superuser": true
+            }
+          }
+        ],
+        "member": "e2e/10_Essential authentication smoke (production app and local Auth).txt",
+        "migration111_apply_marker": false,
+        "sha256": "fc07ade90a0aed0fefffc9a7d802b58df250f2d85bfad2fa4b2c250328b2d76e",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2430,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/12_Upload native general browser JSON.txt",
+        "migration111_apply_marker": false,
+        "sha256": "09c3c2de7f62f7d287045fbed972d9cb3dfc7bf44995471db713c49e52f6023b",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1284,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/13_Upload Playwright report.txt",
+        "migration111_apply_marker": false,
+        "sha256": "a7a73582fd17b41fc3a8af99bc53c1285b2b6c5185373c0a843c2d87fdd19f12",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1161,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/14_Stop local Supabase stack.txt",
+        "migration111_apply_marker": false,
+        "sha256": "5b4c18220a198d0d23a3aeef1419539d73f3608a82cddfbf9f38416aab52ab11",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 483,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/26_Post Setup Node.txt",
+        "migration111_apply_marker": false,
+        "sha256": "aa6fca7dff143e202f7496978a6b15088424a22acc81b654f0953888a77d7e1c",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 103,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/27_Post Install pnpm.txt",
+        "migration111_apply_marker": false,
+        "sha256": "3b792d5266d492257019a2df17b03ee89adf0f81805ec9d8a560cc90e952e919",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1528,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/28_Post Checkout.txt",
+        "migration111_apply_marker": false,
+        "sha256": "400bee351e073266f3e80bb98fefaec7464131b49682d3d60b3de917c735c4a9",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 444,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "e2e/29_Complete job.txt",
+        "migration111_apply_marker": false,
+        "sha256": "687fd3a94d27fd0561c8286686fc7d173c6a3508d0cfd9cdcf7e4886e75d6b75",
+        "step_conclusion": "success"
+      }
+    ],
+    "recovery-storage-loader": [
+      {
+        "bytes": 2421,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/1_Set up job.txt",
+        "migration111_apply_marker": false,
+        "sha256": "914b4635e9269a8362662acd9da9ba2060c1c042e96348ebf847d5187f36dd40",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 8196,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/2_Checkout.txt",
+        "migration111_apply_marker": false,
+        "sha256": "42c9681f92a3b2e435aae66adad84f809c041c23ce0b93aa4179c8b757bd4597",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1533,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/3_Install pnpm.txt",
+        "migration111_apply_marker": false,
+        "sha256": "b0e1ce37001cfe42567f876e7b97f84d87c547bd3657299396534b3ab3625cf1",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2540,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/4_Setup Node.txt",
+        "migration111_apply_marker": false,
+        "sha256": "d9ac9bc883ee75df5d7252ec101a10e55e4f7ea15b19e43b30658ac239b5c543",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2064,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/5_Install dependencies.txt",
+        "migration111_apply_marker": false,
+        "sha256": "a324955e8cc1e7348916bc62a30bfb28982374c0b22a56ea2537973a49a082e7",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 590,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/6_Install Supabase CLI.txt",
+        "migration111_apply_marker": false,
+        "sha256": "1313701886de84260e3022815997baac3beb4ba6d0a9db9172133278628e1fda",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 55677,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/7_Start local schema source.txt",
+        "migration111_apply_marker": true,
+        "sha256": "06b6b2bcad3deb37db496ae8fe26e01b19ffcb7fb074544c5ee3f4d64c1bb277",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 13424,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/8_Reset local schema source.txt",
+        "migration111_apply_marker": true,
+        "sha256": "ddcddae76157171f6554f860065cdbfe1784908c98f82e039f1b16f0b7658a3d",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 3511,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/9_Dump synthetic recovery schema source.txt",
+        "migration111_apply_marker": false,
+        "sha256": "8e2577be94bbdedac426eb678fd59f20f1513493a624aeeaee84143866564d06",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 575,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/10_Create isolated recovery runtime configuration.txt",
+        "migration111_apply_marker": false,
+        "sha256": "8c6658a131a7361e790c308579c2de89897baf2e8951ea2f2049df47454fc5ea",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 36212,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/11_Start database-only isolated recovery target.txt",
+        "migration111_apply_marker": false,
+        "sha256": "25439c681d439bb4b42fcae4d7a503699bcd0c9e89637a5ed80fab09b915293e",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 114097,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/12_Restore synthetic schema source.txt",
+        "migration111_apply_marker": false,
+        "sha256": "a30ff15c45d1ad3284853a1c5fce30712a6311df2901c036fec3da3dd9d4ded3",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 50328,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/13_Start pinned isolated Storage loader and runtime.txt",
+        "migration111_apply_marker": false,
+        "sha256": "340c12a6450282ec4f189623b8132b3d0667cf0316eba2eec28a77f81c1e2981",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 6527,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/14_Prove physical Storage loader preserves protected rows.txt",
+        "migration111_apply_marker": false,
+        "sha256": "506e6929b158738a513376d1aa51996649407734d4231d6689343165fa9324d3",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 2264,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/15_Upload native isolated recovery JSON.txt",
+        "migration111_apply_marker": false,
+        "sha256": "2b5973e417861ec307c24694d022443bc9d9f1c04646ab8dc261c9d42b8e4697",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1322,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/16_Remove synthetic recovery resources.txt",
+        "migration111_apply_marker": false,
+        "sha256": "7cc7ebb8c77f2d0eae9c5531deb09798ebe1786b37b57fa8bae580de655309bd",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 483,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/30_Post Setup Node.txt",
+        "migration111_apply_marker": false,
+        "sha256": "22a74d4af8f015a576318337e4667ebeb9da2f7f539386bc7eb7f5ec2f4d2e29",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 103,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/31_Post Install pnpm.txt",
+        "migration111_apply_marker": false,
+        "sha256": "f7ad642c133a2fcd20d149396fdb125e4600ee21aacf86cfe05f08a73c652bc6",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 1528,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/32_Post Checkout.txt",
+        "migration111_apply_marker": false,
+        "sha256": "2b8ff81773dbd71e8d4c39a51963ec9c444c2a00bec57e4287e1ce82f6f5de6b",
+        "step_conclusion": "success"
+      },
+      {
+        "bytes": 444,
+        "failure_categories": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 0,
+          "owned_leaf_tuples": [],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "lifecycle": [],
+        "member": "recovery-storage-loader/33_Complete job.txt",
+        "migration111_apply_marker": false,
+        "sha256": "59e22634c66aa819fa259728c01bef1f61478cac25949f6390977cc556f13c45",
+        "step_conclusion": "success"
+      }
+    ],
+    "verify": [
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 2277,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/1_Set up job.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "60c603bf834319099a82869a0231a94bbe06ed3159bfebb030b4dd122611f181",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 8105,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/2_Checkout.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "901797d0ba163b8c6b2c47330d2e9ec1aa5483b6a90eef9f5fc912ad508031d3",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1442,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/3_Install pnpm.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "7a0921aa2cba172a53512028e1701138853f9d0390746be06ba82ec7e3add569",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 2329,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/4_Setup Node.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "55f77487dec5e8bef8d17b8185f18a24af61e75aaea060a870cb20512159be31",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 993,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/5_Setup Python for focused Auto-BMAD contracts.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "e816e9a603fb32a26394c311c866a7ddb55540d2d1707d49ae9de00caa2dd29c",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 2554,
+        "high_mentions": 0,
+        "installed_known_versions": {
+          "@playwright/test": "1.61.1",
+          "@supabase/supabase-js": "2.108.2",
+          "pg": "8.22.0",
+          "vite": "8.1.6",
+          "vitest": "4.1.9"
+        },
+        "member": "verify/6_Install dependencies.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "fd79bf5491bddf141dd1dcbdf473fad69f5d3553196db7b11ac7672622d457ca",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1218,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/7_Verify lockfiles (single package manager).txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "9583fb4f5c8c8643d8c3dd7428b7e266d2419e42c7e2a41124e1bf021b2da905",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1012,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/8_Audit dependencies (blocking, high severity).txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "ff0a6fe15172845177839da857ce6191b3a480a8027c568a6eb91ad32ed63b24",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1343,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/9_Verify service-role containment (no client-path leakage).txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "5f157cd592c2ea35b3e12189811e96f9edd260718e54c7ec9e4379ab441a962d",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1072,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/10_Typecheck.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "a0884f1592445245822d690b07a50fe96c680da222146f74510b3873638f901f",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 8413,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/11_Lint.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "b4fed3a44dce844beb3ef672188535e8bf1b2509b0328ed575bf9ce763aef264",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [
+          {
+            "cancelled": 0,
+            "fail": 0,
+            "pass": 3439,
+            "skipped": 0,
+            "suites": 103,
+            "tests": 3439,
+            "todo": 0
+          }
+        ],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1681188,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/12_Unit tests (pure logic, node --test).txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "91bf349f14e758914e61b52d8adda328803f5f5c6c039e3be0a3af7abfe638af",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": [
+          "UNIT-009",
+          "UNIT-010",
+          "UNIT-011",
+          "R1-07",
+          "UNIT-001",
+          "UNIT-002-spring",
+          "UNIT-002-autumn",
+          "UNIT-003",
+          "UNIT-004",
+          "UNIT-005",
+          "R1-05-positive-1",
+          "R1-05-positive-2",
+          "R1-05-positive-3",
+          "R1-05-positive-4",
+          "R1-05-positive-5",
+          "R1-05-order",
+          "R1-06",
+          "UNIT-006",
+          "UNIT-007",
+          "UNIT-008",
+          "R1-06",
+          "R1-07",
+          "UNIT-012",
+          "UNIT-013",
+          "UNIT-014",
+          "UNIT-021",
+          "UNIT-018",
+          "UNIT-019",
+          "UNIT-020",
+          "UNIT-015",
+          "UNIT-016",
+          "UNIT-017"
+        ]
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1378,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/13_BMAD focused concurrent memlog contracts.txt",
+        "python_OK_markers": 1,
+        "python_batches": [
+          2
+        ],
+        "sha256": "44fb89b733781a3fe7e0f9beb7a5052d3cd1c16480b5eb1c7806b432e8da9e00",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 2130,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/14_Auto-BMAD focused routing and process-API contracts.txt",
+        "python_OK_markers": 3,
+        "python_batches": [
+          26,
+          10,
+          5
+        ],
+        "sha256": "56293e1511a3a13c5f35973d12db36a82cf003dbbebe1d2021460a4c08766549",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 5384,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/15_Build.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "875166be25c1486907e5126895ee1431041269cb31ef0bc58b5367271c0d46b0",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1365,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/16_Verify built-bundle service-role containment (no leakage in .next).txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "09721c344e6bd57e695333a0ed017123dc7468b70de7e87de6e487558526370e",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 305,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/29_Post Setup Python for focused Auto-BMAD contracts.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "83701377c309da6805b877e17c1000ca30aa9d44356ecff3dee9be37b8ebe4d0",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 482,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/30_Post Setup Node.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "14a74856a9beccf4b6d68e4b819721e2649376bef962504ec70e502bf99fe75e",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 103,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/31_Post Install pnpm.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "91287e6c3a189bc9d32b85c5cb8d48d1509937f8eccc16d8f23b66f6672ca34a",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 1528,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/32_Post Checkout.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "e5da6a5a3144f40b436baf13d03934c80b0ee52842f8e7ef972470a021317d60",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      },
+      {
+        "Node_totals": [],
+        "blocking_audit_summary_counts": [],
+        "bytes": 418,
+        "high_mentions": 0,
+        "installed_known_versions": {},
+        "member": "verify/33_Complete job.txt",
+        "python_OK_markers": 0,
+        "python_batches": [],
+        "sha256": "d5b097369f30238edcb67d5d8a350390926cff67150754c93f13b915379fd159",
+        "step_conclusion": "success",
+        "story_Node_pass_lines": []
+      }
+    ]
+  },
+  "raw_persisted": false,
+  "selected_inflated_bytes": 2252629,
+  "zip_entries": 85
+}

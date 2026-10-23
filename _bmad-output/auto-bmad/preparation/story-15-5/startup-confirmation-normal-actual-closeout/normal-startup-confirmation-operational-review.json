@@ -1,0 +1,341 @@
+{
+  "schema": "TARGETED_NORMAL_OPERATIONAL_BINDING_REVIEW_V1",
+  "status": "PASS_NORMAL_STARTUP_CONFIRMATION_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_NORMAL_STARTUP_CONFIRMATION_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "execution_authorized": false,
+  "normal_acceptance": 0,
+  "scope": "Current operational five-file literal/data rebind and same-review mechanical Root proof helper interface only. Prior qualified algorithms/source proofs reused; no fourth broad story review, current offline runtime preflight, test, sourcecatalog extraction, Git/network/provider/API request or resource.",
+  "current_packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/provider.py",
+      "bytes": 20581,
+      "sha256": "a85dd331e162fc4e66cc89f603715dbb31f0bdb0d235744c99a862abd8aeefec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/root-driver.py",
+      "bytes": 21106,
+      "sha256": "3aa7b7ccdd65790b32164b17953a776f2b0a0d6e556e8598bc11d8dd28831dff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/proposal.json",
+      "bytes": 234985,
+      "sha256": "4b5ad16b3de1fc42d46b7f204f73faba0eefa215b09b2b5cf015c3cec020763b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/pure-controls.json",
+      "bytes": 3988,
+      "sha256": "f4d14bd0093f44b6eced55370501ff0b9bc5d4cabb682b8daaa17e40edbb43de"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/manifest.json",
+      "bytes": 1139,
+      "sha256": "7501eb90b7213d15a5772d6d2037f43b80c8e5c9edf5db8f7b370ffc687325eb"
+    }
+  ],
+  "identity": {
+    "schema": "ROOT_INT009_CANONICAL_CATALOG_NORMAL_INERT_CANDIDATE_V1",
+    "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "checkpoint_id": "06c4e602-246c-465d-b858-802be78c9ba1",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "expected_remote_preimage": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "mode": "NORMAL",
+    "release_validation": false,
+    "cause_proof": false,
+    "original_int009": false,
+    "source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/normal-API019-privacy-first-origin-actual-patch-independent-review.json",
+      "bytes": 14394,
+      "sha256": "53747652a4d270646964277c6b45c09dca2df7fb97fbd6bffae00bc47aa276c2"
+    },
+    "effects_authorized": false,
+    "all_old_slots_closed": true,
+    "normal_acceptance": 0,
+    "operation_id": "d891e444-e6d5-401f-bd00-0a4b85b701e9"
+  },
+  "prior_evidence": {
+    "baseline_operational_review": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-operational-review.json",
+      "bytes": 12655,
+      "sha256": "43010f3139f0a864bd5130cb2f581027eceaae0caf4d1bf6278766066a0aacac"
+    },
+    "one_observation_minimum_plan": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-minimum-plan-independent-review.json",
+      "bytes": 8035,
+      "sha256": "e689f0af2b2bdbc230c7dab2e8d4ee98acef85dc1f3ff937b7df41aea744f8c7"
+    },
+    "closed_current_run_qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-native-qualification.json",
+      "bytes": 25597,
+      "sha256": "f7f4d85f1c3bc5e3af0ec5d785a7f333e8ed90989b6c722f99fc0a84dfccde4d"
+    },
+    "docs_only_bridge": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-docs-bridge-proof.json",
+      "bytes": 650,
+      "sha256": "681796e23e84a6feb4a216fb2c9fe16503fa92e507dbc83a78e964cf9d898dd5"
+    }
+  },
+  "source_delta_verified": {
+    "provider_baseline": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+      "bytes": 20591,
+      "sha256": "0b33181f9cbbfdc1b36a463d3a66fc5d1b33db8e9a170ccc1379822ca7c2fdcc"
+    },
+    "driver_baseline": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/root-driver.py",
+      "bytes": 21115,
+      "sha256": "ecb4a35f94fee0090d2952c53feaa3251c1bcaa3e416ecb634ebb2eabddb0797"
+    },
+    "both_complete_raw_inverse_hunks_reconstruct_exact_baselines": true,
+    "provider7_function_source_segments_identical": true,
+    "driver18_definitions_17_identical": true,
+    "only_changed_function": "admit namespace/review-status literals; exact inverse after substitution verified",
+    "canonical_ADAPTER_bytes": 1762,
+    "canonical_ADAPTER_sha256": "4aa63a58e373ebb1dd2d7d34188f1d5175144b1ec332a2ae001f3a34a966ca8e",
+    "adapter_main_api_native_resolver_poller_STOP_unchanged": true,
+    "strictJSON_consumers_and_heterogeneous_byteverifiers_unchanged": true,
+    "provider_actual_REF_PATHS_equals_descriptive_proposal": true,
+    "current_candidate_and_review_paths_no_alias": true,
+    "current_input_ref_bytehashes_checked": 10,
+    "source_bindings204_data_exact_prior": true,
+    "source75_data_exact_prior": true,
+    "current_source_rows": "203 retained core+1image supplemental,86nonSQL/118migration Git metadata. Frozen source48a7 unchanged; current docs-onlyHEAD metadata proof retained, fresh Root204/86/install/trigger proof remains required before effects. No new rawSQL scan.",
+    "catalog": "444static/19excluded/195wrapper exactly reused frozen data; no source extraction or static/inherited/dynamic declarations promoted to execution coverage.",
+    "current_7_offline_control_groups": "NOT rerun. Seven prior actual offline groups are honestly attributed to baseline prior source/virtual future capabilities with real transport disabled; this review verifies only literal/data/source conservation.",
+    "historical_control_source_ref_limit": "Prior control old236942/c35b proposal pin is historical execution provenance already qualified by prior descriptive-field inverse, not a current234985-file positive-preflight claim."
+  },
+  "Root_helper_in_same_review": {
+    "current": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-proof-admission.py",
+      "bytes": 7164,
+      "sha256": "908d727eef92b5a872977bf7e67cb9dc82801271461149959da4098d3091973a"
+    },
+    "qualified_baseline": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-proof-admission.py",
+      "bytes": 7167,
+      "sha256": "1319d6ee70774787c4b3a177cab5dfd5848742552456484454398fb3f79e0f4e"
+    },
+    "five_complete_function_sources_byteexact": [
+      "sha",
+      "ref",
+      "check",
+      "write",
+      "git"
+    ],
+    "current_top_literals": "HEADedf/source48a7/remote7d8/CP06c4/opd891, exact five frozen bytepins and required current review enum/path all verified.",
+    "current_paths": "Current proof/provideractivation/provider invocation journal derived from actual Root_interfaces; distinct provider/rootonce journals and newnamespace, no oldpath writes.",
+    "old_proof_read": "normal-API019-NORMAL-current-source-proof.json is retained trigger/install metadata provenance only; helper freshly checks current SOURCE/HEAD204objects and86rawLF before claiming current proof.",
+    "bytepins_JSON": "Same check verifies bytes for every ref, parses JSON only for .json refs; realJSONconsumers remain strict.",
+    "old_a28cf4_history": "Explicit inherited preeffects parsing refusal, not a new helper failure.",
+    "local_Git_scope": "Seven local metadata calls: HEAD/branch/clean/tracking/FF ancestry and SOURCE/HEADtrees. Tracking is not an invented fresh remote observation; controller remote-before remains necessary.",
+    "prerequisites_before_execution": "Actual completed grant/current report PASS/exact329candidate/clean current source and tracked remote preimage, followed by exclusive xb+fsync proof/provideroncejournal/provideractivation. Never imported or executed by reviewer."
+  },
+  "current_interfaces": {
+    "exact_report_path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-operational-review.json",
+    "required_status_outcome": "PASS_NORMAL_STARTUP_CONFIRMATION_OPERATIONAL_SOURCE_ONLY",
+    "independent": true,
+    "candidate": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-inert-binding.json",
+      "bytes": 329,
+      "sha256": "7049f5387780cbb7db550c5ddf05d39e055a4de66cfe3d07190f6afa8b0e848c"
+    },
+    "candidate_exact329bytes_matches_all_templates": true,
+    "candidate_mode": "normal; all diagnostic/release flagsfalse",
+    "actual_provider_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/provider.py",
+      "--execute-once-after-new-root-provider-grant"
+    ],
+    "actual_Root_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/root-driver.py",
+      "<publish|resolve|poll|observe>"
+    ],
+    "paths": {
+      "provider_activation": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-readonly-activation.json",
+      "root_activation": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-effects-activation.json",
+      "source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-current-source-proof.json",
+      "allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-effects-allocation.json",
+      "operational_review": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-operational-review.json",
+      "provider_qualification": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-vercel-readonly-qualification.json",
+      "provider_intent": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-vercel-readonly-consumed-intent.json",
+      "provider_outer_receipt": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-execution-receipt.json",
+      "state": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-dispatch-state.json",
+      "root_operation": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation",
+      "provider_invocation_journal": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-root-once-journal.json",
+      "root_invocation_journal": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-once-journal.json"
+    },
+    "templates": "Provider/rootexecutionfalse/issuedUTCnull, sourceproofcheckedUTCnull/verificationbooleansfalse, grant/proof/review/qualification bytepinsnull; prospective only.",
+    "runtime_namespaces_at_review": "Provider/rootactivation,grant,intent,qualification,state,operation,provider/rootoncejournal absent at9162f2.",
+    "canonical_dispatch": {
+      "same_exported_checkpoint_and_githubApi": true,
+      "metadata_GETs": 4,
+      "POST": 1,
+      "same_ordinary_body_bytes": 201,
+      "body_sha256": "53f5167bad7f8234ebfc80e830b8f63cbb760892009975fa1e8aa3140b0da158",
+      "expected_head_checkpoint": "Currentedf966/06c4; no originalINT009/causeproof/diagnostic overlay.",
+      "actual_reply_identity_guards": "rthunborg/permission/current owned branch head/active ci.yml workflow296219797 checked in existing canonical module+fixed adapter before POST; no duplicate metadataGETs."
+    }
+  },
+  "actual_source_configured_future_caps": {
+    "effect_surface": {
+      "provider_GET": {
+        "max": 1,
+        "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd",
+        "caps": {
+          "seconds": 15,
+          "stdout": 4194304,
+          "stderr": 262144
+        },
+        "mutations": 0,
+        "limited_contract": "Point-in-time ordinary owned branch Git-push containment with branch-specific git.deploymentEnabled=false and fresh qualified project identity/settings. Previewdisabled/unconditionalignoredexit0 do not establish blanket manual/production disable. createDeployments=enabled is raw GitHub deployment-status metadata only."
+      },
+      "remote_before": {
+        "max": 1,
+        "required_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+        "ref": "refs/heads/codex/epic-15-scheduling-time-calendar",
+        "timeout_seconds": 20
+      },
+      "FFpush": {
+        "max": 1,
+        "force": false,
+        "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+        "timeout_seconds": 60
+      },
+      "remote_readback": {
+        "max": 1,
+        "required_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+        "timeout_seconds": 20
+      },
+      "canonical_dispatch": {
+        "invocations_max": 1,
+        "prePOST_GETs_max": 4,
+        "POSTs_max": 1,
+        "outer_seconds": 90,
+        "per_API_seconds": 15,
+        "per_API_stdout_cap": 4194304,
+        "outer_stdout": 524288,
+        "stderr": 65536
+      },
+      "resolve": {
+        "GET_max": 6,
+        "per_page": 20,
+        "minimum_cooldown_seconds": 5,
+        "no_pagination": true,
+        "unique_owned_only": true,
+        "API_seconds": 20
+      },
+      "poll": {
+        "run_GET_max": 90,
+        "jobs_GET_max": 90,
+        "minimum_cooldown_seconds": 30,
+        "max_wall_seconds": 5400,
+        "jobs_per_page": 100,
+        "no_pagination": true,
+        "stop_all9terminal": true,
+        "API_seconds": 20,
+        "API_stdout": 2097152,
+        "stderr": 65536
+      },
+      "provider_writes": 0,
+      "repository_variables": 0,
+      "artifact_logs_GET_now": 0,
+      "diagnostic_runs": 0,
+      "main_merge_deploy_demo_db_push": 0,
+      "local_managed_resources": 0,
+      "postterminal_acquisition_scope": "No artifact/log GET now. Separate actual-terminal enrollment/review/new finite max5GET grant later. 32KiB applies SOURCE-LABEL projection only, not every generic projection; preserve historical generic/source-label cap discrepancy."
+    },
+    "loop_cleanup_tails": {
+      "provider_LOOP_seconds": 15,
+      "provider_same_child_wait_seconds": 2,
+      "provider_reader_joins": 2,
+      "provider_seconds_each_join": 2,
+      "controller_REMOTE_LOOP_seconds": 20,
+      "controller_PUSH_LOOP_seconds": 60,
+      "controller_CANONICAL_LOOP_seconds": 90,
+      "controller_metadata_LOOP_seconds": 20,
+      "controller_same_child_wait_seconds": 2,
+      "controller_reader_joins": 2,
+      "controller_seconds_each_join": 1,
+      "strict_process_tree_hardwall_claim": false
+    },
+    "provider_capture_bytes": {
+      "stdout": 4194304,
+      "stderr": 262144
+    },
+    "Root_Git_Node_capture_bytes": {
+      "stdout": 524288,
+      "stderr": 65536
+    },
+    "canonical_underlying_API_LOOP_seconds": 15,
+    "canonical_underlying_stdout_bytes": 4194304,
+    "metadata_capture_bytes": {
+      "stdout": 2097152,
+      "stderr": 65536
+    },
+    "freshness": "Activation/proof/provider all<=300s immediately beforepush/dispatcher; provider<=180s before90s Node invocation and unchanged embedded adapter<=300s immediately beforePOST. No renewalGET/retry under expiry or uncertainty.",
+    "finite_clock": "Immutable started_at at originalpublish begins5400s bound, including push/dispatch;<=6resolver/min5s/page20;<=90run+latestjobs pairs/min30s/page100. No reset/leaseextension/adoption/secondpoller. Early/unregistered/closed pathsWAIT0GET; exactownedtuple and all9terminal STOP closes unused.",
+    "later_terminal_family": "Existing52638-byte28fixedtag/max80 reader needs separate actualtuple terminal enrollment review, NEWcompleted <=5GET grant/freshproof/onceactivation. Current artifact/log GET0. SOURCE-LABELONLY32768, no generic per-projection cap."
+  },
+  "one_observation_guard": {
+    "minimum_plan": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-minimum-plan-independent-review.json",
+      "bytes": 8035,
+      "sha256": "e689f0af2b2bdbc230c7dab2e8d4ee98acef85dc1f3ff937b7df41aea744f8c7"
+    },
+    "maximum_new_NORMAL_observations": 1,
+    "previous_owned_operation_closed": true,
+    "uncertainty": "STOP closeunused/no automaticrepeat",
+    "second_consecutive_startup7_failure": "STOP; no third sameNORMAL approach. Root must choose separately reviewed materially different safe startup-evidence route or retain named prerequisite.",
+    "other_failure": "No automatic repeat/fix; qualify observed failure first.",
+    "cause_claim": "None; unknown external startup mechanism.",
+    "acceptance": 0,
+    "P5": "OPEN",
+    "cap": 3
+  },
+  "remaining_Root_execution_obligations": [
+    "Complete current actual44P0F51unexecuted/closedrun docs readiness fold without changing functional source48a7, clearing P5 or resetting reviewcounter.",
+    "Fullread this actual PASS, current exact five files/helper and new minimumplan; actual completed finite Coordinator allocation must explicitly bind all current LOOP/tail/byte caps and ONE unchanged NORMAL observation only. No prior grant or oncejournal replay.",
+    "Exclusively materialize exact329candidate, freshly execute admitted Root proof helper, inspect actual fresh <=300s source/provider proof and native closure; provider oneGET success+outside tool/session/waits/capture attribution required before Rooteffectsactivation.",
+    "Root sole operator: exact nonforceFF expectedremote7d8\u2192edf and readback; canonicalsinglePOST/uniqueregisteredtuple, then bounded soleobserver. Any refusal/partial/timeout/captureuncertainty consumes scope and closes slots, no blind retry.",
+    "Second consecutive startup7failure STOP this route/no thirdsameNORMAL. Any other reached failure must be independently qualified before another action; this plan provides no automatic repeat.",
+    "After actualall9terminal/ROOT_STOPPED separately rebind and review existing reader, obtain new finite eligible-only acquisition grant/freshproof/exclusiveactivation; then distinct actual95/recovery/scopedcustody qualification."
+  ],
+  "evidence_and_limits": {
+    "actual_static_read_commands": [
+      "9be5e1/native0",
+      "d1c88b/native0",
+      "6514ed/native0",
+      "9162f2/native0"
+    ],
+    "reviewer_API_Gitnetwork_mutations_tests_resources": 0,
+    "current_actual_required95": "44P0F51unexecuted from39990057474; DBstartup7F/integration11SKIP/reportABSENT, exactcause/API019/mainDBcustodyUNKNOWN.",
+    "historical_field_qualification": "proposal.historical_limit_disclosures.last95=93P1F(API019)1zero(API020) is prior sourcee525 run39975009683 history ONLY; it is neither currentlastqualified result nor source acceptance. Current44P0F51zero above is authoritative for Rootreadiness/grant.",
+    "provider_no_deploy_scope": "Fresh point-in-time ordinary ownedbranch push containment only via branchgit.deploymentEnabledfalse/exactproject/settings. createDeployments rawfield is GitHub deployment-status metadata, not Gitdeploymentcreation control; ignoreexit0 not blanketprecreation/manual/maincontainment. Finalmainmerge/deployment separate held.",
+    "P5": "OPEN",
+    "15.6": "UNSTARTED",
+    "broad_review_counter": 3,
+    "development_complete": false,
+    "release_ready": false,
+    "hosted_cause": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "effect_authority": 0
+  }
+}

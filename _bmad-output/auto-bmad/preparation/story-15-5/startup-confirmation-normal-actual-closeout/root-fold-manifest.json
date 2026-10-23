@@ -1,0 +1,837 @@
+{
+  "schema": "ROOT_CLOSED_ACTUAL_FOLD_V1",
+  "run": 39998246278,
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "items": [
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-effects-allocation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/accepted-normal-startup-confirmation-effects-allocation.json",
+      "bytes": 7462,
+      "sha256": "3a9e2eae1a60abebb0ff8d4d59d8c1ab17fc19a2e248d7338766bbf541691624"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-terminal-effects-allocation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/accepted-normal-startup-confirmation-terminal-effects-allocation.json",
+      "bytes": 6169,
+      "sha256": "f8372657b6e2274fc4308242068d116cb8b8e2caa09569ebb99a58126ebe8cb8"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/acquisition-summary.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/acquisition-summary.json",
+      "bytes": 2552,
+      "sha256": "076a699f0073cc41ced6b15aa2c53b82d59860c87c80e4fbfd5ff707d6357b7a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/artifact-list-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "79889a69a559f4558968ef4073bbae7b7465d34c630c9c8979ddc5faf8eb3af4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-full-integration-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-full-integration-projection.json",
+      "bytes": 67126,
+      "sha256": "799172e741da94a2870c147a5a2c2b1f4e81950d08b18b7106ce9fdb5363b93b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-general-browser-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-general-browser-projection.json",
+      "bytes": 13366,
+      "sha256": "6b5cbde18b657916c0247094370c9b4848c78bca186fd4ab8c6ca2d961646d65"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-isolated-storage-recovery-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "f50b554aab12149fdd7eaa6496911cc8322399ed415c8f6b9f2d61f94eda9bab"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/operator-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/operator-intent.json",
+      "bytes": 7182,
+      "sha256": "fec2365f823780be5f5a54810c2c07dc1fe4618720d2ea9d96d1a11239549ec7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-01-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "e0870df68c46267ea1b73a2453c29c3184c24ea58f2e122d55ef7e0638e7edbe"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-01-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-01-result.json",
+      "bytes": 1133,
+      "sha256": "2761ee79432c6f2fa3e041dcaeb67e2e444c86707c4cf78d2404964fb8a4375a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-02-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "0d57568d8d883d180af87b0eb2c523f0e201de7fb413e2cdff9ef9ace9bcb5d4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-02-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "b3d66ad5a4dd3479b0e9b3e40d52d63b78e33baff799b5c25acf3a773bda361f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-03-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-03-intent.json",
+      "bytes": 422,
+      "sha256": "8b78aabc309df3ef976f650373827bd35a9d15e77839e4abcb9e2bc8b06f574b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-03-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-03-result.json",
+      "bytes": 1143,
+      "sha256": "b11551116c502d20427df97a596d1fcf8d326b7ff08e007e19b1aaf3ed7134d4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-04-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-04-intent.json",
+      "bytes": 421,
+      "sha256": "334422df90895bfbaa7a5ec559d5c323499655167d443aa7f7494f54b0a8206a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-04-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-04-result.json",
+      "bytes": 1140,
+      "sha256": "5da75fea5efa11265060cf24e7ee561bdb26c27ae70d68adb4a9f2ec99f4495a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-05-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-05-intent.json",
+      "bytes": 431,
+      "sha256": "db1997872228540ec6461be9d6b43cf49691955bdd06f02ef4e7370ef6a67d78"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-05-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-05-result.json",
+      "bytes": 1149,
+      "sha256": "c19ed4de3f1c2e466007ed8fbbcce55bff97b5196706874ee21c5b9beb540dbc"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/run-archive-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/run-archive-projection.json",
+      "bytes": 48552,
+      "sha256": "adbcac1b4aae56145d0c37fef16d7c6bad1287ef4ef22fb7c1b8951d4fc3c5e7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/source-label-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "5b3316d8a2d8113a8fb845adfab1a9e843eacd595f69d3c8d5d5b47a3d73fe60"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/source-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/source-provenance.json",
+      "bytes": 6449,
+      "sha256": "1d39e24bad4638e3773168497246686f525d0dd86b14cf5365a678a1992e582d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/terminal-bindings.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "c2c8319095e346affa32f69d1da16d7e2973c0b2aa9c2a95c7aedaa275220916"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-initial-outer-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-actual-initial-outer-provenance.json",
+      "bytes": 1303,
+      "sha256": "55f277fb41801cdae8132ce7b6c3cd8131f7639eb88bf2bd7893dfcaaa52d280"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-poll-outer-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-actual-poll-outer-provenance.json",
+      "bytes": 14670,
+      "sha256": "0ed0278b002a744b9e642bc1bbf59458bb923c6d19ad13752579155cff06036e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-publication-resolver-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-actual-publication-resolver-proof.json",
+      "bytes": 5209,
+      "sha256": "1f8ee516b1ac7679cc534bb867779e4389e70e585f6bfc92d1ddf50d2f80ead4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-root-ownership.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-actual-root-ownership.json",
+      "bytes": 79518,
+      "sha256": "7baf9adcead6efd03f2795982bd36f71bcf4fbf8f7ccc748315464c85368ac24"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-current-source-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-current-source-proof.json",
+      "bytes": 59110,
+      "sha256": "67f002bce2c021141c096606559a00c0f5fb713998d8fd6e091219b5c045b9d7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-dispatch-state.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-dispatch-state.json",
+      "bytes": 485,
+      "sha256": "7bfd994d18403aa95abdfaaf9e323f62cf662115c8c37cab7e827e4d82bcc1e5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/manifest.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-execution-preparation/manifest.json",
+      "bytes": 1139,
+      "sha256": "7501eb90b7213d15a5772d6d2037f43b80c8e5c9edf5db8f7b370ffc687325eb"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/proposal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-execution-preparation/proposal.json",
+      "bytes": 234985,
+      "sha256": "4b5ad16b3de1fc42d46b7f204f73faba0eefa215b09b2b5cf015c3cec020763b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/pure-controls.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-execution-preparation/pure-controls.json",
+      "bytes": 3988,
+      "sha256": "f4d14bd0093f44b6eced55370501ff0b9bc5d4cabb682b8daaa17e40edbb43de"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-inert-binding.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-inert-binding.json",
+      "bytes": 329,
+      "sha256": "7049f5387780cbb7db550c5ddf05d39e055a4de66cfe3d07190f6afa8b0e848c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-inert-identities.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-inert-identities.json",
+      "bytes": 561,
+      "sha256": "4fd2081725e74bd8b84c11a2edae953cdfb26d2cfc383007749d832554813088"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-operational-review.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-operational-review.json",
+      "bytes": 20082,
+      "sha256": "27f151f595930947a9b667c1d665df548b0b45256c67cd021911e88ebd50ae53"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-execution-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-provider-execution-receipt.json",
+      "bytes": 3755,
+      "sha256": "ee5b27ec61a13641642dba191109d1f44bb0e0921ef2916037fd0edbf950b230"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-readonly-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-provider-readonly-activation.json",
+      "bytes": 2493,
+      "sha256": "dee79ada1d62a356e150b01f2c9ad6bb92b88e155a1245136169d3bf965fa1f4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-provider-root-once-journal.json",
+      "bytes": 1438,
+      "sha256": "d36293caf658439007c6698147b374b11af8f3942da2cb0e6f4356f1a4078ce7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-docs-bridge-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-docs-bridge-proof.json",
+      "bytes": 650,
+      "sha256": "681796e23e84a6feb4a216fb2c9fe16503fa92e507dbc83a78e964cf9d898dd5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-effects-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-effects-activation.json",
+      "bytes": 1779,
+      "sha256": "abc55dcaea0e043783860b5a6228077962e6139aca0146e0c471842a8b655b0c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-once-journal.json",
+      "bytes": 1444,
+      "sha256": "b186c6701368c305e332465d1f8b1e87159f3f117c4e79e6cb8eed3bbbee7c0e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/dispatch-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/dispatch-intent.json",
+      "bytes": 470,
+      "sha256": "c568c8686b435d8a48e37055c79c59e31d7df7e1df3d6ebf7306660db5b13996"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/dispatch-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/dispatch-receipt.json",
+      "bytes": 842,
+      "sha256": "6eba693c0cd06a3de3ce6f000598e956e485e9a10b5ae7b378f25af63a843630"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-1-intent.json",
+      "bytes": 276,
+      "sha256": "c3ac6255a2574780bbc15499885ec3813506eeb85d30f63598a4125cc03dd1c0"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-1-receipt.json",
+      "bytes": 699,
+      "sha256": "60ceb669723fd0d87bcd1d6df74d879e6a0f1623875059774987f1671858cba5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-10-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-10-intent.json",
+      "bytes": 276,
+      "sha256": "d72a0f8c17a9e7f35e75229f4b29b5f42a37980f8d6061f8401c4cfb1274e44d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-10-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-10-receipt.json",
+      "bytes": 700,
+      "sha256": "58330e762ae4644a576d0fae4157d9ec32af6c06f01e0bec0a92a109e20a5d60"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-11-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-11-intent.json",
+      "bytes": 276,
+      "sha256": "fef4ee37785b5862d823685873358a3357ca816b49263df0ef895407d788228e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-11-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-11-receipt.json",
+      "bytes": 700,
+      "sha256": "19b6127b2d672e4e6888d06d6f197c53e8b6e3b1699b61d09739e4b59cdcda31"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-12-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-12-intent.json",
+      "bytes": 276,
+      "sha256": "9851c30a42e1d53ffa9d51d0930b9e028a12084784ad941eab397e05c23df1c8"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-12-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-12-receipt.json",
+      "bytes": 700,
+      "sha256": "4b47dfa42b36d90d6638f3626747fcd60b9a90066e3fa86cda8957e17ba7f3c3"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-13-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-13-intent.json",
+      "bytes": 276,
+      "sha256": "75a9c73668bb09c4b9840614dc6e83286e63f553d6dee46ae3edcb5d7c5a573a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-13-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-13-receipt.json",
+      "bytes": 699,
+      "sha256": "9a0c87ade45b95e765d69cd479fc9ae025cdcaf25d41ca4ebc88425de4c114b3"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-14-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-14-intent.json",
+      "bytes": 276,
+      "sha256": "87704f7c445a255bdfca8829a01bf996e3623b41c6c450a9cef476da8ad5a59a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-14-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-14-receipt.json",
+      "bytes": 700,
+      "sha256": "9da9ba244eb4b39fa9605f831c257ea44552b8b6d76663ca28f9bf003a64f94c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-15-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-15-intent.json",
+      "bytes": 276,
+      "sha256": "c09fcbe853fa1b3112fd9bd7520d7ec32b75e3c33519aabb4e47bfaef4738bb6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-15-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-15-receipt.json",
+      "bytes": 700,
+      "sha256": "8eb1a73049d423f229bd6d0c0675c221e00bf219d1c8946a7c046ffe79a73b32"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-2-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-2-intent.json",
+      "bytes": 276,
+      "sha256": "28e18c4e0380422c9f0581893b3b9beffa6be2d18ad2fd11ed5a7ca0b9e3415c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-2-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-2-receipt.json",
+      "bytes": 700,
+      "sha256": "2acfecbf18afe623b58644d9c2cadc47dbb145e8c0f2d78ffbcebdf2a0d526cb"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-3-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-3-intent.json",
+      "bytes": 276,
+      "sha256": "688db5ec5f76244d8838fa0126b0c8f097787a8dd69899555c2385c1d2608e55"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-3-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-3-receipt.json",
+      "bytes": 700,
+      "sha256": "d9d722bb9ce88f27a7dc6a20a484bbb73714e51bc46be5c3b95986510efc71d5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-4-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-4-intent.json",
+      "bytes": 276,
+      "sha256": "92bb9a5aa009644bf6a0cb6a943e031f2d1d60e47473167a8354255e0dd529f5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-4-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-4-receipt.json",
+      "bytes": 700,
+      "sha256": "204e9873c86b1d9346905e1f4c060b5473992ee396b8d56f5875e9ea83844d53"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-5-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-5-intent.json",
+      "bytes": 276,
+      "sha256": "f15f9a77ad4bc8ac5cb7be36872ee979880e1ed623cd1059a394a625885f77a7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-5-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-5-receipt.json",
+      "bytes": 700,
+      "sha256": "54daec2679440cd677621531ccd6ab1238f0affdf37afd1dcdf4a4ebafbda293"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-6-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-6-intent.json",
+      "bytes": 276,
+      "sha256": "d5a9b758d7ab36d5da78468914a9550881ac119df87db6fe40a227b3d3cf5c52"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-6-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-6-receipt.json",
+      "bytes": 700,
+      "sha256": "e316122253b82e0df9ca4b2338143e2aa662b67e1b42d13cd1959ba5dd8f0baf"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-7-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-7-intent.json",
+      "bytes": 276,
+      "sha256": "dd0aaa813d9ef736c51f2471d72cf4678d446f2918ad5f90be646630b43bb5c8"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-7-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-7-receipt.json",
+      "bytes": 700,
+      "sha256": "6582a326ba338b235dccc2673499a512ea341bdb3e9381f89aacaa2d1055e4a6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-8-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-8-intent.json",
+      "bytes": 276,
+      "sha256": "1cb4493389901772ccf75433bf91ce96ab1b020d5cdb13ac1a5fd8d0399a43f1"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-8-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-8-receipt.json",
+      "bytes": 700,
+      "sha256": "714a071d72692ec4a7aba4b584440b97b349ca3f463eaf211ccdee7473308910"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-9-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-9-intent.json",
+      "bytes": 276,
+      "sha256": "02f8c0648eb3a5615e549fd55db0def4d196564e69c15ec1b4f6d1c2cace9863"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-9-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/jobs-9-receipt.json",
+      "bytes": 700,
+      "sha256": "be7393fd23286fba060582d0659c814607ff229079885641fd30d050280a4e6d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-1.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-1.json",
+      "bytes": 6936,
+      "sha256": "08f8fd8ec7491c3faf587b3c15a7acbc342bdda228e5eba4195d62dfd4808a90"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-10.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-10.json",
+      "bytes": 23581,
+      "sha256": "c2e854a59753fb7e4a7cee9c26443748070294bbcf9c96baf6b77a86673078a4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-11.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-11.json",
+      "bytes": 23581,
+      "sha256": "144278e77982f545a88e6739dc37e21ad7873c24780958d75bff5d9f594939fa"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-12.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-12.json",
+      "bytes": 23581,
+      "sha256": "10255ad38949a3c5e710763013a90f36fba624b3fffc7ad706be23199d80d227"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-13.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-13.json",
+      "bytes": 23581,
+      "sha256": "53212126c657a430ebd2d08f4e3d2a5d417d9e0168a575be8f1834cb2f5b246c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-14.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-14.json",
+      "bytes": 23667,
+      "sha256": "97ba3a513ded5b9670e0168fd272117d73e1760df2c2a5d18df9d05d86af9a55"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-15.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-15.json",
+      "bytes": 24085,
+      "sha256": "b6dbe3fd16cf64cb0f63ed3d146db4b45e2078516ae86d33c8497f99864d1e22"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-2.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-2.json",
+      "bytes": 20901,
+      "sha256": "84015486d005174f845a3c9857cf65decefa8c725178d331b5f4ee4f0ab893de"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-3.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-3.json",
+      "bytes": 21159,
+      "sha256": "7b56899e837e9a60a6fa42acef26b02548781baa62992f32bc29fec29008ce12"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-4.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-4.json",
+      "bytes": 21546,
+      "sha256": "a315dc26a436dddd91e050f9de142eeb817378af530284f91c9ee5af7800fe0b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-5.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-5.json",
+      "bytes": 21961,
+      "sha256": "d39d6fa6c0d19bde7806ab8d86498cddfa76497ce7dcf0e431666339bd33cc20"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-6.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-6.json",
+      "bytes": 21961,
+      "sha256": "67aaf38a0eae72a188d2a79365334ba994e195fadfff7bfb43bf1ccffddeea3c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-7.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-7.json",
+      "bytes": 22133,
+      "sha256": "d27efce47d2270b1f74c265e89a44ddf82fb8ccdb180f1fbc117cc033f546731"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-8.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-8.json",
+      "bytes": 23581,
+      "sha256": "dd0e8e40d03c659f5652cf5aa5f8e50bc572a76a49aadb51d07f6487b6fe2a7e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/observation-9.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/observation-9.json",
+      "bytes": 23581,
+      "sha256": "35c9b93508cdc86ed2acdbdcc7287c25235f148a9cef584817e7a7bf13fa3400"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/operation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/operation.json",
+      "bytes": 867,
+      "sha256": "930e6a47731bbd4b75c2bb4985f7752ae56447451a12766f4dd2d51f9f66a7eb"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/push-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/push-intent.json",
+      "bytes": 201,
+      "sha256": "8326785fce5610317c7184811faabfd04408ef680623cdc502befa356c52a99e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/push-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/push-receipt.json",
+      "bytes": 697,
+      "sha256": "0b2dbb0054712314ae3d7908e4f8a2db31a83f49500bcdee6800f005c56b8c20"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/remote-before-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/remote-before-receipt.json",
+      "bytes": 697,
+      "sha256": "8e1dce021a1d9399ab3fad2b507959e103a131f55473078a69f2d1226ced9a1a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/remote-readback-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/remote-readback-receipt.json",
+      "bytes": 697,
+      "sha256": "594e8fec5038b57c9c232b2592f6545039b1c8a05380e0249ae065dcf762d1cc"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/resolve-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/resolve-1-intent.json",
+      "bytes": 334,
+      "sha256": "f8ac81574469b97bd5cec286cee3fb0ee99647e038c01a7df3760cfb9ed5289b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/resolve-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/resolve-1-receipt.json",
+      "bytes": 701,
+      "sha256": "f98658bb96e13f0fdacaddf24af7dae43af9153400c8af8d37b6ae17b41bde0a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-1-intent.json",
+      "bytes": 244,
+      "sha256": "ed6085e32dc8913ee6095c9b3c173cbe64afa0680999621a84d984fac28e98cb"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-1-receipt.json",
+      "bytes": 700,
+      "sha256": "4a2445b3fd80915a333665f2ca0fe32523fa1d722141442c89084957741b3989"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-10-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-10-intent.json",
+      "bytes": 244,
+      "sha256": "36c3197280de4174adb02add8d06a583061a8b37bc525f5a39e04863abd6453c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-10-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-10-receipt.json",
+      "bytes": 700,
+      "sha256": "8fd861a7db9c0a9f5fb87b9d18fe5e9d217afcca6f3e55b1bf27638628ebecf3"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-11-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-11-intent.json",
+      "bytes": 244,
+      "sha256": "0822f11c37f195593c9cc4e106443244bb0e136b3f8479cd9e25083d8f6ccf6d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-11-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-11-receipt.json",
+      "bytes": 700,
+      "sha256": "bc01491622ef2b3e7775355ac8513466baa0bcddcdf9e5bacf6823a1286a0976"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-12-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-12-intent.json",
+      "bytes": 244,
+      "sha256": "1c82ecc10daa1ffa73f5c9e2110805f15f2fdff501d828ed1707703713031957"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-12-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-12-receipt.json",
+      "bytes": 700,
+      "sha256": "814446e1b2402b891337ff59e624a32b56bf0bc1c88a2ea3c6ea09bb21e75eaf"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-13-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-13-intent.json",
+      "bytes": 244,
+      "sha256": "22f4e02f4f52e26aeefc78510eb2b1d150e34e528b43678cde2d70be95dbf452"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-13-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-13-receipt.json",
+      "bytes": 700,
+      "sha256": "b7b35162a2c07c5bbb4a7da4ef4a2a292117f870f88d3719c440a439b3242bba"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-14-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-14-intent.json",
+      "bytes": 244,
+      "sha256": "f404e09090ee039599db5570fe038465dcbdd7c36032b4015d7cc4b61df65383"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-14-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-14-receipt.json",
+      "bytes": 700,
+      "sha256": "a01bc3c063b88bd2fd5e40ee05b3d20aa0ce078f2318d8218eeae3ab03e386b4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-15-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-15-intent.json",
+      "bytes": 244,
+      "sha256": "149644afbc4eadb64209efe05a3d699c3b0760f6b32b9006d34c43dd135db938"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-15-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-15-receipt.json",
+      "bytes": 700,
+      "sha256": "396c7df2ccdd8897deab4f492c71e0e7a324adacf16521c378a90c230044aaf0"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-2-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-2-intent.json",
+      "bytes": 244,
+      "sha256": "9b61f12088814b8d29067444475272a4561b5b177c39ebb0c6557eb26ad4d69a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-2-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-2-receipt.json",
+      "bytes": 700,
+      "sha256": "36f62dd580e76345db5d38608831b26248251c27f42c46a9dfef19042daf00cc"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-3-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-3-intent.json",
+      "bytes": 244,
+      "sha256": "4662e08c053145f117594d34dd7642415c9cf85c09d966bbc36a90f3bb9df10d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-3-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-3-receipt.json",
+      "bytes": 700,
+      "sha256": "7ddcfbe5806babe486103115fb371264482fda4f3af921c0fa72b96c704680a1"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-4-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-4-intent.json",
+      "bytes": 244,
+      "sha256": "0a8bbeb3f1fb01ead2c035bf569221d6ed99179066a0ada1104b6276996748d6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-4-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-4-receipt.json",
+      "bytes": 700,
+      "sha256": "9a9a9bbcb4adc4df163cf7f77b05f9d7c3b6bf4cf671e403e441a02191070bd6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-5-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-5-intent.json",
+      "bytes": 244,
+      "sha256": "51bab0d684092f098d5b0b7fc2dea9a6264a742a902ce36b0c5f338e7287e356"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-5-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-5-receipt.json",
+      "bytes": 700,
+      "sha256": "bc70cde281f9934dfd1c4f0d01190c99661b26e3b397d7e83cc694f74e6eef8e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-6-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-6-intent.json",
+      "bytes": 244,
+      "sha256": "5f2baeca6b48bfb17d5d36af0400a6f945c7a085d0ce89c514e4110c48cba792"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-6-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-6-receipt.json",
+      "bytes": 700,
+      "sha256": "471d528fb18fa8796eba5a842e77fe1bcd1b952b10d0e0d72e4d691ac96860ab"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-7-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-7-intent.json",
+      "bytes": 244,
+      "sha256": "a699eea96912d487a792f736c729df1c32dccbf152562a37c980d39c63250699"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-7-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-7-receipt.json",
+      "bytes": 699,
+      "sha256": "653107b0e778cc6e73ed9aefa1b63e8b113ab24658503d751d83532568ec98c4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-8-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-8-intent.json",
+      "bytes": 244,
+      "sha256": "e0edc7346891a65f657679a77cde703b432dbd95d55eefea41f17480b16538da"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-8-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-8-receipt.json",
+      "bytes": 700,
+      "sha256": "8b6b944bbf024b184b2046c8d4c02ebd3836a8e4615023f474c753c0287cd15e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-9-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-9-intent.json",
+      "bytes": 244,
+      "sha256": "b49cfa3fb5d8e568d785fa222744d801a2f2b50427e1e003b5684e7e7d026b85"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-9-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/run-9-receipt.json",
+      "bytes": 700,
+      "sha256": "c91f7224223f223d4134df9e6e27a208f14db7217212017f9ba091304b701da8"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/terminal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "b6dbe3fd16cf64cb0f63ed3d146db4b45e2078516ae86d33c8497f99864d1e22"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-native-qualification.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-actual-native-qualification.json",
+      "bytes": 25188,
+      "sha256": "b86f59322070b8e2744ab45b5174dc8463fd2c13174f778ea43cf562efc71831"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/actual-terminal-envelope.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26118,
+      "sha256": "4413a9d5c3b18bd78e93c59597a4dc191339893c8b7053c12046772e8033a104"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/manifest.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-actual-preparation/manifest.json",
+      "bytes": 1177,
+      "sha256": "77608d38874c01f6b68b4c8a4dcd6133c13ebf3a83d500f6e1499d12c8d8d743"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/proposal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-actual-preparation/proposal.json",
+      "bytes": 114155,
+      "sha256": "776efa41a4cf89059f20fac7f54d783fc2dc1b38c2ca82c45ad17249c9783ca4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/source-rows.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-evidence-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-evidence-activation.json",
+      "bytes": 4191,
+      "sha256": "018597ed66d8ff422c199a1818d26546f57f2e42159e169e2cb4fd52701e6352"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-execution-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-execution-receipt.json",
+      "bytes": 12305,
+      "sha256": "cc4522ac9ccbe9336d47f21156f4b1af43d12230f2e5b6937c7fbf7c61933859"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-fresh-source-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-fresh-source-proof.json",
+      "bytes": 59883,
+      "sha256": "9ac400762906f946939002b976011b961cd9d737ef5d9efc347aa6223d33eb0a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-reader-operational-review.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-reader-operational-review.json",
+      "bytes": 16956,
+      "sha256": "69a532d8903b71153b5c8138bb98a6be336614b6f6e8ffc5124f6666320be905"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-root-admission-pin-repair.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-root-admission-pin-repair.json",
+      "bytes": 1243,
+      "sha256": "320c5694546454755de0fce74fd279c387925494dc603629b0b7e7dd98d150d6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-root-once-journal.json",
+      "bytes": 1351,
+      "sha256": "1c3bcf8e554056d09286b5ed15226540c73f831244c2bba5075e68ebf20675a5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-vercel-readonly-consumed-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-vercel-readonly-consumed-intent.json",
+      "bytes": 1192,
+      "sha256": "5bbaf1ff8c8f3cd797ac5313ca9a3465dcfa3aac5431e9c14159d05b1fa03375"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-vercel-readonly-qualification.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-vercel-readonly-qualification.json",
+      "bytes": 30494,
+      "sha256": "4bed46c1c7f6ac01c8a4e762a09b5a1cfe2da233ca65f57a49544b9d8ae971a4"
+    }
+  ],
+  "limits": "Closed safeJSON/projections only. No raw logs/ZIPs/native rawreports/provider rawdata/SQL contents/executable operators copied. All effect slots closed. Assessment still separately active."
+}

@@ -1,0 +1,314 @@
+{
+  "schema": "STARTUP_CONFIRMATION_TERMINAL_EXECUTION_RECEIPT_V1",
+  "invocations": 1,
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-evidence-activation.json",
+    "bytes": 4191,
+    "sha256": "018597ed66d8ff422c199a1818d26546f57f2e42159e169e2cb4fd52701e6352"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-terminal-effects-allocation.json",
+    "bytes": 6169,
+    "sha256": "f8372657b6e2274fc4308242068d116cb8b8e2caa09569ebb99a58126ebe8cb8"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-fresh-source-proof.json",
+    "bytes": 59883,
+    "sha256": "9ac400762906f946939002b976011b961cd9d737ef5d9efc347aa6223d33eb0a"
+  },
+  "preinvoke_proof_age_seconds": 44.678811,
+  "operator": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/reader.py",
+    "bytes": 52636,
+    "sha256": "a17536afc1210860ab0dc30eb81192eb73649f36ad5926ee8fb739834deb3350"
+  },
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/reader.py",
+    "--execute-once-after-terminal-grant"
+  ],
+  "outer_native_capture": {
+    "native_exit": 0,
+    "category": null,
+    "elapsed_seconds": 7.872336,
+    "timeout_seconds": 120,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 731,
+        "sha256": "fe09115d3c9c4889bb62a30e11d11bd04dd2e5e854c8ce5713478b324dbf7d39",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "stdout_closed_projection": null,
+  "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent",
+  "inventory": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/acquisition-summary.json",
+      "bytes": 2552,
+      "sha256": "076a699f0073cc41ced6b15aa2c53b82d59860c87c80e4fbfd5ff707d6357b7a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "79889a69a559f4558968ef4073bbae7b7465d34c630c9c8979ddc5faf8eb3af4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-full-integration-projection.json",
+      "bytes": 67126,
+      "sha256": "799172e741da94a2870c147a5a2c2b1f4e81950d08b18b7106ce9fdb5363b93b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-general-browser-projection.json",
+      "bytes": 13366,
+      "sha256": "6b5cbde18b657916c0247094370c9b4848c78bca186fd4ab8c6ca2d961646d65"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "f50b554aab12149fdd7eaa6496911cc8322399ed415c8f6b9f2d61f94eda9bab"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/operator-intent.json",
+      "bytes": 7182,
+      "sha256": "fec2365f823780be5f5a54810c2c07dc1fe4618720d2ea9d96d1a11239549ec7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "e0870df68c46267ea1b73a2453c29c3184c24ea58f2e122d55ef7e0638e7edbe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-01-result.json",
+      "bytes": 1133,
+      "sha256": "2761ee79432c6f2fa3e041dcaeb67e2e444c86707c4cf78d2404964fb8a4375a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "0d57568d8d883d180af87b0eb2c523f0e201de7fb413e2cdff9ef9ace9bcb5d4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "b3d66ad5a4dd3479b0e9b3e40d52d63b78e33baff799b5c25acf3a773bda361f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-03-intent.json",
+      "bytes": 422,
+      "sha256": "8b78aabc309df3ef976f650373827bd35a9d15e77839e4abcb9e2bc8b06f574b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-03-result.json",
+      "bytes": 1143,
+      "sha256": "b11551116c502d20427df97a596d1fcf8d326b7ff08e007e19b1aaf3ed7134d4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-04-intent.json",
+      "bytes": 421,
+      "sha256": "334422df90895bfbaa7a5ec559d5c323499655167d443aa7f7494f54b0a8206a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-04-result.json",
+      "bytes": 1140,
+      "sha256": "5da75fea5efa11265060cf24e7ee561bdb26c27ae70d68adb4a9f2ec99f4495a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-05-intent.json",
+      "bytes": 431,
+      "sha256": "db1997872228540ec6461be9d6b43cf49691955bdd06f02ef4e7370ef6a67d78"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/request-05-result.json",
+      "bytes": 1149,
+      "sha256": "c19ed4de3f1c2e466007ed8fbbcce55bff97b5196706874ee21c5b9beb540dbc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/run-archive-projection.json",
+      "bytes": 48552,
+      "sha256": "adbcac1b4aae56145d0c37fef16d7c6bad1287ef4ef22fb7c1b8951d4fc3c5e7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "5b3316d8a2d8113a8fb845adfab1a9e843eacd595f69d3c8d5d5b47a3d73fe60"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/source-provenance.json",
+      "bytes": 6449,
+      "sha256": "1d39e24bad4638e3773168497246686f525d0dd86b14cf5365a678a1992e582d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "c2c8319095e346affa32f69d1da16d7e2973c0b2aa9c2a95c7aedaa275220916"
+    }
+  ],
+  "manifest": null,
+  "summary": {
+    "actual_logical_requests": 5,
+    "attempt": 1,
+    "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+    "no_retry": true,
+    "normal_acceptance": 0,
+    "raw_persisted": false,
+    "reports": [
+      {
+        "case_summary": {
+          "numFailedTestSuites": 2,
+          "numFailedTests": 1,
+          "numPassedTestSuites": 545,
+          "numPassedTests": 2115,
+          "numPendingTestSuites": 0,
+          "numPendingTests": 52,
+          "numTodoTests": 0,
+          "numTotalTestSuites": 547,
+          "numTotalTests": 2169,
+          "success": false
+        },
+        "member_bytes": 1029206,
+        "name": "native-full-integration",
+        "report": "native-full-integration-projection.json",
+        "sha256": "269a15bc3891b0f03b8e858e4e7688829b4707636db61475c1057b56d125e790"
+      },
+      {
+        "case_summary": {
+          "duration": 236695.15600000002,
+          "expected": 56,
+          "flaky": 0,
+          "skipped": 0,
+          "unexpected": 0
+        },
+        "member_bytes": 91993,
+        "name": "native-general-browser",
+        "report": "native-general-browser-projection.json",
+        "sha256": "0c76debddf4f12458ca65f66e3abf281b911ad6b48a6a890ee4638701433bd73"
+      },
+      {
+        "case_summary": {
+          "numFailedTestSuites": 0,
+          "numFailedTests": 0,
+          "numPassedTestSuites": 2,
+          "numPassedTests": 1,
+          "numPendingTestSuites": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0,
+          "numTotalTestSuites": 2,
+          "numTotalTests": 1,
+          "success": true
+        },
+        "member_bytes": 1161,
+        "name": "native-isolated-storage-recovery",
+        "report": "native-isolated-storage-recovery-projection.json",
+        "sha256": "fa6426f902ee9932a5801bd1acd774344e5e802e4f4684723bcf9a95da1fdfd8"
+      }
+    ],
+    "requests": [
+      {
+        "category": null,
+        "label": "normal-run-archive",
+        "native_exit": 0,
+        "sequence": 1,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "normal-artifact-list",
+        "native_exit": 0,
+        "sequence": 2,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-full-integration",
+        "native_exit": 0,
+        "sequence": 3,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-general-browser",
+        "native_exit": 0,
+        "sequence": 4,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-isolated-storage-recovery",
+        "native_exit": 0,
+        "sequence": 5,
+        "settled": true
+      }
+    ],
+    "run": 39998246278,
+    "status": "BOUNDED_ACQUISITIONS_COMPLETE"
+  },
+  "stop": null,
+  "retry": false,
+  "all_unused_slots_closed": true,
+  "raw_persisted": false,
+  "normal_acceptance": 0,
+  "actual_tool_provenance": {
+    "chunk_id": "e22a0b",
+    "outer_native_exit": 0,
+    "outer_wall_seconds": 8.1667825,
+    "session_id": null,
+    "wait_calls": 0
+  },
+  "configured_limits": {
+    "outer_loop_seconds": 120,
+    "outer_same_child_wait_seconds": 2,
+    "outer_reader_joins": 2,
+    "outer_seconds_each_join": 1,
+    "GET_loop_seconds": 15,
+    "GET_same_child_wait_seconds": 2,
+    "GET_reader_joins": 2,
+    "GET_seconds_each_join": 1,
+    "ZIP_bytes": 33554432,
+    "listing_bytes": 4194304,
+    "listing_count": 100,
+    "selected_JSON_bytes": 16777216,
+    "inflated_bytes": 134217728,
+    "stderr_bytes": 65536,
+    "source_label_only_bytes": 32768,
+    "generic_projection_32KiB_claim": false,
+    "strict_hardwall_claim": false
+  },
+  "logical_slots": {
+    "allocated_maximum": 5,
+    "consumed": 5,
+    "unused_closed": 0,
+    "all_closed": true
+  },
+  "local_projection_limitation": "Outer stdout JSON projection null; no correction/refetch. Existing immutable packet acquisition summary supplies recorded metadata. Producer emitted no packet-manifest; exact inventory bound outside only.",
+  "qualification_limits": "No independent case/count/cause/privacy-origin/custody qualification or acceptance. Native report totals are not required95 acceptance counts.",
+  "inventory_ASCII_canonical_sha256": "1035d7cd0385210f5a0a177c0bbbd60bdeb7fdb6be55fd1a45c7a7671e668dad",
+  "packet_member_count": 20,
+  "actual_request_capture_complete": true,
+  "actual_request_elapsed_seconds": [
+    3.44,
+    0.445,
+    1.541,
+    1.249,
+    0.927
+  ]
+}

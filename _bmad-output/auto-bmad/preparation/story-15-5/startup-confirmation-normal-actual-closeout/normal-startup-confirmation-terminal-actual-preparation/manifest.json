@@ -1,0 +1,27 @@
+{
+  "schema": "STARTUP_CONFIRMATION_TERMINAL_PREPARATION_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/reader.py",
+      "bytes": 52636,
+      "sha256": "a17536afc1210860ab0dc30eb81192eb73649f36ad5926ee8fb739834deb3350"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26118,
+      "sha256": "4413a9d5c3b18bd78e93c59597a4dc191339893c8b7053c12046772e8033a104"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/proposal.json",
+      "bytes": 114155,
+      "sha256": "776efa41a4cf89059f20fac7f54d783fc2dc1b38c2ca82c45ad17249c9783ca4"
+    }
+  ]
+}

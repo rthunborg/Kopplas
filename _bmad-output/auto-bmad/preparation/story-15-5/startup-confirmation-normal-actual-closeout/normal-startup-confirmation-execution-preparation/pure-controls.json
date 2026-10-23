@@ -1,0 +1,77 @@
+{
+  "schema": "NORMAL_STARTUP_CONFIRMATION_BIND_ONLY_CONTROL_PROVENANCE_V1",
+  "current_offline_preflight_executed": false,
+  "current_tests_executed": 0,
+  "real_API": 0,
+  "real_remote_Git": 0,
+  "original_execution": {
+    "ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "bytes": 12906,
+      "sha256": "0b10bff10b6576fc1e8ee2a06c5d18e6ede0ddd3e3c0cf096403aad22f0ba329"
+    },
+    "pass": 7,
+    "fail": 0,
+    "groups": [
+      "Actual_complete_provider_preGET_actual_pinnedheterogeneous_refs_current86nonSQLguards_virtualfuturecaps_API0",
+      "Actual_Root_admit_with_actual_refs_and_virtual_futurecapabilities",
+      "Actual_Root_localproof_actual_rawLF204_rows_virtualGit_sourceidentities",
+      "Actual_new_tuple_guard_refuses_wronghead",
+      "Actual_Root_default_refusal_beforeeffects",
+      "Real_transport_harddisabled_no_calls",
+      "Provider7defs_exact_Root17nonadmitdefs_and_ADAPTER_exact_admit_literalonly_fullsourceinverse"
+    ],
+    "original_scope": "Actual provider preGET prefix stops before intent; Root actual admission/localproof plus unsupported/default branch only. Virtual future candidate/activation/grant/review/proof/providerqualification and localGit answers disclosed; realtransport harddisabled. Actual source files and reviewedJSON read. No copy of an assumed positive result.",
+    "original_source_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+        "bytes": 20591,
+        "sha256": "0b33181f9cbbfdc1b36a463d3a66fc5d1b33db8e9a170ccc1379822ca7c2fdcc"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/root-driver.py",
+        "bytes": 21115,
+        "sha256": "ecb4a35f94fee0090d2952c53feaa3251c1bcaa3e416ecb634ebb2eabddb0797"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+        "bytes": 236942,
+        "sha256": "c35b754ca89a039496e4636be6560d898104daad976a5b6d7b5e28a6dab79afe"
+      }
+    ],
+    "original_inline_source_sha256": "4143d42e2afa819686c7a071b5878f37445d601d0610a675ae5b0230a92788ab",
+    "attribution": "Prior executed source-bound controls only; never claimed rerun against currenttuple."
+  },
+  "current_bind_only_static_results": {
+    "provider7_function_sources_exact": true,
+    "driver17_nonadmit_sources_exact": true,
+    "driver_admit_delta": "Only namespace/review enum literals",
+    "canonical_adapter_exact": true,
+    "provider_driver_complete_raw_inverse": true,
+    "candidate_exact329_bytes": true,
+    "candidate_matches_all_templates": true,
+    "runtime_REF_PATHS_match_proposal": true,
+    "current204_HEAD_Git_objects_equal_source_pins": true,
+    "source75_and_catalog_data_exact_reuse": true,
+    "source_bindings_data_exact": true,
+    "no_algorithm_changes": true
+  },
+  "new_source_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/provider.py",
+      "bytes": 20581,
+      "sha256": "a85dd331e162fc4e66cc89f603715dbb31f0bdb0d235744c99a862abd8aeefec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/root-driver.py",
+      "bytes": 21106,
+      "sha256": "3aa7b7ccdd65790b32164b17953a776f2b0a0d6e556e8598bc11d8dd28831dff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/proposal.json",
+      "bytes": 234985,
+      "sha256": "4b5ad16b3de1fc42d46b7f204f73faba0eefa215b09b2b5cf015c3cec020763b"
+    }
+  ],
+  "requires": "Independent targeted actual data/source/inverse review and actual finite allocation/freshRootproof/onceactivation beforeanynativeop. No effectauthority."
+}

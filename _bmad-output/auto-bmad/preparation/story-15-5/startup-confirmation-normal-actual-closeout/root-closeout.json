@@ -1,0 +1,35 @@
+{
+  "status": "ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE",
+  "run": 39998246278,
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "required95": "93 passed; API019 failed; API020 pending/unexecuted",
+  "Node": "3439P0F0skip,30distinct32positive markers deduplicated R1-06/07",
+  "DB": "49P1F1pending; nativeheaderpending52 vsflattened1pending+52skip preserved; no pending/skipped credit",
+  "browser": "14required retry0P/global56P;42othercases no95credit",
+  "separate_direct_recovery": "1P, no95credit",
+  "first_privacy_origin": "First recorded observer pair integration/ip-literal. No raw value, leak, falsepositive, nativefirstthrow or underlyingcause proven.",
+  "DB_custody": "retainedtrue/keyDeletedfalse/keyOutcomeunverified/clientdbClosedtrue/backendsettlementUNKNOWN",
+  "browser_custody": "ownkeydeletedtrue only; cannot clear mainDB custody",
+  "prior_history": "Prior7d8run44P0F51unexecuted and e525run93P1F1pending remain distinct historical observations. No inherited pass credit.",
+  "operation": "35 nativeclosedcontrollercaptures;19 actualRootouterreturns including2initialrunning/17native0;1resolver/15pairs/allunusedclosed",
+  "acquisition": "5logicalGET/allnative0/20safeprojectedmembers/outsideactuale22a0b;allslotsCLOSED, no nextNORMAL authority",
+  "helper_repair": "Obsolete hardcoded prior-reviewSHA caught beforeexecution. Oldv1unexecuted retained. Reviewedv2 exactref==completedgrant.independent_review verifies currentreport without hashcycle;4functions unchanged.",
+  "qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/normal-startup-confirmation-terminal-actual-native-qualification.json",
+    "bytes": 25188,
+    "sha256": "b86f59322070b8e2744ab45b5174dc8463fd2c13174f778ea43cf562efc71831"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/root-fold-manifest.json",
+    "bytes": 59808,
+    "sha256": "77a95aefe8f2e193e1db20c2bf54d73bc6a6eba10995bfbbec7a3d7eaf0966d0"
+  },
+  "P5": "OPEN",
+  "review_counter": 3,
+  "story15_6": "UNSTARTED",
+  "development_complete": false,
+  "release_ready": false,
+  "no_deployment": true,
+  "next": "Complete read-only source assessment of observed integration/ip-literal refusal, then independent evidence-backed minimum-plan review before any correction, control or new runtime."
+}

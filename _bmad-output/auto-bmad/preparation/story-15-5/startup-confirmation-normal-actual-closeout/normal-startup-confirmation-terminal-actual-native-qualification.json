@@ -1,0 +1,595 @@
+{
+  "schema": "INDEPENDENT_CURRENT_NORMAL_NATIVE_QUALIFICATION_V1",
+  "status": "ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE",
+  "outcome": "ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE",
+  "independent": true,
+  "findings": [],
+  "normal_acceptance": 0,
+  "execution_authorized": false,
+  "development_complete": false,
+  "scope": "Distinct actual evidence/provenance/count/custody qualification only; unchanged source75/catalog444-19-195 and reviewed parser/helper algorithms reused. No fourth broad review, sourceassessment duplicate, extraction, tests, GET, network, Git, resources or source/spec/status/delivery edits.",
+  "identity": {
+    "run": 39998246278,
+    "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "checkpoint": "06c4e602-246c-465d-b858-802be78c9ba1",
+    "operation_id": "d891e444-e6d5-401f-bd00-0a4b85b701e9",
+    "attempt": 1,
+    "repo": "rthunborg/Kopplas",
+    "workflow": 296219797,
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false
+  },
+  "input_refs": {
+    "outside_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-execution-receipt.json",
+      "bytes": 12305,
+      "sha256": "cc4522ac9ccbe9336d47f21156f4b1af43d12230f2e5b6937c7fbf7c61933859"
+    },
+    "completed_allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-terminal-effects-allocation.json",
+      "bytes": 6169,
+      "sha256": "f8372657b6e2274fc4308242068d116cb8b8e2caa09569ebb99a58126ebe8cb8"
+    },
+    "actual_source_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-fresh-source-proof.json",
+      "bytes": 59883,
+      "sha256": "9ac400762906f946939002b976011b961cd9d737ef5d9efc347aa6223d33eb0a"
+    },
+    "activation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-evidence-activation.json",
+      "bytes": 4191,
+      "sha256": "018597ed66d8ff422c199a1818d26546f57f2e42159e169e2cb4fd52701e6352"
+    },
+    "same_review": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-reader-operational-review.json",
+      "bytes": 16956,
+      "sha256": "69a532d8903b71153b5c8138bb98a6be336614b6f6e8ffc5124f6666320be905"
+    },
+    "helper_v2": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-root-admission-v2.py",
+      "bytes": 6871,
+      "sha256": "3317237c7cfbf15646cde3d3dbd7e9cf7bbd5aa9bb8a3babdb0353a2abcae9f5"
+    },
+    "actual_current5": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/reader.py",
+        "bytes": 52636,
+        "sha256": "a17536afc1210860ab0dc30eb81192eb73649f36ad5926ee8fb739834deb3350"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/source-rows.json",
+        "bytes": 32933,
+        "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/actual-terminal-envelope.json",
+        "bytes": 26118,
+        "sha256": "4413a9d5c3b18bd78e93c59597a4dc191339893c8b7053c12046772e8033a104"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/proposal.json",
+        "bytes": 114155,
+        "sha256": "776efa41a4cf89059f20fac7f54d783fc2dc1b38c2ca82c45ad17249c9783ca4"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/manifest.json",
+        "bytes": 1177,
+        "sha256": "77608d38874c01f6b68b4c8a4dcd6133c13ebf3a83d500f6e1499d12c8d8d743"
+      }
+    ],
+    "closed_run_ownership": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-root-ownership.json",
+      "bytes": 79518,
+      "sha256": "7baf9adcead6efd03f2795982bd36f71bcf4fbf8f7ccc748315464c85368ac24"
+    },
+    "once_journal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-root-once-journal.json",
+      "bytes": 1351,
+      "sha256": "1c3bcf8e554056d09286b5ed15226540c73f831244c2bba5075e68ebf20675a5"
+    }
+  },
+  "admission": {
+    "completed_turn": "01a169fb-b416-7973-bcba-0da4884007f2",
+    "completed_tool": "exec-f22a60ff-9f28-4c0a-bc34-8318d9aaf0b7",
+    "turn_status": "completed",
+    "tool_status": "completed",
+    "provenance": "Actual completed trusted Coordinator allocation saved/read by Root; reviewer inspected frozen receipt, no new external call.",
+    "exact_review_ref_equals_grant_independent_review_and_activation_evidence": true,
+    "helper_v2_binding": "6871/3317237c replaces obsolete oldSHA gate with exact ref(review)==completed grant.independent_review before local writes; actualgrant uses existing slot. Old6920 helper retained unexecuted.",
+    "Root_proof_execution": "Rootbcb44d/native0; seven localGit metadata commands/current204Git86rawLF118Git-only historicalvectors75rows10triggers/install; actualsourceproof pinned, no reviewer repeatedsourcecatalog/SQLscan.",
+    "proof_checked_at": "2026-10-23T18:19:14.247127+00:00",
+    "proof_age_seconds_at_sole_invocation": 44.678811,
+    "23_field_activation_and_exact_current_reader_argv_pins": true
+  },
+  "actual_capture": {
+    "outer_tool": {
+      "chunk_id": "e22a0b",
+      "outer_native_exit": 0,
+      "outer_wall_seconds": 8.1667825,
+      "session_id": null,
+      "wait_calls": 0
+    },
+    "reader_native_exit": 0,
+    "reader_elapsed_seconds": 7.872336,
+    "outer_full_physical_EOF_readersjoined_handlesclosed_directsettled": true,
+    "outer_stderr_bytes": 0,
+    "outer_overflow_readerrors": false,
+    "invocations": 1,
+    "logical_slots": {
+      "allocated_maximum": 5,
+      "consumed": 5,
+      "unused_closed": 0,
+      "all_closed": true
+    },
+    "all_slots_closed": true,
+    "retry": false,
+    "remaining_authority": 0,
+    "requests": [
+      {
+        "sequence": 1,
+        "label": "normal-run-archive",
+        "native_exit": 0,
+        "elapsed_seconds": 3.44,
+        "stdout_bytes": 824567,
+        "stdout_sha256": "ab0dbc7c1b1b843ab47983b83292aec6f236e3abb1e0eef9faa8f486c684de1e",
+        "stderr_bytes": 0,
+        "native0_full_EOF_readersjoined_handlesclosed_settled_nooverflow": true
+      },
+      {
+        "sequence": 2,
+        "label": "normal-artifact-list",
+        "native_exit": 0,
+        "elapsed_seconds": 0.445,
+        "stdout_bytes": 2194,
+        "stdout_sha256": "7797796e639e3d02999cf3b17c15b98333334523a9e07ce99516abe9397cf652",
+        "stderr_bytes": 0,
+        "native0_full_EOF_readersjoined_handlesclosed_settled_nooverflow": true
+      },
+      {
+        "sequence": 3,
+        "label": "native-full-integration",
+        "native_exit": 0,
+        "elapsed_seconds": 1.541,
+        "stdout_bytes": 112085,
+        "stdout_sha256": "0e10598c3d8cfca291cfc98f01a1a012179cd1b56065eceda3e0538bbcfc8c46",
+        "stderr_bytes": 0,
+        "native0_full_EOF_readersjoined_handlesclosed_settled_nooverflow": true
+      },
+      {
+        "sequence": 4,
+        "label": "native-general-browser",
+        "native_exit": 0,
+        "elapsed_seconds": 1.249,
+        "stdout_bytes": 9629,
+        "stdout_sha256": "f79b9ca881df8117108d134d6d2650316d0aeb0785830157faa96dd7525f21b3",
+        "stderr_bytes": 0,
+        "native0_full_EOF_readersjoined_handlesclosed_settled_nooverflow": true
+      },
+      {
+        "sequence": 5,
+        "label": "native-isolated-storage-recovery",
+        "native_exit": 0,
+        "elapsed_seconds": 0.927,
+        "stdout_bytes": 681,
+        "stdout_sha256": "7366d785b9310355f19b0e2bade12e66f04843c15887d2eb0bd1901deae47c17",
+        "stderr_bytes": 0,
+        "native0_full_EOF_readersjoined_handlesclosed_settled_nooverflow": true
+      }
+    ],
+    "configured_limits": {
+      "outer_loop_seconds": 120,
+      "outer_same_child_wait_seconds": 2,
+      "outer_reader_joins": 2,
+      "outer_seconds_each_join": 1,
+      "GET_loop_seconds": 15,
+      "GET_same_child_wait_seconds": 2,
+      "GET_reader_joins": 2,
+      "GET_seconds_each_join": 1,
+      "ZIP_bytes": 33554432,
+      "listing_bytes": 4194304,
+      "listing_count": 100,
+      "selected_JSON_bytes": 16777216,
+      "inflated_bytes": 134217728,
+      "stderr_bytes": 65536,
+      "source_label_only_bytes": 32768,
+      "generic_projection_32KiB_claim": false,
+      "strict_hardwall_claim": false
+    },
+    "cap_scope": "Matches actual completed grant: perGET LOOP15+samechildwait2+twojoins1; outerLOOP120+samecleanup. Cooperative LOOPs, not stricttotalwall. ZIP32MiB/list4MiB100/selected16MiB/inflate128MiB/stderr64KiB.32768 applies SOURCE-LABEL ONLY, not fullprojection67126/archive48552. Current actualcaps qualified; historical genericcap/configuration discrepancies remain unwaived history."
+  },
+  "immutable_packet": {
+    "output": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent",
+    "member_count": 20,
+    "outside_inventory_ASCII_canonical_SHA256": "1035d7cd0385210f5a0a177c0bbbd60bdeb7fdb6be55fd1a45c7a7671e668dad",
+    "actual20_members_exact_bytehash_and_inventory_reconciled": true,
+    "producer_manifest": null,
+    "stdout_closed_projection": null,
+    "limitation": "Existing reader emits no separate manifest; outside inventory binds all20 actualmembers. Outer stdout closedprojection null retained. No invented manifest, refetch or repair. Facts derive from exact closed packet.",
+    "core_member_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/acquisition-summary.json",
+        "bytes": 2552,
+        "sha256": "076a699f0073cc41ced6b15aa2c53b82d59860c87c80e4fbfd5ff707d6357b7a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/run-archive-projection.json",
+        "bytes": 48552,
+        "sha256": "adbcac1b4aae56145d0c37fef16d7c6bad1287ef4ef22fb7c1b8951d4fc3c5e7"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/artifact-list-projection.json",
+        "bytes": 1290,
+        "sha256": "79889a69a559f4558968ef4073bbae7b7465d34c630c9c8979ddc5faf8eb3af4"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-full-integration-projection.json",
+        "bytes": 67126,
+        "sha256": "799172e741da94a2870c147a5a2c2b1f4e81950d08b18b7106ce9fdb5363b93b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-general-browser-projection.json",
+        "bytes": 13366,
+        "sha256": "6b5cbde18b657916c0247094370c9b4848c78bca186fd4ab8c6ca2d961646d65"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-isolated-storage-recovery-projection.json",
+        "bytes": 2008,
+        "sha256": "f50b554aab12149fdd7eaa6496911cc8322399ed415c8f6b9f2d61f94eda9bab"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/source-label-projection.json",
+        "bytes": 1691,
+        "sha256": "5b3316d8a2d8113a8fb845adfab1a9e843eacd595f69d3c8d5d5b47a3d73fe60"
+      }
+    ],
+    "raw_material_persisted": false
+  },
+  "owned_archive_ZIP_provenance": {
+    "archive": {
+      "bytes": 824567,
+      "sha256": "ab0dbc7c1b1b843ab47983b83292aec6f236e3abb1e0eef9faa8f486c684de1e",
+      "entries": 85,
+      "declared_inflate": 4515159,
+      "selected_actual_inflate": 2252629
+    },
+    "listing": {
+      "bytes": 2194,
+      "sha256": "7797796e639e3d02999cf3b17c15b98333334523a9e07ce99516abe9397cf652",
+      "total_count": 3
+    },
+    "selected_reports": [
+      {
+        "name": "native-full-integration",
+        "id": 12522050952,
+        "run_head_bound": true,
+        "unexpired": true,
+        "ZIP_bytes": 112085,
+        "ZIP_sha256": "0e10598c3d8cfca291cfc98f01a1a012179cd1b56065eceda3e0538bbcfc8c46",
+        "API_digest_verified": true,
+        "advertised_size_equal": true,
+        "sole_member": "full-integration.json",
+        "member_bytes": 1029206,
+        "member_sha256": "269a15bc3891b0f03b8e858e4e7688829b4707636db61475c1057b56d125e790"
+      },
+      {
+        "name": "native-general-browser",
+        "id": 12521576842,
+        "run_head_bound": true,
+        "unexpired": true,
+        "ZIP_bytes": 9629,
+        "ZIP_sha256": "f79b9ca881df8117108d134d6d2650316d0aeb0785830157faa96dd7525f21b3",
+        "API_digest_verified": true,
+        "advertised_size_equal": true,
+        "sole_member": "general-browser.json",
+        "member_bytes": 91993,
+        "member_sha256": "0c76debddf4f12458ca65f66e3abf281b911ad6b48a6a890ee4638701433bd73"
+      },
+      {
+        "name": "native-isolated-storage-recovery",
+        "id": 12520639324,
+        "run_head_bound": true,
+        "unexpired": true,
+        "ZIP_bytes": 681,
+        "ZIP_sha256": "7366d785b9310355f19b0e2bade12e66f04843c15887d2eb0bd1901deae47c17",
+        "API_digest_verified": true,
+        "advertised_size_equal": true,
+        "sole_member": "isolated-storage-recovery.json",
+        "member_bytes": 1161,
+        "member_sha256": "fa6426f902ee9932a5801bd1acd774344e5e802e4f4684723bcf9a95da1fdfd8"
+      }
+    ],
+    "eligibility_and_caps": "All three unique positive ownedID/unexpired/runHEAD-bound reportZIPs selected once; exact API SHA/advertisedsize and soleexpectedmember verified; selectedJSON/inflate bounds respected. No optional playwright-report/perjoblogs/pagination/fallback."
+  },
+  "required95": {
+    "total": 95,
+    "passed_distinct": 93,
+    "failed_distinct": 1,
+    "zero_coverage": 1,
+    "Node": {
+      "required_distinct": 30,
+      "passed_distinct": 30,
+      "positive_occurrences": 32,
+      "deduplicated_markers": {
+        "R1-07": 2,
+        "R1-06": 2
+      },
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0,
+      "global_actual": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 3439,
+        "skipped": 0,
+        "suites": 103,
+        "tests": 3439,
+        "todo": 0
+      },
+      "member": {
+        "member": "verify/12_Unit tests (pure logic, node --test).txt",
+        "bytes": 1681188,
+        "sha256": "91bf349f14e758914e61b52d8adda328803f5f5c6c039e3be0a3af7abfe638af"
+      },
+      "coverage_rule": "Only exact required positive nonskipped actual leaves; sourcecatalog444/19excluded/195wrapper/static/inherited declarations confer no runtimecoverage."
+    },
+    "DB": {
+      "required_distinct": 51,
+      "passed": 49,
+      "failed": 1,
+      "pending_zero_credit": 1,
+      "failed_ID": "API019",
+      "pending_ID": "API020",
+      "missing": [],
+      "duplicates": [],
+      "unexpected_source_IDs": [],
+      "actual_attempted": 50,
+      "nonstory_failed_cases": [],
+      "global_assertion_statuses": {
+        "failed": 1,
+        "passed": 2115,
+        "pending": 1,
+        "skipped": 52
+      },
+      "native_header": {
+        "numFailedTestSuites": 2,
+        "numFailedTests": 1,
+        "numPassedTestSuites": 545,
+        "numPassedTests": 2115,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 52,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 547,
+        "numTotalTests": 2169,
+        "success": false
+      },
+      "header_discrepancy_preserved": "Native numPendingTests52 vs flattened pending1+skipped52=53 noncoverage. Actual assertion statuses2115P+1F+1pending+52skipped=2169. Preserve header values; no pending/skip credit or forced relabel."
+    },
+    "browser": {
+      "required_distinct": 14,
+      "passed_distinct": 14,
+      "retry0_passed": 14,
+      "each": "Exactly onepassed/retry0 observed attempt per requiredID",
+      "missing": [],
+      "duplicates": [],
+      "global_stats": {
+        "duration": 236695.15600000002,
+        "expected": 56,
+        "flaky": 0,
+        "skipped": 0,
+        "unexpected": 0
+      },
+      "other_smoke_cases": 42,
+      "other_smoke_required95_credit": 0
+    },
+    "direct_recovery_separate": {
+      "passed": 1,
+      "failed": 0,
+      "pending_skipped": 0,
+      "actual_statuses": {
+        "passed": 1
+      },
+      "header": {
+        "numFailedTestSuites": 0,
+        "numFailedTests": 0,
+        "numPassedTestSuites": 2,
+        "numPassedTests": 1,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 2,
+        "numTotalTests": 1,
+        "success": true
+      },
+      "required95_credit": 0,
+      "scope": "Actual isolated recovery-loader assertion only; not whole95 or mainDBfixture/backend/keysettlement."
+    },
+    "historical_separation": "This is newly observed93P1F1zero on currentedf/source48a7. Prior7d8run44P0F51zero and prior e525run93P1F1zero remain distinct history; no inherited passes or causal continuity asserted."
+  },
+  "actual_first_failed_case": {
+    "case": {
+      "duration_ms": 2740.343817000008,
+      "failure": {
+        "fixed_category_counts": {},
+        "invalid_owned_tuple_headers": 0,
+        "owned_leaf_tuple_count": 1,
+        "owned_leaf_tuples": [
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario-telemetry-privacy-refused-integration-ip-literal"
+          }
+        ],
+        "raw_failure_details": "NOT_PERSISTED",
+        "typed_assertion_pairs": [],
+        "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+      },
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "id": "API019",
+      "status": "failed"
+    },
+    "source_qualified_closed_origin": {
+      "child": "integration",
+      "predicate": "ip-literal",
+      "source": "Exact native API019 failure ownedleaf stage scenario-telemetry-privacy-refused-integration-ip-literal, matching reviewed static28 table. It identifies first recorded observer privacy-refusal origin, not nativechronologicalfirstthrow or raw offending value.",
+      "native_category": "unknown",
+      "sqlState": null,
+      "typed_error_pair": null,
+      "invalid_owned_tuple_headers": 0,
+      "raw_failure_details": "NOT_PERSISTED"
+    },
+    "limits": [
+      "No rawIP/address/secret/errorline persisted or inferred. Fixed ip-literal label does not establish secret leakage, actual privacy compromise, emitted-value identity or detectorfalsepositive.",
+      "Underlyingtrigger/rootcause/nativefirstthrow/exactmatcher/typedassertionpair UNKNOWN; duration2740.343817ms alone explains nothing.",
+      "Source-label-projection v3 cause/settlement/slotcompleteness UNKNOWN; nudge frameworkpassed with UNKNOWN_MISSING records, browser three relevant snapshots UNKNOWN_MISSING. Those channels do not independently corroborate rootcause or custody.",
+      "Actual native source-enum failure is reached; do not confuse it with absent separate source-label snapshots."
+    ]
+  },
+  "scoped_custody": {
+    "main_DB": {
+      "childExitCodes": [
+        0,
+        1
+      ],
+      "childLaunchState": "not-attempted",
+      "custody_retained": true,
+      "dbClosed": true,
+      "diagnostic_count": 1,
+      "diagnostics": [],
+      "failure_count": 1,
+      "keyDeleted": false,
+      "keyOutcome": "unverified",
+      "launchAttempted": false,
+      "mode": "db",
+      "privacy_controls": [
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_min_error_statement"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length"
+        },
+        {
+          "canSet": true,
+          "context": "user",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length_on_error"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_statement"
+        }
+      ],
+      "ready": true,
+      "setupAuthority": {
+        "current_is_setup_admin": true,
+        "current_login": true,
+        "current_superuser": true,
+        "same_identity": true,
+        "session_is_setup_admin": true,
+        "session_login": true,
+        "session_superuser": true
+      }
+    },
+    "main_DB_interpretation": "Observed custody_retainedtrue/keyDeletedfalse/keyOutcomeunverified/clientdbClosedtrue/diagnostic_count1 but diagnosticdetails[]/failure_count1/childExitCodes[0,1]. Backend transaction termination/rollback/settlement UNKNOWN. StackStop13success is not backend/keydeletion proof. childLaunchStatenot-attempted/launchAttemptedfalse preserved, not an inference that no tests ran.",
+    "browser": {
+      "childExitCodes": [
+        0
+      ],
+      "childLaunchState": "not-attempted",
+      "custody_retained": false,
+      "dbClosed": true,
+      "diagnostic_count": 0,
+      "diagnostics": [],
+      "failure_count": 0,
+      "keyDeleted": true,
+      "keyOutcome": "deleted-confirmed",
+      "launchAttempted": false,
+      "mode": "browser",
+      "privacy_controls": [
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_min_error_statement"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length"
+        },
+        {
+          "canSet": true,
+          "context": "user",
+          "matchesRequired": true,
+          "name": "log_parameter_max_length_on_error"
+        },
+        {
+          "canSet": true,
+          "context": "superuser",
+          "matchesRequired": true,
+          "name": "log_statement"
+        }
+      ],
+      "ready": false,
+      "setupAuthority": {
+        "current_is_setup_admin": true,
+        "current_login": true,
+        "current_superuser": true,
+        "same_identity": true,
+        "session_is_setup_admin": true,
+        "session_login": true,
+        "session_superuser": true
+      }
+    },
+    "browser_interpretation": "Separate browserownkeydeletedtrue/deleted-confirmed/custodyfalse/clientclosedtrue only. It cannot clear mainDBretainedcustody/backendsettlement. readyfalse/launchAttemptedfalse retained as emitted.",
+    "recovery_interpretation": "Direct isolated loader1P separate, not mainDBorbrowserkeycustody."
+  },
+  "current_boundary": {
+    "startup7": "success",
+    "reset8": "success",
+    "integration11": "failure",
+    "native_fullJSONupload12": "success",
+    "stackstop13": "success",
+    "minimal_next_step": "Root-owned read-only source assessment of reached integration/ip-literal observer branch using existing closed safe fact and relevant detector/caller source; parallel author assessment already separately scoped. No duplicate assessment/collector/refetch is performed here. No privacy exemption/reset/assertion relaxation or speculative functional patch follows solely from this label. Any repair needs supported minimum plan and targeted actualdiff review.",
+    "no_next_NORMAL_authority": true,
+    "one_startup_observation_consumed": true
+  },
+  "actual_qualification_controls": {
+    "native_read_commands": [
+      "d67e2a/native0",
+      "aa1e86/native0",
+      "883667/native0"
+    ],
+    "method": "All20member hashes/exactmembership/canonicalASCIIinventory; actualgrant/review/helper-v2/final5/proof/23activation inputs; fiveintent/result GETnative captures/caps/fullclosure; archive/list streamSHA reconciliation; uniqueAPI-digest/solememberZIPs; exactNode30IDset/32occurrences dedup;51DBIDset/status reconciliation/API019ownedstage;14browserretry0; recovery1P and separate lifecyclecustody. No repeated parser/sourcecatalog or tests.",
+    "GET_network_Git_mutation_tests_resources": 0
+  },
+  "completion_limits": {
+    "required95_all_pass": false,
+    "current_blockers": [
+      "API019privacy-refusal integration/ip-literal",
+      "API020pending haszero coverage",
+      "MainDBretained/unverified key/backendcustody"
+    ],
+    "P5": "OPEN",
+    "15.6": "UNSTARTED",
+    "broad_review_counter": 3,
+    "development_complete": false,
+    "release_ready": false,
+    "merge_deployment_authority": false,
+    "policy": "Developmentcompletion2026-10-19; manual/exhaustive/performance deferrals do not waive required integrity/functionality/nativeevidence/custody gates."
+  }
+}
