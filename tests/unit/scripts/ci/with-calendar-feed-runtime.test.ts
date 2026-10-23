@@ -2080,12 +2080,13 @@ test("actual retired acquisition registers and destroys late clients without inv
 });
 
 
-async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"subject"|"fetch";unsafe?:Record<string,unknown>;failure?:unknown}={}) {
+async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"subject"|"fetch";unsafe?:Record<string,unknown>;failure?:unknown;explicitVolatile?:boolean}={}) {
   const purpose=options.purpose??"clock",fixed=readFileSync(new URL("../../../../supabase/migrations/20261020220000_personal_calendar_feed.sql",import.meta.url),"utf8").replaceAll("\r\n","\n");
   const names={clock:"calendar_feed_now_internal",subject:"calendar_feed_subject_internal",fetch:"fetch_calendar_feed"},name=names[purpose];
   const at=fixed.indexOf("create function public."+name+"("),start=fixed.indexOf("as $$",at)+5,end=fixed.indexOf("$$;",start),body=fixed.slice(start,end);
   const metadata={oid:"90001",proname:name,proowner:90002,pronamespace:2200,prolang:purpose==="fetch"?13563:14,prokind:"f",proretset:false,provariadic:0,proallargtypes:null,proargmodes:null,pronargs:purpose==="clock"?0:4,proargtypes:purpose==="clock"?"":purpose==="subject"?"2950 2950 2950 16":"25 25 3802 25",proargnames:purpose==="clock"?null:purpose==="subject"?["p_tenant","p_membership","p_actor","p_admin"]:["p_token_hash","p_ip_hash","p_claims","p_signature"],prorettype:purpose==="clock"?1184:purpose==="subject"?16:3802,pronargdefaults:purpose==="subject"?2:0,prosecdef:purpose==="fetch",provolatile:purpose==="subject"?"s":"v",proconfig:['search_path=""'],proisstrict:false,proleakproof:false,proparallel:"u",prosupport:0,procost:100,prorows:0,protrftypes:null,prosqlbody:null,prosrc:body,proacl:["owner=X/owner",...(purpose==="fetch"?["anon=X/owner"]:[])]};
-  const definition=(text:string,language:string,vol:string)=>`CREATE OR REPLACE FUNCTION public.${name}()\n RETURNS fixed\n LANGUAGE ${language}\n ${vol==="s"?"STABLE":"VOLATILE"}\n SET search_path TO ''\nAS $function$${text}$function$\n`;
+  // pg_get_functiondef emits non-default STABLE but omits default VOLATILE (PostgreSQL17 ruleutils.c).
+  const definition=(text:string,language:string,vol:string)=>`CREATE OR REPLACE FUNCTION public.${name}()\n RETURNS fixed\n LANGUAGE ${language}\n${vol==="s"?" STABLE\n":options.explicitVolatile?" VOLATILE\n":""} SET search_path TO ''\nAS $function$${text}$function$\n`;
   const canonical={oid:"90001",metadata,definition:definition(body,purpose==="fetch"?"plpgsql":"sql",metadata.provolatile),body,language:purpose==="fetch"?"plpgsql":"sql",default_expr:purpose==="subject"?"NULL::uuid, false":null,identityQualified:true,ownerQualified:true,setQualified:true,notInherited:true,schemaQualified:true,noCreate:true,aclQualified:true};
   let row=structuredClone(canonical),before=structuredClone(row),current="postgres",create=false,hadFailure=false;
   const calls:string[]=[],faults=[...(options.faults??[])];
@@ -2098,7 +2099,7 @@ async function actualCalendarOwner(options:{faults?:string[];purpose?:"clock"|"s
     if(sql==="grant create on schema public to calendar_feed_owner"){assert.equal(current,"postgres");create=true;}
     if(sql==="set local role calendar_feed_owner")current="calendar_feed_owner";
     if(sql.startsWith("select session_user="))return[{qualified:current==="calendar_feed_owner"}];
-    if(phase==="replace"){assert.equal(current,"calendar_feed_owner");assert.equal(create,true);const pieces=sql.split("$function$");assert.equal(pieces.length,3);row.body=pieces[1];row.metadata.prosrc=pieces[1];row.language=sql.includes(" LANGUAGE plpgsql\n")?"plpgsql":"sql";row.metadata.prolang=row.language==="plpgsql"?13563:14;row.metadata.provolatile=sql.includes(" STABLE\n")?"s":"v";row.definition=sql;}
+    if(phase==="replace"){assert.equal(current,"calendar_feed_owner");assert.equal(create,true);const pieces=sql.split("$function$");assert.equal(pieces.length,3);row.body=pieces[1];row.metadata.prosrc=pieces[1];row.language=sql.includes(" LANGUAGE plpgsql\n")?"plpgsql":"sql";row.metadata.prolang=row.language==="plpgsql"?13563:14;row.metadata.provolatile=sql.includes(" STABLE\n")?"s":"v";row.definition=definition(row.body,row.language,row.metadata.provolatile);}
     if(sql==="reset role")current="postgres";
     if(sql==="revoke create on schema public from calendar_feed_owner"){assert.equal(current,"postgres");create=false;}
     if(sql==="select public.calendar_feed_now_internal() now"){assert.equal(current,"calendar_feed_owner");assert.equal(create,false);return[{now:"2026-10-20T12:05:00Z"}];}
@@ -2120,6 +2121,49 @@ test("actual owner operation commits private read or qualified replacement befor
     await f.api.calendarRestore(purpose);assert.deepEqual(f.row(),f.canonical);assert.equal(f.api.getCustody(),null);assert.equal(f.api.calendarOwnedStates.size,0);assert.ok(!f.calls.some(call=>/grant execute|alter.*owner|create role/i.test(call)));await f.factory.pool()?.end();
   }
   const f=await actualCalendarOwner();assert.equal(await f.api.calendarReadClock(),"2026-10-20T12:05:00Z");assert.ok(!f.calls.includes("grant create on schema public to calendar_feed_owner"));assert.ok(f.calls.includes("set local role calendar_feed_owner"));await f.factory.pool()?.end();
+});
+
+test("actual subject restore accepts omitted default volatility and explicit representation with exact canonical recovery",async()=>{
+  for(const explicitVolatile of [false,true]){
+    const f=await actualCalendarOwner({purpose:"subject",explicitVolatile});
+    try {
+      await f.api.calendarPublish("subject",()=>" owned subject body ",true);
+      assert.equal(/^ VOLATILE$/m.test(f.row().definition),explicitVolatile);
+      assert.equal(f.row().metadata.provolatile,"v");assert.equal(f.row().language,"plpgsql");
+      await f.api.calendarRestore("subject");
+      assert.deepEqual(f.row(),f.canonical);assert.equal(f.api.calendarOwnedStates.size,0);assert.equal(f.api.getCustody(),null);
+    } finally {await f.factory.pool()?.end();}
+  }
+});
+
+test("actual subject restore refuses nonvolatile catalog drift before replacement and retains custody",async()=>{
+  for(const volatility of ["s","i"]){
+    const f=await actualCalendarOwner({purpose:"subject"});
+    try {
+      await f.api.calendarPublish("subject",()=>" owned subject body ",true);f.row().metadata.provolatile=volatility;
+      const before=f.calls.filter(call=>call==="replace").length;
+      await assert.rejects(f.api.calendarRestore("subject"));
+      assert.equal(f.calls.filter(call=>call==="replace").length,before);assert.ok(f.api.getCustody());assert.equal(f.api.calendarOwnedStates.size,1);
+    } finally {await f.factory.pool()?.end();}
+  }
+});
+
+test("actual subject restore refuses conflicting header and body cardinality without bypassing owner checks",async()=>{
+  for(const corruption of ["language","stable","immutable","duplicate-volatility","duplicate-language","body"]){
+    const f=await actualCalendarOwner({purpose:"subject",explicitVolatile:true});
+    try {
+      await f.api.calendarPublish("subject",()=>" owned subject body ",true);
+      const current=f.row();
+      if(corruption==="language")current.definition=current.definition.replace(" LANGUAGE plpgsql\n"," LANGUAGE sql\n");
+      else if(corruption==="stable"||corruption==="immutable")current.definition=current.definition.replace(" VOLATILE\n",` ${corruption.toUpperCase()}\n`);
+      else if(corruption==="duplicate-volatility")current.definition=current.definition.replace(" VOLATILE\n"," VOLATILE\n VOLATILE\n");
+      else if(corruption==="duplicate-language")current.definition=current.definition.replace(" LANGUAGE plpgsql\n"," LANGUAGE plpgsql\n LANGUAGE plpgsql\n");
+      else current.definition=current.definition.replace(current.body,current.body+current.body);
+      const before=f.calls.filter(call=>call==="replace").length;
+      await assert.rejects(f.api.calendarRestore("subject"));
+      assert.equal(f.calls.filter(call=>call==="replace").length,before);assert.ok(f.api.getCustody());assert.equal(f.api.calendarOwnedStates.size,1);
+    } finally {await f.factory.pool()?.end();}
+  }
 });
 
 test("actual owner preflight refuses identity SET inheritance schema ACL shape OID and getters before any owner mutation",async()=>{

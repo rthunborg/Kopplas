@@ -2459,6 +2459,13 @@ actual SQL callback ownership, executed-feature fixture/status/policy repairs an
 bounded safe-leaf transport through the installed reporter, closed owned scenario origins, the minimal Vite security patch, the admitted staged diagnostic-only lane and the discovery-order unit correction.
 Stops below resolve to the current forward-protocol working source handed to Root; no author Git mutation occurs.
 
+### Default-volatility owner restoration — source-backed compatibility correction
+
+- `tests/support/calendar-feed-atdd.ts` — `calendarOwnerDefinition` accepts the PostgreSQL-rendered omitted default `VOLATILE` and the explicit representation, then emits the canonical SQL `STABLE` target. Review the unchanged catalog volatility/language, OID, ACL, role/schema authority and exact post-restore metadata/definition guards before the header reconstruction.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts` — `actualCalendarOwner` now derives the returned definition from parsed body/language/volatility instead of retaining submitted DDL. The existing actual publish-to-restore test failed with this source-faithful fixture before the helper correction; the corrected path covers omitted/default and explicit headers, nonvolatile catalog refusal, conflicting headers and body cardinality while preserving custody on failure.
+- Verification:6 focused tests and the full affected wrapper file184/184 passed with no skips; TypeScript and scoped ESLint passed. These counts overlap and are not additive. No database/runtime tests ran for this correction.
+- Exact hosted header, native first throw, body assertions and backend/key custody remain unknown. The previous required NORMAL result remains68P/1F/26unexecuted; exact-head full NORMAL95 plus separate recovery is required after independent review and separately allocated publication/CI effects. This correction grants no acceptance or deployment authority.
+
 ### Own settings and honest lifecycle results
 
 The two personal entry points reach one settings surface; the profile entry uses

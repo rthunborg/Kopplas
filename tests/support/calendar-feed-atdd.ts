@@ -812,7 +812,11 @@ export function calendarOwnerDefinition(row:CalendarOwnerRow,body:string,subject
   let header=row.definition.slice(0,row.definition.indexOf(row.body));const tail=row.definition.slice(row.definition.indexOf(row.body)+row.body.length);
   if(subjectFault){if(!/^ LANGUAGE sql$/m.test(header)||!/^ STABLE$/m.test(header))throw calendarOwnerRefused();header=header.replace(/^ LANGUAGE sql$/m," LANGUAGE plpgsql").replace(/^ STABLE$/m," VOLATILE");}
   else if(row.language==="plpgsql"&&row.metadata.proname==="calendar_feed_subject_internal"){
-    if(!/^ LANGUAGE plpgsql$/m.test(header)||!/^ VOLATILE$/m.test(header))throw calendarOwnerRefused();header=header.replace(/^ LANGUAGE plpgsql$/m," LANGUAGE sql").replace(/^ VOLATILE$/m," STABLE");
+    // pg_get_functiondef omits default VOLATILE; catalog qualification remains authoritative.
+    const volatility=header.match(/^ (?:IMMUTABLE|STABLE|VOLATILE).*$/gm)??[];
+    if(row.metadata.provolatile!=="v"||(header.match(/^ LANGUAGE /gm)??[]).length!==1||!/^ LANGUAGE plpgsql$/m.test(header)||volatility.length>1||volatility.some(line=>line!==" VOLATILE"))throw calendarOwnerRefused();
+    header=header.replace(/^ LANGUAGE plpgsql$/m," LANGUAGE sql");
+    header=volatility.length?header.replace(/^ VOLATILE$/m," STABLE"):header.replace(/^ LANGUAGE sql$/m," LANGUAGE sql\n STABLE");
   }
   return header+body+tail;
 }
