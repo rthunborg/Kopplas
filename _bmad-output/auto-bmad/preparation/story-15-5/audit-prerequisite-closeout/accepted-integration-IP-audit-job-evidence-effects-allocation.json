@@ -1,0 +1,69 @@
+{
+  "execution_authorized": true,
+  "audit_operation_id": "760ebc9b-d32a-4b1c-8e39-49f3242f644d",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "run": 40097034333,
+    "job": 120881358292,
+    "step": 8,
+    "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "checkpoint_id": "96ad8e91-7244-4cf1-acab-162e260914a1",
+    "publication_operation_id": "3da861fc-5ea1-4443-ae76-2de3ac5bf0c2",
+    "step_started": "2026-10-24T13:11:21Z",
+    "step_completed": "2026-10-24T13:11:22Z",
+    "endpoint": "repos/rthunborg/Kopplas/actions/jobs/120881358292/logs"
+  },
+  "maximum_logical_GETs": 1,
+  "turn_status": "completed",
+  "tool_status": "completed",
+  "actual_turn": "01a16e50-8e89-77c1-9e8b-f7a92ce411c1",
+  "actual_tool": "exec-e6310858-27df-4e97-8f63-d04b7d31f018",
+  "Coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_verification_tools": [
+    {
+      "id": "exec-2fe86907-b2ad-4004-ad6d-c19a7c2b527b",
+      "native_exit": 0,
+      "duration_ms": 98,
+      "role": "independent review actual sixfields+pin"
+    },
+    {
+      "id": "exec-17572d83-1446-4b64-a327-d2a6e55c0577",
+      "native_exit": 0,
+      "duration_ms": 106,
+      "role": "all4v2pins"
+    }
+  ],
+  "Root_direct_read": "read_thread actual completed turn/idle, all verification outputs and completed finite allocation tool seen",
+  "constraints": {
+    "maximum_logical_GETs": 1,
+    "manual_redirect_follow": false,
+    "retry": false,
+    "other_remote_calls": 0,
+    "inner_loop_seconds": 15,
+    "stdout_cap": 4194304,
+    "stderr_cap": 65536,
+    "child_wait_seconds": 2,
+    "joins_seconds_each": 1,
+    "outer_loop_seconds": 60,
+    "outer_stdout_cap": 524288,
+    "raw_body_stderr_payload_hash": "RAM_ONLY",
+    "maximum_projection_bytes": 8192,
+    "maximum_advisory_candidates": 8,
+    "candidate_verification": "UNVERIFIED",
+    "unknown_consumes_and_stops": true,
+    "no_test_credit": true,
+    "no_source_edits": true,
+    "no_deployment": true
+  },
+  "review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-operational-review-v2.json",
+    "bytes": 8758,
+    "sha256": "34a0522c6fa3b494b5127ac84112534ec9ebe1720026879c2b5480d7a370027c"
+  },
+  "reader": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-preparation-v2/reader.py",
+    "bytes": 19570,
+    "sha256": "388e6e703bd6d266f0028e7d0eddcf356915dccea39219d1f5c393a1f88cc8fb"
+  }
+}

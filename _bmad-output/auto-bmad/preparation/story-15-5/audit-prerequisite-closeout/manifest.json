@@ -1,0 +1,487 @@
+{
+  "schema": "ROOT_AUDIT_PREREQUISITE_CLOSED_EVIDENCE_MANIFEST_V1",
+  "source_commit": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "published_CI_head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+  "copies": [
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-terminal-metadata-qualification.json",
+        "bytes": 9025,
+        "sha256": "8dd887620112dd688364792e6365d9cbb0d951dea3f18fb19462bbe604f231b8",
+        "LF_bytes": 9025,
+        "LF_sha256": "8dd887620112dd688364792e6365d9cbb0d951dea3f18fb19462bbe604f231b8"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-single-observation-terminal-metadata-qualification.json",
+        "bytes": 9025,
+        "sha256": "8dd887620112dd688364792e6365d9cbb0d951dea3f18fb19462bbe604f231b8",
+        "LF_bytes": 9025,
+        "LF_sha256": "8dd887620112dd688364792e6365d9cbb0d951dea3f18fb19462bbe604f231b8"
+      },
+      "git_normalized_blob": "0175a543e307a583ae428d63061844e636b33194"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-actual-root-ownership.json",
+        "bytes": 23466,
+        "sha256": "7444d10fdc5763f32990969b66a80a7ac2f7ccca69ad40d9bd20ccd426deeae9",
+        "LF_bytes": 23466,
+        "LF_sha256": "7444d10fdc5763f32990969b66a80a7ac2f7ccca69ad40d9bd20ccd426deeae9"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-single-observation-actual-root-ownership.json",
+        "bytes": 23466,
+        "sha256": "7444d10fdc5763f32990969b66a80a7ac2f7ccca69ad40d9bd20ccd426deeae9",
+        "LF_bytes": 23466,
+        "LF_sha256": "7444d10fdc5763f32990969b66a80a7ac2f7ccca69ad40d9bd20ccd426deeae9"
+      },
+      "git_normalized_blob": "67d6978766184171c749db47249f3cc9f9a2368a"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-prerequisite-source-assessment.json",
+        "bytes": 15535,
+        "sha256": "649d8d58cb3d0fff446690b7d10fe673a6ad5643a8d1d1428beeeef281559162",
+        "LF_bytes": 15354,
+        "LF_sha256": "662c59673babf7841e35daa9a6abe1c8cf4d84812a634186a8089f69a71fe55d"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-prerequisite-source-assessment.json",
+        "bytes": 15535,
+        "sha256": "649d8d58cb3d0fff446690b7d10fe673a6ad5643a8d1d1428beeeef281559162",
+        "LF_bytes": 15354,
+        "LF_sha256": "662c59673babf7841e35daa9a6abe1c8cf4d84812a634186a8089f69a71fe55d"
+      },
+      "git_normalized_blob": "43f364ad1230254983096a7e50a9035f4babc3d4"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-preparation-allocation.json",
+        "bytes": 4241,
+        "sha256": "828b3358e3c96e5a5b5dabf99895962eb18fb6a80e856a65624c7438f9428a52",
+        "LF_bytes": 4241,
+        "LF_sha256": "828b3358e3c96e5a5b5dabf99895962eb18fb6a80e856a65624c7438f9428a52"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-preparation-allocation.json",
+        "bytes": 4241,
+        "sha256": "828b3358e3c96e5a5b5dabf99895962eb18fb6a80e856a65624c7438f9428a52",
+        "LF_bytes": 4241,
+        "LF_sha256": "828b3358e3c96e5a5b5dabf99895962eb18fb6a80e856a65624c7438f9428a52"
+      },
+      "git_normalized_blob": "269841caa869450998e0a4fb6b0674fc33e16121"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-offline-interpreter-clarification.json",
+        "bytes": 1345,
+        "sha256": "c9f9af96fc7bb96551cb3ad73c4e6ee3508a51ba4862abc5a94584b91137151d",
+        "LF_bytes": 1345,
+        "LF_sha256": "c9f9af96fc7bb96551cb3ad73c4e6ee3508a51ba4862abc5a94584b91137151d"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-offline-interpreter-clarification.json",
+        "bytes": 1345,
+        "sha256": "c9f9af96fc7bb96551cb3ad73c4e6ee3508a51ba4862abc5a94584b91137151d",
+        "LF_bytes": 1345,
+        "LF_sha256": "c9f9af96fc7bb96551cb3ad73c4e6ee3508a51ba4862abc5a94584b91137151d"
+      },
+      "git_normalized_blob": "4745f13220448b9b38ca46bf045dc68155e08517"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-timestamp-precision-decision.json",
+        "bytes": 735,
+        "sha256": "9931bbd714c2bc1f77de3741c9439fa66420e0352fdb56d354d744022033e5a4",
+        "LF_bytes": 735,
+        "LF_sha256": "9931bbd714c2bc1f77de3741c9439fa66420e0352fdb56d354d744022033e5a4"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-timestamp-precision-decision.json",
+        "bytes": 735,
+        "sha256": "9931bbd714c2bc1f77de3741c9439fa66420e0352fdb56d354d744022033e5a4",
+        "LF_bytes": 735,
+        "LF_sha256": "9931bbd714c2bc1f77de3741c9439fa66420e0352fdb56d354d744022033e5a4"
+      },
+      "git_normalized_blob": "8537b0127815993c8dd2e7eda10a1d39f6321068"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-operational-review.json",
+        "bytes": 9998,
+        "sha256": "b04c4715a6b75c586c989aa1b1fc3b459ab29c2b0a82e08374fd6f983b6722dc",
+        "LF_bytes": 9998,
+        "LF_sha256": "b04c4715a6b75c586c989aa1b1fc3b459ab29c2b0a82e08374fd6f983b6722dc"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-operational-review.json",
+        "bytes": 9998,
+        "sha256": "b04c4715a6b75c586c989aa1b1fc3b459ab29c2b0a82e08374fd6f983b6722dc",
+        "LF_bytes": 9998,
+        "LF_sha256": "b04c4715a6b75c586c989aa1b1fc3b459ab29c2b0a82e08374fd6f983b6722dc"
+      },
+      "git_normalized_blob": "a522c1f1270561b5133bcf701a6b592731b8bc30"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-correction-v2-allocation.json",
+        "bytes": 4389,
+        "sha256": "f233f7d22b9406893d33bdf3e368dd4d10e96e0f4c9ef90a96cde0ceb368d258",
+        "LF_bytes": 4389,
+        "LF_sha256": "f233f7d22b9406893d33bdf3e368dd4d10e96e0f4c9ef90a96cde0ceb368d258"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-correction-v2-allocation.json",
+        "bytes": 4389,
+        "sha256": "f233f7d22b9406893d33bdf3e368dd4d10e96e0f4c9ef90a96cde0ceb368d258",
+        "LF_bytes": 4389,
+        "LF_sha256": "f233f7d22b9406893d33bdf3e368dd4d10e96e0f4c9ef90a96cde0ceb368d258"
+      },
+      "git_normalized_blob": "2a48ef88a2653f969e4b12d7fd3240f7c76768bc"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-operational-review-v2.json",
+        "bytes": 8758,
+        "sha256": "34a0522c6fa3b494b5127ac84112534ec9ebe1720026879c2b5480d7a370027c",
+        "LF_bytes": 8758,
+        "LF_sha256": "34a0522c6fa3b494b5127ac84112534ec9ebe1720026879c2b5480d7a370027c"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-operational-review-v2.json",
+        "bytes": 8758,
+        "sha256": "34a0522c6fa3b494b5127ac84112534ec9ebe1720026879c2b5480d7a370027c",
+        "LF_bytes": 8758,
+        "LF_sha256": "34a0522c6fa3b494b5127ac84112534ec9ebe1720026879c2b5480d7a370027c"
+      },
+      "git_normalized_blob": "f06e80be3ad5f7938111062a6f37cce498268b6d"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-integration-IP-audit-job-evidence-effects-allocation.json",
+        "bytes": 2507,
+        "sha256": "abdefe0e5988e542c41f800c2e43f3311768ecf2f281b6a36ba9d747f3043f14",
+        "LF_bytes": 2507,
+        "LF_sha256": "abdefe0e5988e542c41f800c2e43f3311768ecf2f281b6a36ba9d747f3043f14"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/accepted-integration-IP-audit-job-evidence-effects-allocation.json",
+        "bytes": 2507,
+        "sha256": "abdefe0e5988e542c41f800c2e43f3311768ecf2f281b6a36ba9d747f3043f14",
+        "LF_bytes": 2507,
+        "LF_sha256": "abdefe0e5988e542c41f800c2e43f3311768ecf2f281b6a36ba9d747f3043f14"
+      },
+      "git_normalized_blob": "27881fe8cfee38fe94cb26b494b40f6987610fca"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-current-source-proof.json",
+        "bytes": 6365,
+        "sha256": "096da4e42f8ec79a86c0a0c853506eeef0746d857da5b6511d1628be94508e35",
+        "LF_bytes": 6365,
+        "LF_sha256": "096da4e42f8ec79a86c0a0c853506eeef0746d857da5b6511d1628be94508e35"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-current-source-proof.json",
+        "bytes": 6365,
+        "sha256": "096da4e42f8ec79a86c0a0c853506eeef0746d857da5b6511d1628be94508e35",
+        "LF_bytes": 6365,
+        "LF_sha256": "096da4e42f8ec79a86c0a0c853506eeef0746d857da5b6511d1628be94508e35"
+      },
+      "git_normalized_blob": "c29cbcc63efa9fc949c44994d83ba5e33861094b"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-root-activation.json",
+        "bytes": 1827,
+        "sha256": "cf2cfd55df7a280376496254ab1e9d8b488e8ef333f554e46caffa7814a5052c",
+        "LF_bytes": 1827,
+        "LF_sha256": "cf2cfd55df7a280376496254ab1e9d8b488e8ef333f554e46caffa7814a5052c"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-root-activation.json",
+        "bytes": 1827,
+        "sha256": "cf2cfd55df7a280376496254ab1e9d8b488e8ef333f554e46caffa7814a5052c",
+        "LF_bytes": 1827,
+        "LF_sha256": "cf2cfd55df7a280376496254ab1e9d8b488e8ef333f554e46caffa7814a5052c"
+      },
+      "git_normalized_blob": "107a927c5a1e1a2b76f4470af5b9fa731c9b2b10"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-once-intent.json",
+        "bytes": 619,
+        "sha256": "15252f29ae0f44acb32b5dda525b69b99939ff2b528fa556d02b809f1bc17dee",
+        "LF_bytes": 619,
+        "LF_sha256": "15252f29ae0f44acb32b5dda525b69b99939ff2b528fa556d02b809f1bc17dee"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-once-intent.json",
+        "bytes": 619,
+        "sha256": "15252f29ae0f44acb32b5dda525b69b99939ff2b528fa556d02b809f1bc17dee",
+        "LF_bytes": 619,
+        "LF_sha256": "15252f29ae0f44acb32b5dda525b69b99939ff2b528fa556d02b809f1bc17dee"
+      },
+      "git_normalized_blob": "d33e2f09de9d166f439ebd2d1c3eba72737f3b55"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-result.json",
+        "bytes": 1348,
+        "sha256": "574ec27189353e6cc72db7936a8b5f70f190e76f336ca79f94aaec285d7d3140",
+        "LF_bytes": 1348,
+        "LF_sha256": "574ec27189353e6cc72db7936a8b5f70f190e76f336ca79f94aaec285d7d3140"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-result.json",
+        "bytes": 1348,
+        "sha256": "574ec27189353e6cc72db7936a8b5f70f190e76f336ca79f94aaec285d7d3140",
+        "LF_bytes": 1348,
+        "LF_sha256": "574ec27189353e6cc72db7936a8b5f70f190e76f336ca79f94aaec285d7d3140"
+      },
+      "git_normalized_blob": "37a739cb744cd2871062baffbaef2f0c8a4cff7e"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-closed-root-ownership.json",
+        "bytes": 2892,
+        "sha256": "53c54df372a2635acb4769dfa52c33f6fc6dede8c29a1eb510c985d44b179feb",
+        "LF_bytes": 2892,
+        "LF_sha256": "53c54df372a2635acb4769dfa52c33f6fc6dede8c29a1eb510c985d44b179feb"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/integration-IP-audit-job-evidence-closed-root-ownership.json",
+        "bytes": 2892,
+        "sha256": "53c54df372a2635acb4769dfa52c33f6fc6dede8c29a1eb510c985d44b179feb",
+        "LF_bytes": 2892,
+        "LF_sha256": "53c54df372a2635acb4769dfa52c33f6fc6dede8c29a1eb510c985d44b179feb"
+      },
+      "git_normalized_blob": "46c0c728ff5a0dca0285b05d21a26e0f776a1a07"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-lockfile-audit-diagnostic-allocation.json",
+        "bytes": 2958,
+        "sha256": "903bfcc4ec949fec8fa786ddcfc3377a9fe6f82cdec0d5a852f9503e1fc92802",
+        "LF_bytes": 2958,
+        "LF_sha256": "903bfcc4ec949fec8fa786ddcfc3377a9fe6f82cdec0d5a852f9503e1fc92802"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/current-lockfile-audit-diagnostic-allocation.json",
+        "bytes": 2958,
+        "sha256": "903bfcc4ec949fec8fa786ddcfc3377a9fe6f82cdec0d5a852f9503e1fc92802",
+        "LF_bytes": 2958,
+        "LF_sha256": "903bfcc4ec949fec8fa786ddcfc3377a9fe6f82cdec0d5a852f9503e1fc92802"
+      },
+      "git_normalized_blob": "7c97e9f1a6a34dd537e5b07cb5960d3dc12ae2d3"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-lockfile-audit-internal-http-clarification.json",
+        "bytes": 562,
+        "sha256": "88de31814baea9db1d91985be60d494787283c82ce7630b640a4d81ac902fd9f",
+        "LF_bytes": 562,
+        "LF_sha256": "88de31814baea9db1d91985be60d494787283c82ce7630b640a4d81ac902fd9f"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/current-lockfile-audit-internal-http-clarification.json",
+        "bytes": 562,
+        "sha256": "88de31814baea9db1d91985be60d494787283c82ce7630b640a4d81ac902fd9f",
+        "LF_bytes": 562,
+        "LF_sha256": "88de31814baea9db1d91985be60d494787283c82ce7630b640a4d81ac902fd9f"
+      },
+      "git_normalized_blob": "1972d38276bd2ccfa8c9999396a79047b2e13ea2"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-lockfile-audit-diagnostic/result.json",
+        "bytes": 11569,
+        "sha256": "60a38ea75b2b3148f1fa05d75758681702a9ff7948142fa2d1155ca3db6d3500",
+        "LF_bytes": 11569,
+        "LF_sha256": "60a38ea75b2b3148f1fa05d75758681702a9ff7948142fa2d1155ca3db6d3500"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/current-lockfile-audit-diagnostic--result.json",
+        "bytes": 11569,
+        "sha256": "60a38ea75b2b3148f1fa05d75758681702a9ff7948142fa2d1155ca3db6d3500",
+        "LF_bytes": 11569,
+        "LF_sha256": "60a38ea75b2b3148f1fa05d75758681702a9ff7948142fa2d1155ca3db6d3500"
+      },
+      "git_normalized_blob": "228eb9ce315e7cb731dcb2511891c561aa74bbde"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-root-allocation.json",
+        "bytes": 4594,
+        "sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f",
+        "LF_bytes": 4594,
+        "LF_sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-root-allocation.json",
+        "bytes": 4594,
+        "sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f",
+        "LF_bytes": 4594,
+        "LF_sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f"
+      },
+      "git_normalized_blob": "e87a8ca65dc7b5c38a6a470f48b1bd4da6cb4684"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-consumer-control-decision.json",
+        "bytes": 828,
+        "sha256": "4a2a4398dffe30210a1095a4148057da3958f4cd821b59f6f25eeeb496350956",
+        "LF_bytes": 828,
+        "LF_sha256": "4a2a4398dffe30210a1095a4148057da3958f4cd821b59f6f25eeeb496350956"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-consumer-control-decision.json",
+        "bytes": 828,
+        "sha256": "4a2a4398dffe30210a1095a4148057da3958f4cd821b59f6f25eeeb496350956",
+        "LF_bytes": 828,
+        "LF_sha256": "4a2a4398dffe30210a1095a4148057da3958f4cd821b59f6f25eeeb496350956"
+      },
+      "git_normalized_blob": "847cf1d3b688cc0fc3bfaaa5bc36cd5f37078b61"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-lint-format-decision.json",
+        "bytes": 903,
+        "sha256": "00cbf3bdb4f1243e3b0c285be21ae640a3ee3eda2d2c45f300ab2cd1f3496825",
+        "LF_bytes": 903,
+        "LF_sha256": "00cbf3bdb4f1243e3b0c285be21ae640a3ee3eda2d2c45f300ab2cd1f3496825"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-lint-format-decision.json",
+        "bytes": 903,
+        "sha256": "00cbf3bdb4f1243e3b0c285be21ae640a3ee3eda2d2c45f300ab2cd1f3496825",
+        "LF_bytes": 903,
+        "LF_sha256": "00cbf3bdb4f1243e3b0c285be21ae640a3ee3eda2d2c45f300ab2cd1f3496825"
+      },
+      "git_normalized_blob": "829d18113d214ef63021fec051b72a795541c7d0"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-stderr-visible-lint-decision.json",
+        "bytes": 1337,
+        "sha256": "9328098789ce743f152be6e7a63f63b8708441c07a9ab343e54dfad862c5ef6c",
+        "LF_bytes": 1337,
+        "LF_sha256": "9328098789ce743f152be6e7a63f63b8708441c07a9ab343e54dfad862c5ef6c"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-stderr-visible-lint-decision.json",
+        "bytes": 1337,
+        "sha256": "9328098789ce743f152be6e7a63f63b8708441c07a9ab343e54dfad862c5ef6c",
+        "LF_bytes": 1337,
+        "LF_sha256": "9328098789ce743f152be6e7a63f63b8708441c07a9ab343e54dfad862c5ef6c"
+      },
+      "git_normalized_blob": "bbf92339967868a64d11c74fb3cdf2f48c52a418"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-tracked-lint-recovery-decision.json",
+        "bytes": 1484,
+        "sha256": "dcb412afb7864457f107e4ea2b86b6e95c5bc19f351d3b0d293df777573bbd8f",
+        "LF_bytes": 1484,
+        "LF_sha256": "dcb412afb7864457f107e4ea2b86b6e95c5bc19f351d3b0d293df777573bbd8f"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-tracked-lint-recovery-decision.json",
+        "bytes": 1484,
+        "sha256": "dcb412afb7864457f107e4ea2b86b6e95c5bc19f351d3b0d293df777573bbd8f",
+        "LF_bytes": 1484,
+        "LF_sha256": "dcb412afb7864457f107e4ea2b86b6e95c5bc19f351d3b0d293df777573bbd8f"
+      },
+      "git_normalized_blob": "260a8f8a262f99790bbb7df26c66c54178f458fe"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/result.json",
+        "bytes": 7713,
+        "sha256": "10ab388ff3e984a1635a77e4ae4bf05dc2840543ddcb6e0b4fd4bd2f7a8b5e85",
+        "LF_bytes": 7569,
+        "LF_sha256": "5c546c2c80bf0d4eab70acc6b343ee354740740288aedf2bf5aaa6a8b85b8c28"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-author--result.json",
+        "bytes": 7713,
+        "sha256": "10ab388ff3e984a1635a77e4ae4bf05dc2840543ddcb6e0b4fd4bd2f7a8b5e85",
+        "LF_bytes": 7569,
+        "LF_sha256": "5c546c2c80bf0d4eab70acc6b343ee354740740288aedf2bf5aaa6a8b85b8c28"
+      },
+      "git_normalized_blob": "215a1f2fea6748a03100f543117e580f389dce06"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/checks.json",
+        "bytes": 36991,
+        "sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb",
+        "LF_bytes": 36991,
+        "LF_sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-author--checks.json",
+        "bytes": 36991,
+        "sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb",
+        "LF_bytes": 36991,
+        "LF_sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb"
+      },
+      "git_normalized_blob": "bd53f4ad4585287742d574d27dbbe772dfa0b5b3"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/source-proofs.json",
+        "bytes": 6760,
+        "sha256": "4bf24b374f29dbeb3b2e2bc27a7c0b707ae8f5e1210ef6510b1ff046e87d2143",
+        "LF_bytes": 6610,
+        "LF_sha256": "b3b35de511f25775742001280211e7f43af9e32dd66bfe78886bc78f7eae03bb"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-author--source-proofs.json",
+        "bytes": 6760,
+        "sha256": "4bf24b374f29dbeb3b2e2bc27a7c0b707ae8f5e1210ef6510b1ff046e87d2143",
+        "LF_bytes": 6610,
+        "LF_sha256": "b3b35de511f25775742001280211e7f43af9e32dd66bfe78886bc78f7eae03bb"
+      },
+      "git_normalized_blob": "c850062ea9e4b773d089631125d0e198d34504b1"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-independent-review.json",
+        "bytes": 9994,
+        "sha256": "8e123e580ad88cf7dcca5eac8eafe63cdfd47d8e8c81b558b4325c41c9057129",
+        "LF_bytes": 9858,
+        "LF_sha256": "eeff94e12f391410e03c3bc0b47cdd96001bca57386ddf74ea66e7cdfd66201d"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-independent-review.json",
+        "bytes": 9994,
+        "sha256": "8e123e580ad88cf7dcca5eac8eafe63cdfd47d8e8c81b558b4325c41c9057129",
+        "LF_bytes": 9858,
+        "LF_sha256": "eeff94e12f391410e03c3bc0b47cdd96001bca57386ddf74ea66e7cdfd66201d"
+      },
+      "git_normalized_blob": "44b67f5ec01550ab0c7fb00f3ed0abced87ade58"
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-root-pin-proof.json",
+        "bytes": 3307,
+        "sha256": "9f47e02d4a7e12019e0242a016716199017711c65b50b15326423e69b139513c",
+        "LF_bytes": 3307,
+        "LF_sha256": "9f47e02d4a7e12019e0242a016716199017711c65b50b15326423e69b139513c"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/zod-security-prerequisite-root-pin-proof.json",
+        "bytes": 3307,
+        "sha256": "9f47e02d4a7e12019e0242a016716199017711c65b50b15326423e69b139513c",
+        "LF_bytes": 3307,
+        "LF_sha256": "9f47e02d4a7e12019e0242a016716199017711c65b50b15326423e69b139513c"
+      },
+      "git_normalized_blob": "6aee7ff9abbea88bafe3d6f65864b8f572c4a855"
+    }
+  ],
+  "copy_count": 28,
+  "relocation": "Byte-identical working copies; original JSON paths remain historical identities. Map locates tracked copies. Raw/LF pins distinguish Windows bytes from Git text. Manifest/closeout self-excluded.",
+  "exclusions": "No raw job body/stderr/payload digests, executable operators, SQL contents, inverse source hunks, provider raw response or secrets.",
+  "limits": "Closed evidence and source checkpoint only; no new effect authority, runtime95 acceptance or development/release completion."
+}

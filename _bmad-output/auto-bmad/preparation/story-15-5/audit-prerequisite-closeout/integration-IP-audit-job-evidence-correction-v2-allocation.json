@@ -1,0 +1,56 @@
+{
+  "allocation": "ROOT_PRIVATE_AUDIT_EVIDENCE_TARGETED_CORRECTION_V2",
+  "audit_operation_id": "760ebc9b-d32a-4b1c-8e39-49f3242f644d",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "run": 40097034333,
+    "job": 120881358292,
+    "step": 8,
+    "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "checkpoint_id": "96ad8e91-7244-4cf1-acab-162e260914a1",
+    "publication_operation_id": "3da861fc-5ea1-4443-ae76-2de3ac5bf0c2",
+    "step_started": "2026-10-24T13:11:21Z",
+    "step_completed": "2026-10-24T13:11:22Z",
+    "endpoint": "repos/rthunborg/Kopplas/actions/jobs/120881358292/logs"
+  },
+  "prior_allocation": "ROOT_PRIVATE_AUDIT_EVIDENCE_PREPARATION_ONLY",
+  "frozen_v1_review": {
+    "path": "integration-IP-audit-job-evidence-operational-review.json",
+    "bytes": 9998,
+    "sha256": "b04c4715a6b75c586c989aa1b1fc3b459ab29c2b0a82e08374fd6f983b6722dc",
+    "outcome": "BLOCKED_AUDIT_TABLE_COMPLETENESS_AND_RETAINED_CELL_CONTINUATION_SALVAGE"
+  },
+  "owned_new_directory": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-audit-job-evidence-preparation-v2",
+  "owned_new_members": [
+    "reader.py",
+    "proposal.json",
+    "pure-controls.json",
+    "manifest.json"
+  ],
+  "future_independent_review_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-audit-job-evidence-operational-review-v2.json",
+  "scope": "Correct only AUDIT-P2-01 in the same finite one-job projection. Preserve frozen v1 four files and nonPASS report. No new transport/parser family. Reuse all unchanged v1 guards, target, caps, framing, privacy, error precedence, source binding, freshness and exclusive intent/result. Future review binding changes to v2 review path; no effects now.",
+  "explicit_wrapping_policy": "Allow source-backed continuations only in discarded severity-title, Vulnerable versions, Patched versions and Paths cells, within complete pinned pnpm table row-state grammar. Never persist those contents. Retained Package and More info MUST occupy one complete physical cell line: any continuation, including blank continuation, makes UNKNOWN; never salvage prefix. Require source-backed mandatory ordered rows, appropriate borders and complete closing record before committing a record. Paths intentional blank lines may be recognized only within its source-backed row state. Any ambiguity/malformedness remains UNKNOWN. This explicitly narrows prior blanket wrapped=>UNKNOWN for discarded cells only.",
+  "required_controls": [
+    "Truncated severity/Package/More-info pseudo-table UNKNOWN",
+    "Missing each mandatory row, wrong order, missing/wrong borders or closing border UNKNOWN",
+    "Package next plus continuation UNKNOWN",
+    "Canonical More-info URL prefix plus suffix continuation UNKNOWN",
+    "Legitimate discarded-field wrapping with full grammar may qualify without retained content",
+    "Continuation in wrong row state UNKNOWN; multiple records and cap boundary remain bounded",
+    "Preserve all existing meaningful v1 negatives, error precedence, timestamp/framing/native conservation and default refusal"
+  ],
+  "offline_control_permission": "Same bounded offline interpreter and pure extracted pnpm seams as original clarification. No CLI/handler/network/real transport/resource. Full table renderer may be executed as a narrowly extracted pure source seam only if existing installed dependencies resolve without installs and within the same offline cap; otherwise qualify grammar against pinned source and explicit pure controls without claiming renderer execution.",
+  "forbidden": [
+    "source/package/lock/workflow edits",
+    "Git mutations",
+    "actualjob/networkGET/registry/auditCLI/install",
+    "provider operations",
+    "resources/DB/browser/workload",
+    "raw logs/payload digests persisted",
+    "activation/grant/intent/runtimeoutputs now",
+    "oldslot replay or unchangedNORMAL"
+  ],
+  "result": "Four frozen pins; nested standard six-field result in proposal; report exact verification limits. Independent High targeted gap/fix review before new finite grant.",
+  "current_state": "0P0F95unexecuted auditprereq; IPquestionunobserved; old93/API019Fhistorical; P5OPEN/cap3/15.6unstarted/no deployment"
+}

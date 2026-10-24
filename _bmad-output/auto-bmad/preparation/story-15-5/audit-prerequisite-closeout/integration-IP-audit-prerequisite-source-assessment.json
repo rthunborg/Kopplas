@@ -1,0 +1,181 @@
+{
+  "Outcome": "AUDIT_PREREQUISITE_CAUSE_UNKNOWN_EXISTING_READER_LOSES_REASON_ONE_OWNED_JOB_LOG_PROJECTION_PROPOSED",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-prerequisite-source-assessment.json"
+  ],
+  "Status": {
+    "role": "gpt-6.1-sol High; read-only sensitive source assessment plus this one result artifact. No evidence acquisition or controls executed.",
+    "ownership": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-actual-root-ownership.json",
+      "bytes": 23466,
+      "sha256": "7444d10fdc5763f32990969b66a80a7ac2f7ccca69ad40d9bd20ccd426deeae9"
+    },
+    "source_refs": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+      },
+      {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+      },
+      {
+        "path": "pnpm-workspace.yaml",
+        "bytes": 434,
+        "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e"
+      },
+      {
+        "path": ".nvmrc",
+        "bytes": 4,
+        "sha256": "12d3a4efa6646b3ece4782f70033b9785bf0d167b553c43e22579b031cea5c4d"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/npm-cache/_npx/92afc42852bb890b/node_modules/pnpm/package.json",
+        "bytes": 6075,
+        "sha256": "7819f13f0a32c2be0e16ec3ca45c08f5ad49b324b3f29f6f399ce0fc7de6f26e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/npm-cache/_npx/92afc42852bb890b/node_modules/pnpm/bin/pnpm.cjs",
+        "bytes": 1102,
+        "sha256": "b276da51dc8ca5b0d3ee3371695b50fc8b3244b281b091c63a3f082a88dadeb9"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/npm-cache/_npx/92afc42852bb890b/node_modules/pnpm/dist/pnpm.cjs",
+        "bytes": 7514225,
+        "sha256": "4e3d8d88291837fd0ba478239e99b059070b8972fa6aefa100a1aafb71383d5a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/reader.py",
+        "bytes": 52893,
+        "sha256": "23cd432bceeebe53cc3146ed098175b0b31e5dff35cd2753b4069dbe7b612cf1"
+      }
+    ],
+    "actual_truth": {
+      "run": 40097034333,
+      "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+      "source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+      "verify_job": 120881358292,
+      "failed_step": 8,
+      "step_started_at": "2026-10-24T13:11:21Z",
+      "step_completed_at": "2026-10-24T13:11:22Z",
+      "all9terminal": true,
+      "Root_phase": "ROOT_STOPPED",
+      "current_required95": {
+        "passed": 0,
+        "failed": 0,
+        "unexecuted": 95
+      },
+      "first_IP_question": "UNOBSERVED",
+      "historical_required95": "Separate closed39998246278:93PASS/API019FAIL/API020UNEXECUTED. Not current-head coverage.",
+      "unused5resolvers89pollpairs": "CLOSED",
+      "artifact_log_GETs": 0,
+      "precise_audit_cause": "UNKNOWN"
+    },
+    "ci_and_pnpm_contract": {
+      "command": {
+        "path": ".github/workflows/ci.yml",
+        "line": 152,
+        "literal": "pnpm audit --audit-level=high",
+        "install": "pnpm install --frozen-lockfile at line138; packageManager pnpm@10.24.0, action-setup reads it; Node22 from .nvmrc"
+      },
+      "cached_source_qualification": "Installed private cached pnpm package declares10.24.0; bin/pnpm.cjs requires ../dist/pnpm.cjs. This establishes the inspected formatter version, not a new observation of hosted output.",
+      "pinned_product_versions": "Manifest/lock root importers pin Next16.4.1, React/ReactDOM19.2.4, Vite8.1.6 and Vitest4.1.9. Workspace/lock override and patch settings retained; no audit-ignore setting in inspected manifest/workspace, no repository .npmrc. Runtime registry/environment values were not inspected.",
+      "failure_branches": [
+        {
+          "source": "pnpm dist127063-127085",
+          "meaning": "Audit posts its lockfile audit tree to the configured registry audit endpoint.404 throws AUDIT_ENDPOINT_NOT_EXISTS; other non200 throws AUDIT_BAD_RESPONSE containing endpoint/status/arbitrary response body. Request/JSON failure can also throw. Never persist its message/body/URL."
+        },
+        {
+          "source": "pnpm dist133039-133085",
+          "meaning": "Missing lockfile throws AUDIT_NO_LOCKFILE. Unless ignoreRegistryErrors is enabled, registry/request exceptions propagate. Current command does not request --ignore-registry-errors, --fix, --json or an ignore mutation."
+        },
+        {
+          "source": "pnpm dist132941-132945,133161-133183",
+          "meaning": "Default nonJSON output filters advisories at auditLevel high and renders only high/critical tables; exitCode is1 when rendered advisory output is nonempty. This is distinct from the thrown-error branch."
+        },
+        {
+          "source": "pnpm dist133167-133190,110807-110823",
+          "meaning": "Table uses fixed severity, Package, Vulnerable versions, Patched versions, Paths and More info cells with Unicode box separators. Title/ranges/path/URL values are dynamic. Summary says N vulnerabilities found plus Severity: count severity segments, including severities below the blocking threshold."
+        },
+        {
+          "source": "pnpm dist3473,36234-36253,36449-36450,193539-193560",
+          "meaning": "PnpmError prefixes ERR_PNPM_. Normal reporter formats the error code between thin spaces, followed by arbitrary message; early uninitialized reporter prints JSON error.code/error.message. Known codes can be retained without the message."
+        }
+      ],
+      "source_backed_finite_error_markers": [
+        "ERR_PNPM_AUDIT_BAD_RESPONSE",
+        "ERR_PNPM_AUDIT_ENDPOINT_NOT_EXISTS",
+        "ERR_PNPM_AUDIT_NO_LOCKFILE",
+        "ERR_SOCKET_TIMEOUT"
+      ],
+      "negative_inference": "Failed step8 alone proves neither an advisory nor network failure. Even a matched output shape is a reported fact, not authenticity, benignity, official advisory verification or a repair recommendation."
+    },
+    "existing_reader_gap": {
+      "reader": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/reader.py",
+        "bytes": 52893,
+        "sha256": "23cd432bceeebe53cc3146ed098175b0b31e5dff35cd2753b4069dbe7b612cf1"
+      },
+      "source": "reader.py acquire_normal lines303-337; verify facts315-330; failure_facts125-138",
+      "exact_gap": "Existing full-run ZIP path collects Node/Python totals, loose high/critical mentions and a small installed-version list. Its blocking_audit_summary_counts regex requires a bare N vulnerabilities line, while installed pnpm emits N vulnerabilities found. It retains neither audit error code, exact severity counts, Package table cell nor advisory identifier. failure_facts recognizes calendar/SQL/assertion facts, not pnpm audit reasons. high_mentions is noncausal and can also match arbitrary error-body text.",
+      "consequence": "The unchanged <=5GET full archive/artifact lane would be broader and would still not qualify this audit reason. Do not rebuild source75/catalogs or run that lane merely to reproduce empty audit facts."
+    },
+    "minimum_meaningful_route_PROPOSED_NOT_AUTHORIZED": {
+      "route": "One fixed owned verify-job log capture through the existing reviewed get(endpoint,cap,label) RAM transport, with a strictly finite single-step audit projection. No new collector, retrying transport, generic parser family, archive inflation, artifact listing or source/catalog extraction.",
+      "exact_endpoint": "repos/rthunborg/Kopplas/actions/jobs/120881358292/logs",
+      "method": "GET",
+      "maximum_logical_gh_api_invocations": 1,
+      "ownership_before_request": "Fresh allocation must pin the actual closed ownership/terminal/proposed operator/current source. Require run40097034333, attempt1, exact HEAD/branch/actor/workflow/checkpoint, verify job120881358292 and failed step8. Preserve all9terminal/ROOT_STOPPED and closed old slots; do not spend an old resolver/poll/artifact slot.",
+      "transport": "Reuse actual existing15s capture loop, bounded direct-process wait2s and per-reader join1s, with4MiB stdout/64KiB stderr; preserve full EOF, joined readers, closed handles, settled direct child, native0 and overflow/error/timeout refusal. These are existing bounded capture stages, not a strict whole-process-tree hardwall. Raw stdout/stderr remain RAM and never print or persist.",
+      "API_redirect_limit": "This task has no installed gh source/docs that qualify its precise redirect behavior (installation contains gh.exe only). The endpoint may supply a redirect/download body. The future grant must mean one logical gh api invocation, including only CLI builtin behavior; do not claim one physical HTTP request. No manual Location URL follow-up, header/location persistence or second request. Native0 without qualified complete log content is UNKNOWN/STOP. Do not add a redirect parser or new transport.",
+      "existing_receipt_caution": "Existing get writes raw-output digests into its receipt. A future bounded operator must retain the exact capture algorithm but use the existing injected write boundary to persist only fixed intent/source bindings and finite transport counts/flags; keep dynamic payload hashes and all raw message/header/URL bytes in RAM. This projection must be explicitly reviewed, not silently treated as an unchanged receipt contract.",
+      "step_selection": "Use the exact known audit command once and its command/step boundary plus terminal time window13:11:21Z..13:11:22Z. Job-level timestamps alone overlap adjacent steps and do not prove attribution. Require an unambiguous complete audit segment and matching failed completion; duplicate/missing/partial/wrapped/unqualified boundary stays UNKNOWN. Qualify actual runner framing before claiming it rather than assuming a transcript shape.",
+      "safe_projection": "Bound output to8KiB JSON and at most8 advisory candidate records. Keep only closed reason enums, four known error-code booleans, four bounded nonnegative severity counts, optional exact manifest-owned package name, and a complete canonical GitHub advisory identifier from a More info advisory URL cell; discard URL itself. Any transitive package not in the pinned manifest stays packageUNKNOWN until a narrow local lockfile identity check or later official advisory verification. No versions/ranges/title/paths/raw body/native message/token or derived payload identifier.",
+      "classification": "Known exact error-code header/early JSON code takes precedence over advisory-looking text in an error body: classify REPORTED_AUDIT_REGISTRY_ERROR, REPORTED_AUDIT_LOCAL_LOCKFILE_ERROR or REPORTED_TIMEOUT as supported by the fixed marker. A complete no-error high/critical table plus consistent severity summary can yield REPORTED_HIGH_OR_CRITICAL_ADVISORY. Conflicts, missing markers, malformed/wrapped/unowned cells or generic exceptions yield UNKNOWN; never salvage arbitrary text.",
+      "advisory_limit": "Retain only a bounded structurally GHSA-like public advisory ID candidate from the canonical More info cell, not arbitrary URL/token text. Its public existence, affected package/version and remediation require later official GitHub/vendor advisory verification under separate authority; no advisory or fix is known now.",
+      "stop": "Exactly one capture; any refusal, ambiguous ownership, cap/EOF/transport/content failure or missing useful safe facts stops with UNKNOWN. No automatic second capture, audit CLI call, registry query, source fix or unchanged NORMAL rerun."
+    },
+    "minimum_offline_controls_PROPOSED_NOT_EXECUTED": [
+      "Bind exact cached pnpm formatter/error/reportSummary source and exact existing capture source. Pure RAM witnesses should exercise actual source-backed success/error rendering seams; do not invoke the pnpm CLI, audit handler network, installed module entry or any process/network dependency.",
+      "Exercise high and critical table/summary versus low/moderate-only summary; exact known error header/early JSON code; BAD_RESPONSE body carrying forged advisory markers; contradictory error+table; absent/duplicate/partial command boundaries; ANSI/thin-space/timestamp normalization and wrapped cells. Ambiguity remains UNKNOWN.",
+      "Exercise4MiB boundary/overflow, invalid UTF8, native nonzero, timeout, reader error, incomplete EOF, unjoined/uncleared output and unexpected redirect/HTML/error body with fully inert transport mocks. Preserve actual existing capture and refusal behavior; no real request.",
+      "Exercise finite severity-count bounds, exact manifest package membership, unknown/transitive package fallback, bounded advisory candidates, malformed IDs and injected secret/IP/path/title/URL/token strings. Only closed fields may survive; no payload bytes/hash or arbitrary derived identifier is retained.",
+      "Compare unchanged source75/catalog/118SQL bindings by existing pins only; no reconstruction. Record actual executed controls separately from this plan and obtain independent sensitive review before any acquisition grant."
+    ],
+    "actions": {
+      "new_assessment_artifacts": 1,
+      "source_or_operational_changes": 0,
+      "package_install_or_audit_CLI": 0,
+      "registry_or_web_or_GET": 0,
+      "module_imports_or_controls": 0,
+      "Git_mutations": 0,
+      "resources_DB_browser_workloads": 0,
+      "raw_SQL_or_catalog_reads_extractors": 0,
+      "raw_logs_read_printed_or_persisted": 0
+    },
+    "P5": "OPEN",
+    "broad_review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "normal_acceptance": 0
+  },
+  "Open questions": [
+    "Actual step8 failure reason remains UNKNOWN; no vulnerability, package or advisory is established.",
+    "Exact job-log return/framing/redirect outcome is unqualified here and must fail closed if the separately reviewed single capture cannot establish it.",
+    "The newly instrumented NORMAL was consumed before runtime; the IP question remains unobserved."
+  ],
+  "Deferred work": [
+    "Root may allocate a narrow operator/projection preparation with the specified exact owned job and unchanged capture algorithm, then obtain independent High source/control review and a separate completed finite Coordinator grant. No effect authority follows from this assessment.",
+    "If public advisory candidates are actually obtained, verify them against official sources before choosing any dependency repair. Reconcile saved ownership/reservations/current base before future package or lock writes."
+  ],
+  "Blockers": [
+    "Current required95 has0passed/0failed/95unexecuted because verify audit blocked downstream tests; prior93P/API019FAIL remains historical. No development completion or current-head coverage.",
+    "No unchanged NORMAL rerun, audit bypass/threshold weakening, package change, merge or deployment is authorized or recommended by this source assessment."
+  ]
+}

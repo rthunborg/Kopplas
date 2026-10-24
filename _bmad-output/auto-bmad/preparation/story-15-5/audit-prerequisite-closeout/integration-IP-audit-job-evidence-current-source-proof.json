@@ -1,0 +1,165 @@
+{
+  "schema": "ROOT_CURRENT_OWNED_AUDIT_JOB_PROOF_V1",
+  "audit_operation_id": "760ebc9b-d32a-4b1c-8e39-49f3242f644d",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "run": 40097034333,
+    "job": 120881358292,
+    "step": 8,
+    "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "checkpoint_id": "96ad8e91-7244-4cf1-acab-162e260914a1",
+    "publication_operation_id": "3da861fc-5ea1-4443-ae76-2de3ac5bf0c2",
+    "step_started": "2026-10-24T13:11:21Z",
+    "step_completed": "2026-10-24T13:11:22Z",
+    "endpoint": "repos/rthunborg/Kopplas/actions/jobs/120881358292/logs"
+  },
+  "input_refs": {
+    "allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-preparation-allocation.json",
+      "bytes": 4241,
+      "sha256": "828b3358e3c96e5a5b5dabf99895962eb18fb6a80e856a65624c7438f9428a52"
+    },
+    "assessment": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-prerequisite-source-assessment.json",
+      "bytes": 15535,
+      "sha256": "649d8d58cb3d0fff446690b7d10fe673a6ad5643a8d1d1428beeeef281559162"
+    },
+    "terminal_qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-terminal-metadata-qualification.json",
+      "bytes": 9025,
+      "sha256": "8dd887620112dd688364792e6365d9cbb0d951dea3f18fb19462bbe604f231b8"
+    },
+    "ownership": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-actual-root-ownership.json",
+      "bytes": 23466,
+      "sha256": "7444d10fdc5763f32990969b66a80a7ac2f7ccca69ad40d9bd20ccd426deeae9"
+    },
+    "native": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-execution-preparation/root-driver.py",
+      "bytes": 21160,
+      "sha256": "730b1e1c37a45b3d49dceb4f02aba9314c67d69f11b4113eb1a78d7d982b653a"
+    },
+    "package": {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+    },
+    "lock": {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+    },
+    "workflow": {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+    },
+    "workspace": {
+      "path": "pnpm-workspace.yaml",
+      "bytes": 434,
+      "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e"
+    },
+    "correction_allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-correction-v2-allocation.json",
+      "bytes": 4389,
+      "sha256": "f233f7d22b9406893d33bdf3e368dd4d10e96e0f4c9ef90a96cde0ceb368d258"
+    },
+    "prior_nonpass_review": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-operational-review.json",
+      "bytes": 9998,
+      "sha256": "b04c4715a6b75c586c989aa1b1fc3b459ab29c2b0a82e08374fd6f983b6722dc"
+    }
+  },
+  "checked_at_utc": "2026-10-24T14:30:33.021583+00:00",
+  "current_head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+  "current_source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+  "current_branch": "codex/epic-15-scheduling-time-calendar",
+  "tracked_clean": true,
+  "current_source_verified": true,
+  "source_is_head_ancestor": true,
+  "target_ownership_verified": true,
+  "no_old_slots_reused": true,
+  "immutable_terminal_ref": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/terminal.json",
+    "bytes": 9907,
+    "sha256": "5716f7aa228dd4bd5dfb84ae7940635b2eb03ada4f7cab2b29e587f5406afff8"
+  },
+  "immutable_ownership_ref": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-actual-root-ownership.json",
+    "bytes": 23466,
+    "sha256": "7444d10fdc5763f32990969b66a80a7ac2f7ccca69ad40d9bd20ccd426deeae9"
+  },
+  "historical_dispatch_source_proof": {
+    "reference": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-current-source-proof.json",
+      "bytes": 59852,
+      "sha256": "2fcdd2785513b107ba817dfd27c08ce01c6b0354c55123b63422600725ca46ea"
+    },
+    "role": "HISTORICAL_TARGET_LINEAGE_ONLY",
+    "created_at_utc": "2026-10-24T13:09:20.817116+00:00",
+    "freshness": "NOT_CURRENT",
+    "new_204_SQL_catalog_qualification": false
+  },
+  "metadata_scope": "Fresh ordinary local Git HEAD/branch/tracked-clean/source-ancestor plus exact immutable terminal/ownership references only. current_source_verified attests this local metadata relationship, not a new raw204/SQL/catalog scan.",
+  "execution_authorized": false,
+  "Root_actual_metadata_receipts": [
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "rev-parse",
+        "HEAD"
+      ],
+      "native_exit": 0,
+      "stdout": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+      "stderr_bytes": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "branch",
+        "--show-current"
+      ],
+      "native_exit": 0,
+      "stdout": "codex/epic-15-scheduling-time-calendar",
+      "stderr_bytes": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "native_exit": 0,
+      "stdout": "",
+      "stderr_bytes": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "merge-base",
+        "--is-ancestor",
+        "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+        "HEAD"
+      ],
+      "native_exit": 0,
+      "stdout": "",
+      "stderr_bytes": 0
+    }
+  ],
+  "actual_terminal_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-terminal-metadata-qualification.json",
+    "bytes": 9025,
+    "sha256": "8dd887620112dd688364792e6365d9cbb0d951dea3f18fb19462bbe604f231b8"
+  },
+  "scope_limit": "Only fresh4localGitmetadata plus immutable owned terminal/reference verification; no historical lease renewal, source204/SQL/catalog rescan or remote calls."
+}

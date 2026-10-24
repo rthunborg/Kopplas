@@ -1,0 +1,137 @@
+{
+  "Outcome": "PASS_ZOD_SECURITY_PREREQUISITE_TWO_PATH_SOURCE_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-independent-review.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "verdict_scope": "Independent targeted actual two-path diff, lockgraph and evidence qualification for a source checkpoint only. No fourth broad story review, development-complete claim or execution authority.",
+    "routing": "Root recorded explicit Sol6.1 High route16c3f1/native0 before dispatch; review performed independently of the author.",
+    "base": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "source_before": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "source_pins": [
+      {
+        "path": "pnpm-workspace.yaml",
+        "bytes": 480,
+        "sha256": "e1b873361cb21813a8b487c4111fb08be29a486fcfa1f3a4f7021797997342f8",
+        "LF_bytes": 462,
+        "LF_sha256": "6464c218bc0c2e87d8ad7bac5c641491a3d056b6247ef643aef2376f3e07f66d"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162204,
+        "sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95",
+        "LF_bytes": 162204,
+        "LF_sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95"
+      }
+    ],
+    "evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-root-allocation.json",
+        "bytes": 4594,
+        "sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/result.json",
+        "bytes": 7713,
+        "sha256": "10ab388ff3e984a1635a77e4ae4bf05dc2840543ddcb6e0b4fd4bd2f7a8b5e85"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/checks.json",
+        "bytes": 36991,
+        "sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/source-proofs.json",
+        "bytes": 6760,
+        "sha256": "4bf24b374f29dbeb3b2e2bc27a7c0b707ae8f5e1210ef6510b1ff046e87d2143"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-lockfile-audit-diagnostic/result.json",
+        "bytes": 11569,
+        "sha256": "60a38ea75b2b3148f1fa05d75758681702a9ff7948142fa2d1155ca3db6d3500"
+      }
+    ],
+    "recovery_decisions": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-consumer-control-decision.json",
+        "bytes": 828,
+        "sha256": "4a2a4398dffe30210a1095a4148057da3958f4cd821b59f6f25eeeb496350956"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-lint-format-decision.json",
+        "bytes": 903,
+        "sha256": "00cbf3bdb4f1243e3b0c285be21ae640a3ee3eda2d2c45f300ab2cd1f3496825"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-stderr-visible-lint-decision.json",
+        "bytes": 1337,
+        "sha256": "9328098789ce743f152be6e7a63f63b8708441c07a9ab343e54dfad862c5ef6c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-tracked-lint-recovery-decision.json",
+        "bytes": 1484,
+        "sha256": "dcb412afb7864457f107e4ea2b86b6e95c5bc19f351d3b0d293df777573bbd8f"
+      }
+    ],
+    "actual_diff_and_inverse": {
+      "tracked_dirty_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "change": "Only eslint-plugin-react-hooks@7.1.1>zod:4.6.6 override and corresponding Zod resolution/integrity/snapshot plus hooks and zod-validation-error peer references. No unrelated dependency, policy, source, threshold or ignore change.",
+      "independently_reconstructed_raw_workspace_preimage": "434/2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+      "independently_reconstructed_lock_preimage": "162159/69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "package_unchanged": "2509/2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "existing_patch_unchanged": "672/74162e49b4c3ab38559adffc97da8646ce1989d750469a6fbe15f806e29c22f4",
+      "line_endings": "Workspace CRLF and lock LF preserved; exact inverses match allocated preimages."
+    },
+    "graph_and_advisory": {
+      "advisory": "Reuse pinned current diagnostic official verification of GHSA-mrhx-c7xc-m3w5:4.4.3 affected,4.6.6 patched. No new network/advisory lookup by reviewer; no production exploitability or historical hosted-cause inference.",
+      "compatibility": "Actual hooks7.1.1 manifest dependency and validation-error4.0.2 peer both declare ^3.25.0 || ^4.0.0;4.6.6 fits both.",
+      "physical_graph": "Reviewer statically inspected actual hooks Zod junction to owned zod@4.6.6, hooks validation-error junction to4.0.2(zod4.6.6), and that peer junction to the same Zod. Retained unused old peer directory is not an active resolution.",
+      "selected_package_manifest": "4142/cff7e142055a9dd9bc2947a71ca3fb5e3aacdfda966d7728993ff3656245b94a",
+      "integrity": "Author records840 installed files verified against SSRI-selected store index157072/bb422d9397395c6bb208b98f8a64faf6a4b88bde833aab67924da2b838c16d27, plus explicit frozen install --verify-store-integrity. Evidence qualified as recorded; reviewer did not repeat the file scan. This is not independent registry-signature or upstream provenance attestation."
+    },
+    "validation_qualification": {
+      "execution_attribution": "Author-executed receipts in pinned checks.json; reviewer ran no checks, package code, install or audit. Complete child native receipt governs success; outer orchestration exit0 and an initial session do not establish child PASS.",
+      "mutation": "One lock-only regeneration and one frozen ignore-scripts install, both native0/EOF/readers joined/handles closed/process settled. Same pnpm10.24/v10 store; pendingBuilds empty; no mutation retries.",
+      "focused": "Existing Next lint-root helper/rule consumer and lockfile-guard tests10P0F0skip; separate verify:lockfiles native0. These are limited consumer/guard checks, not Zod exploit or runtime95 coverage.",
+      "tracked_lint": "Distinct authorized API recovery:1346 tracked configured JS/TS candidates,1261 matched/results,85 proven ignored by existing config;0 errors/0 fatal/31 warnings. Inventory stable, existing rules/options/ignores and warning threshold retained. Actual config and package lint script inspected unchanged.",
+      "typecheck_build": "Author typecheck and production build native0, complete capture; build compiled/generated-pages/route markers recorded.",
+      "audit": "One current default-formatter --audit-level=high invocation native0/complete capture:high0,critical0,moderate3. Internal HTTP attempt count UNKNOWN; no claim that all severities are absent.",
+      "failed_attempts": "Optional custom logical-symlink smoke native1 remains INVALID/UNQUALIFIED. Full JSON lint overflow native1/CAP_EXCEEDED is not a verdict. Default lint native2; authorized stderr-visible diagnostic native2 identifies stylish RangeError stack, with no qualified offending file/rule/full-scope counts or established product cause. No untracked-contamination assertion.",
+      "original_package_lint": "NOT PASSED. Separate tracked-source API recovery does not turn the original full lint script into PASS. Clean-checkout original CI lint remains required.",
+      "native_source": "Previously reviewed root-driver.py21160/730b1e1c37a45b3d49dceb4f02aba9314c67d69f11b4113eb1a78d7d982b653a remains pin-identical; reuse capture algorithm qualification, no recertification or new transport."
+    },
+    "authority": {
+      "reviewer_activity": "Static source/evidence reads, exact pins/inverse and read-only Git diff/status/HEAD only; sole write is this new report. No reader/test/import/install/audit/network/CI/resource/Git mutation/source edit or DEBUG access/validity claim.",
+      "source_checkpoint_only": true,
+      "normal_acceptance": 0,
+      "current_required95": "0P0F95UNEXECUTED",
+      "historical_required95": "93P/API019FAIL/API020unexecuted; history only",
+      "historical_CI_cause": "UNKNOWN",
+      "IP_question": "UNOBSERVED",
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "custody": "UNCHANGED; no new clearance evidence",
+      "deployment_authority": false
+    }
+  },
+  "Open questions": [
+    "Original full package lint has not passed. The stylish RangeError does not establish a Zod regression, an offending source/rule, or untracked contamination.",
+    "Historical hosted audit-step cause remains UNKNOWN. The current patched graph/audit cannot attribute it.",
+    "Three current moderate findings remain outside this narrow high-advisory prerequisite review."
+  ],
+  "Deferred work": [
+    "Root may use this exact reviewed two-path state for an authorized source checkpoint; future checkpoint/CI must bind the actual new head.",
+    "Clean-checkout original lint and all applicable exact-head CI, runtime, integration, recovery and delivery gates remain required before their corresponding acceptance or completion claim.",
+    "Any broader formatter/dependency change, new observation or deployment requires its own existing authorization and precise ownership; this report grants none."
+  ],
+  "Blockers": [
+    "No concrete introduced defect blocks this narrowly defined source checkpoint. Original full lint and unexecuted runtime/delivery gates still block stronger completion or acceptance claims."
+  ]
+}

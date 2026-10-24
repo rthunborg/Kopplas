@@ -1,0 +1,1072 @@
+{
+  "schema": "ZOD_SECURITY_PREREQUISITE_ACTUAL_CHECKS_V1",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-root-allocation.json",
+    "bytes": 4594,
+    "sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f",
+    "LF_bytes": 4594,
+    "LF_sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f"
+  },
+  "native_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-execution-preparation/root-driver.py",
+    "bytes": 21160,
+    "sha256": "730b1e1c37a45b3d49dceb4f02aba9314c67d69f11b4113eb1a78d7d982b653a"
+  },
+  "native_function_sha256": "57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1",
+  "native_function_byte_changes": 0,
+  "history": [
+    {
+      "stage": "PRE_EFFECT_AUTHOR_GUARD",
+      "outcome": "FAILED_BEFORE_EFFECT",
+      "outer_chunk": "f9d13d",
+      "outer_native_exit": 1,
+      "reason": "Author wrongly assumed lockfile CRLF. Actual pinned lockfile is LF; corrected harness only, preserving workspace CRLF/lock LF. No edit/pnpm invocation consumed."
+    },
+    {
+      "stage": "AUXILIARY_STATIC_MANIFEST_PATH_LOOKUP",
+      "outcome": "MISSING_GUESSED_PATH",
+      "outer_chunk": "1151e9",
+      "outer_native_exit": 1,
+      "reason": "Guessed zod-validation-error dist/index.js absent. Its existing manifest identifies v4/index.js. No dependency mutation or check credit."
+    }
+  ],
+  "lock_regeneration": {
+    "stage": "LOCK_REGEN",
+    "argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+      "install",
+      "--lockfile-only",
+      "--ignore-scripts",
+      "--no-frozen-lockfile",
+      "--registry=https://registry.npmjs.org/"
+    ],
+    "started": "2026-10-24T14:46:07.671941+00:00",
+    "ended": "2026-10-24T14:46:09.787705+00:00",
+    "capture": {
+      "native_exit": 0,
+      "category": null,
+      "capture_complete": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "timeout_seconds": 180,
+      "streams": [
+        {
+          "observed_bytes": 879,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        },
+        {
+          "observed_bytes": 0,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        }
+      ]
+    },
+    "qualified_success": true,
+    "before": {
+      "pnpm-workspace.yaml": {
+        "path": "pnpm-workspace.yaml",
+        "bytes": 434,
+        "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+        "LF_bytes": 417,
+        "LF_sha256": "8aa3509d64e2ea496258100228fba8120bb754cab9a7c0c26ea1dc55b3c3df41"
+      },
+      "pnpm-lock.yaml": {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+        "LF_bytes": 162159,
+        "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+      },
+      "package.json": {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+        "LF_bytes": 2509,
+        "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+      }
+    },
+    "allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-root-allocation.json",
+      "bytes": 4594,
+      "sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f",
+      "LF_bytes": 4594,
+      "LF_sha256": "fb2273c38cf652f87739da4b98c9bf109c9326334bf12fd72ab2c838bcf0968f"
+    },
+    "modules_before": {
+      "bytes": 27758,
+      "sha256": "00dc5a1b0eebc1213df769f5b17645b15c4fe808f71edd3c5e1b220683f7594f",
+      "packageManager": "pnpm@10.24.0",
+      "layoutVersion": 5,
+      "store_major": 10,
+      "pendingBuilds": []
+    },
+    "patch_before": {
+      "path": "patches/@next__eslint-plugin-next@16.3.6.patch",
+      "bytes": 672,
+      "sha256": "74162e49b4c3ab38559adffc97da8646ce1989d750469a6fbe15f806e29c22f4",
+      "LF_bytes": 657,
+      "LF_sha256": "88513a4345d44468acd514beee604f895a6d6d2b61ebe4ee4ab8972de663385e"
+    },
+    "shared_usage": "Root confirms DEBUG strict reader/mutator/validity hold and no new dependency claim; Coordinator actual completed no-conflict verification in pinned allocation.",
+    "agent_retries": 0,
+    "expected_only_churn": true,
+    "lock_inverse_LF_equals_preimage": true,
+    "public_selected_package": {
+      "module": "zod",
+      "version": "4.6.6",
+      "lock_integrity": "sha512-4UmzQUF5fxvfcYHlbjBmejU+w+hbDnWFx4aS8kBx7nPBHcO2SqPbpAG8snbdg+Xse4pRefR98hgjFgIMCI/UhA=="
+    },
+    "diff_stats": {
+      "added_lines": 10,
+      "removed_lines": 9
+    },
+    "original_line_endings_preserved": {
+      "workspace": "CRLF",
+      "lock": "LF"
+    },
+    "after": {
+      "pnpm-workspace.yaml": {
+        "path": "pnpm-workspace.yaml",
+        "bytes": 480,
+        "sha256": "e1b873361cb21813a8b487c4111fb08be29a486fcfa1f3a4f7021797997342f8",
+        "LF_bytes": 462,
+        "LF_sha256": "6464c218bc0c2e87d8ad7bac5c641491a3d056b6247ef643aef2376f3e07f66d"
+      },
+      "pnpm-lock.yaml": {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162204,
+        "sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95",
+        "LF_bytes": 162204,
+        "LF_sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95"
+      },
+      "package.json": {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+        "LF_bytes": 2509,
+        "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+      }
+    },
+    "tracked_changed_paths": [
+      "pnpm-lock.yaml",
+      "pnpm-workspace.yaml"
+    ],
+    "modules_after_lockregen_same": true
+  },
+  "frozen_install": {
+    "stage": "FROZEN_INSTALL",
+    "argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+      "install",
+      "--frozen-lockfile",
+      "--ignore-scripts",
+      "--verify-store-integrity",
+      "--registry=https://registry.npmjs.org/"
+    ],
+    "started": "2026-10-24T14:47:03.247593+00:00",
+    "ended": "2026-10-24T14:47:06.640675+00:00",
+    "capture": {
+      "native_exit": 0,
+      "category": null,
+      "capture_complete": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "timeout_seconds": 180,
+      "streams": [
+        {
+          "observed_bytes": 329,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        },
+        {
+          "observed_bytes": 0,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        }
+      ]
+    },
+    "qualified_success": true,
+    "after": {
+      "pnpm-workspace.yaml": {
+        "path": "pnpm-workspace.yaml",
+        "bytes": 480,
+        "sha256": "e1b873361cb21813a8b487c4111fb08be29a486fcfa1f3a4f7021797997342f8"
+      },
+      "pnpm-lock.yaml": {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162204,
+        "sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95"
+      },
+      "package.json": {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+      }
+    },
+    "policy": {
+      "packageManager_same": true,
+      "store_same": true,
+      "pendingBuilds_empty": true,
+      "workspace_lock_package_unchanged": true,
+      "scripts_ignored_explicitly": true,
+      "store_integrity_check_explicitly": true
+    },
+    "closed_error_codes": [],
+    "agent_retries": 0,
+    "raw_payload_hashes_persisted": false
+  },
+  "selected_package_integrity_and_graph": {
+    "status": "SELECTED_PACKAGE_INTEGRITY_AND_GRAPH_PASS",
+    "package": "zod",
+    "version": "4.6.6",
+    "lock_SSRI": "sha512-4UmzQUF5fxvfcYHlbjBmejU+w+hbDnWFx4aS8kBx7nPBHcO2SqPbpAG8snbdg+Xse4pRefR98hgjFgIMCI/UhA==",
+    "store_index_bytes": 157072,
+    "store_index_sha256": "bb422d9397395c6bb208b98f8a64faf6a4b88bde833aab67924da2b838c16d27",
+    "installed_files_verified_against_store_index": 840,
+    "installed_hooks_version": "7.1.1",
+    "hooks_zod_resolution": "4.6.6",
+    "validation_error_version": "4.0.2",
+    "validation_error_peer_resolution": "4.6.6",
+    "both_resolve_same_owned_package": true,
+    "package_manifest_sha256": "cff7e142055a9dd9bc2947a71ca3fb5e3aacdfda966d7728993ff3656245b94a",
+    "limitations": "Store content-index verification plus explicit pnpm verify-store-integrity and lock SSRI; not an independent registry-signature or upstream provenance attestation."
+  },
+  "invalid_optional_consumer_control": [
+    {
+      "stage": "CONSUMER_SMOKE",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "-e",
+        "<RAM_SOURCE_SHA256:d6fb6d1b460b03ee755e5478fa091bb8fd3b69b0ad87f21649b9433c00a89e99>"
+      ],
+      "started": "2026-10-24T14:51:28.042417+00:00",
+      "ended": "2026-10-24T14:51:28.089785+00:00",
+      "capture": {
+        "native_exit": 1,
+        "category": "PROCESS_NONZERO",
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 30,
+        "streams": [
+          {
+            "observed_bytes": 0,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 1031,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": false,
+      "facts": {},
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    }
+  ],
+  "existing_focused_and_first_lint_checks": [
+    {
+      "stage": "FOCUSED_EXISTING_UNIT",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/dependencies/next-lint-root-globs.test.ts",
+        "tests/unit/scripts/verify/check-lockfiles.test.ts"
+      ],
+      "started": "2026-10-24T14:53:15.273119+00:00",
+      "ended": "2026-10-24T14:53:15.665466+00:00",
+      "capture": {
+        "native_exit": 0,
+        "category": null,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 120,
+        "streams": [
+          {
+            "observed_bytes": 3257,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": true,
+      "facts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "skipped": 0
+      },
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    },
+    {
+      "stage": "LOCKFILE_GUARD",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "verify:lockfiles"
+      ],
+      "started": "2026-10-24T14:53:15.718043+00:00",
+      "ended": "2026-10-24T14:53:15.997196+00:00",
+      "capture": {
+        "native_exit": 0,
+        "category": null,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 60,
+        "streams": [
+          {
+            "observed_bytes": 196,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": true,
+      "facts": {},
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    },
+    {
+      "stage": "FULL_LINT",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "lint",
+        "--format=json"
+      ],
+      "started": "2026-10-24T14:53:16.048162+00:00",
+      "ended": "2026-10-24T14:55:14.178100+00:00",
+      "capture": {
+        "native_exit": 1,
+        "category": "CAP_EXCEEDED",
+        "capture_complete": false,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 180,
+        "streams": [
+          {
+            "observed_bytes": 44804264,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": true
+          },
+          {
+            "observed_bytes": 4961,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": false,
+      "facts": {},
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    }
+  ],
+  "default_package_lint": [
+    {
+      "stage": "FULL_LINT_DEFAULT_FORMATTER",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "lint"
+      ],
+      "started": "2026-10-24T14:57:26.495072+00:00",
+      "ended": "2026-10-24T14:59:13.481496+00:00",
+      "capture": {
+        "native_exit": 2,
+        "category": "PROCESS_NONZERO",
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 180,
+        "streams": [
+          {
+            "observed_bytes": 140,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 6107,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": false,
+      "facts": {
+        "formatter": "DEFAULT_EXISTING_PACKAGE_SCRIPT",
+        "summary": null,
+        "diagnostic_count": 0,
+        "bounded_diagnostics": [],
+        "message_source_env_content_retained": false
+      },
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    }
+  ],
+  "stderr_visible_default_lint_diagnostic": {
+    "stage": "FULL_LINT_STDIO_VISIBLE_AUTHORIZED_DIAGNOSTIC",
+    "argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "-e",
+      "<FOREGROUND_STDIO_INHERITANCE_WRAPPER_SHA256:ad847bbb2c1df7e1732744e80c64cd4789dda2f7e9b779139bf3a5a3cf37f54c>",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs"
+    ],
+    "child_argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+      "run",
+      "lint"
+    ],
+    "started": "2026-10-24T15:03:01.070750+00:00",
+    "ended": "2026-10-24T15:04:48.670815+00:00",
+    "capture": {
+      "native_exit": 2,
+      "category": "PROCESS_NONZERO",
+      "capture_complete": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "timeout_seconds": 180,
+      "streams": [
+        {
+          "observed_bytes": 6247,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        },
+        {
+          "observed_bytes": 0,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        }
+      ]
+    },
+    "qualified_capture": true,
+    "qualified_success": false,
+    "sanitized_diagnosis": {
+      "error_classes": [
+        "RangeError"
+      ],
+      "known_message_shapes": [],
+      "rules": [],
+      "source_location_categories": [],
+      "public_module_stack_locations": [
+        "eslint\\bin\\eslint.js:175:19",
+        "eslint\\lib\\cli-engine\\formatters\\stylish.js:37:10",
+        "eslint\\lib\\cli-engine\\formatters\\stylish.js:84:5",
+        "eslint\\lib\\cli.js:123:33",
+        "eslint\\lib\\cli.js:509:4",
+        "eslint\\lib\\eslint\\eslint.js:1269:12"
+      ]
+    },
+    "diagnosis_characters": 390,
+    "workspace_lock_package_unchanged": true,
+    "new_buffers_listeners_or_capture_family": false,
+    "raw_output_or_source_env_content_persisted": false
+  },
+  "authorized_tracked_source_lint_recovery": {
+    "stage": "BOUNDED_TRACKED_SOURCE_LINT_API_AUTHORIZED_RECOVERY",
+    "argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "-e",
+      "<RAM_SOURCE_SHA256:8b8a8293817c1fae5c4504bdda6dbaf40ddc517fbd03c479fc217ec881bb712c>"
+    ],
+    "started": "2026-10-24T15:09:33.171189+00:00",
+    "ended": "2026-10-24T15:09:50.022867+00:00",
+    "capture": {
+      "native_exit": 0,
+      "category": null,
+      "capture_complete": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "timeout_seconds": 180,
+      "streams": [
+        {
+          "observed_bytes": 5083,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        },
+        {
+          "observed_bytes": 0,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "overflow": false
+        }
+      ]
+    },
+    "qualified_capture": true,
+    "qualified_success": true,
+    "facts": {
+      "status": "TRACKED_SOURCE_LINT_PASS",
+      "full_package_lint_pass": false,
+      "original_script": "eslint",
+      "API_options": {
+        "cwd": "OWNED_MAIN",
+        "overrideConfig": false,
+        "fix": false,
+        "cache": false,
+        "rules_ignores_thresholds_changed": false
+      },
+      "inventory": {
+        "tracked_count": 6453,
+        "tracked_bytes": 506749,
+        "tracked_sha256": "354585e85b6f0c33b0968fac04cc3988041f4bbeac5b727819f621b55bb694dc",
+        "candidate_count": 1346,
+        "candidate_sha256": "bead4e6954baafcaf63b93d861e983ff63a5980b706417e5bec122e2d8fd1ece",
+        "matched_count": 1261,
+        "matched_sha256": "3a7d3d57fb5bf4affea4ea9b356f35a4076739a762cd609b3b8d5d004976271d",
+        "ignored_by_existing_config_count": 85,
+        "ignored_sha256": "255bb1215903fa40c7d41a501c5c0394d8a4adb264c63b58fd9084b6fcaf4fe1",
+        "every_excluded_candidate_proven_existing_config_ignored": true,
+        "result_count": 1261,
+        "before_after_inventory_equal": true
+      },
+      "errors": 0,
+      "warnings": 31,
+      "fatal_errors": 0,
+      "messages": 31,
+      "rule_counts": {
+        "@typescript-eslint/no-unused-vars": 24,
+        "import/no-anonymous-default-export": 6,
+        "@next/next/no-img-element": 1
+      },
+      "diagnostics": [
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/guard.config.mjs",
+          "line": 4,
+          "column": 60,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/guard.config.mjs",
+          "line": 5,
+          "column": 1,
+          "rule": "import/no-anonymous-default-export",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/guard.config.mjs",
+          "line": 5,
+          "column": 1,
+          "rule": "import/no-anonymous-default-export",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-caught-inner.test.mjs",
+          "line": 1,
+          "column": 14,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-caught-outer.test.mjs",
+          "line": 1,
+          "column": 14,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-healthy.test.mjs",
+          "line": 2,
+          "column": 17,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/a-uncertain.test.mjs",
+          "line": 1,
+          "column": 14,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/caught-inner.config.mjs",
+          "line": 5,
+          "column": 1,
+          "rule": "import/no-anonymous-default-export",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/caught-outer.config.mjs",
+          "line": 5,
+          "column": 1,
+          "rule": "import/no-anonymous-default-export",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/healthy.config.mjs",
+          "line": 5,
+          "column": 1,
+          "rule": "import/no-anonymous-default-export",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/uncertain.config.mjs",
+          "line": 5,
+          "column": 1,
+          "rule": "import/no-anonymous-default-export",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "scripts/verify/check-operator-console-isolation.mjs",
+          "line": 2,
+          "column": 19,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "src/components/documents/DocumentPreviewPane.tsx",
+          "line": 51,
+          "column": 438,
+          "rule": "@next/next/no-img-element",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "src/features/operator-console/actions.ts",
+          "line": 60,
+          "column": 81,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "src/features/operator-console/actions.ts",
+          "line": 60,
+          "column": 107,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "src/features/operator-console/actions.ts",
+          "line": 84,
+          "column": 86,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "src/features/operator-console/actions.ts",
+          "line": 84,
+          "column": 117,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "src/features/operator-console/actions.ts",
+          "line": 95,
+          "column": 76,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "src/features/operator-console/actions.ts",
+          "line": 95,
+          "column": 101,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        },
+        {
+          "file": "tests/e2e/global-setup.ts",
+          "line": 34,
+          "column": 3,
+          "rule": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "category": "RULE_WARNING"
+        }
+      ],
+      "raw_results_source_serialized": false,
+      "untracked_contamination": "NOT_ESTABLISHED_BY_THIS_TRACKED_INVENTORY",
+      "boundary": "All tracked JS/TS variants matching existing config only. Full package/default formatter failure remains separate; clean-checkout CI lint still required."
+    },
+    "workspace_lock_package_unchanged": true,
+    "raw_output_or_payload_hashes_persisted": false
+  },
+  "remaining_allocated_checks": [
+    {
+      "stage": "TYPECHECK",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "typecheck"
+      ],
+      "started": "2026-10-24T15:10:26.862023+00:00",
+      "ended": "2026-10-24T15:10:38.588372+00:00",
+      "capture": {
+        "native_exit": 0,
+        "category": null,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 180,
+        "streams": [
+          {
+            "observed_bytes": 101,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": true,
+      "facts": {
+        "TypeScript_error_codes": []
+      },
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    },
+    {
+      "stage": "PRODUCTION_BUILD",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "build"
+      ],
+      "started": "2026-10-24T15:10:38.645365+00:00",
+      "ended": "2026-10-24T15:11:07.474896+00:00",
+      "capture": {
+        "native_exit": 0,
+        "category": null,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 180,
+        "streams": [
+          {
+            "observed_bytes": 1922,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": true,
+      "facts": {
+        "compiled_successfully": true,
+        "generated_pages_marker": true,
+        "route_summary_marker": true
+      },
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    },
+    {
+      "stage": "HIGH_THRESHOLD_AUDIT",
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "audit",
+        "--audit-level=high",
+        "--registry=https://registry.npmjs.org/"
+      ],
+      "started": "2026-10-24T15:11:07.527308+00:00",
+      "ended": "2026-10-24T15:11:08.534575+00:00",
+      "capture": {
+        "native_exit": 0,
+        "category": null,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 30,
+        "streams": [
+          {
+            "observed_bytes": 45,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "qualified_success": true,
+      "facts": {
+        "severity_counts": {
+          "low": 0,
+          "moderate": 3,
+          "high": 0,
+          "critical": 0
+        },
+        "high_critical_zero": true,
+        "CLI_invocations": 1,
+        "agent_retries": 0,
+        "internal_HTTP_attempt_count": "UNKNOWN",
+        "CI_default_formatter_threshold_semantics": true
+      },
+      "workspace_lock_package_unchanged": true,
+      "tracked_changed_paths": [
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "raw_logs_or_payload_hashes_persisted": false,
+      "agent_retries": 0
+    }
+  ],
+  "recovery_dispositions": [
+    "Root retained optional logical-symlink createRequire smoke as invalid/unqualified, no retry; proceed existing requested checks.",
+    "Root stopped full-lint JSON approach after CAP_EXCEEDED; authorized existing default formatter once at unchanged cap.",
+    "Root authorized one tiny foreground stdio-inheritance wrapper to expose stderr via fd1, same native function/caps; default formatter raised RangeError.",
+    "Root stopped repository-wide/default/JSON approaches; authorized exactly one tracked-source ESLint API run with existing config/rules/thresholds, all excluded candidates independently proven ignored. Full package lint is not relabeled passed; clean-checkout CI lint remains required."
+  ],
+  "outer_tool_and_session_attribution": {
+    "zodLockRegenInitialTool": {
+      "chunk_id": "51da8a",
+      "wall_time_seconds": 2.4805981,
+      "exit_code": 0,
+      "original_token_count": 971
+    },
+    "zodInstallToolInitial": {
+      "chunk_id": "0c49d4",
+      "wall_time_seconds": 3.5428313,
+      "exit_code": 0,
+      "original_token_count": 421
+    },
+    "zodValidationToolInitial": {
+      "chunk_id": "b0c471",
+      "wall_time_seconds": 0.2394349,
+      "exit_code": 0,
+      "original_token_count": 231
+    },
+    "zodExistingValidationToolInitial": {
+      "chunk_id": "89ffd0",
+      "wall_time_seconds": 10.0068667,
+      "session_id": 61543,
+      "original_token_count": 527
+    },
+    "zodExistingValidationPoll5": {
+      "chunk_id": "fb9df8",
+      "wall_time_seconds": 1.7756901,
+      "exit_code": 0,
+      "original_token_count": 267
+    },
+    "zodDefaultValidationToolInitial": {
+      "chunk_id": "888a82",
+      "wall_time_seconds": 10.0105396,
+      "session_id": 40255,
+      "original_token_count": 0
+    },
+    "zodDefaultValidationPoll2": {
+      "chunk_id": "50ad4d",
+      "wall_time_seconds": 6.4e-06,
+      "exit_code": 0,
+      "original_token_count": 306
+    },
+    "zodMergedLintToolInitial": {
+      "chunk_id": "cc44a5",
+      "wall_time_seconds": 10.0047856,
+      "session_id": 72204,
+      "original_token_count": 0
+    },
+    "zodMergedLintPoll2": {
+      "chunk_id": "e66219",
+      "wall_time_seconds": 27.0538822,
+      "exit_code": 0,
+      "original_token_count": 476
+    },
+    "zodTrackedLintToolInitial": {
+      "chunk_id": "97a2b4",
+      "wall_time_seconds": 10.011346,
+      "session_id": 9451,
+      "original_token_count": 0
+    },
+    "zodTrackedLintPoll1": {
+      "chunk_id": "522e59",
+      "wall_time_seconds": 7.3e-06,
+      "exit_code": 0,
+      "original_token_count": 1568
+    },
+    "zodRemainingValidationToolInitial": {
+      "chunk_id": "a7f759",
+      "wall_time_seconds": 10.0094383,
+      "session_id": 87073,
+      "original_token_count": 0
+    },
+    "zodRemainingValidationPoll1": {
+      "chunk_id": "784396",
+      "wall_time_seconds": 1.991684,
+      "exit_code": 0,
+      "original_token_count": 880
+    }
+  },
+  "attribution_limits": "exec_command/write_stdin receipts describe the outer Python orchestration process; its exit0 does not turn a failing or overflowed inner native child into PASS. Pending session IDs are not completed native results. Exact final wait chunks and each separate child receipt are retained above.",
+  "counts": {
+    "lock_regeneration_invocations": 1,
+    "frozen_install_invocations": 1,
+    "optional_consumer_smoke_invalid": 1,
+    "full_package_lint_JSON": 1,
+    "full_package_lint_default": 1,
+    "full_package_lint_stdio_diagnostic": 1,
+    "tracked_source_lint_API": 1,
+    "focused_existing_unit": 1,
+    "lock_guard": 1,
+    "typecheck": 1,
+    "production_build": 1,
+    "high_threshold_audit": 1,
+    "mutation_retries": 0
+  },
+  "effects": {
+    "Git_mutations": 0,
+    "other_tracked_writes": 0,
+    "install_update_retries": 0,
+    "ignore_config_threshold_source_changes": 0,
+    "DB_browser_server_resources": 0,
+    "provider_CI_NORMAL_calls": 0,
+    "DEBUG_reads_or_mutations": 0,
+    "raw_logs_env_source_or_dynamic_payload_hashes_persisted": false
+  },
+  "boundaries": {
+    "full_package_lint": "FAILED_OR_UNQUALIFIED; stylish RangeError, no full package PASS",
+    "tracked_source_lint": "1261 tracked existing-config matched files; errors0/fatal0/warnings31; original default warnings threshold retained",
+    "untracked_contamination": "NOT_ESTABLISHED",
+    "CI_clean_checkout_lint": "REQUIRED",
+    "historical_CI_cause": "UNKNOWN",
+    "normal_acceptance": 0,
+    "required95": "0P0F95UNEXECUTED"
+  }
+}

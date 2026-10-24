@@ -1,0 +1,9 @@
+{
+  "decision": "PRESERVE_RECORDED_STEP_TIMESTAMP_PRECISION",
+  "target_job": 120881358292,
+  "step": 8,
+  "recorded_start": "2026-10-24T13:11:21Z",
+  "recorded_completion": "2026-10-24T13:11:22Z",
+  "interpretation": "Metadata has whole-second precision; source-backed fractional runner logs may lie anywhere in those recorded seconds. Window start inclusive13:11:21.000Z, completion-second upper edge exclusive13:11:23.000Z. Do not invent millisecond precision or rely on time overlap for attribution; exact unique command/group/completion boundaries remain required.",
+  "scope": "Offline audit projection/control clarification only. Not extension of a resource/operation lease, freshness budget, GET grant or observation clock."
+}

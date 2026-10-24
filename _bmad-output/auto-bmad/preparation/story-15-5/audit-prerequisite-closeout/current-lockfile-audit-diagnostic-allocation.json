@@ -1,0 +1,29 @@
+{
+  "allocation": "ROOT_CURRENT_LOCKFILE_READ_ONLY_AUDIT_DIAGNOSTIC",
+  "ownership": "Author owns only new B/current-lockfile-audit-diagnostic/result.json; no tracked writes or Git mutations. Not alone; preserve other owners/checkouts.",
+  "separate_from_closed_operation": "Auditjob760ebc9b-d32a-4b1c-8e39-49f3242f644d consumed/closed native1/no body; no job-log refetch/fallback/retry. This is a new current-dependency read diagnostic under standing owner authorization, not a historical CI claim.",
+  "command": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+    "audit",
+    "--json",
+    "--audit-level=high",
+    "--registry=https://registry.npmjs.org/"
+  ],
+  "maximum_command_invocations": 1,
+  "capture": "Reuse exact pinned native function from existing root-driver via narrow AST. Loop30s/stdout4MiB/stderr64KiB/wait2/twojoins1; complete receipt required; raw stdout/stderr/payload digests RAMonly. pnpm audit nonzero is expected when report identifies high/critical; distinguish complete parseable audit report from registry/request error. No retry/install/fullpnpm module test or backgroundresource.",
+  "preconditions": "Verify current Git head d647c81d93634ecdb85df66d8d3e8e7e4d51d841/ownedbranch and package/lock/workspace hashes before and after; no modifications. Cached pnpm entry pin1102/b276da51dc8ca5b0d3ee3371695b50fc8b3244b281b091c63a3f082a88dadeb9; exact reused native function hash57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1.",
+  "projection": "Closed status/code, native/capture closure/counts without raw payload hashes, severity counts, <=16 high/critical advisory records only with numeric ID and structurally canonical GHSA candidate, bounded public module name, severity, vulnerable/patched public ranges. No title/message/path/URL/token/env dump/raw response. Mark GHSA candidate UNVERIFIED and current report observation only. If overflow/ambiguous/unknown structure STOP unknown without raw persistence.",
+  "verification": "For observed high/critical candidates, use official advisory primary sources via web only to assess applicability and fix guidance; keep current evidence distinct from historical CI cause. Do not invent vulnerability or version.",
+  "forbidden": [
+    "source/dependency/lock/workflow/spec writes",
+    "Git mutations",
+    "joblog/artifact/status/provider calls",
+    "audit bypass",
+    "install/update",
+    "DB/browser/resources",
+    "CI rerun/NORMAL",
+    "merge/deploy"
+  ],
+  "result": "One concise standard6 JSON result with exact pins/actual command outcome and meaningful advisory evidence/limitations. Return no planned fix code; root coordinates exact shared-file allocation before any repair. No extra parser/framework/report families."
+}
