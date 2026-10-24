@@ -1,0 +1,106 @@
+{
+  "Outcome": "PASS_INT015_ANNOTATION_CRLF_TARGETED_SOURCE_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-targeted-followup-review.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "route": "Rootfc84ac/native0 explicit independent Sol6.1 High follow-up",
+    "scope": "INT015-P2-01 correction and latest-fix consequential regressions only. Earlier qualified integration conservation, installed reporter chain and fake-process safety are reused; no broad story round4.",
+    "base_head": "603ef74a2afa150638979805c3ed98f07928a5ce",
+    "resolved_finding": {
+      "id": "INT015-P2-01",
+      "prior_verdict": "NONPASS preserved",
+      "prior_report": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-actual-diff-review.json",
+        "bytes": 12136,
+        "sha256": "68f1b9dff1c7bfdc24fa6d338549d849b7bb6334bad4b8409efff4684283a773"
+      },
+      "actual_fix": "Unit3241–3242 takes sourceText defaulting to the actual checkout read and applies replaceAll CRLF→LF before the unchanged baseline digest, exact five-span inverse and AST extraction. Both ordinary default-read callers and explicit LF/CRLF witness callers reach the same normalization. No platform flag or downstream exception bypass is introduced.",
+      "strictness": "Only CRLF pairs canonicalize. Bare CR and appended content still fail exact original hash/inverse; source equality and retained AST assertions are conserved. Source input injection is confined to this unit helper and stays subject to the exact-source guard.",
+      "controls": "The existing first declaration at3304 runs actual-source LF and CRLF through the unchanged installed reporter→actual raw reader/observer→helper/publisher, preserving notice refusal, synthetic IP/credential/security-field refusals, missing-location/displayfalse negatives and candidate zero calls/output. The existing second declaration at3332 proves equivalent current/retained source for both representations and rejects bare CR/content drift. No additional test declaration is added by this correction."
+    },
+    "reviewed_source_pins": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36375,
+        "sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+        "change": "Unchanged since initial source review"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 363561,
+        "sha256": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147",
+        "LF_bytes": 360216,
+        "LF_sha256": "78d3bcda52ee96211c39f2a214c149c9fe17fb9228402e8bde1b9a29cb7e3eaf"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 270016,
+        "sha256": "91d39d3c4bb416b0fd7858b89c2e55cec8d61fb69e9d0193c337b5a66974455f",
+        "LF_bytes": 266822,
+        "LF_sha256": "a43150ffdc37ad02bd5a80b0cc99ba790ecc3a1d912715505302932067c6c1c7"
+      }
+    ],
+    "author_evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/result.json",
+        "bytes": 4472,
+        "sha256": "531fafb19841255b2e628a58715de4d968b8185775a56296785ead4f9b7de59a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/checks.json",
+        "bytes": 10736,
+        "sha256": "54086a9a06a33b512726449e5943e092cce658d6ba27583c7e03613e721f2f7a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/preservation.json",
+        "bytes": 8932,
+        "sha256": "bee84922e7aad8cfed42b1b0384ff60f9e9c95d50fd02fc329a1b53830d15c2f"
+      }
+    ],
+    "independent_conservation": {
+      "method": "Static inspection and RAM-only string/hash inverse; no actual helper/test/function execution.",
+      "unit": "Five unique correction spans reversed independently recover frozen v1 raw362843/SHA2560ca2a0becdf813e50be1f72b041286ada2be96f06879628d97ac29e5946ac54a exactly. Original352713-byte unit prefix independently hashes630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc. Thus original tests/seams, all unchanged runtime helper/reporter statements, five-span integration oracle, mocks/probes/signals/kill and safety guards retain the previously reviewed bytes.",
+      "spec": "Removing2271 appended bytes and reverting the one current evidence anchor3332→3329 independently recovers v1 raw267745/SHA2567b495c0812094707e7e1c1afcdf7a36782b4e6a631c73d13e0976dc278580fa2. Original264061-byte prefix independently hashes74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb. Kernel/OwnerFacts/status/AutoRunResult/counter/history remain unchanged; only current evidence/SRO correction and appendix are involved.",
+      "integration": "Exact36375/6ae0f1c2 pin verified unchanged. Earlier exact five-span removal and PG17 identity/version, authority/negative SQL, rollback/same-fresh absence/close/AggregateError/assertions/80s and180s conservation remain qualified. No production wrapper/helper/contract/reporter/config/application/database change."
+    },
+    "check_qualification": {
+      "meaningful_RED": "Author CRLF-focused actual helper controls0P2F/native1 at exact inverse-span guard, after LF reporter/safety witness. This specifically reproduces the independent finding, without promoting earlier unrelated harness failures.",
+      "GREEN": "Boundary correction yields focused2P0F/native0 with LF/CRLF plus strict negatives. Full final affected unit201P0F0skip0cancel/native0 was executed after this runtime correction; final TypeScriptnative0/scopedlintnative0 with3 unchanged warnings. Counts are not added to previous201 or claimed as native95 coverage.",
+      "closure": "All5 reported commands have complete capture, physical EOF, reader done/no error/no overflow, joined readers, closed handles and settled direct process. The native process status is distinguished from outer capture exit0 and the full-file initial session50670/completion poll. Native capture function57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1 is reused; reviewer did not invoke it.",
+      "SRO": "Author9 current anchor checks pass; actual changed declarations are3304/3332. One Suggested Review Order retained. Declaration titles and count2 are unchanged from v1; normalization/representation loops add zero declarations."
+    },
+    "catalog": "Refresh remains unallocated/unexecuted in this review. Root must separately allocate ONE actual static catalog refresh for the two final declarations3304/3332. Historical448/19/199 stays historical; no fabricated new catalog qualification.",
+    "limits": [
+      "PASS is bounded source/latest-fix approval only, not native runtime or development acceptance.",
+      "The earlier source-driven collision witness proves removal of two owned annotation emissions under located/display-enabled installed-reporter conditions; it does not identify the actual first hosted emitter or prove API019 repaired.",
+      "Current actual95 remains93P/API019F/API020unexecuted. STDOUT/OTHER_OR_UNKNOWN is observed; actual cause/emitter/benignity/native-first-throw/request linkage UNKNOWN. Changed-source NORMAL may still fail.",
+      "Current key deletion/backend rollback remain unverified. Historical399982 remains truthful/unverified; separately scoped job-ended operational disposition is Root-owned and not physical deletion proof."
+    ],
+    "boundary": {
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "normal_acceptance": 0,
+      "all_old_effect_slots": "CLOSED",
+      "new_effect_authority": false,
+      "no_merge_or_deployment": true
+    },
+    "reviewer_activity": "Read frozen correction reports, changed helper/controls and spec appendix; checked final3 pins, frozen initial NONPASS and original prefixes; performed bounded RAM-only five-span/spec inverse metadata comparisons. No tests or actual source/helper/function/Node/native/workload execution, Git mutation, network/install/DB/browser/resource/SQL/DEBUG activity. Sole write is this new report."
+  },
+  "Open questions": [
+    "Actual changed-source native result, first-emitter/cause and API019 outcome remain UNKNOWN until separately authorized evidence.",
+    "Current/historical backend/key facts remain unresolved as previously qualified."
+  ],
+  "Deferred work": [
+    "Root separately allocates ONE final static catalog refresh for the two declarations at3304/3332.",
+    "Any new native observation, acquisition, custody action or runtime grant requires its separate precise ownership/authorization.",
+    "Complete current required gates and Root delivery truth audit before P5/development/delivery acceptance; release and deployment gates remain separate."
+  ],
+  "Blockers": [
+    "No unresolved INT015-P2-01 or consequential source regression found in the bounded latest fix.",
+    "Current failed/incomplete required95 still blocks native/development acceptance; this source PASS does not close P5 or grant effects."
+  ]
+}

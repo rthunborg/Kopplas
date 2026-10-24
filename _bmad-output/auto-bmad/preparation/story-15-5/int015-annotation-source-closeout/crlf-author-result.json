@@ -1,0 +1,78 @@
+{
+  "Outcome": "IMPLEMENTED_INT015_P2_01_CRLF_FIX_SOURCE_ONLY_PENDING_INDEPENDENT_FOLLOWUP",
+  "Files changed": [
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 363561,
+      "sha256": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147",
+      "LF_bytes": 360216,
+      "LF_sha256": "78d3bcda52ee96211c39f2a214c149c9fe17fb9228402e8bde1b9a29cb7e3eaf",
+      "LF_Git_blob_SHA1": "c7b62ce437cdc124b21935260b25873ad0420674",
+      "CRLF_pairs": 3345,
+      "bare_LF": 0
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 270016,
+      "sha256": "91d39d3c4bb416b0fd7858b89c2e55cec8d61fb69e9d0193c337b5a66974455f",
+      "LF_bytes": 266822,
+      "LF_sha256": "a43150ffdc37ad02bd5a80b0cc99ba790ecc3a1d912715505302932067c6c1c7",
+      "LF_Git_blob_SHA1": "439b865ed47621a591e2a67cf24f3f7e92eed9d0",
+      "CRLF_pairs": 3194,
+      "bare_LF": 0
+    }
+  ],
+  "Status": {
+    "base_head": "603ef74a2afa150638979805c3ed98f07928a5ce",
+    "base_metadata_scope": "Root allocation binding; no new Git command in this correction.",
+    "scope": "Only new INT015 unit helper/control LF/CRLF boundary and current spec evidence/SRO. Integration source exact36375/6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169 unchanged.",
+    "correction": "Actual source-text boundary replaces CRLF pairs only with LF before existing exact baseline hash/five-span inverse/AST. Both existing test declarations exercise actual-source LF/CRLF. Bare-CR and altered content still reject.",
+    "SuggestedReviewOrder": [
+      "Verify one boundary normalization and exact5-span unit correction inverse to frozen v1; no original-unit/source invariant changed.",
+      "Inspect existing first test's LF/CRLF loop through actual installed reporter/raw reader/helper/publisher and unchanged safety/mocked process cleanup.",
+      "Inspect existing second test's exact source/AST equivalence and bare-CR/content-drift rejection.",
+      "Check final201/type/scopedlint receipts and spec current anchors; original reports/NONPASS/kernel/OwnerFacts/history remain frozen."
+    ],
+    "checks": {
+      "focused_RED": "0P2F/native1 at expected CRLF inverse-span guard",
+      "focused_GREEN": "2P0F/native0, both representations plus strict negatives",
+      "affected_final": "201P0F0skip0cancel/native0 after final runtime helper fix",
+      "TypeScript": "native0",
+      "scoped_lint": "native0;0errors/3unchangedwarnings",
+      "SRO": "9 current source anchors valid; one Suggested Review Order"
+    },
+    "new_test_declarations": 0,
+    "existing_added_declarations": 2,
+    "final_declaration_lines": [
+      3304,
+      3332
+    ],
+    "catalog_refreshed": false,
+    "evidence": {
+      "checks": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/checks.json",
+      "preservation": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/preservation.json"
+    },
+    "causality": "This qualifies unit source portability and owned annotation-emission removal. It does not identify actual current first emitter/cause or prove API019 repair.",
+    "current95": "93P/API019 failed/API020 unexecuted",
+    "current_IP": "STDOUT/OTHER_OR_UNKNOWN; cause/emitter/benignity/native-first-throw/request linkage UNKNOWN",
+    "custody": "Current key deletion/backend rollback unverified; historical399982 disposition unresolved. Root separately owns scoped job-ended operational disposition.",
+    "P5": "OPEN",
+    "review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "normal_acceptance": 0,
+    "deployment": false,
+    "frozen": true
+  },
+  "Open questions": [
+    "Actual runtime first emitter remains UNKNOWN; separately admitted changed-source NORMAL may still fail API019."
+  ],
+  "Deferred work": [
+    "Independent High follow-up targets INT015-P2-01 and consequential regressions before Root commit; no broad round4.",
+    "Root separately allocates one final static catalog refresh, source tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts with unchanged two titles now at3304/3332.",
+    "Any runtime/custody/effect work remains separately owned/authorized."
+  ],
+  "Blockers": [
+    "No remaining bounded correction/control failure. Independent targeted follow-up approval remains outstanding.",
+    "Current required95 remains incomplete; P5 does not advance."
+  ]
+}

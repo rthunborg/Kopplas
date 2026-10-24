@@ -1,0 +1,111 @@
+{
+  "Outcome": "NONPASS_INT015_ANNOTATION_REMEDIATION_SOURCE_CONTROL_CRLF_REGRESSION",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-actual-diff-review.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [
+      {
+        "id": "INT015-P2-01",
+        "priority": "P2",
+        "title": "Normalize checkout line endings before exact source inverse",
+        "file": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 3242,
+        "related_lines": "3243–3248",
+        "caller": "Both new INT015 annotation unit controls call actualInt015AnnotationSources() in ordinary pnpm test:unit/Node unit execution.",
+        "trigger": "A normal Windows checkout with actual core.autocrlf=true writes the integration source as CRLF. The path has no text/eol override.",
+        "defect": "The new helper reads raw UTF8, hashes against a literal LF baseline, then searches LF-only inverse spans. CRLF text misses those spans and raises unique actual INT015 inverse span before either reporter/retention control can run. No accessor/downstream normalization blocks this failure.",
+        "impact": "Introduced deterministic failure of both new required unit controls on the supported Windows checkout workflow after Git rewrites/re-checks out this source. Current manually written LF working source and Linux CI can pass, so current GREEN does not cover this representation.",
+        "evidence": {
+          "core_autocrlf": "true, actual read-only git config",
+          "path_attributes": "text unspecified/eol unspecified, actual git check-attr",
+          "gitattributes_sha256": "bb5d5971aff2eb4ac1d1971ff4070b69e33a9e9f4271b06a0195121d55679a8d",
+          "git_diff_warning": "LF will be replaced by CRLF the next time Git touches the integration file",
+          "RAM_only_witness": "No source/function/test execution: represent current source with CRLF in RAM. Bytes36375→36888; CRLF SHA256d2736f7e38d7d7f7144ca8b6c8c6ca6ebd7bd6e33fa2549f37713ded1ae0770d. First required LF inverse-span matches1→0; the reverse-order final annotation span also requires literal LF. Both new callers share this failing helper."
+        },
+        "minimal_correction": "Canonicalize CRLF to LF only at this source-text boundary before digest/inverse/AST comparison, retaining exact LF content/hash and all five-span guards. Qualify equivalent LF and CRLF source representations with a bounded actual-helper/RAM control; do not change production wrapper/privacy/reporter or weaken retained-source assertions."
+      }
+    ],
+    "route": "Root466a8d/native0, explicit independent Sol6.1 High targeted latest-diff/regression review; not broad story round4",
+    "base_head": "603ef74a2afa150638979805c3ed98f07928a5ce",
+    "scope": "Frozen exact3 diff, actual added source controls, consequential retention and unchanged downstream seams. Sole blocker is introduced checkout representation handling; no generic story or unrelated source review.",
+    "reviewed_source_pins": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36375,
+        "sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 362843,
+        "sha256": "0ca2a0becdf813e50be1f72b041286ada2be96f06879628d97ac29e5946ac54a",
+        "LF_bytes": 359506,
+        "LF_sha256": "46ddf3c74ccfa79f7dc0c8deb925a9a1f661ecda5301ab46697cb65df318fd95"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 267745,
+        "sha256": "7b495c0812094707e7e1c1afcdf7a36782b4e6a631c73d13e0976dc278580fa2",
+        "LF_bytes": 264580,
+        "LF_sha256": "6cc6401e692e998080aea39c8d1a75fa3c0948b19b1097c0a362b4f29ab3ae99"
+      }
+    ],
+    "author_evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/result.json",
+        "bytes": 5949,
+        "sha256": "9c395ea45bf0580226c14fb2eb349396e0d825c9c9c1dc95c53c70547c2cd0c5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/checks.json",
+        "bytes": 21757,
+        "sha256": "7224238f64ffde43f3c01b948f62a6adeeee00c523024c9a855d127cc91eb065"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/preservation.json",
+        "bytes": 9156,
+        "sha256": "f69142c77be13fa4db6c582b242ebc3e208cbfad141c97d178209a7f231bd595"
+      }
+    ],
+    "qualified_conservation": {
+      "integration": "Independently compared immutable603ef Git object in RAM to final source: exactly five allocated replacements produce current36375 bytes. No other integration text differs. Original36989/SHA256d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7. The only removed behavior is two informational annotations; callback context and nativeVersion bookkeeping are unused after those removals.",
+      "retained": "All PG17 version/identity qualification, setup/restricted authority/negative checks, migration/owner source references, native engine baseline/replay/SET/ownership, rollback, same/fresh absence, connection/transport cleanup, AggregateError, original80s deadline and180s timeout are byte-retained by exact candidate equality. Supporting geometry105expect→105;41 literal await sql(→41 plus retained generic calls;2.query→2. The41 literal count is not a claim that all generic SQL calls were counted.",
+      "unit_prefix": "Independently verified raw first352713 bytes SHA256630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc; immutable Git LF349478/SHA256d28789aa26532bc801e1f3fac1ffdc407cb6442c4dcface18cfb8cf2301263bb remains exact prefix. Only102 appended lines.",
+      "spec_prefix": "Independently verified raw first264061 bytes SHA25674d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb; immutable Git LF260940/SHA25699e050e1a8840d78e3db6bc2cbef16bbb2842632a7723e9243c6c38302dd5ee6 remains exact prefix. Only44 appended lines in existing Suggested Review Order; sole SRO remains1. Kernel/OwnerFacts/status/AutoRunResult/counter/history incl383–384 unchanged. Amendment accurately supersedes annotation mechanism while retaining historical evidence."
+    },
+    "control_assessment": {
+      "mechanism": "Configured unchanged INTEGRATION_ARGS includes github-actions reporter. Installed Vitest4.1.9 GithubActionsReporter default displayAnnotationstrue and located annotation condition explicitly checked at installed chunk3261–3296. It emits logger.log newline+formatMessage notice. New controls extract actual old reporting AST nodes, execute those source expressions with synthetic version/context, invoke actual installed reporter, then unchanged actual launchOwned/raw observer→fixture helper/publisher. Candidate has no reporting nodes/calls/output. This proves the owned source emission collision/removal under stated conditions, not actual hosted first-emitter cause.",
+      "meaningful": "Exact full-file inverse and retained AST comparison complement the runtime output witness; controls are not merely a copy of the desired output. Missing location/displayfalse controls and synthetic IP/credential/security-field controls conserve privacy refusal. No relaxed raw predicate, first-only freeze, raw-before-filter, streams/framing/overflow handling, deadlines, count or label contracts were changed.",
+      "fake_process_safety": "Existing actualFeedRegion injects spawn, processIdentity and process.kill for fake pid125. Both group existence probe and group signals in unchanged launchOwned445–451 use that injected process object; imported createOwnedGroupStopper receives these callbacks and injected readIdentity. The mock kill throws fixed ESRCH; no fake PID reaches host probes/signals/cleanup. Existing observer/helper/publisher dependencies are mocked at established seams.",
+      "protected_pins": "Wrapper50465/e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2; helper144864/bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5; ci-contract8135/3ab0a33097dae9b6a238291174637f78443766e537f052190e4732f52b7842d3. Installed reporter151531/cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798; package5918/e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9. Independently hash-verified against frozen preservation evidence.",
+      "check_provenance": "Author evidence: three extraction-harness0P2F failures earn no behavioral RED credit. Corrected recursive-source RED0P2F at intended candidate-emission/candidate-equality assertions→focusedGREEN2P. Full affected201P0F0skip0cancel precedes erased type-only VisitResult union correction; final focused2P/TypeScriptnative0/scopedlintnative0 then bind final source. Three warnings remain unchanged. Full201 was not rerun or claimed on final type annotation; no runtime statement change makes that distinction acceptable. All listed native captures have EOF/readers joined/closed handles/settled/nonoverflow; outer capture0 is not substituted for actual command native status.",
+      "limits": "Current LF controls are qualified within their representation; the CRLF regression prevents unconditional source approval. No PG17/DB/browser/native application execution was performed by these controls. Actual current95 remains93P/API019F/API020unexecuted and IPSTDOUT/OTHER_OR_UNKNOWN; emitter/cause/benignity/native-first-throw/request linkage UNKNOWN. Future changed-source NORMAL may still fail."
+    },
+    "catalog": "Not refreshed or requalified. Two new declarations at3304/3329 require separately allocated ONE actual static catalog refresh. Historical448/19/199 remain historical;450/19/201 arithmetic is not a qualified refreshed catalog or runtime result.",
+    "boundary": {
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "normal_acceptance": 0,
+      "all_old_effect_slots": "CLOSED",
+      "current_DB": "key deletion/backend rollback unverified",
+      "historical399982": "Preserved unverified; scoped job-end operational disposition belongs to Root and does not become physical deletion proof",
+      "deployment_authorized": false
+    },
+    "reviewer_activity": "Read-only Git diff/baseline-object/config/attribute and bounded source/report reads, metadata pins and pure RAM string/hash preservation/CRLF witness only. No reviewer test/function/Node/install/DB/browser/resource/network/native workload/SQL corpus/DEBUG execution, no Git mutation or source change. First diff attempt without explicit Git-C returned usage/nonrepo native1 and changed nothing; corrected explicit MAIN diff native0. Sole write is this new report."
+  },
+  "Open questions": [
+    "Actual hosted first-emitter/cause and whether changed-source NORMAL resolves API019 remain UNKNOWN.",
+    "Static catalog refresh and future finite native observation are separate Root allocations, not authorized by this review."
+  ],
+  "Deferred work": [
+    "Author corrects INT015-P2-01 in the existing unit source boundary and qualifies LF/CRLF equivalence with retained exact inverse/source assertions. Follow-up review remains targeted to that fix and consequential regressions.",
+    "After source approval Root separately allocates ONE static catalog refresh for the two declarations.",
+    "Any new runtime observation/cleanup requires its own precise authorization; complete current gates and Root delivery audit remain necessary."
+  ],
+  "Blockers": [
+    "INT015-P2-01: both new unit controls deterministically fail after normal Windows CRLF checkout. Source approval withheld pending bounded correction.",
+    "Current required95 remains incomplete; no P5/development/delivery acceptance, new acquisition, cleanup, merge or deployment authority."
+  ]
+}

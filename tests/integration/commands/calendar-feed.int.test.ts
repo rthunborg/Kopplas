@@ -286,7 +286,7 @@ if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authentic
   });
 
 
-  test("[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership", async context => {
+  test("[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership", async () => {
     // This case has its own disposable direct connections: an unverified session
     // is closed, never returned to an application/test pool. No resource startup.
     const { randomUUID } = await import("node:crypto");
@@ -304,7 +304,6 @@ if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authentic
     const failures: Error[] = [];
     let stage = "qualification", connected = false, original: string | undefined, transportFailed = false, cleaning = false;
     const primaryDeadline = Date.now() + 80_000;
-    let nativeVersion: { serverVersion: string; serverVersionNum: number } | undefined;
     let stack: Parameters<typeof createCalendarFeedDatabaseClient>[0] | undefined;
     let client: ReturnType<typeof createCalendarFeedDatabaseClient> | undefined;
     function directClient(readOnly = false) {
@@ -405,14 +404,12 @@ if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authentic
         "select session_user::text session,current_user::text current,r.rolsuper super,s.rolsuper session_super,current_setting('server_version') server_version,current_setting('server_version_num') server_version_num from pg_roles r join pg_roles s on s.rolname=session_user where r.rolname=current_user");
       original = identity.session;
       if (identity.current !== original || !identity.super || !identity.session_super || Math.floor(Number(identity.server_version_num) / 10000) !== 17) throw new Error("Isolated native PG17 superuser qualification failed");
-      nativeVersion = { serverVersion: identity.server_version, serverVersionNum: Number(identity.server_version_num) };
       const { rows: ledger } = await sql("select version,name from supabase_migrations.schema_migrations order by version");
       expect(JSON.stringify(ledger.map(row => ({ version: String(row.version), name: row.name }))) === JSON.stringify(migrations)).toBe(true);
       const { rows: functions } = await sql("select p.oid::regprocedure::text identity,pg_get_userbyid(p.proowner) owner,p.prosecdef definer from pg_proc p where p.oid=any(array[" + FEED_FUNCTIONS.map((_: string, i: number) => `to_regprocedure($${i + 1})`).join(",") + "])", [...FEED_FUNCTIONS]);
       expect(functions.length).toBe(FEED_FUNCTIONS.length);
       expect(functions.every(row => row.owner === "calendar_feed_owner" && row.definer === true)).toBe(true);
       await absent(client);
-      await context.annotate(JSON.stringify({ ...nativeVersion, isolatedStackQualified: true }), "calendar-feed-pg17-observed");
       stage = "transaction-setup";
       await sql("begin");
       await sql(`create role ${migrator} nologin noinherit nosuperuser nocreatedb createrole noreplication nobypassrls`);
@@ -512,7 +509,5 @@ if (process.env.CALENDAR_FEED_CAUSE_PROOF_MODE !== "1") describe("15.5 authentic
       if (freshTransportFailed) failures.push(new Error("PG17 proof fresh connection transport failed"));
     }
     if (failures.length) throw new AggregateError(failures, "PG17 owner proof/cleanup failed; sensitive details redacted");
-    await context.annotate(JSON.stringify({ ...nativeVersion, restrictedFreshReplay: true, engineAdmin: true, engineSet: false,
-      restrictedSetAndOwnership: true, unsafeAttributeAndMembershipGuards: true, sameAndFreshAbsent: true }), "calendar-feed-pg17-qualified");
   }, 180_000);
 });

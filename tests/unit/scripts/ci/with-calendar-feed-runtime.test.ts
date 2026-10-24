@@ -3233,3 +3233,113 @@ test("canonical catalog synthetic PG17 array representation bridges only explici
     await f.factory.pool()?.end();
   }
 });
+
+// Source-only INT015 annotation remediation. The old publishers below are
+// reconstructed from the exact five-span inverse, never a hand-written oracle.
+const int015AnnotationChanges: readonly (readonly [string,string])[] = [["  test(\"[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership\", async context => {\n", "  test(\"[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership\", async () => {\n"], ["    const primaryDeadline = Date.now() + 80_000;\n    let nativeVersion: { serverVersion: string; serverVersionNum: number } | undefined;\n    let stack: Parameters<typeof createCalendarFeedDatabaseClient>[0] | undefined;\n", "    const primaryDeadline = Date.now() + 80_000;\n    let stack: Parameters<typeof createCalendarFeedDatabaseClient>[0] | undefined;\n"], ["      nativeVersion = { serverVersion: identity.server_version, serverVersionNum: Number(identity.server_version_num) };\n      const { rows: ledger } = await sql(\"select version,name from supabase_migrations.schema_migrations order by version\");\n", "      const { rows: ledger } = await sql(\"select version,name from supabase_migrations.schema_migrations order by version\");\n"], ["      await absent(client);\n      await context.annotate(JSON.stringify({ ...nativeVersion, isolatedStackQualified: true }), \"calendar-feed-pg17-observed\");\n      stage = \"transaction-setup\";\n", "      await absent(client);\n      stage = \"transaction-setup\";\n"], ["    if (failures.length) throw new AggregateError(failures, \"PG17 owner proof/cleanup failed; sensitive details redacted\");\n    await context.annotate(JSON.stringify({ ...nativeVersion, restrictedFreshReplay: true, engineAdmin: true, engineSet: false,\n      restrictedSetAndOwnership: true, unsafeAttributeAndMembershipGuards: true, sameAndFreshAbsent: true }), \"calendar-feed-pg17-qualified\");\n  }, 180_000);\n", "    if (failures.length) throw new AggregateError(failures, \"PG17 owner proof/cleanup failed; sensitive details redacted\");\n  }, 180_000);\n"]];
+
+async function actualInt015AnnotationSources(sourceText=readFileSync(new URL("../../../integration/commands/calendar-feed.int.test.ts",import.meta.url),"utf8")) {
+  const ts=await import("typescript"),current=sourceText.replaceAll("\r\n","\n");
+  const digest=(text:string)=>createHash("sha256").update(text).digest("hex"),baselineHash="d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7";
+  let old=current;
+  if(digest(current)!==baselineHash)for(const [before,after]of [...int015AnnotationChanges].reverse()){
+    assert.equal(old.split(after).length,2,"unique actual INT015 inverse span");old=old.replace(after,before);
+  }
+  assert.equal(digest(old),baselineHash,"exact allocated original source");
+  let expected=old;for(const [before,after]of int015AnnotationChanges){
+    assert.equal(expected.split(before).length,2,"unique actual INT015 reporting span");expected=expected.replace(before,after);
+  }
+  const inspect=(source:string)=>{
+    const ast=ts.createSourceFile("calendar-feed.int.test.ts",source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
+    const callbacks:import("typescript").ArrowFunction[]=[];
+    const visit=(node:import("typescript").Node)=>{
+      if(ts.isCallExpression(node)&&ts.isIdentifier(node.expression)&&node.expression.text==="test"&&ts.isStringLiteral(node.arguments[0])
+        &&node.arguments[0].text.includes("15.5-INT015")){
+        const callback=node.arguments[1];assert.ok(ts.isArrowFunction(callback));callbacks.push(callback);
+      }
+      ts.forEachChild(node,visit);
+    };visit(ast);assert.equal(callbacks.length,1);const callback=callbacks[0];assert.ok(ts.isBlock(callback.body));
+    const metadata=(node:import("typescript").Node)=>{
+      if(ts.isVariableStatement(node))return node.declarationList.declarations.some(d=>ts.isIdentifier(d.name)&&d.name.text==="nativeVersion");
+      if(!ts.isExpressionStatement(node))return false;
+      const expression=node.expression;
+      if(ts.isBinaryExpression(expression)&&ts.isIdentifier(expression.left)&&expression.left.text==="nativeVersion")return true;
+      return ts.isAwaitExpression(expression)&&ts.isCallExpression(expression.expression)
+        &&expression.expression.expression.getText(ast)==="context.annotate";
+    };
+    const reporting:import("typescript").Statement[]=[];
+    const collect=(node:import("typescript").Node)=>{if(metadata(node))reporting.push(node as import("typescript").Statement);else ts.forEachChild(node,collect);};
+    collect(callback.body);
+    const transformed=ts.transform(callback.body,[context=>root=>{
+      const visit=(node:import("typescript").Node):import("typescript").VisitResult<import("typescript").Node>|undefined=>metadata(node)?undefined:ts.visitEachChild(node,visit,context);
+      return ts.visitNode(root,visit) as import("typescript").Block;
+    }]);
+    const retained=ts.createPrinter().printNode(ts.EmitHint.Unspecified,transformed.transformed[0],ast);transformed.dispose();
+    return {reporting,program:reporting.map(node=>node.getText(ast)).join("\n"),
+      locations:reporting.filter(node=>node.getText(ast).startsWith("await context.annotate(")).map(node=>{
+        const position=ast.getLineAndCharacterOfPosition(node.getStart(ast));return {file:"tests/integration/commands/calendar-feed.int.test.ts",line:position.line+1,column:position.character+1};
+      }),retained,
+      parameters:callback.parameters.map(node=>node.getText(ast))};
+  };
+  return {old,current,expected,original:inspect(old),candidate:inspect(current)};
+}
+
+async function installedInt015AnnotationEmission(source:Awaited<ReturnType<typeof actualInt015AnnotationSources>>["original"],options:{located?:boolean;display?:boolean}={}) {
+  const {GithubActionsReporter}=await import("vitest/reporters"),reporter=new GithubActionsReporter({displayAnnotations:options.display??true});
+  const output:string[]=[],calls:{message:string;type:string}[]=[];
+  reporter.onInit({logger:{log:(line:string)=>output.push(line+"\n")}} as never);
+  const context={annotate:async(message:string,type:string)=>{
+    const location=source.locations[calls.length];calls.push({message,type});
+    reporter.onTestCaseAnnotate({} as never,{message,type,...(options.located===false?{}:{location})} as never);
+  }};
+  const strip=(nodeModule as unknown as {stripTypeScriptTypes(source:string):string}).stripTypeScriptTypes;
+  const run=new Function("context","identity","return (async()=>{"+strip(source.program)+"})()") as
+    (inputContext:typeof context,identity:{server_version:string;server_version_num:string})=>Promise<void>;
+  // Synthetic version data only; the original source expressions construct both
+  // actual annotation messages. RPC/context/logger are mocks, reporter is real.
+  await run(context,{server_version:"17.6",server_version_num:"170006"});
+  return {output,calls};
+}
+
+test("INT015 annotation actual source installed reporter raw reader helper publisher and retained safety",async()=>{
+  const actual=readFileSync(new URL("../../../integration/commands/calendar-feed.int.test.ts",import.meta.url),"utf8").replaceAll("\r\n","\n");
+  for(const representation of [actual,actual.replaceAll("\n","\r\n")]){
+  const sources=await actualInt015AnnotationSources(representation),old=await installedInt015AnnotationEmission(sources.original);
+  assert.equal(old.calls.length,2);assert.equal(old.output.length,2);
+  assert.deepEqual(old.calls.map(call=>call.type),["calendar-feed-pg17-observed","calendar-feed-pg17-qualified"]);
+  for(const line of old.output){
+    assert.ok(line.startsWith("\n::notice ")); // No invented IP: :: is formatter syntax.
+    const read=await api019ProvenanceReader([["STDOUT",line]]);
+    assert.equal(read.failure,false);assert.equal(read.rows[0].sensitiveOutputCount,1);
+    assert.deepEqual(read.rows[0].firstPrivacy,{child:"integration",predicate:"ip-literal",stream:"STDOUT",renderedForm:"OTHER_OR_UNKNOWN"});
+    const refusal=await api019ProvenanceRefusal(read.rows[0].firstPrivacy);
+    assert.equal(refusal.error.message,"Calendar fixture failure [stage=scenario-telemetry-privacy-refused-integration-ip-stdout-other;category=unknown;sqlstate=unavailable]");
+    assert.ok(refusal.origins.calendarFixtureOwnedOrigins.includes("scenario-telemetry-privacy-refused-integration-ip-stdout-other"));
+  }
+  assert.equal((await installedInt015AnnotationEmission(sources.original,{located:false})).output.length,0);
+  assert.equal((await installedInt015AnnotationEmission(sources.original,{display:false})).output.length,0);
+  for(const [line,predicate]of [["203.0.113.7\n","ip-literal"],["synthetic-secret\n","known-credential"],["proof=fixed\n","feed-path-or-security-field"]]){
+    const read=await api019ProvenanceReader([["STDOUT",line]]);
+    assert.equal(read.rows[0].firstPrivacy.predicate,predicate);
+    assert.match((await api019ProvenanceRefusal(read.rows[0].firstPrivacy)).error.message,/scenario-telemetry-privacy-refused-integration-/);
+  }
+  const candidate=await installedInt015AnnotationEmission(sources.candidate);
+  assert.deepEqual(candidate.calls,[],"actual candidate owns no annotation invocation");
+  assert.deepEqual(candidate.output,[],"actual candidate produces no annotation output");
+  }
+});
+
+test("INT015 annotation exact five-span inverse preserves all retained authority queries assertions cleanup",async()=>{
+  const source=await actualInt015AnnotationSources();assert.equal(createHash("sha256").update(source.current).digest("hex"),createHash("sha256").update(source.expected).digest("hex"),"current source matches exact five-span candidate");
+  assert.equal(source.original.reporting.length,4);assert.equal(source.candidate.reporting.length,0);
+  assert.deepEqual(source.original.parameters,["context"]);assert.deepEqual(source.candidate.parameters,[]);
+  assert.deepEqual(source.candidate.retained,source.original.retained);
+  for(const representation of [source.current,source.current.replaceAll("\n","\r\n")]){
+    const equivalent=await actualInt015AnnotationSources(representation);
+    assert.equal(equivalent.current,source.current);assert.deepEqual(equivalent.original.retained,source.original.retained);
+  }
+  for(const altered of [source.current.replace("\n","\r"),source.current+" "])await assert.rejects(actualInt015AnnotationSources(altered));
+  for(const fragment of["Math.floor(Number(identity.server_version_num) / 10000) !== 17","const primaryDeadline = Date.now() + 80_000;",
+    "await fresh.connect(); await setupQualified(fresh); await absent(fresh);","if (failures.length) throw new AggregateError(failures,","}, 180_000);"])
+    assert.ok(source.current.includes(fragment));
+});

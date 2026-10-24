@@ -1,0 +1,191 @@
+{
+  "status": "CLOSED_SOURCE_CORRECTION_EVIDENCE_ONLY",
+  "copies": [
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-INT015-annotation-remediation-plan-validation.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/plan-validation.json",
+      "bytes": 13237,
+      "sha256": "c8b977188a23e43c7d96bf35b03731b45b13b4210f70b3fc6c52320e379d5030",
+      "LF_bytes": 13128,
+      "LF_sha256": "e105523e29407e3b76f801e51a363ce469fcad6e9d796cebd5c2f6b15d26d0f6",
+      "LF_Git_blob_SHA1": "d8b680e6dbcabe9e9ca2e4c798fc54296baf57c9"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/root-INT015-annotation-implementation-allocation.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/source-allocation.json",
+      "bytes": 4386,
+      "sha256": "7fc9e004e120bed762319e62dbb508f8d06c1972aefc512d443741a243e633bc",
+      "LF_bytes": 4298,
+      "LF_sha256": "d875a6b6a61ec6ffe4221cb70f75b98824601905561cdfbbd7b7490b119bbb9b",
+      "LF_Git_blob_SHA1": "f66798af90c747e1eaa47585adf086412b0f2da6"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/result.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/initial-author-result.json",
+      "bytes": 5949,
+      "sha256": "9c395ea45bf0580226c14fb2eb349396e0d825c9c9c1dc95c53c70547c2cd0c5",
+      "LF_bytes": 5949,
+      "LF_sha256": "9c395ea45bf0580226c14fb2eb349396e0d825c9c9c1dc95c53c70547c2cd0c5",
+      "LF_Git_blob_SHA1": "16d7549b0a394b7785bf4a1a6e4c30ad698ffa80"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-actual-diff-review.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/initial-review-nonpass.json",
+      "bytes": 12136,
+      "sha256": "68f1b9dff1c7bfdc24fa6d338549d849b7bb6334bad4b8409efff4684283a773",
+      "LF_bytes": 12026,
+      "LF_sha256": "99028c0f646e160c481de683746c86e074a4949d13787d5189c0b69d02475577",
+      "LF_Git_blob_SHA1": "c7d06b7b5b80a15ca0b82e40450350c3602b64c7"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/root-INT015-P2-01-CRLF-fix-allocation.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/crlf-fix-allocation.json",
+      "bytes": 4125,
+      "sha256": "9d7a6a7f88c022468a9e5b14ee6c9b3b6c5f540b8351bce25200342dc33b91ea",
+      "LF_bytes": 4047,
+      "LF_sha256": "b532e921e88e8c8e332870caee496b757941329530d8f6b391df141f2b71b5a0",
+      "LF_Git_blob_SHA1": "0029d3eac78b0d5db7d77028d5758f67c2a64d30"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/result.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/crlf-author-result.json",
+      "bytes": 4472,
+      "sha256": "531fafb19841255b2e628a58715de4d968b8185775a56296785ead4f9b7de59a",
+      "LF_bytes": 4472,
+      "LF_sha256": "531fafb19841255b2e628a58715de4d968b8185775a56296785ead4f9b7de59a",
+      "LF_Git_blob_SHA1": "f5c6a7da7016a8120b705cfa85363bde0a1e550c"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-targeted-followup-review.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/crlf-followup-pass.json",
+      "bytes": 9373,
+      "sha256": "e46f51b28f65bea738f3062a7a72b04d073cac41d309ec59a88b655569c2b81e",
+      "LF_bytes": 9268,
+      "LF_sha256": "b2b9de34e5c6a739f1833bd0a27ea6ae92476ab2ca17dd40c3dce1966fa5c327",
+      "LF_Git_blob_SHA1": "b850b9118fa3201a908d501c56bd169f90225655"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-custody-acceptance-contract-assessment.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/custody-contract-assessment.json",
+      "bytes": 14273,
+      "sha256": "55c3e566963d616fac20df5b6dd1213e3ebde83373042749b3a2c0c734ce5bc7",
+      "LF_bytes": 14097,
+      "LF_sha256": "aa9c8e48c16b5f745e8b73a25b4f2cdc7f0b0680a9ae1a5b5c5e75ddd7eb8c38",
+      "LF_Git_blob_SHA1": "572d404c325d4ee4de22606f5ae97ae551990d30"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-zod-custody-scope-disposition.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/root-custody-disposition.json",
+      "bytes": 2108,
+      "sha256": "dd27bf1600fa49cd09b0ec3c92872e217c7e6a1dd3722cb47e53faa96f228f56",
+      "LF_bytes": 2067,
+      "LF_sha256": "37221b550a779671d4cdfa71e8cf4a1f76afe7c0937bbcb889cda0c8eb626e44",
+      "LF_Git_blob_SHA1": "febeaa168f67eb59ffa9e2a089bdbcad2b328b83"
+    },
+    {
+      "source_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/next-normal-minimum-operational-preparation-assessment.json",
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/next-normal-minimum-assessment.json",
+      "bytes": 23961,
+      "sha256": "c4a5aef1eaefbdd3e05b36e69a1c0906ce56acbd08ba88828c54c8af6369a8ec",
+      "LF_bytes": 23961,
+      "LF_sha256": "c4a5aef1eaefbdd3e05b36e69a1c0906ce56acbd08ba88828c54c8af6369a8ec",
+      "LF_Git_blob_SHA1": "055802d8da2f0c837f3b9de6d58be937dde5611f",
+      "source_private_pin": {
+        "bytes": 23962,
+        "sha256": "25d7a2b97ddfd8e505dd3aeaac8739a82577f8b0fffdcf2016e4a1b6fe061b68"
+      },
+      "transfer": "Semantic-preserving JSON copy with only surplus EOF blank line normalized; not raw-byte equality. Frozen private source unchanged."
+    }
+  ],
+  "private_retained_refs_not_copied": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-current-failed-case-source-assessment.json",
+      "bytes": 25590,
+      "sha256": "93b98dc737ce55205ccbe0d199a8b319ad53e9f5bc08655368c27117dbf7521b",
+      "LF_bytes": 25590,
+      "LF_sha256": "93b98dc737ce55205ccbe0d199a8b319ad53e9f5bc08655368c27117dbf7521b",
+      "LF_Git_blob_SHA1": "ecb0403d9335632e37f950c343f36f90c275563c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/checks.json",
+      "bytes": 21757,
+      "sha256": "7224238f64ffde43f3c01b948f62a6adeeee00c523024c9a855d127cc91eb065",
+      "LF_bytes": 21757,
+      "LF_sha256": "7224238f64ffde43f3c01b948f62a6adeeee00c523024c9a855d127cc91eb065",
+      "LF_Git_blob_SHA1": "ded71b56ead2ff0a1ef5920ca77808da1cd2068c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/preservation.json",
+      "bytes": 9156,
+      "sha256": "f69142c77be13fa4db6c582b242ebc3e208cbfad141c97d178209a7f231bd595",
+      "LF_bytes": 9156,
+      "LF_sha256": "f69142c77be13fa4db6c582b242ebc3e208cbfad141c97d178209a7f231bd595",
+      "LF_Git_blob_SHA1": "824f0ba2a1756bb744156e7a3a655a78957f4c79"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/checks.json",
+      "bytes": 10736,
+      "sha256": "54086a9a06a33b512726449e5943e092cce658d6ba27583c7e03613e721f2f7a",
+      "LF_bytes": 10736,
+      "LF_sha256": "54086a9a06a33b512726449e5943e092cce658d6ba27583c7e03613e721f2f7a",
+      "LF_Git_blob_SHA1": "b9b24506c82cff1542f8189eaec75d701ec0e6a9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/preservation.json",
+      "bytes": 8932,
+      "sha256": "bee84922e7aad8cfed42b1b0384ff60f9e9c95d50fd02fc329a1b53830d15c2f",
+      "LF_bytes": 8932,
+      "LF_sha256": "bee84922e7aad8cfed42b1b0384ff60f9e9c95d50fd02fc329a1b53830d15c2f",
+      "LF_Git_blob_SHA1": "b40fd722c945b15d78aff6cba9669eca0b9f85ee"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog/result.json",
+      "bytes": 1929,
+      "sha256": "f7e4bb109550e2ac77f8adb37059901332fdb3e659e6c9951a9f4d6f628019fc",
+      "LF_bytes": 1889,
+      "LF_sha256": "bfb9e7839e16e073238d1495405199186d8ac15e505814670d1251339e7cbf13",
+      "LF_Git_blob_SHA1": "b0278e43d5ad36ec79c12a080a02b71def63e276"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v3/result.json",
+      "bytes": 2247,
+      "sha256": "8ea19a219b072eaa81d3c907fdf665f913ae5b4e30fb1a4fec41c7e081a7ecb2",
+      "LF_bytes": 2247,
+      "LF_sha256": "8ea19a219b072eaa81d3c907fdf665f913ae5b4e30fb1a4fec41c7e081a7ecb2",
+      "LF_Git_blob_SHA1": "992a9f5951a7ad18cc9f8af2271834aa0872aa65"
+    }
+  ],
+  "source_revision_before_commit": "603ef74a2afa150638979805c3ed98f07928a5ce",
+  "facts": {
+    "status": "INDEPENDENT_HIGH_SOURCE_PASS_NATIVE_GATES_OPEN",
+    "approved_source_review": "_bmad-output\\auto-bmad\\preparation\\story-15-5\\int015-annotation-source-closeout\\crlf-followup-pass.json",
+    "Root_actual_read": "362434/native0",
+    "owned_three_source_raw_sha256": {
+      "tests/integration/commands/calendar-feed.int.test.ts": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md": "91d39d3c4bb416b0fd7858b89c2e55cec8d61fb69e9d0193c337b5a66974455f"
+    },
+    "meaningful_RED_GREEN": "original annotation and CRLF failures reproduced; final controls2P/fullaffected201P0F0skip/type0/scopedlint0with3unchangedwarnings",
+    "cause": "actual first hosted emitter UNKNOWN; no API019 repair claim",
+    "current_required95": "93P/API019F/API020unexecuted at40109869919/source81d/head eadd",
+    "catalog": "one actual AST extraction reached current assertions but final publication conservation guard failed; catalog ABSENT/unqualified; targeted guarded recovery preparation active, no further execution grant",
+    "custody": "current exact disposable DB job ended satisfies scoped operational resume alternative only; keyDeletedfalse/backendrollbackUNKNOWN; historical399982unchangedUNKNOWN",
+    "P5": "OPEN",
+    "review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "old_effects": "ALL CLOSED",
+    "new_NORMAL": "NOT ALLOCATED",
+    "deployment": false
+  },
+  "routing_fold": {
+    "sidecar_before": 417,
+    "append_range": "[404:417]",
+    "appended": 13,
+    "story_before": 404,
+    "story_after": 417,
+    "anchor_before": 389,
+    "anchor_after": 402
+  },
+  "limits": "No executable controllers/helpers/raw provider/ZIP/log/native bodies/SQL/capabilities copied. Raw and LF differ where noted; not raw-byte equality across Git normalization. All source allocations are closed historical evidence. No native acceptance, new runtime effects, merge or deployment.",
+  "precommit_formatting_correction": "Rootcae412 stopped before commit at cached diff-check: next-normal assessment surplus EOF blank line. Rootab5ea0 actual diagnostic native2; only owned tracked copy EOF normalized, JSON equality verified, original frozen bytes retained."
+}

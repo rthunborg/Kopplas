@@ -69,3 +69,38 @@ No deferred-work archive or completion gate was waived.
 **⚠️ Needs human:** (none)
 
 **Next:** Finish source-backed failed-case assessment, independently validate a bounded plan and coordinate exact ownership before source changes; no unchanged rerun.
+
+## Report — 2026-10-24T18:01:23Z (continued P5 — independently reviewed INT015 output correction)
+
+**Story:** `15-5-personal-calendar-feed-adr-b004-surface-1` (epic 15, story 5) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\_bmad-output\implementation-artifacts\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `603ef74`).
+**Pipeline status:** in-progress; source-only approval, native required gates incomplete
+**Continues:** yes — catalog publication recovery and fresh finite NORMAL preparation
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 101h 42m (≈23h 56m AI-run, ≈77h 45m human/idle wait); resumed 2×.
+
+**Phases run:** bounded source assessment/plan validation, owned implementation and targeted independent High regression closure
+**Skipped:** no required completion gate waived; no fourth broad review
+
+**Overrides:** owner-authorized design defaults/no legacy browsing; commit/push/conditional final merge-commit retaining branch; no deployment
+
+**TEA:** existing required automation/delivery phases remain open
+
+**Build:** two INT015 reporting calls and dead bookkeeping removed; all PG17/authority/SQL/rollback/absence/cleanup assertions retained; final pure unit201P0F0skip, type0, scopedlint0/3unchangedwarnings
+
+**Review:** initial independent P2 CRLF regression fixed; targeted follow-up source PASS, zero unresolved findings; broad counter stays3
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative
+
+**Open questions:**
+1. actual first hosted emitter and future API019 result UNKNOWN; current key deletion/backend rollback unverified, historical399982 facts retained
+
+**Deferred work:**
+1. catalog unpublished after guard failure; fresh independently reviewed exact-source provider/checkpoint/NORMAL/evidence allocation; P5delivery/P6 then15.6 and epic gates
+none newly archived
+
+**⚠️ Needs human:**
+1. none; authorized work continues
+
+**Next:** finish catalog publication recovery, then fresh changed-source finite NORMAL;15.6 remains unstarted

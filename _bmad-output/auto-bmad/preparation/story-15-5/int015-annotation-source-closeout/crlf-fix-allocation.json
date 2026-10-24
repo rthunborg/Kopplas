@@ -1,0 +1,78 @@
+{
+  "status": "ALLOCATED_TARGETED_INT015_P2_01_FIX_ONLY",
+  "base_head": "603ef74a2afa150638979805c3ed98f07928a5ce",
+  "route": {
+    "phase": "P5-INT015-P2-01-CRLF-minimum-fix",
+    "role": "sensitive-source-fix-author",
+    "profile": "sensitive",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "host": "codex",
+    "tier": "subagents",
+    "route": "subagent",
+    "escalation_reason": "Explicit High latest-fix correction: normalize checkout representation at new unit helper boundary while preserving exact retained PG17/authority/cleanup/privacy proof; independent P2 read e31145/native0."
+  },
+  "independent_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-actual-diff-review.json",
+    "bytes": 12136,
+    "sha256": "68f1b9dff1c7bfdc24fa6d338549d849b7bb6334bad4b8409efff4684283a773"
+  },
+  "Root_actual_read": "e31145/native0",
+  "preimages": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36375,
+      "sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+      "LF_bytes": 36375,
+      "LF_sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+      "LF_Git_blob_SHA1": "934bc51c88b0fe6cb91b3b0fcd9bc7be60f0364e",
+      "CRLF_pairs": 0,
+      "bare_LF": 513
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 362843,
+      "sha256": "0ca2a0becdf813e50be1f72b041286ada2be96f06879628d97ac29e5946ac54a",
+      "LF_bytes": 359506,
+      "LF_sha256": "46ddf3c74ccfa79f7dc0c8deb925a9a1f661ecda5301ab46697cb65df318fd95",
+      "LF_Git_blob_SHA1": "dc9105623ab384363daa2a505d1747a7f5f0911f",
+      "CRLF_pairs": 3337,
+      "bare_LF": 0
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 267745,
+      "sha256": "7b495c0812094707e7e1c1afcdf7a36782b4e6a631c73d13e0976dc278580fa2",
+      "LF_bytes": 264580,
+      "LF_sha256": "6cc6401e692e998080aea39c8d1a75fa3c0948b19b1097c0a362b4f29ab3ae99",
+      "LF_Git_blob_SHA1": "9cd7019eca356f302792278eadc72eb92f5fbecd",
+      "CRLF_pairs": 3165,
+      "bare_LF": 0
+    }
+  ],
+  "owner": "/root/integration_ip_source_author_high",
+  "write_scope": [
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts: only newly appended INT015 helper/control delta for LF/CRLF equivalence",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md: author current evidence/SRO fix rationale/verified stops only"
+  ],
+  "integration_source": "MUST REMAIN EXACT36375/6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+  "requirements": "Canonicalize CRLF at actual source-text boundary before digest/inverse/AST; retain exact LF content/hash/five-span guards. Qualify equivalent LF and CRLF representations via actual helper/source-driven installed-reporter/rawobserver/publisher control within existing two declarations. Do not weaken assertions or add static declarations. Preserve baseline original unit/spec prefixes and approved kernel/OwnerFacts/status/AutoRunResult/counter/history. Meaningful intended failure/green and source conservation; no synthetic runtime proof.",
+  "checks": [
+    "bounded LF/CRLF actual-helper controls",
+    "one affected201-test suite after runtime-helper fix",
+    "typecheck",
+    "scoped lint",
+    "author SRO/reference validation"
+  ],
+  "outputs": "New frozen result/checks/preservation in private INT015-annotation-CRLF-fix-author directory; initial reports/review remain unchanged.",
+  "forbidden": [
+    "Git mutations",
+    "network/GET/providers/push/CI",
+    "DB/browser/resources/install",
+    "DEBUG/foreign checkouts",
+    "wrapper/helper/contract/config/package/lock/migration/application edits",
+    "catalog refresh",
+    "broad review/counter changes"
+  ],
+  "current_gates": "P5OPEN/counter3/15.6UNSTARTED; current93P/API019F/API020unexecuted; actualcauseUNKNOWN; no acceptance/deployment/effectslots"
+}

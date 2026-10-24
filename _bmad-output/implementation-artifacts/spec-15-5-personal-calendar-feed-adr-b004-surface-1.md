@@ -3119,3 +3119,76 @@ Evidence: first focused18P/0F/0skip/0cancel, TS/two-file lint0; no SQL/runtime
 execution. Qualified native guard attribution is narrower than proof of the actual
 received value or successful repair. Current native functional/custody gates remain
 open; no retry, acceptance or fourth broad review is implied.
+
+
+### Remove INT015 annotation output while retaining its native authority proof
+
+The current INT015 reporting mechanism supersedes only the historical annotation
+mechanism recorded at lines 383-384 above. The native identity query, major-17
+qualification, restricted authority assertions, exact bootstrap/replay, rollback,
+same/fresh absence and connection cleanup remain byte-preserved. The 80-second
+primary deadline and 180-second test timeout are unchanged.
+
+- `tests/integration/commands/calendar-feed.int.test.ts:289` — `15.5-INT015`: removes only the unused context parameter, annotation-only version bookkeeping and two informational annotation calls.
+- `tests/integration/commands/calendar-feed.int.test.ts:406` — `Math.floor(Number(identity.server_version_num) / 10000) !== 17`: retains the native engine and authority guard.
+- `tests/integration/commands/calendar-feed.int.test.ts:506` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: retains independent fresh cleanup verification.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3241` — `async function actualInt015AnnotationSources`: binds original and candidate to the exact five-span inverse and compares retained AST statements.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3304` — `INT015 annotation actual source installed reporter raw reader helper publisher`: exercises actual original expressions through the installed reporter and unchanged observer/helper/publisher.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3332` — `INT015 annotation exact five-span inverse`: preserves assertions, queries, authority and cleanup.
+
+With location present and annotation display enabled, installed Vitest 4.1.9
+GithubActionsReporter renders the two original custom annotations as stdout
+notice commands. Its static delimiter reaches the unchanged raw IPv6 predicate.
+The source-driven controls retain that refusal and synthetic IP, credential and
+security-field safety witnesses. Logger/RPC/context and process-group dependencies
+are mocked; the installed reporter, actual raw reader and helper/publisher execute.
+The candidate owns neither annotation emission. No reporter flag, privacy guard,
+wrapper/helper/contract hash, application or database behavior changes.
+
+Evidence: meaningful focused RED 0P/2F becomes GREEN 2P/0F; the affected unit file
+passes 201/201 with zero skips/cancellations. TypeScript passes after a type-only
+visitor annotation correction; final focused controls pass 2/2. Scoped lint exits
+0 with three warnings in unchanged lines. Earlier extraction-harness failures and
+typecheck failures remain recorded separately without behavioral RED credit.
+Full-file five-span inverse and append-only unit/spec preservation are recorded in
+`.env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/preservation.json`;
+all attempted check receipts are in the sibling `checks.json`. Static catalog
+refresh is separately owned and unexecuted; two new declarations are not runtime
+coverage.
+
+This proves removal of these owned reporting side effects, not attribution of
+the actual lifetime-first record or successful API019 repair. Current qualified
+NORMAL evidence remains 93P/API019 failed/API020 unexecuted, STDOUT/OTHER_OR_UNKNOWN,
+with cause/emitter/request linkage unknown. Current retained DB custody and
+historical 399982 custody remain unresolved. Independent High actual-diff review
+and separately admitted changed-source native evidence remain required. P5 stays
+open, review counter 3, story 15.6 unstarted; no acceptance or deployment claim.
+
+
+### Qualify INT015 source controls across LF and CRLF checkouts
+
+Independent targeted review identified INT015-P2-01: the new source-control
+helper read checkout CRLF as content drift before reaching the reporter witness.
+The helper now replaces only CRLF pairs with LF at its source-text boundary,
+before the unchanged digest, five-span inverse and AST checks. Bare carriage
+returns and altered content remain rejected. Repository files are not normalized.
+The integration source remains exactly the preceding annotation-only candidate.
+
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3241` — `async function actualInt015AnnotationSources`: canonicalizes only checkout CRLF pairs before exact source qualification.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3304` — `INT015 annotation actual source installed reporter raw reader helper publisher`: runs the existing reporter/refusal/safety witness with both actual-source LF and CRLF representations.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3332` — `INT015 annotation exact five-span inverse`: proves equivalent retained source/AST and rejects bare-CR/content drift within the existing declaration.
+
+Evidence: focused CRLF controls first fail at the intended inverse-span guard
+(0P/2F), then pass 2P/0F after the boundary correction. The final affected file
+passes 201/201 with no skips/cancellations; TypeScript exits 0 and scoped lint
+exits 0 with the same three warnings in unchanged lines. No test declaration
+is added by this correction. Current receipts and exact correction inverse are
+in `.env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-fix-author/checks.json`
+and the sibling `preservation.json`; initial reports and NONPASS review remain
+frozen. Historical SRO evidence above retains its original scope and chronology.
+
+This changes source-control portability only. Original assertions, authority,
+cleanup, privacy predicates and the integration source remain unchanged.
+Independent targeted follow-up review and the separately allocated catalog
+refresh remain required. Current 93P/API019 failed/API020 unexecuted, unknown
+actual cause, P5 open, counter 3 and story 15.6 unstarted remain unchanged.

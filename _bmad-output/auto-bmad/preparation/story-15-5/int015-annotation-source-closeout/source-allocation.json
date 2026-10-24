@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "ALLOCATED_SOURCE_IMPLEMENTATION_ONLY",
+  "base_head": "603ef74a2afa150638979805c3ed98f07928a5ce",
+  "owner": "/root/integration_ip_source_author_high",
+  "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+  "tracked_exact_three": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36989,
+      "sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 352713,
+      "sha256": "630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 264061,
+      "sha256": "74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb"
+    }
+  ],
+  "plan_validation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-INT015-annotation-remediation-plan-validation.json",
+    "bytes": 13237,
+    "sha256": "c8b977188a23e43c7d96bf35b03731b45b13b4210f70b3fc6c52320e379d5030"
+  },
+  "source_assessment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-current-failed-case-source-assessment.json",
+    "bytes": 25590,
+    "sha256": "93b98dc737ce55205ccbe0d199a8b319ad53e9f5bc08655368c27117dbf7521b"
+  },
+  "ownership": {
+    "actual_completed_turn": "01a16eeb-51c1-7862-8961-0b1250a07860",
+    "actual_completed_tool": "exec-bf33abcf-2995-4d1d-81e5-ce1e4d085760",
+    "coordinator_targeted_native0_tool": "exec-559c52a4-987f-4713-977f-283ed7725b49",
+    "Root_fresh_claim_query": "all claims integrated; no active overlaps",
+    "Root_prior_actual_read": "functions4d0ac0/native0",
+    "fresh_query_active_rows": []
+  },
+  "route": {
+    "phase": "P5-INT015-annotation-source-implementation",
+    "role": "sensitive-source-author",
+    "profile": "sensitive",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "host": "codex",
+    "tier": "subagents",
+    "route": "subagent",
+    "escalation_reason": "Explicit High: preserve restricted PG17 authority, transactional cleanup and strict privacy while removing reporting side effect; independent prebuild plan PASS and current ownership verified."
+  },
+  "scope": "Exact five-span INT015 annotation/dead bookkeeping removal; source-driven installed reporter actual raw observer/helper/publisher RED/GREEN with full cleanup mocks; assertion/query/authority/cleanup conservation; current spec evidence/SRO amendment only.",
+  "permitted_checks": [
+    "bounded pure focused controls",
+    "one affected existing unit suite",
+    "TypeScript",
+    "scoped lint",
+    "SRO reference validation"
+  ],
+  "control_requirements": "All mandatory_control_criteria from independently passed plan are requirements; old source-driven expressions and candidate comparison, actual installed reporter, unchanged safety positives, exact inverse/conservation, mock every process-group probe/signal/kill.",
+  "private_outputs": "Unique frozen implementation result, checks and preservation reports under this preparation folder only. No executable operator changes.",
+  "catalog": "No static catalog refresh in this allocation. Report changed declarations and exact required paths; Root separately allocates ONE actual static refresh after declarations settle.",
+  "forbidden": [
+    "Git mutations",
+    "push",
+    "network/provider/GET",
+    "CI dispatch",
+    "managed resources",
+    "DB/browser/native runtime",
+    "install",
+    "DEBUG/foreign checkout access",
+    "wrapper/helper/contract/package/lock/workflow/migration/application changes",
+    "kernel/OwnerFacts/status/AutoRunResult/review-counter edits"
+  ],
+  "current_truth": {
+    "required95": "93P/API019 failed/API020 unexecuted",
+    "cause": "UNKNOWN",
+    "DB_custody": "retained/unverified; historical399982 unresolved",
+    "P5": "OPEN",
+    "review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "old_slots": "ALL CLOSED"
+  },
+  "independent_latest_diff_review_required": true,
+  "deployment_authority": false,
+  "prewrite_attempt": "798e30/native1 failed on too-short PASS vocabulary before route/allocation/source writes; corrected to actual exact status, no effects repeated"
+}

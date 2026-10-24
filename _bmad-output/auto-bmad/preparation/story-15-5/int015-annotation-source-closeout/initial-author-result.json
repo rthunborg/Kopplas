@@ -1,0 +1,106 @@
+{
+  "Outcome": "IMPLEMENTED_INT015_ANNOTATION_SOURCE_ONLY_PENDING_INDEPENDENT_REVIEW",
+  "Files changed": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36375,
+      "sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+      "LF_bytes": 36375,
+      "LF_sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+      "LF_Git_blob_SHA1": "934bc51c88b0fe6cb91b3b0fcd9bc7be60f0364e",
+      "CRLF_pairs": 0,
+      "bare_LF": 513
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 362843,
+      "sha256": "0ca2a0becdf813e50be1f72b041286ada2be96f06879628d97ac29e5946ac54a",
+      "LF_bytes": 359506,
+      "LF_sha256": "46ddf3c74ccfa79f7dc0c8deb925a9a1f661ecda5301ab46697cb65df318fd95",
+      "LF_Git_blob_SHA1": "dc9105623ab384363daa2a505d1747a7f5f0911f",
+      "CRLF_pairs": 3337,
+      "bare_LF": 0
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 267745,
+      "sha256": "7b495c0812094707e7e1c1afcdf7a36782b4e6a631c73d13e0976dc278580fa2",
+      "LF_bytes": 264580,
+      "LF_sha256": "6cc6401e692e998080aea39c8d1a75fa3c0948b19b1097c0a362b4f29ab3ae99",
+      "LF_Git_blob_SHA1": "9cd7019eca356f302792278eadc72eb92f5fbecd",
+      "CRLF_pairs": 3165,
+      "bare_LF": 0
+    }
+  ],
+  "Status": {
+    "base_head": "603ef74a2afa150638979805c3ed98f07928a5ce",
+    "scope": "Exact five-span INT015 reporting/dead-bookkeeping removal; appended source-driven controls; appended current evidence/SRO only.",
+    "SuggestedReviewOrder": [
+      "Compare integration exact five-span inverse and retained source/AST proof; PG17 authority, assertions, SQL, rollback and same/fresh absence remain.",
+      "Inspect actual old source extraction, installed reporter location/display witness, unchanged owned-launch/raw observer/helper/publisher and mocked process-group probes/signals/kill.",
+      "Check qualified RED/GREEN chronology, final pins, pure evidence boundaries and unchanged current failure/custody limits.",
+      "Read appended spec/SRO supersession; original historical/kernel/OwnerFacts/status/counter bytes preserved."
+    ],
+    "checks": {
+      "qualified_RED": "0P2F at intended emission/candidate assertions after extraction harness correction",
+      "focused_GREEN": "2P0F0skip",
+      "affected_unit": "201P0F0skip0cancel",
+      "final_focused": "2P0F0skip",
+      "TypeScript": "native0 after type-only visitor return union correction",
+      "scoped_lint": "native0; 0errors/3warnings at unchanged lines1359,1444",
+      "SRO": "6 exact new source anchors; sole Suggested Review Order"
+    },
+    "control_scope": "Actual installed GithubActionsReporter and unchanged raw reader/helper/publisher execute with synthetic version data and mocked context/logger/RPC/streams/identity/process-group probes/signals/kill. No PG17/DB/native application proof.",
+    "causality": "Configured located annotations have a proven stdout delimiter/raw-IP predicate collision. Actual lifetime-first emitter, benignity, native-first-throw and request linkage remain UNKNOWN. This is owned output remediation, not API019 repair proof.",
+    "catalog": {
+      "refresh_executed": false,
+      "new_declarations": [
+        {
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "line": 3304,
+          "title": "INT015 annotation actual source installed reporter raw reader helper publisher and retained safety"
+        },
+        {
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "line": 3329,
+          "title": "INT015 annotation exact five-span inverse preserves all retained authority queries assertions cleanup"
+        }
+      ],
+      "historical_counts": [
+        448,
+        19,
+        199
+      ],
+      "required_one_refresh_source_path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "historical_frozen_catalog_path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/unit-source-catalog.json",
+      "existing_embedding": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/proposal.json#/terminal_catalog_delta/unit_sources",
+      "remaining19": "Unchanged inventory; no re-extraction",
+      "expected_arithmetic_only": "199+2=201 wrapper;448+2=450 total. Not a qualified refreshed catalog/runtime result."
+    },
+    "current95": "93P/API019 failed/API020 unexecuted",
+    "current_IP": "STDOUT/OTHER_OR_UNKNOWN; cause UNKNOWN",
+    "custody": "Current key deletion/backend rollback unverified; historical399982 disposition unresolved. No universal historical physical-deletion hardgate is invented; Root separately owns scoped job-ended operational disposition.",
+    "P5": "OPEN",
+    "review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "normal_acceptance": 0,
+    "deployment": false,
+    "reports": {
+      "checks": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/checks.json",
+      "preservation": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-remediation-author/preservation.json"
+    },
+    "frozen": true
+  },
+  "Open questions": [
+    "Actual first emitter remains UNKNOWN; future changed-source NORMAL may still fail API019."
+  ],
+  "Deferred work": [
+    "Root separately allocates ONE static catalog refresh for the two final declarations.",
+    "Independent High actual latest-fix/regression review before Root commit; no fourth broad review.",
+    "Later runtime/custody/effects require separate precise authority; all old slots closed."
+  ],
+  "Blockers": [
+    "No bounded source/control blocker remains. Independent actual-diff approval/catalog refresh outstanding.",
+    "Required95 incomplete; P5 cannot advance from these pure controls."
+  ]
+}
