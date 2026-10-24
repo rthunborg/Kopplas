@@ -1,0 +1,98 @@
+{
+  "actual_logical_requests": 5,
+  "attempt": 1,
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "no_retry": true,
+  "normal_acceptance": 0,
+  "raw_persisted": false,
+  "reports": [
+    {
+      "case_summary": {
+        "numFailedTestSuites": 2,
+        "numFailedTests": 1,
+        "numPassedTestSuites": 545,
+        "numPassedTests": 2115,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 52,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 547,
+        "numTotalTests": 2169,
+        "success": false
+      },
+      "member_bytes": 1029145,
+      "name": "native-full-integration",
+      "report": "native-full-integration-projection.json",
+      "sha256": "5ff8f2dd9e481fb1440a7e040534d34e8ee9da613b094d495e784bb673918922"
+    },
+    {
+      "case_summary": {
+        "numFailedTestSuites": 0,
+        "numFailedTests": 0,
+        "numPassedTestSuites": 2,
+        "numPassedTests": 1,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 2,
+        "numTotalTests": 1,
+        "success": true
+      },
+      "member_bytes": 1154,
+      "name": "native-isolated-storage-recovery",
+      "report": "native-isolated-storage-recovery-projection.json",
+      "sha256": "2a53b56426c80720d3180647de0ea051dc5db449d9e95dd12bf6ed7237141299"
+    },
+    {
+      "case_summary": {
+        "duration": 284194.64300000004,
+        "expected": 56,
+        "flaky": 0,
+        "skipped": 0,
+        "unexpected": 0
+      },
+      "member_bytes": 92928,
+      "name": "native-general-browser",
+      "report": "native-general-browser-projection.json",
+      "sha256": "36e4320be014be1459af69c9c4fc78b4efe8b91398834cffae7e8ea2b6e4a9d7"
+    }
+  ],
+  "requests": [
+    {
+      "category": null,
+      "label": "normal-run-archive",
+      "native_exit": 0,
+      "sequence": 1,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "normal-artifact-list",
+      "native_exit": 0,
+      "sequence": 2,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "native-full-integration",
+      "native_exit": 0,
+      "sequence": 3,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "native-isolated-storage-recovery",
+      "native_exit": 0,
+      "sequence": 4,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "native-general-browser",
+      "native_exit": 0,
+      "sequence": 5,
+      "settled": true
+    }
+  ],
+  "run": 40109869919,
+  "status": "BOUNDED_ACQUISITIONS_COMPLETE"
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "ROOT_INT009_PROVIDER_ACTIVATION_v1",
+  "execution_authorized": true,
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "issued_at_utc": "2026-10-24T16:03:37.344066+00:00",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "provider_reader_sha256": "62a3271253c8d7a92be7e044b61e593263c0065ba1b85f5b08fdc9c6031562c3",
+  "provider_GETs": 1,
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-observation-effects-allocation.json",
+    "bytes": 6109,
+    "sha256": "c6d2df7700603cf4cd6dc2ac0548aab83e06f09d4aef0e1a84c2a67f0c08e46e"
+  },
+  "current_source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-current-source-proof.json",
+    "bytes": 60788,
+    "sha256": "1a7abac1b423d2efeed053722fb606235de93744ce6ce2b049806a4ae908a3ab"
+  },
+  "operational_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json",
+    "bytes": 10225,
+    "sha256": "148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212"
+  },
+  "source_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+    "bytes": 19693,
+    "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+  },
+  "capture_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+    "bytes": 18126,
+    "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+  },
+  "browser_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+    "bytes": 12881,
+    "sha256": "0d956247e8f80611fed17e4c7bfb16c5578b10ab96b6552a8974550d27ab9684"
+  },
+  "candidate": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-inert-binding.json",
+    "bytes": 329,
+    "sha256": "67219084058d47bdb3d049db3fc2c903e20c019d228d0dd5bd66f6541f5c4eec"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/proposal.json",
+    "bytes": 287968,
+    "sha256": "b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3"
+  }
+}

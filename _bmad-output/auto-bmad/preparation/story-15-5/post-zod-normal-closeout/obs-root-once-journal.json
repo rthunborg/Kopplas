@@ -1,0 +1,19 @@
+{
+  "schema": "ROOT_POST_ZOD_NORMAL_ONCE_JOURNAL_V1",
+  "phase": "PUBLISH_ONCE_ALLOCATED",
+  "at": "2026-10-24T16:04:10.995463+00:00",
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-observation-effects-allocation.json",
+    "bytes": 6109,
+    "sha256": "c6d2df7700603cf4cd6dc2ac0548aab83e06f09d4aef0e1a84c2a67f0c08e46e"
+  },
+  "actual_provider_attribution": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-actual-root-attribution.json",
+    "bytes": 873,
+    "sha256": "ae19de3958e08a8186f02a18f21c3ea905be04d58c025634cb9d0e647d78fcfe"
+  },
+  "no_retry": true
+}

@@ -1,0 +1,200 @@
+{
+  "status": "BLOCKED_POST_ZOD_NORMAL_OBSERVATION_BINDINGS",
+  "outcome": "BLOCKED_POST_ZOD_NORMAL_OBSERVATION_BINDINGS",
+  "independent": true,
+  "findings": [
+    {
+      "id": "POST-ZOD-P2-01",
+      "priority": 2,
+      "title": "Provider requires mutually incompatible current and pre-Zod lock pins",
+      "file": "post-zod-normal-observation-execution-preparation/provider.py",
+      "lines": [
+        70,
+        77,
+        89,
+        96,
+        97,
+        109,
+        114
+      ],
+      "caller": "Future granted provider invocation with the reviewed patched MAIN state",
+      "evidence": "Generic proposal input_refs require current lock162204/2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95. SOURCE_ROWS also require the current lock row. Yet lines96-97 reread pnpm-lock.yaml and require old LF hash69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56. Reviewer independently verified actual lock matches the new pin. The two requirements cannot both pass.",
+      "reachability": "With otherwise valid fresh activation/grant/proof, execution reaches the stale exact hash and raises LOCK_DRIFT. Lines109-111 emit PRE_REQUEST_REFUSED/logicalGET0 and exit2, before line114 intent and any GET. This is a deterministic fail-closed availability/qualification defect, not a wrong-target or unauthorized-network bypass.",
+      "required_correction": "Versioned minimal current-lock literal correction; preserve actual capture/gating logic and report normalized data-literal conservation honestly. Source-bound offline positive must traverse the actual raw-lock seam with the current lock; stale/altered lock must refuse before intent/GET. Existing virtual positive1/negative7 does not establish this seam and must not be treated as full current preGET success."
+    },
+    {
+      "id": "POST-ZOD-P2-02",
+      "priority": 2,
+      "title": "Declared future effect contract still describes the closed predecessor tuple",
+      "file": "post-zod-normal-observation-execution-preparation/proposal.json",
+      "lines": [
+        2555,
+        2557,
+        2563,
+        2565,
+        2568,
+        2569,
+        2572,
+        2617,
+        2618,
+        2643,
+        2645,
+        2649,
+        2652,
+        2655,
+        2657
+      ],
+      "kind": "Nonhistorical declarative operational-envelope contradiction",
+      "evidence": "future_effects.remote_before.required_sha still edf966cc9294448d0b057514d85e361c4f11ddd7; FFpush.head and remote_readback.required_sha still d647c81d93634ecdb85df66d8d3e8e7e4d51d841. canonical_dispatch.actual_programmatic_options and POST.body still old d647 head/96ad8e91 checkpoint/closed integration-IP state; equivalent CLI also retains these. These fields are presented as future/current, while current identity requires eadd1436 head/8ffb73c6 checkpoint/d647 remote preimage. historical_overlay_fields labels functional source change-history only and does not qualify these operational fields as historical.",
+      "downstream_distinction": "Actual root-driver uses current HEAD at line10, CHECKPOINT at13, new STATE at9. Remote-before compares proposal.identity.expected_remote_preimage at190; push/readback use current HEAD; line203 constructs current options. Fixed ADAPTER derives POST body from those actual options. Therefore the stale declaration is not consumed as the executable target and no wrong-head dispatch or closed-state reuse is claimed. It nevertheless prevents qualification of one precise future effect envelope for the bound proposal.",
+      "required_correction": "Versioned current declarative remote/push/readback, options/POST/CLI/state bindings and associated derived fixed-body hash must agree with actual source; alternatively preserve old descriptions only as explicitly historical evidence and supply an unambiguous exact current envelope. No operator algorithm expansion."
+    }
+  ],
+  "result": {
+    "Outcome": "BLOCKED_POST_ZOD_NORMAL_OBSERVATION_BINDINGS",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [
+        {
+          "id": "POST-ZOD-P2-01",
+          "priority": 2,
+          "title": "Provider requires mutually incompatible current and pre-Zod lock pins",
+          "file": "post-zod-normal-observation-execution-preparation/provider.py",
+          "lines": [
+            70,
+            77,
+            89,
+            96,
+            97,
+            109,
+            114
+          ],
+          "caller": "Future granted provider invocation with the reviewed patched MAIN state",
+          "evidence": "Generic proposal input_refs require current lock162204/2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95. SOURCE_ROWS also require the current lock row. Yet lines96-97 reread pnpm-lock.yaml and require old LF hash69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56. Reviewer independently verified actual lock matches the new pin. The two requirements cannot both pass.",
+          "reachability": "With otherwise valid fresh activation/grant/proof, execution reaches the stale exact hash and raises LOCK_DRIFT. Lines109-111 emit PRE_REQUEST_REFUSED/logicalGET0 and exit2, before line114 intent and any GET. This is a deterministic fail-closed availability/qualification defect, not a wrong-target or unauthorized-network bypass.",
+          "required_correction": "Versioned minimal current-lock literal correction; preserve actual capture/gating logic and report normalized data-literal conservation honestly. Source-bound offline positive must traverse the actual raw-lock seam with the current lock; stale/altered lock must refuse before intent/GET. Existing virtual positive1/negative7 does not establish this seam and must not be treated as full current preGET success."
+        },
+        {
+          "id": "POST-ZOD-P2-02",
+          "priority": 2,
+          "title": "Declared future effect contract still describes the closed predecessor tuple",
+          "file": "post-zod-normal-observation-execution-preparation/proposal.json",
+          "lines": [
+            2555,
+            2557,
+            2563,
+            2565,
+            2568,
+            2569,
+            2572,
+            2617,
+            2618,
+            2643,
+            2645,
+            2649,
+            2652,
+            2655,
+            2657
+          ],
+          "kind": "Nonhistorical declarative operational-envelope contradiction",
+          "evidence": "future_effects.remote_before.required_sha still edf966cc9294448d0b057514d85e361c4f11ddd7; FFpush.head and remote_readback.required_sha still d647c81d93634ecdb85df66d8d3e8e7e4d51d841. canonical_dispatch.actual_programmatic_options and POST.body still old d647 head/96ad8e91 checkpoint/closed integration-IP state; equivalent CLI also retains these. These fields are presented as future/current, while current identity requires eadd1436 head/8ffb73c6 checkpoint/d647 remote preimage. historical_overlay_fields labels functional source change-history only and does not qualify these operational fields as historical.",
+          "downstream_distinction": "Actual root-driver uses current HEAD at line10, CHECKPOINT at13, new STATE at9. Remote-before compares proposal.identity.expected_remote_preimage at190; push/readback use current HEAD; line203 constructs current options. Fixed ADAPTER derives POST body from those actual options. Therefore the stale declaration is not consumed as the executable target and no wrong-head dispatch or closed-state reuse is claimed. It nevertheless prevents qualification of one precise future effect envelope for the bound proposal.",
+          "required_correction": "Versioned current declarative remote/push/readback, options/POST/CLI/state bindings and associated derived fixed-body hash must agree with actual source; alternatively preserve old descriptions only as explicitly historical evidence and supply an unambiguous exact current envelope. No operator algorithm expansion."
+        }
+      ],
+      "scope": "Targeted actual operational-source review only; no fourth broad story review. Frozen five files and helper preserved.",
+      "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+      "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+      "frozen5": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation/provider.py",
+          "bytes": 20581,
+          "sha256": "cc834063ec211d0f5db12e2ba2f96d5b15e145fada6d7bb29590508be9616df7"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation/root-driver.py",
+          "bytes": 21106,
+          "sha256": "25a53e06e3afc1adebf41939596cf6c9e2a4ccf7a879c0eb1a3a52befea8e8b1"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation/proposal.json",
+          "bytes": 274710,
+          "sha256": "5c202e91a6298710c32395dc8d5be32f396a2a5432779c7ccce5f1ec5a2d9a34"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation/pure-controls.json",
+          "bytes": 5311,
+          "sha256": "abba2621cb443e9a876d9048ab3d1219d02bc20f38b9d7d3b0c77453cceea338"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation/manifest.json",
+          "bytes": 1421,
+          "sha256": "f5ec4bf237bc8460cbe12322e9e3bf2992b37bf7b0d944ad6c56eaa8d8bddbba"
+        }
+      ],
+      "Root_bindings": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-proof-admission.py",
+          "bytes": 7210,
+          "sha256": "c4cc9ab89c38c35a944bc6a6d099355494b23d1bc870193884ccded9473f4586"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-helper-binding-proof.json",
+          "bytes": 3978,
+          "sha256": "752a4afdc47470bf7bae5fe019afa7ab3ca988e044a749675c25dfa5bc85134c"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-allocation.json",
+          "bytes": 5076,
+          "sha256": "375efc126d2de53d84715f3b555272cf0000c443f3293e82457335ad40eee241"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-binding-clarification.json",
+          "bytes": 1475,
+          "sha256": "c08ecad383a48a2eaee6c3b4bd9e9e76dc98dff76689814381a7806a3d1e9ced"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-future-source-hashing-scope.json",
+          "bytes": 1026,
+          "sha256": "0b094dc6f76a2743821ce3d2373bf7c298d90eba9e5caf7cd039fbbc0f1fcc88"
+        }
+      ],
+      "bounded_observations": [
+        "All listed pins match allocation. Reviewer independently inverted provider/driver literal binding maps to exact20641/5a9876a4edf8919216a1880c32d3df5c2304c744591de880caae18813220ef63 and21160/730b1e1c37a45b3d49dceb4f02aba9314c67d69f11b4113eb1a78d7d982b653a predecessors. Conservation explains why the obsolete standalone lock guard survived; it does not qualify changed inputs.",
+        "Current functional17457/40a01b... and dependency9994/8e123e... pins appear in generic input_refs/source_reviews and preserved proof-template current_provenance_review/current_dependency_review. The historical restore guard remains historical.",
+        "Workspace stays absent from fixed204/75 vectors, separately enforced together with lock by generic input_refs and two-row overlay. Source/catalog/SQL corpus was not reread. Helper source and binding proof inspected/pinned; recorded five-function equality/full inverse remains conservation evidence, not a successful current provider qualification.",
+        "Future permitted86 non-migration hash loop includes ops/recovery/bootstrap-roles.sql. Existing historical nonSQL label means non-migration. Hash-only reads retain pins/metadata;118 migration raw/LF vectors remain historical with fresh Git equality. No renewed86 or raw migration qualification occurred.",
+        "Current controls report virtual positive1/refusals7 and blank-default driver refusal. Initial missing-Path harness failure has no credit; prior seven groups are historical, not rerun. The raw-lock contradiction leaves a consequential seam unqualified.",
+        "Conserved finite family: provider1GET loop15s/4MiB stdout256KiB stderr plus wait2/twojoins2; remote20/push60/canonical90; canonical4preGET1POST; resolver6/page20/5s; poll90pairs/page100/30s/5400s deadline. These are loop budgets with tails, not strict process-tree hardwalls. Source-label32768 only; no generic projection-cap assertion.",
+        "All12 future Root-interface paths and candidate absent. Static reads/hash/text comparison only; no helper/provider/driver/import/control/Node/network/resource/Git mutation/DEBUG execution. Only this report written. Initial report-construction alias failure left an unfinalized null-result draft; corrected solely within this owned output before freezing, no control or operational credit."
+      ],
+      "normal_acceptance": 0,
+      "current_required95": "0P0F95UNEXECUTED",
+      "P5": "OPEN",
+      "custody": "UNRESOLVED_UNCHANGED",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "original_full_package_lint": "UNPASSED; original clean-checkout CI lint required",
+      "historical_CI_cause": "UNKNOWN",
+      "execution_authority": false
+    },
+    "Open questions": [
+      "First integration/IP stream/rendered form remains UNOBSERVED. No emitter authenticity, benignity, cause, native-first-throw or request-linkage conclusion.",
+      "Versioned correction must resolve the executable stale-lock refusal and separate declarative current-envelope contradiction before operational PASS."
+    ],
+    "Deferred work": [
+      "Root allocates a versioned targeted correction preserving frozen v1 files/helper/review; follow-up reviews only corrections and consequential current-input controls.",
+      "Fresh source/provider proofs, completed finite grant and exclusive candidate/activations/journals remain separate prerequisites. This review authorizes none.",
+      "Future exact-head clean CI/runtime/delivery and release/merge/deployment gates remain required."
+    ],
+    "Blockers": [
+      "POST-ZOD-P2-01 deterministically refuses current patched lock before intent/GET.",
+      "POST-ZOD-P2-02 leaves the declared current effect envelope inconsistent with actual operator bindings. No operational PASS or execution authority."
+    ]
+  }
+}

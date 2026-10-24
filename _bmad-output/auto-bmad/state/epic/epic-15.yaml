@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-24T15:24:52Z"
+updated_at: "2026-10-24T17:13:24Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
 active_seconds: 278674
@@ -404,6 +404,19 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Current dependency security diagnostic after closed historical CI job-log transport failure; independent current evidence only, no historical cause attribution.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-current-lockfile-audit-diagnostic\",\"profile\":\"sensitive\",\"role\":\"integration_ip_source_author_high\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Confirmed high dependency advisory, bounded transitive resolution repair and dependency integrity validation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-zod-security-prerequisite-implementation\",\"profile\":\"sensitive\",\"role\":\"integration_ip_source_author_high\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent actual bounded two-path high advisory repair, lock graph and validation provenance review; separate prerequisite, no fourth broad story review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-zod-security-prerequisite-independent-actual-diff-review\",\"profile\":\"sensitive\",\"role\":\"integration_ip_minimum_review_resume_high\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Finite no-deployment CI publication/privileged verification ownership, current dependency/source bindings after independently reviewed security prerequisite.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-post-zod-normal-observation-operational-preparation\",\"profile\":\"sensitive\",\"role\":\"integration_ip_source_author_high\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent actual finite CI/no-deployment bindings review of frozen operational5 and Roothelper data-only successor; preserved86 nonmigration hash scope,118migration Git-only, no storyround4.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-post-zod-normal-observation-independent-operational-review\",\"profile\":\"sensitive\",\"role\":\"integration_ip_minimum_review_resume_high\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Correct independently identified stale standalone lock guard and current declarative effect bindings before any activation; bounded same-family correction, no storyround4.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-post-zod-operational-targeted-correction-v2\",\"profile\":\"sensitive\",\"role\":\"integration_ip_source_author_high\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded actual fix review POST-ZOD-P2-01/02 plus current source-bound rawlock controls and Roothelperv2 literal bindings; no broadstoryround4 or unchangedstackreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-post-zod-operational-v2-targeted-independent-review\",\"profile\":\"sensitive\",\"role\":\"integration_ip_minimum_review_resume_high\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive actual terminal tuple/custody/privacy metadata qualification only; separate from exhausted story cap3; no code or effect authority\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_metadata_qualification\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-terminal-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive privacy-safe terminal evidence reader exact binding; no raw log retention/new extractor/corpus qualification; prepare inert source only\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_consumer_binding\",\"profile\":\"sensitive\",\"role\":\"sensitive-operational-binding-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive exact actualterminal acquisition reader/current data-envelope binding and retention assessment; independent operational source review, not exhausted broad story cap3; no current effects\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_consumer_actual_source_review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-reader-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Retain explicit High for same targeted review; enroll newly frozen Root7240 metadata admission helper and2765 exact native outer180s contract before report freeze. No reader changes, broad review or effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_consumer_actual_source_review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-reader-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Concrete Root one-invocation capture wrapper source review before final finite allocation, explicit currentreview/freshproof/once/nativeclosure gates; preserve qualified reader/helper and exhausted story cap3; no effects.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_root_outer_wrapper_review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-outer-wrapper-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High for concrete JSONL output-contract loss in Root capture wrapper; minimal newv2 literal/seam correction and meaningful RAM controls only; no runtime or fourthstoryreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_root_outer_jsonl_correction\",\"profile\":\"sensitive\",\"role\":\"sensitive-operational-wrapper-fix-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted concrete JSONL final-record correction and consequential regressions only, preserve source14294/v1NONPASS/nativeguard/once/privacy and cap3; no effects or fourth broadstoryreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_root_outer_jsonl_fix_review\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-outer-fix-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive actual5GET source/capture/case-count/privacy-IP/custody evidence qualification; preserve historicalcustody and exhausted storycap3; no acquisition/retry/sourceedit or fourth broadreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_terminal_actual_evidence_qualification\",\"profile\":\"sensitive\",\"role\":\"independent-sensitive-actual-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Parallel read-only actualclosed-evidence/source assessment of unresolved current15.5 failure and minimal bounded remediation; no source edits/runtime/acquisition until independent qualification and owned implementation scope.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"post_zod_failed_case_source_assessment\",\"profile\":\"sensitive\",\"role\":\"sensitive-failed-case-source-analyst\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
@@ -446,7 +459,7 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: null
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40097034333"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40109869919"
 ci_status: failed
 pr_merged: false
 merge_method: null
@@ -4886,4 +4899,25 @@ p5_audit_prerequisite_closeout:
   manifest: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/manifest.json\", \"bytes\": 25372, \"sha256\": \"8b1e6d207c8e5de5bc61761006632b46dac93d69ddfcd113cf6a14ee53b8496d\", \"LF_bytes\": 24885, \"LF_sha256\": \"350dcf5836c372d6277206f5e1e12ee90fce5edeb0e8337fa8b0f00ba5122a22\"}"
   closeout: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/audit-prerequisite-closeout/closeout.md\", \"bytes\": 5167, \"sha256\": \"27317693822a111536ed6f506725124ec05d6a5566cbcba4389d5776af835bc0\", \"LF_bytes\": 5131, \"LF_sha256\": \"22272855094ac43ea4a01eb370b4122e8b02da916a4065e5d26a7fc5586b4a3a\"}"
   Root_source_receipt: cbc350/native0/exact2files
+  no_deployment: true
+p5_post_zod_NORMAL_closed_result:
+  observed_head: eadd1436c7d807e19ef19838d2896c35abba2238
+  source: 81d208105ab43162a8bd13662984b0d8f9ff5e56
+  run: 40109869919
+  ci_status: failed
+  required95: "{\"passed\": 93, \"failed\": 1, \"unexecuted\": 1, \"failed_case\": \"API019\", \"unexecuted_case\": \"API020\"}"
+  IP: "{\"leaf\": \"scenario-telemetry-privacy-refused-integration-ip-stdout-other\", \"stream\": \"STDOUT\", \"form\": \"OTHER_OR_UNKNOWN\", \"cause\": \"UNKNOWN\", \"emitter\": \"UNKNOWN\"}"
+  current_DB: "keyDeletedfalse/keyOutcomeunverified/custodyretainedtrue/dbClosedtrue;backendsettlementUNKNOWN"
+  browser: 14requiredP/retry0/deletionconfirmed scopedonlycurrentbrowser
+  direct_recovery: 1PseparateisolatedphysicalStorage/outside95
+  historical_custody: 39998246278retained/deletionUNVERIFIED/backendUNKNOWN remainsunresolved
+  closed_run_slots: "1resolver/20pollpairs used;remaining5/70CLOSED"
+  closed_acquisition: "one reader/5logicalGETs/native0fullclosure;remaining0CLOSED/internalHTTPUNKNOWN"
+  tracking_manifest: "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/manifest.json"
+  closeout: "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/closeout.md"
+  qualification: "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-actual-independent-qualification.json"
+  P5: OPEN
+  broad_review_counter: 3
+  story15_6: UNSTARTED
+  source_assessment: "READONLYactive; source-backed test-output proposal pendingvalidation/no unchangedrerun"
   no_deployment: true

@@ -1,0 +1,23 @@
+{
+  "schema": "ROOT_POST_ZOD_PROVIDER_ACTUAL_ATTRIBUTION_V1",
+  "actual_native_tool": {
+    "chunk_id": "7106a3",
+    "native_exit": 0,
+    "tool_reported_wall_seconds": 2.4727068,
+    "initial_session_id": null,
+    "wait_calls": [],
+    "tool_reported_wall_is_not_independent_end_to_end_wall": true
+  },
+  "native_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-execution-receipt.json",
+    "bytes": 2273,
+    "sha256": "825079ae9c39a21fa90d5b660961775ccfa6288af6a4d3be061c353773156b97"
+  },
+  "provider_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-vercel-readonly-qualification.json",
+    "bytes": 30497,
+    "sha256": "4ff8739ca493f7c3b27a9c18b989c68ec74eaaf3c4e92c544da05d295ae66fa9"
+  },
+  "Root_actual_read": true,
+  "normal_acceptance": 0
+}

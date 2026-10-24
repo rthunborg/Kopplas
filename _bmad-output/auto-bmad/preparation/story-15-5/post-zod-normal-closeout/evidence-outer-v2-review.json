@@ -1,0 +1,89 @@
+{
+  "status": "PASS_POST_ZOD_NORMAL_TERMINAL_ROOT_OUTER_WRAPPER_SOURCE_ONLY",
+  "outcome": "PASS_POST_ZOD_NORMAL_TERMINAL_ROOT_OUTER_WRAPPER_SOURCE_ONLY",
+  "independent": true,
+  "findings": [],
+  "result": {
+    "Outcome": "PASS_POST_ZOD_NORMAL_TERMINAL_ROOT_OUTER_WRAPPER_SOURCE_ONLY",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-review.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [],
+      "scope": "Targeted latest-fix/consequential-regression review of POST-ZOD-OUTER-P2-01 only. No fourth story broad review or source-corpus renewal.",
+      "route": "Root explicit Sol6.1 High8295ba/native0 before dispatch",
+      "bindings": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2.py",
+          "bytes": 7442,
+          "sha256": "784ebfcfad4c48b146124c04e9c46fc3b528760c41deef2c0385975dbb426a83"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-controls.json",
+          "bytes": 9271,
+          "sha256": "fe3ebedf73bf427b0dbbe1a512078e2537c1a7ad59c08f578e9c541015a25fc5"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-correction-allocation.json",
+          "bytes": 2143,
+          "sha256": "90f028f14014bc3b1210a78954390b2ee6b4d257d8220e2061b0f363f7f4397a"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-review.json",
+          "bytes": 10336,
+          "sha256": "e6dcab9d840ebc65ce4901f5040cb6d2743da35ae0620fa73f29b611516cc03a"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-operational-review.json",
+          "bytes": 14294,
+          "sha256": "8487ee0f010d9650d53b7f2bea5f523d5bfe8fb2153634260dc13ec6554ee5ce"
+        }
+      ],
+      "resolved_finding": {
+        "id": "POST-ZOD-OUTER-P2-01",
+        "status": "RESOLVED_IN_V2",
+        "actual_change": "Whole-buffer json.loads(output) is replaced by json.loads(output.splitlines()[-1]); the only other source delta is SELF naming the new v2 file. Actual conserved reader prints request progress then final JSON with a terminating newline; splitlines selects that final physical record. No progress or earlier terminal record is salvaged when the final record is nonterminal/malformed.",
+        "consequence": "Actual multi-request COMPLETE/STOP final status and integer GET-count can now be retained while raw stdout/stderr remain unpersisted. Native receipt category/exit/closure stays separate; an observed STOP/native1 is not success or acceptance."
+      },
+      "conservation": "Reviewer independently reversed exactly the two declared literals and recovered exact frozen v1 wrapper7422/384147bfad9f2fa1efeed145ecf51dfd521044774f12fa8e66a5b9fb3cc3b668. This proves no other admission/once/capture/projection/retention delta. Four FunctionDefs including nested are unchanged. Independently extracted native raw segment2449/SHA57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1 matches reviewed source.",
+      "controls": {
+        "attribution": "Pinned author evidence; reviewer reran no controls or functions. Actual reader print-expression factories and actual wrapper projection statements were extracted into RAM; no module/native/get/main/admission/network/Git/source75 execution.",
+        "meaningful_RED_GREEN": "Four actual-source-shaped multiline cases demonstrate v1 lost result then v2 retained final result: COMPLETE with2/5 requests, and STOP_UNKNOWN/native1 with1/5 requests.10 focused cases passed/0 failed.",
+        "negative_compatibility": "Single-line PRE_GET_REFUSED retains0GET; progress-only, malformed final, empty, incomplete capture and terminal-then-progress all retainNone. Empty splitlines raises within existing caught parsing block; no raw fallback. Final-line selection never promotes earlier status after a bad final line.",
+        "honest_limits": "Two pre-write fixture/compiler and universal-newline source-witness failures are preserved without credit; final native hash uses raw decoded source. Synthetic RAM controls establish this interface correction, not an actual acquisition or host result."
+      },
+      "preserved_assessments": "Reuse current reader/helper/capture source review14294/8487ee0f010d9650d53b7f2bea5f523d5bfe8fb2153634260dc13ec6554ee5ce and unchanged v1 wrapper admission/native/once/privacy assessment. Frozen v1 NONPASS10336/e6dcab9d840ebc65ce4901f5040cb6d2743da35ae0620fa73f29b611516cc03a remains NONPASS history. No alias, overwrite or reclassification.",
+      "remaining_contract": [
+        "Actual completed finite grant must bind new exact7442 wrapper and this independent review, existing helper7240 and capture contract2765, exact read operation/run/head and exclusive activation/proof/journal/intent/output paths. Existing wrapper SELF/ref checks now bind v2; current reader/helper review is unchanged.",
+        "Same exact reader argv at MAINcwd180s loop/512KiB stdout/64KiB stderr/wait2/twojoins1. Full native/EOF/join/handles/direct settlement and actual Root hostchunk/exit/wall/session/waits remain required. Loop+tail budgets are not strict process-tree hardwalls; output-directory presence, selected status or outer process0 alone is not qualified acquisition success.",
+        "Native hashes/closed status/count remain allowed retained metadata under prior assessment; no raw stdout/stderr is persisted. Source-label32768 is not a generic packet cap. Exact75 hash reads including3SQL and<=5GET are future separately enrolled grant scope, not performed/authorized here.",
+        "Grant/templates/proof/activation/journals/consumedintent/outerreceipt/output directory remain absent. Same read operation is unused; no retry, reset or clock renewal. Any refusal/partial/uncertainty consumes the future invocation and closes remaining slots without automatic replay."
+      ],
+      "acquisition_operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+      "target_run_id": 40109869919,
+      "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "normal_acceptance": 0,
+      "actual95": "UNKNOWN_UNQUALIFIED",
+      "IP_question": "UNKNOWN_UNOBSERVED",
+      "custody": "UNRESOLVED_UNCHANGED",
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "execution_authority": false,
+      "no_deployment": true,
+      "reviewer_activity": "Static reads/pins/diff/inverse/native-source conservation only. No wrapper/helper/reader/function/control/Git/native/network/raw75/SQL/DEBUG execution; sole write is this new report."
+    },
+    "Open questions": [
+      "Actual acquisition availability/results,95 counts, integration/IP metadata and custody remain unqualified."
+    ],
+    "Deferred work": [
+      "Root obtains actual completed finite Coordinator grant with exact new wrapper/review refs and the existing<=5GET+75hash/3SQL scope before materialization or execution.",
+      "Qualify actual outer/native closure and acquired evidence afterward; no runtime/development/release acceptance follows from this source-only review."
+    ],
+    "Blockers": [
+      "No unresolved concrete defect in this targeted v2 correction. Missing completed finite grant/fresh activation and actual evidence still block effects and stronger completion or acceptance claims."
+    ]
+  }
+}

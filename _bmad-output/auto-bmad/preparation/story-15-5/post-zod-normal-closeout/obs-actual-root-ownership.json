@@ -1,0 +1,1767 @@
+{
+  "schema": "ROOT_POST_ZOD_NORMAL_ACTUAL_CLOSED_OWNERSHIP_V1",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "run_id": 40109869919,
+  "operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/operation.json",
+    "bytes": 867,
+    "sha256": "3ae2aca4a519e1187f6b147bb5c250384a356783ecda5dedc72cf0591c6f81e9"
+  },
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/terminal.json",
+    "bytes": 24085,
+    "sha256": "9e8ff486cf8485dca04f3b85d2a027ae2cd649f16c5d1bd5ac3bce373b31fb2f"
+  },
+  "actual_host_tools": {
+    "helper": {
+      "chunk_id": "e66086",
+      "wall_time_seconds": 0.5712086,
+      "exit_code": 0,
+      "original_token_count": 209
+    },
+    "provider": {
+      "chunk_id": "7106a3",
+      "wall_time_seconds": 2.4727068,
+      "exit_code": 0,
+      "original_token_count": 454
+    },
+    "publication_initial": {
+      "chunk_id": "754cc0",
+      "wall_time_seconds": 10.0018993,
+      "session_id": 61127,
+      "original_token_count": 0
+    },
+    "publication_waits": [
+      {
+        "chunk_id": "0df61e",
+        "wall_time_seconds": 2.3604611,
+        "exit_code": 0,
+        "original_token_count": 27
+      }
+    ],
+    "resolver": {
+      "chunk_id": "969883",
+      "wall_time_seconds": 1.2975265999999999,
+      "exit_code": 0,
+      "original_token_count": 24
+    },
+    "polls": [
+      {
+        "chunk_id": "f46dfb",
+        "wall_time_seconds": 1.2799131,
+        "exit_code": 0,
+        "original_token_count": 73
+      },
+      {
+        "chunk_id": "6ef295",
+        "wall_time_seconds": 1.3907936,
+        "exit_code": 0,
+        "original_token_count": 73
+      },
+      {
+        "chunk_id": "8c3473",
+        "wall_time_seconds": 1.3687735,
+        "exit_code": 0,
+        "original_token_count": 73
+      },
+      {
+        "chunk_id": "34c186",
+        "wall_time_seconds": 1.3307052,
+        "exit_code": 0,
+        "original_token_count": 73
+      },
+      {
+        "chunk_id": "92968b",
+        "wall_time_seconds": 1.2653822,
+        "exit_code": 0,
+        "original_token_count": 144
+      },
+      {
+        "chunk_id": "1cb43e",
+        "wall_time_seconds": 1.3654285,
+        "exit_code": 0,
+        "original_token_count": 144
+      },
+      {
+        "chunk_id": "eda772",
+        "wall_time_seconds": 1.3311727,
+        "exit_code": 0,
+        "original_token_count": 144
+      },
+      {
+        "chunk_id": "ca2a25",
+        "wall_time_seconds": 1.3753533,
+        "exit_code": 0,
+        "original_token_count": 144
+      },
+      {
+        "chunk_id": "ac5ef9",
+        "wall_time_seconds": 1.295425,
+        "exit_code": 0,
+        "original_token_count": 144
+      },
+      {
+        "chunk_id": "6c8f5b",
+        "wall_time_seconds": 1.34137,
+        "exit_code": 0,
+        "original_token_count": 145
+      },
+      {
+        "chunk_id": "c299a0",
+        "wall_time_seconds": 1.3563599,
+        "exit_code": 0,
+        "original_token_count": 145
+      },
+      {
+        "chunk_id": "ccd2c7",
+        "wall_time_seconds": 1.3437363,
+        "exit_code": 0,
+        "original_token_count": 145
+      },
+      {
+        "chunk_id": "a6ed34",
+        "wall_time_seconds": 1.3424264,
+        "exit_code": 0,
+        "original_token_count": 214
+      },
+      {
+        "chunk_id": "70f9f7",
+        "wall_time_seconds": 1.3911615,
+        "exit_code": 0,
+        "original_token_count": 214
+      },
+      {
+        "chunk_id": "d042a4",
+        "wall_time_seconds": 1.3928349,
+        "exit_code": 0,
+        "original_token_count": 214
+      },
+      {
+        "chunk_id": "7864fd",
+        "wall_time_seconds": 1.3557449,
+        "exit_code": 0,
+        "original_token_count": 214
+      },
+      {
+        "chunk_id": "97f4f9",
+        "wall_time_seconds": 1.6206258,
+        "exit_code": 0,
+        "original_token_count": 214
+      },
+      {
+        "chunk_id": "e0fd08",
+        "wall_time_seconds": 1.3598006,
+        "exit_code": 0,
+        "original_token_count": 214
+      },
+      {
+        "chunk_id": "188f74",
+        "wall_time_seconds": 1.3636712,
+        "exit_code": 0,
+        "original_token_count": 214
+      },
+      {
+        "chunk_id": "1a8ebb",
+        "wall_time_seconds": 1.4295349,
+        "exit_code": 0,
+        "original_token_count": 215
+      }
+    ]
+  },
+  "controller_native_receipts": [
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/dispatch-receipt.json",
+        "bytes": 842,
+        "sha256": "37c31b5b564a57c3971b2ab7d8bd381f16d0edc129c05b830db24f30efd09934"
+      },
+      "receipt": {
+        "transport": {
+          "native_exit": 0,
+          "category": null,
+          "elapsed_seconds": 3.206287,
+          "timeout_seconds": 90,
+          "capture_complete": true,
+          "readers_joined": true,
+          "handles_closed": true,
+          "direct_process_settled": true,
+          "streams": [
+            {
+              "observed_bytes": 296,
+              "sha256": "90d5569652a6ed130924befe55d75c0f443f55e94aef6dac55261004265d9161",
+              "physical_EOF": true,
+              "reader_done": true,
+              "reader_error": false,
+              "overflow": false
+            },
+            {
+              "observed_bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "physical_EOF": true,
+              "reader_done": true,
+              "reader_error": false,
+              "overflow": false
+            }
+          ]
+        },
+        "state_present": true,
+        "raw_persisted": false,
+        "no_retry": true
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-1-receipt.json",
+        "bytes": 699,
+        "sha256": "c183f6f11e7c91e4ee9c090e1c3ce56f428320962b1db2c76f621a5576f37976"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.558883,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 4849,
+            "sha256": "bf1a23fecc0866b71eaf09b8e92bc4882ab3ef414dd0ca40e766ac32be8e6405",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-10-receipt.json",
+        "bytes": 700,
+        "sha256": "d12e8902ab64399afa2f5fbbc9678e9f4ba38ad44170ef794d8715b119db2bbe"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.651212,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 18252,
+            "sha256": "3c1b8f7fbe15c3d012ddedc1af792ade692a3d3dee535f3556c44fe52149abe4",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-11-receipt.json",
+        "bytes": 699,
+        "sha256": "d69dc5cab49cea52e456504dbfacc1a402e3635e2e58653b7d2a90db05d65978"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.64898,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 18252,
+            "sha256": "3c1b8f7fbe15c3d012ddedc1af792ade692a3d3dee535f3556c44fe52149abe4",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-12-receipt.json",
+        "bytes": 700,
+        "sha256": "00ac340b313727d5a205ce25a55537c853d5a6ff8e4e81c463b0c015307c534a"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.650925,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 18252,
+            "sha256": "3c1b8f7fbe15c3d012ddedc1af792ade692a3d3dee535f3556c44fe52149abe4",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-13-receipt.json",
+        "bytes": 700,
+        "sha256": "a959729e5e7bacc90feca74c337ece5575427ff320f5fa14266b4cac6dccf4d3"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.671226,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "5ced6ab3d96135869901ee3a159fa45906e0827eedb392d8885d5775edff7c31",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-14-receipt.json",
+        "bytes": 700,
+        "sha256": "e9c0d01ff1ff3364939a1033eb1a4bf99406ae41d166bf9d7c0b2ecbbd02a10a"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.649886,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "5ced6ab3d96135869901ee3a159fa45906e0827eedb392d8885d5775edff7c31",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-15-receipt.json",
+        "bytes": 700,
+        "sha256": "af2d5ac729b862fbcd56bf9323b498a84b42d3ec493a6a91577ed921c1a880bd"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.648517,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "5ced6ab3d96135869901ee3a159fa45906e0827eedb392d8885d5775edff7c31",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-16-receipt.json",
+        "bytes": 700,
+        "sha256": "0221b9850b4444600114501adcb4a48d2c8e99503e1c7bbcacc70e4f34901538"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.662258,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "5ced6ab3d96135869901ee3a159fa45906e0827eedb392d8885d5775edff7c31",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-17-receipt.json",
+        "bytes": 699,
+        "sha256": "46d5135540334ecc0c25a5c4452bf9fccccb0eb730f0c2f0246767f7a065882d"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.70291,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "5ced6ab3d96135869901ee3a159fa45906e0827eedb392d8885d5775edff7c31",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-18-receipt.json",
+        "bytes": 700,
+        "sha256": "13b8c0d3baa6fd7d79de4685385185845bc35a2f284e3d084154e897e513f794"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.670814,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "5ced6ab3d96135869901ee3a159fa45906e0827eedb392d8885d5775edff7c31",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-19-receipt.json",
+        "bytes": 700,
+        "sha256": "3dd90b98ab26b8bdd1c168df675b67a3156ae83171ae2c6761713512b41f1787"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.671509,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "5ced6ab3d96135869901ee3a159fa45906e0827eedb392d8885d5775edff7c31",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-2-receipt.json",
+        "bytes": 699,
+        "sha256": "ffc04886289c834c57729d91070a65165e3ed9a5133b8dc110aac74881896d7b"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.702857,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 5412,
+            "sha256": "a395ec4e02bb7037e375e8eca202bf708a87bf187781a0a1d76783f973a5b7da",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-20-receipt.json",
+        "bytes": 700,
+        "sha256": "31313a7bbd20d3cd8d34d09985f4cac5c17eb4f64d7999654033dff80a783ab9"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.679875,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 22074,
+            "sha256": "4130d4061ad2ca7e52b9d134821be687563d176bfb94df300c32e6f221f35f91",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-3-receipt.json",
+        "bytes": 699,
+        "sha256": "73ea42fd017769361bd1d4d52cb47537e85621350ef9f16b9d2fc5144a8a2065"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.682203,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 5498,
+            "sha256": "9a424e05197667bc1735c60c71482b68464b0fa79688f1e07e5178751b2d959d",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-4-receipt.json",
+        "bytes": 699,
+        "sha256": "0698e413d19d49d51d5849651cfa606c1bd7089541237817c83824e4b8bdda36"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.621493,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 5498,
+            "sha256": "9a424e05197667bc1735c60c71482b68464b0fa79688f1e07e5178751b2d959d",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-5-receipt.json",
+        "bytes": 700,
+        "sha256": "93c450f7d0faebb3a9c45986e1a63ad7df27d609c27de729b0f9f77947b0b569"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.629603,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17196,
+            "sha256": "e69371a6cba80d78ef96f6200a9fddf70d7b16f6aacd48b9a154d2aa6e452ef3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-6-receipt.json",
+        "bytes": 700,
+        "sha256": "2efc402604ad8867c08cc51644a2a74e3087eedac2e7f99f56fcf9508bf42de2"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.671445,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17282,
+            "sha256": "4aa28dad9ddf8badce872781f2c66ec351cacbdc6bf75ee095eab85094e3de8e",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-7-receipt.json",
+        "bytes": 700,
+        "sha256": "7899872a830a7428b062089690f0916460e74a9285aa98bef1fc0d889a9290dd"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.660718,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17368,
+            "sha256": "94ea49c77c89df69a9dc7c26d6a26f9e7e63a65802ff0a41bc2a4caa14dcf298",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-8-receipt.json",
+        "bytes": 700,
+        "sha256": "0f59bf2c22a62ad0d68311ddc0ca236e53f2334b496e4e48dc16433a099d421a"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.672644,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17798,
+            "sha256": "c2585bb2dff25287bac1bb2db89459e09aed3ef096f0a6b729518c60bc025653",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/jobs-9-receipt.json",
+        "bytes": 700,
+        "sha256": "cee623c098e96abbfb21bcae04d45884af2e19a47f63f40bb49da04c2f25cc7a"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.620477,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17927,
+            "sha256": "d6ba8d0692e009937025ca2f9e69bcde98c723e67638601929312f20ade72a3d",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "5204b72610a59b987fd9b896f8b64660a4708af5b6fb64eb766b7fcb49082818"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 2.585004,
+        "timeout_seconds": 60,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 150,
+            "sha256": "10aa5f5943ad0d69818f4ddfe5078f1f66571f9272c1984585d674bb9db4f868",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "8576e5ab309849e4a143eebccf2436cc750a8475457a44fb902269aadc79f5c5"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.618461,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 91,
+            "sha256": "40db80a37367f9361e3bf1460f5b7d7fe8f82499862dea0d227a0e902f393a55",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "bcec5310e392e01ec5707b8faad2d1f7dea67917087563279f16dfeeed0893ec"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.535815,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 91,
+            "sha256": "43bc97816176c6c6c5d21ad611a280a5db5303686c0035577ba5ea98c2603e9c",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/resolve-1-receipt.json",
+        "bytes": 701,
+        "sha256": "19bb4a27b4d1e9e7959f040dbc5ae1944fe6a86784ea6428482a77059fd9dfda"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 1.105325,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 246917,
+            "sha256": "6a54e2185afa46c40a421820109a6a4820c14d7847d59be29efff8e4f7bb483f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-1-receipt.json",
+        "bytes": 700,
+        "sha256": "53ad4bcc1ed8a918f49517622709b8cfe2b44d9b07db67a45b82021e1fd1bfe3"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.516328,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "837ff9ccd8078a4103c98b9199b9fb4e12274f50e03bd7ed05be07acd708c8e2",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-10-receipt.json",
+        "bytes": 700,
+        "sha256": "782893135a18631c5ffca557cf246b035f5f033967e88c1e2d299848bfd9dce3"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.498347,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-11-receipt.json",
+        "bytes": 700,
+        "sha256": "1c924e5ac3fe6cc1ba679e8d834cfeb3baf222bb30aaefdcc1ae6cfbe0688d9b"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.509523,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-12-receipt.json",
+        "bytes": 700,
+        "sha256": "97279da32850a19d08c20fd1deec9f77748501b35cc0352d1305a87f089dfc24"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.498791,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-13-receipt.json",
+        "bytes": 700,
+        "sha256": "fbbf312fcb948d1bfc1f4afa1dccfed4353521799a23a5b390b1f0275ae7bf60"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.475414,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-14-receipt.json",
+        "bytes": 700,
+        "sha256": "ad27af5d580d2eea47cc95fda8e343f3e813213857c70948db8b0343c246140b"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.527806,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-15-receipt.json",
+        "bytes": 700,
+        "sha256": "a7968f8714049e8daca161900d306e3cb208ee9e3f48ef5de0b599f414c6bb8c"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.485225,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-16-receipt.json",
+        "bytes": 700,
+        "sha256": "735ab9aaef40debdc822c6b1b0610afd8861be342610d3d1ac10ca384d5d391b"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.486893,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-17-receipt.json",
+        "bytes": 700,
+        "sha256": "c687f4fc30856232e853988526437229f7af1917f7093d89eef0584d8431a428"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.714637,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-18-receipt.json",
+        "bytes": 700,
+        "sha256": "bb6df997fcb8733867ae77b098bec5d3ade79a58231ef7453b47489aa046a379"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.490272,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-19-receipt.json",
+        "bytes": 700,
+        "sha256": "e7d10b681f0cb780093a9fe60c93fbb0f52d40205715ddf5636fd9b4a9d831ca"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.507215,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-2-receipt.json",
+        "bytes": 699,
+        "sha256": "0ff35539c539ab3fbd1ad22d67f01a6990aa88ae93994438667fe4d4969a1a36"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.47679,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "837ff9ccd8078a4103c98b9199b9fb4e12274f50e03bd7ed05be07acd708c8e2",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-20-receipt.json",
+        "bytes": 700,
+        "sha256": "cc3ea06f648ce4fb883bc3a21fae240076f6865e472d91eb4fd87d74eda68a70"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.550021,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12636,
+            "sha256": "5083cb19b69c88d2faea151c96783c222decd1fb4df34141b9233772813af9d1",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-3-receipt.json",
+        "bytes": 700,
+        "sha256": "4b55a8b2b5e1964bff5aca22a501d41feeded53e516be0f767001c0547b862ae"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.486399,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "837ff9ccd8078a4103c98b9199b9fb4e12274f50e03bd7ed05be07acd708c8e2",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-4-receipt.json",
+        "bytes": 700,
+        "sha256": "fe58e209bc3af0ccaf67afb5d0aa5d8c70cbf159dd99cdc3afaf4fd546674678"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.510357,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "837ff9ccd8078a4103c98b9199b9fb4e12274f50e03bd7ed05be07acd708c8e2",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-5-receipt.json",
+        "bytes": 700,
+        "sha256": "57b0aaef80f5fc5021d74db6e101c69a38ee663560d4054952ec11db5bd52fe9"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.433684,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-6-receipt.json",
+        "bytes": 699,
+        "sha256": "a4e16f50bbb238914530b99eeaa9ca0b61b13401bcf641435b113edcfd76716a"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.49797,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-7-receipt.json",
+        "bytes": 700,
+        "sha256": "2dccd0d504a25eddf1040fba168020ab13aff9a2df8bf0ffc6ef4f9b862dc391"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.478325,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-8-receipt.json",
+        "bytes": 700,
+        "sha256": "e9eecbddb634048051d80b8c7c555adc207d803686cddddf5594cdee4aeb1a81"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.509276,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/run-9-receipt.json",
+        "bytes": 700,
+        "sha256": "09e44ec20df3b21d0913e1c00ce22e1c45d545b848f63961c20f20cb37817bbb"
+      },
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.478493,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12633,
+            "sha256": "36a3b4c31879af4486c6480a97da0354f76636e71da673e2896a505828161d65",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    }
+  ],
+  "all_slots_closed": true,
+  "unused_resolvers_closed": 5,
+  "unused_poll_pairs_closed": 70,
+  "normal_acceptance": 0,
+  "P5": "OPEN",
+  "95": "UNQUALIFIED_PENDING_BOUNDED_EVIDENCE",
+  "custody": "UNRESOLVED_UNCHANGED",
+  "IP_question": "UNOBSERVED_UNTIL_QUALIFIED_ACTUAL_EVIDENCE",
+  "no_retry": true,
+  "no_deployment": true,
+  "tool_reported_wait_sum_not_end_to_end_wall": true
+}

@@ -1,0 +1,34 @@
+{
+  "allocation": "ROOT_POST_ZOD_OPERATIONAL_TARGETED_CORRECTION_V2",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "preserved_frozen_v1": "All5 post-zod-normal-observation-execution-preparation files, Roothelper7210/c4cc9ab89c38c35a944bc6a6d099355494b23d1bc870193884ccded9473f4586, proof3978/752a4afdc47470bf7bae5fe019afa7ab3ca988e044a749675c25dfa5bc85134c, NONPASS15218/1634fabbee94aec323474370c6d77af101f6df7ab16e18bcff3b6537df56f63c remain unchanged.",
+  "owned_directory": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\post-zod-normal-observation-execution-preparation-v2",
+  "owned_members": [
+    "provider.py",
+    "root-driver.py",
+    "proposal.json",
+    "pure-controls.json",
+    "manifest.json"
+  ],
+  "future_review_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\post-zod-normal-observation-operational-review-v2.json",
+  "Root_owned_future_helper": "post-zod-normal-observation-root-proof-admission-v2.py",
+  "Root_owned_future_helper_proof": "post-zod-normal-observation-root-helper-binding-proof-v2.json",
+  "scope": "Same finite operational family; fix ONLY POST-ZOD-P2-01 and02 plus necessary versioned self/review/helper/data pins. All future effect paths and candidate remain original post-zod namespace and ABSENT; same unused operation/checkpoint IDs, not a retry or active-lease reset. Keep expected PASS literal PASS_POST_ZOD_NORMAL_OBSERVATION_OPERATIONAL_SOURCE_ONLY; new review path preserves v1 NONPASS. Rootauthors helper only afterfrozen5, author describes exact data-only delta.",
+  "P2_01": "provider.py96-97 standalone LFlock guard must require current2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95, consistent with exact input_refs/source204row/overlay. No weakening/removal. All other guard/capture logic unchanged; report 6functions byteidentical and main data-literal-only normalized/inverse conservation if applicable, never false7byteidentical.",
+  "P2_01_controls": "Meaningful source-bound offline control traverses ACTUAL raw-lock seam with current lock, without transport/intent/effects; same currentbytes fail v1 oldguard and pass v2 guard. Stale/alteredlock refuses beforeintent/GET. Narrow AST actual guard/control seam permitted inRAM; do not mock hash to fake success. Existing virtualpositive1/refusals7/defaultdriver evidence remains scoped, not fullrawseam qualification. No native/Node/network process.",
+  "P2_02": "Correct exact nonhistorical current future_effects remote_before expected d647c81d93634ecdb85df66d8d3e8e7e4d51d841, FFpush/readback head eadd1436c7d807e19ef19838d2896c35abba2238; canonical_dispatch actual_programmatic_options/POST/body/CLI/state +derived fixed-body hash must agree with actual currentdriver/unchangedADAPTER/newCP8ffb73c6-7309-4782-9e36-8b4bcc02daeb/source81d208/currentstate namespace. Preserve true historicalrecords, do not recursive rewrite history or relabel current contradiction as historical. Actualdriver alreadycurrent; no wrongtarget effect claimed. Pure equality/current-tuple controls againstactualsource factory/options, no real canonicalpreGET/POST.",
+  "preservation": "Same204/75 pathsets/currentlockrow only/workspace+lockoverlay+genericpins, catalog448/19/199 unchanged, currentfunctional17457+Zod9994 reviewpins, historicalrestoreguard truthful, actualMAIN sharedinstallmetadata/provider_trigger_rows. Exact same caps/transport/functions except approved currentlockliteral and necessary versionpath/selfpins. No new parser/capture/helper family/sourcecensus/extractor/rawmigrationSQL or DEBUGreads.",
+  "future_hashscope": "Root1026/0b094dc6f76a2743821ce3d2373bf7c298d90eba9e5caf7cd039fbbc0f1fcc88: existing86 non-migration hashloop incl ops/recovery/bootstrap-roles.sql only afterindependentreview+finitegrant;118migration Git-only/rawvectorshistorical. No renewed86qualification inpreparation.",
+  "forbidden": [
+    "trackedwrites/Gitmutations",
+    "actualhelper/provider/driver/import/Node/native/network/CI/registry/workload/resources",
+    "oldslotreplay",
+    "candidate/grant/sourceproof/activation/journal/intent/runtimeoutputs",
+    "DEBUGreads/mutations/validityclaims",
+    "merge/deploy/demo/dbpush"
+  ],
+  "result": "Fivefrozenpins/nested6fields; source-bound RED/GREEN and exactcurrentenvelope controls, truthful conservedfunctions/rawinverse; minimaldata-onlyRoothelper description. Bounded actual gap/fix review next, no new broad operational sweep or storyround4. P5OPEN/current95unexecuted/custodyunresolved/15.6unstarted/fullpackagelintunpassed/cleanCIrequired."
+}

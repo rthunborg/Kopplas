@@ -1,0 +1,72 @@
+{
+  "schema": "ROOT_POST_ZOD_NORMAL_FINITE_ALLOCATION_V1",
+  "turn_status": "completed",
+  "tool_status": "completed",
+  "actual_turn": "01a16ea5-a6d3-7561-a0f8-2a07a89c5ba4",
+  "actual_tool": "exec-2a42cb27-2612-4625-a00b-c0be38b07ed8",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "root_actual_completed_turn_read": true,
+  "verification_tools": [
+    {
+      "id": "exec-316f1095-4f3c-459e-8aaf-0edfc5c67a0b",
+      "status": "completed",
+      "native_exit": 0,
+      "duration_ms": 234
+    },
+    {
+      "id": "exec-8d5eb634-71c6-4f2b-aece-8aadd9635c80",
+      "status": "completed",
+      "native_exit": 0,
+      "duration_ms": 147
+    }
+  ],
+  "exact_allocation_text": "COMPLETED finite Coordinator post-Zod NORMAL allocation under standing human authority. Actual9949f7/native0 verifies finalHighv2review10225/148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212 BOTH PASS_POST_ZOD_NORMAL_OBSERVATION_OPERATIONAL_SOURCE_ONLY/independenttrue/findings[], all5pins/helper, HEADclean eadd1436c7d807e19ef19838d2896c35abba2238. Actual9d68f2/native0 modeRO sharedclaims remainsDocumentsrunFINALIZED/20.1\u20133INTEGRATED, no newstoreclaims; prior exactpackageworkspace-lockscope reconciled/no knownoverlap. Bind source81d208105ab43162a8bd13662984b0d8f9ff5e56/expectedremoted647c81d93634ecdb85df66d8d3e8e7e4d51d841/op8f97ce19-2cd5-4a01-b5d2-0480a662f545/CP8ffb73c6-7309-4782-9e36-8b4bcc02daeb/repo rthunborg/Kopplas/workflow296219797/ownedMAINcodex/epic-15-scheduling-time-calendar/actor+trigger rthunborg/attempt1/workflow_dispatch/normal/allotherflagsfalse. EXACTv2 provider20587/62a3271253c8d7a92be7e044b61e593263c0065ba1b85f5b08fdc9c6031562c3; driver21112/892a9ac99827e7aed7655b6e94a347ecd81cac0ec092ecff507c2b25a1faef7d; proposal287968/b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3; controls6601/b81a2f061b6aba2e7c84b4c2851672bf286e9abd05c14682be6ca3d3b63ce624; manifest1694/ab64bde00336db351949e7c208620a43f4dee2886d48088fe310c986baed6349. Helperv2ONLY7216/8ba90118d7735f44ce8393383f32fd37ce0043f0272178f2fac7c2763011c2ca; preservev1NONPASS. Allocate Root7localGitmetadata/fresh204SOURCEHEADmetadata/exact86ENUMERATED NON-MIGRATION byteshash inclops/recovery/bootstrap-roles.sql(no contentsretained)/existinggenericrefsinstalltriggerproof;118migrationONLYfreshGitmetadata+historicalRAWLFvectors, NOmigrationbytescan/catalogrebuild/DEBUGreads. Then exclusiveexactcandidate/grant/proof/activations/consumedoncejournals usingactualcompletedmessage/tool evidence. ONEreadonlyproviderlogicalGET inner15sLOOP4MiBstdout256KiBstderr+wait2+twojoins2, outer60sLOOP512KiBstdout64KiBstderr+wait2+twojoins1 usingexactreviewednativefunction. Actualnative+outerEOFjoinedclosedsettled/chunkexitwall sessionswaits required beforeeffectsactivation; limitedownedbranchGitpushcontainmentONLY/no mainmanualdisableclaim. Sourceproofactivation<=300atmutation/provider<=180beforecanonical<=300directPOST/no refreshGET. Remote-before1/20s NONFORCEFFpush1/60s readback1/20s thencanonicalONE90s4preGET1POST/perAPI15s4MiB64KiBstderr. RootSOLEresolver<=6/page20min5s/API20 and poll<=90runlatestjobpairs/page100min30s/API20s2MiB64KiBstderr/originalimmutable5400spublishclock. ControllerLOOP+samechildwait2+twojoins1, no stricthardwallclaim. Uniqueownedtuple beforepoll/all9terminalSTOPclosesunused; prereqfailure/refusal/partial/nonzero/unknown/expiry consumesSTOP/no retryresetrenewaladoption/secondapproach. NOartifactlogGEThere/lateractualterminalbindingreview+separate<=5GETgrant/SOURCE-LABEL32768ONLY. NOsourceedit/install/vars/providerwrites/workflow/otherCI/resources/foreigncheckout/DBbrowsermanual/mainmerge/deploy/demo/dbpush. ExistingreviewedhostedsetupONLY. DEBUGstrictHOLDunchanged/no historicalmetadataasvalidity. Allold400970/auditgrantsCLOSED. Current0P0F95unexecuted/P5OPEN/cap3/15.6unstarted/CIcauseUNKNOWN/IPUNOBSERVED/custodyunresolved; forgeableshapeNOcausebenignityauthenticityrequestlinkageclaim. Saveactualcompletedallocation viaowningRoot, independentlyreadthiscompletedturnbeforeeffects. This is actualfiniteallocation notproposal/no repeatgenericapproval.",
+  "no_retry": true,
+  "no_deployment": true,
+  "root_pre_materialization_attempt": {
+    "chunk": "c81dc0",
+    "native_exit": 1,
+    "stage": "before writes/helper/network/effects",
+    "reason": "Shell cwd did not match requested workdir; explicit os.chdir now used",
+    "effect_credit": 0
+  },
+  "identity": {
+    "schema": "ROOT_INT009_CANONICAL_CATALOG_NORMAL_INERT_CANDIDATE_V1",
+    "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+    "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+    "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "expected_remote_preimage": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "mode": "NORMAL",
+    "release_validation": false,
+    "cause_proof": false,
+    "original_int009": false,
+    "source_review": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-actual-diff-independent-review.json",
+      "bytes": 17457,
+      "sha256": "40a01b1258a49a30f40fd92815f74b896bf3d2ac12e81b68e53d14595b959546"
+    },
+    "effects_authorized": false,
+    "all_old_slots_closed": true,
+    "normal_acceptance": 0,
+    "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+    "future_run": null,
+    "functional_calendar_source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "dependency_review": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-independent-review.json",
+      "bytes": 9994,
+      "sha256": "8e123e580ad88cf7dcca5eac8eafe63cdfd47d8e8c81b558b4325c41c9057129"
+    }
+  },
+  "review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json",
+    "bytes": 10225,
+    "sha256": "148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212"
+  }
+}

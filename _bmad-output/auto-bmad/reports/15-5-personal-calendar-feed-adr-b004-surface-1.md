@@ -34,3 +34,38 @@
 **⚠️ Needs human:** (none)
 
 **Next:** Prepare fresh reviewed exact-head checkpoint/CI binding and finite no-deployment allocation, then required95/custody/canonical delivery/P6/P7; continue15.6 after15.5 lands. No replay/deployment.
+
+## Report — 2026-10-24T17:13:24Z (continued P5 — qualified post-Zod NORMAL failure)
+
+**Story:** `15-5-personal-calendar-feed-adr-b004-surface-1` (epic 15, story 5) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\_bmad-output\implementation-artifacts\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `eadd143`).
+**Pipeline status:** In progress. P5 OPEN:93P/API019failed/API020unexecuted; custody unresolved;15.6UNSTARTED.
+**Continues:** Whole Epic15 run; current source remains81d208 and observed pushed head eadd1436. All observation/acquisition slots CLOSED.
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 100h 54m (≈23h 56m AI-run, ≈76h 57m human/idle wait); resumed 1×.
+
+**Phases run:** P5 operational v2 correction/review; one exact-head NORMAL observation; separately allocated5GET evidence qualification. No phase advancement.
+**Skipped:** No optional skipped-job execution credit; no broad story round4,15.6,merge or deployment.
+
+**Overrides:** Standing owner authorization for bounded checkpoints/CI retained; independent High sensitive reviews and three-round cap preserved; no legacy application evidence, merge or deployment.
+
+**TEA:** Current required95 independently reconciled:30Node+49DB/RLS+14browser passed;API019failed/API020pending. Separate direct recovery1P.
+
+**Build:** No product source change in this closeout. Zod4.6.6 source81d208 prerequisite passed current CI audit; clean CI lint/type/unit/build passed.
+
+**Review:** Actual current evidence qualification18772/899bef... establishes93P/1F/1unexecuted. Independent reader/helper/outer source reviews and v1NONPASS histories retained; cap3 unchanged.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items remains authoritative; October7 rejection historical. Epic15 retrospective pending.
+
+**Open questions:**
+1. Underlying API019 IP stdout/OTHER_OR_UNKNOWN producer and cause remain UNKNOWN; no benignity or suppression inference.
+2. Current DB and prior399982 custody retained/deletion unverified/backend settlement UNKNOWN.
+
+**Deferred work:**
+1. P5required95/custody/delivery, requiredP6/P7metadata;15.6validatedspec/build;epictrace/retro/docs/delivery;inherited15.2flagdisposition;fresh actual-head finalPRreview/checks and conditional mergecommit retainingbranch after current main no-deploy containment.
+No deferred-work archive or completion gate was waived.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Finish source-backed failed-case assessment, independently validate a bounded plan and coordinate exact ownership before source changes; no unchanged rerun.

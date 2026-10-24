@@ -1,0 +1,36 @@
+{
+  "schema": "ROOT_CANONICAL_CATALOG_NORMAL_EFFECTS_ACTIVATION_V1",
+  "execution_authorized": true,
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "issued_at_utc": "2026-10-24T16:04:10.995463+00:00",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "ref": "codex/epic-15-scheduling-time-calendar",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "driver_sha256": "892a9ac99827e7aed7655b6e94a347ecd81cac0ec092ecff507c2b25a1faef7d",
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/proposal.json",
+    "bytes": 287968,
+    "sha256": "b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3"
+  },
+  "operational_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json",
+    "bytes": 10225,
+    "sha256": "148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-observation-effects-allocation.json",
+    "bytes": 6109,
+    "sha256": "c6d2df7700603cf4cd6dc2ac0548aab83e06f09d4aef0e1a84c2a67f0c08e46e"
+  },
+  "current_source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-current-source-proof.json",
+    "bytes": 60788,
+    "sha256": "1a7abac1b423d2efeed053722fb606235de93744ce6ce2b049806a4ae908a3ab"
+  },
+  "provider_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-vercel-readonly-qualification.json",
+    "bytes": 30497,
+    "sha256": "4ff8739ca493f7c3b27a9c18b989c68ec74eaaf3c4e92c544da05d295ae66fa9"
+  }
+}

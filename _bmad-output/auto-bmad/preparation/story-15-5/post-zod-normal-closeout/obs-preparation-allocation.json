@@ -1,0 +1,35 @@
+{
+  "allocation": "ROOT_POST_ZOD_NORMAL_OBSERVATION_INERT_PREPARATION_ONLY",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "functional_calendar_source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+  "remote_preimage_expected": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "owned_directory": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\post-zod-normal-observation-execution-preparation",
+  "owned_members": [
+    "provider.py",
+    "root-driver.py",
+    "proposal.json",
+    "pure-controls.json",
+    "manifest.json"
+  ],
+  "preparation_scope": "Clone frozen integration-IP-single-observation-execution-preparation same existing operational family with only exact namespace/IDs/head/source/current2dependency binding data changes. No new transport/capture/parser/catalog family. Both prior functional source review17457/40a01b1258a49a30f40fd92815f74b896bf3d2ac12e81b68e53d14595b959546 and newdependencyreview9994/8e123e580ad88cf7dcca5eac8eafe63cdfd47d8e8c81b558b4325c41c9057129 remain exact source-qualified inputs. Old restore guard stays truthfully historical. Newreview pin must be enforced via generic exact input_refs/proof bindings, not fabricated oldschema aliases or renamed verdicts.",
+  "new_source": "Only pnpm-workspace.yaml raw480/e1b873361cb21813a8b487c4111fb08be29a486fcfa1f3a4f7021797997342f8 LF462/6464c218bc0c2e87d8ad7bac5c641491a3d056b6247ef643aef2376f3e07f66d blobf80dd43c8bf6dcbf80d4701449ba011a25daa017 and lockrawLF162204/2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95 blob3c0ae6b01c1853d5478b9d0727bc64dba3eb8a12 changed since d647. All5functional sourcepins unchanged. Currentaudit0H0C3M; fullpackage lint unpassedRangeError/localtrackedAPIpass distinct; cleanCI required.",
+  "reuse": "Keep same204path census, update only applicable exact2tracked dependency entries by currentraw+Git proof; retain unchanged path hashes as historical/source-conserved metadata, no rawsource204 rescan. Same terminal75path vector update applicable entries only. Same unitcatalog448/19excluded/199wrapper exact unchanged; no new extractor/test census. Same118SQL vector reused with fresh Git path/status/noSQLchange metadata, no rawSQLread/rescan/newrawclaim. Same inert4constantconsumer frozen; no edit/re-execution/admission. Same capture/providerfunctions/rootdriver nonadmit/operatorbyteconservation and caps.",
+  "future_root_helper": "Provide exact binding-only replacement/data delta description for Root-owned helper/proof namespace, preserve all5functions by rawinverse. Author does NOT write helper outside its5members. If existing algorithm needs genuine change rather than binding data, report precise blocker before coding it. Root will create/review helper conservation separately as part of actual operational review, no new helper family.",
+  "future_limits": "One provider readonly selectedproject GET freshness<=300s; one remote-before/FFpush/readback; canonical4preGET+1POST exactownedworkflow; resolver<=6/page20/min5s; poll<=90pairs/page100/min30s/5400immutabledeadline, stopsfirstterminal/closesunused. All native time/output/tails retained exact from frozenoperator. Exact no-deploy ownbranch qualification only, no main/manualkillclaim. ONE NORMAL changed-source observation, same review-protected hostedsetup only. Future terminal acquisition separate afteractualterminal, no artifact/lognow.",
+  "interfaces": "Fresh inert operation/checkpoint IDs now are data only. No candidate/grant/sourceproof/providerqualification/activation/journal/intent/executionoutputs created now. All namespaces new; closed prior operations never reused. Current head/source/clean metadata may be read locally, but no effect helper/corpus reconstructor invoked. Default/import/blank activation refuse; exact completed finite Coordinator allocation plus independent currentoperationalreview and freshRootproof beforefutureeffect.",
+  "controls": "Bounded source conservation/inverse and current metadata namespace pure virtualcontrols only, reuse unchanged historicalcontrol evidence with precise provenance, no redundant broad tests or storyround4. No Node interpreter/process/workload/network needed. No rawsource/SQL catalog reconstruction.",
+  "forbidden": [
+    "trackedsource/spec/state writes",
+    "Git mutations",
+    "actualprovider/API/remote/CI/NORMAL/registry",
+    "resources/DB/browser/server",
+    "oldhelper/slotreplay",
+    "candidate/grant/proof/activation/journal/intent/executionoutput now",
+    "DEBUGreads/mutations/validityclaim",
+    "merge/deploy/demo/dbpush"
+  ],
+  "result": "Five frozenpins with nested standard6 in proposal; concise minimalbindingdelta for Roothelper, byte/function conservation and truthful limits. Stop promptly after finite preparation; no new framework/report/source families. P5OPEN/current95unexecuted/custodyunresolved/15.6unstarted."
+}
