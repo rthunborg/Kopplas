@@ -265,7 +265,11 @@ export const calendarTelemetryPrivacyOrigins = {
     "unknown": "scenario-telemetry-privacy-refused-unknown-unknown"
   }
 } as const;
-export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-telemetry-observation-timeout", "scenario-telemetry-privacy-refused", "scenario-telemetry-parse-refused", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed", ...Object.values(calendarTelemetryPrivacyOrigins).flatMap(row => Object.values(row))] as const;
+export const calendarTelemetryIntegrationIpOrigins = {
+  STDOUT: { VITEST_CONSOLE_HEADER_FORM: "scenario-telemetry-privacy-refused-integration-ip-stdout-header", OTHER_OR_UNKNOWN: "scenario-telemetry-privacy-refused-integration-ip-stdout-other" },
+  STDERR: { VITEST_CONSOLE_HEADER_FORM: "scenario-telemetry-privacy-refused-integration-ip-stderr-header", OTHER_OR_UNKNOWN: "scenario-telemetry-privacy-refused-integration-ip-stderr-other" }
+} as const;
+export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-telemetry-observation-timeout", "scenario-telemetry-privacy-refused", "scenario-telemetry-parse-refused", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed", ...Object.values(calendarTelemetryPrivacyOrigins).flatMap(row => Object.values(row)), ...Object.values(calendarTelemetryIntegrationIpOrigins).flatMap(row => Object.values(row))] as const;
 export type CalendarFixtureOwnedOrigin = typeof calendarFixtureOwnedOrigins[number];
 export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown", ...calendarFixtureOwnedOrigins] as const;
 export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
@@ -597,11 +601,19 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
           if(observed.sensitiveOutputDetected!==false||observed.sensitiveOutputCount!==0) {
             let origin:CalendarFixtureOwnedOrigin="scenario-telemetry-privacy-refused";
             const first=observed.firstPrivacy;
-            if(first!==null&&typeof first==="object"&&!Array.isArray(first)&&Object.keys(first).sort().join(",")==="child,predicate") {
-              const fact=first as Record<string,unknown>;
-              if(typeof fact.child==="string"&&typeof fact.predicate==="string"&&Object.hasOwn(calendarTelemetryPrivacyOrigins,fact.child)) {
+            if(first!==null&&typeof first==="object"&&!Array.isArray(first)) {
+              const fact=first as Record<string,unknown>,keys=Object.keys(first).sort().join(",");
+              const legacy=keys==="child,predicate";
+              const closed=keys==="child,predicate,renderedForm,stream"&&typeof fact.stream==="string"&&["STDOUT","STDERR","UNKNOWN"].includes(fact.stream)
+                &&typeof fact.renderedForm==="string"&&["VITEST_CONSOLE_HEADER_FORM","OTHER_OR_UNKNOWN"].includes(fact.renderedForm);
+              if((legacy||closed)&&typeof fact.child==="string"&&typeof fact.predicate==="string"&&Object.hasOwn(calendarTelemetryPrivacyOrigins,fact.child)) {
                 const row=calendarTelemetryPrivacyOrigins[fact.child as keyof typeof calendarTelemetryPrivacyOrigins];
-                if(Object.hasOwn(row,fact.predicate))origin=row[fact.predicate as keyof typeof row];
+                if(Object.hasOwn(row,fact.predicate)) {
+                  origin=row[fact.predicate as keyof typeof row];
+                  if(closed&&fact.child==="integration"&&fact.predicate==="ip-literal"&&(fact.stream==="STDOUT"||fact.stream==="STDERR")) {
+                    origin=calendarTelemetryIntegrationIpOrigins[fact.stream][fact.renderedForm as "VITEST_CONSOLE_HEADER_FORM"|"OTHER_OR_UNKNOWN"];
+                  }
+                }
               }
             }
             throw calendarFixtureOrigin(origin);

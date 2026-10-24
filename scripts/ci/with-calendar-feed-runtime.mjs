@@ -267,9 +267,9 @@ export function hasSensitiveOutput(line, { keyId, secret, knownValues = /** @typ
 /** Never return/persist raw lines. Detection runs before filtering. */
 export function createTelemetryObserver({ keyId, secret, persist, knownValues = /** @type {string[]} */ ([]) }) {
   let responseCount = 0, sensitiveOutputCount = 0;
-  let firstPrivacy = /** @type {null | Readonly<{child:string,predicate:string}>} */ (null);
+  let firstPrivacy = /** @type {null | Readonly<{child:string,predicate:string,stream:string,renderedForm:string}>} */ (null);
   const observation = () => persist(JSON.stringify({ event: "calendar_feed.runtime_observation", responseCount, sensitiveOutputCount, sensitiveOutputDetected: sensitiveOutputCount !== 0, ...(firstPrivacy ? { firstPrivacy } : {}) }) + "\n");
-  const observe = async (line, child = "unknown") => {
+  const observe = async (line, child = "unknown", stream = "UNKNOWN", completeLine = false) => {
     let record;
     try { record = JSON.parse(line); } catch { /* Unstructured output is still inspected below. */ }
     const validResponse = record !== null && typeof record === "object" && !Array.isArray(record)
@@ -277,7 +277,13 @@ export function createTelemetryObserver({ keyId, secret, persist, knownValues = 
     const unexpectedResponse = record?.event === "calendar_feed.response" && !validResponse;
     const predicate = sensitiveOutputPredicate(line, { keyId, secret, knownValues });
     if (predicate !== null || unexpectedResponse) {
-      if (firstPrivacy === null) firstPrivacy = Object.freeze({ child: ["build", "production-server", "integration"].includes(child) ? child : "unknown", predicate: predicate ?? "unexpected-response-shape" });
+      if (firstPrivacy === null) {
+        // Rendering syntax is forgeable: these enums never authenticate an emitter.
+        const normalized = completeLine === true ? stripVTControlCharacters(line) : "";
+        firstPrivacy = Object.freeze({ child: ["build", "production-server", "integration"].includes(child) ? child : "unknown", predicate: predicate ?? "unexpected-response-shape",
+          stream: ["STDOUT", "STDERR"].includes(stream) ? stream : "UNKNOWN",
+          renderedForm: completeLine === true && /^(?:stdout|stderr) \| [^\r\n]+$/.test(normalized) && !/[\r\n]/.test(normalized) ? "VITEST_CONSOLE_HEADER_FORM" : "OTHER_OR_UNKNOWN" });
+      }
       sensitiveOutputCount++;
       await observation();
     }
@@ -413,18 +419,24 @@ export function launchOwned(command, args, env, cwd, observe, spawnProcess = spa
   capturedIdentity.catch(() => undefined); // The settlement path preserves failure.
   // Register listeners immediately; neither spawn errors nor output escape to raw logs.
   let output = Promise.resolve();
-  for (const stream of [child.stdout, child.stderr]) {
-    let pending = "";
+  for (const [stream, streamName] of [[child.stdout, "STDOUT"], [child.stderr, "STDERR"]]) {
+    let pending = "", continuation = false;
     stream?.setEncoding("utf8");
     stream?.on("data", chunk => {
       pending += chunk;
       const lines = pending.split(/\r?\n/); pending = lines.pop() ?? "";
-      if (pending.length > 16_384) { lines.push(pending); pending = ""; }
-      for (const line of lines) output = output.then(() => observe(line));
+      const forced = pending.length > 16_384;
+      if (forced) { lines.push(pending); pending = ""; }
+      for (const [index, line] of lines.entries()) {
+        // Snapshot before queuing: a forced fragment taints through its next newline.
+        const completeLine = !(index === 0 && continuation) && !(forced && index === lines.length - 1);
+        output = output.then(() => observe(line, streamName, completeLine));
+      }
+      if (lines.length) continuation = forced;
       // Attach a rejection observer now; the error still propagates through settleOutput.
       output.catch(() => undefined);
     });
-    stream?.on("end", () => { if (pending) { output = output.then(() => observe(pending)); output.catch(() => undefined); } });
+    stream?.on("end", () => { if (pending) { output = output.then(() => observe(pending, streamName, false)); output.catch(() => undefined); } });
   }
   const done = new Promise(resolveDone => {
     child.once("error", () => resolveDone({ code: null, signal: null }));
@@ -623,10 +635,10 @@ export async function runCalendarFeedRuntime({ mode, env = process.env, platform
       await run("pnpm", CAUSE_PROOF_ARGS, childEnv, observe, 240_000);
       try { await deps.readDiagnostic(); } catch { diagnosticUnverified = true; fail("diagnostic-settlement-unverified"); }
     } else if (mode === "db") {
-      await run(process.execPath, ["node_modules/next/dist/bin/next", "build"], childEnv, line => observe(line, "build"), 240_000);
-      const server = launch(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], childEnv, line => observe(line, "production-server"));
+      await run(process.execPath, ["node_modules/next/dist/bin/next", "build"], childEnv, (line, stream, completeLine) => observe(line, "build", stream, completeLine), 240_000);
+      const server = launch(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], childEnv, (line, stream, completeLine) => observe(line, "production-server", stream, completeLine));
       await deps.ready(childEnv.CALENDAR_FEED_TEST_BASE_URL, server, abort.signal); receipt.ready = true;
-      await run("pnpm", INTEGRATION_ARGS, childEnv, line => observe(line, "integration"), 1_800_000);
+      await run("pnpm", INTEGRATION_ARGS, childEnv, (line, stream, completeLine) => observe(line, "integration", stream, completeLine), 1_800_000);
     } else {
       await run("pnpm", BROWSER_ARGS, childEnv, observe, 1_800_000);
     }
