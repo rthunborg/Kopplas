@@ -8252,3 +8252,40 @@ none newly archived
 1. none; authorized work continues
 
 **Next:** finish catalog publication recovery, then fresh changed-source finite NORMAL;15.6 remains unstarted
+
+## Report — 2026-10-24T18:31:14Z (continued P5 — catalog qualified and approved design authority delivered)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cbe3e5d`).
+**Pipeline status:** in-progress; reviewed source/catalog/docs, fresh native95 required
+**Continues:** yes — fresh finite checkpoint/NORMAL preparation
+
+**Summary:** Epic15 active; approved design authority delivered in isolated checkout
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 365h 33m (≈77h 24m AI-run, ≈288h 08m human/idle wait); resumed 249×.
+
+**Stories:**
+1. 15.1–15.4 landed;15.5P5OPEN;15.6UNSTARTED
+
+**Skipped:**
+1. none newly skipped
+
+**Epic gate:** not reached; inherited15.2 review_unverifiedtrue unchanged
+
+**TEA:** required story/epic automation and delivery gates remain open
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; no new epic retro
+
+**Overrides:** owner defaults/no legacy browsing; checkpoint push and conditional final merge-commit retaining branch; no deployment
+
+**Open questions:**
+1. actual emitter/API019 outcome unknown; current/historical DB deletion/backend facts unverified;2 inherited doc links limit package completeness
+
+**Deferred work:**
+1. fresh reviewed provider/checkpoint/NORMAL/evidence allocation, all required native95, P5delivery/P6,15.6 and epic gates
+none newly archived
+
+**⚠️ Needs human:**
+1. none; authorized work continues
+
+**Next:** prepare exact-source fresh finite NORMAL, old budgets closed;15.6 unstarted

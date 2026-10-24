@@ -24,7 +24,17 @@ classification:
 
 **Author:** Rasmus
 **Date:** 2026-07-18
-**Artifact type:** Experience specification (IA, behavior, states, interactions, accessibility, flows). Not a visual design system — Phase A's "restrained admin web app" visual posture carries forward; see §1.
+**Artifact type:** Stable numbered Phase B experience requirements and compatibility annex. The canonical visual contract is `ux-designs/ux-Kopplas-2026-10-23/DESIGN.md`; the canonical shared experience/composition contract is its peer `EXPERIENCE.md`, incorporating the detailed binding requirements here and approved domain story contracts by reference. PRD, ADRs and scope manifest retain product authority. Existing headings and deep links remain valid. No detailed requirement is retired until the authority crosswalk proves its complete replacement.
+
+## Current design authority — owner decision 2026-10-15
+
+**Decision (IN):** Never reference or use legacy application URLs as evidence, and never browse the legacy application to resolve design questions. This supersedes every earlier Lovable/oracle exploration, terminology-pass, fixture-capture or comparison requirement in this document for future epic/story work. Preserve historical records and their original evidence status; do not present them as newly verified observations. Existing `[oracle-check]` markers identify unresolved design questions, not browsing instructions or legacy verification gates.
+
+When design rules are missing, choose maintainable defaults from approved requirements, the existing design system and accessibility conventions. Record the choice and rationale in the epic/story as an **owner-authorized design decision**, separately from assumptions and unresolved questions. Ask the owner only when a material product, scope or domain decision cannot safely be inferred; do not invent legacy observations.
+
+**Structure (IN):** Separate domain behavior, state, validation and actions from replaceable presentation and flow composition, while delivering the required usable UI. Keep abstractions proportional to the feature.
+
+**Boundary:** Story/ADR authorization, manifest activation, data integrity and verification gates still apply. Phase C scope remains **DEFERRED**. Replaceable presentation/flow is a **SEAM**, not a commitment to extra variants, frameworks or future implementations.
 
 ## 0. Purpose, Boundary, and Reading Order
 
@@ -35,10 +45,13 @@ Boundary rules:
 - **The Phase A UX spec is frozen.** Carried tenant-admin surfaces (CRM, settings/pricing, calculation editor, quote versions/PDF/acceptance, basic job record, entity file panels, states, workflow) are specified there and are **referenced, never restated and never edited**. Where Phase B extends a carried surface (e.g. the quote detail gains Förlorad/Avböjd), only the delta is specified here.
 - **Depth follows the ratified wave-checkpoint model (PB-D10).** Wave B1a/B1b surfaces are specified in detail (§4). Wave B2/B3 surfaces are specified at pattern level only (§5) — interaction patterns, list/detail conventions, and how they inherit the B1 system — and are deepened at their wave-boundary checkpoint before build.
 - ~~**Owner gates stay open.**~~ **UPDATED 2026-07-26 — the gates are CLOSED.** This spec was written with `[gated: X]` markers around decisions it deliberately did not resolve. The owner answered all of them on 2026-07-26. **COURSE-CORRECTED 2026-09-03:** the N-3 installable-PWA/offline answer is preserved in the dated owner record and ADR-B007 but no longer governs Phase B. ADR-B009 defines connected responsive field UX at 360×640, transient unsent-input protection, explicit retry, and server-confirmed success; the complete PWA/offline package is Phase C. The money correction remains governed by `architecture-phase-b.md` §12A.
-- **The legacy Lovable app is the behavioral and terminology oracle, not a visual template.** Nothing here copies legacy layout or code; legacy terms are adopted where they are the words users already use (§9), and uncertain labels carry an explicit `[oracle-check]` marker to be verified against the legacy app before build. **Epic 15 exception (2026-10-09):** [Epic 15 scheduling UX disposition — 2026-10-09](../../docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md) supersedes its further-observation prerequisite and resolves UXB-A9 from approved requirements and recommended interaction choices. No new Lovable observations or verified legacy-parity claim.
+- **Current design authority governs terminology and behavior.** Resolve historical `[oracle-check]` questions under the 2026-10-15 owner decision above before build; retain approved vocabulary and requirements without claiming new legacy verification.
+- **Epic 15 scheduling disposition (2026-10-09):** [Epic 15 scheduling UX disposition — 2026-10-09](../../docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md) supersedes its further-observation prerequisite and resolves UXB-A9 from approved requirements and recommended interaction choices. No new Lovable observations or verified legacy-parity claim. This approved behavioral resolution remains binding under the universal 2026-10-15 prohibition above.
 - **Phase C surfaces are unreachable** (PRD FR130): no AI affordances, no customer portal, no supplier-API UI, and no PWA install prompt/manifest, offline mode, pending-sync center, replay/conflict UI, or other placeholder for the deferred PWA/offline package. No placeholder screen or nav item exists for anything not manifest-active.
 
 Reading order for downstream consumers: this spec → Phase B architecture extension (which owns ADR-B001..B006 and answers §14) → Phase B epics.
+
+Read PRD/ADRs/manifest for product and domain scope, DESIGN for appearance, EXPERIENCE for shared interactions/composition, then this annex and approved story contracts for detailed behavior. See `design-transition-2026-10-23/authority-crosswalk.md`. A section can become a redirect only after every binding requirement/state/gate has a verified destination and incoming links still resolve. Frozen Phase A records and immutable v1 remain unchanged. Where an existing approved contract and a proposed composition differ, preserve the approved behavior until an explicit scoped amendment is approved.
 
 ## 1. Foundation
 
@@ -49,8 +62,8 @@ Reading order for downstream consumers: this spec → Phase B architecture exten
 
 ### UI system
 
-- The app is Next.js (App Router) + React + **Tailwind CSS v4** with tokens in `@theme` (`src/app/globals.css`), the Geist font, and the existing authenticated `AppShell` (server-resolved tenant context, client nav island). Phase B **extends this shell**; it does not introduce a component library or a new visual identity.
-- No separate DESIGN.md token file exists or is created in this phase; Tailwind `@theme` is the de-facto token source and the Phase A visual posture ("restrained admin web app, dense-but-readable, clear primary actions") is the visual reference (UXB-A1). Behavioral component contracts live in §6.
+- The app retains Next.js App Router, React, Tailwind CSS v4 and the authenticated AppShell. Existing semantic aliases in `src/app/globals.css` implement the accepted DESIGN contract; DESIGN is the visual specification, not an additional runtime token store. Adopt Inter after production provenance/licensing verification. Preserve server-resolved tenant context and authorized navigation; separate domain/state/validation/actions from replaceable presentation and flow composition. No framework or component-library replacement is authorized.
+- Written v1 project rules, compatible design-system foundations and the recorded 2026-10-23 amendments govern appearance. All prototype styling is legacy. Use 8px controls/chips/cards, 12px sheets/dialogs, the 2px ink selection marker, contextual fields and contrast-safe aliases. The n300–n500 text restriction applies to light surfaces; all text including disabled/inverse meets 4.5:1 on its actual background. Circular radio and switch track/thumb shapes are intrinsic exceptions. Use the plain Kopplas wordmark and purposeful neutral placeholders pending selected designer assets. Prototype flows do not authorize behavior or scope.
 
 ### Design principles (Phase B additions to the Phase A posture)
 
@@ -467,7 +480,7 @@ Carried in full from the frozen Phase A spec §9 (validation placement, blocking
 
 - **Microcopy:** operational, concise Swedish; verbs on buttons (`Boka`, `Rapportera tid`, `Lås underlag`); consequences stated before commitment; errors say what happened and what to do next; no developer jargon (carried from Phase A).
 - **Route names and identifiers stay English**; UI labels Swedish (Phase A convention).
-- **The legacy app is the terminology oracle** (PRD §5 vocabulary is binding). Labels introduced by this spec, with oracle status:
+- **Approved PRD §5 vocabulary remains binding.** The historical status column below identifies terminology questions to resolve under Current Design Authority; it does not require legacy verification:
 
 | Concept | UI label | Status |
 | --- | --- | --- |
@@ -575,13 +588,13 @@ Two rules apply app-wide: browser/network hints may improve messaging but **only
 11. **Public QR page isolation** (§5.2 E22): layout/app-shell separation for unauthenticated surfaces, no tenant enumeration (ADR-B004).
 12. **Job-workspace tab data contracts** — ✅ resolved: ADR-B006 landed the typed single container, the §4.9 shell contract holds unchanged, and Option B's `Ingående jobb` aggregate is not built.
 13. **Field capture persistence** (§4.8/§4.8A) — ✅ current ADR-B009: component state, suitable minimized `sessionStorage` drafts, and in-memory photo retention protect transient failures; explicit retry and server confirmation govern success. No durable store/queue/replay exists in Phase B; ADR-B007 is history and the full capability is Phase C.
-14. **Oracle terminology pass:** resolve every `[oracle-check]` label against the legacy app (legacy-oracle-explorer task) before the relevant epic's first story.
+14. **Design-resolution pass:** resolve every historical `[oracle-check]` question using Current Design Authority before the relevant epic's first story; record owner-authorized choices/rationale separately from assumptions and questions.
 
 ## 15. Assumptions Register (autonomous run record)
 
 | ID | Assumption / judgment call | Status |
 | --- | --- | --- |
-| UXB-A1 | Single-file spec (this document) rather than the DESIGN.md + EXPERIENCE.md pair: project convention is single-file planning artifacts with `-phase-b` suffix, Phase A explicitly excluded visual-design-system work, and Tailwind `@theme` remains the token source. This is an experience spec; a DESIGN.md can be introduced later without invalidating it. | accepted for spec |
+| UXB-A1 | Historical single-file assumption superseded for current visual/shared-experience authority by the owner-accepted 2026-10-23 DESIGN/EXPERIENCE pair and approved DT-2026-10-23 amendments. This file preserves numbered detailed requirements and links as an incorporated compatibility annex. `@theme` remains implementation storage. No detailed section is silently superseded by a summary. | superseded authority arrangement; detailed requirements retained |
 | UXB-A2 | Depth split follows the caller/PRD handoff exactly: §4 detailed = B1a+B1b; §5 pattern-level = B2/B3, deepened at wave checkpoints (PB-D10). | accepted |
 | UXB-A3 | Grouped-sidebar IA with manifest×matrix derivation (§2) is the team answer to PRD §15.1's "how nav grows beyond seven items"; exact grouping is checkpoint-adjustable without changing the rule. | accepted; architecture validates derivation |
 | UXB-A4 | Hide-don't-disable for unauthorized/inactive nav (no teaser items) — least-privilege clarity outweighs discoverability inside a tenant. | accepted |

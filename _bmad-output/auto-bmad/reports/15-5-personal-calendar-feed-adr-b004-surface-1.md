@@ -104,3 +104,38 @@ none newly archived
 1. none; authorized work continues
 
 **Next:** finish catalog publication recovery, then fresh changed-source finite NORMAL;15.6 remains unstarted
+
+## Report — 2026-10-24T18:31:14Z (continued P5 — catalog qualified and approved design authority delivered)
+
+**Story:** `15-5-personal-calendar-feed-adr-b004-surface-1` (epic 15, story 5) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\_bmad-output\implementation-artifacts\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `cbe3e5d`).
+**Pipeline status:** in-progress; reviewed source/catalog/docs, fresh native95 required
+**Continues:** yes — fresh finite checkpoint/NORMAL preparation
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 102h 12m (≈23h 56m AI-run, ≈78h 15m human/idle wait); resumed 3×.
+
+**Phases run:** catalog publication and independent High qualification; approved-docs preservation delivery and High/EOF Low review
+**Skipped:** no required gate waived; broad cap3 retained
+
+**Overrides:** owner defaults/no legacy browsing; checkpoint push and conditional final merge-commit retaining branch; no deployment
+
+**TEA:** required story/epic automation and delivery gates remain open
+
+**Build:** INT015 sourcecbe3 unchanged; affected201P/type0/lint0; catalog450static/201wrapper/19reusedexclusions grants0runtimecoverage
+
+**Review:** source/catalog/docs preservation PASS; EOF-only inverse verified; no broad fourth review
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; no new epic retro
+
+**Open questions:**
+1. actual emitter/API019 outcome unknown; current/historical DB deletion/backend facts unverified;2 inherited doc links limit package completeness
+
+**Deferred work:**
+1. fresh reviewed provider/checkpoint/NORMAL/evidence allocation, all required native95, P5delivery/P6,15.6 and epic gates
+none newly archived
+
+**⚠️ Needs human:**
+1. none; authorized work continues
+
+**Next:** prepare exact-source fresh finite NORMAL, old budgets closed;15.6 unstarted
