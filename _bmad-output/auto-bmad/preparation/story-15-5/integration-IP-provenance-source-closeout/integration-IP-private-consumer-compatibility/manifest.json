@@ -1,0 +1,26 @@
+{
+  "schema": "INERT_FOUR_STAGE_COMPATIBILITY_SELF_EXCLUDED_MANIFEST_V1",
+  "execution_authorized": false,
+  "preparation_only": true,
+  "self_excluded": true,
+  "directory_member_count": 4,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/reader.py",
+      "bytes": 52893,
+      "sha256": "23cd432bceeebe53cc3146ed098175b0b31e5dff35cd2753b4069dbe7b612cf1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/proposal.json",
+      "bytes": 2953,
+      "sha256": "20bd77828bd448227d3c1627aee270564380d3d7d5e363316982990754881d97"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/safe-proof.json",
+      "bytes": 19228,
+      "sha256": "9c689ae30c93d89e8cfeeadd87111289e6801782e95cb9d3f5cd29a926199bd2"
+    }
+  ],
+  "normal_acceptance": 0,
+  "authority": "NONE; preparation and pure offline compatibility proof only."
+}

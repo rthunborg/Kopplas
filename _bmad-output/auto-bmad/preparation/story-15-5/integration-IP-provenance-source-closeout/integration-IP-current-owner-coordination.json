@@ -1,0 +1,25 @@
+{
+  "schema": "ROOT_CURRENT_OWNER_COORDINATION_V1",
+  "documents": {
+    "thread_id": "01a11ae8-4100-7042-9c22-d1aca188e683",
+    "actual_status": "notLoaded",
+    "actual_latest_turn": "01a13465-d9cb-71f1-9020-8d8b3d7224d5",
+    "actual_latest_turn_status": "completed",
+    "actual_cursor": "ccc167ce-9ac3-4420-b958-d11cd734c9ea:1"
+  },
+  "coordinator_confirmation": "E15 retains five existing paths; no known active Documents overlap; no foreign resume sent; no runtime or remote authority.",
+  "new_design_authority": "2026-10-23 DT approval applies upcoming visual/shared experience work; current E15 owner continues, no scope/implementation/merge/deploy grant from docs approval.",
+  "scope": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts:wrapper LF SHA literal only",
+    "15.5 existing Spec:Suggested Review Order only"
+  ],
+  "implementation_held_pending_independent_review": true,
+  "all_remote_runtime_slots_closed": true,
+  "recorded_at_utc": "2026-10-24T11:53:20.073023+00:00",
+  "head": "fe1826587c225736893ca000fa4c6453ff051f2e",
+  "local_origin_main": "99104d0ffa0360cf7d4ce4de174789c4a4605224",
+  "local_tracking": "edf966cc9294448d0b057514d85e361c4f11ddd7"
+}

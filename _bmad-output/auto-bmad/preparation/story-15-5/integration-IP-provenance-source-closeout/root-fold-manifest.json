@@ -1,0 +1,175 @@
+{
+  "schema": "ROOT_CLOSED_SOURCE_EVIDENCE_FOLD_V1",
+  "source_commit": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+  "items": [
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\startup-confirmation-first-failure-source-assessment.json",
+      "destination_relative": "startup-confirmation-first-failure-source-assessment.json",
+      "bytes": 10729,
+      "sha256": "d8e249f99ce89a3768f496180767d11beb869f2e8a230c728f16a30649451ec0",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/startup-confirmation-first-failure-source-assessment.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-emitter-candidate-minimum-plan.json",
+      "destination_relative": "integration-IP-emitter-candidate-minimum-plan.json",
+      "bytes": 18308,
+      "sha256": "dc0e19543b593c7183767dd98794cd2ff0f6f21de4f7a3ff1fb65e18e71248c1",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-emitter-candidate-minimum-plan.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-minimum-plan-independent-review.json",
+      "destination_relative": "integration-IP-provenance-minimum-plan-independent-review.json",
+      "bytes": 12948,
+      "sha256": "46a80ac3e5ae3caac628a71b60d3ea534eb2de7b01a7583805ee91f3ef929b53",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-minimum-plan-independent-review.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-source-control-allocation.json",
+      "destination_relative": "integration-IP-provenance-source-control-allocation.json",
+      "bytes": 3988,
+      "sha256": "79b07770c30168cd5725e738621cc31f69ebd1f891780c9eae61a92586279f01",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-source-control-allocation.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-current-owner-coordination.json",
+      "destination_relative": "integration-IP-current-owner-coordination.json",
+      "bytes": 1337,
+      "sha256": "d9c82a8dd7e063a48c17e9851a33bbea8fdd83419a901f59865d7f66afca794a",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-current-owner-coordination.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility-plan.json",
+      "destination_relative": "integration-IP-private-consumer-compatibility-plan.json",
+      "bytes": 12949,
+      "sha256": "841bcaa77315932825f953f107e99654554a8c88b65b2685ab01c53dc56da218",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-private-consumer-compatibility-plan.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility-allocation.json",
+      "destination_relative": "integration-IP-private-consumer-compatibility-allocation.json",
+      "bytes": 2263,
+      "sha256": "d15b31797ed7929fbbd2b5accf83557e536b61d4eeb244dd96ed7a4b18f9ce2b",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-private-consumer-compatibility-allocation.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-root-frozen-pin-proof.json",
+      "destination_relative": "integration-IP-root-frozen-pin-proof.json",
+      "bytes": 3784,
+      "sha256": "639626871de02d7effa8c2a240ef2f95170269f5afc71bf4306265269fa239eb",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-root-frozen-pin-proof.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\author-result.json",
+      "destination_relative": "integration-IP-provenance-author/author-result.json",
+      "bytes": 38384,
+      "sha256": "2451bb7718580659ae1eeff457465cff00423b1ad969bd52581eb2110042c89e",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/author-result.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\final-source-proofs.json",
+      "destination_relative": "integration-IP-provenance-author/final-source-proofs.json",
+      "bytes": 4916,
+      "sha256": "4f5ad4422930c2fa283d831416060b57b995840f48654dcfb17b3e4e6a23a6ee",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/final-source-proofs.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\operation-count-conservation.json",
+      "destination_relative": "integration-IP-provenance-author/operation-count-conservation.json",
+      "bytes": 731,
+      "sha256": "8922bbb45a43926264d69cf6b06c1606157da0e8e12e1c5f1ed507628277f446",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/operation-count-conservation.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\private-consumer-source-assessment.json",
+      "destination_relative": "integration-IP-provenance-author/private-consumer-source-assessment.json",
+      "bytes": 1105,
+      "sha256": "cc69bba3f9b5c923a0ae9fed0fde87b098117e3eb6572ffb6d4e4799c3744625",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/private-consumer-source-assessment.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\pre-edit-bindings.json",
+      "destination_relative": "integration-IP-provenance-author/pre-edit-bindings.json",
+      "bytes": 1771,
+      "sha256": "44561d5b7e8b66b2bb832e5902fc91e6fcb8e00abc14202aadb871f3c25c797f",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/pre-edit-bindings.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\RED-valid-corrected-result.json",
+      "destination_relative": "integration-IP-provenance-author/RED-valid-corrected-result.json",
+      "bytes": 853,
+      "sha256": "98a037b8e61dcd258a7be9b329db1d66e93c374d7e8361cad1b696c45af53689",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/RED-valid-corrected-result.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\GREEN-frozen-result.json",
+      "destination_relative": "integration-IP-provenance-author/GREEN-frozen-result.json",
+      "bytes": 444,
+      "sha256": "cfa1bb605868e10b6fa103d0d324d5b6f8d24bdd4759f5b3c65e6ee42f68fc89",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/GREEN-frozen-result.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\affected-result.json",
+      "destination_relative": "integration-IP-provenance-author/affected-result.json",
+      "bytes": 447,
+      "sha256": "f7cc4eeabee350afd8d087bb1ec2386f01a479c605ebb2345a7570d93ecf1d2a",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/affected-result.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\typecheck-final-result.json",
+      "destination_relative": "integration-IP-provenance-author/typecheck-final-result.json",
+      "bytes": 328,
+      "sha256": "5d63e6c129d0a6a2b1f09f19866ad0e2888b6f8be830d37424daa66be4307f0a",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/typecheck-final-result.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\lint-final-result.json",
+      "destination_relative": "integration-IP-provenance-author/lint-final-result.json",
+      "bytes": 324,
+      "sha256": "87acd4e95ae80b0a4ee81f4c49d75f2dd1e57e504acf6cf388833dd906355b1f",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/lint-final-result.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-provenance-author\\review-order-final-result.json",
+      "destination_relative": "integration-IP-provenance-author/review-order-final-result.json",
+      "bytes": 630,
+      "sha256": "5c5a63c8190c9092a622149685756d9ef31a3cc00f2f59a7fcb427a460a4ea8b",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/review-order-final-result.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility\\proposal.json",
+      "destination_relative": "integration-IP-private-consumer-compatibility/proposal.json",
+      "bytes": 2953,
+      "sha256": "20bd77828bd448227d3c1627aee270564380d3d7d5e363316982990754881d97",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-private-consumer-compatibility/proposal.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility\\manifest.json",
+      "destination_relative": "integration-IP-private-consumer-compatibility/manifest.json",
+      "bytes": 1068,
+      "sha256": "92843af03a9d4e363437dd9db81ca19c23234180c98f8f7a4519bbb76ed8473a",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-private-consumer-compatibility/manifest.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility\\safe-proof.json",
+      "destination_relative": "integration-IP-private-consumer-compatibility/safe-proof.json",
+      "bytes": 19228,
+      "sha256": "9c689ae30c93d89e8cfeeadd87111289e6801782e95cb9d3f5cd29a926199bd2",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-private-consumer-compatibility/safe-proof.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/unit-source-catalog.json",
+      "destination_relative": "integration-IP-provenance-author/unit-source-catalog.json",
+      "bytes": 29592,
+      "sha256": "dd33b59e1ee9ed11bb84139c707f1b4a71b387886fcfdab47413066de98e24ed",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-author/unit-source-catalog.json"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-actual-diff-independent-review.json",
+      "destination_relative": "integration-IP-provenance-actual-diff-independent-review.json",
+      "bytes": 17457,
+      "sha256": "40a01b1258a49a30f40fd92815f74b896bf3d2ac12e81b68e53d14595b959546",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-actual-diff-independent-review.json"
+    }
+  ],
+  "limits": "Closed safeJSON only; executable consumer/rawinverse/rawlogs/providerdata/SQL excluded; catalog is inventory only; zero runtime authority."
+}

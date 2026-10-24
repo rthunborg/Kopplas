@@ -1,0 +1,80 @@
+{
+  "kind": "ROOT_FROZEN_SOURCE_METADATA_AND_EVIDENCE_PINS",
+  "base_HEAD": "fe1826587c225736893ca000fa4c6453ff051f2e",
+  "actual_root_checks": [
+    "exact5dirty path names",
+    "10rawfile pins matchauthorproof",
+    "12author evidence pins verified",
+    "story_plan in-review/counter3/followupfalse/deferred0/oversized"
+  ],
+  "author_evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/final-source-proofs.json",
+      "bytes": 4916,
+      "sha256": "4f5ad4422930c2fa283d831416060b57b995840f48654dcfb17b3e4e6a23a6ee"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/raw-inverse-hunks.json",
+      "bytes": 39619,
+      "sha256": "c4def718213b09c3dac35220e8f8a91e924ed32e5407436813d268e7bc9d01ec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/operation-count-conservation.json",
+      "bytes": 731,
+      "sha256": "8922bbb45a43926264d69cf6b06c1606157da0e8e12e1c5f1ed507628277f446"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/unit-source-catalog.json",
+      "bytes": 29592,
+      "sha256": "dd33b59e1ee9ed11bb84139c707f1b4a71b387886fcfdab47413066de98e24ed"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/private-consumer-source-assessment.json",
+      "bytes": 1105,
+      "sha256": "cc69bba3f9b5c923a0ae9fed0fde87b098117e3eb6572ffb6d4e4799c3744625"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/pre-edit-bindings.json",
+      "bytes": 1771,
+      "sha256": "44561d5b7e8b66b2bb832e5902fc91e6fcb8e00abc14202aadb871f3c25c797f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/RED-valid-corrected-result.json",
+      "bytes": 853,
+      "sha256": "98a037b8e61dcd258a7be9b329db1d66e93c374d7e8361cad1b696c45af53689"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/GREEN-frozen-result.json",
+      "bytes": 444,
+      "sha256": "cfa1bb605868e10b6fa103d0d324d5b6f8d24bdd4759f5b3c65e6ee42f68fc89"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/affected-result.json",
+      "bytes": 447,
+      "sha256": "f7cc4eeabee350afd8d087bb1ec2386f01a479c605ebb2345a7570d93ecf1d2a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/typecheck-final-result.json",
+      "bytes": 328,
+      "sha256": "5d63e6c129d0a6a2b1f09f19866ad0e2888b6f8be830d37424daa66be4307f0a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/lint-final-result.json",
+      "bytes": 324,
+      "sha256": "87acd4e95ae80b0a4ee81f4c49d75f2dd1e57e504acf6cf388833dd906355b1f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/review-order-final-result.json",
+      "bytes": 630,
+      "sha256": "5c5a63c8190c9092a622149685756d9ef31a3cc00f2f59a7fcb427a460a4ea8b"
+    }
+  ],
+  "source_content_read_by_root": false,
+  "spec_content_read_by_root": false,
+  "runtime_effects": 0,
+  "independent_review": "pending; no sourcecommit or acceptance",
+  "closed_actual_run": 39998246278,
+  "required95": "93P API019F API020UNEXECUTED",
+  "mainDB_custody": "retained; deletionunverified; backendsettlementUNKNOWN",
+  "bookkeeping_read_failure": "b755fa native1 before mutation: assumed manifest.json filename; corrected filename-only discovery root-fold-manifest.json. No source/Git/effect mutation."
+}

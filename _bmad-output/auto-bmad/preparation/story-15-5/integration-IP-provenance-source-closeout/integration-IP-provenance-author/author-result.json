@@ -1,0 +1,700 @@
+{
+  "Outcome": "BOUNDED_SOURCE_AMENDMENT_FROZEN_PENDING_INDEPENDENT_HIGH_DIFF_REVIEW",
+  "Files changed": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "Status": {
+    "role": "gpt-6.1-sol High source implementation author; existing P5 targeted-fix continuation only",
+    "base_HEAD_root_declared": "fe1826587c225736893ca000fa4c6453ff051f2e",
+    "functional_source_root_declared": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "source_pins": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 50465,
+        "sha256": "e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2",
+        "LF_bytes": 49761,
+        "LF_sha256": "adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7",
+        "prospective_LF_git_blob": "ea9df80d07e87e960ebe6694034e5c3e00964e28",
+        "preimage_bytes": 49378,
+        "preimage_sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb",
+        "raw_inverse": true,
+        "LF_inverse": true,
+        "raw_hunks": 8,
+        "CRLF_count": 704,
+        "bare_LF_count": 0
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 144864,
+        "sha256": "bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5",
+        "LF_bytes": 143407,
+        "LF_sha256": "16a6856b7411053851c19463da1b1b2776377d9941c8a5f64ecc437d8daf7b0d",
+        "prospective_LF_git_blob": "01c89726ab98e33ffb8bd47bf0630f926ff804d7",
+        "preimage_bytes": 143615,
+        "preimage_sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b",
+        "raw_inverse": true,
+        "LF_inverse": true,
+        "raw_hunks": 3,
+        "CRLF_count": 1457,
+        "bare_LF_count": 0
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 352713,
+        "sha256": "630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc",
+        "LF_bytes": 349478,
+        "LF_sha256": "d28789aa26532bc801e1f3fac1ffdc407cb6442c4dcface18cfb8cf2301263bb",
+        "prospective_LF_git_blob": "d32ddea2e3b85605a3dbd5a95681be3e1f28d529",
+        "preimage_bytes": 340518,
+        "preimage_sha256": "7c8e4e2684de09b7dee376af393a618677a2db16f35abfd968593dffcdc17fd0",
+        "raw_inverse": true,
+        "LF_inverse": true,
+        "raw_hunks": 12,
+        "CRLF_count": 3235,
+        "bare_LF_count": 0
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8135,
+        "sha256": "3ab0a33097dae9b6a238291174637f78443766e537f052190e4732f52b7842d3",
+        "LF_bytes": 8024,
+        "LF_sha256": "82de1d4b5295d1337e962b254079cf4ae48247d65a2ad5822f99fc851a4c7c15",
+        "prospective_LF_git_blob": "e06d7eaa019511348f9e7c328288463bd5b834b4",
+        "preimage_bytes": 8135,
+        "preimage_sha256": "bbbea7f1f12d0662b2b7e09fa6c6648c82cee2797d72357aa47bc62130bccd72",
+        "raw_inverse": true,
+        "LF_inverse": true,
+        "raw_hunks": 1,
+        "CRLF_count": 111,
+        "bare_LF_count": 0
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 264061,
+        "sha256": "74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb",
+        "LF_bytes": 260940,
+        "LF_sha256": "99e050e1a8840d78e3db6bc2cbef16bbb2842632a7723e9243c6c38302dd5ee6",
+        "prospective_LF_git_blob": "e4b4570e29af3b4ba753753ac548528ed05c2717",
+        "preimage_bytes": 262876,
+        "preimage_sha256": "fa16e59053bbc01435a9b38694976d3bbff7c0619271d05f4f4e45de21bb6a02",
+        "raw_inverse": true,
+        "LF_inverse": true,
+        "raw_hunks": 36,
+        "CRLF_count": 3121,
+        "bare_LF_count": 0
+      }
+    ],
+    "conservation": {
+      "source_bindings": [
+        {
+          "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+          "bytes": 50465,
+          "sha256": "e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2",
+          "LF_bytes": 49761,
+          "LF_sha256": "adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7",
+          "prospective_LF_git_blob": "ea9df80d07e87e960ebe6694034e5c3e00964e28",
+          "preimage_bytes": 49378,
+          "preimage_sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb",
+          "raw_inverse": true,
+          "LF_inverse": true,
+          "raw_hunks": 8,
+          "CRLF_count": 704,
+          "bare_LF_count": 0
+        },
+        {
+          "path": "tests/support/calendar-feed-atdd.ts",
+          "bytes": 144864,
+          "sha256": "bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5",
+          "LF_bytes": 143407,
+          "LF_sha256": "16a6856b7411053851c19463da1b1b2776377d9941c8a5f64ecc437d8daf7b0d",
+          "prospective_LF_git_blob": "01c89726ab98e33ffb8bd47bf0630f926ff804d7",
+          "preimage_bytes": 143615,
+          "preimage_sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b",
+          "raw_inverse": true,
+          "LF_inverse": true,
+          "raw_hunks": 3,
+          "CRLF_count": 1457,
+          "bare_LF_count": 0
+        },
+        {
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "bytes": 352713,
+          "sha256": "630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc",
+          "LF_bytes": 349478,
+          "LF_sha256": "d28789aa26532bc801e1f3fac1ffdc407cb6442c4dcface18cfb8cf2301263bb",
+          "prospective_LF_git_blob": "d32ddea2e3b85605a3dbd5a95681be3e1f28d529",
+          "preimage_bytes": 340518,
+          "preimage_sha256": "7c8e4e2684de09b7dee376af393a618677a2db16f35abfd968593dffcdc17fd0",
+          "raw_inverse": true,
+          "LF_inverse": true,
+          "raw_hunks": 12,
+          "CRLF_count": 3235,
+          "bare_LF_count": 0
+        },
+        {
+          "path": "tests/support/calendar-feed-ci-contract.ts",
+          "bytes": 8135,
+          "sha256": "3ab0a33097dae9b6a238291174637f78443766e537f052190e4732f52b7842d3",
+          "LF_bytes": 8024,
+          "LF_sha256": "82de1d4b5295d1337e962b254079cf4ae48247d65a2ad5822f99fc851a4c7c15",
+          "prospective_LF_git_blob": "e06d7eaa019511348f9e7c328288463bd5b834b4",
+          "preimage_bytes": 8135,
+          "preimage_sha256": "bbbea7f1f12d0662b2b7e09fa6c6648c82cee2797d72357aa47bc62130bccd72",
+          "raw_inverse": true,
+          "LF_inverse": true,
+          "raw_hunks": 1,
+          "CRLF_count": 111,
+          "bare_LF_count": 0
+        },
+        {
+          "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+          "bytes": 264061,
+          "sha256": "74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb",
+          "LF_bytes": 260940,
+          "LF_sha256": "99e050e1a8840d78e3db6bc2cbef16bbb2842632a7723e9243c6c38302dd5ee6",
+          "prospective_LF_git_blob": "e4b4570e29af3b4ba753753ac548528ed05c2717",
+          "preimage_bytes": 262876,
+          "preimage_sha256": "fa16e59053bbc01435a9b38694976d3bbff7c0619271d05f4f4e45de21bb6a02",
+          "raw_inverse": true,
+          "LF_inverse": true,
+          "raw_hunks": 36,
+          "CRLF_count": 3121,
+          "bare_LF_count": 0
+        }
+      ],
+      "unchanged_five_companions": [
+        {
+          "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+          "bytes": 26921,
+          "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+          "unchanged": true
+        },
+        {
+          "path": "package.json",
+          "bytes": 2509,
+          "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+          "unchanged": true
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "bytes": 162159,
+          "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+          "unchanged": true
+        },
+        {
+          "path": "src/server/calendar-feed/public-feed.ts",
+          "bytes": 4421,
+          "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+          "unchanged": true
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "bytes": 75930,
+          "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+          "unchanged": true
+        }
+      ],
+      "all5_raw_inverse": true,
+      "all5_LF_inverse": true,
+      "outside_SRO_raw_equal": true,
+      "intent_kernel_raw_equal": true,
+      "status_AutoRunResult_counter_assertions_before_SRO_raw_equal": true,
+      "ownerFacts": {
+        "LF_bytes": 3563,
+        "LF_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+        "unchanged": true
+      },
+      "raw_privacy_predicate_byte_equal": true,
+      "contract_digest_literal_only": true,
+      "SQL118": "No edits or applied SQL corpus rescan; existing review-order checker resolves its declared references.",
+      "source_freeze": "Five final source files; no Git operation by author."
+    },
+    "controls": {
+      "RED": {
+        "phase": "RED",
+        "native_exit": 1,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 1800,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 0,
+          "fail": 4,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [
+          "API019 provenance installed formatter actual reader observer helper publisher four fixed leaves",
+          "API019 provenance exact ANSI shape forged header and raw privacy precedence remain refusal",
+          "API019 provenance complete split overflow continuation EOF recovery conserve original reader",
+          "API019 provenance exact legacy2 closed4 all original pairs and malformed generic refusal"
+        ],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 5297,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "GREEN": {
+        "phase": "GREEN",
+        "native_exit": 1,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 925,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 1,
+          "fail": 3,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [
+          "API019 provenance installed formatter actual reader observer helper publisher four fixed leaves",
+          "API019 provenance exact ANSI shape forged header and raw privacy precedence remain refusal",
+          "API019 provenance complete split overflow continuation EOF recovery conserve original reader"
+        ],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 4822,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "GREEN-corrected": {
+        "phase": "GREEN-corrected",
+        "native_exit": 1,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 955,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 3,
+          "fail": 1,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [
+          "API019 provenance installed formatter actual reader observer helper publisher four fixed leaves"
+        ],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 2635,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "GREEN-final": {
+        "phase": "GREEN-final",
+        "native_exit": 0,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 946,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 4,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 1963,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "RED-valid": {
+        "phase": "RED-valid",
+        "native_exit": 1,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 300,
+        "counts": {
+          "tests": 1,
+          "suites": 0,
+          "pass": 0,
+          "fail": 1,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 569866,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "RED-valid-corrected": {
+        "phase": "RED-valid-corrected",
+        "native_exit": 1,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 491,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 0,
+          "fail": 4,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [
+          "API019 provenance installed formatter actual reader observer helper publisher four fixed leaves",
+          "API019 provenance exact ANSI shape forged header and raw privacy precedence remain refusal",
+          "API019 provenance complete split overflow continuation EOF recovery conserve original reader",
+          "API019 provenance exact legacy2 closed4 all original pairs and malformed generic refusal"
+        ],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 2316223,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "GREEN-frozen": {
+        "phase": "GREEN-frozen",
+        "native_exit": 0,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 950,
+        "counts": {
+          "tests": 4,
+          "suites": 0,
+          "pass": 4,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 1965,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "affected": {
+        "phase": "affected",
+        "native_exit": 0,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 14301,
+        "counts": {
+          "tests": 199,
+          "suites": 0,
+          "pass": 199,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 57252,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "typecheck": {
+        "phase": "typecheck",
+        "native_exit": 2,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 26914,
+        "counts": {},
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [
+          {
+            "source": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+            "line": 1368,
+            "column": 41,
+            "code": "TS2554"
+          }
+        ],
+        "stdout_bytes": 115,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "typecheck-final": {
+        "phase": "typecheck-final",
+        "native_exit": 0,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 11700,
+        "counts": {},
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 0,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "lint-final": {
+        "phase": "lint-final",
+        "native_exit": 0,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 2781,
+        "counts": {},
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 456,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true
+      },
+      "review-order": {
+        "phase": "review-order",
+        "native_exit": 1,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 202,
+        "counts": {},
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 12119,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true,
+        "review_order": {
+          "reports": [
+            {
+              "filePath": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+              "sectionPresent": true,
+              "mode": "full-trail-candidate",
+              "refsCount": 216,
+              "errors": [
+                "review-order line 2515: anchor `const allowed = [\"membershipId\"` was not found on `tests/support/calendar-feed-atdd.ts:448`",
+                "review-order line 2540: anchor `has_schema_privilege(oid,'public','CREATE')` was not found on `tests/support/calendar-feed-atdd.ts:673`",
+                "review-order line 2558: anchor `export function createOwnedGroupStopper` was not found on `scripts/ci/with-calendar-feed-runtime.mjs:350`",
+                "review-order line 2565: anchor `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);` was not found on `scripts/ci/with-calendar-feed-runtime.mjs:576`",
+                "review-order line 2581: anchor `export function calendarFixtureDiagnostic` was not found on `tests/support/calendar-feed-atdd.ts:288`",
+                "review-order line 2582: anchor `phase=\"additional-users\"` was not found on `tests/support/calendar-feed-atdd.ts:369`",
+                "review-order line 2587: anchor `calendarFixtureSafeFailures.get(child)?.children` was not found on `tests/support/calendar-feed-atdd.ts:320`",
+                "review-order line 2616: anchor `export function calendarFixtureOrigin` was not found on `tests/support/calendar-feed-atdd.ts:276`",
+                "review-order line 2617: anchor `export function calendarFixtureAssertionAt` was not found on `tests/support/calendar-feed-atdd.ts:281`",
+                "review-order line 2618: anchor `const outcome = result.outcome` was not found on `tests/support/calendar-feed-atdd.ts:1048`",
+                "review-order line 2654: anchor `export function calendarCauseProofSelection` was not found on `tests/support/calendar-feed-atdd.ts:1058`",
+                "review-order line 2655: anchor `export async function calendarCauseProofIdle` was not found on `tests/support/calendar-feed-atdd.ts:1064`",
+                "review-order line 2656: anchor `export async function runCalendarFeedCauseProof` was not found on `tests/support/calendar-feed-atdd.ts:1124`",
+                "review-order line 2663: anchor `actual per-invocation trace preserves once-call value` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1457`",
+                "review-order line 2664: anchor `actual baseline decision chooses one observed boundary` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1478`",
+                "review-order line 2665: anchor `actual installed failed native report and closed observation` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1503`",
+                "review-order line 2681: anchor `(select r.rolsuper or r.rolbypassrls` was not found on `tests/support/calendar-feed-atdd.ts:1240`",
+                "review-order line 2682: anchor `if (!Array.isArray(rows)` was not found on `tests/support/calendar-feed-atdd.ts:1246`",
+                "review-order line 2683: anchor `child.once(\"spawn\",` was not found on `scripts/ci/with-calendar-feed-runtime.mjs:410`",
+                "review-order line 2684: anchor `const refreshLaunch` was not found on `scripts/ci/with-calendar-feed-runtime.mjs:524`",
+                "review-order line 2687: anchor `actual diagnostic caller requires same-statement` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1654`",
+                "review-order line 2730: anchor `export function calendarStatusErrorOrigin` was not found on `tests/support/calendar-feed-atdd.ts:1073`",
+                "review-order line 2731: anchor `export async function calendarCauseProofRestricted` was not found on `tests/support/calendar-feed-atdd.ts:1080`",
+                "review-order line 2732: anchor `Object.assign(report, await calendarCauseProofBaseline` was not found on `tests/support/calendar-feed-atdd.ts:1195`",
+                "review-order line 2734: anchor `status discriminator classifies actual installed pg-protocol frames` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1714`",
+                "review-order line 2735: anchor `status strict wire schema preserves false TABLE_ACL_ONLY` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1753`",
+                "review-order line 2761: anchor `export function calendarCauseProofExpectedBody` was not found on `tests/support/calendar-feed-atdd.ts:1092`",
+                "review-order line 2764: anchor `actual ACL source and existing RLS010 reject actor` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1833`",
+                "review-order line 2765: anchor `new atomic migration cross-validates exact original bodies` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1843`",
+                "review-order line 2779: anchor `actual owner guard admits parallel native creator ADMIN` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1890`",
+                "review-order line 2780: anchor `actual owner guard retains foreign outbound inherited` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1898`",
+                "review-order line 2794: anchor `actual unchanged original guard emits the named eleven-bit` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1970`",
+                "review-order line 2795: anchor `failure-message inverse restores exact original migration` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1987`",
+                "review-order line 2810: anchor `all-eight actual preflight cross-validates` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2046`",
+                "review-order line 2817: anchor `export async function calendarOwnerAclRegression()` was not found on `tests/support/calendar-feed-atdd.ts:1259`",
+                "review-order line 2818: anchor `export async function calendarOwnerAclExercise(` was not found on `tests/support/calendar-feed-atdd.ts:1393`",
+                "review-order line 2820: anchor `actual native cleanup preserves the primary and ALL` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2166`",
+                "review-order line 2838: anchor `actual RLS002 uses a different spoof` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2391`",
+                "review-order line 2847: anchor `export async function calendarOwnerAtomic` was not found on `tests/support/calendar-feed-atdd.ts:818`",
+                "review-order line 2848: anchor `async function calendarSeedBookingFixture` was not found on `tests/support/calendar-feed-atdd.ts:349`",
+                "review-order line 2849: anchor `if(calendarSharedCustody){if(canonical)` was not found on `tests/support/calendar-feed-atdd.ts:382`",
+                "review-order line 2850: anchor `actual withDatabaseTime awaits committed retired publication` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2402`",
+                "review-order line 2851: anchor `actual owned error gate preserves foreign listeners` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2215`",
+                "review-order line 2852: anchor `actual composition cleans after seed failure` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2384`",
+                "review-order line 2881: anchor `const dbRuntimeUnverified` was not found on `scripts/ci/with-calendar-feed-runtime.mjs:658`",
+                "review-order line 2882: anchor `failed DB signal cancellation launch timeout` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2422`",
+                "review-order line 2896: anchor `http:` was not found on `tests/support/calendar-feed-atdd.ts:561`",
+                "review-order line 2897: anchor `trustedFetch:` was not found on `tests/support/calendar-feed-atdd.ts:566`",
+                "review-order line 2898: anchor `function calendarRetainTransportCustody` was not found on `tests/support/calendar-feed-atdd.ts:732`",
+                "review-order line 2899: anchor `function calendarFetchPort` was not found on `tests/support/calendar-feed-atdd.ts:745`",
+                "review-order line 2900: anchor `if(!settled||calendarSharedCustody)` was not found on `tests/support/calendar-feed-atdd.ts:764`",
+                "review-order line 2901: anchor `actual clock scope retains caught HTTP rejection` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2457`",
+                "review-order line 2902: anchor `installed Postgrest status zero` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2483`",
+                "review-order line 2924: anchor `actual opted-in outer nudge boundary` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2523`",
+                "review-order line 2925: anchor `actual browser readback failure native failure` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2597`",
+                "review-order line 2926: anchor `installed Node test runner receives only fixed` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2633`",
+                "review-order line 2941: anchor `SOURCE-LABEL-01 actual helper and enclosing NUDGE004` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2677`",
+                "review-order line 2955: anchor `async function actualMetaJsonReport` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2709`",
+                "review-order line 2956: anchor `VITEST-META actual helper and public NUDGE callback` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2733`",
+                "review-order line 2968: anchor `label instrumentation preserves actual promise` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2614`",
+                "review-order line 2969: anchor `actual labelled caller assertions match` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2647`",
+                "review-order line 3002: anchor `browser v3 actual enclosing selected case catches` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2824`",
+                "review-order line 3003: anchor `browser v3 closed producer rows match` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2802`",
+                "review-order line 3031: anchor `browser v3 actual matched request` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2865`",
+                "review-order line 3032: anchor `browser v3 unavailable omitted malformed` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2877`",
+                "review-order line 3064: anchor `managed admission freezes exact Request` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2904`",
+                "review-order line 3065: anchor `actual owned fault callback joins` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2974`",
+                "review-order line 3082: anchor `if(errors.length){int009?.publish()` was not found on `tests/support/calendar-feed-atdd.ts:394`",
+                "review-order line 3083: anchor `trace?.at(\"BEGIN\")` was not found on `tests/support/calendar-feed-atdd.ts:824`",
+                "review-order line 3084: anchor `if(authority)calendarInt009Subject(\"subject\")?.close()` was not found on `tests/support/calendar-feed-atdd.ts:1006`",
+                "review-order line 3085: anchor `INT009 actual fixture final errors` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3081`",
+                "review-order line 3086: anchor `INT009 actual entire subject barrier setup` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3087`",
+                "review-order line 3099: anchor `'proargtypes',p.proargtypes::text` was not found on `tests/support/calendar-feed-atdd.ts:807`",
+                "review-order line 3100: anchor `function actualCanonicalCatalogProjection` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3097`",
+                "review-order line 3101: anchor `canonical catalog synthetic PG17 array` was not found on `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:3112`"
+              ]
+            }
+          ]
+        }
+      },
+      "review-order-final": {
+        "phase": "review-order-final",
+        "native_exit": 0,
+        "signal": null,
+        "spawn_error": false,
+        "elapsed_ms": 163,
+        "counts": {},
+        "failed_static_control_names": [],
+        "closed_source_diagnostics": [],
+        "stdout_bytes": 260,
+        "stderr_bytes": 0,
+        "raw_persisted": false,
+        "direct_process_settled": true,
+        "full_EOF": true,
+        "review_order": {
+          "reports": [
+            {
+              "filePath": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+              "sectionPresent": true,
+              "mode": "full-trail-candidate",
+              "refsCount": 225,
+              "errors": []
+            }
+          ]
+        }
+      }
+    },
+    "evidence_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/final-source-proofs.json",
+        "bytes": 4916,
+        "sha256": "4f5ad4422930c2fa283d831416060b57b995840f48654dcfb17b3e4e6a23a6ee"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/raw-inverse-hunks.json",
+        "bytes": 39619,
+        "sha256": "c4def718213b09c3dac35220e8f8a91e924ed32e5407436813d268e7bc9d01ec"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/operation-count-conservation.json",
+        "bytes": 731,
+        "sha256": "8922bbb45a43926264d69cf6b06c1606157da0e8e12e1c5f1ed507628277f446"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/unit-source-catalog.json",
+        "bytes": 29592,
+        "sha256": "dd33b59e1ee9ed11bb84139c707f1b4a71b387886fcfdab47413066de98e24ed"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/private-consumer-source-assessment.json",
+        "bytes": 1105,
+        "sha256": "cc69bba3f9b5c923a0ae9fed0fde87b098117e3eb6572ffb6d4e4799c3744625"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/pre-edit-bindings.json",
+        "bytes": 1771,
+        "sha256": "44561d5b7e8b66b2bb832e5902fc91e6fcb8e00abc14202aadb871f3c25c797f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/RED-valid-corrected-result.json",
+        "bytes": 853,
+        "sha256": "98a037b8e61dcd258a7be9b329db1d66e93c374d7e8361cad1b696c45af53689"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/GREEN-frozen-result.json",
+        "bytes": 444,
+        "sha256": "cfa1bb605868e10b6fa103d0d324d5b6f8d24bdd4759f5b3c65e6ee42f68fc89"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/affected-result.json",
+        "bytes": 447,
+        "sha256": "f7cc4eeabee350afd8d087bb1ec2386f01a479c605ebb2345a7570d93ecf1d2a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/typecheck-final-result.json",
+        "bytes": 328,
+        "sha256": "5d63e6c129d0a6a2b1f09f19866ad0e2888b6f8be830d37424daa66be4307f0a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/lint-final-result.json",
+        "bytes": 324,
+        "sha256": "87acd4e95ae80b0a4ee81f4c49d75f2dd1e57e504acf6cf388833dd906355b1f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/review-order-final-result.json",
+        "bytes": 630,
+        "sha256": "5c5a63c8190c9092a622149685756d9ef31a3cc00f2f59a7fcb427a460a4ea8b"
+      }
+    ],
+    "control_history": [
+      "Initial login-shell relative reads missed requested files; corrected login:false before effects.",
+      "Original RED0P4F mixed semantic metadata absence with invalid new-control assumptions and is not credited as valid behavioral RED.",
+      "Initial GREEN1P3F: fake undefined identity prevented output settlement, invalid vector appended an address without separation, and inverse stripped new metadata from one side only. No production guard weakened.",
+      "Corrected GREEN3P1F: installed formatter has a separate second trailing-newline write; the control now joins both exact writes.",
+      "Initial whole TypeScript failed only control setEncoding mock arity TS2554; signature corrected.",
+      "First preimage RAM RED loader failed before tests because absolute extensionless TypeScript imports were not resolved; no behavioral RED credit. Corrected loader resolves existing .ts paths.",
+      "Corrected preimage wrapper/helper RAM RED executed all4 controls and failed4; same corrected control source current GREEN-frozen executed4 and passed4.",
+      "Initial SRO coordinate refresh refused the changed contract hash declaration before any spec write; premature reference check failed against old coordinates. A private Python encoding error was corrected before spec write. Final author SRO225references validates."
+    ],
+    "actual_execution": "One full affected file199P0F0skip after final executable source; focused4P overlap that count. TypeScript noEmit/incremental=false, scoped ESLint and final review-note helper native0. Tests/control process outputs RAM only; no raw runtime output or derived runtime values persisted.",
+    "current_required95_reused": {
+      "passed": 93,
+      "failed": "15.5-API-019",
+      "unexecuted": "15.5-API-020",
+      "run": 39998246278,
+      "state": "CLOSED"
+    },
+    "P5": "OPEN",
+    "review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "development_complete": false,
+    "release_ready": false,
+    "Git_operations": 0,
+    "network_API_DB_browser_resources_runtime_effects": 0
+  },
+  "Open questions": [
+    "FIRST_INTEGRATION_IP_EMITTER_PROVENANCE_UNKNOWN persists. New stream and renderedForm values are shape-only and forgeable, never authenticated emitter identity or benignity.",
+    "Native first throw, raw value, actual cause, request linkage and false-positive/benignity remain UNKNOWN; main database retained key deletion UNVERIFIED and backend settlement UNKNOWN."
+  ],
+  "Deferred work": [
+    "Root obtains independent High review of this exact five-file diff and source-bound control evidence before any commit. This is bounded follow-up within exhausted3 broad review rounds.",
+    "Any future observation requires its own precise fresh finite grant and exact source/publication/consumer binding; all prior runtime/remote slots remain CLOSED.",
+    "The current private consumer recognizes0/4 new fixed labels. Separately allocate/review only the four new stages constants before any future observation; never silently salvage/drop refusal or modify parser/collector/transport behavior.",
+    "Whole-story development/delivery/CI/external-review/merge/deployment gates remain with Root/Coordinator; no status or delivery record advanced."
+  ],
+  "Blockers": [
+    "API019 still fails the required gate; API020 remains unexecuted. This amendment is not a source fix, whitelist, suppression, acceptance or automatic retry authorization.",
+    "Independent actual-diff High review is outstanding. Private consumer compatibility is source-assessed only and must be separately resolved before observation."
+  ]
+}

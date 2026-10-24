@@ -1,0 +1,525 @@
+{
+  "Outcome": "INERT_FOUR_CONSTANT_COUNTERPART_FROZEN_PENDING_INDEPENDENT_HIGH_ACTUAL_REVIEW",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/reader.py",
+    ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/proposal.json",
+    ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/manifest.json",
+    ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/safe-proof.json"
+  ],
+  "Status": {
+    "role": "gpt-6.1-sol High sensitive author; separately allocated private counterpart only",
+    "reader": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/reader.py",
+      "bytes": 52893,
+      "sha256": "23cd432bceeebe53cc3146ed098175b0b31e5dff35cd2753b4069dbe7b612cf1"
+    },
+    "proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/proposal.json",
+      "bytes": 2953,
+      "sha256": "20bd77828bd448227d3c1627aee270564380d3d7d5e363316982990754881d97"
+    },
+    "baseline": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/reader.py",
+      "bytes": 52631,
+      "sha256": "278531786c36acaf5c219e23b9970c45533b647358b75a544742e6e68af44007"
+    },
+    "allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility-allocation.json",
+      "bytes": 2263,
+      "sha256": "d15b31797ed7929fbbd2b5accf83557e536b61d4eeb244dd96ed7a4b18f9ce2b"
+    },
+    "plan": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility-plan.json",
+      "bytes": 12949,
+      "sha256": "841bcaa77315932825f953f107e99654554a8c88b65b2685ab01c53dc56da218"
+    },
+    "structural_proof": {
+      "exact_four_added_static_strings": [
+        "scenario-telemetry-privacy-refused-integration-ip-stdout-header",
+        "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+        "scenario-telemetry-privacy-refused-integration-ip-stderr-header",
+        "scenario-telemetry-privacy-refused-integration-ip-stderr-other"
+      ],
+      "added_count": 4,
+      "removed_count": 0,
+      "original_stage_count": 57,
+      "candidate_stage_count": 61,
+      "duplicates": 0,
+      "insertion_offset": 3665,
+      "insertion_bytes": 262,
+      "all_other_raw_bytes_equal": true,
+      "raw_inverse_equal": true,
+      "all41_function_sources_byte_equal": true,
+      "function_source_pins": [
+        {
+          "name": "sha",
+          "line": 22,
+          "bytes": 47,
+          "sha256": "3ba4f30c0063de6df4aa44268ae7dbff16c58160a39891b223325eed77967548",
+          "byte_equal": true
+        },
+        {
+          "name": "packed",
+          "line": 24,
+          "bytes": 74,
+          "sha256": "9d14af854d1730e3c9c9f7fb01d08fa8aebce7aab032a477ae21495c563f8ebf",
+          "byte_equal": true
+        },
+        {
+          "name": "write",
+          "line": 26,
+          "bytes": 173,
+          "sha256": "945537d9b724835e8054aefe9ef7d0002f3cbf25e309082bc1e4fff5dd6fd3c5",
+          "byte_equal": true
+        },
+        {
+          "name": "bind",
+          "line": 31,
+          "bytes": 188,
+          "sha256": "5e15f36d76e375304e702a12ee0890ccb07fe5068b45deed77d150d08d889744",
+          "byte_equal": true
+        },
+        {
+          "name": "nodup",
+          "line": 36,
+          "bytes": 103,
+          "sha256": "50d8cb315f5c792eb77405e22e157950bacebe6c5ae1bb659a45eeeb32a0d0b9",
+          "byte_equal": true
+        },
+        {
+          "name": "load",
+          "line": 43,
+          "bytes": 75,
+          "sha256": "8c065c8bd22f2987b8745cd7b7a0f4a4777e918796c8131031188204554cdde9",
+          "byte_equal": true
+        },
+        {
+          "name": "get",
+          "line": 48,
+          "bytes": 3155,
+          "sha256": "0d29e9702e2739af5529fad830015ff36c7d8c8321b0ce82b4cced3a3fca6dc1",
+          "byte_equal": true
+        },
+        {
+          "name": "zip_open",
+          "line": 96,
+          "bytes": 792,
+          "sha256": "5d014c4f532b77e1fdc980800a367d919a2ff57f6e3e338f83e6b32003e61644",
+          "byte_equal": true
+        },
+        {
+          "name": "inflate",
+          "line": 110,
+          "bytes": 498,
+          "sha256": "10f67f0efa134883e180e3017a24335e055eb99ca3301be823409c945f939b77",
+          "byte_equal": true
+        },
+        {
+          "name": "failure_facts",
+          "line": 125,
+          "bytes": 1994,
+          "sha256": "d18025ffb308a0dc4a20a0d6c70da6d5d3425ae61d0f51b8fb2a52079877c632",
+          "byte_equal": true
+        },
+        {
+          "name": "case_id",
+          "line": 140,
+          "bytes": 201,
+          "sha256": "121abc65d4d1172dcf81151c83b5b6f5a2715ff0710bd849098ab9c0f2edb5cb",
+          "byte_equal": true
+        },
+        {
+          "name": "safe_file",
+          "line": 145,
+          "bytes": 183,
+          "sha256": "6dba232f70275c54d5b0c8b6e625df5dec0d404d56a6ea358cc548e98bdd6541",
+          "byte_equal": true
+        },
+        {
+          "name": "project_vitest",
+          "line": 150,
+          "bytes": 3083,
+          "sha256": "56289a050fe600479a695573f746b16ce736859b5b71849687561c269b798e30",
+          "byte_equal": true
+        },
+        {
+          "name": "project_browser",
+          "line": 174,
+          "bytes": 2639,
+          "sha256": "c09b170b31265ffd277223832161075f0ecd18b120638bcad05bdf7e30ff24ef",
+          "byte_equal": true
+        },
+        {
+          "name": "lifecycle",
+          "line": 202,
+          "bytes": 3140,
+          "sha256": "8e1bd5e4ccd1b37300bb1c0d931d31dae91e67609b48da4842b77057d5ffd519",
+          "byte_equal": true
+        },
+        {
+          "name": "positive_tap",
+          "line": 234,
+          "bytes": 173,
+          "sha256": "9f5d66a19b4b55132bb14a74923b5e03c3a560e19d499f62a637ccb3654420ee",
+          "byte_equal": true
+        },
+        {
+          "name": "empty_unit_failure",
+          "line": 237,
+          "bytes": 350,
+          "sha256": "5f4c321bd0dacf92398c9df4ebe8421f1dfef40db168f475103bb342112691f2",
+          "byte_equal": true
+        },
+        {
+          "name": "unit_location",
+          "line": 240,
+          "bytes": 602,
+          "sha256": "a6bac095922ebc04f827bed292dd0b4678b7e4d73e0c7d3fc5950d20a2872bab",
+          "byte_equal": true
+        },
+        {
+          "name": "project_node_failures",
+          "line": 253,
+          "bytes": 2651,
+          "sha256": "d9b76f9eb5f238db01ec5049f552faf89b95ba86156f6acc3bb69592824e225e",
+          "byte_equal": true
+        },
+        {
+          "name": "worst_unit_failure",
+          "line": 295,
+          "bytes": 723,
+          "sha256": "f0840024a567faf9998ebf4c2c4b11aa5d07a78b0aee330e32b9efe571fe245b",
+          "byte_equal": true
+        },
+        {
+          "name": "acquire_normal",
+          "line": 302,
+          "bytes": 7608,
+          "sha256": "b2ef22a3dfac59054b7f313a1925c34f20da332627b455d90c71896e0922e08b",
+          "byte_equal": true
+        },
+        {
+          "name": "raw_name_guard",
+          "line": 402,
+          "bytes": 113,
+          "sha256": "f934116555032cf80e3bfbca3cd1ee4cc04e84d841834f968a2797f1b96607c8",
+          "byte_equal": true
+        },
+        {
+          "name": "source_path",
+          "line": 405,
+          "bytes": 235,
+          "sha256": "764c0a12f1219b19862673e705b07ba37b3f6c4e59891ae01ef67b600b0f5a73",
+          "byte_equal": true
+        },
+        {
+          "name": "fields",
+          "line": 408,
+          "bytes": 377,
+          "sha256": "8367a31260101c3317916c87358b06a1c24f1e65eb28f678b841bf62bd179aec",
+          "byte_equal": true
+        },
+        {
+          "name": "parse_nudge",
+          "line": 418,
+          "bytes": 1615,
+          "sha256": "8531bb197a998583f33dff1f6a2085864cc8eb6d98474e3616a6e1c4a30daee6",
+          "byte_equal": true
+        },
+        {
+          "name": "parse_browser",
+          "line": 435,
+          "bytes": 1441,
+          "sha256": "aa479cad25f4f8dd5cd32ea86c730cd77219054c6524e6ddc4708466eb22b9c0",
+          "byte_equal": true
+        },
+        {
+          "name": "label_fact",
+          "line": 450,
+          "bytes": 308,
+          "sha256": "cf7e7e17256ec04fd4248366a45efaf70f56fe7b90a4fbcd6fe0b568fbe27eb3",
+          "byte_equal": true
+        },
+        {
+          "name": "nudge_labels",
+          "line": 453,
+          "bytes": 1246,
+          "sha256": "bebb98ac8d955b2ce3d8c15dcdefaa9afae84c1c2181527f9bd12d02a337cdf9",
+          "byte_equal": true
+        },
+        {
+          "name": "browser_labels",
+          "line": 471,
+          "bytes": 3492,
+          "sha256": "80d7fc9c404d1d7f75f94409ad4d9188c6d5fa18623bacf90bc1794afdd93a01",
+          "byte_equal": true
+        },
+        {
+          "name": "assemble_labels",
+          "line": 521,
+          "bytes": 587,
+          "sha256": "ea121219cf5edc9113b489dacd2013ee3f890b760fb2c4e2e98789c0c9b4ff7c",
+          "byte_equal": true
+        },
+        {
+          "name": "label_bytes",
+          "line": 524,
+          "bytes": 120,
+          "sha256": "cde26dfd1ff567c7732f5f2f2eab17157de3958c9b41dac82be63af1312aec83",
+          "byte_equal": true
+        },
+        {
+          "name": "label_budget_admission",
+          "line": 526,
+          "bytes": 1161,
+          "sha256": "2c1bcc5cfa06eda172e4ec45fdb3596dde1b84ebfefc627d80ce631d342bec58",
+          "byte_equal": true
+        },
+        {
+          "name": "write_labels",
+          "line": 543,
+          "bytes": 249,
+          "sha256": "df955d794f1c7f374afcd78bcba456b632a8c0b31407a7288ed30811120de367",
+          "byte_equal": true
+        },
+        {
+          "name": "validate_admission",
+          "line": 549,
+          "bytes": 4046,
+          "sha256": "f77bda242ca60dd4e797e0aefb5e6a456707a2408ad686627fed47e05b82aba6",
+          "byte_equal": true
+        },
+        {
+          "name": "main",
+          "line": 583,
+          "bytes": 2199,
+          "sha256": "c032423635ef0e1924421770a35c871763c0d613ca899aa3c5e1fed4fbe3c953",
+          "byte_equal": true
+        },
+        {
+          "name": "__init__",
+          "line": 46,
+          "bytes": 41,
+          "sha256": "dd3d88ded393f6dad129e1f181b9ad2baad2bd55b39d9789b914a3afeb79d300",
+          "byte_equal": true
+        },
+        {
+          "name": "walk",
+          "line": 177,
+          "bytes": 1297,
+          "sha256": "24dd54a5de0481a397b5d703e09a599e0a6868542b9dd3827d3edc7ec228d7e3",
+          "byte_equal": true
+        },
+        {
+          "name": "consider",
+          "line": 256,
+          "bytes": 856,
+          "sha256": "dc757d09139622dbc6ffa0e51b2406f3cf280df5e5842439e78f397899d870db",
+          "byte_equal": true
+        },
+        {
+          "name": "walk",
+          "line": 473,
+          "bytes": 602,
+          "sha256": "cf12620292db7c41d3c3c72d5b220cc1184d8fcc700d9ebc14db638fb917b6ac",
+          "byte_equal": true
+        },
+        {
+          "name": "reader",
+          "line": 56,
+          "bytes": 338,
+          "sha256": "91c6139fddc2584caa3ff0ab9577dd0a2f9a08cd46628f5bb4d414fc9be841d0",
+          "byte_equal": true
+        },
+        {
+          "name": "typed",
+          "line": 135,
+          "bytes": 82,
+          "sha256": "9ee1dce03d88ae9ee63bf03ea810f80693b9fd240cdc2417031d419cd008f79a",
+          "byte_equal": true
+        }
+      ],
+      "null_globals_and_empty_requests_retained": true,
+      "unchanged_unsatisfiable_run_admission_conjunction": true,
+      "main_default_refusal_and_acquisition_bytes_unchanged": true,
+      "module_import_or_execution": 0,
+      "admission_main_get_invocations": 0,
+      "tracked_five_pins_rechecked_unchanged": true
+    },
+    "executed_pure_controls": {
+      "method": "Compile/exec only exact source for sha, failure_facts, case_id, safe_file and project_vitest in RAM with existing re/hashlib plus literal stages/cats/codes and restricted builtins. No whole module execution, filesystem/network/process/admission/main sink in namespace.",
+      "selected_function_names": [
+        "sha",
+        "failure_facts",
+        "case_id",
+        "safe_file",
+        "project_vitest"
+      ],
+      "new_stage_baseline_candidate_results": [
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stdout-header",
+          "baseline_owned": 0,
+          "baseline_invalid": 1,
+          "candidate_owned": 1,
+          "candidate_invalid": 0
+        },
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+          "baseline_owned": 0,
+          "baseline_invalid": 1,
+          "candidate_owned": 1,
+          "candidate_invalid": 0
+        },
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stderr-header",
+          "baseline_owned": 0,
+          "baseline_invalid": 1,
+          "candidate_owned": 1,
+          "candidate_invalid": 0
+        },
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stderr-other",
+          "baseline_owned": 0,
+          "baseline_invalid": 1,
+          "candidate_owned": 1,
+          "candidate_invalid": 0
+        }
+      ],
+      "all_original_stage_differentials": 114,
+      "all_original_stage_differentials_equal": true,
+      "boundary_controls": [
+        {
+          "control": "legacy",
+          "differential_equal": true,
+          "owned_count": 1,
+          "retained_owned_count": 1,
+          "invalid_count": 0
+        },
+        {
+          "control": "generic",
+          "differential_equal": true,
+          "owned_count": 1,
+          "retained_owned_count": 1,
+          "invalid_count": 0
+        },
+        {
+          "control": "sixtyfive",
+          "differential_equal": true,
+          "owned_count": 65,
+          "retained_owned_count": 64,
+          "invalid_count": 0
+        },
+        {
+          "control": "seventeen-assertions",
+          "differential_equal": true,
+          "owned_count": 0,
+          "retained_owned_count": 0,
+          "invalid_count": 0
+        },
+        {
+          "control": "longest-original",
+          "differential_equal": true,
+          "owned_count": 1,
+          "retained_owned_count": 1,
+          "invalid_count": 0
+        },
+        {
+          "control": "eightyone",
+          "differential_equal": true,
+          "owned_count": 0,
+          "retained_owned_count": 0,
+          "invalid_count": 0
+        },
+        {
+          "control": "unknown-category",
+          "differential_equal": true,
+          "owned_count": 0,
+          "retained_owned_count": 0,
+          "invalid_count": 1
+        },
+        {
+          "control": "unknown-state",
+          "differential_equal": true,
+          "owned_count": 0,
+          "retained_owned_count": 0,
+          "invalid_count": 1
+        }
+      ],
+      "malformed_negative_controls": 36,
+      "all_negative_new_tuple_counts": 0,
+      "forged_valid_tuple_surrounding_payload_controls": 4,
+      "standalone_payload_controls": 1,
+      "raw_values_absent_from_retained_projections": true,
+      "downstream_actual_project_vitest_controls": [
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stdout-header",
+          "status": "failed",
+          "reported_failed": 1,
+          "reported_passed": 0,
+          "report_counts_consistent": true,
+          "owned_tuple_count": 1,
+          "normal_acceptance": 0,
+          "raw_failure_details": "NOT_PERSISTED",
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+          "status": "failed",
+          "reported_failed": 1,
+          "reported_passed": 0,
+          "report_counts_consistent": true,
+          "owned_tuple_count": 1,
+          "normal_acceptance": 0,
+          "raw_failure_details": "NOT_PERSISTED",
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stderr-header",
+          "status": "failed",
+          "reported_failed": 1,
+          "reported_passed": 0,
+          "report_counts_consistent": true,
+          "owned_tuple_count": 1,
+          "normal_acceptance": 0,
+          "raw_failure_details": "NOT_PERSISTED",
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        {
+          "stage": "scenario-telemetry-privacy-refused-integration-ip-stderr-other",
+          "status": "failed",
+          "reported_failed": 1,
+          "reported_passed": 0,
+          "report_counts_consistent": true,
+          "owned_tuple_count": 1,
+          "normal_acceptance": 0,
+          "raw_failure_details": "NOT_PERSISTED",
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        }
+      ],
+      "control_failure_count": 0,
+      "safe_projection_only": true
+    },
+    "historical_inventory": "Retained references only. No catalog/source75 extraction or recount; no runtime coverage from declarations.",
+    "normal_acceptance": 0,
+    "runtime_or_remote_effects": 0,
+    "Git_operations": 0,
+    "resources_DB_browser_application_workloads": 0,
+    "P5": "OPEN",
+    "broad_review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "actual_required95_reused": "93PASS; API019FAILED; API020UNEXECUTED; all prior effect slots CLOSED",
+    "self_binding": "safe-proof and manifest exclude their own digest; exact delivered four pins reported by author separately."
+  },
+  "Open questions": [
+    "Grammar recognition is forgeable and authenticates neither emitter nor raw output. Native first throw, cause, benignity, request linkage and actual IP value remain UNKNOWN.",
+    "Main database key deletion UNVERIFIED and backend settlement UNKNOWN; this source-only counterpart gives no new actual-run evidence."
+  ],
+  "Deferred work": [
+    "Root obtains independent High actual review alongside the frozen five tracked source files.",
+    "Any observation requires fresh precise finite authority and new current source/ownership/publication bindings; this inert counterpart has no executable current run/head/checkpoint binding."
+  ],
+  "Blockers": [
+    "No actual review, API019 repair, acceptance, P5 advancement or runtime authority is established.",
+    "Current required95 remains93PASS/1FAIL/1UNEXECUTED; all prior runtime/remote slots remainCLOSED."
+  ]
+}

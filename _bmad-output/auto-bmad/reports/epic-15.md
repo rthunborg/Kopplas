@@ -8100,3 +8100,41 @@ Development completion remains separate from release readiness.
 **⚠️ Needs human:** (none)
 
 **Next:** Finish the active read-only source assessment of the observed refusal and independently review a concrete minimum next step. Close95/custody/delivery, then continueP6/P7,15.6 and epic gates.
+
+## Report — 2026-10-24T12:37:44Z (checkpoint — bounded integration IP source evidence)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `9ba1d61`).
+**Pipeline status:** Epic active;15.5 P5OPEN. Independent bounded source reviewPASS; current required95 remains93P/API019F/API020unexecuted.
+**Continues:** Whole Epic15 under existing owner authorization; no deployment.
+
+**Summary:** Committed five-path source-only stream/form evidence at9ba1d615 after independent High review; inert private consumer recognizes exactly4newclosedleaves. No functional repair or acceptance.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 359h 39m (≈77h 24m AI-run, ≈282h 15m human/idle wait); resumed 245×.
+
+**Stories:**
+1. 15.1–15.4 landed; preserve their accepted evidence and ContractD obligations.
+2. 15.5 in-review, counter3/followupfalse/deferred0; source-only controls199P0F0skip and static checks pass; native95/custody/delivery gates remain.
+3. 15.6 unstarted; prepare and independently validate specification before build.
+
+**Skipped:** (none)
+
+**Epic gate:** Not reached; required completion gates remain.
+
+**TEA:** 15.5 ATDD recorded; automate required after P5. Epic trace/remediation, retrospective and final delivery remain.
+
+**Retrospective:** Epic14 October8 accepted-with-open-items authoritative; October7 rejection historical. Epic15 retrospective pending.
+
+**Overrides:** Owner-authorized design defaults, no legacy URL evidence; ordinarySol6.1Low/sensitiveHigh; independent review and cap3 retained. User authorizes conditional merge commit retaining branch only after all gates and current main no-deployment containment; not ready now.
+
+**Open questions:**
+1. Observed first integration/IP pipe and complete-line form remain unknown. Shape does not establish benignity, cause, nativefirstthrow or requestlinkage.
+2. MainDBkeydeletion unverified/backendsettlement unknown;15.2 inherited review_unverified requires supported final disposition.
+
+**Deferred work:**
+1. P5 exact95/custody/delivery; P6/P7 metadata,15.6 specification/build/gates, epictrace/retro/docs, final canonical delivery/PR/fresh independent review/current-head checks and conditional merge.
+No new storydeferreditems.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Prepare one precise first-refusal pipe/rendered-form observation; fresh finite reviewed execution and acquisition bindings required. No old slot replay or automatic retry.

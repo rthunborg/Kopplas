@@ -9,7 +9,7 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-23T18:27:52Z"
+updated_at: "2026-10-24T12:37:44Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
 active_seconds: 86219
@@ -401,6 +401,13 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actualcompleted finite <=5GET allocation for uniquelyowned CLOSED39998246278; existingreviewedreader only/fresh Roothelper-v2proof/once; no retry/refetch or newNORMAL authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-startup-confirmation-actual-terminal-acquisition\",\"profile\":\"sensitive\",\"role\":\"sole-native-terminal-reader\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct actual closed20member nativepacket qualification: exact95 counts/failureprivacyorigin/scopedcustody and actual5GET outerclosure/provenance, no broadround/sourcefix/runtime/refetch.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-startup-confirmation-actual-native-qualification\",\"profile\":\"sensitive\",\"role\":\"independent-actual-evidence-qualifier\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Read-only currentclosed native firstfailure/origin predicate localization in existing source, distinct actualqualification parallel; no speculativefix/waiver/newcollector/network/runtime authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-startup-confirmation-first-failure-source-assessment\",\"profile\":\"sensitive\",\"role\":\"read-only-first-failure-source-assessor\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Missing firstemitterclass requires concrete source-owned candidate/finite existingseam plan. One bounded integrationtitle/console/reporter source census, no tests/runtime/rawvalues/newcollector implementation; independent minimumplanreview follows.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-integration-IP-source-emitter-candidate-census\",\"profile\":\"sensitive\",\"role\":\"read-only-source-emitter-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent privacy/source-backed finite stream-renderedform plan review before bounded sourceallocation/offlineactualformattercontrols; preservesrefusal/UNKNOWN/noeffect/broadcap3.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-integration-IP-provenance-minimum-plan-review\",\"profile\":\"sensitive\",\"role\":\"independent-minimum-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Interrupted prior delegate no longerlive and finalreviewfileabsent; resume only remaining bounded minimumplanqualification using saved3clarifications, no duplicatecensus/tests/broadreview/runtime. Fresh independent SolHigh required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-integration-IP-provenance-minimum-plan-review-resume\",\"profile\":\"sensitive\",\"role\":\"independent-minimum-plan-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Privacy observation evidence-only fivepath amendment with independent C1-C3 planqualification/currentownership; actualformatter RAM controls, no exemption/functionalcause/runtime/remoteeffect authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-integration-IP-stream-form-source-amendment\",\"profile\":\"sensitive\",\"role\":\"source-implementation-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Separate read-only bounded compatibility allocation for4newfixedsourceleaves in existinginert41functionconsumer; no codeedit/parserfamily/execution or sourcecatalogrepetition. Prospectiveeditneedsnewexplicitallocation andactualreview.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-integration-IP-private-consumer-compatibility-plan\",\"profile\":\"sensitive\",\"role\":\"read-only-private-enum-compatibility-planner\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Sensitive privacy evidence consumer. Separately allocate only four static stage additions in a new inert counterpart and finite offline actual-parser controls; preserve all41 functions and zero runtime authority.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-integration-IP-private-consumer-four-constant-implementation\",\"profile\":\"sensitive\",\"role\":\"inert-private-consumer-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent actual five-path privacy evidence amendment and separately allocated inert four-constant consumer review. Changed lines, relevant invariants and honest control provenance only; broad review3 exhausted, no fourth pass.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P5-sensitive-integration-IP-actual-diff-and-private-enum-review\",\"profile\":\"sensitive\",\"role\":\"independent-bounded-actual-diff-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
@@ -426,7 +433,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3, ca240693, 5e0b6363, 215078e7, bd4121e5, a9489663, 2c8e8077, c4c195d9, e5256879, edce7b87, 104976f7, 48a7c32f, 7d8b213f9f1ff9cdeb31689a0bb08577a24249cd, edf966cc9294448d0b057514d85e361c4f11ddd7]
+commits: [159557e114f18123e73282c39c90830917de9948, c42b45abbca262ff79e26da479a3032d9015aeee, b940df85acfb2de36c0dcd5000a0039758f2b820, 3a1c3bc9fbf22b13c926179288a8b6eefe440c12, ae020f63a88089966b9323c55a36b6554f7e3900, 672099e9dc6569f4ac1cb9a967037e0d91df689c, aa5733116f20015cc3d14e1441d0eab232ecc9fd, 360fe850c18552f23a2bf74d8eda865431f0af38, 611c86295540161d31169110bf2139cf1d85d708, 9487c0d9, 2674b3f7, c5758058, a76fc492, 1cea5c4c, 3383a1eb, e91b366b, e472741a, c7570096, 4562cfd0, fae644b5, 33b595a8, e3f1c2e1, cba60486, e74cae6c, 3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f, 906f80f301d8034f8efe510018137195f3e4c4eb, 6dad688ec6a51143bfee902618bb88647a81c940, 380c3e720d5caaa1dc2181d70737b9320337f451, be2c1a535dff0e58b1579fe3db5890c7819916ab, 55db468eef3106ca1b02dc846ba12967a28dc238, 56324120f8e08de995e8cc7432ab27f2d0c98635, cb8d696d19c53e63be05ecb1ae273449af60efaf, 52007b760ff10f056ac75c5ed5b7dcdf49f99036, af5af69fd5018795a963a28c1ad367147b4a9bc3, 2524306ca9edd6079c23d205cf01268797288d89, f304ea548faa05f037cd3aa44c65888d96d543df, 33cfa8dfa1323708edf80034c0a98b0620790b6a, 7cdee0c52b6de5d416208971d6eaec6b86caa034, 93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf, 8efb90e5038874c672df120651041176a70b1f2f, f0b1e5735872ba2effcd7c1480756326125f6752, bc9c30856f6272f9a099e52691d4ec4a7582732f, 1a643e24968a06cdeaba23ffc2506471b659c62a, 187a4c6f, 193361ac, 0d1ab835, "29466300", be20005c, 6414d94, 3d1e10bc, ec2f82df, 173e1f65, 68a4add8, e15905e6, f3d86a09, a0c6c2d1, 296230fc, cc0d6543, f8ca1a89, 4e317aed, a6c84690, 85cd59ae, 724b105e, "99364562", 0ed37109, fd930e71, 1a287085, 30951e7a, 987edccd, e3069dee, bbd6d1f3, ca240693, 5e0b6363, 215078e7, bd4121e5, a9489663, 2c8e8077, c4c195d9, e5256879, edce7b87, 104976f7, 48a7c32f, 7d8b213f9f1ff9cdeb31689a0bb08577a24249cd, edf966cc9294448d0b057514d85e361c4f11ddd7, fe1826587c225736893ca000fa4c6453ff051f2e, 9ba1d6151d60ace4a41416e6d49bb55d4ee691aa]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -452,7 +459,7 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "15.5 P5 open: current39998246278/headedf/source48a independently qualified93P/1FAPI019/1unexecutedAPI020. First recorded privacy origin integration/ip-literal; rawvalue/underlyingcause/nativefirstthrow UNKNOWN. MainDB key retained/deletion unverified/clientclosed/backendsettlementUNKNOWN; browser ownkeydeleted only. All operational/artifact slots CLOSED, no nextNORMAL authority. Read-only source assessment active; required95/custody/delivery, P6/P7,15.6 and epic gates remain."
+  - "15.5 P5OPEN: reviewed source9ba1d615 adds closed stream/form evidence only; actual39998246278 remains93P/API019F/API020unexecuted. MainDB keyretained/deletionunverified/backendsettlementUNKNOWN. All prior slots CLOSED; one precise new observation needs finite reviewed binding. Required95/custody/delivery/P6/P7/15.6/epic gates remain."
 overrides:
   oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
   ownership: "Own15.5spec/ownedepic15context/preparationonly initially; exactsharedsource/schema/test/resource handoff withCoordinator before overlappingimplementation; no foreigncheckoutwrites or pausedsessionresume"
@@ -470,6 +477,7 @@ overrides:
   owner_preview_policy: "AutomaticPreviewsremain disabled untilownerreenables; no manualdeployment/provider/secrets changes authorized."
   frontend_final_PR: "Apply and verify agent-fix label; attach finalepicPR."
   owner_resume: "Explicit owner authorization after2026-10-19 development-completion policy; no implicit paused-session resumes."
+  current_conditional_merge_authorization: "User repeatedly authorizes full epic completion and merge commit retaining branch only after independent review/all required exacthead checks/current main no-deployment containment. Current gates not met; no merge/deploy now."
 constraints:
   - "Fresh15.5specification and DISTINCTHighvalidation BEFOREbuild; no source/schema/test/runtimeallocation duringpreparation."
   - "OwnerOct15 prohibitslegacyURLs/browsing/evidence; useapprovedrequirements/existingdesignsystem/accessibility andproportionalheadless design, recordowner-authorizeddefaults."
@@ -2451,3 +2459,25 @@ p5_startup_confirmation_NORMAL_actual_result:
   checkpoint: 06c4e602-246c-465d-b858-802be78c9ba1
   operation_id: d891e444-e6d5-401f-bd00-0a4b85b701e9
   closeout: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/startup-confirmation-normal-actual-closeout/root-closeout.json\", \"bytes\": 2471, \"sha256\": \"53e4607173a226205d9252376c5d31a214d4fcea88d001969dff57432980022b\"}"
+p5_API019_stream_form_source:
+  status: INDEPENDENT_SOURCE_ONLY_PASS_NO_API019_REPAIR
+  source_commit: 9ba1d6151d60ace4a41416e6d49bb55d4ee691aa
+  base_HEAD: fe1826587c225736893ca000fa4c6453ff051f2e
+  paths: 5
+  review: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-actual-diff-independent-review.json\", \"bytes\": 17457, \"sha256\": \"40a01b1258a49a30f40fd92815f74b896bf3d2ac12e81b68e53d14595b959546\"}"
+  controls: "Meaningful corrected RAM-preimage0P4F; frozen4P0F; affected199P0F0skip; TS/scopedlint native0; SRO225refs0errors. Focused counts overlap199. Earlier invalid harness/loader attempts not credited."
+  privacy: "Rawpredicate/precedence/firstfreeze/boolean/count/refusal unchanged. Newstream/formclosedenums are forgeable shape only, no rawvalue/title/taskID/IP/hash/path/URL retained."
+  private_consumer: "4constants only; everyotherbyte/all41functions unchanged; inert nullglobals and unsatisfiable admission retained. Finite actualpureparser/downstream synthetic controls0fail, zero normalacceptance."
+  current_required95: "CLOSED39998246278/headedf/source48a:93P API019F API020UNEXECUTED; no new runtime evidence."
+  custody: "mainDBretained/keydeletionUNVERIFIED/backendsettlementUNKNOWN; browser ownkeydeleted only"
+  P5: OPEN
+  review_counter: 3
+  story15_6: UNSTARTED
+  development_complete: false
+  release_ready: false
+  new_runtime_authority: false
+  no_deployment: true
+  next: "Prepare one precise first-refusal pipe/rendered-form observation; fresh finite reviewed execution and acquisition bindings required. No old slot replay or automatic retry."
+  design_authority: "DT2026-10-23 DESIGN/EXPERIENCE and incorporated PhaseBUXannex apply at future15.6 preparation; no early storybuild."
+  manifest: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/root-fold-manifest.json\", \"bytes\": 12449, \"sha256\": \"8a4acd2343d37c893783a0c1f9537084e92fa3c958858239eb498ae3848464bc\"}"
+  closeout: "{\"path\": \"_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/root-closeout.json\", \"bytes\": 2092, \"sha256\": \"1b3ccfb4e6ff6afabd89cc5ca1f13aa7b05be4bce004eb5b3f4e30a5b31c20c0\"}"

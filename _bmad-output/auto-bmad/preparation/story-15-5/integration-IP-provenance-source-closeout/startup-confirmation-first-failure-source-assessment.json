@@ -1,0 +1,164 @@
+{
+  "Outcome": "MISSING_BOUNDED_EMITTER_PROVENANCE; no source-proven defect/benign falsepositive or functional repair established. First recorded child/predicate is now safely localized.",
+  "Files changed": [
+    "Private .env.epic15.mail-runtime/story-15-5-preparation/startup-confirmation-first-failure-source-assessment.json only; no tracked/source/test edits."
+  ],
+  "Status": {
+    "revision": {
+      "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+      "run": 39998246278
+    },
+    "frozen_packet_facts_NOT_independent_counts": {
+      "source_file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "case": "API019",
+      "status": "failed",
+      "duration_ms": 2740.343817000008,
+      "safe_owned_origin": {
+        "category": "unknown",
+        "sqlState": null,
+        "stage": "scenario-telemetry-privacy-refused-integration-ip-literal"
+      },
+      "owned_leaf_tuple_count": 1,
+      "invalid_owned_tuple_headers": 0,
+      "typed_assertion_pairs": [],
+      "raw_failure_details": "NOT_PERSISTED"
+    },
+    "safe_quote": "scenario-telemetry-privacy-refused-integration-ip-literal",
+    "source_chain": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "lines": "12,626-629",
+        "fact": "Integration closure labels pnpm run test:int with existing default/github-actions/json reporters as integration; build and Nextstart have separate fixed child labels."
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "lines": "408-426",
+        "fact": "launchOwned splits both stdout/stderr into lines and forwards each through the same child observer; no stream/emitter provenance is retained by firstPrivacy."
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "lines": "247-260,268-285",
+        "fact": "Raw scan precedes filtering; validatedIPv4 orIPv6 match yields ip-literal only after earlier predicate branches. First metadata is synchronously frozen once for observer lifetime and is not reset per fixture."
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "lines": "249-256,587-613",
+        "fact": "Existing exact static integration/ip-literal mapping is selected only for exact-keyed valid firstPrivacy during an actual privacy refusal. Original boolean/count checks remain mandatory; malformed metadata falls back to generic refusal."
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "lines": "389-403",
+        "fact": "API019 awaits fx.telemetry while constructing observable before the observable.includes(secret) assertion loop. Observed owned stage supports this refusal boundary, not a native matcher-proven leak or certified underlying firstthrow."
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+        "lines": "2400-2422",
+        "fact": "Actual installed onUserConsoleLog writes a stdout/stderr+task header plus log.content; it does not sanitize content. Thus the observed integration child can contain reporter metadata and test/library console output, not only calendar HTTP response records."
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/console.3WNpx0tS.js",
+        "lines": "70-85",
+        "fact": "Worker console forwarding sends content/type/taskId/time to reporter. These upstream identities are not preserved by current parent child/predicate seam."
+      }
+    ],
+    "source_assessment": "Neither specific raw IP, address family, source console call, reporter/header versus payload, nor request linkage was retained. The fixed child tells which process emitted bytes, not which source produced them. The IP detector guard intentionally recognizes arbitrary valid IPs except the exact known Next infrastructure line; merely feeding a synthetic IP back to it would not prove a defect.",
+    "narrow_reads": "Actual API019/helper/observer/integration argv/config/installed console reporter inspected. Existing globalSetup only warns when unreachable (required-stack branch throws earlier); no actual source-owned benign first-IP emission proven. No repetition of prior response4/benign3 synthetic controls.",
+    "source_refs": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 49378,
+        "sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 143615,
+        "sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40"
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 4805,
+        "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30"
+      },
+      {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+      },
+      {
+        "path": "tests/support/global-setup.ts",
+        "bytes": 2970,
+        "sha256": "adad74b1ef885d8c0714ef6bb5ab9e61b4973021d2c0e7f2e8df17ef6c5ea788"
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+        "bytes": 151531,
+        "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/console.3WNpx0tS.js",
+        "bytes": 4797,
+        "sha256": "3e19d2c9e51e1d7a95d92bd603a28ac30f2d974f5ff370cec08d975801ea746f"
+      }
+    ],
+    "closed_evidence_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/native-full-integration-projection.json",
+        "bytes": 67126,
+        "sha256": "799172e741da94a2870c147a5a2c2b1f4e81950d08b18b7106ce9fdb5363b93b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-execution-receipt.json",
+        "bytes": 12305,
+        "sha256": "cc4522ac9ccbe9336d47f21156f4b1af43d12230f2e5b6937c7fbf7c61933859"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/acquisition-summary.json",
+        "bytes": 2552,
+        "sha256": "076a699f0073cc41ced6b15aa2c53b82d59860c87c80e4fbfd5ff707d6357b7a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent/artifact-list-projection.json",
+        "bytes": 1290,
+        "sha256": "79889a69a559f4558968ef4073bbae7b7465d34c630c9c8979ddc5faf8eb3af4"
+      }
+    ],
+    "qualification_separation": "Distinct reviewer owns required95 arithmetic/current custody. This assessment does not requalify totals or presume privacy-origin means native secret leakage."
+  },
+  "Open questions": {
+    "exact_missing_safe_fact": "Which source-owned output/emitter class produced the first matched integration IP, and whether it is unrelated runner/infrastructure metadata or actual request/test-sensitive console content. A rawIP value is not needed or authorized for persistence.",
+    "unknowns": [
+      "Original raw line/value/IPfamily/stdout-versus-stderr",
+      "Native original firstthrow or earlier failure",
+      "Whether any secret/clientIP escaped an authorized output boundary",
+      "Whether a particular benign renderer shape deterministically triggers the detector"
+    ],
+    "falsepositive": "NOT_PROVEN. Observing IP-literal alone establishes guard detection, not benignity or a privacy leak."
+  },
+  "Deferred work": {
+    "minimum_next_step": "After independent actual qualification, Root selects a narrow source-only emitter-provenance plan at existing integration launchOwned\u2192observer first-increment boundary. Preserve detector boolean/order/count/first-only/privacy-first scan and every assertion. No automaticNORMAL repeat or repair/suppression is justified now.",
+    "offline_control_disposition": "Do not run invented-IP controls: they only reprove deliberate detection. A meaningful new completely offline actual-emitter\u2192actual-observer control first requires a concrete source-owned benign emitter shape identified in existing installed integration reporter/console call source. Then exercise that exact actual formatter/adapter path in RAM with synthetic secret negative controls, same observer, no test workload/DB/child launch and no raw persistence. No such concrete benign candidate is established here, so no control execution is recommended yet.",
+    "if_emitter_cannot_be_identified_from_source": "Retain a named provenance blocker. Any additional closed first-record metadata must use the existing firstPrivacy/source-label seam with a source-backed finite classifier that distinguishes exact emitter shape from UNKNOWN, preserves original guard failure and carries no raw values. Define exact constants/paths and demonstrate actual-source positive/negative privacy behavior offline before considering separately admitted focused observation; do not append speculative generic labels or initiate another opaqueNORMAL.",
+    "implementation_scope_now": "NONE. No functional app/SQL fix, whitelist, private-IP exemption, reset, timeout increase, weakened parser/assertion, new collector or hosted route authorized.",
+    "review_gate": "Wait for distinct actual qualification; independent minimum-plan check and Root exact ownership/effects admission before implementation or any observation."
+  },
+  "Blockers": {
+    "name": "FIRST_INTEGRATION_IP_EMITTER_PROVENANCE_UNKNOWN",
+    "owner": "Root with independent sensitive High minimum-plan review",
+    "resume_condition": "Actual qualification final plus a concrete source-owned benign emitter candidate with meaningful offline reproducer, OR a separately reviewed finite source-backed existing-seam provenance amendment and focused observation scope. Existinglabel alone cannot authorize a fix.",
+    "P5": "OPEN",
+    "95_acceptance": "Not claimed",
+    "custody": "Independent qualifier owns; no new assertion here",
+    "15.6": "UNSTARTED",
+    "review_counter": 3,
+    "old_effect_slots": "CLOSED",
+    "new_effect_authority": false,
+    "SQL118": "Immutable; no raw SQL scan or writes",
+    "tooling_history": "Windows rg wildcard/absent optional directory probes refused localread only; corrected narrow existing paths read. No tests/control/runtime/network performed."
+  }
+}
