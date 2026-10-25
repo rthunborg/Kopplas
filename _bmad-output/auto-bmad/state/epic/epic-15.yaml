@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-25T08:48:45Z"
+updated_at: "2026-10-25T09:14:25Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 280913
-timing_anchor: null
+active_seconds: 282121
+timing_anchor: 1792919665
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: 15.6-spec-validation-smoke-amendment
-selected_role: independent specification validator
-selected_profile: critical
+selected_phase: 15.6-P5-build-run
+selected_role: build delegate
+selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Targeted confirmation of exact planning-only smoke wiring amendment; preserve previously PASS sensitive spec contracts, no broad code review."
+escalation_reason: "Implement checked personal RPC/tenant authorization, route permissions and server-confirmed time-report composition; ordinary presentation may use explicitLow nestedowner."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -460,6 +460,9 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-build-plan\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent validation of own-person RPC authorization, mixed-role landing, pending-jobs no-query privacy seam and migration/tenant boundaries before build.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-spec-validation\",\"profile\":\"critical\",\"role\":\"independent specification validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted confirmation of exact planning-only smoke wiring amendment; preserve previously PASS sensitive spec contracts, no broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-spec-validation-smoke-amendment\",\"profile\":\"critical\",\"role\":\"independent specification validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Mechanical CLI help/version and empty migrationfilename generation only after independentHighspecPASS; no SQL/schema/runtime/auth decision.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-migration-filename-generation\",\"profile\":\"light\",\"role\":\"preparation author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Acceptance scaffolds for own-person RPC authorization, tenant isolation, pending-job privacy, route permissions and persisted time-report integrity.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-P4-testarch-atdd\",\"profile\":\"standard\",\"role\":\"TEA\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Implement checked personal RPC/tenant authorization, route permissions and server-confirmed time-report composition; ordinary presentation may use explicitLow nestedowner.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-P5-build-run\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
