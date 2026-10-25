@@ -1,0 +1,108 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 15-6-min-dag-the-field-landing
+epic_num: 15
+story_num: 6
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-15-scheduling-time-calendar
+status: in-progress
+updated_at: "2026-10-25T08:33:08Z"
+started_at: "2026-10-25T08:33:08Z"
+completed_at: null
+active_seconds: 0
+timing_anchor: 1792917188
+is_first_in_epic: false
+is_last_in_epic: true
+git_mode: remote
+base_branch: main
+selected_phase: 15.6-build-plan
+selected_role: build delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: low
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows."
+routing_ledger:
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-build-plan\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "Read-only triage: schedule-change notices and time-ordered bookings trigger scheduling risk."
+epic_story_count: 6
+stories_after_in_epic: 0
+completed_phases: [0, 1, 2]
+spec_path: null
+spec_approved: false
+build:
+  status: null
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: []
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: []
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: null
+ci_run_url: null
+ci_status: unknown
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  oracle: "Owner2026-10-15: no legacyURLs/browsing/evidence; owner-authorized maintainable defaults with approved requirements and headless seams."
+  ownership: "Coordinator0e79dd/native0 no known competing Documents/MinDag/scheduling/time claim; planning only; exact paths/semantics/runtime allocation after validatedspec/basecheck."
+  spec_validation: Before every build
+  unattended: Full epic request
+  calendar_host: Contract D transferred acceptance into15.1
+  deploy: Forbidden
+  merge: "Authorized after independent review and all required checks; merge commit; retain branch"
+  retro: "October8 accepted-with-open-items; October7 historical"
+  checkpoint_push: User commit/push completed work authorization applies to reviewed preparation checkpoint while awaiting ownership
+  blocked_checkpoint_push: "Owner requested commit/push; explicitly incomplete blockedcheckpoint branch only noEpicPR/finalization/merge/deploy"
+  legacy_oracle: "Owner decision supersedes oracle browsing; retain historical records"
+  owner_preview_policy: "Explicit owner decision: disable automatic previews for ALL Kopplas project branches and leave disabled until owner reenable; no automatic restore/replay; no-deploy remains."
+  latest_project_rules: "Oct16 owner rules apply immediately; frontend finalPR requires agent-fix label application and verification; all approved scope/security/integrity/test gates preserved."
+  merge_main: false
+  development_completion_policy: 2026-10-19
+  deployment: false
+  owner_resume: "2026-10-19 explicit authorization; Coordinator verified recovery handoff"
+  final_settling_within_cap: "Root interpretation of owner unattended whole-epic authorization and three-round cap: use remaining third/final settling pass after meaningful Round2 High fixes before E5h; no fourth broad review or silent recommendation clearing."
+  current_conditional_merge_authorization: User authorizes merge commit retaining branch after independent review/all required checks and proven no-deployment containment. No merge/deployment now.
+constraints:
+  - Prepare specification and independently validate before implementation.
+  - "Own checkout only; no shared production/schema/test/runtime edits until exact allocation."
+  - "Ordinary Sol6.1Low; sensitive auth/RBAC/RLS/transactional decisions explicitHigh."
+  - "Preserve E14Oct8accepted-with-open-items, ContractD15.1, ownerUXB-A9 workrole decision, current approved Oct23designauthority."
+  - "One epicPR; cap3; no deployment; conditionalmergecommit retainbranch."
