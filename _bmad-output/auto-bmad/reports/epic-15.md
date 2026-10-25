@@ -8400,3 +8400,46 @@ not yet
 1. none
 
 **Next:** Prepare and independently validate story15.6 specification before build.
+
+## Report — 2026-10-25T15:36:06Z (development complete; final PR gates and hosted schema remedy pending)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `9c656dd`).
+**Pipeline status:** All six stories development complete; trace PASS; retrospective accepted-with-open-items. Not merged: final-head checks/fresh independent PR review and proven hosted-schema compatibility remedy remain.
+**Continues:** True
+
+**Summary:** Epic15 Scheduling Views, Time Reporting, Calendar Feeds and Min dag. Approved PhaseB scope/headless seams preserved.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 386h 38m (≈84h 34m AI-run, ≈302h 03m human/idle wait); resumed 253×.
+
+**Stories:**
+1. 15-1-the-five-scheduling-views: development complete; followups=1; review_unverified=False; deferred review findings=2
+2. 15-2-recurring-bookings-series-materialized-occurrences-exceptions: development complete; followups=3; review_unverified=False; deferred review findings=0
+3. 15-3-conflict-resolver: development complete; followups=0; review_unverified=False; deferred review findings=0
+4. 15-4-time-reporting-filing-timesheet-review: development complete; followups=0; review_unverified=False; deferred review findings=0
+5. 15-5-personal-calendar-feed-adr-b004-surface-1: development complete; followups=0; review_unverified=False; deferred review findings=0
+6. 15-6-min-dag-the-field-landing: development complete; followups=0; review_unverified=False; deferred review findings=0
+
+**Skipped:** (none)
+
+**Epic gate:** PASS49/49requireddevelopmentACs (35P0/14P1); actual Root15.2/epicdelivery_gate native0, approvalfalse; earned sixstory+epicdevelopmentdone batch preserved allforeignsprintbytes.
+
+**TEA:** Required current source CI40192543175/b57passed:Node3483P0F0skip;fullintegration2146P52explicitS/RLS889P14S;63new+95retainedcalendarcasesP0requiredskip/23corebrowserretry0;45focused15.2Node+23REALcommands+5REALRLS+7SSR actualP. Separate recovery1P. 52skips0credit,2outsidecoreProtocolErrorretry0/retry1Pflakes. NFRadvisoryCONCERNS/MEDIUM; literaltestquality0/F/Block remains advisory (retiredskipreason/length/pollwait), no uncoveredrequiredAC or new productionreachabledefect.
+
+**Retrospective:** accepted-with-open-items;4actual E15actions; _bmad-output/implementation-artifacts/epic-15-retro-2026-10-25.md
+
+**Overrides:** Owner2026-10-25efficientcombinedcloseout/reusequalifiedevidence/advisoriesnonblocking. Productiondeployincidentaltoearnedmerge authorized; automaticPreviewsoff; no providerwrites/manualredeploy/dbpush authority inferred. No fourthbroad15.2: actualtargetedP7score0/newFALSE, historicalscore6TRUE/broad3of3 retained; honestfollowup2->3. Oct8E14retroauthoritative/Oct7historical;ContractD15.1/ownerUXB-A9/nolegacyoracle/Oct23designauthority preserved.
+
+**Open questions:**
+1. Hostedbackendwmqmzznmwpheswjjozhq has80of119migrations;4requiredobjects actuallyabsent.39reviewedforwardmigrationplan and distinctHighoperationalreview/readonlycredentialpreflight precede specifichumanDBwriteapproval; no DBwrite performed.
+
+**Deferred work:**
+1. 25release-validationitems remain deferred with existingowners/status/evidence/nextactions;release_readyfalse.
+2. FinalPhaseBreleasecheckpoint required afterallapprovedepicsintegrated; no automaticstartofDT5/E17/otherchats.
+3. Advisorytestquality/2protocolflakes remain boundedmaintenance; unchangedhistoricalcustodyunknowns preserved.
+Reconcile0fullyresolved; actualledgerplan0resolvedE15candidates; archive0/noledgerwrite.
+
+**⚠️ Needs human:**
+1. Specific39forwardmigrationDBwriteapproval only after concreteHighplan+distinctreview+qualifiedreadonlypreflight; Coordinator handles exact approval. Merge held until actualrequiredschema remedy/verification; productionautodeployauthorization does not authorizeDBpush.
+
+**Next:** Publish one final epic PR with agent-fix verified, freeze actualhead, run requiredGitHubchecks and Coordinator freshindependentreview; resolve hosted39forwardmigration prerequisite before authorizedmergecommit/retainbranch. Project context: /bmad-project-context refresh recommended after integration.
