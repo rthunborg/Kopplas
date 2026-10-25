@@ -15,6 +15,8 @@ type ModulePermissions = Record<string, PermissionRow>;
  * owner-approved N-4 matrix. It deliberately names stable business operations
  * instead of pages or widgets so command and RLS policies can share it.
  */
+const BOOKINGS_VIEW = { roles: ["tenant_admin", "projektledare", "montor"] } as const;
+
 export const PERMISSION_MATRIX = {
   // Classification only: platform authority is DB allow-list based, never a tenant role grant.
   provisioning: {
@@ -31,8 +33,13 @@ export const PERMISSION_MATRIX = {
   resources: {
     "Resources.View": { roles: ["tenant_admin", "projektledare"] },
     "Resources.Maintain": { roles: ["tenant_admin", "projektledare"] },
-    "Bookings.View": { roles: ["tenant_admin", "projektledare", "montor"] },
+    "Bookings.View": BOOKINGS_VIEW,
     "Bookings.Manage": { roles: ["tenant_admin", "projektledare"] },
+  },
+  scheduling: {
+    "Bookings.View": BOOKINGS_VIEW,
+    "TimeReports.ReportOwn": { roles: ["tenant_admin", "projektledare", "montor"] },
+    "TimeReports.Review": { roles: ["tenant_admin", "projektledare"] },
   },
   dashboard: { "Dashboard.View": { roles: ["tenant_admin", "projektledare", "montor", "saljare", "ekonomi"] } },
   crm: {

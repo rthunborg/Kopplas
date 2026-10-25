@@ -1,0 +1,21 @@
+{
+  "story":"15.5",
+  "source_head":"611c86295540161d31169110bf2139cf1d85d708",
+  "finding":"R3-01",
+  "status":"resolved; distinct High latest-fix source review PASS",
+  "completed_review_rounds":3,
+  "cap":3,
+  "not_a_fourth_broad_review":true,
+  "reviewer":"/root/build15_5_high/round3_verification",
+  "implementation_author":"/root/build15_5_high/implementation_author",
+  "model":"gpt-6.1-sol",
+  "effort":"high",
+  "input_sha256":"d1023ad79193131e12bd7f85b9f2990b96b3d2e792d337e48dba324103bd6b56",
+  "original_report_sha256":"d954848a512f7bc58ad35228159388d154a452ad604209f7baa23c722f7c59a2",
+  "original_report_bytes":771,
+  "attestation_sha256":"3bbeb7eb8f3ed97a69be309febad408a22a7b29ac3d9a1039b066337d58bdf9c",
+  "fix":"Post-fresh and post-replay assertOwner requires effective USAGE=false and nonempty exact owner/executor membership rows all inherit_option=false, with prior SET/ADMIN/negative owner attributes/restricted identity/source execution/cleanup checks intact.",
+  "review_limit":"Only this latest assertion fix and affected author trail/consequential regressions; all completed unchanged R1/R2/R3 layers reused.",
+  "runtime":"Native PG17/DB/RLS/component/HTTP/browser/recovery/installed collection pending Root exact-head CI; no local execution or qualification commands.",
+  "completion":"Spec in-review; no development-complete/delivery claim."
+}

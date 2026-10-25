@@ -1,0 +1,48 @@
+{
+  "round": 2,
+  "prior_completed_rounds": 1,
+  "cap": 3,
+  "before": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "source_head": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "input_sha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10",
+  "input_bytes": 106573,
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "ops/recovery/bootstrap-roles.sql",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "src/components/app-shell/AppShell.tsx",
+    "src/components/calendar-feed/CalendarSubscription.tsx",
+    "src/features/calendar-feed/action-state.ts",
+    "src/features/calendar-feed/icalendar.ts",
+    "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/integration/calendar-feed/public-feed.int.test.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/features/calendar-feed/action-state.test.ts",
+    "tests/unit/features/calendar-feed/icalendar.test.ts",
+    "tests/unit/ops/pilot-operations.test.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "scope": "Eleven accepted fixes/latest-fix regressions only; unchanged full Round1 reused with original layer receipts. No new broad unchanged review. Rejected lock and explicitly deferred exhaustive branch are not reopenable without new concrete regression.",
+  "context": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/accepted-recovery-allocation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/triage.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/global-lock-clarification-original.md"
+  ],
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Actual sensitive role ownership, counter transactions, public tokens and process/key/log confidentiality changes",
+    "layers": [
+      "blind-hunter",
+      "edge-case-hunter",
+      "verification-gap",
+      "intent-alignment",
+      "auto-bmad-security",
+      "auto-bmad-cross-model"
+    ]
+  },
+  "runtime": "Native DB/RLS/HTTP/browser/recovery/installed collection pending Root exact-head CI."
+}

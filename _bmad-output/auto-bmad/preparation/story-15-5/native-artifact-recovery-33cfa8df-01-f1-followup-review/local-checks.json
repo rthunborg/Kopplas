@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "phase": "F1_FOLLOWUP_AUTHOR_FROZEN_PENDING_TARGETED_HIGH_REVIEW",
+  "created_at_utc": "2026-10-21T06:55:02.290228+00:00",
+  "code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 33788,
+      "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "bytes": 29787,
+      "sha256": "3b1824fbad1d86d3231c085bf4dc56bdf4ba26d50179dada15fd05f103add613"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 12417,
+      "sha256": "10bea96d7f29eee685fcb761dcd80098d3b3ccd6af60667908c33a552a539beb"
+    }
+  ],
+  "history": "Previous original26P and corrective32P/NOTPASS-F1OPEN-F2CLOSED stay immutable and nonadditive.",
+  "current_runs": [
+    {
+      "methods": 33,
+      "excluded_method": "test25 actual driver-byte match while awaiting Root replacement",
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 36,
+      "negative_checks": 107,
+      "owned_python_children": 20
+    },
+    {
+      "methods": 34,
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 37,
+      "negative_checks": 107,
+      "owned_python_children": 20,
+      "status": "LATEST_SUITE_PASS_WITH_ACTUAL_ROOT_DRIVER"
+    }
+  ],
+  "pre_fix_reproduction": {
+    "old_driver_sha256": "3296d05e6086af0bf104076bad5e31ac66c9015d62b949a754a257f279139b37",
+    "source": "Hash-verified corrective original byte custody, executed in memory only.",
+    "method": "test_33_F1_ordered_buffer_cannot_admit_after_known_error",
+    "methods": 1,
+    "expected_failures": 1,
+    "errors": 0,
+    "owned_python_children": 1,
+    "meaning": "New control detects prior known-buffer bypass; test-only terminal/ack traps prevent actual effects. Separate/nonadditive."
+  },
+  "targeted_current_control": {
+    "method": "test_33_F1_ordered_buffer_cannot_admit_after_known_error",
+    "ordered_first_stage_consumed_then_error_known": true,
+    "remaining_settled_and_candidate_buffered": true,
+    "terminal_write_attempts": 0,
+    "ack_write_attempts": 0,
+    "candidate_admitted": false,
+    "capture_complete": false,
+    "custody": "UNKNOWN",
+    "normal_acceptance_credit": 0
+  },
+  "adapter_control": "Known reader error refuses an already complete buffered line; healthy queued-after-exit controls retained.",
+  "F2_helper_byte_identical": true,
+  "syntax": {
+    "files": 3,
+    "passed": true
+  },
+  "producer_current_raw_checks": 11,
+  "new_help_invocations": 0,
+  "new_operational_startups": 0,
+  "root_facts_unborn": true,
+  "root_result_unborn": true,
+  "API_requests": 0,
+  "CI_dispatches": 0,
+  "native_cases_executed": 0,
+  "normal_acceptance_credit": 0
+}

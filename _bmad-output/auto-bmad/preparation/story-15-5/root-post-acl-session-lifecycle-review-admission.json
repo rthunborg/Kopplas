@@ -1,0 +1,28 @@
+{
+  "schema": "ROOT_MECHANICAL_C4_REFINEMENT_REVIEW_ADMISSION_v1",
+  "at": "2026-10-21T17:51:05.276827+00:00",
+  "verdict": "NOTPASS",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-report.md",
+      "bytes": 5166,
+      "sha256": "218d095266c898492582bd03840d8c9ed69fb74f1567ea343e289b83af6cbe5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-attestation.json",
+      "bytes": 13511,
+      "sha256": "fc95a9677ed4d69d093384c7c854af7e520a80d2aaafd93d10085b157dd48f62"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/result.json",
+      "bytes": 2084,
+      "sha256": "a392b6c9095276a01be6c2073d7a90ead929a2083e74a5b80ff419b19fa07655"
+    }
+  ],
+  "bound_refs_checked": 27,
+  "F1": "Owned-client retirement pool error forwarding not contained by client-only listeners; metadata-only refinement required.",
+  "source_edit_authorized": false,
+  "native_effects_authorized": false,
+  "normal_acceptance_credit": 0,
+  "next": "Author metadata-only exact F1 correction, then independent targeted F1 closure. No broad pass or source implementation."
+}

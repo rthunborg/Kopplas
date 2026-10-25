@@ -1,0 +1,288 @@
+{
+  "activation_and_terminal_conditions": [
+    "Root must observe an explicitly completed actual Coordinator acquisition allocation covering exactly this fixed five-logical-GET maximum; the preparation/template/mechanical admission is not that allocation.",
+    "Root must bind this distinct source-review admission, exact operator bytes/SHA, all eight prepared manifest members, fixed run-binding and current73/source-Git proof immediately before activation. No metadata-only HEAD is a target.",
+    "Root must independently observe the actual completed native run and preserve the exact repo/actor/triggering_actor/workflow/event/ref/run/head/title UUID/attempt1/mode normal/cause=false/release=false tuple. Missing/wrong/unknown identity or unexpected attempt/head/source stops; no foreign/E16 adoption.",
+    "Root must validate nine actual unique completed job rows with positive native IDs, exact fixed names and native conclusion values, exact actual_jobs agreement, four optional jobs skipped, and actual closed projected step rows name/number/status/conclusion. Missing/malformed/unknown values are unavailable/refused before activation, never template-filled or inferred as success. Empty/unexecuted step lists and skipped/cancelled cases gain zero coverage.",
+    "Root is the trusted semantic authority for allocation/review and terminal job/step projection. The operator hash-binds those references but is not a generic semantic interpreter for all nested metadata. Root must complete those validations before execution_authorized=true; operator_review.status PASS cannot come merely from a pending/template placeholder.",
+    "Only then may Root create the fixed fresh activation with execution_authorized=true, exact private paths/output packet, no_retry=true, maximum_logical_requests=5 and normal_acceptance_credit=0; pass exactly --execute-once-after-terminal-grant. Output packet must be absent. Any uncertainty consumes the persisted intent and stops without retry or new endpoint.",
+    "No execution follows from this audit. Missing artifacts/steps/reports, partial bails, duplicate/unknown/skipped/cancelled/unexecuted cases and unavailable attachments remain explicit UNKNOWN/zero coverage. Required30Node/51DB/14browser, separate recovery1, fullDB/RLS and API019 need actual current-head evidence plus independent packet review; no aggregate95pass is inferred."
+  ],
+  "activation_created": false,
+  "actual_acquisition_allocation_observed_by_reviewer": false,
+  "actual_terminal_compatibility": {
+    "bytes": 1627,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/terminal-compatibility.json",
+    "sha256": "0a6c19cd4158f8eb8a2e3cf1261e6a16c2626121fd4cd1a3c4530dbac545bccb"
+  },
+  "actual_terminal_observed_by_reviewer": true,
+  "additional_pure_actual_terminal_control": {
+    "GETs": 0,
+    "activation_allocation_review_refs": "SYNTHETIC_RAM_ONLY_NOT_AUTHORITY",
+    "actual_terminal_bytes": true,
+    "executed": 1,
+    "normal_acceptance_credit": 0,
+    "passed": 1
+  },
+  "coverage_limits": {
+    "API019": "REQUIRED_NOT_ASSUMED",
+    "attachments": "UNAVAILABLE_BODY_UNKNOWN",
+    "client_child_closed": "NOT_BACKEND_CLOCK_BODY_ACL_OR_CANONICAL_RESTORE",
+    "failed_DB_key_retention": "UNKNOWN_NOT_PASS",
+    "full_DB_RLS": "UNKNOWN_UNTIL_ACTUAL_REPORT",
+    "partial_bail": "ACTUAL_RECORDS_ONLY_MISSING_EXPLICIT",
+    "recovery_separate": 1,
+    "required_Node": 30,
+    "required_browser": 14,
+    "required_ordinary_DB": 51,
+    "retries": "NONADDITIVE"
+  },
+  "current73": {
+    "added_admin_sql_included": true,
+    "binding": {
+      "bytes": 36163,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    "clean_verified": 73,
+    "computed_blob_matches": 73,
+    "new_Git_commands": 0,
+    "normalization_differences": 45,
+    "raw_verified": 73,
+    "remote_pushed_equality_basis": {
+      "bytes": 1352,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/source-binding-proof.json",
+      "sha256": "c377f06a4135980d3ecf878a68439ec509d1c32e287ca35d98d65d1843e40643"
+    }
+  },
+  "development_complete": false,
+  "effects": {
+    "CI_polls": 0,
+    "GETs": 0,
+    "Git": 0,
+    "SQL_connections": 0,
+    "app_imports": 0,
+    "browser_server_resources": 0,
+    "network": 0,
+    "operator_top_level": 0,
+    "push_dispatch_provider_key_effects": 0,
+    "secrets_or_env_reads": 0,
+    "source_Spec_config_runner_state_oldpacket_privateoperator_writes": 0,
+    "transport_Popen": 0,
+    "writes": "Only new reserved review directory"
+  },
+  "executed_pure": {
+    "actual_API": 0,
+    "controls": 47,
+    "errors": 0,
+    "exit_receipt": {
+      "bytes": 1,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/pure-tests.exit",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    "failures": 0,
+    "native_exit": 0,
+    "operator_top_level_execution": 0,
+    "pass": 10,
+    "receipt": {
+      "bytes": 1497,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/pure-tests.txt",
+      "sha256": "3bbcd9afbe67d32e6eb684408e6280c44a323d424b932c7705334adb9ca48f01"
+    },
+    "seconds": 0.2293116,
+    "skipped": 0,
+    "tests": 10,
+    "transport": "INJECTED_RAM_ONLY"
+  },
+  "executed_vs_reused": "10 pure reviewer tests/47 controls actually executed; old transport qualification reused only after exact seven-span equality. No transport/lifecycle backend/native acceptance rerun or additive history claim.",
+  "execution_authorized": false,
+  "findings": [],
+  "future_packet_created": false,
+  "future_request_inventory": [
+    {
+      "compressed_cap": 33554432,
+      "endpoint": "repos/rthunborg/Kopplas/actions/runs/39664130401/logs",
+      "maximum": 1,
+      "method": "GET",
+      "seconds": 15,
+      "selected_declared_actual_inflate_cap": 134217728,
+      "selected_jobs": [
+        "verify",
+        "db",
+        "e2e",
+        "recovery-storage-loader"
+      ]
+    },
+    {
+      "cap": 4194304,
+      "endpoint": "repos/rthunborg/Kopplas/actions/runs/39664130401/artifacts?per_page=100",
+      "maximum": 1,
+      "method": "GET",
+      "pagination": false,
+      "seconds": 15
+    },
+    {
+      "compressed_cap": 33554432,
+      "each_name_maximum": 1,
+      "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/<exact eligible numericID>/zip",
+      "inflate_cap": 134217728,
+      "maximum": 3,
+      "member_cap": 16777216,
+      "method": "GET",
+      "names_members": {
+        "native-full-integration": "full-integration.json",
+        "native-general-browser": "general-browser.json",
+        "native-isolated-storage-recovery": "isolated-storage-recovery.json"
+      },
+      "seconds": 15
+    }
+  ],
+  "initial_binding_check": {
+    "bytes": 382,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/binding-attempt-history.json",
+    "sha256": "84a143ca449638e681fe3ae6109e8f8dd16d8fe4a7ede3d65f16dca99957c6e2"
+  },
+  "metadata_HEAD_NOT_target": {
+    "independently_queried": false,
+    "latest_Root_reported": "179493c4765b223988aff109cd1865edde8aed51",
+    "prepared": "fbb2f01b423b782c699643ffca6cdfec3e27eafc"
+  },
+  "mode_flags_provenance": "Root registered checkpoint/sole dispatch POST and state binding establish normal/cause=false/release=false; REST run metadata does not independently expose those input flags. No flags inferred from job outcome.",
+  "normal_acceptance_credit": 0,
+  "operator": {
+    "bytes": 31222,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+    "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+  },
+  "original_operator": {
+    "bytes": 26061,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/original-operator.py",
+    "sha256": "71468c52fab40bea00219a00fe85b796f117d611612357a2917170f8d8862be6"
+  },
+  "original_provenance": {
+    "bytes": 1281,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/original-provenance.json",
+    "sha256": "9ccbe060635ab4d804171c1f72043bf5378ba3cd7ffa6a62897e6bea69d7eaf4"
+  },
+  "policy": [
+    {
+      "bytes": 8460,
+      "path": "docs/process/development-completion-policy.md",
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "bytes": 7957,
+      "path": "docs/process/agent-model-routing.md",
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    }
+  ],
+  "preparation": {
+    "bytes": 16402,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/preparation.json",
+    "sha256": "09ebcb60e2bf572d55220238b63ea9229c63588e4e3225b6627b763d8f8f03e7"
+  },
+  "prepared_manifest": {
+    "bytes": 1675,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/manifest.json",
+    "sha256": "b4e8cf2a438405fa2ec8117a500fd2f1a47aa93487f6e3da2f1666fe39cda044"
+  },
+  "prepared_members_verified": 8,
+  "prepared_refs_verified": {
+    "manifest_members": 8,
+    "preparation_occurrences": 23,
+    "total": 31
+  },
+  "release_ready": false,
+  "report": {
+    "bytes": 5027,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/original-report.md",
+    "sha256": "a712df8c0ad2d3d65a58019e298a72f0e16e0bb0b2f91faf79bb3658cf87e7e7"
+  },
+  "reused_qualification": [
+    {
+      "bytes": 13713,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-attestation.json",
+      "sha256": "ca77d3173dfff1ee08702a46a37e386a56f575bea73dea714eb0e564c24008cf"
+    },
+    {
+      "bytes": 1507,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-evidence-audit-admission.json",
+      "sha256": "81b538512e8e6ad23337437d9eca730f1d357a25e9624aa77ba17cc8beac44eb"
+    }
+  ],
+  "reviewer": {
+    "agent": "/root/acquisition15_observability_source_review_high",
+    "independent_from_operator_author": true,
+    "route": "gpt-6.1-sol High",
+    "scope": "Finite existing operator/input/admission/terminal-schema delta only; no broad story review"
+  },
+  "root_mechanical_admission": {
+    "bytes": 1528,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-f1-terminal-operator-preparation-admission.json",
+    "sha256": "d45181accb35cdd6633c73b4beaa048d1abe82beac1cab55e755da9d2f6c6f38"
+  },
+  "schema": "POST_F1_FINITE_OPERATOR_PREGET_SOURCE_AUDIT_v1",
+  "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "target": {
+    "actor": "rthunborg",
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "event": "workflow_dispatch",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "release_validation": false,
+    "repo": "rthunborg/Kopplas",
+    "run_id": 39664130401,
+    "triggering_actor": "rthunborg",
+    "workflow_id": 296219797
+  },
+  "terminal_observation_basis": "Root-provided hash-bound local terminal only; Root performed native run/jobs GETs; this reviewer performed no remote query",
+  "trusted_Root_boundary_confirmed": true,
+  "unchanged_reused_spans": [
+    {
+      "byte_identical": true,
+      "bytes": 3155,
+      "function": "get",
+      "sha256": "0d29e9702e2739af5529fad830015ff36c7d8c8321b0ce82b4cced3a3fca6dc1"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 792,
+      "function": "zip_open",
+      "sha256": "5d014c4f532b77e1fdc980800a367d919a2ff57f6e3e338f83e6b32003e61644"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 498,
+      "function": "inflate",
+      "sha256": "10f67f0efa134883e180e3017a24335e055eb99ca3301be823409c945f939b77"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 1994,
+      "function": "failure_facts",
+      "sha256": "d18025ffb308a0dc4a20a0d6c70da6d5d3425ae61d0f51b8fb2a52079877c632"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 201,
+      "function": "case_id",
+      "sha256": "121abc65d4d1172dcf81151c83b5b6f5a2715ff0710bd849098ab9c0f2edb5cb"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 183,
+      "function": "safe_file",
+      "sha256": "6dba232f70275c54d5b0c8b6e625df5dec0d404d56a6ea358cc548e98bdd6541"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 3140,
+      "function": "lifecycle",
+      "sha256": "8e1bd5e4ccd1b37300bb1c0d931d31dae91e67609b48da4842b77057d5ffd519"
+    }
+  ],
+  "verdict": "PASS_PREGET_SOURCE_WITH_TERMINAL_CONDITIONS"
+}

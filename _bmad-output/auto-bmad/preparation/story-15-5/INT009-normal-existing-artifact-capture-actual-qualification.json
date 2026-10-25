@@ -1,0 +1,467 @@
+{
+  "schema": "INDEPENDENT_INT009_NORMAL_EXISTING_ARTIFACT_CAPTURE_ACTUAL_QUALIFICATION_V1",
+  "outcome": "QUALIFIED_STOP_UNKNOWN_CAPTURE_UNAVAILABLE",
+  "status": "EVIDENCE_QUALIFIED_CAPTURE_UNAVAILABLE_FUNCTIONAL_FAIL_RETAINED",
+  "independent": true,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "role": "Distinct actual evidence qualifier; not Native reader author/operator or source/privacy reviewer",
+    "route": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-actual-qualification-route.json",
+      "bytes": 548,
+      "sha256": "c9a3a4dc3347b1da1e76c40fba18f2337e506be5b5494b08d96de869bf136027"
+    },
+    "scope": "Existing frozen one-artifact evidence and already-qualified producer availability limits only; not fourth broad review"
+  },
+  "identity": {
+    "run": 39816833651,
+    "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "attempt": 1,
+    "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+    "workflow_id": 296219797,
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "terminal_and_job_ownership": "Reuse exact immutable qualified Normal39816833651 terminal/envelope/ownership refs; no additional run/job/status request."
+  },
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-actual-qualification-route.json",
+      "bytes": 548,
+      "sha256": "c9a3a4dc3347b1da1e76c40fba18f2337e506be5b5494b08d96de869bf136027"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/manifest.json",
+      "bytes": 884,
+      "sha256": "010baeac1af90e5ced5fd730bcf354a5142eeb3cf7eb26f58262ed01225dec6e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-execution-receipt.json",
+      "bytes": 7950,
+      "sha256": "56071188b1cf8b6389a2c7bbc568830b5d3b8266236521597b45ed85587e915a"
+    },
+    {
+      "bytes": 17439,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/reader.py",
+      "sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c"
+    },
+    {
+      "bytes": 26485,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/proposal.json",
+      "sha256": "841471ceefec492a82e47bcfdb2715792ae630b9393e4779b4d84e9430934b74"
+    },
+    {
+      "bytes": 15799,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-reader-actual-source-review.json",
+      "sha256": "dc535126aeeae6ba3cefcf295fb9d04753de6983e3c95932855108ff50c43a36"
+    },
+    {
+      "bytes": 63568,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent/native-full-integration-projection.json",
+      "sha256": "25bb1d6a469814081d25567decddcf49066f86b89d07d4656068fae239e3f755"
+    },
+    {
+      "bytes": 1291,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent/artifact-list-projection.json",
+      "sha256": "4c967b8801ef3e89a73929ef09426ea0a71e6c9599d976c2c494ac21d59c2c58"
+    },
+    {
+      "bytes": 3648,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent/manifest.json",
+      "sha256": "6f3ffdc3ba13501479629b9a46651f23a84eee7642f6077f5e91dee2fe0ba0d5"
+    },
+    {
+      "bytes": 120353,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/proposal.json",
+      "sha256": "1589645c9f286fbc84c89e188042a01fe30d2a1ea23c66369a0cf7f2b20a7c93"
+    },
+    {
+      "bytes": 31634,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/source-rows.json",
+      "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+    },
+    {
+      "bytes": 23827,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-actual-terminal-envelope.json",
+      "sha256": "f31671e0456ae9fef5a7f66fd81affac8d53ddd654e7240b9a178a505f2871fa"
+    },
+    {
+      "bytes": 24085,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/terminal.json",
+      "sha256": "33da582caff461fc376234c27e11797d4616416306dc223986e997f26455975b"
+    },
+    {
+      "bytes": 3387,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-ownership.json",
+      "sha256": "8ecd810e854e5fa445e35bc691c0de5e57e8c1c12b65c387f647e0d1c7a106bf"
+    },
+    {
+      "bytes": 2770,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-normal-existing-artifact-one-GET-allocation.json",
+      "sha256": "c64d9aa5c67592f632a289aff37416b2a014f05901de349bf1c3701dbb85ccba"
+    },
+    {
+      "bytes": 2971,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-current-source-proof.json",
+      "sha256": "24233e83400bff78ef3c269cea8c1d889570dbd46e8e0048eeac3a5a09182bc9"
+    },
+    {
+      "bytes": 20089,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-independent-source-review.json",
+      "sha256": "4e319617d2d5884e62893d04c71bf47905a11ecf5a38e62b62e7b1792924d089"
+    },
+    {
+      "bytes": 2781,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-activation.json",
+      "sha256": "5e17ca68cbb456f09cd4ebfd836dbdcb776e419242eff03b0adc96f42003e35e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/reader.py",
+      "bytes": 17443,
+      "sha256": "acd621d2a80d3075636e77bf5b5221f8888192457e33f3f466c4155219548969"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/proposal.json",
+      "bytes": 24279,
+      "sha256": "232df85a5dc560d88680a4c84bfc229c302e79e584331771b24d352103dfdf4c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-independent-controls.json",
+      "bytes": 2235,
+      "sha256": "c068b966beee4d564a6d14a915fe2b8d2cd7b52f4217ff80f65987ebc07c52d6"
+    },
+    {
+      "bytes": 1577,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-consumed-invocation.json",
+      "sha256": "f7fd659b42d4d1173067e9b46a43fd5579a0c6d783b64f4e7b16257ec979b627"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-actual-native-qualification.json",
+      "bytes": 39154,
+      "sha256": "5d3a51aaa3752578e9f49e454af87660fbd7f0e47d3211d7fff40f282323f5fa"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+      "bytes": 18126,
+      "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+      "bytes": 19693,
+      "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+    },
+    {
+      "bytes": 4595,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/operator-intent.json",
+      "sha256": "f9a7356420dd0be0c2014682801611040937ba19b380bf2a1842a89165020704"
+    },
+    {
+      "bytes": 418,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/request-01-intent.json",
+      "sha256": "d7dab3e14e23bbbaef94d75b7d0394383eb93550e1784049c9b565653ce1dbf1"
+    },
+    {
+      "bytes": 1139,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/request-01-result.json",
+      "sha256": "79adb9eb59601be7b7a17ff6341ca38c72ae7f7dd186285ddcdf14fc1f352179"
+    },
+    {
+      "bytes": 2523,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/native-projection.json",
+      "sha256": "ee32f80a08c9c90177745f791ed5a1556355b873f049987902e45ff282789324"
+    },
+    {
+      "bytes": 146,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/acquisition-summary.json",
+      "sha256": "bf32000263800b841fd35fe4fa149a598d9907d0b01e8b52bc8294f8463239cc"
+    }
+  ],
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture",
+    "exact_files": 6,
+    "manifest_self_excluded": true,
+    "members": [
+      {
+        "bytes": 4595,
+        "path": "operator-intent.json",
+        "sha256": "f9a7356420dd0be0c2014682801611040937ba19b380bf2a1842a89165020704"
+      },
+      {
+        "bytes": 418,
+        "path": "request-01-intent.json",
+        "sha256": "d7dab3e14e23bbbaef94d75b7d0394383eb93550e1784049c9b565653ce1dbf1"
+      },
+      {
+        "bytes": 1139,
+        "path": "request-01-result.json",
+        "sha256": "79adb9eb59601be7b7a17ff6341ca38c72ae7f7dd186285ddcdf14fc1f352179"
+      },
+      {
+        "bytes": 2523,
+        "path": "native-projection.json",
+        "sha256": "ee32f80a08c9c90177745f791ed5a1556355b873f049987902e45ff282789324"
+      },
+      {
+        "bytes": 146,
+        "path": "acquisition-summary.json",
+        "sha256": "bf32000263800b841fd35fe4fa149a598d9907d0b01e8b52bc8294f8463239cc"
+      }
+    ],
+    "all5_member_hashes_bytes_exact_closed_set_and_outside6_inventory_verified": true,
+    "native_projection_bytes": 2523,
+    "native_projection_sha256": "ee32f80a08c9c90177745f791ed5a1556355b873f049987902e45ff282789324"
+  },
+  "source_and_admission": {
+    "independent_source_privacy_review": {
+      "status": "PASS",
+      "outcome": "PASS_INT009_NORMAL_EXISTING_ARTIFACT_CAPTURE_SOURCE_ONLY",
+      "findings": [],
+      "bytes": 20089,
+      "sha256": "4e319617d2d5884e62893d04c71bf47905a11ecf5a38e62b62e7b1792924d089"
+    },
+    "controls": "Reuse6 independent groups and prior unchanged namespace/transport/ZIP matrices nonadditively. No controls or reader module/main rerun by this reviewer.",
+    "all_actual_input_refs_hashed": true,
+    "once": "Fresh exclusive operation/activation/output and fsynced operator/request intents precede sole request per reviewed source; journal binds one invocation and all unused slots closed on every exit.",
+    "proof_exception": "Root fresh2971-byte source proof deliberately records tracked_cleanfalse only for exact owned prior qualification39154/5d3a51..., while source_index_clean, source/current/pushed object and203-source/118SQL bindings remain qualified. The exact qualified-file exception is source-reviewed; no arbitrary dirty source accepted.",
+    "source_proof_limit": "Reuse Root current source/Git/118vectors and previous independent source review; no new Git command, SQL scan or application/source inquiry.",
+    "grant": "Completed conditional one-GET allocation2770/c64d9aa5... is bound by activation and exact independent PASS evidence. Its sole effect is consumed; source/evidence PASS does not renew it."
+  },
+  "actual_effects": {
+    "attribution": "NativeHigh-reported actual tool/direct child lifecycle, independently checked against frozen closed receipts/source and packet. Root/reviewer did not independently observe child lifecycle.",
+    "outer_tool": {
+      "chunk_id": "334fdf",
+      "tool": "tools.exec_command",
+      "exit_code": 1,
+      "wall_time_seconds": 1.5109185,
+      "session_id": null,
+      "wait_calls": []
+    },
+    "reader_outer_capture": {
+      "capture_complete": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 1.395535,
+      "handles_closed": true,
+      "launch_error": false,
+      "native_exit": 1,
+      "readers_joined": true,
+      "streams": {
+        "stderr": {
+          "observed_bytes": 0,
+          "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "overflow": false,
+          "physical_EOF": true,
+          "read_error": false,
+          "reader_done": true
+        },
+        "stdout": {
+          "observed_bytes": 347,
+          "observed_sha256": "576c7b251785fffa42428f61928f04a1ba42d89e473f27e5871ed2894b0eb4be",
+          "overflow": false,
+          "physical_EOF": true,
+          "read_error": false,
+          "reader_done": true
+        }
+      },
+      "timed_out": false
+    },
+    "reader_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\INT009-normal-existing-artifact-capture-preparation\\reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "outer_caps": {
+      "seconds": 60,
+      "stderr_bytes": 65536,
+      "stdout_bytes": 65536,
+      "wrapper_source_sha256": "fa985e222b982e911e727cf9eb2bb34181f0a98a31394e51e135ed2b4876648a"
+    },
+    "sole_request": {
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12444580340/zip"
+      ],
+      "capture_complete": true,
+      "category": null,
+      "custody": "OWN_GH_CHILD_AND_OUTPUT_SETTLED",
+      "elapsed_seconds": 1.233,
+      "handles_closed": true,
+      "inline_source_sha256": "acd621d2a80d3075636e77bf5b5221f8888192457e33f3f466c4155219548969",
+      "intent_persisted_before_spawn": true,
+      "label": "owned-INT009-native",
+      "native_exit": 0,
+      "raw_persisted": false,
+      "sequence": 1,
+      "settled": true,
+      "stderr_cap": 65536,
+      "stdout_cap": 33554432,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 111167,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "timeout_seconds": 15
+    },
+    "logical_GETs": 1,
+    "all_slots_closed": true,
+    "retries": 0,
+    "no_listing_logs_status_or_fallback": true,
+    "outcome_distinction": "GET native0 with complete body/EOF/join/closed/settled; reader and outer exit1 preserve STOP_UNKNOWN_CAPTURE_UNAVAILABLE. This is a semantic capture-unavailability stop, not a transport/native GET failure and not a passing diagnostic.",
+    "raw_digest_limit": "No raw ZIP/JSON retained or re-extracted. Stored transport/API/archive/member digests match prior qualified original artifact under reviewed exact-pin/ZIP/CRC/inflate/JSON enforcement."
+  },
+  "actual_body_binding": {
+    "artifact": {
+      "advertised_bytes": 111167,
+      "digest": "sha256:cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+      "id": 12444580340,
+      "name": "native-full-integration"
+    },
+    "API_digest_verified": true,
+    "archive_bytes": 111167,
+    "archive_sha256": "cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+    "member": "full-integration.json",
+    "member_bytes": 1029153,
+    "member_sha256": "03541a24713308754d36c5946550ba03d1243a93d729c184c4f2a905d8202766",
+    "declared_inflation": 1029153,
+    "raw_persisted": false
+  },
+  "selected_case_and_global_counts": {
+    "selected": {
+      "executed_pass_plus_fail": 1,
+      "normalized_fullName_sha256": "20b800f406cc74f3e783945a6bafde710517ee987a1e4a3dfcd30df3528f2a8e",
+      "occurrences": 1,
+      "source_path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "status": "failed",
+      "title_sha256": "aad32c8196383f2c417a3035ddd82637e40ab0cd0c8c47b02b4dbc5a2a59291b"
+    },
+    "selected_qualification": "Unique source/title/fullName-bound INT009 leaf is failed, selected executedP+F1/occurrences1. This does not assert whole-report P+F1. No new native case execution occurred during this artifact read.",
+    "global_declared": {
+      "numFailedTests": 1,
+      "numPassedTests": 2090,
+      "numPendingTests": 52,
+      "numTodoTests": 0,
+      "numTotalTests": 2149
+    },
+    "global_derived": {
+      "disabled": 0,
+      "failed": 1,
+      "passed": 2090,
+      "pending": 6,
+      "skipped": 52,
+      "todo": 0
+    },
+    "global_reconciliation": "Full report2090P/1F/6pending/52skipped=2149 leaf rows. Declared numPendingTests52 preserved separately. Selected1failed is the existing sole failure, not additional coverage; pending/skipped provide0coverage.",
+    "retry": {
+      "basis": "Reviewed NORMAL argv/current config only; reporter has no retry counter.",
+      "native_attempt_counter": null,
+      "source_effective_retry": 0
+    },
+    "retry_limit": "Effective NORMAL retry0 derives from reviewed source/config only; reporter native attempt counter remainsNULL."
+  },
+  "qualified_capture": {
+    "cleanup": [],
+    "omission_UNKNOWN": true,
+    "primary": null,
+    "reason": "MISSING_OR_UNAVAILABLE",
+    "records": null,
+    "status": "UNKNOWN"
+  },
+  "capture_meaning": {
+    "established": "No usable calendarInt009SetupV1 namespace was available to the strict qualified reader for the exact selected INT009 in this byte-identical report. records=null/primary=null, omission_UNKNOWNtrue; primary/cleanup facts are unavailable.",
+    "not_established": [
+      "That the raw key was absent rather than null/unavailable to the qualified namespace path.",
+      "That there were zero primary/cleanup events; cleanup[] here is part of the UNKNOWN envelope, not a verified empty event history.",
+      "The current primary publication/operation/guard, native error/class/SQLSTATE/stack/firstthrow or causal ordering.",
+      "Body/assertion reach, prior proargtypes guard absence or canonicalization success.",
+      "Successful COMMIT, rollback, function/ACL/canonical restoration, backend settlement or key deletion."
+    ],
+    "producer_availability_limit": "Reuse the already-qualified opt-in producer contract: capture is failure-only, bounded, first-primary-wins; publication can refuse unavailable/hostile/readonly/occupied metadata, and successful setup closes capture before later work. Therefore a failed case is not guaranteed to have a published setup namespace. These are possible source-contract limits, not an attribution of which path occurred here. No new source inquiry was performed.",
+    "shortest_evidence_gap": "The current run has no qualified published first-guard/phase observation. This completed pinned-artifact read cannot supply it; original/current cause remainsUNKNOWN. Missing capture is not a repair or retry instruction."
+  },
+  "custody_and_history": {
+    "current_wrapper_custody": {
+      "available_in_expected_artifact": false,
+      "backend_settlement": "UNKNOWN",
+      "key_deleted": null,
+      "lifecycle_receipt": "NOT_PRESENT_IN_THIS_ARTIFACT"
+    },
+    "interpretation": "This artifact contains no wrapper lifecycle receipt. Preserve separately qualified Normal DB retained/unverified custody/keyDeletedfalse and DBclosuretrue; do not downgrade or convert that history to cleanup. Browser exact-key deletion certificate is separate and does not settle DB.",
+    "backend_settlement": "UNKNOWN",
+    "key_deletion": "UNKNOWN for this capture; priorDB false/unverified retained",
+    "original_exception_or_stack": "UNKNOWN",
+    "body_assertions_reached": "UNKNOWN",
+    "previous_full95_qualification": "Immutable39154-byte5d3a51... report retained; this duplicate artifact identity contributes0 new coverage."
+  },
+  "bounds_and_privacy": {
+    "native_projection": {
+      "bytes": 2523,
+      "cap": 8192
+    },
+    "namespace_ascii_cap": 4096,
+    "transport": "15s/GET,32MiB stdout ZIP,64KiB stderr; exact111167 ZIP and1029153 selected member pins; inherited singleton raw-name/CRC/path/compression/ratio/inflate caps, no extraction.",
+    "closed_output": "Only expected static member/path/source hashes, owned artifact identity/digests/counts, fixed UNKNOWN fields, closed metadata schema and capture predicates persisted. No rawerrors/stacks/messages/nativeJSON/SQLvalues/URLs/tokens/payload retained or exposed.",
+    "failure_preservation": "GET intent/result, unavailable projection, exit1 summary and manifest remain immutable. No success rewrite or hidden retry."
+  },
+  "reviewer_actions": {
+    "read_only_commands": [
+      "5518dc",
+      "09fbc6",
+      "d3bfba"
+    ],
+    "new_API_GETs": 0,
+    "tests_extractor_control_reruns": 0,
+    "runtime_resources": 0,
+    "Git_commands_mutations": 0,
+    "input_source_Spec_state_report_packet_edits": 0,
+    "only_write": "This new qualification JSON"
+  },
+  "findings": [],
+  "continuity": {
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "zero_coverage": 26
+    },
+    "P5": "OPEN",
+    "review_counter": 3,
+    "fourth_broad_review": false,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "all_slots_closed": true
+  },
+  "open_questions": [
+    "Current INT009 first guard/native cause/body reach remain unavailable; actual DB custody/rollback/restoration unverified."
+  ],
+  "deferred_work": "Any separate source availability assessment or new effect requires its own assignment/allocation. No generic diagnostic family, new CI run, cleanup or automatic replay authorized.",
+  "blockers": [
+    "Current INT009 failure persists with unavailable first-capture facts.",
+    "Required full95 remains68P/1F/26zero; no normal acceptance.",
+    "DB custody remains retained/unverified; no automatic cleanup."
+  ]
+}

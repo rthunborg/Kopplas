@@ -1,0 +1,33 @@
+{
+  "kind": "ROOT_OWNER_SET_LATEST_THREE_REVIEW_ADMISSION",
+  "source_head": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+  "head_before": "12576d291433f7d1aa5c6a8909cb4df5c51939ff",
+  "actor": "/root/review15_5_preselected_id_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "PASS",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/original-report.md",
+      "bytes": 3985,
+      "sha256": "728b1f09886b32696e35b8e3d89f18c4900d67a3fcce1b9642a881eddf21976e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/original-attestation.json",
+      "bytes": 8367,
+      "sha256": "73de777033935358178a748a659f5d5e88ec44110b6b13c16759692af0f89ad4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/result.json",
+      "bytes": 1276,
+      "sha256": "a35a268b29981b40fabddb0151fd9d0f28221bfa8873e54484ab31d12ee768fd"
+    }
+  ],
+  "all_three_original_input_bindings_match": true,
+  "focused_reviewer_controls": 3,
+  "review_order_stops": 114,
+  "broad_counter": 3,
+  "broad_restart": false,
+  "normal_acceptance_credit": 0,
+  "remaining": "Fresh exact-head normal five gates/95cases plus separate recovery, delivery and fresh truth audit."
+}

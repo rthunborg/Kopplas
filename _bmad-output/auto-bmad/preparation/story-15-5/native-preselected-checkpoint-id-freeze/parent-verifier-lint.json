@@ -1,0 +1,17 @@
+{
+  "kind": "TARGETED_NEW_PARENT_METADATA_VERIFIER_LINT",
+  "command": "pnpm exec eslint _bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-preselected-checkpoint-id-parent.mjs --max-warnings 0",
+  "native_exit": 0,
+  "errors": 0,
+  "warnings": 0,
+  "attempts": 1,
+  "verifier": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-preselected-checkpoint-id-parent.mjs",
+    "bytes": 18994,
+    "sha256": "f6471b2e92945c205b25aacab001340ae26b3778687e5b08a90983ceb2c261f0"
+  },
+  "author_producer_lint_separately_bound_in_capsule": true,
+  "source_or_spec_changed": false,
+  "semantic_or_native_tests_rerun": false,
+  "native_acceptance_credit": 0
+}

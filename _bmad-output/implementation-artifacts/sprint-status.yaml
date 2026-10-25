@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-21-2026 00:41  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-25-2026 16:27  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -254,14 +254,14 @@ development_status:
   # E15: 15-5 is public token surface #1 — ships only with the ADR-B004 abuse
   # suite green (AC-B1b-7). Phone-shape work follows ADR-B009 and requires
   # connectivity; N-9 capacity-view rules are answered.
-  epic-15: backlog
-  15-1-the-five-scheduling-views: backlog
-  15-2-recurring-bookings-series-materialized-occurrences-exceptions: backlog
-  15-3-conflict-resolver: backlog
-  15-4-time-reporting-filing-timesheet-review: backlog
-  15-5-personal-calendar-feed-adr-b004-surface-1: backlog
-  15-6-min-dag-the-field-landing: backlog
-  epic-15-retrospective: optional
+  epic-15: done
+  15-1-the-five-scheduling-views: done
+  15-2-recurring-bookings-series-materialized-occurrences-exceptions: done
+  15-3-conflict-resolver: done
+  15-4-time-reporting-filing-timesheet-review: done
+  15-5-personal-calendar-feed-adr-b004-surface-1: done
+  15-6-min-dag-the-field-landing: done
+  epic-15-retrospective: done
 
   # ======= E16-E18 GATE CLOSED =======
   # ADR-B006 is recorded. E16-E18 remain Phase B and may be finalized/built as
@@ -675,3 +675,37 @@ action_items:
     owner: "Jobs/frontend maintenance owner"
     status: open
     ref: "_bmad-output/implementation-artifacts/epic-16-retro-2026-10-21.md"
+  - id: "epic-15-retro-hosted-schema"
+    epic: 15
+    action: "Before E15 merge, complete the minimal existing 39-forward-migration
+      plan and distinct High operational review; obtain specific human database-push
+      approval, then apply and verify the required hosted schema. Hold merge until
+      verified compatibility."
+    owner: "Coordinator + High migration/review delegates + database operator"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-15-retro-2026-10-25.md"
+  - id: "epic-15-retro-final-pr-gates"
+    epic: 15
+    action: "Complete fresh Coordinator external PR review and required GitHub checks
+      on the actual final pushed head before earned merge; preserve the hosted schema
+      hold and disabled automatic Previews."
+    owner: "Coordinator and E15 delivery owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-15-retro-2026-10-25.md"
+  - id: "epic-15-retro-release-validation"
+    epic: 15
+    action: "Carry all 25 E15 deferred release-validation entries with their existing
+      owners into the final Phase B release checkpoint after approved epics are integrated;
+      retain release_ready=false until actual evidence and release approval."
+    owner: "Coordinator + existing E15 release-validation owners"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-15-retro-2026-10-25.md"
+  - id: "epic-15-retro-quality-flakes"
+    epic: 15
+    action: "Triage the literal retired-skip-reason, oversized-test and fixed-mail-poll
+      advisories and the two retained ProtocolError flakes as bounded test maintenance;
+      preserve zero scaffold coverage and existing functional assertions without a
+      fourth broad review."
+    owner: "QA/test maintenance owner"
+    status: open
+    ref: "_bmad-output/implementation-artifacts/epic-15-retro-2026-10-25.md"

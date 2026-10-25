@@ -1,0 +1,86 @@
+{
+  "schema": "ROOT_POST_ZOD_V2_HELPER_BINDING_ONLY_CONSERVATION_V1",
+  "baseline": {
+    "path": "post-zod-normal-observation-root-proof-admission.py",
+    "bytes": 7210,
+    "sha256": "c4cc9ab89c38c35a944bc6a6d099355494b23d1bc870193884ccded9473f4586"
+  },
+  "successor": {
+    "path": "post-zod-normal-observation-root-proof-admission-v2.py",
+    "bytes": 7216,
+    "sha256": "8ba90118d7735f44ce8393383f32fd37ce0043f0272178f2fac7c2763011c2ca"
+  },
+  "preparation_path_literal": {
+    "old": "post-zod-normal-observation-execution-preparation",
+    "new": "post-zod-normal-observation-execution-preparation-v2",
+    "count": 2
+  },
+  "operational_review_path": {
+    "old": "post-zod-normal-observation-operational-review.json",
+    "new": "post-zod-normal-observation-operational-review-v2.json",
+    "literal_count": 0,
+    "binding": "No source literal; current review path is supplied from the pinned v2 proposal Root_interfaces.paths.operational_review."
+  },
+  "expected5": {
+    "provider.py": [
+      20587,
+      "62a3271253c8d7a92be7e044b61e593263c0065ba1b85f5b08fdc9c6031562c3"
+    ],
+    "root-driver.py": [
+      21112,
+      "892a9ac99827e7aed7655b6e94a347ecd81cac0ec092ecff507c2b25a1faef7d"
+    ],
+    "proposal.json": [
+      287968,
+      "b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3"
+    ],
+    "pure-controls.json": [
+      6601,
+      "b81a2f061b6aba2e7c84b4c2851672bf286e9abd05c14682be6ca3d3b63ce624"
+    ],
+    "manifest.json": [
+      1694,
+      "ab64bde00336db351949e7c208620a43f4dee2886d48088fe310c986baed6349"
+    ]
+  },
+  "functions_exact": [
+    {
+      "name": "sha",
+      "bytes": 47,
+      "sha256": "acd1d806430c8cb9caabe036f25beb9c219c345836bc2422c7775da9827be746"
+    },
+    {
+      "name": "ref",
+      "bytes": 89,
+      "sha256": "0931c13a4bd28507983b6739c0c6124e0658288f160b3e4c61546cd964775583"
+    },
+    {
+      "name": "check",
+      "bytes": 139,
+      "sha256": "0450dd6c3d8ad786f1aaa0de5d19ad5bdcb7761142b9f03a3de213726b39d33c"
+    },
+    {
+      "name": "write",
+      "bytes": 138,
+      "sha256": "48c1daa3adcba87864f4ec9b3a7a7da98d7692b5e7e9d195cccb56d920e75af5"
+    },
+    {
+      "name": "git",
+      "bytes": 532,
+      "sha256": "4e18205d30b5767d2c267fb74bbde5c5562d86b7a785168e605c7f72b926c91b"
+    }
+  ],
+  "full_raw_inverse": {
+    "bytes": 7210,
+    "sha256": "c4cc9ab89c38c35a944bc6a6d099355494b23d1bc870193884ccded9473f4586",
+    "equals_original": true
+  },
+  "future_hashscope": {
+    "path": "post-zod-normal-observation-future-source-hashing-scope.json",
+    "bytes": 1026,
+    "sha256": "0b094dc6f76a2743821ce3d2373bf7c298d90eba9e5caf7cd039fbbc0f1fcc88"
+  },
+  "actual_execution": "ASTparseonly; no import/exec/helper/control/native/Gitmetadata/network/workload",
+  "execution_authorized": false,
+  "capabilities_created": false
+}

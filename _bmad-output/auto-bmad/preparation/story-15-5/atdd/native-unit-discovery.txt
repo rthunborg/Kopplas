@@ -1,0 +1,166 @@
+TAP version 13
+# (node:52804) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/calendar-feed/action-state.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0] 15.5-UNIT-009 AC2 lost response freezes same attempt/revision; no success or automatic new generation
+ok 1 - [P0] 15.5-UNIT-009 AC2 lost response freezes same attempt/revision; no success or automatic new generation # SKIP
+  ---
+  duration_ms: 0.5379
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-010 AC1 AC2 reconciliation never recovers raw URL and requires explicit fresh rotation
+ok 2 - [P0] 15.5-UNIT-010 AC1 AC2 reconciliation never recovers raw URL and requires explicit fresh rotation # SKIP
+  ---
+  duration_ms: 0.0747
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-011 AC1 AC2 only confirmed current issuance exposes one-time URL; stale/revisit/revoke clears it
+ok 3 - [P0] 15.5-UNIT-011 AC1 AC2 only confirmed current issuance exposes one-time URL; stale/revisit/revoke clears it # SKIP
+  ---
+  duration_ms: 0.0467
+  type: 'test'
+  ...
+# (node:71312) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/calendar-feed/icalendar.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P1] 15.5-UNIT-001 AC3 AC8 timed autumn fold preserves independent UTC instants
+ok 4 - [P1] 15.5-UNIT-001 AC3 AC8 timed autumn fold preserves independent UTC instants # SKIP
+  ---
+  duration_ms: 1.0448
+  type: 'test'
+  ...
+# Subtest: [P1] 15.5-UNIT-002-spring AC3 AC8 all-day Stockholm exclusive end across DST
+ok 5 - [P1] 15.5-UNIT-002-spring AC3 AC8 all-day Stockholm exclusive end across DST # SKIP
+  ---
+  duration_ms: 0.1589
+  type: 'test'
+  ...
+# Subtest: [P1] 15.5-UNIT-002-autumn AC3 AC8 all-day Stockholm exclusive end across DST
+ok 6 - [P1] 15.5-UNIT-002-autumn AC3 AC8 all-day Stockholm exclusive end across DST # SKIP
+  ---
+  duration_ms: 0.1004
+  type: 'test'
+  ...
+# Subtest: [P1] 15.5-UNIT-003 AC3 AC8 edit/split with retained booking ID retains UID and stable update stamp
+ok 7 - [P1] 15.5-UNIT-003 AC3 AC8 edit/split with retained booking ID retains UID and stable update stamp # SKIP
+  ---
+  duration_ms: 0.159
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-004 AC8 malicious UTF8 text is escaped and octet folded without property injection
+ok 8 - [P0] 15.5-UNIT-004 AC8 malicious UTF8 text is escaped and octet folded without property injection # SKIP
+  ---
+  duration_ms: 0.101
+  type: 'test'
+  ...
+# Subtest: [P1] 15.5-UNIT-005 AC3 AC8 empty and >PostgREST-cap input are complete calendars
+ok 9 - [P1] 15.5-UNIT-005 AC3 AC8 empty and >PostgREST-cap input are complete calendars # SKIP
+  ---
+  duration_ms: 0.1233
+  type: 'test'
+  ...
+# (node:36412) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/calendar-feed/validation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0] 15.5-UNIT-006 AC1 issuance requests 32 entropy bytes and stores independent SHA256 only
+ok 10 - [P0] 15.5-UNIT-006 AC1 issuance requests 32 entropy bytes and stores independent SHA256 only # SKIP
+  ---
+  duration_ms: 1.2403
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-007 AC1 AC4 canonical token shape rejects padding, encodings, identity and path tricks
+ok 11 - [P0] 15.5-UNIT-007 AC1 AC4 canonical token shape rejects padding, encodings, identity and path tricks # SKIP
+  ---
+  duration_ms: 0.2769
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-008 AC1 failed entropy never derives capability from an identity or timestamp
+ok 12 - [P0] 15.5-UNIT-008 AC1 failed entropy never derives capability from an identity or timestamp # SKIP
+  ---
+  duration_ms: 0.1673
+  type: 'test'
+  ...
+# (node:48148) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/calendar-feed/attestation.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0] 15.5-UNIT-012 AC4 AC9 canonical bytes are deterministic, length safe and domain separated
+ok 13 - [P0] 15.5-UNIT-012 AC4 AC9 canonical bytes are deterministic, length safe and domain separated # SKIP
+  ---
+  duration_ms: 1.0858
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-013 AC4 every token/IP/lifecycle/proof field mutation invalidates signature
+ok 14 - [P0] 15.5-UNIT-013 AC4 every token/IP/lifecycle/proof field mutation invalidates signature # SKIP
+  ---
+  duration_ms: 0.0917
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-014 AC4 AC9 dedicated key missing/short/badly encoded fails closed
+ok 15 - [P0] 15.5-UNIT-014 AC4 AC9 dedicated key missing/short/badly encoded fails closed # SKIP
+  ---
+  duration_ms: 0.1706
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-021 AC4 proof expires, rejects future issuance and lifetime over sixty seconds
+ok 16 - [P0] 15.5-UNIT-021 AC4 proof expires, rejects future issuance and lifetime over sixty seconds # SKIP
+  ---
+  duration_ms: 0.1301
+  type: 'test'
+  ...
+# (node:66528) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/calendar-feed/public-shell.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0] 15.5-UNIT-018 AC7 exact public GET route exists with dynamic no-store behavior
+ok 17 - [P0] 15.5-UNIT-018 AC7 exact public GET route exists with dynamic no-store behavior # SKIP
+  ---
+  duration_ms: 1.0965
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-019 AC7 only exact single-token public feed bypasses before auth/env/cookies
+ok 18 - [P0] 15.5-UNIT-019 AC7 only exact single-token public feed bypasses before auth/env/cookies # SKIP
+  ---
+  duration_ms: 0.145
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-020 AC7 AC9 transitive imports exclude cookie/session/service/client-secret dependencies
+ok 19 - [P0] 15.5-UNIT-020 AC7 AC9 transitive imports exclude cookie/session/service/client-secret dependencies # SKIP
+  ---
+  duration_ms: 0.1263
+  type: 'test'
+  ...
+# (node:63016) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/calendar-feed/trusted-ip.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [P0] 15.5-UNIT-015 AC4 AC5 unsigned forwarded headers cannot select an IP bucket
+ok 20 - [P0] 15.5-UNIT-015 AC4 AC5 unsigned forwarded headers cannot select an IP bucket # SKIP
+  ---
+  duration_ms: 0.9529
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-016 AC4 AC5 verified platform canonicalizes single IPv4/IPv6, rejects lists/ports/invalid
+ok 21 - [P0] 15.5-UNIT-016 AC4 AC5 verified platform canonicalizes single IPv4/IPv6, rejects lists/ports/invalid # SKIP
+  ---
+  duration_ms: 0.1224
+  type: 'test'
+  ...
+# Subtest: [P0] 15.5-UNIT-017 AC4 AC5 IP HMAC uses canonical domain and shared unknown bucket without raw address
+ok 22 - [P0] 15.5-UNIT-017 AC4 AC5 IP HMAC uses canonical domain and shared unknown bucket without raw address # SKIP
+  ---
+  duration_ms: 0.1269
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 0
+# fail 0
+# cancelled 0
+# skipped 22
+# todo 0
+# duration_ms 289.6335

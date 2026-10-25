@@ -1,0 +1,167 @@
+{
+  "schema": "NEXT1641_ORIGINAL_INT009_RESTORE_DEFINITION_READONLY_ASSESSMENT_V1",
+  "role": "gpt-6.1-sol High source assessor; no implementation/effect authority",
+  "Outcome": "DEMONSTRATED_REACHABLE_TEXTUAL_VOLATILITY_RESTORE_ASSUMPTION; EXACT_HOSTED_BRANCH_UNKNOWN",
+  "Files changed": "Only this new private assessment JSON",
+  "Status": "Actual closed record localizes first observed PRIMARY to restore DEFINITION before replacement DDL. Source has a redundant textual VOLATILE prerequisite despite enforced catalog volatility. No test/runtime/API/SQL effects.",
+  "Open questions": [
+    "Actual pg_get_functiondef header was not retained, so omitted VOLATILE versus body split/language guard is not directly observed.",
+    "Native firstthrow, body assertions reached, backend cleanup/keydeletion remain UNKNOWN.",
+    "PostgreSQL serializer behavior should be independently source-qualified before final correction; no network/read reproduction performed in this source-only scope."
+  ],
+  "Deferred work": "DistinctHigh actual evidence qualification and minimum two-path implementation-plan review; then separately allocated correction and required fullNORMAL95 plus recovery. No additional generic diagnostic planned.",
+  "Blockers": "No sourceedit/runtime/acquisition/CI authority; P5OPEN/acceptance0; required95historical68P1F26zero.",
+  "evidence": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/manifest.json",
+      "bytes": 1360,
+      "sha256": "66ba10008644fd643a9d14bf5fb07d9d99fb33a0368e6a825169fbd3b3bd47b2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/native-projection.json",
+      "bytes": 4457,
+      "sha256": "529bf433d024f546f65de6303dd149b96b63b2ab3ea4beaee11319648efe6e80"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-execution-receipt.json",
+      "bytes": 6522,
+      "sha256": "e606ae308e56326c040c25c5873af3434dfb18ab29c09a3bb4b93c72d5947c82"
+    }
+  ],
+  "source_bindings": [
+    {
+      "owner": "MAIN",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 139473,
+      "raw_sha256": "e155639d17a0b5a6528ee0385ba044c5bd5cad436aabd9c9f418076035ae74c8",
+      "LF_bytes": 138084,
+      "LF_sha256": "4d31d7b408d0ad65d4c2f0f478fe5582e632be22983b73eceaabb96521ba819f",
+      "computed_LF_Gitblob": "e4b057ae2d5c3add5653c77b93f28e006c470a37"
+    },
+    {
+      "owner": "MAIN",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 317395,
+      "raw_sha256": "84edc9711ebf6e61d23b8cbcf1050a24475c5243fe316f16177a5c7d9ca754c0",
+      "LF_bytes": 314474,
+      "LF_sha256": "41f8af777904b8e1309a273f930187b94898ef8ee7eb9ddb96936b4be2ead3e6",
+      "computed_LF_Gitblob": "5c9c267c08de115649dbb7589b1005212a3d6a43"
+    },
+    {
+      "owner": "DEBUG",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 141605,
+      "raw_sha256": "6d364caee385ceb3f3237e35c7ff9ffbeae2227426e4cef14fc4a06c6103d9c6",
+      "LF_bytes": 140212,
+      "LF_sha256": "d0584efb59c2cb133657da8795e5d139ff04ba4a59e8884e3c41e851b8e4ecb4",
+      "computed_LF_Gitblob": "bdc71d11ec86cb2d3687e5c1e3e05fd6635cbe87"
+    },
+    {
+      "owner": "DEBUG",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 335126,
+      "raw_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+      "LF_bytes": 335126,
+      "LF_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+      "computed_LF_Gitblob": "c5a66318f5ee8b1f653cd8b1a7e77004e4fa9b8f"
+    }
+  ],
+  "source_helper_definition_equal_MAIN_DEBUG": true,
+  "definition_source_sha256": "34b777b2458a3331cc5d8e021d3a3a8a813e3f3c68e75ea01516286fb867cd7d",
+  "preserve_ownerfacts_source_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+  "observed": {
+    "run": 39943446009,
+    "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+    "selected_failed_cases": 1,
+    "derived_skipped": 14,
+    "primary": {
+      "publication": "OWNER_RESTORE",
+      "operation": "DEFINITION",
+      "guard": "UNKNOWN",
+      "nativeClass": "UNKNOWN",
+      "sqlstate": "UNKNOWN"
+    },
+    "secondary": [
+      "OWNER_RESTORE/WRAPPER_OUTCOME_UNKNOWN",
+      "OWNER_RESTORE/DEFINITION",
+      "OMITTED_UNKNOWN"
+    ],
+    "ordering_limit": "Producer first-local-observation only; no inference of original-native firstthrow or timing; omitted cleanup facts remain UNKNOWN."
+  },
+  "source_chain": [
+    {
+      "DEBUG_lines": "836-841",
+      "fact": "calendarRestore selects canonical body and current expected row, calls calendarOwnerAtomic; outer restore catch masks error and retains shared custody."
+    },
+    {
+      "DEBUG_lines": "774-776",
+      "fact": "Expected fault derives from expected.language plpgsql; captured row must match current expected body and pass calendarOwnerFacts before the observed stage."
+    },
+    {
+      "DEBUG_lines": "778-788",
+      "fact": "Schema-authority check, owned CREATE grant, SET ROLE and exact currentrole verification precede DEFINITION; next REPLACE_DDL stage is assigned only after definition function returns."
+    },
+    {
+      "DEBUG_lines": "811-816; MAIN810-815",
+      "fact": "Definition refuses empty/multiple body occurrence; subject restore separately requires exact LANGUAGE plpgsql and literal VOLATILE header lines. A qualified plpgsql/provolatile-v row with omitted default VOLATILE header deterministically fails this text guard before any replacement query."
+    },
+    {
+      "DEBUG_lines": "193-198/728",
+      "fact": "Capture reads own data properties only. Ordinary Error name is inherited; fixed refusal has no own SQLSTATE. Therefore UNKNOWN class/state is compatible with a local fixed refusal, not evidence of missing error or SQLsuccess."
+    }
+  ],
+  "unit_gap": {
+    "MAIN_DEBUG_lines": "2088/2101",
+    "facts": [
+      "Fixture definition generator always emits VOLATILE for nonstable rows.",
+      "Fake query stores submitted DDL verbatim as definition; it does not canonicalize catalog function definition.",
+      "Existing successful publish/restore tests can pass while server-rendered omitted-default header fails."
+    ],
+    "existing_focused_test": "actual owner operation commits private read or qualified replacement before ordinary callback and restores full original metadata"
+  },
+  "security_authority_to_preserve": [
+    {
+      "MAIN_lines": "737-752",
+      "fact": "Owner facts exact row/descriptor/body/OID/metadata/default/language shape; fixed provolatile is v for subject fault, s for canonical subject. FIELD/provolatile and DEFAULT_LANGUAGE errors remain enforced."
+    },
+    {
+      "MAIN_lines": "756-765",
+      "fact": "Actual catalog query obtains metadata/definition/body separately and enforces postgres non-superuser identity, ownerrole characteristics, SETnotINHERIT, schema grant authority, no persistentCREATE, and closed functionACL."
+    },
+    {
+      "DEBUG_lines": "779-783/791-808",
+      "fact": "Owned schema/role checks, grant/revoke, rollback/reset/requalify/commit/retirement and shared-custody latch remain unchanged."
+    },
+    {
+      "DEBUG_lines": "839-841",
+      "fact": "Restore must recover exact canonical OID+fullmetadata+definition, then delete owned state only on verified success; errorretains custody. This postcondition cannot be relaxed."
+    }
+  ],
+  "prospective_MAIN_scope": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "delta": "Only subject-restoration definition construction: remove dependence on printed default VOLATILE while retaining qualified catalog prolang/provolatile authority, exact single language transition, STABLE target, exact body splice and all identity/ACL/transaction/custody guards. Support omitted default and explicit source-equivalent form without blanket regex relaxation. No additional SQLqueries, observers, capture fields, waits, timeout changes or migration edits."
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "delta": "Existing actualCalendarOwner fixture must model relevant server-normalized header behavior instead of storing DDL verbatim; add minimal consequential positive omitted-default restore and explicit-form compatibility, plus strict metadata/language/OID/ACL/shape negatives and inverse demonstrating original textguard fails. Preserve all original assertions/poolretirement/cleanup/custody. No skip or expectedfailure workaround."
+    }
+  ],
+  "targeted_verification_proposal": [
+    "Before changing helper, source-backed omitted-default fixture must demonstrate current textguard failure at restore; actual producer parser is unchanged.",
+    "After correction, actual owner publish\u2192restore unit must recover exact canonical OID/body/metadata/definition for subject; ordinary clock/fetch behavior unchanged.",
+    "Incorrect metadata.provolatile/prolang/role/schema/ACL/OID/default/body cardinality remain rejected before unsafe DDL; changing expected text must not bypass enforced catalog invariants.",
+    "Actual restore/rollback/reset/requalify/retirement failure controls still retain custody; no cleanup/keydeletion claim from passing puretests.",
+    "Full affected existing wrapper unit file, TS/lint as consequential, then independentlyreviewed exacthead fullNORMAL95+recovery under freshfinite operationalallocation; no diagnostic acceptancecredit."
+  ],
+  "SQL118": "Immutable; no migration/sourceSQL edits or rawSQL scan.",
+  "actual_effects": {
+    "GET": 0,
+    "Git": 0,
+    "tests": 0,
+    "DB": 0,
+    "source_edits": 0
+  },
+  "normal_acceptance": 0,
+  "native_cause_proven": false
+}

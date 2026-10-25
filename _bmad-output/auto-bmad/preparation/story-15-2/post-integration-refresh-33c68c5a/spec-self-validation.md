@@ -1,0 +1,9 @@
+# Current candidate specification self-validation
+
+Format: existing sprint Build Auto intent-contract kernel, not standalone five-field SPEC.md. No BMAD implementation invocation occurred.
+
+Pass1 — Coherence: PASS. Actionable file-bound9tasks retain dependency order;8Given/When/Then ACs observe usable editor/persistence/role surfaces. Original matrix/end/DST/identity/exception/split/batch/current-authority requirements remain complete and consistent. Current integrated job facts, protocol versions/domains and all-affected logical groups are explicit companion constraints; new protocol spelling/numeric admission constants remain proportional engineering choices already permitted by original design notes, not an unresolved product intent. No new capability, permission or scope. No unfinished template, final implementation trail or approved-state claim.
+
+Pass2 — Preservation: PASS. Original intent block raw bytes and LF-normalized kernel digest remain identical. The entire9task/8AC section and verbatim source AC sketch remain unchanged. Original planning/audit/validation/original-review files and15.1/Epic14 history remain preserved. The current code baseline replaces only obsolete source-map metadata and adds current constraints outside the kernel. Original full specification is archived verbatim as spec-before-amendment.md. Source preservation and helper receipts provide exact checks; concurrent Root timing metadata, if any, is not source authored by this delegate.
+
+Completion hook: _bmad/custom/bmad-build-auto.toml requires final Suggested Review Order only for completed implementations; this planning exit preserves that distinction. No independent review layer is invoked by the author; Root owns distinct High validation before approval. No broad review cap consumed. Warnings: oversized. HALT ready-for-dev, unapproved, P3 open.

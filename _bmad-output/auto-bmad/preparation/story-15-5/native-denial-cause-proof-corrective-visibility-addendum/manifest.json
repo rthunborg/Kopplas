@@ -1,0 +1,19 @@
+{
+  "schema": "story-15-5.corrective-visibility-manifest.v1",
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/compact-addendum.md",
+      "bytes": 4442,
+      "sha256": "5bd602ddf2c569260a33a47630dce7f4bfe83eaca86b61a6771a89b0dc85b385"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/binding-and-result.json",
+      "bytes": 6708,
+      "sha256": "43bfb1f49432f7bf3adf6b5b286fccb20344c07e9ea85e24164769af63260189"
+    }
+  ],
+  "old_artifacts_immutable": true,
+  "source_unchanged": true,
+  "native_credit": 0
+}

@@ -1,0 +1,178 @@
+{
+  "schema": "ROOT_TERMINAL_RELATIVE_CALLER_ACTUAL_NEW_AUTHORITY_NATIVE_HOST_V1",
+  "authority_id": "coordinator-terminal-relative-caller-441472-20261024",
+  "new_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-terminal-relative-caller-new-allocation.json",
+    "bytes": 10159,
+    "sha256": "ca6630c55e7cf985ed719ef0322eb18b1ab19e0f7aff9815201b9dcc606e8085"
+  },
+  "new_pre_effect_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-attempt-intent.json",
+    "bytes": 5048,
+    "sha256": "1601e7beb3a03252cf3db7c0e440c515f895764c5a068d87d0a230910006b797"
+  },
+  "helper_bridge": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-helper-bridge.json",
+    "bytes": 5723,
+    "sha256": "2c0760a7c89a648e6586698f0bc3420033a2ce5f9b6e6e65ac9323f283d73ac0"
+  },
+  "original_envelope_is_closed_compatibility_data_only": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+    "bytes": 9579,
+    "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+  },
+  "actual_outer_host": {
+    "actual_tool_chunk": "e49bc2",
+    "native_exit": 0,
+    "wall_time_seconds": 8.0524904,
+    "initial_session_id": null,
+    "waits": [],
+    "complete_returned": true
+  },
+  "outer_native_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-native-outer-receipt.json",
+    "bytes": 1991,
+    "sha256": "86b27d5a60bf1b39a129cf578d0fb5d46669010f8136795dc2eb83eb7ee7e3f4"
+  },
+  "actual_outer_transport": {
+    "native_exit": 0,
+    "category": null,
+    "elapsed_seconds": 7.88574,
+    "timeout_seconds": 180,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 731,
+        "sha256": "7ff2868338722c5f95a8304d2134eba45db3c79a189eafb19dcbe063482f6444",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "actual_consumed_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-invocation-consumed.json",
+    "bytes": 1511,
+    "sha256": "9405394062946eb10b687684fd085901dbba6efe91a84c7364f3845e36b5f3b5"
+  },
+  "new_helper_invocations": 1,
+  "new_reader_invocations": 1,
+  "new_logical_GETs": 5,
+  "all_new_slots_consumed_and_closed": true,
+  "packet_files": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/acquisition-summary.json",
+      "bytes": 2543,
+      "sha256": "632c5d778d612ffa239e4baf0dc6c1c2742a4294c0b640af1899d2e1d2add565"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "4b60f896341a844557f23e488194a94843b0edc6ab731418db0d04f025c268be"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/native-full-integration-projection.json",
+      "bytes": 66001,
+      "sha256": "baf580280245c9c994d9ac5aec9fcfd5ae5328cf43b0c3597ba632cfe4dbbd0c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/native-general-browser-projection.json",
+      "bytes": 13358,
+      "sha256": "56123a7f597015fe0188ad98acbcf2650c184dbfa19f4b106188fc76938259ab"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "832f8862234838e228ea2078041322c6a68beeb66a7fc12f0bbe37aa43c6d89c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/operator-intent.json",
+      "bytes": 15644,
+      "sha256": "4d1ca671203b8629c437dc2037765dd42ae20ea214af6ec219aacf075a4a151d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "e71f8911a8dfc1161dcb3cd10439ab75296c755e0a59a2a43a7171359ec4ffff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-01-result.json",
+      "bytes": 1134,
+      "sha256": "a6de448c9125309965f4afd413bf448a8d1812461fe1e9a69f478b0583b108b9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "dd5589d8ff0bc547af4e0bf5bb7f736b5b9e10edc0880a9097e4baa45e45d488"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "1c0299f5bb91a6b75143da39674c781df13324296c4bc47f03f04ebe425a185e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-03-intent.json",
+      "bytes": 431,
+      "sha256": "caad8be6ded91eccfe2b97df3f11db1bd4ce709402704ea09a65a6888ad3473f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-03-result.json",
+      "bytes": 1149,
+      "sha256": "a42afcb31c4797ff5fdd48cb0ff8254389e38dfbd129062ea944c12aeaf0907d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-04-intent.json",
+      "bytes": 421,
+      "sha256": "1d5ee467be2be5e2b9a76714afd47a6ac419b28fe120e9b553ba01a64cf93e3e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-04-result.json",
+      "bytes": 1140,
+      "sha256": "124316c8c8c030cc4732f9919d56626cdf079dbb8f580e8c6fc103139d7fc5f4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-05-intent.json",
+      "bytes": 422,
+      "sha256": "cd5e3f1ffa9c5285e9cd4b2d2c021dacb68c8489fdedddd62c2f53e06e8ba6c8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-05-result.json",
+      "bytes": 1143,
+      "sha256": "97c83c5b35b3582782152ded329e75c1b7a0d6d4ad8993535c28965ae05507a1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/run-archive-projection.json",
+      "bytes": 49206,
+      "sha256": "fe7d28ad27ffed2d1574cce53c79ba99ad21fd1e6dcb814bdd88126982adcf55"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "d062d2c02c7b2b097da37baa3f16bfaf9dab3c23ae0ebe20c3ba5d8f096da64e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/source-provenance.json",
+      "bytes": 14917,
+      "sha256": "8548eaa9bd2b00d85b7cd515923a1148523aa392ecc6c0c8e5f7eb4606da5fdd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "08467737422aec83e85e6620ac8ca48f9c91cf003ce19262d623cb819c64bf9e"
+    }
+  ],
+  "native95_qualified": false,
+  "normal_acceptance": 0
+}

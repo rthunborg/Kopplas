@@ -1,0 +1,30 @@
+{
+  "kind": "narrow-CI-repair-followup-triage",
+  "completed_counted_rounds": 3,
+  "counted_breakdown": "one broad R1 + two limited R2/R3",
+  "separate_narrow_followup": 1,
+  "not_a_fourth_broad_review": true,
+  "source_head": "71f061b83de04d8f888aaa18f98c4e1960d9d9f4",
+  "input_sha256": "5b557495c2866a81ac62c432f0d9db9bae72cc8dce69d230ddc74f961eaa762b",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "result": "passed",
+  "findings": [],
+  "triage": {
+    "patch": 0,
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "defer": 0,
+    "reject": 0,
+    "followup_recommended": false
+  },
+  "rederivation_iteration": 0,
+  "original_report_sha256": "440fdd06d559898c6da1cafe98f5a07fa4f8e828f67cb9c5dd8a315c2de1ac99",
+  "review_scope": "Latest five source/test repair paths and authored spec/SRO only; no unchanged broad audit.",
+  "limits": [
+    "Historical failed run39408197808 preserved. NUDGE004 earlier callback cause UNKNOWN.",
+    "Source fixes closed; every prior unexecuted SQL producer/race/rollback/cleanup/browser assertion tail still requires actual successor exact-head CI.",
+    "Local SSR/controller/pure and substituted-port helper probes are not native DB/Auth/browser proof.",
+    "Status in-review; author delivery/Root gate/distinct truth acceptance later."
+  ]
+}

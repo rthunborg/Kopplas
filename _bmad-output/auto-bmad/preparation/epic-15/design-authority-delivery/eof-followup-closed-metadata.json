@@ -1,0 +1,254 @@
+{
+  "Outcome": "PASS_EOF_ONLY_INDEPENDENT_METADATA_FOLLOWUP",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-EOF-only-independent-followup.json"
+  ],
+  "Status": {
+    "independent": true,
+    "route": "Root66e6e6/native0; Ordinary Sol6.1 Low byte-metadata follow-up only",
+    "HEAD": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+    "delivered_document_pins": [
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+        "bytes": 26050,
+        "sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+        "LF_bytes": 26050,
+        "LF_sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+        "bytes": 25780,
+        "sha256": "2426b3b6eb6c577721f1e3ba2e0b8f725e031fa3d519ee49c933688f663c5983",
+        "LF_bytes": 25557,
+        "LF_sha256": "bf8dc746ed35971d889152601e989ce177a8b7bf4701fc17e4667f44780a02bf",
+        "classification": "EOF_ONLY_NORMALIZED_APPROVED_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/README.md",
+        "bytes": 6610,
+        "sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6",
+        "LF_bytes": 6610,
+        "LF_sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+        "bytes": 93641,
+        "sha256": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+        "LF_bytes": 93025,
+        "LF_sha256": "900c7042df868050095e55d69a16a4f53d2430b7b5d90a291ce56e3d24de07f0",
+        "classification": "DERIVED_THREE_AREA_RECONCILIATION"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+        "bytes": 10089,
+        "sha256": "dfdffb23983e968a4c7672f688da47b0130f07e7a43f53f47bb979eba47f546e",
+        "LF_bytes": 10089,
+        "LF_sha256": "dfdffb23983e968a4c7672f688da47b0130f07e7a43f53f47bb979eba47f546e",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+        "bytes": 5348,
+        "sha256": "40ac01536369a2622e2bc74f68178380cd4cbbe4a70970d6075288f7c44fe141",
+        "LF_bytes": 5332,
+        "LF_sha256": "b3e0832269786c498b6ffeee4e154ea316698662c246227459bab56136a20eb9",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+        "bytes": 4733,
+        "sha256": "67a45c08bf51b79090b3cf3546b7ab309d4d85954092c2362457c545c41774f4",
+        "LF_bytes": 4733,
+        "LF_sha256": "67a45c08bf51b79090b3cf3546b7ab309d4d85954092c2362457c545c41774f4",
+        "classification": "EOF_ONLY_NORMALIZED_APPROVED_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+        "bytes": 18836,
+        "sha256": "fee2c77fef5318a27550f82fc885fddbe438f2512e46a8766df91322e7e5ab63",
+        "LF_bytes": 18711,
+        "LF_sha256": "1975eda8a8c750f19aebf60d2f6e2c0f46b1fdd263c951b18ff37680a6996eb0",
+        "classification": "EOF_ONLY_NORMALIZED_APPROVED_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/handoffs.md",
+        "bytes": 13431,
+        "sha256": "47edaae10547fe2f02de6505d37db4838235924f6ebb9bb5cd5c219305db0aab",
+        "LF_bytes": 13431,
+        "LF_sha256": "47edaae10547fe2f02de6505d37db4838235924f6ebb9bb5cd5c219305db0aab",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+        "bytes": 5843,
+        "sha256": "bfeb1a17d2b0917a7c8a48636034f480cb8752d0923473371e8a818977df2497",
+        "LF_bytes": 5843,
+        "LF_sha256": "bfeb1a17d2b0917a7c8a48636034f480cb8752d0923473371e8a818977df2497",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/authority-crosswalk.md",
+        "bytes": 13432,
+        "sha256": "2b8cfa8e04440c88499ec5d881155d464ea9123c9e8398f3fc722b029a1ab4ea",
+        "LF_bytes": 13349,
+        "LF_sha256": "359ebd9629266fc7bc49fc84cb212d63e3e2ad9655a96d1f4413311b038fd824",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      }
+    ],
+    "classification_counts": {
+      "EXACT_PRIMARY_BYTE_COPY": 7,
+      "EOF_ONLY_NORMALIZED_APPROVED_COPY": 3,
+      "DERIVED_THREE_AREA_RECONCILIATION": 1
+    },
+    "EOF_conservation": [
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+        "source_old_pin": {
+          "bytes": 25784,
+          "sha256": "acb38e58b7ada2bba7165bc8ba4339dc29583ca2fbcd66304e2c04f13323cd58",
+          "LF_bytes": 25559,
+          "LF_sha256": "1532162b46e7456ec554b69d45db1b6990491b04555ce81d6db7508593bbe142"
+        },
+        "current_pin": {
+          "bytes": 25780,
+          "sha256": "2426b3b6eb6c577721f1e3ba2e0b8f725e031fa3d519ee49c933688f663c5983",
+          "LF_bytes": 25557,
+          "LF_sha256": "bf8dc746ed35971d889152601e989ce177a8b7bf4701fc17e4667f44780a02bf"
+        },
+        "removed_suffix_hex": "0d0a0d0a",
+        "exact_suffix_inverse": true,
+        "body_bytes_unchanged": true
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+        "source_old_pin": {
+          "bytes": 4735,
+          "sha256": "826829352f46eee6b4f01c66e624c6acce0f1158cde459312ffa0584015bcacb",
+          "LF_bytes": 4734,
+          "LF_sha256": "8acc469510a13bb85c1db577c106d1d872acf72d2bd0bae102ea24ed71eaeb21"
+        },
+        "current_pin": {
+          "bytes": 4733,
+          "sha256": "67a45c08bf51b79090b3cf3546b7ab309d4d85954092c2362457c545c41774f4",
+          "LF_bytes": 4733,
+          "LF_sha256": "67a45c08bf51b79090b3cf3546b7ab309d4d85954092c2362457c545c41774f4"
+        },
+        "removed_suffix_hex": "0d0a",
+        "exact_suffix_inverse": true,
+        "body_bytes_unchanged": true
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+        "source_old_pin": {
+          "bytes": 18838,
+          "sha256": "d18fc8991dde821b3f59f19e2bb7c7bfca051e61beafc27b6374045c341931af",
+          "LF_bytes": 18712,
+          "LF_sha256": "51ba39a12bb0fd882af971473bd8202a2a1520ad592fe3c193be98e6feee3218"
+        },
+        "current_pin": {
+          "bytes": 18836,
+          "sha256": "fee2c77fef5318a27550f82fc885fddbe438f2512e46a8766df91322e7e5ab63",
+          "LF_bytes": 18711,
+          "LF_sha256": "1975eda8a8c750f19aebf60d2f6e2c0f46b1fdd263c951b18ff37680a6996eb0"
+        },
+        "removed_suffix_hex": "0d0a",
+        "exact_suffix_inverse": true,
+        "body_bytes_unchanged": true
+      }
+    ],
+    "unchanged_protected_committed_paths": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36375,
+        "sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169",
+        "LF_bytes": 36375,
+        "LF_sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 363561,
+        "sha256": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147",
+        "LF_bytes": 360216,
+        "LF_sha256": "78d3bcda52ee96211c39f2a214c149c9fe17fb9228402e8bde1b9a29cb7e3eaf"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 270016,
+        "sha256": "91d39d3c4bb416b0fd7858b89c2e55cec8d61fb69e9d0193c337b5a66974455f",
+        "LF_bytes": 266822,
+        "LF_sha256": "a43150ffdc37ad02bd5a80b0cc99ba790ecc3a1d912715505302932067c6c1c7"
+      }
+    ],
+    "other_eight_documents_equal_High_snapshot": true,
+    "critical_derived_annex_unchanged": true,
+    "whitespace_checks": [
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/README.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/handoffs.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+        "native_exit": 1
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/authority-crosswalk.md",
+        "native_exit": 1
+      },
+      {
+        "check": "scoped tracked diff --check",
+        "native_exit": 0
+      }
+    ],
+    "whitespace_interpretation": "No-index native1 denotes file differences from NUL; empty stdout and no bit2 qualify absence of whitespace diagnostics. Scoped tracked diff check native0. Existing LF/CRLF notices are not whitespace errors.",
+    "prior_High_review": "Frozen report19211/ce29b4423df77c8c820c9444c8c4591ff46c7aa8aa9df916a458e30354688402 qualified the preformat snapshot; this follow-up qualifies only exact EOF suffix removal and unchanged remaining pins, not new semantics.",
+    "commit_limit": "Only current HEAD and actual working-tree pins qualify. Root must bind any later commit to these pins; no unknown future head reviewed.",
+    "inherited_limits": "Two inherited missing Markdown targets (DT proposal and review rubric) prevent a whole-package completeness claim. Prior High assessment of usable preserved present authority is retained; no recursive link analysis or readiness waiver.",
+    "boundary": {
+      "P5": "OPEN",
+      "current95": "failed; API019 failed/API020 unexecuted per inherited state",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "new_effect_authority": false
+    },
+    "activity": "Read-only byte/hash and bounded Git whitespace checks; only exact three PRIMARY sources read as bytes. No semantic document/app/story evaluation, Git mutation, tests, network, resources, database, browser or foreign writes. Only this new report written."
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root commit binding and subsequent authorized workflow; no readiness or effects authorized by this follow-up."
+  ],
+  "Blockers": []
+}

@@ -1,0 +1,453 @@
+{
+  "status": "development-done-by-explicit-Root-admission; release-ready-false",
+  "baseline": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
+  "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+  "kernel": {
+    "sha256": "013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1",
+    "tasks": 9,
+    "ACs": 8,
+    "sourceAcceptanceSketchAndDesignNotesUnchanged": true,
+    "originalPrefixArchiveSha256": "bbf125a1b578caa6a875106fc4554070b7c565ef32232138588ce1f512777bc7",
+    "currentPrefixChangedOnlyAuthorizedMetadata": true
+  },
+  "source_test_freeze": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/source-test-freeze-009-current.json",
+    "sha256": "6666a3b1cdbf4178543fadb78fba9199b9e33c5fa19b3c08c072d6b16a39024b",
+    "verified": 12
+  },
+  "source_build": {
+    "buildId": "GLKBSX62N9CbTViZM7YrP",
+    "sourceCount": 433,
+    "sourceInventorySha256": "adef0cc836eaa7c14009a20ca6db4019cedb6699c69d5821b9545b4601137611",
+    "canonicalManifestSha256": "c0aadd3c19e468fced582c92a16ab0ab2388df64df04890f18218cad96a2a29d",
+    "native": 0,
+    "bundleNative": 0,
+    "publicBindingNative": 0,
+    "extraRebuildForTestFollowups": false
+  },
+  "actual_author_checks": {
+    "compatibility_RED": {
+      "native": 1,
+      "total": 15,
+      "pass": 9,
+      "fail": 6,
+      "skip": 0
+    },
+    "focused_current": {
+      "native": 0,
+      "total": 42,
+      "pass": 42,
+      "fail": 0,
+      "skip": 0,
+      "boundary": "actual TSX hooks/action ports, Workspace port and synthetic planner facts; unit-only"
+    },
+    "latest_focused_lint_native": 0,
+    "latest_typecheck_native": 0,
+    "review_order_native": 0,
+    "verifiedStops": 20,
+    "canonicalReaderNative": 0
+  },
+  "root_runtime": {
+    "105_REAL020_RED": {
+      "runner": 1,
+      "wrapper": 1,
+      "executed": 1,
+      "passed": 0,
+      "failed": 1,
+      "unselected": 58,
+      "later_assertions": "unreached; actual ok:false at expected success; code inference not reported SQLSTATE"
+    },
+    "106_REAL020_GREEN": {
+      "runner": 0,
+      "wrapper": 0,
+      "executed": 1,
+      "passed": 1,
+      "failed": 0,
+      "unselected": 58,
+      "later_assertions": "all passed; fresh inactive-role denial and no-write included",
+      "nativeSha256": "2ddf8cc889c27ecc387e649bd872eed96151c0311e97f7ed4d963c4f7fb88f82",
+      "reportSha256": "f1510c8ccdf05a79b0af0b83662988e3554ff0a1057606d208508a69ce399580"
+    },
+    "106_REAL021_022": {
+      "runner": 0,
+      "wrapper": 0,
+      "executed": 2,
+      "passed": 2,
+      "failed": 0,
+      "unselected": 57,
+      "nativeSha256": "b1c752149132215fcc9f75d69d8b6e4fb5e88bdf6ddb19ea324b191d7f266c39",
+      "reportSha256": "9fc491da2476b121b17147f8146eea82b2926092cf147a3a72d51459d44cc9e3"
+    },
+    "lastInspection": {
+      "file": "execution-5d078a65-df3c-4584-abd5-e91114fb80f3.json",
+      "sha256": "f08c2e8c75ca0bd0b82a822df75ddcfe66b03e3aecbe4f8d114daeaf2d8611fc",
+      "native": 0,
+      "ledger": 106,
+      "commit": false,
+      "reapplied": false
+    },
+    "runtimeEndedByRoot": true,
+    "noFreshFullDBOrRLSClaim": "Historical local106 inspection is not a new suite; fresh exactheadCI fullDB/RLS is recorded separately in current_CI."
+  },
+  "actual_author_released_browser": {
+    "strict007_009": {
+      "foreground": 1,
+      "runner": 1,
+      "wrapper": 1,
+      "passed": [
+        "007",
+        "008"
+      ],
+      "failed": [
+        "009"
+      ],
+      "skip": 0,
+      "flaky": 0,
+      "globalErrors": 0,
+      "nativeSha256": "daa1b89f27d8f3ba59039873c905bb8c5e3611fe88c59c0f7b0c77dddd085347",
+      "reportSha256": "2d4c75fc1b3717c8558ac88dd3ce0615cc078f09596748c11319a5ee3711b983"
+    },
+    "strict009": {
+      "foreground": 0,
+      "runner": 0,
+      "wrapper": 0,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0,
+      "flaky": 0,
+      "globalErrors": 0,
+      "durationMs": 5439,
+      "startedUtc": "2026-10-19T22:25:04.4874939Z",
+      "endedUtc": "2026-10-19T22:25:13.6286369Z",
+      "nativeSha256": "b6597b7bec445b1f83b4192c55586a037aa04b206da23f18b95b4e35a30abff8",
+      "reportSha256": "686c1982bded81e7e71f08dce7a4d28087a012995f82c34c4799c7e4b1d68fab"
+    },
+    "uniquePassed": 3,
+    "qualification": "Actual2+1, never one3-pass run. Sole009body delta verified by AST; helpers/imports007008 identical. Later009 persistence/defaults/SQL all completed."
+  },
+  "review": {
+    "round": 1,
+    "acceptedPatch": 8,
+    "high": 4,
+    "medium": 4,
+    "mediumScore": 12,
+    "followupRecommended": true,
+    "reject": 1,
+    "intentGap": 0,
+    "badSpec": 0,
+    "defer": 0,
+    "originalUnicodeFindingReportSha256": "4ce83f7a3ff29e781359f844364e705c9516429a0c6527e3e6f01e7f5e32cf63",
+    "unicodeTargetedPASS": {
+      "reportSha256": "545293fafc21976904457795e42e4fb04ff1aef06708f9b6bc0642af48aa2cd4",
+      "offlinePassed": 82
+    },
+    "009TargetedPASS": {
+      "reportSha256": "fb6bab7e26130166df34ef44cf3e25a29587d88de83065f2e4f53a2f7a1e9b23",
+      "offlinePassed": 42
+    },
+    "noBroadRoundReset": true
+  },
+  "machineReader": {
+    "status": "done",
+    "autoRunResult": {
+      "present": true,
+      "status": "done",
+      "blocking_condition": null
+    },
+    "lastReviewPass": {
+      "date": "2026-10-20",
+      "intent_gap": 0,
+      "bad_spec": 0,
+      "patch": 8,
+      "defer": 0,
+      "reject": 1,
+      "dismissed": 0,
+      "dismissed_reasons": []
+    },
+    "parseWarnings": [],
+    "frontmatterDeferred": 0,
+    "releaseDeferredItems": 3,
+    "repairLoopIteration": 0,
+    "broadReviewRound": 1,
+    "followupReviewRecommended": true
+  },
+  "immutable_first_applied_migrations": {
+    "1800": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+    "220000": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d"
+  },
+  "logs": [
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-plan-red.log",
+      "sha256": "434eced8a606e3d825f68cf7979caf25c8ddfb8e13a94aec18fa4abddea24c01"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-editor-red.log",
+      "sha256": "0f03e9b368e6275bde00bf03a4e497c4543f0e161af4feb99aee60a784ea6a77"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-red.log",
+      "sha256": "ee8b750f6b3e7e9a4895058d216a3a7028ca2cc259523640eae2952f2c60dd36"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-final.log",
+      "sha256": "b4cbf79aea44f8e426a5cbf10f9ade33a37c6b6206de91daab54cee2ad8e9bc6"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-production-round1.log",
+      "sha256": "db9630ed13828e063ccb9d7e5c225267519cf355a3766f8a7961f083c48ffb7e"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-bundle-round1.log",
+      "sha256": "464010b24818a8d93e2dfe345cd82aaa7eb02f1730d0434ff4000cca809bebb9"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-public-binding-round1.json",
+      "sha256": "295bbfa12c5a76cee93fc0b87e8ed7f24c16bce382810e8d06e7de59a40bd9bd"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-successor-offline.log",
+      "sha256": "c99458a26302cb72b5b6eac318b49217bdb12c347fb51a5b6af43881687a2050"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-integrity-wrapper-offline.log",
+      "sha256": "b66b204bfc4e3b420f29c8c1d4339705b8b13b1f31bb9bf0b2b1042e1c13fc66"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-unicode-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-unicode-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-unicode-offline.log",
+      "sha256": "c99458a26302cb72b5b6eac318b49217bdb12c347fb51a5b6af43881687a2050"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-offline.log",
+      "sha256": "563a934af4ef378a16508831b8a71641ca935c020f6542e68112b3ec0abb8a3e"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-offline-final.log",
+      "sha256": "a68ddd419855297fd6b41c6e75d8922068fcf4a21ba1c4cd7966ee0c59bb0c03"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-final.log",
+      "sha256": "7627256629aa8161f52332b6dec7248c2f86bb2b4315f37cd9acfafd00ff900d"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-canonical-reader.json",
+      "sha256": "688d83d66136b7734a4f57334c1f42526ba934409c4714e6fd8416bb39f627f7"
+    }
+  ],
+  "remaining": "Three release checks deferred; RootP7harvest pending. No development blocker after actual Root gate/provenance PASS and explicit status admission. No release/merge/deployment approval.",
+  "inventory_metadata_correction": {
+    "paths": 52,
+    "product": 22,
+    "schema": 2,
+    "testsOrFixtures": 28,
+    "addedAlreadyReviewedUnits": [
+      "tests/unit/features/resources/booking-editor-input.test.ts",
+      "tests/unit/features/scheduling/calendar-components.test.ts"
+    ],
+    "preservation": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/metadata-inventory-counter-correction-6b2a783a-2769-4120-a05c-2de243e1ec7b/preservation.json",
+    "preservationSha256": "ee259fec119a67c2bd14619990b4bfa3bc2391cf6ef6ce3b5132d07a1405a31a",
+    "originalPreflightNative1Sha256": "aaff24208a0f2296f71804a10d8d1f5db7e6c1d8a993a01c5e40739fe1820617",
+    "noSourceOrTestChange": true,
+    "noRuntimeOrTestsRerun": true,
+    "repairLoopCounter0NoBadSpecRederivation": true
+  },
+  "current_CI": {
+    "run_id": 39335595653,
+    "run_attempt": 1,
+    "source_sha": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "release_validation": false,
+    "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39335595653",
+    "required_jobs": {
+      "checkpoint-admission": "success",
+      "verify": "success",
+      "db": "success",
+      "recovery-storage-loader": "success",
+      "e2e": "success"
+    },
+    "optional_jobs_skipped_not_coverage": [
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "qualification_sha256": "d5b0b28924ff7d830b670e78bc6fc1f59e5229a65da62f92fa3a827376be0f9b",
+    "qualification_MD_sha256": "c05a074b2066a9595518272a8bcc51eee40de4bdcc334bbf2601b123162b870e",
+    "manifest_sha256": "5f374e5c5b6ec4c534e775af0edfef3135e5d64b81e5a445a1d1933d5691dfe6",
+    "units": {
+      "pass": 2974,
+      "fail": 0,
+      "skip": 0
+    },
+    "process": {
+      "pass": 43,
+      "fail": 0,
+      "skip": 0
+    },
+    "fullDB": {
+      "total": 1879,
+      "pass": 1827,
+      "fail": 0,
+      "skip": 52,
+      "active15_2commandsPassed": 22,
+      "active15_2RLSPassed": 5
+    },
+    "RLS_nonadditive_subset": {
+      "pass": 800,
+      "fail": 0,
+      "skip": 14,
+      "files": 52
+    },
+    "directStorage": {
+      "pass": 1,
+      "fail": 0,
+      "skip": 0,
+      "physicalObjects": 2,
+      "bytes": 66
+    },
+    "emptyFirstAttemptReplay": {
+      "migrations": 106,
+      "jobs": [
+        "db",
+        "e2e",
+        "recovery-storage-loader"
+      ]
+    },
+    "AuthJobs": {
+      "pass": 11,
+      "fail": 0,
+      "skip": 0,
+      "flaky": 0,
+      "retry": 0,
+      "globalErrors": 0,
+      "schedulingCoverage": false
+    },
+    "pilot": {
+      "measurements": 25,
+      "warmups": 5,
+      "readP95ms": 14.010192,
+      "readThresholdMs": 250,
+      "permissionsCPUms": 5.945558,
+      "permissionsThresholdMs": 25,
+      "RLSrequestsPerRead": 2,
+      "requestThreshold": 3,
+      "representativeSchedulingReleaseCredit": false,
+      "privateFullQueryPlanUploaded": false
+    }
+  },
+  "migration_byte_provenance": [
+    {
+      "file": "20261019180000_recurring_booking_series.sql",
+      "git_blob_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "frozen_local_file_sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+      "frozen_local_file_matches": true,
+      "git_blob_equals_frozen_file_after_CRLF_normalization": true,
+      "local_CRLF_count": 0,
+      "git_blob_CRLF_count": 0
+    },
+    {
+      "file": "20261019220000_booking_series_integrity_followup.sql",
+      "git_blob_sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+      "frozen_local_file_sha256": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+      "frozen_local_file_matches": true,
+      "git_blob_equals_frozen_file_after_CRLF_normalization": true,
+      "local_CRLF_count": 176,
+      "git_blob_CRLF_count": 0
+    }
+  ],
+  "release_deferred_ledger_harvest": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/release-deferred-p7-harvest-release-ledger-current.json",
+    "sha256": "e797e1530933af14cb099b235db5d390113730872e86b431fbed88a48641ee4c",
+    "status": "pendingRootP7harvest",
+    "target": "_bmad-output/auto-bmad/recovery/deferred-validation.md",
+    "target_observed_sha256": "75c62fa2e7fc31697c23439c92e6f06099185aad491aa77600a7963bba51089e",
+    "rows": 3,
+    "existing_row_mapping": {
+      "delivery0": [
+        7,
+        8
+      ],
+      "delivery1": [
+        9
+      ],
+      "delivery2": [
+        11
+      ]
+    },
+    "ledger_updated_by_author": false
+  },
+  "source52_dependency_assessment": {
+    "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "verified_raw_local_paths": 52,
+    "product": 22,
+    "schema": 2,
+    "testsOrFixtures": 28,
+    "hashMismatches": [],
+    "sourceChangesInFinalEvidenceRefresh": false,
+    "scope": "All source/test/schema inventory hashes equal pre-final-refresh/reviewed source. Four R1 UI paths changed before effbf5e1 and retain actual targeted007009/High dependency qualification; local earlier-flow reuse is scoped, no fresh whole-series/host claim. CI AuthJobs smoke remains separate.106localCRLF versus GitLF normalization is recorded, never treated as rawidentity."
+  },
+  "final_metadata_validation": {
+    "readerNative": 0,
+    "SROcheckerNative": 0,
+    "SROsections": 1,
+    "verifiedStops": 20,
+    "kernelSha256": "013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1",
+    "kernelUnchanged": true,
+    "tasks": 9,
+    "ACs": 8,
+    "sourceAcceptanceAndDesignNotesUnchanged": true,
+    "preservation": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/final-ci-author-refresh-6aa5b5d5-9c56-4074-9acc-fdb1e43ee1c5/preservation.json",
+    "preservationSha256": "8520fdbb75fc3ce19c8f661619cc97ed03f086e33e4a5a485263bbb2ed389836",
+    "all11PreservedCopiesVerified": true,
+    "deliveryGateRunByAuthor": false,
+    "RootAdmissionPending": false,
+    "statusClosureReaderNative": 0,
+    "statusClosureSRONative": 0,
+    "source52unchangedAfterStatusClosure": true
+  },
+  "Root_final_admission": {
+    "deliverySha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576",
+    "gate": {
+      "reportedBy": "Root explicit final admission",
+      "native": 0,
+      "ok": true,
+      "development_complete": true,
+      "approval_granted": false
+    },
+    "independentHighProvenance": {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.md",
+      "sha256": "b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c",
+      "JSONpath": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.json",
+      "JSONsha256": "b3abb4f0b52a4161e543d5f0c23b08f2f030fa4bbb0a41e564904a59d9682b56",
+      "status": "passed"
+    },
+    "statusTransitionAuthorized": true,
+    "noNewTestsOrRuntime": true,
+    "preDonePreservation": {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/admitted-status-closure-7a1a7d6e-e8b0-44cb-b2ee-f6354d7642dd/preservation.json",
+      "sha256": "4953e187b3f473aa7579c9051c37c25e95d7d941926f4ce1e31fe0bf1979ce9e"
+    }
+  }
+}

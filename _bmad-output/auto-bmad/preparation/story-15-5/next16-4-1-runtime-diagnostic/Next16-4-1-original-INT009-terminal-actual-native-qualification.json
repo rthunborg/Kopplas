@@ -1,0 +1,267 @@
+{
+  "schema": "NEXT1641_ORIGINAL_INT009_ACTUAL_NATIVE_EVIDENCE_INDEPENDENT_QUALIFICATION_V1",
+  "status": "QUALIFIED_ACTUAL_INT009_FAILURE_BOUNDARY_ONLY",
+  "outcome": "QUALIFIED_ACTUAL_INT009_FAILURE_BOUNDARY_ONLY",
+  "independent": true,
+  "evidence_integrity_verdict": "PASS",
+  "selected_case_verdict": "FAILED",
+  "normal_acceptance": 0,
+  "route": "Root0e3f33 private route; explicit gpt-6.1-sol High. Actual closed evidence qualification only; no fourth broad source review/counter3 unchanged.",
+  "inputs": {
+    "manifest": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/manifest.json",
+      "bytes": 1360,
+      "sha256": "66ba10008644fd643a9d14bf5fb07d9d99fb33a0368e6a825169fbd3b3bd47b2"
+    },
+    "native_projection": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/native-projection.json",
+      "bytes": 4457,
+      "sha256": "529bf433d024f546f65de6303dd149b96b63b2ab3ea4beaee11319648efe6e80"
+    },
+    "sole_invocation_outer": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-execution-receipt.json",
+      "bytes": 6522,
+      "sha256": "e606ae308e56326c040c25c5873af3434dfb18ab29c09a3bb4b93c72d5947c82"
+    },
+    "Root_once_journal": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-root-once-journal.json",
+      "bytes": 1583,
+      "sha256": "b09db60fec83dc4a3659fff55196bde8a3ba9c8fd197971c2c1774b02d942580"
+    },
+    "activation": {
+      "bytes": 2816,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-activation.json",
+      "sha256": "00623b0ab44ed82e4a7cb445ee2e5a775df46027fcdcd4503782149934aad8e4"
+    },
+    "allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-Next16-4-1-original-INT009-terminal-two-read-allocation.json",
+      "bytes": 2686,
+      "sha256": "1e1dce253921e7c9d6ad6ddd1b7cb424226780cab5247b2cc377ff4707436354"
+    },
+    "source_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-current-source-proof.json",
+      "bytes": 8559,
+      "sha256": "8af45a804e5396d6cd787e885b93a19dc3e0e205c2f8d32e8ff423bbc3733610"
+    },
+    "review": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-operational-review.json",
+        "bytes": 12740,
+        "sha256": "45d1e0119153e3b8e429168bca25690e0634b0c2ba2824c6117e136fcafb0b45"
+      }
+    ],
+    "reader": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/reader.py",
+      "bytes": 17875,
+      "sha256": "cb08895c292db089bb9d8e67d8c8fb1eff6bdd0a562c0d922505b633d282bfc9"
+    },
+    "proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/proposal.json",
+      "bytes": 33191,
+      "sha256": "e001ffb985d01e82958c21358ad44c169816c7ea69697cba046aa2e95f2e3e03"
+    }
+  },
+  "actual_execution": {
+    "invoker": "NativeHigh /root/native15_5_high",
+    "outer_tool": "1f7ade",
+    "outer_native_exit": 0,
+    "wall_seconds": 1.9054426,
+    "session": null,
+    "waits": [],
+    "sole_invocation": 1,
+    "logical_GETs": 2,
+    "summary_status": "OWNED_SETUP_CAPTURE_AVAILABLE",
+    "all_slots_closed": true,
+    "requests": [
+      {
+        "sequence": 1,
+        "native_exit": 0,
+        "stdout_bytes": 750,
+        "stderr_bytes": 0,
+        "seconds": 0.578
+      },
+      {
+        "sequence": 2,
+        "native_exit": 0,
+        "stdout_bytes": 2001,
+        "stderr_bytes": 0,
+        "seconds": 1.018
+      }
+    ],
+    "request_custody": "Both exact endpoint receipts have intent before spawn, physicalEOF/readersdone/joined/no errors/no overflow/handlesclosed/directsettled. This is gh-child/output custody, not DB/wrapper/backend custody.",
+    "grant": {
+      "actual_turn": "01a1687c-edd5-7520-b4d8-926bd46fba67",
+      "actual_tool": "exec-a5507bbd-7176-4db0-b715-0943206312aa",
+      "turn_status": "completed",
+      "tool_status": "completed"
+    },
+    "Root_journal_limit": "Historical pre-invocation journal phase INVOCATION_ALLOCATED_ONCE_NO_RETRY is preserved. Post-invocation summary/manifest/outer receipt prove slots closed; journal is not relabelled."
+  },
+  "provenance_checks": {
+    "actual_reads": [
+      "d11ff5/native0",
+      "3b57d4/native0",
+      "c86f06/native0",
+      "5271c5/native0",
+      "774223/native0"
+    ],
+    "manifest": "Eight members plus self-excluded manifest; all9 actual files match allowed member names and exact bytes/SHA256. No raw member retained.",
+    "input_pins": "All15 operator input_refs and activation pin match, including completed grant/fresh sourceproof/source-only review, exact terminal/ownership, current reader/proposal and dependency/security/replay/publication bridge. Reader/proposal actual pins also match activation.",
+    "source_execution": "Sole execution matches previously independently reviewed17875-byte reader cb08895c... and exact proposal. Qualified strict parser/ZIP/privacy code reused; reviewer does not claim to have reparsed RAM-only raw JSON/ZIP or independently rehashed absent raw bytes.",
+    "closed_run": "Previously qualified39943446009/attempt1/DEBUG1eeb/CP430dbc33/workflow296219797/owned actors+ref and nine terminal jobs; DB120381133081 step11failed, native JSON upload step14success. No re-observation/refetch."
+  },
+  "artifact_integrity": {
+    "listing_total_count": 1,
+    "unique_selected_id": 12497177124,
+    "name": "native-calendar-feed-original-int009",
+    "advertised_archive_bytes": 2001,
+    "archive_sha256": "441df439abc7e6f7fbd746e1e3cb8fdcfe2d7fd20f9291d6a769a2d0466cfb94",
+    "API_digest_verified": true,
+    "request2_observed_digest_matches_archive": true,
+    "sole_member": "native.json",
+    "member_bytes": 17552,
+    "member_sha256": "30c6dc36071aabfce030022edc6208c0dc9b25a291bc69052cb8afce24be5786",
+    "declared_inflation": 17552,
+    "raw_persisted": false,
+    "projection_bytes": 4457,
+    "projection_cap": 8192
+  },
+  "cardinality": {
+    "run": 39943446009,
+    "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+    "attempt": 1,
+    "case_source_path": "tests/integration/commands/calendar-feed.int.test.ts",
+    "title_sha256": "aad32c8196383f2c417a3035ddd82637e40ab0cd0c8c47b02b4dbc5a2a59291b",
+    "normalized_fullName_sha256": "20b800f406cc74f3e783945a6bafde710517ee987a1e4a3dfcd30df3528f2a8e",
+    "selected_occurrences": 1,
+    "selected_status": "failed",
+    "global_executed_pass_plus_fail": 1,
+    "declared_totals": {
+      "numFailedTests": 1,
+      "numPassedTests": 0,
+      "numPendingTests": 14,
+      "numTodoTests": 0,
+      "numTotalTests": 15
+    },
+    "derived_assertion_status_counts": {
+      "disabled": 0,
+      "failed": 1,
+      "passed": 0,
+      "pending": 0,
+      "skipped": 14,
+      "todo": 0
+    },
+    "reconciliation": "15total=0passed+1failed+14derivedskipped; reporter numPendingTests14 aggregates those skipped declarations, not14 executed or passed cases. Exact title hash independently recomputed.",
+    "skipped_coverage": 0,
+    "retry": {
+      "source_effective_retry": 0,
+      "native_attempt_counter": null,
+      "qualification": "Retry0 derives from reviewed fixed argv/resolved config; reporter supplies no native retry counter. GitHub attempt1 is separate."
+    }
+  },
+  "observed_boundary": {
+    "capture_status": "OWNED_RECORDS_AVAILABLE",
+    "namespace": "calendarInt009SetupV1",
+    "primary": {
+      "guard": "UNKNOWN",
+      "kind": "PRIMARY",
+      "nativeClass": "UNKNOWN",
+      "operation": "DEFINITION",
+      "publication": "OWNER_RESTORE",
+      "sqlstate": "UNKNOWN"
+    },
+    "explicit_cleanup_records": [
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "WRAPPER_OUTCOME_UNKNOWN",
+        "publication": "OWNER_RESTORE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "DEFINITION",
+        "publication": "OWNER_RESTORE",
+        "sqlstate": "UNKNOWN"
+      }
+    ],
+    "omission_marker": {
+      "guard": "OMITTED",
+      "kind": "CLEANUP",
+      "nativeClass": "UNKNOWN",
+      "operation": "UNKNOWN",
+      "publication": "UNKNOWN",
+      "sqlstate": "UNKNOWN"
+    },
+    "omitted_event_count_and_contents": "UNKNOWN; sentinel is not a third fully observed cleanup error.",
+    "ordering": "First LOCAL observed PRIMARY retained, followed by two explicit cleanup records and terminal OMITTED marker; neither native first-throw order nor root cause proven.",
+    "source_location": {
+      "owned_runtime_file": "C:/Users/Rasmus/.codex/worktrees/epic-15-int009-debug/Kopplas/tests/support/calendar-feed-atdd.ts",
+      "runtime_binding": {
+        "HEAD_blob": "bdc71d11ec86cb2d3687e5c1e3e05fd6635cbe87",
+        "LF_bytes": 140212,
+        "LF_sha256": "d0584efb59c2cb133657da8795e5d139ff04ba4a59e8884e3c41e851b8e4ecb4",
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 141605,
+        "raw_sha256": "6d364caee385ceb3f3237e35c7ff9ffbeae2227426e4cef14fc4a06c6103d9c6"
+      },
+      "at_DEFINITION_line": 788,
+      "definition_builder_line": 811,
+      "restore_entry_line": 836,
+      "callee_path": "calendarRestore(subject,trace) -> calendarOwnerAtomic(kind:replace,expected:state.current,canonical body) -> trace.at(DEFINITION) immediately before calendarOwnerDefinition; REPLACE_DDL marker follows builder return.",
+      "scope_limit": "Source mapping narrows the review interval; it does not identify the exact native thrown statement, database DDL execution, first native error, or scenario assertion result."
+    }
+  },
+  "custody_and_cause_limits": {
+    "guard": "UNKNOWN",
+    "nativeClass": "UNKNOWN",
+    "sqlstate": "UNKNOWN",
+    "original_exception_or_stack": "UNKNOWN",
+    "body_assertions_reached": "UNKNOWN",
+    "wrapper_custody_available": false,
+    "backend_settlement": "UNKNOWN",
+    "key_deleted": null,
+    "lifecycle_receipt": "NOT_UPLOADED_BY_THIS_MODE",
+    "no_inference_from_step_success": "Native report upload or other cleanup step success does not prove canonical restore, backend settlement, key deletion or scenario assertions.",
+    "transport_is_not_failure": "The acquisition transport and projection completed; observed test failed. No transport failure is inferred."
+  },
+  "minimum_next_step": {
+    "owner": "Root commissions NativeHigh read-only source assessment, then distinct High plan qualification.",
+    "scope": [
+      "tests/support/calendar-feed-atdd.ts::calendarOwnerDefinition and calendarRestore -> calendarOwnerAtomic DEFINITION call boundary",
+      "Existing tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts owner-definition fixture/guard coverage only as needed to assess the same contract."
+    ],
+    "question": "Check textual pg_get_functiondef header/body reconstruction guards against already enforced language/provolatile metadata and the restore caller/captured-definition contract; inspect existing fixture representation. Assess a deterministic source-reachable defect independently from this runtime projection.",
+    "boundaries": "No source fix authority in this report; preserve fail-closed authority/metadata/transaction and original exception/cleanup semantics. No SQL/privilege weakening, new collector, generic diagnostic, additional CI attempt or refetch. Any concrete patch needs separate exact plan/ownership and review.",
+    "cause_caveat": "Even if a redundant textual guard defect is source-proven later, the hosted exact header/native first throw remains UNKNOWN unless separately evidenced."
+  },
+  "retained_state": {
+    "required95": "Historical68P1F26unexecuted unchanged; this targeted1F/14skip evidence is not full95 acceptance.",
+    "P5": "OPEN",
+    "INT009_failure": "Actual selected case failed; root cause UNKNOWN.",
+    "DB_custody": "Unknown/retained-unverified; no completion credit",
+    "development_complete": false,
+    "release_ready": false,
+    "deployment": false
+  },
+  "reviewer_nonexecution": {
+    "GET_refetch_API_network": 0,
+    "tests_DB_browser_resources": 0,
+    "source_spec_state_Git_edits": 0,
+    "artifact_reextraction_or_raw_persistence": 0,
+    "new_effect_authority": false
+  },
+  "open_questions": [
+    "Exact hosted header/native error/first throw, body assertions, omitted cleanup contents, backend/wrapper custody and key deletion remain UNKNOWN."
+  ],
+  "deferred_work": [
+    "Narrow source-backed restore-definition contract assessment/plan; no broad review or new diagnostic by default.",
+    "Canonical story development/completion evidence remains pending."
+  ],
+  "blockers": [
+    "Observed INT009 failure and UNKNOWN custody continue to block acceptance; acquisition itself is complete with all slots closed."
+  ]
+}

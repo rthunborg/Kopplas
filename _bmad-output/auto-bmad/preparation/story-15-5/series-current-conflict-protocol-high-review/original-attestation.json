@@ -1,0 +1,196 @@
+{
+  "schema": "SERIES_CURRENT_PROTOCOL_TARGETED_HIGH_REVIEW_ATTESTATION_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent": true,
+  "verdict": "NOTPASS_TARGETED_PROTOCOL_TEST_REGRESSION",
+  "reviewed_commit": "cb65b06b8884938f2054821166e9fd7e4d5e4aa9",
+  "parent": "537ad798a117464192d2a146d7573f1351848ad2",
+  "Root_bound_tree": "98a19328cbd46528cfa12625a54d323834917853",
+  "identity_attribution": "Root exact4 committed/raw/native/baseline/tree binding; reviewer independent body hashes/computed blob IDs, no Git commands.",
+  "findings": [
+    {
+      "id": "SERIES-PROTOCOL-01",
+      "priority": "P2",
+      "path": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 802,
+      "case": "15.2-INT-REAL-011",
+      "actual_after_migration": [
+        "booking-conflicts-v4",
+        "stockholm-capacity-v2"
+      ],
+      "active_expected_literal": [
+        "booking-conflicts-v3",
+        "stockholm-capacity-v1"
+      ],
+      "reachability": "Qualified live stack, successful real snapshotBookingSeries admits v4/v2, then old assertion fails. Other old literals at177/178 are skipped and excluded."
+    }
+  ],
+  "independent_source_proof": {
+    "source_proof": "PASS",
+    "effective_predecessors": [
+      {
+        "function": "snapshot_booking_series",
+        "canonical_bytes": 2032,
+        "canonical_sha256": "de57810a4ef7fd45ef5d4c7b4b8f8aee322b145d8dae8c6e6fe35e62331ad974",
+        "source_reachable_actual_raw_CRLF": 0,
+        "source_reachable_actual_raw_LF_only": 22,
+        "actual_predecessor_admitted": true,
+        "only_two_literals_inverse": true
+      },
+      {
+        "function": "finalize_booking_series",
+        "canonical_bytes": 14472,
+        "canonical_sha256": "87cd4e1062df816bc060069404d25e71f3e7744188a2387fe89936b339a218bc",
+        "source_reachable_actual_raw_CRLF": 127,
+        "source_reachable_actual_raw_LF_only": 0,
+        "actual_predecessor_admitted": true,
+        "only_two_literals_inverse": true
+      }
+    ],
+    "historical116_raw_hashes_unchanged": true,
+    "migration_count": 117,
+    "new_source_bindings": [
+      {
+        "path": "supabase/migrations/20261022002335_booking_series_current_conflict_protocol.sql",
+        "bytes": 20044,
+        "sha256": "4c358e704c90f4db24a36c37e507c36870540a116b9186cc67068ce74d859cc8",
+        "clean_bytes": 20044,
+        "clean_sha256": "4c358e704c90f4db24a36c37e507c36870540a116b9186cc67068ce74d859cc8",
+        "prospective_clean_oid": "67897c861f4517c1a72ced20de823ced2b14000a",
+        "baseline_blob": null,
+        "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "bytes": 35671,
+        "sha256": "defcc1a19b50be244cb959f0c051011acc85f80e62f0af9ce0e80a51f336c532",
+        "clean_bytes": 35671,
+        "clean_sha256": "defcc1a19b50be244cb959f0c051011acc85f80e62f0af9ce0e80a51f336c532",
+        "prospective_clean_oid": "c48bb85173c1bca45b6dc8ffaa59f082c660b1e8",
+        "baseline_blob": "276acb1be1914c126970db59c432c3ffe980031e",
+        "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+      },
+      {
+        "path": "tests/integration/commands/booking-series.int.test.ts",
+        "bytes": 99451,
+        "sha256": "ee049ffda79af15a1ebbbe522a1324e042c9d4a4ea6d1297bf0366f66d182c5d",
+        "clean_bytes": 99451,
+        "clean_sha256": "ee049ffda79af15a1ebbbe522a1324e042c9d4a4ea6d1297bf0366f66d182c5d",
+        "prospective_clean_oid": "69199f1249fb23afb5c246c71b54855e2b2bbdf4",
+        "baseline_blob": "c27c8f72735a673dd25489b9d8993176d395942f",
+        "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 220536,
+        "sha256": "d22661fee0292c0e91c04e2c2d601b3d23a8cd407cb93432663549c3ceec5472",
+        "clean_bytes": 220536,
+        "clean_sha256": "d22661fee0292c0e91c04e2c2d601b3d23a8cd407cb93432663549c3ceec5472",
+        "prospective_clean_oid": "f577e23d037f204a0b8c929ce5d548c5aa01c992",
+        "baseline_blob": "62a90b7db0100847070ef378c596437b4d0ba36d",
+        "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+      }
+    ],
+    "root_precommit_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-series-current-conflict-protocol-precommit-admission.json",
+        "bytes": 2728,
+        "sha256": "3570e19e2f3de3063a3494c004f6cb99e91b38b1a9939eec1224507f99f56101"
+      }
+    ],
+    "metadata_guard_static": "whole non-prosrc pg_proc JSON plus OID and exact substituted raw prosrc; no runtime PostgreSQL proof",
+    "finding": {
+      "id": "SERIES-PROTOCOL-01",
+      "priority": "P2",
+      "path": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 802,
+      "case": "15.2-INT-REAL-011",
+      "actual_after_migration": [
+        "booking-conflicts-v4",
+        "stockholm-capacity-v2"
+      ],
+      "active_expected_literal": [
+        "booking-conflicts-v3",
+        "stockholm-capacity-v1"
+      ],
+      "reachability": "Qualified live stack, successful real snapshotBookingSeries admits v4/v2, then old assertion fails. Other old literals at177/178 are skipped and excluded."
+    },
+    "SQLruntime": false
+  },
+  "source_proof_method": "Read bound three historical files; extract exact snapshot/finalizer dollar bodies; apply actual resolver regexp exactly once; compare embedded references, raw LF/CRLF admission and complete two-literal forward/inverse; verify historical116 hashes. Static metadata/OID/raw prosrc guards reviewed.",
+  "independent_focused": {
+    "argv": [
+      "node",
+      "--experimental-strip-types",
+      "--import",
+      "./tests/support/register.mjs",
+      "--test",
+      "tests/unit/server/bookings/series-plan.test.ts"
+    ],
+    "exit": 0,
+    "summary": {
+      "tests": 42,
+      "suites": 0,
+      "pass": 42,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "stdout_bytes": 11242,
+    "stdout_sha256": "e972796defce0fbd06d3348a4e1356ea760c9172600cada18bb19f4f1b75d903",
+    "stderr_bytes": 0,
+    "duration_ms": [
+      "1439.266"
+    ]
+  },
+  "preserved_unit_prefix": {
+    "bytes": 29415,
+    "sha256": "da5a4ed9987caee817961245ee55c956a0683dcaf670ec15118a6e4521363ac6",
+    "byte_identical": true
+  },
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/series-current-conflict-protocol-correction/receipt.json",
+    "bytes": 16980,
+    "sha256": "27508ea83b00424074c779ae513a61ff1577b1c6283869d6f0a20d33f1cc1754"
+  },
+  "author_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/series-current-conflict-protocol-correction/manifest.json",
+    "bytes": 857,
+    "sha256": "bdeac6f45da66c3905bacbd7e73d5bc1eec8274d9cc836d91c820a656ee84ef8"
+  },
+  "skills": [
+    {
+      "name": "supabase",
+      "path": "C:/Users/Rasmus/.agents/skills/supabase/SKILL.md"
+    },
+    {
+      "name": "supabase-postgres-best-practices",
+      "path": "C:/Users/Rasmus/.agents/skills/supabase-postgres-best-practices/SKILL.md"
+    }
+  ],
+  "verification_scope": "Source-only/no network/no SQL runtime; implementing/query workflow not performed.",
+  "author_evidence_reused": "TS/lint/diff/reader0/SRO178;39P2F,41P,42P separate/nonadditive.",
+  "metadata_OID_ACL_rollback_runtime_proved": false,
+  "SQL_runtime_applied": false,
+  "Spec_kernel": "Root/author bound5760B SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "SuggestedReviewOrder": "Author178 stops checked; refresh after correction.",
+  "normal_acceptance": 0,
+  "required95_unchanged": true,
+  "review_counter": 3,
+  "broad_review_increment": 0,
+  "hosted_first_throw": "UNKNOWN",
+  "browser_cause": "UNKNOWN",
+  "custody": "UNKNOWN",
+  "reviewer_effects": {
+    "SQL_runtime": 0,
+    "network": 0,
+    "Git_commands_mutations": 0,
+    "source_SQL_Spec_state_writes": 0,
+    "provider_resources_services": 0
+  },
+  "reader_write_history": "One Windows unmatched glob reader stopped; corrected bounded lookup. Initial artifact writer rejected OS206 before process creation; no files written.",
+  "execution_authority": false,
+  "development_complete": false
+}

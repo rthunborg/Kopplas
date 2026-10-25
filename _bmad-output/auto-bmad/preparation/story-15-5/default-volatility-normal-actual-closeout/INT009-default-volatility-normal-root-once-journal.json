@@ -1,0 +1,26 @@
+{
+  "schema": "ROOT_INT009_DEFAULT_VOLATILITY_NORMAL_ONCE_JOURNAL_V1",
+  "operation_id": "bdfad976-dd4a-4ca1-baea-3f47db63df1f",
+  "phase": "PROVIDER_ONCE_ALLOCATED_ROOT_PUBLISH_PENDING_SUCCESS",
+  "grant": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-effects-allocation.json",
+    "bytes": 3523,
+    "sha256": "0895a06d1bd346e22cb56cb098cd4b809e035ab1d7422707d0866c1876c79550"
+  },
+  "review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-review.json",
+    "bytes": 16657,
+    "sha256": "2747bf71ba3f7b24748cb8f0e13cfc0d9b63791d819db4149af7305179c89d59"
+  },
+  "Root_actual_full_review_read": "bb5476/native0/fullclosedreport",
+  "sourceproof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-current-source-proof.json",
+    "bytes": 39456,
+    "sha256": "defb2fe2ade5cc7feeaf360640d35f180068dfebf477af744399f3a03f41b69e"
+  },
+  "provider_invoker": "/root/native15_5_high",
+  "Root_sole_publisher_dispatcher_poller": true,
+  "no_retry_or_extension": true,
+  "all_previous_slots_closed": true,
+  "normal_acceptance": 0
+}

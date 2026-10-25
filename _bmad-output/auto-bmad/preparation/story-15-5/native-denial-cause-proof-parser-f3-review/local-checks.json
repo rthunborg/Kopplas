@@ -1,0 +1,49 @@
+{
+  "source": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+  "base": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+  "actual_changed_unit": {
+    "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "total": 31,
+    "pass": 31,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "exit": 0,
+    "first_run": true,
+    "initial_failures": 0,
+    "scope": "Actual recognizer and checkpoint caller with injected provider; malformed source refused before state creation/POST; no provider requests"
+  },
+  "whole_typecheck": {
+    "command": "pnpm exec tsc --noEmit --incremental false",
+    "exit": 0
+  },
+  "affected_lint": {
+    "command": "pnpm exec eslint scripts/ci/checkpoint-dispatch.mjs tests/unit/scripts/ci/checkpoint-dispatch.test.ts --max-warnings 0",
+    "exit": 0,
+    "errors": 0,
+    "warnings": 0
+  },
+  "native_git_hygiene": {
+    "working_diffcheck": 0,
+    "staged_diffcheck": 0,
+    "exact_staged_paths": 3,
+    "post_commit_source_and_index_clean": true
+  },
+  "historical_composite_only": {
+    "seven_file374_before_late": true,
+    "dispatcher30_after_late": true,
+    "other344_bindings_unchanged": true,
+    "current_new_combined374": false
+  },
+  "no_build_rerun": true,
+  "no_native_SQL_Auth_RPC_browser_child_hosted_execution": true,
+  "no_preparation_test_rerun": true,
+  "native_credit": 0,
+  "author_trail": {
+    "stops": 89,
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "status": "in-review",
+    "ARR_warnings_preserved": true
+  }
+}

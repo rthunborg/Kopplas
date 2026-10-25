@@ -1,0 +1,22 @@
+{
+  "kind": "Root-recorded-narrow-native-PG17-probe-effect-allocation",
+  "received_at": "2026-10-20T15:08:08.876473+00:00",
+  "source": "Coordinator SAMEexplicitSolHigh completed PASS/allocate; native handoff received",
+  "scope": "Append ONLY one native case to existing serial tests/integration/commands/calendar-feed.int.test.ts",
+  "objects": "EXACT2uniqueownedNOLOGINroles(restrictedCREATEROLEmigrator+owner),UUIDschema+harmlessfunction; one transaction/existing isolatedfullDBjob+connection",
+  "conditions": [
+    "Native version/server_version_num major17 + existing disposable-stack identity beforemutation; pinnedimage alone notproof",
+    "Initially authenticated isolatedsuperuser required; failqualificationifunavailable/no existingroleelevation",
+    "SET LOCAL SESSION AUTHORIZATION ownmigrator; bothsession_user/current_user +allrestrictedattrs checked immediatelybeforeEACH creditedsource/SET/owneroperation; noSECURITYDEFINER wrapper; super onlysetup/reset/rollback",
+    "Extractunique actualLEADINGmigrationDO block; reversible rolenameONLY substitutions/everyguardstatementretained",
+    "Separate restrictedenginebaseline createsownertarget/observes nativeADMIN-SET-INHERIT+createrole_self_grant; rollbacksavepoint before actualbootstrap GENUINELYFRESHcreate",
+    "Unsafe membershipcase reachesbootstrapguard; enginecycle refusal NOTguardproof; fixturefault affectsONLY2ownednewroles",
+    "RestrictedSET+ownedfunctiontransfer; transactiononlyUUIDschemaCREATE fixtureprerequisites NOTactualsource/recoverypublicschema lifecycleproof",
+    "Expectederror rollbacktosavepoint BEFORE furtherassertions; unexpectedabortedtransaction FULLROLLBACK FIRST thenRESETSESSIONAUTHORIZATION/RESETROLE+verifyidentity",
+    "Boundqueries/locks/settleallpromises/unconditionalrollback/preserveprimaryANDallcleanupfailures; neverreturnunverifiedconntopool",
+    "Same+freshreadonlyconnectionproveexact2roles/schema/functionABSENT; failureblocksproof",
+    "No existingroleALTER/persistentCREATE/BYPASS/JWT/Vault/hosted/newprocess/workflow/resourceexpansion",
+    "DistinctchangedlineHighreview before RootCI; actualsource/recoveryqualificationsmandatory; no newbroadreview/packet; monitoringPAUSED"
+  ],
+  "runtime_executions": 0
+}

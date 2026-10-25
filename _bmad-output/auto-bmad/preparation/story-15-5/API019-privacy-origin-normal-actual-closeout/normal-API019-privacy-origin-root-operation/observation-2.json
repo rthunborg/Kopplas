@@ -1,0 +1,230 @@
+{
+  "run_id": 39990057474,
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "title": "checkpoint:8b61639c-1015-45a7-835f-b9a88ccd9e92:7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "workflow_id": 296219797,
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "original_int009": false,
+  "status": "in_progress",
+  "conclusion": null,
+  "observed_at": "2026-10-23T16:53:15.149536+00:00",
+  "jobs": [
+    {
+      "id": 120539215915,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T16:50:13Z",
+      "completed_at": "2026-10-23T16:50:15Z",
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:14Z",
+          "completed_at": "2026-10-23T16:50:14Z"
+        },
+        {
+          "number": 2,
+          "name": "Bind dispatch to its immutable source revision",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:14Z",
+          "completed_at": "2026-10-23T16:50:14Z"
+        },
+        {
+          "number": 3,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:14Z",
+          "completed_at": "2026-10-23T16:50:14Z"
+        }
+      ]
+    },
+    {
+      "id": 120539262547,
+      "name": "verify",
+      "status": "in_progress",
+      "conclusion": null,
+      "started_at": "2026-10-23T16:50:19Z",
+      "completed_at": null,
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:20Z",
+          "completed_at": "2026-10-23T16:50:21Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:21Z",
+          "completed_at": "2026-10-23T16:50:26Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:26Z",
+          "completed_at": "2026-10-23T16:50:27Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:27Z",
+          "completed_at": "2026-10-23T16:50:33Z"
+        },
+        {
+          "number": 5,
+          "name": "Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:33Z",
+          "completed_at": "2026-10-23T16:50:33Z"
+        },
+        {
+          "number": 6,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:33Z",
+          "completed_at": "2026-10-23T16:50:34Z"
+        },
+        {
+          "number": 7,
+          "name": "Verify lockfiles (single package manager)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:34Z",
+          "completed_at": "2026-10-23T16:50:35Z"
+        },
+        {
+          "number": 8,
+          "name": "Audit dependencies (blocking, high severity)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:35Z",
+          "completed_at": "2026-10-23T16:50:36Z"
+        },
+        {
+          "number": 9,
+          "name": "Verify service-role containment (no client-path leakage)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:36Z",
+          "completed_at": "2026-10-23T16:50:36Z"
+        },
+        {
+          "number": 10,
+          "name": "Typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:36Z",
+          "completed_at": "2026-10-23T16:51:00Z"
+        },
+        {
+          "number": 11,
+          "name": "Lint",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:51:00Z",
+          "completed_at": "2026-10-23T16:51:34Z"
+        },
+        {
+          "number": 12,
+          "name": "Unit tests (pure logic, node --test)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:51:34Z",
+          "completed_at": "2026-10-23T16:52:41Z"
+        },
+        {
+          "number": 13,
+          "name": "BMAD focused concurrent memlog contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:52:41Z",
+          "completed_at": "2026-10-23T16:52:43Z"
+        },
+        {
+          "number": 14,
+          "name": "Auto-BMAD focused routing and process-API contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:52:43Z",
+          "completed_at": "2026-10-23T16:52:45Z"
+        },
+        {
+          "number": 15,
+          "name": "Build",
+          "status": "in_progress",
+          "conclusion": null,
+          "started_at": "2026-10-23T16:52:45Z",
+          "completed_at": null
+        },
+        {
+          "number": 16,
+          "name": "Verify built-bundle service-role containment (no leakage in .next)",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 29,
+          "name": "Post Setup Python for focused Auto-BMAD contracts",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 30,
+          "name": "Post Setup Node",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 31,
+          "name": "Post Install pnpm",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 32,
+          "name": "Post Checkout",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        }
+      ]
+    }
+  ]
+}

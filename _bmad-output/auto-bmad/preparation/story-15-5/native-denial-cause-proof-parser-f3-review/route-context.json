@@ -1,0 +1,36 @@
+{
+  "phase": "review-native-cause-proof-parser-f3-latest3",
+  "role": "independent-sensitive-latest3-default-parser-regression-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "recorded_by_root_before_dispatch": true,
+  "dispatch_owner": "Parent; author does not dispatch",
+  "source": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+  "base": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+  "scope": "Only latest F3 three-path correction and consequential regressions; not fourth broad review",
+  "completed_broad_rounds": 3,
+  "current_verdict": "PENDING",
+  "original520_verdict": "NOTPASS, F1/F2 CLOSED, F3 OPEN; immutable historical report",
+  "review_composite": "Reused unchanged four-path F1/F2 closure plus pending current three-path F3 correction; not new whole-seven PASS",
+  "source_spec_index_frozen": true,
+  "root_metadata_identity_only": {
+    "current70": 70,
+    "current_normalization": 41,
+    "delta_normalization": 2,
+    "unchanged67": 67,
+    "author_commits": 19,
+    "root_commits": 11,
+    "ancestry": 30,
+    "raw_root_state_not_resampled": true,
+    "root_dirty_excluded": true
+  },
+  "invariants": [
+    "Strict structural subset only; no new parser dependency or broader syntax contract",
+    "Malformed scalar must fail before durable state and sole POST",
+    "Actual current candidate and supported default/comment/colon content preserved",
+    "Same fixed GET/solePOST/ref/SHA/candidate/default/nonce/mode gates",
+    "F1/F2 helper/wrapper/CIpin/runtime controls unchanged",
+    "All43 DB and14 browser causes unresolved; DIAG001 unexecuted; hosted availability UNKNOWN; private consumer UNBORN"
+  ],
+  "native_credit": 0
+}

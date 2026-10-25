@@ -1,0 +1,69 @@
+{
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement",
+  "member_count": 12,
+  "members": [
+    {
+      "path": "bindings.json",
+      "bytes": 13181,
+      "sha256": "bd60202b486fc34bb8df5e79fb91f79a4f189d05483b4f07e6c65df9a419118b"
+    },
+    {
+      "path": "caller-contract-controls.mjs",
+      "bytes": 5919,
+      "sha256": "43c606bc428cf441f0c7f94e2a84ab42023856358967d973dce1a22ee8ac87d8"
+    },
+    {
+      "path": "caller-contract-results.json",
+      "bytes": 10338,
+      "sha256": "6fe52ba609833d0d5ff112f2701ae645c29582634cdf5817b171292ab9dce444"
+    },
+    {
+      "path": "disabled-bail.config.mjs",
+      "bytes": 101,
+      "sha256": "b000e0ec53fbc0ad834aaba9f4963137dcba059a16c1d87d0ca95005d24f2ae5"
+    },
+    {
+      "path": "disabled-parallel.config.mjs",
+      "bytes": 116,
+      "sha256": "3e92316dacf89ddfe7ce79df6eb62b12400d8a7cd4ca75e092796307fbabf4c3"
+    },
+    {
+      "path": "explicit-one.config.mjs",
+      "bytes": 107,
+      "sha256": "ded826537e32828cbaa0ccca5366a7fa1dd2427a2df9098d3a9a7563fd44be37"
+    },
+    {
+      "path": "guard.config.mjs",
+      "bytes": 1226,
+      "sha256": "f3251da24dc3bcab9ce9e4597e7540a167b73f5759ebb343677be5e36e96fc4c"
+    },
+    {
+      "path": "parallel.test.mjs",
+      "bytes": 191,
+      "sha256": "38b8698a7cfc7caa761d0fbcd59bff57f96634d1c404fae684e5c46aae73889e"
+    },
+    {
+      "path": "refinement.json",
+      "bytes": 9134,
+      "sha256": "94e0c70758fefe97fee429c2627836b319f2c249513765da37dfbd9948c67c5a"
+    },
+    {
+      "path": "refinement.md",
+      "bytes": 1685,
+      "sha256": "4b01951513a69820df7d53f59bc5a2ae32a7ac2a41124e6d0ffdde1f981b8812"
+    },
+    {
+      "path": "serial.test.mjs",
+      "bytes": 245,
+      "sha256": "9933ae46ce0bde623ad6cd8f632fc992750de239dbba164b82cc7c4cdc6c5ea7"
+    },
+    {
+      "path": "supported-config-results.json",
+      "bytes": 4331,
+      "sha256": "68fa5516babc720c7fcb1d2ad3fce2126e805ab177df396f5a863149d36216d5"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0
+}

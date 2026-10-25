@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-permission-transport-proposal-review-attestation",
+  "result": "PASS",
+  "scope": "Concrete permission/transport proposal only; no actionable design findings; not a broad story-code review",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "task": "/root/build15_5_high/authority_transport_proposal_review"
+  },
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md",
+    "bytes": 16753,
+    "sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4"
+  },
+  "observed_actual_head": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "frozen_source_revision": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "source_binding": "Original review observed an empty git diff against frozen_source_revision for all five proposed source paths; e472741a is not claimed as actual HEAD.",
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review.md",
+    "bytes": 1075,
+    "sha256": "b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c",
+    "preservation": "Exact completed original final report text, persisted with UTF-8 no BOM and LF final newline; no re-review."
+  },
+  "native_prerequisites_unverified": [
+    "Source Config.Env.POSTGRES_PASSWORD mapping to supabase_admin",
+    "TCP authentication with that sole existing candidate credential",
+    "Authenticated source supabase_admin LOGIN and SUPERUSER availability"
+  ],
+  "admission_required": "Root must explicitly admit the new credential-use/authenticated setup effect for both wrappers and existing INT015 and resolve any Coordinator ownership clarification before source writes or effects.",
+  "implementation_admitted_by_review": false,
+  "native_or_resource_probe_admitted_by_review": false,
+  "source_writes": 0,
+  "runtime_executions": 0,
+  "tests_executed": 0,
+  "resources_started": 0,
+  "commits_created": 0,
+  "review_rerun": false,
+  "completed_story_code_review_rounds": 3,
+  "increments_story_code_review_cap": false,
+  "persistence_only": "After the original read-only review completed, the parent assigned creation of only this attestation and original-review.md. The original report statement that no files were changed describes the completed review before this persistence step."
+}

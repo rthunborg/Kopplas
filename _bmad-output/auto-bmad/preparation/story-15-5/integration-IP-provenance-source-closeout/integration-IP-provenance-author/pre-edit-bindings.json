@@ -1,0 +1,52 @@
+[
+  {
+    "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+    "bytes": 49378,
+    "sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb"
+  },
+  {
+    "path": "tests/support/calendar-feed-atdd.ts",
+    "bytes": 143615,
+    "sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b"
+  },
+  {
+    "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "bytes": 340518,
+    "sha256": "7c8e4e2684de09b7dee376af393a618677a2db16f35abfd968593dffcdc17fd0"
+  },
+  {
+    "path": "tests/support/calendar-feed-ci-contract.ts",
+    "bytes": 8135,
+    "sha256": "bbbea7f1f12d0662b2b7e09fa6c6648c82cee2797d72357aa47bc62130bccd72"
+  },
+  {
+    "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "bytes": 262876,
+    "sha256": "fa16e59053bbc01435a9b38694976d3bbff7c0619271d05f4f4e45de21bb6a02"
+  },
+  {
+    "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+    "bytes": 26921,
+    "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40"
+  },
+  {
+    "path": "tests/integration/perf/auth-rls-baseline.int.test.ts",
+    "bytes": 4292,
+    "sha256": "20d1e6680aa5197d615106a0a2adb7c7afd6ce43808e7fe224b69d892286d8af"
+  },
+  {
+    "path": "tests/integration/commands/conflict-resolver.int.test.ts",
+    "bytes": 48848,
+    "sha256": "6eda1f9503d78912069b459577ed3ea202ab565d2b46532326ae9b7619133e85"
+  },
+  {
+    "path": "vitest.config.ts",
+    "bytes": 4805,
+    "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30"
+  },
+  {
+    "path": "package.json",
+    "bytes": 2509,
+    "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+  }
+]

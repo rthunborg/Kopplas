@@ -1,0 +1,9 @@
+### Native owner proof does not verify disabled privilege inheritance
+
+- **Changed surface:** `supabase/migrations/20261020220000_personal_calendar_feed.sql:26` explicitly disables inheritance on the source executor’s owner membership.
+- **Impacted consumer or site:** Restricted source bootstrap and replay exercised by `tests/integration/commands/calendar-feed.int.test.ts:410`.
+- **Existing test evidence:** `Broken-verification gap`: INT015 checks `inherit_option=false` only before executing the bootstrap (`:400`). Its subsequent `assertOwner` checks the owner role’s attributes and executor SET/ADMIN authority (`:411`), but not membership inheritance. The repository-wide `inherit_option` and owner-grant searches found only that baseline query and static source-text assertions. The existing ACL adapter at `tests/support/calendar-feed-atdd.ts:472` checks JWT membership and owner privileges, without checking source-executor inheritance.
+- **Missing verification:** Assert that the executor cannot inherit owner privileges after both fresh bootstrap and replay. Role-level `NOINHERIT` and membership-level inheritance are distinct in [PostgreSQL 17](https://www.postgresql.org/docs/17/sql-grant.html).
+- **Demonstration:** Changing the new grant to `WITH INHERIT TRUE` would leave INT015’s runtime assertions satisfied: the baseline precedes that grant, SET/ADMIN still work, and the owner role remains `NOINHERIT`. Only the static wording assertion would fail.
+- **Consequence:** Native qualification can report success while the source executor inherits owner privileges contrary to the new bootstrap contract.
+- **Suggested test shape:** After fresh bootstrap and replay, inspect all owner-to-executor membership rows and assert no inherited privilege path, for example with `pg_has_role(current_user, owner, 'USAGE') = false`.

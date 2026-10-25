@@ -1,0 +1,47 @@
+{
+  "schema": "PRIVACY_ORIGIN_DESCRIPTIVE_EVIDENCE_CORRECTION_V1",
+  "execution_authorized": false,
+  "historical_proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+    "bytes": 236942,
+    "sha256": "c35b754ca89a039496e4636be6560d898104daad976a5b6d7b5e28a6dab79afe"
+  },
+  "historical_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/manifest.json",
+    "bytes": 1163,
+    "sha256": "f1001bc57a5c1983bd85ab9487fb55e86f49e509926633febc4d2b0e14d6758b"
+  },
+  "changed_proposal_field": "future_outputs.later_evidence",
+  "old_value": "After actual9terminal only, separately enroll existing50755 reader and current436static/19excluded/wrapper187 source data; NEWreview/grant/proof/Rootactivation required. Max5ownedarchive/list/eligible3reports; no artifact request now.",
+  "new_value": "Existing reviewed52622-byte28fixed-stage reader counterpart (normal-API019-privacy-origin-author/reader-stage-data-successor.py); current444static/19excluded/195wrapper source catalog. Actual terminal required, then separate actualtuple enrollment/independent review/new completed finite max5GET allocation/fresh Root proof/exclusive activation. Future max5GET only: archive1+listing1+up to3 unique eligible native report ZIPs. Artifact/log GET0 now; no current acquisition authority.",
+  "only_other_delta": "manifest.members proposal bytes/SHA256",
+  "unchanged_code_controls": {
+    "provider.py": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+      "bytes": 20591,
+      "sha256": "0b33181f9cbbfdc1b36a463d3a66fc5d1b33db8e9a170ccc1379822ca7c2fdcc"
+    },
+    "root-driver.py": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/root-driver.py",
+      "bytes": 21115,
+      "sha256": "ecb4a35f94fee0090d2952c53feaa3251c1bcaa3e416ecb634ebb2eabddb0797"
+    },
+    "pure-controls.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "bytes": 12906,
+      "sha256": "0b10bff10b6576fc1e8ee2a06c5d18e6ede0ddd3e3c0cf096403aad22f0ba329"
+    }
+  },
+  "controls_or_catalog_rerun": false,
+  "new_proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+    "bytes": 237192,
+    "sha256": "8defb9f6a1bfc753bd4d857a392ecf44a3c2fda37caa9157a43684017dcfabfe"
+  },
+  "new_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/manifest.json",
+    "bytes": 1163,
+    "sha256": "4ff07b35b147969ab05c0fe09d3f348d9b479a4fdb145d887189de71cb259158"
+  },
+  "manifest_serialization": "Original CRLF serialization retained; only proposal member bytes/hash differ from historical manifest."
+}

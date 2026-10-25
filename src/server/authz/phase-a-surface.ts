@@ -29,9 +29,11 @@ export function resolvePhaseANavigation(roles: readonly unknown[] | undefined, h
   });
 }
 
-/** E15 replaces the current Montör dashboard fallback with `/my-day`. */
+/** Pure Montör prefers the checked field landing; mixed roles keep office priority. */
 export function resolveLandingRoute(roles: readonly unknown[] | undefined): string | null {
   const visible = resolvePhaseANavigation(roles);
+  const normalized = normalizeRoles(roles);
+  if (normalized.length === 1 && normalized[0] === "montor" && visible.some(item => item.href === "/my-day")) return "/my-day";
   return visible.some((item) => item.href === "/dashboard") ? "/dashboard" : visible[0]?.href ?? null;
 }
 

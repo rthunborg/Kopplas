@@ -1,0 +1,165 @@
+{
+  "schema": "story-15-5.corrective-visibility-addendum.v1",
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "status": "PROPOSED_UNALLOCATED",
+  "route": {
+    "phase": "revise-native-cause-proof-corrective-visibility",
+    "role": "sensitive-exact-owned-cleanup-visibility-contract-reviser",
+    "model": "gpt-6.1-sol",
+    "effort": "high"
+  },
+  "references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/proposal.md",
+      "bytes": 12514,
+      "sha256": "7898802e407adeaf2979ca7c5cbe3852c973a8a69d8f64b3d5a106bbf37c62af"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/manifest.json",
+      "bytes": 955,
+      "sha256": "cb60ec58fef30b9d74558a6bbea700dba739fa576cbdd36f62c40e27df35bfdb"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/bindings-and-effects.json",
+      "bytes": 9151,
+      "sha256": "9dcbf4b4231cace92eb142e30e8d6b1371e870d3c78924722b05ae7015812cf5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-report.md",
+      "bytes": 10919,
+      "sha256": "8b903986a32bb3c8bd96f115898f1ac244adbd669c43bf63cbda97142ecb9116"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-attestation.json",
+      "bytes": 21886,
+      "sha256": "55e7c99876bcf7dd3cbfbdcc6d9c9417892e9fe8457100642dbcd73db2d2b869"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/result.json",
+      "bytes": 1594,
+      "sha256": "dd489a769ef530de5b1c96185a14dc477e451a6688b949bab86b9f3f88bffec4"
+    }
+  ],
+  "source_bindings_by_reference": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/bindings-and-effects.json",
+    "bytes": 9151,
+    "sha256": "9dcbf4b4231cace92eb142e30e8d6b1371e870d3c78924722b05ae7015812cf5"
+  },
+  "actual_unchanged_checks": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_matches_referenced_binding": true,
+      "actual_clean_matches_head": true,
+      "actual_head_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_matches_referenced_binding": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_matches_referenced_binding": true,
+      "actual_clean_matches_head": true,
+      "actual_head_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_matches_referenced_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_matches_referenced_binding": true,
+      "actual_clean_matches_head": true,
+      "actual_head_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_matches_referenced_binding": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_matches_referenced_binding": true,
+      "actual_clean_matches_head": true,
+      "actual_head_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_matches_referenced_binding": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_matches_referenced_binding": true,
+      "actual_clean_matches_head": true,
+      "actual_head_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_matches_referenced_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw_matches_referenced_binding": true,
+      "actual_clean_matches_head": true,
+      "actual_head_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_matches_referenced_binding": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_matches_referenced_binding": true,
+      "actual_clean_matches_head": true,
+      "actual_head_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_matches_referenced_binding": true
+    }
+  ],
+  "scope": {
+    "source_paths_unchanged": 7,
+    "new_source_paths": 0,
+    "F1": "SUPERSEDED_ONLY_VISIBILITY_SUFFICIENCY",
+    "original_F1_sufficiency": "NOT_ADOPTED",
+    "F2": "UNCHANGED",
+    "availability": "UNCHANGED"
+  },
+  "proposed_effects": {
+    "same_existing_absence_select": true,
+    "required_same_connection_role_predicate": "current_user pg_catalog.pg_roles: strict boolean (rolsuper OR rolbypassrls)",
+    "exact_result_fields": [
+      "visibilityQualified",
+      "tenantsAbsent",
+      "authUsersAbsent"
+    ],
+    "require_all_strict_true": true,
+    "owned_auth_uuid_count": 10,
+    "owned_tenant_uuid_count": 2,
+    "new_auth_read": true,
+    "new_role_catalog_read": true,
+    "allocation": false,
+    "extra_round_trips": 0,
+    "extra_http_calls": 0,
+    "extra_connections": 0,
+    "principal_grants_roles_changed": false
+  },
+  "evidence_limits": {
+    "physical_known_ID_absence_only": true,
+    "historical_delete_success": false,
+    "fresh_supadmin": false,
+    "bootstrap7_qualification": false,
+    "partial_setup_closure": false,
+    "native_credit": 0
+  },
+  "result": {
+    "Outcome": "Minimal F1 same-connection row-visibility requirement proposed; original sufficiency not adopted.",
+    "Files changed": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/compact-addendum.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/binding-and-result.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/manifest.json"
+    ],
+    "Status": "Metadata frozen; source cb8 exact seven paths unchanged; no implementation allocation.",
+    "Open questions": [
+      "Fresh targeted High must validate this addendum.",
+      "Coordinator/Root must admit exact same-statement Auth+pg_roles observations and availability amendment before source edits."
+    ],
+    "Deferred work": [
+      "Actual-source caller controls, seven-path source fixes, committed-delta High review and any native execution"
+    ],
+    "Blockers": [
+      "SOURCE_WRITE_HOLD",
+      "AUTH_AND_ROLE_CATALOG_OBSERVATIONS_UNALLOCATED",
+      "WORKFLOW_INPUT_AVAILABILITY_UNKNOWN"
+    ]
+  },
+  "operations_taken": {
+    "semantic_tests": 0,
+    "native_queries": 0,
+    "provider_fetches": 0,
+    "source_edits": 0,
+    "git_mutations": 0,
+    "read_only_git_object_checks": true
+  },
+  "producer_script_saved": false,
+  "targeted_producer_lint": "NOT_APPLICABLE:no new script"
+}

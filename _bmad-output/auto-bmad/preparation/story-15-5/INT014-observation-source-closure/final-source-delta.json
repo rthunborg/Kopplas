@@ -1,0 +1,37 @@
+{
+  "source_rows": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 139901,
+      "sha256": "74721f43ece77fac70414592317ce06556b5cfc0718d9d6014afbec32bdf2c25",
+      "LF_bytes": 138508,
+      "LF_sha256": "d3d7a13919233a6bbd75646449a4de80257c015aa718a16616c513c6c5e8cef5",
+      "prospective_git_blob": "f97ac4c551d0e42fd47b46995ec6148ec64f82b7"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 325812,
+      "sha256": "8594bcc0bfb6fcd9c721868c93ee39a8b0744bca3d8df673f6ea050b2e0941b7",
+      "LF_bytes": 322787,
+      "LF_sha256": "fa217e6880476974af32babd14ad9991cff3d9877d4e37cdc99f53975f233e63",
+      "prospective_git_blob": "71970ab77e69ad475e5e900d25ffb4e2ef70dff6"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 258842,
+      "sha256": "59da7f5ba3731d56fe50a52409717ee527a920a728cc942ed66f4e30a6d25a16",
+      "LF_bytes": 255757,
+      "LF_sha256": "318c8ecd123d052eb29ab388538a313cc55f3048d7f63eadeeab105f07eccb8a",
+      "prospective_git_blob": "d5aca299a5cb0d15e45bb13601720acbe19f5f8b"
+    }
+  ],
+  "helper_complete_raw_inverse": true,
+  "unit_complete_raw_inverse_by_removing_only_new_adapter_and_three_tests": true,
+  "Spec_complete_raw_inverse": true,
+  "outside_SRO_unchanged": true,
+  "ownerFacts": {
+    "bytes_LF_with_trailingLF": 3563,
+    "sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085"
+  },
+  "historical_plan_kernel_reviewcounter_preserved": true
+}

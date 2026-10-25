@@ -1,0 +1,9 @@
+selected_phase: plan-native-feature-failure-repair-proposal
+selected_role: build-author-bounded-failure-repair-proposal
+selected_profile: sensitive
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Prepare concrete evidence-led proposal from actual95attempted37P58F: owned accessible error fallback, exact sharedjobs role-policy-set assertion (Coordinatorgrant required beforewrite), minimal own-data allowlistedSQLSTATE/fixedstage diagnostic preserving operations. No RPCobserver/principal/authority workaround. Preparation-only until independentHigh review/currentclaims admission; no fourth broad."

@@ -1,0 +1,31 @@
+{
+  "schema": "ROOT_API019_NORMAL_ONCE_JOURNAL_V1",
+  "phase": "PROVIDER_ONCE_ALLOCATED_ROOT_PUBLISH_PENDING_SUCCESS",
+  "created_at_utc": "2026-10-24T16:03:37.344066+00:00",
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-observation-effects-allocation.json",
+    "bytes": 6109,
+    "sha256": "c6d2df7700603cf4cd6dc2ac0548aab83e06f09d4aef0e1a84c2a67f0c08e46e"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-current-source-proof.json",
+    "bytes": 60788,
+    "sha256": "1a7abac1b423d2efeed053722fb606235de93744ce6ce2b049806a4ae908a3ab"
+  },
+  "provider": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/provider.py",
+    "bytes": 20587,
+    "sha256": "62a3271253c8d7a92be7e044b61e593263c0065ba1b85f5b08fdc9c6031562c3"
+  },
+  "controller": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/root-driver.py",
+    "bytes": 21112,
+    "sha256": "892a9ac99827e7aed7655b6e94a347ecd81cac0ec092ecff507c2b25a1faef7d"
+  },
+  "normal_acceptance": 0,
+  "no_retry": true
+}

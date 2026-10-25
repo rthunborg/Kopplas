@@ -1,0 +1,64 @@
+{
+  "schema": "INERT_FOUR_STATIC_STAGE_COMPATIBILITY_COUNTERPART_V1",
+  "execution_authorized": false,
+  "current_effect_authority": false,
+  "preparation_only": true,
+  "actual_run": null,
+  "actual_run_id": null,
+  "head": null,
+  "checkpoint": null,
+  "output_packet": null,
+  "normal_acceptance": 0,
+  "normal_acceptance_credit": 0,
+  "mode": "inert-source-compatibility-only",
+  "operator_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/reader.py",
+    "bytes": 52893,
+    "sha256": "23cd432bceeebe53cc3146ed098175b0b31e5dff35cd2753b4069dbe7b612cf1"
+  },
+  "baseline_reader": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/reader.py",
+    "bytes": 52631,
+    "sha256": "278531786c36acaf5c219e23b9970c45533b647358b75a544742e6e68af44007"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility-allocation.json",
+    "bytes": 2263,
+    "sha256": "d15b31797ed7929fbbd2b5accf83557e536b61d4eeb244dd96ed7a4b18f9ce2b"
+  },
+  "independent_plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility-plan.json",
+    "bytes": 12949,
+    "sha256": "841bcaa77315932825f953f107e99654554a8c88b65b2685ab01c53dc56da218"
+  },
+  "exact_added_stage_constants": [
+    "scenario-telemetry-privacy-refused-integration-ip-stdout-header",
+    "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+    "scenario-telemetry-privacy-refused-integration-ip-stderr-header",
+    "scenario-telemetry-privacy-refused-integration-ip-stderr-other"
+  ],
+  "function_or_algorithm_changes": 0,
+  "source_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/source-rows.json",
+    "bytes": 32933,
+    "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+  },
+  "historical_inventory": {
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "source_rows": 75,
+    "catalog_reference": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/proposal.json",
+      "bytes": 78340,
+      "sha256": "3aa3e629fd0ff3aa49fb80313a16f50d562e01bb1415d2f0642ebacaebc57da7"
+    },
+    "catalog_key": "unit_sources",
+    "unit_paths": 20,
+    "literal_titles": 444,
+    "excluded_dynamic_titles": 19,
+    "historical_wrapper_titles": 195,
+    "qualification": "Historical retained inventory only; no recount/rebuild and no amended-source or runtime coverage credit."
+  },
+  "safe_proof": "safe-proof.json",
+  "independent_actual_review": "REQUIRED_PENDING",
+  "runtime_authority": "NONE; null globals, original contradictory admission and all acquisition/main code unchanged."
+}

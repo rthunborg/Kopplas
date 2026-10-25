@@ -1,0 +1,113 @@
+{
+  "status": "PASS_BINDINGS",
+  "phase": "before",
+  "prepared": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/manifest.json",
+      "bytes": 1590,
+      "sha256": "fe8c36df94f39e4e48905390bec4791b148d4c14659bd971fbb0ec1e1e279b98"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/targeted-diagnostic-operator.py",
+      "bytes": 24060,
+      "sha256": "560b3accc66323a853b36a57d09fc12c1cc4dbc97059b705c15b79da59b4c559"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/test_targeted_diagnostic.py",
+      "bytes": 14937,
+      "sha256": "8c7bd578b913adbdcf12b3e7462623d831966373ad906c606473240cab9534b0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/preparation.json",
+      "bytes": 11742,
+      "sha256": "c93f6894b7350bc132efc2912e96f1417c687702960c4e6f143d58018da43021"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/bindings.json",
+      "bytes": 41758,
+      "sha256": "f7333652de4238ee8ce984df97d6e7afc5bfc2c2bc30f8e65c7e4b9024c51741"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/delta-proof.json",
+      "bytes": 3463,
+      "sha256": "1a9b5134cbc7aac9f852f95f1d91c1a39a508dd07041f2c788b149ff7fc3d471"
+    }
+  ],
+  "input_refs_verified": 14,
+  "current_source_rows": 74,
+  "raw_clean_computed_blob_checks": 222,
+  "Git_object_source_pushed_current_checks_reused_from_bound_author_proof": {
+    "native_exit": 0,
+    "entries": 222,
+    "stdout_sha256": "fa47db4a5a9f9233280734344458aa05d6fbed5f8ba20e3df5639dc352aae3ab"
+  },
+  "reused_spans": [
+    {
+      "exact_source_span_equal": true,
+      "name": "sha",
+      "sha256": "3ba4f30c0063de6df4aa44268ae7dbff16c58160a39891b223325eed77967548",
+      "utf8_bytes": 47
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "packed",
+      "sha256": "9d14af854d1730e3c9c9f7fb01d08fa8aebce7aab032a477ae21495c563f8ebf",
+      "utf8_bytes": 74
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "write",
+      "sha256": "945537d9b724835e8054aefe9ef7d0002f3cbf25e309082bc1e4fff5dd6fd3c5",
+      "utf8_bytes": 173
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "bind",
+      "sha256": "5e15f36d76e375304e702a12ee0890ccb07fe5068b45deed77d150d08d889744",
+      "utf8_bytes": 188
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "nodup",
+      "sha256": "50d8cb315f5c792eb77405e22e157950bacebe6c5ae1bb659a45eeeb32a0d0b9",
+      "utf8_bytes": 103
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "load",
+      "sha256": "8c065c8bd22f2987b8745cd7b7a0f4a4777e918796c8131031188204554cdde9",
+      "utf8_bytes": 75
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "get",
+      "sha256": "0d29e9702e2739af5529fad830015ff36c7d8c8321b0ce82b4cced3a3fca6dc1",
+      "utf8_bytes": 3155
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "zip_open",
+      "sha256": "5d014c4f532b77e1fdc980800a367d919a2ff57f6e3e338f83e6b32003e61644",
+      "utf8_bytes": 792
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "inflate",
+      "sha256": "10f67f0efa134883e180e3017a24335e055eb99ca3301be823409c945f939b77",
+      "utf8_bytes": 498
+    },
+    {
+      "exact_source_span_equal": true,
+      "name": "Halt",
+      "sha256": "33cb5435ec38e9b1059d72785cf258d81632e479318fc5da0aa1215bfb487dad",
+      "utf8_bytes": 65
+    }
+  ],
+  "old_packet_members_including_manifest": 22,
+  "prior_review_manifest_reverified": true,
+  "exact_artifact_specs_match_old_qualified_projections": true,
+  "activation_absent": true,
+  "future_output_absent": true,
+  "API_GETs": 0,
+  "native_acquisition": 0
+}

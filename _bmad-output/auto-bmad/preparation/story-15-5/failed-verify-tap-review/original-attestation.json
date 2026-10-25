@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_TARGETED_HIGH_FAILED_VERIFY_TAP_REVIEW",
+  "verdict": "NOTPASS",
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true,
+    "existing_reviewer_reused": true,
+    "fresh_context_free_claim": false,
+    "new_broad_review": false
+  },
+  "scope": {
+    "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "head": "f0b1e5735872ba2effcd7c1480756326125f6752",
+    "script": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01.mjs",
+    "run_id": 39569322317,
+    "job_id": 119119310666,
+    "endpoint": "repos/rthunborg/Kopplas/actions/jobs/119119310666/logs",
+    "only_new_extractor_proposal_allocation_and_necessary_static_context": true
+  },
+  "immutable_inputs": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01.mjs",
+      "bytes": 8575,
+      "sha256": "16bcb852e3923e03cff1e3c1fdd08dd38045299851c27fbc8e01c25728a5364a"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01-proposal.json",
+      "bytes": 15202,
+      "sha256": "b266966e2dec8dd74235d7a9edda2b41731b124e328ec3ea567822d94d1ba1fe"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-step-metadata-proof.json",
+      "bytes": 3155,
+      "sha256": "7a67cabd894ac8db000959a22a6e8615378721dcfac17d054e9b55e3605f6258"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/accepted-failed-verify-tap-allocation.json",
+      "bytes": 2114,
+      "sha256": "8892eac82f63c6c9d7fbaab84e054916abaf0a92d9e6197edccd4cc5d6c7f8d8"
+    }
+  ],
+  "payload_materialization_exact": true,
+  "pinned_source_inputs_verified": [
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "bytes": 19782,
+      "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "head_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "head_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "disposition": "BLOCKS_THIS_EXTRACTOR_REVISION",
+      "category": "Evidence completeness/correctness",
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01.mjs",
+      "lines": [
+        38,
+        39,
+        58,
+        59,
+        81
+      ],
+      "invariant": "Malformed/partial/unqualified TAP must remain incomplete UNKNOWN; observed complete transport does not prove complete TAP.",
+      "caller": "Root-only main after capture and repeated input qualification; source callback can validate each returned static location without validating missing records/plan/summary.",
+      "defect": "Marker-presence checks accept incomplete or contradictory flat transcripts; main promotes any successful analyzeTap return to LOCATED_FAILURES/tap_complete=true.",
+      "counterexamples": [
+        {
+          "kind": "flat_missing_second_record",
+          "root_plan": 2,
+          "actual_records": [
+            1
+          ],
+          "summary": {
+            "tests": 2,
+            "pass": 0,
+            "fail": 2
+          },
+          "actual_parser_accepted": true,
+          "returned_records": 1
+        },
+        {
+          "kind": "flat_summary_contradiction",
+          "root_plan": 1,
+          "actual_records": [
+            1
+          ],
+          "summary": {
+            "tests": 1,
+            "pass": 1,
+            "fail": 1
+          },
+          "actual_parser_accepted": true,
+          "returned_records": 1
+        },
+        {
+          "kind": "conflicting_root_plans",
+          "root_plans": [
+            1,
+            2
+          ],
+          "actual_parser_accepted": true,
+          "returned_records": 1
+        }
+      ],
+      "downstream_guard_checked": "Source path/HEAD/line validation and transport callback completeness do not validate TAP grammar, sequence or summary; no subsequent completeness validator before promotion.",
+      "nested_suite_count_caveat_preserved": true
+    }
+  ],
+  "independent_pure_controls": {
+    "main_calls": 0,
+    "network_calls": 0,
+    "real_gh_spawns": 0,
+    "analyzer_transcripts": 5,
+    "expected_outcomes_observed": 2,
+    "false_acceptances": 3,
+    "capture_controls_passed": 7,
+    "own_accessor_capture_control_passed": 1,
+    "synthetic_sentinels_not_returned": true,
+    "source_location_fixture": {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "line": 1555,
+      "column": 1,
+      "actual_HEAD_blob_and_line_range_verified": true
+    },
+    "method": "Import-safe actual module exports only; synthetic TAP/capture/error inputs and validating static-source callback. No invocation of exported main or operational reservation.",
+    "author18_control_claim": "Attributed proposal data only; not rerun or additive."
+  },
+  "source_inspection_only": {
+    "fixed_logical_endpoint_and_single_invocation": true,
+    "timeout_ms": 15000,
+    "maxBuffer": 4194304,
+    "reservation_wx_and_fsync_before_child": true,
+    "consumed_no_retry_intent": true,
+    "fixed_safe_output_whitelist": true,
+    "realpath_HEAD_line_column_source_qualification": true,
+    "actual_effectful_process_or_durability_test": false
+  },
+  "corrective_direction": {
+    "parent_requested_after_F1": true,
+    "compatible_with_current_allocation_if": "Always UNKNOWN and tap_complete=false; only positively observed validated unqualified location candidates; same static-source/line/title-digest/fixed-category whitelist; separate actual observed-byte transport status; no unvalidated TAP summary, complete inventory, absence, zero-failure, causal, fix or retry claims.",
+    "replacement_reviewed": false,
+    "F1_closed": false,
+    "execution_authorized": false
+  },
+  "action_limits": {
+    "owned_new_writes_only": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/original-report.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/original-attestation.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/result.json"
+    ],
+    "operational_script_or_proposal_changed": false,
+    "operational_result_created": false,
+    "source_spec_git_index_state_changes": 0,
+    "API_logs_artifact_CI_resource_effects": 0,
+    "raw_real_log_acquired_or_persisted": false,
+    "normal_acceptance_credit": 0,
+    "native_acceptance_credit": 0
+  },
+  "report": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/original-report.md",
+    "bytes": 6583,
+    "sha256": "119463908240cc470c2f8af84ef97f2fa1c561272c9cc3b27fb3114aef13a8c3"
+  },
+  "result": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/result.json",
+    "bytes": 954,
+    "sha256": "0fad3e4ddeb38f945f67ad4692fce39b6cbc4a306df5b64ddcb5e5df7f53a97d"
+  }
+}

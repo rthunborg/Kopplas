@@ -1,0 +1,51 @@
+{
+  "allocation": "ROOT_PRIVATE_AUDIT_EVIDENCE_PREPARATION_ONLY",
+  "audit_operation_id": "760ebc9b-d32a-4b1c-8e39-49f3242f644d",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "run": 40097034333,
+    "job": 120881358292,
+    "step": 8,
+    "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "checkpoint_id": "96ad8e91-7244-4cf1-acab-162e260914a1",
+    "publication_operation_id": "3da861fc-5ea1-4443-ae76-2de3ac5bf0c2",
+    "step_started": "2026-10-24T13:11:21Z",
+    "step_completed": "2026-10-24T13:11:22Z",
+    "endpoint": "repos/rthunborg/Kopplas/actions/jobs/120881358292/logs"
+  },
+  "source_assessment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-prerequisite-source-assessment.json",
+    "bytes": 15535,
+    "sha256": "649d8d58cb3d0fff446690b7d10fe673a6ad5643a8d1d1428beeeef281559162"
+  },
+  "terminal_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-terminal-metadata-qualification.json",
+    "bytes": 9025,
+    "sha256": "8dd887620112dd688364792e6365d9cbb0d951dea3f18fb19462bbe604f231b8"
+  },
+  "owned_new_directory": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-preparation",
+  "owned_new_members": [
+    "reader.py",
+    "proposal.json",
+    "pure-controls.json",
+    "manifest.json"
+  ],
+  "scope": "A single fixed-job audit projection. Reuse exact existing root-driver native function by narrow pinned extraction, no new capture/transport/retry/archive/catalog/parser family. New finite one-purpose projection only; default/import refuses before effect. Separate actualreview and finite completedCoordinator grant plus exclusive Rootactivation/intent before oneGET.",
+  "runtime_caps_if_later_granted": "One logical gh api GET exactjobendpoint only, actual reviewed native loop15s/stdout4MiB/stderr64KiB/wait2+twojoins1; outer60loop/512KiB64KiB/wait2+twojoins1 may reuse nativefunction. CLIbuiltin redirect/internalHTTPcountUNKNOWN, no manualfollow/header/Location persistence or retries. Native0/fullphysicalEOF/joined/closed/settled/nooverflow required; rawbody stderr and dynamicrawpayload digests RAMonly.",
+  "step_projection": "Source-backed exact command/group boundary, unambiguous single audit segment+completion within recordedtimewindow. Never attribute solely timestamp overlap. Missing/duplicate/conflicting/partial/unqualified content UNKNOWN/STOP. Known pnpmerror header/earlyJSON code takes precedence over forgedtable inmessage. Only source-backed closederror/reason enums,severity counts,manifest-owned packagenames, <=8 canonical structurallyvalid GHSA candidates explicitlyUNVERIFIED, <=8KiB projection. No dynamicmessage,title,URL,path,range,token,IP,rawbody or rawpayloadhash retained.",
+  "controls": "Finite pure RAM source-backed formatter/error/summary witnesses and actual projection boundaries/forged errors/normalization/malformedness; injected no-network transport closure/cap negative controls. Exactexistingcapture source conservation; no pnpmCLI/audit/network handler entry/realprocess/resource. No SQL/source75/catalog reconstruction.",
+  "research": "Official public GitHub Actions runner/GitHub API documentation or source may be browsed if needed to qualify expected job-log framing/CLI semantics; no actualCI/job or registry fetch and no othernetwork/dataAPI. Retain source attribution as public documentation, not actualhostobservation.",
+  "forbidden": [
+    "source/package/lock/workflow edits",
+    "Git mutations",
+    "actualjob/networkGET/registry/auditCLI/install",
+    "provider operations",
+    "resources/DB/browser/workload",
+    "raw logs/payload digests persisted",
+    "activation/grant/intent/runtimeoutputs now",
+    "oldslot replay or unchangedNORMAL"
+  ],
+  "result": "Nested standard6fields in proposal; concise exact4pins final. Stop source-backed discrepancy instead of inventing framing or weakening refusal. Independent actual High review includes plan+implementation+controls; no redundant broad review needed.",
+  "current_state": "0P0F95unexecuted auditprereq; IPquestionunobserved; old93/API019Fhistorical; P5OPEN/cap3/15.6unstarted/no deployment"
+}

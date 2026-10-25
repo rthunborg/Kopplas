@@ -1,0 +1,35 @@
+{
+  "schema": "ACCEPTED_COORDINATOR_EXACT_SIX_SOURCE_ALLOCATION_v1",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_grant": {
+    "turn_id": "01a15f9e-821a-7661-b7f8-7d691f2fb995",
+    "turn_status": "inProgress",
+    "tool_id": "exec-0dcb74e3-474f-43f2-bf0f-fe900ca7847e",
+    "status": "completed",
+    "prompt": "EXPLICITexact6SOURCE-ONLY allocation GRANTED supersedingHELD5scope, underactualindependentHighF1PASSce9addb2e75809a1e808fd3548ffb81196c1a5e3bfbe00b00965596fc66030b1/result5c581882f26b54b142f76dd34be434cef5d54760e37b4b98f8c26f1c1b5cb928 andC4refinement99c216566c6ef6460687101ee4cb66cb3694fafd607f76bd85fc9a20efd38a8a+exactF1deltadc7191d83bb2796a593b5fafd5f0e78345640695ce82f50423b6f263df198add/ALLoriginalC1-C7. ONLYoriginal5 atddhelper/wrapperunit/feedRLS/feedE2E/ownSpec PLUS tests/factories/admin-sql.ts narrowOPT-INlifecyclehunk atunchanged1e2e05c8bindings. ActualE16no current/prospectivefactoryclaim/DocsCIcompleted retained; no moreownerqueriesneededabsentnewclaim. FactoryadminRetiredSession SAMEconfiguredpool/principal/query-onlycallback; boundedACTUALquery/protocoldrain/closure, ALWAYS exactly-oncePUBLICrelease(true), no idle-reusecertification/frontendclosureNOTbackendrollback/canonicalproof. ExactOWNEDclientweakdispatchgate/minimalclientsink mayhandleONLYregisteredownederrorrouteincllateerrors; ALLforeign/default/otherevents originalNodeemitVERBATIM/foreignthrowslistenerspreserved, no globalcatch/errorlistener/newpool/principal/backendkill/strongretention. Weakownership+removedactivepromisestate/defaultcallerscompatible. Preservecommittedseam-publication-beforeindependentcallback/settleactualworkbeforefullcanonicalmetadatarestore/sameclientauthority/uncertaintyCUSTODYUNKNOWN/NOblindretry/nofurtherseams. Original5harnesscorrectionsandstrict95enrollment/kernel5760/review3/inreview;privacyAPI019/E2E001flakies/custodyOPEN. MeaningfulactualinstalledPool+fakeclientcontrols/nonnativeprooftruthful, DISTINCTcommitteddeltaHighreview MUSTcheckownedvsforeignerrorpaths/exactonce-retirement/no prematurebackendcleanclaim. Rootexactcommit+offlinechecksONLY; ifinterfacesinsufficientSTOPpreciseaddition, no implicitapp/migration/wrapper/runner/collector/depschanges. ALL111andearlierappliedSQLIMMUTABLE. NOactualSQL/connection/CI/GET/resource/push/provider/mainmerge/deployruntimegrant. Clean-treebookkeepingroutineallowed; laternormal/nativeeffectsseparatelyqualified.",
+    "prompt_sha256": "3a02c942ec34298f3ecaabcc5e2e106db60383eaf94c88fb6b663cdee9429c51"
+  },
+  "base_metadata_head": "1e2e05c802933326868b7353fc4de4a56b343bfa",
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "actual_run_head": "b459af22d490eadc90113fd713a73b65aff89471",
+  "supersedes_held_five_scope": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-post-acl-harness-source-allocation.json",
+  "candidate_write_paths": [
+    "tests/factories/admin-sql.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "conditions": [
+    "Original C1-C7",
+    "C4 proposal99c216566c6ef6460687101ee4cb66cb3694fafd607f76bd85fc9a20efd38a8a",
+    "F1 delta dc7191d83bb2796a593b5fafd5f0e78345640695ce82f50423b6f263df198add",
+    "Independent F1 PASS_PLAN_ONLY_F1_CLOSED"
+  ],
+  "source_and_offline_controls_authorized": true,
+  "root_exact_commit_authorized": true,
+  "actual_sql_connections_runtime_ci_get_resource_push_provider_merge_deploy_authorized": false,
+  "all_applied_migrations_immutable": true,
+  "normal_acceptance_credit": 0
+}

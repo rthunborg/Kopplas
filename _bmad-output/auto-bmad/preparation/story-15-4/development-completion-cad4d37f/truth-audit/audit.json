@@ -1,0 +1,821 @@
+{
+  "kind": "independent-final-delivery-truth-provenance-audit",
+  "audit_role": "distinct from implementation author/build parent and native CI qualifier",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Actual RLS and transactional-integrity evidence assertions"
+  },
+  "created_at": "2026-10-20T11:58:21.958651+00:00",
+  "scope": "Bounded delivery assertions and provenance; no new code review round, exhaustive hunt, runtime or status mutation",
+  "status": "FAIL",
+  "check_count": 43,
+  "error_count": 1,
+  "errors": [
+    "56 story integration bodies: 38 DB and 18 component"
+  ],
+  "discrepancies": [
+    "56 story integration bodies: 38 DB and 18 component"
+  ],
+  "delivery_record": {
+    "path": "_bmad-output/auto-bmad/delivery/15-4-time-reporting-filing-timesheet-review.json",
+    "bytes": 25618,
+    "raw_sha256": "acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6"
+  },
+  "sourcefreeze": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-4/sourcefreeze-ci-followup-d798b286.json",
+    "bytes": 68088,
+    "raw_sha256": "e575391c9df265a21df890ba02dc1ea9dc1c538aada289e14325a9f0946afe17"
+  },
+  "evidence_revision": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+  "latest_reviewed_source": "f20208dca11f4f1f4106cab4a4f8322b945ace21",
+  "approved_kernel_sha256": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb",
+  "spec_snapshot": {
+    "path": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+    "bytes": 75297,
+    "raw_sha256": "8f99bfc063d432f10bf54cad7f9cd8d1a9e736580ad41e77c08c845eea00c56d"
+  },
+  "bindings": {
+    "native_packet_files": 190,
+    "historical_packet_files": [
+      193,
+      331
+    ],
+    "total_packet_files_verified": 714,
+    "source_paths": 60,
+    "metadata_paths": 116,
+    "Git_snapshots": 124
+  },
+  "core_packet_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/report.json",
+      "bytes": 356691,
+      "raw_sha256": "d92811e5c91ae4429fd14e40d5a68a32adc3c7b87cb4c166cdcea88ffc54a360"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/report.md",
+      "bytes": 15663,
+      "raw_sha256": "b6c35394f5a34ee1f00e4fc87d246f1dc1f66e5017a28fda718753806b69e599"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/sha256-manifest.json",
+      "bytes": 36542,
+      "raw_sha256": "d3558fc2b6a98f1ac4fdf32eff6b497a9ea28dcc367ff6bd1c64bb4b8479733a"
+    }
+  ],
+  "review_artifact_bindings": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-d798b286/narrow-original-review-report.md",
+      "bytes": 7641,
+      "raw_sha256": "d95e2166a67fcdf139b0a7fab6714b3c60fcab7c360da9fc4e86929fd32d6d8b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-d798b286/narrow-original-review-attestation.json",
+      "bytes": 2672,
+      "raw_sha256": "3ccafb0a21efabca99d9d64d7aa28f4bbf80f6f8c525418b7e18b70387f9675f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-d798b286/narrow-review-input-binding.json",
+      "bytes": 1908,
+      "raw_sha256": "4a175c982056f367e2a33fd1cf5bc4a7c52f7f865846c76cf9a740dea167f079"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-d798b286/narrow-review-content.diff",
+      "bytes": 131976,
+      "raw_sha256": "d8031d6886aa36cce98fed0e37b880cfd084033842eaad925bcc17aca1f6d67b"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Delivery exact frozen bytes",
+      "status": "passed",
+      "evidence": {
+        "path": "_bmad-output/auto-bmad/delivery/15-4-time-reporting-filing-timesheet-review.json",
+        "bytes": 25618,
+        "raw_sha256": "acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6"
+      }
+    },
+    {
+      "name": "Sourcefreeze exact frozen bytes",
+      "status": "passed",
+      "evidence": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-4/sourcefreeze-ci-followup-d798b286.json",
+        "bytes": 68088,
+        "raw_sha256": "e575391c9df265a21df890ba02dc1ea9dc1c538aada289e14325a9f0946afe17"
+      }
+    },
+    {
+      "name": "Native report.json frozen hash",
+      "status": "passed",
+      "evidence": {
+        "path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/report.json",
+        "bytes": 356691,
+        "raw_sha256": "d92811e5c91ae4429fd14e40d5a68a32adc3c7b87cb4c166cdcea88ffc54a360"
+      }
+    },
+    {
+      "name": "Native report.md frozen hash",
+      "status": "passed",
+      "evidence": {
+        "path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/report.md",
+        "bytes": 15663,
+        "raw_sha256": "b6c35394f5a34ee1f00e4fc87d246f1dc1f66e5017a28fda718753806b69e599"
+      }
+    },
+    {
+      "name": "Native sha256-manifest.json frozen hash",
+      "status": "passed",
+      "evidence": {
+        "path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/sha256-manifest.json",
+        "bytes": 36542,
+        "raw_sha256": "d3558fc2b6a98f1ac4fdf32eff6b497a9ea28dcc367ff6bd1c64bb4b8479733a"
+      }
+    },
+    {
+      "name": "Manifest conservation checkpoint-cad4d37f-ci-independent",
+      "status": "passed",
+      "evidence": {
+        "folder": "checkpoint-cad4d37f-ci-independent",
+        "verified_files": 190,
+        "manifest_sha256": "d3558fc2b6a98f1ac4fdf32eff6b497a9ea28dcc367ff6bd1c64bb4b8479733a",
+        "errors": []
+      }
+    },
+    {
+      "name": "Manifest conservation checkpoint-51f37bc9-ci-independent",
+      "status": "passed",
+      "evidence": {
+        "folder": "checkpoint-51f37bc9-ci-independent",
+        "verified_files": 193,
+        "manifest_sha256": "d32fce124eeefec11fd98b7ae4afc172da48fcb62b6dbd4bfc5f2a7cfc0e304e",
+        "errors": []
+      }
+    },
+    {
+      "name": "Manifest conservation checkpoint-d798b286-ci-independent",
+      "status": "passed",
+      "evidence": {
+        "folder": "checkpoint-d798b286-ci-independent",
+        "verified_files": 331,
+        "manifest_sha256": "12e320ab1e916fe61d3a8ec66e97978d81790512d3cee5b3e2b484a9288a3dd0",
+        "errors": []
+      }
+    },
+    {
+      "name": "116 current raw and exact-head Git/blob bindings",
+      "status": "passed",
+      "evidence": {
+        "verified": 116,
+        "errors": [],
+        "method": "Independent SHA256 raw-file comparison and git show/rev-parse against source-provenance metadata_bindings; no runtime credit."
+      }
+    },
+    {
+      "name": "60 frozen source paths equal independently reviewed source",
+      "status": "passed",
+      "evidence": {
+        "verified": 60,
+        "errors": [],
+        "reviewed_source": "f20208dca11f4f1f4106cab4a4f8322b945ace21",
+        "method": "Independent raw SHA256 plus exact cad4 Git bytes/blob and reviewed f202 blob comparisons."
+      }
+    },
+    {
+      "name": "124 exact Git source snapshots",
+      "status": "passed",
+      "evidence": {
+        "verified": 124,
+        "errors": [],
+        "method": "Each assertion-source snapshot compared byte-for-byte with git show cad4:path; SHA256 and Git blob IDs match saved_git_sources."
+      }
+    },
+    {
+      "name": "Pinned approved kernel unchanged",
+      "status": "passed",
+      "evidence": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-4/candidate-intent-contract.txt",
+        "bytes": 4890,
+        "raw_sha256": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb"
+      }
+    },
+    {
+      "name": "Current HEAD and native identity",
+      "status": "passed",
+      "evidence": {
+        "run": 39415418173,
+        "attempt": 1,
+        "checkpoint": "420be87e-0913-42fe-8909-f7fda85cb934",
+        "head": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+        "native_run_metadata": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/run-terminal.json"
+      }
+    },
+    {
+      "name": "Five native required jobs passed; optional four uncredited",
+      "status": "passed",
+      "evidence": [
+        [
+          "checkpoint-admission",
+          "success"
+        ],
+        [
+          "verify",
+          "success"
+        ],
+        [
+          "recovery-storage-loader",
+          "success"
+        ],
+        [
+          "db",
+          "success"
+        ],
+        [
+          "e2e",
+          "success"
+        ],
+        [
+          "dashboard-e2e",
+          "skipped"
+        ],
+        [
+          "fixed-chromium-application-verification",
+          "skipped"
+        ],
+        [
+          "fixed-chromium-paired-probe",
+          "skipped"
+        ],
+        [
+          "native-stream-probe",
+          "skipped"
+        ]
+      ]
+    },
+    {
+      "name": "All 24 immutable qualification conditions",
+      "status": "passed",
+      "evidence": {
+        "native_run_success": true,
+        "all_five_required_jobs_success": true,
+        "unit_no_failures_or_skips": true,
+        "linux_xattr_actually_executed": true,
+        "focused_process43_passed": true,
+        "full_integration_available_and_success": true,
+        "all38_time_report_DB_bodies_passed": true,
+        "all18_component_bodies_passed": true,
+        "all17_pure_bodies_passed": true,
+        "all3_new_browser_bodies_passed": true,
+        "essential_browser_union17_zero_skips_errors": true,
+        "physical_storage_direct_proof": true,
+        "serial4_exactly_once_after_parallel_nonoverlapping": true,
+        "all60_frozen_sources_match": true,
+        "migration109_startup_and_reset_all3": true,
+        "native_releasefalse_smoke_selected_exhaustive_skipped": true,
+        "required_native_artifacts_present": true,
+        "required_job_rawlogs_present": true,
+        "no_DB_unhandled_error_section": true,
+        "all116_sourcefreeze_metadata_bindings_match": true,
+        "all_downloaded_ZIP_native_digests_match": true,
+        "browser001_exact_SQL_numeric_and_complete_tail": true,
+        "all116_metadata_both_prior_packets_reverified": true,
+        "new76_inventory_native_binding": true
+      }
+    },
+    {
+      "name": "Canonical static/build execution",
+      "status": "passed",
+      "evidence": {
+        "native_log": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/logs/118603175261-verify.log",
+        "job_conclusion": "success",
+        "security_audit": "2 vulnerabilities found; high threshold passed; no zero-advisory claim"
+      }
+    },
+    {
+      "name": "3041 native units with actual Linux xattr",
+      "status": "passed",
+      "evidence": {
+        "counts": {
+          "tests": 3041,
+          "suites": 103,
+          "pass": 3041,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "native_log_lines": [
+          9810,
+          20555,
+          20557,
+          20560
+        ],
+        "Windows historical skip_not_credited": true
+      }
+    },
+    {
+      "name": "43 focused process tests",
+      "status": "passed",
+      "evidence": {
+        "groups": [
+          2,
+          26,
+          10,
+          5
+        ],
+        "sum": 43
+      }
+    },
+    {
+      "name": "Required integration actual counts",
+      "status": "passed",
+      "evidence": {
+        "files": 161,
+        "declared": 1980,
+        "passed": 1928,
+        "failed": 0,
+        "historical_skipped": 52,
+        "source": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/extracted/native-full-integration/full-integration.json",
+        "nested_suites_not_files": 515
+      }
+    },
+    {
+      "name": "RLS nonadditive subset actual counts",
+      "status": "passed",
+      "evidence": {
+        "count": 843,
+        "passed": 829,
+        "skipped": 14,
+        "nonadditive": true
+      }
+    },
+    {
+      "name": "56 story integration bodies: 38 DB and 18 component",
+      "status": "failed",
+      "evidence": {
+        "time-reports.int.test.ts": {
+          "passed": 7
+        },
+        "time-report-nudge-producer.int.test.ts": {
+          "passed": 13
+        },
+        "time-reports.test.ts": {
+          "passed": 18
+        },
+        "time-reports.rls.test.ts": {
+          "passed": 7
+        }
+      }
+    },
+    {
+      "name": "76 inventory proof classes separated",
+      "status": "passed",
+      "evidence": {
+        "classes": {
+          "browser": 3,
+          "pure": 17,
+          "real_DB": 38,
+          "synthetic_component_actual_VM_controller": 18
+        },
+        "pure_and_component_no_DB_or_browser_credit": true
+      }
+    },
+    {
+      "name": "RLS assertion reach",
+      "status": "passed",
+      "evidence": {
+        "source": "tests/integration/rls/time-reports.rls.test.ts",
+        "cases": "001-007 all actual passed",
+        "inspected": "Raw RPC union-role matrix separate from command envelope; own/peer/foreign projection; direct DML/private column denials; actor/on-behalf/tenant spoofing; anon/inactive/revoked/platform-only refusal; elevated trigger immutability; forced RLS/safe-column/RPC catalog ACL."
+      }
+    },
+    {
+      "name": "Transactional integrity assertion reach",
+      "status": "passed",
+      "evidence": {
+        "source": "tests/integration/commands/time-reports.int.test.ts",
+        "native": "11 passed",
+        "inspected": "INT009 actual filing/annotation stage fault exact P5401/P5402, excludes P5499, snapshot rollback and explicit retry audit count; INT010 authority after actual lock wait. withReportAuditFault UUID-specific teardown/catalog absence awaited."
+      }
+    },
+    {
+      "name": "Read-model failure evidence honestly bounded",
+      "status": "passed",
+      "evidence": {
+        "source": "tests/integration/read-models/time-reports.int.test.ts",
+        "native": "7 passed",
+        "inspected": "READ006 persists page prefix via real filing and injects only later transport failure; READ007 retains real fractional booking context/persisted weekly prefix; no mocked successful DB data claim."
+      }
+    },
+    {
+      "name": "Nudge all13 bodies and consequential subassertions",
+      "status": "passed",
+      "evidence": {
+        "source": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+        "qualified_source": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/nudge-runtime-qualification.json",
+        "inspected": "001 real SQL DST23h/25h, midnight and exclusive end;004 27 real recipients, cursor dispatch/resume/idempotence;008 P5403 inserted-stage atomic rollback;010 four authenticated opt-out-first pg_blocking_pids waits;011 four emission-first real auth/service-JWT exact55P03 and explicit retry;012/013 current membership/private invoker/catalog ACL."
+      }
+    },
+    {
+      "name": "Nudge owner gate release and exact object cleanup",
+      "status": "passed",
+      "evidence": {
+        "locations": [
+          "tests/integration/notifications/time-report-nudge-producer.int.test.ts:268",
+          "tests/support/time-reports-atdd.ts:118"
+        ],
+        "inspected": "Control transaction commit/rollback releases gate before Promise.allSettled of producer and writer; UUID-owned trigger/function drop followed by catalog zero. Fixture SET LOCAL session_replication_role=replica deletes only owned immutable report fixtures, distinct from asserted production enforcement. No per-statement SQL trace claimed."
+      }
+    },
+    {
+      "name": "Four serial suites once after parallel without overlap",
+      "status": "passed",
+      "evidence": {
+        "after_parallel": true,
+        "nonoverlapping": true,
+        "files": [
+          {
+            "name": "/home/runner/work/Kopplas/Kopplas/tests/integration/commands/conflict-resolver.int.test.ts",
+            "startTime": 1792496539150,
+            "endTime": 1792496568504.4949,
+            "status": "passed"
+          },
+          {
+            "name": "/home/runner/work/Kopplas/Kopplas/tests/integration/commands/time-reports.int.test.ts",
+            "startTime": 1792496608580,
+            "endTime": 1792496630919.041,
+            "status": "passed"
+          },
+          {
+            "name": "/home/runner/work/Kopplas/Kopplas/tests/integration/jobs/job-runs.int.test.ts",
+            "startTime": 1792496631192,
+            "endTime": 1792496631245.5962,
+            "status": "passed"
+          },
+          {
+            "name": "/home/runner/work/Kopplas/Kopplas/tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+            "startTime": 1792496569010,
+            "endTime": 1792496608178.6199,
+            "status": "passed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Migration109 startup/reset all three required jobs",
+      "status": "passed",
+      "evidence": {
+        "db": {
+          "migration109_application_count": 2,
+          "reset_attempts": [
+            "1"
+          ],
+          "finished_reset_count": 1,
+          "required_stack_env": true,
+          "native_lines": [
+            {
+              "line": 937,
+              "text": "2026-10-20T11:34:40.8528294Z Applying migration 20261020190000_time_reports.sql..."
+            },
+            {
+              "line": 938,
+              "text": "2026-10-20T11:34:40.8956678Z Seeding data from supabase/seed.sql..."
+            },
+            {
+              "line": 1014,
+              "text": "2026-10-20T11:35:02.2459809Z ##[group]supabase db reset (attempt 1/3)"
+            },
+            {
+              "line": 1127,
+              "text": "2026-10-20T11:35:23.8248451Z Applying migration 20261020190000_time_reports.sql..."
+            },
+            {
+              "line": 1128,
+              "text": "2026-10-20T11:35:23.8730210Z Seeding data from supabase/seed.sql..."
+            },
+            {
+              "line": 1132,
+              "text": "2026-10-20T11:35:35.1082030Z Finished supabase db reset on branch main."
+            }
+          ]
+        },
+        "e2e": {
+          "migration109_application_count": 2,
+          "reset_attempts": [
+            "1"
+          ],
+          "finished_reset_count": 1,
+          "required_stack_env": true,
+          "native_lines": [
+            {
+              "line": 1216,
+              "text": "2026-10-20T11:35:24.2381750Z Applying migration 20261020190000_time_reports.sql..."
+            },
+            {
+              "line": 1217,
+              "text": "2026-10-20T11:35:24.2797319Z Seeding data from supabase/seed.sql..."
+            },
+            {
+              "line": 1295,
+              "text": "2026-10-20T11:35:46.1391732Z ##[group]supabase db reset (attempt 1/3)"
+            },
+            {
+              "line": 1408,
+              "text": "2026-10-20T11:36:06.5593182Z Applying migration 20261020190000_time_reports.sql..."
+            },
+            {
+              "line": 1409,
+              "text": "2026-10-20T11:36:06.6171193Z Seeding data from supabase/seed.sql..."
+            },
+            {
+              "line": 1413,
+              "text": "2026-10-20T11:36:17.5200642Z Finished supabase db reset on branch main."
+            }
+          ]
+        },
+        "recovery-storage-loader": {
+          "migration109_application_count": 2,
+          "reset_attempts": [],
+          "finished_reset_count": 1,
+          "required_stack_env": true,
+          "native_lines": [
+            {
+              "line": 985,
+              "text": "2026-10-20T11:34:55.7523560Z Applying migration 20261020190000_time_reports.sql..."
+            },
+            {
+              "line": 986,
+              "text": "2026-10-20T11:34:55.7901389Z Seeding data from supabase/seed.sql..."
+            },
+            {
+              "line": 1157,
+              "text": "2026-10-20T11:35:38.8400800Z Applying migration 20261020190000_time_reports.sql..."
+            },
+            {
+              "line": 1158,
+              "text": "2026-10-20T11:35:38.9022008Z Seeding data from supabase/seed.sql..."
+            },
+            {
+              "line": 1162,
+              "text": "2026-10-20T11:35:50.3430953Z Finished supabase db reset on branch main."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "H4/policy/grants executed subset",
+      "status": "passed",
+      "evidence": {
+        "native_assertions": 12,
+        "source": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/report.json:h4_native_assertions",
+        "migrations105_108_conservation": [
+          {
+            "path": "supabase/migrations/20261019180000_recurring_booking_series.sql",
+            "sha256": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+            "unchanged_from_story15_3_ci": true
+          },
+          {
+            "path": "supabase/migrations/20261019220000_booking_series_integrity_followup.sql",
+            "sha256": "57e7e9fc930513099b20759b84fd21c2b851f154effb8a0e45c198262da4a37d",
+            "unchanged_from_story15_3_ci": true
+          },
+          {
+            "path": "supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql",
+            "sha256": "3143b16557b8aeda056a206e354311298289e9787bbbb07567a126ad0ce821bc",
+            "unchanged_from_story15_3_ci": true
+          },
+          {
+            "path": "supabase/migrations/20261020180000_conflict_resolver.sql",
+            "sha256": "8da15d696d0e622e8b6b1e983b16de1e5818741a4fd38c7236afc138d1ae66c0",
+            "unchanged_from_story15_3_ci": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "17 browser cases first-pass zero failures/retries/skips/global errors",
+      "status": "passed",
+      "evidence": {
+        "stats": {
+          "startTime": "2026-10-20T11:36:18.748Z",
+          "duration": 85705.947,
+          "expected": 17,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "cases": 17,
+        "attempts": 17,
+        "source": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/extracted/native-general-browser/general-browser.json"
+      }
+    },
+    {
+      "name": "Browser001 exact numeric and complete tails reached",
+      "status": "passed",
+      "evidence": {
+        "source": "tests/e2e/time-reports.e2e.spec.ts:15",
+        "source_sha256": "af8426958dae73e77006ae9ada9cba013003956eb8b273c67a88ad8fda825166",
+        "inspected": "Unique visible own card/global peer absence; tenant+report SQL numeric=120 Boolean requires one row and true, audit/count attribution, own week/job/3h/missing date/no Person/reload/note/full snapshot; native passed body."
+      }
+    },
+    {
+      "name": "Browser002 same-attempt lost commit authority/retry persistence reached",
+      "status": "passed",
+      "evidence": {
+        "source": "tests/e2e/time-reports.e2e.spec.ts:87",
+        "inspected": "360x640 lost committed response, disabled membership error and restore, four same payload attempts, immutable physical row/audit snapshots and own week/no-profile reload; native passed body."
+      }
+    },
+    {
+      "name": "Browser003 actual filters annotation reload Admin refusal reached",
+      "status": "passed",
+      "evidence": {
+        "source": "tests/e2e/time-reports.e2e.spec.ts:172",
+        "inspected": "Person/Jobb/week filters/totals; booked comparison; attributed review/core preservation/audit count; reload; Admin on-behalf refusal and own visibility; native passed body."
+      }
+    },
+    {
+      "name": "14 predecessor smoke cases preserved",
+      "status": "passed",
+      "evidence": {
+        "prior_cases": 14,
+        "native_first_pass": true,
+        "source_binding": "124 snapshots + immutable source-provenance admitted dependencies"
+      }
+    },
+    {
+      "name": "Separate physical Storage proof actual1P0F0S 2objects66bytes",
+      "status": "passed",
+      "evidence": {
+        "source": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/extracted/native-isolated-storage-recovery/isolated-storage-recovery.json",
+        "materialization_log_line": 4528,
+        "DB_lane_skip_not_credited": true
+      }
+    },
+    {
+      "name": "Review accounting and failed R1 wrapper truthful",
+      "status": "passed",
+      "evidence": {
+        "counted": "1 broad R1 + 2 limited R2/R3",
+        "separate_narrow_ci_followups": 2,
+        "R1": "Wrapper exit1/unqualified triage only; model unavailable",
+        "R2": "Native exit0 observed Sol6.1 High command qualification, residual source finding; not source PASS",
+        "R3": "Limited residual closure0findings",
+        "last_narrow": "f20208dc0findings; unchanged60paths bind cad4; no fourth broad review"
+      }
+    },
+    {
+      "name": "Latest original review artifact narrow-original-review-report.md",
+      "status": "passed",
+      "evidence": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-d798b286/narrow-original-review-report.md",
+        "bytes": 7641,
+        "raw_sha256": "d95e2166a67fcdf139b0a7fab6714b3c60fcab7c360da9fc4e86929fd32d6d8b"
+      }
+    },
+    {
+      "name": "Latest original review artifact narrow-original-review-attestation.json",
+      "status": "passed",
+      "evidence": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-d798b286/narrow-original-review-attestation.json",
+        "bytes": 2672,
+        "raw_sha256": "3ccafb0a21efabca99d9d64d7aa28f4bbf80f6f8c525418b7e18b70387f9675f"
+      }
+    },
+    {
+      "name": "Failed checkpoint history not retrocredited",
+      "status": "passed",
+      "evidence": {
+        "CI1": "51f/39408197808 integration12F including11nudge;001/003 failed before tails;004 earlier callback cause UNKNOWN",
+        "CI2": "d798/39412225741 DB1928P0F52S/all13nudgeP;001 both attempts failed numeric string matcher before audit/week/reload tails;002/003+prior14firstpass",
+        "later_cad4_pass_does_not_rewrite_history": true,
+        "VM_SSR_Windows_skip_limits_preserved": true
+      }
+    },
+    {
+      "name": "Release checks deferred with owner evidence next action",
+      "status": "passed",
+      "evidence": [
+        {
+          "item": "Exhaustive browser/device/view matrices",
+          "owner": "QA/UX",
+          "status": "deferred",
+          "evidence": "Current exact-head essential17-case configured-production smoke and360x640 flow passed; exhaustive matrices were not executed because release_validation=false. Essential smoke is not exhaustive matrix evidence.",
+          "next_action": "Define the owned release browser/device/view matrix, admit a separate release-validation run and retain every executed/failed/skipped result before release readiness."
+        },
+        {
+          "item": "Screenshots, visual comparison and visual inspection",
+          "owner": "QA/UX",
+          "status": "deferred",
+          "evidence": "No screenshot-comparison or exhaustive visual inspection pass is claimed by CI3. No uploaded trace/HTML bytes were inspected. Older visual gate language is reconciled to the authorized2026-10-19 completion policy, not marked passed.",
+          "next_action": "Capture approved viewport/state screenshots on a qualified release candidate, compare them against approved design/defaults and record review outcomes and required corrections."
+        },
+        {
+          "item": "Manual accessibility, daylight and exploratory walkthroughs",
+          "owner": "QA/UX",
+          "status": "deferred",
+          "evidence": "Connected essential controls and flows have current browser/SSR evidence; exhaustive manual accessibility/daylight/exploration work remains unexecuted and distinct from explicit-label/essential-flow checks.",
+          "next_action": "Run the scoped keyboard/focus/assistive/manual daylight and exploratory checklist on the qualified release candidate, preserve observations and resolve consequential defects before release approval."
+        },
+        {
+          "item": "Actual <=30-second one-hand filing timing",
+          "owner": "QA/UX",
+          "status": "deferred",
+          "evidence": "The360x640 essential workflow passed; no measured one-hand completion-time study was performed. Automated timeout/duration is not the requested human timing evidence.",
+          "next_action": "Execute and record actual representative one-hand booking/standalone filing timing, including failure/retry usability, then evaluate against the <=30-second requirement."
+        },
+        {
+          "item": "Representative workload, target approval and performance certification",
+          "owner": "Product/Architect",
+          "status": "deferred",
+          "evidence": "The admin-users-only pilot executed but no approved representative Scheduling/time-report workload/threshold or performance certification exists; unrelated pilot timings do not supply that credit.",
+          "next_action": "Approve representative tenant/history/concurrency workloads and thresholds, then admit and execute performance validation and record actual measurements against those approved targets."
+        },
+        {
+          "item": "Release polish",
+          "owner": "Delivery owner",
+          "status": "deferred",
+          "evidence": "Required functional/security/integrity/essential-browser gates passed at the evidence revision. Exhaustive release polish review has not executed and is not needed to hide or defer any consequential failure.",
+          "next_action": "Maintain the owned polish list, inspect the qualified release candidate, resolve agreed items and attach actual release-review evidence before requesting release approval."
+        }
+      ]
+    },
+    {
+      "name": "Inherited epic caveat preserved; no release or approval certification",
+      "status": "passed",
+      "evidence": {
+        "spec": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+        "inherited_epic_review_unverified": true,
+        "meaning": "15.4 qualified development assertions do not clear inherited15.2/epic draft caveat; Root must preserve it during status-only closure."
+      }
+    },
+    {
+      "name": "Audit remains within evidence-only write authority",
+      "status": "passed",
+      "evidence": {
+        "new_reports_only": "_bmad-output/auto-bmad/preparation/story-15-4/development-completion-cad4d37f/truth-audit/",
+        "source_spec_delivery_state_mutations": 0,
+        "tests_rerun": 0,
+        "runtime_resources_remote_mutations": 0,
+        "nested_delegates": 0,
+        "review_rounds_started": 0
+      }
+    }
+  ],
+  "development_complete_assertions_supported": false,
+  "state_transition_performed": false,
+  "release_ready": false,
+  "approval_granted": false,
+  "status_only_closure_constraints": [
+    "Root must separately admit exact status/author metadata changes and rerun executable delivery gate as required; no source/test/schema/dependency/kernel changes are covered by this audit.",
+    "Carry all six deferred items into the owned release ledger, preserving pinned representative R012/performance scope, complete browser/device/mobile matrix, all11visual states, accessibility/daylight/exploration and <=30-second human timing scope. Deferral means unexecuted; actual evidence/owners/actions remain visible.",
+    "Preserve inherited Epic15 review_unverifiedTRUE/draft caveat and all prior failed/interrupted/skipped outcomes; do not present story15.4 completion as epic/release certification.",
+    "No release, merge, deployment, publication or automatic Preview authorization. Evidence binds cad4 and the exact delivery SHA; material subsequent changes require appropriate targeted evidence refresh."
+  ],
+  "open_questions": [],
+  "blockers": [],
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive browser/device/view matrices",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Current exact-head essential17-case configured-production smoke and360x640 flow passed; exhaustive matrices were not executed because release_validation=false. Essential smoke is not exhaustive matrix evidence.",
+      "next_action": "Define the owned release browser/device/view matrix, admit a separate release-validation run and retain every executed/failed/skipped result before release readiness."
+    },
+    {
+      "item": "Screenshots, visual comparison and visual inspection",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "No screenshot-comparison or exhaustive visual inspection pass is claimed by CI3. No uploaded trace/HTML bytes were inspected. Older visual gate language is reconciled to the authorized2026-10-19 completion policy, not marked passed.",
+      "next_action": "Capture approved viewport/state screenshots on a qualified release candidate, compare them against approved design/defaults and record review outcomes and required corrections."
+    },
+    {
+      "item": "Manual accessibility, daylight and exploratory walkthroughs",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Connected essential controls and flows have current browser/SSR evidence; exhaustive manual accessibility/daylight/exploration work remains unexecuted and distinct from explicit-label/essential-flow checks.",
+      "next_action": "Run the scoped keyboard/focus/assistive/manual daylight and exploratory checklist on the qualified release candidate, preserve observations and resolve consequential defects before release approval."
+    },
+    {
+      "item": "Actual <=30-second one-hand filing timing",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "The360x640 essential workflow passed; no measured one-hand completion-time study was performed. Automated timeout/duration is not the requested human timing evidence.",
+      "next_action": "Execute and record actual representative one-hand booking/standalone filing timing, including failure/retry usability, then evaluate against the <=30-second requirement."
+    },
+    {
+      "item": "Representative workload, target approval and performance certification",
+      "owner": "Product/Architect",
+      "status": "deferred",
+      "evidence": "The admin-users-only pilot executed but no approved representative Scheduling/time-report workload/threshold or performance certification exists; unrelated pilot timings do not supply that credit.",
+      "next_action": "Approve representative tenant/history/concurrency workloads and thresholds, then admit and execute performance validation and record actual measurements against those approved targets."
+    },
+    {
+      "item": "Release polish",
+      "owner": "Delivery owner",
+      "status": "deferred",
+      "evidence": "Required functional/security/integrity/essential-browser gates passed at the evidence revision. Exhaustive release polish review has not executed and is not needed to hide or defer any consequential failure.",
+      "next_action": "Maintain the owned polish list, inspect the qualified release candidate, resolve agreed items and attach actual release-review evidence before requesting release approval."
+    }
+  ]
+}

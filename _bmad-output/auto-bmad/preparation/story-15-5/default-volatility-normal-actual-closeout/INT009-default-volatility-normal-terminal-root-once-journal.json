@@ -1,0 +1,32 @@
+{
+  "schema": "ROOT_NORMAL_TERMINAL_ONCE_ALLOCATION_V1",
+  "operation_id": "901dcd76-fb3a-4423-966e-ca6a39af492a",
+  "phase": "ALLOCATED_TO_SOLE_NATIVE_HIGH_ONCE",
+  "allocated_at_utc": "2026-10-23T12:42:54.746459+00:00",
+  "run_id": 39950998114,
+  "maximum_GETs": 5,
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-terminal-effects-allocation.json",
+    "bytes": 3414,
+    "sha256": "26d86f56c36ff02c3edef23dfdadac79a7e0ff0028e62ac93b7df506b0fdec41"
+  },
+  "proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+    "bytes": 56578,
+    "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+  },
+  "operator": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/reader.py",
+    "bytes": 50757,
+    "sha256": "7ab93cea641319bc1c18580d1235db7d901c0e75dc9cbc2273f36f37131cfae8"
+  },
+  "review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+    "bytes": 12651,
+    "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+  },
+  "native_invocations_allocated": 1,
+  "retry": false,
+  "all_old_slots_closed": true,
+  "normal_acceptance": 0
+}

@@ -1,0 +1,168 @@
+{
+  "kind": "preparation-only-five-proposed-path-bindings",
+  "checkpoint": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+  "source": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+  "canonical_base": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "paths": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/calendar-feed-atdd.ts",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 60911,
+        "sha256": "0a395da2d97dd56e9acf3250ef7786cca660cad4a74c74ff40a1ce5cadad1531",
+        "crlf_count": 652,
+        "bare_lf_count": 0
+      },
+      "actual_git_clean_oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05",
+        "bytes": 60259,
+        "sha256": "731394587891c671230f3bffc13e5f51c3f69c6d3548e4ebabd78db5899c7cdd"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05"
+      },
+      "canonical_base_blob": {
+        "revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+        "oid": "bfbe21f6d8bb79cbcb981c41c04fd9d5f996af34",
+        "bytes": 14344,
+        "sha256": "c38f3fac0d2601427d3709bfcab2934a001724cc1802ad5f714ba9f35969f36c"
+      },
+      "raw_equals_head_blob": false,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 70623,
+        "sha256": "1771a68a4501d62854f55ea541b13f16b9be30d56d16468d2ed2b16e6b733f31",
+        "crlf_count": 0,
+        "bare_lf_count": 963
+      },
+      "actual_git_clean_oid": "345ac5c39023094e858edceabe208e63fc61485c",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "345ac5c39023094e858edceabe208e63fc61485c",
+        "bytes": 70623,
+        "sha256": "1771a68a4501d62854f55ea541b13f16b9be30d56d16468d2ed2b16e6b733f31"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "345ac5c39023094e858edceabe208e63fc61485c"
+      },
+      "canonical_base_blob": null,
+      "raw_equals_head_blob": true,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 90189,
+        "sha256": "58ab3a69cf626e0a9f7eee65fde944d46011dfdcf73610ee360d0a76452a6b69",
+        "crlf_count": 0,
+        "bare_lf_count": 919
+      },
+      "actual_git_clean_oid": "28bc4ee8ab91016857e21715100b1b8505785d9a",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "28bc4ee8ab91016857e21715100b1b8505785d9a",
+        "bytes": 90189,
+        "sha256": "58ab3a69cf626e0a9f7eee65fde944d46011dfdcf73610ee360d0a76452a6b69"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "28bc4ee8ab91016857e21715100b1b8505785d9a"
+      },
+      "canonical_base_blob": {
+        "revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+        "oid": "6fbfcc24d12a85bcfe13b6368e7aacb2e4672148",
+        "bytes": 29176,
+        "sha256": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144"
+      },
+      "raw_equals_head_blob": true,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/calendar-feed/CalendarSubscription.tsx",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 8570,
+        "sha256": "dce9642b0ddb48f880a92c287658eac4935aca29e6693a28cb1ea2a8e6aec5f0",
+        "crlf_count": 0,
+        "bare_lf_count": 80
+      },
+      "actual_git_clean_oid": "456bacd7ef234912829d6e9684f13f1deeb6e76c",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "456bacd7ef234912829d6e9684f13f1deeb6e76c",
+        "bytes": 8570,
+        "sha256": "dce9642b0ddb48f880a92c287658eac4935aca29e6693a28cb1ea2a8e6aec5f0"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "456bacd7ef234912829d6e9684f13f1deeb6e76c"
+      },
+      "canonical_base_blob": null,
+      "raw_equals_head_blob": true,
+      "ownership": "EXISTING_STORY_PATH_IMPLEMENTATION_STILL_HELD_PENDING_REVIEW_AND_ROOT_ROUTE"
+    },
+    {
+      "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "absolute_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "proposal_only": true,
+      "write_admitted": false,
+      "raw_worktree": {
+        "bytes": 14305,
+        "sha256": "76edbe9fe59bab232c75eab4075bb99234a083733451cf33a10f0b8f7415038b",
+        "crlf_count": 258,
+        "bare_lf_count": 0
+      },
+      "actual_git_clean_oid": "a6144347879411f9972a062673d16e6fb6b6897a",
+      "current_checkpoint_blob": {
+        "revision": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+        "oid": "a6144347879411f9972a062673d16e6fb6b6897a",
+        "bytes": 14047,
+        "sha256": "5e188bdddacdcc5ce7f89bb72df0b1cad06fc0e5dfde345078c8b86bbdea0576"
+      },
+      "original_source_blob": {
+        "revision": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+        "oid": "a6144347879411f9972a062673d16e6fb6b6897a"
+      },
+      "canonical_base_blob": {
+        "revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+        "oid": "a6144347879411f9972a062673d16e6fb6b6897a",
+        "bytes": 14047,
+        "sha256": "5e188bdddacdcc5ce7f89bb72df0b1cad06fc0e5dfde345078c8b86bbdea0576"
+      },
+      "raw_equals_head_blob": false,
+      "ownership": "SHARED_PATH_NOT_GRANTED_REQUIRES_ROOT_COORDINATOR_CURRENT_CLAIMS_AND_EXACT_CASE_ALLOCATION"
+    }
+  ],
+  "shared_path_protection": {
+    "prior_freeze": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-settlement-browser.json",
+      "bytes": 459426,
+      "sha256": "7c4a768acd75f470b9f101f5a8af96b37f19efcf058b293ef9dcf79065e57d7d"
+    },
+    "frozen_source_path_count": 67,
+    "frozen_protected_consumer_count": 37,
+    "shared_path_in_protected37": false,
+    "shared_path_in_source67": false,
+    "protected_matches": [],
+    "narrow_protection_exception_needed": false,
+    "future_source_path_count_if_exact_shared_case_admitted": 68,
+    "note": "No historical protection metadata is rewritten. This is not an ownership grant; Root/Coordinator current shared claims and exact case admission remain required."
+  }
+}

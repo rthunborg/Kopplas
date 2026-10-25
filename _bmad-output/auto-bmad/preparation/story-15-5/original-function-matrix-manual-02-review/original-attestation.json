@@ -1,0 +1,239 @@
+{
+  "schema": "original-function-matrix-manual-02-independent-high-review-v1",
+  "review_date": "2026-10-21",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of": [
+      "payload/diagnosis author",
+      "Root orchestrator"
+    ]
+  },
+  "verdict": "PASS",
+  "scope": "Private exact operation/path and failed-upload guard correction/regressions only; not fourth broad review",
+  "target": {
+    "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+    "source": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+    "checkpoint": "18562d27-e3e4-4e2f-be69-e2a775b8af93"
+  },
+  "actual_run_id": 39627344465,
+  "inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/extract.py",
+      "bytes": 22194,
+      "sha256": "9596f077a9b112fee38fadc17d04bd7190fc8bfcd335b5515b7d24b75af9b7df"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/test_extract.py",
+      "bytes": 21518,
+      "sha256": "4c72e6bb2f9ce2465eb6cad8cb042779fe5aaf31a00a97abf34e588767672a0b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/proposal.json",
+      "bytes": 23834,
+      "sha256": "82e5620b152710105d01dbd8f2fa279f3efc89306c7f1ff802f91331ee69d1ae"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-preparation.json",
+      "bytes": 7028,
+      "sha256": "4b00eaa95a1a459c0b738d13312e09398247aaacfda59e3fb7464ceaed61dabf"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-manual-02-input-admission.json",
+      "bytes": 1221,
+      "sha256": "2b57bc5ff908b65646d8c1477e13ffc3bf1352e480e907b16cb6e05f00d7cb74"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json",
+      "bytes": 895,
+      "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-invocation-stop.json",
+      "bytes": 820,
+      "sha256": "08185ce64b5bc0a523993f4ddf9fbe5bb488bf8ee369ac1a7d7122e77a794188"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-diagnosis.json",
+      "bytes": 10469,
+      "sha256": "505c3434137596e62004fc1a8e286515130cbba60f73fdc9163ae1b89bfc0bd0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-review/original-report.md",
+      "bytes": 6998,
+      "sha256": "aed5d391b42fd6592dc22721556d71648c4c174f85b3176c631e3fa152b8a30a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-review/original-attestation.json",
+      "bytes": 6634,
+      "sha256": "612d9a744ff8e2a19c4630141eb211224028e9540b9cf093804d9a23bf21b25a"
+    }
+  ],
+  "source_binding_vector": {
+    "count": 18,
+    "raw_hashes_verified": 18,
+    "actual_checkpoint_Git_blob_reads": 18,
+    "identical_original01": true,
+    "proposal_sha256": "82e5620b152710105d01dbd8f2fa279f3efc89306c7f1ff802f91331ee69d1ae"
+  },
+  "reviewable_references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/original-report.md",
+      "bytes": 5098,
+      "sha256": "90d903ce991336a0d31ed6aa50f2ac0d2103d525ad0822571083df181a66936e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/original-attestation.json",
+      "bytes": 7735,
+      "sha256": "21d78d43a90dc0b4ac87769ba8176b54755feca8b05f42cf21ed95f18f722fed"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/result.json",
+      "bytes": 1844,
+      "sha256": "236fcdbd93fa71e34e77a60b65255900d6ea4322b1bda8f5ea54ff4566342041"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/readiness-addendum.json",
+      "bytes": 11089,
+      "sha256": "482b9816c05e5a8ff02694d998a05ccade4e0a87e2f7b20509cb6401408a1519"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-direct-evidence-code-review-admission.json",
+      "bytes": 1782,
+      "sha256": "52804759b219a5a0da139ae95209041b49e350e825729f1c4eedc9f98a01f117"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "predecessor_binding": {
+    "status": "IMMUTABLE_PROVEN_ZERO_ACQUISITION_VALIDATION_STOP",
+    "files": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/extract.py",
+        "bytes": 22147,
+        "sha256": "b2819bf337454a1f1960e9661ac72ff0a9be27801ac80e89f222457d2bba9ff0"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/test_extract.py",
+        "bytes": 17772,
+        "sha256": "e3d1f0a4b32c3a7b879e62c6a636080a188b6c2138092bc63d8ff5530c3f9970"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/proposal.json",
+        "bytes": 19751,
+        "sha256": "017a1c5af250d04927b0afe60c46c5e7a8e0b954d5c1caf4c4d4a99882ea88f0"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-activation.json",
+        "bytes": 2097,
+        "sha256": "27b0430f9da28f10e6637018161d794ea74d27cd1a695a0db28152bfced54fcd"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json",
+        "bytes": 895,
+        "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-invocation-stop.json",
+        "bytes": 820,
+        "sha256": "08185ce64b5bc0a523993f4ddf9fbe5bb488bf8ee369ac1a7d7122e77a794188"
+      }
+    ],
+    "diagnosis": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-diagnosis.json",
+      "bytes": 10469,
+      "sha256": "505c3434137596e62004fc1a8e286515130cbba60f73fdc9163ae1b89bfc0bd0"
+    },
+    "readmission": "No automatic retry. Distinct02 successor needs independent targeted review and refreshed allocation/Root admission before any GET.01 is never invoked again."
+  },
+  "known_source_admission_ref": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-187a4c6f-source-admission.json",
+    "bytes": 27103,
+    "sha256": "6455b8e03f53f95ed682e645d0cbb46535215260743a23846166d7840e4fcc68"
+  },
+  "delta": {
+    "exact_predecessor_with_only_operation_path_literals_and_one_guard": true,
+    "changed_function_ASTs": [
+      "validate"
+    ],
+    "unchanged_other_function_ASTs": 16,
+    "startup_failure_requires_cause_skipped": true,
+    "allowed_upload": [
+      "skipped",
+      "failure"
+    ],
+    "startup_failure_upload_success_refused": true,
+    "capture_archive_projection_privacy_caps_custody_unchanged": true
+  },
+  "actual_controls": {
+    "tests": 36,
+    "passed": 36,
+    "failures": 0,
+    "errors": 0,
+    "warning_output": 0,
+    "retained_methods": 31,
+    "new_methods": 5,
+    "bounded_local_Python_children": 4,
+    "gh_API_calls": 0,
+    "main_capture_and_storage_mocked": true,
+    "actual895B_terminal_admitted_unchanged": true,
+    "ZipFile_open_spy_only_startup_inflated": true,
+    "poison_absent_lifecycle_null": true,
+    "bad_input_pre_marker_refusal_and_once_order_retained": true,
+    "actual02_paths_old01_rejected": true,
+    "metadata_assertion_stop": "Initial reviewer assertion incorrectly assumed source-admission ref empty; stopped before writes. Existing27103B source proof was verified and assertion corrected; no code/test failure."
+  },
+  "findings": [],
+  "closed_findings": [
+    {
+      "id": "original01-F1",
+      "priority": "P2",
+      "status": "CLOSED_IN_SUCCESSOR02",
+      "original01_reinvocation": "REFUSE",
+      "closure": "Failed upload admitted with skipped cause-proof and unchanged startup-only selection"
+    }
+  ],
+  "authority": {
+    "allocation_refreshed": false,
+    "execution_authorized": false,
+    "template_execution_authorized": false,
+    "template_review_status": null,
+    "review_allocation_refs_unfilled": true,
+    "actual02_activation_terminal_marker_result_unborn": true,
+    "actual01_marker_result_absent": true,
+    "logical_gh_invocations_max": 1,
+    "underlying_HTTP_request_count": "UNKNOWN"
+  },
+  "remaining_conditions": [
+    "Root/Coordinator refreshed exact02 single-acquisition allocation and remaining budget",
+    "Exclusive/fsynced truthful02 Root terminal and actual activation with current raw/review/allocation/source/code/proposal pins",
+    "External activation SHA and absent consumed/result confirmation",
+    "Separate Root once-only02 authorization; no retry/fallback after consumption or uncertainty",
+    "Separate offline High closed-result qualification"
+  ],
+  "effects": {
+    "only_files_written": [
+      "original-report.md",
+      "original-attestation.json",
+      "result.json"
+    ],
+    "source_Spec_Git_state_payload_Root_author_or_old_records_changed": false,
+    "actual_acquisition_CLI_invocation": false,
+    "network_API_queries_DB_resources_CI_provider": 0,
+    "normal_acceptance_credit": 0,
+    "native_acceptance_credit": 0,
+    "backend_cause_proven": false,
+    "development_complete": false,
+    "release_ready": false,
+    "execution_authorized": false
+  },
+  "limits": [
+    "No actual guard matrix or upload-body cause acquired",
+    "Stop success/missing lifecycle do not prove hosted cleanup",
+    "All43DB/14browser gaps unresolved; no inferred causal fix"
+  ]
+}

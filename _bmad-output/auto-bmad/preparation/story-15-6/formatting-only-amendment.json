@@ -1,0 +1,46 @@
+{
+  "Outcome": "Removed surplus EOF blank lines only from the two named author files; no workflow/state/sprint/index/Git/runtime effects.",
+  "Files changed (absolute)": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/story-file-audit.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/plan-result.json",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/formatting-only-amendment.json"
+  ],
+  "Status": {
+    "HALTstatus": "ready-for-dev",
+    "specpath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "raw_hashes": [
+      {
+        "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+        "pre": {
+          "sha256": "580f559f618556d0a4f1bb9866fc0fe871a635154576e5b766d73998cb450c44",
+          "bytes": 20382
+        },
+        "post": {
+          "sha256": "6d7d4af77ea1a5dcc67680c4660bf3882fe181eb37c8dd4cfff1b4ca5dee499d",
+          "bytes": 20381
+        },
+        "preservation": "Exact ordinal equality after trimming CR/LF characters only; retained one original-style final line ending."
+      },
+      {
+        "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/story-file-audit.md",
+        "pre": {
+          "sha256": "ed8165c24566841a856ff2d4a03b501a153be0be1663489fc120a139d6ed2032",
+          "bytes": 1814
+        },
+        "post": {
+          "sha256": "7c8fd893be88dece880109557c52e3e0471cf7f581b93bbe9d333a71e09f3b49",
+          "bytes": 1812
+        },
+        "preservation": "Exact ordinal equality after trimming CR/LF characters only; retained one original-style final line ending."
+      }
+    ],
+    "preservation_assertion": "Both source files preserved byte-equivalent semantic content: ordinal raw-text equality after trimming only trailing CR/LF; no content or internal line endings changed. Plan-result current specbytehash updated. Historical validation records unchanged.",
+    "nestedroutes": "Sol Low deterministic formatting fix; no sensitive judgment, delegates or review round."
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root re-stages exact owned files, checks cached whitespace and records new raw pin; historical validation remains historical."
+  ],
+  "Blockers": []
+}

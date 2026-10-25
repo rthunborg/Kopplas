@@ -1,0 +1,1064 @@
+{
+  "workflow": "bmad-testarch-automate",
+  "story": "15.3",
+  "verified_at": "2026-10-20T03:50:26.175048+00:00",
+  "current_head": "c67950dbd154126e1d3b04444d68764e3271479b",
+  "tested_head": "d550029abac34360af7d9d928f6e66f906665d38",
+  "run_id": 39363860222,
+  "ci_attempt": 1,
+  "pinned_evidence": [
+    {
+      "path": "author-final-delivery-conservation.json",
+      "expected": "bbc0be07a48d6ccd3f417851e073ad48673804f4743a13c1118162abff87e3c9",
+      "actual": "bbc0be07a48d6ccd3f417851e073ad48673804f4743a13c1118162abff87e3c9",
+      "matches": true
+    },
+    {
+      "path": "checkpoint-d550029a-ci-independent/report.json",
+      "expected": "9d3b582912bfccb3cecf0edee300018c9d89cb4d5c647ff709cb0e51791ea236",
+      "actual": "9d3b582912bfccb3cecf0edee300018c9d89cb4d5c647ff709cb0e51791ea236",
+      "matches": true
+    },
+    {
+      "path": "checkpoint-d550029a-ci-independent/report.md",
+      "expected": "3ecfece99d037155cdefbe6d6de58e52b1ddffad1001067e297cc0f1220fa183",
+      "actual": "3ecfece99d037155cdefbe6d6de58e52b1ddffad1001067e297cc0f1220fa183",
+      "matches": true
+    },
+    {
+      "path": "checkpoint-d550029a-ci-independent/sha256-manifest.json",
+      "expected": "688b9d0fc9e4621e92d1d3ea01f2d70ce88b9f728a896a28cfb33b162cbbb8c4",
+      "actual": "688b9d0fc9e4621e92d1d3ea01f2d70ce88b9f728a896a28cfb33b162cbbb8c4",
+      "matches": true
+    },
+    {
+      "path": "final-delivery-independent/report.json",
+      "expected": "0938fb50eed56e7c401a09c05bea18d89d3092d8963bbcfedcd55e04444e1dfc",
+      "actual": "0938fb50eed56e7c401a09c05bea18d89d3092d8963bbcfedcd55e04444e1dfc",
+      "matches": true
+    }
+  ],
+  "source_paths": [
+    {
+      "path": "package.json",
+      "expected": "9ab20983c5972e7cae671886af07c2a916ea28bdceacc8dde9a3c5fcd7bf3936",
+      "current": "9ab20983c5972e7cae671886af07c2a916ea28bdceacc8dde9a3c5fcd7bf3936",
+      "tested": "9ab20983c5972e7cae671886af07c2a916ea28bdceacc8dde9a3c5fcd7bf3936",
+      "matches": true
+    },
+    {
+      "path": "src/app/(app)/scheduling/conflicts/page.tsx",
+      "expected": "9b95ed3ca278d87623fe37d7f2b1c9c32e053995a2d6d211d0062b8ff1e8fbc5",
+      "current": "9b95ed3ca278d87623fe37d7f2b1c9c32e053995a2d6d211d0062b8ff1e8fbc5",
+      "tested": "9b95ed3ca278d87623fe37d7f2b1c9c32e053995a2d6d211d0062b8ff1e8fbc5",
+      "matches": true
+    },
+    {
+      "path": "src/app/api/notifications/preferences/route.ts",
+      "expected": "ec806f9c10c47c4617c400fde9ed2b9ccd1d5db6089a361bed38e6ab42025ee1",
+      "current": "ec806f9c10c47c4617c400fde9ed2b9ccd1d5db6089a361bed38e6ab42025ee1",
+      "tested": "ec806f9c10c47c4617c400fde9ed2b9ccd1d5db6089a361bed38e6ab42025ee1",
+      "matches": true
+    },
+    {
+      "path": "src/app/api/scheduling/conflicts/route.ts",
+      "expected": "eb00f42ec4233f55f1cf0cc42a3902d202f413841981c0618ab481e766d2505f",
+      "current": "eb00f42ec4233f55f1cf0cc42a3902d202f413841981c0618ab481e766d2505f",
+      "tested": "eb00f42ec4233f55f1cf0cc42a3902d202f413841981c0618ab481e766d2505f",
+      "matches": true
+    },
+    {
+      "path": "src/components/notifications/NotificationPreferences.tsx",
+      "expected": "44cf6f67a582ecbba25afd010e90068ec8827133d29bd1c83803d63afe13ea36",
+      "current": "44cf6f67a582ecbba25afd010e90068ec8827133d29bd1c83803d63afe13ea36",
+      "tested": "44cf6f67a582ecbba25afd010e90068ec8827133d29bd1c83803d63afe13ea36",
+      "matches": true
+    },
+    {
+      "path": "src/components/resources/BookingConflictChip.tsx",
+      "expected": "34d0f63a2e0e637a906a97d33f0755954604fdc3778377708552756dca839b06",
+      "current": "34d0f63a2e0e637a906a97d33f0755954604fdc3778377708552756dca839b06",
+      "tested": "34d0f63a2e0e637a906a97d33f0755954604fdc3778377708552756dca839b06",
+      "matches": true
+    },
+    {
+      "path": "src/components/resources/BookingEditor.tsx",
+      "expected": "9fa0fe7a4e4db2104ed6237e7a7bdc4a179b54642ed466997e1c78580ca4fb19",
+      "current": "9fa0fe7a4e4db2104ed6237e7a7bdc4a179b54642ed466997e1c78580ca4fb19",
+      "tested": "9fa0fe7a4e4db2104ed6237e7a7bdc4a179b54642ed466997e1c78580ca4fb19",
+      "matches": true
+    },
+    {
+      "path": "src/components/resources/BookingEntry.tsx",
+      "expected": "0bbf98c71bf7c17adab71294420ae0fc345bb31084c54060c45643e7e4026bc7",
+      "current": "0bbf98c71bf7c17adab71294420ae0fc345bb31084c54060c45643e7e4026bc7",
+      "tested": "0bbf98c71bf7c17adab71294420ae0fc345bb31084c54060c45643e7e4026bc7",
+      "matches": true
+    },
+    {
+      "path": "src/components/scheduling/BookingBlock.tsx",
+      "expected": "67a300ce3587baa6eacdc07b618586d15755d371ae2817317c6ebad92c44fcc5",
+      "current": "67a300ce3587baa6eacdc07b618586d15755d371ae2817317c6ebad92c44fcc5",
+      "tested": "67a300ce3587baa6eacdc07b618586d15755d371ae2817317c6ebad92c44fcc5",
+      "matches": true
+    },
+    {
+      "path": "src/components/scheduling/ConflictDetail.tsx",
+      "expected": "72407e50af747b498a8395b1bb2e479399a5db1756fa0959062a3ef3bd5e09d5",
+      "current": "72407e50af747b498a8395b1bb2e479399a5db1756fa0959062a3ef3bd5e09d5",
+      "tested": "72407e50af747b498a8395b1bb2e479399a5db1756fa0959062a3ef3bd5e09d5",
+      "matches": true
+    },
+    {
+      "path": "src/components/scheduling/ConflictQueue.tsx",
+      "expected": "b21789050b9eeec9766abc1b3f1ef8947b6eb475972e3f0b0e2165a1b59bd182",
+      "current": "b21789050b9eeec9766abc1b3f1ef8947b6eb475972e3f0b0e2165a1b59bd182",
+      "tested": "b21789050b9eeec9766abc1b3f1ef8947b6eb475972e3f0b0e2165a1b59bd182",
+      "matches": true
+    },
+    {
+      "path": "src/components/scheduling/ConflictResolver.tsx",
+      "expected": "615d3de40f26aa47b5159cd11cc07dc6d3290cc3fe128f3f239b1736bd36f572",
+      "current": "615d3de40f26aa47b5159cd11cc07dc6d3290cc3fe128f3f239b1736bd36f572",
+      "tested": "615d3de40f26aa47b5159cd11cc07dc6d3290cc3fe128f3f239b1736bd36f572",
+      "matches": true
+    },
+    {
+      "path": "src/components/scheduling/SchedulingToolbar.tsx",
+      "expected": "90e1ddccaddad9acf1b68a5dd015632ecea7ee2e83c3768d999ace0ddceb17a7",
+      "current": "90e1ddccaddad9acf1b68a5dd015632ecea7ee2e83c3768d999ace0ddceb17a7",
+      "tested": "90e1ddccaddad9acf1b68a5dd015632ecea7ee2e83c3768d999ace0ddceb17a7",
+      "matches": true
+    },
+    {
+      "path": "src/features/resources/booking-conflict-actions.ts",
+      "expected": "b19e2896bcdfaf2fdc09b99578ec63761ced4f21f667f7fca41424b430d0a3bb",
+      "current": "b19e2896bcdfaf2fdc09b99578ec63761ced4f21f667f7fca41424b430d0a3bb",
+      "tested": "b19e2896bcdfaf2fdc09b99578ec63761ced4f21f667f7fca41424b430d0a3bb",
+      "matches": true
+    },
+    {
+      "path": "src/features/resources/bookings-read.ts",
+      "expected": "0dde0417c1ee75bf5faa7ede8b2c70368c395282805d8b11ac72cb5d73c4c916",
+      "current": "0dde0417c1ee75bf5faa7ede8b2c70368c395282805d8b11ac72cb5d73c4c916",
+      "tested": "0dde0417c1ee75bf5faa7ede8b2c70368c395282805d8b11ac72cb5d73c4c916",
+      "matches": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-resolver-state.ts",
+      "expected": "c159e0c30f4ea38d143a291765d1d824559b1a387447a2979b4c667dd12a96c6",
+      "current": "c159e0c30f4ea38d143a291765d1d824559b1a387447a2979b4c667dd12a96c6",
+      "tested": "c159e0c30f4ea38d143a291765d1d824559b1a387447a2979b4c667dd12a96c6",
+      "matches": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-resolver-types.ts",
+      "expected": "b27c02d7b7b918c70d75a6fff20114656687a7e65f0f4025f8b118c28d234eb7",
+      "current": "b27c02d7b7b918c70d75a6fff20114656687a7e65f0f4025f8b118c28d234eb7",
+      "tested": "b27c02d7b7b918c70d75a6fff20114656687a7e65f0f4025f8b118c28d234eb7",
+      "matches": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-resolver.ts",
+      "expected": "82411a83de7dbee0187e407a87252b63951779f7fbefbcf308d7a3a8c8804644",
+      "current": "82411a83de7dbee0187e407a87252b63951779f7fbefbcf308d7a3a8c8804644",
+      "tested": "82411a83de7dbee0187e407a87252b63951779f7fbefbcf308d7a3a8c8804644",
+      "matches": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-suggestions.ts",
+      "expected": "a5df9ffb4ec6b843ce18fe6507ed59e68ebad324b9bb2fd844827141a25143be",
+      "current": "a5df9ffb4ec6b843ce18fe6507ed59e68ebad324b9bb2fd844827141a25143be",
+      "tested": "a5df9ffb4ec6b843ce18fe6507ed59e68ebad324b9bb2fd844827141a25143be",
+      "matches": true
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "expected": "fb55a2e98ce02c52b87ee85ddc5356920bc16541e9df968dd864bf9ccb43dd19",
+      "current": "fb55a2e98ce02c52b87ee85ddc5356920bc16541e9df968dd864bf9ccb43dd19",
+      "tested": "fb55a2e98ce02c52b87ee85ddc5356920bc16541e9df968dd864bf9ccb43dd19",
+      "matches": true
+    },
+    {
+      "path": "src/server/bookings/conflict-resolution-attestation.ts",
+      "expected": "de0d964b6295c4471e0fa98162b482d41afb0ba561b5805437c3fe8c1373cbf8",
+      "current": "de0d964b6295c4471e0fa98162b482d41afb0ba561b5805437c3fe8c1373cbf8",
+      "tested": "de0d964b6295c4471e0fa98162b482d41afb0ba561b5805437c3fe8c1373cbf8",
+      "matches": true
+    },
+    {
+      "path": "src/server/bookings/conflict-resolution.ts",
+      "expected": "c9a024f6bd0a5e99c749e144662a49cad69176a698c1023d84ee952266b01c10",
+      "current": "c9a024f6bd0a5e99c749e144662a49cad69176a698c1023d84ee952266b01c10",
+      "tested": "c9a024f6bd0a5e99c749e144662a49cad69176a698c1023d84ee952266b01c10",
+      "matches": true
+    },
+    {
+      "path": "src/server/bookings/series-conflicts.ts",
+      "expected": "75477523e1e7d67061a22459e7a93d7f0b97c3defae94654d977b133c7a60ad4",
+      "current": "75477523e1e7d67061a22459e7a93d7f0b97c3defae94654d977b133c7a60ad4",
+      "tested": "75477523e1e7d67061a22459e7a93d7f0b97c3defae94654d977b133c7a60ad4",
+      "matches": true
+    },
+    {
+      "path": "src/server/commands/bookings/conflict-resolution-validation.ts",
+      "expected": "39ef9b2bcfd424d9646251bd380e0b006c94c89dae216f8527d01a40621f735f",
+      "current": "39ef9b2bcfd424d9646251bd380e0b006c94c89dae216f8527d01a40621f735f",
+      "tested": "39ef9b2bcfd424d9646251bd380e0b006c94c89dae216f8527d01a40621f735f",
+      "matches": true
+    },
+    {
+      "path": "src/server/commands/bookings/resolve-booking-conflict.ts",
+      "expected": "77e8685199307a643565bb9fcb9927581d6e16fa054fd1d590a1f2e1d7e4cf93",
+      "current": "77e8685199307a643565bb9fcb9927581d6e16fa054fd1d590a1f2e1d7e4cf93",
+      "tested": "77e8685199307a643565bb9fcb9927581d6e16fa054fd1d590a1f2e1d7e4cf93",
+      "matches": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "expected": "c0a75eee67a808f77423b0fc1805ab366443e130ab2223982f830760384e85e6",
+      "current": "c0a75eee67a808f77423b0fc1805ab366443e130ab2223982f830760384e85e6",
+      "tested": "c0a75eee67a808f77423b0fc1805ab366443e130ab2223982f830760384e85e6",
+      "matches": true
+    },
+    {
+      "path": "src/server/notifications/registry.ts",
+      "expected": "7280658cd6e535284c11a0311fa97e1da28d4fa72953ece357dc5b2ad838357e",
+      "current": "7280658cd6e535284c11a0311fa97e1da28d4fa72953ece357dc5b2ad838357e",
+      "tested": "7280658cd6e535284c11a0311fa97e1da28d4fa72953ece357dc5b2ad838357e",
+      "matches": true
+    },
+    {
+      "path": "src/server/read-models/booking-conflicts.ts",
+      "expected": "367f7ed91c3f4bdeac2f3bf4e5142c0e6ad934381e339d2c498e8b92523d378c",
+      "current": "367f7ed91c3f4bdeac2f3bf4e5142c0e6ad934381e339d2c498e8b92523d378c",
+      "tested": "367f7ed91c3f4bdeac2f3bf4e5142c0e6ad934381e339d2c498e8b92523d378c",
+      "matches": true
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "expected": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "current": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "tested": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "matches": true
+    },
+    {
+      "path": "supabase/migrations/20261020180000_conflict_resolver.sql",
+      "expected": "8da15d696d0e622e8b6b1e983b16de1e5818741a4fd38c7236afc138d1ae66c0",
+      "current": "8da15d696d0e622e8b6b1e983b16de1e5818741a4fd38c7236afc138d1ae66c0",
+      "tested": "8da15d696d0e622e8b6b1e983b16de1e5818741a4fd38c7236afc138d1ae66c0",
+      "matches": true
+    },
+    {
+      "path": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "expected": "0d32fc56c1b141d6430a632fd555a54c7082a4b36fc120ef50edbed473f14ac7",
+      "current": "0d32fc56c1b141d6430a632fd555a54c7082a4b36fc120ef50edbed473f14ac7",
+      "tested": "0d32fc56c1b141d6430a632fd555a54c7082a4b36fc120ef50edbed473f14ac7",
+      "matches": true
+    },
+    {
+      "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "expected": "32550831c5800a87c16c40684a7024613566cbe625757f8e1cab968e4e3a1a34",
+      "current": "32550831c5800a87c16c40684a7024613566cbe625757f8e1cab968e4e3a1a34",
+      "tested": "32550831c5800a87c16c40684a7024613566cbe625757f8e1cab968e4e3a1a34",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "expected": "517fc0393e818abec554333618dab3acfffb870ea17093d794797f935a5f43d2",
+      "current": "517fc0393e818abec554333618dab3acfffb870ea17093d794797f935a5f43d2",
+      "tested": "517fc0393e818abec554333618dab3acfffb870ea17093d794797f935a5f43d2",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/components/conflict-resolver.test.ts",
+      "expected": "d22908a4471bc58bd815ab0d7287d094a584f122b0fc906f65857d9c91362302",
+      "current": "d22908a4471bc58bd815ab0d7287d094a584f122b0fc906f65857d9c91362302",
+      "tested": "d22908a4471bc58bd815ab0d7287d094a584f122b0fc906f65857d9c91362302",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/features/booking-read-actions.test.ts",
+      "expected": "fa3c35cc2170f87900ebfeb83cde6ddb8263da58e37fc1abec16616cd67d207f",
+      "current": "fa3c35cc2170f87900ebfeb83cde6ddb8263da58e37fc1abec16616cd67d207f",
+      "tested": "fa3c35cc2170f87900ebfeb83cde6ddb8263da58e37fc1abec16616cd67d207f",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/read-models/booking-conflicts.int.test.ts",
+      "expected": "72edeae7efcb723ba296e5a2c02cf6489536f34ccab4cdbe5bea339858d5ee88",
+      "current": "72edeae7efcb723ba296e5a2c02cf6489536f34ccab4cdbe5bea339858d5ee88",
+      "tested": "72edeae7efcb723ba296e5a2c02cf6489536f34ccab4cdbe5bea339858d5ee88",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "expected": "c6c3fbb835ca027f2863f97c4f2c312de81989495586bc0ab6ec86a782ad2657",
+      "current": "c6c3fbb835ca027f2863f97c4f2c312de81989495586bc0ab6ec86a782ad2657",
+      "tested": "c6c3fbb835ca027f2863f97c4f2c312de81989495586bc0ab6ec86a782ad2657",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "expected": "f67e7616821aa66126fd9ddbe286c97cbead4b5a1640ac3e3d72ff84e2a30f60",
+      "current": "f67e7616821aa66126fd9ddbe286c97cbead4b5a1640ac3e3d72ff84e2a30f60",
+      "tested": "f67e7616821aa66126fd9ddbe286c97cbead4b5a1640ac3e3d72ff84e2a30f60",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "expected": "054eba44544b244e6f33c696a86f461c41852af2a17f69a9bac3391031d19457",
+      "current": "054eba44544b244e6f33c696a86f461c41852af2a17f69a9bac3391031d19457",
+      "tested": "054eba44544b244e6f33c696a86f461c41852af2a17f69a9bac3391031d19457",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "expected": "93a9ada21e8541891efc44cc63004e934c8840d7496521f3c83d680eecca368d",
+      "current": "93a9ada21e8541891efc44cc63004e934c8840d7496521f3c83d680eecca368d",
+      "tested": "93a9ada21e8541891efc44cc63004e934c8840d7496521f3c83d680eecca368d",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "expected": "2ee7847d4b60a4865254896d8d26582b58198968727d50634672a3696fb1a959",
+      "current": "2ee7847d4b60a4865254896d8d26582b58198968727d50634672a3696fb1a959",
+      "tested": "2ee7847d4b60a4865254896d8d26582b58198968727d50634672a3696fb1a959",
+      "matches": true
+    },
+    {
+      "path": "tests/integration/scheduling/scheduling-read.atdd.int.test.ts",
+      "expected": "baecff944d83ce7299d6b18ff5029921c202007e1952017b02bdda04cf94b32c",
+      "current": "baecff944d83ce7299d6b18ff5029921c202007e1952017b02bdda04cf94b32c",
+      "tested": "baecff944d83ce7299d6b18ff5029921c202007e1952017b02bdda04cf94b32c",
+      "matches": true
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "expected": "38efbb1a09c9db6d00f56ecedc2331dcefc8c90d4f61e23ade430c6554555d13",
+      "current": "38efbb1a09c9db6d00f56ecedc2331dcefc8c90d4f61e23ade430c6554555d13",
+      "tested": "38efbb1a09c9db6d00f56ecedc2331dcefc8c90d4f61e23ade430c6554555d13",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/features/resources/bookings-read.test.ts",
+      "expected": "a998ecd274ee36f17c6ca014a061e0bf96a220b2f28f5f3671d9508ce50ba848",
+      "current": "a998ecd274ee36f17c6ca014a061e0bf96a220b2f28f5f3671d9508ce50ba848",
+      "tested": "a998ecd274ee36f17c6ca014a061e0bf96a220b2f28f5f3671d9508ce50ba848",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/calendar-components.test.ts",
+      "expected": "08aae341f39139a0ff51e8160c95c66a98bd3fcf2396861852b60d9343edf69b",
+      "current": "08aae341f39139a0ff51e8160c95c66a98bd3fcf2396861852b60d9343edf69b",
+      "tested": "08aae341f39139a0ff51e8160c95c66a98bd3fcf2396861852b60d9343edf69b",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/conflict-resolver-state.test.ts",
+      "expected": "62ae5908a8b18cdd8b3b94450e1bc7d3e0d39887310cb2ce86e4973a90a8ae11",
+      "current": "62ae5908a8b18cdd8b3b94450e1bc7d3e0d39887310cb2ce86e4973a90a8ae11",
+      "tested": "62ae5908a8b18cdd8b3b94450e1bc7d3e0d39887310cb2ce86e4973a90a8ae11",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "expected": "f07f138b0ff7a1e8f76626cb3eb4ea60a207be1a6583125855c4eea8adf3e099",
+      "current": "f07f138b0ff7a1e8f76626cb3eb4ea60a207be1a6583125855c4eea8adf3e099",
+      "tested": "f07f138b0ff7a1e8f76626cb3eb4ea60a207be1a6583125855c4eea8adf3e099",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "expected": "2d97f5f26f03e5a27f90cc1d6c3d5166cbd125f16d583023b8defcba294ac121",
+      "current": "2d97f5f26f03e5a27f90cc1d6c3d5166cbd125f16d583023b8defcba294ac121",
+      "tested": "2d97f5f26f03e5a27f90cc1d6c3d5166cbd125f16d583023b8defcba294ac121",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "expected": "f2d658f546e8297d6148569e75331a6df55f01661e7e7739470bf38bf19972cc",
+      "current": "f2d658f546e8297d6148569e75331a6df55f01661e7e7739470bf38bf19972cc",
+      "tested": "f2d658f546e8297d6148569e75331a6df55f01661e7e7739470bf38bf19972cc",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "expected": "10a506bfd7f47d9bfb65480db4a90f2fefeb6b47c867256f97ae907b4ad5d61f",
+      "current": "10a506bfd7f47d9bfb65480db4a90f2fefeb6b47c867256f97ae907b4ad5d61f",
+      "tested": "10a506bfd7f47d9bfb65480db4a90f2fefeb6b47c867256f97ae907b4ad5d61f",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "expected": "f519a59e1b63f6970c1fc5fe0e49fce8a75b774e1b7141d063161070effb0c77",
+      "current": "f519a59e1b63f6970c1fc5fe0e49fce8a75b774e1b7141d063161070effb0c77",
+      "tested": "f519a59e1b63f6970c1fc5fe0e49fce8a75b774e1b7141d063161070effb0c77",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "expected": "090ab02fdc6e55b7042cfff9b0951ca068d7da088b101dc8d489549ba706d857",
+      "current": "090ab02fdc6e55b7042cfff9b0951ca068d7da088b101dc8d489549ba706d857",
+      "tested": "090ab02fdc6e55b7042cfff9b0951ca068d7da088b101dc8d489549ba706d857",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "expected": "d37ac935808609e3cc7025050abc4effb01dafc2122d579a0128c56825ffd9c5",
+      "current": "d37ac935808609e3cc7025050abc4effb01dafc2122d579a0128c56825ffd9c5",
+      "tested": "d37ac935808609e3cc7025050abc4effb01dafc2122d579a0128c56825ffd9c5",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "expected": "92cadc5bb54c51acc17f02edc949c5a5e9e17430858611b05c018866af16c7ab",
+      "current": "92cadc5bb54c51acc17f02edc949c5a5e9e17430858611b05c018866af16c7ab",
+      "tested": "92cadc5bb54c51acc17f02edc949c5a5e9e17430858611b05c018866af16c7ab",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/server/bookings/conflict-resolution-attestation.test.ts",
+      "expected": "3db3b729f9fce88531ac960053eb6e40bbb9c9f40756905bf1478c9e1019cc0a",
+      "current": "3db3b729f9fce88531ac960053eb6e40bbb9c9f40756905bf1478c9e1019cc0a",
+      "tested": "3db3b729f9fce88531ac960053eb6e40bbb9c9f40756905bf1478c9e1019cc0a",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/server/notifications/registry.test.ts",
+      "expected": "c1e2001fe5b0084d6a7e7f5b12d87da33d564a9364146fe07d08ca460025c34b",
+      "current": "c1e2001fe5b0084d6a7e7f5b12d87da33d564a9364146fe07d08ca460025c34b",
+      "tested": "c1e2001fe5b0084d6a7e7f5b12d87da33d564a9364146fe07d08ca460025c34b",
+      "matches": true
+    },
+    {
+      "path": "vitest.config.ts",
+      "expected": "6360eaf88beb8ba5dfcc57688b60da8f0c6d410d6cd56a64a6ea29c99782fdaa",
+      "current": "6360eaf88beb8ba5dfcc57688b60da8f0c6d410d6cd56a64a6ea29c99782fdaa",
+      "tested": "6360eaf88beb8ba5dfcc57688b60da8f0c6d410d6cd56a64a6ea29c99782fdaa",
+      "matches": true
+    }
+  ],
+  "native_evidence": [
+    {
+      "path": "artifacts/12238437392-native-general-browser.zip",
+      "matches": true,
+      "sha256": "fe588f7ecebbeef16f1ebe14d9df0be2c04b76808803ef35075aa2ab22bb97fe",
+      "bytes": 4123
+    },
+    {
+      "path": "artifacts/12238742352-native-isolated-storage-recovery.zip",
+      "matches": true,
+      "sha256": "f8d183b992bdc7f6a4aeedeecaa01328872ec7cebe1dc17d9c3aab55ef35e564",
+      "bytes": 677
+    },
+    {
+      "path": "artifacts/12239032426-native-full-integration.zip",
+      "matches": true,
+      "sha256": "0288556a0665def8f6373dfdd13561f23efdf3418fecc374e045543e44cd6ea3",
+      "bytes": 98438
+    },
+    {
+      "path": "artifacts-native-metadata.json",
+      "matches": true,
+      "sha256": "1e1784df00cfc16a2314157d7eaff379ca0a8da9fee7db5e3cbae3b30aafab16",
+      "bytes": 2193
+    },
+    {
+      "path": "assertion-reach-qualification.json",
+      "matches": true,
+      "sha256": "6f49338c2f8c66f674b95f1f0e5f53c3695b87350d3ccc6a3ca75836bbaea59b",
+      "bytes": 14398
+    },
+    {
+      "path": "assertion-source/.github/workflows/ci.yml",
+      "matches": true,
+      "sha256": "d3c8edcab0e52dd804944a7fb2e08a95f3269e0605f5118febf31e03b86b4485",
+      "bytes": 73520
+    },
+    {
+      "path": "assertion-source/package.json",
+      "matches": true,
+      "sha256": "9ab20983c5972e7cae671886af07c2a916ea28bdceacc8dde9a3c5fcd7bf3936",
+      "bytes": 2228
+    },
+    {
+      "path": "assertion-source/src/server/read-models/scheduling.ts",
+      "matches": true,
+      "sha256": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "bytes": 13920
+    },
+    {
+      "path": "assertion-source/supabase/migrations/20261020180000_conflict_resolver.sql",
+      "matches": true,
+      "sha256": "8da15d696d0e622e8b6b1e983b16de1e5818741a4fd38c7236afc138d1ae66c0",
+      "bytes": 32870
+    },
+    {
+      "path": "assertion-source/tests/e2e/conflict-resolver.e2e.spec.ts",
+      "matches": true,
+      "sha256": "0d32fc56c1b141d6430a632fd555a54c7082a4b36fc120ef50edbed473f14ac7",
+      "bytes": 17858
+    },
+    {
+      "path": "assertion-source/tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "matches": true,
+      "sha256": "32550831c5800a87c16c40684a7024613566cbe625757f8e1cab968e4e3a1a34",
+      "bytes": 26515
+    },
+    {
+      "path": "assertion-source/tests/integration/commands/conflict-resolver.int.test.ts",
+      "matches": true,
+      "sha256": "517fc0393e818abec554333618dab3acfffb870ea17093d794797f935a5f43d2",
+      "bytes": 47971
+    },
+    {
+      "path": "assertion-source/tests/integration/components/conflict-resolver.test.ts",
+      "matches": true,
+      "sha256": "d22908a4471bc58bd815ab0d7287d094a584f122b0fc906f65857d9c91362302",
+      "bytes": 1968
+    },
+    {
+      "path": "assertion-source/tests/integration/features/booking-read-actions.test.ts",
+      "matches": true,
+      "sha256": "fa3c35cc2170f87900ebfeb83cde6ddb8263da58e37fc1abec16616cd67d207f",
+      "bytes": 14055
+    },
+    {
+      "path": "assertion-source/tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "matches": true,
+      "sha256": "ddb48578f6a8f12dc8054d556a2780185661c87849199a25cae21ebb7aec49a8",
+      "bytes": 6610
+    },
+    {
+      "path": "assertion-source/tests/integration/read-models/booking-conflicts.int.test.ts",
+      "matches": true,
+      "sha256": "72edeae7efcb723ba296e5a2c02cf6489536f34ccab4cdbe5bea339858d5ee88",
+      "bytes": 3675
+    },
+    {
+      "path": "assertion-source/tests/integration/rls/conflict-resolver.rls.test.ts",
+      "matches": true,
+      "sha256": "c6c3fbb835ca027f2863f97c4f2c312de81989495586bc0ab6ec86a782ad2657",
+      "bytes": 9684
+    },
+    {
+      "path": "assertion-source/tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "matches": true,
+      "sha256": "f67e7616821aa66126fd9ddbe286c97cbead4b5a1640ac3e3d72ff84e2a30f60",
+      "bytes": 39341
+    },
+    {
+      "path": "assertion-source/tests/integration/rls/migration-reset.int.test.ts",
+      "matches": true,
+      "sha256": "054eba44544b244e6f33c696a86f461c41852af2a17f69a9bac3391031d19457",
+      "bytes": 31706
+    },
+    {
+      "path": "assertion-source/tests/integration/rls/rls-inventory-gate.int.test.ts",
+      "matches": true,
+      "sha256": "47db6be2a245ccf5c501849e39335b665cf0bb6d75d8f1033c5dc5704e106805",
+      "bytes": 5273
+    },
+    {
+      "path": "assertion-source/tests/integration/rls/role-harness.atdd.int.test.ts",
+      "matches": true,
+      "sha256": "93a9ada21e8541891efc44cc63004e934c8840d7496521f3c83d680eecca368d",
+      "bytes": 26363
+    },
+    {
+      "path": "assertion-source/tests/integration/rls/tenant-table-inventory.ts",
+      "matches": true,
+      "sha256": "2ee7847d4b60a4865254896d8d26582b58198968727d50634672a3696fb1a959",
+      "bytes": 99368
+    },
+    {
+      "path": "assertion-source/tests/integration/scheduling/scheduling-read.atdd.int.test.ts",
+      "matches": true,
+      "sha256": "baecff944d83ce7299d6b18ff5029921c202007e1952017b02bdda04cf94b32c",
+      "bytes": 25570
+    },
+    {
+      "path": "assertion-source/tests/support/authz/role-harness.ts",
+      "matches": true,
+      "sha256": "38efbb1a09c9db6d00f56ecedc2331dcefc8c90d4f61e23ade430c6554555d13",
+      "bytes": 15259
+    },
+    {
+      "path": "assertion-source/tests/support/booking-conflicts-atdd.ts",
+      "matches": true,
+      "sha256": "cc207ac89d642a982174eaf5e80e37824fee70b11a9e4794bd4c00a3ae70030a",
+      "bytes": 14043
+    },
+    {
+      "path": "assertion-source/tests/unit/features/resources/bookings-read.test.ts",
+      "matches": true,
+      "sha256": "a998ecd274ee36f17c6ca014a061e0bf96a220b2f28f5f3671d9508ce50ba848",
+      "bytes": 7460
+    },
+    {
+      "path": "assertion-source/tests/unit/features/scheduling/calendar-components.test.ts",
+      "matches": true,
+      "sha256": "08aae341f39139a0ff51e8160c95c66a98bd3fcf2396861852b60d9343edf69b",
+      "bytes": 17968
+    },
+    {
+      "path": "assertion-source/tests/unit/features/scheduling/conflict-resolver-state.test.ts",
+      "matches": true,
+      "sha256": "62ae5908a8b18cdd8b3b94450e1bc7d3e0d39887310cb2ce86e4973a90a8ae11",
+      "bytes": 1669
+    },
+    {
+      "path": "assertion-source/tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "matches": true,
+      "sha256": "f07f138b0ff7a1e8f76626cb3eb4ea60a207be1a6583125855c4eea8adf3e099",
+      "bytes": 9311
+    },
+    {
+      "path": "assertion-source/tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "matches": true,
+      "sha256": "2d97f5f26f03e5a27f90cc1d6c3d5166cbd125f16d583023b8defcba294ac121",
+      "bytes": 3229
+    },
+    {
+      "path": "assertion-source/tests/unit/ops/isolated-recovery-storage.test.ts",
+      "matches": true,
+      "sha256": "88cd2aff6ab4a00b70da8b2080014a82dd5bd63f948694d0ed5766196fa8d378",
+      "bytes": 2823
+    },
+    {
+      "path": "assertion-source/tests/unit/scope/booking-editor-scope.test.ts",
+      "matches": true,
+      "sha256": "f2d658f546e8297d6148569e75331a6df55f01661e7e7739470bf38bf19972cc",
+      "bytes": 1921
+    },
+    {
+      "path": "assertion-source/tests/unit/scope/manifest-coherence.test.ts",
+      "matches": true,
+      "sha256": "10a506bfd7f47d9bfb65480db4a90f2fefeb6b47c867256f97ae907b4ad5d61f",
+      "bytes": 15522
+    },
+    {
+      "path": "assertion-source/tests/unit/scope/manifest-derivations.test.ts",
+      "matches": true,
+      "sha256": "f519a59e1b63f6970c1fc5fe0e49fce8a75b774e1b7141d063161070effb0c77",
+      "bytes": 8714
+    },
+    {
+      "path": "assertion-source/tests/unit/scope/manifest-shape.test.ts",
+      "matches": true,
+      "sha256": "090ab02fdc6e55b7042cfff9b0951ca068d7da088b101dc8d489549ba706d857",
+      "bytes": 10330
+    },
+    {
+      "path": "assertion-source/tests/unit/scope/resources-activation.atdd.test.ts",
+      "matches": true,
+      "sha256": "d37ac935808609e3cc7025050abc4effb01dafc2122d579a0128c56825ffd9c5",
+      "bytes": 1493
+    },
+    {
+      "path": "assertion-source/tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "matches": true,
+      "sha256": "92cadc5bb54c51acc17f02edc949c5a5e9e17430858611b05c018866af16c7ab",
+      "bytes": 8207
+    },
+    {
+      "path": "assertion-source/tests/unit/server/bookings/conflict-resolution-attestation.test.ts",
+      "matches": true,
+      "sha256": "3db3b729f9fce88531ac960053eb6e40bbb9c9f40756905bf1478c9e1019cc0a",
+      "bytes": 1606
+    },
+    {
+      "path": "assertion-source/tests/unit/server/notifications/registry.test.ts",
+      "matches": true,
+      "sha256": "c1e2001fe5b0084d6a7e7f5b12d87da33d564a9364146fe07d08ca460025c34b",
+      "bytes": 1443
+    },
+    {
+      "path": "assertion-source/vitest.config.ts",
+      "matches": true,
+      "sha256": "6360eaf88beb8ba5dfcc57688b60da8f0c6d410d6cd56a64a6ea29c99782fdaa",
+      "bytes": 3048
+    },
+    {
+      "path": "browser-qualification.json",
+      "matches": true,
+      "sha256": "f446302571e7e75fb1da0db860f55a48eb6fd8375c23c2db0fec277a71ba6343",
+      "bytes": 12310
+    },
+    {
+      "path": "collect.py",
+      "matches": true,
+      "sha256": "c3878647ca6a593af3ba773012b84a982fd280f6c54ce4fb99fe7e072966991c",
+      "bytes": 3380
+    },
+    {
+      "path": "extracted/native-full-integration/full-integration.json",
+      "matches": true,
+      "sha256": "6bdb9a9b44da9ff9354933e1c796e34d816a9cdc9b61d5d2cd387a71c979ecae",
+      "bytes": 911530
+    },
+    {
+      "path": "extracted/native-general-browser/general-browser.json",
+      "matches": true,
+      "sha256": "efee26db5cada15e11d73ae79a4c00924267dce086633e156b27d9c9dd1b1849",
+      "bytes": 25504
+    },
+    {
+      "path": "extracted/native-isolated-storage-recovery/isolated-storage-recovery.json",
+      "matches": true,
+      "sha256": "5512a17e719f694b0a888c0b824fc15df0b0d8d52cc96c3eb0f14e49e150bf17",
+      "bytes": 1154
+    },
+    {
+      "path": "finalize.py",
+      "matches": true,
+      "sha256": "e9e92285c9c0f6bb3301bab43bafb0bf5927cad7d789953d47ec38aeca13a0b3",
+      "bytes": 13665
+    },
+    {
+      "path": "integration-qualification.json",
+      "matches": true,
+      "sha256": "532237d1635ac9b7d76c893f5d61541c80c68d4ea76d43dd62d9b71b37ead155",
+      "bytes": 70295
+    },
+    {
+      "path": "jobs/118436036265-checkpoint-admission.json",
+      "matches": true,
+      "sha256": "4ac5128650ca745fdac999eed5a575e5c245be5544b746936cba3e5905756310",
+      "bytes": 1490
+    },
+    {
+      "path": "jobs/118436061364-verify.json",
+      "matches": true,
+      "sha256": "9b14705d6e7f253a3ad4186024f553e6de1521fc24a3fb6713a112aec6893d61",
+      "bytes": 4520
+    },
+    {
+      "path": "jobs/118436892346-recovery-storage-loader.json",
+      "matches": true,
+      "sha256": "c0134c6c7b70d822f8abb619bc6022193d5324ecaf36c0bc514eea924c585a5e",
+      "bytes": 4351
+    },
+    {
+      "path": "jobs/118436892348-e2e.json",
+      "matches": true,
+      "sha256": "528e110e03f46cf79a5c86334027f1923acf97c10c513a4b45db838ca43bab42",
+      "bytes": 3978
+    },
+    {
+      "path": "jobs/118436892382-db.json",
+      "matches": true,
+      "sha256": "9350ee17e3008d6452ccb4c585655f218818add4f9e4e4cbbc4a6ce5b7ae014a",
+      "bytes": 3439
+    },
+    {
+      "path": "jobs/118436894969-dashboard-e2e.json",
+      "matches": true,
+      "sha256": "1418fcbe6b4ae719ef18b63dd61671b829acfdb29a5ec648b1b87e7a8cc2d98c",
+      "bytes": 955
+    },
+    {
+      "path": "jobs/118438301667-native-stream-probe.json",
+      "matches": true,
+      "sha256": "8d971a0731e33a3708f7302ab4a2e7d1d8e909c8b66488dbcfb1d0754fd11e20",
+      "bytes": 961
+    },
+    {
+      "path": "jobs/118438301969-fixed-chromium-paired-probe.json",
+      "matches": true,
+      "sha256": "0ab3154504804a842ab8c6738b65430d2f6387d7172d7c051f77986dfe5dffbd",
+      "bytes": 969
+    },
+    {
+      "path": "jobs/118438302255-fixed-chromium-application-verification.json",
+      "matches": true,
+      "sha256": "1c385d412cb94dd9d23a77ec25b4b22e03fdb681e764d8b858e049a8dbeecd3b",
+      "bytes": 981
+    },
+    {
+      "path": "jobs-terminal.json",
+      "matches": true,
+      "sha256": "72c323e95d51c68ce270f564942665b52a41e08814e32c4768938d6f6078b70c",
+      "bytes": 21679
+    },
+    {
+      "path": "logs/118436036265-checkpoint-admission.log",
+      "matches": true,
+      "sha256": "ddd7fa45e3c4d5aa9ac06c0a22bed54a9f26ef7bb6455ca44287f2514021a3ca",
+      "bytes": 2824
+    },
+    {
+      "path": "logs/118436061364-verify.log",
+      "matches": true,
+      "sha256": "f51ae5611179aa02bdcbbf8e8d14addad0449d5df4f60aa0f0c6f944ab27d08c",
+      "bytes": 1518898
+    },
+    {
+      "path": "logs/118436892346-recovery-storage-loader.log",
+      "matches": true,
+      "sha256": "0f791b6f0c88206bb5db623fc6a838f7a5279b0ded3c10c4ed9480b9c196f36d",
+      "bytes": 286461
+    },
+    {
+      "path": "logs/118436892348-e2e.log",
+      "matches": true,
+      "sha256": "4cbd30485e8e9dafe304a13cb3b1a4ac6f9660c5a0b4f5ce3dc32d0a5e94127a",
+      "bytes": 125924
+    },
+    {
+      "path": "logs/118436892382-db.log",
+      "matches": true,
+      "sha256": "727ca19010f95eb77d9bb52dd6385b6aba1d6397a3f1e9b83f1cc801818cb442",
+      "bytes": 253880
+    },
+    {
+      "path": "migration-reset-qualification.json",
+      "matches": true,
+      "sha256": "4b1026e0d574d69e5892990c3c5f25b80267ea6f7f0f26236dc7c1ff9e07b2f9",
+      "bytes": 2153
+    },
+    {
+      "path": "native-derived-admin-pilot.json",
+      "matches": true,
+      "sha256": "52721903a00ab4bf6cccc2e9f183a581d40f27e4ad4704da2b61dbd939e20861",
+      "bytes": 2428
+    },
+    {
+      "path": "observations/20261020T032212Z-jobs.json",
+      "matches": true,
+      "sha256": "1d40b8cfabf5cdde830b4be9d919f3bd4720ddcecaa4b17f473fd3e75b937f29",
+      "bytes": 5412
+    },
+    {
+      "path": "observations/20261020T032212Z-run.json",
+      "matches": true,
+      "sha256": "b01c9942f66102000a5de83c75f076df848b2db73a4be11a4e7816f2ba9019a6",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032258Z-jobs.json",
+      "matches": true,
+      "sha256": "c313e23c078d3bb13232e3ab414935242b006de1735f03af81eb0248ebc5fec9",
+      "bytes": 5498
+    },
+    {
+      "path": "observations/20261020T032258Z-run.json",
+      "matches": true,
+      "sha256": "b01c9942f66102000a5de83c75f076df848b2db73a4be11a4e7816f2ba9019a6",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032326Z-jobs.json",
+      "matches": true,
+      "sha256": "c313e23c078d3bb13232e3ab414935242b006de1735f03af81eb0248ebc5fec9",
+      "bytes": 5498
+    },
+    {
+      "path": "observations/20261020T032326Z-run.json",
+      "matches": true,
+      "sha256": "b01c9942f66102000a5de83c75f076df848b2db73a4be11a4e7816f2ba9019a6",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032407Z-jobs.json",
+      "matches": true,
+      "sha256": "c948fbb9038115c3e6260b92eeef992660b034a39e95a57e51f82a909518d357",
+      "bytes": 5627
+    },
+    {
+      "path": "observations/20261020T032407Z-run.json",
+      "matches": true,
+      "sha256": "b01c9942f66102000a5de83c75f076df848b2db73a4be11a4e7816f2ba9019a6",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032452Z-jobs.json",
+      "matches": true,
+      "sha256": "e3217d96016cb1f9f270811cd2cb61b407a2c29814ef4ceaa5183172be418e03",
+      "bytes": 16887
+    },
+    {
+      "path": "observations/20261020T032452Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032537Z-jobs.json",
+      "matches": true,
+      "sha256": "d3a2cbab7dc590ccdd788b0f7e45ca70ae363944ae8165c271c5e2ecf649391f",
+      "bytes": 16973
+    },
+    {
+      "path": "observations/20261020T032537Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032612Z-jobs.json",
+      "matches": true,
+      "sha256": "d3a2cbab7dc590ccdd788b0f7e45ca70ae363944ae8165c271c5e2ecf649391f",
+      "bytes": 16973
+    },
+    {
+      "path": "observations/20261020T032612Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032725Z-jobs.json",
+      "matches": true,
+      "sha256": "151d20a3864f393c5bac667da659da49d5bd586be5cd7c7b928fc438090b90ea",
+      "bytes": 17274
+    },
+    {
+      "path": "observations/20261020T032725Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032810Z-jobs.json",
+      "matches": true,
+      "sha256": "fd1b2588e54b07805f150be16c294b3b5b1413739e7685541c7c33b43dc1d2cc",
+      "bytes": 17403
+    },
+    {
+      "path": "observations/20261020T032810Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T032855Z-jobs.json",
+      "matches": true,
+      "sha256": "47adfdb66e1ffe7b3adb7d29df15dc961fccdee6065cb4af45d5debcfe6ca28c",
+      "bytes": 17532
+    },
+    {
+      "path": "observations/20261020T032855Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T033002Z-jobs.json",
+      "matches": true,
+      "sha256": "c708733764452fd2e7b4e2f8d9707b04fb9c3e80b678034fe473312268f301c0",
+      "bytes": 21268
+    },
+    {
+      "path": "observations/20261020T033002Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T033007Z-jobs.json",
+      "matches": true,
+      "sha256": "c708733764452fd2e7b4e2f8d9707b04fb9c3e80b678034fe473312268f301c0",
+      "bytes": 21268
+    },
+    {
+      "path": "observations/20261020T033007Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T033114Z-jobs.json",
+      "matches": true,
+      "sha256": "c708733764452fd2e7b4e2f8d9707b04fb9c3e80b678034fe473312268f301c0",
+      "bytes": 21268
+    },
+    {
+      "path": "observations/20261020T033114Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T033234Z-jobs.json",
+      "matches": true,
+      "sha256": "c708733764452fd2e7b4e2f8d9707b04fb9c3e80b678034fe473312268f301c0",
+      "bytes": 21268
+    },
+    {
+      "path": "observations/20261020T033234Z-run.json",
+      "matches": true,
+      "sha256": "70f57264dc18dd24b91e820dde5880858dd63879057a8bb7585763550373f25c",
+      "bytes": 12365
+    },
+    {
+      "path": "observations/20261020T033348Z-jobs.json",
+      "matches": true,
+      "sha256": "72c323e95d51c68ce270f564942665b52a41e08814e32c4768938d6f6078b70c",
+      "bytes": 21679
+    },
+    {
+      "path": "observations/20261020T033348Z-run.json",
+      "matches": true,
+      "sha256": "8aef2d10ae5f2026e1a5210090d347d829c382d6b374014fea7ab0e236a41b9d",
+      "bytes": 12368
+    },
+    {
+      "path": "observations/20261020T033352Z-jobs.json",
+      "matches": true,
+      "sha256": "72c323e95d51c68ce270f564942665b52a41e08814e32c4768938d6f6078b70c",
+      "bytes": 21679
+    },
+    {
+      "path": "observations/20261020T033352Z-run.json",
+      "matches": true,
+      "sha256": "8aef2d10ae5f2026e1a5210090d347d829c382d6b374014fea7ab0e236a41b9d",
+      "bytes": 12368
+    },
+    {
+      "path": "provenance.py",
+      "matches": true,
+      "sha256": "8c976bcbea6a0d370cc37488735776c6ea151d5d2fdb97e21b2d5f2445acb6f2",
+      "bytes": 4868
+    },
+    {
+      "path": "qualify.py",
+      "matches": true,
+      "sha256": "59b25a464dd8e669d843530c312ab1d41d4801fa3b2ff9130972db89b8ce6186",
+      "bytes": 16048
+    },
+    {
+      "path": "report.json",
+      "matches": true,
+      "sha256": "9d3b582912bfccb3cecf0edee300018c9d89cb4d5c647ff709cb0e51791ea236",
+      "bytes": 160462
+    },
+    {
+      "path": "report.md",
+      "matches": true,
+      "sha256": "3ecfece99d037155cdefbe6d6de58e52b1ddffad1001067e297cc0f1220fa183",
+      "bytes": 14201
+    },
+    {
+      "path": "run-terminal.json",
+      "matches": true,
+      "sha256": "8aef2d10ae5f2026e1a5210090d347d829c382d6b374014fea7ab0e236a41b9d",
+      "bytes": 12368
+    },
+    {
+      "path": "source-provenance.json",
+      "matches": true,
+      "sha256": "ffc259e80f41f0a821b4ea114a96809b2c3be5fe60aba17a5ec5a9a268c63430",
+      "bytes": 16134
+    }
+  ],
+  "source_conservation": true,
+  "native_digest_conservation": true,
+  "spec_sha256": "d9480820bd1901be380c16fd8bd93077da1f8b2a2cb95b21a47eb400554a4175",
+  "delivery_sha256": "886c133b4c76ed98668a8fbf1aadbc3510b57aa557cf29d3ccc73e540134aef2",
+  "new_tests": 0,
+  "runtime_executed": 0,
+  "method": "Bounded read-only SHA256/Git blob/process provenance validation; no product tests, DB, browser or CI executed.",
+  "status": "passed"
+}

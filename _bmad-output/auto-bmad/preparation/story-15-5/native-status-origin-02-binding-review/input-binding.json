@@ -1,0 +1,492 @@
+{
+  "schema_version": 1,
+  "phase": "FRESH_P2_BINDING_ONLY_FROZEN_AWAIT_TARGETED_INDEPENDENT_REVIEW",
+  "operation_id": "498ff285-2261-4d92-a0ea-1283ae3f45bc",
+  "root_driver_target": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-02-driver.py",
+  "base_driver_sha256": "9d929412349ef58c28f0a75870325ef6267fba4da86df5590dd029b5fadd3666",
+  "root_driver_payload": {
+    "encoding": "base64",
+    "bytes": 12428,
+    "sha256": "611dab209ff8e01f504e6db4ec5a953819ecf82248902924e50fe66ffc9bc944",
+    "data": "IiIiUm9vdC1vbmx5IG9uY2UgYnJpZGdlOyBhbGwgc3Rkb3V0L3N0ZGVyciBwYXlsb2FkcyByZW1haW4gbWVtb3J5LW9ubHkuIiIiCmltcG9ydCBoYXNobGliLGltcG9ydGxpYi51dGlsLGpzb24sb3MscGF0aGxpYixxdWV1ZSxzdWJwcm9jZXNzLHN5cyx0aHJlYWRpbmcsdGltZQpST09UPXBhdGhsaWIuUGF0aChfX2ZpbGVfXykucmVzb2x2ZSgpLnBhcmVudHNbMl0KUFJJVkFURT1ST09ULycuZW52LmVwaWMxNS5tYWlsLXJ1bnRpbWUvc3RvcnktMTUtNS1wcmVwYXJhdGlvbicKUD1QUklWQVRFLydzdGF0dXMtb3JpZ2luLWRpc2NyaW1pbmF0b3ItMDInClJFU1VMVD1QUklWQVRFLydyb290LXN0YXR1cy1vcmlnaW4tZGlzY3JpbWluYXRvci0wMi1yZXN1bHQuanNvbicKT1A9JzQ5OGZmMjg1LTIyNjEtNGQ5Mi1hMGVhLTEyODNhZTNmNDViYycKTUFYX09VVFBVVD0yMDAwMDAwCgpjbGFzcyBEcml2ZXJTdG9wKEV4Y2VwdGlvbik6CiAgICBkZWYgX19pbml0X18oc2VsZixjYXRlZ29yeT0nQ0hJTERfUFJPVE9DT0xfUkVGVVNFRCcpOnNlbGYuY2F0ZWdvcnk9Y2F0ZWdvcnkKCmRlZiBuZWVkKHYsY2F0ZWdvcnk9J0NISUxEX1BST1RPQ09MX1JFRlVTRUQnKToKICAgIGlmIG5vdCB2OnJhaXNlIERyaXZlclN0b3AoY2F0ZWdvcnkpCmRlZiBzaGEoYik6cmV0dXJuIGhhc2hsaWIuc2hhMjU2KGIpLmhleGRpZ2VzdCgpCmRlZiBjYW5vbmljYWwodik6cmV0dXJuIGpzb24uZHVtcHModixzb3J0X2tleXM9VHJ1ZSxzZXBhcmF0b3JzPSgnLCcsJzonKSkuZW5jb2RlKCkKZGVmIHJlYWQocGF0aCk6CiAgICB3aXRoIHBhdGgub3BlbigncmInKSBhcyBmOmI9Zi5yZWFkKDY1NTM3KQogICAgbmVlZChsZW4oYik8PTY1NTM2LCdDQVBfRVhDRUVERUQnKTtyZXR1cm4gYgpkZWYgc3luYyhwYXRoLHZhbHVlLGV4Y2x1c2l2ZT1GYWxzZSk6CiAgICBiPShqc29uLmR1bXBzKHZhbHVlLHNvcnRfa2V5cz1UcnVlLGluZGVudD0yKSsnXG4nKS5lbmNvZGUoKQogICAgd2l0aCBwYXRoLm9wZW4oJ3hiJyBpZiBleGNsdXNpdmUgZWxzZSAnd2InKSBhcyBmOmYud3JpdGUoYik7Zi5mbHVzaCgpO29zLmZzeW5jKGYuZmlsZW5vKCkpCiAgICByZXR1cm4gYgoKY2xhc3MgTGluZXM6CiAgICAiIiJQaHlzaWNhbCBFT0YsIHJlYWRlciBjb21wbGV0aW9uIGFuZCBjYXB0dXJlIGZhaWx1cmUgYXJlIGRpc3RpbmN0LiIiIgogICAgZGVmIF9faW5pdF9fKHNlbGYscGlwZSk6CiAgICAgICAgc2VsZi5ldmVudHM9cXVldWUuUXVldWUobWF4c2l6ZT0yNTYpO3NlbGYuYnVmZmVyPWJ5dGVhcnJheSgpO3NlbGYuYnl0ZXM9MAogICAgICAgIHNlbGYuZW9mPUZhbHNlO3NlbGYuZG9uZT1GYWxzZTtzZWxmLmRvbmVfc2Vlbj1GYWxzZTtzZWxmLmVycm9yPU5vbmUKICAgICAgICBzZWxmLmJhZD10aHJlYWRpbmcuRXZlbnQoKTtzZWxmLmxvY2s9dGhyZWFkaW5nLkxvY2soKTtzZWxmLm9ic2VydmVkPWhhc2hsaWIuc2hhMjU2KCkKICAgICAgICBkZWYgZmFpbChjb2RlKToKICAgICAgICAgICAgd2l0aCBzZWxmLmxvY2s6c2VsZi5lcnJvcj1zZWxmLmVycm9yIG9yIGNvZGUKICAgICAgICAgICAgc2VsZi5iYWQuc2V0KCkKICAgICAgICBkZWYgcmVhZGVyKCk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHdoaWxlIFRydWU6CiAgICAgICAgICAgICAgICAgICAgdHJ5OmI9cGlwZS5yZWFkMSg4MTkyKQogICAgICAgICAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb246ZmFpbCgnUkVBRF9FUlJPUicpO2JyZWFrCiAgICAgICAgICAgICAgICAgICAgaWYgbm90IGI6CiAgICAgICAgICAgICAgICAgICAgICAgIHdpdGggc2VsZi5sb2NrOnNlbGYuZW9mPVRydWUKICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICAgICAgICAgICAgICB3aXRoIHNlbGYubG9jazoKICAgICAgICAgICAgICAgICAgICAgICAgc2VsZi5ieXRlcys9bGVuKGIpO3NlbGYub2JzZXJ2ZWQudXBkYXRlKGIpO292ZXI9c2VsZi5ieXRlcz5NQVhfT1VUUFVUCiAgICAgICAgICAgICAgICAgICAgaWYgb3ZlcjpmYWlsKCdPVVRQVVRfQ0FQJyk7YnJlYWsKICAgICAgICAgICAgICAgICAgICB0cnk6c2VsZi5ldmVudHMucHV0KCgnZGF0YScsYiksdGltZW91dD0xKQogICAgICAgICAgICAgICAgICAgIGV4Y2VwdCBxdWV1ZS5GdWxsOmZhaWwoJ1FVRVVFX09WRVJGTE9XJyk7YnJlYWsKICAgICAgICAgICAgZmluYWxseToKICAgICAgICAgICAgICAgIHdpdGggc2VsZi5sb2NrOnNlbGYuZG9uZT1UcnVlCiAgICAgICAgICAgICAgICB0cnk6c2VsZi5ldmVudHMucHV0KCgnZG9uZScsTm9uZSksdGltZW91dD0xKQogICAgICAgICAgICAgICAgZXhjZXB0IHF1ZXVlLkZ1bGw6ZmFpbCgnUVVFVUVfT1ZFUkZMT1cnKQogICAgICAgIHNlbGYudGhyZWFkPXRocmVhZGluZy5UaHJlYWQodGFyZ2V0PXJlYWRlcixkYWVtb249VHJ1ZSk7c2VsZi50aHJlYWQuc3RhcnQoKQogICAgZGVmIHNuYXBzaG90KHNlbGYpOgogICAgICAgIHdpdGggc2VsZi5sb2NrOgogICAgICAgICAgICByZXR1cm4geydyZWFkZXJfZW9mJzpzZWxmLmVvZiwncmVhZGVyX2RvbmUnOnNlbGYuZG9uZSwncmVhZGVyX2Vycm9yJzpzZWxmLmVycm9yLAogICAgICAgICAgICAgICAgJ3N0ZG91dF9ieXRlcyc6c2VsZi5ieXRlcywnc3Rkb3V0X29ic2VydmVkX3NoYTI1Nic6c2VsZi5vYnNlcnZlZC5oZXhkaWdlc3QoKX0KICAgIGRlZiBjYXB0dXJlX2NvbXBsZXRlKHNlbGYpOgogICAgICAgIHM9c2VsZi5zbmFwc2hvdCgpCiAgICAgICAgcmV0dXJuIHNbJ3JlYWRlcl9lb2YnXSBhbmQgc1sncmVhZGVyX2RvbmUnXSBhbmQgc1sncmVhZGVyX2Vycm9yJ10gaXMgTm9uZSBhbmQgc2VsZi5kb25lX3NlZW4gYW5kIG5vdCBzZWxmLnRocmVhZC5pc19hbGl2ZSgpCiAgICBkZWYgY2hlY2tfcmVhZGVyKHNlbGYpOgogICAgICAgIHdpdGggc2VsZi5sb2NrOmVycm9yPXNlbGYuZXJyb3IKICAgICAgICBpZiBlcnJvciBpcyBub3QgTm9uZSBvciBzZWxmLmJhZC5pc19zZXQoKToKICAgICAgICAgICAgcmFpc2UgRHJpdmVyU3RvcCgnQ0FQX0VYQ0VFREVEJyBpZiBlcnJvciBpbiB7J09VVFBVVF9DQVAnLCdRVUVVRV9PVkVSRkxPVyd9IGVsc2UgJ0NISUxEX1BST1RPQ09MX1JFRlVTRUQnKQogICAgZGVmIGxpbmUoc2VsZixkZWFkbGluZSk6CiAgICAgICAgc2VsZi5jaGVja19yZWFkZXIoKQogICAgICAgIHdoaWxlIGInXG4nIG5vdCBpbiBzZWxmLmJ1ZmZlcjoKICAgICAgICAgICAgbmVlZCh0aW1lLm1vbm90b25pYygpPGRlYWRsaW5lLCdUSU1FT1VUJykKICAgICAgICAgICAgc2VsZi5jaGVja19yZWFkZXIoKQogICAgICAgICAgICBpZiBzZWxmLmRvbmVfc2VlbjoKICAgICAgICAgICAgICAgIG5lZWQoc2VsZi5lb2YgYW5kIHNlbGYuZXJyb3IgaXMgTm9uZSBhbmQgbm90IHNlbGYuYnVmZmVyKTtyZXR1cm4gTm9uZQogICAgICAgICAgICB0cnk6a2luZCxiPXNlbGYuZXZlbnRzLmdldCh0aW1lb3V0PW1pbiguMSxtYXgoLjAwMSxkZWFkbGluZS10aW1lLm1vbm90b25pYygpKSkpCiAgICAgICAgICAgIGV4Y2VwdCBxdWV1ZS5FbXB0eTpjb250aW51ZQogICAgICAgICAgICBpZiBraW5kPT0nZG9uZSc6c2VsZi5kb25lX3NlZW49VHJ1ZQogICAgICAgICAgICBlbHNlOnNlbGYuYnVmZmVyLmV4dGVuZChiKTtuZWVkKGxlbihzZWxmLmJ1ZmZlcik8PTEzMTA3MiwnQ0FQX0VYQ0VFREVEJykKICAgICAgICBzZWxmLmNoZWNrX3JlYWRlcigpCiAgICAgICAgbGluZSxfLHJlc3Q9c2VsZi5idWZmZXIucGFydGl0aW9uKGInXG4nKTtzZWxmLmJ1ZmZlcj1ieXRlYXJyYXkocmVzdCkKICAgICAgICBuZWVkKGxlbihsaW5lKTw9NjU1MzYsJ0NBUF9FWENFRURFRCcpO3NlbGYuY2hlY2tfcmVhZGVyKCk7cmV0dXJuIGJ5dGVzKGxpbmUpCiAgICBkZWYgZGlzY2FyZChzZWxmLGRlYWRsaW5lKToKICAgICAgICB3aGlsZSBub3Qgc2VsZi5kb25lX3NlZW4gYW5kIHRpbWUubW9ub3RvbmljKCk8ZGVhZGxpbmU6CiAgICAgICAgICAgIHRyeTpraW5kLF89c2VsZi5ldmVudHMuZ2V0KHRpbWVvdXQ9LjA1KQogICAgICAgICAgICBleGNlcHQgcXVldWUuRW1wdHk6CiAgICAgICAgICAgICAgICBpZiBub3Qgc2VsZi50aHJlYWQuaXNfYWxpdmUoKTpicmVhawogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgaWYga2luZD09J2RvbmUnOnNlbGYuZG9uZV9zZWVuPVRydWUKICAgICAgICBzZWxmLnRocmVhZC5qb2luKHRpbWVvdXQ9MSkKCmRlZiBhZG1pc3Npb24obSxyLGUscCxlYixwYik6CiAgICBtLnZhbGlkYXRlX3JlY29yZChyKTtjPXJbJ2NhbmRpZGF0ZSddO25lZWQoY1sncnVuX2lkJ109PXBbJ3J1bl9pZCddKQogICAgbmVlZChjWydleHBlY3RlZF9hZG1pc3Npb25fc2hhMjU2J109PXNoYShlYikgYW5kIGNbJ3BlbmRpbmdfdGVybWluYWxfc2hhMjU2J109PXNoYShwYikpCiAgICBmaW5hbD1kaWN0KHApO2E9Y1snYXJ0aWZhY3QnXQogICAgZmluYWwudXBkYXRlKGFydGlmYWN0X2FkbWlzc2lvbl9zdGF0ZT0nQ09ORklSTUVEX0VNUFRZJyBpZiBhIGlzIE5vbmUgZWxzZSAnQ09ORklSTUVEX1BSRVNFTlQnLGFydGlmYWN0X2lkPU5vbmUgaWYgYSBpcyBOb25lIGVsc2UgYVsnaWQnXSxhcnRpZmFjdF9saXN0aW5nX3NoYTI1Nj1jWydsaXN0aW5nX3NoYTI1NiddLGFydGlmYWN0X2xpc3RpbmdfYnl0ZXM9Y1snbGlzdGluZ19ieXRlcyddLGFydGlmYWN0X2NhbmRpZGF0ZV9zaGEyNTY9clsnY2FuZGlkYXRlX3NoYTI1NiddKQogICAgbS52YWxpZGF0ZV90ZXJtaW5hbChmaW5hbCxlLGViKQogICAgcmF3PShqc29uLmR1bXBzKGZpbmFsLHNvcnRfa2V5cz1UcnVlLGluZGVudD0yKSsnXG4nKS5lbmNvZGUoKQogICAgYWNrPWNhbm9uaWNhbCh7J3NjaGVtYV92ZXJzaW9uJzoxLCdraW5kJzonY2FsZW5kYXJfZmVlZC5zdGF0dXNfb3JpZ2luX2NvbnRpbnVlJywnb3BlcmF0aW9uX2lkJzpPUCwnY2FuZGlkYXRlX3NoYTI1Nic6clsnY2FuZGlkYXRlX3NoYTI1NiddLCdmaW5hbF90ZXJtaW5hbF9zaGEyNTYnOnNoYShyYXcpfSkrYidcbicKICAgIG5lZWQobGVuKGFjayk8PTQwOTYpCiAgICByZXR1cm4gZmluYWwscmF3LGFjawoKZGVmIGFjY2VwdChtLHYsc3RhdGUsZSxwLGViLHBiLHdyaXRlX2ZpbmFsLHNlbmQsZnJvemVuLHNhdmUpOgogICAgbS52YWxpZGF0ZV9yZWNvcmQodik7a2luZD12WydraW5kJ10KICAgIGlmIGtpbmQ9PSdjYWxlbmRhcl9mZWVkLnN0YXR1c19vcmlnaW5fc3RhZ2UnOgogICAgICAgIG49dlsnbG9naWNhbF9hdHRlbXB0cyddO25lZWQobj49c3RhdGVbJ2xvZ2ljYWxfYXR0ZW1wdHMnXSBhbmQgbjw9c3RhdGVbJ2xvZ2ljYWxfYXR0ZW1wdHMnXSsxKQogICAgICAgIG5lZWQobj09MSBvciBzdGF0ZVsnY2FuZGlkYXRlJ10gaXMgbm90IE5vbmUgYW5kIHN0YXRlWydjYW5kaWRhdGUnXVsnYXJ0aWZhY3QnXSBpcyBub3QgTm9uZSkKICAgICAgICBzdGF0ZS51cGRhdGUocGhhc2U9J1JVTk5JTkcnLHN0YWdlPXZbJ3N0YWdlJ10sbG9naWNhbF9hdHRlbXB0cz1uLHRyYW5zcG9ydD12Wyd0cmFuc3BvcnQnXSk7c2F2ZSgpO3JldHVybiBOb25lCiAgICBpZiBraW5kPT0nY2FsZW5kYXJfZmVlZC5zdGF0dXNfb3JpZ2luX2ZhaWx1cmUnOgogICAgICAgIHN0YXRlLnVwZGF0ZShzdGFnZT12WydzdGFnZSddLGNhdGVnb3J5PXZbJ2NhdGVnb3J5J10saGVscGVyX2ZhaWx1cmU9dik7c2F2ZSgpO3JhaXNlIERyaXZlclN0b3AodlsnY2F0ZWdvcnknXSkKICAgIGlmIGtpbmQ9PSdjYWxlbmRhcl9mZWVkLnN0YXR1c19vcmlnaW5fYWRtaXNzaW9uX3JlcXVlc3QnOgogICAgICAgIG5lZWQoc3RhdGVbJ2NhbmRpZGF0ZSddIGlzIE5vbmUgYW5kIHN0YXRlWydsb2dpY2FsX2F0dGVtcHRzJ109PTEgYW5kIHN0YXRlWyd0cmFuc3BvcnQnXSBpcyBub3QgTm9uZSBhbmQgc3RhdGVbJ3RyYW5zcG9ydCddWydzZXR0bGVkJ10gaXMgVHJ1ZSkKICAgICAgICBmcm96ZW4oKTtmaW5hbCxyYXcsYWNrPWFkbWlzc2lvbihtLHYsZSxwLGViLHBiKQogICAgICAgIHdyaXRlX2ZpbmFsKHJhdyk7c2VuZChhY2spCiAgICAgICAgc3RhdGUudXBkYXRlKHN0YWdlPSdST09UX0FETUlTU0lPTicsY2FuZGlkYXRlPXZbJ2NhbmRpZGF0ZSddLGNhbmRpZGF0ZV9zaGEyNTY9dlsnY2FuZGlkYXRlX3NoYTI1NiddLGZpbmFsX3Rlcm1pbmFsX3NoYTI1Nj1zaGEocmF3KSxmaW5hbF90ZXJtaW5hbF9ieXRlcz1sZW4ocmF3KSk7c2F2ZSgpO3JldHVybiBOb25lCiAgICBuZWVkKGtpbmQ9PSdjYWxlbmRhcl9mZWVkLnN0YXR1c19vcmlnaW5fZXZpZGVuY2UnIGFuZCBzdGF0ZVsnY2FuZGlkYXRlJ10gaXMgbm90IE5vbmUpCiAgICBuZWVkKHZbJ3J1bl9pZCddPT1zdGF0ZVsncnVuX2lkJ10gYW5kIHZbJ2NhbmRpZGF0ZSddPT1zdGF0ZVsnY2FuZGlkYXRlJ10gYW5kIHZbJ2NhbmRpZGF0ZV9zaGEyNTYnXT09c3RhdGVbJ2NhbmRpZGF0ZV9zaGEyNTYnXSBhbmQgdlsnZXhwZWN0ZWRfYWRtaXNzaW9uX3NoYTI1NiddPT1zaGEoZWIpIGFuZCB2WydmaW5hbF90ZXJtaW5hbF9zaGEyNTYnXT09c3RhdGVbJ2ZpbmFsX3Rlcm1pbmFsX3NoYTI1NiddIGFuZCB2WydmaW5hbF90ZXJtaW5hbF9ieXRlcyddPT1zdGF0ZVsnZmluYWxfdGVybWluYWxfYnl0ZXMnXSkKICAgIG5lZWQoc3RhdGVbJ2xvZ2ljYWxfYXR0ZW1wdHMnXT09KDEgaWYgdlsnYXJ0aWZhY3QnXSBpcyBOb25lIGVsc2UgMikgYW5kIHN0YXRlWyd0cmFuc3BvcnQnXVsnc2V0dGxlZCddIGlzIFRydWUpCiAgICBzdGF0ZVsnY2xvc2VkX2V2aWRlbmNlJ109djtyZXR1cm4gdgoKZGVmIG1haW4oKToKICAgIG5lZWQoc3lzLmFyZ3ZbMTpdPT1bJy0tZXhlY3V0ZS1vbmNlLWFmdGVyLW5ldy10ZXJtaW5hbC1ncmFudCddLCdJTlBVVF9SRUZVU0VEJykKICAgIHN0YXRlPXsnc2NoZW1hX3ZlcnNpb24nOjEsJ2tpbmQnOidST09UX1NUQVRVU19PUklHSU5fT1BFUkFUSU9OX1JFU1VMVCcsJ29wZXJhdGlvbl9pZCc6T1AsJ3J1bl9pZCc6Tm9uZSwncGhhc2UnOidTVEFSVF9SRVNFUlZFRCcsJ25vcm1hbF9hY2NlcHRhbmNlX2NyZWRpdCc6MCwnbG9naWNhbF9hdHRlbXB0cyc6MCwndHJhbnNwb3J0JzpOb25lLCdjYW5kaWRhdGUnOk5vbmUsJ3N0YWdlJzonU1RBUlRVUCcsJ2NhdGVnb3J5JzpOb25lLCdjaGlsZF9zdGFydGVkJzpGYWxzZSwnY2hpbGRfZXhpdCc6Tm9uZSwncmVhZGVyX2VvZic6RmFsc2UsJ3JlYWRlcl9kb25lJzpGYWxzZSwncmVhZGVyX2Vycm9yJzpOb25lLCdyZWFkZXJfY2FwdHVyZV9jb21wbGV0ZSc6RmFsc2UsJ3JlYWRlcl9qb2luZWQnOkZhbHNlLCdjdXN0b2R5JzonVU5LTk9XTicsJ2Nsb3NlZF9ldmlkZW5jZSc6Tm9uZX0KICAgIHN5bmMoUkVTVUxULHN0YXRlLFRydWUpCiAgICBjaGlsZD1Ob25lO2xpbmVzPU5vbmU7ZmFpbHVyZT1Ob25lO3N0YXJ0ZWQ9dGltZS5tb25vdG9uaWMoKQogICAgZGVmIHNhdmUoKTpzeW5jKFJFU1VMVCxzdGF0ZSkKICAgIHRyeToKICAgICAgICBlYj1yZWFkKFAvJ2V4cGVjdGVkLWFkbWlzc2lvbi5qc29uJyk7cGI9cmVhZChQLyd0ZXJtaW5hbC1mYWN0cy5qc29uJykKICAgICAgICBpbml0aWFsPWpzb24ubG9hZHMoZWIpO3I9aW5pdGlhbFsncmV2aWV3J10KICAgICAgICBuZWVkKHNoYShyZWFkKFAvJ2NvbGxlY3QtZGlhZ25vc3RpYy1ldmlkZW5jZS5weScpKT09clsnY29sbGVjdG9yX3NoYTI1NiddIGFuZCBzaGEocmVhZChQLyd0ZXN0X2NvbGxlY3RfZGlhZ25vc3RpY19ldmlkZW5jZS5weScpKT09clsndGVzdHNfc2hhMjU2J10gYW5kIHNoYShyZWFkKHBhdGhsaWIuUGF0aChfX2ZpbGVfXykpKT09clsnZHJpdmVyX3NoYTI1NiddLCdJTlBVVF9SRUZVU0VEJykKICAgICAgICBzcGVjPWltcG9ydGxpYi51dGlsLnNwZWNfZnJvbV9maWxlX2xvY2F0aW9uKCdyZXZpZXdlZF9hcnRpZmFjdF9yZWNvdmVyeScsUC8nY29sbGVjdC1kaWFnbm9zdGljLWV2aWRlbmNlLnB5JykKICAgICAgICBtPWltcG9ydGxpYi51dGlsLm1vZHVsZV9mcm9tX3NwZWMoc3BlYyk7c3BlYy5sb2FkZXIuZXhlY19tb2R1bGUobSkKICAgICAgICBlPW0udmFsaWRhdGVfZXhwZWN0ZWQobS5wYXJzZShlYiw2NTUzNikpO3A9bS52YWxpZGF0ZV90ZXJtaW5hbChtLnBhcnNlKHBiLDY1NTM2KSxlLGViKQogICAgICAgIG5lZWQocFsnYXJ0aWZhY3RfYWRtaXNzaW9uX3N0YXRlJ109PSdQRU5ESU5HJywnSU5QVVRfUkVGVVNFRCcpCiAgICAgICAgc3RhdGUudXBkYXRlKHJ1bl9pZD1wWydydW5faWQnXSxleHBlY3RlZF9hZG1pc3Npb25fc2hhMjU2PXNoYShlYiksaW5pdGlhbF90ZXJtaW5hbF9zaGEyNTY9c2hhKHBiKSxjb2RlX2hhc2hlcz17azpyW2tdIGZvciBrIGluIFsnY29sbGVjdG9yX3NoYTI1NicsJ3Rlc3RzX3NoYTI1NicsJ2RyaXZlcl9zaGEyNTYnXX0pO3NhdmUoKQogICAgICAgIGRlZiBmcm96ZW4oKToKICAgICAgICAgICAgbmVlZChyZWFkKFAvJ2V4cGVjdGVkLWFkbWlzc2lvbi5qc29uJyk9PWViIGFuZCByZWFkKFAvJ3Rlcm1pbmFsLWZhY3RzLmpzb24nKT09cGIsJ0lOUFVUX1JFRlVTRUQnKQogICAgICAgICAgICBtLnZhbGlkYXRlX2V4cGVjdGVkKGUpCiAgICAgICAgZGVmIHdyaXRlX2ZpbmFsKHJhdyk6CiAgICAgICAgICAgIGxpbmVzLmNoZWNrX3JlYWRlcigpCiAgICAgICAgICAgIHdpdGggKFAvJ3Rlcm1pbmFsLWZhY3RzLmpzb24nKS5vcGVuKCd3YicpIGFzIGY6Zi53cml0ZShyYXcpO2YuZmx1c2goKTtvcy5mc3luYyhmLmZpbGVubygpKQogICAgICAgICAgICBuZWVkKHJlYWQoUC8ndGVybWluYWwtZmFjdHMuanNvbicpPT1yYXcsJ0lOUFVUX1JFRlVTRUQnKQogICAgICAgIGNoaWxkPXN1YnByb2Nlc3MuUG9wZW4oW3N5cy5leGVjdXRhYmxlLCctQicsc3RyKFAvJ2NvbGxlY3QtZGlhZ25vc3RpYy1ldmlkZW5jZS5weScpLCctLWV4ZWN1dGUtYWZ0ZXItbmV3LXRlcm1pbmFsLWdyYW50J10sY3dkPVJPT1Qsc3RkaW49c3VicHJvY2Vzcy5QSVBFLHN0ZG91dD1zdWJwcm9jZXNzLlBJUEUsc3RkZXJyPXN1YnByb2Nlc3MuREVWTlVMTCxzaGVsbD1GYWxzZSkKICAgICAgICBzdGF0ZVsnY2hpbGRfc3RhcnRlZCddPVRydWU7c2F2ZSgpO2xpbmVzPUxpbmVzKGNoaWxkLnN0ZG91dCkKICAgICAgICBkZWYgc2VuZChyYXcpOgogICAgICAgICAgICBsaW5lcy5jaGVja19yZWFkZXIoKQogICAgICAgICAgICBjaGlsZC5zdGRpbi53cml0ZShyYXcpO2NoaWxkLnN0ZGluLmZsdXNoKCk7Y2hpbGQuc3RkaW4uY2xvc2UoKQogICAgICAgIHdoaWxlIFRydWU6CiAgICAgICAgICAgIHJhdz1saW5lcy5saW5lKHN0YXJ0ZWQrMTgwKQogICAgICAgICAgICBpZiByYXcgaXMgTm9uZTpicmVhawogICAgICAgICAgICBuZWVkKHN0YXRlWydjbG9zZWRfZXZpZGVuY2UnXSBpcyBOb25lKQogICAgICAgICAgICB2PW0ucGFyc2UocmF3LDY1NTM2KQogICAgICAgICAgICByZXN1bHQ9YWNjZXB0KG0sdixzdGF0ZSxlLHAsZWIscGIsd3JpdGVfZmluYWwsc2VuZCxmcm96ZW4sc2F2ZSkKICAgICAgICAgICAgaWYgcmVzdWx0IGlzIG5vdCBOb25lOgogICAgICAgICAgICAgICAgc3RhdGVbJ2Nsb3NlZF9lbWl0dGVkX2V2aWRlbmNlX3NoYTI1NiddPXNoYShyYXcrYidcbicpO3N0YXRlWydjbG9zZWRfZW1pdHRlZF9ldmlkZW5jZV9ieXRlcyddPWxlbihyYXcpKzEKICAgICAgICBjaGlsZC53YWl0KHRpbWVvdXQ9bWF4KC4wMSxzdGFydGVkKzE4MC10aW1lLm1vbm90b25pYygpKSkKICAgICAgICBuZWVkKHN0YXRlWydjbG9zZWRfZXZpZGVuY2UnXSBpcyBub3QgTm9uZSBhbmQgY2hpbGQucmV0dXJuY29kZT09MCkKICAgICAgICBzdGF0ZS51cGRhdGUocGhhc2U9J0ZJTkFMJyxvdXRjb21lPSdBQ1FVSVJFRF9PUl9VTkFWQUlMQUJMRV9XSVRIX0xJTUlUUycscGFja2V0X3B1YmxpY2F0aW9uPSdQRU5ESU5HX0hJR0hfT0ZGTElORV9TRVBBUkFURV9HUkFOVCcpCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGV4YzoKICAgICAgICBpZiBpc2luc3RhbmNlKGV4YyxEcml2ZXJTdG9wKTpmYWlsdXJlPWV4Yy5jYXRlZ29yeQogICAgICAgIGVsaWYgJ20nIGluIGxvY2FscygpIGFuZCBpc2luc3RhbmNlKGV4YyxtLlN0b3ApOmZhaWx1cmU9ZXhjLmNhdGVnb3J5CiAgICAgICAgZWxzZTpmYWlsdXJlPSdVTkVYUEVDVEVEX0VYQ0VQVElPTicKICAgICAgICBzdGF0ZS51cGRhdGUocGhhc2U9J0ZJTkFMJyxvdXRjb21lPSdTVE9QX05PX1JFVFJZJyxjYXRlZ29yeT1mYWlsdXJlKQogICAgZmluYWxseToKICAgICAgICBpZiBjaGlsZCBpcyBub3QgTm9uZToKICAgICAgICAgICAgaWYgY2hpbGQuc3RkaW4gYW5kIG5vdCBjaGlsZC5zdGRpbi5jbG9zZWQ6CiAgICAgICAgICAgICAgICB0cnk6Y2hpbGQuc3RkaW4uY2xvc2UoKQogICAgICAgICAgICAgICAgZXhjZXB0IE9TRXJyb3I6cGFzcwogICAgICAgICAgICBpZiBjaGlsZC5wb2xsKCkgaXMgTm9uZToKICAgICAgICAgICAgICAgICMgTGV0IGhlbHBlciBzZXR0bGUgaXRzIHRyYWNrZWQgZ2ggaGFuZGxlIGJlZm9yZSBjb25zaWRlcmluZyBraWxsLgogICAgICAgICAgICAgICAgdHJ5OmNoaWxkLndhaXQodGltZW91dD00NSkKICAgICAgICAgICAgICAgIGV4Y2VwdCBzdWJwcm9jZXNzLlRpbWVvdXRFeHBpcmVkOgogICAgICAgICAgICAgICAgICAgIGNoaWxkLmtpbGwoKQogICAgICAgICAgICAgICAgICAgIHRyeTpjaGlsZC53YWl0KHRpbWVvdXQ9NSkKICAgICAgICAgICAgICAgICAgICBleGNlcHQgc3VicHJvY2Vzcy5UaW1lb3V0RXhwaXJlZDpwYXNzCiAgICAgICAgICAgICAgICAgICAgc3RhdGVbJ2NhdGVnb3J5J109J0NVU1RPRFlfVU5LTk9XTicKICAgICAgICAgICAgaWYgbGluZXMgaXMgbm90IE5vbmU6CiAgICAgICAgICAgICAgICBsaW5lcy5kaXNjYXJkKHRpbWUubW9ub3RvbmljKCkrNSkKICAgICAgICAgICAgICAgIHN0YXRlLnVwZGF0ZShsaW5lcy5zbmFwc2hvdCgpKTtzdGF0ZS51cGRhdGUocmVhZGVyX2pvaW5lZD1ub3QgbGluZXMudGhyZWFkLmlzX2FsaXZlKCkscmVhZGVyX2NhcHR1cmVfY29tcGxldGU9bGluZXMuY2FwdHVyZV9jb21wbGV0ZSgpKQogICAgICAgICAgICBzdGF0ZVsnY2hpbGRfZXhpdCddPWNoaWxkLnBvbGwoKQogICAgICAgICAgICB0cmFuc3BvcnRfcHJvdmVuPShzdGF0ZVsnbG9naWNhbF9hdHRlbXB0cyddPjAgYW5kIHN0YXRlWyd0cmFuc3BvcnQnXSBpcyBub3QgTm9uZSBhbmQgc3RhdGVbJ3RyYW5zcG9ydCddWydzZXR0bGVkJ10gaXMgVHJ1ZSkgb3IgKHN0YXRlWydsb2dpY2FsX2F0dGVtcHRzJ109PTAgYW5kIHN0YXRlLmdldCgnaGVscGVyX2ZhaWx1cmUnLHt9KS5nZXQoJ3N0YWdlJykgaW4geydTVEFSVFVQJywnSU5QVVRfQURNSVNTSU9OJywnTE9DQUxfQ0xJX0NBUEFCSUxJVFknfSkKICAgICAgICAgICAgaWYgY2hpbGQucG9sbCgpIGlzIG5vdCBOb25lIGFuZCBzdGF0ZVsncmVhZGVyX2VvZiddIGFuZCBzdGF0ZVsncmVhZGVyX2pvaW5lZCddIGFuZCBzdGF0ZVsncmVhZGVyX2NhcHR1cmVfY29tcGxldGUnXSBhbmQgc3RhdGVbJ3JlYWRlcl9lcnJvciddIGlzIE5vbmUgYW5kIHRyYW5zcG9ydF9wcm92ZW46CiAgICAgICAgICAgICAgICBzdGF0ZVsnY3VzdG9keSddPSdPV05fSEVMUEVSX0dIX0hBTkRMRVNfQU5EX09VVFBVVF9TRVRUTEVEJwogICAgICAgICAgICBlbHNlOnN0YXRlLnVwZGF0ZShjYXRlZ29yeT0nQ1VTVE9EWV9VTktOT1dOJyxvdXRjb21lPSdTVE9QX05PX1JFVFJZJykKICAgICAgICAgICAgZm9yIHN0cmVhbSBpbiBbY2hpbGQuc3RkaW4sY2hpbGQuc3Rkb3V0XToKICAgICAgICAgICAgICAgIGlmIHN0cmVhbSBpcyBub3QgTm9uZSBhbmQgbm90IHN0cmVhbS5jbG9zZWQgYW5kIChzdHJlYW0gaXMgbm90IGNoaWxkLnN0ZG91dCBvciBsaW5lcyBpcyBOb25lIG9yIG5vdCBsaW5lcy50aHJlYWQuaXNfYWxpdmUoKSk6CiAgICAgICAgICAgICAgICAgICAgdHJ5OnN0cmVhbS5jbG9zZSgpCiAgICAgICAgICAgICAgICAgICAgZXhjZXB0IE9TRXJyb3I6cGFzcwogICAgICAgIHN0YXRlWydlbGFwc2VkX3NlY29uZHMnXT1yb3VuZCh0aW1lLm1vbm90b25pYygpLXN0YXJ0ZWQsMyk7c2F2ZSgpCiAgICBwcmludChqc29uLmR1bXBzKHsnb3BlcmF0aW9uX2lkJzpPUCwncGhhc2UnOnN0YXRlWydwaGFzZSddLCdvdXRjb21lJzpzdGF0ZS5nZXQoJ291dGNvbWUnKSwnY2F0ZWdvcnknOnN0YXRlWydjYXRlZ29yeSddLCdub3JtYWxfYWNjZXB0YW5jZV9jcmVkaXQnOjB9LHNvcnRfa2V5cz1UcnVlKSkKICAgIHJldHVybiAwIGlmIGZhaWx1cmUgaXMgTm9uZSBhbmQgc3RhdGVbJ2N1c3RvZHknXSE9J1VOS05PV04nIGFuZCBzdGF0ZVsnY2F0ZWdvcnknXSE9J0NVU1RPRFlfVU5LTk9XTicgZWxzZSAxCgppZiBfX25hbWVfXz09J19fbWFpbl9fJzoKICAgIHRyeTpzeXMuZXhpdChtYWluKCkpCiAgICBleGNlcHQgRXhjZXB0aW9uOgogICAgICAgIHByaW50KGpzb24uZHVtcHMoeydvcGVyYXRpb25faWQnOk9QLCdvdXRjb21lJzonU1RPUF9OT19SRVRSWScsJ2NhdGVnb3J5JzonSU5QVVRfUkVGVVNFRCcsJ25vcm1hbF9hY2NlcHRhbmNlX2NyZWRpdCc6MH0pKTtzeXMuZXhpdCgxKQo="
+  },
+  "normal_acceptance_credit": 0,
+  "actual_run_id": null,
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "1a643e24968a06cdeaba23ffc2506471b659c62a",
+    "producer_source_sha": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+    "producer_checkpoint_id": "3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437",
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof"
+  },
+  "root_driver_materialized": true,
+  "code": {
+    "collector": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-02/collect-diagnostic-evidence.py",
+      "bytes": 42467,
+      "sha256": "208305296e69e09a5df646db0fdb586af7046185d0f44a866e897acb23013f71"
+    },
+    "tests": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-02/test_collect_diagnostic_evidence.py",
+      "bytes": 43761,
+      "sha256": "976a9d72c8e9c6f55bb660f5aa948dfb6b84cb9a8a9488c64218a8f1bc177dfc"
+    },
+    "Root_driver": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-02-driver.py",
+      "bytes": 12428,
+      "sha256": "611dab209ff8e01f504e6db4ec5a953819ecf82248902924e50fe66ffc9bc944"
+    }
+  },
+  "actual_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-status-origin-02-binding-allocation.json",
+      "bytes": 2142,
+      "sha256": "ffc0babf86b81ebf99ede1367864a45bd133cd8158d29745279e128eee3cffcf"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-02-actual-target.json",
+      "bytes": 1630,
+      "sha256": "d42e3f263076841862c07ef01614941e0ae0aac8712f00fd14d0acaf8dee5630"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-source-delta.json",
+      "bytes": 9056,
+      "sha256": "4eeff5a41cc991857a51ca3fa8fc315b34498f67bc3976097bea7d47e0af0b9a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/manifest.json",
+      "bytes": 800,
+      "sha256": "7d891243f37882825b75e87a02095cf2c3aff2dd15dbf3c9db2704cf69d761bf"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-02-driver-materialization.json",
+      "bytes": 772,
+      "sha256": "99483fe3053a5c22ac06abd14d8dc52dc5f88092b72c4f88d69b62fe97b6ecec"
+    }
+  ],
+  "historical_provenance": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+      "bytes": 42478,
+      "sha256": "60f776c01e1ba5ac464d46ed756e5b98c1887ecb43913c609e548fd44ba614aa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/test_collect_diagnostic_evidence.py",
+      "bytes": 42346,
+      "sha256": "fef011ff0c877aae492c6b3cb3fcb97b8688b6403df06a063d55e27bf2e97702"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+      "bytes": 12428,
+      "sha256": "9d929412349ef58c28f0a75870325ef6267fba4da86df5590dd029b5fadd3666"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-review/manifest.json",
+      "bytes": 1628,
+      "sha256": "6630df413803083f3eae9e8d8999ab6fe8b939c2f02b858a855e62d08edd9be7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-corrective-review/manifest.json",
+      "bytes": 1493,
+      "sha256": "c2efd0ba1199206ecef4af5d33ba4b76751777062015546052de13fff7654cb4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-status-origin-discriminator.json",
+      "bytes": 132497,
+      "sha256": "8a72fe86d44ec0c5602ade15560d302926f8c00279a66a0c6a06012450c85a5e"
+    }
+  ],
+  "actual_diff_scope": {
+    "helper": "Only OP/TARGET source/head/producerUUID, driver/result paths and actual-target receipt path/hash literals. All helper function/class ASTs identical.",
+    "tests": "GOV/default-result/old-target rejection literals; added test46 for actual previous operation rejection. No qualifier or transport logic changes.",
+    "Root_driver": "Only allocated P/RESULT 01->02 and collection OP literal; all function/class ASTs identical."
+  },
+  "producer_bindings": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 47148,
+      "raw_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+      "producer_source_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "reviewed_clean_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 87490,
+      "raw_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+      "producer_source_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "reviewed_clean_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36884,
+      "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "reviewed_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "producer_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "reviewed_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "reviewed_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "reviewed_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "reviewed_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "reviewed_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "reviewed_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "reviewed_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "reviewed_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "producer_schema_sha256": "814a790e877f9df269bb35368281e219836a9da14413a26c024c15dfa1e8d937",
+  "dependency_reuse": {
+    "meaning": "Historical capsule14 plus reviewed exact-two source delta and fresh pushed-target receipt; not a newly relabelled full freeze.",
+    "source70": "68 unchanged +2 exact reviewed delta; fresh equality at checkpoint is Root receipt proof.",
+    "producer11": "Actual current raw rows and schema equal historical reviewed rows and compact delta; new checkpoint OIDs qualified by Root actual-target proof.",
+    "protocol": "Original whole private review plus targeted F1 closure composite retained; API grammar/F1/F2/18bool/17candidate semantics unchanged.",
+    "limits": "Historical failures and old P1 expected remain preserved; no old run becomes current PASS."
+  },
+  "schema": {
+    "observation_exact_keys": [
+      "baseline",
+      "cleanupVerified",
+      "events",
+      "failures",
+      "kind",
+      "mode",
+      "ordinarySettled",
+      "outcome",
+      "queriesSettled",
+      "sqlState",
+      "statusDiscriminator"
+    ],
+    "status_discriminator": "null or exact schema/origin/permissions",
+    "schema_literal": "status-origin-v1",
+    "external_origins": [
+      "ACL_ENGINE",
+      "PLPGSQL_RAISE",
+      "UNKNOWN"
+    ],
+    "strict_permission_names": [
+      "caller_public_usage",
+      "caller_status_execute",
+      "owner_public_usage",
+      "owner_auth_usage",
+      "owner_uid_execute",
+      "owner_subject_execute",
+      "owner_lock_execute",
+      "owner_hash_execute",
+      "owner_tenant_id_select",
+      "owner_member_id_select",
+      "owner_member_tenant_select",
+      "owner_member_user_select",
+      "owner_member_status_select",
+      "owner_member_role_select",
+      "owner_union_tenant_select",
+      "owner_union_member_select",
+      "owner_union_role_select",
+      "owner_tokens_select"
+    ],
+    "necessary_candidate_names": [
+      "caller_public_usage",
+      "caller_status_execute",
+      "owner_public_usage",
+      "owner_auth_usage",
+      "owner_uid_execute",
+      "owner_subject_execute",
+      "owner_lock_execute",
+      "owner_hash_execute",
+      "owner_tenant_id_select",
+      "owner_member_id_select",
+      "owner_member_tenant_select",
+      "owner_member_user_select",
+      "owner_member_status_select",
+      "owner_member_role_select",
+      "owner_union_tenant_select",
+      "owner_union_member_select",
+      "owner_union_role_select"
+    ],
+    "excluded_TABLE_ACL_ONLY": "owner_tokens_select",
+    "decision": "Only eligible settled AMBIGUOUS_SQL42501/status/ACL_ENGINE with exactly one false among seventeen is a controlled candidate; all other valid results named UNKNOWN. Always backendUNPROVEN and normal0.",
+    "limits": "No effective token SELECT-star column coverage, caught-inner cause, exact guard, historical JWT cause or first-error order is inferred."
+  },
+  "local_CLI_capability": {
+    "historical_help_proof": {
+      "gh_binary_sha256": "a1701e3c806a805981554ace7df04812772c6449bdcfd1a77675013d97786401",
+      "gh_binary_bytes": 42166072,
+      "help_stdout_sha256": "c6136b139e05d1b4e9271a1edf08473b6f57df6ff01dc6da64b7079f53852e82",
+      "help_stdout_bytes": 7770,
+      "method": true,
+      "header": true,
+      "escape": true
+    },
+    "actual_current_binary_identity_matches": true,
+    "new_help_processes": 0,
+    "meaning": "Same actual gh binary and unchanged API flag argv; one original help observation reused, no help repeated."
+  },
+  "template_data": {
+    "expected_admission": {
+      "schema_version": 1,
+      "kind": "calendar_feed.status_origin_admission",
+      "operation_id": "498ff285-2261-4d92-a0ea-1283ae3f45bc",
+      "admission_timing": "PREPOST_PRODUCER_THEN_TERMINAL_COLLECTION",
+      "target": {
+        "repo": "rthunborg/Kopplas",
+        "ref": "codex/epic-15-scheduling-time-calendar",
+        "head_sha": "1a643e24968a06cdeaba23ffc2506471b659c62a",
+        "producer_source_sha": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+        "producer_checkpoint_id": "3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437",
+        "attempt": 1,
+        "producer_verification_mode": "calendar-feed-cause-proof"
+      },
+      "historical": {
+        "actual_pushed_target": {
+          "bytes": 1630,
+          "sha256": "d42e3f263076841862c07ef01614941e0ae0aac8712f00fd14d0acaf8dee5630"
+        },
+        "source_capsule": {
+          "bytes": 132497,
+          "sha256": "8a72fe86d44ec0c5602ade15560d302926f8c00279a66a0c6a06012450c85a5e"
+        },
+        "source_review": {
+          "bytes": 1672,
+          "sha256": "d064f7ce22b6475087b0e726ca439b01922cc8b4c3b840a28e3c76d6dfa2ff7b"
+        }
+      },
+      "pure_reader_sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+      "producer_bindings": [
+        {
+          "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+          "raw_bytes": 47148,
+          "raw_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+          "producer_source_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+          "reviewed_clean_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4"
+        },
+        {
+          "path": "tests/support/calendar-feed-atdd.ts",
+          "raw_bytes": 87490,
+          "raw_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+          "producer_source_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+          "reviewed_clean_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21"
+        },
+        {
+          "path": "tests/integration/commands/calendar-feed.int.test.ts",
+          "raw_bytes": 36884,
+          "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+          "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+          "reviewed_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+        },
+        {
+          "path": "scripts/ci/checkpoint-dispatch.mjs",
+          "raw_bytes": 19782,
+          "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+          "producer_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "reviewed_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "raw_bytes": 75930,
+          "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+          "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+          "reviewed_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+        },
+        {
+          "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+          "raw_bytes": 4729,
+          "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+          "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+          "reviewed_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+        },
+        {
+          "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+          "raw_bytes": 4856,
+          "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+          "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+          "reviewed_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+        },
+        {
+          "path": "src/server/read-models/calendar-feed.ts",
+          "raw_bytes": 3472,
+          "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+          "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+          "reviewed_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+        },
+        {
+          "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+          "raw_bytes": 24435,
+          "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+          "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+          "reviewed_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+        },
+        {
+          "path": "package.json",
+          "raw_bytes": 2352,
+          "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+          "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+          "reviewed_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "raw_bytes": 162159,
+          "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+          "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+          "reviewed_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+        }
+      ],
+      "producer_schema_sha256": "814a790e877f9df269bb35368281e219836a9da14413a26c024c15dfa1e8d937",
+      "api_version": "2026-03-10",
+      "caps": {
+        "listing": 262144,
+        "archive": 4500000,
+        "facts": 65536,
+        "message": 65536,
+        "continuation": 4096,
+        "help": 65536
+      },
+      "listing_max": 1,
+      "archive_max": 1,
+      "producer_admission": {
+        "event": "workflow_dispatch",
+        "workflow_path": ".github/workflows/ci.yml",
+        "workflow_id": null,
+        "candidate_workflow_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "default_workflow_oid": null,
+        "availability_verified_before_post": null,
+        "actor": null,
+        "triggering_actor": null,
+        "title": "checkpoint:cause-proof:3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437:1a643e24968a06cdeaba23ffc2506471b659c62a",
+        "release_validation": false,
+        "persisted_intent": {
+          "state_sha256": null,
+          "bytes": null,
+          "fsynced_before_post": null
+        }
+      },
+      "review": {
+        "status": null,
+        "report_sha256": null,
+        "collector_sha256": "208305296e69e09a5df646db0fdb586af7046185d0f44a866e897acb23013f71",
+        "tests_sha256": "976a9d72c8e9c6f55bb660f5aa948dfb6b84cb9a8a9488c64218a8f1bc177dfc",
+        "driver_sha256": "611dab209ff8e01f504e6db4ec5a953819ecf82248902924e50fe66ffc9bc944"
+      },
+      "local_capability": {
+        "gh_binary_sha256": "a1701e3c806a805981554ace7df04812772c6449bdcfd1a77675013d97786401",
+        "gh_binary_bytes": 42166072,
+        "help_stdout_sha256": "c6136b139e05d1b4e9271a1edf08473b6f57df6ff01dc6da64b7079f53852e82",
+        "help_stdout_bytes": 7770,
+        "method": true,
+        "header": true,
+        "escape": true
+      },
+      "authorized_once": null,
+      "normal_acceptance_credit": 0
+    },
+    "terminal_facts": {
+      "schema_version": 1,
+      "kind": "calendar_feed.status_origin_terminal",
+      "operation_id": "498ff285-2261-4d92-a0ea-1283ae3f45bc",
+      "expected_admission_sha256": null,
+      "target": {
+        "repo": "rthunborg/Kopplas",
+        "ref": "codex/epic-15-scheduling-time-calendar",
+        "head_sha": "1a643e24968a06cdeaba23ffc2506471b659c62a",
+        "producer_source_sha": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+        "producer_checkpoint_id": "3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437",
+        "attempt": 1,
+        "producer_verification_mode": "calendar-feed-cause-proof"
+      },
+      "run_id": null,
+      "jobs": [],
+      "event": "workflow_dispatch",
+      "workflow_id": null,
+      "actor": null,
+      "triggering_actor": null,
+      "title": "checkpoint:cause-proof:3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437:1a643e24968a06cdeaba23ffc2506471b659c62a",
+      "verification_mode": "calendar-feed-cause-proof",
+      "release_validation": false,
+      "producer_status": "completed",
+      "producer_conclusion": "success",
+      "exact_run_verified": null,
+      "collection_authorized": null,
+      "artifact_admission_state": "PENDING",
+      "artifact_id": null,
+      "artifact_listing_sha256": null,
+      "artifact_listing_bytes": null,
+      "artifact_candidate_sha256": null
+    },
+    "meaning": "Nonauthorizing templates only. No future run ID, actor, workflow/default availability, intent, review PASS, exact-run or collection authority invented."
+  },
+  "future_Root_metadata_usage": [
+    "After private High PASS, obtain actual reviewed dispatcher preflight workflow/default/actor availability facts; no placeholders may be promoted to proof.",
+    "Write/fsync retained Root-owned prePOST intent with exact target/producerUUID/collectionUUID/mode/schema/code/review bindings; persist its actual byte count/SHA in producer_admission. This is Root intent, not fabricated dispatcher internal state.",
+    "Fill producer_admission workflow_id/default_workflow_oid/availability_verified_before_post/actor/triggering_actor, review status=passed/reportSHA/currentthreecodehashes, localcapability and authorized_once=true; pure validate_expected and exclusively fsync expected-admission.json BEFORE sole separately authorized POST. No run_id exists in this prePOST expected schema.",
+    "Root alone dispatches/polls. Only after actual unique terminal run proof populate terminal_template(e,actual_expected_raw): positive run_id, exact nine job tuples and exact_run_verified/collection_authorized=true; all selected3 actualsuccess/suppressed6 actualskip under this retained acquisition contract. Freeze raw expectedSHA binding.",
+    "Separate Root activation runs ONLY allocated Root driver --execute-once-after-new-terminal-grant. Exclusive durable result reservation precedes helper/effect; stdin pipes remain owned for one automatic60s five-field candidate admission. No agent roundtrip or rerun.",
+    "After frozen closed result, separate High offline grant publishes exact final3. A candidate is not causal correction authority; UNKNOWN ends approach with no opaque normal retry."
+  ],
+  "future_argv": {
+    "Root_driver": [
+      "python",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-02-driver.py",
+      "--execute-once-after-new-terminal-grant"
+    ],
+    "helper_child": [
+      "python",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-02/collect-diagnostic-evidence.py",
+      "--execute-after-new-terminal-grant"
+    ]
+  },
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-02-binding-review/local-checks.json",
+    "bytes": 1196,
+    "sha256": "0e475d2355d08666c564ec0fd8833467fc9a0546ae483a45c84a56567d856535"
+  },
+  "development_complete": false,
+  "release_ready": false
+}

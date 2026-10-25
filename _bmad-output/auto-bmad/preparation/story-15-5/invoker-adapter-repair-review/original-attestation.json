@@ -1,0 +1,207 @@
+{
+  "kind": "independent-targeted-committed-delta-review-attestation",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_implementation_author": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_review_round": false,
+    "route": "P5 persisted targeted sensitive committed-delta review; parent recorded route"
+  },
+  "scope": {
+    "base": "bedd0979d8f80eb52f92c81eb5a364f54157c3fe",
+    "head": "571f5014efc5edad9649b947c26d391a804afe66",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "checkout": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "exact_changed_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "necessary_dependencies": "unchanged canonical auth.uid mechanism proof; historical original function bodies; existing strict validator, catalog/ACL query and RLS010 boundaries"
+  },
+  "reviewed_inputs": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 150709,
+      "sha256": "e66b240b9cf72f27fb35100053f46e621456a2d643ee30e6ee98b6137c212eb7",
+      "head_blob": "a3d6a9ca41a5315305b91ba284e563d37b97e051",
+      "base": {
+        "blob": "53d0d2765a81b05aee331f420929f582785d5517",
+        "bytes": 142632,
+        "sha256": "36db88f8f121c050f4349ea1dc5ce57854574bee22f85295dce6eaef49dbc85a"
+      }
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "head_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "base": {
+        "blob": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+        "bytes": 47148,
+        "sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda"
+      }
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11965,
+      "sha256": "ef59b5d0cad587a01842e00de84ffc409f8f51c232b9e059a841e5d19575483d",
+      "head_blob": "5af613dc46fd79a86298161cc044d106d20fcbb8",
+      "base": null
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 14957,
+      "sha256": "52716fa7a627b96d6b9397b775b4603ce85860fe4f5c101a0523cc95cab21838",
+      "head_blob": "14e2cb42fb816d88e2b67f9223dfa573d30bb663",
+      "base": {
+        "blob": "68f5522bb859349588c4a5ca09702ced8f91752c",
+        "bytes": 14685,
+        "sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564"
+      }
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "head_blob": "a78e3f6a336f84fc3d44d042516808748622feb8",
+      "base": {
+        "blob": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+        "bytes": 87490,
+        "sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831"
+      }
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+      "head_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+      "base": {
+        "blob": "fa50588f5bcec2ebf794cbbe8496c1fd0534a80f",
+        "bytes": 8024,
+        "sha256": "2297a50851ecb4de0d54a2b56a76d9e87044b52808b776a44f44cb602962ca6a"
+      }
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 147988,
+      "sha256": "7a23135ef82de7b36c1bd7858b9761ccc759d313767b90033f5a0a8e7ef10544",
+      "head_blob": "a7d712ae5f3f75b3f6af04d808c7219a45b4bef7",
+      "base": {
+        "blob": "0dca2a72bbc24c6aadaa97f0cd1d18e17a3f6127",
+        "bytes": 138869,
+        "sha256": "4162cf707d7ae3c64d5007b16a143684abff5d309afadd82cd84293d1e0d1155"
+      }
+    }
+  ],
+  "provenance_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-adapter-571f5014-source-admission.json",
+      "bytes": 4994,
+      "sha256": "a68228ffaa79c95afbb3247d49ebd3f33ca659c616ed3cb369414e12605702b8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-adapter-571f5014-current-source-vector.json",
+      "bytes": 29949,
+      "sha256": "d1734d009c5ef02cda6d84a18008ba7b68919457869aed2925d4d91e19c16fd1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-invoker-adapter-repair-final-path-allocation.json",
+      "bytes": 2674,
+      "sha256": "e0b04d2891052019901ec4a61d04663245d558f6dee513ee040212a4e3aae3e0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-qualification.json",
+      "bytes": 10184,
+      "sha256": "f45092e068564833b91f5e42cc0feba1a991cbe74f4c69ab2e13d1cf89d82bb4"
+    }
+  ],
+  "observations": [
+    "Source-reviewed one atomic DO, ordinary postgres/session identity, pre-existing SET/noninherit authority, owner attributes/membership and entrypoint ACLs.",
+    "Source-reviewed exact historical bodies and 3/2/3 canonical substitutions, preserved OIDs/all other pg_proc metadata, local role/reset and transient CREATE revoke/effective absence.",
+    "Source-reviewed SQL-standard canonical-OID-bound STABLE INVOKER adapter; empty search_path, private EXECUTE, metadata/dependency postconditions; no Auth ACL, role membership or SECDEF widening.",
+    "Actual v2 has 18 fixed booleans; owner_actor_execute replaces owner_auth_usage; canonical owner_uid_execute remains; only owner_tokens_select excluded from 17 necessary candidates.",
+    "Actual strict v2 validator and adapted catalog predicate block old/mixed schemas and unrelated body/owner/security/config drift.",
+    "Current author rationale/review order describes limits; one section with 110 verified references; no broad counter or baseline reset."
+  ],
+  "independent_checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"v2 actual|actual baseline catalog|actual ACL source|new atomic migration|status strict wire schema|status validator|actual status qualification|CI command projection rejects\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit": 0,
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 252.7184,
+      "limitations": "Selected pure source/injected controls only. Other tests were not executed or credited. No PostgreSQL or live RLS callback."
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <spec>",
+      "exit": 0,
+      "sections": 1,
+      "references": 110,
+      "errors": []
+    },
+    {
+      "check": "actual raw bytes equal committed HEAD blobs for exact seven paths; base blobs captured and new migration absent at base",
+      "passed": true
+    },
+    {
+      "check": "git diff --check bedd0979d8f80eb52f92c81eb5a364f54157c3fe 571f5014efc5edad9649b947c26d391a804afe66",
+      "exit": 0
+    },
+    {
+      "check": "migration filename census",
+      "count": 111,
+      "unique_versions": 111
+    },
+    {
+      "check": "tagged approved kernel",
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+    },
+    {
+      "check": "story state",
+      "status": "in-review",
+      "review_loop_iteration": 3,
+      "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12"
+    }
+  ],
+  "reported_not_reexecuted": {
+    "author_focused": {
+      "passed": 97
+    },
+    "author_separate_linux": {
+      "passed": 3183,
+      "suites": 103,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_s": 37.965
+    },
+    "nonadditive": true
+  },
+  "limits": {
+    "new_migration_executions": 0,
+    "database_queries": 0,
+    "normal_acceptance_credit": 0,
+    "native_db_rls_http_browser_credit": 0,
+    "api_ci_provider_effects": 0,
+    "resource_launches": 0,
+    "git_mutations": 0,
+    "source_spec_edits": 0,
+    "prior_probe": "Reused only for independently qualified PG17.6 engine feasibility; not this migration, feature acceptance or hosted/historical cause.",
+    "pending": "Fresh exact-head native gates, normal 95 acceptance and any private v2 consumer binding remain outside this review. Historical 43 DB/14 browser failures are not declared repaired.",
+    "file_writes": "Only these three new owned review outputs; no other files changed by reviewer."
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "source_head": "73169cc0c75d88fbb16dc999ef99cbd9028ff361",
+  "input_sha256": "2e277b82726fe7f5ab1ae0324731b6d24a13677fb99b8492a99fede5cfa76164",
+  "provenance": "Selected model/effort are the actual collaboration spawn arguments. These saved reports are explicitly parent transcriptions, not claimed native original output bytes; complete original final messages remain in this task's collaboration transcript. The external recovered report is saved separately as exact native bytes and remains failed-wrapper/unqualified.",
+  "reports": [
+    {
+      "layer": "blind-hunter",
+      "agent": "r1_blind",
+      "selected_model": "gpt-6.1-sol",
+      "selected_effort": "high",
+      "text_kind": "parent transcription of final findings and read attestation",
+      "findings": [
+        "Serialize first-time reminder opt-outs with emission. FOR SHARE protects existing preference rows only. An authenticated recipient can save their first opt-out through PUT /api/notifications/preferences after the predicate but before notification insertion. That API performs a direct upsert without the tenant advisory lock, and no notification-insert trigger rechecks preferences. The reminder and audit can therefore commit after the opt-out succeeds. Give preference creation and reminder emission a shared serialization boundary, including the absent-row case.",
+        "Preserve decimal accuracy when displaying booked-time differences. domain.ts:16 subtracts fractional booked minutes using binary floating-point arithmetic, while the formatter prints every resulting digit. A legitimate booking lasting 60 minutes 6 seconds produces60.1 booked minutes; a reviewer opening its75-minute report sees0h14.899999999999999min instead of0h14.9min. Use decimal-safe subtraction and formatting, with coverage for fractions such as0.1."
+      ],
+      "coverage": "All5034snapshot lines and complete activated test bodies; SHA verified; source review only."
+    },
+    {
+      "layer": "edge-case-hunter",
+      "agent": "r1_edge",
+      "selected_model": "gpt-6.1-sol",
+      "selected_effort": "high",
+      "text_kind": "parent transcription of final structured findings and preceding coverage attestation",
+      "findings": [
+        {
+          "location": "src/components/time-reports/TimeReportReview.tsx:23",
+          "trigger_condition": "PL/Admin follows an internal booking/job link with a dirty, pending, or uncertain annotation.",
+          "guard_snippet": "<TimeReportLinks report={report} onNavigate={guardDirtyOrUnresolvedNavigation} />",
+          "potential_consequence": "Client navigation bypasses Dialog/beforeunload guards, discarding unsaved notes and the exact retry token."
+        },
+        {
+          "location": "src/features/time-reports/domain.ts:16",
+          "trigger_condition": "PL/Admin reviews75reported minutes against a genuine90.1-minute booking snapshot.",
+          "guard_snippet": "return booked === null ? null : subtractExactDecimalMinutes(reported, booked);",
+          "potential_consequence": "The displayed difference becomes15.099999999999994minutes instead of exact15.1."
+        }
+      ],
+      "coverage": "All5034snapshot lines in contiguous bounded ranges;397750bytes/SHA verified; exhaustive branch/boundary and deletion check; no runtime."
+    },
+    {
+      "layer": "verification-gap",
+      "agent": "r1_verification",
+      "selected_model": "gpt-6.1-sol",
+      "selected_effort": "high",
+      "text_kind": "parent transcription of final verification-gap report",
+      "findings": [
+        {
+          "title": "Stale annotation feedback is tested through an unused helper",
+          "surface": "TimeReportReview.tsx:19 COMMAND_CONFLICT branch, PL/Admin outdated review sheet via Workspace:34",
+          "evidence": "UNIT011 tests annotationOutcomeAfter with no production caller; SSR renders initial props, E2E003 successful annotation, INT008 SQL conflict without UI consumer.",
+          "missing": "Actual conflicting annotation response shows refresh-required, prevents editing, never saved confirmation.",
+          "demonstration": "Mutate actual component conflict branch to confirmed; existing helper/SQL/SSR/success browser assertions remain unaffected.",
+          "consequence": "Reviewer can be told outdated note saved while SQL rejected it; SQL still prevents overwrite."
+        },
+        {
+          "title": "Latest-response protection is disconnected from its apparent verification",
+          "surface": "TimeReportWorkspace.tsx:20 sequence comparisons and controls:26",
+          "evidence": "UNIT011 tests currentTimeReportResponse with no production caller; no test imports actual Workspace; E2E003 selections sequential.",
+          "missing": "Actual reads resolving out of order retain latest controls/rows/totals/loading.",
+          "demonstration": "Remove actual component sequence checks; helper and sequential browser checks still pass.",
+          "consequence": "Older response can display another selection totals under current controls."
+        }
+      ],
+      "coverage": "Complete instruction+5034snapshot lines, all56declarations and complete appended bodies, inputSHA verified; no runtime."
+    },
+    {
+      "layer": "intent-alignment",
+      "agent": "r1_intent",
+      "selected_model": "gpt-6.1-sol",
+      "selected_effort": "high",
+      "text_kind": "parent transcription of final descriptive alignment/evidence report",
+      "findings": [],
+      "descriptive_readings": [
+        "User outcome own booking/standalone→confirmed submitted report→own week→PL/Admin review+bounded reminders.",
+        "Integrity current SQL authority/own assignment/immutable core/atomic audit/replay/RLS/ACL/dedupe.",
+        "Headless stronger reading expects state production consumers; weaker reading permits component controllers around replaceable forms.",
+        "Implemented source can await exact-head development checks; exhaustive visual/manual/timing deferred."
+      ],
+      "implementation": "Diff implements user/integrity at source level and honestly adopts pending-development evidence; no established production-reachable authorization/persistence defect.",
+      "boundaries": [
+        "Tested pure state helpers have no production imports; actual controllers remain in TSX.",
+        "Essential browser covers calendar/standalone/review, not all3BookingEntry hosts; VM uses actual BookingBlock eligibility/propflow plus stubentry.",
+        "Nudge route tests inject successful auth/run callback but invoke actual defaultdispatch/SQL; narrower than ordinary scheduled discovery/cursor orchestration.",
+        "Runtime integration/browser explicitly pending, not passed; distinct from deferred release validation."
+      ],
+      "coverage": "Complete exactLFkernel+all5034bundlelines; bundleSHA+kernelSHA verified; read-only source audit."
+    },
+    {
+      "layer": "auto-bmad-security",
+      "agent": "r1_security",
+      "selected_model": "gpt-6.1-sol",
+      "selected_effort": "high",
+      "text_kind": "exact final text plus separately reported coverage",
+      "final_text": "No findings.",
+      "coverage": "Preceding reviewer message attested all397750bytes/5034lines sequentially in15bounded nontruncated chunks, complete activated testbodies, SHA verified; no runtime/network/mutation."
+    }
+  ]
+}

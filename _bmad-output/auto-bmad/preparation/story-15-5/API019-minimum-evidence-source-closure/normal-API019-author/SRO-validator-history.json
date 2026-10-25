@@ -1,0 +1,13 @@
+{
+  "initial_review_order_native": 1,
+  "coordinate_refresh": 59,
+  "second_tool": "1d2b1b",
+  "second_native": 1,
+  "remaining_public_diagnostic": "review-order line2473: bail:1 does not exist in repository",
+  "source_of_diagnostic": "Existing literal bail:1 in prior INT014 SRO prose interpreted as path:line. No config/test behavior change.",
+  "prose_only_delta": {
+    "old": "`bail:1`",
+    "new": "`bail: 1`"
+  },
+  "helper_unit_pins_unchanged": true
+}

@@ -1,0 +1,145 @@
+{
+  "schema": "ROOT_CORRECTED_INT009_ACTUAL_TERMINAL_OWNERSHIP_v1",
+  "status": "QUALIFIED_RUN_OWNERSHIP_TERMINAL_DBFAIL_CASE_CARDINALITY_UNKNOWN",
+  "run_id": 39804170137,
+  "url": "https://github.com/rthunborg/Kopplas/actions/runs/39804170137",
+  "head": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+  "branch": "codex/epic-15-int009-debug",
+  "checkpoint_id": "a6d7e90f-4486-4093-a407-b5b3c495d88a",
+  "title": "checkpoint:original-int009:a6d7e90f-4486-4093-a407-b5b3c495d88a:3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+  "workflow_id": 296219797,
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation/terminal.json",
+    "bytes": 14770,
+    "sha256": "f2ae14542c2344c75cac075342c8031366638cfe592469ce6e624db838e431b6"
+  },
+  "readonly_controller": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation/operation.json",
+    "bytes": 1734,
+    "sha256": "c758a0442e2cd6b9616d345192eca1580a110ff5dc64d29554de10cd999f96b9"
+  },
+  "reconciliation_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-local-readonly-reconciliation-review.json",
+    "bytes": 12576,
+    "sha256": "b1dd679a226996605f75e1eb6c587bf94db26ebbeb97c4a2a0b3dca66541ed02"
+  },
+  "readonly_activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation-activation.json",
+    "bytes": 1953,
+    "sha256": "b63c5d58ba48ddc645e1359d6b35b10b439aeb79ce6d196733e27721548e410e"
+  },
+  "provider_execution": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-provider-execution-receipt.json",
+    "bytes": 2812,
+    "sha256": "f7bd310f3661285991fc43ac200d434da97e058e7bc8b7447b32cf5309be4290"
+  },
+  "provider_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-vercel-readonly-qualification.json",
+    "bytes": 11730,
+    "sha256": "e58557f5fb639fe13d03599da1faac91502dd2fa422d460740bfd7c52088c88f"
+  },
+  "original_finite_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-one-case-effects-allocation.json",
+    "bytes": 3523,
+    "sha256": "e5c32d77eb2f20aaebbb464c339c9739fe1b1b321582172fe63c432b3a6ab14b"
+  },
+  "readonly_scope_clarification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-readonly-scope-clarification.json",
+    "bytes": 1565,
+    "sha256": "f8fa9eeaf92923a25128efa25fbf68614863e5ea6553cd35f4172be572f25758"
+  },
+  "Root_publish_tool": "1d345b/native0/7.9591506s",
+  "Root_resolver_first": "21ace4/native0 first0matches",
+  "Root_local_premature_poll": "4be3df localrefusal beforeanyrun/jobsGET/counter; originalUNKNOWN486/300fa preserved",
+  "Root_readonly_init": "dd4c4d/native0/0GET/originalcountersdeadlinepreserved",
+  "Root_actual_unique_resolve": "6fbd53/native0/0.9616357s cumulative2",
+  "Root_actual_terminal": "fa2968/native0/1.4761814s onepair/all9terminal",
+  "Root_poller": "STOPPED, allremainingresolver/pollslotsCLOSED",
+  "cumulative_resolution_GETs": 2,
+  "poll_pairs": 1,
+  "artifact_log_GETs": 0,
+  "new_push_POST_provider_replays": 0,
+  "job_results": [
+    {
+      "id": 119912820531,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "failed_steps": []
+    },
+    {
+      "id": 119912881429,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "failed_steps": []
+    },
+    {
+      "id": 119914541809,
+      "name": "db",
+      "status": "completed",
+      "conclusion": "failure",
+      "failed_steps": [
+        {
+          "number": 11,
+          "name": "Original INT009 (fixed diagnostic only; zero acceptance)",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      ]
+    },
+    {
+      "id": 119914544535,
+      "name": "dashboard-e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failed_steps": []
+    },
+    {
+      "id": 119914544838,
+      "name": "recovery-storage-loader",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failed_steps": []
+    },
+    {
+      "id": 119914545662,
+      "name": "fixed-chromium-application-verification",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failed_steps": []
+    },
+    {
+      "id": 119914545847,
+      "name": "e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failed_steps": []
+    },
+    {
+      "id": 119914546246,
+      "name": "native-stream-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failed_steps": []
+    },
+    {
+      "id": 119914546686,
+      "name": "fixed-chromium-paired-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failed_steps": []
+    }
+  ],
+  "case_execution": "UNKNOWN untilseparatelyadmittednativeartifact",
+  "cause_custody": "UNKNOWN; no cleanup/rollback/nativecauseguess",
+  "normal95": "68P1F26unexecuted unchanged",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "next": "Prepareactualschema-bound fixedINT009 native reader fromcurrentproducer; independentHighsourcevalidation, completedfinite1listing+1uniqueZIPgrant, thenactualacquisition+independentnativeevidencequalification. No rawlogs/fallback/refetch. Cause-backedpatchonlyafterqualifiedfacts."
+}

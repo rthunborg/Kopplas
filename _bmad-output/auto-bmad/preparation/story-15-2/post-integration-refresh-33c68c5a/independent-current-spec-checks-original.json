@@ -1,0 +1,320 @@
+{
+  "verdict": "PASS",
+  "technically_ready_to_freeze": true,
+  "HALT": "ready-for-dev",
+  "spec_approved": false,
+  "P3": "Root decision pending",
+  "finding_count": 0,
+  "findings": [],
+  "baseline": "33c68c5aef5b75f96cf0ca5c086ebe911631db55",
+  "raw_sha256": "201e7c846c885d19cfe6b166cbaf9f7d8cac5e6b4b715de49de84d166037613d",
+  "kernel_sha256": "013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1",
+  "tasks": 9,
+  "GWT_ACs": 8,
+  "checks": [
+    {
+      "check": "baseline/raw/kernel",
+      "passed": true,
+      "evidence": {
+        "baseline": "33c68c5aef5b75f96cf0ca5c086ebe911631db55",
+        "raw_sha256": "201e7c846c885d19cfe6b166cbaf9f7d8cac5e6b4b715de49de84d166037613d",
+        "bytes": 33798,
+        "kernel": "013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1"
+      }
+    },
+    {
+      "check": "whole task/AC contract preserved",
+      "passed": true,
+      "evidence": {
+        "tasks": 9,
+        "GWT_ACs": 8
+      }
+    },
+    {
+      "check": "approved source sketch once",
+      "passed": true,
+      "evidence": "epics-phase-b.md:1557"
+    },
+    {
+      "check": "76 archive/original report preserved",
+      "passed": true,
+      "evidence": "Original source/initial validation remains historical"
+    },
+    {
+      "check": "author preservation actual and live source preserved",
+      "passed": true,
+      "evidence": {
+        "entries": 4146,
+        "unchanged_other_at_author_exit": 4145,
+        "author_changes": [
+          "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
+        ],
+        "concurrent_Root_metadata_only": [
+          {
+            "path": "_bmad-output/auto-bmad/recovery/epic-15-adoption.md",
+            "recorded": "a349595ffd292fcbb328dec336f29a273ce15a9d4044d1b11c496cd46c981e67",
+            "current": "f0060de88400b4795a4a465f0bffc93aba8d561e471fdb2e3efd4c5f237d8305"
+          },
+          {
+            "path": "_bmad-output/auto-bmad/state/15-2-recurring-bookings-series-materialized-occurrences-exceptions.yaml",
+            "recorded": "4b898176733e2d90aee1aad2e0b4db52c7511ae9311f5205497f6b7276b62c08",
+            "current": "28be2947090df86da033c576fe792b6b50cad5feb8339240806250572a7e50af"
+          },
+          {
+            "path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+            "recorded": "894301c7496cf8b9a463a21227dbfefd5b7d71b241e2dface74cd9618bc452c4",
+            "current": "166d99fe361d275d1a69f1cfe1b4c3fa7c6fb8d3758fb9f15af8ea9f6bcc0248"
+          }
+        ],
+        "earlier_live_check_all4146_matched": true
+      }
+    },
+    {
+      "check": "frozen artifact manifest all entries",
+      "passed": true,
+      "evidence": {
+        "entries": 32,
+        "manifest_sha256": "266c1c67bfc3ffc4a229d71646a22bab25a2012af6398a58e359f0e4daed2425",
+        "validation_sha256": "c20985edb58fac84fb140b18a5c04f0596c4a3bdf19aa3bd7ef97baada6a0a2d"
+      }
+    },
+    {
+      "check": "supplied packet hashes",
+      "passed": true,
+      "evidence": "actual supplied identity"
+    },
+    {
+      "check": "authoritative reader",
+      "passed": true,
+      "evidence": {
+        "command": [
+          "C:\\Users\\Rasmus\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.agents\\skills\\auto-bmad\\scripts\\story_plan.py",
+          "--spec",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
+        ],
+        "native_exit": 0,
+        "stdout_sha256": "5d0e12460f8c422dabac1f87ce8b9e3cb9b2ea371cac732ee4aeecb810c282e8",
+        "output": {
+          "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+          "exists": true,
+          "artifact_format": "bmad-build-auto",
+          "legacy_story_status": null,
+          "frontmatter": {
+            "title": "15.2 \u2014 Recurring Bookings \u2014 Series, Materialized Occurrences, Exceptions",
+            "type": "feature",
+            "created": "2026-10-19",
+            "status": "ready-for-dev",
+            "review_loop_iteration": 0,
+            "followup_review_recommended": false,
+            "baseline_revision": "33c68c5aef5b75f96cf0ca5c086ebe911631db55",
+            "context": [
+              "docs/process/review-order.md",
+              "docs/process/agent-model-routing.md",
+              "docs/process/development-completion-policy.md",
+              "docs/process/local-setup.md",
+              "docs/decisions/epic-14-story-ownership-contract-d-2026-10-07.md",
+              "docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md",
+              "_bmad-output/test-artifacts/test-design-epic-15.md",
+              "_bmad-output/auto-bmad/preparation/story-15-2/implementation-ownership-handoff.md",
+              "_bmad-output/auto-bmad/preparation/story-15-2/post-integration-refresh-33c68c5a/integrated-source-contracts.md",
+              "_bmad-output/auto-bmad/preparation/story-15-2/post-integration-refresh-33c68c5a/ownership-reconciliation.md"
+            ],
+            "warnings": [
+              "oversized"
+            ],
+            "deferred": [],
+            "deferred_count": 0
+          },
+          "auto_run_result": {
+            "present": true,
+            "status": "ready-for-dev",
+            "blocking_condition": "none for preparatory specification amendment; current candidate remains unapproved and P3 open pending Root exact-head CI and distinct High validation. Implementation requires actual P3 approval and reconciled concrete ownership/resource allocation before overlapping writes."
+          },
+          "last_review_pass": null,
+          "status": "ready-for-dev",
+          "parse_warnings": [],
+          "error": null
+        }
+      }
+    },
+    {
+      "check": "authoritative discovery",
+      "passed": true,
+      "evidence": {
+        "command": [
+          "C:\\Users\\Rasmus\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+          "-B",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.agents\\skills\\auto-bmad\\scripts\\story_plan.py",
+          "--find-spec",
+          "--impl-dir",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts",
+          "--story-key",
+          "15-2-recurring-bookings-series-materialized-occurrences-exceptions",
+          "--sprint-status",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\sprint-status.yaml"
+        ],
+        "native_exit": 0,
+        "stdout_sha256": "5a1df08386b75d35c23ab428edad309afe280fa00af0a8cbba9dcfc350afb12e",
+        "output": {
+          "story_key": "15-2-recurring-bookings-series-materialized-occurrences-exceptions",
+          "impl_dir": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts",
+          "candidates": [
+            {
+              "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+              "status": "ready-for-dev",
+              "artifact_format": "bmad-build-auto",
+              "legacy_story_status": null,
+              "mtime": 1792435995.5151923
+            }
+          ],
+          "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+          "status": "ready-for-dev",
+          "artifact_format": "bmad-build-auto",
+          "legacy_story_status": null,
+          "found": true,
+          "ambiguous": false,
+          "siblings": [],
+          "hard_stop": false,
+          "hard_stop_reason": null,
+          "warnings": [],
+          "error": null
+        }
+      }
+    },
+    {
+      "check": "context reference paths",
+      "passed": true,
+      "evidence": [
+        "docs/process/review-order.md",
+        "docs/process/agent-model-routing.md",
+        "docs/process/development-completion-policy.md",
+        "docs/process/local-setup.md",
+        "docs/decisions/epic-14-story-ownership-contract-d-2026-10-07.md",
+        "docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md",
+        "_bmad-output/test-artifacts/test-design-epic-15.md",
+        "_bmad-output/auto-bmad/preparation/story-15-2/implementation-ownership-handoff.md",
+        "_bmad-output/auto-bmad/preparation/story-15-2/post-integration-refresh-33c68c5a/integrated-source-contracts.md",
+        "_bmad-output/auto-bmad/preparation/story-15-2/post-integration-refresh-33c68c5a/ownership-reconciliation.md"
+      ]
+    },
+    {
+      "check": "actual cache valid/preserved",
+      "passed": true,
+      "evidence": {
+        "sha256": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a",
+        "newer_planning_files": []
+      }
+    },
+    {
+      "check": "unapproved Root-owned state",
+      "passed": true,
+      "evidence": "P3 still open; read only"
+    },
+    {
+      "check": "actual relevant source bound to committed baseline",
+      "passed": true,
+      "evidence": {
+        "src/server/bookings/conflict-facts.ts": "2e3d5ac0a91179fc19f15d89af2b5573088cbaa6ab76ea774d199211ae4d1cb2",
+        "src/server/bookings/conflict-attestation.ts": "34f0d813ce2624a2afa6c082dc1e608ab9775d517b36323f7cb81b744157f6f1",
+        "src/server/bookings/editor-preview.ts": "3ef3d828f77585f40e1192af1d10223ab09865209937156ab75b874a7be0182c",
+        "src/features/scheduling/types.ts": "05b0e05142a89da50676d6e564aec6221e98e7aa5cedfb59d738d9a09297b4fb",
+        "src/features/scheduling/conflicts.ts": "341d8e6ffa81041b5054df41e2a75a26290a47abc34bf44d8787d9fd5ddd2d69",
+        "src/server/commands/jobs/card-proof.ts": "3f16ce8855150a688e01fe38783180852fd6624dc83eac30b6c7edd8410933f1",
+        "supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql": "2f557a0bb2ebaec601123cab8013114728cf9f5e09829e594e897d87d1435d72",
+        "supabase/migrations/20261007121034_booking_editor_whole_group_validation.sql": "6575631fb72927a9e57777a4d336dcdb6781c5969b1c1a115cfde818cc4e508f",
+        "supabase/migrations/20261006122441_booking_conflict_detection_integration.sql": "93670661af85f3372a92c8711bf13918b780abefcc524835c7b9a565ad84579e",
+        "supabase/migrations/20261013201515_story_15_1_booking_reassignment_flags.sql": "67b40e082a2d42755037ba6a5fafa12f1d02391fe3915b84a643e25200454ba6"
+      }
+    },
+    {
+      "check": "original ownership handoff unchanged",
+      "passed": true,
+      "evidence": "3ce9c126e680c661f3b4bdd1f94728b624795fece63937177048abbc23131cb1"
+    }
+  ],
+  "independent_seven_point_audit": [
+    {
+      "criterion": "ACs",
+      "status": "PASS",
+      "evidence": "Approved sketch exact once; unchanged9tasks/8GWT criteria"
+    },
+    {
+      "criterion": "design",
+      "status": "PASS",
+      "evidence": "Source design-gate absence explicit; current UX, phone, keyboard and headless contract retained"
+    },
+    {
+      "criterion": "sequencing",
+      "status": "PASS",
+      "evidence": "Domain/schema/command/projection/state/UI/integrity/browser/evidence chain"
+    },
+    {
+      "criterion": "scope",
+      "status": "PASS",
+      "evidence": "Current fact/proof/batch precision elaborates existing AC3/6/7; no new permission/capacity/product"
+    },
+    {
+      "criterion": "impact",
+      "status": "PASS",
+      "evidence": "Original handoff preserved; current narrowed allocations and no material new protected path"
+    },
+    {
+      "criterion": "references",
+      "status": "PASS",
+      "evidence": "Actual PhaseB/current source/owner decisions; October8retro and ContractD retained"
+    },
+    {
+      "criterion": "test gate",
+      "status": "PASS",
+      "evidence": "Current policy preserves required auth/integrity/DB/RLS/Storage/static/build/essential smoke; exhaustive release deferred"
+    }
+  ],
+  "independent_current_source_compatibility": [
+    {
+      "locus": "20261019133200...sql:3-34; conflict-facts.ts:28,45,107-112; conflicts.ts:26-76",
+      "assessment": "Every booking jobId, ordered per-job arrays and independent null/empty semantics. Current v3/v1 retained; no scalar authoritative fallback.",
+      "verdict": "PASS"
+    },
+    {
+      "locus": "conflict-attestation.ts:13; editor-preview.ts:10; card-proof.ts:4",
+      "assessment": "13 original ordered claims and length-prefixed bytes preserved. Single/card/series proof domains distinct; implementation pins new series bytes and negative cross-protocol cases.",
+      "verdict": "PASS"
+    },
+    {
+      "locus": "20261019133200...sql:82-138,299-405; booking_detection_gate_internal",
+      "assessment": "Current tenant gate/actor authority/locks before replay; new mutations fact+proof freshness; atomic card conflict replacement. Series must serialize on same gate; no current protocol rewrite.",
+      "verdict": "PASS"
+    },
+    {
+      "locus": "conflict-facts.ts:79-148; integrated-source-contracts.md Complete batch conflict projection",
+      "assessment": "Current single overlay/group filter is insufficient for series. Companion explicitly requires one complete postmutation tenant overlay and complete logical groups intersecting affected-ID set, including all v1/v2 associations, with overlay-aware SQL reference validation.",
+      "verdict": "PASS"
+    },
+    {
+      "locus": "spec Design Notes; integrated-source-contracts.md Proof and replay contracts",
+      "assessment": "Series rules/revisions/nominal slots/index/exceptions/tombstones/lineage augment existing detector digest. Stable IDs/dedupe/split and protected exceptions remain unchanged. Audit/fault rollback includes entire batch and output.",
+      "verdict": "PASS"
+    },
+    {
+      "locus": "ownership-reconciliation.md",
+      "assessment": "Conditional five shared deltas retained/narrowed; no material new protected implementation path; no capacity/permission-matrix/phase-a-surface edit; migration ID/order and actual allocation/resource window remain operational prerequisites.",
+      "verdict": "PASS"
+    }
+  ],
+  "runtime_suites": 0,
+  "broad_review_rounds": 0,
+  "limits": [
+    "Proportional reuse of unchanged original76 semantic validation, current delta/source checked directly",
+    "No recurrence implementation evidence or approval",
+    "No release/main merge/deployment authorization"
+  ],
+  "operational_prerequisites": [
+    "Root P3 approval",
+    "Reconcile concrete Coordinator delta/subranges before protected writes",
+    "Recheck unused candidate migration/order",
+    "Allocate isolated runtime and serial fixture/DDL execution window"
+  ],
+  "reviewer_checker_note": "Two read-only preservation assertions stopped without writes while concurrent Root bookkeeping advanced; final reconciliation isolates only named Root files and preserves actual source/author evidence."
+}

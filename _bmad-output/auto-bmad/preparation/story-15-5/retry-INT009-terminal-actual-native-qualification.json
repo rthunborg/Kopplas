@@ -1,0 +1,629 @@
+{
+  "schema": "INDEPENDENT_RETRY_INT009_ACTUAL_NATIVE_QUALIFICATION_V1",
+  "outcome": "QUALIFIED_ACTUAL_DIAGNOSTIC_FAILURE_WITH_LOCAL_METADATA_GUARD_ATTRIBUTION",
+  "status": "EVIDENCE_QUALIFIED_FUNCTIONAL_FAIL_NO_ACCEPTANCE",
+  "independent": true,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_route": "Root89d7d6",
+    "role": "Independent actual evidence/source correlation reviewer; distinct from NativeHigh reader preparer/operator and prior reader source/privacy reviewer",
+    "scope": "Frozen existing packet and bounded already-bound source correlation only; no fourth broad review"
+  },
+  "owned_identity": {
+    "run": 39804170137,
+    "head": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "source": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "main_current_metadata_HEAD_Root_reported": "a19a0135",
+    "attempt": 1,
+    "checkpoint_id": "a6d7e90f-4486-4093-a407-b5b3c495d88a",
+    "branch": "codex/epic-15-int009-debug",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "db_job_id": 119914541809,
+    "normal_acceptance": 0
+  },
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition/manifest.json",
+      "bytes": 1360,
+      "sha256": "9d10294300c8f4b9f0594d3f47714bab5c6a7441ca14d73057e2381dbcbf1926"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-execution-receipt.json",
+      "bytes": 10465,
+      "sha256": "348ff3d930f4553ef3c162551d7497411f09ae24432269a565fbf9d152c4fa7f"
+    },
+    {
+      "bytes": 50745,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/normal-evidence-operator.py",
+      "sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76"
+    },
+    {
+      "bytes": 14770,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation/terminal.json",
+      "sha256": "f2ae14542c2344c75cac075342c8031366638cfe592469ce6e624db838e431b6"
+    },
+    {
+      "bytes": 5494,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-retry-INT009-actual-terminal-ownership.json",
+      "sha256": "aacd7f03c78d2865105973069038f7bfe233057a0acf521122dc90019b0268d1"
+    },
+    {
+      "bytes": 1596,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-fixed-diagnostic-inert-candidate.json",
+      "sha256": "911d0bf76fd61af981ed7b347a7b92efe8861dd93a7799e1fadb7173c7ddf68a"
+    },
+    {
+      "bytes": 22331,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-six-capability-actual-source-review.json",
+      "sha256": "a68940f3ac6c32cab37277862fe1366da1ec2a22aa858005a2b596956a6e5ba5"
+    },
+    {
+      "bytes": 5950,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-six-capability-root-commit-proof.json",
+      "sha256": "aa0e47a42a34d0791f71220874dfbef3ea3b61a5fd7c9096b59cd45c36ae523d"
+    },
+    {
+      "bytes": 5640,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-debug-initial-root-proof.json",
+      "sha256": "de5c0d3865f4f5793a99e950a19239caba75c5baa9d6bf6720913bcd3ba586e5"
+    },
+    {
+      "bytes": 1747,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-seventh-companion-root-commit-proof.json",
+      "sha256": "965c112cf1973ccc1070a1b3a762c9eff9b88853c8ce5acda02c7d5818cd742a"
+    },
+    {
+      "bytes": 21888,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-seventh-companion-actual-source-review.json",
+      "sha256": "1f0e3e6803057cfd7a2a8a14c093e85a4581f89ddf62dd37ac3461f3f92f0a81"
+    },
+    {
+      "bytes": 2910,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-terminal-two-read-allocation.json",
+      "sha256": "8bbc73151046b4df84d0f3434e9bd6ef1b4cc301248f62f86ae6442e36f0d0cb"
+    },
+    {
+      "bytes": 880,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-current-source-proof.json",
+      "sha256": "10d6182bc9aafc92a5acdb9df488c4f830295c7efdf87f76a41a043f4131515c"
+    },
+    {
+      "bytes": 15799,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-reader-actual-source-review.json",
+      "sha256": "dc535126aeeae6ba3cefcf295fb9d04753de6983e3c95932855108ff50c43a36"
+    },
+    {
+      "bytes": 2688,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-activation.json",
+      "sha256": "4b98d68f803639dca3c9276475c57be3cefea2c8decc413651b090bab1b6ef36"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/reader.py",
+      "bytes": 17439,
+      "sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/proposal.json",
+      "bytes": 26485,
+      "sha256": "841471ceefec492a82e47bcfdb2715792ae630b9393e4779b4d84e9430934b74"
+    }
+  ],
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition",
+    "exact_member_count": 9,
+    "manifest_self_excluded": true,
+    "manifest_members": [
+      {
+        "bytes": 3866,
+        "path": "operator-intent.json",
+        "sha256": "b5cc4a3677666d872e6230381f022ceab3d0a6c43a4948d0719a34ad313bb0f3"
+      },
+      {
+        "bytes": 438,
+        "path": "request-01-intent.json",
+        "sha256": "03624d6e6a2a4280c0c8ecfd0f4d21f23b3bbf7b6d401148fdae9658103ba964"
+      },
+      {
+        "bytes": 1156,
+        "path": "request-01-result.json",
+        "sha256": "a3916e44810dc90cbeb4ff3c214cce6f0a3098a80f87df8d6b50c0bdcf3ef149"
+      },
+      {
+        "bytes": 547,
+        "path": "artifact-list-projection.json",
+        "sha256": "66f73e330820521fc2651cd4ebbf7a2584bed11914bee8958fb8233b9415235a"
+      },
+      {
+        "bytes": 418,
+        "path": "request-02-intent.json",
+        "sha256": "c46a9523872d62efbb3e84a85d64b87b49032fb15dbc5714304e0cac59925f05"
+      },
+      {
+        "bytes": 1136,
+        "path": "request-02-result.json",
+        "sha256": "b6d9f0a6f35c17a3aea011f9f4b2d98efca7785030f4e027789b4e5cb2abf2a8"
+      },
+      {
+        "bytes": 4454,
+        "path": "native-projection.json",
+        "sha256": "29d8a992e2e991b4aa9d80ee22981b26183050790c829b547941b880227c3c11"
+      },
+      {
+        "bytes": 143,
+        "path": "acquisition-summary.json",
+        "sha256": "bbed1668d73cc89a55be6d43be95153cfe3e2c9bf1bd6f3107a52c227ad04413"
+      }
+    ],
+    "inventory_and_all_bytes_SHA256_match": true,
+    "no_extra_members": true,
+    "native_projection_bytes": 4454,
+    "native_projection_sha256": "29d8a992e2e991b4aa9d80ee22981b26183050790c829b547941b880227c3c11",
+    "raw_archive_nativeJSON_and_listing_not_retained": true
+  },
+  "source_and_reporter_binding": {
+    "source_commit": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "source_count": 14,
+    "all14_raw_LF_computed_clean_blobs_independently_match_current": true,
+    "source_inventory": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/proposal.json",
+      "bytes": 26485,
+      "sha256": "841471ceefec492a82e47bcfdb2715792ae630b9393e4779b4d84e9430934b74"
+    },
+    "installed_schema_count": 3,
+    "installed_schema_bindings": [
+      {
+        "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+        "bytes": 151531,
+        "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/reporters.d.DtoKVV2s.d.ts",
+        "bytes": 113407,
+        "sha256": "7fa6fdc6eeeb3850e6b3166836f8c9199594c4f4bed3cee02cac0ca33d71894d"
+      },
+      {
+        "path": "node_modules/vitest/package.json",
+        "bytes": 5918,
+        "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+      }
+    ],
+    "all3_installed_bytes_hashes_independently_match": true,
+    "Git_identity": "Root fresh source proof and prior committed source/protected-byte proofs; no new reviewer Git call",
+    "SQL118": "Reuse Root880-byte current source proof plus immutable prior118 raw/LF vectors; no new scan or runtimeDDL evidence.",
+    "prior_reader_source_privacy_PASS": {
+      "status": "PASS",
+      "independent": true,
+      "evidence": [
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-reader-actual-source-review.json",
+          "bytes": 15799,
+          "sha256": "dc535126aeeae6ba3cefcf295fb9d04753de6983e3c95932855108ff50c43a36"
+        }
+      ]
+    },
+    "prior_controls": "Reuse unchanged independent10 pure groups and author16 groups nonadditively from the bound source review; reviewer reran no collector/controls."
+  },
+  "terminal_qualification": {
+    "all9_completed": true,
+    "conclusion": "failure",
+    "job_conclusions": {
+      "checkpoint-admission": "success",
+      "verify": "success",
+      "db": "failure",
+      "recovery-storage-loader": "skipped",
+      "e2e": "skipped",
+      "dashboard-e2e": "skipped",
+      "native-stream-probe": "skipped",
+      "fixed-chromium-paired-probe": "skipped",
+      "fixed-chromium-application-verification": "skipped"
+    },
+    "DB_job_id": 119914541809,
+    "DB_failed_step": {
+      "number": 11,
+      "name": "Original INT009 (fixed diagnostic only; zero acceptance)"
+    },
+    "native_report_upload_step14": "success",
+    "Stop_local_Supabase_step15": "success",
+    "limits": "Terminal step success/ended job is not key-deletion, function restoration, transaction rollback or backend settlement evidence. Six skipped jobs provide no browser/recovery/optional coverage; the failed fixed DB diagnostic does not execute full DB/RLS suites."
+  },
+  "effects_and_capture": {
+    "attribution": "NativeHigh-reported actual child/tool lifecycle, independently checked against closed receipts, intents, source/activation and packet. Reviewer and Root did not independently observe the child process lifecycle. Raw RAM bytes are unavailable for an independent second extraction; stored digest/capture consistency is qualified with the reviewed strict reader enforcement.",
+    "actual_tool": {
+      "tool": "tools.exec_command",
+      "chunk_id": "c29234",
+      "outer_exit": 0,
+      "wall_time_seconds": 2.0551196,
+      "session_id": null,
+      "waits": [],
+      "invocations": 1
+    },
+    "reader_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "reader_outer_capture": {
+      "native_exit": 0,
+      "elapsed_seconds": 1.803084,
+      "launch_error": false,
+      "timed_out": false,
+      "capture_complete": true,
+      "direct_process_settled": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "streams": {
+        "stdout": {
+          "observed_bytes": 472,
+          "physical_EOF": true,
+          "reader_done": true,
+          "read_error": false,
+          "overflow": false,
+          "observed_sha256": "1706d9c4a240c29ad5b8bd6014a1c6d821eb0dd47c55ffc2d776ebb561a23f98"
+        },
+        "stderr": {
+          "observed_bytes": 0,
+          "physical_EOF": true,
+          "reader_done": true,
+          "read_error": false,
+          "overflow": false,
+          "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    "reader_outer_caps": {
+      "seconds": 60,
+      "stdout_bytes": 65536,
+      "stderr_bytes": 65536
+    },
+    "logical_GETs": 2,
+    "retry": false,
+    "all_slots_closed": true,
+    "per_request": [
+      {
+        "argv": [
+          "gh",
+          "api",
+          "--method",
+          "GET",
+          "repos/rthunborg/Kopplas/actions/runs/39804170137/artifacts?per_page=100"
+        ],
+        "capture_complete": true,
+        "category": null,
+        "custody": "OWN_GH_CHILD_AND_OUTPUT_SETTLED",
+        "elapsed_seconds": 0.552,
+        "handles_closed": true,
+        "inline_source_sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c",
+        "intent_persisted_before_spawn": true,
+        "label": "owned-INT009-artifact-list",
+        "native_exit": 0,
+        "raw_persisted": false,
+        "sequence": 1,
+        "settled": true,
+        "stderr_cap": 65536,
+        "stdout_cap": 4194304,
+        "streams": [
+          {
+            "joined": true,
+            "observed_bytes": 750,
+            "overflow": false,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "sha256": "7a3f15a60f0752d4f31f620cd90aa42c4867d418f63568046645e364c8d4f94a"
+          },
+          {
+            "joined": true,
+            "observed_bytes": 0,
+            "overflow": false,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "timeout_seconds": 15
+      },
+      {
+        "argv": [
+          "gh",
+          "api",
+          "--method",
+          "GET",
+          "repos/rthunborg/Kopplas/actions/artifacts/12436847868/zip"
+        ],
+        "capture_complete": true,
+        "category": null,
+        "custody": "OWN_GH_CHILD_AND_OUTPUT_SETTLED",
+        "elapsed_seconds": 1.02,
+        "handles_closed": true,
+        "inline_source_sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c",
+        "intent_persisted_before_spawn": true,
+        "label": "owned-INT009-native",
+        "native_exit": 0,
+        "raw_persisted": false,
+        "sequence": 2,
+        "settled": true,
+        "stderr_cap": 65536,
+        "stdout_cap": 33554432,
+        "streams": [
+          {
+            "joined": true,
+            "observed_bytes": 2018,
+            "overflow": false,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "sha256": "bd10314c2f8d4c04f029a5035431e0d200d3e997705e04c301f9399b9f30e172"
+          },
+          {
+            "joined": true,
+            "observed_bytes": 0,
+            "overflow": false,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "timeout_seconds": 15
+      }
+    ],
+    "intent_and_activation": "Exclusive fresh operator/request intent protocol and fsync-before-spawn are established by unchanged reviewed source and actual persisted intent/result predicates. Exact operationUUID/activation/tuple/reader/proposal/currentproof/complete allocation and independent PASS references match. No old consumed grant or output adopted.",
+    "actual_grant": {
+      "path": "accepted-retry-INT009-terminal-two-read-allocation.json",
+      "bytes": 2910,
+      "sha256": "8bbc73151046b4df84d0f3434e9bd6ef1b4cc301248f62f86ae6442e36f0d0cb"
+    },
+    "actual_activation": {
+      "path": "retry-INT009-terminal-acquisition-activation.json",
+      "bytes": 2688,
+      "sha256": "4b98d68f803639dca3c9276475c57be3cefea2c8decc413651b090bab1b6ef36"
+    },
+    "eligibility_and_archive": {
+      "selected": {
+        "advertised_bytes": 2018,
+        "digest": "sha256:bd10314c2f8d4c04f029a5035431e0d200d3e997705e04c301f9399b9f30e172",
+        "expires_at_null": false,
+        "expires_at_present": true,
+        "id": 12436847868,
+        "name": "native-calendar-feed-original-int009",
+        "qualified_for_single_download": true,
+        "run_head_bound": true
+      },
+      "listing_bytes": 750,
+      "listing_sha256": "7a3f15a60f0752d4f31f620cd90aa42c4867d418f63568046645e364c8d4f94a",
+      "listing_total_count": 1,
+      "archive_bytes": 2018,
+      "archive_sha256": "bd10314c2f8d4c04f029a5035431e0d200d3e997705e04c301f9399b9f30e172",
+      "API_digest_matches_capture": true,
+      "sole_member": "native.json",
+      "member_bytes": 18086,
+      "member_sha256": "0a5ebb0de85466471c3b385bead596aa66785fc644edd6a4533191147b290146",
+      "guards": "Reuse independently reviewed exact singleton-member/raw-name/CRC/encryption/symlink/path/ratio/inflate/JSON constraints. Source limits15s per GET,4MiB listing/32MiB ZIP/64KiB stderr,16MiB JSON/128MiB inflate/ratio1000/4096entries/10000case rows remain. No extraction, fallback, pagination, status/log read or refetch.",
+      "attempt_binding": "Attempt1 is established by the exact owned terminal/run and activation; artifact API metadata has no separately observed attempt field."
+    },
+    "privacy": "Packet contains fixed names, owned ids/hashes/sizes/counts, closed sixfield producer enums and capture predicates. No raw failureMessages, stack, errorText, query values, tokens, payload, URL/header/body or unselected names. 4096ASCII namespace and8192-byte native output guards apply; actual native-projection4454 bytes."
+  },
+  "qualified_case_counts": {
+    "case": {
+      "executed_pass_plus_fail": 1,
+      "normalized_fullName_sha256": "20b800f406cc74f3e783945a6bafde710517ee987a1e4a3dfcd30df3528f2a8e",
+      "occurrences": 1,
+      "source_path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "status": "failed",
+      "title_sha256": "aad32c8196383f2c417a3035ddd82637e40ab0cd0c8c47b02b4dbc5a2a59291b"
+    },
+    "declared_report_totals": {
+      "numFailedTests": 1,
+      "numPassedTests": 0,
+      "numPendingTests": 14,
+      "numTodoTests": 0,
+      "numTotalTests": 15
+    },
+    "derived_assertion_status_counts": {
+      "disabled": 0,
+      "failed": 1,
+      "passed": 0,
+      "pending": 0,
+      "skipped": 14,
+      "todo": 0
+    },
+    "qualification": "Exactly one source/title/fullName-bound occurrence; all-report passed+failed=1, selected0P1F. Fourteen assertion rows are skipped while the report aggregates them as numPendingTests14; these are nonexecutions/zero coverage, not14 attempts or passes. Total15 reconciles1failed+14skipped. This diagnostic failure is not additive to prior normalINT009 failure.",
+    "retry": {
+      "basis": "Reviewed fixed argv/current installed resolved config only; reporter has no retry counter.",
+      "native_attempt_counter": null,
+      "source_effective_retry": 0
+    },
+    "retry_limit": "Effective retry0 is source/config based only. Reporter exposes no native attempt counter; null is retained rather than manufacturing a native observed retry count."
+  },
+  "qualified_observations": {
+    "namespace": "calendarInt009SetupV1",
+    "status": "OWNED_RECORDS_AVAILABLE",
+    "ordered_records": [
+      {
+        "guard": "FIELD:proargtypes",
+        "kind": "PRIMARY",
+        "nativeClass": "UNKNOWN",
+        "operation": "PRE_CATALOG",
+        "publication": "CAPTURE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "REQUALIFY",
+        "publication": "CAPTURE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "WRAPPER_OUTCOME_UNKNOWN",
+        "publication": "CAPTURE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "SETUP_CLEANUP",
+        "publication": "CAPTURE",
+        "sqlstate": "UNKNOWN"
+      }
+    ],
+    "omission_UNKNOWN": false,
+    "primary_vs_cleanup": "One first retained PRIMARY followed by three secondary CLEANUP records. First-primary-wins and read-only sixfield projection are source-backed; record order describes producer observations, never the native error/firstthrow ordering. Cleanup records do not replace or explain the primary guard.",
+    "nativeClass_SQLSTATE": "All UNKNOWN. The field guard records before throwing and supplies no error object; later catch cannot overwrite first PRIMARY. UNKNOWN is not proof of no native error/SQLSTATE.",
+    "body_assertions_reached": "UNKNOWN",
+    "original_exception_message_stack": "UNKNOWN"
+  },
+  "source_correlation": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "lines": [
+        170,
+        174,
+        177,
+        189
+      ],
+      "fact": "Exact bound INT009 enables createCalendarInt009Capture(()=>task.meta) and passes capture through the existing serial fixture. It awaits the management-before-authority barrier before enqueueing manage and exercising role-loss assertions. Report alone does not qualify those body assertions as reached or executed."
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "lines": [
+        185,
+        202,
+        205,
+        212,
+        224
+      ],
+      "fact": "First PRIMARY wins; field marker is written without a native error object. Capture publishes one closed bounded metadata array in task.meta, preserving original errors/order and cleanup separation."
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "lines": [
+        720,
+        721,
+        737,
+        749,
+        750
+      ],
+      "fact": "Subject-only capture helper records FIELD:proargtypes at the exact strict JSON.stringify(metadata.proargtypes)!==JSON.stringify(expected) guard. The expected subject signature representation is the string \"2950 2950 2950 16\". Thus the observation qualifies a present metadata field failing this comparison, not the returned value/type, an SQLSTATE, permission failure, changed production signature or a successful role-loss oracle. Earlier field absence would emit MISSING_METADATA instead."
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "lines": [
+        755,
+        775,
+        829
+      ],
+      "fact": "PRE_CATALOG obtains metadata with to_jsonb(p) plus explicit normalization of provariadic/prorettype/prosupport only; it does not explicitly normalize proargtypes. CAPTURE invokes the owner catalog qualification before BODY_BUILD/REPLACE/STATE_PUBLISH. The narrow source-analysis candidate is the pg_proc.oidvector-to-JSON representation versus the expected string. No actual mismatching value survived the safe projection, so an array, string contents or cast remedy is not claimed as an observed fact."
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "lines": [
+        796,
+        800,
+        805,
+        806,
+        927,
+        934
+      ],
+      "fact": "REQUALIFY, WRAPPER_OUTCOME_UNKNOWN and SETUP_CLEANUP are distinct secondary paths. Their UNKNOWN guards/classes/codes do not show why they failed or prove rollback/retirement/restoration. Retained custody stays conservative; do not infer primary cause from cleanup outcomes."
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+      "lines": [
+        3559,
+        3569,
+        3570,
+        3575,
+        3582,
+        3594
+      ],
+      "fact": "Pinned installed JsonReporter emits exact task title/fullName/file/status and task.meta (or configured filtered metadata). The strict reader source-qualifies the target case and reconstructs only closed metadata; no native retry field or original errors are available in this projection."
+    }
+  ],
+  "causal_conclusion": {
+    "established": "The named native diagnostic reproduced the local subject-owner PRE_CATALOG proargtypes qualification mismatch during initial CAPTURE. This is concrete setup-guard attribution sufficient to target the owner-catalog serialization/expectation contract for a bounded source assessment. It is not yet an established representation repair or production defect.",
+    "not_established": [
+      "Actual metadata.proargtypes type/value or the precise representation discrepancy.",
+      "Original native first throw, error class, SQLSTATE, message or cause chain; ordered metadata is not native exception order.",
+      "Role-loss scenario body/assertion reach or original production authority outcome.",
+      "Successful publication/replacement/restoration or native rollback/backend settlement.",
+      "Key deletion/global cleanup/ACL restoration or wrapper resource lifecycle outcome.",
+      "That this retry observation retrospectively explains the original prior fullNORMAL failure."
+    ]
+  },
+  "minimum_next_action": {
+    "recommendation": "One bounded read-only source-contract assessment of calendarOwnerCatalogSql metadata serialization and calendarOwnerFacts exact proargtypes expectation for the subject signature, using the current qualified guard and PostgreSQL17 canonical representation evidence. No new collector, generic diagnostics or blind normal/diagnostic retry is needed to begin this source assessment.",
+    "candidate_source_boundary": [
+      "tests/support/calendar-feed-atdd.ts:749",
+      "tests/support/calendar-feed-atdd.ts:755",
+      "Existing actual-source owner-metadata controls in tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts; author Spec evidence only if a separately granted repair is proven."
+    ],
+    "repair_conditions_if_proven": [
+      "Prove the exact serialization contract before selecting a correction; do not invent the unavailable native value.",
+      "If representation alone is wrong, canonicalize that representation or its exact expected encoding while preserving four authoritative argument types/order and every metadata/row/OID/body/owner/auth/tenant/ACL/schema/default/language comparison. Do not allow both arbitrary representations or remove the failing guard.",
+      "Conserve existing operation/query ordering, error identity/precedence, rollback/requalification/custody gates and all118SQL; no production SQL/permission/oracle weakening.",
+      "Any code change requires separate source allocation, actual focused controls and independent targeted review; this evidence qualification grants no authoring/execution or retry authority."
+    ]
+  },
+  "custody": {
+    "wrapper_receipt": "NOT_UPLOADED_BY_THIS_MODE",
+    "wrapper_receipt_available": false,
+    "key_deleted": null,
+    "backend_settlement": "UNKNOWN",
+    "function_restoration_and_rollback": "UNKNOWN",
+    "job_end_Stop_step": "Observed terminal facts only; cannot substitute for missing wrapper/custody proof."
+  },
+  "continuity": {
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "zero_coverage_or_unknown": 26
+    },
+    "new_normal_acceptance": 0,
+    "P5": "OPEN",
+    "review_counter": 3,
+    "fourth_broad_review": false,
+    "development_complete": false,
+    "release_ready": false,
+    "SQL118": "unchanged; runtime correctness/cleanup credit not inferred"
+  },
+  "reviewer_effects": {
+    "new_API_GETs": 0,
+    "runtime_workloads": 0,
+    "tests_control_reruns": 0,
+    "Git_commands_mutations": 0,
+    "source_Spec_SQL_state_packet_edits": 0,
+    "only_write": "This new qualification JSON",
+    "actual_read_commands": [
+      "da1497",
+      "1b529f",
+      "40f851",
+      "494b62",
+      "5d9b9e",
+      "8ad82f"
+    ]
+  },
+  "findings": [],
+  "open_questions": [
+    "Exact pg_proc proargtypes serialization mismatch must be established before any representation fix. Native firstthrow/body reach/backend/custody remain UNKNOWN."
+  ],
+  "deferred_work": "Separately authorized bounded source-contract assessment and, only if proven and allocated, minimal repair plus actual required gates. No further artifact/log request or automatic rerun authorized.",
+  "blockers": [
+    "Actual diagnostic INT009 remains failed. Required full95 is not green and26 required cases have zero/unknown coverage. No normal acceptance or P5 completion."
+  ]
+}

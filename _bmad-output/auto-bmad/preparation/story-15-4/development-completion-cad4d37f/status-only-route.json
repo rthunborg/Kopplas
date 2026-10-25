@@ -1,0 +1,29 @@
+{
+  "kind": "status-only-author-closure-route",
+  "native_evidence_revision": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+  "root_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-4-preparation/root-status-only-cad4-admission.json",
+    "raw_sha256": "0ec8d7a34a9f1c8a696182cac5c83dd61311746599ea360fe008b0d4623c6132",
+    "errors": []
+  },
+  "author": {
+    "agent": "retained original author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Preserve sensitive source/evidence/kernel while normalizing machine status after qualified gates."
+  },
+  "only_write": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md status/ARR/SRO/evidence metadata; approved kernel/task/AC immutable",
+  "allowed_author_commit": "Spec+existing byte-frozen delivery JSON only, scoped subject AND body. Parent commits owned completion route/truth reports separately.",
+  "required_checks": [
+    "python .agents/skills/auto-bmad/scripts/story_plan.py --spec [spec]: frontmatterdone/ARRdone/parse_warnings[]/followupfalse/rederive0/deferred0",
+    "SRO1section20stops0errors",
+    "gitdiffcheck/kernelconservation",
+    "Source60/deliveryacc8 unchanged"
+  ],
+  "preserve": "3counted=1broad+2limited plus2separate narrowfollowups; all nativefailed/skipped/interruptedhistory; inheritedepicreview_unverifiedTRUE; all6releasechecks/release_readyfalse/no merge-deployapproval",
+  "exclude_root_owned": [
+    "canonical15.4state",
+    "recovery/deferred-validation.md"
+  ],
+  "prohibited": "No source/test/schema/dependency/CI/env/runtime/newreview/push. FINALtruthaudit44checks0errors authoritative; earlierbasenamecollisionattempt preserved toolinghistory only."
+}

@@ -1,0 +1,203 @@
+{
+  "schema": "POST_F1_DIAGNOSTIC_OUTPUT_BUDGET_ASSESSMENT_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "role": "finite-local-output-budget-assessor",
+  "outcome": "LOCAL_ASSEMBLER_BUDGET_DEFECT_PROVED_SYNTHETICALLY",
+  "normal_acceptance": 0,
+  "application_cause": "UNKNOWN",
+  "actual_consumed_projection": {
+    "bytes": null,
+    "error_count": null,
+    "location_count": null,
+    "tuple_count": null,
+    "reason": "Reports/projection not retained; OUTPUT_CAP is only actual observed local refusal."
+  },
+  "immutable_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/targeted-diagnostic-operator.py",
+      "bytes": 24060,
+      "sha256": "560b3accc66323a853b36a57d09fc12c1cc4dbc97059b705c15b79da59b4c559"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/test_targeted_diagnostic.py",
+      "bytes": 14937,
+      "sha256": "8c7bd578b913adbdcf12b3e7462623d831966373ad906c606473240cab9534b0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/preparation.json",
+      "bytes": 11742,
+      "sha256": "c93f6894b7350bc132efc2912e96f1417c687702960c4e6f143d58018da43021"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/bindings.json",
+      "bytes": 41758,
+      "sha256": "f7333652de4238ee8ce984df97d6e7afc5bfc2c2bc30f8e65c7e4b9024c51741"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/delta-proof.json",
+      "bytes": 3463,
+      "sha256": "1a9b5134cbc7aac9f852f95f1d91c1a39a508dd07041f2c788b149ff7fc3d471"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/manifest.json",
+      "bytes": 1590,
+      "sha256": "fe8c36df94f39e4e48905390bec4791b148d4c14659bd971fbb0ec1e1e279b98"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/manifest.json",
+      "bytes": 2254,
+      "sha256": "b502e54a26d4d599ca308c4915420ad0f9dee9decbd29456fda36ea8e3831c0a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/qualification.json",
+      "bytes": 5845,
+      "sha256": "1dd2ae5802a6d405f053418df776918fe922a31042b6df986790a03cc98d66ff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/stop.json",
+      "bytes": 240,
+      "sha256": "7ef112681101aa54d89afadb7b3e3ab13cdc20873d11321f3c31f4708615f23b"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 4872,
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "actual_local_checks": [
+    {
+      "name": "frozen acquire+packed assembler; repeated tuple synthetic ZIPs/fake GET",
+      "native_exit": 0,
+      "errors": 16,
+      "locations": 8,
+      "retained_tuples": 128,
+      "pretty_bytes": 52828,
+      "compact_bytes": 27083,
+      "live_GETs": 0
+    },
+    {
+      "name": "frozen acquire+packed assembler; dense distinct tuple synthetic ZIPs/fake GET",
+      "native_exit": 0,
+      "errors": 16,
+      "locations": 64,
+      "retained_tuples": 256,
+      "pretty_bytes": 96919,
+      "compact_bytes": 47718,
+      "live_GETs": 0
+    },
+    {
+      "name": "in-memory proposed reduction of dense assembled result",
+      "native_exit": 0,
+      "compact_bytes": 26500,
+      "tuples_per_error_max": 4,
+      "omission_flag": true,
+      "top_level_UNKNOWN": true,
+      "secret_tripwire_absent": true
+    },
+    {
+      "name": "conservative bounded compact schema envelope",
+      "native_exit": 0,
+      "serialized_bytes": 30718,
+      "cap": 32768,
+      "margin": 2050,
+      "source_path_bytes_max": 92,
+      "errors": 16,
+      "locations": 64,
+      "closed_tuples": 64,
+      "selected_containers": 11,
+      "integer_width_bound": 2147483647,
+      "status": "DESIGN_MEASUREMENT_NOT_IMPLEMENTED_BUDGET_PROOF"
+    }
+  ],
+  "retry_source": {
+    "ref": {
+      "path": "playwright.config.ts",
+      "bytes": 4872,
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+    },
+    "line": 39,
+    "source_expression": "retries: process.env.CI ? 1 : 0",
+    "pinned_git_blob": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+    "allowed_CI_attempts": 2,
+    "allowed_retry_ordinals": [
+      0,
+      1
+    ],
+    "no_config_write": true
+  },
+  "minimal_revision": {
+    "diagnostic_serializer": "compact ensure_ascii JSON+LF; admitted bytes exactly equal bytes published via exclusive/fsynced diagnostic writer; other receipt formatting/transport unchanged",
+    "tuple_reduction": "order-preserving per-error exact dedup; first4 distinct; explicit per-error omission flag plus global truncated/UNKNOWN; no complete/absence/cause claim",
+    "preserved_caps": {
+      "output_bytes": 32768,
+      "errors": 16,
+      "locations_per_error": 4,
+      "locations_total": 64,
+      "tuple_output_per_error": 4,
+      "tuple_output_total": 64,
+      "error_depth": 4,
+      "input_text_per_field": 65536,
+      "source_paths": 74
+    },
+    "case_cardinality": {
+      "DB_entries": 3,
+      "browser_cases": 4,
+      "browser_tests_per_case": 1,
+      "browser_results_per_case_max": 2,
+      "unique_retry_ordinals": [
+        0,
+        1
+      ],
+      "selected_containers_max": 11,
+      "violation": "SELECTION_CHANGED; no silent truncation"
+    },
+    "integer_rule": "Wire counts0..2147483647, preserve narrower original caps; overflow local STOP_UNKNOWN, no arbitrary-width integer output",
+    "preGET_budget_admission": "Executable conservative envelope derived from actual bounded output schema/path/enum maxima; serialize with exact diagnostic writer; cap check BEFORE any GET/reservation. Actual-byte check retained at publication. Over-budget causes0GET local refusal.",
+    "meaning_preservation": "Case/attempt associations,error-kind,SQLSTATE,transport,presence and bounded selected error counts,location candidates and provenance unchanged. Tuple-tail omission explicitUNKNOWN; if needed information omitted, named stop/prerequisite, no inferred cause."
+  },
+  "prospective_private_paths": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-budget-revision-1/targeted-diagnostic-operator.py",
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-budget-revision-1/test_targeted_diagnostic.py",
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-budget-revision-1/bindings.json",
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-budget-revision-1/preparation.json",
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-budget-revision-1/delta-proof.json",
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-budget-revision-1/manifest.json"
+  ],
+  "scope_status": "PROPOSED_ONLY; exact new private ownership/schema reduction admission needed, not a code/effect grant.",
+  "mandatory_future_operator_controls": [
+    "synthetic actual acquire/ZIP/fake transport dense output",
+    "actual main preGET maximum admission and exact published byte identity",
+    "dedup/order/4unique omission=>UNKNOWN",
+    "maximum11 containers/16errors/64locations/64tuples/numeric widths",
+    "retry duplicate/excess/out-of-range rejection",
+    "budget refusal get-count0",
+    "redaction and immutable source/transport helper span preservation"
+  ],
+  "independent_review_stops": [
+    "conservative byte bound valid for every accepted shape",
+    "cap check beforeGET and emittedbytes identical",
+    "tuple selection honestlyUNKNOWN/no hidden dropped causal facts",
+    "configured retry/selection match fixed normalrun",
+    "unchanged2GET endpoints/74paths/transport/admission/privacy",
+    "old artifacts and consumed grant immutable"
+  ],
+  "future_effect_prerequisite": "New independently source-admitted exact code plus distinct High review, separate actual two-read Coordinator allocation and Root sole fresh operation activation. No automatic retry under consumed grant.",
+  "no_effects": {
+    "new_network_GETs": 0,
+    "source_Spec_SQL_config_edits": 0,
+    "Git_mutations": 0,
+    "native_runtime": 0,
+    "CI": 0,
+    "resources": 0
+  },
+  "development_complete": false,
+  "release_ready": false,
+  "broad_rounds": 3,
+  "new_broad_review": false
+}

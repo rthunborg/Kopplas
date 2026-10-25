@@ -1,0 +1,53 @@
+{
+  "Outcome": "Independent prebuild specification validation completed. The 15.6 specification is buildable within its approved scope; no material correction is required before allocation and implementation.",
+  "Files changed": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/spec-validation.json"
+  ],
+  "Status": {
+    "result": "PASS",
+    "validation_type": "Independent specification and source-contract validation; not an implementation review or runtime pass",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "baseline_revision": "4cf343c8c73db83e11e4fc0a0e1feb8d51a4939f",
+    "spec": {
+      "path": "_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+      "bytes": 20105,
+      "sha256": "2347eb64e6859246ce1a7e1ff45ab86038aad48a2981c70401766a98c77079a2",
+      "approved_sketch_verbatim_occurrences": 1
+    },
+    "findings": [],
+    "verified_contracts": [
+      "The exact Story 15.6 AC sketch is preserved once. AC1-7 elaborate its landing, date/week agenda, job/map/time actions, booking.changed banners, connected refresh, no-money payload and 360x640 floor without new product scope. Current DESIGN/EXPERIENCE and incorporated Phase B UX govern presentation and behavior; old oracle requirements are superseded by the supplied owner decision.",
+      "Current Bookings.View and TimeReports.ReportOwn role sets are tenant_admin/projektledare/montor. normalizeRoles removes duplicates/unknown roles; the specified exact normalized [montor] landing rule preserves current mixed-office/dashboard priorities and does not expand route admission or capabilities. The standard route boundary and fresh cookie-bound read/action authority remain required.",
+      "The proposed read_my_day independently requires auth.uid, exact active tenant membership and existing allowed roles, derives unarchived own profiles, and filters planned overlapping bookings through own assignment for every role. No manager-wide read followed by client filtering is permitted. Tenant equality, finite non-null increasing intervals and the eight-day maximum are explicit. Reused Stockholm helpers support half-open day/week selection and DST handling; exact instants and whole-minute prefill behavior remain required.",
+      "Restricted labels/address make a narrow checked projection migration justified: the existing scheduler supplies broad manager/editor context, time_report_own_context lacks labels/address, readMyJobs carries unnecessary quote/source identity and read_job_members exposes a crew. One stable read-only checked SECURITY DEFINER function with empty search_path, qualified references and authenticated-only ACL is a minimal compatible change; no table/policy/role grant change or feed-owner capability reuse is needed.",
+      "For jobs active, the plan requires both current job_can_read and job_has_current_relationship before any job contribution. Source verification confirms current unarchived own-profile/member-or-booking relationship semantics, including historical/cancelled booking assignment relationships; the plan preserves those semantics and adds only the activeJobs nonarchived created/in_progress display restriction. Own myRole precedence cannot expose peers or invent named teams.",
+      "For jobs pending, the separate false SQL branch and strict server DTO require zero jobs/helper/join queries, no job identity/label/location/customer fallback/role/action, and activeJobs empty. The flag is derived solely from server manifest state, null is false or rejected, and direct authenticated true callers are explicitly not treated as holding manifest authority. Independent current row authorization is mandatory on true calls; no stronger database activation guarantee is claimed.",
+      "Label/address projection is restricted to admitted own bookings and authorized personal jobs, with explicit facility then job override then job facility precedence and no customer billing-address fallback. Exact DTOs omit money, quote/source identity, staff roster and peer assignment lists for every role; absent context yields honest absence. Map transmission requires an explicit encoded link click.",
+      "Notification SELECT remains recipient/active-membership RLS scoped; the existing producer honors preferences, emits generic copy and /scheduling, and stores an audit event subject rather than a booking target. The planned category-before-pagination own unread read and capped recent banners preserve former-assignee privacy and cannot invent today/tomorrow association or conflict reasons.",
+      "Inline TimeReportEntry is an existing usable seam; the time-reports page has no URL-prefill consumer. Its own immutable pending/unknown attempt and exact booking/job/date/interval prefill remain authoritative requirements. file_time_report rechecks current assignment and job readability, rejects mismatching nonnull job IDs, and derives the stored booking job itself. The pending branch must not manufacture null relationships or use eager job options; its permitted report action remains conditional on those existing invariants.",
+      "Headless domain/types/state/action boundaries and replaceable presentation are explicit. Current-date/latest-request failure clearing, separate denial/read failure/connected-empty states, visible refresh plus pull gesture, keyboard controls and connected server-confirmed time filing cover the essential phone flow. The plan preserves 15.1 Contract D and UXB-A9 grouping, 15.2 recurrence, 15.3 conflict, 15.4 time and 15.5 feed contracts rather than reopening them.",
+      "Meaningful implementation evidence is specified: real authenticated direct-RPC tenant/role/profile/assignment negatives, manager own-only rows, related-label gates and DTO omission, pending query spying and direct true-call own-slice tests, completeness beyond page limits, DST/date bounds, late responses/failure-after-success, safe map/exact prefill and unknown-result recovery, plus the real 360x640 landing/refresh/job/time journey. Required full integration/RLS, direct recovery-storage integrity, static/build and essential browser gates remain development requirements; exhaustive visual/manual matrices remain owned release deferrals."
+    ],
+    "verification_performed": [
+      "Read only the assigned worktree's AGENTS.md and development-completion, model-routing and suggested-review-order policies, plus supplied later owner instructions.",
+      "Read the exact new spec, epic-15-context, plan-result.json, sensitive-assessment.md including focused four-argument amendment, and story-file-audit.md.",
+      "Inspected current canonical DESIGN.md/EXPERIENCE.md, detailed UX section 4.8 and related shared-state rules, and the exact epic Story 15.6 sketch/EB-A6/EB-A7.",
+      "Inspected current manifest, landing/navigation/route boundaries, role normalization and permission matrix; scheduler, my-jobs, time-report and notification read seams; TimeReportEntry/Form and prefill types; current membership/booking/job/time/notification migrations and relevant feed projection precedent. Searched all migration definitions to identify the latest job predicates rather than relying on an obsolete helper definition.",
+      "Inspected existing focused time-report/authz test sources and available integration/browser lane paths as reusable evidence patterns; no tests were executed.",
+      "Confirmed HEAD and local status read-only. Recomputed exact spec byte length/SHA256 and programmatically confirmed the approved sketch appears verbatim exactly once. An initial sketch lookup expression returned no match; the corrected bounded regex check produced the verified count of one.",
+      "No implementation, SQL authoring, migration filename generation, service/runtime launch, database/provider/network operation, Git mutation, push, merge, deployment or release verification performed."
+    ],
+    "migration_allocation": "Directory supabase/migrations and logical stem story_15_6_my_day_projection are sufficient at this validation stage. Root must first reconcile the fresh combined inventory and ownership, discover CLI help, generate the filename only, then allocate its actual concrete path before SQL authoring. Existing applied migrations, including 118, remain read-only.",
+    "review_rounds_consumed": 0,
+    "release_ready": false
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root-owned exact source/schema/test ownership and resource allocation, including the CLI-generated concrete migration filename, before implementation.",
+    "Implementation and actual execution of all required development checks; no planned assertion is passing runtime evidence. Preserve TimeReportEntry draft/unknown-attempt lifetime when composing date navigation, refresh failure and list clearing, and demonstrate same-attempt authoritative recovery in the new host.",
+    "Independent High implementation review of the sensitive projection/auth boundaries, the existing three-round cap, author-written final Suggested Review Order and delivery-gate evidence.",
+    "Owned wider browser/role/device, screenshot/design, manual accessibility/daylight/exploratory and polish release validation, E14 advisory/performance follow-up and pending final Phase B checkpoint. No release-ready, merge or deployment claim."
+  ],
+  "Blockers": []
+}

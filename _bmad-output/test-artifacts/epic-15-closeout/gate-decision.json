@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-10-25",
+  "repo": "Kopplas",
+  "target": {
+    "type": "epic",
+    "id": "15",
+    "label": "E15 scheduling/time/calendar"
+  },
+  "resolved_gate_type": "epic",
+  "allow_gate": true,
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "PASS",
+  "rationale": "Required development coverage:35/35P0=100%,14/14P1=100%,49/49overall=100%; formal approved49AC oracle/highconfidence, no live-only requirement. Actual qualified source-specific/current execution plus explicit Oct19 independent-review/effective-flow reuse, including actual targeted15.2post-cap closure, cover retained obligations.51retired series scaffolds and1full-lane recovery skip give0coverage. Exhaustive release validation remains deferred; this gate authorizes no release, merge or deployment.",
+  "p0_status": "MET",
+  "p1_status": "MET",
+  "overall_status": "MET",
+  "critical_open": 0,
+  "uncovered_requirements": [],
+  "decision_scope": "development completion only",
+  "release_ready": false,
+  "links": {
+    "trace_report_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\epic-15-closeout\\traceability-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  }
+}

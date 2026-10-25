@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-23T15:03:45.885145+00:00",
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "canonical_state": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\normal-API019-NORMAL-dispatch-state.json",
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "original_int009": false,
+  "no_retry": true
+}

@@ -1,0 +1,30 @@
+{
+  "Outcome": "NOTPASS_SOURCE_LABEL_01",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/report.md",
+      "bytes": 5005,
+      "sha256": "905f3d2ac181f0597ac7afacd76d28657e48d2822d8fe2264128671fbdf5d557"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/attestation.json",
+      "bytes": 15141,
+      "sha256": "2ca4a0af1d40cbdbc13981299556263ccd1d761233bb74253260439c5f90cd42"
+    }
+  ],
+  "Status": "Actual source counterexample confirms contradictory final_identity_relation output; original error behavior preserved. Exact-six targeted review only.",
+  "Open questions": [
+    "Original failing assertion/backend cause, native label publication and backend/key custody remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Author narrowly corrects relation fallback/retention and adds actual helper+test-catch controls; follow-up review only that correction and regressions.",
+    "Source PASS plus separate exact effects allocation/fresh Root bindings required before any labelled NORMAL comparison; all mandatory gates remain unmet."
+  ],
+  "Blockers": [
+    {
+      "id": "SOURCE-LABEL-01",
+      "owner": "implementation_author",
+      "resume_condition": "TEST_FINAL/LOCAL do not assert NO_INNER_OBSERVED without observed absence; preserve established relation or emit UNKNOWN/NOT_APPLICABLE, with actual source inverses."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "ROOT_AUDIT_ONE_READ_CLOSED_OUTER_ATTRIBUTION_V1",
+  "audit_operation_id": "760ebc9b-d32a-4b1c-8e39-49f3242f644d",
+  "admission_outer": {
+    "chunk_id": "d7ed05",
+    "wall_time_seconds": 0.352041,
+    "exit_code": 0,
+    "original_token_count": 194,
+    "output": "{\"grant\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/accepted-integration-IP-audit-job-evidence-effects-allocation.json\", \"bytes\": 2507, \"sha256\": \"abdefe0e5988e542c41f800c2e43f3311768ecf2f281b6a36ba9d747f3043f14\"}, \"proof\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-current-source-proof.json\", \"bytes\": 6365, \"sha256\": \"096da4e42f8ec79a86c0a0c853506eeef0746d857da5b6511d1628be94508e35\"}, \"activation\": {\"path\": \".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-root-activation.json\", \"bytes\": 1827, \"sha256\": \"cf2cfd55df7a280376496254ab1e9d8b488e8ef333f554e46caffa7814a5052c\"}, \"local_metadata_commands\": 4, \"actual_log_GETs\": 0, \"ready_for_one_reviewed_invocation\": true}\r\n"
+  },
+  "actual_outer_outputs": [
+    {
+      "chunk_id": "cd16b1",
+      "wall_time_seconds": 1.3916785,
+      "exit_code": 0,
+      "original_token_count": 235,
+      "output": "{\"schema\": \"ROOT_AUDIT_REVIEWED_READER_OUTER_CAPTURE_V1\", \"audit_operation_id\": \"760ebc9b-d32a-4b1c-8e39-49f3242f644d\", \"reader_summary\": \"{\\\"status\\\": \\\"CLOSED\\\", \\\"reason\\\": \\\"UNKNOWN\\\", \\\"availability\\\": \\\"TRANSPORT_UNQUALIFIED\\\", \\\"logical_GET_invocations\\\": 1, \\\"normal_acceptance\\\": 0}\\r\\n\", \"outer_receipt\": {\"native_exit\": 2, \"category\": \"PROCESS_NONZERO\", \"elapsed_seconds\": 1.258711, \"timeout_seconds\": 60, \"capture_complete\": true, \"readers_joined\": true, \"handles_closed\": true, \"direct_process_settled\": true, \"streams\": [{\"observed_bytes\": 138, \"sha256\": \"076708d33b318bf3a1b0001b9202f96162377291b5a54737e617053a40c2bca6\", \"physical_EOF\": true, \"reader_done\": true, \"reader_error\": false, \"overflow\": false}, {\"observed_bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"physical_EOF\": true, \"reader_done\": true, \"reader_error\": false, \"overflow\": false}]}, \"repeat_authorized\": false}\r\n"
+    }
+  ],
+  "outer_initial_session": null,
+  "wait_calls": 0,
+  "all_slots_closed": true,
+  "reader_invocations": 1,
+  "logical_job_GETs": 1,
+  "internal_HTTP_count": "UNKNOWN",
+  "result": {
+    "path": "integration-IP-audit-job-evidence-result.json",
+    "bytes": 1348,
+    "sha256": "574ec27189353e6cc72db7936a8b5f70f190e76f336ca79f94aaec285d7d3140"
+  },
+  "outcome": "TRANSPORT_UNQUALIFIED_NATIVE1_STDOUT0_STDERR99_NO_CAUSE",
+  "raw_retained": false,
+  "retry_authorized": false,
+  "current_required95": "0P0F95unexecuted",
+  "P5": "OPEN",
+  "no_deployment": true
+}

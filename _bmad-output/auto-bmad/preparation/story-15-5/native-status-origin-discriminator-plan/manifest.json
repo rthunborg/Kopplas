@@ -1,0 +1,47 @@
+{
+  "kind": "ROOT_STATUS_ORIGIN_PLAN_REVIEW_SELF_EXCLUDED_MANIFEST",
+  "verdict": "REVISE_F1_EFFECTIVE_SELECT_INTERPRETATION",
+  "members": [
+    "input-binding.json",
+    "local-checks.json",
+    "original-attestation.json",
+    "original-report.md",
+    "plan.md",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "input-binding.json",
+      "bytes": 9016,
+      "sha256": "4c1a9ed35d8027b516bcf6e699f02ca03d7655d4e96a8d8151604bc44747d81b"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 1885,
+      "sha256": "dc094a25ff8bb0f7de42e58417bd199af164473bc7049673826de35594b1be98"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 13345,
+      "sha256": "56ce1b993c91b00d6a68bd9b611bb558c767092f5a7d736d2e9cd7a6575392f8"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 7500,
+      "sha256": "6aecbb5c7425f96e54d8372189a50821f6d3393b40f0d1c481a5d3a455487a1d"
+    },
+    {
+      "path": "plan.md",
+      "bytes": 12982,
+      "sha256": "8529b93439ae1d52675cd483326ff9383f36126753f8ec67a7a1161f2ca1308d"
+    },
+    {
+      "path": "result.json",
+      "bytes": 974,
+      "sha256": "0540f9ed1e3cd862f613d963e58081cb4fd9f48ca275337a778636dcb4b8f025"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0
+}

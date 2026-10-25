@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-private-consumer-current-checkpoint-binding-review",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewed_at_utc": "2026-10-21T05:41:17.396069+00:00",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author_and_root": true,
+    "same_reviewer_as_P252_F1_corrective_review": true
+  },
+  "route": {
+    "phase": "review-native-cause-proof-private-consumer-current-checkpoint-bindings",
+    "recorded_by_root_before_dispatch": true
+  },
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "checkpoint_head": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+  "producer_source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+  "old_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "f329a8215c02e9acbbb28309cb2c44e94cef6f7581fe2d656d3cda00d5817b0c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732"
+    }
+  ],
+  "current_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732"
+    }
+  ],
+  "actual_delta": {
+    "AST_assignments_only": [
+      "HEAD",
+      "SOURCE",
+      "CHECKPOINT",
+      "BINDINGS"
+    ],
+    "all_other_AST_equal": true,
+    "all_other_raw_source_equal_after_removing_only_four_assignment_spans": true,
+    "test_bytes_identical": true,
+    "functions_imports_protocol_caps_unchanged": true
+  },
+  "actual_producer_bindings": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 45083,
+      "raw_sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+      "git_clean_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "checkpoint_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "producer_source_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 82859,
+      "raw_sha256": "1db49932052511104c0df77f79729950de582134bd0eff098d65436ab0c936ec",
+      "git_clean_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "checkpoint_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "producer_source_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36884,
+      "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "git_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "checkpoint_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "git_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "checkpoint_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "producer_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "git_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "checkpoint_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "git_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "checkpoint_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "git_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "checkpoint_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "git_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "checkpoint_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "git_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "checkpoint_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "git_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "checkpoint_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "git_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "checkpoint_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "binding_proof": {
+    "raw_bytes_equal": 11,
+    "raw_sha256_equal": 11,
+    "Git_clean_oid_equal": 11,
+    "checkpoint_oid_equal": 11,
+    "producer_source_oid_equal": 11,
+    "all_match": true,
+    "only_changed_row": "scripts/ci/checkpoint-dispatch.mjs",
+    "atomic_snapshot_claim": false
+  },
+  "private_schema_sha256": "ec7db967a066906eaead83ea84fa1daacec3c6fe38c46cce7ff5cb8ca942b30b",
+  "template_proof": {
+    "HEAD_SOURCE_UUID_request_title_consistent": true,
+    "UUID_lowercase_v4": true,
+    "helper_hashes_match_actual_bytes": true,
+    "Root_proof_placeholders_null": [
+      "workflow.id",
+      "workflow.default_workflow_oid",
+      "workflow.availability_verified_before_post",
+      "actor",
+      "triggering_actor",
+      "persisted_intent.state_sha256",
+      "persisted_intent.fsynced_before_post",
+      "helper_review.status",
+      "helper_review.review_artifact_sha256"
+    ],
+    "expected_admission_unborn": true,
+    "terminal_facts_unborn": true,
+    "network_gate": false
+  },
+  "prior_context_artifact_bindings": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/original-report.md",
+      "bytes": 6336,
+      "sha256": "39fd8ea5ba6b6c87fea5e5a1d01322e4dbca9c808922ba6204bad5855be57212"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/original-attestation.json",
+      "bytes": 11764,
+      "sha256": "e930908a90fa1c29631f7237a9d3f0da65160198b67079bf24ef67bbef506408"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/result.json",
+      "bytes": 956,
+      "sha256": "223c299fdebafd2cbedc2555f68c9a16a1f840f14711ebbdb1a9d1b142d4d017"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/original-report.md",
+      "bytes": 7582,
+      "sha256": "fca5663518c501c3648f02365227b24771377786236c6b59adc31da57d0bfe5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/original-attestation.json",
+      "bytes": 10736,
+      "sha256": "a1a1e45808604f4a785206f562733cbfd90a01296beaa22c7cbb7f053b90fa13"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/result.json",
+      "bytes": 1201,
+      "sha256": "11aef79c8fe1c89307ded286c0e96ff6ce2755718255a676d82536d31c1f7637"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-corrective-review/original-report.md",
+      "bytes": 7695,
+      "sha256": "b65c5b9ad5661cd38e9a456c86f278bc95603338ff32802e2374e75d641b0042"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-corrective-review/original-attestation.json",
+      "bytes": 7812,
+      "sha256": "376579c962a7de573c0a2ab05096747ab4de1564b2e8e03417dd5af8ae92058b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-corrective-review/result.json",
+      "bytes": 1030,
+      "sha256": "c5480694f762b1b802daa91f8de4114b234a8c93d7d863128ff7a676807266d3"
+    }
+  ],
+  "qualification_reuse": {
+    "prior_F1": "CLOSED",
+    "whole_protocol_reopened": false,
+    "basis": "All nonbinding source bytes and all test bytes unchanged; prior corrective originals exact",
+    "prior_executed_full_suite": {
+      "tests": 31,
+      "positive_controls": 19,
+      "negative_controls": 238,
+      "failures": 0,
+      "errors": 0,
+      "pipe_driver_exits": 2
+    },
+    "author_reports_current_full_suite_same_outcome": true,
+    "reviewer_reran_current_full_suite": false
+  },
+  "reviewer_current_focused_controls": {
+    "tests": 4,
+    "names": [
+      "test_01_full_mode_binding_and_zero_acceptance",
+      "test_07_admission_mismatches_fail_before_transport",
+      "test_23_null_never_admits_present_artifact_before_second_get",
+      "test_25_listing_candidate_and_final_facts_binding"
+    ],
+    "positive_controls": 2,
+    "negative_controls": 41,
+    "nonadditive": true,
+    "failures": 0,
+    "errors": 0,
+    "network": false,
+    "driver_children": 0
+  },
+  "limits": {
+    "review_scope": "Actual four-assignment binding delta/current producer compatibility and consequential adjacent regressions only",
+    "fourth_broad_story_review": false,
+    "writes_only_three_new_review_files": true,
+    "source_Spec_states_old_or_new_packet_code_writes": false,
+    "old_original_review_mutations": false,
+    "network_API_POST_CI_DB_RPC_managed_resources_native_collection": false,
+    "git_provider_mutations": false,
+    "execution_authorization": false
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-rebound-33cfa8df-review/original-report.md",
+    "bytes": 6399,
+    "sha256": "ecfa4c1a66afa11a487825fab9d5e17a730fd5ca35e6e63e9c5cb8f24cc0dc8c"
+  },
+  "normal_acceptance_credit": 0,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "retained_gates": [
+    "Root actual bounded metadata qualification and admission facts pending",
+    "Root honest fsynced intent and frozen expected facts pending",
+    "All later dispatch and terminal collection gates remain separate",
+    "43 DB causes and14 browser failures unresolved",
+    "Normal95/full2039/browser/recovery/pilot not satisfied",
+    "Backend cause UNPROVEN; historical equivalence unknown"
+  ]
+}

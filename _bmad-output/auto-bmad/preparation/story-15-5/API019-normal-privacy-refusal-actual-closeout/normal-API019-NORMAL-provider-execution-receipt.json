@@ -1,0 +1,67 @@
+{
+  "label": "normal-API019-NORMAL-provider",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\normal-API019-NORMAL-operational-preparation\\provider-readonly.py",
+    "--execute-once-after-new-root-provider-grant"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 2.082148,
+  "reason": null,
+  "caps": {
+    "seconds": 60,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 992,
+      "sha256": "413303423bdb225fdda4c98e392eaeb4c2826b165abcd6ab450f1b9a9572e47a",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": [],
+  "actual_outer_tool": {
+    "chunk_id": "d9234e",
+    "native_exit": 0,
+    "wall_time_seconds": 2.2381416,
+    "session_id": null,
+    "waits": 0,
+    "scope": "Actual exec_command returned receipt; outer host process vs captured provider-reader child vs provider GET child are separately attributed."
+  },
+  "qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-vercel-readonly-qualification.json",
+    "bytes": 30459,
+    "sha256": "b0a69554bff518cef4e40e8898fdca85742c0d1754ffc26f8ae7e49bbae628d6"
+  },
+  "capture_foundation": "Retained Next16-4-1-author/capture.py; receipt destination literal only changed. Reader/capture transport unchanged.",
+  "capture_child_kind": "Python314 provider reader; legacy capture Node field is retained utility runtime/PATH provenance, not child executable claim.",
+  "slots": {
+    "provider_invocation": 1,
+    "provider_GETs": 1,
+    "unused_closed": true,
+    "retries": 0,
+    "other_effects": 0
+  },
+  "authority": "Limited ordinary owned feature branch Git-push containment only. No blanket manual/production/deploy claim; Root owns all later effects."
+}

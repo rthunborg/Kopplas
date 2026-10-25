@@ -1,0 +1,444 @@
+{
+  "schema": "TARGETED_CUMULATIVE_CUSTODY_SOURCE_REVIEW_v1",
+  "reviewed_at_utc": "2026-10-21T19:12:36.827703+00:00",
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "route": "gpt-6.1-sol High",
+    "independence": "Not BuildHigh/implementation author, NativeHigh plan author or PreselectedHigh plan reviewer. Prior independent packet-audit role is retained and disclosed."
+  },
+  "verdict": "NOTPASS",
+  "review_kind": "Targeted introduced cumulative10-path fix/regression review; not fourth broad story review",
+  "base": "f0000e7c107f10371543148280e555971e753342",
+  "reviewed_source_commit": "22508ef2773bb872d6c880328390812dbc358559",
+  "later_root_metadata_checkpoint": "3bf572a293386e7634df1b81f0fb62be494afc5c",
+  "source_frozen_through_review": true,
+  "policy_inputs": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": "docs/process/review-order.md",
+      "bytes": 14757,
+      "sha256": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115"
+    }
+  ],
+  "review_round_guard": {
+    "path": "C:/Users/Rasmus/.agents/skills/review-round-guard/SKILL.md",
+    "sha256": "900408407c4d8691d68cda837ec77631c3827ecf9b800fb29cdb68ebeb2b9fb1",
+    "applied": "Three broad rounds exhausted; no bmad broad loop or counter increment; explicit targeted follow-up only. Latest owner no-legacy instruction supersedes historical checkout oracle wording."
+  },
+  "source_proof": {
+    "vector_ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-wide-c4-source-author-result.json",
+      "bytes": 80085,
+      "sha256": "d6b74e6bc20d13f2e3ae26d41136e7a9c8b25511b118e24083dac7e6b06a2071"
+    },
+    "vector_field": "cumulative_source_inventory",
+    "raw_rows": 73,
+    "actual_blob_objects_checked": 146,
+    "changed": 10,
+    "unchanged": 63,
+    "canonical_verified_vector_sha256": "80e93193d0ce6ad7babbd0a049de169442481b8dcf31b4b72e2320a276e123de",
+    "canonical_vector_format": "JSON sort_keys=true compact separators; per row path/raw_bytes/raw_sha256/base_blob/reviewed_blob/changed, author vector order. Actual raw SHA compared, each base/reviewed blob SHA1 reconstructed, reviewed blob equals normalized LF checkout.",
+    "changed_rows": [
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "raw_bytes": 188970,
+        "raw_sha256": "2d8c54bcd94e9963f51a394e5f3336dc48b4113b580a474ef533b97581ab0fee",
+        "base_blob": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+        "reviewed_blob": "29c1db3a3269e1143b579d00de82777a77d2beb9",
+        "changed": true
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "raw_bytes": 48616,
+        "raw_sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "base_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+        "reviewed_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "raw_bytes": 27968,
+        "raw_sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+        "base_blob": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+        "reviewed_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+        "changed": true
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "raw_bytes": 16989,
+        "raw_sha256": "fb636129a2497479f7826b18f08ffd574d200c2512d2624e8d913dfb502cf9fc",
+        "base_blob": "643eda6f18612322aa73b39f5c784d256de4c77e",
+        "reviewed_blob": "1d8fa33b27b7fa58ca2908c3fc8ed1db8947ee69",
+        "changed": true
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 131207,
+        "raw_sha256": "effa7aebc64591f1441891ad300cc610a9f7f30142f5fa78317b96ea27401332",
+        "base_blob": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+        "reviewed_blob": "ce8196d51c27251dcfd793c1d3af6259ddb78b4d",
+        "changed": true
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "raw_bytes": 8135,
+        "raw_sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+        "base_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+        "reviewed_blob": "1c5e3b5f646d23d098257f209da533e05452a6d4",
+        "changed": true
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 225849,
+        "raw_sha256": "23011dab30c40b0178298328be918f22f43d9ee87ab7bebef15e05f8bf367c1b",
+        "base_blob": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+        "reviewed_blob": "83eef5d228ccfa8c36d6ffb6acd7658565a7b3ed",
+        "changed": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "raw_bytes": 22537,
+        "raw_sha256": "b8ed2cc0aa91ac6a30ea370a5321f8d69e9b592f1a5d36c37a54c8b4e2012a17",
+        "base_blob": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+        "reviewed_blob": "a7099404789438217d3715a6ee00ce5a0bbf945a",
+        "changed": true
+      },
+      {
+        "path": "vitest.config.ts",
+        "raw_bytes": 4805,
+        "raw_sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+        "base_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "reviewed_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+        "changed": true
+      },
+      {
+        "path": "tests/factories/admin-sql.ts",
+        "raw_bytes": 12007,
+        "raw_sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77",
+        "base_blob": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+        "reviewed_blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38",
+        "changed": true
+      }
+    ],
+    "all_applied_migration_diff_empty": true
+  },
+  "frozen_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-job-wide-c4-six-path-source-allocation.json",
+      "bytes": 2194,
+      "sha256": "6c3c3833a1b6e92be008eff1324ea7ac99fbe2f88874f1d391197263375fb6d7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-acl-six-source-precommit-admission-v2.json",
+      "bytes": 26594,
+      "sha256": "c448c899f65cd188924ad55ce2b3817775f32494db9338c14c9c70c062611456"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/proposal.json",
+      "bytes": 10670,
+      "sha256": "e48f91f5b7ccb67e93b211a4d9f609d64d1ae04b2fb7eb023ca70577b40015d6"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/manifest.json",
+      "bytes": 4963,
+      "sha256": "0ca268dc035995cd3b7e23a1dfa141c084c1b52dc457fe59778b5c7067d69d33"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/refinement.json",
+      "bytes": 9134,
+      "sha256": "94e0c70758fefe97fee429c2627836b319f2c249513765da37dfbd9948c67c5a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/manifest.json",
+      "bytes": 2197,
+      "sha256": "14778fe1ca466f9008954aa9dcd6fe1e911fc752bae599f80a5adc88fab8329d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/correction.json",
+      "bytes": 4949,
+      "sha256": "6b7f7f0e725a18a5e46fdf4cd95e80d4b688b95ad15afddcd995ec8ba461f0f9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/manifest.json",
+      "bytes": 1264,
+      "sha256": "75b4509a76e750b9d89059f45285759208e2754a9965c2543500fc5efa585704"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction-review/original-report.md",
+      "bytes": 3733,
+      "sha256": "63e55e6f6f2f491835d9102f1890f707878ec67e2d8f956365c85aaa0fe41a67"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction-review/original-attestation.json",
+      "bytes": 16395,
+      "sha256": "0995ad18eec8846b45491fb7d94fb44938782e7f329107945d2c76810c1e3535"
+    }
+  ],
+  "additional_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-job-wide-c4-precommit-admission.json",
+      "bytes": 5000,
+      "sha256": "ba6bb10ae26dd05736147db45490314a851c251432a323dfad3933882f21b7ad"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-job-wide-c4-postcommit-binding.json",
+      "bytes": 962,
+      "sha256": "d1de76f484eaf6e5a49e20c57625f7f18c9400ac1f8b45710f9bfef2b8c05be2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-acl-six-source-author-result-v2.json",
+      "bytes": 19747,
+      "sha256": "851b7ea4000cd5473b8f3327d4eabd1b53240a7d95a9651cc60aecb56dad612a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/partial-six-source-checkpoint.json",
+      "bytes": 2393,
+      "sha256": "cc23c189ef4c683e217b188c3030138141759cb60008ffc653e54be859ddca65"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-source-checkpoint.json",
+      "bytes": 2507,
+      "sha256": "1d8e08d36c7280c7679fb043d35258e24cffcf5a438f083dc628944ceb11436a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-post-acl-six-path-source-allocation.json",
+      "bytes": 3786,
+      "sha256": "fb3dc9097834391cc741cdb8f3d8b221c9fa32b1b122adeec128131c78c93eb4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-report.md",
+      "bytes": 6639,
+      "sha256": "5b2689aa3cc872f31a2d84dec6529f05589a4f2ee7cdef2da31816967d5c644e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-attestation.json",
+      "bytes": 13713,
+      "sha256": "ca77d3173dfff1ee08702a46a37e386a56f575bea73dea714eb0e564c24008cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/result.json",
+      "bytes": 1181,
+      "sha256": "8a1889c6bc1090cf4b32c25433e1d97742d528591c0cc800af3be5d5c07a6121"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "status": "OPEN",
+      "location": "tests/support/calendar-feed-atdd.ts:632-642;774-779;292-307",
+      "caller": "Actual normal API008 public-feed.int.test.ts:168-178 uses fx.http under serial withDatabaseTime; isolated CI privileged fixture restore/cleanup follows ordinary anon request.",
+      "bypass": "Transport failure closes/removes ordinary promise without qualifying backend completion; no custody latch; owner restoration and canonical/Auth deletion can follow before Vitest bail/wrapper key fence.",
+      "counterexample": {
+        "actual_regions": [
+          "http",
+          "track",
+          "calendarWorkScope",
+          "calendarSettle",
+          "calendarSerialControls.withDatabaseTime"
+        ],
+        "injected_boundaries": [
+          "fetch transport rejection",
+          "owner publication/restore",
+          "redaction helpers"
+        ],
+        "events": [
+          "publish:clock",
+          "HTTP transport refused after dispatch",
+          "scenario-http-transport",
+          "restore:clock"
+        ],
+        "pending_set": 0,
+        "shared_custody": null,
+        "backend_settlement": "UNKNOWN; deliberately not established by frontend promise",
+        "API": 0,
+        "SQL": 0,
+        "children": 0,
+        "files_written": 0
+      },
+      "direct_RPC_adjacent_proof": {
+        "helper": "trustedFetch at calendar-feed-atdd.ts:481; current serial clock callers",
+        "factory": "makeAnonServerClient at tests/factories/tenants/core.ts:378-383 default createClient",
+        "installed_primary_source": {
+          "path": "node_modules/.pnpm/@supabase+postgrest-js@2.108.2/node_modules/@supabase/postgrest-js/src/PostgrestBuilder.ts",
+          "bytes": 22924,
+          "sha256": "ab0e96ce5f138c2bbc52e9b882b51e9267bf4f4d46efb530305d9e270a9f053f"
+        },
+        "contract": "Fetch/abort failure converted into fulfilled status0 at391-455; publicCalendarFeed destructures only data/error and maps any error to503 before fixture sees it.",
+        "mapper": {
+          "path": "src/server/calendar-feed/public-feed.ts",
+          "bytes": 4421,
+          "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c"
+        }
+      },
+      "minimum_closure": "Latch/propagate ordinary transport/abort/timeout/unclassifiable completion UNKNOWN before any shared restoration/destructive cleanup; close future seams/retain custody. Distinguish completed server errors/expected denials. Actual HTTP reject and RPC status0 biting controls plus healthy controls; no new effects or principal/channel inferred."
+    }
+  ],
+  "scope_checks_completed": [
+    "Same canonical exports/four profile and client inputs/sibling joins/setup-failure versus conditional cleanup",
+    "Exact same installed-Pool opt-in/public release(true) once/native drain/idle/error-gate/default foreign behavior",
+    "Same-session owner identity/direct SET/noninheritance/schema/ACL/body/OID/full metadata/transaction/commit/retirement",
+    "Actual meaningful RLS002 matrix and before/after physical oracle; real self-positive outside baseline",
+    "Empty E2E002C structure and usable navigation without weakened populated/privacy assertions",
+    "Strict current34 direct-import top-level awaited test callbacks and suppression negatives",
+    "Resolved full-project predicate/inherited hooks/serial bail and unchanged six-after-parallel enrollment",
+    "Conservative failed/unknown DB runtime key custody and LF/CRLF/raw contract pin"
+  ],
+  "executed_checks": [
+    {
+      "kind": "Focused actual runtime/factory/helper source controls",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"^(CI command projection|failed DB|actual retired|actual owned error gate|actual owner operation|actual owner preflight|actual owner SQL|actual ordinary-work drain|actual canonical fixture composition|actual composition cleans|actual RLS002|actual withDatabaseTime|actual E2E002)\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "pass": 17,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 374.7233,
+      "native_application_credit": 0
+    },
+    {
+      "kind": "Pure current C4 caller/config controls",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"^C4 (current34|actual caller guard|resolved supported-project)\" tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 751.3945,
+      "synthetic_runner_children": 0,
+      "native_application_credit": 0
+    },
+    {
+      "kind": "Additional actual-region F1 counterexample",
+      "outcome": "Unsafe restoration branch reproduced/native0",
+      "count": 1,
+      "API": 0,
+      "SQL": 0,
+      "file_writes": 0
+    }
+  ],
+  "control_preparation_history": "One extra counterexample harness parse failed because a return was passed to module TypeScript stripping; refused before extracted body execution. Corrected stripping/appended return only in memory; no code/file mutation. Nonadditive and not an application failure.",
+  "reused_checks": {
+    "source": "Bound final author receipt assertions, reviewed source/invariant coverage and prior independent C4 plan closure",
+    "runtime125": {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit_code": 0,
+      "tests": 125,
+      "pass": 125,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 11747.537,
+      "binding": "final runtime/unit/contract source; other previous harness source unchanged",
+      "normal_acceptance_credit": 0
+    },
+    "C4subset5_and_nine_children": {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern='C4 ' tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "exit_code": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 13998.7918,
+      "other_existing_partition_tests_executed": false,
+      "synthetic_children": 9,
+      "each_timeout_ms": 25000,
+      "all_children_settled": true,
+      "normal_acceptance_credit": 0
+    },
+    "other_author_checks": [
+      {
+        "command": "pnpm exec tsc --noEmit --incremental false",
+        "exit_code": 0
+      },
+      {
+        "command": "pnpm exec eslint vitest.config.ts tests/unit/scripts/verify/integration-test-partitions.test.ts scripts/ci/with-calendar-feed-runtime.mjs tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/support/calendar-feed-ci-contract.ts",
+        "exit_code": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "exit_code": 0,
+        "sections": 1,
+        "stops": 146,
+        "errors": []
+      },
+      {
+        "command": "python .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "exit_code": 0,
+        "status": "in-review",
+        "ARR_status": "in-review",
+        "parse_warnings": []
+      },
+      {
+        "command": "git diff --check",
+        "exit_code": 0
+      }
+    ],
+    "limits": "Not reviewer reruns and not additive with focused17/3, historical124, affected2/122 reuse, earlier synthetic failures or native case counts. No full application/native gate executed by reviewer."
+  },
+  "spec": {
+    "kernel_bytes_lf": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "kernel_same_as_approved": true,
+    "status": "in-review",
+    "review_counter": 3,
+    "Suggested_Review_Order_sections": 1,
+    "SRO146": "Author checker assertion retained; pertinent stops inspected against actual changed source. No reviewer SRO rewrite."
+  },
+  "unresolved_native_gates": {
+    "historical_run": 39637925040,
+    "historical_head": "b459af22d490eadc90113fd713a73b65aff89471",
+    "historical_status": "FAILED",
+    "all95_current_head_acceptance": "NOT_PROVEN; required30Node+51DB+14browser",
+    "full_DB_historical": {
+      "tests": 2039,
+      "passed": 1975,
+      "failed": 12,
+      "pending_skipped": 52
+    },
+    "story_DB_historical": {
+      "tests": 51,
+      "passed": 39,
+      "failed": 12,
+      "skipped": 0
+    },
+    "API019_privacy": "FAILED_REQUIRED_GATE; predicate/backend cause not newly inferred",
+    "essential_browser_historical": {
+      "tests": 14,
+      "expected": 8,
+      "flaky": 4,
+      "unexpected": 2
+    },
+    "browser_child_key_custody": "UNVERIFIED_RETAINED",
+    "direct_recovery": "Historical separate1P; current exact-head proof still required",
+    "normal_acceptance_credit": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "effects": {
+    "Git": "Bounded read-only diff/blob/identity inspection only; Root retains mutation ownership",
+    "SQL_connections_queries": 0,
+    "network_GET_API": 0,
+    "resources_runtime_CI": 0,
+    "source_Spec_runner_config_state_root_writes": 0,
+    "writes": "Only four new review metadata files in owned directory"
+  },
+  "activation_authorized": false,
+  "new_source_fix_authorized_by_review": false,
+  "all_applied_SQL_immutable": true
+}

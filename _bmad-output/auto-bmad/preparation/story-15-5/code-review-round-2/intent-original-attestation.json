@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "layer": "intent-alignment",
+  "round": 2,
+  "input_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+  "input_sha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10",
+  "input_bytes": 106573,
+  "source_head": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "before": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "reviewer_task": "/root/build15_5_high/round2_intent",
+  "provenance": {
+    "kind": "native-original-completed-final-report",
+    "original_completion": "Completed native collaboration final response delivered to parent before the later persistence-only request.",
+    "persisted_later": true,
+    "persisted_at_utc": "2026-10-20T14:52:03.0497198Z",
+    "report_preserved_verbatim": true,
+    "new_review_performed": false,
+    "new_source_validation_performed": false,
+    "originally_saved_claim": false,
+    "runtime_checks_executed": false
+  },
+  "report_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/intent-original.md",
+  "report_bytes": 4506,
+  "report_sha256": "945d34d8a066d6d6363f8ee6305f9b55f31552619550af7f64760db77f4ea3cc",
+  "scope": "Eleven accepted fixes and latest-fix regressions only; unchanged Round 1 intent assessment reused."
+}

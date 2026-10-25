@@ -1,0 +1,95 @@
+{
+  "Outcome": "Planning completed using own installed bmad-build-auto rendered workflow; HALT ready-for-dev. No implementation, migration, dependencies, runtime, CI/provider/network effects or commit/push.",
+  "Files changed (absolute)": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/epic-15-context.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/sensitive-assessment.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/story-file-audit.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/plan-result.json"
+  ],
+  "Status": {
+    "HALTstatus": "ready-for-dev",
+    "specpath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "specbytehash": {
+      "algorithm": "SHA256",
+      "bytes": 20381,
+      "hash": "6d7d4af77ea1a5dcc67680c4660bf3882fe181eb37c8dd4cfff1b4ca5dee499d"
+    },
+    "baseline_revision": "4cf343c8c73db83e11e4fc0a0e1feb8d51a4939f",
+    "proposedexactpaths": {
+      "production": [
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/features/my-day/types.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/features/my-day/domain.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/features/my-day/actions.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/server/read-models/my-day.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/app/(app)/my-day/layout.tsx",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/app/(app)/my-day/page.tsx",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/my-day/MyDayWorkspace.tsx",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/my-day/MyDayBookingCard.tsx"
+      ],
+      "shared": [
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/scope/manifest.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/app-shell/nav-items.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/server/authz/phase-a-surface.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/package.json"
+      ],
+      "schema": {
+        "directory": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/supabase/migrations/",
+        "logical_stem": "story_15_6_my_day_projection",
+        "concrete_path": "Not generated during planning. Root coordinates CLI filename-generation-only after independent validation, fresh combined migration inventory and ownership clearance, then allocates concrete generated path before SQL authoring.",
+        "historical_migrations": "Read-only; never edit applied migrations including 118."
+      },
+      "tests": [
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/my-day/domain.test.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/read-models/my-day.test.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/authz/phase-a-surface.test.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/scheduling/my-day.int.test.ts",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/e2e/my-day.e2e.spec.ts"
+      ],
+      "delivery": [
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/deferred-work.md",
+        "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md"
+      ]
+    },
+    "nestedroutes": [
+      {
+        "agent": "/root/plan15_6_low/compile15_context",
+        "model": "gpt-6.1-sol",
+        "effort": "low",
+        "reason": "Required stale epic-context compilation; ordinary distillation only",
+        "result": "Completed; exact context updated and loaded."
+      },
+      {
+        "agent": "/root/plan15_6_low/min_day_sensitive",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "fork": "none",
+        "reason": "Authorization, own-person privacy, narrow RPC and route/read boundaries",
+        "result": "Completed and focused pending-jobs amendment awaited/integrated; source assessment only."
+      }
+    ],
+    "audit": "Seven checks passed; exact epic sketch inclusion checked. No code review round consumed. Planning completion-hook preserves exit without fabricated final review trail.",
+    "resources": {
+      "current": "None launched, adopted or leased.",
+      "future": "Root must allocate guard-managed local database integration stack and configured production Playwright server/browser for required integration/RLS/recovery integrity and essential smoke; no demo target, next dev, mutable adoption or hosted deployment. Existing resource registration state must be revalidated by owning actor."
+    },
+    "limitations": [
+      "Independent Root-owned High spec validation still required before build.",
+      "CLI migration timestamp intentionally not fabricated.",
+      "p_include_jobs is trusted server composition, not database proof of manifest state; direct authenticated true calls still require exact own/current job authorization.",
+      "Source inspection only; no implementation tests or release validation executed.",
+      "Current origin/main policy/checkpoint inspected read-only; Root owns integration.",
+      "Independent High prebuild validation passed prior spec SHA256 2347eb64e6859246ce1a7e1ff45ab86038aad48a2981c70401766a98c77079a2; subsequent minimal planning amendment adds package.json test:smoke wiring only. Root obtains targeted metadata confirmation."
+    ]
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root-owned independent High spec validation, concrete allocation and migration filename generation before implementation.",
+    "All product implementation and applicable development verification.",
+    "QA/UX full manual accessibility/daylight/exploratory, visual/screenshot and broad browser/role/device release validation; actual evidence required at pending final Phase B checkpoint.",
+    "E14 QA 48-advisory triage with resolution evidence; Product/Architect performance volume/target approval before claims.",
+    "Implementation author final Suggested Review Order with verified final stops and independent review; review cap three."
+  ],
+  "Blockers": []
+}

@@ -1,0 +1,1927 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_TARGETED_REVISION_1_PROPOSAL_CHALLENGE",
+  "verdict": "PASS",
+  "limits": "Proposal sufficiency only; implementation/run unallocated; nativecredit0; no fourth broad review",
+  "prepared_at_utc": "2026-10-20T23:15:07.158151+00:00",
+  "reviewer": {
+    "canonical_task": "/root/build15_5_high/native_denial_revision_one_challenge",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "fresh_context_free": true,
+    "distinct_from_author_and_prior_challenger": true,
+    "proposal_author": false,
+    "prior_challenger": false,
+    "recorded_route": "challenge-native-denial-cause-proof-revision-1 / independent-targeted-native-cause-proof-revision-challenger"
+  },
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "checkpoint": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/original-report.md",
+    "bytes": 17105,
+    "sha256": "c4866354960d7aa789556e755c2ff1970c2053de62c02a9ab16004e1701f0b2b"
+  },
+  "result": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/result.json",
+    "bytes": 1831,
+    "sha256": "e9515cbf0da465180096ce1fa6cb5a8a33b8aa2d2b10d74402835ffa03ad59dd"
+  },
+  "proposal_manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json",
+    "bytes": 1763,
+    "sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334"
+  },
+  "all_verified_direct_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json",
+      "bytes": 1763,
+      "sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/prepare-revision.mjs",
+      "bytes": 34573,
+      "sha256": "dbfc0a86f72badeb4fab8f3663a8f11a9e739df231f861cccf50eff3d0a6efe8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/proposal.md",
+      "bytes": 16665,
+      "sha256": "6d41cda99f51403ab49fed4e6bc31976427efca7358beb80f164d4cf7064e90d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/contract-and-bindings.json",
+      "bytes": 32880,
+      "sha256": "7cdbae09f37bdb04c9c9965aca3c0b8bdab6ed6cdaa148b35a64e2c41b2ad0cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/result.json",
+      "bytes": 1767,
+      "sha256": "68c676bfb444fe96440d53f293710b6bb213dd9cebd937d9e9592cd3e6608ca0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/manifest.json",
+      "bytes": 1682,
+      "sha256": "3c2d4e15af9cb10239ac36fcd1ed731c1657abc2d6259dd69b77cfa9ed195c2b",
+      "immutable_dependency": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/proposal.md",
+      "bytes": 18554,
+      "sha256": "07a13c39692e9a86b850fcd5be55550fe319c98fe52887f6f0b751b3d838d759",
+      "immutable_dependency": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/proof-map.json",
+      "bytes": 36110,
+      "sha256": "08c0d71b21f00f1a8efe2cdc8a3d523592c03e8d1acaf2c445c3f1e856057d58",
+      "immutable_dependency": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/original-report.md",
+      "bytes": 17497,
+      "sha256": "114a3a37698b0885da6072127bba96b05bbe2b1d48bbb0d046ac8c0702ed1115",
+      "immutable_dependency": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/original-attestation.json",
+      "bytes": 6251,
+      "sha256": "f8ee4a5f839d86c7cb4306b33fefc495814e6998ea13b5a5a4e6547e62feed3a",
+      "immutable_dependency": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/result.json",
+      "bytes": 2164,
+      "sha256": "57f9551466be649d20fdc0af776505c518a9dbbb4834349d3a448ad5ef42ba33",
+      "immutable_dependency": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-native-denial-cause-proof-challenge-admission.json",
+      "bytes": 848,
+      "sha256": "a96772decbf5129cc9c41032587a9412edec5be31b508692a92f5a8407293a6d",
+      "immutable_dependency": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-56324120-packet-admission.json",
+      "bytes": 1304,
+      "sha256": "34785381fc18743aeeb67f23517683c48e790509b0c0b15e3fc683bd927f2a0a",
+      "immutable_dependency": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/manifest.json",
+      "bytes": 6469,
+      "sha256": "4db7cdae3b90b727cbd4628444420ed96981d4d7996f08bce9dbb57e25775191",
+      "immutable_dependency": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/native-qualification.json",
+      "bytes": 39649,
+      "sha256": "9fab0c5db825a7f2d2d49384a9f420c0ae246fb43a3d1476f4d760708c8883da",
+      "immutable_dependency": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json",
+      "bytes": 720807,
+      "sha256": "fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-native-denial-cause-proof-revision-1-admission.json",
+      "bytes": 1420,
+      "sha256": "893ec5afd9e7473a2f8bffe81715bae55b171505c1d6aaff8f2825f8a1348d34"
+    }
+  ],
+  "source_bindings_verified": [
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "proposed_hunk": "Existing executeCalendarFeed branches and module-private opt-in AsyncLocalStorage trace with max16 closed events; no generic observer or raw error/result/args retention.",
+      "context_only": false,
+      "raw_bytes": 1054,
+      "raw_sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+      "actual_git_blob_bytes": 1054,
+      "actual_git_blob_sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+      "actual_git_clean_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "checkpoint_blob_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "author_blob_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "proposed_hunk": "Existing input/envelope collapse and existing execute phase; closed expected-fixture context equality flags only, unchanged actual call/result identity.",
+      "context_only": false,
+      "raw_bytes": 3964,
+      "raw_sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+      "actual_git_blob_bytes": 3964,
+      "actual_git_blob_sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+      "actual_git_clean_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "checkpoint_blob_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "author_blob_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "proposed_hunk": "Existing read_calendar_feed_status error/schema branches before erasure; no new RPC or thenable wrapper.",
+      "context_only": false,
+      "raw_bytes": 3111,
+      "raw_sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+      "actual_git_blob_bytes": 3111,
+      "actual_git_blob_sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+      "actual_git_clean_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+      "checkpoint_blob_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+      "author_blob_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "proposed_hunk": "One explicitly scoped own-subject management capture with fixture-owned expected identifiers kept in memory; safe trace association and one diagnostic fixture path only. No rawManage/RLS/scenario-wide instrumentation in revision1.",
+      "context_only": false,
+      "raw_bytes": 68474,
+      "raw_sha256": "c6afda12230f3aea89693afba24be6b457ddfe0df0e3b0fc2c9d5d995824ab78",
+      "actual_git_blob_bytes": 67735,
+      "actual_git_blob_sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478",
+      "actual_git_clean_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "checkpoint_blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "author_blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "proposed_hunk": "One DIAG001 explicit-mode-only representative ordinary manage call, then conditional corresponding UNMODIFIED SQL baseline. No existing test/INT015 changes or normal-mode declaration/skip/mutation.",
+      "context_only": false,
+      "raw_bytes": 36136,
+      "raw_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "actual_git_blob_bytes": 36136,
+      "actual_git_blob_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "actual_git_clean_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "checkpoint_blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "author_blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "proposed_hunk": "Fixed cause-proof mode/argv, nonce/SHA/attempt binding and strict closed diagnostic receipt/report manifest. Same qualification/key/COMMIT/settlement/custody; no Next/browser child in diagnostic mode.",
+      "context_only": false,
+      "raw_bytes": 35025,
+      "raw_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "actual_git_blob_bytes": 35025,
+      "actual_git_blob_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "actual_git_clean_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "checkpoint_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "author_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "proposed_hunk": "Retain67; meaningful actual-source trace/runner/report/closed-refusal controls; no native execution.",
+      "context_only": false,
+      "raw_bytes": 101722,
+      "raw_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "actual_git_blob_bytes": 101722,
+      "actual_git_blob_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "actual_git_clean_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "checkpoint_blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "author_blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "proposed_hunk": "Pinned actual wrapper LF SHA and exact finite inverse for diagnostic fragments; original normal/release inverse and unrelated-byte rejection preserved.",
+      "context_only": false,
+      "raw_bytes": 3777,
+      "raw_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "actual_git_blob_bytes": 3777,
+      "actual_git_blob_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "actual_git_clean_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "checkpoint_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "author_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "proposed_hunk": "Explicit diagnostic boolean/run title/admission; separate diagnostic db step/upload with exact mode guards; normal full+pilot/upload preserved; browser/recovery/optional probes excluded only for diagnostic mode.",
+      "context_only": false,
+      "raw_bytes": 75339,
+      "raw_sha256": "ffeb2a7d6080b5d07e7aede44d850e123cd5eda2ef30d877780b8ce1aab7979d",
+      "actual_git_blob_bytes": 73870,
+      "actual_git_blob_sha256": "0a7c1b210e87b020e882787869cae7b9fa314068f7d561e52dd14443495d57c7",
+      "actual_git_clean_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "checkpoint_blob_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "author_blob_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "proposed_hunk": "F1: allow strict --cause-proof true|false, persist mode before sole POST, exact input transport, diagnostic title/discovery/status/cancel classification, legacy record compatibility, bounded workflow availability reads.",
+      "context_only": false,
+      "raw_bytes": 11884,
+      "raw_sha256": "7c82ffca4b7c9275ef5bdc6ff088b18c5829344f7366662d011d12215a92234b",
+      "actual_git_blob_bytes": 11696,
+      "actual_git_blob_sha256": "e649321cb8cefee7878dc5bb0074d5e7d853d0a88de2bada96e6fcbf9d65d7e4",
+      "actual_git_clean_oid": "79a42c948ae367986fb4a85039b657b1ba726785",
+      "checkpoint_blob_oid": "79a42c948ae367986fb4a85039b657b1ba726785",
+      "author_blob_oid": "79a42c948ae367986fb4a85039b657b1ba726785",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": false,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "proposed_hunk": "F1: exact diagnostic request/persist-before-POST/title/receipt, mutual exclusions, uncertainty/no retry/nonce/actor/SHA/attempt and legacy records. Existing normal/release controls retained.",
+      "context_only": false,
+      "raw_bytes": 14949,
+      "raw_sha256": "840ea1cd7ee1427914ffd2832ffa2f72f9b2126c82d2ec8b5bb0136820426231",
+      "actual_git_blob_bytes": 14720,
+      "actual_git_blob_sha256": "7c5b063be512505b4ff3ddfe89125a94df40a14e78f4abcd5fd6bb85fac15aef",
+      "actual_git_clean_oid": "21c88025a20ade6152d5636c565330e1041e14eb",
+      "checkpoint_blob_oid": "21c88025a20ade6152d5636c565330e1041e14eb",
+      "author_blob_oid": "21c88025a20ade6152d5636c565330e1041e14eb",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "proposed_hunk": "F2: raw workflow separate diagnostic artifact/receipt upload on success+failure; normal four original artifact pairs and missing-report fences retained after exact projection.",
+      "context_only": false,
+      "raw_bytes": 2683,
+      "raw_sha256": "f0cc288c5a43174becb191a23c45b5f80007e054694a29b3572735da8e3ef289",
+      "actual_git_blob_bytes": 2645,
+      "actual_git_blob_sha256": "b6a4461ea492083f76c084e99d44459685a68a3df9f3a2ca3d76db7bfa815cbe",
+      "actual_git_clean_oid": "f580168cf767a0999e2e6b56de99355e2339486c",
+      "checkpoint_blob_oid": "f580168cf767a0999e2e6b56de99355e2339486c",
+      "author_blob_oid": "f580168cf767a0999e2e6b56de99355e2339486c",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "proposed_hunk": "F2: normal full integration+pilot remains mandatory; diagnostic explicitly does not run/claim pilot; raw mode guards and unchanged projected normal gates.",
+      "context_only": false,
+      "raw_bytes": 2506,
+      "raw_sha256": "4909b48d639bcc45031c67e2c30cac250447c99158a9a2992f9fa19222618cf0",
+      "actual_git_blob_bytes": 2456,
+      "actual_git_blob_sha256": "2cc2c1c75bb308f7bbcaf7a1457b8bb530fa543425308df72ff355c2b4778082",
+      "actual_git_clean_oid": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453",
+      "checkpoint_blob_oid": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453",
+      "author_blob_oid": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "proposed_hunk": "Author trail/SRO only after future implementation; kernel/in-review preserved, diagnostics earn zero acceptance.",
+      "context_only": false,
+      "raw_bytes": 113261,
+      "raw_sha256": "b33f59ebf25955b7d5acf082ce255907b462ca6171aacf50ab5621df9f7da5c1",
+      "actual_git_blob_bytes": 112048,
+      "actual_git_blob_sha256": "0ea107912c53c54f3755cc162d08bd9ee084e4c7b52363fa5e13c8bdb7024264",
+      "actual_git_clean_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "checkpoint_blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "author_blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 17101,
+      "raw_sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a",
+      "actual_git_blob_bytes": 16764,
+      "actual_git_blob_sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02",
+      "actual_git_clean_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "checkpoint_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "author_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 12421,
+      "raw_sha256": "f1412208ad090c8a69d92694bd1ed340ffaa987614ee076ad8fe96ed54fa999d",
+      "actual_git_blob_bytes": 12130,
+      "actual_git_blob_sha256": "9c9189279b831a2f32842df723111dc874cf892304c7b55020f2829ea98b3210",
+      "actual_git_clean_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "checkpoint_blob_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "author_blob_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": false,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 13297,
+      "raw_sha256": "1d46e1504583d08d0a0d805dc7e3df7ac3f502fc2ab89e976d5a86c439280cf2",
+      "actual_git_blob_bytes": 13027,
+      "actual_git_blob_sha256": "767a3ee06e8c309e3069f7a36d61c0c12cbaacd39f849c0c8f5008443c1e9e12",
+      "actual_git_clean_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "checkpoint_blob_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "author_blob_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": false,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context-core.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 6009,
+      "raw_sha256": "014279223fffb62e5bace20c9920a4fe8e89186768e7354cb075f26b99d37153",
+      "actual_git_blob_bytes": 5874,
+      "actual_git_blob_sha256": "91786d75aa5159e848d50c2badb1428569fbc18666d55c2beee774735a9f26f1",
+      "actual_git_clean_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "checkpoint_blob_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "author_blob_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": false,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 7914,
+      "raw_sha256": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc",
+      "actual_git_blob_bytes": 7767,
+      "actual_git_blob_sha256": "470a2d0932c78a178d192fb94a5693a98c689f2e8e8c50b2be6ac780c7849c04",
+      "actual_git_clean_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "checkpoint_blob_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "author_blob_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": false,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 3543,
+      "raw_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "actual_git_blob_bytes": 3543,
+      "actual_git_blob_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "actual_git_clean_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "checkpoint_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "author_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "actual_git_blob_bytes": 24435,
+      "actual_git_blob_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "actual_git_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "checkpoint_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "author_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 14914,
+      "raw_sha256": "4579e0f2aadd7957766145679930fc49de06c876ffcc01b3e8b7c761f6d8d552",
+      "actual_git_blob_bytes": 14685,
+      "actual_git_blob_sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+      "actual_git_clean_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "checkpoint_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "author_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 22030,
+      "raw_sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681",
+      "actual_git_blob_bytes": 21725,
+      "actual_git_blob_sha256": "44753b239d6618bb1ade96f05b18723ab086c68499a0b42fa6ccaa3f045beb52",
+      "actual_git_clean_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "checkpoint_blob_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "author_blob_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": false,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 59069,
+      "raw_sha256": "ef07bc2abf9e9a8ef9bcd0f1ad82fc53f65c6d178de88dd7530358869d0716bf",
+      "actual_git_blob_bytes": 58066,
+      "actual_git_blob_sha256": "5c6044fcd3ffd0f9e9084eb9b04ae0e674a524ea8b35e7aacc1b14d5ece47db0",
+      "actual_git_clean_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+      "checkpoint_blob_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+      "author_blob_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+      "equal": true,
+      "raw_equals_blob": false,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "proposed_hunk": null,
+      "context_only": true,
+      "raw_bytes": 140788,
+      "raw_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+      "actual_git_blob_bytes": 140788,
+      "actual_git_blob_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+      "actual_git_clean_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+      "checkpoint_blob_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+      "author_blob_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+      "equal": true,
+      "raw_equals_blob": true,
+      "already_owned69": true,
+      "protected37": false,
+      "historical109": false
+    }
+  ],
+  "checkpoint_and_author_blob_bindings_verified": 50,
+  "owned69_verified": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw": {
+        "bytes": 75339,
+        "sha256": "ffeb2a7d6080b5d07e7aede44d850e123cd5eda2ef30d877780b8ce1aab7979d",
+        "crlf_count": 1469,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 73870,
+        "sha256": "0a7c1b210e87b020e882787869cae7b9fa314068f7d561e52dd14443495d57c7",
+        "blob_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "bf3e201438bd06912e2fc908f001049c23ca356f"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 113261,
+        "sha256": "b33f59ebf25955b7d5acf082ce255907b462ca6171aacf50ab5621df9f7da5c1",
+        "crlf_count": 1213,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 112048,
+        "sha256": "0ea107912c53c54f3755cc162d08bd9ee084e4c7b52363fa5e13c8bdb7024264",
+        "blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7"
+    },
+    {
+      "path": "docs/security/calendar-feed-operations.md",
+      "raw": {
+        "bytes": 4251,
+        "sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+        "crlf_count": 0,
+        "bare_lf_count": 69
+      },
+      "git_clean_normalized": {
+        "bytes": 4251,
+        "sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+        "blob_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5"
+    },
+    {
+      "path": "middleware.ts",
+      "raw": {
+        "bytes": 4842,
+        "sha256": "228c1aee2ea3952788fe231f73e852ea020ca81fa812d5248e52f5564155fcad",
+        "crlf_count": 90,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 4752,
+        "sha256": "fa43d6c746d11d1ab8d854cef9128bb69023f8a8865e3e3b250dd2ebee383fe5",
+        "blob_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd"
+    },
+    {
+      "path": "ops/recovery/bootstrap-roles.sql",
+      "raw": {
+        "bytes": 4085,
+        "sha256": "c578eb8fc33273221491badd93fc00a44d7c0c32d72e9d902a5076fee550c83e",
+        "crlf_count": 93,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 3992,
+        "sha256": "6a80547c1fbbd7dd2d7e4bf4a0f73671f7d83e5fcd5e84dac9ba555403c52529",
+        "blob_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb"
+    },
+    {
+      "path": "package.json",
+      "raw": {
+        "bytes": 2352,
+        "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+        "crlf_count": 53,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 2299,
+        "sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+        "blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw": {
+        "bytes": 162159,
+        "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+        "crlf_count": 0,
+        "bare_lf_count": 4921
+      },
+      "git_clean_normalized": {
+        "bytes": 162159,
+        "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+        "blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw": {
+        "bytes": 35025,
+        "sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+        "crlf_count": 0,
+        "bare_lf_count": 540
+      },
+      "git_clean_normalized": {
+        "bytes": 35025,
+        "sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+        "blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "72d931cba063ced2144e62395c006828bfedabdc"
+    },
+    {
+      "path": "scripts/verify/check-service-role-containment.mjs",
+      "raw": {
+        "bytes": 15806,
+        "sha256": "6eaec1f8ee90dd5375625b3c0d54c545c12074f0c1b6d5499a0bd5fc940ebde5",
+        "crlf_count": 319,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 15487,
+        "sha256": "cae0878c509fecfb9d2bab4ccf60eb6fa8edd7f5cf5bf96da430409cfed39273",
+        "blob_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "raw": {
+        "bytes": 352,
+        "sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+        "crlf_count": 0,
+        "bare_lf_count": 3
+      },
+      "git_clean_normalized": {
+        "bytes": 352,
+        "sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+        "blob_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "raw": {
+        "bytes": 513,
+        "sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+        "crlf_count": 0,
+        "bare_lf_count": 7
+      },
+      "git_clean_normalized": {
+        "bytes": 513,
+        "sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+        "blob_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad"
+    },
+    {
+      "path": "src/app/(public)/calendar/feed/[token]/route.ts",
+      "raw": {
+        "bytes": 319,
+        "sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+        "crlf_count": 0,
+        "bare_lf_count": 6
+      },
+      "git_clean_normalized": {
+        "bytes": 319,
+        "sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+        "blob_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09"
+    },
+    {
+      "path": "src/app/(public)/layout.tsx",
+      "raw": {
+        "bytes": 112,
+        "sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+        "crlf_count": 0,
+        "bare_lf_count": 1
+      },
+      "git_clean_normalized": {
+        "bytes": 112,
+        "sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+        "blob_oid": "fe46e33866a3181a720082ae699faa0eb68665a6",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "fe46e33866a3181a720082ae699faa0eb68665a6"
+    },
+    {
+      "path": "src/components/app-shell/AppShell.tsx",
+      "raw": {
+        "bytes": 17127,
+        "sha256": "ccc09d93ee141abaeeaab6904c0539f6918d5b9c1b83b239c3950a3ac5d9d0e3",
+        "crlf_count": 370,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 16757,
+        "sha256": "f71f45a2f76c7a740e5274f591ce57e65f89aba7fc16c079e0a88113e8dac27a",
+        "blob_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "raw": {
+        "bytes": 810,
+        "sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+        "crlf_count": 0,
+        "bare_lf_count": 6
+      },
+      "git_clean_normalized": {
+        "bytes": 810,
+        "sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+        "blob_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "raw": {
+        "bytes": 8674,
+        "sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504",
+        "crlf_count": 0,
+        "bare_lf_count": 80
+      },
+      "git_clean_normalized": {
+        "bytes": 8674,
+        "sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504",
+        "blob_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878"
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "raw": {
+        "bytes": 905,
+        "sha256": "f70bf49b2d6fac7a9c194d1f2c5bb09d76abd997956095771d6a705029e14202",
+        "crlf_count": 1,
+        "bare_lf_count": 11
+      },
+      "git_clean_normalized": {
+        "bytes": 904,
+        "sha256": "d426154fb3888241ed6b36e98c3b25756f40f85c059dca9bf0785b88bc6eade1",
+        "blob_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "529a9485cba52b6c16fc0837fea1da62e279e806"
+    },
+    {
+      "path": "src/features/calendar-feed/action-state.ts",
+      "raw": {
+        "bytes": 1861,
+        "sha256": "d3ec31672a8b5a2e160864c0919dbbe1070ea726770c735ce4ac9bbea2cfb439",
+        "crlf_count": 16,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 1845,
+        "sha256": "b1c2a6b92000519f9b1eaffde9b96737b7207c286adcc47df78482898d91a454",
+        "blob_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8"
+    },
+    {
+      "path": "src/features/calendar-feed/actions.ts",
+      "raw": {
+        "bytes": 801,
+        "sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+        "crlf_count": 0,
+        "bare_lf_count": 11
+      },
+      "git_clean_normalized": {
+        "bytes": 801,
+        "sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+        "blob_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5"
+    },
+    {
+      "path": "src/features/calendar-feed/icalendar.ts",
+      "raw": {
+        "bytes": 3469,
+        "sha256": "e83ccfbe7d81db4320b987c0bf2c42e77b473b6a267092d4e3f879d0e2260bbe",
+        "crlf_count": 57,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 3412,
+        "sha256": "266b5067c4007e493590c2c44bad4d5406389b5e306354b0f2c4bacacb20fa1f",
+        "blob_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3"
+    },
+    {
+      "path": "src/features/calendar-feed/types.ts",
+      "raw": {
+        "bytes": 959,
+        "sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+        "crlf_count": 0,
+        "bare_lf_count": 16
+      },
+      "git_clean_normalized": {
+        "bytes": 959,
+        "sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+        "blob_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1"
+    },
+    {
+      "path": "src/features/calendar-feed/validation.ts",
+      "raw": {
+        "bytes": 1123,
+        "sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+        "crlf_count": 0,
+        "bare_lf_count": 16
+      },
+      "git_clean_normalized": {
+        "bytes": 1123,
+        "sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+        "blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "raw": {
+        "bytes": 18310,
+        "sha256": "df7b4d9d21e701548eb54cffaa1841eced560a3a69f3aab808b8c9d820a8d765",
+        "crlf_count": 474,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 17836,
+        "sha256": "5a0154fa1fdfdce452b6d5a44719cab6e6f5c2b481f0ee9e867db27552f7a969",
+        "blob_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad"
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "raw": {
+        "bytes": 3543,
+        "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+        "crlf_count": 0,
+        "bare_lf_count": 44
+      },
+      "git_clean_normalized": {
+        "bytes": 3543,
+        "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+        "blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8"
+    },
+    {
+      "path": "src/server/calendar-feed/policy.ts",
+      "raw": {
+        "bytes": 143,
+        "sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+        "crlf_count": 0,
+        "bare_lf_count": 1
+      },
+      "git_clean_normalized": {
+        "bytes": 143,
+        "sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+        "blob_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "raw": {
+        "bytes": 4421,
+        "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+        "crlf_count": 0,
+        "bare_lf_count": 53
+      },
+      "git_clean_normalized": {
+        "bytes": 4421,
+        "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+        "blob_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656"
+    },
+    {
+      "path": "src/server/calendar-feed/trusted-ip.ts",
+      "raw": {
+        "bytes": 1196,
+        "sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+        "crlf_count": 0,
+        "bare_lf_count": 19
+      },
+      "git_clean_normalized": {
+        "bytes": 1196,
+        "sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+        "blob_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw": {
+        "bytes": 1054,
+        "sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+        "crlf_count": 0,
+        "bare_lf_count": 13
+      },
+      "git_clean_normalized": {
+        "bytes": 1054,
+        "sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+        "blob_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw": {
+        "bytes": 3964,
+        "sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+        "crlf_count": 0,
+        "bare_lf_count": 43
+      },
+      "git_clean_normalized": {
+        "bytes": 3964,
+        "sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+        "blob_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw": {
+        "bytes": 17101,
+        "sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a",
+        "crlf_count": 337,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 16764,
+        "sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02",
+        "blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102"
+    },
+    {
+      "path": "src/server/db/supabase-public-client.ts",
+      "raw": {
+        "bytes": 505,
+        "sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+        "crlf_count": 0,
+        "bare_lf_count": 7
+      },
+      "git_clean_normalized": {
+        "bytes": 505,
+        "sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+        "blob_oid": "a6f550ed29147b310f6753417da02cfedb415403",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "a6f550ed29147b310f6753417da02cfedb415403"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw": {
+        "bytes": 3111,
+        "sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+        "crlf_count": 0,
+        "bare_lf_count": 28
+      },
+      "git_clean_normalized": {
+        "bytes": 3111,
+        "sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+        "blob_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw": {
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+        "crlf_count": 0,
+        "bare_lf_count": 273
+      },
+      "git_clean_normalized": {
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+        "blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw": {
+        "bytes": 27768,
+        "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+        "crlf_count": 0,
+        "bare_lf_count": 484
+      },
+      "git_clean_normalized": {
+        "bytes": 27768,
+        "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+        "blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw": {
+        "bytes": 55454,
+        "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+        "crlf_count": 716,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 54738,
+        "sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3",
+        "blob_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "raw": {
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+        "crlf_count": 417,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 26504,
+        "sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+        "blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw": {
+        "bytes": 36136,
+        "sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+        "crlf_count": 0,
+        "bare_lf_count": 506
+      },
+      "git_clean_normalized": {
+        "bytes": 36136,
+        "sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+        "blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "178491d5b34b37dcf6fab346250e653418ca9428"
+    },
+    {
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "raw": {
+        "bytes": 3534,
+        "sha256": "6ac7a41a4dca5bccf4aae4300be8ccf38689b3ae19ceb4daa9c8c22d7282db42",
+        "crlf_count": 48,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 3486,
+        "sha256": "70775d21c58ae45841ee07384472fbb2ed30729f56b579314fa2952135af5ec9",
+        "blob_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d"
+    },
+    {
+      "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "raw": {
+        "bytes": 7563,
+        "sha256": "40186690034643019fb770250bc545627444abd29f73699b184b7f7714941279",
+        "crlf_count": 146,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 7417,
+        "sha256": "24984ffb2a5e1d7dc28fe8d0f10db22e84a667db0c4a01b02f9d981c77cfbce0",
+        "blob_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e"
+    },
+    {
+      "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "raw": {
+        "bytes": 14845,
+        "sha256": "8b991461ba76072d230a3c5a989e96c87ec15b5af208cace238083449dbb6b89",
+        "crlf_count": 264,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 14581,
+        "sha256": "f3b5d81c863157396fa6496e55675fa6ba4128508ea43f2782645b6c9c218e67",
+        "blob_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw": {
+        "bytes": 14914,
+        "sha256": "4579e0f2aadd7957766145679930fc49de06c876ffcc01b3e8b7c761f6d8d552",
+        "crlf_count": 229,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 14685,
+        "sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+        "blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "68f5522bb859349588c4a5ca09702ced8f91752c"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "raw": {
+        "bytes": 40640,
+        "sha256": "44fd6b6777c3c3c1c99ee6ac576240561f0a19b66c7088440cf414faf5f9c101",
+        "crlf_count": 777,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 39863,
+        "sha256": "791e8cc320a02cacf2b52701c24d1cdf81964afe9ea0451a7f716d410709c1e2",
+        "blob_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a"
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "raw": {
+        "bytes": 36735,
+        "sha256": "291971b7e06d66a14988174ba378cd61814b3d3c9fbd0bf708ca59b919edad97",
+        "crlf_count": 720,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 36015,
+        "sha256": "75d29ccdb208850009c1f76556f242ffe81807ec077a5edf533e964906845206",
+        "blob_oid": "263e6d650190fe012997aaf2f128767fd3c96399",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "263e6d650190fe012997aaf2f128767fd3c96399"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "raw": {
+        "bytes": 28367,
+        "sha256": "42e10db1a915f26cb0d732dfd56301d062dc046129e006e88da1b5e493b1f522",
+        "crlf_count": 291,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 28076,
+        "sha256": "e20c0e31cf595e82b38c48100bd68fe82a237acf652f284af5547bc543c29aa5",
+        "blob_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627"
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "raw": {
+        "bytes": 103434,
+        "sha256": "531dcd3ab659b67ba41035691aad65d77310f1ab367a3c94ef0006843dd32309",
+        "crlf_count": 2131,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 101303,
+        "sha256": "7b855ba58c3ae1f36c56fba65311bd50951f86145e551bb25f56a4541a9ec7ce",
+        "blob_oid": "925764138215e4fdb6db039568540439d6036449",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "925764138215e4fdb6db039568540439d6036449"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "raw": {
+        "bytes": 15759,
+        "sha256": "3d3e518c0f70bd44a934275d25088e715a3acbc2e16ed3a8e3346f2bfec358c0",
+        "crlf_count": 269,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 15490,
+        "sha256": "73e3372433ae8e720e1ebf0955419fec5242f5e6257fec77552bd87c122754c1",
+        "blob_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw": {
+        "bytes": 68474,
+        "sha256": "c6afda12230f3aea89693afba24be6b457ddfe0df0e3b0fc2c9d5d995824ab78",
+        "crlf_count": 739,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 67735,
+        "sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478",
+        "blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw": {
+        "bytes": 3777,
+        "sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+        "crlf_count": 0,
+        "bare_lf_count": 66
+      },
+      "git_clean_normalized": {
+        "bytes": 3777,
+        "sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+        "blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6"
+    },
+    {
+      "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "raw": {
+        "bytes": 59069,
+        "sha256": "ef07bc2abf9e9a8ef9bcd0f1ad82fc53f65c6d178de88dd7530358869d0716bf",
+        "crlf_count": 1003,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 58066,
+        "sha256": "5c6044fcd3ffd0f9e9084eb9b04ae0e674a524ea8b35e7aacc1b14d5ece47db0",
+        "blob_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+      "raw": {
+        "bytes": 4086,
+        "sha256": "2536d7a63ff437cd21cd22982d505dd60fc98cbb8ffa908abe044bd393f4db9b",
+        "crlf_count": 52,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 4034,
+        "sha256": "2f747082d163552fea743823dcc6e8fb9b1c7eb877ce1cddd47af3f65e2552a4",
+        "blob_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "raw": {
+        "bytes": 6651,
+        "sha256": "862aa51c0c100f993949e60b96d035a25eef5a976f4edac6e4c76681258729a9",
+        "crlf_count": 91,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 6560,
+        "sha256": "5854b2764427f839c9a7b7b6b41c69d3ab7352f7a4c685013114b30d037250b8",
+        "blob_oid": "834025e861c0c2947e85374a90d3443ef8b923d2",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "834025e861c0c2947e85374a90d3443ef8b923d2"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/validation.test.ts",
+      "raw": {
+        "bytes": 2581,
+        "sha256": "1f1f2fda1a02070d5d02298d53d21ff258fe5276976bd441da3c017db538647f",
+        "crlf_count": 36,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 2545,
+        "sha256": "953a906010ad8bcf5912872db48a881b194599a9e793f1d7ce37fcdabf947a76",
+        "blob_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4"
+    },
+    {
+      "path": "tests/unit/ops/pilot-operations.test.ts",
+      "raw": {
+        "bytes": 35108,
+        "sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+        "crlf_count": 0,
+        "bare_lf_count": 539
+      },
+      "git_clean_normalized": {
+        "bytes": 35108,
+        "sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+        "blob_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "raw": {
+        "bytes": 2143,
+        "sha256": "643f862ff30ff826c3c3a2447b294931d2aad36cb55931e31789dec794986ede",
+        "crlf_count": 27,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 2116,
+        "sha256": "5550cbc4a1175ca745fae9ab780b48a3dd5a78861882bb9c66c7c15ef65f5acb",
+        "blob_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "raw": {
+        "bytes": 16009,
+        "sha256": "7f00ff1a27cb0a260a32b690046a0175f3b7090bb9893f664f31353be6109486",
+        "crlf_count": 328,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 15681,
+        "sha256": "1f334cd9cd69f290ec12197e229f4e85bebecab831bf43fe384b40a88fa51722",
+        "blob_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "raw": {
+        "bytes": 9000,
+        "sha256": "29b4a2647de1ea4ebe1857f5f300494a039e4c986df0bd68e9a2c70d5ca170d6",
+        "crlf_count": 192,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 8808,
+        "sha256": "d908da7ef3b71684cec08a13153d2c69c109276850f7969b2806421ab52bc8f2",
+        "blob_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "raw": {
+        "bytes": 10648,
+        "sha256": "3092592321b5e9a2a923a95fccc1f8ec1a19b1cdf36ee2b06f8cac02b2ed1b40",
+        "crlf_count": 224,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 10424,
+        "sha256": "6227e6220d184a18418083c10ae8c3909179e965da8477a5c8909da8aad30a50",
+        "blob_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "raw": {
+        "bytes": 1680,
+        "sha256": "4bc8bf9fb08c33cd446b1e2c9e0d8b5addea89a46add567188889aa39d99c068",
+        "crlf_count": 28,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 1652,
+        "sha256": "8e2619a9feff891bad02cd3bd806984b1158e5eaf8428bd190442f94ed73fcb2",
+        "blob_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a"
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw": {
+        "bytes": 14949,
+        "sha256": "840ea1cd7ee1427914ffd2832ffa2f72f9b2126c82d2ec8b5bb0136820426231",
+        "crlf_count": 229,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 14720,
+        "sha256": "7c5b063be512505b4ff3ddfe89125a94df40a14e78f4abcd5fd6bb85fac15aef",
+        "blob_oid": "21c88025a20ade6152d5636c565330e1041e14eb",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "21c88025a20ade6152d5636c565330e1041e14eb"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw": {
+        "bytes": 101722,
+        "sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+        "crlf_count": 0,
+        "bare_lf_count": 1346
+      },
+      "git_clean_normalized": {
+        "bytes": 101722,
+        "sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+        "blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d"
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "raw": {
+        "bytes": 2683,
+        "sha256": "f0cc288c5a43174becb191a23c45b5f80007e054694a29b3572735da8e3ef289",
+        "crlf_count": 38,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 2645,
+        "sha256": "b6a4461ea492083f76c084e99d44459685a68a3df9f3a2ca3d76db7bfa815cbe",
+        "blob_oid": "f580168cf767a0999e2e6b56de99355e2339486c",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "f580168cf767a0999e2e6b56de99355e2339486c"
+    },
+    {
+      "path": "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "raw": {
+        "bytes": 3062,
+        "sha256": "61290cccfc72bb2407a945344b4c00b2d950a81119977a305b9f4fa42a0bb87d",
+        "crlf_count": 42,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 3020,
+        "sha256": "a29c884f12042477979797b304b3026376f3a47336542111e62a7825bffcdb4a",
+        "blob_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be"
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "raw": {
+        "bytes": 2506,
+        "sha256": "4909b48d639bcc45031c67e2c30cac250447c99158a9a2992f9fa19222618cf0",
+        "crlf_count": 50,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 2456,
+        "sha256": "2cc2c1c75bb308f7bbcaf7a1457b8bb530fa543425308df72ff355c2b4778082",
+        "blob_oid": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453"
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "raw": {
+        "bytes": 140788,
+        "sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+        "crlf_count": 0,
+        "bare_lf_count": 1251
+      },
+      "git_clean_normalized": {
+        "bytes": 140788,
+        "sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+        "blob_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764"
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "raw": {
+        "bytes": 8628,
+        "sha256": "0556b02982fcf2b66d4ecf3f2c06828ea83f13a4a310555e9a6cd7c96c4c555e",
+        "crlf_count": 141,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 8487,
+        "sha256": "79817b8418557df79669167c2c42d8b0063415da5fba2e43b61cd4516b6fb76f",
+        "blob_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "b109fe505ab12e755289170802cbda503025a0a5"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+      "raw": {
+        "bytes": 4728,
+        "sha256": "b7e33cfbe5f4ef1e2352d65117ba63fcb2601eb771027bad9ca359b2029b8003",
+        "crlf_count": 65,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 4663,
+        "sha256": "9468d5d3c61cabc7c1eca67b14d65ae72e5d3a498cc4eeebbc8254a6e2dd6f0c",
+        "blob_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "raw": {
+        "bytes": 4458,
+        "sha256": "f02a1015ba35b08d9c6cc2926f1b8f8c5cb8c736feba3e260b9c51a1ccd33386",
+        "crlf_count": 62,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 4396,
+        "sha256": "335a1d26a1e845085c804d85160f91fa605a3ef95df9779ba2f924d44e2a0994",
+        "blob_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "raw": {
+        "bytes": 2416,
+        "sha256": "e9afe40327412798a22f2af0100b8df9c1911c42338cf452c241272a648420e0",
+        "crlf_count": 34,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 2382,
+        "sha256": "e9b700099017309ec77c8c9cb53e4c2e769df0e18fb446d28b8e70c1153e554f",
+        "blob_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116"
+    },
+    {
+      "path": "vitest.config.ts",
+      "raw": {
+        "bytes": 3602,
+        "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+        "crlf_count": 66,
+        "bare_lf_count": 0
+      },
+      "git_clean_normalized": {
+        "bytes": 3536,
+        "sha256": "5f2cb605e2109c38a5606c035ab71fbba935e5f32713257f2a75cb66fb87c123",
+        "blob_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "matches_head": true
+      },
+      "checkpoint_index_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b"
+    }
+  ],
+  "packet_members_verified_bytes_hash_only": [
+    {
+      "path": "approved-kernel-binding.json",
+      "bytes": 346,
+      "sha256": "17fb9410b82f930456dc2696a2001ecb92efffa7b566f7ae4862930c9c0e81e0"
+    },
+    {
+      "path": "artifact-native-full-integration-extraction.json",
+      "bytes": 1034033,
+      "sha256": "72c5a05ef5d27096b7c1fabdebb50a690b03e8c0b2e1ee89117ed1dd46ab323e"
+    },
+    {
+      "path": "artifact-native-general-browser-extraction.json",
+      "bytes": 82743,
+      "sha256": "e3f5645c780d0afac9d7b8e5be4415172317e5ab3ccf06f91da0c188cf1a09a4"
+    },
+    {
+      "path": "artifact-native-isolated-storage-recovery-extraction.json",
+      "bytes": 2265,
+      "sha256": "4d6e8cd54e3de3f72ae2f725f14c5cd2287ff7734db2e5d16b467d3e48a8c938"
+    },
+    {
+      "path": "closed-owned-origin-vocabulary.json",
+      "bytes": 1189,
+      "sha256": "0dc26dc3c53383399a5b4431e138f7351ff83da8dd9f60278f4a5fbc8322ae3d"
+    },
+    {
+      "path": "collect-native-artifacts.py",
+      "bytes": 16451,
+      "sha256": "8e7122e22d1b471866d5d202f40e1e98fee681b0cf517a854803eef807f30011"
+    },
+    {
+      "path": "collect-runtime.mjs",
+      "bytes": 6157,
+      "sha256": "f1c1210100902cba15d61d346d7963bfadef379bb91281714bd4499120fa6a35"
+    },
+    {
+      "path": "collect-verify.mjs",
+      "bytes": 2737,
+      "sha256": "b45d91d6b62821a018879787afa1c0b1f5b5b4a6f7e0a1c1b6634d25317d21bd"
+    },
+    {
+      "path": "current-input-bindings.json",
+      "bytes": 313142,
+      "sha256": "3bec115385ba314f8a894a1c84f68db1f4cdc179e923e405bda8d9b3c48ad8df"
+    },
+    {
+      "path": "dependency-bindings.json",
+      "bytes": 230593,
+      "sha256": "e542f416210474d6ae8a0ffc9e93e64e30e1ff0c70323d3cbfd81c31071e9e59"
+    },
+    {
+      "path": "extract-native-db-failure-reach.py",
+      "bytes": 3123,
+      "sha256": "0dbcf1443ceb26319145bcac48b1f007b204df8e9181db8dabad5e0c18d620f8"
+    },
+    {
+      "path": "extract-verify-audit.py",
+      "bytes": 2604,
+      "sha256": "f5f155eabeecf5533ccd5eb0dd911194b222b4f359c73fc9810f9dee2d9a1e99"
+    },
+    {
+      "path": "finalize-packet.py",
+      "bytes": 24046,
+      "sha256": "3e5a7aa1088eefcce88acb54168ddf9139a84b491cf32054eb7b935fc832f3c8"
+    },
+    {
+      "path": "gate-source-dependency-bindings.json",
+      "bytes": 4291,
+      "sha256": "692371bfeef5a63057aba3215e4f8e386deb0722452550ed4209048bc64d1156"
+    },
+    {
+      "path": "inspect-db-diagnostic-serialization.py",
+      "bytes": 7692,
+      "sha256": "7e7d088cfc69c108cda5efe6eec5093849a5868edab372a25c4f008bfb912d09"
+    },
+    {
+      "path": "installed-runtime-dependency-boundary.json",
+      "bytes": 1759,
+      "sha256": "b33ce2de403dcd41c653bac5430733281064293267863c062f632d8683e97d17"
+    },
+    {
+      "path": "native-artifact-receipts.json",
+      "bytes": 3088,
+      "sha256": "cc80610f0976d9f99e6710bc4bf50525287acb71a326e57fe69f70b94a68e645"
+    },
+    {
+      "path": "native-assertion-reach.json",
+      "bytes": 9276,
+      "sha256": "9a7930ce24d8668bfff6e0cbdde1bfcf96f6ba59353e1c7b92147f2644faa710"
+    },
+    {
+      "path": "native-browser-attachment-custody.json",
+      "bytes": 4470,
+      "sha256": "92877e8aa312499671e2d6bc07889974b043e83321a4141786775ac1f3e3312c"
+    },
+    {
+      "path": "native-checkpoint-admission-evidence.json",
+      "bytes": 1453,
+      "sha256": "0f433aecad540b8341cb39b67a7821646385c1af0ac16e72cf7a692a6629e735"
+    },
+    {
+      "path": "native-db-diagnostic-serialization-reach.json",
+      "bytes": 24907,
+      "sha256": "5d9f24c778e1f3004b552de2c5df0eaccb7f0fb6ba09841694548dd155a5278f"
+    },
+    {
+      "path": "native-db-failure-reach.json",
+      "bytes": 92932,
+      "sha256": "54f02140e73edffe914dc8501553c3b2421b427b20b334ed4703d67041b84557"
+    },
+    {
+      "path": "native-installed-dependency-receipt.json",
+      "bytes": 804,
+      "sha256": "77567807d02d2de6dcf54e0f06b4dfb879abb1107a28ce1483c6e336b88e6b19"
+    },
+    {
+      "path": "native-owned-origin-localization.json",
+      "bytes": 2522,
+      "sha256": "f76d481b4763443f3ae4e15836c35401dce4dc8b9f947b40c76b5aa6d620b874"
+    },
+    {
+      "path": "native-qualification.json",
+      "bytes": 39649,
+      "sha256": "9fab0c5db825a7f2d2d49384a9f420c0ae246fb43a3d1476f4d760708c8883da"
+    },
+    {
+      "path": "native-qualification.md",
+      "bytes": 4305,
+      "sha256": "373bd8980046aaba369bd42e8e23fd260bdf10dc3e38f1a233251f5c7eef816a"
+    },
+    {
+      "path": "native-run-jobs-artifacts.json",
+      "bytes": 24241,
+      "sha256": "28645aa9d6325360cbccb0935770aea716b62096bf89f2265a636d8e112c7de2"
+    },
+    {
+      "path": "native-runtime-log-extracts.json",
+      "bytes": 7124,
+      "sha256": "59643b1cd782034c50a586c67227a9dce84f91bf980e5217974b4e5e552ac45c"
+    },
+    {
+      "path": "native-test-reach.json",
+      "bytes": 45320,
+      "sha256": "7ae2e5c273d37fb960206e96839cd1fd6c369a43401e835d9ffaa4234c40daa7"
+    },
+    {
+      "path": "native-verify-audit.json",
+      "bytes": 1074,
+      "sha256": "ce02defc2ff110aac2a2bf03d840ecda8a1ac74c4bea6e7b3c1eb29c2fe49d80"
+    },
+    {
+      "path": "native-verify-evidence.json",
+      "bytes": 21055,
+      "sha256": "9a1de679f320a2b0a4a552320283f65dc00fc793f0869c8889519abd0ac84b2a"
+    },
+    {
+      "path": "prepare-bindings.mjs",
+      "bytes": 7717,
+      "sha256": "bb9ac352dddca214c01e19a68c4bc51248e260a22ba38cb70d1d34a4e8776607"
+    },
+    {
+      "path": "qualification-in-progress.json",
+      "bytes": 1189,
+      "sha256": "e84344b06b3ddd93b614415f125d9d518c75c3fb547a3dccf3a270ae71afa08c"
+    },
+    {
+      "path": "qualify-test-reach.mjs",
+      "bytes": 5071,
+      "sha256": "cd38f59e9f918efe283e7bf44621ad8134eea3e7830c1a5d96f3aeccc2b14a18"
+    },
+    {
+      "path": "root-terminal-job-facts-binding.json",
+      "bytes": 401,
+      "sha256": "27cb7c7d95dfc58eed121315a995e2d431e7ad401dbf5e92a01c1d0fe79b5ac6"
+    },
+    {
+      "path": "source-path-bindings.json",
+      "bytes": 51263,
+      "sha256": "24c505ddc2bef62aa13426252fb1f206ddb3769125367786196b3aba4c78ba41"
+    },
+    {
+      "path": "targeted-review-provenance.json",
+      "bytes": 2039,
+      "sha256": "25aeb2af9318533292acac670df4956c394fd65f04646488aaa1a4711268b324"
+    }
+  ],
+  "scope": {
+    "candidate_path_count": 14,
+    "proposed_source_union": 70,
+    "new_to_owned69": [
+      "scripts/ci/checkpoint-dispatch.mjs"
+    ],
+    "protected37_overlap": [],
+    "historical109_overlap": [],
+    "every_candidate_needs_new_exact_allocation": true,
+    "normal_consumer_context_only": [
+      "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"
+    ],
+    "no_new_source_file": true
+  },
+  "previous_findings": {
+    "F1": "ADDRESSED_DESIGN",
+    "F2": "ADDRESSED_DESIGN",
+    "F3": "ADDRESSED_BY_REMOVING_UNSUPPORTED_INITIAL_PHASE_CLAIM"
+  },
+  "new_consequential_findings": [],
+  "broad_review_rounds": 3,
+  "fourth_broad_review": false,
+  "source69_raw_index_unchanged": true,
+  "index_clean": true,
+  "global_worktree_clean_claimed": false,
+  "preexisting_root_metadata_dirty": [
+    "reports/epic-15.md",
+    "state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "state/epic/epic-15.yaml"
+  ],
+  "implementation_admitted": false,
+  "native_credit": 0,
+  "executed_tests": 0,
+  "native_collection": false,
+  "database_connections_queries_rpcs": 0,
+  "resources_started": 0,
+  "provider_git_ci_mutations": 0,
+  "raw_secret_error_log_body_inspection": false,
+  "only_new_challenge_files_written": true,
+  "primary_sources": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_dispatch",
+    "https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event",
+    "https://www.postgresql.org/docs/17/sql-set-session-authorization.html",
+    "https://www.postgresql.org/docs/17/sql-rollback-to.html",
+    "https://www.postgresql.org/docs/17/transaction-iso.html",
+    "https://raw.githubusercontent.com/nodejs/node/v22.23.2/doc/api/async_context.md"
+  ],
+  "supabase_changelog": "Web reader unsupported text/markdown; no version behavior inferred",
+  "policy_reads": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "skill_reads": [
+    {
+      "path": "C:\\Users\\Rasmus\\.agents\\skills\\review-round-guard\\SKILL.md",
+      "bytes": 2782,
+      "sha256": "900408407c4d8691d68cda837ec77631c3827ecf9b800fb29cdb68ebeb2b9fb1"
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.agents\\skills\\supabase\\SKILL.md",
+      "bytes": 11400,
+      "sha256": "54a98503afb910f8f01ef4d55691dea939a7d7141e66f972ac5c86ddbad18bc6"
+    }
+  ]
+}

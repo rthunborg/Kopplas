@@ -1,0 +1,255 @@
+{
+  "schema": "forward118-v3-normal-native-offline-audit/v1",
+  "verdict": "QUALIFIED_FAILED_FORWARD118_V3_NORMAL_EVIDENCE",
+  "functional_status": "FAILED",
+  "evidence_truth": "QUALIFIED; no material projection-truth defect found",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_Native_author_executor": true
+  },
+  "scope": {
+    "run": 39710514719,
+    "attempt": 1,
+    "head": "193361acf6cc6b0d8275bff41470f647e2404b34",
+    "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+    "UUID": "fc6f206d-b3ac-4393-884e-49d98b922a30",
+    "broad_review": false,
+    "counter": 3
+  },
+  "packet_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-193361ac-forward118-v3-normal-ci-independent/manifest.json",
+    "bytes": 6101,
+    "sha256": "624aabd1fff6444ec3c14551bcfb3897287113cfe3ef9134b41d8f24d546846b"
+  },
+  "qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-193361ac-forward118-v3-normal-ci-independent/native-qualification.json",
+    "bytes": 14807,
+    "sha256": "b365b6f49d3c43e3eedde05df6fe5a9f81dad12ddd7a3991209b8cdc9a5c9747"
+  },
+  "receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-193361ac-forward118-v3-normal-ci-independent/actual-execution-receipt.json",
+    "bytes": 8131,
+    "sha256": "34e6c5fb96b0880318b046401efb0ba476f45bf80f35ee08c7a70fa8a00a7671"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal-evidence-activation.json",
+    "bytes": 4136,
+    "sha256": "e995dece766cb4a91f8e6e68a16721fa74ae8ccfe5706494bd461b5c6658f66a"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-forward118-v3-normal-terminal-acquisition-allocation.json",
+    "bytes": 3096,
+    "sha256": "2aa3ea98835a6c55c0a5340f66997994f47854a3b1e2caa5201d452ee547f11c"
+  },
+  "allocation_tool": {
+    "tool": "exec-74c712b1-75e5-427a-a495-e3fc60d3f4d5",
+    "turn": "01a1617a-ed15-7ba2-9716-994d1bbcf9a8",
+    "status": "completed"
+  },
+  "Native_attribution": {
+    "chunk": "b1f907",
+    "exit": 0,
+    "wall_seconds": 6.3434927,
+    "session": null,
+    "waits": [],
+    "GETs": 5,
+    "slots_closed": true,
+    "child_stream_handle_settlement": "Native/operator-observed; not direct Root/reviewer observation",
+    "raw_provider_rehash_by_reviewer": false
+  },
+  "independent_offline_command": {
+    "chunk": "6cdcd7",
+    "exit": 0,
+    "wall_seconds": 0.1721305,
+    "proof": {
+      "verdict": "QUALIFIED_FAILED_FORWARD118_V3_NORMAL_EVIDENCE",
+      "packet23_hashes22": true,
+      "bound_intent_refs": 29,
+      "Native_reported_GETs": [
+        {
+          "sequence": 1,
+          "label": "normal-run-archive",
+          "bytes": 827739,
+          "sha256": "8003b6ec73680e19b950a5e1eca73a98751e77c4fe9641db692f252cf8a3ee2e"
+        },
+        {
+          "sequence": 2,
+          "label": "normal-artifact-list",
+          "bytes": 2195,
+          "sha256": "adbfce0d8ba440a468d58b4c3cc067f937716cffbe94ebd3c96679813cfe4dfd"
+        },
+        {
+          "sequence": 3,
+          "label": "native-general-browser",
+          "bytes": 11554,
+          "sha256": "14a5cc4e98243b0a4f0dda7f3ab10117fa2e2ed3959feff023e4b859622390f4"
+        },
+        {
+          "sequence": 4,
+          "label": "native-isolated-storage-recovery",
+          "bytes": 678,
+          "sha256": "3066cb60ca7861897ffe9aa5f5bffc4dbaaeb01955312013495798b98705e60c"
+        },
+        {
+          "sequence": 5,
+          "label": "native-full-integration",
+          "bytes": 109327,
+          "sha256": "c3872e9bafe6d6abc26e8225eec4e9b495350ae9577b96352eb275478d79c34f"
+        }
+      ],
+      "receipt_eligibility_digests_consistent": true,
+      "Node": 3405,
+      "Node_story_distinct": 30,
+      "Node_lines": 32,
+      "Python_separate": 43,
+      "DB": {
+        "failed": 1,
+        "passed": 2068,
+        "skipped": 52
+      },
+      "DB_story_passed": 16,
+      "DB_missing": 35,
+      "DB_failure_candidate": "ec3353808a6677b3e602d3d1106f420ab5ce6b579dde48cbaf043010be874812",
+      "browser_stats": {
+        "duration": 372893.14300000004,
+        "expected": 54,
+        "flaky": 1,
+        "skipped": 0,
+        "unexpected": 1
+      },
+      "browser_story": {
+        "unexpected": 1,
+        "expected": 12,
+        "flaky": 1
+      },
+      "browser_attempts": 16,
+      "browser_attempt_counts": {
+        "failed": 3,
+        "passed": 13
+      },
+      "recovery_separate": 1,
+      "v3_rows": 12,
+      "terminal_categories": {
+        "NOT_SAMPLED": 6,
+        "END_WITHOUT_FAILURE_OPEN": 4,
+        "FAILED_OPEN": 2
+      },
+      "categorical_discriminator": "Definite FAILED_OPEN for001rotate on both failed attempts at post-drain, pre-disposal boundary",
+      "causal_discriminator": "Still ambiguous; failure origin/body/event linkage/backend settlement not established; STOP automatic fix/rerun",
+      "custody": "Retained/unverified;dbClosed not backend settlement",
+      "required95_missing": 35,
+      "acceptance": 0,
+      "audit_GETs": 0,
+      "source_harness_controls": 0,
+      "Git": 0
+    },
+    "methods": [
+      "Closed23-file membership and22 SHA bindings",
+      "29 intent inputs, exact activation/grant/terminal/operator tuple",
+      "Five intent/result/receipt cross-checks; caps/EOF/reader/settlement fields and eligible artifact digest/member bounds",
+      "Projected counts/identities/attempts/missing35 arithmetic",
+      "Twelve v3 rows, fixed field order/closed terminal categories, record/projection bounds and UNKNOWN limits",
+      "Exact current frozen operator bindings/catalog reuse and Root sourceproof identity"
+    ],
+    "source_harness_or_controls": 0,
+    "Git": 0,
+    "API": 0
+  },
+  "source_catalog_reuse": {
+    "tool_chunk": "4a10fd",
+    "exit": 0,
+    "operator_bindings_sha256": "f43b17cc90a75837608dff626f6fb2e506ad70bc3ef59982cbdeefc966a5167e",
+    "catalog410_dynamic19": true,
+    "source206_SQL118": true,
+    "Root618_objects": "Hash-bound Root-provided mechanical proof; not a new Git audit",
+    "producer_consumer_binding_reviews_reused": true
+  },
+  "DB_failure_identity": {
+    "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+    "title_sha256": "ec3353808a6677b3e602d3d1106f420ab5ce6b579dde48cbaf043010be874812",
+    "id": null,
+    "original_error": "NOT_PERSISTED",
+    "cause": "UNKNOWN"
+  },
+  "discriminator": {
+    "categorical_status": "DEFINITE_FAILED_OPEN",
+    "case": "E2E001",
+    "action": "rotate",
+    "failed_retries": [
+      0,
+      1
+    ],
+    "boundary": "post-drain, before fault disposal/aboutblank/context closure; frozen producer review authority",
+    "completion": "PENDING",
+    "completionPhase": "FINISHED",
+    "scenario_readback_observation": "SETTLED_SUCCESS",
+    "terminal_counts": {
+      "NOT_SAMPLED": 6,
+      "END_WITHOUT_FAILURE_OPEN": 4,
+      "FAILED_OPEN": 2
+    },
+    "category_meaning": "Nonnull public SDK failure object and page flag open; no raw errorText read",
+    "causal_status": "AMBIGUOUS",
+    "not_established": [
+      "Original failure origin/text",
+      "Native event identity/order",
+      "Response-body lifetime",
+      "Linkage defect",
+      "Backend settlement"
+    ],
+    "automatic_fix_or_rerun": "STOP",
+    "new_diagnostic_or_source_proposal": false,
+    "successful_gates_need_manufactured_failure_labels": false
+  },
+  "limits": {
+    "passed007_010_missing_labels": "NULL/UNKNOWN_MISSING; not negative terminal proof",
+    "NUDGE": "NULL/UNKNOWN_MISSING",
+    "custody": "Retained/unverified;keyDeletedfalse;dbClosedtrue not settlement",
+    "legacy_launch_false": "Not no-child evidence",
+    "attachments": {
+      "references": 3,
+      "body_acquired": 0,
+      "privacy_qualification": null
+    },
+    "specific118_statement_metadata_ACL_rollback": "NOT_PROJECTED",
+    "six_serial_completion": "NOT_FULLY_QUALIFIED;35missing",
+    "recovery_finer_predicates": "Not individually serialized",
+    "original_causes": "UNKNOWN",
+    "normal_acceptance": 0
+  },
+  "reader_history": [
+    {
+      "chunk": "d69c73",
+      "exit": 1,
+      "reason": "Reader expected nested lifecycle records; actual frozen archive field is a list.",
+      "extra_API": 0,
+      "source_changes": 0
+    },
+    {
+      "chunk": "e3cf16",
+      "exit": 0,
+      "reason": "Actual lifecycle list shape read before corrected offline qualification."
+    }
+  ],
+  "findings": [],
+  "functional_blockers": [
+    "DB gate1failure;35mandatory INT/API cases missing/unexecuted",
+    "Essential E2E001 unexpected on both attempts;E2E009 flaky",
+    "Unverified retained keys/custody/backend settlement UNKNOWN"
+  ],
+  "effects": {
+    "GET_status_source_harness_controls": 0,
+    "Git": 0,
+    "source_Spec_state_foreign_writes": 0,
+    "resources_provider_deploy": 0
+  },
+  "state": {
+    "P5": "open",
+    "story15_6": "unstarted",
+    "review_counter": 3,
+    "required95": true,
+    "acceptance": 0
+  },
+  "policy": "development-completion-policy2026-10-19"
+}

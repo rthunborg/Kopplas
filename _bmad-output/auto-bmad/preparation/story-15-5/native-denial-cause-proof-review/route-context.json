@@ -1,0 +1,208 @@
+{
+  "route": {
+    "schema_version": 1,
+    "phase": "review-native-denial-cause-proof-committed-delta",
+    "role": "independent-sensitive-committed-native-cause-proof-delta-reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_by_root_before_dispatch": true,
+    "dispatch_owner": "Parent; author does not dispatch reviewer",
+    "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+    "base": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+    "scope": "Latest committed14 changed paths and consequential regressions; not a fourth broad story review",
+    "completed_broad_rounds": 3,
+    "requested_independence": "Fresh context-free reviewer; no author/reviewer role reuse",
+    "source_and_spec_frozen": true,
+    "verdict": "PENDING",
+    "no_source_or_spec_verdict_write_after_review": true,
+    "native_credit": 0
+  },
+  "root_identity_metadata_only": {
+    "current_source_count": 70,
+    "current_raw_normalized_difference_count": 41,
+    "unchanged_paths_since_checkpoint": 56,
+    "changed": 14,
+    "delta_raw_normalized_differences": 5,
+    "author_commits": 17,
+    "root_commits": 11,
+    "ancestry": 28,
+    "receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-cb8d696d-source-path-admission.json",
+      "bytes": 39635,
+      "sha256": "2de3f6130cf5bd78e0110f0618d74f2557cd51c9cdb0d09467cd36b67ae7fa88",
+      "metadata_only_not_runtime_credit": true
+    },
+    "not_runtime_or_semantic_proof": true
+  },
+  "provenance": {
+    "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+    "base": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+    "exact14": [
+      "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "src/server/read-models/calendar-feed.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      ".github/workflows/ci.yml",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "ordinary_command_body_and_INT015_unchanged": true,
+    "raw_and_actual_git_blob_bindings_separate": true,
+    "root_report_state_dirty_excluded": true,
+    "global_worktree_clean_claim": false,
+    "mutable_root_raw_snapshot_not_resampled": true
+  },
+  "acceptance": {
+    "diagnostic": "ZERO_ACCEPTANCE",
+    "current_managed_native": "UNEXECUTED",
+    "actual_DIAG001": "UNEXECUTED",
+    "former_43_db_causes": "UNPROVEN",
+    "former_14_browser_failures": "UNRESOLVED",
+    "all_11_failed_histories_preserved": true,
+    "no_engine_phase_claim": true,
+    "direct_SQL_is_new_controlled_call_not_original_JWT_session_proof": true,
+    "runtime_prerequisites": [
+      "Fresh committed-delta High PASS",
+      "Root freeze/push",
+      "Separately born/reviewed private qualifier after pushed head",
+      "Hosted default AND candidate input availability before sole POST",
+      "Root-admitted exact run identity"
+    ],
+    "original_normal95_INT015_and_required_normal_gates_preserved": true
+  },
+  "focus": [
+    "Actual ALS erasure dataflow; same output/error/once-call behavior; absent-store privacy and closed context lifetime",
+    "Actual command/SQL/HTTP/timer/child settlement versus driver timeout/outer test deadline; conditional fixture/key custody",
+    "Qualified original setup and same-client restricted identity/owned claims/privacy before one selected UNMODIFIED baseline",
+    "Unconditional rollback/reset, independent fresh qualification and source/owned-state comparison; all reaching primary/cleanup failures",
+    "Exact single diagnostic case versus unchanged normal15/INT015; no skipped-normal-case artifact masquerade",
+    "Mode/title/nonce/SHA/actor/attempt/status/legacy compatibility and default/candidate availability before POST",
+    "Actual artifact report/receipt/missing/sensitive-content failure fences; full normal/pilot/recovery/browser/inverse preservation",
+    "No native acceptance or SQL inner-cause inference from a label, setup authority, controlled replay or zero-acceptance run"
+  ],
+  "references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-allocation.json",
+      "bytes": 5006,
+      "sha256": "99bcc94753e87bb3efcf7fec730c88da4059ca450a4548286f47dbf20fdc63d3",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-private-consumer-allocation.json",
+      "bytes": 3289,
+      "sha256": "3b6cb5ddbdc847ca9dfbd2e7ceb2b2e2418227b661b9d14447016a1aea530c00",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json",
+      "bytes": 1763,
+      "sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/proposal.md",
+      "bytes": 16665,
+      "sha256": "6d41cda99f51403ab49fed4e6bc31976427efca7358beb80f164d4cf7064e90d",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/contract-and-bindings.json",
+      "bytes": 32880,
+      "sha256": "7cdbae09f37bdb04c9c9965aca3c0b8bdab6ed6cdaa148b35a64e2c41b2ad0cf",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/result.json",
+      "bytes": 1767,
+      "sha256": "68c676bfb444fe96440d53f293710b6bb213dd9cebd937d9e9592cd3e6608ca0",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/original-report.md",
+      "bytes": 17497,
+      "sha256": "114a3a37698b0885da6072127bba96b05bbe2b1d48bbb0d046ac8c0702ed1115",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/original-attestation.json",
+      "bytes": 6251,
+      "sha256": "f8ee4a5f839d86c7cb4306b33fefc495814e6998ea13b5a5a4e6547e62feed3a",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-challenge/result.json",
+      "bytes": 2164,
+      "sha256": "57f9551466be649d20fdc0af776505c518a9dbbb4834349d3a448ad5ef42ba33",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/original-report.md",
+      "bytes": 17105,
+      "sha256": "c4866354960d7aa789556e755c2ff1970c2053de62c02a9ab16004e1701f0b2b",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/original-attestation.json",
+      "bytes": 76083,
+      "sha256": "58e75b3cdaa1628549cf43a9568d7e2b0ef02e54d010a0474af954491cc1dc96",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-revision-1-challenge/result.json",
+      "bytes": 1831,
+      "sha256": "e9515cbf0da465180096ce1fa6cb5a8a33b8aa2d2b10d74402835ffa03ad59dd",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/manifest.json",
+      "bytes": 3941,
+      "sha256": "5c64a63ff2af9ac173cd1a4cfec4e62f29f3e3968cd4f476314a17b5b638da69",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/plan.md",
+      "bytes": 14424,
+      "sha256": "6fc4d2865a193aa05d67defdb3a3300cefad82d613e0b2e2da5bf2fcda4b67c0",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/result.json",
+      "bytes": 3566,
+      "sha256": "6eb5ecc2e4aa055067a01725d7a2882f856bdfd3c2c14d65bc2eb49ce63ffea6",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-cb8d696d-source-path-admission.json",
+      "bytes": 39635,
+      "sha256": "2de3f6130cf5bd78e0110f0618d74f2557cd51c9cdb0d09467cd36b67ae7fa88",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-56324120-packet-admission.json",
+      "bytes": 1304,
+      "sha256": "34785381fc18743aeeb67f23517683c48e790509b0c0b15e3fc683bd927f2a0a",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/native-qualification.json",
+      "bytes": 39649,
+      "sha256": "9fab0c5db825a7f2d2d49384a9f420c0ae246fb43a3d1476f4d760708c8883da",
+      "metadata_only_not_runtime_credit": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json",
+      "bytes": 720807,
+      "sha256": "fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd",
+      "metadata_only_not_runtime_credit": true
+    }
+  ],
+  "checks": "local-checks.json",
+  "no_author_source_changes_in_preparation": true
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "ROOT_EXACT_COMMITTED_TWO_FILE_REVIEW_ADMISSION",
+  "source_commit": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+  "base": "f0b1e5735872ba2effcd7c1480756326125f6752",
+  "files": [
+    {
+      "file": "original-report.md",
+      "bytes": 3897,
+      "sha256": "b4f2c891d64a60ce741016384cf5325cb9da170911e429b62ec8600078130e90"
+    },
+    {
+      "file": "original-attestation.json",
+      "bytes": 7461,
+      "sha256": "ead06fa2af3fe3d69c33f9c7ae3dc0c79fcb1605dac28dd0dd644d35647ad2c6"
+    },
+    {
+      "file": "result.json",
+      "bytes": 818,
+      "sha256": "1e1c0c8d3a12f2b61b229977269929b5acfa12704f6437929ad3b8a1e810cc92"
+    }
+  ],
+  "independent_reviewer": "/root/review15_5_preselected_id_high",
+  "scope": "Targetednewdelta, nofourthbroad",
+  "normal_acceptance_credit": 0
+}

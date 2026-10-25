@@ -1,0 +1,47 @@
+{
+  "GETs": 0,
+  "actual_operator_validate_admission_with_actual_terminal": "PASS_WITH_SYNTHETIC_ACTIVATION_ALLOCATION_AND_REVIEW_REFS_IN_RAM_ONLY",
+  "actual_ownership": {
+    "actor": "rthunborg",
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "event": "workflow_dispatch",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "release_validation": false,
+    "repo": "rthunborg/Kopplas",
+    "run_id": 39664130401,
+    "triggering_actor": "rthunborg",
+    "workflow_id": 296219797
+  },
+  "actual_run_conclusion": "failure",
+  "actual_run_status": "completed",
+  "conditions_not_satisfied_by_this_control": [
+    "actual completed acquisition allocation",
+    "actual Root execution-authorized activation",
+    "actual output packet or request intent"
+  ],
+  "execution_authorized": false,
+  "jobs": {
+    "checkpoint-admission": "success",
+    "dashboard-e2e": "skipped",
+    "db": "failure",
+    "e2e": "failure",
+    "fixed-chromium-application-verification": "skipped",
+    "fixed-chromium-paired-probe": "skipped",
+    "native-stream-probe": "skipped",
+    "recovery-storage-loader": "success",
+    "verify": "success"
+  },
+  "native_acceptance": 0,
+  "operator_top_level": 0,
+  "schema": "ACTUAL_ROOT_TERMINAL_OFFLINE_COMPATIBILITY_ONLY_v1",
+  "terminal": {
+    "bytes": 15819,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-terminal.json",
+    "sha256": "b8c92f76022db4149bcefcc38add55526de0f01cb2936e113a1f6af8329f1f5e"
+  },
+  "transport": 0
+}

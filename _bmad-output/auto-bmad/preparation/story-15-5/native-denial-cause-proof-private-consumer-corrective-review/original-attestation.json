@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-private-consumer-targeted-F1-corrective-review",
+  "verdict": "PASS",
+  "F1": "CLOSED",
+  "findings": [],
+  "reviewed_at_utc": "2026-10-21T05:12:12.188005+00:00",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "same_reviewer_as_original_NOTPASS": true,
+    "independent_of_author_and_root": true,
+    "author_native_qualifier": "/root/native15_5_high"
+  },
+  "route": {
+    "phase": "review-native-cause-proof-private-consumer-exact-artifact-admission-fix",
+    "recorded_by_root_before_dispatch": true
+  },
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "head_sha": "2524306ca9edd6079c23d205cf01268797288d89",
+  "producer_source_sha": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+  "checkpoint_id": "59829dee-b02e-4343-a11f-1874f1ead5d8",
+  "original_source_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 36247,
+      "sha256": "cb6e61638cbdb0faec689fc7db9b3681b117b93edfc59e037b10affdb54da90d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 24907,
+      "sha256": "db22e9f2a7b3cc7c8748fc0ad07476306f8f73ca4608b2e408f9d20bbe617b01"
+    }
+  ],
+  "corrected_source_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "f329a8215c02e9acbbb28309cb2c44e94cef6f7581fe2d656d3cda00d5817b0c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732"
+    }
+  ],
+  "custody_binding": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/root-original-private-helper-byte-custody.json",
+    "bytes": 82317,
+    "sha256": "4f87dd46590a6f412744ee581a0c3f42733944e5cbdbf4d7e70119facf00afa4",
+    "decoded_in_memory_only": true,
+    "original_raw_hashes_and_lengths_verified": true
+  },
+  "root_corrective_binding": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-2524306c-private-helper-corrective-review-binding.json",
+    "bytes": 1752,
+    "sha256": "8cfa0fd23934ee69ebc058991474688253c2fd702e491ef1d5f7b76b4433d74b"
+  },
+  "original_NOTPASS_immutable": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/original-report.md",
+      "bytes": 7582,
+      "sha256": "fca5663518c501c3648f02365227b24771377786236c6b59adc31da57d0bfe5b",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/original-attestation.json",
+      "bytes": 10736,
+      "sha256": "a1a1e45808604f4a785206f562733cbfd90a01296beaa22c7cbb7f053b90fa13",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/result.json",
+      "bytes": 1201,
+      "sha256": "11aef79c8fe1c89307ded286c0e96ff6ce2755718255a676d82536d31c1f7637",
+      "unchanged": true
+    }
+  ],
+  "actual_delta": {
+    "collector_modified_functions": [
+      "expected_template",
+      "validate_expected",
+      "validate_terminal",
+      "listing_artifact",
+      "collect",
+      "main"
+    ],
+    "collector_added_functions": [
+      "canonical",
+      "verify_frozen",
+      "candidate_proof",
+      "listing_candidate",
+      "read_continuation"
+    ],
+    "collector_removed_functions": [],
+    "unchanged_AST_boundaries": [
+      "parse_json",
+      "unpack_archive",
+      "receipt_and_manifest",
+      "observation",
+      "native_report",
+      "qualified_evidence",
+      "bounded_gh_get",
+      "schema_id"
+    ],
+    "tests_changed": [
+      "terminal fixture",
+      "Bridge/pending injected effects",
+      "existing bridge controls adapted",
+      "tests23-31 added"
+    ]
+  },
+  "private_schema_sha256": "9268cbe1e2834edd3ac80b88766305a6e62105407adb677f7351d2afbc5e0579",
+  "producer_context_unchanged": {
+    "raw_members": 11,
+    "length_and_sha_comparisons": 22,
+    "all_match": true,
+    "source_review_reopened": false
+  },
+  "F1_closure": {
+    "null_wildcard_removed": true,
+    "positive_integer_excludes_bool": true,
+    "Root_exact_ID_required_before_archive_GET": true,
+    "empty_requires_explicit_confirmed_empty_and_retained_empty_listing": true,
+    "original_condition_replay_refused": "ARTIFACT_ID_MISMATCH",
+    "replay_injected_GETs": 1,
+    "replay_real_GETs": 0
+  },
+  "protocol_checked": {
+    "same_invocation": true,
+    "terminal_schema": 2,
+    "mutable_admission_fields": [
+      "artifact_admission_state",
+      "artifact_candidate_sha256",
+      "artifact_id",
+      "artifact_listing_bytes",
+      "artifact_listing_sha256"
+    ],
+    "continuation_cap_bytes": 4096,
+    "deadline_seconds": 60,
+    "closed_stdin_required": true,
+    "one_listing_then_at_most_one_ZIP": true,
+    "final_terminal_read_once": true,
+    "final_raw_digest_verified": true,
+    "unchanged_expected_and_helpers_rechecked_before_ZIP": true,
+    "candidate_nonsecret_closed_output_only": true,
+    "raw_listing_memory_only": true
+  },
+  "executed_controls": {
+    "command": "python -B .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+    "tests_passed": 31,
+    "failures": 0,
+    "errors": 0,
+    "positive_controls": 19,
+    "negative_controls": 238,
+    "nonadditive_control_counts": true,
+    "pipe_only_python_driver_processes": 2,
+    "actual_driver_exit_checked": true,
+    "driver_reported_threads": 1,
+    "driver_network": false,
+    "additional_complete_line_without_EOF_timeout": true,
+    "additional_timeout_under_one_second": true
+  },
+  "root_facts_when_checked": {
+    "expected_admission_unborn": true,
+    "terminal_facts_unborn": true,
+    "proof_placeholders_not_fabricated": true
+  },
+  "review_cap": {
+    "completed_broad_story_rounds": 3,
+    "targeted_F1_and_consequential_adjacent_regressions_only": true,
+    "fourth_broad_review": false
+  },
+  "limits": {
+    "writes_only_three_new_corrective_review_files": true,
+    "source_or_old_artifact_mutations": false,
+    "network_or_artifact_fetch": false,
+    "collector_network_mode": false,
+    "DB_RPC_native_CI_managed_resource_browser": false,
+    "git_provider_deployment_mutations": false,
+    "bounded_offline_reader_driver_children_only": true,
+    "bytecode_cache_files": false,
+    "execution_authorization_granted": false
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-corrective-review/original-report.md",
+    "bytes": 7695,
+    "sha256": "b65c5b9ad5661cd38e9a456c86f278bc95603338ff32802e2374e75d641b0042"
+  },
+  "retained_gates": [
+    "Root adopts exact reviewed helper hashes and freezes actual facts",
+    "Actual workflow availability/admission and explicit terminal collection authorization remain separate",
+    "43 DB causes and 14 browser failures unresolved",
+    "Normal95/full2039/browser/recovery/pilot not satisfied",
+    "Backend cause UNPROVEN; historical JWT/clock/input/snapshot equivalence unknown"
+  ],
+  "normal_acceptance_credit": 0,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false
+}

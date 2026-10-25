@@ -1,0 +1,200 @@
+{
+  "schema": "INDEPENDENT_NORMAL_TERMINAL_SUCCESSOR_SOURCE_CONTROLS_V1",
+  "phase": "FINAL_ACTUAL_ENROLLMENT_SOURCE_DATA_COMPLETE",
+  "execution_authorized": false,
+  "source_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/reader.py",
+      "bytes": 50755,
+      "sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/proposal.json",
+      "bytes": 89114,
+      "sha256": "c15d46e4cde094b386271bd7f9d279b4a463d38c27210a702e2939b5214e2a9f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/source-rows.json",
+      "bytes": 31634,
+      "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/manifest.json",
+      "bytes": 978,
+      "sha256": "94b441b831cb6276ebeeaf90dd198188c960977596c0d9201d5b106a84b76b2a"
+    }
+  ],
+  "checks": [
+    {
+      "name": "complete_literal_inverse_restores50745_4dd32_and36definitions_only_validate_identity_changes",
+      "status": "PASS",
+      "actual_tool": "9d4715/native0"
+    },
+    {
+      "name": "source75_equals_current203_exact4changed_from_qualified75_no_SQL_raw_rescan",
+      "status": "PASS",
+      "actual_tool": "9d4715/native0"
+    },
+    {
+      "name": "catalog20_samepaths_only_wrapper169to181_other19unchanged430total19dynamic_excluded",
+      "status": "PASS",
+      "actual_tool": "9d4715/native0"
+    },
+    {
+      "name": "current181_catalog_line_UTF16_bounds_and_closed4tuple_shapes",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_main_default_function_zeroGET_refusal_without_module_import",
+      "status": "PASS"
+    },
+    {
+      "name": "inert_template_terminal_null_jobs_null_no_activation_not_final_admission",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_terminal_envelope_7refs_native_closure_projection_fields_mode_derivation",
+      "status": "PASS",
+      "actual_tool": "22f0fe/native0"
+    },
+    {
+      "name": "new_actual4_exactcopy_catalog_unchanged9jobs_refs_paths_inert_activation_interface",
+      "status": "PASS"
+    }
+  ],
+  "initial_control_history": {
+    "tool": "d4c3c6",
+    "native_exit": 1,
+    "failure": "Reviewer used Python splitlines which drops terminal empty line, unlike the catalog split-newline line_count. Corrected reviewer fixture to normalized split(newline); no reader/data edit, no file write/effects before failure."
+  },
+  "catalog_static_evidence_reused": {
+    "actual_static_tool": {
+      "chunk_id": "13ac28",
+      "native_exit": 0,
+      "session": null,
+      "waits": [],
+      "wall_seconds": 0.3915035
+    },
+    "changed_file": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "current_file_static": 181,
+    "current_static": 430,
+    "dynamic_excluded": 19,
+    "initial_static_scratch": "431 included describe; corrected before freeze to430 and exact19unchanged. No test execution.",
+    "new_application_tests_or_config_loads": 0,
+    "old_file_static": 169,
+    "old_static": 418,
+    "other19_catalogs_exact_equal": true,
+    "same20paths": true,
+    "semantics": "Installed TS5.9.3 AST only, directly imported node:test test/it literal or no-substitution titles; declarations are not native leaf execution.",
+    "static_extractor_source_sha256": "2902f5fb7e9da3fc9e3a18691b36a1b9fe067f0d039f2aafc1b89cfe8a270032"
+  },
+  "prior_qualified_algorithms": {
+    "bindings": {
+      "bytes": 127358,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/bindings.json",
+      "sha256": "5fd56b336760121c211877d0c94f650b5330e5e2d854ac8f4bfd024355c2ac1e"
+    },
+    "native_qualification": {
+      "bytes": 32596,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-normal-actual-native-qualification.json",
+      "sha256": "b93dca962b80e7b6c729b6723655522528b15f8491fde46687daf81599ec294b"
+    },
+    "reader": {
+      "bytes": 50745,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/normal-evidence-operator.py",
+      "sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76"
+    },
+    "source_proposal": {
+      "bytes": 47978,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/proposal.json",
+      "sha256": "5a3ff23bbeb3fc4f1af5bad18c6db354d963272ec0a953c35253a9487a4fbba9"
+    }
+  },
+  "unchanged_scope_limits": [
+    "430 static source declarations are not runtime leaf count or passing executions. Inherited/nonleaf/dynamic limits retained.",
+    "No current case counts/cause/wrapper/backend/key-deletion facts inferred.",
+    "Only exact successful native leaves count toward95; missing/skipped/pending/flaky/unavailable remain zero.",
+    "Final actual terminal/9jobs/enrollment/ownership/source proof/review/allocation/activation still required before any GET."
+  ],
+  "effects": {
+    "remote_GET": 0,
+    "Git": 0,
+    "real_Popen": 0,
+    "reader_or_application_module_import": 0,
+    "tests_configload": 0,
+    "managed_resources": 0,
+    "input_edits": 0
+  },
+  "final_verdict": "SOURCE_DATA_CHECKS_COMPLETE_NO_EFFECT_AUTHORITY",
+  "initial_source_control_packet": {
+    "bytes": 5189,
+    "sha256": "8f85147ec038f9d5b5a0dcf7e4e794747b01ca39e6fcdc9908c423812de2624f",
+    "phase": "SOURCE_COMPLETE_FINAL_HELD_PENDING_ACTUAL_TERMINAL_ENROLLMENT"
+  },
+  "final_actual4": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/reader.py",
+      "bytes": 50755,
+      "sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/proposal.json",
+      "bytes": 120353,
+      "sha256": "1589645c9f286fbc84c89e188042a01fe30d2a1ea23c66369a0cf7f2b20a7c93"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/source-rows.json",
+      "bytes": 31634,
+      "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/manifest.json",
+      "bytes": 995,
+      "sha256": "6f43996c82407c023a73631111ac3208319fbcdbf4f8113bb66dfaf257f8a9e4"
+    }
+  ],
+  "terminal_provenance": {
+    "Root_poller": "STOPPED",
+    "Root_terminal_tool": {
+      "chunk": "210f84",
+      "native_exit": 0,
+      "poll_pair": 9,
+      "wall_seconds": 1.3245416
+    },
+    "URL": "Deterministic ownedrun URL derived by Root, not a new API observation",
+    "envelope": {
+      "bytes": 23827,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-actual-terminal-envelope.json",
+      "sha256": "f31671e0456ae9fef5a7f66fd81affac8d53ddd654e7240b9a178a505f2871fa"
+    },
+    "field_derivation": {
+      "html_url": "Deterministically derived GitHub UI URL from validated repository/run ID; not claimed as separately observed API field",
+      "native_metadata_exits": "Actual per-read native0/EOF/join/closed/settled receipts enforced and checked",
+      "original_e2e001": "Source-backed input-mode fact: actual canonical state verification_mode normal/cause_proof false/release_validation false plus reviewed ordinary201B POST excluding other modes and fixed workflow defaults; not a newly observed artifact fact",
+      "run_job_metadata": "Exact Root projection from actual owned API pair; no additional remote read"
+    },
+    "original_e2e001_false": "Source-backed ordinary normal defaults/POST derivation; no rawprojection key falsely claimed observed.",
+    "ownership_proof": {
+      "bytes": 3387,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-ownership.json",
+      "sha256": "8ecd810e854e5fa445e35bc691c0de5e57e8c1c12b65c387f647e0d1c7a106bf"
+    },
+    "raw_Root_projection": {
+      "bytes": 24085,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/terminal.json",
+      "sha256": "33da582caff461fc376234c27e11797d4616416306dc223986e997f26455975b"
+    }
+  },
+  "source_controls_reused_nonadditively": 6,
+  "fresh_terminal_data_groups": 2,
+  "counts": {
+    "pass": 8,
+    "fail": 0
+  },
+  "terminal_comparison_history": {
+    "first_tool": "c33b1a/native1",
+    "reason": "Reviewer whole-job equality did not allow inherited envelope omission of redundant run_id/head_sha. All7 refs matched. Corrected only comparison to exact inherited fields plus independently asserted rawjob run/head tuple; no input edits/effects.",
+    "metadata_localization": "18918e/native0; e5d2da/native0",
+    "closure": "22f0fe/native0"
+  }
+}

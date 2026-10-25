@@ -1,0 +1,339 @@
+{
+  "schema": "POST_F1_TARGETED_TERMINAL_DIAGNOSTIC_PLAN_REVIEW_v1",
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "/root/build15_5_high",
+      "Root",
+      "prior packet auditor"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_free": false
+  },
+  "scope": "Frozen two-artifact terminal diagnosis plan only; no broad story/source re-review.",
+  "verdict": "NOTPASS_PLAN_REQUIRES_FINITE_LOCATION_ALLOWLIST",
+  "identity": {
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "release_validation": false,
+    "run": 39664130401,
+    "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "current_metadata_HEAD": "9e9b6b6fe7deae5094884eb04de4a69f7144f31b"
+  },
+  "inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/report.md",
+      "bytes": 5879,
+      "sha256": "179c1b2e6ca8d0a45e95b2bd63188bc6fd5297fee298ac2cf125d76d389d298f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/attestation.json",
+      "bytes": 14700,
+      "sha256": "697d1079c7b4df84721f1e9ab979f0dee1ac734df73badd261d3ba435918217c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/manifest.json",
+      "bytes": 641,
+      "sha256": "903fbbe9062abd03321583ee56f37d0ca2d0e16d5d07e9bf722b9ad8ce80c50b"
+    }
+  ],
+  "reused_context_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+      "bytes": 5474,
+      "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.json",
+      "bytes": 42219,
+      "sha256": "8c1a52067b2a6cd7031727a9f46039343c4e1b4d5dcc7df370cb3618640c674b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-full-integration-projection.json",
+      "bytes": 53755,
+      "sha256": "16958feaeefdb92b2bbbd088902371e27ea9ce0eacab424103c5c77cc4754773"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-general-browser-projection.json",
+      "bytes": 11213,
+      "sha256": "6cb245e3c78fb15d07584585f9e82eeb862c7e1936aaf24ba11a12d2b25ed5ee"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/source-provenance.json",
+      "bytes": 3876,
+      "sha256": "4e96cb39c7fead517a021001a1469aee42e3f0edca3cbaa4d39bbcda474ea870"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/original-report.md",
+      "bytes": 7517,
+      "sha256": "9369f5e42286761f72977ab6f7fb293210e469c6df765534fedce0ba216b0a07"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/original-attestation.json",
+      "bytes": 18912,
+      "sha256": "8e79be9484918c26a1f4aba2bc68fb5b7b8186884c717ed231e412ef50a378e9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/manifest.json",
+      "bytes": 950,
+      "sha256": "4c1ed6f72322617d39cadda2b2218fff8673794666f18b7efdc78fb0d43b4f2a"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "bytes": 36163,
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 31222,
+      "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+    }
+  ],
+  "independently_rehashed_source_bindings": [
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40586,
+      "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+      "HEAD_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "source_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "pushed_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "current_clean_oid": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 17518,
+      "sha256": "fae7ad38abb947dfe148d6ab1b8f37ec9ebc50d80350929ebfb285fa31ee065d",
+      "HEAD_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "source_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "pushed_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "current_clean_oid": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569"
+    },
+    {
+      "path": "src/server/notifications/time-report-nudge-producer.ts",
+      "bytes": 1956,
+      "sha256": "b5d6c8bd2e7dffff6787b687e704fae93620dbf49426d518211b237d193c0ca3",
+      "HEAD_blob": "e138e600cb9a3cfeec20c03835fbf8e977dba550",
+      "source_blob": "e138e600cb9a3cfeec20c03835fbf8e977dba550",
+      "pushed_blob": "e138e600cb9a3cfeec20c03835fbf8e977dba550",
+      "current_clean_oid": "e138e600cb9a3cfeec20c03835fbf8e977dba550"
+    },
+    {
+      "path": "src/app/api/jobs/run/route.ts",
+      "bytes": 7246,
+      "sha256": "ca0e3315a52baaa5f186132e7338b4451d0d4e27dee72268ce0c63a0d1cff6f9",
+      "HEAD_blob": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c",
+      "source_blob": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c",
+      "pushed_blob": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c",
+      "current_clean_oid": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27968,
+      "sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+      "HEAD_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "source_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "pushed_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "current_clean_oid": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 55454,
+      "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "HEAD_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "source_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "pushed_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "current_clean_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 132791,
+      "sha256": "20b5d616fe3e861b60fc3250e224c3a27c6bf21e90b5962036d09b6010b6a859",
+      "HEAD_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "source_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "pushed_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "current_clean_oid": "46d78f836b41899fcfe87932ebb2e14abf35a4d6"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "HEAD_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "source_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "pushed_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "current_clean_oid": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "HEAD_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "source_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "pushed_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "current_clean_oid": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 32551,
+      "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "HEAD_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+      "source_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+      "pushed_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+      "current_clean_oid": "da1270c7238db113f0cd2485581a635a66981a65"
+    }
+  ],
+  "governance": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    }
+  ],
+  "checks": {
+    "raw_bindings_verified": 24,
+    "Git_reads": "git ls-tree -r for ten exact paths at HEAD, b1b476dee7c936eb4797ce3221bc07b8196a1a4a and ce1943e01b773671e0c2e583ea6b21e56d40e81b; all expected OIDs equal",
+    "NUDGE004_fullName_sha256": "f3e6aa7fd5bdd26f5e4df438b539854a10aead5e8bce81cc24cfe57a810cccaf",
+    "NUDGE004_declaration_line": 156,
+    "pinned73_omits_all_four_bound_nudge_paths": true,
+    "artifact_member_bindings_match_existing_projections": true,
+    "source_browser_prefix_difference_confirmed": true,
+    "new_runtime_tests": 0,
+    "first_reader_stop": "Missing original-report.md/original-attestation.json assumed filenames; corrected to actual report.md/attestation.json. No writes/effects or evidence claim from failed reads."
+  },
+  "findings": [
+    {
+      "id": "PLAN-LOCATION-01",
+      "severity": "material plan sufficiency",
+      "target": "attestation.json proposed_read.location_rule",
+      "caller": "future two-report diagnostic operator selecting failed 15.4-NUDGE-004",
+      "invariant": "The authorized location allowlist must include the evidence operation's exact intended source target.",
+      "evidence": "The rule allows fixed paths in the pinned73 vector only. None of the four separately bound nudge paths belongs to that vector; the target test file is one of those four.",
+      "consequence": "A conforming implementation rejects the target NUDGE004 declaration/stack location as unbound, potentially consuming both permitted GETs without the intended source-location evidence. Removing validation instead would exceed the approved disclosure boundary.",
+      "correction": "Freeze an explicit finite location allowlist consisting of current73 plus the exact intended subset of the four already bound nudge paths (the target test file alone is sufficient if other nudge frames are intentionally discarded). Bind each addition's raw SHA/bytes, source/pushed/current Git OID, line count and line/column validation. Keep all other paths rejected. No new request, general source scan or broader observer is needed.",
+      "closure_controls": [
+        "Target NUDGE004 in-range stack candidate accepted only after exact path binding.",
+        "Current73 paths retain their existing bounds.",
+        "Other nudge paths not explicitly added, traversal/unbound paths and out-of-range locations rejected; no raw input persisted."
+      ]
+    }
+  ],
+  "supported_operation": {
+    "logical_GETs": 2,
+    "artifact_bindings": [
+      {
+        "artifact": {
+          "advertised_bytes": 103147,
+          "digest": "sha256:cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12376717919,
+          "name": "native-full-integration",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 103147,
+        "archive_sha256": "cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+        "member": "full-integration.json",
+        "member_bytes": 949869,
+        "member_sha256": "db0a5dbdebf252e9c23e409db65509ff47bdaefb1c81cb33bcbba2e099cc9844"
+      },
+      {
+        "artifact": {
+          "advertised_bytes": 8316,
+          "digest": "sha256:38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12375309772,
+          "name": "native-general-browser",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 8316,
+        "archive_sha256": "38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+        "member": "general-browser.json",
+        "member_bytes": 109956,
+        "member_sha256": "e63d3e2c10169a20bacd29c738805682ac93b11de3b651867ac0f95e030ac96f"
+      }
+    ],
+    "selection": {
+      "DB_case_fullName_sha256": "f3e6aa7fd5bdd26f5e4df438b539854a10aead5e8bce81cc24cfe57a810cccaf",
+      "empty_file_diagnostics": [
+        "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "tests/integration/commands/calendar-feed.int.test.ts"
+      ],
+      "browser_failed_attempts": [
+        "E2E-001",
+        "E2E-007",
+        "E2E-009",
+        "E2E-010-revoke"
+      ]
+    },
+    "caps": {
+      "seconds_each": 15,
+      "compressed_bytes_each": 4194304,
+      "inflate_total_bytes": 8388608,
+      "errors": 16,
+      "depth": 4,
+      "locations_each": 4,
+      "locations_total": 64,
+      "result_bytes": 32768
+    },
+    "no_actual_expected_values": true,
+    "no_raw_messages_stacks_SQL_URLs_secrets_or_attachments": true,
+    "source_locations": "Validated candidates only, never original-throw/assertion/backend-cause proof.",
+    "failure_state": "Consumed STOP_UNKNOWN; no retries/alternatives or inferred absence/completeness.",
+    "implementation_conditions": [
+      "Exact finite location allowlist correction and inverse controls.",
+      "Exact case/title matching including browser revoke versus rotate, failed attempts only and both exact closed diagnostic prefixes/vocabularies.",
+      "Bounded RAM-only ZIP/JSON, duplicate/ambiguous/malformed rejection, fixed size/digest/member/CRC verification, privacy controls and unknown preservation.",
+      "Exclusive fsynced reservation before first request; native exit/physical EOF/reader join/handle closure/owned-child settlement recorded without backend cleanup inference."
+    ]
+  },
+  "remaining_prerequisites": [
+    "Corrected frozen finite plan and targeted closure of PLAN-LOCATION-01.",
+    "Allocated exact new operator/output paths; independent High executable source/privacy/transport/control review.",
+    "Actual Coordinator two-read scope/effects allocation and Root capability/once activation before either GET."
+  ],
+  "no_effects": {
+    "network": 0,
+    "SQL_connections": 0,
+    "CI_dispatch": 0,
+    "runtime_resources": 0,
+    "Git_mutations": 0,
+    "source_Spec_state_report_mutations": 0,
+    "operator_import_or_execution": 0
+  },
+  "review_rounds": {
+    "broad_completed": 3,
+    "new_broad": false
+  },
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/original-report.md",
+    "bytes": 4242,
+    "sha256": "3c55a9b5e23f4b05025571f29c15acb99c6a18501aefc9bdf46d08af995a5584"
+  }
+}

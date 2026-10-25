@@ -1,0 +1,126 @@
+{
+  "Outcome": "Current successor partial native packet qualified:16newSQL+9newbrowser passed and retained51DB+14browser match. Missing current unit/xattr and lifecycle proof prevents P5 completion.",
+  "Files changed": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-6-preparation/successor-partial-native-qualification.json"
+  ],
+  "Status": {
+    "result": "QUALIFIED_PARTIAL_NATIVE_PACKET_P5_OPEN",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "run": 40192543175,
+    "head": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+    "checkpoint": "9226ceaa-1456-47de-80d0-5cff0083b6e9",
+    "attempt": 1,
+    "operation": "0d860414-873f-4b55-a578-05cf743c9cf0",
+    "provenance": "Exact repo1269069679/ref/workflow296219797/path/event/title/actors/attempt1/head match completed-success metadata. Complete9jobs show5required success+4expected optionalskip. Three native artifacts match exact run/head/repo/IDs/names/expiry and acquisition digest/size records. Projection bytes independently rehashed. Compressed integrity/CRC/caps/fullEOF are internally consistent Root-recorded acquisition facts, not independently replayed rawZIP validation. Raw bodies not persisted; redirect countUNOBSERVED.",
+    "qualified_DB": {
+      "total": 2198,
+      "passed": 2146,
+      "failed": 0,
+      "header_pending": 52,
+      "leaf_skipped": 52,
+      "files": 175,
+      "file_failed": 0,
+      "suite_failed": 0,
+      "root_errors": "empty",
+      "newSQL": "16uniqueMyDaySQL leaves allpassed,0failed/skip/pending",
+      "retained": "51unique old-qualified file+ID matches allpassed:INT15/RLS12/API20/COMP4",
+      "nav_guard": "Quote-pipeline non-scope fixture6assertions allpassed.",
+      "RLS": "903RLS-path leaves:889passed,14skipped. Live inventory/enrollment/set-difference negative control and relevant H4 leaves passed; not allRLS executed.",
+      "skips": "37booking-series command+14booking-series RLS inherited15.2 scenarios remain skipped;1full-lane recovery skip gives0direct recovery credit. Same52disposition as historical packet, never relabeled passing. Required51calendar/16MyDay contain no skips."
+    },
+    "qualified_recovery": "Separate current isolated recovery assertion passed1/0failed/0skip/pending, outside63/95. Physical-loader immutability and overwrite rejection only; no DB/browser custody transfer, physical-host deletion or rollback claim.",
+    "qualified_browser": {
+      "cases": 65,
+      "expected": 63,
+      "unexpected": 0,
+      "flaky": 2,
+      "skipped": 0,
+      "global_errors": 0,
+      "runner_errors": "empty",
+      "newMyDay": "E01..E09 all9expected,each exactly1passed retry0; current repaired landing/date-alert assertions pass.",
+      "retainedCalendar": "All14exact prior-qualified IDs once,expected,singlepassed retry0; no missing/duplicate/flaky substitution.",
+      "flaky_cases": [
+        {
+          "id": "16.1-E03",
+          "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+          "line": 337,
+          "attempts": "retry0failed response.text Network.getResponseBody ProtocolError;retry1passed",
+          "history": "Old historical flake retained; currentrun also flaky."
+        },
+        {
+          "id": "15.4-E2E-002",
+          "file": "tests/e2e/time-reports.e2e.spec.ts",
+          "line": 139,
+          "attempts": "retry0failed response.text Network.getResponseBody ProtocolError;retry1passed",
+          "history": "Current smoke flake, not clean retry0. No application mutation failure/new15.6regression inferred."
+        }
+      ]
+    },
+    "projection_limits": "All structural repo-relative paths preserved;0opaque-redacted filepaths. File/leaf/header counts reconcile. All2198Vitest source-label fields absent/UNKNOWN; currentbrowser labels absent, not observer/cause/keyclosure proof. All attempts/retries and safe failure excerpts retained; unsafe/unretained payloads remainUNKNOWN.",
+    "stop": "GET1-6succeeded;GET7fixedverifyjob121166457943/logs native1/stdout0/stderr99/fullEOF. STOP_UNKNOWN_NO_RETRY closed2unused lifecycle slots. This is acquisition failure, not failed unit test; causeUNKNOWN. Activation reasonAssertionError does not diagnose a product assertion. AllslotsCLOSED; no retry/read authority remains.",
+    "unqualified": [
+      "New38Node and retained30calendarNode source-ID positives and globalTAPfooter remainUNQUALIFIED despite green verify step.",
+      "Actual named Linux-xattr unit execution remainsUNQUALIFIED; isolated direct recovery is separate.",
+      "CurrentDB/e2e parent lifecycle keyDeleted/keyOutcome/dbClosed/child/custody tuples unacquired; jobsuccess/stopstep/labelabsence do not substitute. Historical custody unchanged.",
+      "Full63/95/development-complete claim needs missing proof and truthful inheritedskip/currentflaky dispositions."
+    ],
+    "next_scope": "Alternate3fixedjoblog evidence needs distinct reviewed/new finite allocation. No replay of closed course and no source fix/newCI rerun diagnosed by CLI acquisition failure.",
+    "verification": "Local captured packet and unchanged prior-qualified ID maps only. No new source census/semantic review/execution,API/poll/download/test/runtime/Git/source/spec change. Existing25source binding reused;119/prior118immutable.",
+    "input_pins": [
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\read-activation.json",
+        "bytes": 5130,
+        "sha256": "5c0abb2b69ec1d282a30b286a380e10332747936960456712b0fbabecc60b02c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\run-metadata.json",
+        "bytes": 1054,
+        "sha256": "88d8310074b78e65fe9a3ad41b32e119a5b25b0c3064750a8814a932bb74a94a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\jobs-metadata.json",
+        "bytes": 23615,
+        "sha256": "745eaf1a9282735ac7110bc696b997b3a38000444cb0b11f51dfe9a3804383aa"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\artifact-metadata.json",
+        "bytes": 1917,
+        "sha256": "434685f3f3b538bcda9639979ee0b74e02e1aeb3d20b6d6ac9df0244e0772b0a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\selected-artifacts.json",
+        "bytes": 1988,
+        "sha256": "69cd94e06af4732796e4550df694759016adf943d115a2346510947ff6c69d29"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\native-full-integration-projection.json",
+        "bytes": 1466431,
+        "sha256": "e3eb1995c395e7d571699d810402c4d866f38feca81ef3cf39144e9ca458f71d"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\native-isolated-storage-recovery-projection.json",
+        "bytes": 2220,
+        "sha256": "a4e101cfb97f2e2fc2e7ddc7f3677cff35ec9cf5b285720b960cbd33c3cfa4fd"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0\\native-general-browser-projection.json",
+        "bytes": 49152,
+        "sha256": "700e4a8750c43dbc36c1c2eaf9663f2fcc8b1a6c3e70634d4d96fa7582766b4f"
+      }
+    ],
+    "implementation_review_rounds_consumed": 0,
+    "current_read_authority": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "Open questions": [
+    "CLI acquisition cause,currentunit/xattr TAP andDB/browser lifecycle remainUNKNOWN; inheritedrecurrence skips and2smokeflakes retain truthful disposition."
+  ],
+  "Deferred work": [
+    "Distinct review/newfinite allocation for alternate3fixedlogs, then actual qualification; author delivery/RootP5 gates await complete evidence."
+  ],
+  "Blockers": [
+    "Missing currentunit/xattr and lifecycle proof blocks fullP5claim; closed course cannot be retried or declared done."
+  ]
+}

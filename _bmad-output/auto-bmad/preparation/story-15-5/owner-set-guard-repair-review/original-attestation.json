@@ -1,0 +1,199 @@
+{
+  "kind": "independent-targeted-owner-set-guard-corrective-review",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_from_author": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_review": false,
+    "route": "Parent-recorded explicit Sol6.1 High targeted corrective review"
+  },
+  "scope": {
+    "base": "12576d291433f7d1aa5c6a8909cb4df5c51939ff",
+    "head": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "checkout": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ]
+  },
+  "inputs": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 154891,
+      "sha256": "d214e9582d628be4f5250a207bb2e80233c9c83d0efcdd80448ae423021ebcf1",
+      "head_blob": "5c806d57bf009bad013826b07aaecdb49c178b0b",
+      "base": {
+        "blob": "a3d6a9ca41a5315305b91ba284e563d37b97e051",
+        "bytes": 150709,
+        "sha256": "e66b240b9cf72f27fb35100053f46e621456a2d643ee30e6ee98b6137c212eb7"
+      }
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11947,
+      "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "head_blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757",
+      "base": {
+        "blob": "5af613dc46fd79a86298161cc044d106d20fcbb8",
+        "bytes": 11965,
+        "sha256": "ef59b5d0cad587a01842e00de84ffc409f8f51c232b9e059a841e5d19575483d"
+      }
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 153160,
+      "sha256": "95396c27bd511c5df8cf7ffb5acebac520a1247fea92bae7c0a5962f547f4285",
+      "head_blob": "cba57251555d860ab8ba24bd578eed7715e7b7aa",
+      "base": {
+        "blob": "a7d712ae5f3f75b3f6af04d808c7219a45b4bef7",
+        "bytes": 147988,
+        "sha256": "7a23135ef82de7b36c1bd7858b9761ccc759d313767b90033f5a0a8e7ef10544"
+      }
+    }
+  ],
+  "provenance": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-set-131a8ce9-source-admission.json",
+      "bytes": 26588,
+      "sha256": "a240b8434a7d2ced920f98c230e415facaa31d261426c0dea64488fc8a5baa7a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-startup-manual-diagnosis.json",
+      "bytes": 6928,
+      "sha256": "04c7f8c7fde824b5285fdc7a08f4a3dd4c7af3a8d07fdbf89518a7f0b153e103"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-owner-set-guard-repair-allocation.json",
+      "bytes": 2460,
+      "sha256": "5397d8ef4735847bc24f02c51468b9514e8556c5ce0de64e9f465120b6134738"
+    }
+  ],
+  "immutable_prior_review": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/original-report.md",
+      "bytes": 3930,
+      "sha256": "89c107c472e31370137eb37788759231d6a3f40f2101207efe042003e926e3bd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/original-attestation.json",
+      "bytes": 9017,
+      "sha256": "985c580306448a48e740c699757a3b20534618928d11ef1d44b8d1e674a1a1e2"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/result.json",
+      "bytes": 1226,
+      "sha256": "31b9950a6cf5a61b81dac7718a60a8b8b22db137f5a3ec4c2e241288308e50e4"
+    }
+  ],
+  "unchanged_dependencies_reused": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 14957,
+      "sha256": "52716fa7a627b96d6b9397b775b4603ce85860fe4f5c101a0523cc95cab21838"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5"
+    }
+  ],
+  "actual_observations": [
+    "Migration bytes equal base after one and only one removal of or not set_option from the bad-membership EXISTS; all other migration bytes preserved.",
+    "Effective SET and direct SET-true/INHERIT-false existence remain mandatory. Foreign inbound, owner outbound, inherited rows, seven unsafe attributes, effective USAGE and public CREATE remain rejected.",
+    "No arbitrary ADMIN exception or new authority: a same-executor lower-authority grant row is allowed alongside actual direct/effective SET; no memberships/ACLs changed by this correction.",
+    "Closed source-expression test translation reviewed for used non-null catalog Boolean/equality grammar and precedence. Counterfactual old guard bites the legitimate pair; independent negative controls retain authorization boundaries.",
+    "Existing unit test bytes remain unchanged prefix. New Spec rationale/SRO differentiates observed guard P0001 from unobserved backend rows and unexecuted repair.",
+    "Exact three current raw files equal reviewed HEAD blobs; actual unit blob cba57251555d860ab8ba24bd578eed7715e7b7aa confirmed from Git."
+  ],
+  "checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"actual owner guard|new atomic migration cross-validates\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit": 0,
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 247.7837,
+      "limit": "Pure extracted predicates and source controls only; unselected tests not credited."
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <spec>",
+      "exit": 0,
+      "sections": 1,
+      "references": 114,
+      "errors": []
+    },
+    {
+      "command": "git diff --check 12576d291433f7d1aa5c6a8909cb4df5c51939ff 131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+      "exit": 0
+    },
+    {
+      "check": "approved tagged intent contract",
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged_from_base": true
+    },
+    {
+      "check": "frontmatter",
+      "status": "in-review",
+      "review_loop_iteration": 3,
+      "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12"
+    },
+    {
+      "check": "Root admission provenance",
+      "source_paths": 71,
+      "changed": 3,
+      "unchanged": 68,
+      "migrations": 111,
+      "reader_parse_warnings": [],
+      "semantic_credit": "identity only; no native acceptance"
+    }
+  ],
+  "reported_not_reexecuted": {
+    "author_focused_passes": 99,
+    "author_typescript_exit": 0,
+    "author_lint_exit": 0,
+    "historical_linux_passes": 3183,
+    "nonadditive": true
+  },
+  "causal_limits": {
+    "failed_native_run": 39587739462,
+    "observed_in_retained_diagnosis": "three owner/SET P0001 startup refusals before adapter changes",
+    "actual_hosted_membership_rows_observed": false,
+    "particular_true_or_term_observed": false,
+    "parallel_grant_explanation": "reachable source-backed inference, not native cause proof",
+    "normal_acceptance_credit": 0,
+    "runtime_cases_unexecuted": 65,
+    "separate_recovery_unexecuted": 1,
+    "historical_43_db_14_browser_failures": "unresolved; no repaired claim",
+    "current_repair_native_execution": 0,
+    "application_inventory": "accepted allocation retained; other actors unknown; discovered successful application requires coordinated forward migration"
+  },
+  "effects": {
+    "sql_database_browser_executions": 0,
+    "service_resource_launches": 0,
+    "api_ci_provider_calls": 0,
+    "git_mutations": 0,
+    "source_spec_writes": 0,
+    "push_merge_deploy": 0,
+    "writes": "Only three new owned review outputs"
+  }
+}

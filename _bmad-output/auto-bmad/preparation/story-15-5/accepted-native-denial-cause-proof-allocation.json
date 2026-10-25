@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "kind": "ROOT_ACCEPTED_EXACT_NATIVE_CAUSE_PROOF_ALLOCATION",
+  "accepted_at_utc": "2026-10-20T23:18:07.902270+00:00",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_grant_turn": "01a15b99-da9f-7ef2-9b61-5ef849c8f16e",
+  "actual_native_completed_handoff": "exec-d50c1b38-16fa-4aec-9e9a-c3ed05997ee1",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "base": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "frozen_revision_manifest_sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334",
+  "proposal_sha256": "6d41cda99f51403ab49fed4e6bc31976427efca7358beb80f164d4cf7064e90d",
+  "contract_sha256": "7cdbae09f37bdb04c9c9965aca3c0b8bdab6ed6cdaa148b35a64e2c41b2ad0cf",
+  "independent_targeted_design_pass_with_limits_result_sha256": "e9515cbf0da465180096ce1fa6cb5a8a33b8aa2d2b10d74402835ffa03ad59dd",
+  "exact_proposed_hunk_paths": [
+    "src/server/commands/calendar-feed/calendar-feed-db.ts",
+    "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+    "src/server/read-models/calendar-feed.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/integration/commands/calendar-feed.int.test.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    ".github/workflows/ci.yml",
+    "scripts/ci/checkpoint-dispatch.mjs",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "context_only_paths_not_allocated": true,
+  "prospective_source_union": 70,
+  "new_to_owned69": [
+    "scripts/ci/checkpoint-dispatch.mjs"
+  ],
+  "protected37_overlap": [],
+  "historical109_overlap": [],
+  "ordinary_cases_and_INT015_unchanged": true,
+  "ownership_evidence": {
+    "E16_head": "e6eeaf9bad34436cd4230105c94dab083b4f7f90",
+    "E16_actual_turn": "01a15b90-c1d4-7092-848a-9d1e8e68974e",
+    "E16_terminal_item": "msg_00547986a7b40b0c016ad7f3f7db848191860192a2159ef008",
+    "E16_claims": "Explicit no current/prospective proposed domain claims, pipeline done/no active story, no local resources/exclusive fullDB reservation",
+    "Documents_prior_CI_security": "Actual completed terminal claims retained/reconciled by Coordinator, monitoring paused"
+  },
+  "implementation_conditions": [
+    "Only frozen proposed hunks in exact14; not all context bindings or blanket source70 authority",
+    "Sol6.1 High author; distinct independent High actual committed changed-line review and meaningful controls before freeze/push",
+    "Preserve normal full required CI/DB/browser/recovery/pilot/guard/admission nonce/provenance",
+    "No source/Spec kernel weakening; source union explicit, all historical109/protected37 unchanged"
+  ],
+  "conditional_native_effects": {
+    "admitted_only_after": [
+      "Committed-delta independent High PASS",
+      "Root freeze and normal checkpoint push",
+      "Root whole-run diagnostic-only qualifier adoption",
+      "Hosted default/candidate workflow and input availability verified BEFORE sole POST"
+    ],
+    "ordinary_call_limit": 1,
+    "restricted_baseline_limit": 1,
+    "baseline_condition": "Only corresponding selected-case warranted baseline, unmodified function, rollback-only; existing qualified SupAdmin setup then explicit transaction-local SESSION AUTHORIZATION authenticated plus owned claims",
+    "required_invariants": [
+      "Same-client restricted identity/privacy before selected function; no privileged normal-call substitute",
+      "Actual command/query/HTTP/timer/child promises settle before full rollback/drain, fixture cleanup and exact UUID-and-name key cleanup",
+      "Qualified fresh cleanup connection and catalog/ownedrow absence; preserve all failures, retain custody on uncertainty",
+      "Persist mode/nonce/SHA intent before sole POST, distinct title/status/artifacts and zero acceptance credit",
+      "Ambiguous42501, engineerror, nonreproduction/incomparability/identity-clock-state mismatch, pending operation or cleanup uncertainty stop UNKNOWN with named next prerequisite; no automatic follow-on probe or opaque full CI retry"
+    ],
+    "forbidden": [
+      "Function replacement/transformation",
+      "Clones",
+      "Grants",
+      "CREATE/ALTER role or membership DDL",
+      "Fault DDL",
+      "Default-branch updates or alternate dispatch on availability uncertainty"
+    ],
+    "actual_native_execution_started": false
+  },
+  "outside14_qualifier_changes_require_new_allocation": true,
+  "no_main_merge_deployment_provider_hosted_secret_foreign_write_monitor_resume": true,
+  "source_allocation_launches_nothing": true,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false
+}

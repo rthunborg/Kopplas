@@ -1,0 +1,51 @@
+{
+  "kind": "ROOT_PRIVATE_STATUS_ORIGIN_CORRECTIVE_REVIEW_SELF_EXCLUDED_MANIFEST",
+  "verdict": "PASS_TARGETED_F1_CLOSED_COMPOSITE_ONLY",
+  "members": [
+    "input-binding.json",
+    "local-checks.json",
+    "original-attestation.json",
+    "original-report.md",
+    "result.json",
+    "review-input.md",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "input-binding.json",
+      "bytes": 47460,
+      "sha256": "43b67bc4757b6324e87be182b0b7d66fd091e264831f6595c9946f1b325c477f"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 3080,
+      "sha256": "833dff9a7f3289b7b30578034d27400499a5c2841f3826604bdc8894d912d854"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 20142,
+      "sha256": "4177471712cc5aa7bf4ae193f12124f216f210ed835b179de23acb34fb19646c"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 6294,
+      "sha256": "88d914b63a70e07a3967a49da9e70b98c78c54fb34c9d9c0dd7122981f6684af"
+    },
+    {
+      "path": "result.json",
+      "bytes": 951,
+      "sha256": "3259760c68d29cf7564dd6256e1465437fa79c483df770405afe0a9fecd2d8c7"
+    },
+    {
+      "path": "review-input.md",
+      "bytes": 3964,
+      "sha256": "e89463bdf7e9f675b10f09f38c13bf964d3f36c2b5ac516c427002e7b3fe5c36"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "helper_byte_identical": true,
+  "driver_change": "singleRESULTfilename literal only",
+  "initial_NOTPASS_preserved": true,
+  "new_operation_executed": false,
+  "normal_acceptance_credit": 0
+}

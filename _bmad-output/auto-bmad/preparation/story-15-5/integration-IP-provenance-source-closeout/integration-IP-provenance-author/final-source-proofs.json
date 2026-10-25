@@ -1,0 +1,125 @@
+{
+  "source_bindings": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 50465,
+      "sha256": "e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2",
+      "LF_bytes": 49761,
+      "LF_sha256": "adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7",
+      "prospective_LF_git_blob": "ea9df80d07e87e960ebe6694034e5c3e00964e28",
+      "preimage_bytes": 49378,
+      "preimage_sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb",
+      "raw_inverse": true,
+      "LF_inverse": true,
+      "raw_hunks": 8,
+      "CRLF_count": 704,
+      "bare_LF_count": 0
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 144864,
+      "sha256": "bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5",
+      "LF_bytes": 143407,
+      "LF_sha256": "16a6856b7411053851c19463da1b1b2776377d9941c8a5f64ecc437d8daf7b0d",
+      "prospective_LF_git_blob": "01c89726ab98e33ffb8bd47bf0630f926ff804d7",
+      "preimage_bytes": 143615,
+      "preimage_sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b",
+      "raw_inverse": true,
+      "LF_inverse": true,
+      "raw_hunks": 3,
+      "CRLF_count": 1457,
+      "bare_LF_count": 0
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 352713,
+      "sha256": "630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc",
+      "LF_bytes": 349478,
+      "LF_sha256": "d28789aa26532bc801e1f3fac1ffdc407cb6442c4dcface18cfb8cf2301263bb",
+      "prospective_LF_git_blob": "d32ddea2e3b85605a3dbd5a95681be3e1f28d529",
+      "preimage_bytes": 340518,
+      "preimage_sha256": "7c8e4e2684de09b7dee376af393a618677a2db16f35abfd968593dffcdc17fd0",
+      "raw_inverse": true,
+      "LF_inverse": true,
+      "raw_hunks": 12,
+      "CRLF_count": 3235,
+      "bare_LF_count": 0
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "3ab0a33097dae9b6a238291174637f78443766e537f052190e4732f52b7842d3",
+      "LF_bytes": 8024,
+      "LF_sha256": "82de1d4b5295d1337e962b254079cf4ae48247d65a2ad5822f99fc851a4c7c15",
+      "prospective_LF_git_blob": "e06d7eaa019511348f9e7c328288463bd5b834b4",
+      "preimage_bytes": 8135,
+      "preimage_sha256": "bbbea7f1f12d0662b2b7e09fa6c6648c82cee2797d72357aa47bc62130bccd72",
+      "raw_inverse": true,
+      "LF_inverse": true,
+      "raw_hunks": 1,
+      "CRLF_count": 111,
+      "bare_LF_count": 0
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 264061,
+      "sha256": "74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb",
+      "LF_bytes": 260940,
+      "LF_sha256": "99e050e1a8840d78e3db6bc2cbef16bbb2842632a7723e9243c6c38302dd5ee6",
+      "prospective_LF_git_blob": "e4b4570e29af3b4ba753753ac548528ed05c2717",
+      "preimage_bytes": 262876,
+      "preimage_sha256": "fa16e59053bbc01435a9b38694976d3bbff7c0619271d05f4f4e45de21bb6a02",
+      "raw_inverse": true,
+      "LF_inverse": true,
+      "raw_hunks": 36,
+      "CRLF_count": 3121,
+      "bare_LF_count": 0
+    }
+  ],
+  "unchanged_five_companions": [
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "unchanged": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "bytes": 4421,
+      "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "unchanged": true
+    }
+  ],
+  "all5_raw_inverse": true,
+  "all5_LF_inverse": true,
+  "outside_SRO_raw_equal": true,
+  "intent_kernel_raw_equal": true,
+  "status_AutoRunResult_counter_assertions_before_SRO_raw_equal": true,
+  "ownerFacts": {
+    "LF_bytes": 3563,
+    "LF_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+    "unchanged": true
+  },
+  "raw_privacy_predicate_byte_equal": true,
+  "contract_digest_literal_only": true,
+  "SQL118": "No edits or applied SQL corpus rescan; existing review-order checker resolves its declared references.",
+  "source_freeze": "Five final source files; no Git operation by author."
+}

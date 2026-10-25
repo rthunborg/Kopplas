@@ -5,7 +5,7 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const nextRequire = createRequire(require.resolve("next/package.json"));
 const sharp = nextRequire("sharp");
-const { optimizeImage }: typeof import("next/dist/server/image-optimizer") = require("next/dist/server/image-optimizer");
+const { optimizeImage }: typeof import("next/dist/server/image-optimizer/transform") = require("next/dist/server/image-optimizer/transform");
 const color = { r: 230, g: 40, b: 70 };
 
 async function assertPixels(buffer: Buffer, format: string, tolerance: number) {

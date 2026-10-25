@@ -1,0 +1,55 @@
+{
+  "Blockers": "None for finite source admission; fresh allocation/bindings/activation required for execution.",
+  "Deferred work": [
+    "Fresh Coordinator R1 two-GET allocation; Root immediate current74/222 and actual terminal qualification; exclusive fsynced R1 activation.",
+    "Separate qualification of any future R1 diagnostic result."
+  ],
+  "Files changed": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/ only",
+  "Open questions": [
+    "Actual discarded candidate/error/tuple/cause counts remain NULL/UNAVAILABLE.",
+    "NUDGE assertion/cause and browser failures/flake remain UNKNOWN.",
+    "35 unexecuted cases including API019/INT015 and backend/key custody remain unresolved."
+  ],
+  "Outcome": "PASS_R1_PREGET_SOURCE_WITH_FRESH_ALLOCATION_ACTIVATION_CONDITIONS",
+  "Status": {
+    "actual_GETs_native_acquisition": 0,
+    "attestation": {
+      "bytes": 11126,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-attestation.json",
+      "sha256": "38646c1f19ebccc51323d58ec52dafdcff0d6659ef4bd980f0671d90c3580501"
+    },
+    "envelope": {
+      "bytes": 30983,
+      "cap": 32768,
+      "closed_tuples": 64,
+      "errors": 16,
+      "integer_bound": 2147483647,
+      "locations": 64,
+      "margin": 1785,
+      "maximum_path_escaped_bytes": 92,
+      "schema": "PRODUCTION_ASSEMBLER_BUDGET_v1",
+      "selected_error_containers": 11,
+      "sha256": "7e1008b85969eabf5ef14f03913ce4fa7accfc099036daf5d10f644cdc5aa7ba",
+      "source_paths": 74
+    },
+    "execution_authorized": false,
+    "findings": [],
+    "operator": {
+      "bytes": 29866,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/targeted-diagnostic-r1-operator.py",
+      "sha256": "c06fc230aa63feecc1fa076596e4e819e9ed32c96c9c8b81c08310f034377732"
+    },
+    "preparation_manifest": {
+      "bytes": 1367,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/manifest.json",
+      "sha256": "6e2697886267ca13db8c3755ac1cb7c9f4e04728401e7a9b823c4e03da0aad9c"
+    },
+    "preservation": "R1five;originalsix/stopnine/normal22/priorreview/14refs/source74/tenhelpers before/after PASS",
+    "report": {
+      "bytes": 5714,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-report.md",
+      "sha256": "7317b7245de3b69520fc6f055cbfdf3b191168c69b647d63415b4ba61ec61520"
+    },
+    "tests": "26/26;95positive74negative;native0;zero failures/errors"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "NORMAL_CHECKPOINT_CI_SHARED_OWNERSHIP_CLEARANCE",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15e09-0c81-78f3-91fd-edd9c8b7c9ec",
+  "grant_tool": "exec-6a29f7c0-9535-446e-bbb2-ed317795bcd6",
+  "final_message": "msg_0954b60b44796db1016ad895d3f1e48191b7a19d7447d44bc6",
+  "other_session_owned_run": 39585443213,
+  "other_session_branch": "codex/epic-16-jobs",
+  "other_session_sha": "6f0b96f70d25a3a41edc1f40c3de97ffd9d4e653",
+  "other_session_checkpoint": "43b64bde-e79c-4218-bd76-98a48243155a",
+  "shared_conflict": "No current or prospective named shared mutable CI resource or repository-admission variable conflict; prior Documents/CI terminal claims retained",
+  "permitted_next": "Independent normal checked-in checkpoint after actual final reviewed head, normal mode, unique operation receipt and five required gates plus 95 cases are bound",
+  "no_new_authority": [
+    "No repository variable mutation allocated",
+    "No local port or resource allocation",
+    "No cancellation or adoption of Epic16 run",
+    "No monitoring resume",
+    "No deployment or main merge"
+  ],
+  "actual_dispatch": false
+}

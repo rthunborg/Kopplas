@@ -1,0 +1,17 @@
+{
+  "schema": "ROOT_ACCEPTED_NORMAL_READ_ONLY_REMAINDER_CONTINUATION_V1",
+  "actual_turn": "01a168ad-2eaf-7620-aab7-17ca06e05314",
+  "actual_tool": "exec-ed1f4a92-356d-4762-9701-64211e0b59e0",
+  "turn_status": "completed",
+  "tool_status": "completed",
+  "source_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "grant_text": "Coordinator reconciles scope precisely: historical remote-before/readback configured20s differed from allocated15s; preserve as configured-cap discrepancy, never relabel. Bothactualelapsed<1s/native0/fullclosed/exactidentities do not retroactively change configuredcap. No new mutation or provider authority is granted.\nAuthorize continuing ONLY remaining already-admitted read-only observation of actualownedNORMAL39950998114/head215078e7dd74d9c4b4511581682b4c0be1a21c8d/CPc2fade03-6ac5-44ae-abfd-898e1a3dd602/attempt1/workflow296219797/rthunborg. Subject to narrowHigh actualtuple/capture judgment, use SAMEoperationstart12:07:29.339308Z/original5400swall, resolver1/poll2 consumed accounted cumulatively, at most remaining88run+88latestjobs GETs (and no resolverneeded oncebound). ExistingAPI20s2MiBstdout64KiBstderr/page100/min30s/no pagination caps, solepoller/exclusiveconsumedreadintents/fullEOFjoinedclosedsettled/nativeexit+outerattribution. Stop/freeze onceall9terminal; budget/ambiguity/uncertaintySTOPprecisehandoff/no unallocatedcancel. No deadline/counterreset/renewal/extension/newpush/POST/provider/foreignadoption. Save thiscompletedclarification and High judgment with originalreceipts; continue normalownedobservation promptly after exactqualification, no duplicatebroadreview or mutation. Terminalartifactgrant remainsseparate/0now.",
+  "run_id": 39950998114,
+  "original_started_at": "2026-10-23T12:07:29.339308+00:00",
+  "consumed_resolver": 1,
+  "consumed_poll_pairs": 2,
+  "remaining_poll_pairs_max": 88,
+  "wall_seconds_original": 5400,
+  "no_new_mutations": true,
+  "original_cap_discrepancy_preserved": true
+}

@@ -31,6 +31,8 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { SCOPE_MANIFEST } from "@/scope/manifest";
+import { navRoutesFromManifest } from "@/scope/manifest-schema";
 
 const REPO = process.cwd();
 
@@ -124,9 +126,10 @@ test("8.5-UNIT-02: the shell nav stays EXACTLY seven items — 8.5 adds NO new n
   )) as { navItems: ReadonlyArray<{ href: string }> };
   assert.equal(
     mod.navItems.length,
-    8,
-    `the shell nav must include the approved RBAC Admin Users entry — found ${mod.navItems.length}`,
+    navRoutesFromManifest(SCOPE_MANIFEST).length,
+    `the shell nav must match the approved manifest routes — found ${mod.navItems.length}`,
   );
+  assert.deepEqual(mod.navItems.map(n => n.href).sort(), navRoutesFromManifest(SCOPE_MANIFEST).sort());
   assert.equal(
     mod.navItems.some((n) => n.href === "/files"),
     true,

@@ -1,0 +1,23 @@
+{
+  "checkpoint":"c57580580217e34a0b933a23f7c36737306333b7",
+  "run":"39457178499",
+  "attempt":1,
+  "actual_failure":"All DB/e2e/recovery stack startup reached owned feed migration and failed statement43 calendar_feed_verify_attestation_internal(jsonb,text,text), SQLSTATE42601 syntax error at end of input; caret at first CASE-branch THEN in the IF expression at source line122.",
+  "route_before_dispatch":{"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Feed-only attestation authorization guard SQL compilation; preserve exact validation semantics"},
+  "authorization":"Root explicitly permits exact syntax diagnosis/fix in already owned unapplied migration after reading exact native context. No new shared effect. Root separately recorded build-native-setup-repair High.",
+  "source_scope":"supabase/migrations/20261020220000_personal_calendar_feed.sql and necessary author spec/trail only; regression additions only existing owned paths/effects",
+  "native_context":"Native DB log983-992/source line122: unparenthesized CASE in IF domain comparison; qualifier saved native-static-sql-failure-context.json in current independent packet. Earlier pull retries recovered and are not terminal cause.",
+  "limits":"No local DB/Docker/Supabase/Next/browser/runtime or blind rerun. Preserve guards/role/transaction semantics and historical freezes/failed runs. All body/native acceptance unexecuted; source migration compile failure only.",
+  "proof_proposal_hold":"Historical initial disposition: effective CREATE proof additions held pending exact Root/Coordinator disposition.",
+  "proof_proposal_disposition":{
+    "owned_paths":"Root admitted existing support ACL read-only has_schema_privilege plus existing RLS010 false assertion, no case/count/fixture change.",
+    "recovery_grant_receipt":"accepted-recovery-schema-assertion-allocation.json",
+    "recovery_grant_sha256":"2fa8883400517d3bb268c9d1ab42605811df4669c264bb58b468b4f8479358c8",
+    "coordinator_turn":"01a15a29-b751-78a0-bf63-e5a6728e476c",
+    "successful_tool":"exec-4f18c16f-8290-4e31-bb12-60b2764796be",
+    "protected_e16_head":"f96256a066db7e38d482e4538f2a0ba2472cf4b8",
+    "recovery_scope":"Existing single tests/integration/ops/recovery-storage-immutability.int.test.ts case only: fixed bounded read-only catalog SELECT on same compose exec db psql -U supabase_admin target before Storage checks; effective calendar owner public CREATE false including PUBLIC/inherited privileges.",
+    "limits":"No new case/count/fixture/DDL/role/grant/SET/object/key/workflow/workload/elevation/input expansion; fixed sanitized failure and timeout; Root metadata excluded source commits."
+  },
+  "review":"Distinct High latest-fix-only review after stable delta; cap3 unchanged, no fourth broad pass."
+}

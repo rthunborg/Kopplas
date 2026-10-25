@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "kind": "ORIGINAL_FUNCTION_CATALOG_PROBE_INDEPENDENT_OFFLINE_QUALIFICATION",
+  "status": "QUALIFIED_LOCAL_OBSERVATION_ONLY_COMPARABILITY_UNQUALIFIED",
+  "source_head": "92ea25dee3c378a6de1772b6599cb3860a1b7c05",
+  "source_commit": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+  "operation_uuid": "b452b2c4-9e9e-4004-b644-4cc07a7be90c",
+  "inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-result.json",
+      "bytes": 2684,
+      "sha256": "11db857c7b83996f7aa7640939c5fc7e80be4794d02cdb049033cdaa0b9a1805"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-runner.py",
+      "bytes": 10251,
+      "sha256": "00a321e3196f80feea34efbac54f7908d8bf9e5cc5adc40cc456ca87573b8867"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-input-admission.json",
+      "bytes": 1296,
+      "sha256": "f1e83063a307288a45fa893a747f7e147bc84192f6a95aee417d314185b33cec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-activation.json",
+      "bytes": 1320,
+      "sha256": "1e0d2ae290126e8ce67d98b0cc6c5b5173ba15a45486b87e3b219983200e649d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-consumed.json",
+      "bytes": 408,
+      "sha256": "dcec1d99e1e19aeae37a259494b4e3fc547d32d4a54d7faea5de7cb11827614d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-compose-intent.json",
+      "bytes": 928,
+      "sha256": "33c0947ba8c524a7268cb108bfb32bd2f3e2f3baac1735af1700b8ee6fadfe10"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-compose-start.json",
+      "bytes": 378,
+      "sha256": "814573b8b2ae6e0f2718a5d74ef100a776cd36b60965627b8cb5c28617bd8be0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-compose-readiness.json",
+      "bytes": 1517,
+      "sha256": "c2d33dc2a9617746274ee4178def59471a62c7caca674f27f94bf7da17507da9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-compose-stop.json",
+      "bytes": 324,
+      "sha256": "dc72586d252ca19e07202502c67c1c667e253ebb1a7c7f54319ca812c0c13dbb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-catalog-probe-01/probe.sql",
+      "bytes": 9241,
+      "sha256": "8a6eca71e0b89c1decca00760c166b9c3931dcdb29d4d2efc2367f599aad962f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-catalog-probe-01/verify-cleanup.sql",
+      "bytes": 1070,
+      "sha256": "a4520521c0a93807ad8b9724d323659600406b364678b1872129c1adc0f371d1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-catalog-probe-01/proposal.json",
+      "bytes": 9096,
+      "sha256": "90a30b0d579ad544a7028e6e0315d0ca7503a81fdffd83331dc486ed537ae514"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-catalog-probe-review-admission.json",
+      "bytes": 1156,
+      "sha256": "448500eef58684b90fea9fba5321f188f79265c3bcfe2fe6aeabc9a7b39f349d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-catalog-probe-allocation.json",
+      "bytes": 2131,
+      "sha256": "f3d274e277725c62922ef2af7af61e11fa2f82356eb2f774fd013c5dd2bf0534"
+    }
+  ],
+  "independently_checked_bindings": {
+    "reviewed_payload_tuple": 4,
+    "source_raw_and_actual_head_Git_blobs": 3,
+    "compose_file_hash": true,
+    "activation_readiness_once_marker_result_hash_chain": true,
+    "known_qualified_live_container_gates": "Reviewed runner enforces exact project/container/image/managed-service/workdir/port before exclusive marker and SQL capture. Bound successful execution result confirms guarded path reached; no new live inspect performed by qualifier."
+  },
+  "actual_observation": {
+    "native_server_version_num": 170006,
+    "ledger_prefix_count": 102,
+    "function_count": 1,
+    "individual_checks": {
+      "plpgsql": true,
+      "volatile": true,
+      "body_exact": true,
+      "anon_denied": true,
+      "owner_matches": true,
+      "exact_proconfig": true,
+      "call_count_exact": true,
+      "security_definer": true,
+      "acl_grantees_safe": true,
+      "service_role_denied": true,
+      "authenticated_execute": true
+    },
+    "individual_true_count": 11,
+    "setup_qualified": true,
+    "creator_qualified": true,
+    "existing_catalog_preserved": true,
+    "same_connection_absent": true,
+    "public_default_acl_comparable": false,
+    "observation_qualified": true,
+    "overall_comparability_qualified": false
+  },
+  "comparability_meaning": {
+    "actual_predicate": "NOT EXISTS a pg_default_acl row for creator postgres, public namespace, function object type.",
+    "false_means": "Such a namespace-specific default-ACL row exists in this local qualified prefix.",
+    "false_does_not_mean": [
+      "Its effective grants necessarily differ from global defaults.",
+      "A hosted function or guard predicate failed.",
+      "A source guard should be weakened or repaired."
+    ],
+    "fixture_limits": "One never-invoked inert private-schema function under UUID owner; setup-superuser ownership/ACL changes after ordinary postgres creation. This does not reproduce real three production bodies/public-schema defaults or ordinary source transfer authority."
+  },
+  "transport": {
+    "probe": {
+      "native_exit": 0,
+      "timed_out": false,
+      "overflow": false,
+      "child_settled": true,
+      "transport_complete": true,
+      "connection_settlement": "PSQL_EXIT_REPORTED",
+      "stdout": {
+        "bytes": 508,
+        "sha256": "e7948fc6f7dfc05f7cb6ca6514bf4a26de1f1686f4656195b957102f38d212a1",
+        "eof": true,
+        "reader_error": null
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "eof": true,
+        "reader_error": null
+      }
+    },
+    "fresh_cleanup": {
+      "native_exit": 0,
+      "timed_out": false,
+      "overflow": false,
+      "child_settled": true,
+      "transport_complete": true,
+      "connection_settlement": "PSQL_EXIT_REPORTED",
+      "stdout": {
+        "bytes": 194,
+        "sha256": "b7130031aea91dcc56e18af4da6229c9feafb96438ec4d0437330678216e402a",
+        "eof": true,
+        "reader_error": null
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "eof": true,
+        "reader_error": null
+      }
+    }
+  },
+  "cleanup": {
+    "unconditional_rollback_and_reset": "Bound reviewed SQL; same-connection absence and one fresh read-only absence check actually true.",
+    "fresh_identity_prefix_and_UUID_role_schema_functions_absent": {
+      "server_version_num": 170006,
+      "setup_identity_qualified": true,
+      "ledger_count": 102,
+      "ledger_prefix_matches": true,
+      "role_absent": true,
+      "schema_absent": true,
+      "functions_absent": true
+    },
+    "custody": "SETTLED_ROLLBACK_CONFIRMED",
+    "catalog_preservation_scope": "Roles except new UUID role, memberships, Auth/public schema ACLs, canonical UID definition/ACL/config, default ACL rows and migration ledger as fingerprinted by bound SQL; not an unrelated-system snapshot.",
+    "resourceId": "fbaa5f83-f401-461d-8868-26301135ee61",
+    "Stop_accepted": true,
+    "shutdown_verified": false,
+    "state": "stop_requested",
+    "qualifier_shutdown_polling": 0
+  },
+  "smallest_missing_evidence": {
+    "current_observation_gap": "Creator global/public function default-ACL effective relationship is unknown; mere row presence is insufficient.",
+    "hosted_causal_gap": "Actual failed hosted function/predicate and comparability with hosted source/catalog remain UNKNOWN.",
+    "bounded_readonly_next_proof_planning_only": "A separately admitted fixed read-only catalog comparison may expose individual default-grantee/grantability/effective-auth/anon/service invariants under the source ownership/revoke/grant sequence, using closed booleans/counts. It must model PostgreSQL17 default-ACL and owner-rewrite semantics faithfully; no ACL copying/DDL/new fixture.",
+    "authorization": "Planning only. Reviewed payload/new allocation/guarded validated reuse/once activation required before any connection.",
+    "stop": "All-true/nonreproducing/incomparable/uncertain output remains STOP UNKNOWN. If pure catalog SELECT cannot faithfully model effects, name limitation instead of inferring a fix or retry."
+  },
+  "actual_qualifier_effects": {
+    "SQL": 0,
+    "resources": 0,
+    "API": 0,
+    "tests_or_new_review": 0,
+    "only_new_metadata_file": true
+  },
+  "normal_acceptance_credit": 0,
+  "hosted_function_condition": "UNKNOWN",
+  "development_complete": false,
+  "release_ready": false,
+  "development_blocker": "Required normal runtime evidence and hosted causal proof remain missing; this is not deferred release polish."
+}

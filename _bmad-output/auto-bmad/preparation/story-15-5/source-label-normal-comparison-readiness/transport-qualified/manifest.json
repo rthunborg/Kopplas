@@ -1,0 +1,16 @@
+{
+  "members": [
+    {
+      "bytes": 3257,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/transport-qualified/readiness.json",
+      "sha256": "881f654116f7f82549f6981f037b0b6c3a67350e0d23d54923dbf91df3cf840c"
+    },
+    {
+      "bytes": 783,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/transport-qualified/result.json",
+      "sha256": "5de6092d7d84b977ca0e024d3fd5604e62d9b54ec8b02d4399b677b1adcc077c"
+    }
+  ],
+  "normal_acceptance": 0,
+  "self_excluded": "manifest.json"
+}

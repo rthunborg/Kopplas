@@ -1,0 +1,202 @@
+{
+  "schema": "kopplas.targeted-source-review.v1",
+  "verdict": "PASS_TARGETED_FENCED_COMPLETION_SOURCE_ONLY",
+  "status": "Independent targeted review found no consequential introduced defect in the exact five-path correction. This is source-only qualification, not functional acceptance or execution authority.",
+  "review": {
+    "role": "independent reviewer, not implementation author",
+    "model_route": "explicit gpt-6.1-sol High; resumed_main_fenced_completion_actual_source_review",
+    "scope": "Latest committed correction and mandatory PLAN-A1 through PLAN-A5 only; no fourth broad story review",
+    "commit": "b638e09d29759eeb17ad48cb8391d1e30a3a427e",
+    "parent": "7cd27be261e1255f5298963ed60fdc5e00dfd458",
+    "owned_checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "sources_read_only": true
+  },
+  "source_bindings": [
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 72626,
+      "raw_sha256": "7fc1678c81bd74d37c3433c1134efe7e6c8dbcd84968bc6fe3afe21e6489ffe6",
+      "canonical_LF_bytes": 71758,
+      "canonical_LF_sha256": "6d3feb3c354b912c53dbb011594c1294dbad4ba168b8ebc6c1020d0e31eaf2af",
+      "computed_clean_Git_blob": "986d2e63b425dfd157d0acde07a0c2efcc1c3b68"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 298596,
+      "raw_sha256": "46d2511d89cf21e094b2fc2fbcf3aff3eac282460f70c85f78421c057a9f567c",
+      "canonical_LF_bytes": 295811,
+      "canonical_LF_sha256": "1ab52c098c30929a7c5e15742ce0a69599d515995b50ee48ca1e6eda014a4309",
+      "computed_clean_Git_blob": "aaa643128f6bb888a7fba62bb87e03300a2a61f0"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 245673,
+      "raw_sha256": "33f16b9f306c8fef8267e473088ce6803ef2a2bdcd9757b3d95bba72298b546b",
+      "canonical_LF_bytes": 242722,
+      "canonical_LF_sha256": "1540755ceb9222c003760e17c7fcc5c43ff1ce8d85d9c871674bd00dcc9d426e",
+      "computed_clean_Git_blob": "b53d8774d2f50d808203b04ab7d09af5c7101927"
+    },
+    {
+      "path": "tests/e2e/support/resource-cdp-attachment.ts",
+      "raw_bytes": 2862,
+      "raw_sha256": "4b60769e8f0a39b930e5d53ac7583ac9b4014e9b5a86bc93b559c2ef23f33be5",
+      "canonical_LF_bytes": 2795,
+      "canonical_LF_sha256": "c904322c0897223b02663da0d1c820750f68cfc9d74737894dc0b1b1d0c9c804",
+      "computed_clean_Git_blob": "4473538bc594f9b75ec1e7be718c151da6100bdf"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw_bytes": 28818,
+      "raw_sha256": "ea3e477d12e2f76fea44c9ecba91f4d304b5b88160021548e0995f7e798e6d0f",
+      "canonical_LF_bytes": 28818,
+      "canonical_LF_sha256": "ea3e477d12e2f76fea44c9ecba91f4d304b5b88160021548e0995f7e798e6d0f",
+      "computed_clean_Git_blob": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-completion-contract-fenced-author-result.json",
+      "bytes": 14157,
+      "sha256": "c98363508b275c634d5e2d03e66197c656e738075547d42ad2e8a7cb22cfaa97"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-completion-contract-fenced-root-commit-proof.json",
+      "bytes": 3328,
+      "sha256": "909099901696d3596731fc2026de5bdd4a4e68beeec7fea92f77b71772f870d3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-deadline-E2E001-backend-plan-validation.json",
+      "bytes": 12470,
+      "sha256": "7c40a8e111f827c24e82044493da5c88b75e4e99c5835708ad1345d2e336acda"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-completion-fence-scope-validation.json",
+      "bytes": 9376,
+      "sha256": "13d0a228c217faac5b0a52d87215053ee8c6131aebb7ce499f42c1d3a4409e56"
+    }
+  ],
+  "findings": [],
+  "mandatory_plan_judgments": [
+    {
+      "id": "PLAN-A1",
+      "verdict": "PASS_SOURCE",
+      "locations": [
+        "tests/e2e/support/calendar-feed-atdd.ts:80",
+        "tests/e2e/support/calendar-feed-atdd.ts:588",
+        "tests/e2e/support/calendar-feed-atdd.ts:810"
+      ],
+      "evidence": "The per-Request map freezes the exact tenant/member/actor/action/attempt/expected-and-next revision identity. Installed context routing covers all owned pages; malformed and duplicate/replayed management inputs latch refusal. RESERVED and DISPATCHED are distinct; only a known not-admitted attempt permits explicit retry. The fence closes irreversibly before drain/release. Both ordinary forwarding and the higher-priority page fault callback use the same admission ledger; a held callback rechecks begin before forwarding after release. Late management requests are aborted, and the context fence remains installed through cleanup."
+    },
+    {
+      "id": "PLAN-A2",
+      "verdict": "PASS_SOURCE",
+      "locations": [
+        "tests/e2e/support/calendar-feed-atdd.ts:80",
+        "tests/e2e/support/calendar-feed-atdd.ts:606",
+        "tests/e2e/support/calendar-feed-atdd.ts:633"
+      ],
+      "evidence": "Each DISPATCHED Request requires exactly one physical token row and one attributable audit with exact tenant/member/actor/action/attempt/revision and target linkage. The existing physical predicate produces the checked certificate for that same Request; no generic committed boolean grants cleanup. Extra/mismatched rows, foreign Requests, unbound identity and certificate reuse cannot satisfy ready. Reuses the independently qualified atomic backend transaction proof, without re-auditing unchanged SQL."
+    },
+    {
+      "id": "PLAN-A3",
+      "verdict": "PASS_SOURCE",
+      "locations": [
+        "tests/e2e/support/calendar-feed-atdd.ts:80",
+        "tests/e2e/support/calendar-feed-atdd.ts:579",
+        "tests/e2e/support/calendar-feed-atdd.ts:691"
+      ],
+      "evidence": "Frontend SUCCESS, TERMINAL_FAILURE and UNKNOWN remain separate from per-owner backend COMMIT certification; failure has precedence. Actual fixture lifecycle registration no longer constructs Request.response()/Response.finished() completion promises. It therefore does not abandon a started finished promise. Same matched Request and original readback/error identity are retained. A checked COMMIT may authorize backend cleanup independently of a failed or unknown frontend, while that frontend is never rewritten as wire success."
+    },
+    {
+      "id": "PLAN-A4",
+      "verdict": "PASS_SOURCE",
+      "locations": [
+        "tests/e2e/support/calendar-feed-atdd.ts:189",
+        "tests/e2e/support/calendar-feed-atdd.ts:741",
+        "tests/e2e/support/calendar-feed-atdd.ts:810"
+      ],
+      "evidence": "Protocol ownership returns the original promise and installs one no-throw settlement reaction. The original 20-second drain joins the captured protocol work with original lifecycle/readback work. Fault body/barrier work remains within the owned callback; releases, disposal and transport/ledger verification still gate fixture and Auth cleanup. The final ready recheck follows fault disposal. Failed certification, handler error or unjoined work retains custody. Existing assertion/error aggregation and cleanup scope remain; this does not certify global key deletion or backend rollback."
+    },
+    {
+      "id": "PLAN-A5",
+      "verdict": "PASS_SOURCE_EVIDENCE",
+      "locations": [
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2700",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2770"
+      ],
+      "evidence": "Inspected actual-source seam controls exercise exact certificate inverses, same Request identity, replay/dedup/not-admitted retry, pending protocol work, frontend failure precedence, malformed/getter/closed admission, actual gate/forwarding behavior, all three context options, and the held actual fault callback after closure. Meaningful mutation/inverse controls and operation fingerprints remain. The obsolete finished-promise unit was adapted to the real certified readback seam; it now verifies zero response()/finished() calls, same matched Request and original error. Existing operation vector 7/8/6/5/14/2 and altered-operation/assertion oracles remain, with only the exact new protocol settlement reaction accounted for."
+    }
+  ],
+  "context_and_privacy": {
+    "three_actual_contexts": "Stock calendar test.use, existing E2E007 touch newContext, and existing attached CDP newContext all explicitly block service workers. Context identities, viewport, assertions and close order are conserved.",
+    "complete_context_inverses": [
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "removed_exact_option_occurrences": 2,
+        "restored_LF_bytes": 28770,
+        "restored_sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb"
+      },
+      {
+        "path": "tests/e2e/support/resource-cdp-attachment.ts",
+        "reversed_exact_constructor_hunk": 1,
+        "restored_LF_bytes": 2762,
+        "restored_sha256": "2307b6b52fef2c3d4e0dd9e3558cddd31d47f1a6bda83f322254622b74fd3ab6"
+      }
+    ],
+    "global_config": {
+      "path": "playwright.config.ts",
+      "bytes": 4872,
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+      "unchanged": true
+    },
+    "privacy": "New ledger identities, physical rows, audits and raw transport facts remain fixture memory; no raw error, response body, URL, token, DOM or stack output channel was added. Existing bounded failure labels and cleanup diagnostics remain separate from cleanup authority."
+  },
+  "independent_checks": {
+    "performed": "Read exact committed delta, actual helper callers/control flow and changed actual-source unit seams; mechanically rebound all five raw/LF/blob identities and four input artifacts; complete context-option inverses; exact frozen intent-contract extraction; source metadata/SRO inspection. Frozen bindings were rechecked before output.",
+    "local_command_receipts": [
+      "d88d9a",
+      "75a55b",
+      "307595",
+      "2b791f",
+      "4c2d08",
+      "b22856",
+      "8fe3d4",
+      "77e7e0",
+      "2fb7d7",
+      "13be36"
+    ],
+    "read_only_Git": "One read-only git diff for changed unit source; no Git mutations.",
+    "tests_or_suites_rerun": 0,
+    "application_or_operator_execution": 0,
+    "browser_SQL_API_CI_provider_resource_actions": 0,
+    "qualified_reuse": "Unchanged installed SDK and atomic backend source assessments, prior plan and scope validations are reused nonadditively. No new runtime assertion was made."
+  },
+  "author_evidence_attribution": {
+    "current_affected_unit": "Author-reported final 169 passed, 0 failed, 0 skipped/cancelled; actual source controls inspected, not rerun by reviewer.",
+    "separate_unchanged_consumers": "Author-reported 18 passed separately; not summed with 169 or labelled native/full-suite coverage.",
+    "static_checks": "Author-reported whole TypeScript, four-file lint, diff, reader and SRO exit0; parser warnings empty. Initial draft 167/164P/3F and focused corrections remain chronological nonadditive history.",
+    "root_proof": "Bound Root commit proof reports exact five committed paths, clean source tree, all118 SQL raw/LF/base-Git conservation and unchanged global config. Reviewer did not repeat the 118-file scan."
+  },
+  "story_preservation": {
+    "independently_extracted_kernel_bytes": 5760,
+    "independently_extracted_kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "status": "in-review",
+    "review_loop_iteration": 3,
+    "single_Suggested_Review_Order": true,
+    "author_validated_SRO_stops": 206,
+    "historical_frontmatter_warning": "oversized retained; author canonical parser warnings empty",
+    "native_acceptance": 0,
+    "development_complete": false,
+    "P5": "open",
+    "15.6": "unstarted"
+  },
+  "limits_and_remaining": [
+    "Source PASS grants no CI, push, acquisition, runtime or resource authority.",
+    "Actual native routing/SDK event delivery, SQL/RLS and browser/recovery gates remain separately admitted and unexecuted for this correction; passing synthetic controls do not establish those outcomes.",
+    "Prior full NORMAL failures, 35 missing required story cases and custody/backend/global-key uncertainty are not erased. Required functional gates still block acceptance.",
+    "Physical certificate proves only the checked exact manage transaction commit under the reused source contract. It is not proof of frontend success, abort initiator, all backend work settled, rollback or global key cleanup.",
+    "No broader unchanged story, SQL, production app or prior review was reopened."
+  ],
+  "open_questions": [],
+  "blockers": "No consequential source defect identified in this targeted correction; native functional and custody gates remain required."
+}

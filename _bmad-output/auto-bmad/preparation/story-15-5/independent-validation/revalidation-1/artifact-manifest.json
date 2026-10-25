@@ -1,0 +1,13 @@
+{
+  "baseline_revision": "159557e114f18123e73282c39c90830917de9948",
+  "status": "PASS",
+  "kind": "targeted-specification-revalidation-only",
+  "candidate_kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "candidate_raw_spec_sha256": "e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02",
+  "initial_report_sha256": "06cd1977c389e1b7b7e476fe5b54dc19a258987f6fda6723c3d93c15b92eb39a",
+  "sha256": {
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/revalidation-1/validation-report.json": "452cddf59ca6b91b0af64e78cff3f920c5e84341a27ce13bb99f9aa3dec0a344",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/revalidation-1/validation-report.md": "719e5446464d1bda58580d778dd9ba12159ac190f0805937720f8e24431a4294",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/revalidation-1/validate-independent.py": "e2004280f70cc81398c72bcc6a6f89a6b27a6c743e1299d00b324a7b6f9a7dee"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "author-bounded-authority-transport-checks",
+  "base_head_during_checks": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "committed_source": "4562cfd0031b32b6921f668cd953384b64116973",
+  "source_state_during_checks": "Exact five-path working code/test delta, committed after checks; Spec evidence prose refreshed before commit. Root metadata separately dirty/excluded. No post-commit source/Spec edits.",
+  "checks": [
+    { "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts", "result": "PASS", "passed": 33, "failed": 0, "skipped": 0, "cancelled": 0, "receipt_chunk": "f71091", "dependency": "Injected runtime/DB lifecycle. Real pg8.22 client construction/startup serialization/end for fixed runtime/proof/absence purposes; no connect/service. MODULE_TYPELESS_PACKAGE_JSON warning emitted." },
+    { "command": "pnpm exec tsc --noEmit --incremental false", "result": "PASS", "exit_code": 0, "receipt_start": "1042fa", "receipt_completion": "216df6" },
+    { "command": "pnpm exec eslint scripts/ci/with-calendar-feed-runtime.mjs tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/support/calendar-feed-ci-contract.ts tests/integration/commands/calendar-feed.int.test.ts", "result": "PASS", "errors": 0, "warnings": 0, "receipt_chunk": "5611fb" },
+    { "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md", "result": "PASS", "stops": 35, "sections": 1, "errors": [], "receipt_chunk": "9bd1ef", "literal_validation": "refresh-review-order.mjs resolved all35 actual path/line literals and required unchanged frozen kernel SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977" },
+    { "command": "git diff --check -- <exact five allocated source paths>", "result": "PASS", "receipt_chunk": "b323fe" },
+    { "command": "git diff --cached --check", "result": "PASS", "receipt_chunk": "4d5c1a", "exact_five_path_inventory_receipt": "73d339" }
+  ],
+  "intermediate_result": "Initial33/33 passed. First tsc identified an implicit-any consumer of the newly exported JS privacy helper; added explicit exported JSDoc return contract, refreshed actual wrapper pin, then final33/33/type/lint passed. No native oracle execution or static-as-runtime credit.",
+  "preservation": "Original workflow inverse48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0, all entry/argv/reporters/nativeJSON/unrelated drift negatives, COMMIT uncertainty/captured settlement/exact-key cleanup/custody; INT015 remains one case and all restricted/session/role/source/SET/owner/savepoint/fullrollback/same-fresh absence assertions retained.",
+  "limits": "Feature95 case inventory unchanged; bootstrap33 separate. Actual admin credential mapping/TCP/login-superuser/privacy not executed locally. All65 feature Vitest/browser bodies unexecuted. Historical fifth verify3102/Python43/build/recovery1 passes are bounded failed-head evidence; no current native success. No app source change/build rerun, no global fullunit rerun, resources, local DB/Docker/Supabase/browser qualification, push or CI dispatch."
+}

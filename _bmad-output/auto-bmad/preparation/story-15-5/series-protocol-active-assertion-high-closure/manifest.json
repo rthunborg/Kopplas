@@ -1,0 +1,25 @@
+{
+  "schema": "SERIES_PROTOCOL_01_TARGETED_HIGH_CLOSURE_MANIFEST_v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/original-report.md",
+      "bytes": 2117,
+      "sha256": "8ab7e6e21ba30cad91a6dff93f4fc799413de24e249ab61879f00f02aa2bc747"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/original-attestation.json",
+      "bytes": 8050,
+      "sha256": "96bcd462c7be1272192bcf3c7da93a2424b88b171a34363fc60a97a4d3bdf553"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/result.json",
+      "bytes": 1671,
+      "sha256": "180fecedc3d91c390ac89cd4c309147bce2e3b37066c32d15852b8210952b979"
+    }
+  ],
+  "reviewed_commit": "490f910fedfc1ec4ebbc5f0b8ecf980698fb1678",
+  "frozen": true,
+  "normal_acceptance": 0,
+  "execution_authority": false
+}

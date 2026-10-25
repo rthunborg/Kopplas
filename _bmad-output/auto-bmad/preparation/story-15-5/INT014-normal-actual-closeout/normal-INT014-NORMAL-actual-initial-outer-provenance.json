@@ -1,0 +1,37 @@
+{
+  "schema": "ROOT_INT014_NORMAL_INITIAL_OUTER_PROVENANCE_V1",
+  "publish_initial": {
+    "chunk_id": "4d5dfc",
+    "wall_time_seconds": 10.0022362,
+    "session_id": 38731,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "publish_final": {
+    "chunk_id": "9c7550",
+    "wall_time_seconds": 4.8191768,
+    "exit_code": 0,
+    "original_token_count": 27,
+    "output": "{\"phase\": \"DISPATCH_ACCEPTED\", \"head\": \"2c8e8077f74067a06cd5e6c5136e4c545b83a5ba\", \"normal_acceptance\": 0}\r\n"
+  },
+  "resolver": {
+    "chunk_id": "956ef2",
+    "wall_time_seconds": 1.6945016000000002,
+    "exit_code": 0,
+    "original_token_count": 24,
+    "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39962445963, \"resolution_count\": 1, \"normal_acceptance\": 0}\r\n"
+  },
+  "provider_outer_receipt_ref": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-provider-execution-receipt.json",
+    "bytes": 4111,
+    "sha256": "56c2b794878c24463886ab8e85ea290d106f9d0de0893a7523bb946bf5e147a0"
+  },
+  "local_metadata_failure": {
+    "chunk_id": "ad7da4",
+    "native_exit": 1,
+    "reason": "Root expected historical receipt key sole_invocation; actual current key sole_invocation_consumed read3731c6. No activation or external effect from failed check; corrected e71552 and proceeded once under same fresh grant.",
+    "effect_replays": 0
+  },
+  "actual_run_id": 39962445963,
+  "normal_acceptance": 0
+}

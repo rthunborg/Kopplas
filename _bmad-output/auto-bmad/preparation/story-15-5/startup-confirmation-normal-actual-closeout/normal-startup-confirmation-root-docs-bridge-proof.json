@@ -1,0 +1,19 @@
+{
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "parent": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "docs_only_files": 99,
+  "clean": true,
+  "published": false,
+  "native_commit": "0bd292/native0",
+  "commit_attempts_before_success": [
+    "48b706/native1:pathspec parser rejected before staging",
+    "93968c/native1:longpath file indexing rejected; no commit",
+    "0bd292/native0:per-command core.longpaths=true, explicit99docs staged/committed"
+  ],
+  "effects": 0,
+  "P5": "OPEN",
+  "startup_repeat_budget": 1,
+  "required95": "44P0F51unexecuted",
+  "no_deployment": true
+}

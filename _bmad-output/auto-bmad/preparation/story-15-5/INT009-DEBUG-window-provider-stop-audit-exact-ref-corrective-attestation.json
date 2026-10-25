@@ -1,0 +1,129 @@
+{
+  "schema": "INT009_DEBUG_WINDOW_PROVIDER_STOP_AUDIT_EXACT_REF_CORRECTIVE_ATTESTATION_V1",
+  "status": "CORRECTED_FIRST_FAILED_INDEX_AND_REFERENCE",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority": false,
+  "superseded_audit_immutable": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-provider-actual-stop-independent-offline-audit.json",
+    "bytes": 10355,
+    "sha256": "47816482769054b244b3bd4c4ec6112343ba539bd08705dee2e1c69e49ab05b3"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/proposal.json",
+    "bytes": 190076,
+    "sha256": "e36adaa3ecf4dfea10944d126023f4ce984984bf85364d22331bd389d8486a5f"
+  },
+  "historical_invocation_utc": "2026-10-22T18:50:58.808087+00:00",
+  "correction_scope": "Corrects only the failed-input index/reference and any wording describing it as the first proposal input. Original report remains immutable. Exact failure line/callee/type, historical earlier-gate passes, zeroGET conclusion and minimum source repair are unchanged.",
+  "serialization_error": "Original offline AST trace dcd0fb correctly captured the Python failed ref. Audit serialization wrongly used proposal.input_refs[0] and literal index0=0 instead of the actual tracked failed input. This attestation replaces those inconsistent fields.",
+  "corrected_first_failure": {
+    "provider_line": 70,
+    "callee_decode_line": 48,
+    "exception_class": "JSONDecodeError",
+    "first_input_index0": 1,
+    "first_input_ref": {
+      "bytes": 18529,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/provider-readonly.py",
+      "sha256": "e4527c1808a33120c1424aa47b608ed896fd889c0827d784fc6b355df94ec3dd"
+    },
+    "first_input_type": "Python source, .py",
+    "byte_pin": "PASS",
+    "JSON": "JSONDecodeError",
+    "ordinal": "Second proposal.input_refs element; first failing element."
+  },
+  "preceding_proposal_inputs": [
+    {
+      "index0": 0,
+      "ref": {
+        "bytes": 129335,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+        "sha256": "0085c22b70b84d0041fba8fdda5600f4a43fa15903d2394f9ecbd750b107acc1"
+      },
+      "byte_pin": "PASS",
+      "JSON": "PASS"
+    }
+  ],
+  "preceding_top_level_activation_references": [
+    {
+      "key": "allocation",
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-DEBUG-window-one-case-effects-allocation.json",
+        "bytes": 4093,
+        "sha256": "fbd300daf2966d034c9c2b4cb90de78a276e20ccf55480b90844e05853530b2d"
+      },
+      "byte_pin": "PASS",
+      "JSON": "PASS"
+    },
+    {
+      "key": "current_source_proof",
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-current-source-proof.json",
+        "bytes": 3052,
+        "sha256": "6e147abbbe0bf2529587b112b6405860c98193e85cdc24888d42f4a6a89134ad"
+      },
+      "byte_pin": "PASS",
+      "JSON": "PASS"
+    },
+    {
+      "key": "operational_review",
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-operational-review.json",
+        "bytes": 22244,
+        "sha256": "706d59db084351c9884a3463371c26441b22f4bf3aa342d7b080f308b97b83f7"
+      },
+      "byte_pin": "PASS",
+      "JSON": "PASS"
+    },
+    {
+      "key": "producer_review",
+      "ref": {
+        "bytes": 14058,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-window-phase01-independent-closure.json",
+        "sha256": "b3cc6a3ea8eccd4f09fa0e84f472cc342fe221f4347145a328d7177f035d02fb"
+      },
+      "byte_pin": "PASS",
+      "JSON": "PASS"
+    },
+    {
+      "key": "reader_binding_review",
+      "ref": {
+        "bytes": 14343,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-inert-reader-producer-rebind-independent-check.json",
+        "sha256": "836a7f821a3a41407184aa07aed31b91450023a5f40532a6c629f706ae6e4a28"
+      },
+      "byte_pin": "PASS",
+      "JSON": "PASS"
+    },
+    {
+      "key": "proposal",
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/proposal.json",
+        "bytes": 190076,
+        "sha256": "e36adaa3ecf4dfea10944d126023f4ce984984bf85364d22331bd389d8486a5f"
+      },
+      "byte_pin": "PASS",
+      "JSON": "PASS"
+    }
+  ],
+  "load_sequence_at_failure": "Six top-level JSON loads pass, proposal input index0 passes, index1 bytepin passes then JSON decoding fails: eighth load_pin invocation. No later preflight gate is asserted passed.",
+  "new_actual_control": {
+    "tool": "effe2b",
+    "native_exit": 0,
+    "scope": "Read actual six top-level refs and first two proposal inputs in their frozen order; verified size/SHA and exact decode outcome, stopped at first failed JSON. No provider module/main or transport.",
+    "raw_error_text_persisted": false
+  },
+  "minimum_correction_unchanged": "Native successor must use byte-only size/SHA verification for heterogeneous proposal input_refs at provider70 and controller localproof108/admit143; preserve JSON parsing for actual JSON admission consumers. Targeted source-only regression/review required.",
+  "zero_effect_conclusion_unchanged": {
+    "provider_GET": 0,
+    "MAIN_push": 0,
+    "DEBUG_push": 0,
+    "POST": 0,
+    "metadata_GET": 0,
+    "artifact_GET": 0,
+    "all_effect_slots_closed": true,
+    "host_once_consumed": true
+  },
+  "preservation": "No old file modified. Only this new private attestation written. No API/Git/provider execution/source/runtime/resource effects. No grant or retry authority.",
+  "open_questions": []
+}

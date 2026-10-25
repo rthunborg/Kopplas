@@ -1,0 +1,12 @@
+{
+  "native_exit": 0,
+  "settled": true,
+  "raw_persisted": false,
+  "allocated_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "other_paths": [],
+  "SQL_dirty_paths_count": 0
+}

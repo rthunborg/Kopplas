@@ -1,0 +1,211 @@
+{
+  "schema": "INT014_READONLY_SOURCE_ASSESSMENT_V1",
+  "created_at_utc": "2026-10-23T12:50:19.237491+00:00",
+  "policy_version": "2026-10-19",
+  "Outcome": "Reachable test-observation timestamp normalization mismatch identified; exact hosted first assertion/value and native first throw remain UNKNOWN. Minimum source-only plan, no implementation authority.",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-first-failure-source-assessment.json"
+  ],
+  "Status": "READONLY_ASSESSMENT_FROZEN_AWAITING_INDEPENDENT_MINIMUM_PLAN_CHECK",
+  "Open questions": [
+    "Whether the actual INT014 failure was its timestamp spelling assertion, physical/status text equality, status200 or another matcher is UNKNOWN; raw native error/value was deliberately discarded.",
+    "No claim that the actual hosted RPC returned the source-supported equivalent timestamp example."
+  ],
+  "Deferred work": [
+    "Independent actual evidence qualification and minimum-plan check; Root direction before any source edit.",
+    "Required full NORMAL95 and separate recovery/custody evidence after any independently reviewed correction; no diagnostic run proposed."
+  ],
+  "Blockers": [
+    "Current required acceptance is not passed; read-only assessment grants no source/test/runtime/API/CI effects."
+  ],
+  "identity": {
+    "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+    "source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+    "run": 39950998114,
+    "attempt": 1,
+    "checkpoint": "c2fade03-6ac5-44ae-abfd-898e1a3dd602"
+  },
+  "evidence": {
+    "outside_execution_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-execution-receipt.json",
+      "bytes": 9998,
+      "sha256": "3c224c6983d2017448a2ea8c7fa42ed71ec99ecc7916856bf66f971efbf89559"
+    },
+    "independent_reviewer_latest_message": {
+      "required95": {
+        "passed": 73,
+        "failed": 1,
+        "zero_coverage": 21
+      },
+      "DB_required": {
+        "passed": 29,
+        "failed": "INT014"
+      },
+      "pending": "INT015",
+      "absent": [
+        "API001..API020"
+      ],
+      "Node": "30 distinct acceptance IDs /32 occurrences deduplicated R1-06/07",
+      "browser": "14 retry0 passed",
+      "recovery": "1 passed separately",
+      "status": "Reviewer arithmetic verified by parent; final frozen qualification pin not supplied at assessment creation. These are attributed facts, not this author certification."
+    },
+    "observed_INT014": "One owned failed leaf, stage scenario-assertion, category unknown, SQLSTATE null. No original assertion or payload available."
+  },
+  "source_reasoning": [
+    {
+      "site": "tests/integration/commands/calendar-feed.int.test.ts:273-285",
+      "fact": "INT014 first requires unused null/count0; inside fixed DB time requires fetch200 and exact lastUsedAt 2026-10-20T12:07:00.000Z/count1; then compares normalized physical lastUsedAt to fixture status text."
+    },
+    {
+      "site": "tests/support/calendar-feed-atdd.ts:365,406-419,533",
+      "fact": "Existing iso normalizes any nonnull timestamp through new Date(String(value)).toISOString(). physical() uses it. status() retains existing strict raw RPC field/privacy guards, calls real readCalendarFeedStatus, then returns its timestamp unchanged alongside raw publicDto."
+    },
+    {
+      "site": "src/server/read-models/calendar-feed.ts:9-15",
+      "fact": "Mapper accepts any string with finite Date.parse and preserves data.lastUsedAt. It does not require canonical millisecond-Z spelling. No downstream timestamp-text canonicalizer closes this path."
+    },
+    {
+      "site": "supabase/migrations/20261020220000_personal_calendar_feed.sql:147-160,211,248",
+      "fact": "Status JSON includes actual active.last_used_at directly; successful admitted fetch assigns last_used_at=now_at from calendar_feed_now_internal. No explicit JS ISO text format in SQL; SQL/auth/proof/subject/rate-limit and failed-feed update guards remain consequential and unchanged."
+    },
+    {
+      "site": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md:102",
+      "fact": "AC6 requires database admitted fetch time/usage, not a particular textual spelling."
+    }
+  ],
+  "reachable_defect": {
+    "classification": "TEST_OBSERVATION_REPRESENTATION_MISMATCH",
+    "conditional_source_proof": "For an allowed mapper value such as 2026-10-20T12:07:00+00:00, the represented instant is the fixed test instant but raw string differs from 2026-10-20T12:07:00.000Z; physical() canonicalizes while status() does not. Source therefore admits a false failure without a different stored instant. This is source-level reasoning, not a runtime test or actual hosted value observation.",
+    "production_semantic_defect_proven": false,
+    "exact_hosted_cause": "UNKNOWN",
+    "no_additional_fact_required_to_establish_reachable_observation_defect": true,
+    "single_fact_needed_to_certify_hosted_exact_cause": "Exact failed matcher site plus source-located expected/actual timestamp representation relationship; absent from current closed projection. No new request or collector proposed to obtain it."
+  },
+  "minimum_prospective_plan": {
+    "paths": [
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "helper_delta": "Only in fixture status() return, set lastUsedAt:iso(status.lastUsedAt) after existing raw field/schema/privacy and actual mapper validation; preserve publicDto:data byte/data identity. Reuse existing iso; no production mapper, SQL, request, permission, token, cleanup or custody changes.",
+    "test_delta": "Add meaningful actual status adapter/mapper-path controls in existing unit companion: null remains null, canonical UTC and valid equal offset/precision inputs normalize to same exact instant; count exact and raw publicDto unchanged; genuinely different instant remains distinguishable; invalid timestamp still refused by actual mapper; existing RPC/privacy/allowlist refusal controls retained. Exercise actual source extraction rather than copied mapper/normalization model.",
+    "integration_criteria_preserved": "INT014 exact fixed-time and physical equality assertions remain unchanged; usageCount1, fetch200, unused null/count0 and raw DTO token/hash secrecy assertions remain strict.",
+    "meaningful_checks_after_authorization": [
+      "Demonstrate actual adapter-path red on current helper with valid noncanonical timestamp and green only after the narrow normalization.",
+      "Run new/affected pure existing unit tests, full affected wrapper file once if consequential assertions require, whole TS and targeted lint/diff appropriate.",
+      "Do not repeat broad unchanged fullNode/build or launch local DB/browser; later reviewed exact-head full NORMAL95 plus separate recovery remains required."
+    ],
+    "Spec_scope": "SuggestedReviewOrder only if verified stop/rationale must be refreshed; not part of the two implementation paths without Root direction.",
+    "invariants": [
+      "No changes to118 migrations or schema or function authority.",
+      "Raw publicDto remains the actual raw RPC observation and privacy-checked; only test observation lastUsedAt normalizes.",
+      "Retain ordinary JWT/RLS, exact field allowlist, validated parseability, usage counts, DB admitted clock, rollback/retirement/custody and fail-closed behavior."
+    ]
+  },
+  "remaining_case_controlflow": {
+    "registration": "INT015 is the next declaration after INT014 in the same normal commands describe; API001..020 are unconditional declarations in public-feed.int.test.ts. Their source has no new missing-lane condition.",
+    "lane": "vitest.config.ts:58 excludes both calendar files from parallel;66 includes both in integration-audit-ddl with fileParallelism:false,bail:1,groupOrder1. package test:int is vitest run; existing wrapper INTEGRATION_ARGS invokes that unfiltered command.",
+    "installed_behavior": "node_modules/vitest/dist/chunks/index.DXx9Dtk7.js:183-189 onAfterRunTask sees failed test and threshold1, calls rpc().onCancel(test-failure) and testRunner.cancel. cli-api.24X8XwN1.js:3412-3414 prevents new queue tasks during cancellation;3698 cancelFiles on cancelling.",
+    "conclusion": "A failed INT014 can cancel remaining INT015 execution and prevent collection/execution of the later API file. Existing observed pending/absent pattern is consistent with this enforced fail-fast lane; no distinct missing API lane defect demonstrated. Do not claim exact file scheduling/collection event or cancellation origin was independently captured. Pending/absent remain zero coverage and bail guard must not be relaxed."
+  },
+  "source_bindings": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36989,
+      "sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "LF_bytes": 36989,
+      "LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 139867,
+      "sha256": "d50d45e73f2a3a7c649188658ed9271a832ce41277314d8dd723b3c2a06f2234",
+      "LF_bytes": 138474,
+      "LF_sha256": "22c0b6da90b43e19a13534acbd5c1e11d9cc5de909b732f821c58141b689e3ca"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "bytes": 3472,
+      "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "LF_bytes": 3472,
+      "LF_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35"
+    },
+    {
+      "path": "src/features/calendar-feed/types.ts",
+      "bytes": 959,
+      "sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+      "LF_bytes": 959,
+      "LF_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "LF_bytes": 24435,
+      "LF_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 320520,
+      "sha256": "c9bff97184e76b5f27372091be6f043efdc7184314fc76418e35f8d8488a72ed",
+      "LF_bytes": 317555,
+      "LF_sha256": "08087e70ad4abf5fe7eddd988a5ffd946190c7e03423712503c1b7c59fe3627c"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "LF_bytes": 26504,
+      "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "LF_bytes": 4725,
+      "LF_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "LF_bytes": 47931,
+      "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/index.DXx9Dtk7.js",
+      "bytes": 7330,
+      "sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac",
+      "LF_bytes": 7330,
+      "LF_sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js",
+      "bytes": 495252,
+      "sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d",
+      "LF_bytes": 495252,
+      "LF_sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d"
+    }
+  ],
+  "preservation": {
+    "source_writes": 0,
+    "tests_executed": 0,
+    "API_or_network_calls": 0,
+    "Git_mutations": 0,
+    "runtime_resources": 0,
+    "SQL_writes": 0,
+    "all_old_GET_slots_closed": true,
+    "counter": 3,
+    "broad_review": false,
+    "P5": "OPEN",
+    "normal_acceptance": 0,
+    "release_ready": false
+  }
+}

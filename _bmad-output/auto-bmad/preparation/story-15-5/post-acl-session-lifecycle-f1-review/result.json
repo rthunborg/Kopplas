@@ -1,0 +1,36 @@
+{
+  "Outcome": "PASS_PLAN_ONLY_F1_CLOSED — exact owned-client pool dispatch refinement closes F1; no consequential regression identified.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-review/original-report.md",
+      "bytes": 4918,
+      "sha256": "ce9addb2e75809a1e808fd3548ffb81196c1a5e3bfbe00b00965596fc66030b1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-review/original-attestation.json",
+      "bytes": 11145,
+      "sha256": "1ab47703ba2ce6f9b2469c00cdfa2096191cc7770bede0562c2d0dc66e437c60"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-review/result.json",
+      "identity": "Returned out of band after exclusive write."
+    }
+  ],
+  "Status": {
+    "scope": "Independent Sol6.1 High F1-only closure; unchanged C1-C7 context reused, no fourth broad review.",
+    "controls": "19 independent candidate-gate/actual-Pool pure checks passed, native0; no connections/SQL/network.",
+    "bindings": "Frozen3+admission,6 source candidates,6 prior refs and4 direct installed refs verified.",
+    "normal_acceptance_credit": 0
+  },
+  "Open questions": [
+    "Full factory lifecycle/bounds and native backend/canonical restoration remain unimplemented and unproven."
+  ],
+  "Deferred work": [
+    "Exact six-path allocation; actual API behavior controls and targeted committed-delta High review.",
+    "Separately authorized native authority/protocol/rollback/restoration and full normal95/DB/RLS/recovery gates."
+  ],
+  "Blockers": [
+    "F1 plan blocker closed. No source or runtime authority granted.",
+    "API019 privacy, browser failures/flakies and custody remain open; no automatic CI retry."
+  ]
+}

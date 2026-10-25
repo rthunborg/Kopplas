@@ -5,7 +5,7 @@
  *
  * Password-based sign-in (test-design B2: automated tests use password/admin-created
  * users; no magic-link-only flow). On success the browser client persists the session in
- * cookies (via `@supabase/ssr`) and we redirect into the `(app)` shell (`/dashboard`),
+ * cookies (via `@supabase/ssr`) and we redirect via the server-derived root landing (`/`),
  * where the SERVER layout re-resolves tenant context as the authority (the client never
  * decides authorization). Phase A scope: no signup, no password-reset UI.
  *
@@ -48,7 +48,7 @@ export default function LoginPage() {
       // could re-resolve UNAUTHENTICATED and bounce the just-signed-in user back to /login
       // on a slow connection (review fix: redirect race).
       router.refresh();
-      router.replace("/dashboard");
+      router.replace("/");
     } catch {
       setError("Inloggningen kunde inte slutföras. Försök igen senare.");
       setSubmitting(false);

@@ -1,0 +1,2070 @@
+{
+  "schema": "ROOT_ACTUAL_CLOSED_OPERATION_OWNERSHIP_V1",
+  "identity": {
+    "run_id": 39998246278,
+    "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "checkpoint_id": "06c4e602-246c-465d-b858-802be78c9ba1",
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "workflow_id": 296219797,
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false,
+    "status": "completed",
+    "conclusion": "failure"
+  },
+  "operation_id": "d891e444-e6d5-401f-bd00-0a4b85b701e9",
+  "repository": "rthunborg/Kopplas",
+  "repository_provenance": "Source-qualified fixed repository and exact resolver/poller route, not an invented native terminal field.",
+  "source_qualified_fields": [
+    "source",
+    "mode",
+    "cause_proof",
+    "release_validation",
+    "original_int009"
+  ],
+  "source_qualified_field_limit": "These fields are carried by the qualified driver/source contract, not claimed as separate raw GitHub payload observations.",
+  "original_started_at": "2026-10-23T17:49:27.373918+00:00",
+  "stopped_at": "2026-10-23T18:07:57.276266+00:00",
+  "phase": "ROOT_STOPPED",
+  "counters": {
+    "resolver_used": 1,
+    "resolver_unused_closed": 5,
+    "poll_pairs_used": 15,
+    "poll_pairs_unused_closed": 75,
+    "clock_reset": false,
+    "extensions": 0
+  },
+  "all_operational_slots_closed": true,
+  "driver_consumed_state_not_rewritten": true,
+  "raw_operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/operation.json",
+    "bytes": 867,
+    "sha256": "930e6a47731bbd4b75c2bb4985f7752ae56447451a12766f4dd2d51f9f66a7eb"
+  },
+  "raw_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/terminal.json",
+    "bytes": 24085,
+    "sha256": "b6dbe3fd16cf64cb0f63ed3d146db4b45e2078516ae86d33c8497f99864d1e22"
+  },
+  "ordered_jobs_and_steps": [
+    {
+      "id": 120567314128,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T17:49:39Z",
+      "completed_at": "2026-10-23T17:49:41Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:39Z",
+          "completed_at": "2026-10-23T17:49:39Z"
+        },
+        {
+          "number": 2,
+          "name": "Bind dispatch to its immutable source revision",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:40Z",
+          "completed_at": "2026-10-23T17:49:40Z"
+        },
+        {
+          "number": 3,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:40Z",
+          "completed_at": "2026-10-23T17:49:40Z"
+        }
+      ]
+    },
+    {
+      "id": 120567352238,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T17:49:44Z",
+      "completed_at": "2026-10-23T17:51:58Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:44Z",
+          "completed_at": "2026-10-23T17:49:46Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:46Z",
+          "completed_at": "2026-10-23T17:49:49Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:49Z",
+          "completed_at": "2026-10-23T17:49:50Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:50Z",
+          "completed_at": "2026-10-23T17:49:54Z"
+        },
+        {
+          "number": 5,
+          "name": "Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:54Z",
+          "completed_at": "2026-10-23T17:49:54Z"
+        },
+        {
+          "number": 6,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:54Z",
+          "completed_at": "2026-10-23T17:49:56Z"
+        },
+        {
+          "number": 7,
+          "name": "Verify lockfiles (single package manager)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:56Z",
+          "completed_at": "2026-10-23T17:49:56Z"
+        },
+        {
+          "number": 8,
+          "name": "Audit dependencies (blocking, high severity)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:56Z",
+          "completed_at": "2026-10-23T17:49:56Z"
+        },
+        {
+          "number": 9,
+          "name": "Verify service-role containment (no client-path leakage)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:56Z",
+          "completed_at": "2026-10-23T17:49:57Z"
+        },
+        {
+          "number": 10,
+          "name": "Typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:49:57Z",
+          "completed_at": "2026-10-23T17:50:14Z"
+        },
+        {
+          "number": 11,
+          "name": "Lint",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:50:14Z",
+          "completed_at": "2026-10-23T17:50:40Z"
+        },
+        {
+          "number": 12,
+          "name": "Unit tests (pure logic, node --test)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:50:40Z",
+          "completed_at": "2026-10-23T17:51:29Z"
+        },
+        {
+          "number": 13,
+          "name": "BMAD focused concurrent memlog contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:29Z",
+          "completed_at": "2026-10-23T17:51:30Z"
+        },
+        {
+          "number": 14,
+          "name": "Auto-BMAD focused routing and process-API contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:30Z",
+          "completed_at": "2026-10-23T17:51:31Z"
+        },
+        {
+          "number": 15,
+          "name": "Build",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:31Z",
+          "completed_at": "2026-10-23T17:51:54Z"
+        },
+        {
+          "number": 16,
+          "name": "Verify built-bundle service-role containment (no leakage in .next)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:54Z",
+          "completed_at": "2026-10-23T17:51:55Z"
+        },
+        {
+          "number": 29,
+          "name": "Post Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:55Z",
+          "completed_at": "2026-10-23T17:51:55Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:55Z",
+          "completed_at": "2026-10-23T17:51:55Z"
+        },
+        {
+          "number": 31,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:55Z",
+          "completed_at": "2026-10-23T17:51:55Z"
+        },
+        {
+          "number": 32,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:55Z",
+          "completed_at": "2026-10-23T17:51:55Z"
+        },
+        {
+          "number": 33,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:51:55Z",
+          "completed_at": "2026-10-23T17:51:55Z"
+        }
+      ]
+    },
+    {
+      "id": 120568439521,
+      "name": "e2e",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T17:52:01Z",
+      "completed_at": "2026-10-23T17:59:32Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:02Z",
+          "completed_at": "2026-10-23T17:52:03Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:03Z",
+          "completed_at": "2026-10-23T17:52:07Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:07Z",
+          "completed_at": "2026-10-23T17:52:08Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:08Z",
+          "completed_at": "2026-10-23T17:52:11Z"
+        },
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:11Z",
+          "completed_at": "2026-10-23T17:52:13Z"
+        },
+        {
+          "number": 6,
+          "name": "Install Playwright browser (chromium + OS deps)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:13Z",
+          "completed_at": "2026-10-23T17:52:38Z"
+        },
+        {
+          "number": 7,
+          "name": "Install Supabase CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:38Z",
+          "completed_at": "2026-10-23T17:52:40Z"
+        },
+        {
+          "number": 8,
+          "name": "Start local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:40Z",
+          "completed_at": "2026-10-23T17:54:36Z"
+        },
+        {
+          "number": 9,
+          "name": "Migration reset (empty DB \u2192 migrate \u2192 seed)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:54:36Z",
+          "completed_at": "2026-10-23T17:55:08Z"
+        },
+        {
+          "number": 10,
+          "name": "Essential authentication smoke (production app and local Auth)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:55:08Z",
+          "completed_at": "2026-10-23T17:59:07Z"
+        },
+        {
+          "number": 11,
+          "name": "Exhaustive browser validation (explicit opt-in)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T17:59:07Z",
+          "completed_at": "2026-10-23T17:59:07Z"
+        },
+        {
+          "number": 12,
+          "name": "Upload native general browser JSON",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:59:07Z",
+          "completed_at": "2026-10-23T17:59:08Z"
+        },
+        {
+          "number": 13,
+          "name": "Upload Playwright report",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:59:08Z",
+          "completed_at": "2026-10-23T17:59:08Z"
+        },
+        {
+          "number": 14,
+          "name": "Stop local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:59:08Z",
+          "completed_at": "2026-10-23T17:59:29Z"
+        },
+        {
+          "number": 26,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:59:29Z",
+          "completed_at": "2026-10-23T17:59:29Z"
+        },
+        {
+          "number": 27,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:59:29Z",
+          "completed_at": "2026-10-23T17:59:29Z"
+        },
+        {
+          "number": 28,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:59:29Z",
+          "completed_at": "2026-10-23T17:59:29Z"
+        },
+        {
+          "number": 29,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:59:29Z",
+          "completed_at": "2026-10-23T17:59:29Z"
+        }
+      ]
+    },
+    {
+      "id": 120568439616,
+      "name": "db",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-23T17:52:01Z",
+      "completed_at": "2026-10-23T18:07:06Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:02Z",
+          "completed_at": "2026-10-23T17:52:05Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:05Z",
+          "completed_at": "2026-10-23T17:52:09Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:09Z",
+          "completed_at": "2026-10-23T17:52:10Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:10Z",
+          "completed_at": "2026-10-23T17:52:15Z"
+        },
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:15Z",
+          "completed_at": "2026-10-23T17:52:17Z"
+        },
+        {
+          "number": 6,
+          "name": "Install Supabase CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:17Z",
+          "completed_at": "2026-10-23T17:52:19Z"
+        },
+        {
+          "number": 7,
+          "name": "Start local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:19Z",
+          "completed_at": "2026-10-23T17:53:52Z"
+        },
+        {
+          "number": 8,
+          "name": "Migration reset (empty DB \u2192 migrate \u2192 seed)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:53:52Z",
+          "completed_at": "2026-10-23T17:54:24Z"
+        },
+        {
+          "number": 9,
+          "name": "Calendar feed cause proof (diagnostic only; no pilot or acceptance)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T17:54:24Z",
+          "completed_at": "2026-10-23T17:54:24Z"
+        },
+        {
+          "number": 10,
+          "name": "Upload native calendar feed cause proof JSON",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T17:54:24Z",
+          "completed_at": "2026-10-23T17:54:24Z"
+        },
+        {
+          "number": 11,
+          "name": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-10-23T17:54:24Z",
+          "completed_at": "2026-10-23T18:06:44Z"
+        },
+        {
+          "number": 12,
+          "name": "Upload native full integration JSON",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T18:06:44Z",
+          "completed_at": "2026-10-23T18:06:45Z"
+        },
+        {
+          "number": 13,
+          "name": "Stop local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T18:06:45Z",
+          "completed_at": "2026-10-23T18:07:03Z"
+        },
+        {
+          "number": 24,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T18:07:03Z",
+          "completed_at": "2026-10-23T18:07:03Z"
+        },
+        {
+          "number": 25,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T18:07:03Z",
+          "completed_at": "2026-10-23T18:07:03Z"
+        },
+        {
+          "number": 26,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T18:07:03Z",
+          "completed_at": "2026-10-23T18:07:03Z"
+        },
+        {
+          "number": 27,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T18:07:03Z",
+          "completed_at": "2026-10-23T18:07:03Z"
+        }
+      ]
+    },
+    {
+      "id": 120568439618,
+      "name": "recovery-storage-loader",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T17:52:01Z",
+      "completed_at": "2026-10-23T17:56:23Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:02Z",
+          "completed_at": "2026-10-23T17:52:04Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:04Z",
+          "completed_at": "2026-10-23T17:52:09Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:09Z",
+          "completed_at": "2026-10-23T17:52:10Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:10Z",
+          "completed_at": "2026-10-23T17:52:16Z"
+        },
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:16Z",
+          "completed_at": "2026-10-23T17:52:18Z"
+        },
+        {
+          "number": 6,
+          "name": "Install Supabase CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:18Z",
+          "completed_at": "2026-10-23T17:52:20Z"
+        },
+        {
+          "number": 7,
+          "name": "Start local schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:52:20Z",
+          "completed_at": "2026-10-23T17:53:53Z"
+        },
+        {
+          "number": 8,
+          "name": "Reset local schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:53:53Z",
+          "completed_at": "2026-10-23T17:54:25Z"
+        },
+        {
+          "number": 9,
+          "name": "Dump synthetic recovery schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:54:25Z",
+          "completed_at": "2026-10-23T17:54:30Z"
+        },
+        {
+          "number": 10,
+          "name": "Create isolated recovery runtime configuration",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:54:30Z",
+          "completed_at": "2026-10-23T17:54:30Z"
+        },
+        {
+          "number": 11,
+          "name": "Start database-only isolated recovery target",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:54:30Z",
+          "completed_at": "2026-10-23T17:54:55Z"
+        },
+        {
+          "number": 12,
+          "name": "Restore synthetic schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:54:55Z",
+          "completed_at": "2026-10-23T17:54:57Z"
+        },
+        {
+          "number": 13,
+          "name": "Start pinned isolated Storage loader and runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:54:57Z",
+          "completed_at": "2026-10-23T17:55:42Z"
+        },
+        {
+          "number": 14,
+          "name": "Prove physical Storage loader preserves protected rows",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:55:42Z",
+          "completed_at": "2026-10-23T17:55:45Z"
+        },
+        {
+          "number": 15,
+          "name": "Upload native isolated recovery JSON",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:55:45Z",
+          "completed_at": "2026-10-23T17:55:47Z"
+        },
+        {
+          "number": 16,
+          "name": "Remove synthetic recovery resources",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:55:47Z",
+          "completed_at": "2026-10-23T17:56:19Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:56:19Z",
+          "completed_at": "2026-10-23T17:56:19Z"
+        },
+        {
+          "number": 31,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:56:19Z",
+          "completed_at": "2026-10-23T17:56:19Z"
+        },
+        {
+          "number": 32,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:56:19Z",
+          "completed_at": "2026-10-23T17:56:20Z"
+        },
+        {
+          "number": 33,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T17:56:20Z",
+          "completed_at": "2026-10-23T17:56:20Z"
+        }
+      ]
+    },
+    {
+      "id": 120568442473,
+      "name": "dashboard-e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T17:51:59Z",
+      "completed_at": "2026-10-23T17:51:58Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": []
+    },
+    {
+      "id": 120571987216,
+      "name": "fixed-chromium-paired-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T17:59:32Z",
+      "completed_at": "2026-10-23T17:59:32Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": []
+    },
+    {
+      "id": 120571987779,
+      "name": "fixed-chromium-application-verification",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T17:59:32Z",
+      "completed_at": "2026-10-23T17:59:32Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": []
+    },
+    {
+      "id": 120571988116,
+      "name": "native-stream-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T17:59:32Z",
+      "completed_at": "2026-10-23T17:59:32Z",
+      "run_id": 39998246278,
+      "head_sha": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "steps": []
+    }
+  ],
+  "controller_native_captures": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/dispatch-receipt.json",
+      "receipt": {
+        "transport": {
+          "native_exit": 0,
+          "category": null,
+          "elapsed_seconds": 3.351294,
+          "timeout_seconds": 90,
+          "capture_complete": true,
+          "readers_joined": true,
+          "handles_closed": true,
+          "direct_process_settled": true,
+          "streams": [
+            {
+              "observed_bytes": 296,
+              "sha256": "91c7fb8ade10e8f7835339bb0322865a59ae0f0ce83a97c2f25c7e9d46bde0cb",
+              "physical_EOF": true,
+              "reader_done": true,
+              "reader_error": false,
+              "overflow": false
+            },
+            {
+              "observed_bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "physical_EOF": true,
+              "reader_done": true,
+              "reader_error": false,
+              "overflow": false
+            }
+          ]
+        },
+        "state_present": true,
+        "raw_persisted": false,
+        "no_retry": true
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-1-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.608851,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 5498,
+            "sha256": "a8a800da8ee15d51e6d8698596ca00c7aaae8ab7831a6a0f2ed1daf030de268e",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-10-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.712432,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "c201dfe7a8f907b1b46dfe25d88217823b968c609f182e22d8360b9e6108be9f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-11-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.773276,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "c201dfe7a8f907b1b46dfe25d88217823b968c609f182e22d8360b9e6108be9f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-12-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.679947,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "c201dfe7a8f907b1b46dfe25d88217823b968c609f182e22d8360b9e6108be9f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-13-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.66105,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "c201dfe7a8f907b1b46dfe25d88217823b968c609f182e22d8360b9e6108be9f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-14-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.681309,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21749,
+            "sha256": "f5684241fb82805c34fbcfc22a001c68fc3e564ab83dac6330c9bfa264658dc7",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-15-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.672474,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 22074,
+            "sha256": "5a1c3442c1afc1512f2d05f940118324c6410969907375a33473e6eea4740376",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-2-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.744381,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17282,
+            "sha256": "9c28f409ea1fdea8c5649d729585d639261f0d06a987d9091229c0bf7c1b7ca9",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-3-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.700914,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17540,
+            "sha256": "66b37e1b9724503734fe8e5cede8aa3cddc6655109c9129ef88a92dedf26b047",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-4-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.682662,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 17927,
+            "sha256": "e6e84dddf3b32d7f203d442b9ba9fc9bea93a8b61bfd925ef793fb000863f6a2",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-5-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.703359,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 18252,
+            "sha256": "4bb024c6cf4bc1717728b5b14f54a7f216f0395f5262e2e2c2030988e070ef7e",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-6-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.691158,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 18252,
+            "sha256": "4bb024c6cf4bc1717728b5b14f54a7f216f0395f5262e2e2c2030988e070ef7e",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-7-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.698011,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 18424,
+            "sha256": "f08fb336eff8b96ab7d9c4d2c6ad15fa586ae8eae51872922a767a8404b63f4e",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-8-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.702611,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "c201dfe7a8f907b1b46dfe25d88217823b968c609f182e22d8360b9e6108be9f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/jobs-9-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.678347,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 21663,
+            "sha256": "c201dfe7a8f907b1b46dfe25d88217823b968c609f182e22d8360b9e6108be9f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/push-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 3.01406,
+        "timeout_seconds": 60,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 150,
+            "sha256": "a51dcbaa6d74b0f4f537aa20b5f71e91d9ae4cca30bd6c1c4730df0ebb5db7a9",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/remote-before-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.607274,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 91,
+            "sha256": "850836588dad42c9deb6c648ff7be2c65edc70151143837a78c97a814a32c460",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/remote-readback-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.565618,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 91,
+            "sha256": "607e40782cdb66ab444e39d49967ccc86aa8e6311484524daf8e9dea27bff932",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/resolve-1-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 1.277435,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 246682,
+            "sha256": "f93f23b6fd9771d659ee02c52a574661b2f54725d826db8fb31f33bdbe266d47",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-1-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.476071,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "593fe61edc79efcfbc0f9deaff9ef339178e9342f70f4b1f6d95b7a89a8d829f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-10-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.488319,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-11-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.553046,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-12-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.496704,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-13-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.590294,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-14-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.537342,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-15-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.497133,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12163,
+            "sha256": "5551f8545faf32acde0906751323e2517acd7b06459a6bd5cec77841690e8a20",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-2-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.539432,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-3-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.486669,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-4-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.527424,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-5-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.527354,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-6-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.559679,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-7-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.48757,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-8-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.496581,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-operation/run-9-receipt.json",
+      "receipt": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.508467,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12160,
+            "sha256": "90a8c0ef536faf95e35f9835156c306cb136d271fe284a7a859ffb8eba1c15b3",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    }
+  ],
+  "controller_native_captured_count": 35,
+  "actual_Root_outer_returns": {
+    "initial_publication_and_resolver": [
+      {
+        "key": "StartupConfirmationPublishOuter",
+        "chunk_id": "af573f",
+        "wall_time_seconds": 10.0093589,
+        "session_id": 24079,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "key": "StartupConfirmationPublishWait1",
+        "chunk_id": "68a495",
+        "wall_time_seconds": 5.0026394,
+        "session_id": 24079,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "key": "StartupConfirmationPublishWait2",
+        "chunk_id": "fedbdb",
+        "wall_time_seconds": 6.3e-06,
+        "exit_code": 0,
+        "original_token_count": 27,
+        "output": "{\"phase\": \"DISPATCH_ACCEPTED\", \"head\": \"edf966cc9294448d0b057514d85e361c4f11ddd7\", \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "key": "StartupConfirmationResolverOuter",
+        "chunk_id": "e56551",
+        "wall_time_seconds": 1.4466998,
+        "exit_code": 0,
+        "original_token_count": 24,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"resolution_count\": 1, \"normal_acceptance\": 0}\r\n"
+      }
+    ],
+    "polls": [
+      {
+        "chunk_id": "ddb2fd",
+        "wall_time_seconds": 1.2752061000000001,
+        "exit_code": 0,
+        "original_token_count": 73,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 1, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"in_progress\", \"conclusion\": null}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "2ffa50",
+        "wall_time_seconds": 1.4591186999999999,
+        "exit_code": 0,
+        "original_token_count": 144,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 2, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "6dc28f",
+        "wall_time_seconds": 1.3756979,
+        "exit_code": 0,
+        "original_token_count": 144,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 3, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "321859",
+        "wall_time_seconds": 1.3793544,
+        "exit_code": 0,
+        "original_token_count": 144,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 4, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "536257",
+        "wall_time_seconds": 1.4251898,
+        "exit_code": 0,
+        "original_token_count": 145,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 5, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "b11ea6",
+        "wall_time_seconds": 1.4333122999999999,
+        "exit_code": 0,
+        "original_token_count": 145,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 6, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "561d26",
+        "wall_time_seconds": 1.3697667,
+        "exit_code": 0,
+        "original_token_count": 145,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 7, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "a27e17",
+        "wall_time_seconds": 1.3648224,
+        "exit_code": 0,
+        "original_token_count": 213,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 8, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "1cbdfa",
+        "wall_time_seconds": 1.3798813,
+        "exit_code": 0,
+        "original_token_count": 213,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 9, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "af6b35",
+        "wall_time_seconds": 1.384887,
+        "exit_code": 0,
+        "original_token_count": 214,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 10, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "2643d0",
+        "wall_time_seconds": 1.5172329,
+        "exit_code": 0,
+        "original_token_count": 214,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 11, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "da8414",
+        "wall_time_seconds": 1.356442,
+        "exit_code": 0,
+        "original_token_count": 214,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 12, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "5ea69a",
+        "wall_time_seconds": 1.4229756,
+        "exit_code": 0,
+        "original_token_count": 214,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 13, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "834f26",
+        "wall_time_seconds": 1.3892986,
+        "exit_code": 0,
+        "original_token_count": 214,
+        "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"status\": \"in_progress\", \"conclusion\": null, \"poll_count\": 14, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"in_progress\", \"conclusion\": null}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      },
+      {
+        "chunk_id": "a7176c",
+        "wall_time_seconds": 1.3750625,
+        "exit_code": 0,
+        "original_token_count": 215,
+        "output": "{\"phase\": \"ROOT_STOPPED\", \"run_id\": 39998246278, \"status\": \"completed\", \"conclusion\": \"failure\", \"poll_count\": 15, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"db\", \"status\": \"completed\", \"conclusion\": \"failure\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      }
+    ],
+    "total_returns": 19,
+    "completed_native0_returns": 17,
+    "initial_running_returns": 2,
+    "limit": "19 actual tool returns, not19 separately completed native children;35 controller captures include ONE Node encapsulating source-qualified4GET1POST."
+  },
+  "publication_resolver_closed_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-publication-resolver-proof.json",
+    "bytes": 5209,
+    "sha256": "1f8ee516b1ac7679cc534bb867779e4389e70e585f6bfc92d1ddf50d2f80ead4"
+  },
+  "source_qualified_underlying_logical_commands": {
+    "GitHub_GETs": 35,
+    "GitHub_POSTs": 1,
+    "canonical_GETs": 4,
+    "canonical_POSTs": 1,
+    "resolver_GETs": 1,
+    "poll_run_GETs": 15,
+    "poll_jobs_GETs": 15,
+    "Git_commands": 3,
+    "limit": "Counts qualified by exact reviewed command family/native0 closure, not independent internal HTTP/redirect observation; providerGET1 separate."
+  },
+  "provider_outside_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-execution-receipt.json",
+    "bytes": 3755,
+    "sha256": "ee5b27ec61a13641642dba191109d1f44bb0e0921ef2916037fd0edbf950b230"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-effects-allocation.json",
+    "bytes": 7462,
+    "sha256": "3a9e2eae1a60abebb0ff8d4d59d8c1ab17fc19a2e248d7338766bbf541691624"
+  },
+  "artifact_GETs": 0,
+  "normal_acceptance": 0,
+  "case_counts": "UNKNOWN until separately admitted actual acquisition/independent qualification.",
+  "failure_cause": "UNKNOWN; DBstartup7/reset8 succeeded, integration11 failed; no current cause/firstprivacyorigin inferred.",
+  "custody": "UNKNOWN; successful stop/upload/browser is not mainDB key/backendsettlement proof.",
+  "root_local_prior_assembly": {
+    "current_ownership_writer_attempts": 1,
+    "prior_case_mismatch_history": "Previous namespace writer c7a723 refused uppercaseNORMAL against lowercase actualmode beforefile/effect; current exactlowercase retained, no guardrelax or replay."
+  },
+  "P5": "OPEN",
+  "no_deployment": true
+}

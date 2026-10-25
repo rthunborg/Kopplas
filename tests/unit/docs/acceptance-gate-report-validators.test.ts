@@ -60,6 +60,7 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { projectCalendarFeedCiCommands } from "../../support/calendar-feed-ci-contract";
 
 const REPO = process.cwd();
 const MIGRATION_DOCS_DIR = path.join(REPO, "docs", "migration");
@@ -115,7 +116,7 @@ function realMandatoryGateKeys(): string[] {
   const pkg = JSON.parse(readFileSync(PACKAGE_JSON, "utf8")) as {
     scripts: Record<string, string>;
   };
-  const ci = readFileSync(CI_YML, "utf8");
+  const ci = projectCalendarFeedCiCommands(readFileSync(CI_YML, "utf8"));
   const keys = new Set<string>();
 
   // (a) The `verify:*` + `test:*` scripts that CI runs (read from package.json, cross-checked in ci.yml).

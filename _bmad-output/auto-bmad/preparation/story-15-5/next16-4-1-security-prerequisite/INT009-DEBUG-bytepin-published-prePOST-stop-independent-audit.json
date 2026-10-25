@@ -1,0 +1,229 @@
+{
+  "schema": "INT009_BYTEPIN_PUBLISHED_PREPOST_STOP_INDEPENDENT_OFFLINE_QUALIFICATION_V1",
+  "status": "QUALIFIED_PUBLISHED_PUSHES_ZERO_POST_STOP_SOURCE_DEFECT_CONFIRMED",
+  "outcome": "DONE_DISPATCH_ONLY_PLAN_REQUIRES_SOURCE_REVIEW_AND_NEW_ADMISSION",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority": false,
+  "scope": "Explicit gpt-6.1-sol High targeted actual-stop qualifier and minimum remaining dispatch-only plan requirements. Not source approval or fourth broad story review. Root sole operator; old slots closed.",
+  "bindings": {
+    "root_attribution": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-published-prePOST-stop-root-attribution.json",
+      "bytes": 2665,
+      "sha256": "f623e8b190a1ee84ae7926351a7ee8e77d652e44c6c0b8c3ce68357fba2ea852"
+    },
+    "driver": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-bytepin-operational-preparation/root-driver.py",
+      "bytes": 18918,
+      "sha256": "c1425432ba854d897d633296f5fcf60efea59505cbb23a5d7dde743cb6a34113"
+    },
+    "proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-bytepin-operational-preparation/proposal.json",
+      "bytes": 200439,
+      "sha256": "3eb4065d74ba146d38a771bd4266c4d651a8b1759ff8ac8d1e73339c177aae9b"
+    },
+    "MAIN_operation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-main-docs-operation/operation.json",
+      "bytes": 271,
+      "sha256": "a9cea48c7c0ce9b8fc5df5ae261f93f924d3995f4cb8d1704dd0d4c82521bd37"
+    },
+    "DEBUG_operation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/operation.json",
+      "bytes": 408,
+      "sha256": "b13a1f4adb306d39f1c4392760c1b4de49a914e27c12eb22cd4b60cc14865abc"
+    },
+    "provider_qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-vercel-readonly-qualification.json",
+      "bytes": 58979,
+      "sha256": "e95035832db6804943c7920f2e0d2aff5501d7d68e5f9d9fe0bc9fafc72474ce"
+    },
+    "provider_host_attribution": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-provider-host-attribution.json",
+      "bytes": 1027,
+      "sha256": "661638c9f1e100f1a7c303b8a5e08564bf783c7c92058e651e56dfdceabb08f8"
+    },
+    "prior_source_review_immutable": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-bytepin-operational-source-review.json",
+      "bytes": 22532,
+      "sha256": "b259b5ac2f5922f09571bc1723d3d15305221d90d6aa72caed372333a139b6d2"
+    },
+    "policy": {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  },
+  "actual_qualification": {
+    "MAIN_published_head": "987edccdafee51e59b7d63376e36dadd220409ae",
+    "DEBUG_published_head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+    "app_source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "operation_id": "d7575a0c-3fc5-433a-a68d-15c1a678baf7",
+    "checkpoint_id": "8e7d8a59-629b-4866-be9f-7a92382045c7",
+    "owned_effect_counts": {
+      "provider_GET": 1,
+      "MAIN_nonforce_push": 1,
+      "DEBUG_nonforce_push": 1,
+      "prePOST_GET": 4,
+      "POST": 0,
+      "resolver_GET": 0,
+      "poll_pairs": 0,
+      "artifact_GET": 0
+    },
+    "publication_basis": "Actual provider qualification reports PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT/fullclosure/native0. MAIN operation is ROOT_STOPPED/exactreadbacktrue. DEBUG journal reached four strict preGET intents and complete receipts after push/readback code assertions, so its prior push/readback chain completed. Ten actual MAIN/DEBUG receipts independently validate native0/categorynull/fullcapture/EOF/join/handles/directsettled. This is owned-operation evidence plus preserved Root host attribution, not a fresh remote query.",
+    "qualified_native_receipts": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-main-docs-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "c9a00c6182dc672487d6ee4cd9a9b7099ea50d13499f15f7f3434c37d6fbefe5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-main-docs-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "4605795f30d65ddce5502700ce8a0dfd86034d28ae6055886ff2a0b26ef502e8"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-main-docs-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "69b460ec6d71644df842ee35b37171e78da06d8223fd3144f3f3dc51814713e2"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/branch-receipt.json",
+        "bytes": 699,
+        "sha256": "6f048ac68f90ce4ca070cc35035213446a6e974631f6c9e12e71c775cda1884b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/permission-receipt.json",
+        "bytes": 699,
+        "sha256": "8ad93255226e0fcf96627e03d273f8a16c0386118a02dd5f51c291381bb489b3"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "70630a471a692896422bcd3cef34d08f6e6d21084fd3da7f7e266e9e03e2bad4"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "9bb27982194115304c0c8f748b35c2b3255106958312392198218d9c12a0f721"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "6d8283495badc0873232169deacd2ebbbcef67c03c9cb9d99372a32af74b2d60"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/user-receipt.json",
+        "bytes": 698,
+        "sha256": "23d600c3ba5cdf2d8c8c40710fdbb7769a10ea5a7fed1c32eb41cc7a64e2261e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/workflow-receipt.json",
+        "bytes": 698,
+        "sha256": "59b370c6f949924c593d545d28f70565ba9267f4f530f185fa3eccc8c895efb0"
+      }
+    ],
+    "preGET_endpoint_intents": "Four actual intent JSON documents independently match fixed user/collaboratorpermission/ownedbranch/workflow GET endpoints. Response fields were RAM-only and are unavailable now; complete transport receipts are not proof that the final workflow response parse/assertion passed.",
+    "no_POST_basis": "Actual fixed body/mode/POST intent/receipt paths absent; existing api writes an exclusive fsynced dispatch-intent before invoking POST native, downstream of bodywrite, actual-mode intent and DISPATCH_CONSUMED. Source-boundary plus preserved owned journal/attribution supports zero POST in this invocation. No claim about unrelated actors/operations.",
+    "absent_owned_paths": {
+      "fixed-dispatch-body.json": true,
+      "dispatch-mode-intent.json": true,
+      "dispatch-intent.json": true,
+      "dispatch-receipt.json": true,
+      "terminal.json": true
+    },
+    "DEBUG_phase": "UNKNOWN_STOP",
+    "MAIN_phase": "ROOT_STOPPED",
+    "run_id": null,
+    "all_remaining_effect_slots_closed": true,
+    "old_activation_grant_once_journals": "Immutable; no reopening or retry of published operation."
+  },
+  "source_defect": {
+    "id": "INT009-DEBUG-OP-03",
+    "owner": "Native operational source author; Root owns actual effect admission.",
+    "exact_production_source": "root-driver.py lines207-208 construct ref-first dict with explicit input insertion order, then json.dumps(separators=(comma,colon))+LF; line209 compares actual byte SHA to proposal pin before bodypath/write.",
+    "actual_two_AST_assignments": {
+      "bytes": 265,
+      "sha256": "836e225d758cd132f35240b12f8bfe984d256f9ef6ca16b7760f16a5af61f812",
+      "root_order": [
+        "ref",
+        "inputs"
+      ],
+      "inputs_order": [
+        "expected_sha",
+        "checkpoint_id",
+        "release_validation",
+        "calendar_feed_cause_proof",
+        "calendar_feed_original_int009"
+      ]
+    },
+    "proposal_ordered_serialization": {
+      "bytes": 265,
+      "sha256": "f4bf9ad6b83afd94be916c8bab00fe5c529e62a23f4aec6e90dd65472bb07d15",
+      "root_order": [
+        "inputs",
+        "ref"
+      ],
+      "inputs_order": [
+        "calendar_feed_cause_proof",
+        "calendar_feed_original_int009",
+        "checkpoint_id",
+        "expected_sha",
+        "release_validation"
+      ]
+    },
+    "semantic_JSON_equal": true,
+    "actual_production_line209_offline_result": "AssertionError/refusal under exact frozen proposal; no raw error text persisted.",
+    "cause_precision": "Deterministic reachable source defect confirmed. It would refuse if all four prePOST response validations passed. The actual final exception/last passed remote validator is UNKNOWN: the workflow response could have failed parse/validation before this body assertion and no raw fields/trace were persisted. Do not promote the deterministic defect into a uniquely proven historical thrown line.",
+    "prior_review_limit": "Prior whole preflight intentionally ended before effects/body serialization, and the separate body check serialized the proposal object rather than these actual production AST assignments. That did not establish byte identity across this boundary. Prior reports remain immutable; this new defect is recorded without relabelling their tests."
+  },
+  "minimum_materially_simpler_remaining_plan": {
+    "policy_basis": "Development completion policy: after two unsuccessful attempts at the same approach stop repeating it, choose a materially simpler safe route, never blindly retry an uncertain mutation. Do not re-run the combined publication controller.",
+    "author_scope": "Small new immutable dispatch-only capability in a new private namespace/checkpoint/operation ID. Root chooses fresh identifiers; no source app/test/SQL/Git head change required. Reuse existing qualified capture, pin/JSON, strict fourGET and resolver/poller functions; no new collector, workflow, query family, source catalogue or transport framework.",
+    "published_heads": "Consume exact preserved MAIN987/DEBUG3e6 publication receipts as already completed work; never invoke MAIN docs publisher or DEBUG push stage again. Assert frozen source/branch/head identity through the required fresh proof and existing ownedbranch GET. Git push/force/merge/deploy and old-operation mutation counts must be zero.",
+    "explicit_body": "Author freezes ONE explicit byte body including exact key order/encoding/finalLF for the new checkpoint; proposal source pin and runtime POST --input must consume those same bytes. Review executes actual production byte selection/hash assertion and immutable body write/POST handoff against mocks; comparing separately reconstructed JSON dictionaries is insufficient. Keep expectedSHA3e6, ownedref, original_int009true, causefalse and releasefalse.",
+    "necessary_finite_effects": {
+      "fresh_provider_GET": 1,
+      "strict_prePOST_GETs": 4,
+      "fixed_POST": 1,
+      "resolver_GETs_max": 6,
+      "run_GETs_max": 90,
+      "jobs_GETs_max": 90,
+      "poll_min_seconds": 30,
+      "resolver_min_seconds": 5,
+      "wall_seconds": 5400,
+      "pushes": 0,
+      "artifact_log_GETs": 0,
+      "pagination": 0,
+      "mutation_retries": 0,
+      "provider_mutations_vars_resources_deploy": 0
+    },
+    "unchanged_guards": "New exact refs/selfpins/currentheads plus independent sourcePASS; exclusive consumed intent and fsynced mode/body/POST journals before sole POST, typed userrthunborg/collaboratorwrite-or-higher/ownedbranch3e6/workflow296219797/pathci.yml/active validation, immediate activation/proof/provider age0..300 and provider<=180 before bounded20s POST. Failure/partial/capture/timeout/ambiguity enters UNKNOWN_STOP and closes slots; no automatic replay.",
+    "observation": "After actual accepted POST only, Root sole existing bounded observer resolves the new exact title/UUID/head/ref/repo/actors/workflow/event/attempt1 and freezes all9 terminal jobs or stops unknown. No second poller or inherited counter/deadline reset. Artifact/log acquisition remains a separate postterminal grant/review.",
+    "admission_sequence": "Concrete author source/body/pins and focused exact-source controls first; targeted independent High source/privacy review next; then NEW actual completed Coordinator finite dispatch-only allocation, fresh actual source/provider proof and exclusive activations. Current audit is not that approval. All old grants/slots remain closed.",
+    "minimum_controls": "Actual full preflight with real heterogeneous pins/strict JSON and explicitly virtual future capabilities only; exact production body bytes to mocked POST; bad body pin/identity/freshness/capture refuse before POST; exclusive once/UNKNOWN and reused observer boundaries conserved. Reuse unchanged qualified controls nonadditively, no broad suites."
+  },
+  "actual_offline_receipts": [
+    {
+      "tool": "7f52dd",
+      "native_exit": 0,
+      "purpose": "Policy, actual attribution/journals/receipt pins and exact source boundaries"
+    },
+    {
+      "tool": "5f9718",
+      "native_exit": 0,
+      "purpose": "Two actual AST body assignments and production assertion; semantic/order/hash mismatch; ten native receipts and provider qualifier; absent POST artifacts"
+    }
+  ],
+  "execution_limits": "Only bounded read/hash/AST two-assignments/assertion controls and this new private audit write. No API/network/provider reexecution/process transport/Git mutation/source change/resource/test suite. Raw responses/errors/secrets not persisted.",
+  "normal_acceptance": 0,
+  "required95": {
+    "passed": 68,
+    "failed": 1,
+    "unexecuted": 26
+  },
+  "functional_cause": "UNKNOWN",
+  "DB_custody": "retained/unverified",
+  "P5": "OPEN",
+  "open_questions": [],
+  "blocker": "OP03 bytebody mismatch plus actual last remote validator unknown; no current dispatch authority."
+}

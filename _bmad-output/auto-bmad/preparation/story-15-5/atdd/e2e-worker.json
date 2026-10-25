@@ -1,0 +1,239 @@
+{
+  "success": true,
+  "subagent": "atdd-e2e-tests",
+  "story_id": "15.5",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "tdd_phase": "RED",
+  "test_count": 11,
+  "tests_executed": 0,
+  "resources_started": 0,
+  "acceptance_coverage": 0,
+  "tests": [
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "content": "/** P4 RED ONLY: 11 skipped essential browser cases, zero acceptance evidence.\n * P5 must bind the fail-closed driver before activation. No recording/runtime\n * observation was performed. Proposed new selectors are listed in worker JSON.\n * playwright-utils two-gate decision: flag=true, package absent; vanilla style.\n */\nimport { test, expect, type Page } from \"@playwright/test\";\nimport {\n  calendarNames, calendarUI, enterActualPersonalCalendar, expectAccessWarning,\n  followPersonalSubscriptionByKeyboard, tabTo, withCalendarBrowserFixture,\n  type CalendarBrowserFixture, type PhysicalSnapshot, type SafeFeedReceipt,\n} from \"./support/calendar-feed-atdd\";\n\n// One-time capability must never enter trace/HAR/video/screenshots/reporter data.\n// P5's driver also sanitizes raw HTTP/DOM errors; no cause/body/URL attachment.\ntest.use({ trace: \"off\", screenshot: \"off\", video: \"off\" });\n\nfunction expectPrivateStorage(snapshot: PhysicalSnapshot) {\n  expect(snapshot.onlyHashedCapabilitiesStored).toBe(true);\n  expect(snapshot.auditContainsCapabilityOrProofOrIpOrKey).toBe(false);\n}\n\nfunction expectIsolated(before: PhysicalSnapshot, after: PhysicalSnapshot) {\n  expect(after.peer).toEqual(before.peer);\n  expect(after.foreign).toEqual(before.foreign);\n  expectPrivateStorage(after);\n}\n\nfunction expectPublicFeed(receipt: SafeFeedReceipt, expectedStatus: number) {\n  expect(receipt.status).toBe(expectedStatus);\n  expect(receipt.cacheControl).toMatch(/no-store/i);\n  expect(receipt.setCookiePresent).toBe(false);\n  expect(receipt.redirectPresent).toBe(false);\n  expect(receipt.containsForbiddenFields).toBe(false);\n  if (expectedStatus === 200) {\n    expect(receipt.contentType).toMatch(/^text\\/calendar(?:;|$)/i);\n    expect(receipt.rfc5545Valid).toBe(true);\n  } else {\n    expect(receipt.events).toEqual([]);\n  }\n}\n\nasync function issueFromUI(page: Page, fixture: CalendarBrowserFixture) {\n  const saved = fixture.observeLifecycle(\"create\"); // register BEFORE click\n  await calendarUI(page).create.click();\n  const result = await saved;\n  expect(result.committed).toBe(true);\n  const issued = await fixture.captureIssuedLink();\n  // Boolean receipts deliberately keep raw one-time capability out of failures.\n  expect(issued.canonical43Characters).toBe(true);\n  expect(issued.hashMatchesPhysicalGeneration).toBe(true);\n  expect(issued.absentFromBrowserStorage).toBe(true);\n  return { issued, snapshot: result.snapshot };\n}\n\ntest.describe(\"15.5 Kalenderprenumeration essential production-host ATDD RED\", () => {\n  test.skip(\"[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke\", async ({ page }) => {\n    await withCalendarBrowserFixture(page, \"own-and-foreign\", async (f) => {\n      await f.signIn(\"montor\");\n      await followPersonalSubscriptionByKeyboard(page, \"day\");\n      await expectAccessWarning(page);\n      const before = await f.snapshot();\n      const { issued: first, snapshot: created } = await issueFromUI(page, f);\n      expect(created.own.activeCount).toBe(1);\n      expect(created.own.generationCount - before.own.generationCount).toBe(1);\n      expect(created.own.audit.length - before.own.audit.length).toBe(1);\n      expect(created.own.audit.at(-1)).toEqual({ action: \"create\", actorMatchesSubject: true });\n      expect(created.own.lastUsedAt).toBeNull(); // create is not a fetch\n      expect(created.own.usageCount).toBe(0);\n      expectIsolated(before, created);\n      const fetched = await f.fetchAnonymous(first.handle);\n      expectPublicFeed(fetched, 200);\n      expect(fetched.events).toEqual(f.expectedOwnEvents); // own/shared once; peer/foreign poison omitted\n      const used = await f.snapshot();\n      expect(used.own.lastUsedAt).not.toBeNull();\n      expect(used.own.usageCount).toBe(1);\n      expectIsolated(before, used);\n      await page.reload();\n      await expect(page.getByText(/Senast hämtad/)).toBeVisible();\n      expect(await f.lastUsedMatchesPhysical()).toBe(true);\n      await expect(calendarUI(page).link).toHaveCount(0);\n      await expect(calendarUI(page).abuse).toHaveCount(0);\n\n      await calendarUI(page).rotate.click();\n      const rotatedCall = f.observeLifecycle(\"rotate\");\n      await page.getByRole(\"dialog\").getByRole(\"button\", { name: calendarNames.confirmRotate, exact: true }).click();\n      const rotated = await rotatedCall;\n      expect(rotated.committed).toBe(true);\n      expect(rotated.snapshot.own.activeCount).toBe(1);\n      expect(rotated.snapshot.own.revokedCount - used.own.revokedCount).toBe(1);\n      expect(rotated.snapshot.own.audit.length - used.own.audit.length).toBe(1);\n      const second = await f.captureIssuedLink();\n      expect(second.hashMatchesPhysicalGeneration).toBe(true);\n      expectPublicFeed(await f.fetchAnonymous(first.handle), 404);\n      expectPublicFeed(await f.fetchAnonymous(second.handle), 200);\n\n      await calendarUI(page).revoke.click();\n      const revokedCall = f.observeLifecycle(\"revoke\");\n      await page.getByRole(\"dialog\").getByRole(\"button\", { name: calendarNames.confirmRevoke, exact: true }).click();\n      const revoked = await revokedCall;\n      expect(revoked.committed).toBe(true);\n      expect(revoked.snapshot.own.activeCount).toBe(0);\n      expect(revoked.snapshot.own.audit.length - rotated.snapshot.own.audit.length).toBe(1);\n      expectIsolated(before, revoked.snapshot);\n      expectPublicFeed(await f.fetchAnonymous(second.handle), 404);\n      await expect(calendarUI(page).link).toHaveCount(0);\n      await page.reload();\n      expectPublicFeed(await f.fetchAnonymous(first.handle), 404);\n      expectPublicFeed(await f.fetchAnonymous(second.handle), 404);\n    });\n  });\n\n  for (const variant of [\n    { id: \"002A\", mode: \"day\", scenario: \"own-and-foreign\", host: \"Egen agenda\" },\n    { id: \"002B\", mode: \"week\", scenario: \"own-and-foreign\", host: \"Egen veckokalender\" },\n    { id: \"002C\", mode: \"day\", scenario: \"no-profile\", host: \"Egen agenda\" },\n  ] as const) {\n    test.skip(`[P1] 15.5-E2E-${variant.id} [AC1 AC6] actual ${variant.host} ${variant.scenario} exposes one keyboard subscription link`, async ({ page }) => {\n      await withCalendarBrowserFixture(page, variant.scenario, async (f) => {\n        await f.signIn(\"montor\");\n        const personal = await enterActualPersonalCalendar(page, variant.mode);\n        await expect(personal.getByLabel(variant.host, { exact: true })).toBeVisible();\n        if (variant.scenario === \"no-profile\") {\n          await expect(personal.getByText(\"Inga egna bokningar i perioden.\", { exact: true })).toBeVisible();\n        }\n        const link = personal.getByRole(\"link\", { name: calendarNames.title, exact: true });\n        await expect(link).toHaveCount(1);\n        await expect(link).toHaveAttribute(\"href\", \"/settings/calendar\");\n        await tabTo(page, link);\n        await page.keyboard.press(\"Enter\");\n        await expect(page).toHaveURL(/\\/settings\\/calendar$/);\n        await expect(page.getByRole(\"heading\", { name: calendarNames.title, exact: true })).toHaveCount(1);\n        await expect(calendarUI(page).create).toHaveCount(1); // single lifecycle surface\n      });\n    });\n  }\n\n  test.skip(\"[P1] 15.5-E2E-003 [AC1 AC6] profile Min kalender entry reaches the same settings surface by keyboard\", async ({ page }) => {\n    await withCalendarBrowserFixture(page, \"own-and-foreign\", async (f) => {\n      await f.signIn(\"montor\");\n      await page.goto(\"/dashboard\");\n      const profile = page.getByRole(\"button\", { name: \"Profil\", exact: true });\n      await tabTo(page, profile);\n      await page.keyboard.press(\"Enter\");\n      const link = page.getByRole(\"link\", { name: \"Min kalender\", exact: true });\n      await expect(link).toHaveAttribute(\"href\", \"/settings/calendar\");\n      await tabTo(page, link);\n      await page.keyboard.press(\"Enter\");\n      await expect(page).toHaveURL(/\\/settings\\/calendar$/);\n      await expect(page.getByRole(\"heading\", { name: calendarNames.title, exact: true })).toHaveCount(1);\n      await expect(calendarUI(page).create).toHaveCount(1);\n    });\n  });\n\n  test.skip(\"[P1] 15.5-E2E-004 [AC1 AC6] never-used, clipboard denial selectable fallback and revisit never recover the one-time URL\", async ({ page }) => {\n    await withCalendarBrowserFixture(page, \"own-and-foreign\", async (f) => {\n      await f.signIn(\"montor\");\n      await followPersonalSubscriptionByKeyboard(page, \"day\");\n      await expectAccessWarning(page);\n      await f.denyClipboard(); // browser permission fault BEFORE copy, no server mock\n      const { snapshot } = await issueFromUI(page, f);\n      expect(snapshot.own.lastUsedAt).toBeNull();\n      await expect(page.getByText(/Aldrig hämtad|Inte hämtad ännu/i)).toBeVisible();\n      await calendarUI(page).copy.click();\n      await expect(page.getByRole(\"alert\")).toContainText(/kopiera.*(?:manuellt|själv)|markera.*länk/i);\n      await tabTo(page, calendarUI(page).link);\n      await page.keyboard.press(\"ControlOrMeta+A\");\n      expect(await f.checkIssuedLinkFallback()).toEqual({\n        readOnly: true, selectedWholeLink: true, equalsConfirmedIssuedLink: true,\n      });\n      await page.reload();\n      await expect(calendarUI(page).link).toHaveCount(0);\n      await expect(calendarUI(page).copy).toHaveCount(0);\n      await expect(page.getByText(/(?:förlorat|tappat|sparat).*länk|länk.*(?:återskapas|visas igen)/i)).toBeVisible();\n      await expect(calendarUI(page).rotate).toBeEnabled();\n      expect(await f.snapshot()).toEqual(snapshot); // revisit must not silently rotate\n    });\n  });\n\n  test.skip(\"[P0] 15.5-E2E-005 [AC2 AC6] confirmation cancellation, pending persistence and failed rotation retry preserve old generation\", async ({ page }) => {\n    await withCalendarBrowserFixture(page, \"own-and-foreign\", async (f) => {\n      await f.signIn(\"montor\");\n      await followPersonalSubscriptionByKeyboard(page, \"day\");\n      const held = await f.armFault(\"hold-before-send\");\n      let created: PhysicalSnapshot;\n      try {\n        const committed = f.observeLifecycle(\"create\");\n        await calendarUI(page).create.click();\n        await held.reached;\n        await expect(calendarUI(page).create).toBeDisabled();\n        await expect(calendarUI(page).link).toHaveCount(0);\n        expect((await f.snapshot()).own.activeCount).toBe(0);\n        await held.release();\n        const result = await committed;\n        expect(result.committed).toBe(true);\n        created = result.snapshot;\n      } finally { await held.dispose(); }\n      const original = await f.captureIssuedLink();\n      await calendarUI(page).rotate.click();\n      await expect(page.getByRole(\"dialog\")).toBeVisible();\n      await page.keyboard.press(\"Escape\");\n      await expect(page.getByRole(\"dialog\")).toHaveCount(0);\n      await expect(calendarUI(page).rotate).toBeFocused();\n      expect(await f.snapshot()).toEqual(created);\n\n      const failure = await f.armFault(\"fail-before-send\");\n      try {\n        await calendarUI(page).rotate.click();\n        await page.getByRole(\"dialog\").getByRole(\"button\", { name: calendarNames.confirmRotate, exact: true }).click();\n        await failure.reached;\n        await expect(page.getByRole(\"alert\")).toContainText(/försök igen|kunde inte/i);\n        await expect(calendarUI(page).retry).toBeEnabled();\n        expect(await f.snapshot()).toEqual(created);\n        expectPublicFeed(await f.fetchAnonymous(original.handle), 200);\n      } finally { await failure.dispose(); }\n      const beforeRetry = await f.snapshot();\n      const retry = f.observeLifecycle(\"rotate\");\n      await calendarUI(page).retry.click();\n      const retried = await retry;\n      expect(retried.committed).toBe(true);\n      expect(retried.snapshot.own.generationCount - beforeRetry.own.generationCount).toBe(1);\n      expect(retried.snapshot.own.audit.length - beforeRetry.own.audit.length).toBe(1);\n      expectIsolated(created, retried.snapshot);\n      expectPublicFeed(await f.fetchAnonymous(original.handle), 404);\n    });\n  });\n\n  test.skip(\"[P0] 15.5-E2E-006 [AC1 AC2 AC6] lost committed issuance reconciles sanitized metadata and needs separate explicit rotation\", async ({ page }) => {\n    await withCalendarBrowserFixture(page, \"own-and-foreign\", async (f) => {\n      await f.signIn(\"montor\");\n      await followPersonalSubscriptionByKeyboard(page, \"day\");\n      const lost = await f.armFault(\"lose-committed-response\");\n      let committed: PhysicalSnapshot;\n      try {\n        await calendarUI(page).create.click();\n        await lost.reached;\n        committed = await lost.committed; // actual SQL commit precedes transport abort\n        expect(committed.own.activeCount).toBe(1);\n        await expect(page.getByRole(\"alert\")).toContainText(/okänt|kontrollera|kunde inte bekräfta/i);\n        await expect(calendarUI(page).link).toHaveCount(0);\n      } finally { await lost.dispose(); }\n      await calendarUI(page).reconcile.click();\n      await expect(page.getByText(/länk.*(?:återskapas|visas igen)|(?:förlorat|tappat).*länk/i)).toBeVisible();\n      await expect(calendarUI(page).link).toHaveCount(0);\n      expect(await f.snapshot()).toEqual(committed);\n      expect(await f.attemptReceipt()).toEqual({ submittedAttempts: 1, distinctAttempts: 1, recoveredRawLink: false });\n      // Status/retry must not create a second secret or silently repeat rotation.\n      await calendarUI(page).rotate.click();\n      const rotated = f.observeLifecycle(\"rotate\");\n      await page.getByRole(\"dialog\").getByRole(\"button\", { name: calendarNames.confirmRotate, exact: true }).click();\n      const result = await rotated;\n      expect(result.committed).toBe(true);\n      expect(result.snapshot.own.generationCount - committed.own.generationCount).toBe(1);\n      expect(result.snapshot.own.revokedCount - committed.own.revokedCount).toBe(1);\n      expect(result.snapshot.own.audit.length - committed.own.audit.length).toBe(1);\n      expectIsolated(committed, result.snapshot);\n      const fresh = await f.captureIssuedLink();\n      expect(fresh.hashMatchesPhysicalGeneration).toBe(true);\n      expectPublicFeed(await f.fetchAnonymous(fresh.handle), 200);\n    });\n  });\n\n  test.describe(\"connected phone essentials\", () => {\n    test.use({ viewport: { width: 360, height: 640 }, hasTouch: true });\n    test.skip(\"[P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable\", async ({ page }) => {\n      await withCalendarBrowserFixture(page, \"no-profile\", async (f) => {\n        await f.signIn(\"montor\");\n        await followPersonalSubscriptionByKeyboard(page, \"day\");\n        await expectAccessWarning(page);\n        const create = calendarUI(page).create;\n        await create.scrollIntoViewIfNeeded();\n        const bounds = await create.boundingBox();\n        expect(bounds).not.toBeNull();\n        expect(bounds!.height).toBeGreaterThanOrEqual(44);\n        expect(bounds!.width).toBeGreaterThanOrEqual(44);\n        const saved = f.observeLifecycle(\"create\");\n        await create.tap();\n        expect((await saved).committed).toBe(true);\n        const issued = await f.captureIssuedLink();\n        const feed = await f.fetchAnonymous(issued.handle);\n        expectPublicFeed(feed, 200);\n        expect(feed.events).toEqual([]); // no profile never broadens to tenant rows\n        await calendarUI(page).revoke.tap();\n        const confirm = page.getByRole(\"dialog\").getByRole(\"button\", { name: calendarNames.confirmRevoke, exact: true });\n        await tabTo(page, confirm);\n        const revoked = f.observeLifecycle(\"revoke\");\n        await page.keyboard.press(\"Enter\");\n        expect((await revoked).snapshot.own.activeCount).toBe(0);\n        expectPublicFeed(await f.fetchAnonymous(issued.handle), 404);\n      });\n    });\n  });\n\n  test.skip(\"[P0] 15.5-E2E-008 [AC1 AC5 AC6 AC9] manager self-service cannot read Admin aggregate or peer capability\", async ({ page }) => {\n    await withCalendarBrowserFixture(page, \"admin-monitoring\", async (f) => {\n      await f.signIn(\"manager\");\n      await followPersonalSubscriptionByKeyboard(page, \"week\");\n      await expect(calendarUI(page).abuse).toHaveCount(0);\n      const before = await f.snapshot();\n      const { issued, snapshot } = await issueFromUI(page, f);\n      expectIsolated(before, snapshot);\n      const feed = await f.fetchAnonymous(issued.handle);\n      expectPublicFeed(feed, 200);\n      expect(feed.events).toEqual(f.expectedOwnEvents); // manager team scope cannot broaden feed\n      expect(await f.monitoringReceipt()).toMatchObject({\n        aggregateReadAllowed: false, containsHashIpUrlProofKeyOrPeerDetails: false,\n      });\n    });\n  });\n\n  test.skip(\"[P0] 15.5-E2E-009 [AC5 AC6 AC9] Admin sees only sanitized own-tenant abuse counters and separate own lifecycle\", async ({ page }) => {\n    await withCalendarBrowserFixture(page, \"admin-monitoring\", async (f) => {\n      await f.signIn(\"admin\");\n      await followPersonalSubscriptionByKeyboard(page, \"week\");\n      await expect(calendarUI(page).abuse).toBeVisible();\n      await expect(calendarUI(page).create).toHaveCount(1);\n      const monitoring = await f.monitoringReceipt();\n      expect(monitoring).toEqual({\n        aggregateReadAllowed: true, ownTenantOnly: true,\n        limitedRequests: f.expectedAbuse.limitedRequests, spikes: f.expectedAbuse.spikes,\n        containsHashIpUrlProofKeyOrPeerDetails: false,\n      });\n      // These counts are independently seeded physical facts; do not derive the\n      // oracle from the provider response. No rate-limit trip in this E2E lane.\n      await expect(calendarUI(page).abuse).toContainText(String(f.expectedAbuse.limitedRequests));\n      const before = await f.snapshot();\n      const { snapshot } = await issueFromUI(page, f);\n      expectIsolated(before, snapshot); // Admin management remains self-only\n    });\n  });\n});\n",
+      "description": "11 skipped essential production-browser calendar feed contract cases",
+      "expected_to_fail": true,
+      "failure_reason": "Intentional fail-closed RED adapter; feature and adapter wiring required in P5",
+      "acceptance_criteria_covered": [
+        "AC1",
+        "AC2",
+        "AC3",
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC7",
+        "AC9"
+      ],
+      "priority_coverage": {
+        "P3": 0,
+        "P1": 6,
+        "P2": 0,
+        "P0": 5
+      },
+      "cases": [
+        {
+          "priority": "P0",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC3",
+            "AC4",
+            "AC6",
+            "AC7",
+            "AC9"
+          ],
+          "id": "15.5-E2E-001",
+          "description": "Actual personal calendar keyboard entry, issue once, real anonymous own-only feed, physical last-used, rotate old404 and revoke new404"
+        },
+        {
+          "priority": "P1",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC6"
+          ],
+          "id": "15.5-E2E-002A",
+          "description": "Actual agenda host exposes one keyboard-reachable shared settings link"
+        },
+        {
+          "priority": "P1",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC6"
+          ],
+          "id": "15.5-E2E-002B",
+          "description": "Actual desktop week host exposes one keyboard-reachable shared settings link"
+        },
+        {
+          "priority": "P1",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC6"
+          ],
+          "id": "15.5-E2E-002C",
+          "description": "Actual empty personal host retains keyboard subscription link"
+        },
+        {
+          "priority": "P1",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC6"
+          ],
+          "id": "15.5-E2E-003",
+          "description": "Profile menu Min kalender entry reaches same lifecycle surface"
+        },
+        {
+          "priority": "P1",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC6"
+          ],
+          "id": "15.5-E2E-004",
+          "description": "Plain-language warning, never-used, clipboard denial selectable fallback, revisit no URL recovery"
+        },
+        {
+          "priority": "P0",
+          "acceptance_criteria_covered": [
+            "AC2",
+            "AC6"
+          ],
+          "id": "15.5-E2E-005",
+          "description": "Confirmation cancel/focus, pending before persistence, failed rotation unchanged, explicit retry"
+        },
+        {
+          "priority": "P0",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC2",
+            "AC6"
+          ],
+          "id": "15.5-E2E-006",
+          "description": "Lost real committed response, sanitized reconcile, no duplicate audit, separate explicit rotation"
+        },
+        {
+          "priority": "P1",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC6"
+          ],
+          "id": "15.5-E2E-007",
+          "description": "360x640 keyboard entry/touch issue and revoke; no-profile real empty feed"
+        },
+        {
+          "priority": "P0",
+          "acceptance_criteria_covered": [
+            "AC1",
+            "AC5",
+            "AC6",
+            "AC9"
+          ],
+          "id": "15.5-E2E-008",
+          "description": "NonAdmin manager own-only feed, no aggregate UI or authorized aggregate read"
+        },
+        {
+          "priority": "P0",
+          "acceptance_criteria_covered": [
+            "AC5",
+            "AC6",
+            "AC9"
+          ],
+          "id": "15.5-E2E-009",
+          "description": "Admin sanitized own-tenant aggregate and separate self-only lifecycle"
+        }
+      ]
+    }
+  ],
+  "support_files": [
+    {
+      "file": "tests/e2e/support/calendar-feed-atdd.ts",
+      "description": "No-import-effect real-evidence driver interface, semantic UI helpers, opaque link handles, fail-closed RED entry",
+      "content": "/** Story 15.5 P4 RED contract. Importing this module performs no I/O.\n * P5 must bind REAL production-host browser/HTTP/physical SQL observations.\n * These are test-driver receipts, NOT proposed production RPC/DTO contracts.\n * Do not import tests/support/calendar-feed-atdd.ts: its serial key/global-IP\n * budget belongs to the separate API lane. No shared key mutation in this lane.\n */\nimport { expect, type Locator, type Page } from \"@playwright/test\";\n\nexport const CALENDAR_FIXTURE_DATE = \"2026-10-12\";\n\n/** Existing labels were source-inspected, never runtime-verified in P4.\n * All lifecycle names below are PROPOSED accessible names, requiring P5 source\n * and actual browser confirmation. Only subscription/title/profile text and\n * settings path are pinned by the approved Spec. No CSS or future test endpoint.\n */\nexport const calendarNames = {\n  title: \"Kalenderprenumeration\",\n  create: \"Skapa kalenderlänk\",\n  rotate: \"Rotera kalenderlänk\",\n  revoke: \"Återkalla kalenderlänk\",\n  copy: \"Kopiera kalenderlänk\",\n  link: \"Kalenderlänk\",\n  confirmRotate: \"Bekräfta rotation\",\n  confirmRevoke: \"Bekräfta återkallelse\",\n  retry: \"Försök igen\",\n  reconcile: \"Kontrollera resultat\",\n  abuse: \"Kalenderprenumeration – missbruksöversikt\",\n} as const;\n\nexport function calendarUI(page: Page) {\n  return {\n    create: page.getByRole(\"button\", { name: calendarNames.create, exact: true }),\n    rotate: page.getByRole(\"button\", { name: calendarNames.rotate, exact: true }),\n    revoke: page.getByRole(\"button\", { name: calendarNames.revoke, exact: true }),\n    copy: page.getByRole(\"button\", { name: calendarNames.copy, exact: true }),\n    link: page.getByRole(\"textbox\", { name: calendarNames.link, exact: true }),\n    retry: page.getByRole(\"button\", { name: calendarNames.retry, exact: true }),\n    reconcile: page.getByRole(\"button\", { name: calendarNames.reconcile, exact: true }),\n    abuse: page.getByRole(\"region\", { name: calendarNames.abuse, exact: true }),\n  };\n}\n\n/** Keyboard traversal proves reachability; direct focus() would not prove it. */\nexport async function tabTo(page: Page, target: Locator): Promise<void> {\n  for (let count = 0; count < 80; count++) {\n    await page.keyboard.press(\"Tab\");\n    if (await target.evaluate((element) => element === document.activeElement)) return;\n  }\n  throw new Error(\"Expected calendar control is not reachable by keyboard\");\n}\n\n/** Actual source anchors: AppShell Huvudmeny/Huvudnavigation + Planering;\n * SchedulingToolbar Planeringsvy/Min kalender, Datum, Period;\n * PersonalCalendarView Min kalender/Egen agenda/Egen veckokalender/empty copy.\n * P5 must verify hydration against the production host before accepting results.\n */\nexport async function enterActualPersonalCalendar(page: Page, mode: \"day\" | \"week\") {\n  await page.goto(\"/dashboard\");\n  const menu = page.getByRole(\"button\", { name: \"Öppna meny\", exact: true });\n  if (await menu.isVisible()) await menu.click();\n  const nav = page.getByRole(\"navigation\", { name: \"Huvudnavigation\", exact: true })\n    .filter({ visible: true });\n  await nav.getByRole(\"link\", { name: \"Planering\", exact: true }).click();\n  await expect(page).toHaveURL(/\\/scheduling$/);\n  await page.getByRole(\"tab\", { name: \"Min kalender\", exact: true }).click();\n  await page.getByLabel(\"Datum\", { exact: true }).fill(CALENDAR_FIXTURE_DATE);\n  await page.getByLabel(\"Period\", { exact: true }).selectOption(mode);\n  await expect(page.getByText(\"Läser planering…\", { exact: true })).toHaveCount(0);\n  const personal = page.getByRole(\"region\", { name: \"Min kalender\", exact: true });\n  await expect(personal).toBeVisible();\n  return personal;\n}\n\nexport async function followPersonalSubscriptionByKeyboard(page: Page, mode: \"day\" | \"week\") {\n  const personal = await enterActualPersonalCalendar(page, mode);\n  const subscription = personal.getByRole(\"link\", { name: calendarNames.title, exact: true });\n  await expect(subscription).toHaveCount(1);\n  await expect(subscription).toHaveAttribute(\"href\", \"/settings/calendar\");\n  await tabTo(page, subscription);\n  await page.keyboard.press(\"Enter\");\n  await expect(page).toHaveURL(/\\/settings\\/calendar$/);\n  await expect(page.getByRole(\"heading\", { name: calendarNames.title, exact: true })).toBeVisible();\n}\n\n/** Exact Swedish warning copy is not pinned. These semantic assertions need P5\n * reconciliation with final accessible wording; provider retention is required.\n */\nexport async function expectAccessWarning(page: Page): Promise<void> {\n  await expect(page.getByText(/(?:alla|den) som har länken.*läsa/i)).toBeVisible();\n  await expect(page.getByText(/kalender(?:app|leverantör).*behålla|redan hämtade.*(?:finnas kvar|sparas)/i)).toBeVisible();\n}\n\ndeclare const issuedLinkBrand: unique symbol;\n/** Adapter keeps the raw link in a private WeakMap, never an enumerable property.\n * Do not compare, interpolate, attach, screenshot, trace or print the raw input.\n */\nexport type IssuedLinkHandle = { readonly [issuedLinkBrand]: true };\nexport type LifecycleAction = \"create\" | \"rotate\" | \"revoke\";\nexport type SafeEvent = { uid: string; summary: string; location: string | null };\nexport type SubjectRows = {\n  generationCount: number; activeCount: number; revokedCount: number;\n  revision: number; usageCount: number; lastUsedAt: string | null;\n  audit: { action: LifecycleAction; actorMatchesSubject: boolean }[];\n};\nexport type PhysicalSnapshot = {\n  own: SubjectRows; peer: SubjectRows; foreign: SubjectRows;\n  onlyHashedCapabilitiesStored: boolean;\n  auditContainsCapabilityOrProofOrIpOrKey: boolean;\n};\nexport type LifecycleObservation = {\n  committed: boolean; snapshot: PhysicalSnapshot;\n};\nexport type SafeFeedReceipt = {\n  status: number; contentType: string; cacheControl: string;\n  setCookiePresent: boolean; redirectPresent: boolean;\n  events: SafeEvent[]; containsForbiddenFields: boolean;\n  rfc5545Valid: boolean;\n};\nexport type ArmedFault = {\n  reached: Promise<void>;\n  /** SQL commit readback, not a fulfilled/stubbed response. */\n  committed: Promise<PhysicalSnapshot>;\n  release: () => Promise<void>;\n  dispose: () => Promise<void>;\n};\n\nexport type CalendarBrowserFixture = {\n  /** Fixture is tenant-isolated, with legacy NULL provisioning_state positive,\n   * own/shared planned rows and peer/foreign poison rows, stable independent UIDs.\n   * Reuse existing withBookingFixture/FixtureUser/adminQuery contracts in P5;\n   * create no host env file or globally shared fixture/key in this helper.\n   */\n  expectedOwnEvents: SafeEvent[];\n  expectedAbuse: { limitedRequests: number; spikes: number };\n  signIn: (identity: \"montor\" | \"manager\" | \"admin\") => Promise<void>;\n  snapshot: () => Promise<PhysicalSnapshot>;\n  /** Register actual action transport listener BEFORE triggering the UI action;\n   * bind actual Next action input, never guess an /api endpoint or RPC payload.\n   * Transport 2xx alone is insufficient: join exact subject/attempt SQL commit.\n   */\n  observeLifecycle: (action: LifecycleAction) => Promise<LifecycleObservation>;\n  /** Read the one-time accessible input without exposing its value in assertions.\n   * Format/hash/no-storage checks return booleans only. Capture errors discard\n   * cause/request/response/DOM bodies and use a fixed redacted message.\n   */\n  captureIssuedLink: () => Promise<{\n    handle: IssuedLinkHandle; canonical43Characters: boolean;\n    hashMatchesPhysicalGeneration: boolean; absentFromBrowserStorage: boolean;\n  }>;\n  /** REAL anonymous HTTP GET to /calendar/feed/[token] outside browser trace;\n   * cookie-free independent client, retries=0, no raw error/URL artifacts.\n   * Parse independently of production encoder. Only sanitized receipt escapes.\n   * Every request counts: E2E uses no rate-limit trip/global-key mutation. Parent\n   * schedules it separately from serial API unknown-IP budget/key/fault tests.\n   */\n  fetchAnonymous: (link: IssuedLinkHandle) => Promise<SafeFeedReceipt>;\n  /** Compare last-used UI with exact physical timestamp without locale guesses. */\n  lastUsedMatchesPhysical: () => Promise<boolean>;\n  /** Private raw checks; return no URL/hash/proof/IP/key or browser storage data. */\n  checkIssuedLinkFallback: () => Promise<{\n    readOnly: boolean; selectedWholeLink: boolean; equalsConfirmedIssuedLink: boolean;\n  }>;\n  denyClipboard: () => Promise<void>;\n  /** Transport-only fault, registered BEFORE actions. Never synthesize success.\n   * Hold-before-send proves pending; fail-before-send proves zero writes; lost\n   * response forwards real request and confirms SQL commit before aborting bytes.\n   * Restore all routes/listeners and release owned gates in finally, bounded.\n   */\n  armFault: (kind: \"hold-before-send\" | \"fail-before-send\" | \"lose-committed-response\") => Promise<ArmedFault>;\n  /** Test-normalized sanitized current-self attempt metadata; no new RPC shape. */\n  attemptReceipt: () => Promise<{\n    submittedAttempts: number; distinctAttempts: number; recoveredRawLink: boolean;\n  }>;\n  /** Actual management read response scrubbed privately, plus actual UI/SQL\n   * aggregate comparison. SQL setup must seed only owned aggregate rows (no\n   * unknown-IP requests or test-key writes in this browser fixture).\n   */\n  monitoringReceipt: () => Promise<{\n    aggregateReadAllowed: boolean; ownTenantOnly: boolean;\n    limitedRequests: number; spikes: number;\n    containsHashIpUrlProofKeyOrPeerDetails: boolean;\n  }>;\n};\n\n/** INTENTIONAL RED BLOCKER. Removing test.skip alone fails BEFORE acceptance.\n * P5 replaces this body with actual owned fixtures and try/finally cleanup,\n * confirms selectors against actual production-host UI, binds real actions,\n * anonymous HTTP and physical rows, and uses guard-owned resourcePage/host.\n * No fake/no-op adapter, mock-returned receipt, production getter, generated\n * key, DB/HTTP/client import, resource launch, environment read or runtime here.\n * Existing resource-cdp-attachment reads env at import, hence P4 imports neither\n * it nor runtime test-env factories. Parent owns P5 launch/config admission.\n */\nexport async function withCalendarBrowserFixture(\n  _page: Page,\n  _scenario: \"own-and-foreign\" | \"no-profile\" | \"admin-monitoring\",\n  _run: (fixture: CalendarBrowserFixture) => Promise<void>,\n): Promise<void> {\n  throw new Error(\"ATDD RED 15.5: bind real browser, anonymous HTTP and physical SQL adapter before acceptance\");\n}\n"
+    }
+  ],
+  "fixture_needs": [
+    "P5 replace withCalendarBrowserFixture body with actual row-isolated fixture and finally cleanup; remove skip only after genuine RED activation",
+    "Guard-owned configured production host and resourcePage; propagate viewport/hasTouch and keep trace/video/screenshots/HAR disabled",
+    "Real authenticated identity/action listeners and exact physical generation/audit/last-used SQL readbacks",
+    "Actual cookie-free anonymous HTTP outside browser trace, independent RFC parser, safe fixed error sanitization and zero retries",
+    "Root-admitted dedicated feed runtime key used read-only; no API helper/global key mutation; schedule separately from serial unknown-IP/budget/fault lane",
+    "Actual own/shared/peer/foreign fixtures including legacy NULL provisioning_state; no-profile empty scenario; identity-specific independent event oracles",
+    "Owned aggregate seed rows for Admin own/foreign separation without exercising global IP budgets",
+    "Bounded pre-send hold/failure and forward-real-commit-then-abort faults with finally route/gate restoration"
+  ],
+  "knowledge_fragments_used": [
+    "library-integration-mandate",
+    "playwright-utils-mandate",
+    "overview",
+    "api-request",
+    "intercept-network-call",
+    "network-error-monitor",
+    "fixtures-composition",
+    "log",
+    "auth-session",
+    "fixture-architecture",
+    "network-first",
+    "selector-resilience",
+    "timing-debugging",
+    "playwright-cli",
+    "confidence-gate"
+  ],
+  "provider_scrutiny": {
+    "source_contract": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "production_shapes_invented": false,
+    "playwright_utils": "Flag true/package absent; two-gate mandate inactive; vanilla current repository style",
+    "provider": "Approved first-party story contract and current repository source",
+    "pact": "Package absent/broker unavailable; no broker claims",
+    "observed_runtime": false,
+    "approved_kernel": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "driver_receipts": "Test-normalized observations only; real binding required before acceptance"
+  },
+  "confidence": {
+    "unknowns": [
+      "P5 real action transport discriminator, SQL/audit binding and safe parser receipts",
+      "Final accessible lifecycle/error/Admin copy and production hydration",
+      "Root-owned resourcePage phone/hasTouch/redaction configuration and read-only feed runtime key"
+    ],
+    "rationale": "Frozen approved ACs plus actual personal host/AppShell/toolbar/current E2E patterns; contract scaffolds only",
+    "score": 9,
+    "runtime_selector_evidence": "none"
+  },
+  "selectors": {
+    "runtime_verified": [],
+    "proposed_requires_p5_confirmation": [
+      "Skapa kalenderlänk",
+      "Rotera kalenderlänk",
+      "Återkalla kalenderlänk",
+      "Kopiera kalenderlänk",
+      "Kalenderlänk textbox",
+      "Bekräfta rotation",
+      "Bekräfta återkallelse",
+      "Försök igen",
+      "Kontrollera resultat",
+      "Kalenderprenumeration – missbruksöversikt region",
+      "Warning/never-used/error/lost-link regular expressions"
+    ],
+    "source_inspected": [
+      "Planering navigation",
+      "Profil button",
+      "Huvudnavigation",
+      "Min kalender tab/region",
+      "Datum",
+      "Period",
+      "Egen agenda",
+      "Egen veckokalender",
+      "Inga egna bokningar i perioden."
+    ],
+    "contract_pinned": [
+      "Kalenderprenumeration link/title",
+      "Min kalender profile link",
+      "/settings/calendar"
+    ]
+  },
+  "playwright_utils_deviations": [
+    {
+      "reason": "Two-gate mandate inactive: package absent. Native test import and test.use only; helper/action observation interfaces wait for actual P5 wiring.",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts"
+    }
+  ],
+  "summary": "11 test.skip cases, zero execution/acceptance/resources; real adapter wiring deliberately blocks activation. No changes beyond two owned test files and worker JSON/notes."
+}

@@ -1,0 +1,626 @@
+{
+  "schema": "story-15-5-owner-acl-normal-readiness-v1",
+  "policy_version": "2026-10-19",
+  "status": "CURRENT_SOURCE_BOUND_ENROLLMENT_EFFECT_METADATA_ONLY",
+  "role": "Sol6.1 High independent normal readiness qualifier; not source CODE reviewer",
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "future_pushed_head": null,
+  "future_run_id": null,
+  "future_checkpoint_uuid": null,
+  "future_attempt": null,
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "normal_acceptance_credit": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owner-acl-future-normal-evidence-readiness.json",
+      "bytes": 16212,
+      "sha256": "35c094615672c4b7a00ae62a8d1f1c768fe2103b5029a4c09a6c5f2c3095ccb7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-acl-source-precommit-admission.json",
+      "bytes": 32886,
+      "sha256": "58e9a000aaa5107b90216be3ae838cf41ac7c18195ce87a488c53126f5075158"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-owner-acl-source-postcommit-binding.json",
+      "bytes": 885,
+      "sha256": "33f85c01fdf19ed86cedbe23d95f43b091d8281ca1e66abfbfa94f578d4c7c5f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owner-acl-source-author-result.json",
+      "bytes": 7673,
+      "sha256": "ba56f838f998efd80837970f40bb6286dbf9f49459b4aeae9ff0d86c1983d59e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-owner-acl-source-allocation.json",
+      "bytes": 2899,
+      "sha256": "f577b996e02755eb51d7536dbe903552a67b67efbdb18551ba2e08782305fb9a"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "current_source": {
+    "raw71_reverified": true,
+    "raw_count": 71,
+    "source_git_bindings71": "Root actual postcommit proof bound above; no independent Git command here.",
+    "changed": 5,
+    "unchanged": 66,
+    "migrations111": {
+      "count": 111,
+      "unique_prefixes": 111,
+      "latest": "20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "expected_sorted_ledger_JSON_sha256": "ab178fbba4e9e6a07e19fb4dd65e627c3f159cc814c6b2910965a44b964d87b7",
+      "actual_application": 0,
+      "freeze_rule": "Any actual successful application/adoption freezes111; no later rewrite without forward coordination."
+    },
+    "necessary_current_raw_source_and_schema_bindings": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "source589_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 170000,
+        "sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d",
+        "source589_blob": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "package.json",
+        "bytes": 2352,
+        "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+        "source589_blob": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "playwright.config.ts",
+        "bytes": 4872,
+        "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+        "source589_blob": null,
+        "blob_provenance": "Supplementary raw runtime config outside71: exact future pushed blob binding remains a Root admission prerequisite, not inferred here."
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+        "source589_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "bytes": 19782,
+        "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+        "source589_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 47151,
+        "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+        "source589_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+        "source589_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+        "bytes": 32551,
+        "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+        "source589_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "bytes": 27768,
+        "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+        "source589_blob": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "bytes": 55454,
+        "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+        "source589_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+        "source589_blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36884,
+        "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+        "source589_blob": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/integration/components/calendar-feed.test.ts",
+        "bytes": 3534,
+        "sha256": "6ac7a41a4dca5bccf4aae4300be8ccf38689b3ae19ceb4daa9c8c22d7282db42",
+        "source589_blob": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "bytes": 7563,
+        "sha256": "40186690034643019fb770250bc545627444abd29f73699b184b7f7714941279",
+        "source589_blob": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "bytes": 16017,
+        "sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950",
+        "source589_blob": "643eda6f18612322aa73b39f5c784d256de4c77e",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 110189,
+        "sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde",
+        "source589_blob": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8024,
+        "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+        "source589_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/support/test-env.ts",
+        "bytes": 12287,
+        "sha256": "4ad1f1e80782da40f653bdf5a69a1b5ea0e41db08ed334c460f95a49875130df",
+        "source589_blob": null,
+        "blob_provenance": "Supplementary raw runtime config outside71: exact future pushed blob binding remains a Root admission prerequisite, not inferred here."
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+        "bytes": 4086,
+        "sha256": "2536d7a63ff437cd21cd22982d505dd60fc98cbb8ffa908abe044bd393f4db9b",
+        "source589_blob": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+        "bytes": 6651,
+        "sha256": "862aa51c0c100f993949e60b96d035a25eef5a976f4edac6e4c76681258729a9",
+        "source589_blob": "834025e861c0c2947e85374a90d3443ef8b923d2",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/validation.test.ts",
+        "bytes": 2581,
+        "sha256": "1f1f2fda1a02070d5d02298d53d21ff258fe5276976bd441da3c017db538647f",
+        "source589_blob": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 189039,
+        "sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580",
+        "source589_blob": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "bytes": 9087,
+        "sha256": "ea88c63c7fda518328fe7a2ab5f2c9d90628995f64f76607e184ef47b405f1f0",
+        "source589_blob": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+        "bytes": 4728,
+        "sha256": "b7e33cfbe5f4ef1e2352d65117ba63fcb2601eb771027bad9ca359b2029b8003",
+        "source589_blob": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+        "bytes": 4458,
+        "sha256": "f02a1015ba35b08d9c6cc2926f1b8f8c5cb8c736feba3e260b9c51a1ccd33386",
+        "source589_blob": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+        "bytes": 2416,
+        "sha256": "e9afe40327412798a22f2af0100b8df9c1911c42338cf452c241272a648420e0",
+        "source589_blob": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 3602,
+        "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+        "source589_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "blob_provenance": "Root postcommit actual71 object verification; no Git command by qualifier"
+      }
+    ],
+    "supplementary_binding_limit": "playwright.config.ts is not in71 Root vector. Its raw identity is recorded; Root must bind its exact future pushed blob alongside final source/context admission. No config/source change is proposed.",
+    "source_review": "Independent targeted committed5 review ACTIVE elsewhere; NOT claimed passed by this metadata.",
+    "local_author_checks": "Author receipt reports final110 focused Node controls P0F/S/C,TS0,lint0,unchanged5760 kernel; not rerun or relabelled as native evidence."
+  },
+  "current_enrollment": {
+    "method": "Static exact declarations plus explicit literal vector expansion; no test runner/DB/browser executed.",
+    "normal_story_total": 95,
+    "Node": {
+      "count": 30,
+      "files": [
+        {
+          "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+          "literal_declarations": 4,
+          "expanded_cases": 4
+        },
+        {
+          "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+          "literal_declarations": 8,
+          "expanded_cases": 13
+        },
+        {
+          "path": "tests/unit/features/calendar-feed/validation.test.ts",
+          "literal_declarations": 3,
+          "expanded_cases": 3
+        },
+        {
+          "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+          "literal_declarations": 4,
+          "expanded_cases": 4
+        },
+        {
+          "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+          "literal_declarations": 3,
+          "expanded_cases": 3
+        },
+        {
+          "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+          "literal_declarations": 3,
+          "expanded_cases": 3
+        }
+      ],
+      "case_ids_or_exact_regression_titles": [
+        "UNIT-009",
+        "UNIT-010",
+        "UNIT-011",
+        "R1-07 authoritative post-commit refresh removes a concurrent revoke/rotation URL and retains current issuance",
+        "UNIT-001",
+        "UNIT-002-spring",
+        "UNIT-002-autumn",
+        "UNIT-003",
+        "UNIT-004",
+        "UNIT-005",
+        "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.000001Z",
+        "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.1Z",
+        "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.999999Z",
+        "R1-05 positive microsecond range projects to distinct supported RFC seconds 1969-12-31T23:59:59.999998Z",
+        "R1-05 positive microsecond range projects to distinct supported RFC seconds 9999-12-31T23:59:59.000001Z",
+        "R1-05 microsecond ordering rejects reversed intervals within one millisecond",
+        "R1-06 snapshot omits METHOD and both revision stamps advance while UID stays stable",
+        "UNIT-006",
+        "UNIT-007",
+        "UNIT-008",
+        "UNIT-012",
+        "UNIT-013",
+        "UNIT-014",
+        "UNIT-021",
+        "UNIT-018",
+        "UNIT-019",
+        "UNIT-020",
+        "UNIT-015",
+        "UNIT-016",
+        "UNIT-017"
+      ],
+      "expansion": "UNIT002 spring/autumn2; R1-05 positive literal vector.start5; other declarations once."
+    },
+    "Vitest_ordinary": {
+      "count": 51,
+      "files": [
+        {
+          "group": "INT",
+          "path": "tests/integration/commands/calendar-feed.int.test.ts",
+          "case_ids": [
+            "INT001",
+            "INT002",
+            "INT003",
+            "INT004",
+            "INT005",
+            "INT006",
+            "INT007",
+            "INT008",
+            "INT009",
+            "INT010",
+            "INT011",
+            "INT012",
+            "INT013",
+            "INT014",
+            "INT015"
+          ],
+          "count": 15
+        },
+        {
+          "group": "RLS",
+          "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+          "case_ids": [
+            "RLS001",
+            "RLS002",
+            "RLS003",
+            "RLS004",
+            "RLS005",
+            "RLS006",
+            "RLS007",
+            "RLS008",
+            "RLS009",
+            "RLS010",
+            "RLS011",
+            "RLS012"
+          ],
+          "count": 12
+        },
+        {
+          "group": "COMP",
+          "path": "tests/integration/components/calendar-feed.test.ts",
+          "case_ids": [
+            "COMP-001",
+            "COMP-002",
+            "COMP-003",
+            "COMP-004"
+          ],
+          "count": 4
+        },
+        {
+          "group": "API",
+          "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+          "case_ids": [
+            "API001",
+            "API002",
+            "API003",
+            "API004",
+            "API005",
+            "API006",
+            "API007",
+            "API008",
+            "API009",
+            "API010",
+            "API011",
+            "API012",
+            "API013",
+            "API014",
+            "API015",
+            "API016",
+            "API017",
+            "API018",
+            "API019",
+            "API020"
+          ],
+          "count": 20
+        }
+      ],
+      "new_case_delta": 0,
+      "new_proof": "One awaited calendarOwnerAclRegression() inside existing RLS010 before row fixture. No new declaration or additive native case.",
+      "DIAG001": "Declared only under CALENDAR_FEED_CAUSE_PROOF_MODE=1; absent/uncredited in normal mode."
+    },
+    "essential_browser": {
+      "count": 14,
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "case_ids": [
+        "E2E-001",
+        "E2E-002A",
+        "E2E-002B",
+        "E2E-002C",
+        "E2E-003",
+        "E2E-004",
+        "E2E-005",
+        "E2E-006",
+        "E2E-007",
+        "E2E-008",
+        "E2E-009",
+        "E2E-010-rotate",
+        "E2E-010-revoke",
+        "E2E-011"
+      ],
+      "expansion": "002A/B/C3 variants;010 rotate/revoke2; other9 declarations once.",
+      "retries": "CI retry attempts are nonadditive; actual attempts/flaky/skipped remain separately observed."
+    },
+    "direct_recovery": {
+      "count": 1,
+      "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "title": "serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+      "separate_from95": true,
+      "requires": "Dedicated job ISOLATED_RECOVERY_STORAGE_PROOF=1; skipped full-integration occurrence is not proof."
+    },
+    "all_current_native_execution_counts": null,
+    "native95_status": "UNEXECUTED_UNQUALIFIED"
+  },
+  "partition": {
+    "static_files": 165,
+    "parallel": 159,
+    "serial_count": 6,
+    "serial_once_files": [
+      "tests/integration/jobs/job-runs.int.test.ts",
+      "tests/integration/commands/conflict-resolver.int.test.ts",
+      "tests/integration/commands/time-reports.int.test.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts"
+    ],
+    "source_contract": "integration-parallel groupOrder0 excludes exactly same6 as integration-audit-ddl groupOrder1 includes; serial fileParallelism=false.",
+    "installed_contract_path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "proof_limit": "Future native verify must run actual installed collection/scheduler positive+inverse control. Actual integration report must reconcile once/order/nonoverlap/postparallel completion; no invented teardown timestamp. This assignment only statically binds the contract.",
+    "new_RLS010_project": "integration-parallel; only uncommitted private UUID catalog effects; no serial/shared ordering alteration."
+  },
+  "normal_CI_runtime_effect_scope_TO_ALLOCATE": {
+    "once": "ONE exact reviewed fresh normal checkpoint run, five required jobs and optional4 skipped/uncredited, causeproofFALSE/releaseFALSE. Root solely dispatches/polls; no blind retry. Source-only grant does not authorize these effects.",
+    "required_jobs": [
+      "checkpoint-admission",
+      "verify",
+      "db",
+      "recovery-storage-loader",
+      "e2e"
+    ],
+    "optional_skips": [
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "existing_hosted_scope": "Owned GitHub-hosted source stacks start/reset and current111 migrations; isolated recovery DB/Storage schema restore/loader/physical bytes+logical-row+overwrite-denial proof; actual full integration/RLS/pilot and essential browser production app; generated job-local credentials/loopback Auth/mail/DB/HTTP; wrapper dedicated Vault key and exact child/server/HTTP/poll/key cleanup or custody. No demo/provider/prod/local-resource target.",
+    "current111_actual_catalog_delta": "After all8 canonical function body/shape/owner/raw-source-ACL preflight, use existing authorized SET calendar_feed_owner context to atomically REVOKE all from PUBLIC/anon/authenticated/service_role on fixed8 OIDs. Regrant anon on fetch, authenticated on status/manage/abuse, no JWT grant on first4 internal targets. Reset original postgres and enforce stable metadata/roles/memberships/public schema. Original3 guards and later actor adapter remain. No new role attributes/memberships/default ACL changes in this migration phase.",
+    "ordinary_grantor_RLS010_additional_effects": {
+      "placement": "Runs once at beginning of existing RLS010, before its owned row fixture.",
+      "metadata_commands": "Exactly Docker inspect of owned source db+gateway and Supabase status JSON; each15s/2MB, captured credentials/errors RAM only. No lifecycle launch/reset by this helper.",
+      "admission": "SUPABASE_TEST_REQUIRED=1; disposable db mode/source identities, exact GITHUB_WORKSPACE realpath and local DB endpoint, exact111 ledger and feed-owner/definer function catalog; main and fresh clients independently check original/current authority7 and privacy4 plus nativePG17.",
+      "clients": "One existing runtime factory proof SQL client for transaction, then one fresh existing factory absence client after main end. No generic new pool or privileged child env.",
+      "private_objects": {
+        "roles": 2,
+        "schemas": 1,
+        "functions": 1,
+        "patterns": [
+          "cf_acl_m_<32hex>",
+          "cf_acl_o_<32hex>",
+          "cf_acl_s_<32hex>",
+          "cf_acl_f_<32hex>"
+        ],
+        "lifetime": "Uncommitted one transaction; no persistent object/fixture and no DROP cleanup."
+      },
+      "closed_actor_types": {
+        "setup": "Existing qualified supabase_admin original/current LOGIN+SUPER proof session, separate from actual migration executor postgres LOGIN/non-SUPER. No guessed/default/fallback privilege transport.",
+        "UUID_migrator": "NOLOGIN,NOINHERIT,NOSUPER,NOCREATEDB,CREATEROLE,NOREPLICATION,NOBYPASSRLS; SET LOCAL SESSION AUTHORIZATION; createrole_self_grant empty.",
+        "UUID_owner": "NOLOGIN,NOINHERIT,NOSUPER,NOCREATEDB,NOCREATEROLE,NOREPLICATION,NOBYPASSRLS; exact predecessor bootstrap grants new-role SET without inheritance; SET LOCAL ROLE limited to own UUID owner."
+      },
+      "bounded_SQL_effects": [
+        "BEGIN; SET LOCAL statement_timeout5s/lock_timeout2s/idle_transaction_timeout30s; snapshot only protected canonical production targets/roles/membership/public schema, excluding unrelated UUID catalog rows.",
+        "Create UUID migrator role and private schema; name-only adapted exact bootstrap creates UUID owner and explicit SET/noinherit membership. Restrict session authority to UUID migrator.",
+        "Grant usage/create only on UUID schema to UUID owner; create one private(uuid,uuid)->jsonb PLpgSQL definer empty-search-path function and transfer ownership.",
+        "Apply exact predecessor REVOKE/GRANT adapted only to private function; observe no independent grant option and unsafe raw ACL under ordinary grantor.",
+        "SAVEPOINT, SET LOCAL ROLE UUID owner, exact bound reconciliation loop, deliberately fixed P0001, rollback/release savepoint; qualify ordinary identity and exact prior unsafe catalog state.",
+        "SET LOCAL ROLE UUID owner, reconcile private function again, RESET ROLE; exact owner/authenticated intended ACL, anon/service denied, original OID/metadata unchanged; protected shared catalog fingerprint unchanged."
+      ],
+      "primary_bound": "80s closes new SQL admission; actual pending pg promises and protocol ReadyForQuery/idle tracked separately from query timeout.",
+      "cleanup": "Close primary admission; Promise.allSettled pending queries and protocol idle before full ROLLBACK. Only after confirmed rollback reset session/role, requalify original authority/privacy and same-client role/schema/function absence. Close main, then fresh separately qualified client checks UUID absence/protocol idle and closes. Any uncertainty/transport/close failure retains UUID custody in RAM and fails for owned job disposal; no missing report means clean absence.",
+      "not_effects": "No Auth/token/tenant fixture inside this subproof; no shared function/role ACL/attributes/membership/default ACL changes, no runner ordering change. Function EXECUTE grants are only on private UUID function, even to existing authenticated role."
+    },
+    "ordinary_fixtures_afterwards": "Existing RLS010 row fixture and other cases use owned tenants/Auth users/memberships/bookings/token/audit fixtures and reviewed fault/time/catalog seams. Existing exact-owned Vault key/child settlement cleanup remains mandatory. New UUID subproof does not replace INT015/source/recovery authority or lifecycle evidence.",
+    "hosted_variables_secrets": "Unchanged normal workflow/dispatcher requires no new repo admission-variable mutation. Only existing reviewed job-generated/captured credentials; no provider/prod secrets. Current hosted availability and other-session ownership still need Root/Coordinator admission, not API assumptions here.",
+    "freeze_custody": "Success applying111 freezes its bytes; exact managed hosted cleanup remains actual-step/receipt qualified, not guaranteed physical shutdown from Stop success."
+  },
+  "separate_future_evidence_allocation": {
+    "reuse_protocol_ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owner-acl-future-normal-evidence-readiness.json",
+      "bytes": 16212,
+      "sha256": "35c094615672c4b7a00ae62a8d1f1c768fe2103b5029a4c09a6c5f2c3095ccb7"
+    },
+    "existing_record_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-93473f12-ci-independent/terminal-acquisition.json",
+    "executable_collector": "No standalone normal collector identified in inspected packet; reusable bounded inline protocol, not new runner. Consumed matrix02 and v1/P2 consumers are unsuitable/unused.",
+    "normal_fixed3": [
+      {
+        "artifact": "native-full-integration",
+        "workspace_file": "test-results/full-integration.json",
+        "expected_single_JSON_basename": "full-integration.json",
+        "format": "Installed Vitest JSON",
+        "qualify": "Actual executed/pass/fail/pending/skipped totals; exact ordinary case titles and file membership, including full RLS cases; not a stand-alone additive RLS subset."
+      },
+      {
+        "artifact": "native-general-browser",
+        "workspace_file": "test-results/general-browser.json",
+        "expected_single_JSON_basename": "general-browser.json",
+        "format": "Installed Playwright JSON",
+        "qualify": "Distinct essential story cases versus retry attempts/flaky/skip; other authentication smoke cases separate. Available attachments privacy facts only; missing content remains NULL/UNQUALIFIED."
+      },
+      {
+        "artifact": "native-isolated-storage-recovery",
+        "workspace_file": "test-results/isolated-storage-recovery.json",
+        "expected_single_JSON_basename": "isolated-storage-recovery.json",
+        "format": "Installed Vitest JSON",
+        "qualify": "Direct separate recovery case and all reached storage/object/protected-row/overwrite-denial/effective-public-CREATE assertions; not ordinary story case credit."
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/<actual-run>/logs",
+        "maximum": 1,
+        "timeout_seconds": 15,
+        "compressed_cap_bytes": 33554432,
+        "memory_inflate_total_cap_bytes": 134217728,
+        "selected_jobs": [
+          "verify",
+          "db",
+          "e2e",
+          "recovery-storage-loader"
+        ]
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/<actual-run>/artifacts?per_page=100",
+        "maximum": 1,
+        "timeout_seconds": 15,
+        "response_cap_bytes": 4194304,
+        "pagination": "No retry/page following; total_count>100 or ambiguous/incomplete listing stops."
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/<exact-qualified-artifact-id>/zip",
+        "maximum": 3,
+        "per_artifact_maximum": 1,
+        "eligible_names": [
+          "native-full-integration",
+          "native-general-browser",
+          "native-isolated-storage-recovery"
+        ],
+        "timeout_seconds": 15,
+        "compressed_cap_bytes": 33554432,
+        "memory_inflate_total_cap_bytes": 134217728,
+        "selected_JSON_cap_bytes": 16777216
+      }
+    ],
+    "eligibility": "After Root exact terminal grant only; one normal run archive, one fixed artifact list, at most one exact-ID ZIP per3 expected reports. Actual exact name/id/run/head/nonexpiry/digest and valid nullable metadata including expires_at; no silent old strict grammar adoption. No pagination/alternate endpoint/per-job logs/retry.",
+    "memory_privacy": "RAM-only containers/logs/JSON/errors; streaming process/cap/EOF/done/joined/native exit measurements, strict path/symlink/duplicate/ratio/CRC/declared+actual inflation caps. Persist selected closed counts/stages/enums/allowlisted facts and permitted digest provenance only, never arbitrary error/SQL/credential/URL/custody identifiers.",
+    "schema_members": "Normal installed Vitest full-integration/recovery JSON and installed Playwright general-browser JSON; expected source paths/basenames in fixed3 above require actual ZIP compatibility, never path rewriting. Diagnostic v1/v2 observation consumer unnecessary in normal lane.",
+    "required_current_reach": "All95 distinct cases0skip; actual fullDB/RLS counts with nonadditive expected historical skips, RLS010 new subproof complete cleanup then later raw ACL predicates, INT015 native engine/restricted proof separately, direct recovery1, browser14 cases vs attempts and other smoke separate. All111 source/start/reset/restore+exact ledger and reached assertions; original/current authority/privacy/readiness/HTTP/poll/child output settlement/exact key deletion or truthful custody.",
+    "missing": "Unacquired report/attachment content NULL/UNQUALIFIED. Missing receipt cannot prove no child/key/cleanup; Stop success not physical shutdown. Failures block development, not deferred visual release work.",
+    "no_authority": "All prior network budgets consumed; this metadata authorizes no GET/CI/effects. Separate exact source-bound ownership/allocation/admission before acquisition."
+  },
+  "Root_next_actions": [
+    "Admit active independent targeted committed5 review; no broad4 or claim codePASS from this metadata.",
+    "Obtain runtime allocation explicitly covering current111 owner ACL repair and additional ordinary UUID CREATEROLE/session/schema/function/savepoint/rollback/fresh-absence effects plus existing hosted5job scope.",
+    "Root final metadata commit/push preserves71 source and relevant supplementary runtime config; actual fullSHA/UUID/once intent then current normal capability+ownership proof. Future IDs remain NULL here.",
+    "Root solely dispatches/polls one normal run; bind all9 terminal jobs/steps and actual source/report identities. No speculative rerun or repo-variable/provider expansion.",
+    "Separately admit bounded archive+standard3 report acquisition and exclusive actual-head packet; independentHigh qualifies actual counts/reach/privacy/custody; Root mechanically checks hashes.",
+    "If source schema/guard/native assumption fails, STOP named UNKNOWN for bounded evidence-supported handling. Delivery+fresh final truth audit still separate."
+  ],
+  "limits": {
+    "runtime_SQL": 0,
+    "new_regression_executed": 0,
+    "native_current111_applied": 0,
+    "API": 0,
+    "artifact_access": 0,
+    "tests_executed": 0,
+    "Git_commands": 0,
+    "source_changes": 0,
+    "new_code_tests_collectors": 0,
+    "only_new_metadata_file": true,
+    "source_review_repeated": false
+  },
+  "preparation_stop_preserved": "Initial metadata assembly encountered KeyError for playwright.config.ts absent from Root71 vector BEFORE any output write. Corrected metadata reader labels supplementary current raw config and future HEAD-binding prerequisite; no source/artifact change or invented blob identity."
+}

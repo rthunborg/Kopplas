@@ -1,0 +1,52 @@
+{
+  "schema": "ROOT_INT009_PROVIDER_ACTIVATION_v1",
+  "execution_authorized": true,
+  "operation_id": "bdfad976-dd4a-4ca1-baea-3f47db63df1f",
+  "issued_at_utc": "2026-10-23T12:05:26.534262+00:00",
+  "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+  "source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "checkpoint_id": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+  "provider_reader_sha256": "d38b1214794fbcd8d1fe83437c1b6f039871efc88173f58689150cb865cab7a4",
+  "provider_GETs": 1,
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-effects-allocation.json",
+    "bytes": 3523,
+    "sha256": "0895a06d1bd346e22cb56cb098cd4b809e035ab1d7422707d0866c1876c79550"
+  },
+  "current_source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-current-source-proof.json",
+    "bytes": 39456,
+    "sha256": "defb2fe2ade5cc7feeaf360640d35f180068dfebf477af744399f3a03f41b69e"
+  },
+  "operational_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-review.json",
+    "bytes": 16657,
+    "sha256": "2747bf71ba3f7b24748cb8f0e13cfc0d9b63791d819db4149af7305179c89d59"
+  },
+  "source_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+    "bytes": 19693,
+    "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+  },
+  "capture_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+    "bytes": 18126,
+    "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+  },
+  "browser_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+    "bytes": 12881,
+    "sha256": "0d956247e8f80611fed17e4c7bfb16c5578b10ab96b6552a8974550d27ab9684"
+  },
+  "candidate": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-NORMAL-inert-binding.json",
+    "bytes": 573,
+    "sha256": "568e3942337bbf8d8c6fdefff57db0879485b897afa7135d2d7309752fb062d2"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/proposal.json",
+    "bytes": 139186,
+    "sha256": "95e43d8e89d528ee67070448495d096e7effcbba17c398976b6fea29bdc7862f"
+  }
+}

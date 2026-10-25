@@ -1,0 +1,52 @@
+{
+  "kind": "ROOT_STATUS_ORIGIN_IMPLEMENTATION_REVIEW_SELF_EXCLUDED_MANIFEST",
+  "verdict": "PASS_COMMITTED_LATEST5_ONLY",
+  "source": "8efb90e5038874c672df120651041176a70b1f2f",
+  "base": "93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf",
+  "members": [
+    "input-binding.json",
+    "local-checks.json",
+    "original-attestation.json",
+    "original-report.md",
+    "result.json",
+    "review-input.md",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "input-binding.json",
+      "bytes": 10256,
+      "sha256": "de9debad5029c8bde493d72d4323630da706c88fdaa9e05be37d5a1ea64304d1"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 4296,
+      "sha256": "796c2c6d897f02b972d56a18724e6ab00067317abe592ffe1b29e3bdc049b1d1"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 20950,
+      "sha256": "ff90fd7299108bc34a1a9032f559ecd2fb14d293c02ad74f2cdb7fe51e35d56e"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 9419,
+      "sha256": "73dd64d8bd238b4f41e8ed944313253424116752d546f8adca15c2772e7a8810"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1061,
+      "sha256": "f0b2c66e9c302aa9a162470a08820575f5d82e27785a1956bcac76f89133cfe7"
+    },
+    {
+      "path": "review-input.md",
+      "bytes": 83063,
+      "sha256": "9851914b0c79d12a10ef255ac2d199896fc33e3b5f0965afb942141e0f3577f9"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "reviewer_actual": "Existing independentcheckpoint-IDreviewer reused, independentfromauthor; not freshcontext-free",
+  "independent_controls": "120/120 passed; separate/nonadditive fromauthor93",
+  "native_normal_acceptance_credit": 0,
+  "future_activation": "not granted"
+}

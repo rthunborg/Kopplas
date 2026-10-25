@@ -1,0 +1,312 @@
+{
+  "schema": "INDEPENDENT_INT009_DEBUG_CAPTURE_WINDOW_INERT_READER_SOURCE_REVIEW_V1",
+  "outcome": "PASS_INT009_DEBUG_CAPTURE_WINDOW_INERT_READER_ENUM_SOURCE_ONLY",
+  "status": "PASS_INERT_FINITE_ENUM_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority_granted": false,
+  "producer_source_approved": false,
+  "eligible_as_standalone_effect_admission_review": false,
+  "normal_acceptance": 0,
+  "reviewer": "/root/validate15_4_high; distinct explicit gpt-6.1-sol High independent of producer/reader authors and Root operator",
+  "route": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-source-review-route.json",
+    "bytes": 619,
+    "sha256": "fdcc97739d50ed233653295ae5f57cfc17a0b5ef24954099b0d59bdc849b6107"
+  },
+  "scope": "Only inert existing-reader finite-enum source/privacy algorithm reviewed. This explicitly qualified inert PASS is not final operational-reader/producer/source binding approval. Future corrected producer bindings and actual run/terminal enrollment require separate narrow checks before any GET. No fourth broad review.",
+  "findings": [],
+  "finding_count": 0,
+  "required_reader_algorithm_repairs": [],
+  "bindings": {
+    "frozen_exact3": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-preparation/reader.py",
+        "bytes": 17493,
+        "sha256": "0f1f7600c68246acaa07a3919b754e0d62cd07e06c2bcd55c48c56708527761d"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-preparation/proposal.json",
+        "bytes": 28741,
+        "sha256": "b94ff71814b318a2f5adc41f4e87de05c956a7290f54f4c96ef06eca6021b4ce"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-preparation/manifest.json",
+        "bytes": 622,
+        "sha256": "89ac73a89b807192a8ee1c343c705e93da79c3f3ec423fe2a91d418274cd324c"
+      }
+    ],
+    "prior_qualified_reader": {
+      "bytes": 17439,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/reader.py",
+      "sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c"
+    },
+    "prior_reader_proposal": {
+      "bytes": 26485,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/proposal.json",
+      "sha256": "841471ceefec492a82e47bcfdb2715792ae630b9393e4779b4d84e9430934b74"
+    },
+    "prior_independent_privacy_source_review": {
+      "bytes": 15799,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-reader-actual-source-review.json",
+      "sha256": "dc535126aeeae6ba3cefcf295fb9d04753de6983e3c95932855108ff50c43a36"
+    },
+    "frozen_producer_contract_receipt": {
+      "bytes": 21805,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-current-capture-window-author-result.json",
+      "sha256": "52c05c2d060de7e86367faeaf468c0ea5e6097880e0d9d34397b63f5cc538594"
+    },
+    "historical_producer_commit_proof": {
+      "bytes": 2238,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-current-capture-window-root-commit-proof.json",
+      "sha256": "b9e0bc133013b10848e5931adf80effe63ddca74ecbdb10a84060a9ac6230a3e"
+    },
+    "historical_source_allocation": {
+      "bytes": 2998,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-DEBUG-current-capture-window-three-source-allocation.json",
+      "sha256": "8cb3d6cb7ff2589d02b8d18d7c9fc247d250247c0b38c4dc4d8668053e699aa5"
+    },
+    "all6_input_refs_actual_size_SHA256_match": true,
+    "qualified_dependency": {
+      "bytes": 50745,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/normal-evidence-operator.py",
+      "sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76"
+    },
+    "unchanged_installed3_schema_bindings": [
+      {
+        "bytes": 151531,
+        "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+        "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+      },
+      {
+        "bytes": 113407,
+        "path": "node_modules/vitest/dist/chunks/reporters.d.DtoKVV2s.d.ts",
+        "sha256": "7fa6fdc6eeeb3850e6b3166836f8c9199594c4f4bed3cee02cac0ca33d71894d"
+      },
+      {
+        "bytes": 5918,
+        "path": "node_modules/vitest/package.json",
+        "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+      }
+    ],
+    "focused_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-independent-controls.json",
+      "bytes": 2006,
+      "sha256": "5563f215e4edb926dacaaa21b074c656bfd7271142c958df32bbdf6f3855a87c"
+    }
+  },
+  "source_delta": {
+    "complete_actual_inverse_restores_bytes": 17439,
+    "complete_actual_inverse_restores_sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c",
+    "actual_full_inverse_equal": true,
+    "definition_names_unchanged": true,
+    "only_changed_definition": "validate: historical actual DB job ID replaced by0 inert sentinel",
+    "other10_function_bodies_byte_identical": true,
+    "namespace_project_admit_main_select_artifact_unchanged": true,
+    "top_level_closed_enum_changes": [
+      "PUBLICATIONS",
+      "OPERATIONS"
+    ],
+    "other_top_level_changes": "New private activation/output namespace; RUN/HEAD/CHECKPOINT/JOBS become None. No future identity invented.",
+    "nine_qualified_transport_JSON_ZIP_helpers_reused": "Dependency50745/4dd32af... unchanged; source-bound prior15799/dc535126 independent qualification reused, not reimplemented or rerun."
+  },
+  "finite_contract": {
+    "producer_receipt_status": "8d2bf3086d4d12a0809a05a37a6801ad75539e3e remains NOT_APPROVED; pending phase-boundary01 corrective source review is separate from enum acceptance.",
+    "enums_equal_actual_frozen_receipt_contract": true,
+    "publications": [
+      "UNREACHED",
+      "STATE_PRECHECK",
+      "CANONICAL_SOURCE",
+      "CAPTURE",
+      "BODY_BUILD",
+      "REPLACE",
+      "STATE_PUBLISH",
+      "SUBJECT_SETUP",
+      "SCENARIO",
+      "FINALLY",
+      "SERIAL_WINDOW",
+      "WORK_SCOPE",
+      "OWNER_RESTORE",
+      "FIXTURE",
+      "UNKNOWN"
+    ],
+    "operations": [
+      "UNREACHED",
+      "BEGIN",
+      "TIMEOUTS",
+      "PRE_CATALOG",
+      "CREATE_GRANT",
+      "SET_ROLE",
+      "VERIFY_ROLE",
+      "DEFINITION",
+      "REPLACE_DDL",
+      "RESET_ROLE",
+      "CREATE_REVOKE",
+      "POST_CATALOG",
+      "COMMIT_ATTEMPT",
+      "WRAPPER_OUTCOME_UNKNOWN",
+      "ROLLBACK",
+      "REQUALIFY",
+      "HOLDER_RELEASE",
+      "SETUP_CLEANUP",
+      "HOLDER_READY",
+      "DISPATCH",
+      "WAIT_ENTERED",
+      "AUTHORITY_CHANGE",
+      "RELEASE",
+      "RESULT",
+      "TOKEN_ASSERTION",
+      "AUDIT_ASSERTION",
+      "FINALLY_RELEASE",
+      "FINALLY_SETTLE",
+      "BARRIER_CLEANUP",
+      "SERIAL_SETUP",
+      "SERIAL_RESTORE",
+      "SETTLEMENT",
+      "FIXTURE_SETUP",
+      "FINALIZER",
+      "ROW_CLEANUP",
+      "CANONICAL_CLEANUP",
+      "AUTH_CLEANUP",
+      "ABSENCE_CHECK",
+      "CUSTODY",
+      "UNKNOWN"
+    ],
+    "guards_fields_classes_SQLstates": "Unchanged exact previous finite sets, matching frozen receipt; no raw values or new field/schema permitted.",
+    "namespace": "calendarInt009SetupV1",
+    "record_keys": [
+      "kind",
+      "publication",
+      "operation",
+      "guard",
+      "nativeClass",
+      "sqlstate"
+    ],
+    "maximum_primary": 1,
+    "maximum_cleanup": 3,
+    "omission": "Only final fourth record CLEANUP/OMITTED with other fields UNKNOWN",
+    "namespace_ASCII_limit": 4096,
+    "final_native_projection_limit": 8192,
+    "phase_honesty": "Parser can establish only admitted producer literals in ordered records. It cannot prove producer labeled a boundary honestly, establish original native first throw or clear phase-boundary01. Corrective producer source PASS remains mandatory.",
+    "BARRIER_CLEANUP": "Already present in admitted operation enum; a producer-only phase reset using it does not require an enum expansion, but new actual source hashes/PASS and data bindings still must be qualified."
+  },
+  "assessments": [
+    {
+      "area": "Enum delta privacy and producer compatibility",
+      "status": "PASS_INERT_SOURCE_ONLY",
+      "reason": "Actual PUBLICATIONS/OPERATIONS constant sets equal the frozen21805/52c05... receipt contract. Existing namespace verifies exact six primitive string fields and existing sets, record order and omission shape. New finite boundary values pass; unknown/raw values become typed UNKNOWN, never raw fallback. Guard/field/native class/SQLstate sets unchanged. This is contract/algorithm compatibility with a frozen receipt, not approval of current8d event emission or source correctness."
+    },
+    {
+      "area": "Projection, order, unknown and bounds",
+      "status": "PASS_INERT_SOURCE_ONLY",
+      "reason": "Actual namespace/project bodies are byte-identical to prior qualified reader. First PRIMARY and secondary CLEANUP/OMITTED order retained, body reach/native firstthrow/backend outcome remain UNKNOWN, normal acceptance0. Added finite names fit4096 namespace and existing8192 output guard. Focused synthetic shape measured1262 ASCII pretty10 bytes and3703 project pretty2 bytes. Final native assembly retains its independent actual8192 publication guard; no new universal numeric bound claim."
+    },
+    {
+      "area": "Unregistered identity/default refusal",
+      "status": "PASS_INERT_SOURCE_ONLY",
+      "reason": "Actual RUN/HEAD/CHECKPOINT/JOBS are None and DB job sentinel0 is unbound. Actual admit rejects historical tuple and every proposed integer run while RUN is None. Default main returns0GET before admission; execute flag with absent/unqualified activation refuses0GET. Future terminal/ownership refs are null, activation and output absent. No future run/head/checkpoint/job/outcome claimed. Old embedded activation template and3bb/39804170137 data are historical examples only and must not be used as new enrollment."
+    },
+    {
+      "area": "Transport/ZIP/listing and selected case invariants",
+      "status": "PASS_INERT_SOURCE_ONLY",
+      "reason": "Actual main/admit/select_artifact/source_file and all other preserved bodies retain exactly one owned run artifact listing and only one uniquely eligible native-calendar-feed-original-int009 ZIP with sole native.json. No logs/status/pagination/fallback/refetch/retry. Prior full transport EOF/join/closed/settled capture, exclusive durable intents, ZIP metadata/raw-name/inflate/CRC/digest/member, JSON duplicate key and exact case/source/fullName/global executedP+F1 guards remain unchanged. No Normal multi-case adapter is substituted."
+    },
+    {
+      "area": "Historical producer binding quarantine",
+      "status": "PASS_INERT_SOURCE_ONLY",
+      "reason": "Source refs are14 existing paths; exact metadata comparison proves11 rows unchanged and only helper/test/unit3 rows replaced by historical8d commit proof. This review does not read or approve an actively correcting producer tree.8d source-approval=false is preserved. No claim that these rows are a usable future producer snapshot; a NEW immutable packet must bind corrective committed source/PASS and actual source3 rows before later execution."
+    }
+  ],
+  "focused_controls": {
+    "evidence": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-independent-controls.json",
+      "bytes": 2006,
+      "sha256": "5563f215e4edb926dacaaa21b074c656bfd7271142c958df32bbdf6f3855a87c"
+    },
+    "qualified_groups": 4,
+    "failed": 0,
+    "actual_tool": "368679",
+    "native_exit": 0,
+    "wall_seconds": 0.1859186,
+    "method": "AST selected functions/classes/literal constants only; no reader/dependency imports, get/Popen/network available or producer control rerun. Same source-level inverse/metadata/enum functions checked; synthetic maximum-shaped identity used solely for projection bound and reset to None.",
+    "groups": [
+      "complete full source inverse/10 unchanged defs/6 refs/14 historical rows only3 changes",
+      "exact frozen contract sets/new finite literals admitted/unknown and raw refused",
+      "unchanged4-record order/OMITTED and4096/8192 projection/privacy constraints",
+      "actual default and historical tuple refusal with unregistered None/DB0 and absent activation/output"
+    ],
+    "bounds": {
+      "namespace_ASCII_pretty10": 1262,
+      "project_ASCII_pretty2": 3703
+    },
+    "author9_AST_groups": "Corroborating source-bound evidence only, not added to independent4. Prior unchanged helper/privacy/ZIP matrix reused nonadditively.",
+    "effects": {
+      "real_API_GET": 0,
+      "real_Popen": 0,
+      "reader_module_import": 0,
+      "producer_tests_or_configload": 0,
+      "Git_commands": 0,
+      "SQL_scan": 0,
+      "source_catalog_reextract": 0,
+      "managed_runtime_resources": 0,
+      "source_input_tracked_state_edits": 0
+    }
+  },
+  "mandatory_before_any_execution": [
+    {
+      "gate": "Corrective producer source",
+      "required": "Actual committed correction for phase-boundary01 plus distinct High producer source PASS and actual controls.8d/52c05 receipt remains historical NOT_APPROVED; this inert enum PASS cannot override it."
+    },
+    {
+      "gate": "New producer binding packet",
+      "required": "Freeze NEW owned reader/proposal/manifest data successor without changing this packet. Replace historical helper/test/unit rows among exact14 refs with actual corrective raw/LF/blob rows and include actual corrected author/commit/source-PASS evidence refs. Compare future producer enum contract to these reviewed sets; any changed enum requires targeted review."
+    },
+    {
+      "gate": "Future real tuple/terminal enrollment",
+      "required": "After separately authorized targeted execution, bind actual pushed head/checkpoint/run/attempt1/branch/workflow/actors/repo, actual completed9 job map/DB job ID and actual terminal conclusion/metadata with proven capture receipts. Replace None/DB0 and any inherited terminal outcome literal only with observed actual values. No guessed success/failure or job tuple. A distinct narrow final data-enrollment/source-binding review is required before acquisition."
+    },
+    {
+      "gate": "New finite read grant and Root activation",
+      "required": "NEW completed actual_turn/actual_tool finite exactly2 logical GET allocation; Root semantically qualifies exact listing+unique ZIP/no retry/oldslots closed. Fresh <=300s current-source and terminal proof, exact self/proposal/source/review hashes, new canonical operation UUID distinct checkpoint, absent output and exclusive Root activation/journal. No historical template, grant, namespace or old output replay."
+    },
+    {
+      "gate": "Actual evidence qualification",
+      "required": "Separate independent actual capture/native evidence qualification before first-observed-boundary/cause/targeted result/custody conclusions. One originalINT009 attempted once,14 skipped/unexecuted=0 coverage; no full95 acceptance or backend/key settlement inferred."
+    }
+  ],
+  "future_Root_interface": {
+    "current_activation_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-activation.json",
+    "current_output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader",
+    "schema": "ROOT_RETRY_INT009_ARTIFACT_ACTIVATION_v1",
+    "mode": "INT009_METADATA_ARTIFACT_ONLY",
+    "maximum_logical_requests": 2,
+    "freshness_seconds": 300,
+    "attempt": 1,
+    "reader_now": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-preparation/reader.py",
+      "bytes": 17493,
+      "sha256": "0f1f7600c68246acaa07a3919b754e0d62cd07e06c2bcd55c48c56708527761d"
+    },
+    "proposal_now": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-preparation/proposal.json",
+      "bytes": 28741,
+      "sha256": "b94ff71814b318a2f5adc41f4e87de05c956a7290f54f4c96ef06eca6021b4ce"
+    },
+    "current_identity": "UNREGISTERED None; not an executable tuple",
+    "historical_activation20keys": "Preserved shape only. Every historical run/head/checkpoint/job/ref/example inside activation20keys_unchanged must be replaced in a NEW actual data packet; old template false/null is not evidence.",
+    "operator_review": "Future operational activation needs statusPASS/independenttrue/exact final actual enrollment review evidence. Do not substitute this statusPASS_INERT_FINITE_ENUM_SOURCE_ONLY as final enrollment authorization.",
+    "current_effect_authority": 0
+  },
+  "open_questions": [],
+  "deferred_work": [
+    "Root will provide corrective producer committed pins/PASS for new data-only source rebind.",
+    "Future actual run/terminal enrollment check, fresh2GET grant and Root activation, then actual evidence qualification."
+  ],
+  "blockers_for_future_execution": [
+    "Current producer phase-honesty correction/PASS pending.",
+    "No enrolled actual future tuple/terminal/DB job, completed2GET grant or Root activation."
+  ],
+  "blockers_for_this_inert_source_review": [],
+  "conservation": "This review and new private focused-controls only; exact3 inputs rehashed unchanged at freeze. No source/Spec/tracked/state/Git/recovery/native effects or acceptance claim."
+}

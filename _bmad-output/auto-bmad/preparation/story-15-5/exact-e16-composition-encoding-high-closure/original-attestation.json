@@ -1,0 +1,174 @@
+{
+  "schema": "EXACT_E16_COMPOSITION_ENCODING_HIGH_CLOSURE_ATTESTATION_v1",
+  "reviewer_role": "independent targeted source reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "PASS_TARGETED_ENCODING_CLOSURE_SOURCE_ONLY",
+  "closed_finding": "E16-COMPOSE-ENCODING-01",
+  "new_findings": [],
+  "scope": "six-file encoding correction and introduced regressions only; original semantic/C4 coverage reused",
+  "independent_proof": {
+    "schema": "E16_ENCODING_CLOSURE_INDEPENDENT_BYTE_PROOF_v1",
+    "commit": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+    "parent": "bc767a4f5cd4f22dc45075f19e09bb85ff609d5d",
+    "semantic_merge": "aa1a16adf2980355f0228badf889c95a4f230248",
+    "tree": "329b31ef0ec2eb0c49100b44aba4252ae27c4be4",
+    "private_inputs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-encoding-correction/receipt.json",
+        "bytes": 26528,
+        "sha256": "c4b90ad7cc65a6f4e9147f7c810d1f4e529b8e995c4d19837402a4f062d57582"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-encoding-correction/manifest.json",
+        "bytes": 814,
+        "sha256": "4226e823effd9e4f7161eb83b586ab50a0747d3c3f67438655376c708c91fb79"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-encoding-correction/result.json",
+        "bytes": 1238,
+        "sha256": "2d3114267fa958830fd9aa4049b55ce81f329a6a24d1821b18c6ae9854153cb2"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-encoding-correction/guide.md",
+        "bytes": 1042,
+        "sha256": "ebdb1f22633a31ed43e2243500332cf3bd6dde947760dc4485ffb2a6db168a9f"
+      }
+    ],
+    "six_file_results": [
+      {
+        "path": "src/components/resources/BookingEditor.tsx",
+        "bytes": 36761,
+        "sha256": "0321627f0fc5496a9ba1d15f8fb135a3f75d4b5a0639ec3489d1a3d40a4bfecf",
+        "decode_layers": 1,
+        "mapping_runs": 8,
+        "ASCII_exact": true,
+        "forward_inverse_exact": true,
+        "actual_parent_mapping": true
+      },
+      {
+        "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+        "bytes": 33667,
+        "sha256": "7ff4b6dfac108864267fe6eb4947f5846a461190791dbeafaf3d2ad2b913f306",
+        "decode_layers": 1,
+        "mapping_runs": 5,
+        "ASCII_exact": true,
+        "forward_inverse_exact": true,
+        "actual_parent_mapping": true
+      },
+      {
+        "path": "tests/unit/scope/manifest-derivations.test.ts",
+        "bytes": 8841,
+        "sha256": "5f7f30cd116421943c980e1aa41b08f1237356ce84b802883bdcb4dc27dbf783",
+        "decode_layers": 1,
+        "mapping_runs": 10,
+        "ASCII_exact": true,
+        "forward_inverse_exact": true,
+        "actual_parent_mapping": true
+      },
+      {
+        "path": "tests/unit/scope/manifest-shape.test.ts",
+        "bytes": 10473,
+        "sha256": "c92b9c621a999a335dc5c8a6a97a9bedfad1d36302afcfba3f044110f6e2f13e",
+        "decode_layers": 1,
+        "mapping_runs": 6,
+        "ASCII_exact": true,
+        "forward_inverse_exact": true,
+        "actual_parent_mapping": true
+      },
+      {
+        "path": "src/components/jobs/JobWorkspaceSchedule.tsx",
+        "bytes": 1657,
+        "sha256": "1a6cb1bd1ef9b705bc93d5ec025ff249545a4731ee0c2f115052b50e1636bc6e",
+        "decode_layers": 2,
+        "mapping_runs": 1,
+        "ASCII_exact": true,
+        "forward_inverse_exact": true,
+        "actual_parent_mapping": true
+      },
+      {
+        "path": "src/server/read-models/job-workspace.ts",
+        "bytes": 6863,
+        "sha256": "4978a1d802446af8862ad0b16810abaec0ae2fdece086c90d12a80bb79ff9b4d",
+        "decode_layers": 1,
+        "mapping_runs": 2,
+        "ASCII_exact": true,
+        "forward_inverse_exact": true,
+        "actual_parent_mapping": true
+      }
+    ],
+    "other10_unchanged": 10,
+    "SQL_unchanged": 116,
+    "Spec_wrapper_portability_unit_unchanged": 3,
+    "login_selector_source_match": true,
+    "original_NOTPASS_immutable": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-report.md",
+        "bytes": 5782,
+        "sha256": "f431e5fe2f3597d30611777b7cb0286fbcb00ee219d4bccd1d7388bacea6ae95"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-attestation.json",
+        "bytes": 24281,
+        "sha256": "239f27449f64d022ef917501ab024985f3fe24dcd7449c924ee15499723ad209"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/result.json",
+        "bytes": 2189,
+        "sha256": "88b81c605e0a6d8c813e62cc0eab4b1876df6c28910eed4d2fa36bc5f3a49829"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/manifest.json",
+        "bytes": 983,
+        "sha256": "31abc73b57b6ad20c76936a922fe2feb9b079257b92c26dc03d009fcbea03be2"
+      }
+    ],
+    "proof_assertions": "all passed",
+    "native_actions": 0,
+    "source_edits": 0
+  },
+  "independent_proof_script": "import json,pathlib,hashlib,subprocess,re,collections\nroot=pathlib.Path.cwd()\ndef git(*a):\n p=subprocess.run(['git',*a],stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True)\n return p.stdout\ndef digest(b): return hashlib.sha256(b).hexdigest()\ndef bind(p):\n b=pathlib.Path(p).read_bytes()\n return {'path':str(p).replace('\\\\','/'),'bytes':len(b),'sha256':digest(b)}\nfix='1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c'; base='bc767a4f5cd4f22dc45075f19e09bb85ff609d5d'; merge='aa1a16adf2980355f0228badf889c95a4f230248'\nprivate=pathlib.Path('.env.epic15.mail-runtime/story-15-5-preparation/exact-e16-encoding-correction')\nreceipt=json.loads((private/'receipt.json').read_text(encoding='utf8'))\nmanifest=json.loads((private/'manifest.json').read_text(encoding='utf8'))\nassert digest((private/'manifest.json').read_bytes())=='4226e823effd9e4f7161eb83b586ab50a0747d3c3f67438655376c708c91fb79'\nassert digest((private/'receipt.json').read_bytes())=='c4b90ad7cc65a6f4e9147f7c810d1f4e529b8e995c4d19837402a4f062d57582'\nfor x in manifest['files']:\n p=pathlib.Path(x['path']); b=p.read_bytes()\n assert len(b)==x['bytes'] and digest(b)==x['sha256'],str(p)\nassert git('rev-parse','HEAD').decode().strip()==fix\nparents=git('show','-s','--format=%P',fix).decode().strip().split()\nassert parents==[base]\ntree=git('show','-s','--format=%T',fix).decode().strip()\nassert tree=='329b31ef0ec2eb0c49100b44aba4252ae27c4be4'\npaths=git('diff','--name-only',base,fix).decode().splitlines()\nassert set(paths)=={x['path'] for x in receipt['source_bindings']} and len(paths)==6\nresults=[]\nfor x in receipt['source_bindings']:\n p=x['path']; raw=pathlib.Path(p).read_bytes(); new=git('show',fix+':'+p); old=git('show',merge+':'+p)\n assert raw==new and len(new)==x['bytes'] and digest(new)==x['sha256']\n assert len(old)==x['baseline_bytes'] and digest(old)==x['baseline_sha256']\n assert git('rev-parse',fix+':'+p).decode().strip()==x['prospective_clean_oid']\n assert git('rev-parse',merge+':'+p).decode().strip()==x['baseline_blob']\n n=new.decode('utf8'); o=old.decode('utf8'); layers=x['known_decode_layers']\n assert ''.join(c for c in n if ord(c)<128)==''.join(c for c in o if ord(c)<128),p\n forward=n\n for i in range(layers): forward=forward.encode('utf8').decode('cp1252')\n assert forward==o,p+' forward'\n inverse=o\n for i in range(layers): inverse=inverse.encode('cp1252').decode('utf8')\n assert inverse==n,p+' inverse'\n runs=collections.Counter(re.findall(r'[^\\x00-\\x7f]+',o))\n assert runs==collections.Counter({m['damaged']:m['occurrences'] for m in x['mapping']}),p+' complete maximal nonASCII census'\n for m in x['mapping']:\n  transformed=m['restored']\n  for i in range(layers): transformed=transformed.encode('utf8').decode('cp1252')\n  assert transformed==m['damaged']\n  for par in m['actual_parent_text_refs']:\n   assert m['restored'] in git('show',par+':'+p).decode('utf8'),p+' parent run'\n assert not any(t in n for t in ['Ã','Â','â€','â‚'])\n results.append({'path':p,'bytes':len(new),'sha256':digest(new),'decode_layers':layers,'mapping_runs':len(runs),'ASCII_exact':True,'forward_inverse_exact':True,'actual_parent_mapping':True})\nfor x in receipt['other10_of16']+receipt['conserved']['Spec_wrapper_unit']:\n p=x['path']; oid=x['unchanged_blob']\n assert git('rev-parse',merge+':'+p).decode().strip()==oid\n assert git('rev-parse',fix+':'+p).decode().strip()==oid\n assert pathlib.Path(p).read_bytes().replace(b'\\r\\n',b'\\n')==git('show',fix+':'+p),p\nsql=git('ls-tree','-r','--name-only',merge,'supabase/migrations').decode().splitlines()\nsql=[p for p in sql if p.endswith('.sql')]\nassert len(sql)==116,len(sql)\nfor p in sql:\n assert git('rev-parse',merge+':'+p)==git('rev-parse',fix+':'+p)\n assert pathlib.Path(p).read_bytes().replace(b'\\r\\n',b'\\n')==git('show',fix+':'+p)\nlogin=receipt['login_literal']['login_source_readonly']; lb=pathlib.Path(login['path']).read_bytes()\nassert len(lb)==login['bytes'] and digest(lb)==login['sha256']\njobs=pathlib.Path('tests/e2e/jobs/jobs-depth.e2e.spec.ts').read_text(encoding='utf8')\nassert 'getByLabel(\"Lösenord\", { exact: true })' in jobs\nassert 'Lösenord' in lb.decode('utf8')\nold_dir=pathlib.Path('_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review')\nexpected={'original-report.md':(5782,'f431e5fe2f3597d30611777b7cb0286fbcb00ee219d4bccd1d7388bacea6ae95'),'original-attestation.json':(24281,'239f27449f64d022ef917501ab024985f3fe24dcd7449c924ee15499723ad209'),'result.json':(2189,'88b81c605e0a6d8c813e62cc0eab4b1876df6c28910eed4d2fa36bc5f3a49829'),'manifest.json':(983,'31abc73b57b6ad20c76936a922fe2feb9b079257b92c26dc03d009fcbea03be2')}\noriginal=[]\nfor name,(size,sha) in expected.items():\n p=old_dir/name;b=p.read_bytes()\n assert len(b)==size and digest(b)==sha\n assert b==git('show',base+':'+p.as_posix())==git('show',fix+':'+p.as_posix())\n original.append(bind(p))\nprint(json.dumps({'schema':'E16_ENCODING_CLOSURE_INDEPENDENT_BYTE_PROOF_v1','commit':fix,'parent':base,'semantic_merge':merge,'tree':tree,'private_inputs':[bind(private/n) for n in ['receipt.json','manifest.json','result.json','guide.md']],'six_file_results':results,'other10_unchanged':10,'SQL_unchanged':116,'Spec_wrapper_portability_unit_unchanged':3,'login_selector_source_match':True,'original_NOTPASS_immutable':original,'proof_assertions':'all passed','native_actions':0,'source_edits':0},ensure_ascii=False,indent=2))\n",
+  "independent_proof_script_sha256": "c22f68dcc9649eb95d35e998992142182f48323060012fa5fa55415fc020b0a3",
+  "completed_proof_exit": 0,
+  "completed_proof_duration_seconds": 24.3112407,
+  "root_precommit_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-exact-e16-encoding-precommit-admission.json",
+    "bytes": 509,
+    "sha256": "0e17f0852ee04d05e3ca816c13f7c56c44e2a6a20b47680d710329cb82ee9745"
+  },
+  "independent_tests_executed": 0,
+  "author_reused_evidence": {
+    "final_manifest_tests": {
+      "pass": 14,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0
+    },
+    "TypeScript_exit": 0,
+    "affected_lint_exit": 0,
+    "affected_lint_warnings": 0,
+    "diff_exit": 0,
+    "receipt_bound_in_independent_proof": true,
+    "earlier_81_and_173": "separate nonadditive source evidence; not rerun"
+  },
+  "reader_attempt_history": {
+    "stopped_before_complete_proof": [
+      "manifest paths already rooted; first reader incorrectly prepended private directory",
+      "unchanged files may be CRLF raw; second reader incorrectly demanded raw==LF Git blob"
+    ],
+    "yielded_equivalent_readonly_invocation": "completion not captured, no additional check credit",
+    "source_writes": 0,
+    "author_auxiliary_token_reader_failures": "retained; no full token-parser proof credited"
+  },
+  "native_actions": 0,
+  "Git_mutations": 0,
+  "source_edits": 0,
+  "native_acceptance": 0,
+  "full_DB_browser_build_recovery": "unexecuted here",
+  "custody": "UNKNOWN",
+  "story_review_counter": 3,
+  "broad_review_increment": 0,
+  "execution_authority": false,
+  "development_complete": false,
+  "release_ready": false
+}

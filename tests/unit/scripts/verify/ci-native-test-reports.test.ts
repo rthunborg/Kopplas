@@ -2,9 +2,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
+import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
 
 const read = (path: string): string => readFileSync(join(process.cwd(), path), "utf8").replaceAll("\r\n", "\n");
-const ci = read(".github/workflows/ci.yml");
+const ci = projectCalendarFeedCiCommands(read(".github/workflows/ci.yml"));
 
 test("both Vitest CI invocations retain console and annotation reporters while emitting distinct native JSON", () => {
   const reporters = "--reporter=default --reporter=github-actions --reporter=json";
@@ -34,4 +35,19 @@ test("all four original native files upload on test failure and missing reports 
   ];
   const uploads = [...ci.matchAll(/      - name: Upload native [^\n]+ JSON\n        if: \$\{\{ !cancelled\(\) \}\}\n        uses: actions\/upload-artifact@v4\n        with:\n          name: ([^\n]+)\n          path: test-results\/([^\n]+)\n          retention-days: 7\n          if-no-files-found: error/g)].map(match => [match[1], match[2]]);
   assert.deepEqual(uploads, reports);
+});
+
+
+test("cause-proof capture is distinct mode-bound and uploads closed results on failure without replacing normal artifacts",()=>{
+  const raw=read(".github/workflows/ci.yml");
+  const diagnostic=raw.slice(raw.indexOf("      - name: Upload native calendar feed cause proof JSON"),raw.indexOf("      # Stage 8:"));
+  assert.match(diagnostic,/if: \$\{\{ !cancelled\(\) && github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof \}\}/);
+  assert.match(diagnostic,/name: native-calendar-feed-cause-proof\n/);
+  assert.match(diagnostic,/path: test-results\/calendar-feed-cause-proof\/upload\//);
+  assert.match(diagnostic,/if-no-files-found: error/);
+  const normal=raw.slice(raw.indexOf("      - name: Upload native full integration JSON"),raw.indexOf("      - name: Stop local Supabase stack"));
+  assert.match(normal,/!cancelled\(\) && !\(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof\)/);
+  assert.match(normal,/name: native-full-integration\n/);assert.match(normal,/path: test-results\/full-integration.json/);
+  assert.throws(()=>projectCalendarFeedCiCommands(raw.replace("native-calendar-feed-cause-proof\n","native-full-integration\n")));
+  assert.throws(()=>projectCalendarFeedCiCommands(raw.replace("cause-proof/upload/","cause-proof/")));
 });

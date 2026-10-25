@@ -1,0 +1,64 @@
+{
+  "outcome": "LOCAL_FULL_UNIT_IDENTITIES_OBSERVED",
+  "author": "gpt-6.1-sol Low /root/triage15_4_low",
+  "head_verified_by_Root": "e2dd7b98280678f4e5f926325086745d70d72cec",
+  "source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "tree_clean_verified_by_Root": true,
+  "local_run": {
+    "files": 314,
+    "Node": "22.23.2",
+    "concurrency": 2,
+    "exit": 1,
+    "elapsed_seconds": 58.389,
+    "counts": {
+      "tests": 3389,
+      "suites": 103,
+      "pass": 3353,
+      "fail": 35,
+      "cancelled": 0,
+      "skipped": 1,
+      "todo": 0
+    }
+  },
+  "failed_groups": {
+    "tests/unit/features/jobs/job-workspace-domain.test.ts": 1,
+    "tests/unit/features/resources/booking-series-editor.test.ts": 7,
+    "tests/unit/server/bookings/series-plan.test.ts": 27
+  },
+  "reported_diagnosis": "1staleschedulingpendingassertion;7VMloadernewjob-scheduling-consumersimportfailures;27series-planfixturesretainoldengine/configv3/v1whilecurrentguardrequiresv4/v2. SensitivecontractreconciliationrequiresHighverification.",
+  "source_scope3": [
+    {
+      "path": "tests/unit/features/jobs/job-workspace-domain.test.ts",
+      "bytes": 8435,
+      "sha256": "43443dc10d7c74964d13601eb9724926890ed0191c43da8f0023c1a305e01702",
+      "Git_blob": "e31c78f30dd6ab636c40eb1319b49e4916e4e421"
+    },
+    {
+      "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+      "bytes": 10582,
+      "sha256": "99f44215540bbea3b17306202b4c1dd1c59473c45386dcd9e93771bfb30b720b",
+      "Git_blob": "5e369642cd35aa79b3011554c642ad1a14f9435f"
+    },
+    {
+      "path": "tests/unit/server/bookings/series-plan.test.ts",
+      "bytes": 27194,
+      "sha256": "60cb711c59dc3cf58b3e2679443260799c88ec1b53e0be969605726da902da2e",
+      "Git_blob": "0c711e1340b4606baab0f0ec549d0b3820133d6c"
+    }
+  ],
+  "receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-local-full-unit-identification/receipt.json",
+    "bytes": 20725,
+    "sha256": "f3ebe18ec799f0907e8a07da42739219ab46f86ba20217391ce8dd6f42a7ea87"
+  },
+  "result": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-local-full-unit-identification/result.json",
+    "bytes": 48966,
+    "sha256": "f5c93fdb7c217a161ddc69b2c7fccd25973cf21f02d7357e1c6db844afc325d6"
+  },
+  "attribution": "Actual local execution reported by Low delegate; Root verified current Git/tree/bindings, not child execution directly.",
+  "hosted_comparison": "Equal35failurecountdoesnotprovehostedidentities; local1skiprequiresLinuxxattrs; native0skip remainsdistinct.",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "next": "Coordinateexact3test-onlyownership; explicitHigh verifiesauthorityandrepairsfixtures/loaderswithoutweakeningproductionguards; fullpureunitvalidationandtargetedindependentreviewbeforeanyhostedretry."
+}

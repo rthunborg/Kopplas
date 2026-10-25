@@ -1,0 +1,509 @@
+{
+  "schema": "ROOT_POST_ZOD_NORMAL_CLOSED_EVIDENCE_MANIFEST_V1",
+  "created_at_utc": "2026-10-24T17:13:24.003924+00:00",
+  "observed_head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+  "run": 40109869919,
+  "files": [
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-allocation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-preparation-allocation.json",
+      "raw_bytes": 5076,
+      "raw_sha256": "375efc126d2de53d84715f3b555272cf0000c443f3293e82457335ad40eee241",
+      "LF_bytes": 5076,
+      "LF_sha256": "375efc126d2de53d84715f3b555272cf0000c443f3293e82457335ad40eee241",
+      "normalized_Git_blob": "588b4eec0b73648c8fc60f3819d9f869f9150526"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-binding-clarification.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-binding-clarification.json",
+      "raw_bytes": 1475,
+      "raw_sha256": "c08ecad383a48a2eaee6c3b4bd9e9e76dc98dff76689814381a7806a3d1e9ced",
+      "LF_bytes": 1475,
+      "LF_sha256": "c08ecad383a48a2eaee6c3b4bd9e9e76dc98dff76689814381a7806a3d1e9ced",
+      "normalized_Git_blob": "4ed03a759b5e24eda59452842c8006487316cc86"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-future-source-hashing-scope.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-future-hash-scope.json",
+      "raw_bytes": 1026,
+      "raw_sha256": "0b094dc6f76a2743821ce3d2373bf7c298d90eba9e5caf7cd039fbbc0f1fcc88",
+      "LF_bytes": 1026,
+      "LF_sha256": "0b094dc6f76a2743821ce3d2373bf7c298d90eba9e5caf7cd039fbbc0f1fcc88",
+      "normalized_Git_blob": "31dc5fd32fc261bbd2ec73a5c06a56636e17db5e"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-operational-v1-nonpass.json",
+      "raw_bytes": 15218,
+      "raw_sha256": "1634fabbee94aec323474370c6d77af101f6df7ab16e18bcff3b6537df56f63c",
+      "LF_bytes": 15019,
+      "LF_sha256": "a4a2a3276be6ccd226ae2104fad6824411e4a034b662cc67de627a3ab592e543",
+      "normalized_Git_blob": "20d6866414f60691b9153bc16193481e9993897a"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-correction-v2-allocation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-v2-correction-allocation.json",
+      "raw_bytes": 4840,
+      "raw_sha256": "9d53a3e557dff178b40b3f67e6710d1540cee1582778fd3776838aae5e57ace4",
+      "LF_bytes": 4840,
+      "LF_sha256": "9d53a3e557dff178b40b3f67e6710d1540cee1582778fd3776838aae5e57ace4",
+      "normalized_Git_blob": "ed11e00685597e3d6938e0323454a2d2bcc0b3fd"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-helper-binding-proof-v2.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-helper-v2-binding-proof.json",
+      "raw_bytes": 2819,
+      "raw_sha256": "798a424eb130d03dfa6910d00ede6c9dc3775583ba65762a1b869bb5a32b2d2c",
+      "LF_bytes": 2819,
+      "LF_sha256": "798a424eb130d03dfa6910d00ede6c9dc3775583ba65762a1b869bb5a32b2d2c",
+      "normalized_Git_blob": "806d3f4b959694cd21c4918e70fd78d798df83e8"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-operational-v2-review.json",
+      "raw_bytes": 10225,
+      "raw_sha256": "148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212",
+      "LF_bytes": 10104,
+      "LF_sha256": "de6507f640221c373c6ebe86aa6211e873aa18db95d33b2ef3dc414fe3eb79a6",
+      "normalized_Git_blob": "b8460ff8ef757567e3faf24b08ef966b6aa75046"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-observation-effects-allocation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-accepted-allocation.json",
+      "raw_bytes": 6109,
+      "raw_sha256": "c6d2df7700603cf4cd6dc2ac0548aab83e06f09d4aef0e1a84c2a67f0c08e46e",
+      "LF_bytes": 6109,
+      "LF_sha256": "c6d2df7700603cf4cd6dc2ac0548aab83e06f09d4aef0e1a84c2a67f0c08e46e",
+      "normalized_Git_blob": "ca0ee67e6a9502b0d8ccef90d45bb358afe23b75"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-current-source-proof.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-current-source-proof.json",
+      "raw_bytes": 60788,
+      "raw_sha256": "1a7abac1b423d2efeed053722fb606235de93744ce6ce2b049806a4ae908a3ab",
+      "LF_bytes": 60788,
+      "LF_sha256": "1a7abac1b423d2efeed053722fb606235de93744ce6ce2b049806a4ae908a3ab",
+      "normalized_Git_blob": "0dd5b6d55ae793f138b10511092f26736ae4fe7c"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-readonly-activation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-provider-activation.json",
+      "raw_bytes": 2499,
+      "raw_sha256": "282be3d4d6958f94792c3b3363a841406fb66d67fc38cf29fe64f9df17d10da6",
+      "LF_bytes": 2499,
+      "LF_sha256": "282be3d4d6958f94792c3b3363a841406fb66d67fc38cf29fe64f9df17d10da6",
+      "normalized_Git_blob": "1cd24c380b600a26efad35f25bf758c1f8cb6e52"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-root-once-journal.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-provider-once-journal.json",
+      "raw_bytes": 1444,
+      "raw_sha256": "b826b89a2379ca8c3c50e494a77ea222cc79f787aea50089e7eae601f778faef",
+      "LF_bytes": 1444,
+      "LF_sha256": "b826b89a2379ca8c3c50e494a77ea222cc79f787aea50089e7eae601f778faef",
+      "normalized_Git_blob": "0abbe3eed0560b4be31df509992f4594cbf28f0b"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-vercel-readonly-qualification.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-provider-qualification.json",
+      "raw_bytes": 30497,
+      "raw_sha256": "4ff8739ca493f7c3b27a9c18b989c68ec74eaaf3c4e92c544da05d295ae66fa9",
+      "LF_bytes": 30497,
+      "LF_sha256": "4ff8739ca493f7c3b27a9c18b989c68ec74eaaf3c4e92c544da05d295ae66fa9",
+      "normalized_Git_blob": "20b47de8efd1de127096a995cd271aa947f46745"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-execution-receipt.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-provider-outer-receipt.json",
+      "raw_bytes": 2273,
+      "raw_sha256": "825079ae9c39a21fa90d5b660961775ccfa6288af6a4d3be061c353773156b97",
+      "LF_bytes": 2273,
+      "LF_sha256": "825079ae9c39a21fa90d5b660961775ccfa6288af6a4d3be061c353773156b97",
+      "normalized_Git_blob": "3e7da38cb02c3f8c302e05a76882419ba3a4e65f"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-actual-root-attribution.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-provider-root-attribution.json",
+      "raw_bytes": 873,
+      "raw_sha256": "ae19de3958e08a8186f02a18f21c3ea905be04d58c025634cb9d0e647d78fcfe",
+      "LF_bytes": 873,
+      "LF_sha256": "ae19de3958e08a8186f02a18f21c3ea905be04d58c025634cb9d0e647d78fcfe",
+      "normalized_Git_blob": "8d622d20c69bdc72ca51903d6213815e7819cbb7"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-effects-activation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-root-effects-activation.json",
+      "raw_bytes": 1785,
+      "raw_sha256": "4b9c7f694e6676027b525ea00f1b9b23eea5e40f73922c62467fb838fa1cc208",
+      "LF_bytes": 1785,
+      "LF_sha256": "4b9c7f694e6676027b525ea00f1b9b23eea5e40f73922c62467fb838fa1cc208",
+      "normalized_Git_blob": "60e0e85ce8f8a9e484633cb29ee26c996bf9093f"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-once-journal.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-root-once-journal.json",
+      "raw_bytes": 842,
+      "raw_sha256": "4bb2cfa9bad5f6c9441a353883baf79ffd850db51704b80aef6d1ed85305358f",
+      "LF_bytes": 842,
+      "LF_sha256": "4bb2cfa9bad5f6c9441a353883baf79ffd850db51704b80aef6d1ed85305358f",
+      "normalized_Git_blob": "f171c8830b874601969df3dfe746499eeb5ad929"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-actual-root-ownership.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-actual-root-ownership.json",
+      "raw_bytes": 57057,
+      "raw_sha256": "2d31cf302a42d4de78006cfd19970d9e4395568d266e759a32c8be93b41611d8",
+      "LF_bytes": 57057,
+      "LF_sha256": "2d31cf302a42d4de78006cfd19970d9e4395568d266e759a32c8be93b41611d8",
+      "normalized_Git_blob": "a176e72b652154809b9d18c703db3ec12982a8aa"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/terminal.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-actual-terminal.json",
+      "raw_bytes": 24085,
+      "raw_sha256": "9e8ff486cf8485dca04f3b85d2a027ae2cd649f16c5d1bd5ac3bce373b31fb2f",
+      "LF_bytes": 24085,
+      "LF_sha256": "9e8ff486cf8485dca04f3b85d2a027ae2cd649f16c5d1bd5ac3bce373b31fb2f",
+      "normalized_Git_blob": "9f7b1067d5debce777cee46d472a5d6a939ee730"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/operation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-closed-operation.json",
+      "raw_bytes": 867,
+      "raw_sha256": "3ae2aca4a519e1187f6b147bb5c250384a356783ecda5dedc72cf0591c6f81e9",
+      "LF_bytes": 867,
+      "LF_sha256": "3ae2aca4a519e1187f6b147bb5c250384a356783ecda5dedc72cf0591c6f81e9",
+      "normalized_Git_blob": "89ca56c2bf0e017579f58c2aa5168962d5cc1b34"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-terminal-metadata-qualification.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/obs-terminal-metadata-qualification.json",
+      "raw_bytes": 11961,
+      "raw_sha256": "8142fd8d19932fef2a04509dcaa7275d484b36fedcde2f0a02bda6bd7e83c4cc",
+      "LF_bytes": 11783,
+      "LF_sha256": "68cc2bc1dff2fcbbe12cc18cd35d99491dfccaf92948ac5cc58eb2d505d82d62",
+      "normalized_Git_blob": "6fcc679dbbea4e6d6564f0b9449bed7b8b632758"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-binding-data-disposition.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-binding-data-disposition.json",
+      "raw_bytes": 1582,
+      "raw_sha256": "a76d911c3ca125b159e72a56e3084855b4669691387c4a93e922889ec43102bd",
+      "LF_bytes": 1582,
+      "LF_sha256": "a76d911c3ca125b159e72a56e3084855b4669691387c4a93e922889ec43102bd",
+      "normalized_Git_blob": "c64447ebad37712a36fa89d924318da717521670"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-operational-review.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-reader-helper-review.json",
+      "raw_bytes": 14294,
+      "raw_sha256": "8487ee0f010d9650d53b7f2bea5f523d5bfe8fb2153634260dc13ec6554ee5ce",
+      "LF_bytes": 14163,
+      "LF_sha256": "8d5468b825a9f0f14a0ca743deee410b6a4d12d261b0cc5a98f4e179fb2efa4e",
+      "normalized_Git_blob": "79e004356036d472c996636cf1229b35f685d88d"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-capture-contract.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-root-capture-contract.json",
+      "raw_bytes": 2765,
+      "raw_sha256": "55dc41fba27e079471db9590f665d25ea3d4305549490a7fd7beaf4cb4c4a77a",
+      "LF_bytes": 2765,
+      "LF_sha256": "55dc41fba27e079471db9590f665d25ea3d4305549490a7fd7beaf4cb4c4a77a",
+      "normalized_Git_blob": "31001efed3fd2f1f61cc4ae7f0d0b4007806ecb7"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-review.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-outer-v1-nonpass.json",
+      "raw_bytes": 10336,
+      "raw_sha256": "e6dcab9d840ebc65ce4901f5040cb6d2743da35ae0620fa73f29b611516cc03a",
+      "LF_bytes": 10207,
+      "LF_sha256": "d1dd560855d523affb0c3fe545a1b92bbffcc82b1808800b62ee6b899383477f",
+      "normalized_Git_blob": "89249a969c00b23eb4f4f701d06424e6d20827a8"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-correction-allocation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-outer-v2-correction-allocation.json",
+      "raw_bytes": 2143,
+      "raw_sha256": "90f028f14014bc3b1210a78954390b2ee6b4d257d8220e2061b0f363f7f4397a",
+      "LF_bytes": 2143,
+      "LF_sha256": "90f028f14014bc3b1210a78954390b2ee6b4d257d8220e2061b0f363f7f4397a",
+      "normalized_Git_blob": "1509337fb9a8f8bca037aaaec01ad185c4405884"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-controls.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-outer-v2-controls.json",
+      "raw_bytes": 9271,
+      "raw_sha256": "fe3ebedf73bf427b0dbbe1a512078e2537c1a7ad59c08f578e9c541015a25fc5",
+      "LF_bytes": 9271,
+      "LF_sha256": "fe3ebedf73bf427b0dbbe1a512078e2537c1a7ad59c08f578e9c541015a25fc5",
+      "normalized_Git_blob": "cb1d64afc7fee0204b287ee8a33c389c1f0d9656"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-review.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-outer-v2-review.json",
+      "raw_bytes": 7760,
+      "raw_sha256": "48a5025767ebf26f81f64079b6e24a60fa482ee0ff3f4543681d574591c39ec8",
+      "LF_bytes": 7672,
+      "LF_sha256": "0384edf478ef3ba44f20c8e81dd0a01e03f14b0e79644bb879fa5005b11fce84",
+      "normalized_Git_blob": "a2d5a15b0b05673b56246b8dcdb41b10bb3af573"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-terminal-evidence-allocation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-accepted-allocation.json",
+      "raw_bytes": 7097,
+      "raw_sha256": "b5c2efcd4eea71df7cab61904604f85a8befc8c67b35d5739c997887223e755d",
+      "LF_bytes": 7097,
+      "LF_sha256": "b5c2efcd4eea71df7cab61904604f85a8befc8c67b35d5739c997887223e755d",
+      "normalized_Git_blob": "7fb5ade914f8ad1e843346f0cdcbeff4c875400f"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-fresh-source-proof.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-fresh-git-proof.json",
+      "raw_bytes": 15618,
+      "raw_sha256": "f80232423fca824574b2747e03c1461b02bada54424cbd6e04b79d9164c117c9",
+      "LF_bytes": 15618,
+      "LF_sha256": "f80232423fca824574b2747e03c1461b02bada54424cbd6e04b79d9164c117c9",
+      "normalized_Git_blob": "6b05bd23c21ca6439fd7a06b378ef6da434556f8"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-activation.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-activation.json",
+      "raw_bytes": 4862,
+      "raw_sha256": "95021cb586be9d2df4a653348e532b8840bb658d9190b679c4a1fa8d3bb9a014",
+      "LF_bytes": 4862,
+      "LF_sha256": "95021cb586be9d2df4a653348e532b8840bb658d9190b679c4a1fa8d3bb9a014",
+      "normalized_Git_blob": "ed11caba7027e6c9b51a983acb52758a93605327"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-once-journal.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-root-once-journal.json",
+      "raw_bytes": 1596,
+      "raw_sha256": "bc211d99f3e42bf73cee56965dfd9c55600a0155a83fd959cdcc8447cbbb9531",
+      "LF_bytes": 1596,
+      "LF_sha256": "bc211d99f3e42bf73cee56965dfd9c55600a0155a83fd959cdcc8447cbbb9531",
+      "normalized_Git_blob": "f80a36f5e6b0b8433d5c3b0152be0dde2f657572"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-native-outer-receipt.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-native-outer-receipt.json",
+      "raw_bytes": 1977,
+      "raw_sha256": "724eb5d7e566af813651a43f7d60ada6f2528cb1c5893af44a2c1cf078513a54",
+      "LF_bytes": 1977,
+      "LF_sha256": "724eb5d7e566af813651a43f7d60ada6f2528cb1c5893af44a2c1cf078513a54",
+      "normalized_Git_blob": "4b9617dcc35454d7173c84509f6ff784107d3325"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-invocation-consumed.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-invocation-consumed.json",
+      "raw_bytes": 1485,
+      "raw_sha256": "6673de7736dd354f3e9a7485c7d864d182887cc21693692ebeb28066f7933826",
+      "LF_bytes": 1485,
+      "LF_sha256": "6673de7736dd354f3e9a7485c7d864d182887cc21693692ebeb28066f7933826",
+      "normalized_Git_blob": "cfddadd9948a5fd7a3450259a2324f9db5318c1d"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-actual-root-ownership.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-actual-root-ownership.json",
+      "raw_bytes": 8847,
+      "raw_sha256": "b9782920686ef7a2cf0d5b9fa8fda088a3bb1823a35032de46c27f30a213f2ea",
+      "LF_bytes": 8847,
+      "LF_sha256": "b9782920686ef7a2cf0d5b9fa8fda088a3bb1823a35032de46c27f30a213f2ea",
+      "normalized_Git_blob": "7c8a664570ac9d70af8c9dd986971206520268d4"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-actual-native-qualification.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/evidence-actual-independent-qualification.json",
+      "raw_bytes": 18772,
+      "raw_sha256": "899bef863a818e2833f28e34abd2ad5506f0038e39c9d1de5fc32822ce4d89fc",
+      "LF_bytes": 18499,
+      "LF_sha256": "fc54e634f1d3aa97213ffee498f39280a32da758ec423cf19833babfdca795e0",
+      "normalized_Git_blob": "98fbd40850d8505f906692a23042e5a3527f9f4d"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/acquisition-summary.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-acquisition-summary.json",
+      "raw_bytes": 2552,
+      "raw_sha256": "7a385726dde7ed7b182a5d5629fa011cde1523d1fab6851b871af2587278464e",
+      "LF_bytes": 2552,
+      "LF_sha256": "7a385726dde7ed7b182a5d5629fa011cde1523d1fab6851b871af2587278464e",
+      "normalized_Git_blob": "3934ac341c50db01c7562f9e993ad2ed9233ebdb"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/artifact-list-projection.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-artifact-list-projection.json",
+      "raw_bytes": 1290,
+      "raw_sha256": "caa963c0e2e4d8825d0c062fe241425bd8e9280bb49a97259c2de75b3ca4ff0f",
+      "LF_bytes": 1290,
+      "LF_sha256": "caa963c0e2e4d8825d0c062fe241425bd8e9280bb49a97259c2de75b3ca4ff0f",
+      "normalized_Git_blob": "f2009c155088ad266cf432c7afed356de77c3292"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/native-full-integration-projection.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-native-full-integration-projection.json",
+      "raw_bytes": 67186,
+      "raw_sha256": "30533e50a60079800cf16902ead780be19131dd55ea7a128badb4e21343da442",
+      "LF_bytes": 67186,
+      "LF_sha256": "30533e50a60079800cf16902ead780be19131dd55ea7a128badb4e21343da442",
+      "normalized_Git_blob": "db1de1c81eb5dacfe76f8d7b81728c036f984d53"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/native-general-browser-projection.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-native-general-browser-projection.json",
+      "raw_bytes": 13366,
+      "raw_sha256": "ba022c50bb6ff5e466f6724aed54ec60e01b09eb29edd0a32fa572120b36be25",
+      "LF_bytes": 13366,
+      "LF_sha256": "ba022c50bb6ff5e466f6724aed54ec60e01b09eb29edd0a32fa572120b36be25",
+      "normalized_Git_blob": "2e3d8ae6ac50b16a362ac53f92fa2dfd654f3ba2"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/native-isolated-storage-recovery-projection.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-native-isolated-storage-recovery-projection.json",
+      "raw_bytes": 2008,
+      "raw_sha256": "5cb4b454acfb209e7592e422ee0b67ac6271d4263d0f987cd2ed18e6aed854fc",
+      "LF_bytes": 2008,
+      "LF_sha256": "5cb4b454acfb209e7592e422ee0b67ac6271d4263d0f987cd2ed18e6aed854fc",
+      "normalized_Git_blob": "e85d2f6daff1500895a91c8d06cf8cfadbb2c24d"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/operator-intent.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-operator-intent.json",
+      "raw_bytes": 11915,
+      "raw_sha256": "0c6bf2f0cbf64bea0e006b24065752e448bd504efc58750a67ba68d01d7d14d2",
+      "LF_bytes": 11915,
+      "LF_sha256": "0c6bf2f0cbf64bea0e006b24065752e448bd504efc58750a67ba68d01d7d14d2",
+      "normalized_Git_blob": "24b4293b1e3fdf8aacf3a609f3775a590de6e299"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-01-intent.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-01-intent.json",
+      "raw_bytes": 413,
+      "raw_sha256": "3a61f759c00a23d3b04fcd7afff1e4f8fa3fc3353140066e67c560a4561db524",
+      "LF_bytes": 413,
+      "LF_sha256": "3a61f759c00a23d3b04fcd7afff1e4f8fa3fc3353140066e67c560a4561db524",
+      "normalized_Git_blob": "96606ed175f88eaed437c6f474f2a1a55f0c0d65"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-01-result.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-01-result.json",
+      "raw_bytes": 1133,
+      "raw_sha256": "bd52e7fab28db8e0deb285739b2942e568925983b49ed0f7dd7da71befc75ded",
+      "LF_bytes": 1133,
+      "LF_sha256": "bd52e7fab28db8e0deb285739b2942e568925983b49ed0f7dd7da71befc75ded",
+      "normalized_Git_blob": "111f609f5b06d5492c76956713f64b495d2e3a27"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-02-intent.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-02-intent.json",
+      "raw_bytes": 432,
+      "raw_sha256": "af1c05a7431994c281ecbe12e2fc26be402e1453e85e2fa9164c4bfd4d3e9915",
+      "LF_bytes": 432,
+      "LF_sha256": "af1c05a7431994c281ecbe12e2fc26be402e1453e85e2fa9164c4bfd4d3e9915",
+      "normalized_Git_blob": "2c224982657a79309355b1b33325e84b4cdc60ce"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-02-result.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-02-result.json",
+      "raw_bytes": 1151,
+      "raw_sha256": "b28422b64bd88e3d661d7c3fe4b5e9c2a09b8a4ba1c85d92f6f07213b42c2fa9",
+      "LF_bytes": 1151,
+      "LF_sha256": "b28422b64bd88e3d661d7c3fe4b5e9c2a09b8a4ba1c85d92f6f07213b42c2fa9",
+      "normalized_Git_blob": "a21ba1aa50c94a0aa4e1f14c0492c5bc57bc24e1"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-03-intent.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-03-intent.json",
+      "raw_bytes": 422,
+      "raw_sha256": "5f4c7701c376b7285915d63e1d51fc56d7b75c7a8c3b6ece40f8316942bf8047",
+      "LF_bytes": 422,
+      "LF_sha256": "5f4c7701c376b7285915d63e1d51fc56d7b75c7a8c3b6ece40f8316942bf8047",
+      "normalized_Git_blob": "b8b25a0d129fc8cfd7a08d60eb482c3aaa5271ea"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-03-result.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-03-result.json",
+      "raw_bytes": 1143,
+      "raw_sha256": "1d8ed411033a376009976711e99dd3efaf86984b4af5baa090e9ff08af9ede27",
+      "LF_bytes": 1143,
+      "LF_sha256": "1d8ed411033a376009976711e99dd3efaf86984b4af5baa090e9ff08af9ede27",
+      "normalized_Git_blob": "f31bd5c29c98b3759f4f3f482e593435ecce0521"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-04-intent.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-04-intent.json",
+      "raw_bytes": 431,
+      "raw_sha256": "da8e876a16151f2f4c05dcedd9efc2c003f7065819ca2346e94368ad052c0be4",
+      "LF_bytes": 431,
+      "LF_sha256": "da8e876a16151f2f4c05dcedd9efc2c003f7065819ca2346e94368ad052c0be4",
+      "normalized_Git_blob": "2112e465fa13c82e4f089b6defa6730cf795dfb1"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-04-result.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-04-result.json",
+      "raw_bytes": 1149,
+      "raw_sha256": "818c9f5541340dedfaf9f4bdac5c9acafc019bc67c0557378a53b63210e524eb",
+      "LF_bytes": 1149,
+      "LF_sha256": "818c9f5541340dedfaf9f4bdac5c9acafc019bc67c0557378a53b63210e524eb",
+      "normalized_Git_blob": "977a7a151fa1191757b1c8c1ce4d574845a92a5c"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-05-intent.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-05-intent.json",
+      "raw_bytes": 421,
+      "raw_sha256": "ad342e6e8a2bd635142ccd6fd7f930c4bd2e15dd19703e127ddcd34717579e7e",
+      "LF_bytes": 421,
+      "LF_sha256": "ad342e6e8a2bd635142ccd6fd7f930c4bd2e15dd19703e127ddcd34717579e7e",
+      "normalized_Git_blob": "ec99444e9b6d36017049729d23ad94d02ea77c67"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/request-05-result.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-request-05-result.json",
+      "raw_bytes": 1140,
+      "raw_sha256": "c593c621b410e169d442a61da5ff0101c97bfb488f1af97725f43b52c69d3a49",
+      "LF_bytes": 1140,
+      "LF_sha256": "c593c621b410e169d442a61da5ff0101c97bfb488f1af97725f43b52c69d3a49",
+      "normalized_Git_blob": "3c45dd48e816fc251b08ce9d39b7b9c1525b56e8"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/run-archive-projection.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-run-archive-projection.json",
+      "raw_bytes": 48553,
+      "raw_sha256": "103aabed0f6689e784d0149ef1feca186d99b760ffe77e0e3ee361f6cbc3c1b7",
+      "LF_bytes": 48553,
+      "LF_sha256": "103aabed0f6689e784d0149ef1feca186d99b760ffe77e0e3ee361f6cbc3c1b7",
+      "normalized_Git_blob": "7d86fbffeaa84ba9f249a6e9a00286a71120e8fb"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/source-label-projection.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-source-label-projection.json",
+      "raw_bytes": 1691,
+      "raw_sha256": "2fb135864dc0917ad899821655196a4868bccec8ed76c4bf158ffb4fec01c897",
+      "LF_bytes": 1691,
+      "LF_sha256": "2fb135864dc0917ad899821655196a4868bccec8ed76c4bf158ffb4fec01c897",
+      "normalized_Git_blob": "f9b8cbcafb8e598697c7b6658c5816adfb2efb53"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/source-provenance.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-source-provenance.json",
+      "raw_bytes": 11194,
+      "raw_sha256": "21b5973b597bf219bb5369a66d53f4249445c60d575f8c357eba6f983bb5ec5d",
+      "LF_bytes": 11194,
+      "LF_sha256": "21b5973b597bf219bb5369a66d53f4249445c60d575f8c357eba6f983bb5ec5d",
+      "normalized_Git_blob": "c0e86bfdc1e3ce3fd0163cdaa409bdb6ebf4d41e"
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/terminal-bindings.json",
+      "tracked_working_copy": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/packet-terminal-bindings.json",
+      "raw_bytes": 14266,
+      "raw_sha256": "5d53cef010a8c638e5ee0b330f42ec10336b6ed40c546094a8db541a39cf0cd7",
+      "LF_bytes": 14266,
+      "LF_sha256": "5d53cef010a8c638e5ee0b330f42ec10336b6ed40c546094a8db541a39cf0cd7",
+      "normalized_Git_blob": "c1c08fcd62bc448f1e3cec32002aac481f421ecc"
+    }
+  ],
+  "working_copies_byte_identical_to_closed_originals": true,
+  "Git_checkout_note": "Raw working-copy equality and LF-normalized Git bytes are distinct. Both vectors and normalized blob IDs recorded; no byte-equality claim across CRLF-normalizing checkouts.",
+  "scope": "Closed JSON metadata/qualification/projections only. No executable operator/helper/wrapper, raw provider/ZIP/log/native JSON body, SQL/source contents or live secret/capability copied. Historical activations/grants/once journals are closed evidence, not replay authority.",
+  "all_runtime_and_acquisition_slots_closed": true,
+  "normal_acceptance": 0
+}

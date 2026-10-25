@@ -122,6 +122,19 @@ suite("isolated recovery Storage physical-loader proof", () => {
     if (!Array.isArray(before) || before.length !== fixture.objects.length) {
       throw new Error("isolated recovery Storage proof pre-loader row snapshot is invalid");
     }
+    // Check effective privileges after the real restore/bootstrap, including
+    // PUBLIC and inherited grants; a direct REVOKE alone cannot prove absence.
+    try {
+      const result = await execFileAsync("docker", [
+        "compose", ...recoveryComposeFiles, "exec", "-T", "db", "psql",
+        "-At", "-v", "ON_ERROR_STOP=1", "-U", "supabase_admin", "-d", "postgres",
+        "-c", "select has_schema_privilege('calendar_feed_owner','public','CREATE');",
+      ], { windowsHide: true, timeout: 15_000, maxBuffer: 64 * 1024 });
+      if (result.stdout.trim() !== "f") throw new Error("Recovery feed schema privilege not verified");
+    } catch {
+      // Never expose raw process output, SQL argv or a transport error cause.
+      throw new Error("Recovery feed schema privilege not verified");
+    }
     await assertApiObjects(base, fixture.objects);
     expect(await storageRows()).toEqual(before);
     for (const object of fixture.objects) {

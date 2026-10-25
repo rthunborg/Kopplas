@@ -1,0 +1,207 @@
+{
+  "kind": "independent-high-acl-source-assessment-plan-validation",
+  "verdict": "PASS_PLAN_ONLY",
+  "consequential_findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_assessment_author": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_story_review": false
+  },
+  "assessment_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment.json",
+    "bytes": 10552,
+    "sha256": "b9cf4545a2b229eca82fcc4a454306b403ca48606741e31d682cf00a7d73e863"
+  },
+  "current_head": "8d7b5c13a6673a55c3f3c858838de4bd54ab6d95",
+  "source_commit": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "checkpoint_source_context": [
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "current_head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "checkpoint_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "immutable_predecessor": true
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "current_head_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+      "checkpoint_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+      "immutable_predecessor": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 163537,
+      "sha256": "4f502cd88dd23269113e84aef733462f68156733f9a38297c020d3a0609a58d7",
+      "current_head_blob": "02442fd8034b573d376397e1eee105c7b3d96849",
+      "checkpoint_blob": "02442fd8034b573d376397e1eee105c7b3d96849",
+      "immutable_predecessor": false
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "current_head_blob": "a78e3f6a336f84fc3d44d042516808748622feb8",
+      "checkpoint_blob": "a78e3f6a336f84fc3d44d042516808748622feb8",
+      "immutable_predecessor": false
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 14957,
+      "sha256": "52716fa7a627b96d6b9397b775b4603ce85860fe4f5c101a0523cc95cab21838",
+      "current_head_blob": "14e2cb42fb816d88e2b67f9223dfa573d30bb663",
+      "checkpoint_blob": "14e2cb42fb816d88e2b67f9223dfa573d30bb663",
+      "immutable_predecessor": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 160774,
+      "sha256": "32eb365d1b6b523ef07e3fc950ae824d4cc94e226558947e6d32342f2f27b77f",
+      "current_head_blob": "26327a36a8f89cf503036239def64b0585465136",
+      "checkpoint_blob": "26327a36a8f89cf503036239def64b0585465136",
+      "immutable_predecessor": false
+    }
+  ],
+  "actual_matrix_evidence": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-result.json",
+      "bytes": 2035,
+      "sha256": "df41f286bfe77d59dfe61b915b7c5b564cbf496af74c6faed260b64df0032cae"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-qualification.json",
+      "bytes": 20729,
+      "sha256": "10c768007bdbe4aff43401a2bad0fa2964a8d394a9cbf9b06ec65583f5d4d7c1"
+    }
+  ],
+  "policy": {
+    "path": "docs/process/development-completion-policy.md",
+    "bytes": 8460,
+    "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+  },
+  "primary_sources_independently_read": [
+    {
+      "url": "https://www.postgresql.org/docs/17/role-membership.html",
+      "reviewed": "SET vs INHERIT distinction"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/sql-revoke.html",
+      "reviewed": "nonowner grant-option limits and warning/noop with some privilege"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/sql-grant.html",
+      "reviewed": "grant options, owner/superuser contexts and ownership transfer authority"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/acl.c",
+      "reviewed": "aclnewowner around1060 and select_best_grantor around5057; inherited privilege traversal distinct from SET"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/catalog/aclchk.c",
+      "reviewed": "restrict_and_check_grant around228/285-368; requested privileges restricted to available grant options"
+    }
+  ],
+  "validated_source_claim": {
+    "level": "CONDITIONAL_REACHABLE_SOURCE_DEFECT",
+    "premises": [
+      "Ordinary non-superuser postgres creates the function with standard PUBLIC EXECUTE and owner rights.",
+      "Owner becomes calendar_feed_owner; postgres has SET capability but no inherited owner privileges or independent function grant option.",
+      "No unrelated platform trigger, later grant or superuser context modifies the sequence."
+    ],
+    "deduction": "Post-transfer source ACL attempts can warn/noop in ordinary SET-only/no-grant-option context, leaving the restrictive guard correctly refusing.",
+    "hosted_cause_proven": false,
+    "hosted_PUBLIC_or_grant_identity_observed": false,
+    "actual111_application_proven": false,
+    "guard_valid": true,
+    "no_relaxation": true
+  },
+  "complete_targets": [
+    "calendar_feed_now_internal()",
+    "calendar_feed_attestation_payload(jsonb)",
+    "calendar_feed_verify_attestation_internal(jsonb,text,text)",
+    "calendar_feed_subject_internal(uuid,uuid,uuid,boolean)",
+    "read_calendar_feed_status(uuid,uuid)",
+    "manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text)",
+    "fetch_calendar_feed(text,text,jsonb,text)",
+    "read_calendar_feed_abuse(uuid)"
+  ],
+  "intended_acl_partition": {
+    "owner_only": [
+      "calendar_feed_attestation_payload",
+      "calendar_feed_verify_attestation_internal",
+      "calendar_feed_subject_internal",
+      "calendar_feed_now_internal"
+    ],
+    "anon_only": [
+      "fetch_calendar_feed"
+    ],
+    "authenticated_only": [
+      "read_calendar_feed_status",
+      "manage_calendar_feed",
+      "read_calendar_feed_abuse"
+    ],
+    "owner_execution": "Required throughout; raw owner/default entries must be source-comparable.",
+    "separate_unchanged_helpers": [
+      "postgres-owned calendar_feed_secret_internal",
+      "postgres-owned preparsed calendar_feed_actor_internal"
+    ]
+  },
+  "candidate_paths_not_allocated": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "scope_assessment": "Exact5 paths sufficient and proportional if required native regression can live in existing helper/RLS010 paths. No additional tracked/private runtime payload is implicitly allocated.",
+  "mandatory_refinements_and_resume_conditions": [
+    "Before allocation/implementation, author must make the exact finite per-function legacy ACL allowlist explicit: normalized EXECUTE entries and source owner/grantor identity; distinguish NULL/default ACL, standard PUBLIC/default remnants and already-correct intended entries. Reject unexplained grantees/grantors or non-owner grantability before mutation. Do not treat every unexpected role as safe merely because a blanket REVOKE could remove it; no blind CASCADE.",
+    "Read-only preflight ALL8 before any SET ROLE/REVOKE/GRANT/adapter/schema-object mutation: exact OIDs/signatures/return+argument/default shape, actual intended owner, language/security/volatility/config and exact immutable-source bodies. Retain ordinary executor/session identity, direct/effective SET, no inherited owner privilege, hardened owner/membership and existing namespace authority; missing authority fails, no new grants or fallback.",
+    "Only after all8 preflight succeeds, use SET LOCAL ROLE owner for all8 source-intended revokes and precise grants; RESET and requalify executor. Owner-only payload/verifier/subject/now; anon-only fetch; authenticated-only status/manage/abuse (owner execution remains). Postassert both raw normalized ACLs and effective known/inherited boundaries, including owner execution.",
+    "One atomic statement/transaction; any unexpected shape, role, option, failed postcondition or restore aborts everything. No independent COMMIT/superuser/INHERIT/new-membership/grant-option workaround. Reconciliation requires no new schema privilege; keep existing separate adapter transient-CREATE contract unchanged.",
+    "Preserve full existing strict3 original-function guard and failure matrix after reconciliation, before adapter DDL. Shape/body proof before reconciliation is separate from intentionally repaired ACLs. Compare all8 OIDs/owners/definitions/non-ACL metadata/role state before+after reconciliation. Take adapter conservation baseline after explicit ACL reconciliation, then preserve its existing exact8 identity substitutions and all other invariants.",
+    "Extend actual ACL inventory and RLS010 to include subject and now_internal as well as the existing payload/verifier/entrypoints; retain separately correct postgres-owned secret helper and actor helper checks. No omitted transferred helper, weakened assertion or extra live surface.",
+    "Meaningful native grantor regression must qualify a real ordinary non-superuser creator with effective owner-USAGE false/SET true, then reproduce create->transfer->source ACL attempt lacking independent grant options and contrast explicit owner-context ACL reconciliation. Use confined fresh UUID roles/schema/function with rollback/fresh absence, preserve existing memberships, assert observed/noop ACL outcomes and unchanged OID/owner/body/config. A pure grantor simulation or superuser-only positive fixture is insufficient.",
+    "Place ordinary-grantor native regression within the existing allocated RLS010/helper paths if feasible. Any separate private rollback proof or extra tracked path needs its own exact review/allocation before use; this five-path plan does not allocate that payload/runtime.",
+    "Required controls: reject drift/unknown ACL/owner/shape/grantability across all8 before effects; correct and already-private cases; failed-preflight and rollback conservation; raw/effective ACL positives+negatives for all8; retain existing owner/membership/adapter/CI inverse controls. Refresh author SRO and evidence; kernel5760/baseline/counter3 remain unchanged.",
+    "After implementation, focused/static checks and distinct targeted committed-delta High review, then freshly authorized exact-head full DB/RLS/normal95 and separate recovery evidence; no skipped/native borrowing, fourth broad review or automatic CI activation."
+  ],
+  "fresh_owner_context_from_parent": {
+    "E16": "Root/current author/nested/reviewer report no adoption/copy/application/claims",
+    "Documents": "retained completed checkout lacks both paths/current claims",
+    "other_actors": "UNKNOWN",
+    "111_successful_application": "Not established by own failed startup-before-DDL history",
+    "predecessor110": "Immutable due earlier own application",
+    "implementation_or_source_allocation": false,
+    "meaning": "Concrete Root/Coordinator111 clearance still required; do not upgrade known-owner reports to global absence proof."
+  },
+  "actual_checks": {
+    "assessment_and_evidence_bytes_sha_verified": true,
+    "current_and_checkpoint_context_bindings_verified": 6,
+    "unique_transferred_functions": 8,
+    "predecessor_SET_ROLE_statements": 0,
+    "transfer_then_ACL_source_order_verified": true,
+    "RLS010_helper_inventory_gap_identified": "subject and now_internal absent; extend within candidate helper/RLS paths",
+    "primary_PG17_docs_and_engine_source_read": true,
+    "SQL_or_engine_regressions_run": 0,
+    "author_reported_four_pure_assertions": "Retained as author report only, not native evidence"
+  },
+  "effects_and_limits": {
+    "sql_runtime_catalog_observer": 0,
+    "operational_API_CI_resources": 0,
+    "git_source_spec_state_report_edits": 0,
+    "public_primary_documentation_source_reads": true,
+    "native_or_normal_acceptance_credit": 0,
+    "source_implementation_authority": false,
+    "guard_relaxation_authority": false,
+    "source_fix_execution_ready": false,
+    "fourth_broad_round": false,
+    "writes": "Only the three owned new review outputs; all prior artifacts remain immutable."
+  }
+}

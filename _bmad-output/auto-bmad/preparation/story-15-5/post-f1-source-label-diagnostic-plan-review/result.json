@@ -1,0 +1,35 @@
+{
+  "Outcome": "NOTPASS_PLAN_REQUIRES_BOUNDARY_AND_STATE_REFINEMENT",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/report.md",
+      "bytes": 5115,
+      "sha256": "1e40afb06d0f75531e4ba47eae362d3103ea3de0ce76379633de24c364766c5d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/attestation.json",
+      "bytes": 15559,
+      "sha256": "cee2fa01560b7d2deab96bd392876f7cc638de5a65380f251ceb346f519dd059"
+    }
+  ],
+  "Status": "Two finite plan findings; no product/SQL correction established and no source/effect allocation granted.",
+  "Open questions": [
+    "Original nudge assertion and browser failures remain unknown; outer setup/cleanup and per-observation applicability need explicit diagnostic contracts."
+  ],
+  "Deferred work": [
+    "After exact refinements: coordinated six-path allocation, offline actual-source controls and independent committed-delta review.",
+    "Future full-normal comparison requires separate explicit changed-information recovery-policy admission and actual effect allocation/fresh Root activation; all mandatory gates remain."
+  ],
+  "Blockers": [
+    {
+      "id": "LABEL-PLAN-01",
+      "owner": "High plan author",
+      "resume_condition": "Opted-in enclosing NUDGE004 boundary plus entered/returned/phase facts covers outer setup/clients/cleanup without factory changes or error-precedence changes."
+    },
+    {
+      "id": "LABEL-PLAN-02",
+      "owner": "High plan author",
+      "resume_condition": "Finite per-observation/action or conservative aggregate state semantics with UNKNOWN/applicability and mixed-success/pending inverse controls."
+    }
+  ]
+}

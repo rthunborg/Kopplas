@@ -1,0 +1,211 @@
+{
+  "kind": "post-cap-exact-committed-actual-query-settlement-finding-only",
+  "before": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "source_head": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+  "source_state": "EXACT_COMMITTED_THREE_PATH_APPEND_ONLY_FIX",
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "input_bytes": 122270,
+  "input_sha256": "7485ac3451d408e1dd02c178c5042bebe584816d2fb25e9db32b402641c40a6e",
+  "diff_bytes": 37079,
+  "diff_sha256": "5d8d58598422e38b61ca3ff5109dc44fe1adb81fe02ae199f1dfcc8693d45b76",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 90189,
+      "raw_sha256": "58ab3a69cf626e0a9f7eee65fde944d46011dfdcf73610ee360d0a76452a6b69",
+      "actual_git_clean_oid": "28bc4ee8ab91016857e21715100b1b8505785d9a",
+      "git_clean_normalized_bytes": 90189,
+      "git_clean_normalized_sha256": "58ab3a69cf626e0a9f7eee65fde944d46011dfdcf73610ee360d0a76452a6b69",
+      "head_blob_oid": "28bc4ee8ab91016857e21715100b1b8505785d9a",
+      "head_blob_bytes": 90189,
+      "head_blob_sha256": "58ab3a69cf626e0a9f7eee65fde944d46011dfdcf73610ee360d0a76452a6b69",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "e42a3ad9944f6d50b802249e61fefa9136eed9b6",
+      "baseline_bytes": 87171,
+      "baseline_sha256": "3dd0b84cf8b707aa6664c81ee0500863619aa07c21b46859e5b60a0e7b5d0c92"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 55454,
+      "raw_sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "actual_git_clean_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "git_clean_normalized_bytes": 54738,
+      "git_clean_normalized_sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3",
+      "head_blob_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "head_blob_bytes": 54738,
+      "head_blob_sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3",
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "2ab44ffc9d0b1f6118cc91491cb38bef93ba98b3",
+      "baseline_bytes": 53463,
+      "baseline_sha256": "0862e650f2e1366b97ef3a29b5a0c03bfdd3daf3268ff9a8863fac4f35b542fd"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 70623,
+      "raw_sha256": "1771a68a4501d62854f55ea541b13f16b9be30d56d16468d2ed2b16e6b733f31",
+      "actual_git_clean_oid": "345ac5c39023094e858edceabe208e63fc61485c",
+      "git_clean_normalized_bytes": 70623,
+      "git_clean_normalized_sha256": "1771a68a4501d62854f55ea541b13f16b9be30d56d16468d2ed2b16e6b733f31",
+      "head_blob_oid": "345ac5c39023094e858edceabe208e63fc61485c",
+      "head_blob_bytes": 70623,
+      "head_blob_sha256": "1771a68a4501d62854f55ea541b13f16b9be30d56d16468d2ed2b16e6b733f31",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "6d4aecf344a56f991cfb85d3084bce3669ca7b46",
+      "baseline_bytes": 64620,
+      "baseline_sha256": "973b83e21891128b92d2d5e86b9d74455f4d2b96affb650ebe22fb7a3c71044c"
+    }
+  ],
+  "unchanged_prior_paths": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 35025,
+      "raw_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "actual_git_clean_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "git_clean_normalized_bytes": 35025,
+      "git_clean_normalized_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "head_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "head_blob_bytes": 35025,
+      "head_blob_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "baseline_bytes": 35025,
+      "baseline_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 3777,
+      "raw_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "actual_git_clean_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "git_clean_normalized_bytes": 3777,
+      "git_clean_normalized_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "head_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "head_blob_bytes": 3777,
+      "head_blob_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "baseline_bytes": 3777,
+      "baseline_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw_bytes": 27768,
+      "raw_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "actual_git_clean_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "git_clean_normalized_bytes": 27768,
+      "git_clean_normalized_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "head_blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "head_blob_bytes": 27768,
+      "head_blob_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "baseline_bytes": 27768,
+      "baseline_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe"
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/author-native-poll-query-settlement-route.json",
+      "raw_bytes": 1979,
+      "raw_sha256": "59d4c1abda65952b047a88e559e1888fc6ddf525d282103cf6215534b82b82c8",
+      "included_lf_bytes": 1979,
+      "included_lf_sha256": "59d4c1abda65952b047a88e559e1888fc6ddf525d282103cf6215534b82b82c8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-poll-query-settlement-review/local-checks.json",
+      "raw_bytes": 3376,
+      "raw_sha256": "f631fa11b2780a6ae76e0132fb46ba4e807412180ca49368d87bb3c766b9039b",
+      "included_lf_bytes": 3376,
+      "included_lf_sha256": "f631fa11b2780a6ae76e0132fb46ba4e807412180ca49368d87bb3c766b9039b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-review.md",
+      "raw_bytes": 1142,
+      "raw_sha256": "7069c11f075b927eb2d52bec7be14e81452c74aaf1c1f4dc7cd26acb4b6bf466",
+      "included_lf_bytes": 1142,
+      "included_lf_sha256": "7069c11f075b927eb2d52bec7be14e81452c74aaf1c1f4dc7cd26acb4b6bf466"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-review-attestation.json",
+      "raw_bytes": 5936,
+      "raw_sha256": "8e61bb7914ca695afdfaf4c6a05efb558a674800ad3045d91b99fe013560186f",
+      "included_lf_bytes": 5936,
+      "included_lf_sha256": "8e61bb7914ca695afdfaf4c6a05efb558a674800ad3045d91b99fe013560186f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/input-binding.json",
+      "raw_bytes": 12650,
+      "raw_sha256": "2fdc420f263da44a7bb5daf9b1728679d898a5d8b6fb7992f38b54c25e076da4",
+      "included_lf_bytes": 12650,
+      "included_lf_sha256": "2fdc420f263da44a7bb5daf9b1728679d898a5d8b6fb7992f38b54c25e076da4"
+    }
+  ],
+  "installed": [
+    {
+      "path": "node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js",
+      "raw_bytes": 3352341,
+      "raw_sha256": "6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27",
+      "included_lines": [
+        4408,
+        4442
+      ],
+      "included_lf_bytes": 1233,
+      "included_lf_sha256": "f21581227f5e966af12cd432d1417faef320ab9ecc283d5531cbe85bd3807d1d"
+    },
+    {
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/matchers/expect.js",
+      "raw_bytes": 526213,
+      "raw_sha256": "78fb9c8cb3214b6ff753e8444034f60ad740e5f16225bac879bb7bca3055fb62",
+      "included_lines": [
+        12949,
+        12974
+      ],
+      "included_lf_bytes": 1082,
+      "included_lf_sha256": "adeb4a9d1a27425be226746593055aa0ee77ed467ead53715529f2ce228918af"
+    }
+  ],
+  "complete_helper": {
+    "bytes": 54738,
+    "sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3"
+  },
+  "composite": {
+    "prior_source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+    "prior_assessment": "NOTPASS_ONE_P2",
+    "reused": "Unchanged portions of exact six-path assessment; no retrospective fullPASS.",
+    "current_scope": "Only3fixpaths and latest serious-finding/consequential regressions, not whole final source rereview."
+  },
+  "root_route": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "raw_bytes_unverified_uncredited_snapshot": 59972,
+    "raw_sha256_unverified_uncredited_snapshot": "d58afe05b554d57e07d0c90e8a89327ce70bdf4b91736b4677d3e980b364c8c8",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 583,
+    "included_lf_sha256": "fd39eea130af193e46438f3f85f4dd2f540ffe94c25d78a85e0699bc3199443b",
+    "source_commit_excluded": true
+  },
+  "review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "scope": "Actual-SQL-settlement latestfinding/fix-only follow-up; no fourth broad review."
+  },
+  "normalization": "Raw actual bytes separately bound; actual --path clean OID equals unfiltered LF OID, HEAD OID and byte-equal native blob. No CRLF sameness assumed.",
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "75a27fccf72a3ad252f1fc1ff00d7eb8b697ef736130a4de9ecafe434c7a791c",
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-poll-query-settlement-review/local-checks.json",
+    "bytes": 3376,
+    "sha256": "f631fa11b2780a6ae76e0132fb46ba4e807412180ca49368d87bb3c766b9039b"
+  },
+  "native_limits": "Only pure helper source uniquely extracted with TypeScript stripping and installed polling helper execute locally. Full-helper alias plumbing/native DB/SQL/browser unexecuted. Six failed native histories preserved: latest14browserF/28attempts,51DBunexecuted,contentNULL/unavailable.33b preflight7+4/recovery1 old-head facts only. No app/privilege/workflow/INT015/key/lifecycle authority change; no native inference, build rerun, fourth broad review, push/runtime/DONE/delivery."
+}

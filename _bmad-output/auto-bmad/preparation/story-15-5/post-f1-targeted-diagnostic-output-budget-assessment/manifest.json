@@ -1,0 +1,18 @@
+{
+  "schema": "POST_F1_OUTPUT_BUDGET_ASSESSMENT_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-diagnostic-output-budget-assessment/report.md",
+      "bytes": 5957,
+      "sha256": "40c8f8a7941ec0b30353526fa06f741e57bf390fc52f80cf121dc07959822e37"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-diagnostic-output-budget-assessment/attestation.json",
+      "bytes": 8883,
+      "sha256": "0ec5643a3090aa5e0cf825c43f29d0562e9915fefee69b801087891aca3e1314"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 3,
+  "normal_acceptance": 0
+}

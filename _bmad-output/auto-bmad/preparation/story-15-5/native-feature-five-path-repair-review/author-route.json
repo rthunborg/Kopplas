@@ -1,0 +1,32 @@
+{
+  "kind": "author-source-handoff-route-record",
+  "recorded_after_implementation": true,
+  "root_pre_dispatch_route": "build-native-feature-owned-four-repair/build-author-owned-fixture-diagnostics-and-status-fallback then build-native-feature-five-path-repair/build-author-owned-diagnostics-status-and-allocated-policy-case",
+  "authority": "Parent relayed Root recorded both routes BEFORE corresponding implementation handoffs; the fifth shared case was kept untouched until explicit grant. This author artifact is post-implementation and does not claim its bytes existed pre-edit.",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "before": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+  "source": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+  "exact_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "src/components/calendar-feed/CalendarSubscription.tsx",
+    "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-feature-policy-case-allocation.json",
+    "bytes": 3023,
+    "sha256": "783151c5ec5320617e922ed87716ef192a18782f2945792cbed06fe8e6ea605d"
+  },
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-feature-failure-repair-proposal/proposal.md",
+    "bytes": 10972,
+    "sha256": "bc9456fd765d5c57c4a2a4445667aecc29d17199a1c88b8451ba4106c93954e7"
+  },
+  "scope": "Existing fixture catches/fixed own-data metadata, existing status fallback, exact one shared policy case, bounded tests and author trail only. No RPC/then observer or authority/runtime effects.",
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "latest_delta_review_only": true,
+  "source_commit_no_push": true
+}

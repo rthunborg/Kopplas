@@ -9,6 +9,7 @@ import { test as base, expect } from "./resource-cdp-attachment";
 import type { Page, TestInfo } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import * as lifecycle from "./scheduling-lifecycle-metadata";
 import { randomUUID } from "node:crypto";
 import { admin, adminInsertContact, adminInsertCustomer, adminInsertFacility, deleteAuthUser, makeAuthedServerClient, type FixtureUser } from "../../factories/tenants";
 import { adminQuery, adminSession } from "../../factories/admin-sql";
@@ -150,11 +151,11 @@ async function bindBookingEditorHarness(
     const request = route.request();
     if (request.method() !== "POST" || !request.headers()["next-action"]) { await route.continue(); return; }
     const input = actionInput(request.postData());
-    if (!input && request.postData() === "[]" && optionsFailure) {const done=optionsFailure; optionsFailure=undefined; await route.abort("failed"); done(); return;}
+    if (!input && request.postData() === "[]" && optionsFailure) {const done=optionsFailure; optionsFailure=undefined; await lifecycle.observeAbort(page, "booking-options-failure", () => route.abort("failed")); done(); return;}
     if (!input) { await route.continue(); return; }
     const save = "editorReview" in input;
-    if (save && saveFailure) { const done = saveFailure; saveFailure = undefined; await route.abort("failed"); done(); return; }
-    if (!save && previewFailure) { const done = previewFailure; previewFailure = undefined; await route.abort("failed"); done(); return; }
+    if (save && saveFailure) { const done = saveFailure; saveFailure = undefined; await lifecycle.observeAbort(page, "booking-save-failure", () => route.abort("failed")); done(); return; }
+    if (!save && previewFailure) { const done = previewFailure; previewFailure = undefined; await lifecycle.observeAbort(page, "booking-preview-failure", () => route.abort("failed")); done(); return; }
     if (save && saveHold) { const gate = saveHold; saveHold = undefined; gate.started(); await gate.wait; }
     // The response is obtained from the actual Next action; no facts/results are fabricated.
     const fetchTimeout = save ? observedSaveTimeout : undefined;
@@ -178,7 +179,7 @@ async function bindBookingEditorHarness(
       if (response.ok() && /"status":"success"/.test(await response.text())) {
         await saveCommitted(input, response);
         for (const confirm of confirmations.splice(0)) confirm();
-        if (saveLoss) { const done = saveLoss; saveLoss = undefined; await route.abort("failed"); done(); return; }
+        if (saveLoss) { const done = saveLoss; saveLoss = undefined; await lifecycle.observeAbort(page, "booking-save-response-loss", () => route.abort("failed")); done(); return; }
       }
     } else if (previewRace && scenario && input.description === scenario.description && input.workRoleId === scenario.workRoleId &&
       (input.assigneeIds as string[]).length === scenario.assigneeIds.length) {
@@ -194,7 +195,7 @@ async function bindBookingEditorHarness(
     catch (error) {
       // Fetching a response does not settle the intercepted browser request.
       // Preserve the real failure, but release the action queue even on timeout.
-      await route.abort("failed").catch(() => {});
+      await lifecycle.observeAbort(page, "booking-route-work-rejection", () => route.abort("failed")).catch(() => {});
       throw error;
     } finally { pendingRoutes.delete(pending); }
   };
@@ -289,6 +290,7 @@ async function bindBookingEditorHarness(
         releaseOlderAndWaitForSettlement: async () => { race.releaseOlder.resolve(); await race.olderDone.promise; await page.evaluate(() => new Promise<void>((done) => requestAnimationFrame(() => requestAnimationFrame(() => done())))); } };
     },
     async dispose() {
+      lifecycle.mark(page, "booking-dispose", "enter");
       try {
         for (const release of releases) release();
         await Promise.allSettled([...pendingRoutes]);

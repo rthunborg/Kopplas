@@ -74,7 +74,22 @@ export type Scenario = {
   canonicalCandidate: Record<string, unknown>;
 };
 export type RpcReply = { data: unknown; error: { code: string; message?: string } | null };
-export type SqlEntry = { signature: string; name: string; args: Record<string, unknown> };
+export type SqlEntry = {
+  signature: string; name: string; args: Record<string, unknown>; rpcCallable: boolean;
+};
+export type SqlCatalogEntry = {
+  signature: string; name: string; names: string[] | null; inputArgumentCount: number; returnsTrigger: boolean;
+};
+/** Keep every catalog identity for ACL checks, including zero-argument triggers. */
+export function bookingEditorSqlEntry(entry: SqlCatalogEntry, standard: Record<string, unknown>): SqlEntry {
+  if ((entry.names?.length ?? 0) < entry.inputArgumentCount
+    || entry.names?.slice(0, entry.inputArgumentCount).some((name) => !name)) {
+    throw new Error(`SQL inventory cannot project unnamed input arguments: public.${entry.signature}`);
+  }
+  return { signature: `public.${entry.signature}`, name: entry.name,
+    args: Object.fromEntries((entry.names ?? []).map((name) => [name, name in standard ? standard[name] : null])),
+    rpcCallable: !entry.returnsTrigger };
+}
 export type SqlAcl = {
   signature: string; publicExecute: boolean; anonExecute: boolean;
   authenticatedExecute: boolean; serviceRoleExecute: boolean;

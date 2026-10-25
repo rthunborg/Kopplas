@@ -99,7 +99,8 @@ export function dailyCapacity(input: SchedulingFacts, person: SchedulingPerson, 
 /** Prepare immutable work terms once; each candidate supplies exact peer demand.
  * The closure is invocation-local and retains hundredths until the same division.
  */
-export function prepareDailyCapacity(input: SchedulingFacts, person: SchedulingPerson, date: string): (demand: bigint) => DailyCapacity {
+export type DailyCapacityInput = Pick<SchedulingFacts, "calendarDays"> & { readonly rules: Pick<SchedulingFacts["rules"], "authorizedOvertime" | "planningBufferMinutes"> };
+export function prepareDailyCapacity(input: DailyCapacityInput, person: Pick<SchedulingPerson, "id" | "shifts" | "exceptions">, date: string): (demand: bigint) => DailyCapacity {
   const day = localDayRange(date);
   const ordinary = unionRanges(person.shifts.filter((shift) => shift.weekday === weekdayForDate(date)).flatMap((shift) => {
     const range = localRange(date, shift.start, shift.end); if (!range) return [];

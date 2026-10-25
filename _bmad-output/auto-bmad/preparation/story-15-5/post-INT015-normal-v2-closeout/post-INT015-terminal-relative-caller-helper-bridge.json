@@ -1,0 +1,139 @@
+{
+  "schema": "ROOT_TERMINAL_RELATIVE_CALLER_NEW_AUTHORITY_HELPER_BRIDGE_V1",
+  "authority_id": "coordinator-terminal-relative-caller-441472-20261024",
+  "new_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-terminal-relative-caller-new-allocation.json",
+    "bytes": 10159,
+    "sha256": "ca6630c55e7cf985ed719ef0322eb18b1ab19e0f7aff9815201b9dcc606e8085"
+  },
+  "new_pre_effect_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-attempt-intent.json",
+    "bytes": 5048,
+    "sha256": "1601e7beb3a03252cf3db7c0e440c515f895764c5a068d87d0a230910006b797"
+  },
+  "old_data_envelope": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+    "bytes": 9579,
+    "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+  },
+  "old_authority_remains_closed": true,
+  "actual_helper_host": {
+    "actual_tool_chunk": "ead6c7",
+    "native_exit": 0,
+    "wall_time_seconds": 0.6185433,
+    "initial_session_id": null,
+    "waits": [],
+    "complete_returned": true
+  },
+  "actual_helper_native_receipts": [
+    {
+      "label": "HEAD",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04334240000025602,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 41,
+      "stdout_sha256": "f69980333d3adca2cf618a57b6c82a766f09e586ebe259bbb9268cbbe4dab192",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "BRANCH",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04286859999774606,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 39,
+      "stdout_sha256": "a2daee9ca65603fd03fece8ad3ef4b452276112180a5e0ad610aa8b28e01834d",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "STATUS",
+      "native_exit": 0,
+      "elapsed_seconds": 0.05684130000008736,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "LOCAL_PUBLISHED_TRACKING",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04243289999794797,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 41,
+      "stdout_sha256": "f69980333d3adca2cf618a57b6c82a766f09e586ebe259bbb9268cbbe4dab192",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "SOURCE_HEAD_ANCESTRY",
+      "native_exit": 0,
+      "elapsed_seconds": 0.043680099999619415,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "TREE_cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+      "native_exit": 0,
+      "elapsed_seconds": 0.05143850000240491,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 865103,
+      "stdout_sha256": "08f650edabcd4dfbfa9a6ea25e24c5c07c3ee0c88c3950b0229c07bc9ae63fb3",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "TREE_019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+      "native_exit": 0,
+      "elapsed_seconds": 0.052815700000792276,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 868569,
+      "stdout_sha256": "6116c1dd42cbf5e68b1290eb82908bcb6feaec8756cc0c44fdbbca5e63f49e17",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    }
+  ],
+  "actual_generated_outputs": {
+    "source_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-fresh-source-proof.json",
+      "bytes": 15649,
+      "sha256": "2efdca6202f89ff59e624e91c6a1d87b1a54240cb197326be602afcf7af1cef4"
+    },
+    "activation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-activation.json",
+      "bytes": 5161,
+      "sha256": "0cf9594280f54ec139ed26ca336d0bc7b151590635b4798b07e810408cc54729"
+    },
+    "journal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-once-journal.json",
+      "bytes": 1626,
+      "sha256": "a5add78a3e16b7572d3f53160df971ea335267b572372fdf40e243204149e8b1"
+    },
+    "terminal_envelope": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-actual-envelope.json",
+      "bytes": 25378,
+      "sha256": "773f4b3d33e3d9ba8fca353d6b883ae58171587454bae69c92a70c8caf0cc4ba"
+    },
+    "source75_envelope": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-source75-envelope.json",
+      "bytes": 33787,
+      "sha256": "550adce9da34f92f118ba0e7eee3a273a4d8fab48e09a602342fd7fa3ad8f1b6"
+    }
+  },
+  "new_helper_invocations": 1,
+  "new_helper_Git_calls": 7,
+  "new_reader_invocations_so_far": 0,
+  "new_logical_GETs_so_far": 0,
+  "normal_acceptance": 0
+}

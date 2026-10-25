@@ -1,0 +1,30 @@
+{
+  "Blockers": [
+    "Current NUDGE label transport cannot deliver the intended comparison information. No dispatch readiness or effects authority."
+  ],
+  "Deferred work": [
+    "Exact3 metadata-carrier source grant/implementation/installed reporter proof/High closure.",
+    "Finite existing normal operator adaptation/source audit; fresh effects/provider/terminal acquisition allocations."
+  ],
+  "Files changed": [
+    {
+      "bytes": 59759,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/source-bindings.json",
+      "sha256": "5ab7c6701a698491d0dbfd190e510ba202ba9bf67904dba95a8cce279a2bd9f8"
+    },
+    {
+      "bytes": 21374,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/readiness.json",
+      "sha256": "b19311457a726f047a165bac11d26ee46e3e3f4136013241f3932ed68ba986d3"
+    }
+  ],
+  "Open questions": [
+    "Native label publication and application/backend cause/custody remain UNKNOWN.",
+    "Future exact pushed head/UUID/run/attempt and hosted no-deploy settings unqualified until separate Root actions."
+  ],
+  "Outcome": "TRANSPORT_PREREQUISITE_REQUIRED",
+  "Status": "Source75 raw/native-clean and source/current objects verified; normal95 static preserved. NUDGE console labels cannot reach unchanged normal JSON/archive. Public Vitest task.meta is the selected minimal source-only prerequisite; E2E stderr JSON path is statically supported, native publication UNKNOWN.",
+  "metadata_HEAD": "e8555339a0fe2683513e569b5774081549b901fd",
+  "normal_acceptance": 0,
+  "source": "b72c3af782adde452d47bdedfddec0fbefbfeb49"
+}

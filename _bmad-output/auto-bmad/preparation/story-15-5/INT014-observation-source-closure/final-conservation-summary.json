@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "label": "INT014-diff-check",
+      "native_exit": 0,
+      "stdout_empty": true,
+      "stderr_empty": false,
+      "settled": true
+    },
+    {
+      "label": "INT014-SQL-dirty-paths",
+      "native_exit": 0,
+      "stdout_empty": true,
+      "stderr_empty": true,
+      "settled": true
+    }
+  ],
+  "unchanged_paths": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36989,
+      "sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "LF_bytes": 36989,
+      "LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "prospective_git_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "bytes": 3472,
+      "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "LF_bytes": 3472,
+      "LF_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "prospective_git_blob": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "LF_bytes": 47931,
+      "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+      "prospective_git_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "LF_bytes": 4725,
+      "LF_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd",
+      "prospective_git_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "prospective_git_blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "LF_bytes": 162159,
+      "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "prospective_git_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a"
+    }
+  ],
+  "SQL_preservation": "Current Git diff has no migration paths; historical qualified118 raw/LF vectors reused without rawSQL scan.",
+  "source_and_SRO_writes_stopped": true
+}

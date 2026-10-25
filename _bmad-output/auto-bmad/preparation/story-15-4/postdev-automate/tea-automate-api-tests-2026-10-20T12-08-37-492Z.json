@@ -1,0 +1,176 @@
+{
+  "success": true,
+  "subagent": "api-tests",
+  "tests": [],
+  "fixture_needs": [],
+  "test_count": 0,
+  "new_tests": 0,
+  "runtime_runs": 0,
+  "assessment": "adequate-existing-consequential-api-coverage",
+  "story": "15.4",
+  "route": {"model": "gpt-6.1-sol", "effort": "high", "reason": "Current authority, RLS, actor-bound replay, atomic audit and preference serialization."},
+  "knowledge_fragments_used": ["library-integration-mandate", "playwright-utils-mandate", "overview", "api-request", "recurse", "log", "auth-session", "data-factories", "api-testing-patterns", "test-levels-framework"],
+  "playwright_utils_deviations": [],
+  "pactjs_utils_deviations": [],
+  "provider_scrutiny": "not-applicable",
+  "integration_constraints": {
+    "playwright_utils_flag": true,
+    "playwright_utils_package_installed": false,
+    "playwright_utils_mandate_active": false,
+    "explanation": "Two-gate mandate is inactive: package.json has no @seontechnologies/playwright-utils. Existing API proof uses Vitest and actual checked SQL, ordinary authenticated clients and guarded local service-JWT injection. No package, fixture or runner migration is necessary for this assessment. Future utility adoption belongs to the framework workflow.",
+    "pact_mcp_reachable": false,
+    "pact_broker_calls": 0,
+    "pact_relevance": "No independent service contract: request-bound commands, checked database RPCs, read models and existing jobs-runner seams are exercised directly. No Pact artifacts or provider-state claims."
+  },
+  "existing_counts": {
+    "generated_in_this_run": 0,
+    "real_database_cases": 38,
+    "command": 11,
+    "rls": 7,
+    "read": 7,
+    "nudge": 13,
+    "database_passed": 38,
+    "database_failed": 0,
+    "database_skipped": 0,
+    "separate_component_ssr_controller_cases": 18,
+    "full_integration": {"total": 1980, "passed": 1928, "failed": 0, "historical_uncovered_skips": 52},
+    "rls_nonadditive_subset": {"passed": 829, "historical_uncovered_skips": 14},
+    "rule": "All counts are existing native CI results, never tests generated or run by this worker. Loops/vectors are assertions within declarations, not extra test counts. RLS subset and component cases are nonadditive to full integration."
+  },
+  "test_source_paths": {
+    "INT": "tests/integration/commands/time-reports.int.test.ts",
+    "RLS": "tests/integration/rls/time-reports.rls.test.ts",
+    "READ": "tests/integration/read-models/time-reports.int.test.ts",
+    "NUDGE": "tests/integration/notifications/time-report-nudge-producer.int.test.ts"
+  },
+  "existing_coverage": [
+    {
+      "ac": "AC1",
+      "test_ids": ["15.4-INT-001", "15.4-INT-002", "15.4-INT-011", "15.4-READ-005", "15.4-READ-007"],
+      "source_paths": ["tests/integration/commands/time-reports.int.test.ts", "tests/integration/read-models/time-reports.int.test.ts"],
+      "assertions": "Actual runCommand and authenticated SQL create exact submitted own rows/audit for Admin, PL and Montor; no-profile standalone succeeds; deliberate same-day reports remain distinct; selectors return own instants and deny manager-visible unassigned prefill; fractional booking context remains available with explicit null whole-minute prefill.",
+      "limits": "API proof does not establish desktop/mobile interaction, keyboard, hydration or the booking-card user journey; essential browser/controller evidence is assessed separately."
+    },
+    {
+      "ac": "AC2",
+      "test_ids": ["15.4-INT-003", "15.4-INT-005", "15.4-INT-006", "15.4-INT-009", "15.4-RLS-004", "15.4-NUDGE-007"],
+      "source_paths": ["tests/integration/commands/time-reports.int.test.ts", "tests/integration/rls/time-reports.rls.test.ts", "tests/integration/notifications/time-report-nudge-producer.int.test.ts"],
+      "assertions": "Three concurrent exact attempts converge to one physical report/audit; changed digest conflicts without mutation and other actors cannot reuse an own result. Replay survives removed assignment/live booking changes but current authority is rechecked after an observed tenant-lock wait. Correlated filing/annotation stage faults require P5401/P5402, exclude P5499, roll back the complete physical snapshot, then explicit retry succeeds once. Checked filing committed before a waiting producer suppresses a nudge.",
+      "limits": "Unsent labels and committed-response-loss UI recovery belong to state/controller/browser proof. A later passing body does not credit failed historical tails."
+    },
+    {
+      "ac": "AC3",
+      "test_ids": ["15.4-READ-001", "15.4-READ-004", "15.4-READ-006", "15.4-READ-007", "15.4-RLS-002"],
+      "source_paths": ["tests/integration/read-models/time-reports.int.test.ts", "tests/integration/rls/time-reports.rls.test.ts"],
+      "assertions": "Physical own reports yield exact totals, stable links and weekday missing dates, excluding peers/foreign identities/private attempts/money. First-page outage and later-page failure after a real persisted prefix yield READ_FAILED with no data property. Fractional own bookings retain the persisted weekly prefix and missing-date context. Direct RLS independently proves own versus tenant-review projections.",
+      "limits": "READ004/006 inject transport failure only; successful reports and prefixes use real SQL. They do not certify a naturally occurring network outage, UI navigation or exhaustive week/browser matrices."
+    },
+    {
+      "ac": "AC4",
+      "test_ids": ["15.4-READ-002", "15.4-READ-003", "15.4-INT-005", "15.4-INT-008", "15.4-RLS-002"],
+      "source_paths": ["tests/integration/read-models/time-reports.int.test.ts", "tests/integration/commands/time-reports.int.test.ts", "tests/integration/rls/time-reports.rls.test.ts"],
+      "assertions": "RLS_PAGE_SIZE+7 persisted job rows prove complete paging and exact person/job/week sums with standalone null-job groups. Booked-at-filing comparison survives live booking changes; standalone comparison is null. Competing PL/Admin annotations yield one winner and one conflict, exact latest retry adds no effects, blank clear records current reviewer/time/revision, and every filed core field remains unchanged.",
+      "limits": "Accessible names, visible labels, filter gestures and stale-refresh presentation require the separate controller/browser bodies; SSR is not DB evidence."
+    },
+    {
+      "ac": "AC5",
+      "test_ids": ["15.4-NUDGE-001", "15.4-NUDGE-002", "15.4-NUDGE-003", "15.4-NUDGE-004", "15.4-NUDGE-005", "15.4-NUDGE-006", "15.4-NUDGE-007", "15.4-NUDGE-008", "15.4-NUDGE-009", "15.4-NUDGE-010", "15.4-NUDGE-011", "15.4-NUDGE-012", "15.4-NUDGE-013"],
+      "source_paths": ["tests/integration/notifications/time-report-nudge-producer.int.test.ts", "tests/support/time-reports-atdd.ts"],
+      "assertions": "All thirteen final native bodies pass. Actual SQL proves preceding seven completed local dates, weekday/report absence and tenant boundaries, spring23h/fall25h, cross-midnight and exclusive-end vectors; 27 real recipients, <=25-recipient pages, frozen cursor resume through the real route/adapter, malformed/foreign/time-shifted cursor refusal; concurrent recipient/date dedupe and atomic P5403 rollback; current membership/role/profile/booking eligibility and in_app-only ACL/channel boundaries. Four opt-out-first authenticated absent/existing UPSERT/UPDATE/key-change variants visibly block the real producer before commit then suppress all notification/audit effects. Four emission-first variants reach an exact notification BEFORE INSERT barrier, require genuine authenticated and service-JWT writers to receive exact 55P03/message, verify no ACK/preference/state change, release the gate before awaiting work, preserve one historical emission, then explicitly retry. OLD/NEW tenant/category moves, failed-acquisition lock release, revoked membership and private invoker trigger/catalog/ACL properties are asserted.",
+      "limits": "Production contract is VOLATILE/current predicates after the tenant gate under READ COMMITTED; no repeatable-read guarantee. Jobs-route tests inject authorize/run seams to scope owned tenants while using the real default dispatch and SQL adapter; they do not independently prove HTTP authentication. Native passed completion qualifies loops and awaited finally cleanup; it is not a separately emitted SQL trace. Old failed NUDGE004 callback cause remains UNKNOWN."
+    },
+    {
+      "ac": "AC6",
+      "test_ids": ["15.4-INT-001", "15.4-INT-002", "15.4-INT-004", "15.4-INT-007", "15.4-INT-011", "15.4-READ-005", "15.4-READ-007", "15.4-RLS-004"],
+      "source_paths": ["tests/integration/commands/time-reports.int.test.ts", "tests/integration/read-models/time-reports.int.test.ts", "tests/integration/rls/time-reports.rls.test.ts"],
+      "assertions": "Wrapper and direct RPC reject zero/negative/fractional/overflow minutes, invalid dates and notes, cancelled/foreign/unassigned/nonexistent bookings, foreign or mismatched jobs without partial physical effects. One and max-int whole-minute controls succeed. Independent UTC DST goldens freeze elapsed60 minutes. Lock-wait mutations cover assignment deletion, profile reparenting, cancellation and job relation change. Fractional booking snapshots use PostgreSQL numeric-as-TEXT and numeric equality, never rounded JS oracles; filed time stays whole-minute. Standalone requires no links/profile.",
+      "limits": "Form parsing and independently unchanged editable endpoints also rely on the separate pure/controller coverage; no timing or exhaustive local-date claim is inferred from a few DB vectors."
+    },
+    {
+      "ac": "AC7",
+      "test_ids": ["15.4-INT-008", "15.4-INT-009", "15.4-INT-010", "15.4-RLS-001", "15.4-RLS-003", "15.4-RLS-006", "15.4-RLS-007"],
+      "source_paths": ["tests/integration/commands/time-reports.int.test.ts", "tests/integration/rls/time-reports.rls.test.ts"],
+      "assertions": "Annotation CAS, winner replay, changed latest content, superseded attempt conflict and revoked reviewer after actual lock wait are exercised. Report and review audit faults roll back atomically. Raw ordinary DML/private-column access is denied independently; elevated fixture SQL separately exercises immutable-core trigger rejection for identity, tenant, user, created time, date, duration, reporter note, links, snapshot, status, filing attempt/digest and deletion. Catalog checks pin forced RLS, exact public columns and checked RPC security.",
+      "limits": "UI refresh messaging is controller/browser proof. Elevated SQL here is a local test trigger control, never an ordinary production caller."
+    },
+    {
+      "ac": "AC8",
+      "test_ids": ["15.4-RLS-001", "15.4-RLS-002", "15.4-RLS-003", "15.4-RLS-004", "15.4-RLS-005", "15.4-RLS-006", "15.4-RLS-007", "15.4-INT-003", "15.4-INT-006", "15.4-INT-007", "15.4-INT-010", "15.4-READ-001", "15.4-READ-002", "15.4-READ-005", "15.4-NUDGE-001", "15.4-NUDGE-002", "15.4-NUDGE-003", "15.4-NUDGE-006", "15.4-NUDGE-010", "15.4-NUDGE-011", "15.4-NUDGE-012", "15.4-NUDGE-013"],
+      "source_paths": ["tests/integration/rls/time-reports.rls.test.ts", "tests/integration/commands/time-reports.int.test.ts", "tests/integration/read-models/time-reports.int.test.ts", "tests/integration/notifications/time-report-nudge-producer.int.test.ts"],
+      "assertions": "Seven independent raw-RPC role-union controls distinguish ReportOwn from Review without TS permission shortcuts. Anon/invited/disabled/seller/economy/orphan platform operator and revoked callers receive no row or mutation surface; foreign/on-behalf/tenant/actor spoofing fails generically with matching missing-versus-existing error shape and unchanged state. Private attempt columns and SELECT * are denied. Ordinary callers cannot execute service-only producer, service raw bookings/assignees stay revoked, and genuine service preference writes get no race-gate exemption.",
+      "limits": "Catalog/source and current CI support exact deployed-to-test schema; this assessment makes no hosted deployment or production configuration assertion."
+    },
+    {
+      "ac": "AC9",
+      "test_ids": ["15.4-INT-001", "15.4-INT-005", "15.4-INT-008", "15.4-INT-011", "15.4-READ-001", "15.4-READ-002", "15.4-READ-003", "15.4-RLS-006"],
+      "source_paths": ["tests/integration/commands/time-reports.int.test.ts", "tests/integration/read-models/time-reports.int.test.ts", "tests/integration/rls/time-reports.rls.test.ts"],
+      "assertions": "Persisted exact user/date/minutes and optional stable booking/job IDs support complete authorized job/period reads; frozen booked provenance survives booking edits/removal of assignment. Core/schema status remains submitted; projections exclude rates/money/salary/valuation/approval values. Filing keeps bookings, assignments, conflicts, resolutions and jobs unchanged. Exact CI packet additionally records full current integration/regression and scope/H4 checks.",
+      "limits": "This worker does not repeat a broad regression/code review or claim downstream economy valuation, future job workspace, release performance certification or hosted deployment proof. Admin pilot is not R012 certification."
+    }
+  ],
+  "atdd_reconciliation": {
+    "historical_baseline": "Original ATDD had 50 skipped declarations: 32 DB scaffolds, 3 browser, 11 pure and 4 SSR. Those skips were never passes.",
+    "current": "Final real DB declarations are INT001-011, RLS001-007, READ001-007 and NUDGE001-013; all 38 are active and passed in CI3. Added fractional and race/catalog bodies supplement the original aliases without adding separate counts for their loop vectors.",
+    "historical_atdd_checklist_aliases": {"TEA15.4-INT-001": "INT001/002/004 plus final011", "TEA15.4-INT-002": "INT003/005/006/009", "TEA15.4-INT-003": "INT008/010 and READ002/003", "TEA15.4-INT-004": "NUDGE001-009 plus final010-013", "TEA15.4-RLS-001": "RLS001-007"},
+    "current_epic_test_design_aliases": {
+      "source": "_bmad-output/test-artifacts/test-design-epic-15.md:129-130,158-162",
+      "namespace_rule": "Keys below are current epic test-design scenario families; executable IDs are the final test titles in the source-path map. Historical ATDD checklist alias numbering above is a separate namespace. These overlapping mappings add no declarations or executed counts.",
+      "15.4-RLS-001": {"scenario": "Own/peer/tenant/direct SQL and role-scoped review/reference integrity", "executable_ids": ["15.4-RLS-001", "15.4-RLS-002", "15.4-RLS-003", "15.4-RLS-004", "15.4-RLS-005", "15.4-RLS-006", "15.4-RLS-007", "15.4-INT-004", "15.4-INT-006", "15.4-INT-007", "15.4-INT-010"]},
+      "15.4-INT-001": {"scenario": "Persist/retry/lost-response reconciliation, exact duration/links and atomic audit", "executable_ids": ["15.4-INT-001", "15.4-INT-002", "15.4-INT-003", "15.4-INT-004", "15.4-INT-005", "15.4-INT-006", "15.4-INT-009", "15.4-INT-011", "15.4-E2E-002"], "limit": "E2E002 supplies actual lost-response UI reconciliation and is separately assessed by the E2E worker; it is not an additional API/DB case."},
+      "15.4-INT-002": {"scenario": "Complete authorized PL/Admin person/job/week review sums and annotation without approval/money", "executable_ids": ["15.4-READ-002", "15.4-READ-003", "15.4-READ-004", "15.4-READ-006", "15.4-INT-008", "15.4-INT-009", "15.4-INT-010", "15.4-RLS-001", "15.4-RLS-002", "15.4-RLS-003", "15.4-RLS-006"]},
+      "15.4-INT-003": {"scenario": "E13 nudge registry/producer recipient scope, current preference, idempotency and preserved controls", "executable_ids": ["15.4-NUDGE-001", "15.4-NUDGE-002", "15.4-NUDGE-003", "15.4-NUDGE-004", "15.4-NUDGE-005", "15.4-NUDGE-006", "15.4-NUDGE-007", "15.4-NUDGE-008", "15.4-NUDGE-009", "15.4-NUDGE-010", "15.4-NUDGE-011", "15.4-NUDGE-012", "15.4-NUDGE-013"]},
+      "15.4-INT-004": {"scenario": "Stable FR92 duration/date/booking/job read seam without duplicated valuation", "executable_ids": ["15.4-INT-001", "15.4-INT-005", "15.4-INT-011", "15.4-READ-001", "15.4-READ-002", "15.4-READ-003", "15.4-READ-007", "15.4-RLS-006"], "limit": "Covers the authorized stable read seam and frozen provenance, not future economy valuation or a new job workspace."}
+    }
+  },
+  "evidence_dependencies": [
+    {"path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/report.json", "sha256": "d92811e5c91ae4429fd14e40d5a68a32adc3c7b87cb4c166cdcea88ffc54a360", "role": "Immutable independently qualified CI3 packet; run39415418173, headcad4d37facf8cbf5d9c0c3701117d5b4f21d4de1. Five required jobs success; optional release/diagnostic jobs skipped, no credit."},
+    {"path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/integration-qualification.json", "sha256": "8870e3801e05562e4b39060c38a679bdf3c5a28a4aec9fe97cb45a7cb6bcbb27", "role": "Native declaration/file/status mapping: 56 story integration results = 38 real DB + 18 separate SSR/controller."},
+    {"path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/nudge-runtime-qualification.json", "sha256": "5b1ef997370375a1e7749d4e24047882f7b78f540b85bf600774eb3ab975f1f4", "role": "All13 nudge full-body/cleanup reach; exact race, SQL DST, rollback, frozen cursor and historical limits."},
+    {"path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/assertion-reach-qualification.json", "sha256": "2b40a2d6faef3bb4731082d68a47998729dbaeb77872d1026d0894a7ebbd8451", "role": "76 current source declarations and proof classes; all38 real_DB native_status passed, qualified_full_body true."},
+    {"path": ".env.epic15.mail-runtime/story-15-4-preparation/checkpoint-cad4d37f-ci-independent/extracted/native-full-integration/full-integration.json", "sha256": "e65274aba8e73e426596b03b72526b16ce8cbe31b00f1d240e367e9b536a6ad9", "role": "Read actual native JSON: success true,1980 total/1928passed/0failed/52pending; individual current11+7+7+13 assertion titles all passed."}
+  ],
+  "source_binding_check": {
+    "method": "Read-only Get-FileHash SHA256 against report.source_provenance.metadata_bindings.raw_sha256; no Git invocation.",
+    "checked_current_time_report_source_test_paths": 29,
+    "matched": 29,
+    "mismatches": 0,
+    "reviewed_source": "f20208dca11f4f1f4106cab4a4f8322b945ace21",
+    "ci_evidence_revision": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+    "limit": "This worker checked29 relevant current raw bindings; the packet records conservation of all60 frozen sources and116 metadata bindings at its own timestamp. Later documentation-only heads are not represented as new native CI runs."
+  },
+  "source_files_read": [
+    ".agents/skills/bmad-testarch-automate/steps-c/step-03a-subagent-api.md",
+    "docs/process/development-completion-policy.md",
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+    "_bmad-output/test-artifacts/automation-summary-story-15-4-postdev.md",
+    "_bmad-output/test-artifacts/atdd-checklist-spec-15-4-time-reporting-filing-timesheet-review.md",
+    "package.json",
+    "tests/integration/commands/time-reports.int.test.ts",
+    "tests/integration/rls/time-reports.rls.test.ts",
+    "tests/integration/read-models/time-reports.int.test.ts",
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/support/time-reports-atdd.ts",
+    "src/server/commands/time-reports/file-time-report.ts",
+    "src/server/commands/time-reports/annotate-time-report.ts",
+    "src/server/commands/time-reports/time-report-db.ts",
+    "src/server/read-models/time-reports.ts",
+    "src/server/notifications/time-report-nudge-producer.ts",
+    "supabase/migrations/20261020190000_time_reports.sql"
+  ],
+  "fixture_assessment": {
+    "existing": "Generated UUIDs and explicit tenant/actor factories; actual ordinary authenticated command/RPC/read paths; independently scoped physical reportState readbacks; existing guarded local service-JWT client for producer only.",
+    "faults_and_barriers": "Correlated tenant/attempt/report/recipient/date trigger faults require intended business stage and exact SQLSTATE; exact owned trigger/function cleanup checks catalog absence. Real pg_blocking_pids/advisory observations establish waits without timing inference. Nudge011 releases gate before settling all pending work and before teardown.",
+    "teardown_boundary": "cleanupOwnedTimeReports uses a disclosed transaction-local session_replication_role=replica solely for explicitly owned immutable fixture reports after work settles. It is teardown, not production/fault invariant proof. NUDGE004 removes generated assignments/bookings/profiles in dependency order, settles owned Auth deletions and aggregates primary/cleanup failures.",
+    "new_fixture_needs": []
+  },
+  "consequential_gaps": [],
+  "limits": [
+    "Evidence-only coverage assessment; no additional code-review round. Three counted completed review rounds and two separate narrow CI follow-ups remain unchanged.",
+    "Preserve failed CI39408197808 and39412225741. Current success does not retroactively credit their failed/unreached assertions or establish the old NUDGE004 masked callback cause, which remains UNKNOWN.",
+    "52 historical integration skips and14 nonadditive RLS skips remain uncovered; no current Story15.4 DB case is skipped. Pure, SSR/controller and substituted-port VM observations never become realDB/native-browser proof.",
+    "Six owned exhaustive device/browser/view, visual, manual accessibility/daylight/exploration, one-hand timing, representative performance/target approval and polish release checks remain deferred. Development evidence does not pass or waive them.",
+    "release_ready remains false. No source/test/spec/schema/delivery/state/frozen-packet mutation, runtime/test run, browser/database/resource launch, remote/environment/secret operation, Git/commit/push, merge or deployment occurred."
+  ],
+  "release_ready": false,
+  "summary": "Existing exact-source native proof adequately covers the consequential API/database portions of AC1-9:38 realDB cases passed (11command,7RLS,7read,13nudge). All counts are existing, not generated. No concrete consequential gap warrants duplicate tests; tests=[], fixture_needs=[], test_count=0, new_tests=0 and runtime_runs=0. Essential UI evidence is separate, historical failures/skips retain their limits, and six owned release checks remain deferred."
+}

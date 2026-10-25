@@ -1,0 +1,99 @@
+{
+  "kind": "post-acl-session-lifecycle-F1-only-refinement",
+  "Outcome": "DELTA_PLAN_ONLY; exact-client pool-error containment refined; implementation still held",
+  "Files changed": [
+    "Only new proposal.json/input-binding.json/manifest.json here; all prior NOTPASS/proposals/reviews and all source/Spec unchanged"
+  ],
+  "Status": {
+    "head": "1e2e05c802933326868b7353fc4de4a56b343bfa",
+    "source_candidate_count": 6,
+    "new_factory_path": "tests/factories/admin-sql.ts",
+    "other_five_paths": "Exactly inherited prior source candidates; no added source paths",
+    "F1": "Installed pg-pool reattaches idleListener during release(true); it can re-emit a native client error on the pool and internally remove/end twice. An owned client listener alone is insufficient. This delta handles that pool dispatch route.",
+    "implementation_count": 0,
+    "connections": 0,
+    "SQL_queries": 0,
+    "normal_acceptance_credit": 0
+  },
+  "minimal_delta": {
+    "placement": "Inside the same private factory module, add one weak per-pool owned-error dispatch gate used only by the proposed adminRetiredSession. Install it before opt-in acquisition; do not alter EventEmitter.prototype, pg-pool internals, a global process handler or other pools.",
+    "gate_contract": "Keep the pool original emit function. Its single replacement checks receiver===that exact private pool, event===error and WeakSet.has(second error-event argument). Only when all hold does it mark the exact active owned lifecycle with a fixed error boolean and return true WITHOUT forwarding native error/remaining arguments to pool error listeners or errorMonitor. Otherwise Reflect.apply(originalEmit, receiver, original arguments) exactly preserves Node return/throw/listener behavior. The native error object is not inspected, stringified, stored or re-emitted.",
+    "why_not_listener": "An ordinary pool error listener cannot stop other listeners or errorMonitor from seeing the raw owned error. A blanket listener also changes unhandled foreign-error behavior. The narrow dispatch gate avoids both; its intentional effect is limited to the explicitly registered opted-in client.",
+    "identity": "Register each exact successfully acquired PoolClient in a WeakSet synchronously inside pool.connect callback, before exposing its query port or invoking owner work. Use a separate WeakMap for that client active lifecycle state. Do not classify by error.client/getters, SQL backend PID, role, URL, message or client properties. Unknown/foreign/missing clients always delegate.",
+    "client_sink": "Attach one nonthrowing error sink to each registered owned client before its callback. It only looks up this emitter in the active WeakMap and sets a finite boolean; it retains no native error or raw values. Keep this minimal sink for that client lifetime, including after release invocation throws or active cleanup finishes. A client-owned listener does not itself root the client from the factory.",
+    "lifetime": "Keep the same pool gate for that pool object lifetime; do not restore emit/remove ownership when an operation returns because the driver can emit late. WeakSet ownership is not deleted while the client is alive. Delete active WeakMap entries at lifecycle finalization; detach its end/drain/timer/promise observers after the bounded join as applicable. No global strong Map/Set of clients, callbacks or unresolved promises is introduced. The remaining sink/WeakSet do not root retired clients. Pending driver-owned promise rejections remain observed; no SQL/query port remains open.",
+    "installation_integrity": "One gate per private pool; subsequent concurrent opt-in sessions share its weak identity routing and maintain separate active state. Do not stack wrappers. Before opt-in work, unexpected replacement of that gate is a fixed capability refusal, not a silent rewrap or private-field fallback. Default code has no access to the private pool; its existing configuration/log remains unchanged.",
+    "concurrency": "One owned client error marks only that client active lifecycle; it cannot erase another active registration or suppress foreign-client errors. Registration and active cleanup are per-client; no temporary global listener removal/replacement windows.",
+    "retirement": "Catch synchronous exceptions from exactly one public client.release(true) invocation and convert them into fixed retirement failure/UNKNOWN. Do not retry release/end. Installed pool may internally call remove/end more than once after its idle listener error path; do not call that a second public release or promise exactly one driver end. All event-based owned errors before finalization make the lifecycle fail closed. No raw retirement exception escapes the owned API.",
+    "late_events": "An owned error after a retirement timeout is still contained by weak ownership and can never promote UNKNOWN. An error after observed closed/settled retirement is also contained without restarting work or retroactively asserting anything about backend rollback/canonical restoration. Finite completion cannot prove absence of all future synthetic events; it proves only recorded query/protocol/end facts. No late event is allowed to emit raw data or reopen the closed query port."
+  },
+  "semantic_effects": {
+    "owned_only": "The private pool emit method identity changes when the gate is installed. Raw error/errorMonitor dispatch for registered opted-in clients is intentionally replaced by closed lifecycle facts, including when other pool error listeners exist. This is an explicit new opt-in containment effect, not claimed unchanged behavior.",
+    "foreign_default": "For every other event/error/client/receiver the exact original emit is called with unchanged this/arguments. No listener is added to the pool error event, removed or reordered. Zero-listener foreign error still throws its original object; existing foreign handlers and their own throws/return semantics remain intact. Existing default adminSession/adminQuery/adminExec callers are not migrated or certified safe.",
+    "driver_log": "Current getPool passes no log option; installed Pool default log is a no-op. No new raw logging is added. The installed idle listener retains its own internal no-op additional-error callback; the factory does not depend on that callback to contain the first pool emission.",
+    "unchanged": "Original proposal query/drain and admission bounds, always-retire path, late-acquisition refusal, C1-C7 authority/publication/ordinary callback/restoration/custody, all six candidate paths, all applied migration immutability and zero native/runtime authority remain unchanged.",
+    "future_runtime": "No additional query, principal, connection or SQL privilege effect beyond the prior candidate. The only additional runtime behavior is exact opted-in client error dispatch containment and catching retirement invocation failure. Source implementation still requires separate six-path allocation after independent F1 challenge."
+  },
+  "precise_gate_pseudocode": [
+    "owned: WeakSet<PoolClient>; active: WeakMap<PoolClient, finiteOwnedState>; originalEmit = pool.emit",
+    "pool.emit = function(event,...args) {",
+    "  if (this === pool && event === \"error\" && owned.has(args[1])) {",
+    "    const state = active.get(args[1]); if (state) state.poolError = true;",
+    "    return true;",
+    "  }",
+    "  return Reflect.apply(originalEmit, this, [event,...args]);",
+    "};",
+    "function ownedClientErrorSink() { const state = active.get(this); if (state) state.clientError = true; }",
+    "In exact acquire callback: owned.add(client); active.set(client,state); client.on(\"error\", ownedClientErrorSink);",
+    "After closed admission: try exactly-once client.release(true); catch => fixed retirement failure; bounded actual joins/end.",
+    "Finalization: active.delete(client); keep weak ownership and minimal client sink; never restore the pool gate."
+  ],
+  "executed_pure_controls": {
+    "implementation": "Actual installed pg-pool3.14.0 with synthetic EventEmitter Client; no sockets or connections. Candidate gate and minimal retirement-invocation wrapper executed only in memory.",
+    "initial_run": {
+      "assertions_passed": 27,
+      "failed": 0,
+      "native_exit": 0,
+      "qualification": "Before adding exact receiver preservation; historical/nonadditive, not the final gate proof."
+    },
+    "final_run": {
+      "node": "22.23.2",
+      "assertions_passed": 29,
+      "failed": 0,
+      "native_exit": 0,
+      "connections": 0,
+      "queries": 0,
+      "network": 0
+    },
+    "cases": [
+      "Asynchronous client error after release returns and before end: exact-client and pool error flags observed, no raw throw; public release once, driver end twice, removed and not idle.",
+      "Owned client error after active cleanup and direct owned pool error after retirement remain contained.",
+      "Foreign/unknown client with zero pool error listeners still throws the same synthetic error; with an existing listener, that listener sees the same object/client and original return semantics.",
+      "Existing pool error listener is not called for owned client errors; this intentional opt-in containment is explicit.",
+      "Two concurrent opted-in clients remain separately classified; one error does not mark the other lifecycle; both one public release, no idle reuse.",
+      "Synchronous driver end/release failure becomes a closed invocation failure; subsequent owned client error is contained; no second public release.",
+      "Missing-end case remains unended/UNKNOWN; late owned pool error does not certify closure.",
+      "Other events preserve listener return behavior; borrowed gate on a foreign EventEmitter receiver preserves its no-listener throw and existing listener."
+    ],
+    "limits": "These are routing/prototype controls, not the unimplemented full factory deadline, query/body/callback settlement, native backend closure, rollback or canonical restoration. Missing-end is classified only; no full 5s lifecycle timing gate was claimed executed. Initial27 and final29 are not additive."
+  },
+  "required_later_controls": [
+    "Implement exact factory source and execute the same owned/foreign/late/concurrent/retirement-error matrix through actual new API, including its 20s/5s bounds and late acquisition/callback/query-port closure.",
+    "Preserve the original meaningful operation/callback C7 tests. Errors before ReadyForQuery still require real protocol drain; pool removal/socket end remains insufficient for backend rollback or function restoration.",
+    "Assert minimal sink/gate lifetime without strong client registries, no pool error listener addition/removal, no raw error/cause/value serialization and no owned error reaching configured pool handlers/errorMonitor.",
+    "Actual native pg, same-client rollback/reset/identity, ordinary callback publication and exact restoration remain separately allocated future gates."
+  ],
+  "Open questions": [
+    "Independent targeted F1 validation must check this exact public emit routing effect and unchanged foreign/default semantics before source allocation.",
+    "Native closure/rollback/canonical facts are UNKNOWN; no implementation, SQL or runtime gate has run."
+  ],
+  "Deferred work": [
+    "Independent F1-only challenge, then Coordinator exact six-path source/effect allocation and Root author activation.",
+    "Original five-path harness repair remains suspended; subsequent committed-delta High review and separately admitted native gates/all95 remain required."
+  ],
+  "Blockers": {
+    "implementation": "Unallocated factory hunk; metadata correction grants no source/runtime effect.",
+    "development": "API019 privacy, browser failures/flakies and custody remain open.",
+    "stop_rule": "If this exact weak identity gate cannot preserve original foreign emit semantics or bounded late-work containment in actual source controls, stop for a materially simpler scoped alternative; do not add global process handlers, new pools/clients, private driver mutation, SQL termination or repeat the same unsuccessful refinement."
+  }
+}

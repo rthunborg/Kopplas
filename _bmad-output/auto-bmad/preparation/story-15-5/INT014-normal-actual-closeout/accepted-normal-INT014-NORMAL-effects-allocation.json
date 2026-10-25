@@ -1,0 +1,22 @@
+{
+  "schema": "ACTUAL_COMPLETED_COORDINATOR_INT014_NORMAL_FINITE_ALLOCATION_V1",
+  "turn_status": "completed",
+  "tool_status": "completed",
+  "actual_turn": "01a168f3-e853-7f31-8355-a38e319b2f9b",
+  "actual_tool": "exec-43ae4a0c-810f-4376-8e60-d1564cd7d906",
+  "coordinator_thread_id": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_tool_arguments": {
+    "threadId": "01a120bb-ec6d-7611-9dde-ca64bc8e280f",
+    "prompt": "Coordinator grants ONE NEW finite fullNORMAL INT014fix checkpoint under standinghuman authority. Actual independentHigh15855/SHA7ffb7e0074993f6902ffe8a51067f69ca04b2b8c88e45aa74a510cc065b524c8 bothPASS_INT014_NORMAL_OPERATIONAL_SOURCE_ONLY/findings[] verified33fc77, plus sourcepatch13637/374466ac6b85f9fb41118893361d3dfe9ad61cde22ace83b216526b021b1acfc sourceeligible. Savecompletedturn/tool beforeexclusiveactivation; exactactualreviewaliascopy/supersedingroot-admission-interface-resolution explicitlybindcurrentactualREF_PATHS, notstaledescriptivepaths. No codewaiver/currentguardweakening.\nBind MAINhead2c8e8077f74067a06cd5e6c5136e4c545b83a5ba/sourcea9489663addf99aa7da62c9c7ec4089a77f523d7/CP127ec671-bb41-4c77-9f30-64b8c386f3fe/ownedfeature/refrepo rthunborg/Kopplas/workflow296219797/actor+trigger rthunborg/attempt1/NORMALallotherflagsfalse. Expectedremote215078e7dd74d9c4b4511581682b4c0be1a21c8d exactlocalFFclean. Exact5packet normal-INT014-NORMAL-operational-preparation provider20259/d514e9734be731d52fa0ec632f098d94fc93ed24cb14fdbb202a7cbada0a6a7e driver20704/ecdd53035cf5ea58753ce33786640b4683bf31b8401d137f762a44f9007dba77 proposal211933/234185e82ff1b78f500c177f48204a51aaefd79f3f8aedf69babdaf1a953096c controls12131/83df3fd03ef2a316211f812aabbce31d31d32d52d9bd3f514e17e571523c24be manifest1148/5c29a53de784aac282d1bad48de4813bdfba1161fe670fd72a992d8ed5f29f1f; candidate329/d17acb009dbe757259098598cd449d16099bc9c836b48af7a064a2be1acd5958. Recheckallpins/current204Git86rawLF118GitSQLconservation10triggers/install/sourceproof/aliascleanFF<=300s.\nFINITEONEfreshreadonlyproviderproject/teamGET15s4MiBstdout256KiBstderr with actualreviewed samechildcleanup tails/fullEOFjoinedclosedsettled/outerattribution. Positivelyqualifyactualidentity/repo/ownedbranchgit.deploymentEnabled=false/config/no override ONLYlimitedordinaryGitpushcontainment; createDeployments is deployment-statusmetadata notkillswitch, ignoreexit0 notblanket/maincontainment. RootSOLEremote-before1 ACTUALconfigured20s==2150/nonforceexplicitMAINFFpush1 60s→2c8e/readback1 ACTUAL20s==2c8e/512KiBstdout64KiBstderr. ONEcanonicalNode90s512KiB64KiB/SAME1762Badapter4aa63/4strictactualmetadataGET+POST1/API15s4MiB/exactreviewed201BbodynewheadCPnormalfalseflags. Freshproof/activation/provider<=300satEACHmutation/provider<=180sbeforePOST. No secondproviderGET/renewal.\nRootSOLEresolver<=6GET/page20/min5s/API20s; <=90exactrun+90latestjobGET/page100/min30s/API20s2MiB64KiB/originalimmutable5400s. Actualuniqueownedtuplebeforepoll/same9jobs/allterminalimmediateROOT_STOPPED/freezeallunusedclosed/no postterminalpoll. Allreviewedboundedcleanup tails/nativeEOFjoinclosedsettled/exit+actualhostattribution/exclusivefsyncedconsumedintents. Drift/nonzero/partial/unknown/ambiguitySTOP/no retry/fallback/pagination/clockreset/extension/adoption/extraPOST/unallocatedcancel/secondpoller. Alloldslotsclosed.\nArtifact/logGET0NOW/separateactualterminalreaderreview+grantlater with32KiBSOURCE-LABEL-only cap and explicitotherprojectionbounds, notgeneric32KiBclaim. Providerwrites/vars/otherCI/localresources/merge/deploy/demo/dbpush0. Historicalconfigured20vs15/projectioncapdiscrepanciespreserved/no retrocompliance. Requiredfull95+recovery/custodyactualqualification/P5OPEN/current73P1F21zero remainuntilnewproof. Proceedexactonecheckpoint/reportactualtupleorpreciserefusal."
+  },
+  "completion_basis": "Actual completed turn and subsequent final response observed by read_thread; exact tool arguments retained.",
+  "maximum_provider_GETs": 1,
+  "maximum_pushes": 1,
+  "maximum_dispatch_POSTs": 1,
+  "maximum_resolver_GETs": 6,
+  "maximum_run_jobs_pairs": 90,
+  "original_wall_seconds": 5400,
+  "maximum_artifact_log_GETs": 0,
+  "no_retry": true,
+  "no_deploy": true
+}

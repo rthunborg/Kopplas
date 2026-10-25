@@ -1,0 +1,430 @@
+{
+  "schema": "ROOT_POST_ZOD_NORMAL_TERMINAL_FRESH_GIT_PROOF_V1",
+  "checked_at_utc": "2026-10-24T20:16:38.638928+00:00",
+  "head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+  "source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "checkpoint_id": "7d700bbe-f620-4be5-b158-6c37f788266d",
+  "acquisition_operation_id": "f27670b7-0d69-42b7-8035-e3325e060ce0",
+  "target_normal_operation_id": "ee690878-b3e0-4e9f-9eba-5b5a293a2d4a",
+  "run_id": 40125241153,
+  "tracked_clean": true,
+  "local_published_tracking_equal": true,
+  "source_head_ancestry": true,
+  "pushed_source_objects_equal": true,
+  "exact75_plus_workspace_unique_Git_rows": 76,
+  "source_rows_Git_metadata": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "blob": "439b865ed47621a591e2a67cf24f3f7e92eed9d0"
+    },
+    {
+      "path": "docs/security/calendar-feed-operations.md",
+      "blob": "2e337daea57f82ff146bf8a458161bde4c6ac2a5"
+    },
+    {
+      "path": "middleware.ts",
+      "blob": "aaed428ce41103ad1994187151bbcd6a69d1dadd"
+    },
+    {
+      "path": "ops/recovery/bootstrap-roles.sql",
+      "blob": "6f1bb539432b1c5319b1979050c23b247aa46ffb"
+    },
+    {
+      "path": "package.json",
+      "blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd"
+    },
+    {
+      "path": "playwright.config.ts",
+      "blob": "9457ea35425d200d0449fe96308ef9346b18a9a5"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "blob": "3c0ae6b01c1853d5478b9d0727bc64dba3eb8a12"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "blob": "f80dd43c8bf6dcbf80d4701449ba011a25daa017"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "blob": "ea9df80d07e87e960ebe6694034e5c3e00964e28"
+    },
+    {
+      "path": "scripts/verify/check-service-role-containment.mjs",
+      "blob": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "blob": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "blob": "bb74cf0a651200ff62329945871d6ec80378e9ad"
+    },
+    {
+      "path": "src/app/(public)/calendar/feed/[token]/route.ts",
+      "blob": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09"
+    },
+    {
+      "path": "src/app/(public)/layout.tsx",
+      "blob": "fe46e33866a3181a720082ae699faa0eb68665a6"
+    },
+    {
+      "path": "src/components/app-shell/AppShell.tsx",
+      "blob": "be0694d06bba6a8cc4df8026d1481f1790ceacf8"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "blob": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "blob": "a3a06ed8c0d92ec04030318bc339552d5fe99878"
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "blob": "529a9485cba52b6c16fc0837fea1da62e279e806"
+    },
+    {
+      "path": "src/features/calendar-feed/action-state.ts",
+      "blob": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8"
+    },
+    {
+      "path": "src/features/calendar-feed/actions.ts",
+      "blob": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5"
+    },
+    {
+      "path": "src/features/calendar-feed/icalendar.ts",
+      "blob": "cf81dc189acca97463ba9e8cc6009e8d648f5de3"
+    },
+    {
+      "path": "src/features/calendar-feed/types.ts",
+      "blob": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1"
+    },
+    {
+      "path": "src/features/calendar-feed/validation.ts",
+      "blob": "456d92828beaf8cde818853af2fbd70097e6b5ff"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "blob": "d7db4a3602eea7ab52fec2e7baa3ac4eb236d84a"
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "blob": "7fd549fbec4b52f1c1751d742616d265d95cb5b8"
+    },
+    {
+      "path": "src/server/calendar-feed/policy.ts",
+      "blob": "b99b0253f32d128aed98f9bef5d879b7de4eff9f"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "blob": "230f65dac3fbd97ad6d41c1d5a26cd5490382656"
+    },
+    {
+      "path": "src/server/calendar-feed/trusted-ip.ts",
+      "blob": "48041b7409ee6a82d43f27ff0e1e338a55923fef"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "blob": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "blob": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "blob": "61cd95ccf52a65e78c914ce0665b96c02662eaa3"
+    },
+    {
+      "path": "src/server/db/supabase-public-client.ts",
+      "blob": "a6f550ed29147b310f6753417da02cfedb415403"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "blob": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "blob": "da1270c7238db113f0cd2485581a635a66981a65"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "blob": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "blob": "986d2e63b425dfd157d0acde07a0c2efcc1c3b68"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "blob": "934bc51c88b0fe6cb91b3b0fcd9bc7be60f0364e"
+    },
+    {
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "blob": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d"
+    },
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "blob": "209528d744adb11d6e266e92a37c4a8dc19b2c13"
+    },
+    {
+      "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "blob": "19341337ad414cecab5c0d813a0bfe4b7f9d412e"
+    },
+    {
+      "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "blob": "770a4357d1ad78373476eecc1dd2d7bfd64229e0"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "blob": "1d8fa33b27b7fa58ca2908c3fc8ed1db8947ee69"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "blob": "231dea63eb2d60cbd0d8b77070cc62c8b0971057"
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "blob": "5c6a563a1e1be59f4cece8dec2ab207a8d6a46e4"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "blob": "7e4d03387b9ec5809ec0a50e8e382c2e1f53c930"
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "blob": "d242773f4b126b66f64acad65036b9c87190aee4"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "blob": "8682e09a5eb21d0d556cdfcc3649854050237bf8"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "blob": "01c89726ab98e33ffb8bd47bf0630f926ff804d7"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "blob": "e06d7eaa019511348f9e7c328288463bd5b834b4"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "blob": "314f7d518984ef3858c55e8cbd9acb30c49c3cf6"
+    },
+    {
+      "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "blob": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+      "blob": "953b0dcf999053fe5a016f86c6c14436f6da13eb"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "blob": "834025e861c0c2947e85374a90d3443ef8b923d2"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/validation.test.ts",
+      "blob": "093858972ec1058edf8454a0e2584eda4f67d8e4"
+    },
+    {
+      "path": "tests/unit/ops/pilot-operations.test.ts",
+      "blob": "5628c63a423a77a3d43e9d607ee69db32e19ef6f"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "blob": "9697b15be13f5c4bc639c7987f30961ed4b56592"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "blob": "a2196980f3ffcedc8f5631749e50193ccf451aac"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "blob": "02a6845c81d4bbae8cb7c3f499c11ce3635948bd"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "blob": "132a02849637c12cbedab4e012619f7cbadccf40"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "blob": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a"
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "blob": "a99cfcb6ce8177844b950039cdfefa7bedfb5807"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "blob": "c7b62ce437cdc124b21935260b25873ad0420674"
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "blob": "09ff9ca598d6ae03cf4ad690d9d23befb3277802"
+    },
+    {
+      "path": "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "blob": "b580e38f016843584623ec4fdbbf050a4cb2a9be"
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "blob": "d7b56bf80d06cbc060af219410f232342c53297c"
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "blob": "33b3efb90b5b787dda5ed4daae730a36437746a8"
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "blob": "a7099404789438217d3715a6ee00ce5a0bbf945a"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+      "blob": "730c4eab336c5d8e91c28ebef3519e0fc54870f8"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "blob": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "blob": "84b7ba8986e7d4cd2db2e293489f037c77f1e116"
+    },
+    {
+      "path": "vitest.config.ts",
+      "blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+    }
+  ],
+  "raw75_hashes_checked_by_Root": false,
+  "migration_bytes_read_by_Root": 0,
+  "source_provenance": "Fresh local HEAD/branch/clean/tracking/ancestry/twoGit-tree metadata only. Historical dispatch60788 source proof remains immutable lineage. Reader will hash exact75 source bytes including3SQL only under this separate completed finite grant; no118 scan/catalog rebuild/DEBUG/remote refresh. Localtracking is not a new remote observation.",
+  "local_native_metadata_receipts": [
+    {
+      "label": "HEAD",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04334240000025602,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 41,
+      "stdout_sha256": "f69980333d3adca2cf618a57b6c82a766f09e586ebe259bbb9268cbbe4dab192",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "BRANCH",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04286859999774606,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 39,
+      "stdout_sha256": "a2daee9ca65603fd03fece8ad3ef4b452276112180a5e0ad610aa8b28e01834d",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "STATUS",
+      "native_exit": 0,
+      "elapsed_seconds": 0.05684130000008736,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "LOCAL_PUBLISHED_TRACKING",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04243289999794797,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 41,
+      "stdout_sha256": "f69980333d3adca2cf618a57b6c82a766f09e586ebe259bbb9268cbbe4dab192",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "SOURCE_HEAD_ANCESTRY",
+      "native_exit": 0,
+      "elapsed_seconds": 0.043680099999619415,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "TREE_cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+      "native_exit": 0,
+      "elapsed_seconds": 0.05143850000240491,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 865103,
+      "stdout_sha256": "08f650edabcd4dfbfa9a6ea25e24c5c07c3ee0c88c3950b0229c07bc9ae63fb3",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "TREE_019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+      "native_exit": 0,
+      "elapsed_seconds": 0.052815700000792276,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 868569,
+      "stdout_sha256": "6116c1dd42cbf5e68b1290eb82908bcb6feaec8756cc0c44fdbbca5e63f49e17",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    }
+  ],
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+    "bytes": 9579,
+    "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+  },
+  "operational_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+    "bytes": 17301,
+    "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+    "bytes": 220347,
+    "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+  },
+  "actual_terminal": {
+    "bytes": 25378,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-actual-envelope.json",
+    "sha256": "773f4b3d33e3d9ba8fca353d6b883ae58171587454bae69c92a70c8caf0cc4ba"
+  },
+  "source75_envelope": {
+    "bytes": 33787,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-source75-envelope.json",
+    "sha256": "550adce9da34f92f118ba0e7eee3a273a4d8fab48e09a602342fd7fa3ad8f1b6"
+  },
+  "normal_acceptance": 0
+}

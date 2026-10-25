@@ -1,0 +1,36 @@
+{
+  "Outcome": "NOTPASS — F1: client-only listeners miss pg-pool error forwarding during retirement, allowing a raw native error to escape the promised closed lifecycle failure.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-report.md",
+      "bytes": 5166,
+      "sha256": "218d095266c898492582bd03840d8c9ed69fb74f1567ea343e289b83af6cbe5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-attestation.json",
+      "bytes": 13511,
+      "sha256": "fc95a9677ed4d69d093384c7c854af7e520a80d2aaafd93d10085b157dd48f62"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/result.json",
+      "identity": "Returned out of band after exclusive write."
+    }
+  ],
+  "Status": {
+    "scope": "Targeted Sol6.1 High C4 refinement challenge only; prior C1-C7/H1/H3 preserved.",
+    "control": "Actual installed Pool with synthetic Client: five assertions passed/native0; owned error listener observed error yet pool error still threw; client removed/no idle reuse.",
+    "bindings": "Frozen3+admission,6 source candidates,6 prior refs and8 dependency refs verified.",
+    "normal_acceptance_credit": 0
+  },
+  "Open questions": [
+    "Exact-client pool-error containment and asynchronous/late retirement behavior require precise refinement; no backend cleanup inferred."
+  ],
+  "Deferred work": [
+    "Metadata-only F1 refinement preserving foreign/default error semantics; installed-pool async/late/foreign controls; targeted F1 closure.",
+    "Only after actual PASS and exact six-path allocation: source implementation and distinct High committed-delta review; later separately allocated native gates."
+  ],
+  "Blockers": [
+    "F1 blocks lifecycle plan acceptance and source implementation. No broad re-review or unrelated fix requested.",
+    "API019/browser failures/flakies/custody remain unresolved; no runtime/retry/collector authority."
+  ]
+}

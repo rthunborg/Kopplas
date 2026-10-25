@@ -1,0 +1,72 @@
+{
+  "schema": "ROOT_REVIEWED_CORRECTIONS_NORMAL_READINESS_ADMISSION_v1",
+  "source": "dec30783a23dcac35d6ba57f649420221d741ecd",
+  "metadata_HEAD_before_artifact_commit": "5da9bc694d86d0754737b2bba8c47a163d871ae0",
+  "source_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-normal-parser-high-review/manifest.json",
+    "bytes": 980,
+    "sha256": "5dc5c062e761d96b02b3a492a37ddaeef438fa788770e1c82773394ab7185c3e"
+  },
+  "independent_verdict": "PASS_BROWSER_V2_NORMAL_PARSER_SOURCE_ONLY",
+  "private_preparation": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 50513,
+      "sha256": "c57bbb84b41b2a79e1c8a94d7b53ce4f7408832ef9b0ee0504a9121d11cf3f05"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/bindings.json",
+      "bytes": 74961,
+      "sha256": "f79bc2e987a95918cb412ff85bd21e5ac88b80372302414a5c9d10b0c61d9674"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/result.json",
+      "bytes": 101621,
+      "sha256": "20e29fc3bcdb80b6cc109687913f1a3242e5990d7ad3e2d30e55cc7c1ba667c9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/browser-v2-normal-evidence-preparation/manifest.json",
+      "bytes": 1028,
+      "sha256": "52efd98fca6a59e2accd6f1f788b434cccca74b25ca89564abd947d03d87a222"
+    }
+  ],
+  "Root_mechanical_checks": {
+    "raw_and_clean_rows": 205,
+    "Git_source_and_metadata_equalities": 410,
+    "migrations": 117,
+    "source_audit_exact_files": 4,
+    "all_passed": true
+  },
+  "reused_source_reviews": {
+    "SQL": "PASS_TARGETED_SERIES_PROTOCOL_01_CLOSURE_SOURCE_ONLY at 490f910fedfc1ec4ebbc5f0b8ecf980698fb1678",
+    "browser_producer": "PASS_BROWSER_V2_SOURCE_ONLY at dec30783a23dcac35d6ba57f649420221d741ecd"
+  },
+  "pure_evidence": {
+    "author_controls": 13,
+    "independent_producer_rows_same_bytes": 28,
+    "actual_assembler_bytes": 27213,
+    "cap": 32768,
+    "independent_conservative_48_slot_bytes": 29274,
+    "author_conservative_48_slot_bytes": 29237,
+    "counts_nonadditive": true,
+    "API_calls": 0
+  },
+  "catalog": {
+    "unchanged_files": 19,
+    "changed_file": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "literal_declarations": 407,
+    "dynamic_exclusions": 19,
+    "inherited_suite_declaration": "Historical catalog inventory is not asserted to contain only leaf tests; no allowlist expansion."
+  },
+  "next": "One separately coordinated provider qualification, FF checkpoint push and NORMAL dispatcher; terminal acquisition separately allocated after actual freeze.",
+  "runtime_truth": {
+    "SQL_application": "UNPROVEN",
+    "native_publication": "UNEXECUTED",
+    "functional_failures": "Prior failed run remains failed pending current native evidence",
+    "custody": "UNKNOWN",
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "review_counter": 3
+  },
+  "effect_authority": "NONE; source-only admission, no deployment"
+}

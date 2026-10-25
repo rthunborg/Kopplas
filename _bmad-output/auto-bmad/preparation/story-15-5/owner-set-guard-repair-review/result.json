@@ -1,0 +1,27 @@
+{
+  "Outcome": "PASS — retained guard false-negative closed at source/control level; no consequential new findings.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/original-report.md",
+      "bytes": 3985,
+      "sha256": "728b1f09886b32696e35b8e3d89f18c4900d67a3fcce1b9642a881eddf21976e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/original-attestation.json",
+      "bytes": 8367,
+      "sha256": "73de777033935358178a748a659f5d5e88ec44110b6b13c16759692af0f89ad4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/result.json",
+      "identity": "Final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": "Independent targeted Sol6.1 High review complete; three pure controls pass; 114 references resolve; source and approved kernel preserved.",
+  "Open questions": [
+    "Exact failed-backend membership rows and true OR term remain unobserved; native repair/startup behavior remains unexecuted."
+  ],
+  "Deferred work": [
+    "Fresh exact-head native gates, normal all95 and separate recovery remain pending; historical failures are not declared repaired."
+  ],
+  "Blockers": []
+}

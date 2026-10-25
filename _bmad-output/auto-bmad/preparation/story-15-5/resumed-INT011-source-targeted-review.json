@@ -1,0 +1,149 @@
+{
+  "schema": "kopplas.resumed-INT011-source-targeted-review.v1",
+  "verdict": "PASS_TARGETED_INT011_STRICT_FIXTURE_SOURCE_ONLY",
+  "review": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true,
+    "route": "P5-resumed-INT011-committed-targeted-source-review",
+    "scope": "Only committed Scope A test literal correction, its author Spec record and changed-line regressions; not a fourth broad review."
+  },
+  "revision": {
+    "commit": "294663001f7afd9ed155f1554886bbe6911ed048",
+    "parent": "ca384f5ed8a7624908e60beb9f90bf03549cfa17",
+    "commit_scope_and_clean_tree": "Root-verified committed two-file scope; reviewer independently bound current raw/clean bytes and computed clean Git object identities without Git commands."
+  },
+  "files": [
+    {
+      "path": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "raw_bytes": 48848,
+      "raw_sha256": "6eda1f9503d78912069b459577ed3ea202ab565d2b46532326ae9b7619133e85",
+      "clean_bytes": 48550,
+      "clean_sha256": "b848d9e566f7666a5590256fec7e7b5983e0f873771824feece02e04b2d58a09",
+      "computed_clean_git_blob": "1f4de4d40f52f117594fd6d679c8fe758adcdb01"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 241004,
+      "raw_sha256": "3ee08513b792275c35516ad6303b2a3d879ff5eefc0975fd675f816917893aa9",
+      "clean_bytes": 238113,
+      "clean_sha256": "19f881157870dfadb364acccf39da549b923f6429fda66cca622ef15a50abf74",
+      "computed_clean_git_blob": "e883523370cd176c8342b546560c3a452282d343"
+    }
+  ],
+  "evidence": {
+    "author_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT011-source-author-result.json",
+      "bytes": 6041,
+      "sha256": "606e8dc603aa736a2e19c33d2b923d2bfce5ee5985299733b6e7588d7ee2f7eb",
+      "attribution": "Historical precommit author receipt, subsequently Root-committed at the exact byte bindings above. Its working_not_committed fields describe that earlier stage."
+    },
+    "original_causal_qualification": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-original-failure-causal-qualification.json",
+      "bytes": 11078,
+      "sha256": "31ad736454f4dbe3fa0881dec554c4155d91aa34bd751f0073296549d019c126",
+      "reused": "Original hosted AssertionError localizes uniquely to INT011:290:39; actual received values and sole-difference proof were not retained."
+    },
+    "SQL_baseline": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-request-lifetime-v3-root-baseline.json",
+      "bytes": 26469,
+      "sha256": "11bed6b49f2ac99826c2624b1e03e9d640cf37a662b7da1a23f81f4504144070",
+      "independent_current_exact_members_and_raw_hash_matches": 118
+    },
+    "independent_check": {
+      "tool_chunk": "41c0e6",
+      "native_exit": 0,
+      "wall_seconds": 1.8353675,
+      "description": "Pure read/hash/full-file inverse and Spec evidence inspection using Python -I -X utf8 -B; no test/import/main/runtime execution.",
+      "result": {
+        "added_properties": 27,
+        "objects": 3,
+        "strict_fields_per_object": 12,
+        "full_raw_inverse": true,
+        "full_clean_inverse_parent_hash_and_blob": true,
+        "current_test_Spec_raw_clean_and_blob_bindings": true,
+        "SQL118_raw_immutable": true,
+        "nullable_provenance_SQL_hashes_unchanged": true,
+        "original_qualification_hash_bound": true
+      }
+    },
+    "reader_history": "An earlier bounded source reader exceeded its line range; a subsequent optional loose-object reader found the old blob packed. Both stopped without writes/effects and are not passing checks. The final passing check independently restored and hashed the full raw/clean original test; no packed-object or Git command was needed."
+  },
+  "assessment": {
+    "location": "tests/integration/commands/conflict-resolver.int.test.ts:290",
+    "change": "Adds exactly the nine authoritative nullable job fields as null in each of the three strict expected objects.",
+    "fields": [
+      "estimatedDurationMinutes",
+      "crewSize",
+      "plannedTravelMinutes",
+      "plannedStartDate",
+      "plannedEndDate",
+      "earliestDate",
+      "desiredDate",
+      "latestDate",
+      "customerPresenceRequired"
+    ],
+    "inverse": {
+      "restored_raw_bytes": 48269,
+      "restored_raw_sha256": "72e942bd65ba8fcbc1904c06035535b5570b097613751e5daf31a47ee52a0104",
+      "restored_clean_bytes": 47971,
+      "restored_clean_sha256": "517fc0393e818abec554333618dab3acfffb870ea17093d794797f935a5f43d2",
+      "restored_clean_git_blob": "e05ded491723a1f72fcfc7a402014fa7993cb673",
+      "conclusion": "Every other test-file byte is conserved; this proves preservation beyond a matcher-only comparison."
+    },
+    "contract_provenance": "The prior independently qualified authorized resolver snapshot delegates through series facts to the effective E16 detection producer and returns jobInputs without field stripping. The three authoritative SQL provenance files still match their exact reviewed hashes. Nullable/no-default definitions plus the unchanged explicit fixture INSERT omission establish expected nulls independently of current output.",
+    "preserved": [
+      "Strict toEqual; no partial matcher or sanitization.",
+      "Sorted job identity and independent required-role/access-window null-versus-empty semantics.",
+      "Access-window and competence scan oracles.",
+      "PREVIEW_STALE and physical-state equality.",
+      "Authorization, protocols, test enrollment and every other assertion/control.",
+      "All 118 SQL files and production source."
+    ],
+    "Spec": "The author evidence at ScopeA and the final Suggested Review Order correctly distinguish source-derived nulls from unavailable hosted received values. The blocking Auto Run Result retains actual failed functional gates, browser/custody separation, 35 missing required cases and no retry authority.",
+    "findings": []
+  },
+  "evidence_attribution": {
+    "author_checks_reused": [
+      "Installed TypeScript AST/source inverse and SQL/null provenance check exit 0.",
+      "Affected test ESLint exit 0; diff check exit 0.",
+      "Story reader exit 0, parse_warnings [], in-review, ARR in-review, loop 3.",
+      "Suggested Review Order validator exit 0 with 198 stops."
+    ],
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged": "Root/author-qualified unchanged kernel reused; not a newly executed kernel-parser claim."
+    },
+    "historical_frontmatter_warning": "The existing oversized frontmatter warning remains historical; no schema or warning waiver is introduced.",
+    "not_claimed": [
+      "Whole TypeScript was not rerun for this literal-only change.",
+      "No unit/full suite/integration/SQL/browser/build/runtime/hosted check ran during this review.",
+      "Author static checks are attributed to the author and are not counted as independent test passes.",
+      "No assertion of actual hosted received null values or sole hosted difference."
+    ]
+  },
+  "effects": {
+    "new_tests": 0,
+    "API_calls": 0,
+    "Git_commands": 0,
+    "operator_invocations": 0,
+    "source_harness_runs": 0,
+    "runtime_or_resource_actions": 0,
+    "source_or_Spec_writes": 0,
+    "only_write": "This new targeted review JSON."
+  },
+  "remaining": {
+    "broad_review_counter": 3,
+    "status": "in-review",
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "required_missing_cases": 35,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "browser_original_cause": "UNKNOWN",
+    "custody": "ENDED_JOB_OPERATOR_HANDOFF only; deletion/backend settlement unverified",
+    "functional_gates": "Existing failed and unexecuted gates remain blocking; this source-only PASS grants no retry, acquisition, runtime, merge or deployment authority."
+  }
+}

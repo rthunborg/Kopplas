@@ -1,0 +1,33 @@
+{
+  "Outcome": "PASS_BROWSER_V2_NORMAL_PARSER_SOURCE_ONLY",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "source": "dec30783a23dcac35d6ba57f649420221d741ecd",
+    "metadata_HEAD": "5da9bc694d86d0754737b2bba8c47a163d871ae0",
+    "changed_definitions": 4,
+    "unchanged_definitions": 32,
+    "legacy_helper_hashes": 16,
+    "raw_clean_rows": 205,
+    "Git_equalities": 410,
+    "independent_proof_groups": 3,
+    "final_pure_exit": 0,
+    "producer_rows_same_bytes": 28,
+    "actual_production_budget": 27213,
+    "cap": 32768,
+    "independent_conservative48": 29274,
+    "author_controls13": "reported separately; nonadditive",
+    "effects": 0,
+    "normal_acceptance": 0,
+    "review_counter": 3,
+    "findings": 0
+  },
+  "Open questions": "Native publication, functional causes, SQL runtime and custody remain UNKNOWN.",
+  "Deferred work": "Actual future terminal binding/audit, fresh source proof/allocation and exclusive Root activation; required functional gates remain unexecuted here.",
+  "Blockers": "None within this finite source-only audit. No effect authority granted.",
+  "manifest": "Self-excluded manifest binds the other three artifacts."
+}

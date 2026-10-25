@@ -1,0 +1,37 @@
+{
+  "kind": "ROOT_ACCEPTED_COORDINATOR_PLAN_METADATA_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "coordinator_title": "Coordinator",
+  "actual_turn": "01a15d4c-c3ea-7653-b5f7-e3742265b88a",
+  "actual_turn_status": "completed",
+  "grant_tool_id": "exec-b9ece34f-2493-4a75-82bb-63b5490f138d",
+  "final_message_id": "msg_0954b60b44796db1016ad865a6dea4819189c76eef7b024604",
+  "owned_worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan",
+  "author": [
+    "plan.md",
+    "input-binding.json",
+    "local-checks.json"
+  ],
+  "distinct_reviewer": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json"
+  ],
+  "root": [
+    "manifest.json"
+  ],
+  "allocation": "exclusive fresh exact7 metadata only; no known Documents/E16/sharedCI overlap",
+  "effects_not_granted": [
+    "source hunks",
+    "query or connection",
+    "SQL grants RLS",
+    "native or CI",
+    "Git provider changes",
+    "resources",
+    "main merge",
+    "deploy",
+    "monitor resume"
+  ],
+  "normal_acceptance_credit": 0
+}

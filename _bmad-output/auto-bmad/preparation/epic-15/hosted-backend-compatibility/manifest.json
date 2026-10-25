@@ -1,0 +1,31 @@
+{
+  "scope": "Actual metadata-only target compatibility evidence; no tenantdata/secrets/writes",
+  "project": "Kopplas/wmqmzznmwpheswjjozhq",
+  "hosted_migrations": 80,
+  "repo_migrations": 119,
+  "existing_forward_pending": 39,
+  "required_object_presence": "4false; concrete merge/deploymentcompatibilityhold",
+  "development_complete": true,
+  "release_ready": false,
+  "migration_apply_authorized": false,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/epic-15/hosted-backend-compatibility/root-hosted-backend-migration-readonly.json",
+      "bytes": 8311,
+      "sha256": "686360cf7120d34f5f635c37f6676399fe5233a14589258d24dca7be5cd7832f",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/root-hosted-backend-migration-readonly.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/epic-15/hosted-backend-compatibility/root-hosted-migration-compatibility-diff.json",
+      "bytes": 2912,
+      "sha256": "66b4fee2463e22ed29c499f21ea847d6fa5d3ecee06f5de62e63c9a3e6e3d450",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/root-hosted-migration-compatibility-diff.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/epic-15/hosted-backend-compatibility/root-hosted-required-schema-presence.json",
+      "bytes": 1239,
+      "sha256": "61d5b1bb396e04fd588830b184e793ff5a3c36bae7eaedfa7f7eeeadf1bee263",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/root-hosted-required-schema-presence.json"
+    }
+  ]
+}

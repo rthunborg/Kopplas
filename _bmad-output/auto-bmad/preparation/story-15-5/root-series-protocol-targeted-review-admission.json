@@ -1,0 +1,23 @@
+{
+  "schema": "ROOT_SERIES_PROTOCOL_TARGETED_REVIEW_ADMISSION_v1",
+  "outcome": "NOTPASS_TARGETED_PROTOCOL_TEST_REGRESSION",
+  "reviewed_commit": "cb65b06b8884938f2054821166e9fd7e4d5e4aa9",
+  "exact_review4_hashes": "PASS",
+  "review_manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/manifest.json",
+    "bytes": 990,
+    "sha256": "7f3522c620a00a54b779a825590b8bb5f61afc61d285b50917df4926b53c5114"
+  },
+  "finding": {
+    "id": "SERIES-PROTOCOL-01",
+    "priority": "P2",
+    "path": "tests/integration/commands/booking-series.int.test.ts",
+    "line": 802,
+    "facts": "ActiveREAL011asserts oldv3/v1afterproducerrepairnowv4/v2; failsbeforefacts/digestchecks"
+  },
+  "unchanged_review_evidence_reusable": "42purePASS/effectivebodyinverses/LFCRLFadmission/116historyconserved; runtimeSQL0",
+  "review_counter": 3,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "next": "Existing High author fixes activepositiveprotocolassertion and SpecSROonly withinexistingallocation; allfacts/digestguards and migration/unit bodiespreserved. Rootcommit thenSAMEdistinctHighfinding/regressionclosure, no broadreview."
+}

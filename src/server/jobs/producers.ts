@@ -26,6 +26,7 @@ export function producersFromManifest(manifest: ManifestLike, declarations: read
 }
 
 export const ACTIVE_PRODUCERS = producersFromManifest(SCOPE_MANIFEST, [
+  { id: "scheduling.time-report-nudges", module: "scheduling", category: "time_report.nudge", schedule: "0 * * * *", essential: false },
   { id: "quotes.follow-up-reminders", module: "quotes", category: "quote.follow_up_due", schedule: "0 * * * *", essential: true },
   { id: "notifications.email-outbox-delivery", module: "notifications", kind: "operational", schedule: "*/5 * * * *", essential: false },
 ]);

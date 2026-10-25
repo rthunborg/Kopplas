@@ -1,0 +1,39 @@
+{
+  "kind": "ROOT_BOUNDED_OWNED_DIAGNOSTIC_TRANSPORT_REPAIR_ADMISSION",
+  "base_head": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "author_source_head": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+  "failed_run": 39492715549,
+  "attempt": 1,
+  "failed_packet_manifest_sha256": "0c391a7aba536b6d6b9ba4de76573ae8c15430575b3211ef72d9a82cbd3d431f",
+  "root_failed_packet_admission_sha256": "56cea3c9e905095589afab9fa30c68b9a228699ef9bbfd75acffffe896be5ad4",
+  "actual_three_path_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 66591,
+      "raw_sha256": "53fd53e823ef02d9de01b30a0711b462aa339db86726d9d6d47e54e0ed027ccc",
+      "current_head_blob_oid": "169091c23c13c115f83fef4a817bb3712afdbbb1"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 81852,
+      "raw_sha256": "4e1ca1def4f81e8047a352133553aec91bff4e4835230a463d257a1c4eb99921",
+      "current_head_blob_oid": "678a980c2eb9d64ebc4071b0757dac304b497a68"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 97007,
+      "raw_sha256": "29b26c72b18bacb3e7ed193f6cf7fb32486dd8c208cc574586df0733c9f1cf02",
+      "current_head_blob_oid": "e3a0be84e71e742b2350c8fa3759194009bdef9d"
+    }
+  ],
+  "scope": "Pure sanitized aggregate construction only in owned helper; existing unit tests; author Spec evidence/Suggested Review Order only, approved kernel unchanged. Flatten only module-owned already-sanitized child-group leaves at reporter-supported level, preserve ordered primary and cleanup leaves/finer stages.",
+  "preserved": "own-data SQLSTATE allowlist, guarded raw walk, getter/proxy/cycle/node16/depth4/truncation/UNKNOWN limits and sanitized stacks; exact operations, values, requests, queries, RPCs, clients, pools, principals, authority, result, settlement and custody behavior",
+  "meaningful_local_controls": "Retain existing58 cases; actual installed bounded failTask plus processError/public JsonReporter in memory: old nested negative, repaired known42501/unknown/stage/order positive, several leaves remain one failed case, hostile payload/accessor/inherited/cycle/bounds negatives. No Vitest collection/globalSetup/managed service/runtime; synthetic controls carry no native acceptance credit. Record actual executed counts.",
+  "limits": "Source-supported report transport repair only. All43 fixture causes remain UNKNOWN_NOT_OBSERVABLE; no functional/authorization fix inferred. Shared allocated policy case/UI remain unchanged; no new shared path/migration/dependency/resource ownership requested.",
+  "git": "Append-only exact-three author commit excludes Root metadata; fresh distinct context-free High exact committed three-path latest-fix review before freeze/checkpoint. No amendment/force/reset/bypass or fourth broad review.",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source_writes_admitted": true,
+  "development_complete": false,
+  "release_ready": false
+}

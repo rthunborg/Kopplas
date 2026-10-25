@@ -1,0 +1,1 @@
+import {test,beforeAll,expect} from 'vitest';console.log('C4R_SERIAL_IMPORTED');beforeAll(()=>console.log('C4R_SERIAL_HOOK'));test('healthy',()=>expect(true).toBe(true));test('expected denial',()=>expect({denied:true}).toEqual({denied:true}));

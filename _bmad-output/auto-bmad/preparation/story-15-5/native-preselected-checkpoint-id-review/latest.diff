@@ -1,0 +1,155 @@
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 046d41ef..c12885d9 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -1222,6 +1222,49 @@ three review is pending within the completed three-round cap. All43 DB causes,
+ 14 browser failures,11 failed native packets, unborn private qualifier and later
+ Root availability/admission/execution gates remain unresolved or pending.
+ 
++## Dispatch-only preselected checkpoint correlation — 2026-10-21
++
++Root's exact-three prerequisite allocation
++`accepted-native-preselected-checkpoint-id-allocation.json` (2858B,
++SHA256 `73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398`)
++admits an optional dispatcher identity input and its actual caller controls.
++The recorded Sol6.1 High route is
++fix-diagnostic-dispatch-preselected-checkpoint-id-interface. The source baseline
++is checkpoint2524306ca9edd6079c23d205cf01268797288d89 with af5 producer bytes.
++That checkpoint was pushed without a new native attempt: still11 failed native
++histories, not12. All original reviews/capsules remain immutable.
++
++The optional dispatch-only CLI --checkpoint-id and programmatic checkpoint_id
++must be canonical lowercase UUIDv4 using the existing ID grammar. Supplied
++values are read once and validated before every API; nonstrings, wrong version,
++variant/case, malformed values and status/cancel selection refuse. CLI missing
++and duplicate values also refuse. At the existing exclusive/fsynced pre-POST
++state construction a valid supplied ID is selected; omission retains the exact
++legacy randomUUID default. The same durable identity reaches the unchanged
++checkpoint_id input, diagnostic/normal title and ownership checks. No callback,
++transport hook, new payload field, workflow, schema, dependency, API or global
++nonce/replay store is introduced. This is correlation, NOT GitHub idempotency:
++a fresh Root UUID must never be reused after an uncertain invocation. Existing
++record refusal, uncertain intent retention and zero redispatch remain mandatory.
++
++Actual affected dispatcher execution passed35/35 with0fail/skip/cancel on the
++first run, preserving prior31 controls. Six supplied/generated and normal/
++diagnostic/release paths inspect the actual durable record AT the POST boundary;
++refusals assert zero API calls. Whole TypeScript and affected two-file ESLint
++passed0errors/0warnings; kernel5760 and single author SRO are preserved. These
++injected API controls are not a provider dispatch or native test. No new combined
++117/375, broad/full suite, production build or native acceptance is claimed.
++Application/helper/wrapper bytes are unchanged; no needless build was rerun.
++
++The reviewed P252 private helper/test remain immutable and UNEXECUTED. A later
++new pushed producer head needs a NEW exclusive private preparation bound to its
++full SHA and a fresh UUID, with rebound helper/test independent High review and
++all existing pre-POST admission gates. This author neither edits nor executes
++that helper. Fresh distinct High committed latest-three review is pending;
++loop3, in-review/ARR warnings and no-DONE/delivery/release boundaries remain.
++All43 DB causes and14 browser failures remain unresolved. No provider, native
++query, CI, service, push, deployment or main merge occurred in this fix.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+@@ -1453,3 +1496,17 @@ Evidence:31 affected dispatcher controls passed, whole TypeScript and two-file
+ ESLint passed. Closed F1/F2 and unchanged344 control bindings are reused with
+ historical scope, not rerun or summed into a new execution. Hosted availability,
+ private consumer adoption and diagnostic/native acceptance remain pending.
++
++### Bind the reviewed private intent to the dispatcher nonce
++
++A caller may supply correlation identity before dispatch while the same durable
++one-shot intent and refusal rules remain authoritative under uncertainty.
++
++- `scripts/ci/checkpoint-dispatch.mjs:178` — `const suppliedId = "checkpoint_id" in options`: validates supplied dispatch identity before any API.
++- `scripts/ci/checkpoint-dispatch.mjs:207` — `checkpoint_id: suppliedId ? selectedId : randomUUID()`: keeps selection inside the existing exclusive pre-POST state.
++- `tests/unit/scripts/ci/checkpoint-dispatch.test.ts:326` — `preselected and legacy generated checkpoint identity`: actual durable-at-POST value propagates through payload, title and ownership.
++
++Evidence:35 affected dispatcher cases passed0fail/skip/cancel, full TypeScript
++and affected lint passed. Prior31/374 composites retain their separate temporal
++scope. No real provider/private collector/diagnostic/native run is credited;
++new-head private qualification and fresh reviewed Root dispatch remain pending.
+diff --git a/scripts/ci/checkpoint-dispatch.mjs b/scripts/ci/checkpoint-dispatch.mjs
+index 6325d7fa..157eb1fc 100644
+--- a/scripts/ci/checkpoint-dispatch.mjs
++++ b/scripts/ci/checkpoint-dispatch.mjs
+@@ -175,6 +175,10 @@ function discover(api, state) {
+ /** @returns {Record<string, unknown>} */
+ export function checkpoint(command, options, { api = githubApi, now = () => new Date() } = {}) {
+   if (!["dispatch", "status", "cancel"].includes(command)) throw new Error("Use dispatch, status or cancel.");
++  const suppliedId = "checkpoint_id" in options, selectedId = options.checkpoint_id;
++  if (suppliedId && (command !== "dispatch" || typeof selectedId !== "string" || !ID.test(selectedId))) {
++    throw new Error("--checkpoint-id is dispatch-only and requires a canonical lowercase UUIDv4.");
++  }
+   if (!options.state) throw new Error("--state is required; use an ignored private local path.");
+   const path = resolve(options.state);
+   mkdirSync(dirname(path), { recursive: true });
+@@ -200,7 +204,7 @@ export function checkpoint(command, options, { api = githubApi, now = () => new
+       const created = now();
+       const state = {
+         version: 1, repo: options.repo, ref: options.ref, sha: options.sha,
+-        actor, workflow_id: workflow.id, checkpoint_id: randomUUID(),
++        actor, workflow_id: workflow.id, checkpoint_id: suppliedId ? selectedId : randomUUID(),
+         release_validation: options.release_validation === "true",
+         cause_proof: options.cause_proof === "true",
+         verification_mode: options.cause_proof === "true" ? "calendar-feed-cause-proof" : options.release_validation === "true" ? "release" : "normal",
+@@ -261,12 +265,13 @@ export function checkpoint(command, options, { api = githubApi, now = () => new
+ export function parseArgs(args) {
+   const [command, ...rest] = args;
+   const options = {};
+-  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation", "cause-proof"] : ["state"];
++  const allowed = command === "dispatch" ? ["repo", "ref", "sha", "state", "release-validation", "cause-proof", "checkpoint-id"] : ["state"];
+   for (let index = 0; index < rest.length; index += 2) {
+     const key = rest[index]?.slice(2);
+-    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false] [--cause-proof true|false]; status/cancel: --state.");
++    if (!rest[index]?.startsWith("--") || !allowed.includes(key) || options[key.replaceAll("-", "_")] !== undefined || !rest[index + 1] || rest[index + 1].startsWith("--")) throw new Error("Invalid, duplicate or missing option. Dispatch: --repo --ref --sha --state [--release-validation true|false] [--cause-proof true|false] [--checkpoint-id lowercase-UUIDv4]; status/cancel: --state.");
+     options[key.replaceAll("-", "_")] = rest[index + 1];
+   }
++  if (Object.hasOwn(options, "checkpoint_id") && !ID.test(options.checkpoint_id)) throw new Error("--checkpoint-id requires a canonical lowercase UUIDv4.");
+   return { command, options };
+ }
+ 
+diff --git a/tests/unit/scripts/ci/checkpoint-dispatch.test.ts b/tests/unit/scripts/ci/checkpoint-dispatch.test.ts
+index fb0f9d9b..a99cfcb6 100644
+--- a/tests/unit/scripts/ci/checkpoint-dispatch.test.ts
++++ b/tests/unit/scripts/ci/checkpoint-dispatch.test.ts
+@@ -320,3 +320,38 @@ test("F3 actual default plain-scalar syntax refusal precedes durable intent and
+   assert.throws(()=>assertDefaultDispatchWorkflow(document("x: y # comment")),/unavailable/);
+   assertDefaultDispatchWorkflow("name: CI\non: # event: mapping\n  workflow_dispatch: # empty: declaration\n    inputs: # empty: mapping\njobs:\n  verify: {}\n");
+ });
++
++
++const preselectedId="2c7241ac-d51e-4a6f-8f85-533739b3e472";
++test("preselected and legacy generated checkpoint identity are durable at POST and propagate through payload title and ownership",()=>{
++  for(const supplied of [true,false])for(const mode of ["normal","diagnostic","release"]){withFixture(f=>{
++    const options={...request,state:f.state,...(supplied?{checkpoint_id:preselectedId}:{}),...(mode==="diagnostic"?{cause_proof:"true"}:mode==="release"?{release_validation:"true"}:{})};
++    const api=f.dependencies.api;let atPost:string|undefined;
++    f.dependencies.api=(method,endpoint,body)=>{if(method==="POST"){
++      const durable=f.record();atPost=durable.checkpoint_id;assert.equal(durable.phase,"dispatch-uncertain");assert.match(atPost!,/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/);
++      if(supplied)assert.equal(atPost,preselectedId);else assert.notEqual(atPost,preselectedId);
++      assert.deepEqual(body,{ref:request.ref,inputs:{expected_sha:sha,checkpoint_id:atPost,release_validation:String(mode==="release"),...(mode==="diagnostic"?{calendar_feed_cause_proof:"true"}:{})}});
++    }return api(method,endpoint,body);};
++    const result=checkpoint("dispatch",options,f.dependencies);assert.equal(result.checkpoint_id,atPost);assert.equal(f.record().checkpoint_id,atPost);
++    const run=f.run();assert.equal(run.display_title,checkpointTitle(atPost!,sha,f.record().verification_mode));f.setRuns([run]);assert.equal(f.status().phase,"queued");assert.equal(f.record().checkpoint_id,atPost);
++    const before=f.calls.length;assert.throws(()=>checkpoint("dispatch",options,f.dependencies),/already exists/);assert.equal(f.calls.length,before);assert.equal(mutations(f).length,1);
++  });}
++});
++test("invalid programmatic checkpoint IDs and status or cancel selection refuse before every API",()=>{
++  const bad:unknown[]=[undefined,null,17,true,{},[],"",preselectedId.toUpperCase(),preselectedId.replace("-4a6f-","-1a6f-"),preselectedId.replace("-8f85-","-7f85-"),preselectedId+" "," "+preselectedId,"not-a-uuid"];
++  for(const command of ["dispatch","status","cancel"]){for(const value of [...bad,...(command==="dispatch"?[]:[preselectedId])])withFixture(f=>{
++    assert.throws(()=>checkpoint(command,{...request,state:f.state,checkpoint_id:value},f.dependencies),/checkpoint-id/);assert.equal(f.calls.length,0);assert.equal(existsSync(f.state),false);assert.equal(existsSync(f.state+".lock"),false);
++  });}
++});
++test("checkpoint-id CLI accepts only one dispatch UUIDv4 and rejects missing duplicate malformed or non-dispatch options",()=>{
++  assert.deepEqual(parseArgs(["dispatch","--state","private.json","--checkpoint-id",preselectedId]),{command:"dispatch",options:{state:"private.json",checkpoint_id:preselectedId}});
++  for(const args of [["dispatch","--checkpoint-id"],["dispatch","--checkpoint-id",""],["dispatch","--checkpoint-id","--state","x"],["dispatch","--checkpoint-id",preselectedId,"--checkpoint-id",preselectedId],["status","--state","x","--checkpoint-id",preselectedId],["cancel","--state","x","--checkpoint-id",preselectedId],...[preselectedId.toUpperCase(),preselectedId.replace("-4a6f-","-5a6f-"),preselectedId.replace("-8f85-","-cf85-"),"bad"].map(id=>["dispatch","--checkpoint-id",id])])assert.throws(()=>parseArgs(args));
++});
++test("preselected nonce is correlation only and uncertain dispatch retains its original identity with zero redispatch",()=>withFixture(f=>{
++  f.failDispatch();const options={...request,state:f.state,cause_proof:"true",checkpoint_id:preselectedId};assert.throws(()=>checkpoint("dispatch",options,f.dependencies),/uncertain/);
++  const durable=f.record();assert.equal(durable.checkpoint_id,preselectedId);assert.equal(durable.phase,"dispatch-uncertain");assert.equal(mutations(f).length,1);
++  assert.equal(f.status().phase,"dispatch-uncertain");assert.equal(f.record().checkpoint_id,preselectedId);const before=f.calls.length;
++  assert.throws(()=>checkpoint("dispatch",options,f.dependencies),/already exists/);assert.equal(f.calls.length,before);assert.equal(mutations(f).length,1);
++  for(const command of ["status","cancel"]){const count=f.calls.length;assert.throws(()=>checkpoint(command,{state:f.state,checkpoint_id:preselectedId},f.dependencies),/dispatch-only/);assert.equal(f.calls.length,count);}
++  f.setRuns([f.run({display_title:checkpointTitle("6d5651ea-6abf-432e-a1a2-a4c76c641f69",sha,"calendar-feed-cause-proof")})]);assert.equal(f.status().phase,"dispatch-uncertain");assert.equal(mutations(f).length,1);
++}));

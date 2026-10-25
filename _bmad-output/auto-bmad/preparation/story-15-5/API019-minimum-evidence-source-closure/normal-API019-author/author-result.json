@@ -1,0 +1,316 @@
+{
+  "schema": "API019_FINITE_TELEMETRY_EVIDENCE_SEAM_SOURCE_AUTHOR_V1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T14:40:50.716145+00:00",
+  "Outcome": "Approved three telemetry origins implemented. Evidence-only discriminator; no functional fix or certified hosted cause. All tracked writes stopped for targeted review.",
+  "Files changed": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "Status": "SOURCE_CHECKS_PASSED_INDEPENDENT_ACTUAL_PATCH_REVIEW_PENDING",
+  "Open questions": [
+    "Actual failing API019 operation/cause UNKNOWN; independently qualified required95=93P1F(API019)1zero(API020pending).",
+    "DB key retained/backend custody unverified; final required95/recovery/custody pending."
+  ],
+  "Deferred work": [
+    "Distinct targeted source review then Root-owned commit/checkpoint/effects.",
+    "Private reader stage-data copy retains historical consumed tuple/paths; no new tuple/read/activation authority.",
+    "Any future focused native capability and effects require separate exact admission; no blind NORMAL retry."
+  ],
+  "Blockers": [
+    "P5OPEN/acceptance0; no development-complete/release-ready claim."
+  ],
+  "model": "gpt-6.1-sol High",
+  "route": "Root bab288",
+  "HEAD": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+  "functional_preimage": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "approved_plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-minimum-plan-independent-review.json",
+    "bytes": 11819,
+    "sha256": "86fc7d77a0d22ce0a84e9e14a930eab5641b8c481c917f9cdfa6ad88cc78e4a1"
+  },
+  "source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 140182,
+      "sha256": "31238ec8852e5636d1d0dab3391a7224da50c2349f39cd28711ca85dba81968a",
+      "LF_bytes": 138786,
+      "LF_sha256": "571b4cb4d939e66e850303873f577f2256a11084330863ea5f303f7d2cb470e3",
+      "prospective_LF_git_blob": "579c0f4afa82358ec85643870d508c4d2a8b7b40",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 331036,
+      "sha256": "e6ce95880d24c7908f5f708dedb3671c554ff087d8e652a6aa135bbd21c0dfba",
+      "LF_bytes": 327960,
+      "LF_sha256": "aa80e7440037b0ae0b8c68a0e416ceba4f10a611695a251653f8dc1b9a536278",
+      "prospective_LF_git_blob": "4d557609a88f195956219cdd525d74433f869043",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 260470,
+      "sha256": "d8236c69d18030002cc97384787103dd50604df0dd13760bcb1eb5ae935e9332",
+      "LF_bytes": 257379,
+      "LF_sha256": "49d1fac6483c13c74ad959440016b60009e3b6b766120303fff9c67d8145f917",
+      "prospective_LF_git_blob": "1390e95937236980c89cb7ecb64955e4778d868b",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    }
+  ],
+  "checks": {
+    "initial_control_extraction_RED": "0P4F, ERR_INVALID_TYPESCRIPT_SYNTAX Return statement not allowed here; new control-only strip boundary corrected before producer change.",
+    "semantic_RED": {
+      "pass": 1,
+      "fail": 3,
+      "skip": 0
+    },
+    "GREEN": {
+      "pass": 4,
+      "fail": 0,
+      "skip": 0
+    },
+    "whole_affected_wrapper": {
+      "pass": 191,
+      "fail": 0,
+      "skip": 0
+    },
+    "whole_TS": 0,
+    "scoped_ESLint": 0,
+    "final_diff_check": 0,
+    "SRO_validator": {
+      "native": 0,
+      "refs": 217,
+      "errors": [],
+      "history": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/SRO-validator-history.json",
+        "bytes": 474,
+        "sha256": "f4e91765297c06cd42a61b0d782e6343ec471e289c701f76a035d81e97a98d2f"
+      }
+    },
+    "production_parser_compatibility": {
+      "focused_groups": 4,
+      "actual_origin_diagnostic_and_AST_failure_facts": true,
+      "API": 0,
+      "reader_invocations": 0
+    },
+    "nonadditive": "Focused/full counts overlap; no fullNode/build/integration/DB/browser tests."
+  },
+  "preserved": {
+    "ownerFacts": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+    "outsideSRO_kernel_status_counter3": true,
+    "timing": "same3s/20ms;150reads/sleeps at virtualdeadline",
+    "readFile_outside_parse_catch_IO_identity": true,
+    "success_value_identity_spelling": true,
+    "privacy_thresholds_HTTP_RPC_args_auth_schema_custody": true,
+    "other5direct_pins": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 48616,
+        "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "LF_bytes": 47931,
+        "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+        "prospective_LF_git_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+        "raw_inverse_equal": true,
+        "unchanged": true
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+        "LF_bytes": 26504,
+        "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+        "prospective_LF_git_blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "raw_inverse_equal": true,
+        "unchanged": true
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8135,
+        "sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+        "LF_bytes": 8024,
+        "LF_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677",
+        "prospective_LF_git_blob": "1c5e3b5f646d23d098257f209da533e05452a6d4",
+        "raw_inverse_equal": true,
+        "unchanged": true
+      },
+      {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+        "LF_bytes": 2509,
+        "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+        "prospective_LF_git_blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd",
+        "raw_inverse_equal": true,
+        "unchanged": true
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+        "LF_bytes": 162159,
+        "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+        "prospective_LF_git_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a",
+        "raw_inverse_equal": true,
+        "unchanged": true
+      }
+    ],
+    "SQL118": "unchanged; changed-path receipt SQLdirty0/no raw rescan"
+  },
+  "inverses": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/final-inverse-conservation-v2.json",
+    "bytes": 4503,
+    "sha256": "047bd4e4ccfc447aa64726d095baa864c96b02233f16952c9543684395b33156"
+  },
+  "stage_only_reader": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/reader-stage-data-successor.py",
+    "bytes": 50846,
+    "sha256": "b7a34c43b1b1cd1e088685c31f29787c908f201354468b71f6929a2d788e5d9c"
+  },
+  "stage_only_reader_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/reader-stage-data-proof.json",
+    "bytes": 1409,
+    "sha256": "537bf789756a38a980855d1f7aa96bb1d51dc9f59e8037fbd6cae922f3b8729f"
+  },
+  "native_receipts": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-affected-native.json",
+      "bytes": 1142,
+      "sha256": "f73dc3b1cc12159f86274cec5e41471d65d00cfb221a39bb87d92696ad04186a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-changed-paths-native.json",
+      "bytes": 963,
+      "sha256": "9f148951ce2d06721ff766f93839ae7bd81e7f9a73a3ce50883cece0485baf36"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-diff-check-native.json",
+      "bytes": 954,
+      "sha256": "16f43c85526ca7ea2626cf94f9ec896d62d35eccace5fb8cc51dad3e6a9a6179"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-final-diff-check-native.json",
+      "bytes": 960,
+      "sha256": "b1d2c5e3585de165c3c30b09a5109f7cd425391bdfe9d8791b52c4ee05e57bbd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-GREEN-native.json",
+      "bytes": 1191,
+      "sha256": "f2077e04f6c5ee3757131c98d0a93456c240aa14cc67ddd0704aa63a6ee88205"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-lint-native.json",
+      "bytes": 1313,
+      "sha256": "e47a09a7e766f88a43427620bad5c6d7ed3dc4adffa47a7e8c46a325c265257c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-reader-compatibility-native.json",
+      "bytes": 1931,
+      "sha256": "17485555fdfb086fffba57ed71c8550f8adbcbb001b89f5744a46b5b02822078"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-corrected-extraction-native.json",
+      "bytes": 1210,
+      "sha256": "ce7ee1392dc1ec41f6329eedc497c01accf7ef19a990c0f8d39be2876bb0c7ad"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-native.json",
+      "bytes": 1188,
+      "sha256": "312d7edf9733a36c1ca1c5c3df90b2dbb4b7be57ec8b314c6643e580fff7ee24"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-corrected-native.json",
+      "bytes": 1134,
+      "sha256": "cc082012d6c4443320f906571b84ae681dfc04fc7fc368363919f052c7b52bbd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-native.json",
+      "bytes": 1122,
+      "sha256": "fb3dfa8c7ea737d0742b52ab4be1c7c569c866b6da87e17419dd4729de1fb2f6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-typecheck-native.json",
+      "bytes": 1214,
+      "sha256": "0e1ab6b7f8b4728b49745acf743f318b15e1f3c88218150f14244f1b196e6b03"
+    }
+  ],
+  "summary_receipts": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-affected-summary.json",
+      "bytes": 362,
+      "sha256": "d031364e3d0fd89f1fa2174c913ebb4466808064b2a804f671fc711b421434c3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-changed-paths-summary.json",
+      "bytes": 365,
+      "sha256": "88b3177f8b9af4216d5c22ff1aca2167cb718c71d1251752024244ad1ada591e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-diff-check-summary.json",
+      "bytes": 73,
+      "sha256": "5acd2dba19d6abfabd247cadbe2021dff4d6d85635594d1111517c822692e9b1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-GREEN-summary.json",
+      "bytes": 355,
+      "sha256": "37e08d1f4a1f423eab1b56b457a588e2b9cfdbada8610f6dbd56af93d8eefd26"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-lint-summary.json",
+      "bytes": 228,
+      "sha256": "828dca7cbbd1eab8a161a1e289edb6ce73ed78720b7dfbd2e968d2e254472a0f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-corrected-extraction-summary.json",
+      "bytes": 681,
+      "sha256": "aa22314f24d02395dfbc09de1099d69fba877e3f826cc91510a31b188477215d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-summary.json",
+      "bytes": 755,
+      "sha256": "c1f1c01f173430e057cba3d3e181a906a65d80673f40283c7b5b4050f7bd6ac5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-corrected-summary.json",
+      "bytes": 359,
+      "sha256": "09982455673c88424992fe54eb27ba92eebad7c5b986082d030272b86a1991aa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-summary.json",
+      "bytes": 73,
+      "sha256": "0d5412c19e6e908b5e93a89d7f041643d3a433254ebfc74d527a55c01f34139f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-typecheck-summary.json",
+      "bytes": 233,
+      "sha256": "28fec361a347d597ebf72c4dad07e110b24e357c21b539fb287046d96f6899ed"
+    }
+  ],
+  "outer_tools": {
+    "initialRED": "93f6b2/outer0/0.613344s child1",
+    "semanticRED": "e23293/outer0/0.6972125s child1",
+    "GREEN": "77e48a/outer0/0.6316512s child0",
+    "affected": "b7e1f2 session9846;onewait15340a/outer0 child0; actual child elapsed in receipt",
+    "TS": "e328ad/outer0/5.4099524s child0",
+    "lint": "0558bf/outer0/4.1564445s child0",
+    "parsercompatibility": "c6b80c/outer0/0.3777356s child0",
+    "SROcorrected": "5b27c3/outer0/0.4060876s child0"
+  },
+  "capture": "Every native receipt preserves exact argv/caps/childexit/elapsed/fullEOF/readersjoined/handlesclosed/directsettled/streamhashes; rawstreams RAM-only. Tool outer vs child explicitly distinct; no Root direct lifecycle claim.",
+  "effects": {
+    "API": 0,
+    "resources": 0,
+    "Git_mutations": 0,
+    "source_extra_paths": 0,
+    "SQL": 0,
+    "reader_invocations": 0
+  },
+  "review_counter": 3,
+  "P5": "OPEN",
+  "acceptance": 0,
+  "release_ready": false
+}

@@ -1,0 +1,85 @@
+{
+  "Outcome": "PASS_EXACT_SEVEN_REFERENCE_BYTE_DELIVERY",
+  "Files changed": [
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+      "bytes": 10089,
+      "sha256": "dfdffb23983e968a4c7672f688da47b0130f07e7a43f53f47bb979eba47f546e",
+      "destination_preimage": "ABSENT",
+      "source_destination_raw_equal": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+      "bytes": 5348,
+      "sha256": "40ac01536369a2622e2bc74f68178380cd4cbbe4a70970d6075288f7c44fe141",
+      "destination_preimage": "ABSENT",
+      "source_destination_raw_equal": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+      "bytes": 4735,
+      "sha256": "826829352f46eee6b4f01c66e624c6acce0f1158cde459312ffa0584015bcacb",
+      "destination_preimage": "ABSENT",
+      "source_destination_raw_equal": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+      "bytes": 18838,
+      "sha256": "d18fc8991dde821b3f59f19e2bb7c7bfca051e61beafc27b6374045c341931af",
+      "destination_preimage": "ABSENT",
+      "source_destination_raw_equal": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/handoffs.md",
+      "bytes": 13431,
+      "sha256": "47edaae10547fe2f02de6505d37db4838235924f6ebb9bb5cd5c219305db0aab",
+      "destination_preimage": "ABSENT",
+      "source_destination_raw_equal": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+      "bytes": 5843,
+      "sha256": "bfeb1a17d2b0917a7c8a48636034f480cb8752d0923473371e8a818977df2497",
+      "destination_preimage": "ABSENT",
+      "source_destination_raw_equal": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/authority-crosswalk.md",
+      "bytes": 13432,
+      "sha256": "2b8cfa8e04440c88499ec5d881155d464ea9123c9e8398f3fc722b029a1ab4ea",
+      "destination_preimage": "ABSENT",
+      "source_destination_raw_equal": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-seven-reference-delivery-author/preservation.json",
+      "bytes": 45770,
+      "sha256": "a1c08274498555aa5ae92ee8370ea1b30e5bbea42896a20ee8f5a7a9971a28e5"
+    }
+  ],
+  "Status": {
+    "copied_files": 7,
+    "four_documents_unchanged": true,
+    "three_codefix_paths_unchanged": true,
+    "source_destination_equality": true,
+    "inventory_document_count": 11,
+    "remaining_secondary_missing_paths": [
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-10-23-design-transition.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/architecture-phase-b.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/prd-phase-b.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/review-rubric.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/transition-assessment-2026-10-21.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/ux-design-specification-phase-b.md"
+    ],
+    "unresolved_or_unread_fragment_count": 5,
+    "whole_package_link_complete_claim": false,
+    "historical_prompts": "Data only; not executed or adopted as current instructions.",
+    "15.6": "UNSTARTED; waits15.5 lands",
+    "frozen": true
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Independent High review of eleven-document preservation and link scope.",
+    "Any secondary-reference delivery requires separate exact allocation."
+  ],
+  "Blockers": []
+}

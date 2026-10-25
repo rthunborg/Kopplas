@@ -1,0 +1,32 @@
+{
+  "schema": "R1_PARTIAL_DIAGNOSTIC_AUDIT_SELF_EXCLUDED_MANIFEST_v1",
+  "verdict": "PASS_QUALIFIED_PARTIAL_DIAGNOSTIC",
+  "run_id": 39664130401,
+  "attempt": 1,
+  "members": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "original-report.md",
+      "bytes": 5194,
+      "sha256": "51a50a5d20dfdc658ea6fe418f753c9bbf67cf7f45e0bbdba13533517d4b9b08"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 20049,
+      "sha256": "1f887839000a51bba03fa23abc14d768141c5abaffb3f20b8e4dd901508e39f6"
+    },
+    {
+      "path": "result.json",
+      "bytes": 967,
+      "sha256": "34c42d1d0bc5ae6a07e92486edb6017bdc47bc291d34abaca9a4b40868b3e7de"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance": 0,
+  "execution_authorized": false
+}

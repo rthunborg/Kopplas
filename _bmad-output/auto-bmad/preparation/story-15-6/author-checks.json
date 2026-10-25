@@ -1,0 +1,824 @@
+{
+  "status": "HALTdone - development complete only; Stage2 authorized after Root delivery gate PASS; canonical phase5/sprint/final commit remain Root-owned",
+  "evidence_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "checks": [
+    {
+      "name": "Round1 affected domain/read/auth units",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/unit/server/authz/phase-a-surface.test.ts",
+      "exit": 0,
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0,
+      "new_feature_cases": 38,
+      "retained_historical_auth_cases": 5
+    },
+    {
+      "name": "Round1 final typecheck",
+      "command": "pnpm typecheck",
+      "exit": 0
+    },
+    {
+      "name": "Round1 affected source/test lint",
+      "command": "pnpm exec eslint src/components/my-day src/features/my-day src/server/read-models/my-day.ts tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/e2e/my-day.e2e.spec.ts",
+      "exit": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "name": "Round1 production build",
+      "command": "pnpm build",
+      "exit": 0,
+      "result": "Dynamic /my-day; current product code built before final browser-only test extensions"
+    },
+    {
+      "name": "Round1 browser syntax",
+      "command": "node --experimental-strip-types --check tests/e2e/my-day.e2e.spec.ts",
+      "exit": 0,
+      "cases": 9,
+      "limit": "Source parse only; no browser/database execution"
+    },
+    {
+      "name": "Round1 source containment",
+      "command": "node scripts/verify/check-service-role-containment.mjs",
+      "exit": 0
+    },
+    {
+      "name": "Round1 built bundle containment",
+      "command": "node scripts/verify/check-bundle-containment.mjs",
+      "exit": 0
+    },
+    {
+      "name": "Round1 final diff whitespace",
+      "command": "git -c core.longpaths=true diff --check",
+      "exit": 0,
+      "limit": "Existing autocrlf warnings only"
+    },
+    {
+      "name": "Round1 author review-order references",
+      "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+      "exit": 0,
+      "sections": 1,
+      "refs": 16,
+      "errors": 0
+    },
+    {
+      "name": "partial nav fixture parser",
+      "command": "node --experimental-strip-types --check tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+      "exit": 0,
+      "limit": "Parser only; configured Vitest/global setup not invoked"
+    },
+    {
+      "name": "partial nav fixture lint",
+      "command": "pnpm exec eslint tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "existing pure manifest derivation checks after nav fixture repair",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scope/manifest-derivations.test.ts",
+      "exit": 0,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "limit": "Existing pure suite, not execution of the integration fixture or new cases"
+    },
+    {
+      "name": "login/E04 exact-file lint",
+      "command": "pnpm exec eslint 'src/app/(auth)/login/page.tsx' tests/e2e/my-day.e2e.spec.ts",
+      "exit": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "name": "login/E04 static typecheck",
+      "command": "pnpm typecheck",
+      "exit": 0
+    },
+    {
+      "name": "login/E04 browser parser",
+      "command": "node --experimental-strip-types --check tests/e2e/my-day.e2e.spec.ts",
+      "exit": 0,
+      "limit": "Browser source parsing only, no runtime evidence"
+    },
+    {
+      "name": "existing pure landing tests after login default repair",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/server/authz/phase-a-surface.test.ts",
+      "exit": 0,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "limit": "Existing server landing role/route semantics; not an executed login browser journey"
+    },
+    {
+      "name": "post-partial-repair metadata author review stops",
+      "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+      "exit": 0,
+      "sections": 1,
+      "refs": 16,
+      "errors": 0,
+      "limit": "Reference validation only; distinct High metadata/provenance check remains parent-owned"
+    },
+    {
+      "name": "mandatory comment hygiene parser tests/unit/features/my-day/domain.test.ts",
+      "command": "node --experimental-strip-types --check tests/unit/features/my-day/domain.test.ts",
+      "exit": 0,
+      "limit": "Static parse only; no tests/runtime executed for comment change"
+    },
+    {
+      "name": "mandatory comment hygiene parser tests/unit/server/read-models/my-day.test.ts",
+      "command": "node --experimental-strip-types --check tests/unit/server/read-models/my-day.test.ts",
+      "exit": 0,
+      "limit": "Static parse only; no tests/runtime executed for comment change"
+    },
+    {
+      "name": "mandatory comment hygiene parser tests/unit/server/authz/phase-a-surface.test.ts",
+      "command": "node --experimental-strip-types --check tests/unit/server/authz/phase-a-surface.test.ts",
+      "exit": 0,
+      "limit": "Static parse only; no tests/runtime executed for comment change"
+    },
+    {
+      "name": "mandatory comment hygiene exact-file lint",
+      "command": "pnpm exec eslint tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/unit/server/authz/phase-a-surface.test.ts",
+      "exit": 0,
+      "warnings": 0,
+      "errors": 0
+    }
+  ],
+  "source_sha256": {
+    "src/features/my-day/types.ts": "831551df0821ecab7356663711f84b5db5d46e7bf0064a707db763e4a0620de0",
+    "src/features/my-day/domain.ts": "23a0efaf205a3183fda64018fe1ef8a43edf49e23d5d947f5079509167589699",
+    "src/features/my-day/actions.ts": "67f2c1b6aa618360e04f8ad12dcbbe60dffa596886d0fb461227b748febb344e",
+    "src/server/read-models/my-day.ts": "1001616017459d8edc883e0ff3a5aa2d11bf2324a090b58de3eb57c7f4dc504c",
+    "src/app/(app)/my-day/layout.tsx": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e",
+    "src/app/(app)/my-day/page.tsx": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747",
+    "src/components/my-day/MyDayWorkspace.tsx": "d470f32c941f3baee54cd8f729b6c1bb0c2d20d9e7583c1f73f5ee3ceefe8974",
+    "src/components/my-day/MyDayBookingCard.tsx": "609f46eb67dbafea5fd1fa14851038ad420d9f5f03ed353b3833e08024e3f770",
+    "src/scope/manifest.ts": "5bd5f101ece667ac16f63c787392522c0f0268e967f8f9196254c25699402130",
+    "src/components/app-shell/nav-items.ts": "8494a72b564c5221aac077b580f6ad0f24c1d31a21aa57849a7f4eb9ac3e2b47",
+    "src/server/authz/phase-a-surface.ts": "9f5096266d0c15ec64eb4b2ecf81f79b4e2212ef356796830df7a765a2602f22",
+    "package.json": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+    "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql": "548df5d9917c8e01fd0acacc8872430f96377200ef1841995144bcc00cefafe6",
+    "tests/unit/features/my-day/domain.test.ts": "9f2e0037256dc95cceba2a293777930aac9959d1add380bfab725ac5374378a8",
+    "tests/unit/server/read-models/my-day.test.ts": "d4cec83741b8d5926fc9908aefb90c5c4e6e394e3fc3e58109d5508e603634d7",
+    "tests/unit/server/authz/phase-a-surface.test.ts": "d8429f52e7b0a0ff5efdabb2afb606df42ecf3dc63a135897394ad8760725dff",
+    "tests/integration/scheduling/my-day.int.test.ts": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615",
+    "tests/e2e/my-day.e2e.spec.ts": "9a99c45b07dd5d8c4ce18cdfc8ee4f84c74363ee1ac241f09192fc0634499d7a",
+    "tests/unit/scope/booking-editor-scope.test.ts": "9cfd49a9278d88fd9931ba0ec4d869d4b47b27fe92fb09a4690e7d24e7f9f047",
+    "tests/unit/scope/manifest-coherence.test.ts": "de30870d9191b9bb21597834159840923d12c18822cdd5d2467bfe252680116b",
+    "tests/unit/scope/manifest-derivations.test.ts": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+    "tests/unit/scope/manifest-shape.test.ts": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+    "tests/unit/scope/resources-activation.atdd.test.ts": "9b54697dc0401f712b568069ee7e154a0d571792e87c171edbe7241db80a4dd6",
+    "src/app/(auth)/login/page.tsx": "8999b50f5610e2ef51aaa353d743ea38eaea7541d3dd879cb1806cc3ee2d2a97",
+    "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts": "88fb1877afa1c5d085fb38c3982276b4d346bc2d0d9cfc9d0a844045bf055997"
+  },
+  "catalog": {
+    "domain": "D01-D11:15",
+    "read_model": "R01-R14:20",
+    "authz": "A01-A03:3",
+    "sql": "INT01-INT15:16 (archive/missing profile loop)",
+    "browser": "E01-E09:9",
+    "new_total": 63,
+    "new_unit_cases": 38,
+    "retained_original_cases": 59
+  },
+  "pending": [
+    "Root-owned canonical phase5/sprint review and final commit; distinct tiny final provenance regression check",
+    "Five owned deferred release items/finalPhaseBcheckpoint and separately required release/merge/deployment approvals"
+  ],
+  "release_ready": false,
+  "resources_started": false,
+  "git_mutations": false,
+  "raw_local_outputs": [
+    ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-unit-output.txt",
+    ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-unit-final-output.txt",
+    ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-fixtures-output.txt"
+  ],
+  "publication_note": "No index or Git mutation by author; source hashes refer to unstaged working-tree bytes. Raw test outputs are local large evidence, not a required product checkpoint inclusion.",
+  "historical_pre_round_1": {
+    "checks": [
+      {
+        "name": "focused domain/read/auth units",
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/unit/server/authz/phase-a-surface.test.ts",
+        "exit": 0,
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0,
+        "new_cases": 35,
+        "historical_cases": 5
+      },
+      {
+        "name": "five approved scope fixture units",
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scope/booking-editor-scope.test.ts tests/unit/scope/manifest-coherence.test.ts tests/unit/scope/manifest-derivations.test.ts tests/unit/scope/manifest-shape.test.ts tests/unit/scope/resources-activation.atdd.test.ts",
+        "exit": 0,
+        "passed": 33,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "name": "final full Windows units",
+        "command": "pnpm test:unit",
+        "exit": 0,
+        "tests": 3480,
+        "suites": 103,
+        "passed": 3479,
+        "failed": 0,
+        "skipped": 1,
+        "skip": "tests/unit/ops/isolated-recovery-storage.test.ts:16 versioned file-backend restore preserves the DB-owned identity and refuses overwrite; Linux xattrs required, must execute on Ubuntu CI"
+      },
+      {
+        "name": "initial full units before allocated fixture repair",
+        "command": "pnpm test:unit",
+        "exit": 1,
+        "tests": 3480,
+        "passed": 3474,
+        "failed": 5,
+        "skipped": 1,
+        "failures": "Only hard-coded scheduling nav fixture expectations; repaired after exact five-file Root clearance"
+      },
+      {
+        "name": "static type check",
+        "command": "pnpm typecheck",
+        "exit": 0
+      },
+      {
+        "name": "canonical local lint attempt",
+        "command": "pnpm lint",
+        "exit": 2,
+        "result": "ESLint stylish formatter RangeError Invalid string length after traversing pre-existing ignored .env.epic15.mail-runtime trace JS; not a pass"
+      },
+      {
+        "name": "bounded local lint",
+        "command": "pnpm lint --ignore-pattern '.env*/**'",
+        "exit": 0,
+        "errors": 0,
+        "warnings": 31,
+        "limit": "Excludes ignored environment/runtime artifact trees. Warnings are existing paths outside Story15.6. Canonical clean-checkout CI lint remains required."
+      },
+      {
+        "name": "final changed source/test lint",
+        "command": "pnpm exec eslint src/features/my-day src/server/read-models/my-day.ts src/components/my-day 'src/app/(app)/my-day' tests/unit/scope/booking-editor-scope.test.ts tests/unit/scope/manifest-coherence.test.ts tests/unit/scope/manifest-derivations.test.ts tests/unit/scope/manifest-shape.test.ts tests/unit/scope/resources-activation.atdd.test.ts tests/integration/scheduling/my-day.int.test.ts tests/e2e/my-day.e2e.spec.ts",
+        "exit": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "production build final",
+        "command": "pnpm build",
+        "exit": 0,
+        "result": "/my-day dynamic; no server started. Earlier queued build interrupted while stopping owned failed-lint session is not counted."
+      },
+      {
+        "name": "source service-role containment",
+        "command": "node scripts/verify/check-service-role-containment.mjs",
+        "exit": 0
+      },
+      {
+        "name": "built-bundle containment",
+        "command": "node scripts/verify/check-bundle-containment.mjs",
+        "exit": 0
+      },
+      {
+        "name": "INT/browser syntax",
+        "command": "node --experimental-strip-types --check <each of tests/integration/scheduling/my-day.int.test.ts and tests/e2e/my-day.e2e.spec.ts>",
+        "exit": 0,
+        "limit": "16 integration plus eight browser cases activated; no DB/browser execution"
+      },
+      {
+        "name": "author review-order references",
+        "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+        "exit": 0,
+        "sections": 1,
+        "refs": 13,
+        "errors": 0
+      },
+      {
+        "name": "final author diff whitespace",
+        "command": "git -c core.longpaths=true diff --check",
+        "exit": 0,
+        "limit": "Git emitted existing autocrlf warnings only; no whitespace defects"
+      }
+    ],
+    "source_sha256": {
+      "src/features/my-day/types.ts": "582247a270772a26e6232f8c194779b753f52d6c9d775e5daaac7d753bef50ed",
+      "src/features/my-day/domain.ts": "719f7df4de9e50e3b3e822238e0be11b234a7a94fb198e681a17f037a53e6dd8",
+      "src/features/my-day/actions.ts": "67f2c1b6aa618360e04f8ad12dcbbe60dffa596886d0fb461227b748febb344e",
+      "src/server/read-models/my-day.ts": "b45172cedf5645673ca95ed31d302902415c4e8012f6e328a23d5641eb8d814d",
+      "src/app/(app)/my-day/layout.tsx": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e",
+      "src/app/(app)/my-day/page.tsx": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747",
+      "src/components/my-day/MyDayWorkspace.tsx": "f4c02162c7b01df21f28682c1812d8c5285301deae5cd29ee1f8a4ec2655c428",
+      "src/components/my-day/MyDayBookingCard.tsx": "6a3d8b2cb7cfbc31b683aae3e3b35208a175efac5b925caf579e30f4e618f257",
+      "src/scope/manifest.ts": "5bd5f101ece667ac16f63c787392522c0f0268e967f8f9196254c25699402130",
+      "src/components/app-shell/nav-items.ts": "8494a72b564c5221aac077b580f6ad0f24c1d31a21aa57849a7f4eb9ac3e2b47",
+      "src/server/authz/phase-a-surface.ts": "9f5096266d0c15ec64eb4b2ecf81f79b4e2212ef356796830df7a765a2602f22",
+      "package.json": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+      "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql": "548df5d9917c8e01fd0acacc8872430f96377200ef1841995144bcc00cefafe6",
+      "tests/unit/features/my-day/domain.test.ts": "0837147508d28644b38af1bc1d845aca49e080b91026319032dfb9189d7760e1",
+      "tests/unit/server/read-models/my-day.test.ts": "f9cfc2d33725a04449e7304046f0fcb57983470f1da9c6a222ce456089c74f0f",
+      "tests/unit/server/authz/phase-a-surface.test.ts": "9245aefab1bebc5587d8ef9ca1cebf5d44cc04bfc3e52239072dc016de78ca24",
+      "tests/integration/scheduling/my-day.int.test.ts": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615",
+      "tests/e2e/my-day.e2e.spec.ts": "608083ddf5d9bc29a6df9f8e61cb992f9369f6ab6d141c7890948de32aa4b0c2",
+      "tests/unit/scope/booking-editor-scope.test.ts": "9cfd49a9278d88fd9931ba0ec4d869d4b47b27fe92fb09a4690e7d24e7f9f047",
+      "tests/unit/scope/manifest-coherence.test.ts": "de30870d9191b9bb21597834159840923d12c18822cdd5d2467bfe252680116b",
+      "tests/unit/scope/manifest-derivations.test.ts": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+      "tests/unit/scope/manifest-shape.test.ts": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+      "tests/unit/scope/resources-activation.atdd.test.ts": "9b54697dc0401f712b568069ee7e154a0d571792e87c171edbe7241db80a4dd6"
+    },
+    "catalog": {
+      "domain": "D01-D10:14",
+      "read_model": "R01-R12:18",
+      "authz": "A01-A03:3",
+      "sql": "INT01-INT15:16 (archive/missing profile loop)",
+      "browser": "E01-E08:8",
+      "new_total": 59
+    }
+  },
+  "review_round_1_patch": {
+    "source_review": "review-round-1-results.json",
+    "ids": [
+      "R1-01",
+      "R1-02",
+      "R1-03",
+      "R1-04",
+      "R1-05",
+      "R1-06",
+      "R1-07",
+      "R1-08",
+      "R1-09",
+      "R1-10",
+      "R1-11"
+    ],
+    "result": "All 11 accepted source/verification patches implemented; targeted independent review pending, not author-approved",
+    "browser_limit": "Next16 serializes Server Actions and REFRESH. E03 tests actual queued read callback ordering while newer selection is pending; E09 tests ACTION_NAVIGATE preemption with real changed-tenant RSC followed by late old action. Runtime still pending.",
+    "bounds": "0001-01-08..9999-12-26 complete Stockholm weeks: UTC start never year0000 rejected by existing parser; exclusive endpoint never five-digit year10000. Technical, not business-year policy.",
+    "nested_route": "Reused /root/build15_6_high/implementation_author/integration_binding gpt-6.1-sol High for identity/transaction browser evidence; synchronously completed, sole owned e2e path."
+  },
+  "raw_log_provenance": "author-log-provenance.json; Root-authorized move preserved all three byte hashes",
+  "independent_review": {
+    "status": "passed",
+    "round": 2,
+    "reviewer": "/root/build15_6_high/round2_targeted",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independence": "Context-free explicit High targeted follow-up assigned by parent; author did not review its own work.",
+    "fix_snapshot_bytes": 63991,
+    "fix_snapshot_sha256": "aa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2",
+    "source_hash_audit": "All23 current source byte hashes matched author and reviewer reports; unchanged SQL reused Round1 independent High security review.",
+    "verdict": "PASS; no production-reachable regression or unresolved consequential R1 finding. SRO accurate.",
+    "provenance": "Read parent-owned review-round-2-results.json after publication; actual PASS/fix snapshot/reviewer and all23current bytehashes verified.",
+    "report": "_bmad-output/auto-bmad/preparation/story-15-6/review-round-2-results.json",
+    "report_sha256": "19c3fb551f43f9b14b50f4fa4533185c121802ccd6c044d1c4228edb5ff4582a",
+    "scope": "Original frozen Round2 fix snapshot and original23-path audit at that review; subsequent login/E04/nav-fixture changes are separately covered by independent_narrow_repair_checks, not attributed to that frozen report."
+  },
+  "metadata_reconciliation": {
+    "source_hash_matches": 25,
+    "source_changes": false,
+    "runtime_checks": "Authoritative current native evidence retained for tested b57/run40192543175; actual Root gate500022/native0 passed; authorized Stage2 development completion only, no author rerun",
+    "SRO_checker_exit": 0,
+    "SRO_sections": 1,
+    "SRO_refs": 16,
+    "SRO_errors": 0,
+    "encoding_repair": "85 reversible mojibake runs repaired; four newly inserted triage replacement-glyph separators normalized to unambiguous ASCII punctuation. Original frozen intent and AC sketch remain exact; both round triage entries and1SRO retained.",
+    "frozen_intent_sha256_LF": "03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd",
+    "both_round_triage_entries_verified": true,
+    "frozen_source_pins": "Current25 post-comment byte hashes all independently computed and matched; no further author source writes",
+    "stage": "HALTdone Stage2 authorized development completion",
+    "status_transition": "Own spec frontmatter done/ARR HALTdone/T7 checked after actual Root gate PASS; canonical Root transitions separate",
+    "new_broad_review_rounds": 0,
+    "delivery_record": "_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json",
+    "delivery_record_sha256": "0b1f87e9aca54393bd8784d1592f68f02af469f7b08599b55f07319510d07ef8",
+    "delivery_record_unchanged": true
+  },
+  "historical_pre_partial_repairs_source_sha256": {
+    "src/features/my-day/types.ts": "831551df0821ecab7356663711f84b5db5d46e7bf0064a707db763e4a0620de0",
+    "src/features/my-day/domain.ts": "23a0efaf205a3183fda64018fe1ef8a43edf49e23d5d947f5079509167589699",
+    "src/features/my-day/actions.ts": "67f2c1b6aa618360e04f8ad12dcbbe60dffa596886d0fb461227b748febb344e",
+    "src/server/read-models/my-day.ts": "1001616017459d8edc883e0ff3a5aa2d11bf2324a090b58de3eb57c7f4dc504c",
+    "src/app/(app)/my-day/layout.tsx": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e",
+    "src/app/(app)/my-day/page.tsx": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747",
+    "src/components/my-day/MyDayWorkspace.tsx": "d470f32c941f3baee54cd8f729b6c1bb0c2d20d9e7583c1f73f5ee3ceefe8974",
+    "src/components/my-day/MyDayBookingCard.tsx": "609f46eb67dbafea5fd1fa14851038ad420d9f5f03ed353b3833e08024e3f770",
+    "src/scope/manifest.ts": "5bd5f101ece667ac16f63c787392522c0f0268e967f8f9196254c25699402130",
+    "src/components/app-shell/nav-items.ts": "8494a72b564c5221aac077b580f6ad0f24c1d31a21aa57849a7f4eb9ac3e2b47",
+    "src/server/authz/phase-a-surface.ts": "9f5096266d0c15ec64eb4b2ecf81f79b4e2212ef356796830df7a765a2602f22",
+    "package.json": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+    "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql": "548df5d9917c8e01fd0acacc8872430f96377200ef1841995144bcc00cefafe6",
+    "tests/unit/features/my-day/domain.test.ts": "b4efc34fc24a1d97527e3260f5bc9667429db16f4e0e43a2d931b6ad3c7112b2",
+    "tests/unit/server/read-models/my-day.test.ts": "f4c40794b4d974586a7c41c909ba114c34c1ad01a2aceeddf11735640f8156a1",
+    "tests/unit/server/authz/phase-a-surface.test.ts": "9245aefab1bebc5587d8ef9ca1cebf5d44cc04bfc3e52239072dc016de78ca24",
+    "tests/integration/scheduling/my-day.int.test.ts": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615",
+    "tests/e2e/my-day.e2e.spec.ts": "3f6c8f95c408c5bb8f5c425780c9db5b00505e4bc70a1ef28e0e5ed05e3d847e",
+    "tests/unit/scope/booking-editor-scope.test.ts": "9cfd49a9278d88fd9931ba0ec4d869d4b47b27fe92fb09a4690e7d24e7f9f047",
+    "tests/unit/scope/manifest-coherence.test.ts": "de30870d9191b9bb21597834159840923d12c18822cdd5d2467bfe252680116b",
+    "tests/unit/scope/manifest-derivations.test.ts": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+    "tests/unit/scope/manifest-shape.test.ts": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+    "tests/unit/scope/resources-activation.atdd.test.ts": "9b54697dc0401f712b568069ee7e154a0d571792e87c171edbe7241db80a4dd6"
+  },
+  "source_registry_semantics": "Original23 reviewed source/test paths updated for E2E postimage, plus shared login24 and extra quote integration nav fixture25. Fixture25 is an explicit expected-route pin correction, not a new unit/SQL case or executed integration coverage. Original frozen review reports remain unchanged.",
+  "independent_narrow_repair_checks": [
+    {
+      "scope": "extra quote integration nav fixture",
+      "reviewer": "/root/build15_6_high/round2_targeted",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "PASS",
+      "pre_sha256": "76e4f6f5d4ee3f6771786d0ebe3e1eaa723e82c6ec6c4911afb3f87a80a59c67",
+      "post_sha256": "88fb1877afa1c5d085fb38c3982276b4d346bc2d0d9cfc9d0a844045bf055997",
+      "evidence": "Parent reports distinct retained High actual-diff verification: exactly one /my-day expected-route append, all original bytes/guards retained. No new broad review round."
+    },
+    {
+      "scope": "login default destination/comment and E04 specific date-error selector",
+      "reviewer": "/root/build15_6_high/round2_targeted",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "verdict": "PASS",
+      "pre_sha256": {
+        "login": "182df8d480cd540a2661e365739dba7b84a28e60268f2e61eada5d32ed2894d2",
+        "e2e": "3f6c8f95c408c5bb8f5c425780c9db5b00505e4bc70a1ef28e0e5ed05e3d847e"
+      },
+      "post_sha256": {
+        "login": "8999b50f5610e2ef51aaa353d743ea38eaea7541d3dd879cb1806cc3ee2d2a97",
+        "e2e": "9a99c45b07dd5d8c4ce18cdfc8ee4f84c74363ee1ac241f09192fc0634499d7a"
+      },
+      "evidence": "Parent reports distinct retained High actual-diff PASS: exact pre/post pins verified; auth/refresh/error paths intact; existing cookie-derived root and protected gates retained; E04 role/visible/exact text plus all boundaries preserved. No role inference/new next behavior or new broad round."
+    }
+  ],
+  "review_counter_current": {
+    "completed_rounds": 2,
+    "broad": 1,
+    "targeted": 1,
+    "additional_narrow_repair_checks": 2,
+    "new_broad_rounds": 0
+  },
+  "prior_head_runtime_evidence": {
+    "source": "Root-qualified actual native JSON and retained High qualification fbd55ec08211e0af8a26091df52ddf43164eaa298eebb433f0cb819e603c42e4; supplied in authorized handoff, no Root-private evidence read by author",
+    "run": 40184844339,
+    "head": "1b49522d (supplied abbreviated prior head, not current post-repair revision)",
+    "admission": "PASS",
+    "verify": "PASS",
+    "recovery": "PASS",
+    "database": {
+      "passed": 2145,
+      "failed": 1,
+      "skipped": 52,
+      "new_my_day_sql_passed": 16,
+      "failed_files": 1,
+      "failed_leaf": "explicit nav expected10 vs actual11; fixture correction reviewed separately",
+      "suite_aggregation": "Two global failed suites are nested describe aggregation of that one file/leaf, not a second failed file.",
+      "skip_disposition": "52 skipped cases are not coverage; no waiver or development-complete claim."
+    },
+    "browser": {
+      "cases": 65,
+      "expected": 62,
+      "unexpected": 2,
+      "flaky": 1,
+      "root_errors": 0,
+      "E01": "Expected /my-day URL assertion failed on retry0 and1. Actual received URL was redacted/unretained and remains UNKNOWN; never reconstructed. Separate source inspection found hardcoded dashboard default after login, now repaired via existing server root. Source resolution is not a fresh runtime pass.",
+      "E04": "Correct p#my-day-date-error text collided with Next div#__next-route-announcer__ in global alert selector on both attempts; specific existing validator selector repaired, boundaries preserved.",
+      "other_new_my_day": "Seven other new browser cases passed retry0 at prior head.",
+      "unrelated_existing_flake": "Existing16.1 E03 Network.getResponseBody / response.text protocol error on first attempt, retry1 PASS; separate historical flake, no fix or cause speculation."
+    },
+    "remaining": "Fresh exact-head full required CI, E01/E04 and complete smoke still pending; prior case-level facts cannot establish current development completion."
+  },
+  "historical_pre_comment_hygiene_source_sha256": {
+    "src/features/my-day/types.ts": "831551df0821ecab7356663711f84b5db5d46e7bf0064a707db763e4a0620de0",
+    "src/features/my-day/domain.ts": "23a0efaf205a3183fda64018fe1ef8a43edf49e23d5d947f5079509167589699",
+    "src/features/my-day/actions.ts": "67f2c1b6aa618360e04f8ad12dcbbe60dffa596886d0fb461227b748febb344e",
+    "src/server/read-models/my-day.ts": "1001616017459d8edc883e0ff3a5aa2d11bf2324a090b58de3eb57c7f4dc504c",
+    "src/app/(app)/my-day/layout.tsx": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e",
+    "src/app/(app)/my-day/page.tsx": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747",
+    "src/components/my-day/MyDayWorkspace.tsx": "d470f32c941f3baee54cd8f729b6c1bb0c2d20d9e7583c1f73f5ee3ceefe8974",
+    "src/components/my-day/MyDayBookingCard.tsx": "609f46eb67dbafea5fd1fa14851038ad420d9f5f03ed353b3833e08024e3f770",
+    "src/scope/manifest.ts": "5bd5f101ece667ac16f63c787392522c0f0268e967f8f9196254c25699402130",
+    "src/components/app-shell/nav-items.ts": "8494a72b564c5221aac077b580f6ad0f24c1d31a21aa57849a7f4eb9ac3e2b47",
+    "src/server/authz/phase-a-surface.ts": "9f5096266d0c15ec64eb4b2ecf81f79b4e2212ef356796830df7a765a2602f22",
+    "package.json": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+    "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql": "548df5d9917c8e01fd0acacc8872430f96377200ef1841995144bcc00cefafe6",
+    "tests/unit/features/my-day/domain.test.ts": "b4efc34fc24a1d97527e3260f5bc9667429db16f4e0e43a2d931b6ad3c7112b2",
+    "tests/unit/server/read-models/my-day.test.ts": "f4c40794b4d974586a7c41c909ba114c34c1ad01a2aceeddf11735640f8156a1",
+    "tests/unit/server/authz/phase-a-surface.test.ts": "9245aefab1bebc5587d8ef9ca1cebf5d44cc04bfc3e52239072dc016de78ca24",
+    "tests/integration/scheduling/my-day.int.test.ts": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615",
+    "tests/e2e/my-day.e2e.spec.ts": "9a99c45b07dd5d8c4ce18cdfc8ee4f84c74363ee1ac241f09192fc0634499d7a",
+    "tests/unit/scope/booking-editor-scope.test.ts": "9cfd49a9278d88fd9931ba0ec4d869d4b47b27fe92fb09a4690e7d24e7f9f047",
+    "tests/unit/scope/manifest-coherence.test.ts": "de30870d9191b9bb21597834159840923d12c18822cdd5d2467bfe252680116b",
+    "tests/unit/scope/manifest-derivations.test.ts": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+    "tests/unit/scope/manifest-shape.test.ts": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+    "tests/unit/scope/resources-activation.atdd.test.ts": "9b54697dc0401f712b568069ee7e154a0d571792e87c171edbe7241db80a4dd6",
+    "src/app/(auth)/login/page.tsx": "8999b50f5610e2ef51aaa353d743ea38eaea7541d3dd879cb1806cc3ee2d2a97",
+    "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts": "88fb1877afa1c5d085fb38c3982276b4d346bc2d0d9cfc9d0a844045bf055997"
+  },
+  "mandatory_comment_hygiene": {
+    "authorization": "Root explicit exact stale header/comment segments only, received before edit",
+    "files": [
+      {
+        "path": "tests/unit/features/my-day/domain.test.ts",
+        "pre_sha256": "b4efc34fc24a1d97527e3260f5bc9667429db16f4e0e43a2d931b6ad3c7112b2",
+        "post_sha256": "9f2e0037256dc95cceba2a293777930aac9959d1add380bfab725ac5374378a8",
+        "pre_bytes": 9689,
+        "post_bytes": 9676,
+        "comment_lines_preserved": 3,
+        "noncomment_bytes_identical": true,
+        "method": "Exact byte-segment replacement; reversing only changed segment restores the complete original bytes. No universal-newline or locale decode/write."
+      },
+      {
+        "path": "tests/unit/server/read-models/my-day.test.ts",
+        "pre_sha256": "f4c40794b4d974586a7c41c909ba114c34c1ad01a2aceeddf11735640f8156a1",
+        "post_sha256": "d4cec83741b8d5926fc9908aefb90c5c4e6e394e3fc3e58109d5508e603634d7",
+        "pre_bytes": 18924,
+        "post_bytes": 18913,
+        "comment_lines_preserved": 1,
+        "noncomment_bytes_identical": true,
+        "method": "Exact byte-segment replacement; reversing only changed segment restores the complete original bytes. No universal-newline or locale decode/write."
+      },
+      {
+        "path": "tests/unit/server/authz/phase-a-surface.test.ts",
+        "pre_sha256": "9245aefab1bebc5587d8ef9ca1cebf5d44cc04bfc3e52239072dc016de78ca24",
+        "post_sha256": "d8429f52e7b0a0ff5efdabb2afb606df42ecf3dc63a135897394ad8760725dff",
+        "pre_bytes": 4378,
+        "post_bytes": 4376,
+        "comment_lines_preserved": 1,
+        "noncomment_bytes_identical": true,
+        "method": "Exact byte-segment replacement; reversing only changed segment restores the complete original bytes. No universal-newline or locale decode/write."
+      }
+    ],
+    "meaning": "Production pure-seam, mocked transport with no RLS credit, and landing-regression descriptions now accurate. Test bodies/imports/assertions/titles/skip controls and all other bytes identical.",
+    "catalog_unchanged": "63new=38unit16SQL9browser; alloriginal59 retained; no new executed coverage",
+    "review_effect": "Comment-only source hygiene, no new broad round/test finding. Existing behavior review provenance retained; distinct metadata/provenance check remains parent-owned."
+  },
+  "historical_pre_delivery_ready": {
+    "status": "Reviewed bounded prior-CI repairs; source hash registry25 verified; P5 OPEN / status in-review; fresh full required CI remains pending",
+    "evidence_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72 plus author working-tree source hashes below",
+    "pending": [
+      "Fresh exact-head full required canonical CI and DB/RLS lane; no skipped cases counted as coverage",
+      "Fresh production E01/E04 and full smoke including all9MyDay scenarios",
+      "Final author T7/development delivery reconciliation only after actual required native gates; P5 remains OPEN"
+    ],
+    "metadata_reconciliation": {
+      "source_hash_matches": 25,
+      "source_changes": false,
+      "runtime_checks": "Current required native evidence qualified for b57/run40192543175; no author rerun",
+      "SRO_checker_exit": 0,
+      "SRO_sections": 1,
+      "SRO_refs": 16,
+      "SRO_errors": 0,
+      "encoding_repair": "85 reversible mojibake runs repaired; four newly inserted triage replacement-glyph separators normalized to unambiguous ASCII punctuation. Original frozen intent and AC sketch remain exact; both round triage entries and1SRO retained.",
+      "frozen_intent_sha256_LF": "03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd",
+      "both_round_triage_entries_verified": true,
+      "frozen_source_pins": "Current25 post-comment byte hashes all independently computed and matched; no further author source writes",
+      "stage": "DELIVERY_READY Stage1",
+      "status_transition": "NOT_PERFORMED; in-review/P5OPEN",
+      "new_broad_review_rounds": 0
+    }
+  },
+  "qualified_current_native": {
+    "run": 40192543175,
+    "tested_source": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+    "checkpoint": "9226ceaa-1456-47de-80d0-5cff0083b6e9",
+    "root_operation": "d6b089c1-fa6a-4cc5-9b03-f9d1bf5ea066",
+    "public_manifest": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/manifest.json",
+    "public_manifest_sha256": "6bf7b92acea864ec9fc68ef578e1b3be1319659b2f5e81090a848409472bdeb4",
+    "qualification": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+    "qualification_sha256": "bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23",
+    "qualification_result": "COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE",
+    "independent": true,
+    "blockers": [],
+    "new": {
+      "Node": 38,
+      "SQL": 16,
+      "browser": 9,
+      "passed": 63,
+      "failed": 0,
+      "skipped": 0,
+      "pending": 0,
+      "unexecuted": 0
+    },
+    "retained": {
+      "Node": 30,
+      "DB_RLS": 51,
+      "browser": 14,
+      "passed": 95,
+      "failed": 0,
+      "skipped": 0,
+      "pending": 0,
+      "unexecuted": 0
+    },
+    "unique_required_core": 158,
+    "global_unit": {
+      "tests": 3483,
+      "suites": 103,
+      "pass": 3483,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 49101.67598
+    },
+    "selected_unit_points": 69,
+    "named_xattr": {
+      "ordinal": 1020,
+      "status": "passed"
+    },
+    "global_integration": {
+      "total": 2198,
+      "passed": 2146,
+      "failed": 0,
+      "skipped": 52,
+      "files": 175,
+      "suites": 551,
+      "RLS_path_total": 903,
+      "RLS_path_passed": 889,
+      "RLS_path_inherited_skipped": 14,
+      "H4": "passed"
+    },
+    "global_browser": {
+      "cases": 65,
+      "startTime": "2026-10-25T12:24:20.431Z",
+      "duration": 311158.56799999997,
+      "expected": 63,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 2,
+      "root_errors": 0,
+      "core_retry0_passed": 23
+    },
+    "separate_isolated_recovery": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "lifecycle": {
+      "db": {
+        "event": "calendar_feed.ci_lifecycle",
+        "mode": "db",
+        "source_timestamp": "2026-10-25T12:36:46.2820973Z",
+        "ready": true,
+        "keyDeleted": true,
+        "dbClosed": true,
+        "launchAttempted": false,
+        "keyOutcome": "deleted-confirmed",
+        "childLaunchState": "not-attempted",
+        "childExitCodes": [
+          0,
+          0
+        ],
+        "custody_field": "present",
+        "custody_retained": false,
+        "custody_disposition": "NO_RETAINED_CUSTODY",
+        "failures_count": 0,
+        "diagnostics_count": 0,
+        "safe_diagnostics": []
+      },
+      "browser": {
+        "event": "calendar_feed.ci_lifecycle",
+        "mode": "browser",
+        "source_timestamp": "2026-10-25T12:29:31.6246988Z",
+        "ready": false,
+        "keyDeleted": true,
+        "dbClosed": true,
+        "launchAttempted": false,
+        "keyOutcome": "deleted-confirmed",
+        "childLaunchState": "not-attempted",
+        "childExitCodes": [
+          0
+        ],
+        "custody_field": "present",
+        "custody_retained": false,
+        "custody_disposition": "NO_RETAINED_CUSTODY",
+        "failures_count": 0,
+        "diagnostics_count": 0,
+        "safe_diagnostics": []
+      }
+    },
+    "source_pin_count": 25,
+    "current_raw_pin_matches": 25,
+    "source_object_proof": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/tested-source-object-proof.json",
+    "source_object_scope": "Working raw hashes are distinct from Git-blob hashes where EOL differs; Root immutable object proof binds tested b57. Later metadata-only heads are not claimed as tested code.",
+    "limits": "Global integration2198=2146passed/0failed/52skipped:37 inherited booking-series command,14 inherited booking-series RLS and1 full-lane recovery skip. Each skipped case gets zero coverage. RLS-path903=889passed/14inherited skips; H4 inventory/enrollment/negative control passed. Separate isolated recovery1passed supplies direct physical-loader immutability/overwrite proof; full-lane skipped recovery supplies none. Preserve separate inherited15.2skip/flag disposition and Root anchor TRUE; do not change another story or anchor. Browser65=63expected/0unexpected/2flaky/0skip/rooterrors0. Source25 proof distinguishes raw working SHA and Git-blob SHA/oid; metadata follow-up revisions are not claimed as tested source heads. Acquisition digests/timing/CRC are reported acquisition provenance, not author independent raw-body/ZIP replay.",
+    "outside_core_flaky_observations": [
+      {
+        "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+        "title": "[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save",
+        "attempts": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "error_excerpt": [
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n\n      |                                                         ^",
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier"
+            ]
+          },
+          {
+            "status": "passed",
+            "retry": 1,
+            "error_excerpt": []
+          }
+        ]
+      },
+      {
+        "file": "tests/e2e/time-reports.e2e.spec.ts",
+        "title": "[P0] 15.4-E2E-002 no-profile standalone at 360\u00d7640 retains its attempt through lost commit, revoked denial and restored retry",
+        "attempts": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "error_excerpt": [
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n\n      |                                                        ^",
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier"
+            ]
+          },
+          {
+            "status": "passed",
+            "retry": 1,
+            "error_excerpt": []
+          }
+        ]
+      }
+    ],
+    "development_policy_assessment": "Under docs/process/development-completion-policy.md, a demonstrated consequential functional failure cannot be deferred as polish. The independent High native qualification identifies two outside-core response.text/Network.getResponseBody protocol flakes, each retry0 failed and retry1 passed; it identifies no application-write failure or new15.6 regression from them. All23 required core browser cases passed exactly once on retry0. We retain the two flaky observations without claiming clean first attempts or inferring the first attempt application outcome. They are verification-reliability follow-up, not hidden acceptance waivers or recategorized functional failures. QA/CI verification maintainer must investigate; any consequential product defect found returns to development remediation.",
+    "inherited15_2_anchor": "TRUE retained per Root; author neither edited nor reopened another story/anchor",
+    "history": "Prior failed40184844339 E01 receivedURL remains UNKNOWN; current run E01/E04 each passed retry0. Closed failed acquisition receipts remain history; completed alternate connector course does not diagnose prior unknown GET/shape causes."
+  },
+  "current_development_evidence": [
+    {
+      "name": "Exact source/checkpoint/native-run binding",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/manifest.json, run-metadata.json, jobs-metadata.json and tested-source-object-proof.json bind workflow run40192543175/attempt1, headb57de61075646820ce9cb5feff7fd054fd2f8320, checkpoint9226ceaa-1456-47de-80d0-5cff0083b6e9. Five required jobs succeeded; current25raw pins match immutable public object proof and author registry. Root operation d6b089c1-fa6a-4cc5-9b03-f9d1bf5ea066 is supplied orchestration identity; no author Git/network action."
+    },
+    {
+      "name": "Canonical static, build and containment gates",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/jobs-metadata.json: verify job121166457943 completed success for lockfiles, dependency audit, source service-role containment, Typecheck, Lint, Build and built-bundle containment at exactb57de61075646820ce9cb5feff7fd054fd2f8320. These are current native job/step results, not reuse of the earlier local lint exclusion."
+    },
+    {
+      "name": "Full current unit lane and named Linux-xattr integrity",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-unit-projection.json: full Node3483passed/0failed/0cancelled/0skipped/0todo,103suites.69selected native points=38new15.6+30retained calendar+separate exact Linux-xattr point1020, all passed. Suite points and overlapping selections do not inflate required-case totals."
+    },
+    {
+      "name": "Full required integration/RLS lane execution with explicit inherited-skip disposition",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-integration-projection.json and independent-native-qualification.json: full lane2198=2146passed/0failed/52inherited skips;175files/551suites passed, root errors empty. Current required67=16newMyDaySQL+51retained calendar DB/RLS passed with0skip/pending/unexecuted.903RLS-path leaves889passed/14inherited15.2skipped; H4live inventory/enrollment/negative control passed.52global skips are zero coverage;37command+14RLS keep separate inherited15.2 disposition/anchor TRUE and1full-lane recovery skip gives no direct recovery credit. Required-mode/full-lane completion is independently qualified in the public High record; author did not rerun or claim a separate command."
+    },
+    {
+      "name": "Focused production Min dag journeys within configured full essential smoke",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json: actual E01..E09 all9expected, each exactly1passed retry0, including current repaired E01 landing/E04 date validator, actual queued read/context races, notices continuation and durable same-attempt time filing. They executed in e2e job121166980901 essential authentication smoke (production app/local Auth); no separate focused CLI invocation is invented."
+    },
+    {
+      "name": "Configured full essential browser smoke with disclosed outside-core flakes",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json:65cases,63expected/0unexpected/2flaky/0skip/rooterrors0; required9new+14retained calendar browser cases all23clean retry0.15.4-E2E-002 and16.1-E03 separately failed retry0 response.text/Network.getResponseBody protocol errors then passed retry1; not relabelled clean. Under docs/process/development-completion-policy.md, a demonstrated consequential functional failure cannot be deferred as polish. The independent High native qualification identifies two outside-core response.text/Network.getResponseBody protocol flakes, each retry0 failed and retry1 passed; it identifies no application-write failure or new15.6 regression from them. All23 required core browser cases passed exactly once on retry0. We retain the two flaky observations without claiming clean first attempts or inferring the first attempt application outcome. They are verification-reliability follow-up, not hidden acceptance waivers or recategorized functional failures. QA/CI verification maintainer must investigate; any consequential product defect found returns to development remediation."
+    },
+    {
+      "name": "Required new and retained case-matrix completeness",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json and required unit/integration/browser projections match63new=38Node+16SQL+9browser and95retained=30Node+51DB_RLS+14browser,158unique required cases all passed/0failed/0skipped/0pending/0unexecuted. Separate named xattr/direct recovery and other global cases are not added to158."
+    },
+    {
+      "name": "Direct isolated recovery-storage integrity",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/isolated-recovery-projection.json: recovery-storage-loader job121166980883 separate physical-loader immutability and generic/quote-PDF overwrite rejection1passed/0failed/0skipped/pending, root errors empty. This proof is separate from the full integration recovery skip; no broad host deletion, custody transfer or backend rollback claim."
+    },
+    {
+      "name": "Scoped current DB/browser key deletion and client closure",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/db-lifecycle-projection.json and browser-lifecycle-projection.json: one exact current-mode record each, keyDeleted=true,keyOutcome=deleted-confirmed,dbClosed=true,custody_retained=false,0failures/diagnostics,0malformed candidates. Preserve DBready=true/browserready=false, bothlaunchAttempted=false/childLaunchState=not-attempted and child exits DB[0,0]/browser[0] as instrumentation. These fields prove only scoped current key deletion/client closure/no retained custody; neither no-child-launch nor whole-host shutdown/physical deletion/backend rollback follows."
+    },
+    {
+      "name": "Independent complete current-native evidence qualification",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json SHA256bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23: independent=true, explicit gpt-6.1-sol High, result COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE, blockers[]. Author read complete22188byte record and rehashed all15manifest-listed public file pins. Raw bodies/private corpus were not replayed or republished; qualification itself did no runtime/source execution."
+    }
+  ],
+  "final_status_reconciliation": {
+    "stage": 2,
+    "outcome": "HALTdone",
+    "development_complete": true,
+    "tested_source": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+    "run": 40192543175,
+    "Root_delivery_gate": {
+      "invocation": "500022",
+      "native_exit": 0,
+      "ok": true,
+      "development_complete": true,
+      "errors": [],
+      "approval_granted": false,
+      "provenance": "Actual Root result supplied in explicit Stage2 authorization; author did not rerun the gate"
+    },
+    "delivery_record_bytes": 14561,
+    "delivery_record_sha256": "0b1f87e9aca54393bd8784d1592f68f02af469f7b08599b55f07319510d07ef8",
+    "delivery_record_unchanged": true,
+    "frozen_intent_sha256_LF": "03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd",
+    "review_counter": "2(one broad/one targeted) plus documented narrow checks; no new broad round",
+    "source25_and_SQL119": "unchanged/immutable; no new census",
+    "release_ready": false,
+    "deferred_release_items": 5,
+    "inherited15_2_flag": "TRUE retained unchanged",
+    "author_Git_runtime_product_effects": false,
+    "SRO_check": {
+      "native_exit": 0,
+      "sections": 1,
+      "refs": 16,
+      "errors": 0,
+      "source_stops_unchanged": true
+    }
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "Outcome": "NO_SOURCE_PROVEN_STARTUP_DEFECT; ONE_FRESH_SEPARATELY_ADMITTED_NORMAL_OBSERVATION_IS_PROPORTIONATE_AFTER_FINAL_QUALIFICATION. This is a proposal only, not execution authority or a transient-cause claim.",
+  "Files changed": [
+    "Private .env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-source-assessment.json only; no tracked/source/SQL edits."
+  ],
+  "Status": {
+    "revision": {
+      "current_head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "functional_source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+      "prior_successful_start_head": "edce7b8725ad379224bfa9fea517ad097f3906cb"
+    },
+    "observed_current": {
+      "run": 39990057474,
+      "db_job": 120540771874,
+      "steps": [
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "conclusion": "success"
+        },
+        {
+          "number": 6,
+          "name": "Install Supabase CLI",
+          "conclusion": "success"
+        },
+        {
+          "number": 7,
+          "name": "Start local Supabase stack",
+          "conclusion": "failure"
+        },
+        {
+          "number": 8,
+          "name": "Migration reset (empty DB \u2192 migrate \u2192 seed)",
+          "conclusion": "skipped"
+        },
+        {
+          "number": 11,
+          "name": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+          "conclusion": "skipped"
+        },
+        {
+          "number": 12,
+          "name": "Upload native full integration JSON",
+          "conclusion": "failure"
+        }
+      ],
+      "native_DB_report": "Not selected/produced in closed4GET acquisition; no fallback/refetch",
+      "API019_or_any_DB_execution": "NOT_ESTABLISHED",
+      "case_counts_cause_custody": "UNKNOWN pending distinct actual qualification; no prior93 carried into currentrun",
+      "browser_and_recovery_startup": [
+        {
+          "job": "e2e",
+          "job_conclusion": "success",
+          "startup_steps": [
+            {
+              "number": 8,
+              "name": "Start local Supabase stack",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "job": "recovery-storage-loader",
+          "job_conclusion": "success",
+          "startup_steps": [
+            {
+              "number": 7,
+              "name": "Start local schema source",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    "source_comparison": {
+      "old_head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "current_head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "unchanged_inputs": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "bytes": 75930,
+          "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+          "LF_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+          "observed_old_and_current_Git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+          "old_current_equal": true
+        },
+        {
+          "path": "supabase/config.toml",
+          "bytes": 18183,
+          "sha256": "afc7204122637dcaf89319d4c89639546f707281189161b46e99c0c28b17cc87",
+          "LF_sha256": "d58e1f50153f8ce79ef34f17707ef48efaed10497e10c7a738a16c28a7bfd1a7",
+          "observed_old_and_current_Git_blob": "1836067cabc316882815b657355b5b10f3eb5d25",
+          "old_current_equal": true
+        },
+        {
+          "path": "package.json",
+          "bytes": 2509,
+          "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+          "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+          "observed_old_and_current_Git_blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd",
+          "old_current_equal": true
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "bytes": 162159,
+          "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+          "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+          "observed_old_and_current_Git_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a",
+          "old_current_equal": true
+        },
+        {
+          "path": "pnpm-workspace.yaml",
+          "bytes": 434,
+          "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+          "LF_sha256": "8aa3509d64e2ea496258100228fba8120bb754cab9a7c0c26ea1dc55b3c3df41",
+          "observed_old_and_current_Git_blob": "102380cce74643d682e06df30c05a10e6aa37167",
+          "old_current_equal": true
+        },
+        {
+          "path": ".nvmrc",
+          "bytes": 4,
+          "sha256": "12d3a4efa6646b3ece4782f70033b9785bf0d167b553c43e22579b031cea5c4d",
+          "LF_sha256": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56",
+          "observed_old_and_current_Git_blob": "2bd5a0a98a36cc08ada88b804d3be047e6aa5b8a",
+          "old_current_equal": true
+        }
+      ],
+      "SQL_metadata_only": [
+        {
+          "path": "supabase/seed.sql",
+          "old_current_object": "3764665adcbcabd21e6857b311eb466d79c3244f"
+        },
+        {
+          "path": "supabase/migrations",
+          "old_current_tree": "45ca01a0e0dc155b057ac8d81c2b6341ce68af9f"
+        }
+      ],
+      "SQL_contents_read": false,
+      "wrapper_changed": {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "old_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+        "current_blob": "ff918a3057a5dcf53bf2e7b86a6812c73bb0e626",
+        "current_ref": {
+          "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+          "bytes": 49378,
+          "sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb"
+        },
+        "earliest_workflow_invocation": "Integration step11, after failed startup7; package has no preinstall/install/postinstall/prepare scripts. New observer code is not invoked by startup command."
+      },
+      "local_metadata_provenance": [
+        "cce118/native0 bounded Gitrevparse comparison+targeted Gitdiff",
+        "628026/native0 .nvmrc/seed/migrationtree metadata only"
+      ],
+      "assessment": "No relevant repository setup-input delta demonstrated. This does not identify the hosted failure mechanism."
+    },
+    "startup_contract": {
+      "source_ref": {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+      },
+      "DB_lines": "193-233;286-303",
+      "recovery_lines": "306-338",
+      "browser_lines": "471-516",
+      "same": {
+        "runner_label": "ubuntu-latest",
+        "CLI": "supabase/setup-cli@v1 with explicit version2.115.0",
+        "command": "supabase start",
+        "checkout": "same owned GitHub event head expression",
+        "dependencies": "pnpm install --frozen-lockfile",
+        "pnpm": "10.24.0",
+        "config": "same repository supabase/config.toml",
+        "required_stack": "SUPABASE_TEST_REQUIRED=1"
+      },
+      "differences": "Independent job executions, not the same observed host/Docker/image-download/cache/health state. Browser installs Chromium/OS dependencies before start and carries synthetic browser booking env; recovery applies its separate recovery workflow after start. Neither passing job proves DB-host setup state.",
+      "config": {
+        "project_id": "kopplas",
+        "db_major": 17,
+        "health_timeout": "2m (unchanged)",
+        "local_only": true
+      },
+      "guard_order": "DB supabase start7 must pass before reset8/integration11; no retries around start. Existing reset completion verifier/retries occur only later and cannot bypass failed start7. Upload12 has !cancelled condition and error-on-missing, consistent with no native report; always Stop13 success is not cleanup/backend proof."
+    },
+    "previous_observation": {
+      "run": 39975009683,
+      "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "startup7": "success",
+      "integration11": "failure later in API019; historical93P1F1zero applies only that prior qualified revision",
+      "meaning": "Immediately preceding relevant run started this same startup input set successfully. It does not prove current failure transient or newcode correct."
+    },
+    "evidence_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/terminal.json",
+        "bytes": 24085,
+        "sha256": "1a8cd8c017e2a09933f05c8debb2fafcb837385a775eb1aa8cbd7d7a3d7d7d2e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/terminal.json",
+        "bytes": 24085,
+        "sha256": "4332452fea4d3b387f15c2f84f43d1dcd626b2d072a40dc32de743c71a2181ac"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-root-ownership.json",
+        "bytes": 34524,
+        "sha256": "5626dc096d8dbdcb406c1d77b555c1539ce6b4299a98bd8299d829cad22368ed"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-execution-receipt.json",
+        "bytes": 10745,
+        "sha256": "86515ceebcba4b730da4a7f2500fd85ddc3810f2bda4349f879cc3afc2c582f5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/acquisition-summary.json",
+        "bytes": 1823,
+        "sha256": "4616f6259025bdae6bc30fa7ca730c9132495db671afabbe0f4963e8dc6d5a6b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/artifact-list-projection.json",
+        "bytes": 922,
+        "sha256": "165f06f24c9263212b601f5dfb0ec5d3df58237d357d8d235d83347bd578b8c5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/run-archive-projection.json",
+        "bytes": 45517,
+        "sha256": "96d6816ec904a387b5225f431968ff6125bc46835f228870fe47b759e2585e7b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-fresh-source-proof.json",
+        "bytes": 59892,
+        "sha256": "d09d1978b585127656947bc600439665778ae7aec86b45a9d02cc13b199a8168"
+      },
+      {
+        "path": "docs/process/development-completion-policy.md",
+        "bytes": 8460,
+        "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+      }
+    ]
+  },
+  "Open questions": {
+    "hosted_first_failure": "UNKNOWN. Reviewed closed projections contain no fixed safe DB startup cause/owned leaf/lifecycle; raw stderr/logs were discarded in RAM and are not recoverable from retained packet.",
+    "external_reproducibility": "CLI version is pinned, but ubuntu-latest and setup actionv1/v4 labels are not immutable digests here. Source does not fully pin or establish actual resolved runner/Docker/service-image digests, network availability, disk/memory, health state or effective startup exit reason. These are uncertainty, not findings/cause claims.",
+    "source_fix": "None justified. No timeout increase, health-check waiver, privilege change, SQL/app alteration, skip or data-guard relaxation proposed."
+  },
+  "Deferred work": {
+    "minimum_next_route": "After final distinct current evidence qualification and Root closed-operation fold, consider exactly ONE new checkpoint/operation of unchanged reviewed functional code through the existing fullNORMAL lane. Rebind actual candidate/dochead and independent source/operational review only as required; all oldslots remain closed.",
+    "rationale": "Current mutation is fully known accepted/uniquely registered/completed/STOPPED, so a new explicitly admitted observation is not replaying an uncertain POST. This sequence has one observed startup failure after a known startup success under unchanged startup source, and the current new evidence seam was never executed. A speculative functional fix or new collector adds unsupported scope.",
+    "finite_limits": "New identities and actual completed finite Coordinator allocation; existing fresh provider/source proof/exclusive once admission and Root-only canonicalNORMAL/owned resolver-poller. Existing timeout/cap/required95/recovery/custody/privacy/falseflags unchanged. No service adoption or local launch; existing isolated hosted job setup only. Actual terminal then separately admitted existing reader; no raw-log refetch or diagnostic family.",
+    "resume_condition": "Final current evidence qualification confirms pre-integration startup failure/noDB execution and complete closure; source remains independently reviewed/unchanged, current dependency/source proofs and ordinary-branch deployment containment pass, new actual finite grant/exclusive Root activation issued. No operation authorized by this assessment.",
+    "second_same_startup_failure": "STOP automatic NORMAL repetitions after a second consecutive same startup7 failure. No third same approach. Root owns named prerequisite: establish the first safe startup failure boundary from existing Supabase-start command error/health boundary under a separately reviewed materially different evidence route, preserving no raw secrets/no timeout/privilege relaxation. Define exact missing fact and finite scope before any future action.",
+    "if_start_succeeds": "Qualify actual full required95/recovery/custody from that new run; act only on its observed first failure. No inherited coverage or presumed API019 diagnosis."
+  },
+  "Blockers": {
+    "owner": "Root / independent High reviewer for next-operation admission",
+    "current": "Required fullDB51/current95 and DBcustody evidence unavailable; no certified cause. All old effects closed. No source repair warranted from available facts.",
+    "P5": "OPEN",
+    "review_counter": 3,
+    "15.6": "UNSTARTED",
+    "acceptance": 0,
+    "authority_now": false,
+    "skill": "Supabase SKILL read; no changelog/docs/network/testquery/CLI lifecycle invoked because this task is repository-only assessment with explicit zero network/runtime authority, not Supabase feature implementation."
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_SENSITIVE_CORRECTIVE_PLAN_AND_DISPATCH_CONTRACT_VALIDATION",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewer": {
+    "task": "/root/build15_5_high/native_denial_corrective_contract_validation",
+    "role": "independent-sensitive-corrective-plan-and-dispatch-contract-validator",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "fresh_distinct_context_free": true,
+    "implementation_author_reused": false,
+    "prior_review_author_reused": false,
+    "route_recorded_before_dispatch": true,
+    "route_basis": "Trusted parent dispatch; receipt binding independently checked. No runtime model introspection claimed."
+  },
+  "route": "validate-native-denial-cause-proof-corrective-contract",
+  "scope": {
+    "targeted_plan_effect_and_dispatch_contract_only": true,
+    "fourth_broad_story_review": false,
+    "broad_rounds_completed": 3,
+    "candidate_path_count": 7,
+    "all_within_prior14": true,
+    "source_allocation": false
+  },
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "proposal_artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/proposal.md",
+      "bytes": 12514,
+      "sha256": "7898802e407adeaf2979ca7c5cbe3852c973a8a69d8f64b3d5a106bbf37c62af"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/bindings-and-effects.json",
+      "bytes": 9151,
+      "sha256": "9dcbf4b4231cace92eb142e30e8d6b1371e870d3c78924722b05ae7015812cf5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/result.json",
+      "bytes": 1332,
+      "sha256": "62bc11bfe1336d0f02d3bdce4bd88a19bcc801a06cba1e067eea0bad50e07f68"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/manifest.json",
+      "bytes": 955,
+      "sha256": "cb60ec58fef30b9d74558a6bbea700dba739fa576cbdd36f62c40e27df35bfdb"
+    }
+  ],
+  "admission_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-native-denial-cause-proof-corrective-proposal-admission.json",
+    "bytes": 1020,
+    "sha256": "df94b10926e0198ad78447ed478ec033de67e4706c47386d094678446d05f4a1"
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-report.md",
+    "bytes": 10919,
+    "sha256": "8b903986a32bb3c8bd96f115898f1ac244adbd669c43bf63cbda97142ecb9116"
+  },
+  "original_finding_references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-report.md",
+      "bytes": 10116,
+      "sha256": "9206dc8a152ab3d51dfd1134479a8806fdcd11c4e263b61bdc0727e633a797a8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-attestation.json",
+      "bytes": 21979,
+      "sha256": "7c41cef482032d7590b6834448ed47ed1116fac8b49c5707455e5ef3fef96882"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json",
+      "bytes": 25398,
+      "sha256": "1a9aba65ad16f19a019e4963ce0bb76107b4dbe7888a82a40b0d8e96ee1eb83d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/manifest.json",
+      "bytes": 1763,
+      "sha256": "f3b31ce6d0a4b1f8d4322de89c0491709d939dc840ecfd9333d9106f7346b334"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-allocation.json",
+      "bytes": 5006,
+      "sha256": "99bcc94753e87bb3efcf7fec730c88da4059ca450a4548286f47dbf20fdc63d3"
+    }
+  ],
+  "source_checks": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 81332,
+      "sha256": "cec60f3bda555b95442e1c92e844a50821510d9abfe6fc905e3e3520c59c44e1",
+      "clean_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_bytes": 80579,
+      "head_sha256": "fe3e2f3bba6829ec26be7e930f42006d8d9d198e6cefdc8172826d66ea54cb94",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 43506,
+      "sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560",
+      "clean_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_bytes": 43506,
+      "head_sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 117230,
+      "sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b",
+      "clean_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_bytes": 117230,
+      "head_sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b",
+      "clean_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_bytes": 8024,
+      "head_sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "bytes": 16105,
+      "sha256": "a735cefcfc73f6d69dc07a20e811ac7b599221ee1dae34b067ad93fe95bd66de",
+      "clean_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_bytes": 15874,
+      "head_sha256": "38bf5d39ed827733faed00b5411b10522034305a33b94e9f446f250941978aba",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "bytes": 19133,
+      "sha256": "5108db252d36384412f8712b37efff4933dea8690964a946a79a30a9976d9491",
+      "clean_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_bytes": 18891,
+      "head_sha256": "ab59f4d8fd8a240f256aec3a260e5f0ebfa17a146f4c185cbf395732af89a01a",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 121125,
+      "sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1",
+      "clean_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_bytes": 121125,
+      "head_sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "tests/factories/tenants/core.ts",
+      "bytes": 21309,
+      "sha256": "e877c463e15173bc6b5a8ed0018de919289217c5e9b4379a6eb5aa8fc9457265",
+      "clean_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "head_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "head_bytes": 20816,
+      "head_sha256": "dfe7ca6cae90cecb6faa56d00616310f627d4b995de9ad875522e64c6204224d",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "clean_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "head_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "head_bytes": 3593,
+      "head_sha256": "02e592a1cb08892aea3513cb439840c2b0495cd90a2cf5eee916ba5061539ed2",
+      "all_binding_checks_passed": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "head_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "head_bytes": 75930,
+      "head_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "all_binding_checks_passed": true
+    }
+  ],
+  "prior_frozen_source_context_checks": [
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "bytes": 4729,
+      "sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "head_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "bytes": 4856,
+      "sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "head_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "bytes": 3472,
+      "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "head_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 81332,
+      "sha256": "cec60f3bda555b95442e1c92e844a50821510d9abfe6fc905e3e3520c59c44e1",
+      "clean_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "head_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 43506,
+      "sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560",
+      "clean_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 117230,
+      "sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b",
+      "clean_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b",
+      "clean_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "head_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "bytes": 16105,
+      "sha256": "a735cefcfc73f6d69dc07a20e811ac7b599221ee1dae34b067ad93fe95bd66de",
+      "clean_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "bytes": 19133,
+      "sha256": "5108db252d36384412f8712b37efff4933dea8690964a946a79a30a9976d9491",
+      "clean_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "bytes": 3984,
+      "sha256": "3e1b31e0f8c47eb7d83e6c07cab2af3d0efa09d436f908af691fd5c24691332b",
+      "clean_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "head_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "bytes": 3424,
+      "sha256": "b27e0d9c28d5b6602f0c6684b2d0f43c4feb29ddd0e1535a08ba3b0876cb29a1",
+      "clean_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "head_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 121125,
+      "sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1",
+      "clean_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "head_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "bytes": 17101,
+      "sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a",
+      "clean_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "head_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "bytes": 12421,
+      "sha256": "f1412208ad090c8a69d92694bd1ed340ffaa987614ee076ad8fe96ed54fa999d",
+      "clean_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "head_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context.ts",
+      "bytes": 13297,
+      "sha256": "1d46e1504583d08d0a0d805dc7e3df7ac3f502fc2ab89e976d5a86c439280cf2",
+      "clean_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "head_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context-core.ts",
+      "bytes": 6009,
+      "sha256": "014279223fffb62e5bace20c9920a4fe8e89186768e7354cb075f26b99d37153",
+      "clean_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "head_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "bytes": 7914,
+      "sha256": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc",
+      "clean_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "head_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "bytes": 3543,
+      "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "clean_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "head_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "matches_old_frozen_binding": true
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "bytes": 22030,
+      "sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681",
+      "clean_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "head_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "matches_old_frozen_binding": true
+    }
+  ],
+  "kernel": {
+    "bytes": 5760,
+    "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "unchanged": true,
+    "source_status": "in-review"
+  },
+  "historical_local_default": {
+    "commit": "e5e0308d8ef270fdf8b91f68c4a7675c0ee1392c",
+    "path": ".github/workflows/ci.yml",
+    "oid": "b20614822aa5201587f0779e0bbcca9b5d9cbbc9",
+    "bytes": 31731,
+    "sha256": "150211c35affc4cbaa3204b4fa036d97844eb044b93267892196d7cf3956dd39",
+    "fresh_hosted_claim": false,
+    "fetch_executed": false,
+    "independently_verified_bytes_and_hash": true
+  },
+  "assessment": {
+    "consequential_plan_findings": [],
+    "F1": "Sufficient bounded plan to address exact owned Auth residual/tenant-absence false qualification; new Auth existence-read effect still unallocated, unchanged adminQuery DSN not qualified SupAdmin.",
+    "F2": "Sufficient monotonic attempt/start/uncertainty/no-start schema and CAPTURE_FAILED rule; actual spawn adapter and actual-source regression controls required before implementation PASS.",
+    "availability": "Safe least-requirement engineering amendment within task; default active registration/path/presence/event retained and full reviewed candidate capability retained. Not an owner waiver or hosted availability proof.",
+    "bounded_parser": "Accept supported structural subset only; reject comment/string-only, block-scalar/nested payloads, duplicate/ambiguous keys, malformed or unsupported forms. No implemented parser validated.",
+    "finite_launch_state_mapping": {
+      "not-attempted": {
+        "attempted": false,
+        "started": false
+      },
+      "attempted-unverified": {
+        "attempted": true,
+        "started": null
+      },
+      "started": {
+        "attempted": true,
+        "started": true
+      },
+      "not-created-confirmed": {
+        "attempted": true,
+        "started": false
+      }
+    },
+    "prior_code_review_verdict_unchanged": "NOTPASS",
+    "prior_P2_findings_resolved": false,
+    "controls": "All corrective controls planned, not executed. Require actual helper/adapter/dispatcher seams, not a duplicate model or labels-only mocks."
+  },
+  "admission_still_required": [
+    "Root explicit exact Auth existence-read effect and finite launch schema allocation",
+    "Coordinator exact amended shared dispatcher/consumer grant after this validation",
+    "Root recorded sensitive implementation route/allocation"
+  ],
+  "primary_sources_read": [
+    {
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_dispatch",
+      "lines": "1162-1180",
+      "supports": "default presence; selected branch/tag and inputs"
+    },
+    {
+      "url": "https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event",
+      "lines": "190-216",
+      "supports": "workflow id, ref and configured inputs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/cli/cli/trunk/pkg/cmd/workflow/run/run.go",
+      "lines": "256-307,339",
+      "supports": "active workflow resolution, prompted selected-ref content, matching ref/input POST",
+      "revision": "moving trunk read 2026-10-21; not pinned release"
+    }
+  ],
+  "skill": {
+    "path": "C:/Users/Rasmus/.agents/skills/supabase/SKILL.md",
+    "scope": "readonly Auth/SQL boundary security guidance",
+    "changelog_fetch": "Attempted public changelog open; tool returned internal error/no matching text on follow-up. No Supabase implementation/version conclusion derived; no execution fallback."
+  },
+  "execution": {
+    "semantic_tests": 0,
+    "native_collection": 0,
+    "normal_acceptance_credit": 0,
+    "diagnostic_acceptance_credit": 0,
+    "fixtures": 0,
+    "sql_queries_rpc_connections": 0,
+    "application_http": 0,
+    "provider_repository_get_post": 0,
+    "ci_effects": 0,
+    "resource_launches": 0,
+    "source_or_spec_writes": 0,
+    "git_mutations": 0,
+    "legacy_evidence_used": false,
+    "new_artifacts_only": 3,
+    "readonly_inspection_failures_corrected": [
+      "Initial cwd not honored: explicit Set-Location used thereafter",
+      "Python default cp1252 decode rejected UTF-8 spec: explicit UTF-8/bytes used thereafter"
+    ]
+  },
+  "preservation": {
+    "all_bound_inputs_reverified_before_write": true,
+    "head_unchanged": true,
+    "index_baseline_and_final_empty": true,
+    "global_worktree_clean_claim": false,
+    "old_original_outputs_unchanged": true,
+    "no_protected109_or37_hunks_proposed": true,
+    "protected_full_inventory_reaudit": false,
+    "normal95_full2039_browser_recovery_pilot_gates_preserved": true,
+    "all43_DB_causes_and14_browser_failures_unresolved": true,
+    "development_complete": false,
+    "release_ready": false,
+    "write_scope": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-report.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-attestation.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/result.json"
+    ]
+  },
+  "limits": [
+    "Plan PASS only; cb8 source remains NOTPASS until implemented/reviewed",
+    "Auth existence observation does not prove historical delete responses, partial setup absence or independent fresh authority/all-row qualification",
+    "Mock controls are not native proof; no tests or runtime used",
+    "Candidate-only input feasibility is primary-source inference; hosted availability UNKNOWN",
+    "No source edit, provider effect, push, CI, retry, merge or deployment authorized by this PASS",
+    "Private qualifier remains later allocated/reviewed/adopted gate"
+  ]
+}

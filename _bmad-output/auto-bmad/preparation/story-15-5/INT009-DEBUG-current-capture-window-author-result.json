@@ -1,0 +1,498 @@
+{
+  "schema": "INT009_DEBUG_CURRENT_CAPTURE_WINDOW_AUTHOR_RESULT_V1",
+  "Outcome": "SOURCE_ONLY_EXACT_THREE_FROZEN_AWAITING_INDEPENDENT_ACTUAL_SOURCE_REVIEW",
+  "Files changed": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 141563,
+      "raw_sha256": "846d081aa8bbf3f59d2a69d374c88f6cb2b5943eac12bdb25b56de87672d373d",
+      "LF_bytes": 140170,
+      "LF_sha256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346",
+      "base_HEAD_blob": "b2217ebb023207097b688c4c78c037643b239cbf",
+      "base_LF_sha256": "c8ca8e4e7bec96bb7cb602c3eaba0de09f43db338b1f4d2d07d97edfd6547202",
+      "prospective_clean_blob": "12a13e543e337ca1825d6fe5011ab2b883f883d4"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 38097,
+      "raw_sha256": "37ec258c29f514c23c450a3e70ef19cebd685330fec7017c4c3f0cd6ea2d4679",
+      "LF_bytes": 37576,
+      "LF_sha256": "46cf991e70d2804ee6fe49ba218813c9d76231b2113f6e05edea26c232163f62",
+      "base_HEAD_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd",
+      "base_LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "prospective_clean_blob": "2f2950a9ee4cf1a590dc6eee58eef19531ac6524"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 333066,
+      "raw_sha256": "748ac5c553209bc8d76ee3666651b6a7f6790b57d1d6b76d297cabdc7d2be58f",
+      "LF_bytes": 333066,
+      "LF_sha256": "748ac5c553209bc8d76ee3666651b6a7f6790b57d1d6b76d297cabdc7d2be58f",
+      "base_HEAD_blob": "c725a1c77b4d84f4ee6c924c94a50a4fe79de2a7",
+      "base_LF_sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+      "prospective_clean_blob": "24f387c363a47cd4047b159e7719bd7750ff0f4c"
+    }
+  ],
+  "Status": "No native execution or cause/custody qualification. Existing NORMAL capture is not disabled; this DEBUG-only extension makes remaining reached boundaries observable. P5 OPEN, acceptance0, broad rounds3.",
+  "Open questions": [
+    "Current canonicalized native INT009 first failure and backend/custody remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Root mechanical admission/local commit; distinct High actual-source/privacy review; Native-owned exact existing-reader enum successor and review; only then separately allocated fresh exact-head original-INT009 attempt/acquisition."
+  ],
+  "Blockers": [
+    "No runtime/effect authority under this source grant. No broad review4, automatic retry, closed-slot reuse or unchanged normal redispatch."
+  ],
+  "author_route": {
+    "parent": "/root/build15_5_high",
+    "nested_author": "/root/build15_5_high/implementation_author",
+    "nested_model": "gpt-6.1-sol",
+    "nested_effort": "high",
+    "reason": "Sensitive failure attribution, SQL/authorization fixture guard, privacy and cleanup precedence",
+    "route_recorded_before_dispatch": true,
+    "source_owner": "DEBUG exact3 only",
+    "MAIN_receipt_owner": "parent; only this allowed receipt"
+  },
+  "authority_and_plan_references": [
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-DEBUG-current-capture-window-three-source-allocation.json",
+      "bytes": 2998,
+      "sha256": "8cb3d6cb7ff2589d02b8d18d7c9fc247d250247c0b38c4dc4d8668053e699aa5"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-capture-window-independent-plan-review.json",
+      "bytes": 23350,
+      "sha256": "5a9261fb931dfcc0298c0bd26b92ecdb7e582cbe9829865f9a699ea49fe12d88"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-normal-capture-publication-source-assessment.json",
+      "bytes": 20090,
+      "sha256": "f046b31a0e6b2c2802fee548c33129318d0f794d392ff22eeb475291ad40cc5b"
+    }
+  ],
+  "implementation_window_conditions": {
+    "WINDOW-01": "Capture subject setup before barrier assignment; holder-ready path captured, no newly reached finally.",
+    "WINDOW-02": "Fixed scenario/finally markers; body captured before same-object rethrow; finally override and skipped later work conserved.",
+    "WINDOW-03": "Explicit owned local handle survives barrier/finalizer outside ALS; no global capture or ALS lifetime/open-work widening.",
+    "WINDOW-04": "First cleanup-only error promotes PRIMARY; later cleanup bounded; terminal publication after reached cleanup; healthy silent.",
+    "WINDOW-05": "Serial setup/restore and settlement/finalization use honest fixed markers; native descriptor capture only before existing redaction where available.",
+    "WINDOW-06": "Existing redact/refused/AggregateError/custody/order preserved; original native first-throw not claimed."
+  },
+  "producer_contract": {
+    "enums": {
+      "publications": [
+        "UNREACHED",
+        "STATE_PRECHECK",
+        "CANONICAL_SOURCE",
+        "CAPTURE",
+        "BODY_BUILD",
+        "REPLACE",
+        "STATE_PUBLISH",
+        "SUBJECT_SETUP",
+        "SCENARIO",
+        "FINALLY",
+        "SERIAL_WINDOW",
+        "WORK_SCOPE",
+        "OWNER_RESTORE",
+        "FIXTURE",
+        "UNKNOWN"
+      ],
+      "operations": [
+        "UNREACHED",
+        "BEGIN",
+        "TIMEOUTS",
+        "PRE_CATALOG",
+        "CREATE_GRANT",
+        "SET_ROLE",
+        "VERIFY_ROLE",
+        "DEFINITION",
+        "REPLACE_DDL",
+        "RESET_ROLE",
+        "CREATE_REVOKE",
+        "POST_CATALOG",
+        "COMMIT_ATTEMPT",
+        "WRAPPER_OUTCOME_UNKNOWN",
+        "ROLLBACK",
+        "REQUALIFY",
+        "HOLDER_RELEASE",
+        "SETUP_CLEANUP",
+        "HOLDER_READY",
+        "DISPATCH",
+        "WAIT_ENTERED",
+        "AUTHORITY_CHANGE",
+        "RELEASE",
+        "RESULT",
+        "TOKEN_ASSERTION",
+        "AUDIT_ASSERTION",
+        "FINALLY_RELEASE",
+        "FINALLY_SETTLE",
+        "BARRIER_CLEANUP",
+        "SERIAL_SETUP",
+        "SERIAL_RESTORE",
+        "SETTLEMENT",
+        "FIXTURE_SETUP",
+        "FINALIZER",
+        "ROW_CLEANUP",
+        "CANONICAL_CLEANUP",
+        "AUTH_CLEANUP",
+        "ABSENCE_CHECK",
+        "CUSTODY",
+        "UNKNOWN"
+      ],
+      "guards": [
+        "UNKNOWN",
+        "STATE",
+        "ROW_COUNT",
+        "ROW_ENTRY",
+        "ROW_FIELDS",
+        "ROW_QUALIFICATION",
+        "METADATA_SHAPE",
+        "MISSING_METADATA",
+        "DEFAULT_LANGUAGE",
+        "OID_METADATA",
+        "SCHEMA_AUTHORITY",
+        "ROLE_SWITCH",
+        "OMITTED"
+      ],
+      "fields": [
+        "proname",
+        "prokind",
+        "proretset",
+        "provariadic",
+        "proallargtypes",
+        "proargmodes",
+        "pronargs",
+        "proargtypes",
+        "proargnames",
+        "prorettype",
+        "pronargdefaults",
+        "prosecdef",
+        "provolatile",
+        "proconfig",
+        "proisstrict",
+        "proleakproof",
+        "proparallel",
+        "prosupport",
+        "procost",
+        "prorows",
+        "protrftypes",
+        "prosqlbody"
+      ]
+    },
+    "records": {
+      "namespace": "calendarInt009SetupV1",
+      "maximum_primary": 1,
+      "maximum_cleanup": 3,
+      "overflow_guard": "OMITTED",
+      "maximum_reporter_ASCII_bytes": 4096,
+      "nativeClass": [
+        "UNKNOWN",
+        "Error",
+        "TypeError",
+        "RangeError",
+        "AssertionError",
+        "DatabaseError",
+        "error"
+      ],
+      "sqlstate": [
+        "UNKNOWN",
+        "42501",
+        "42P01",
+        "42703",
+        "42883",
+        "23502",
+        "23503",
+        "23505",
+        "23514",
+        "22P02",
+        "25P02",
+        "57014",
+        "40001",
+        "40P01",
+        "08006",
+        "42601",
+        "42P13"
+      ],
+      "semantics": "First observed PRIMARY stays immutable; cleanup-only first error promotes to PRIMARY. Captures remain local through reached finalization; no claim original native first throw or backend outcome. Healthy/handled success has no publication; foreign occupied sink remains untouched."
+    },
+    "reader_work": "Existing Native-owned reader exact finite-enum successor only after this producer freeze and actual source review. Historical producer/reader artifacts immutable; no new framework."
+  },
+  "author_controls": {
+    "reference": {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-capture-window-author-controls.json",
+      "bytes": 9965,
+      "sha256": "6ae10ba92fec7f724ac64f5f3d366140c4efa1e47d95d3f057ddc2ec0963dc11"
+    },
+    "checks": [
+      {
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"INT009|actual canonical fixture composition|actual composition cleans\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "native_exit": 0,
+        "tests": 24,
+        "pass": 24,
+        "fail": 0,
+        "skip": 0,
+        "cancel": 0,
+        "todo": 0,
+        "duration_ms": 1058.8102,
+        "tool": "107cdc"
+      },
+      {
+        "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+        "native_exit": 0
+      },
+      {
+        "command": "node node_modules/eslint/bin/eslint.js tests/support/calendar-feed-atdd.ts tests/integration/commands/calendar-feed.int.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "native_exit": 0,
+        "tool": "9f94bf"
+      },
+      {
+        "command": "git diff --check",
+        "native_exit": 0,
+        "tool": "e57eb8",
+        "warning": "Unit LF checkout would become CRLF on future Git operation; no mutation performed."
+      }
+    ],
+    "history_nonadditive": [
+      {
+        "stage": "initial read",
+        "native_exit": 1,
+        "reason": "Python stdout default cp1252 refused AGENTS Unicode; fixed stdout UTF-8 before source writes."
+      },
+      {
+        "stage": "initial focused invocation",
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "reason": "New inert fake fixture missing one closing brace; file-load syntax failure. Initial TS1005 same cause."
+      },
+      {
+        "stage": "corrected first focused",
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "skip": 0,
+        "cancel": 0,
+        "duration_ms": 767.7568
+      },
+      {
+        "stage": "first full TypeScript after syntax fix",
+        "native_exit": 1,
+        "reason": "Test-only narrowing after assert.equal(rows,undefined); explicit read-only row union cast corrected."
+      },
+      {
+        "stage": "extended focused",
+        "tests": 24,
+        "pass": 23,
+        "fail": 1,
+        "duration_ms": 1085.9823,
+        "reason": "Existing IIFE callee string included new diagnostic body text in operation fingerprint. Changed proof normalizes only that callback callee and independently traverses all its body calls; baseline constant rederived from actual DEBUG3bb Git object."
+      },
+      {
+        "stage": "corrected operation inverse subset",
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "duration_ms": 621.9901
+      }
+    ],
+    "preservation": {
+      "SQL_projection_only_delta": ",'proargtypes',p.proargtypes::text",
+      "SQL_projection_bytes": 34,
+      "inverse_catalog_bytes": 2119,
+      "inverse_catalog_sha256": "67687b5b6b0bd34031df3374d1b04f2222a0a34fe2cb9314fae6169d2c430a60",
+      "base_object_derived_proof": {
+        "non_diagnostic_calls": 628,
+        "call_SHA256": "f9b4e27ef7a68b31dc568142b7faae1f610c555bdbde7d98579eb8b73af97a57",
+        "exact_query_call_expressions": 106,
+        "query_SHA256": "4b86abcc55ee57142f19cf41c0e6e8425569e5360163b233576c0384b621d5a0",
+        "awaited_operations": 190,
+        "await_SHA256": "09084a1e4fc3f8e67f64c9ffe1849b7cbcd0c225969cf2cfce9a6ea74a45eacc",
+        "original_INT009_callback_inverse_SHA256": "46504a62a1c1b7c49914c86ba9f9bdb19a2dd0961a7bcbcde8ba5739664aebd7"
+      },
+      "inverse_controls": "Missing await, altered role SQL, duplicated release and changed denied assertion fail the pinned source proof; restoring early close loses late capture. Calls fingerprint excludes only fixed diagnostic calls and the explicit local ancestor-capture lookup; existing IIFE named once while all body calls independently visited. Query literal exact34B inverse separately pinned.",
+      "runtime_equivalence_controls": "Actual callback/fixture/barrier/restore/serial-window regions compile with inert dependencies. E1 before finally/E2 override and skipped subsequent finally work preserved; original masking boundaries continue safe replacement/AggregateError; holder-ready raw identity passes through unchanged; outside-ALS finalizer uses captured local handle. Installed JsonReporter real onTestRunEnd in memory exercised by retained current focused control.",
+      "SQL_native_executions": 0,
+      "tracked_changed_paths_only": [
+        "tests/support/calendar-feed-atdd.ts",
+        "tests/integration/commands/calendar-feed.int.test.ts",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "all118_migrations_edits": 0,
+      "ambient_ALS_lifetime_widened": false,
+      "additional_query_await_timer_observer": false
+    },
+    "limitations": [
+      "No actual DB/browser/CI or source approval/native acceptance.",
+      "First observed primary is not asserted to be final propagated error or native first-throw order.",
+      "Default existing diagnostic redaction/error aggregation/custody remains authoritative.",
+      "Parent independently verifies all118 raw conservation and frozen temporary companions from its prewrite snapshot; author changed-path check found only exact3."
+    ]
+  },
+  "bounded_complete_patch": {
+    "reference": {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-capture-window-author.diff",
+      "bytes": 48623,
+      "sha256": "dce998e51fb63c83b119a92d3b750c729c8a41656a66611684262d4325c27178"
+    },
+    "actual_current_git_diff_equal": true,
+    "baseline_HEAD": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "inverse": "Apply the complete frozen diff in reverse against the frozen current exact3 yields the three pinned base Git blobs. Semantic inverse/conservation controls are author evidence, not independent CODE approval. No Git application performed."
+  },
+  "parent_actual_metadata_verification": {
+    "native_exit": 0,
+    "initial_command_yielded_session": 41867,
+    "session_final_exit": 0,
+    "tool_completion": "351465",
+    "EOF_and_process_settled": true,
+    "verification_scope": "Mechanical identities/conservation only; no duplicate semantic review or tests.",
+    "result": {
+      "native_exit": 0,
+      "scope_exact3": true,
+      "unchanged_SQL_raw_LF_native": 118,
+      "temp_total": 7,
+      "temp_unchanged": 6,
+      "temp_allocated_changed": [
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "MAIN_files_unchanged": 4,
+      "HEAD": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+      "MAIN_HEAD": "1a287085407b4f75dfb2df0eabb5ee42f92d1cfc",
+      "index_empty": true,
+      "patch": {
+        "bytes": 48623,
+        "sha256": "dce998e51fb63c83b119a92d3b750c729c8a41656a66611684262d4325c27178",
+        "artifact_equal": true
+      },
+      "SQL_vector_sha256": "805f3d880aee3441205b95ea1106df97e71a9a66d56c998876926dca83c504e5",
+      "source": [
+        {
+          "path": "tests/support/calendar-feed-atdd.ts",
+          "raw_bytes": 141563,
+          "raw_sha256": "846d081aa8bbf3f59d2a69d374c88f6cb2b5943eac12bdb25b56de87672d373d",
+          "LF_bytes": 140170,
+          "LF_sha256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346",
+          "base_blob": "b2217ebb023207097b688c4c78c037643b239cbf",
+          "clean_blob": "12a13e543e337ca1825d6fe5011ab2b883f883d4"
+        },
+        {
+          "path": "tests/integration/commands/calendar-feed.int.test.ts",
+          "raw_bytes": 38097,
+          "raw_sha256": "37ec258c29f514c23c450a3e70ef19cebd685330fec7017c4c3f0cd6ea2d4679",
+          "LF_bytes": 37576,
+          "LF_sha256": "46cf991e70d2804ee6fe49ba218813c9d76231b2113f6e05edea26c232163f62",
+          "base_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd",
+          "clean_blob": "2f2950a9ee4cf1a590dc6eee58eef19531ac6524"
+        },
+        {
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "raw_bytes": 333066,
+          "raw_sha256": "748ac5c553209bc8d76ee3666651b6a7f6790b57d1d6b76d297cabdc7d2be58f",
+          "LF_bytes": 333066,
+          "LF_sha256": "748ac5c553209bc8d76ee3666651b6a7f6790b57d1d6b76d297cabdc7d2be58f",
+          "base_blob": "c725a1c77b4d84f4ee6c924c94a50a4fe79de2a7",
+          "clean_blob": "24f387c363a47cd4047b159e7719bd7750ff0f4c"
+        }
+      ]
+    },
+    "base_source_preimages": [
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 139439,
+        "raw_sha256": "c3b599846d0c604192f7cb52e7e2851ec63bc9228145a94b581f50b755f0b454",
+        "LF_bytes": 138050,
+        "LF_sha256": "c8ca8e4e7bec96bb7cb602c3eaba0de09f43db338b1f4d2d07d97edfd6547202",
+        "base_blob": "b2217ebb023207097b688c4c78c037643b239cbf"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "raw_bytes": 37507,
+        "raw_sha256": "c703429ee6b1518b89a0ce93c97cbaeb65dee9b2b98ca5f549e8dece131a3d24",
+        "LF_bytes": 36989,
+        "LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+        "base_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 319180,
+        "raw_sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+        "LF_bytes": 319180,
+        "LF_sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+        "base_blob": "c725a1c77b4d84f4ee6c924c94a50a4fe79de2a7"
+      }
+    ],
+    "SQL_proof": "All118 current DEBUG raw bytes/SHA, LF bytes/SHA and base/native Git blobs compared with actual prewrite in-memory vector at clean3bb; every entry equal. Current canonical vector digest includes path/raw/LF/base/clean fields, sorted JSON. No MAIN/DEBUG raw equality claim.",
+    "temporary_path_proof": "Seven baseline debug temporary paths resampled: six exact raw/LF/blob equal; allocated wrapper unit file only exception. No workflow/wrapper/contract/dispatch/reader source edits.",
+    "MAIN_proof": {
+      "HEAD": "1a287085407b4f75dfb2df0eabb5ee42f92d1cfc",
+      "files": [
+        {
+          "path": "tests/support/calendar-feed-atdd.ts",
+          "raw_bytes": 139473,
+          "raw_sha256": "e155639d17a0b5a6528ee0385ba044c5bd5cad436aabd9c9f418076035ae74c8",
+          "blob": "e4b057ae2d5c3add5653c77b93f28e006c470a37"
+        },
+        {
+          "path": "tests/integration/commands/calendar-feed.int.test.ts",
+          "raw_bytes": 36989,
+          "raw_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+          "blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd"
+        },
+        {
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "raw_bytes": 317395,
+          "raw_sha256": "84edc9711ebf6e61d23b8cbcf1050a24475c5243fe316f16177a5c7d9ca754c0",
+          "blob": "5c9c267c08de115649dbb7589b1005212a3d6a43"
+        },
+        {
+          "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+          "raw_bytes": 255365,
+          "raw_sha256": "e8501488121a75a9c4ab2461f28b649f3390d0de150c536330e870d1e891e178",
+          "blob": "f12ec516d3745cbfc79195a8dad20bcd75a75a91"
+        }
+      ]
+    },
+    "MAIN_current_source_and_Spec_equal_prewrite": true,
+    "MAIN_source_kernel_SRO": "MAIN Spec raw bytes unchanged; approved5760 kernel SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977/counter3/in-review retained by conservation, not a newly executed story reader.",
+    "index_and_Git": "DEBUG HEAD3bb unchanged and index empty; author/parent made zero Git mutations."
+  },
+  "test_attribution": {
+    "final_actual_focused": {
+      "tests": 24,
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "todo": 0
+    },
+    "earlier_runs": "22P; extended23P1F; targeted inverse1P are historical/nonadditive, not aggregate coverage. Initial syntax and TS narrowing failures retained in author_controls.",
+    "installed_reporter": "Real installed JsonReporter onTestRunEnd in memory; no service, network, database or browser.",
+    "native_SQL_executions": 0,
+    "required95_acceptance": 0,
+    "native_first_cause": "UNKNOWN",
+    "backend_settlement_and_custody": "UNKNOWN; preserved existing fail-closed semantics"
+  },
+  "effects": {
+    "source_writes": "DEBUG exact3 only",
+    "MAIN_writes": "Only this explicitly allowed ignored receipt",
+    "Git_mutations": 0,
+    "API_GET_POST": 0,
+    "network": 0,
+    "CI_dispatch": 0,
+    "runtime_DB_browser": 0,
+    "managed_resources": 0,
+    "SQL_files_changed": 0,
+    "new_queries_awaits_observers": "None except explicitly approved existing query projection text34B; conservation controls bound actual source."
+  },
+  "freeze": {
+    "source_frozen": true,
+    "private_controls_frozen": true,
+    "independent_source_review": "PENDING; author does not self-approve",
+    "reader_successor": "PENDING separate Native ownership",
+    "future_effects": "UNALLOCATED"
+  }
+}

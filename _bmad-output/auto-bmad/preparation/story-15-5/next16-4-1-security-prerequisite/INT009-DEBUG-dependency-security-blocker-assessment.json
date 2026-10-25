@@ -1,0 +1,331 @@
+{
+  "schema": "INDEPENDENT_HIGH_DEPENDENCY_BLOCKER_ASSESSMENT_v1",
+  "outcome": "QUALIFIED_TERMINAL_PRE_TEST_SECURITY_GATE_FAILURE_WITH_CURRENT_LOCK_BLOCKER",
+  "role": {
+    "independent": true,
+    "model_route": "gpt-6.1-sol High",
+    "scope": "Finite terminal/dependency assessment; not a fourth broad story review"
+  },
+  "terminal": {
+    "run": 39924479291,
+    "head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+    "attempt": 1,
+    "checkpoint": "8167a3f6-c1f5-4324-b720-a85e9e50b803",
+    "workflow": 296219797,
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "event": "workflow_dispatch",
+    "ref": "codex/epic-15-int009-debug",
+    "all_nine_terminal": true,
+    "conclusion": "failure",
+    "admission": "success",
+    "verify": {
+      "id": 120317432861,
+      "conclusion": "failure",
+      "failed_step": 8,
+      "name": "Audit dependencies (blocking, high severity)",
+      "later_typecheck_lint_unit_build": "skipped"
+    },
+    "db": {
+      "id": 120317554427,
+      "conclusion": "skipped",
+      "INT009": "UNEXECUTED"
+    },
+    "other_six": "skipped",
+    "root_operation": "ROOT_STOPPED; resolver 1 / poll 1; slots closed",
+    "refs": [
+      {
+        "path": "INT009-DEBUG-dispatch-only-root-operation/terminal.json",
+        "bytes": 9919,
+        "sha256": "ccc6247740b879cf1e5260a4d9f02729b3d06afa0b456911dffdc85855e322de"
+      },
+      {
+        "path": "INT009-DEBUG-dispatch-only-root-operation/operation.json",
+        "bytes": 637,
+        "sha256": "5049a31ac25b219df29e8b5cdb2651340d3c8668dd0d9a479c83e8fe7aa1c7d0"
+      },
+      {
+        "path": "INT009-DEBUG-dispatch-only-actual-terminal-root-ownership.json",
+        "bytes": 2594,
+        "sha256": "e028b620db53a33bdee86c0617c27a6d6764b26d417698c7ea46bdd461191de0"
+      }
+    ],
+    "limit": "Terminal proves the failing audit step and unexecuted case, not the exact historical advisory response. Hosted logs/artifacts were not requested or read."
+  },
+  "ci_contract": {
+    "command": "pnpm audit --audit-level=high",
+    "install": "pnpm install --frozen-lockfile",
+    "package_manager": "pnpm@10.24.0",
+    "node_major": 22,
+    "audit_scope": "All dependencies, without production-only filtering, advisory ignores, fix flags or threshold waiver",
+    "main_workflow_line": 152,
+    "debug_workflow_line": 168
+  },
+  "current_inputs": {
+    "main": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "debug": "C:/Users/Rasmus/.codex/worktrees/epic-15-int009-debug/Kopplas",
+    "package_normalized_equal": true,
+    "lock_normalized_equal": true,
+    "normalized_package_sha256": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3",
+    "normalized_lock_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+    "next_exact": "16.3.8",
+    "eslint_config_next_exact": "16.3.8",
+    "react": "19.2.4",
+    "sharp_override_and_locked": "0.35.5",
+    "hashes": {
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\pnpm-lock.yaml": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\pnpm-workspace.yaml": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.github\\workflows\\ci.yml": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas\\package.json": "790f9ddeda122073fbcb6752f08ad8536e2a6cd70fdd4722687ff6fa43e3089d",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas\\pnpm-lock.yaml": "5cb69abe1efce180545f64a5670381042dcddceca20f1b156d217f5b1de25ffb",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas\\pnpm-workspace.yaml": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas\\.github\\workflows\\ci.yml": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d"
+    }
+  },
+  "single_readonly_audit": {
+    "schema": "READONLY_EQUIVALENT_LOCK_AUDIT_CAPTURE_v1",
+    "argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "C:/Users/Rasmus/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pnpm/bin/pnpm.mjs",
+      "--pm-on-fail=ignore",
+      "audit",
+      "--audit-level=high",
+      "--json"
+    ],
+    "client_version": "11.25.0",
+    "CI_client_pin": "10.24.0",
+    "exact_CI_tool_reproduction": false,
+    "implementation_difference": "Installed10.24.0 unavailable; version management explicitly disabled to prevent tool download/lockfile sync. --json is presentation only. Audit scope/threshold unchanged; no prod-only/ignore/fix option.",
+    "native_exit": 1,
+    "elapsed_seconds": 1.521779,
+    "timed_out": false,
+    "direct_process_settled": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "caps": {
+      "seconds": 60,
+      "stdout": 2097152,
+      "stderr": 65536
+    },
+    "streams": {
+      "stderr": {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      "stdout": {
+        "observed_bytes": 2229,
+        "sha256": "fecbff0a6f8a78508fcb791a22d7637e3648ba68fae5a18d5fa919e3c40068b3",
+        "physical_EOF": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    },
+    "JSON_parsed": true,
+    "JSON_top_keys": [
+      "advisories",
+      "metadata"
+    ],
+    "counts": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 3,
+        "high": 1,
+        "critical": 2
+      },
+      "dependencies": 73,
+      "devDependencies": 396,
+      "optionalDependencies": 120,
+      "totalDependencies": 507
+    },
+    "advisories": [
+      {
+        "id": 1242816,
+        "github_advisory_id": "GHSA-2464-fhr4-w9xw",
+        "module_name": "next",
+        "severity": "critical",
+        "vulnerable_versions": ">=16.0.0 <=16.4.0",
+        "patched_versions": ">=16.4.1",
+        "url": "https://github.com/advisories/GHSA-2464-fhr4-w9xw",
+        "cves": null,
+        "installed_versions": [
+          "16.3.8"
+        ],
+        "finding_path_count": 1
+      },
+      {
+        "id": 1242818,
+        "github_advisory_id": "GHSA-p3m5-59mp-jv5r",
+        "module_name": "next",
+        "severity": "high",
+        "vulnerable_versions": ">=16.0.0 <=16.4.0",
+        "patched_versions": ">=16.4.1",
+        "url": "https://github.com/advisories/GHSA-p3m5-59mp-jv5r",
+        "cves": null,
+        "installed_versions": [
+          "16.3.8"
+        ],
+        "finding_path_count": 1
+      },
+      {
+        "id": 1242859,
+        "github_advisory_id": "GHSA-673q-mjm6-r5xr",
+        "module_name": "next",
+        "severity": "critical",
+        "vulnerable_versions": ">=16.0.0 <=16.4.0",
+        "patched_versions": ">=16.4.1",
+        "url": "https://github.com/advisories/GHSA-673q-mjm6-r5xr",
+        "cves": null,
+        "installed_versions": [
+          "16.3.8"
+        ],
+        "finding_path_count": 1
+      }
+    ],
+    "error": null,
+    "raw_persisted": false,
+    "inputs_unchanged": true,
+    "tool_version_metadata_pin": {
+      "cli_bytes": 1464,
+      "cli_sha256": "ff3224d46b47fbb24a7e9fe15fededef7e00892d07d4e376b6762d4899906bfd"
+    },
+    "tool_chunk": "711b0c",
+    "outer_exit": 0,
+    "outer_wall_seconds": 1.6359309,
+    "invocations": 1,
+    "raw_stdout_stderr": "RAM only; not retained",
+    "counts_interpretation": "Metadata contains 3 moderate, 1 high and 2 critical. Three detailed advisories are emitted at the high threshold; installed pnpm source filters advisoryEntries by auditLevel before JSON serialization. Moderate identities were not retained or inferred.",
+    "ci_version_limit": "Installed pinned pnpm 10.24.0 was unavailable. This is a current-lock reproduction of the audit scope and threshold using pnpm 11.25.0, not an exact CI-client reproduction. --pm-on-fail=ignore disables package-manager version switching/downloading and env-lockfile synchronization; it does not ignore security advisories. --json changes presentation. NODE_DISABLE_COMPILE_CACHE=1 prevented a compile-cache write.",
+    "no_install_or_tool_download": true
+  },
+  "primary_verification": {
+    "date": "2026-10-23",
+    "advisories": [
+      {
+        "id": "GHSA-2464-fhr4-w9xw",
+        "package": "next",
+        "severity": "critical",
+        "installed": "16.3.8",
+        "affected_16x": ">=16.0.0 <=16.4.0",
+        "minimum_patched_16x": "16.4.1",
+        "primary_url": "https://github.com/vercel/next.js/security/advisories/GHSA-2464-fhr4-w9xw",
+        "reviewed_database_url": "https://github.com/advisories/GHSA-2464-fhr4-w9xw"
+      },
+      {
+        "id": "GHSA-p3m5-59mp-jv5r",
+        "package": "next",
+        "severity": "high",
+        "installed": "16.3.8",
+        "affected_16x": ">=16.0.0 <=16.4.0",
+        "minimum_patched_16x": "16.4.1",
+        "primary_url": "https://github.com/vercel/next.js/security/advisories/GHSA-p3m5-59mp-jv5r",
+        "reviewed_database_url": "https://github.com/advisories/GHSA-p3m5-59mp-jv5r"
+      },
+      {
+        "id": "GHSA-673q-mjm6-r5xr",
+        "package": "next",
+        "severity": "critical",
+        "installed": "16.3.8",
+        "affected_16x": ">=16.0.0 <=16.4.0",
+        "minimum_patched_16x": "16.4.1",
+        "primary_url": "https://github.com/vercel/next.js/security/advisories/GHSA-673q-mjm6-r5xr",
+        "reviewed_database_url": "https://github.com/advisories/GHSA-673q-mjm6-r5xr"
+      }
+    ],
+    "assessment": "Current Next lock is within all three reported affected ranges. Vendor advisories and the published npm version independently confirm 16.4.1 as the minimum fixed 16.x version.",
+    "sharp_limit": "GHSA-2464-fhr4-w9xw documents sharp >=0.35.5 as its workaround, already satisfied by this workspace override and lock. That limits exposure to that specific issue; it does not remove the current Next package audit match or remediate the other two advisories. No advisory suppression is proposed.",
+    "exploitation_limit": "Package/range qualification is not proof of exploitability in this application's deployed configuration. No attack, app endpoint, deployment or backend was exercised.",
+    "registry": [
+      {
+        "url": "https://registry.npmjs.org/next/16.4.1",
+        "bytes": 3064,
+        "sha256": "3640b5399e01cb2b3e1fb7c327b461a7f46d61fb47b8edf4cb82d27e51bfe816",
+        "name": "next",
+        "version": "16.4.1",
+        "node": ">=20.9.0",
+        "react_peer": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+        "react_dom_peer": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+        "next_env": "16.4.1"
+      },
+      {
+        "url": "https://registry.npmjs.org/eslint-config-next/16.3.8",
+        "bytes": 3136,
+        "sha256": "576d9f72d130a75930ddc23e51f9cb523f73b83b9d9849bd61ddbcc1a50ce10d",
+        "name": "eslint-config-next",
+        "version": "16.3.8",
+        "peer_next_requirement": null,
+        "eslint_plugin_next": "16.3.8"
+      }
+    ]
+  },
+  "minimum_proposed_source_scope": {
+    "status": "SOURCE PLAN ONLY; shared-owner Coordinator amendment and independent High patch review required before writes",
+    "paths": [
+      {
+        "path": "package.json",
+        "change": "Change only the exact next dependency 16.3.8 -> 16.4.1; preserve package manager, React and other dependency pins."
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "change": "Regenerate with pinned pnpm 10.24.0 under separately admitted author work. Resolve Next 16.4.1 and its necessary transitive/optional SWC and @next/env graph; retain existing overrides and patched lint graph; review lock churn."
+      },
+      {
+        "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+        "line": 876,
+        "baseline_bytes": 140788,
+        "baseline_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+        "change": "Update the exact installed-Next pin only after checking the actual 16.4.1 writeAppTypeDeclarations module still satisfies this existing real-module test; retain readonly-parent refusal and existing-file-write assertions. Do not weaken the test or substitute a synthetic implementation."
+      }
+    ],
+    "not_required_for_minimum": "eslint-config-next 16.3.8 has no peer requirement on next and is a separate development lint package. The advisory entries name next, not eslint-config-next. Keeping this lint graph avoids unnecessary changes to pnpm-workspace.yaml's version-scoped plugin override and existing plugin patch. A matching lint-package upgrade would require its own additional scope and patch applicability review.",
+    "impact": "Next 16.3.8 ->16.4.1 crosses a minor framework release, so compatibility must be verified; unchanged declared Node22 and React19.2.4 satisfy the published minimum/peer ranges. No app/SQL/workflow/selector/security-gate changes are proposed.",
+    "verification_required": [
+      "Qualify pinned pnpm 10.24.0 and actual new lock; frozen install and exact unchanged high-severity audit must pass without ignore/waiver.",
+      "Run the existing actual installed-Next writer admission test, preserving its metadata, collision and refusal oracles; check the new writer's behavior rather than merely replacing its version string.",
+      "Whole TypeScript, lint, lockfile validation and production build appropriate to the framework update; no deployment implied.",
+      "Independent High review of exact package/lock/test delta and transitive integrity. Refresh source bindings and CI admissions only through separately allocated Root operations.",
+      "Functional required gates and owned isolated runtime evidence remain necessary afterward; neither this plan nor a passing audit reruns or accepts INT009."
+    ],
+    "tool_acquisition_plan": {
+      "status": "PROPOSED ONLY; no acquisition executed or authorized by this assessment",
+      "tool": "pnpm@10.24.0",
+      "mechanism": "After an explicit bounded tool-acquisition/source grant, use existing npm exec with the exact pnpm@10.24.0 package from the official registry and an operation-owned ignored cache under private B, if the existing npm supports that mode. Disable npm lifecycle scripts; no global installation, shim replacement or persistent npm configuration writes. Verify the actual pnpm version before any lock generation. No manual tarball/runtime framework is required.",
+      "effects_to_allocate": "Public official-registry metadata/package reads plus private cache/tool bytes and the bounded local process; these are separate from the completed read-only audit and closed GitHub budgets.",
+      "lock_generation": "Run the qualified exact CI tool on the authorized owned manifest/lock only; disable lifecycle scripts for lock-only generation, preserve packageManager and audit threshold, and inspect resulting transitive/optional resolution changes.",
+      "coordination": "package.json and pnpm-lock.yaml reservations are not write grants. The third exact-version test path also needs an explicit shared claim/grant before author work. DEBUG node_modules junctions MAIN, so dependency installation must be coordinated as one shared mutation with no concurrent readers/mutators. Replay only the reviewed three-source correction into the owned DEBUG checkout; preserve all other diagnostic capability and SQL source.",
+      "verification_limit": "No pnpm10.24.0 acquisition, cache population, lock generation, install or replay was performed here."
+    }
+  },
+  "limits": {
+    "hosted_exact_audit_response": "UNKNOWN; no hosted log read was needed to establish the current-lock blocker and minimum source plan",
+    "INT009_current_cause": "UNKNOWN; this run did not execute INT009",
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "zero_coverage": 26,
+      "unchanged": true
+    },
+    "P5": "OPEN",
+    "review_round_counter": 3,
+    "acceptance": 0,
+    "development_complete": false,
+    "custody": "Historical retained key/backend cleanup limits unchanged; this terminal and dependency audit provide no cleanup or settlement evidence.",
+    "effects": {
+      "readonly_audit_invocations": 1,
+      "public_advisory_registry_reads": true,
+      "github_ci_api_requests": 0,
+      "artifact_log_gets": 0,
+      "provider_changes": 0,
+      "installs": 0,
+      "lock_or_package_writes": 0,
+      "git_mutations": 0,
+      "app_or_db_runtime": 0,
+      "deployments": 0
+    },
+    "no_effect_authority": true
+  }
+}

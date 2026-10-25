@@ -1,0 +1,26 @@
+{
+  "file_count_excluding_self": 3,
+  "files": [
+    {
+      "bytes": 11657,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-checkpoint-readiness/readiness.json",
+      "sha256": "b536b6c659279df23e04182ff8d5be73fdee4078ed5a762314ae19f94e4be3ec"
+    },
+    {
+      "bytes": 132024,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-checkpoint-readiness/source-bindings.json",
+      "sha256": "4b679b724227eb6e1714c6c452538759201de13e4d9531d30074c588a2d80997"
+    },
+    {
+      "bytes": 1504,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-checkpoint-readiness/result.json",
+      "sha256": "2f3c70b415c62d635cd3cc4578945a7996ad99542ecc354bdc9bef13bc251056"
+    }
+  ],
+  "metadata_HEAD": "af3186f80df3186b99523839f136bd0c5cbde84a",
+  "normal_acceptance": 0,
+  "schema": "EXACT_E16_INTEGRATED_READINESS_MANIFEST_v1",
+  "self_excluded": true,
+  "source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "total_files_including_self": 4
+}

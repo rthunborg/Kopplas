@@ -1,0 +1,50 @@
+{
+  "kind": "ROOT_FRESH_P2_TARGETED_BINDING_REVIEW_SELF_EXCLUDED_MANIFEST",
+  "verdict": "PASS_BINDING_ONLY_UNCHANGED_PROTOCOL_REUSED",
+  "members": [
+    "review-input.md",
+    "input-binding.json",
+    "local-checks.json",
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "review-input.md",
+      "bytes": 2490,
+      "sha256": "1aba65c74627d6da3cd401394db2d45f34c04643b9b1db9c99cbe7a98c6695f3"
+    },
+    {
+      "path": "input-binding.json",
+      "bytes": 39597,
+      "sha256": "9a28f671e826df067ffae339daf2101b650a9173490f9c82b8a693dc85810c34"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 1196,
+      "sha256": "0e475d2355d08666c564ec0fd8833467fc9a0546ae483a45c84a56567d856535"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 4746,
+      "sha256": "b7070052a7743352f0b4ffa92c42118e8f23f136e958b59f867c0fbc66ca9ce0"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 10833,
+      "sha256": "aadfab361b557f4ec1d9efcf6a7bc86c8adea131bfb5a511f8449550075cde87"
+    },
+    {
+      "path": "result.json",
+      "bytes": 839,
+      "sha256": "3a1186147988034e2e0cd806625ebfec99f0aa2865720151833cd830f0dc520a"
+    }
+  ],
+  "self_excluded": true,
+  "protocol_base": "P1wholeNOTPASS plus targetedF1closurecomposite; functionsunchanged",
+  "current_head": "1a643e24968a06cdeaba23ffc2506471b659c62a",
+  "API": 0,
+  "normal_acceptance_credit": 0
+}

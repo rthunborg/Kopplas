@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "kind": "ORIGINAL_FUNCTION_DIRECT_DIAGNOSTIC_LANE_READINESS_EFFECT_INVENTORY",
+  "status": "CONDITIONAL_SOURCE_READINESS_ONLY_NOT_EXECUTION_PASS",
+  "current_head": "d2d3455d7103d9b7b6aca00d30ec564bc5a5da5e",
+  "source_commit": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+  "future_matrix_source_or_checkpoint": null,
+  "future_run_id": null,
+  "plan_under_independent_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json",
+    "bytes": 11241,
+    "sha256": "9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48"
+  },
+  "completion_policy": "2026-10-19",
+  "source_bindings": [
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "bytes": 19782,
+      "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "current_head_blob_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "current_head_blob_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "current_head_blob_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+      "current_head_blob_oid": "2a5fec9b04c3259f608c95db25668836016808e5"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "current_head_blob_oid": "a78e3f6a336f84fc3d44d042516808748622feb8"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "current_head_blob_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "current_head_blob_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0"
+    },
+    {
+      "path": "tests/factories/tenants.ts",
+      "bytes": 455,
+      "sha256": "069f8805525f055f8ef262789354062cebc60a7914e39171ff22642f84606e12",
+      "current_head_blob_oid": "6655ccb2dcbb09580c45eacffd482ce6b58a0637"
+    },
+    {
+      "path": "tests/factories/tenants/core.ts",
+      "bytes": 21309,
+      "sha256": "e877c463e15173bc6b5a8ed0018de919289217c5e9b4379a6eb5aa8fc9457265",
+      "current_head_blob_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0"
+    },
+    {
+      "path": "tests/support/global-setup.ts",
+      "bytes": 2970,
+      "sha256": "adad74b1ef885d8c0714ef6bb5ab9e61b4973021d2c0e7f2e8df17ef6c5ea788",
+      "current_head_blob_oid": "8cb06568f42fcdccdb47c4ee3b95698a48907ca3"
+    },
+    {
+      "path": "tests/support/test-env.ts",
+      "bytes": 12287,
+      "sha256": "4ad1f1e80782da40f653bdf5a69a1b5ea0e41db08ed334c460f95a49875130df",
+      "current_head_blob_oid": "f30ddbeae604e9a383712edcea04fd2d8f4302cc"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 3602,
+      "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+      "current_head_blob_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "current_head_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11947,
+      "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "current_head_blob_oid": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2352,
+      "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "current_head_blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "current_head_blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "review_reuse": {
+    "source571": {
+      "admission": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-invoker-adapter-repair-review-admission.json",
+        "bytes": 1231,
+        "sha256": "1a7a5cf332e6af2ebcab3763c0e23c007ebee40c2bdd71daebbbcb1e9534889f"
+      },
+      "scope": "Actor adapter,helper v2,wrapper source hash pin/RLS/newmigration source. Existing unchanged producer dependencies retain targeted independent provenance; no new runtime or broad review credit."
+    },
+    "source131": {
+      "report": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/original-report.md",
+        "bytes": 3985,
+        "sha256": "728b1f09886b32696e35b8e3d89f18c4900d67a3fcce1b9642a881eddf21976e"
+      },
+      "attestation": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/original-attestation.json",
+        "bytes": 8367,
+        "sha256": "73de777033935358178a748a659f5d5e88ec44110b6b13c16759692af0f89ad4"
+      },
+      "result": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-set-guard-repair-review/result.json",
+        "bytes": 1276,
+        "sha256": "a35a268b29981b40fabddb0151fd9d0f28221bfa8873e54484ab31d12ee768fd"
+      },
+      "scope": "Only owner/SET guard correction,its unit seam and Spec. Actual current raw+head blobs equal reviewed inputs. Does not prove hosted original-function rows or repair guard cause."
+    },
+    "future_three_path_delta": "Source-only exact3 allocation now received; actual implementation,meaningful controls and distinct committed-delta High review still required. No execution allocation or native credit."
+  },
+  "preferred_route": {
+    "selection": "Existing checked-in cause-proof workflow only, not normal/release/optional browser lanes. Explicitly allocate its conditional success-path effects; obtain one bounded terminal archive for startup matrix and,if reached, closed diagnostic lifecycle.",
+    "old_v1_private_consumer": "NOT_USED/IMMUTABLE. Its status-origin-v1/owner_auth_usage/oldhead pins cannot validate current v2. No attempted rebinding or artifact collector execution.",
+    "proposal_wording_reconciliation": "Replace a mandatory private-consumer-rebind assumption with explicit manual closed archive qualification and STOPUNKNOWN on unavailable diagnostic outcome. This is a plan/allocation clarification, not a silent producer or acceptance change.",
+    "collector_or_source_blocker": "No new collector/source changes are intrinsically necessary for matrix capture. If full unexpected-success artifact bodies are later desired, that is separately reviewed v2 acquisition scope; not required or authorized by this readiness.",
+    "normal_acceptance_credit": 0
+  },
+  "dispatcher": {
+    "future_argv": [
+      "node",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "dispatch",
+      "--repo",
+      "rthunborg/Kopplas",
+      "--ref",
+      "codex/epic-15-scheduling-time-calendar",
+      "--sha",
+      "<REVIEWED_FRESH_PUSHED_FULL_SHA>",
+      "--checkpoint-id",
+      "<FRESH_UUIDV4>",
+      "--release-validation",
+      "false",
+      "--cause-proof",
+      "true",
+      "--state",
+      ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-<FRESH_HEAD8>-original-function-matrix-dispatch.json"
+    ],
+    "preconditions": "Exact future3delta reviewed and pushed; refstable/freshUUID/exclusive ignored receipt. Root sole actor/poller; candidate includes current diagnostic capability and default has registered workflow_dispatch. Persist actual mode/SHA/checkpoint/actor before sole POST. No historical run reuse/redispatch.",
+    "current_default_observation": "Previous qualified default b2061482/workflow296219797 is historical availability only. This task performed no hosted read. Checked-in diagnostic preflight re-fetches exact candidate/default and active workflow at actual dispatch. Default need not advertise candidate-only diagnostic inputs; no default update implied.",
+    "API_effects_at_future_dispatch": [
+      "GET user",
+      "GET collaborator permission",
+      "GET exact remote branch",
+      "GET active ci.yml workflow",
+      "GET candidate workflow content at SHA",
+      "GET repository/default name",
+      "GET default workflow content",
+      "ONE POST to actual workflow dispatches"
+    ],
+    "safety": "15s/4MiB per checked-in API call,JSONstdin/argument arrays,fsynced exclusive receipt before POST; supplied UUID correlates,not idempotency. On uncertainty status same receipt,not repeat POST.",
+    "repo_admission_variables_required": [],
+    "repository_or_provider_secrets_required": [],
+    "unused_optional_variables": [
+      "FIXED_CHROMIUM_HOSTED_ADMISSION",
+      "FIXED_CHROMIUM_HOSTED_ADMISSION_SHA"
+    ],
+    "ownership": "No temporary repo variables/JIT private controls. Any current shared claim conflict requires Root coordination before dispatch; prior clearances are not fresh hosted observations."
+  },
+  "job_graph": {
+    "selected": [
+      "checkpoint-admission",
+      "verify",
+      "db"
+    ],
+    "db_sequence": [
+      "frozen checkout/install",
+      "SupabaseCLI2.115.0 local startup applies allsource migrations",
+      "existing bounded reset/ledger+seed+Auth completion checks",
+      "one cause-proof wrapper step",
+      "validated diagnostic artifact upload",
+      "always local stack stop"
+    ],
+    "suppressed": [
+      "e2e",
+      "recovery-storage-loader",
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "required_inputs": "causeprooftrue/releasefalse/allotherdiagnosticsfalse/expectedSHAequalsGITHUB_SHA/UUIDv4/attempt1/branch",
+    "expected_startup_refusal": "Matrix only inside unchanged failing IF branch. No test wrapper/key/fixture is run if startup fails; later test/upload absence must remain unexecuted,not no-child inferred from missing reports alone."
+  },
+  "unexpected_startup_success_effects": {
+    "must_be_explicitly_allocated_before_POST": true,
+    "setup_wrapper": [
+      "Qualify actual hosted Linux disposable job identity/checkout/new Docker stack/local ports/endpoints/complete current migration ledger.",
+      "Same source-container nonempty password memory-only to canonical SupAdmin TCP. Observe original session/current identity7 booleans and four effective logging/privacy controls before secret creation; no role/parameter/privilege repair.",
+      "Create one random owned Vault attestation key in transaction; COMMIT uncertainty preserved. Private telemetry file; inject only existing local test keys/runtime values into owned diagnostic child. No Next app server or browser is launched in cause-proof mode.",
+      "One Vitest child exact DIAG001 path/name,maxWorkers1,no fileparallelism,native JSON. Global setup checks local stack; no reset inside runner."
+    ],
+    "ordinary_fixture_and_call": [
+      "Existing role-aware two-tenant fixture expects10 Auth users/memberships/roles; local synthetic AuthAdmin/service credential and test-admin SQL create only owned fixture state. Partial creation/cleanup failure remains unqualified.",
+      "One awaited real ordinary JWT manageCalendarFeed(create,revision0) call under own current tenant/membership. It may commit token generation and audit in disposable fixture; capture only closed trace/result classes.",
+      "Baseline selected only by existing matched-context status/manage42501 trace; ordinary success,preSQLstop,mismatch/nonreproduction does not force a baseline."
+    ],
+    "conditional_baseline": [
+      "Requalify actual stack/authority/privacy/completeledger on new fixed proof client. Read canonical target catalog/source/owned token+audit snapshot into RAM; never persist them.",
+      "Begin repeatable-read transaction and savepoint; fixed timeouts,own JWT claims,set local SESSION AUTHORIZATION authenticated. Prove restricted originalsession=current,NOTSUPER/NOTBYPASS,own auth.uid/role and privacy.",
+      "At most one corresponding current UNMODIFIED status/manage SQL call; manage path generates an owned token/proof. No function replacement,clone,grant,membership,defaultACL,or source change.",
+      "Rollback savepoint/full transaction,resetoriginalidentity,check same catalog/state,close client; one fresh independently-qualified read-only absence client confirms same container IDs/catalog/state and protocol settlement. Clock/snapshot mismatch staysINCOMPARABLE; no historical JWT or first-error claim."
+    ],
+    "fixture_cleanup": [
+      "Only after awaited ordinary command/query protocol settlement and cleanup qualification: delete only two allocated tenant UUID scopes from dependent test rows. Existing helper uses transaction-local session_replication_role=replica for this scoped fixture cleanup; this existing privileged effect must be named,not hidden.",
+      "Canonical fixture/Auth cleanup; same-statement setupvisibility plus exact tenant/Auth UUIDabsence oracle. If unverified,retain fixture custody and reportCLEANUP_UNVERIFIED."
+    ],
+    "wrapper_cleanup_and_custody": [
+      "Identity-bound child group absence+done+output settlement before key cleanup; numeric PID or childexit alone insufficient.",
+      "Delete only captured Vault UUID+ownedname after proven child/transaction settlement; verify absence,close database. COMMIT/key/create/cleanup uncertainty retains explicit custody; no manufactured deleted-success.",
+      "Fresh late child-launch state preserves started/attempted-unverified/not-created-confirmed distinction. Routine always stack stop runs evenfailure. No local guard resources are launched by hosted CI."
+    ]
+  },
+  "current_producer_and_upload": {
+    "observation": "Exact11fields; statusDiscriminator null or status-origin-v2/three EXTERNALclasses/18ownboolean permissionbits with owner_actor_execute. This is distinct from proposed migration matrix schema.",
+    "existing_validator": "Current wrapper rejects malformed/getter/polluted/missing fields and unverified ordinary/query/cleanup settlement. readDiagnostic before key cleanup enforces current producer observation; finishDiagnostic applies report privacy/detector checks.",
+    "artifact": "native-calendar-feed-cause-proof: only validated native.json,observation.json plus safe receipt.json/manifest.json; at most1MiB each input; native report exactly1 executed and0pending; refused originals never copied to upload.",
+    "privacy": "Known key/secret/capability/proof/hash/IP-like output detector remains; actual flags/markers/custody must later be observed. Raw schema/prosrc/catalog/state are RAM-only. No old consumer can provide v2 privacy qualification.",
+    "reports_without_acquisition": "Artifact upload is an explicitly allocated producer effect,not permission to download it. No artifact-list/download in least route.",
+    "exact_current_source_consumers": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "entry": "15.5-DIAG001",
+        "role": "Calls runCalendarFeedCauseProof once; writes observation; fails unverified ordinary/query/cleanup settlement."
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "entry": "runCalendarFeedCauseProof",
+        "role": "Owns actual awaited ordinarycall,conditionalbaseline/protocol/fixturecleanup; produces current11field observation/status-origin-v2."
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "entry": "validateCauseProofObservation via deps.readDiagnostic in runCalendarFeedRuntime",
+        "role": "Current in-producer v2 shape/identity/settlement validator runs before key-cleanup eligibility; no external oldv1 consumer used."
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "entry": "finishCauseProof",
+        "role": "Validates v2 observation and native1case report plus privacy before copying only qualified bodies into upload and binding receipt/manifest."
+      }
+    ]
+  },
+  "one_archive_manual_qualification": {
+    "future_separate_ownership": "Root terminal exactrun/head/attempt/mode/jobfacts first. ONE logs ZIP GET,15s/32MiB compressed,128MiB boundedinflate,validatedZIP/no extraction; raw RAMonly; no job-log retries/alternateendpoints.",
+    "selected_members": "db startup step only for matrix; allocate db cause-proof execution/lifecycle/upload and stop context from same archive ONLY if unexpected success branch reached. Root normal job metadata supplies skip/failure status. No unrelated job/step inspection.",
+    "matrix_capture": "Fixed prefix/schema calendar-original-function-guard-v1; exactschema/ordinal/checks; ordinal1..3;11fixed ownboolean-or-NULL keys; source/entry/transport digests only. NULL/malformed/alltrue/unknownfailure/absentmatrix =>STOPUNKNOWN. No raw error/detail/hint/context/SQL/source persisted.",
+    "success_branch_qualification": "Startup success is nonreproduction. Current v2 producer guards plus observed closed lifecycle may qualify settlement/keycleanup; missing lifecycle/report cannot be converted into success/no-child. Diagnostic outcome/report content not available in archive remainsUNAVAILABLE_UNQUALIFIED; do not invent cause or fetch artifacts. If failure/custody cannot be resolved from allocated evidence,STOPUNKNOWN and retain operator custody.",
+    "normal_cases": "No95/fullDB/pilot/browser/recovery credit; no opaque normal retry authorized."
+  },
+  "remaining_conditions": [
+    "Source-only exact3 allocation complete. Distinct High plan addendum must reconcile these exact current producer-v2 consumer bindings and conditional effects against original external-consumer condition before separate execution/onearchive allocation.",
+    "Three source changes implemented+reviewed at actual newcommit; current record does not qualify that future payload.",
+    "Root actual pushed binding and fresh checked-in diagnostic preflight; no current API availability claimed.",
+    "One explicit activation only after above; actual native/cleanup/evidence qualification afterward."
+  ],
+  "actual_checks": "Read/hash/source-Git binding and v2/pin/argv inspection only;0test/native/SQL/API/resource effects.",
+  "development_complete": false,
+  "release_ready": false,
+  "normal_acceptance_credit": 0,
+  "source_only_allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-direct-evidence-source-allocation.json",
+    "bytes": 2215,
+    "sha256": "dc052ce7e080d91f88c1429a4a15dedf74eea80bcd449568eb3c716a27bad606",
+    "execution_effects_allocated": false
+  },
+  "readiness_conclusion": "Existing lane has no intrinsic source/collector blocker if current producer-v2 validators and all unexpected-success effects are explicitly reconciled/reviewed/allocated. No existing artifact-consumer execution is required for startup matrix or bounded lifecycle facts; unacquired bodies remainUNAVAILABLE/UNKNOWN."
+}

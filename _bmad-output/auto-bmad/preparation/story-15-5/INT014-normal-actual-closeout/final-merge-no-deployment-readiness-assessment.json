@@ -1,0 +1,182 @@
+{
+  "schema": "INDEPENDENT_HIGH_EARLY_NO_DEPLOYMENT_MERGE_READINESS_V1",
+  "outcome": "HOLD_MERGE_PENDING_FINAL_GATES_AND_PRODUCTION_MAIN_CONTAINMENT",
+  "scope": "Early read-only local automation and retained-provider evidence assessment. Not a story code review, final merge approval, hosted-settings verification or fourth broad review.",
+  "identity": {
+    "owned_checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "reported_local_head_prefix": "bd4121",
+    "pending_INT014_source": "Not inspected or reviewed here; author and distinct source reviewer retain ownership",
+    "final_PR_head": null,
+    "target_main_head": null,
+    "eventual_merge_commit": null
+  },
+  "authorization": {
+    "conditional_user_intent": "Whole Epic15 merge only after independent review and required checks; retain branches and use merge commits; NO deployment.",
+    "remaining_boundary": "This assessment does not clear any existing merge_main:false override, change state, or replace the Coordinator's reconciliation of the actual conditional user instruction with operational flags.",
+    "external_review": "Final PR review must be started by Coordinator in a fresh Codex chat, pinned to the actual PR head; required review and checks remain separate from containment.",
+    "development_policy": "2026-10-19: development completion and release readiness differ. Required development evidence may not be substituted with deferred release checks; no deployment follows from development completion."
+  },
+  "local_findings": [
+    {
+      "id": "MAIN_PRODUCTION_CONTAINMENT_UNPROVED",
+      "severity": "merge_blocker",
+      "source": "vercel.json:5-11",
+      "fact": "git.deploymentEnabled contains five false feature-branch entries, including the Epic15 feature branch, but no main entry or global disable. No local ignoreCommand is present.",
+      "consequence": "The owned feature-branch disable does not follow a merge to main. The local source alone cannot establish that a main merge will avoid a production deployment."
+    },
+    {
+      "id": "RETAINED_PROVIDER_SCOPE_LIMIT",
+      "severity": "merge_blocker",
+      "fact": "The retained project read qualified only point-in-time ordinary owned-feature-branch Git-push build skipping. previewDeploymentsDisabled=true; shared commandForIgnoringBuildStep='exit 0'; gitProviderOptions.createDeployments='enabled'. Qualification freshness was 300 seconds.",
+      "consequence": "Neither preview disable, the dated feature-branch qualification nor the mere shared exit0 string independently proves production/main auto-deployment containment. Cancelled deployment records may exist. Manual/CLI/deployment-hook routes were not qualified and are not authorized here."
+    },
+    {
+      "id": "LOCAL_MAIN_WORKFLOWS",
+      "severity": "bounded_effects_to_account",
+      "fact": "ci.yml push main runs verification, production build, isolated local integration/RLS/browser and isolated recovery lanes. It has no Vercel deployment or hosted Supabase db push step. auto-bmad-parallel and cloudflare-monitor-verify are main-push path-filtered verification workflows; the latter runs wrangler deploy --dry-run only. The fixed-Chromium mock proof is feature-branch-push scoped.",
+      "consequence": "Merging can start CI workloads even without application deployment. Existing user conditional merge intent must be satisfied before merge; checks after a merge do not retroactively qualify the pre-merge head."
+    },
+    {
+      "id": "OTHER_EXISTING_MAIN_AUTOMATION",
+      "severity": "scope_limit",
+      "fact": "pilot availability and backup are scheduled/manual main workflows; isolated recovery rehearsal is manual main only. PR-feedback remediation is schedule/comment/manual main automation, not a main-push deployment step. Current hosted enabling variables/secrets are not read or asserted here.",
+      "consequence": "These local declarations are not proof that hosted operations are presently enabled or disabled. No change, dispatch, suspension or global settings update is proposed."
+    },
+    {
+      "id": "DEMO_DOCUMENTATION_IS_NOT_DEPLOYMENT_AUTHORITY",
+      "severity": "policy_boundary",
+      "source": "docs/process/demo-environment.md:22,75,321-322",
+      "fact": "Dated demo instructions describe Vercel auto-deploy from main and a separate supabase db push after merge. Historical READY deployments demonstrate that main previously had such a route, not its current configuration.",
+      "consequence": "The current NO-deployment condition supersedes any implied follow-on deployment or hosted migration action in the older runbook. No supabase db push, hosted schema apply, manual Vercel deployment or production promotion is included in a merge."
+    },
+    {
+      "id": "VERCEL_CRON_SCOPE",
+      "severity": "consequence_if_deployed",
+      "source": "vercel.json:3",
+      "fact": "The config declares an /api/jobs/run cron every five minutes.",
+      "consequence": "A production deployment would not be merely a passive source publication. This assessment does not exercise the endpoint, alter an existing deployment or claim that already-running production jobs stop when merging is held."
+    }
+  ],
+  "retained_provider": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-vercel-readonly-qualification.json",
+    "bytes": 30470,
+    "sha256": "cbd44cf150d0ac1dc734a5d2cb4a0001a896c2137b4730743f963f4b09e171cd",
+    "status": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT",
+    "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "checkpoint": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+    "utc_completed": "2026-10-23T12:05:51.799714+00:00",
+    "freshness_seconds": 300,
+    "logical_GET_invocations": 1,
+    "provider_mutations": 0,
+    "qualified": "Exact linked Vercel project/team/repository identity; branch disable plus project unconditional ignored-build gate for ordinary owned feature-branch Git push. Its reported native capture completed at exit0 with EOF/readers joined/handles closed/settled.",
+    "not_qualified": [
+      "Current production/main Git deployment disable",
+      "Blanket manual/CLI or deployment-hook disable",
+      "Actual future merge alias/deployment outcome",
+      "Current hosted Supabase schema automation state"
+    ],
+    "raw_body_or_credentials_retained_by_this_assessment": false
+  },
+  "minimum_remaining_plan": {
+    "status": "Read-only proof plan; no effects or new authority.",
+    "before_merge": [
+      "Freeze the reviewed final Epic15 source and actual final PR head; obtain final independently qualified required development/functional evidence for that head, including full95 and separate recovery/custody where required. Preserve nonexecution, deferred-release and unknown limits. Obtain Coordinator's fresh-chat external review and resolve consequential findings. Retain merge-commit and branch-preservation requirements.",
+      "Immediately before an eventual merge, use one separately admitted read-only project-settings request through the existing owned project/team qualification lane. Bind exact provider project/team/repository, actual production branch, Git deployment creation/production auto-deployment control, preview setting and ignored-build behavior. Inspect the exact final main-merge candidate vercel.json and any relevant project build-ignore override together; an owned-feature-branch map is insufficient.",
+      "Qualify an enforced control that actually covers production/main Git merges. If the existing shared ignored-build gate is the proposed control, establish its current production applicability and the exact candidate's inability to override it; do not infer that from its string or preview setting. If the returned settings cannot prove that invariant, keep the merge blocked. The smallest further step is a separately authorized supported main/production Git auto-deployment containment change plus fresh exact readback, not a trial merge/deploy. No provider-setting change is authorized by this assessment.",
+      "Refresh exact PR-head/target-main identity and required check/review status as part of the actual finite merge operation. Reuse unchanged local workflow/config hashes; inspect only actual intervening automation/config deltas. Reconcile conditional human merge authorization and any merge_main:false operational override explicitly; this report changes neither.",
+      "Allocate only the actual merge and bounded evidence/readback operation once all prerequisites are true. No deployment, promotion, db push, optional diagnostic, cleanup or settings restoration is implied. Keep the existing deployment prohibition in the final handoff."
+    ],
+    "why_minimal": "Reuse the already-reviewed provider transport and closed public projections with production/main-specific data and proof; no collector/controller framework or new runtime experiment. Local source establishes no hosted deploy command in these workflows, so no CI redesign is indicated.",
+    "read_only_uncertainty": "One project read may expose a sufficient existing main/production control; if it does not, read-only evidence cannot manufacture containment. Hold for the concrete authorized configuration correction instead of expanding diagnostics or assuming safety."
+  },
+  "current_limits": {
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "merge_ready": false,
+    "production_current_state": "UNKNOWN",
+    "full_epic_completion": "Not evaluated; active story work remains outside this assessment",
+    "final_external_review": "REQUIRED, not performed here",
+    "further_effects_authorized": false
+  },
+  "effects": {
+    "network": 0,
+    "provider_GET": 0,
+    "provider_writes": 0,
+    "Git_mutations": 0,
+    "merge": 0,
+    "deploy": 0,
+    "runtime_or_managed_resources": 0,
+    "tests_or_source_harness": 0,
+    "app_Spec_state_input_writes": 0,
+    "own_private_assessment_files": 1
+  },
+  "source_pins": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/agent-workflow.md",
+      "bytes": 8534,
+      "sha256": "f98f17dbe51f7ca7b77657e616b624ee7241f33ff17be94db1bb70ad361e81e1"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/demo-environment.md",
+      "bytes": 37313,
+      "sha256": "bc5b5a819d272941e5d4d408534f0c6e297b75d7dd008bda658eada4fe44e3eb"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 472,
+      "sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129"
+    },
+    {
+      "path": ".github/workflows/auto-bmad-parallel.yml",
+      "bytes": 2068,
+      "sha256": "126d339ac627f0fc455ef7049d3b12bf3ea53411b8a61c8c0e65bb48193ffa65"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+    },
+    {
+      "path": ".github/workflows/cloudflare-monitor-verify.yml",
+      "bytes": 1435,
+      "sha256": "18965e82fb30ebfc8b06346f95369b7dcd1f81345f47fcfcabf3b10232eca553"
+    },
+    {
+      "path": ".github/workflows/fixed-chromium-capsule-mock-proof.yml",
+      "bytes": 8443,
+      "sha256": "4aa549f5df3ac1e51a0e475826dde0f99d70e1143f83878454efa90780986b86"
+    },
+    {
+      "path": ".github/workflows/pilot-availability.yml",
+      "bytes": 7000,
+      "sha256": "a8a6ecfce478cc86529583535ec24a7a7358e250ce0d6833091e0f8663e5e721"
+    },
+    {
+      "path": ".github/workflows/pilot-backup.yml",
+      "bytes": 6920,
+      "sha256": "b63f6bb2dadc687bc0ca21f5657175be5f7b374287b84adfaa2194df5294a547"
+    },
+    {
+      "path": ".github/workflows/pilot-isolated-recovery-rehearsal.yml",
+      "bytes": 13238,
+      "sha256": "a62307f2ff235d2137175bf3ae6102342cf11310d2c8d9b721e6f2a2c05592ec"
+    },
+    {
+      "path": ".github/workflows/pr-feedback.yml",
+      "bytes": 13698,
+      "sha256": "6b5a72c5459fbb54991b511d0d583bdb44cd7232d7363129ecb3b8cf93638cea"
+    }
+  ]
+}

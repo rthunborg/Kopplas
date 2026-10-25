@@ -1,0 +1,274 @@
+{
+  "after_controls": {
+    "API_GETs": 0,
+    "Git_mutations": 0,
+    "actual_corrected_controls": 2,
+    "author_receipt_unchanged": true,
+    "current75_bytes_unchanged": true,
+    "native_application": 0,
+    "status": "PASS_AFTER_CONTROLS"
+  },
+  "blockers": [],
+  "causal_limit": {
+    "controlled_pre_edit": {
+      "Linux": "0P/2F; child native1, outer WSL0",
+      "Windows": "2P/0F",
+      "observed": "Linux Git could not resolve Windows worktree pointer before source comparisons."
+    },
+    "correction_proven": "Removes that demonstrated runtime-history dependency while preserving the reviewed baseline invariants and fault oracles.",
+    "hosted_original_exceptions": "UNKNOWN: not retained in the qualified hosted packet.",
+    "not_proven": [
+      "That Git-pointer error was either hosted exception",
+      "A hosted/exact-new-head CI gate passes",
+      "Application/native functional cause or remedy",
+      "Downstream DB/browser/recovery execution, key/backend custody, acceptance or completion"
+    ],
+    "source_supported_risk": "Current verify checkout does not declare historical/full Git availability; historical166cad objects are an undeclared unit runtime prerequisite."
+  },
+  "concrete_findings": [],
+  "deferred_work": [
+    "Separate bounded readiness/checkpoint admission and actual exact-head evidence remain existing gates; no automatic retry is authorized."
+  ],
+  "effects": {
+    "Git_mutations": 0,
+    "Git_read_commands": "diff-tree/cat-file/rev-parse for exact review objects only",
+    "SQL_services_resources": 0,
+    "development_complete": false,
+    "execution_authorized": false,
+    "native_acceptance": 0,
+    "native_application": 0,
+    "network_API_CI_provider": 0,
+    "release_ready": false,
+    "source_Spec_state_changed_by_reviewer": false
+  },
+  "exact_scope": {
+    "API_GETs": 0,
+    "Git_commands": "read-only diff-tree/cat-file/rev-parse only",
+    "Git_mutations": 0,
+    "SRO_count": 1,
+    "SRO_sha256": "5110b298761c64d8e657e6434b732abf2801bcbcb6bc3a399fff6f2e30bf7472",
+    "SRO_stops": 172,
+    "author_receipt": {
+      "bytes": 48716,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/qualified-normal-unit-regression-author-result.json",
+      "sha256": "681820f0c11d981631bfd165168cdf1d000f5f5d98f03125197d361468543f18"
+    },
+    "base": "177559a551a5735e2d2a4db07776b42ec54ea9f0",
+    "changed_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "commit": "4cd5e944ae19785f4d7abfbcca4f1d471cc7491e",
+    "current75_raw_clean_and_actual_commit_blobs": true,
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged": true
+    },
+    "native_application": 0,
+    "native_provenance_audit_manifest": {
+      "bytes": 859,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-native-provenance-audit/manifest.json",
+      "sha256": "c8689e52d5ca119c96e7e8172bf7f2747526c643fcbb6e2dd2864832069d84d9"
+    },
+    "original_166cad_objects": [
+      {
+        "blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+        "body_bytes": 54738,
+        "body_sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3",
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "revision": "166cad1c21f423b96c815a3f5b34d2fb81bc28bf"
+      },
+      {
+        "blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "body_bytes": 40089,
+        "body_sha256": "924e696f0603706b704e74942982612078b785acc28154e118c4ce4720d9791e",
+        "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+        "revision": "166cad1c21f423b96c815a3f5b34d2fb81bc28bf"
+      },
+      {
+        "blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+        "body_bytes": 27968,
+        "body_sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "revision": "166cad1c21f423b96c815a3f5b34d2fb81bc28bf"
+      }
+    ],
+    "root_preadmission": {
+      "bytes": 1069,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-qualified-normal-unit-regression-precommit-admission.json",
+      "sha256": "b7a9d9355f9d89476b76d44cce1575861f0e11ed801dd0600b6c5d6b8f49c510"
+    },
+    "source_refs": [
+      {
+        "bytes": 214530,
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "sha256": "0a0a7acae8a7df8d9428999d886111116fda0e357eae5b1910cff48d77cc5f1d"
+      },
+      {
+        "bytes": 264406,
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "sha256": "3adfd101fa61848a5ab3ce00bfa1182f49e4ebe6b70b5c9fc11281eeec42a52e"
+      }
+    ],
+    "status": "PASS_BINDINGS",
+    "story": {
+      "ARR_status": "in-review",
+      "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+      "historical_frontmatter_warnings": [
+        "oversized"
+      ],
+      "parse_warnings": [],
+      "review_loop_iteration": 3,
+      "status": "in-review"
+    }
+  },
+  "gates_and_limits": [
+    "Exactly two committed paths changed: affected unit and author Spec/ARR/SRO. No production/helper/metadata/privacy/config/workflow/fetch/dependency/SQL/authorization/lifecycle change, no skip/fallback/guard waiver.",
+    "Reviewed pins derive from actual reviewed166cad objects, not current-to-current constants. Current ordered assertion arrays were directly compared to historical arrays in addition to verifying count/hash. The operation patterns and assertion traversal/normalization retain their old semantics.",
+    "Fault oracles remain meaningful: each appended operation changes its corresponding count; modified existing assertion changes fingerprint; extra assertion changes count. Default silent waiter completion and exact one opt-in per caller remain in actual controls.",
+    "One author SRO172 resolves final literals. Tagged intent kernel5760/SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977 is byte-identical to baseline177. In-review/counter3/acceptance0 remain.",
+    "This source-only PASS grants no automatic retry, push/dispatch, CI/provider/acquisition/SQL/resource/merge/deployment authority, native acceptance, development completion or release readiness. Any readiness refresh and separately allocated exact-head evidence remain separate gates."
+  ],
+  "independent_controls": {
+    "actual_test_bodies_executed": true,
+    "assertion_inverses_in_same_two_controls": 4,
+    "cancelled": 0,
+    "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern='label instrumentation preserves actual promise|actual labelled caller assertions match' tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "duration_ms": 589.1701,
+    "failed": 0,
+    "native_exit": 0,
+    "not_added_to_author_152": true,
+    "operation_inverses_in_same_two_controls": 6,
+    "ordinary_warnings": [
+      "MODULE_TYPELESS_PACKAGE_JSON",
+      "ExperimentalWarning: stripTypeScriptTypes"
+    ],
+    "passed": 2,
+    "skipped": 0,
+    "synthetic_test_output_sha256": "757ecda098dacabb0a738bb4a905c30b32e0fed40846ce4cb3b51c52ddca3843",
+    "tests": 2,
+    "wall_time_seconds": 0.7196119
+  },
+  "independent_historical_recomputation": {
+    "API_GETs": 0,
+    "Git_mutations": 0,
+    "assertion_baselines": [
+      {
+        "blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "body_bytes": 40089,
+        "body_sha256": "924e696f0603706b704e74942982612078b785acc28154e118c4ce4720d9791e",
+        "count": 260,
+        "current_exact_ordered_list_equal": true,
+        "ordered_assertion_sha256": "6607e4720f23b6653d5d08f4e3157268949eafffb0cc2fe115b0931cfae67e78",
+        "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts"
+      },
+      {
+        "blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+        "body_bytes": 27968,
+        "body_sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+        "count": 268,
+        "current_exact_ordered_list_equal": true,
+        "ordered_assertion_sha256": "25fffb090536cc2e1a4d269f7ab8298f6e096700b6dd7dd0466c7fb37a944a95",
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts"
+      }
+    ],
+    "assertion_inverses_rejected": 4,
+    "helper_body_sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3",
+    "historical_and_current_vector": [
+      7,
+      8,
+      6,
+      5,
+      14,
+      2
+    ],
+    "historical_revision": "166cad1c21f423b96c815a3f5b34d2fb81bc28bf",
+    "not_current_to_current": true,
+    "operation_inverses_rejected": 6,
+    "operation_pattern_order": [
+      "/\\.then\\(/g",
+      "/\\.catch\\(/g",
+      "/new Promise/g",
+      "/setTimeout\\(/g",
+      "/adminQuery[<(]/g",
+      "/\\.rpc\\(/g"
+    ],
+    "opt_in_exact_one_per_caller": true,
+    "source_or_test_execution": 0,
+    "status": "PASS_INDEPENDENT_HISTORICAL_INVARIANTS"
+  },
+  "independent_static": {
+    "history": [
+      {
+        "check": "First review-order checker command",
+        "meaning": "The exec workdir hint did not select the checkout; Node searched C:/scripts and did not run the checker. Explicit Set-Location then ran the actual checker successfully. No source/report input changed.",
+        "native_exit": 1
+      }
+    ],
+    "kernel": {
+      "actual_tagged_bytes_recomputed": true,
+      "baseline177_and_current_identical": true,
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+    },
+    "review_order": {
+      "errors": [],
+      "native_exit": 0,
+      "one_author_heading": true,
+      "refs": 172
+    },
+    "trail": {
+      "controlled_vs_hosted_cause_explicit": true,
+      "new_unit_stops": [
+        2409,
+        2437
+      ],
+      "source_baseline_provenance_correct": true
+    }
+  },
+  "open_questions": [
+    "Original hosted exceptions remain UNKNOWN.",
+    "Exact corrected-head hosted CI and previously unexecuted downstream gates remain unverified.",
+    "Earlier application/custody failures remain unresolved."
+  ],
+  "outcome": "PASS_TARGETED_CODE_ONLY_QUALIFIED_UNIT_PORTABILITY_CORRECTION",
+  "report": {
+    "bytes": 4650,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-high-review/original-report.md",
+    "sha256": "6ba5c109cff86792355d373aba6c8837cce8136e9710905868e3b30b5485b632"
+  },
+  "reused_author_evidence": {
+    "Root_census": "Bound precommit admission75 raw/nativeclean+375 historical objects+3 actual reviewed baseline bodies. Reviewer independently checked75 current raw/clean/commit blobs and3 historical bodies.",
+    "TypeScript": "Author whole noEmit/incrementalfalse native0",
+    "full_affected_qualified_Linux": {
+      "WSL_exit": 0,
+      "cancel": 0,
+      "duration_ms": 18223.325157,
+      "fail": 0,
+      "native_exit": 0,
+      "output_sha256": "a8dff9ce42cf28a852bb1f7b268c84ecd2c3f9893c87694367cdfedd067e2a4b",
+      "pass": 152,
+      "scope": "Author actual full affected-file run on existing qualified Linux overlay, source vector identical to committed correction. Reused, not independently rerun or added to reviewer2.",
+      "skip": 0,
+      "tests": 152
+    },
+    "lint": "Author affected ESLint native0/no warnings",
+    "receipt_sha256": "681820f0c11d981631bfd165168cdf1d000f5f5d98f03125197d361468543f18",
+    "story_reader": "Author/Root canonical reader native0, in-review/counter3/parse_warnings[]"
+  },
+  "reviewer": {
+    "broad_story_review": false,
+    "effort": "high",
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "review_round_increment": 0
+  },
+  "reviewer_history": [
+    {
+      "meaning": "Initial reviewer binding verifier treated author Files changed objects as strings and stopped before historical recomputation/tests. Corrected to read their path field; no reviewed file changed.",
+      "native_exit": 1
+    }
+  ],
+  "schema": "QUALIFIED_UNIT_PORTABILITY_TARGETED_HIGH_REVIEW_v1"
+}

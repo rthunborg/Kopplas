@@ -1,0 +1,21 @@
+{
+  "inverse": [
+    {
+      "old": "\"scenario-http-transport\", \"scenario-rls001-own\"",
+      "new": "\"scenario-http-transport\", \"scenario-telemetry-observation-timeout\", \"scenario-telemetry-privacy-refused\", \"scenario-telemetry-parse-refused\", \"scenario-rls001-own\""
+    },
+    {
+      "old": "        const value=await readFile(path,\"utf8\"),records=value.trim().split(\"\\n\").filter(Boolean).map(line=>JSON.parse(line) as Record<string,unknown>);",
+      "new": "        const value=await readFile(path,\"utf8\");\r\n        let records:Record<string,unknown>[];\r\n        try { records=value.trim().split(\"\\n\").filter(Boolean).map(line=>JSON.parse(line) as Record<string,unknown>); }\r\n        catch { throw calendarFixtureOrigin(\"scenario-telemetry-parse-refused\"); }"
+    },
+    {
+      "old": "throw new Error(\"Runtime sensitive-output detector failed\")",
+      "new": "throw calendarFixtureOrigin(\"scenario-telemetry-privacy-refused\")"
+    },
+    {
+      "old": "throw new Error(\"Actual feed telemetry observation absent\")",
+      "new": "throw calendarFixtureOrigin(\"scenario-telemetry-observation-timeout\")"
+    }
+  ],
+  "changed_semantics": "Existing three telemetry failure branches get source-owned fixed labels; no functional repair or current hosted cause claimed."
+}

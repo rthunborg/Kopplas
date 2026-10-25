@@ -1,0 +1,1251 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { EventEmitter } from "node:events";
+import vm from "node:vm";
+import ts from "typescript";
+import { test } from "node:test";
+import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+import { bounded, checkApplicationArguments, checkPinnedCandidate, inspectReport, runApplication, runCompatibility,
+  runOwnedChild, sealEnvironment, validateProvenance, createHostedOwner, SOURCES, VISUALS } from "../../../diagnostics/fixed-chromium-application-runner.mjs";
+import { FIXED, validateReceipt } from "../../../diagnostics/no-store-stream-probe.mjs";
+
+const sha = (data: string | Buffer) => createHash("sha256").update(data).digest("hex");
+const source = (path: string) => readFileSync(path, "utf8").replaceAll("\r\n", "\n");
+const candidate = () => ({ executable: "/runner/kopplas-fixed-chromium-abc/chrome-linux64/chrome", receipt: {
+  artifact: "chrome-for-testing-public-158.0.8104.0-linux64", platform: "linux64", version: "158.0.8104.0",
+  revision: "1717709", generation: "1791951285551907", zipBytes: 202355055,
+  zipMd5: "4bc3c2aa1a735657f7d063a96d84baa2", zipSha256: "6d15a1a00e6c8a97d04783ccb3ee0ec79ecf964dca75aff5ca8e39c3a270fa1b",
+  sha256Authority: "computed-acquired-bytes", executable: { version: "158.0.8104.0", bytes: 304586056,
+    sha256: "831b57f57d85e72f5a633f4ab2974bdc7047739119838fd774cbf06b3fd907c6", product: "full-chrome" },
+} });
+const bindings = () => Object.fromEntries(SOURCES.map(path => [path, { bytes: 10, sha256: sha(path) }]));
+const nativeReport = () => {
+  const png = Buffer.from([137,80,78,71,13,10,26,10,1,2,3]);
+  const specs = Array.from({ length: 382 }, (_, i) => ({ id: `test-${i}`, file: i < 18 ? "scheduling-views.atdd.e2e.spec.ts" : "other.e2e.spec.ts",
+    tests: [{ projectId: "chromium", projectName: "chromium", status: "expected",
+      results: [{ status: "passed", retry: 0, duration: 1, attachments: i === 0 ? VISUALS.map(name => ({ name, contentType: "image/png", body: png.toString("base64") })) : [] }] }] }));
+  return { suites: [{ specs, suites: [] }], errors: [], stats: { expected: 382, unexpected: 0, skipped: 0, flaky: 0 } };
+};
+function fixture() {
+  const history: string[] = [], sources = bindings();
+  const state = { report: nativeReport(), exit: 0, signal: null as string | null, expired: false,
+    captures: [] as unknown[], changed: false, invocations: 0, compatibility: 0 };
+  const io = {
+    platform: "linux", version: "v22.23.3", argv: ["node", "runner", "--verify-application", candidate().executable],
+    env: { CI: "true", SUPABASE_TEST_REQUIRED: "1" },
+    gitIdentity: async () => ({ executionSha: "a".repeat(40), sourceTree: "b".repeat(40) }),
+    bindings: async () => state.changed ? { ...sources, "package.json": { bytes: 9, sha256: "f".repeat(64) } } : sources,
+    freshOutput: async () => { history.push("fresh"); },
+    admitCandidate: async () => { history.push("admit"); return candidate(); },
+    packageAdmission: async () => ({ provenance: { node: "v22.23.3", sdk: "1.61.1", testManifestSha256: "c".repeat(64),
+      playwrightManifestSha256: "d".repeat(64), coreManifestSha256: "e".repeat(64),
+      sourceSha256: sources["tests/diagnostics/no-store-stream-probe.mjs"].sha256,
+      packageSha256: sources["package.json"].sha256, lockSha256: sources["pnpm-lock.yaml"].sha256, nvmSha256: sources[".nvmrc"].sha256 } }),
+    bounded: async <T>(task: Promise<T>, ms: number) => { assert.equal(ms, 15000); return task; },
+    compatibility: async () => { state.compatibility++; history.push("compatibility"); return { version: "158.0.8104.0", closed: true }; },
+    cliPath: async () => "/installed/@playwright/test/cli.js",
+    application: async (path: string, env: Record<string,string>, cli: string) => {
+      assert.equal(path, "playwright.fixed-chromium-application.config.ts"); assert.equal(cli, "/installed/@playwright/test/cli.js");
+      assert.equal(env.KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE, "verify-application"); state.invocations++; history.push("application");
+      return { code: state.exit, signal: state.signal, expired: state.expired };
+    },
+    readReport: async () => Buffer.from(JSON.stringify(state.report)),
+    readAttachment: async () => { throw new Error("DENIED native filesystem"); },
+    writeProvenance: async (record: unknown) => { state.captures.push(JSON.parse(JSON.stringify(record))); },
+  };
+  const run = () => runApplication(io as unknown as Parameters<typeof runApplication>[0]);
+  return { io, state, history, run };
+}
+
+test("actual runner admits one compatibility launch then one full CLI and binds all eleven captures", async () => {
+  const f = fixture(), result = await f.run(); assert.equal(result.exitCode, 0);
+  assert.equal(f.state.invocations, 1); assert.equal(f.state.compatibility, 1);
+  assert.deepEqual(f.history, ["fresh", "admit", "compatibility", "admit", "application"]);
+  const record = JSON.parse(JSON.stringify(result.record)) as { visuals: unknown[]; population: { schedulingPassed: number } };
+  assert.equal(record.visuals.length, 11); assert.equal(record.population.schedulingPassed, 18);
+  assert.equal(f.state.captures.length, 1);
+});
+for (const [name, mutate] of [
+  ["wrong flag", (f: ReturnType<typeof fixture>) => { f.io.argv[2] = "--paired-fixed-chromium"; }],
+  ["extra selector", (f: ReturnType<typeof fixture>) => { f.io.argv.push("--grep", "AC2"); }],
+  ["wrong platform", (f: ReturnType<typeof fixture>) => { f.io.platform = "win32"; }],
+  ["wrong Node", (f: ReturnType<typeof fixture>) => { f.io.version = "v24.0.0"; }],
+  ["missing local-stack gate", (f: ReturnType<typeof fixture>) => { f.io.env.SUPABASE_TEST_REQUIRED = "0"; }],
+  ["not CI", (f: ReturnType<typeof fixture>) => { f.io.env.CI = "false"; }],
+] as const) test(`actual argv refuses ${name} before any native route`, async () => {
+  const f = fixture(); mutate(f); assert.throws(() => checkApplicationArguments(f.io));
+  const result = await f.run(); assert.notEqual(result.exitCode, 0); assert.equal(f.state.invocations, 0); assert.equal(f.state.compatibility, 0);
+});
+for (const stage of ["admitCandidate", "packageAdmission", "compatibility", "cliPath"] as const) {
+  test(`actual runner ${stage} failure never executes application and late settlement cannot promote it`, async () => {
+    const f = fixture(); const methods = f.io as unknown as Record<string, () => Promise<unknown>>;
+    methods[stage] = async () => { throw new Error("admission"); };
+    const result = await f.run(); assert.notEqual(result.exitCode, 0); assert.equal(f.state.invocations, 0);
+    await Promise.resolve(); assert.equal(f.state.invocations, 0);
+  });
+}
+for (const field of ["zipSha256", "version", "generation", "sha256Authority"] as const) test(`actual computed pin refuses wrong ${field}`, () => {
+  const value = candidate(); value.receipt[field] = "wrong"; assert.throws(() => checkPinnedCandidate(value));
+});
+test("actual receipt pin rejects unknown data rather than publishing it", () => {
+  const value = candidate(); Object.assign(value.receipt, { url: "PRIVATE" }); assert.throws(() => checkPinnedCandidate(value));
+});
+test("actual runner stops on revalidation or source mutation before CLI", async () => {
+  const f = fixture(); f.io.compatibility = async () => { f.state.changed = true; return { version: "158.0.8104.0", closed: true }; };
+  const result = await f.run(); assert.equal(result.failure, "binding"); assert.equal(f.state.invocations, 0);
+});
+test("original failed native child exit and physical response failures remain failed", async () => {
+  const f = fixture(); f.state.exit = 7;
+  const result = await f.run(); assert.equal(result.exitCode, 7); assert.equal(result.record?.cli.nativeExit, 7); assert.equal(result.failure, "suite");
+});
+test("native cancellation is aborted, never successful", async () => {
+  const f = fixture(); f.state.signal = "SIGTERM";
+  const result = await f.run(); assert.notEqual(result.exitCode, 0); assert.equal(result.record?.cli.state, "aborted");
+});
+for (const fault of ["missing report", "malformed report", "capture missing", "skipped scheduling", "flaky", "interrupted", "budget", "duplicate ID"] as const) test(`actual report refuses ${fault}`, async () => {
+  const f = fixture(), first = f.state.report.suites[0].specs[0].tests[0];
+  if (fault === "missing report") f.io.readReport = async () => { throw new Error("report"); };
+  if (fault === "malformed report") f.io.readReport = async () => Buffer.from("{");
+  if (fault === "capture missing") first.results[0].attachments.pop();
+  if (fault === "skipped scheduling") { first.status = "skipped"; first.results[0].status = "skipped"; f.state.report.stats.expected--; f.state.report.stats.skipped++; }
+  if (fault === "flaky") { first.status = "flaky"; f.state.report.stats.expected--; f.state.report.stats.flaky++; }
+  if (fault === "interrupted") first.results[0].status = "interrupted";
+  if (fault === "budget") first.results[0].duration = 800001;
+  if (fault === "duplicate ID") f.state.report.suites[0].specs[1].id = "test-0";
+  const result = await f.run(); assert.notEqual(result.exitCode, 0); assert.equal(f.state.invocations, 1); assert.equal(result.record?.cli.nativeExit, 0);
+});
+test("actual report counters preserve serial retry results distinctly", async () => {
+  const value = nativeReport(); const row = value.suites[0].specs[0].tests[0];
+  row.status = "unexpected"; row.results = [{ status: "failed", retry: 0, duration: 20, attachments: [] }, { status: "failed", retry: 1, duration: 25, attachments: [] }];
+  value.stats.expected--; value.stats.unexpected++;
+  const result = await inspectReport(Buffer.from(JSON.stringify(value)), async () => { throw new Error("DENIED"); });
+  assert.equal(result.population.titles, 382); assert.equal(result.population.attempts, 383); assert.equal(result.population.failed, 2); assert.equal(result.population.schedulingPassed, 17);
+});
+test("actual runner rejects stale exclusive output and provenance write failures", async () => {
+  const f = fixture(); f.io.freshOutput = async () => { throw new Error("write"); };
+  assert.notEqual((await f.run()).exitCode, 0); assert.equal(f.state.invocations, 0);
+  const g = fixture(); g.io.writeProvenance = async () => { throw new Error("write"); };
+  assert.equal((await g.run()).failure, "write");
+});
+test("sealed environment rejects caller selector/report/node injection without changing source config", () => {
+  const value = sealEnvironment({ PLAYWRIGHT_JSON_OUTPUT_NAME: "foreign", PW_TEST_HTML_REPORT: "foreign", NODE_OPTIONS: "foreign", SUPABASE_TEST_REQUIRED: "1" }, candidate().executable);
+  assert.equal(value.SUPABASE_TEST_REQUIRED, "1"); assert.equal(value.PLAYWRIGHT_JSON_OUTPUT_NAME, undefined); assert.equal(value.NODE_OPTIONS, undefined);
+});
+test("actual compatibility code confirms exact launch options/version and awaited close", async () => {
+  const events: string[] = [];
+  const browser = { version: () => "158.0.8104.0", close: async () => { events.push("close"); } };
+  const actions = { admitCandidate: async () => candidate(), packageAdmission: async () => ({ chromium: { launch: async (options: unknown) => {
+    assert.deepEqual(options, { executablePath: candidate().executable, channel: "chromium", headless: true, timeout: 15000 }); events.push("launch"); return browser;
+  } } }) };
+  assert.deepEqual(await runCompatibility(candidate().executable, actions), { version: "158.0.8104.0", closed: true }); assert.deepEqual(events, ["launch", "close"]);
+  browser.version = () => "149.0.7827.55"; await assert.rejects(runCompatibility(candidate().executable, actions)); assert.equal(events.at(-1), "close");
+});
+
+function config(path: string, env = { CI: "true", KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE: "verify-application", FIXED_CHROMIUM_EXECUTABLE: candidate().executable }) {
+  const text = ts.transpileModule(source(path), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+  const exports: Record<string, unknown> = {};
+  const require = (name: string): unknown => name === "@playwright/test" ? { defineConfig: (value: unknown) => value, devices: { "Desktop Chrome": { viewport: { width: 1280, height: 720 }, defaultBrowserType: "chromium" } } }
+    : name === "./playwright.config" ? { default: config("playwright.config.ts", env) }
+      : name === "./tests/support/test-env" ? new Proxy({}, { get: (_target, key) => String(key) }) : (() => { throw new Error(`DENIED import ${name}`); })();
+  vm.runInNewContext(text, { exports, require, process: { env, platform: "linux", version: "v22.23.3" } });
+  return exports.default as Record<string, unknown>;
+}
+test("actual effective config preserves complete original inventory/setup/use/budgets and isolates only allowed fields", () => {
+  const original = config("playwright.config.ts"), fixed = config("playwright.fixed-chromium-application.config.ts");
+  for (const field of Object.keys(original).filter(k => !["use", "projects", "reporter"].includes(k))) assert.deepEqual(JSON.parse(JSON.stringify(fixed[field])), JSON.parse(JSON.stringify(original[field])));
+  const originalUse = original.use as Record<string,unknown>, fixedUse = fixed.use as Record<string,unknown>;
+  for (const field of Object.keys(originalUse)) assert.deepEqual(fixedUse[field], originalUse[field]);
+  assert.equal(fixedUse.channel, "chromium"); assert.deepEqual(JSON.parse(JSON.stringify(fixedUse.launchOptions)), { executablePath: candidate().executable });
+  assert.equal(fixed.outputDir, "test-results/fixed-chromium-application/results/");
+  assert.match(JSON.stringify(fixed.reporter), /800000/); assert.equal((fixed.projects as unknown[]).length, 1);
+});
+test("actual isolated config refuses direct/default/missing-candidate invocation", () => {
+  for (const env of [{ CI: "true", KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE: "", FIXED_CHROMIUM_EXECUTABLE: candidate().executable },
+    { CI: "true", KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE: "verify-application", FIXED_CHROMIUM_EXECUTABLE: "" }]) assert.throws(() => config("playwright.fixed-chromium-application.config.ts", env));
+});
+
+test("actual export-only inverse recovers full independently reviewed probe", () => {
+  const after = readFileSync("tests/diagnostics/no-store-stream-probe.mjs");
+  const inverse = after.toString().replace("export async function admitCandidate(path)", "async function admitCandidate(path)").replace("export async function packageAdmission()", "async function packageAdmission()");
+  assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "e4ff29811169cff384d9d75ad992730e5726a34f8659287763be24ddef7bfd67");
+});
+test("actual workflow inverse preserves every original job/input/gate/authority byte", () => {
+  const after = projectCalendarFeedCiCommands(source(".github/workflows/ci.yml"));
+  const inverse = after.replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
+    .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "");
+  assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0");
+});
+const ci = projectCalendarFeedCiCommands(source(".github/workflows/ci.yml")), optional = ci.slice(ci.indexOf("  # FIXED-APPLICATION-JOB-BEGIN"));
+const expression = optional.match(/    if: \$\{\{ ([^\n]+) \}\}/)?.[1];
+function eligible(event: string, verify: string, general: string, opt: boolean, cancelled = false) {
+  assert.ok(expression);
+  return vm.runInNewContext(expression, { always: () => true, cancelled: () => cancelled,
+    github: { event_name: event }, inputs: { fixed_chromium_application_verification: opt }, needs: { verify: { result: verify }, e2e: { result: general } } });
+}
+for (const [event, verify, general, opt, cancelled, expected] of [
+  ["workflow_dispatch", "success", "failure", true, false, true], ["workflow_dispatch", "success", "success", true, false, true],
+  ["workflow_dispatch", "success", "failure", false, false, false], ["workflow_dispatch", "failure", "failure", true, false, false],
+  ["push", "success", "success", true, false, false], ["workflow_dispatch", "success", "skipped", true, false, false],
+  ["workflow_dispatch", "success", "cancelled", true, false, false], ["workflow_dispatch", "success", "failure", true, true, false],
+] as const) test(`actual optional condition ${event}/${verify}/${general}/${opt}/${cancelled}`, () => assert.equal(eligible(event, verify, general, opt, cancelled), expected));
+test("actual optional workflow preserves original required red and publisher native-success fence", () => {
+  assert.match(optional, /timeout-minutes: 25/); assert.match(optional, /SUPABASE_TEST_REQUIRED: "1"/);
+  assert.match(optional, /receipt_publish.conclusion == 'success' && steps.receipt_publish.outputs.acquisition_receipt_written == 'true'/);
+  assert.doesNotMatch(optional, /continue-on-error|--grep|--shard|--retries|--timeout/);
+  assert.match(ci, /      - name: Essential authentication smoke \(production app and local Auth\)\n        if: \$\{\{ !\(github.event_name == 'workflow_dispatch' && inputs.release_validation\) \}\}[\s\S]*?run: pnpm run test:smoke/);
+  assert.match(ci, /      - name: Exhaustive browser validation \(explicit opt-in\)\n        if: \$\{\{ github.event_name == 'workflow_dispatch' && inputs.release_validation \}\}[\s\S]*?run: pnpm run test:e2e --reporter=list,json/);
+  assert.equal([...ci.matchAll(/uses: actions\/checkout@v4/g)].length, 8);
+});
+
+test("actual existing candidate function preserves containment/receipt/recomputed executable authority with mocked production I/O", async () => {
+  const text = source("tests/diagnostics/no-store-stream-probe.mjs");
+  const start = text.indexOf("export async function admitCandidate(path)"), end = text.indexOf("export async function packageAdmission()", start);
+  const actual = text.slice(start, end).replace(/^export /, "");
+  const value = candidate(), records: string[] = [];
+  const dependencies = { Buffer, FIXED, process: { platform: "linux", env: { RUNNER_TEMP: "/runner" } },
+    realpath: async (p: string) => p, dirname: (p: string) => p.slice(0,p.lastIndexOf("/")), join: (...parts: string[]) => parts.join("/"),
+    contained: (base: string,p: string) => p.startsWith(base+"/"), lstat: async () => ({ isSymbolicLink: () => false }),
+    readFile: async () => JSON.stringify(value.receipt), validateReceipt,
+    executableReceipt: async () => { records.push("recompute"); return value.receipt.executable; },
+  };
+  const call = vm.runInNewContext(`(${actual})`, dependencies) as (path: string) => Promise<unknown>;
+  assert.deepEqual(JSON.parse(JSON.stringify(await call(value.executable))), value); assert.deepEqual(records, ["recompute"]);
+  await assert.rejects(call("/foreign/chrome"));
+  dependencies.lstat = async () => ({ isSymbolicLink: () => true }); await assert.rejects(call(value.executable));
+});
+
+test("actual owned-child deadline kills only its group, observes close and clears all timers/listeners", async () => {
+  const child = new EventEmitter() as EventEmitter & { pid: number; stdout: EventEmitter }; child.pid=123; child.stdout=new EventEmitter();
+  const timers = new Map<number,() => void>(), killed: string[] = [], listeners = new Set<() => void>(); let next=0;
+  const io = { spawn: () => child, killGroup: (_child: unknown,signal: string) => { killed.push(signal); },
+    killOwnedTree: (_child: unknown,signal: string) => { killed.push(signal); },
+    confirmOwnedCleanup: async () => ({leaderReaped:true,sameLeafEmpty:true,forcedResidue:false}),
+    onSignal: (fn: () => void) => { listeners.add(fn); }, offSignal: (fn: () => void) => { listeners.delete(fn); },
+    setTimeout: (fn: () => void) => { const id=++next; timers.set(id,fn); return id; }, clearTimeout: (id: number) => { timers.delete(id); } };
+  const pending=runOwnedChild(io,[],{},15,false); timers.get(1)?.(); timers.get(2)?.();
+  child.emit("close",null,"SIGKILL"); const result=await pending;
+  assert.equal(result.expired,true); assert.deepEqual(killed,["SIGTERM","SIGKILL"]); assert.equal(timers.size,0); assert.equal(listeners.size,0);
+});
+
+
+test("actual bounded admission is settled after timeout without any compatibility/CLI/late receipt promotion", async () => {
+  const f=fixture(); let settle: (value: ReturnType<typeof candidate>) => void = () => {};
+  f.io.admitCandidate = () => new Promise(resolve => { settle=resolve; });
+  f.io.bounded = <T>(task: Promise<T>) => bounded(task, 1);
+  const result=await f.run(); assert.notEqual(result.exitCode,0); assert.equal(f.state.compatibility,0); assert.equal(f.state.invocations,0);
+  settle(candidate()); await new Promise(resolve => setTimeout(resolve, 2));
+  assert.equal(f.state.compatibility,0); assert.equal(f.state.invocations,0); assert.equal(f.state.captures.length,0);
+});
+test("actual provenance rejects unknown public fields and never exposes raw private launch paths", async () => {
+  const f=fixture(), result=await f.run(); assert.ok(result.record);
+  const record=JSON.parse(JSON.stringify(result.record)); assert.doesNotMatch(JSON.stringify(record), /kopplas-fixed-chromium-abc|\/installed\//);
+  record.url="PRIVATE"; assert.throws(() => validateProvenance(record)); delete record.url;
+  record.packages.stderr="PRIVATE"; assert.throws(() => validateProvenance(record)); delete record.packages.stderr;
+  record.visuals.push(record.visuals[0]); assert.throws(() => validateProvenance(record));
+});
+test("actual compatibility close failure and delayed close cannot start application", async () => {
+  const f=fixture(); f.io.compatibility = async () => ({version:"158.0.8104.0",closed:false});
+  assert.notEqual((await f.run()).exitCode,0); assert.equal(f.state.invocations,0);
+});
+
+function packageFixture() {
+  const text=source("tests/diagnostics/no-store-stream-probe.mjs");
+  const start=text.indexOf("export async function packageAdmission()"), end=text.indexOf("async function runEngine",start);
+  const actual=text.slice(start,end).replace(/^export /,"").replaceAll("import.meta.url","'file:///repo/tests/diagnostics/no-store-stream-probe.mjs'")
+    .replace("await import('@playwright/test')","await sdkImport()");
+  const state={sdk:"1.61.1",nvm:"22",version:"v22.23.3",same:true,baselineCalls:0};
+  const chromium={executablePath:()=>"/baseline/chrome"};
+  const manifests: Record<string,string>={"@playwright/test/package.json":"/sdk/test/package.json","playwright/package.json":"/sdk/playwright/package.json","playwright-core/package.json":"/sdk/core/package.json"};
+  const resolver=Object.assign((name:string)=>{assert.ok(["playwright","playwright-core"].includes(name));return{chromium};},{resolve:(name:string)=>manifests[name]});
+  const context={FIXED, fileURLToPath: (url: string | URL) => new URL(url).pathname, process:{get version(){return state.version;}},createRequire:()=>resolver,Buffer,URL,sha256:sha,
+    readFile:async(path:unknown)=>Buffer.from(String(path).endsWith(".nvmrc")?state.nvm:String(path).startsWith("/sdk/")?JSON.stringify({version:state.sdk}):"source-binding"),
+    sdkImport:async()=>({chromium:state.same?chromium:{}}),
+    EXPECTED:{decodedBytes:324,decodedSha256:"0420236d41fefa877b55ef66e2b78d6f46a46f2f8ebfdd662bc6e1ce2d43b8fe",compressedBytes:347,compressedSha256:"ffce20bb3e0b9766dc35c4f0d9626874851c353b85de3c3b4e8bffda09ec07a7"},
+    executableReceipt:async(path:string,version:string)=>{assert.equal(path,"/baseline/chrome");assert.equal(version,"149.0.7827.55");state.baselineCalls++;return{version,bytes:1,sha256:"f".repeat(64),product:"full-chrome"};},
+  };
+  const call=vm.runInNewContext(`(${actual})`,context) as ()=>Promise<{provenance:{sdk:string}}>;
+  return{state,call};
+}
+test("actual reviewed package admission checks all real module branches before its unchanged baseline seam",async()=>{
+  const f=packageFixture();assert.equal((await f.call()).provenance.sdk,"1.61.1");assert.equal(f.state.baselineCalls,1);
+});
+for(const fault of ["sdk","nvm","Node","module identity"] as const)test(`actual reviewed package admission refuses ${fault}`,async()=>{
+  const f=packageFixture();if(fault==="sdk")f.state.sdk="1.62.0";if(fault==="nvm")f.state.nvm="24";
+  if(fault==="Node")f.state.version="v24.0.0";if(fault==="module identity")f.state.same=false;
+  await assert.rejects(f.call(), /version/);assert.equal(f.state.baselineCalls,0);
+});
+test("actual runner validates SDK admission before compatibility",async()=>{
+  const f=fixture(), original=f.io.packageAdmission;
+  f.io.packageAdmission=async()=>{const result=await original();result.provenance.sdk="1.62.0";return result;};
+  assert.notEqual((await f.run()).exitCode,0);assert.equal(f.state.compatibility,0);assert.equal(f.state.invocations,0);
+});
+test("actual acquisition uploader rejects physically true output when publisher runner failed",()=>{
+  const expression=optional.match(/        if: \$\{\{ ([^\n]*receipt_publish.conclusion[^\n]*) \}\}/)?.[1];assert.ok(expression);
+  const evaluate=(conclusion:string,flag:string)=>vm.runInNewContext(expression,{always:()=>true,cancelled:()=>false,env:{FIXED_CHROMIUM_HOSTED_ADMISSION:"application"},steps:{receipt_publish:{conclusion,outputs:{acquisition_receipt_written:flag}}}});
+  assert.equal(evaluate("failure","true"),false);assert.equal(evaluate("success","false"),false);assert.equal(evaluate("success","true"),true);
+});
+
+
+for(const argv of [["--paired-fixed-chromium","/private/chrome"],["--verify-application","/private/chrome","--grep","AC2"]]) test(`actual CLI entry refuses ${argv[0]}/${argv.length} without any native action`,async()=>{
+  const text=source("tests/diagnostics/fixed-chromium-application-runner.mjs").replace(/^import[\s\S]*?;\n/gm,"")
+    .replace(/\bexport(?=\s+(?:const|async|function))/g,"").replaceAll("import.meta.url","'file:///repo/tests/diagnostics/fixed-chromium-application-runner.mjs'");
+  let actions=0,output="";const denied=()=>{actions++;throw new Error("DENIED native action");};
+  const process={argv:["node","/repo/tests/diagnostics/fixed-chromium-application-runner.mjs",...argv],platform:"linux",version:"v22.23.3",
+    env:{CI:"true",SUPABASE_TEST_REQUIRED:"1"},on(){},off(){},stdout:{write:(value:string)=>{output+=value;}},exitCode:0,execPath:"/node"};
+  await vm.runInNewContext(`(async()=>{${text}\n})()`,{process,Buffer,createHash,performance:{now:()=>0},setTimeout,clearTimeout,
+    resolve:(value:string)=>value,dirname:(value:string)=>value.slice(0,value.lastIndexOf("/")),fileURLToPath:(url:string)=>new URL(url).pathname,
+    admitCandidate:denied,packageAdmission:denied,validateReceipt,spawn:denied,execFile:denied});
+  assert.equal(process.exitCode,1);assert.equal(actions,0);assert.equal(output,"fixed-chromium-application unavailable\n");
+});
+
+// Same production runner and actual installed SDK launchProcess as the retained
+// independent RED witness. Only OS/process/kernel operations are injected.
+for (const mode of ["compatibility", "application"] as const) test(`retained detached-browser assertion GREEN for ${mode} whole-leaf ownership`, async () => {
+  const sdk = source("node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js");
+  const begin = sdk.indexOf("async function launchProcess(options) {"), end = sdk.indexOf("\nfunction envArrayToObject", begin);
+  assert.ok(begin > 0 && end > begin);
+  const browser = Object.assign(new EventEmitter(), {pid:777,stdout:new EventEmitter(),stderr:new EventEmitter()});
+  const helper = Object.assign(new EventEmitter(), {pid:123,stdout:new EventEmitter()});
+  let browserAlive=true, reaped=false, detached=false; const foreignAlive=true;
+  const launch = vm.runInNewContext(`(${sdk.slice(begin,end)})`, {
+    childProcess:{spawn:(_cmd:unknown,_args:unknown,options:{detached:boolean})=>{detached=options.detached;return browser;}},
+    process:{platform:"linux",kill:()=>{throw new Error("DENIED unmanaged group cleanup");}},
+    readline:{createInterface:()=>({on(){}})},removeFolders:async()=>[],gracefullyCloseSet:new Set(),killSet:new Set(),
+    addProcessHandlerIfNeeded(){},removeProcessHandlersIfNeeded(){},
+  });
+  const sdkOwner=await launch({command:"/admitted/chrome",args:[],env:{},tempDirectories:[],log(){},onExit(){},
+    handleSIGTERM:true,attemptToGracefullyClose:()=>new Promise(()=>{})});
+  const timers=new Map<number,{fn:()=>void,delay:number}>();let id=0;
+  const io={spawn:()=>helper,onSignal(){},offSignal(){},
+    setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},clearTimeout:(value:number)=>timers.delete(value),
+    killGroup:()=>{void sdkOwner.gracefullyClose();},
+    killOwnedTree:()=>{browserAlive=false;reaped=true;browser.emit("close",null,"SIGKILL");helper.emit("close",null,"SIGKILL");},
+    confirmOwnedCleanup:async()=>({leaderReaped:reaped,sameLeafEmpty:!browserAlive,forcedResidue:false})};
+  const pending=runOwnedChild(io,[],{},mode==="application"?1500000:15000,true);
+  timers.get(1)?.fn();timers.get(2)?.fn();
+  const outcome=await pending;
+  assert.equal(detached,true);assert.equal(outcome.expired,true);
+  assert.equal(browserAlive,false,"Browser survives outside the only group killed by the production runner");
+  assert.equal(foreignAlive,true);assert.equal(timers.size,0);
+});
+test("retained early SIGTERM assertion GREEN with irreversible cancellation-relative force",async()=>{
+  const helper=Object.assign(new EventEmitter(),{pid:123});
+  const timers=new Map<number,{fn:()=>void,delay:number}>(), killed:string[]=[];let id=0,signal=()=>{};
+  const io={spawn:()=>helper,onSignal:(fn:()=>void)=>{signal=fn;},offSignal(){},
+    setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},clearTimeout:(value:number)=>timers.delete(value),
+    killGroup:()=>killed.push("TERM"),killOwnedTree:()=>killed.push("TREE-KILL"),
+    confirmOwnedCleanup:async()=>({leaderReaped:true,sameLeafEmpty:true,forcedResidue:false})};
+  const pending=runOwnedChild(io,[],{},1500000,false);signal();
+  const delaysAtCancellation=[...timers.values()].map(value=>value.delay);signal();
+  assert.ok(delaysAtCancellation.some(delay=>delay<=2000),"Force cleanup remains scheduled at 1,501,000ms after start");
+  assert.deepEqual([...timers.values()].map(value=>value.delay),delaysAtCancellation);
+  helper.emit("close",null,"SIGTERM");await pending;assert.equal(timers.size,0);assert.deepEqual(killed,["TERM"]);
+});
+for (const proof of [{leaderReaped:false,sameLeafEmpty:true},{leaderReaped:true,sameLeafEmpty:false},
+  {leaderReaped:true,sameLeafEmpty:true,forcedResidue:true}]) test(`actual adapter refuses partial/residual cleanup ${JSON.stringify(proof)}`,async()=>{
+  const child=new EventEmitter();
+  const io={spawn:()=>child,killGroup(){},killOwnedTree(){},confirmOwnedCleanup:async()=>proof,
+    onSignal(){},offSignal(){},setTimeout:()=>1,clearTimeout(){}};
+  const pending=runOwnedChild(io,[],{},15,false);child.emit("close",0,null);
+  await assert.rejects(pending,/cleanup/);
+});
+function ownerFixture() {
+  const child=Object.assign(new EventEmitter(),{stdout:new EventEmitter(),stdin:Object.assign(new EventEmitter(),{
+    write:(value:string)=>{commands.push(value);},end(){},destroy(){}}),unref(){}});
+  const commands:string[]=[],handoffs:string[]=[];const timers=new Map<number,{fn:()=>void,delay:number}>();let id=0,signal=()=>{};
+  const authority={generation:"12345678-1234-1234-1234-123456789abc",source:"a".repeat(64),unit:"kopplas-fixed-12345678-1234-1234-1234-123456789abc.service"};
+  const owner=createHostedOwner({start:()=>child,setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},
+    clearTimeout:(value:number)=>timers.delete(value),onSignal:(fn:()=>void)=>{signal=fn;},offSignal(){},handoff:(v:{unit:string})=>handoffs.push(v.unit)},authority);
+  const emit=(value:unknown)=>child.stdout.emit("data",Buffer.from(JSON.stringify(value)+"\n"));
+  const ack=()=>emit({event:"ready",...authority,durable:true,workloads:0});
+  const stage=(name:string,change:Record<string,unknown>={})=>emit({event:"stage",generation:authority.generation,stage:name,code:0,signal:0,
+    expired:false,reaped:true,empty:true,confirmed:true,residue:false,output:"{}",...change});
+  const tick=(delay:number)=>{for(const [key,value]of [...timers])if(value.delay===delay){timers.delete(key);value.fn();}};
+  return{child,owner,commands,handoffs,timers,authority,emit,ack,stage,tick,cancel:()=>signal()};
+}
+test("actual broker protocol requires durable zero-workload ACK before either fixed stage",async()=>{
+  const f=ownerFixture();const before=f.owner.run("compatibility");await Promise.resolve();assert.deepEqual(f.commands,[]);
+  f.ack();await f.owner.ready;await Promise.resolve();assert.deepEqual(f.commands,["COMPATIBILITY\n"]);
+  f.stage("compatibility");await before;const app=f.owner.run("application");await Promise.resolve();
+  assert.deepEqual(f.commands,["COMPATIBILITY\n","APPLICATION\n"]);f.stage("application");await app;
+  await f.owner.finish();assert.equal(f.commands.at(-1),"FINISH\n");assert.equal(f.timers.size,0);
+});
+for(const bad of [{durable:false},{workloads:1},{source:"f".repeat(64)},{unit:"foreign.service"}])test(`actual ACK refuses ${JSON.stringify(bad)}`,async()=>{
+  const f=ownerFixture();const waiting=assert.rejects(f.owner.ready,/cleanup/);
+  f.emit({event:"ready",...f.authority,durable:true,workloads:0,...bad});await waiting;f.tick(2000);
+  assert.equal(f.commands.includes("APPLICATION\n"),false);assert.deepEqual(f.handoffs,[f.authority.unit]);
+});
+for(const bad of [{empty:false},{reaped:false},{confirmed:false},{residue:true},{signal:-1},{output:"x".repeat(16385)}])test(`actual phase refuses ${JSON.stringify(Object.keys(bad))}`,async()=>{
+  const f=ownerFixture();f.ack();await f.owner.ready;const pending=f.owner.run("compatibility");await Promise.resolve();
+  const failure=assert.rejects(pending,/cleanup/);f.stage("compatibility",bad);f.tick(2000);await failure;
+  f.stage("compatibility");await assert.rejects(f.owner.run("application"),/cleanup|compatibility/);
+  assert.equal(f.commands.includes("APPLICATION\n"),false);
+});
+for(const loss of ["signal","owner error","owner close","control error","oversize control"])test(`actual independent-owner transport ${loss} preserves failure and exact-unit handoff`,async()=>{
+  const f=ownerFixture();f.ack();await f.owner.ready;const pending=f.owner.run("compatibility");await Promise.resolve();const failed=assert.rejects(pending,/cleanup/);
+  if(loss==="signal")f.cancel();if(loss==="owner error")f.child.emit("error",new Error("lost"));if(loss==="owner close")f.child.emit("close",1);
+  if(loss==="control error")f.child.stdin.emit("error",new Error("broken"));if(loss==="oversize control")f.child.stdout.emit("data",Buffer.alloc(32769,120));
+  f.cancel();f.tick(2000);await failed;assert.deepEqual(f.handoffs,[f.authority.unit]);
+  f.stage("compatibility");await assert.rejects(f.owner.run("application"));assert.equal(f.commands.includes("APPLICATION\n"),false);
+});
+test("actual runner retains native CLI zero while cleanup remains failed",async()=>{
+  const f=fixture();f.io.application=async()=>{throw Object.assign(new Error("cleanup"),{nativeCode:0,nativeSignal:0});};
+  const result=await f.run();assert.equal(result.failure,"cleanup");assert.equal(result.exitCode,1);assert.equal(result.record?.cli.nativeExit,0);
+});
+test("actual C owner has retained-leaf direct observation, atomic birth and child authority drop; no guessed/group cleanup",()=>{
+  const c=source("tests/diagnostics/fixed-chromium-owned-process.c");
+  assert.match(c,/CLONE_INTO_CGROUP \| CLONE_PIDFD/);assert.match(c,/waitid\(P_PIDFD/);
+  assert.match(c,/reaped && empty && !read_failed/);assert.match(c,/write_at\(leaf,"cgroup.kill","1"\)/);
+  assert.match(c,/FORCE_MS = 1000, FINISH_MS = 2000/);assert.match(c,/now-refusal>=FINISH_MS/);
+  assert.match(c,/frozen\(leaf\)!=1/);assert.match(c,/setgroups\(0,NULL\)/);assert.match(c,/setresuid\(s.uid,s.uid,s.uid\)/);
+  assert.match(c,/PR_CAPBSET_DROP/);assert.match(c,/SYS_capset/);assert.match(c,/PR_SET_NO_NEW_PRIVS/);assert.match(c,/SYS_close_range/);
+  assert.match(c,/durable\("registered","none",0\)/);assert.match(c,/durable\("born",name,0\) \|\| write_at/);
+  assert.doesNotMatch(c,/\brmdir\(|\bkill\(-|system\(|popen\(|cgroup\.procs",O_WRONLY/);
+});
+test("actual optional capsule is separately source-admitted and never retries the application",()=>{
+  assert.match(optional,/FIXED_CHROMIUM_HOSTED_ADMISSION_SHA/);assert.match(optional,/capability\|application/);
+  assert.match(optional,/--capability-capsule/);assert.match(optional,/env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application'/);
+  assert.match(optional,/clang-18 -std=c11/);assert.match(optional,/--no-create-home --shell \/usr\/sbin\/nologin/);
+  assert.doesNotMatch(optional,/docker run|--privileged|--network host|systemctl.*reset-failed/);
+});
+test("actual adapter bounds missing whole-tree proof after native leader closes",async()=>{
+  const child=new EventEmitter(), timers=new Map<number,{fn:()=>void,delay:number}>();let id=0,kills=0;
+  const io={spawn:()=>child,killGroup(){},killOwnedTree:()=>{kills++;},confirmOwnedCleanup:()=>new Promise(()=>{}),
+    onSignal(){},offSignal(){},setTimeout:(fn:()=>void,delay:number)=>{timers.set(++id,{fn,delay});return id;},clearTimeout:(value:number)=>timers.delete(value)};
+  const pending=runOwnedChild(io,[],{},1500000,false);child.emit("close",0,null);await new Promise<void>(resolve=>setImmediate(resolve));
+  const failed=assert.rejects(pending,/cleanup/);for(const value of timers.values())if(value.delay===2000)value.fn();await failed;
+  assert.equal(kills,1);assert.equal(timers.size,0);
+});
+test("actual optional capability condition skips browser acquisition, publisher and application artifacts",()=>{
+  const block=(name:string)=>optional.slice(optional.indexOf(`      - name: ${name}`)).split(/\n      - name: /)[0];
+  for(const name of ["Install Playwright browser (chromium + OS deps)","Start local Supabase stack","Migration reset (empty DB → migrate → seed)",
+    "Acquire exact full158 with reviewed authority","Publish fresh acquisition boundary authority","Upload fixed application native JSON","Upload fixed application provenance"])
+    assert.match(block(name),/env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application'/);
+});
+
+// R1: independent actual-production witness plus bounded pre-owner/signal/ACK regressions.
+for (const variant of ["root", "binary", "early-signal", "late-ACK", "before-git"]) test(`actual production refusal fences pending ${variant} startup`, async () => {
+  await vm.runInNewContext(`(async () => {${"  const text = runnerText;\n  const start = text.indexOf('function productionRuntime() {');\n  const end = text.indexOf('\\nexport async function runApplication', start);\n  assert.ok(start > 0 && end > start);\n  const actual = text.slice(start, end).replaceAll('import.meta.url', \"'file:///repo/tests/diagnostics/fixed-chromium-application-runner.mjs'\");\n  const timers = new Map(); let next = 0, settleRoot;\n  const commands = [], serviceLaunches = [], handoffs = [], signals = new Map();\n  const child = Object.assign(new EventEmitter(), {\n    stdout: Object.assign(new EventEmitter(), { destroy() {} }),\n    stdin: Object.assign(new EventEmitter(), { write: value => commands.push(value), end() {}, destroy() {} }), unref() {},\n  });\n  const env = { CI:'true', SUPABASE_TEST_REQUIRED:'1', GITHUB_SHA:'a'.repeat(40),\n    FIXED_CHROMIUM_HOSTED_ADMISSION_SHA:'a'.repeat(40), FIXED_CHROMIUM_HOSTED_ADMISSION:'application',\n    FIXED_CHROMIUM_BROKER_ROOT:'/owned', FIXED_CHROMIUM_WORKLOAD_REPO:'/owned/workload',\n    FIXED_CHROMIUM_BROKER_GENERATION:'12345678-1234-1234-1234-123456789abc',\n    FIXED_CHROMIUM_BROKER_SOURCE_SHA256:'b'.repeat(64),\n    FIXED_CHROMIUM_BROKER_UNIT:'kopplas-fixed-12345678-1234-1234-1234-123456789abc.service' };\n  const denied = () => { throw new Error('DENIED native action'); };\n  const requireFact = (value, failure) => { if (!value) throw new Error(failure); };\n  const runtime = vm.runInNewContext(`(${actual})`, {\n    resolve:posix.resolve, dirname:posix.dirname, join:posix.join, isAbsolute:posix.isAbsolute,\n    fileURLToPath:value => new URL(value).pathname, CONFIG, OUTPUT, SOURCES,\n    hash:value => createHash('sha256').update(value).digest('hex'),\n    process:{ platform:'linux',version:'v22.23.3',env,argv:['node','runner','--verify-application','/original/chrome'],\n      on:(name,fn) => signals.set(name,fn), off:(name,fn) => { if(signals.get(name)===fn) signals.delete(name); } },\n    performance:{now:()=>0}, admitCandidate:denied,packageAdmission:denied,\n    bounded:(task,ms) => { assert.equal(ms,15000); return bounded(task,1); },\n    createHostedOwner,requireFact,hex:value=>typeof value==='string'&&/^[a-f0-9]{64}$/.test(value),\n    lstat:path => path===(variant==='binary' ? '/owned/broker' : '/owned') && variant!=='late-ACK' ? new Promise(resolve => { settleRoot=resolve; })\n      : Promise.resolve({isSymbolicLink:()=>false,isDirectory:()=>true,isFile:()=>true,uid:0,mode:path==='/owned'?0o711:0o700}),\n    readFile:denied,writeFile:denied,mkdir:denied,realpath:denied,execFile:denied,createRequire:denied,\n    setTimeout:(fn,delay)=>{ const id=++next;timers.set(id,{fn,delay});return id; },clearTimeout:id=>timers.delete(id),\n    spawn:(command,argv)=>{\n      if(argv.includes('/usr/bin/systemd-run')) { serviceLaunches.push({command,argv});return child; }\n      handoffs.push(argv);return Object.assign(new EventEmitter(),{unref(){}});\n    },\n  })();\n  runtime.gitIdentity = async()=> variant==='before-git' ? new Promise(resolve => {settleRoot=resolve;}) : ({executionSha:'a'.repeat(40),sourceTree:'c'.repeat(40)});\n  runtime.bindings = async()=>Object.fromEntries(SOURCES.map(path=>[path,{bytes:1,sha256:'d'.repeat(64)}]));\n  runtime.freshOutput = async()=>{};\n  const pending = runApplication(runtime);\n  for(let i=0;i<100;i++) await Promise.resolve();\n  if(variant==='early-signal'||variant==='late-ACK'||variant==='before-git') signals.get('SIGTERM')?.();\n  const result = await pending;\n  assert.equal(result.failure,variant==='late-ACK'?'cleanup':'admission');assert.equal(result.exitCode,1);assert.equal(serviceLaunches.length,variant==='late-ACK'?1:0);\n  // Resolve the real production startup's delayed filesystem preflight AFTER terminal refusal.\n  if(variant!=='late-ACK') settleRoot({isSymbolicLink:()=>false,isDirectory:()=>true,isFile:()=>true,uid:0,mode:variant==='binary'?0o700:0o711});\n  await new Promise(resolve=>setImmediate(resolve));\n  const observedLaunches=serviceLaunches.length;\n  if(observedLaunches) {\n    child.stdout.emit('data',Buffer.from(JSON.stringify({event:'ready',generation:env.FIXED_CHROMIUM_BROKER_GENERATION,\n      source:env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256,unit:env.FIXED_CHROMIUM_BROKER_UNIT,durable:true,workloads:0})+'\\n'));\n    await new Promise(resolve=>setImmediate(resolve));\n  }\n  const lateCommands=[...commands];\n  // Settle the mock control transport and its refusal timers; never launch anything native.\n  child.emit('close',1);\n  for(const [id,timer]of [...timers]) if(timer.delay===2000){timers.delete(id);timer.fn();}\n  await new Promise(resolve=>setImmediate(resolve));\n  console.log(JSON.stringify({terminalFailure:result.failure,terminalExit:result.exitCode,\n    lateServiceLaunches:observedLaunches,lateCommands,remainingTimers:timers.size,nativeActions:0}));\n  assert.equal(timers.size,0);\n  assert.equal(commands.includes('COMPATIBILITY\\n'),false);\n  assert.equal(observedLaunches,variant==='late-ACK'?1:0,'Owner creation continues after terminal admission timeout and release is not permanently revoked');"}})()`, {
+    variant, runnerText: source("tests/diagnostics/fixed-chromium-application-runner.mjs"), assert, vm,
+    posix: await import("node:path").then(m => m.posix), EventEmitter, createHash, Buffer, URL, setImmediate,
+    bounded, createHostedOwner, runApplication, SOURCES, CONFIG: "playwright.fixed-chromium-application.config.ts", OUTPUT: "test-results/fixed-chromium-application", console: { log() {} },
+  });
+});
+
+test("actual capability mode has no optional DB lifecycle while application retains cleanup", async () => {
+  const { createRequire } = await import("node:module");
+  const req = createRequire(import.meta.url), er = createRequire(req.resolve("eslint")), yr = createRequire(er.resolve("@eslint/eslintrc"));
+  const steps = yr("js-yaml").load(source(".github/workflows/ci.yml")).jobs["fixed-chromium-application-verification"].steps as {name:string;if:string;run?:string}[];
+  for (const mode of ["capability", "application"]) for (const name of ["Install Supabase CLI", "Start local Supabase stack", "Migration reset (empty DB → migrate → seed)", "Stop local Supabase stack"]) {
+    const step = steps.find(value => value.name === name); assert.ok(step);
+    const expression = step.if.replace(/^\$\{\{\s*|\s*\}\}$/g, "");
+    assert.equal(vm.runInNewContext(expression, {always:()=>true, env:{FIXED_CHROMIUM_HOSTED_ADMISSION:mode}}), mode === "application", `${mode}/${name}`);
+    if(name === "Stop local Supabase stack") assert.equal(step.run,"supabase stop");
+  }
+});
+
+
+// Capability diagnostics: actual module AND terminal CLI, with all native interfaces denied/mocked.
+async function capabilityCLI(fault: string, primary = "pending-true", secondary = "pending-true") {
+  const posix = (await import("node:path")).posix;
+  const commands: string[] = [], handoffs: string[] = [], exits: number[] = [];
+  const writes = {stdout:[] as string[],stderr:[] as string[]};
+  const retained: (()=>void)[] = [], timers=new Map<number,{fn:()=>void;delay:number}>(), signals=new Map<string,()=>void>();
+  let id=0,launches=0,settle:()=>void=()=>{};
+  const PRIVATE="PRIVATE secret /home/private bearer credential payload";
+  const denied=()=>{throw new Error(PRIVATE);};
+  const stream=(name:"stdout"|"stderr",behavior:string)=>Object.assign(new EventEmitter(),{
+    write:(value:string,callback?:(error?:Error)=>void)=>{
+      writes[name].push(value);if(callback)retained.push(()=>callback(new Error(PRIVATE)));
+      if(behavior==="throw")throw new Error(PRIVATE);
+      if(behavior==="callback-error")callback?.(new Error(PRIVATE));
+      if(behavior==="event-error")output[name].emit("error",new Error(PRIVATE));
+      return behavior!=="pending-false";
+    },
+  });
+  const output={stdout:stream("stdout",primary),stderr:stream("stderr",secondary)};
+  const child=Object.assign(new EventEmitter(),{stdout:Object.assign(new EventEmitter(),{destroy(){}}),
+    stdin:Object.assign(new EventEmitter(),{write:(value:string)=>{commands.push(value);
+      if((fault==="request"&&value==="CAPABILITY\n")||(fault==="finish"&&value==="FINISH\n"))throw new Error(PRIVATE);},end(){},destroy(){}}),unref(){}});
+  const env={CI:"true",SUPABASE_TEST_REQUIRED:"1",GITHUB_SHA:"a".repeat(40),FIXED_CHROMIUM_HOSTED_ADMISSION_SHA:"a".repeat(40),
+    FIXED_CHROMIUM_HOSTED_ADMISSION:fault==="mode"?"unadmitted":"capability",FIXED_CHROMIUM_BROKER_ROOT:"/owned",
+    FIXED_CHROMIUM_WORKLOAD_REPO:"/owned/workload",FIXED_CHROMIUM_BROKER_GENERATION:"12345678-1234-1234-1234-123456789abc",
+    FIXED_CHROMIUM_BROKER_SOURCE_SHA256:"b".repeat(64),FIXED_CHROMIUM_BROKER_UNIT:"kopplas-fixed-12345678-1234-1234-1234-123456789abc.service"};
+  const terminal=new Error("TERMINAL SENTINEL");
+  const process={platform:"linux",version:"v22.23.3",env,argv:["node","/repo/tests/diagnostics/fixed-chromium-application-runner.mjs","--capability-capsule"],
+    stdout:output.stdout,stderr:output.stderr,exitCode:0,exit:(code:number)=>{exits.push(code);throw terminal;},
+    on:(name:string,fn:()=>void)=>{if(fault==="construction")throw new Error(PRIVATE);signals.set(name,fn);},
+    off:(name:string,fn:()=>void)=>{if(signals.get(name)===fn)signals.delete(name);}};
+  const context={process,Buffer,createHash,performance:{now:()=>0},...posix,fileURLToPath:(url:string)=>new URL(url).pathname,
+    setTimeout:(fn:()=>void,delay:number)=>{const key=++id;timers.set(key,{fn,delay});return key;},clearTimeout:(key:number)=>timers.delete(key),
+    lstat:async(path:string)=>{if(fault==="root"&&path==="/owned")throw new Error(PRIVATE);
+      if(fault==="cancel-root"&&path==="/owned")await new Promise<void>(resolve=>{settle=resolve;});
+      return {isSymbolicLink:()=>false,isDirectory:()=>true,isFile:()=>true,uid:fault==="binary"&&path.endsWith("broker")?1:0,mode:path==="/owned"?0o711:0o700};},
+    mkdir:async()=>{if(fault==="directory")throw new Error(PRIVATE);},
+    writeFile:async()=>{if(fault==="write")throw new Error(PRIVATE);if(fault==="cancel-write")await new Promise<void>(resolve=>{settle=resolve;});},
+    readFile:denied,realpath:denied,execFile:denied,createRequire:denied,admitCandidate:denied,packageAdmission:denied,validateReceipt,
+    spawn:(_command:string,argv:string[])=>{if(argv.includes("/usr/bin/systemd-run")){launches++;if(fault==="spawn")throw new Error(PRIVATE);return child;}
+      handoffs.push(argv.at(-1)!);if(fault==="handoff")throw new Error(PRIVATE);return Object.assign(new EventEmitter(),{unref(){}});},
+    hooks:{} as {encode: (record:unknown)=>string;stages:readonly string[];reasons:readonly string[];publish:(record:unknown,host:unknown)=>{attempt:()=>void;commit:()=>void}},
+  };
+  const text=source("tests/diagnostics/fixed-chromium-application-runner.mjs").replace(/^import[\s\S]*?;\n/gm,"")
+    .replace(/\bexport(?=\s+(?:const|async|function))/g,"").replaceAll("import.meta.url","'file:///repo/tests/diagnostics/fixed-chromium-application-runner.mjs'")
+    .replace("if (process.argv[1] &&", "hooks.encode=encodeCapabilityFailure;hooks.stages=CAPABILITY_STAGES;hooks.reasons=CAPABILITY_REASONS;hooks.publish=publishCapabilityFailure;\nif (process.argv[1] &&");
+  const running=vm.runInNewContext(`(async()=>{${text}\n})()`,context) as Promise<unknown>;
+  const outcome=running.then(()=>null,error=>error);
+  const flush=async()=>{for(let i=0;i<100;i++)await Promise.resolve();};
+  const tick=async(delay:number)=>{for(const[key,value]of [...timers])if(value.delay===delay){timers.delete(key);value.fn();}await flush();};
+  const ack=(invalid=false)=>child.stdout.emit("data",Buffer.from(JSON.stringify({event:"ready",generation:env.FIXED_CHROMIUM_BROKER_GENERATION,
+    source:invalid?"c".repeat(64):env.FIXED_CHROMIUM_BROKER_SOURCE_SHA256,unit:env.FIXED_CHROMIUM_BROKER_UNIT,durable:true,workloads:0})+"\n"));
+  const stage=(invalid=false)=>child.stdout.emit("data",Buffer.from(JSON.stringify({event:"stage",generation:env.FIXED_CHROMIUM_BROKER_GENERATION,
+    stage:"capsule",code:0,signal:0,expired:true,reaped:true,empty:!invalid,confirmed:true,residue:false,
+    output:JSON.stringify({node:fault==="bad-payload"?"v24.0.0":"v22.23.3",uid:1001,gid:1001,groups:[1001],detached:true,
+      status:"NoNewPrivs:\t1\nCapInh:\t0000\nCapPrm:\t0000\nCapEff:\t0000\nCapBnd:\t0000\nCapAmb:\t0000"})})+"\n"));
+  const finish=async()=>{
+    await flush();if(launches&&fault!=="spawn"){
+      if(fault==="close")child.emit("close",42,null);
+      else if(fault==="timeout")await tick(15000);
+      else {ack(fault==="invalid-ACK");await flush();if(commands.includes("CAPABILITY\n")&&fault!=="request"){
+        if(fault==="capsule-timeout")await tick(4000);else stage(fault==="result");}}
+    }
+    await flush();if([...timers.values()].some(value=>value.delay===2000)){
+      assert.deepEqual(exits,[],"CLI exited before existing bounded cleanup/handoff");await tick(2000);
+    }
+    assert.equal(await outcome,terminal);assert.deepEqual(exits,[1]);assert.equal(process.exitCode,1);
+    const lines=[...writes.stdout,...writes.stderr];const record=JSON.parse(lines.find(value=>value.startsWith("{"))!.split("\n")[0]);
+    assert.equal(record.exitCode,1);assert.ok(!JSON.stringify(record).includes(PRIVATE));assert.equal(timers.size,0);
+    return record as Record<string,unknown>;
+  };
+  return{child,fault,commands,handoffs,exits,writes,retained,timers,signals,output,context,terminal,outcome,flush,tick,ack,stage,finish,
+    cancel:()=>signals.get("SIGTERM")?.(),settle:()=>settle(),get launches(){return launches;}};
+}
+for(const [fault,stage,reason] of [
+  ["construction","entry","unknown"],["mode","host-preflight","precondition-rejected"],
+  ["root","host-preflight","filesystem-read-failed"],["binary","host-preflight","precondition-rejected"],
+  ["spawn","owner-start","owner-start-failed"],["close","owner-ready","owner-transport-failed"],
+  ["timeout","owner-ready","owner-ready-timeout"],["invalid-ACK","owner-ready","control-invalid"],
+  ["request","capsule-request","capsule-request-failed"],["result","capsule-request","ownership-unconfirmed"],
+  ["finish","ownership-finish","ownership-finish-failed"],["directory","receipt-directory","receipt-directory-failed"],
+])test(`capability actual CLI ${fault} failure is frozen and terminal`,{timeout:2000},async()=>{
+  const f=await capabilityCLI(fault),record=await f.finish();assert.equal(record.stage,stage);assert.equal(record.reason,reason);
+  if(fault==="close"){assert.equal(record.nativeCode,42);assert.equal(record.nativeSource,"owner-transport");}
+  if(fault==="result"){assert.equal(record.nativeCode,0);assert.equal(record.nativeSource,"capsule-result");
+    const payload=await capabilityCLI("bad-payload"),bad=await payload.finish();assert.equal(bad.stage,"capsule-result");assert.equal(bad.reason,"capsule-result-rejected");assert.equal(bad.nativeCode,0);
+    const timed=await capabilityCLI("capsule-timeout"),expired=await timed.finish();assert.equal(expired.reason,"capsule-timeout");assert.equal(expired.nativeCode,null);
+  }
+  assert.equal(f.writes.stdout.length,1);assert.equal(f.writes.stderr.length,0);
+});
+test("capability actual CLI receipt-write failure survives both failed sinks",{timeout:2000},async()=>{
+  const f=await capabilityCLI("write","throw","throw"),record=await f.finish();assert.equal(record.stage,"receipt-write");
+  assert.equal(record.reason,"receipt-write-failed");assert.equal(record.nativeCode,0);
+  assert.equal(f.writes.stdout.length,1);assert.equal(f.writes.stderr.length,1);
+});
+test("capability actual CLI cancellation preserves first refusal and waits only existing handoff",{timeout:2000},async()=>{
+  for(const fault of ["cancel-root","cancel-ACK","handoff"]){const f=await capabilityCLI(fault);await f.flush();
+    if(fault!=="cancel-root")f.ack();await f.flush();f.cancel();await f.flush();
+    if(fault!=="cancel-root"){assert.deepEqual(f.exits,[]);await f.tick(2000);}
+    assert.equal(await f.outcome,f.terminal);assert.deepEqual(f.exits,[1]);
+    const record=JSON.parse(f.writes.stdout[0].split("\n")[0]);assert.equal(record.reason,"cancelled");
+    f.settle();f.ack();f.stage();await f.flush();assert.equal(f.commands.includes("APPLICATION\n"),false);
+    if(fault==="cancel-root")assert.equal(f.launches,0);
+  }
+  const prior=await capabilityCLI("close");await prior.flush();prior.child.emit("close",42,null);await prior.flush();prior.cancel();await prior.tick(2000);
+  assert.equal(await prior.outcome,prior.terminal);const earlier=JSON.parse(prior.writes.stdout[0].split("\n")[0]);
+  assert.equal(earlier.reason,"owner-transport-failed");assert.equal(earlier.nativeCode,42);assert.deepEqual(prior.exits,[1]);
+});
+test("capability actual CLI late result/write/signal cannot promote or rewrite failure",{timeout:2000},async()=>{
+  const f=await capabilityCLI("cancel-write");await f.flush();f.ack();await f.flush();f.stage();await f.flush();f.cancel();await f.flush();
+  assert.equal(await f.outcome,f.terminal);assert.deepEqual(f.exits,[1]);const frozen=f.writes.stdout[0];
+  assert.equal(JSON.parse(frozen.split("\n")[0]).reason,"cancelled");f.settle();f.stage();f.cancel();await f.flush();
+  assert.equal(f.writes.stdout[0],frozen);assert.equal(f.writes.stdout.length,1);assert.equal(f.writes.stderr.length,0);
+  const earlier=await capabilityCLI("root");await earlier.flush();earlier.cancel();const result=await earlier.finish();assert.equal(result.reason,"filesystem-read-failed");
+});
+test("capability actual CLI bounds untrusted schema and nonsettling publication including generic output",{timeout:2000},async()=>{
+  for(const [primary,secondary]of [["pending-false","pending-true"],["pending-true","pending-true"],["throw","pending-false"],
+    ["callback-error","throw"],["event-error","pending-true"],["throw","throw"]]){
+    const f=await capabilityCLI("mode",primary,secondary),record=await f.finish(),snapshot=JSON.stringify(record);
+    assert.equal(f.writes.stdout.length,1);assert.ok(f.writes.stderr.length<=1);
+    for(const value of [...f.writes.stdout,...f.writes.stderr]){assert.equal(value.split("\n").length,3);assert.ok(value.endsWith("fixed-chromium-application unavailable\n"));assert.ok(Buffer.byteLength(value)<=816);}
+    for(const callback of f.retained)callback();f.output.stdout.emit("error",new Error("PRIVATE"));if(f.writes.stderr.length)f.output.stderr.emit("error",new Error("PRIVATE"));
+    assert.equal(JSON.stringify(record),snapshot);assert.equal(f.writes.stdout.length,1);assert.ok(f.writes.stderr.length<=1);assert.deepEqual(f.exits,[1]);
+    const {encode,stages,reasons}=f.context.hooks;assert.equal(stages.length,10);assert.equal(reasons.length,16);assert.equal(Object.keys(record).length,11);
+    for(const stage of stages)for(const reason of reasons)assert.ok(Buffer.byteLength(encode({...record,stage,reason}))<=768);
+    for(const bad of [{...record,secret:"PRIVATE"},{...record,stage:"PRIVATE"},{...record,reason:"PRIVATE"},{...record,nativeCode:256},{...record,nativeCode:-1},{...record,nativeCode:0.5},{...record,nativeSource:"PRIVATE"},{...record,nativeSignal:"PRIVATE"},{...record,ownerEvidence:"PRIVATE"}])assert.throws(()=>encode(bad));
+    const publisher=f.context.hooks.publish({...record,extra:"PRIVATE"},{stdout:f.output.stdout,stderr:f.output.stderr});publisher.attempt();publisher.commit();
+    assert.ok(f.writes.stdout.at(-1)!.includes("unavailable"));assert.ok(!f.writes.stdout.at(-1)!.includes("PRIVATE"));
+  }
+});
+
+
+// Native125 diagnosis reuses the existing full-module CLI VM harness, not copied production logic.
+async function capsule125CLI(actual: Record<string,unknown> = {}, result: Record<string,unknown> = {}, output?:string, code=125, sink="pending-true") {
+  const unit=source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");
+  const start=unit.indexOf("async function capabilityCLI("),end=unit.indexOf("\nfor(const [fault,stage,reason]",start);
+  let body=unit.slice(start,end).replace('const posix = (await import("node:path")).posix;','const posix = injectedPosix;')
+    .replace('hooks.encode=encodeCapabilityFailure;','hooks.peek=peekCapsuleDetail;hooks.predicates=CAPSULE_PREDICATE_REASONS;hooks.boundaries=CAPSULE_BOUNDARIES;hooks.encode=encodeCapabilityFailure;');
+  const at=body.indexOf('  const stage='),to=body.indexOf('  const finish=',at);
+  const stage=rStage();
+  body=body.slice(0,at)+stage+body.slice(to);
+  const javascript=ts.transpileModule(body,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+  const call=vm.runInNewContext(`(()=>{${javascript};return capabilityCLI;})()`,{injectedPosix:(await import("node:path")).posix,
+    injectedActual:actual,injectedResult:result,injectedOutput:output,injectedCode:code,assert,EventEmitter,createHash,Buffer,URL,vm,source,validateReceipt});
+  return await call("125",sink) as Awaited<ReturnType<typeof capabilityCLI>>;
+  function rStage(){return `  const stage=(invalid=false)=>child.stdout.emit("data",Buffer.from(JSON.stringify({event:"stage",generation:env.FIXED_CHROMIUM_BROKER_GENERATION,
+    stage:"capsule",code:injectedCode,signal:0,expired:true,reaped:true,empty:!invalid,confirmed:true,residue:false,...injectedResult,
+    output:injectedOutput===undefined?JSON.stringify({node:"v22.23.3",uid:1001,gid:1001,groups:[1001],detached:true,
+      status:"NoNewPrivs:\\t1\\nCapInh:\\t0000\\nCapPrm:\\t0000\\nCapEff:\\t0000\\nCapBnd:\\t0000\\nCapAmb:\\t0000",...injectedActual}):injectedOutput})+"\\n"));\n`;}
+}
+function capsuleDetail(f:Awaited<ReturnType<typeof capabilityCLI>>) { const bundle=f.writes.stdout[0];return JSON.parse(bundle.split("\n")[1]) as Record<string,unknown>; }
+const refusedMarker=(stage:string,errno:number|null=13)=>JSON.stringify({schemaVersion:1,kind:"owned-capsule-refusal",stage,errno});
+
+test("125 actual CLI expiration labels and downstream confirmation guards conserve authority",{timeout:2000},async()=>{
+  const f=await capsule125CLI({}, {expired:false},""),record=await f.finish();assert.equal(record.reason,"capsule-expiration-rejected");assert.equal(record.nativeCode,125);
+  for(const result of [{confirmed:false},{reaped:false},{empty:false},{residue:true}]){const blocked=await capsule125CLI({},result,""),r=await blocked.finish();assert.equal(r.reason,"ownership-unconfirmed");assert.equal(r.stage,"capsule-request");}
+});
+test("125 actual CLI JSON/property faults retain non125 compatibility",{timeout:2000},async()=>{
+  for(const [output,reason]of [["{","capsule-json-rejected"],["null","capsule-shape-rejected"]]){const f=await capsule125CLI({}, {},output),r=await f.finish();assert.equal(r.reason,reason);assert.equal(r.nativeCode,125);}
+  for(const [output,reason]of [["{","capsule-result-rejected"],["null","unknown"]]){const f=await capsule125CLI({}, {},output,0),r=await f.finish();assert.equal(r.reason,reason);assert.equal(f.writes.stdout[0].split("\n").length,3);}
+});
+test("125 actual CLI Node predicate is fine only for named native125",{timeout:2000},async()=>{
+  for(const code of [125,0,42]){const f=await capsule125CLI({node:"v24.0.0"},{},undefined,code),r=await f.finish();assert.equal(r.reason,code===125?"capsule-node-rejected":"capsule-result-rejected");assert.equal(r.nativeCode,code);}
+});
+test("125 actual CLI UID/GID predicates preserve exact integer bounds",{timeout:2000},async()=>{
+  for(const field of ["uid","gid"])for(const value of [0,-1,0.5,null]){const f=await capsule125CLI({[field]:value}),r=await f.finish();assert.equal(r.reason,`capsule-${field}-rejected`);}
+});
+test("125 actual CLI groups array/count/member checks preserve order",{timeout:2000},async()=>{
+  for(const [groups,reason]of [[null,"shape"],[[1001,1001],"count"],[[1002],"id"]]){const f=await capsule125CLI({groups}),r=await f.finish();assert.equal(r.reason,`capsule-groups-${reason}-rejected`);}
+});
+test("125 actual CLI detached predicate never accepts marker assertions",{timeout:2000},async()=>{
+  for(const detached of [false,1,"true",null]){const f=await capsule125CLI({detached}),r=await f.finish();assert.equal(r.reason,"capsule-detachment-rejected");}
+});
+test("125 actual CLI status/no-new-privileges remain independent requirements",{timeout:2000},async()=>{
+  for(const [status,reason]of [[null,"capsule-status-rejected"],["NoNewPrivs:\t0","capsule-no-new-privileges-rejected"]]){const f=await capsule125CLI({status}),r=await f.finish();assert.equal(r.reason,reason);}
+});
+test("125 actual CLI five capability-set checks preserve ordered failure",{timeout:2000},async()=>{
+  const good="NoNewPrivs:\t1\nCapInh:\t0000\nCapPrm:\t0000\nCapEff:\t0000\nCapBnd:\t0000\nCapAmb:\t0000";
+  for(const [key,name]of [["CapInh","inheritable"],["CapPrm","permitted"],["CapEff","effective"],["CapBnd","bounding"],["CapAmb","ambient"]]){
+    const f=await capsule125CLI({status:good.replace(`${key}:\t0000`,`${key}:\t0001`)}),r=await f.finish();assert.equal(r.reason,`capsule-cap-${name}-rejected`);
+  }
+});
+test("125 actual CLI accepts only reported finite markers/numeric errno",{timeout:10000},async()=>{
+  const sample=await capsule125CLI({}, {expired:false},refusedMarker("stdin-open"));await sample.finish();
+  const hooks=sample.context.hooks as typeof sample.context.hooks & {boundaries:string[]};assert.equal(hooks.boundaries.length,35);
+  for(const stage of hooks.boundaries.filter(v=>v!=="unknown"))for(const errno of [null,13,2147483647]){
+    const f=await capsule125CLI({}, {expired:false},refusedMarker(stage,errno)),r=await f.finish(),detail=capsuleDetail(f);
+    assert.equal(r.nativeCode,125);assert.equal(r.exitCode,1);assert.equal(detail.stage,stage);assert.equal(detail.errno,errno);assert.equal(r.ownerEvidence,"protocol-confirmed");
+  }
+});
+test("125 actual CLI missing/truncated/spoofed markers stay unknown with no authority",{timeout:2000},async()=>{
+  for(const output of ["", "{",refusedMarker("FOREIGN"),refusedMarker("stdin-open",0),refusedMarker("stdin-open",-1),refusedMarker("stdin-open",2147483648),
+    JSON.stringify({schemaVersion:1,kind:"foreign",stage:"stdin-open",errno:13}),JSON.stringify({schemaVersion:1,kind:"owned-capsule-refusal",stage:"stdin-open",errno:13,secret:"PRIVATE"})]){
+    const f=await capsule125CLI({}, {expired:false},output),r=await f.finish(),detail=capsuleDetail(f);assert.equal(detail.stage,"unknown");assert.equal(detail.errno,null);assert.equal(r.nativeCode,125);assert.equal(f.commands.includes("APPLICATION\n"),false);
+  }
+  const other=await capsule125CLI({}, {expired:false},refusedMarker("stdin-open"),0);const r=await other.finish();assert.equal(r.nativeSource,"capsule-result");assert.equal(r.nativeCode,0);assert.equal(other.writes.stdout[0].split("\n").length,3);
+});
+test("125 actual CLI cancellation/late marker cannot rewrite first failure",{timeout:2000},async()=>{
+  const f=await capsule125CLI({}, {expired:false},refusedMarker("stdin-open"));await f.flush();f.ack();await f.flush();f.cancel();await f.flush();assert.deepEqual(Array.from(f.exits),[]);await f.tick(2000);
+  assert.equal(await f.outcome,f.terminal);const snapshot=f.writes.stdout[0];f.stage();f.cancel();await f.flush();assert.equal(f.writes.stdout[0],snapshot);
+  const record=JSON.parse(snapshot.split("\n")[0]);assert.equal(record.reason,"cancelled");assert.equal(record.nativeSource,"unavailable");assert.equal(snapshot.split("\n").length,3);
+});
+test("125 actual CLI reason qualification/detail bounds/nonsettling sinks retain terminal1",{timeout:2000},async()=>{
+  for(const sink of ["pending-true","pending-false","throw","callback-error","event-error"]){const f=await capsule125CLI({}, {expired:false},refusedMarker("node-exec",2147483647),125,sink),record=await f.finish();
+    const hooks=f.context.hooks as typeof f.context.hooks & {predicates:string[]};assert.equal(hooks.reasons.length,16);assert.equal(hooks.predicates.length,21);
+    for(const reason of hooks.predicates){assert.ok(Buffer.byteLength(hooks.encode({...record,reason}))<=768);for(const change of [{nativeSource:"unavailable",nativeCode:null},{nativeSource:"owner-transport"},{nativeCode:0},{nativeCode:126}])assert.throws(()=>hooks.encode({...record,...change,reason}));}
+    for(const value of [...f.writes.stdout,...f.writes.stderr]){assert.ok(Buffer.byteLength(value)<=816);assert.equal(value.split("\n").length,4);assert.ok(!value.includes("PRIVATE"));}
+    for(const callback of f.retained)callback();f.output.stdout.emit("error",new Error("PRIVATE"));if(f.writes.stderr.length)f.output.stderr.emit("error",new Error("PRIVATE"));
+    assert.equal(f.writes.stdout.length,1);assert.ok(f.writes.stderr.length<=1);assert.deepEqual(Array.from(f.exits),[1]);
+  }
+});
+
+// HOSTED-PATH-METADATA-TESTS-BEGIN: original assertions above are preserved.
+const pathMetadataCollector = () => {
+  const text = source(".github/workflows/ci.yml");
+  const begin = text.indexOf("          # HOSTED-PATH-METADATA-COLLECTOR-BEGIN\n");
+  const end = text.indexOf("          # HOSTED-PATH-METADATA-COLLECTOR-END", begin);
+  assert.ok(begin > 0 && end > begin);
+  return text.slice(begin + "          # HOSTED-PATH-METADATA-COLLECTOR-BEGIN\n".length, end)
+    .split("\n").map(line => line.startsWith("          ") ? line.slice(10) : line).join("\n");
+};
+const pathMetadataHarness = "import json,sys,stat,types,ast,builtins\nrequest=json.loads(sys.stdin.read())\nsource=request['source'];fault=request['fault'];calls=[];buffer=b'';opened=False;parent_opened=False;closed=[];now=0\ntree=ast.parse(source)\nassert [n for x in tree.body if isinstance(x,ast.Import) for n in [a.name for a in x.names]]==['json','os','stat','sys','time']\nallowed={'getuid','geteuid','getgid','getegid','lstat','listxattr','open','fstat','write','fsync','close'}\nassert {x.attr for x in ast.walk(tree) if isinstance(x,ast.Call) and isinstance(x.func,ast.Attribute) for x in [x.func] if isinstance(x.value,ast.Name) and x.value.id=='os'}<=allowed\nclass FakeOS:\n    O_RDONLY=0;O_WRONLY=1;O_CREAT=64;O_EXCL=128;O_APPEND=1024;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288\n    environ={'RUNNER_TEMP':'PRIVATE-sink-parent'}\n    def __getattr__(self,name):raise AssertionError('DENIED unallocated OS effect '+name)\n    def getuid(self):return True if fault=='bad-credentials' else 0 if fault=='collector-root' else 1\n    def geteuid(self):return 0 if fault=='collector-root' else 1\n    def getgid(self):return self.geteuid()\n    def getegid(self):return self.geteuid()\n    def lstat(self,path):\n        global now\n        calls.append(['lstat',path])\n        if fault=='permission' and len([x for x in calls if x[0]=='lstat'])==2:raise PermissionError(13,'PRIVATE exception payload')\n        if fault=='deadline':now=2\n        mode=stat.S_IFLNK|0o777 if fault=='symlink' and path!='/' else stat.S_IFDIR|0o755\n        return types.SimpleNamespace(st_uid='PRIVATE' if fault=='malformed-stat' else 0,st_gid=0,st_mode=mode)\n    def listxattr(self,path,follow_symlinks):\n        calls.append(['listxattr',path,follow_symlinks]);assert follow_symlinks is False\n        if fault=='acl-unknown':raise OSError(95,'PRIVATE ACL error')\n        return ['user.PRIVATE','system.posix_acl_access'] if fault=='acl-present' else ['user.PRIVATE']\n    def open(self,path,flags,mode=None,dir_fd=None):\n        global opened,parent_opened\n        calls.append(['open',path,flags,mode,dir_fd]);assert flags&self.O_NOFOLLOW and flags&self.O_CLOEXEC\n        if dir_fd is None:\n            assert path=='PRIVATE-sink-parent' and flags&self.O_DIRECTORY\n            if fault=='parent-symlink':raise OSError(40,'PRIVATE parent')\n            parent_opened=True;return 10\n        assert dir_fd==10 and path=='fixed-chromium-hosted-path-admission.json'\n        assert flags&self.O_CREAT and flags&self.O_EXCL and mode==0o600\n        if fault in ['collision','sink-symlink']:raise FileExistsError('PRIVATE collision')\n        opened=True;return 11\n    def fstat(self,fd):\n        if fd==10:return types.SimpleNamespace(st_uid=999 if fault=='parent-owner' else self.geteuid(),st_mode=stat.S_IFDIR|(0o777 if fault=='parent-writable' else 0o700))\n        assert fd==11\n        return types.SimpleNamespace(st_uid=self.geteuid(),st_mode=stat.S_IFREG|(0o644 if fault=='sink-mode' else 0o600))\n    def write(self,fd,data):\n        global buffer\n        calls.append(['write',fd,len(data)]);assert fd==11 and len(data)<=4096\n        if fault=='sink-error':raise OSError(5,'PRIVATE sink error')\n        buffer=data[:-1] if fault=='short-write' else data\n        return len(buffer)\n    def fsync(self,fd):\n        global now\n        calls.append(['fsync',fd])\n        if fault=='late-publication':now=2\n    def close(self,fd):calls.append(['close',fd]);closed.append(fd)\nfake=FakeOS()\nserialize_count=0\ndef serialize(value,**options):\n    global serialize_count\n    serialize_count+=1\n    if fault=='overflow-always' or fault=='overflow' and serialize_count==1:return 'X'*5000\n    return json.dumps(value,**options)\npath='/PRIVATE/session/workload'\nif fault=='depth':path='/'+'/'.join(['PRIVATE']*12+['workload'])\nif fault=='input':path='/PRIVATE/../workload'\nargs=['collector',path,'123','456']\nfake_sys=types.SimpleNamespace(argv=args)\nfake_time=types.SimpleNamespace(monotonic=lambda:now)\nimports={'os':fake,'stat':stat,'sys':fake_sys,'time':fake_time,'json':types.SimpleNamespace(dumps=serialize)}\ndef only_import(name,*args,**kw):\n    assert name in imports,'DENIED unexpected import'\n    return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ntry:exec(compile(source,'actual-inline-collector','exec'),scope);raise AssertionError('missing terminal path')\nexcept SystemExit as e:code=e.code\nreceipt=None\nif buffer:\n    try:receipt=json.loads(buffer)\n    except ValueError:pass\nassert not buffer or b'PRIVATE' not in buffer\nassert all(x[0] in allowed for x in calls)\nassert not opened or 11 in closed\nassert not parent_opened or 10 in closed\nprint(json.dumps({'code':code,'published':code==0,'receipt':receipt,'bytes':len(buffer),'opened':opened,'calls':calls,'nativeActions':0}))\n";
+const pathMetadataCases = ["positive", "collector-root", "depth", "input", "symlink", "permission",
+  "malformed-stat", "bad-credentials", "acl-present", "acl-unknown", "overflow", "overflow-always",
+  "deadline", "late-publication", "collision", "sink-symlink", "parent-symlink", "parent-owner",
+  "parent-writable", "sink-mode", "sink-error", "short-write"];
+for (const fault of pathMetadataCases) test("actual path metadata collector " + fault, { timeout: 5000 }, async () => {
+  const { spawnSync } = await import("node:child_process");
+  const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", pathMetadataHarness], {
+    input: JSON.stringify({ source: pathMetadataCollector(), fault }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+  });
+  assert.equal(result.error, undefined);
+  assert.equal(result.status, 0, result.stderr);
+  const value = JSON.parse(result.stdout);
+  assert.equal(value.nativeActions, 0);
+  assert.ok(value.bytes <= 4096);
+  const unavailable = ["overflow-always", "deadline", "late-publication", "collision", "sink-symlink",
+    "parent-symlink", "parent-owner", "parent-writable", "sink-mode", "sink-error", "short-write"].includes(fault);
+  assert.equal(value.published, !unavailable);
+  if (!unavailable) {
+    const data = value.receipt;
+    assert.deepEqual(Object.keys(data).sort(), ["schemaVersion", "kind", "collectionState", "reason",
+      "workloadCredentials", "intendedUid", "intendedGid", "collectorIds", "components"].sort());
+    assert.equal(data.kind, "hosted-path-metadata");
+    assert.equal(data.workloadCredentials, "UNOBSERVED");
+    assert.ok(data.components.length <= 12);
+    assert.ok(!JSON.stringify(data).includes("PRIVATE"));
+    const complete = ["positive", "collector-root", "acl-present"].includes(fault);
+    assert.equal(data.collectionState, complete ? "COMPLETE" : "UNKNOWN");
+    if (complete) {
+      assert.equal(data.intendedUid, 123); assert.equal(data.intendedGid, 456);
+      assert.equal(data.collectorIds.euid, fault === "collector-root" ? 0 : 1);
+      assert.equal(data.components.at(-1).label, "workload");
+      assert.equal(data.components.at(-2).label, "session-root");
+    }
+    if (fault === "acl-present") assert.ok(data.components.every((row: { aclPresence: string }) => row.aclPresence === "PRESENT"));
+    if (fault === "acl-unknown") assert.ok(data.components.every((row: { aclPresence: string }) => row.aclPresence === "UNKNOWN"));
+    if (fault === "overflow") { assert.equal(data.reason, "BYTE_CAP"); assert.deepEqual(data.components, []); }
+    if (fault === "depth" || fault === "input") assert.equal(value.calls.filter((row: string[]) => row[0] === "lstat").length, 0);
+    if (fault === "symlink") assert.equal(value.calls.filter((row: string[]) => row[0] === "lstat").length, 2);
+  }
+});
+test("path metadata retains bounded private collection and required native success checks", () => {
+  const text = source(".github/workflows/ci.yml");
+  assert.match(text, /timeout-minutes: 2/);
+  assert.match(text, /timeout --signal=TERM --kill-after=1s 2s python3/);
+  assert.match(pathMetadataCollector(), /MAX_SECONDS = 1\.0/);
+  assert.match(pathMetadataCollector(), /MAX_BYTES = 4096/);
+  assert.match(pathMetadataCollector(), /MAX_COMPONENTS = 12/);
+  assert.match(text, /if \[ "\$FIXED_CHROMIUM_HOSTED_ADMISSION" = capability \]; then/);
+  assert.ok(text.includes(`'path_metadata_written=false' >> "$GITHUB_OUTPUT" || :`));
+  assert.ok(text.includes(`'path_metadata_written=true' >> "$GITHUB_OUTPUT" || :; else :; fi`));
+  assert.match(text, /steps\.hosted_session\.outputs\.path_metadata_written == 'true'/);
+  assert.match(text, /retention-days: 7/);
+  assert.match(text, /name: Preserve capability capsule receipt[\s\S]*?if-no-files-found: error/);
+  assert.match(text, /run: node tests\/diagnostics\/fixed-chromium-application-runner\.mjs --capability-capsule/);
+  const collector = pathMetadataCollector();
+  // Independently reviewed W optional-job bytes; ordinary recovery jobs are outside this boundary.
+  assert.equal(sha(optional), "11e647e27f8dc91e26c7e08466b30f22f536356034de51f6091e53b5943ad365");
+  assert.match(collector, /os\.O_WRONLY \| os\.O_CREAT \| os\.O_EXCL \| os\.O_NOFOLLOW \| os\.O_CLOEXEC/);
+  assert.match(collector, /0o600/);
+  assert.doesNotMatch(collector, /os\.(?:chmod|chown|system|popen)|subprocess/);
+  const req = createRequire(import.meta.url), er = createRequire(req.resolve("eslint")), yr = createRequire(er.resolve("@eslint/eslintrc"));
+  const steps = yr("js-yaml").load(text).jobs["fixed-chromium-application-verification"].steps as { name: string; if?: string; with?: Record<string, unknown> }[];
+  const upload = steps.find(step => step.name === "Preserve bounded private path metadata (not capability acceptance)");
+  assert.ok(upload);
+  assert.equal(upload.if, "${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' && steps.hosted_session.outputs.path_metadata_written == 'true' }}");
+  assert.deepEqual(upload.with, { name: "fixed-chromium-hosted-path-admission", path: "${{ runner.temp }}/fixed-chromium-hosted-path-admission.json", "retention-days": 7, "if-no-files-found": "error" });
+});
+test("path metadata cannot bypass source revalidation or original native failure", async () => {
+  const changed = fixture();
+  changed.io.compatibility = async () => { changed.state.changed = true; return { version: "158.0.8104.0", closed: true }; };
+  const refused = await changed.run();
+  assert.equal(refused.failure, "binding"); assert.equal(changed.state.invocations, 0);
+  const failed = fixture(); failed.state.exit = 7;
+  const result = await failed.run();
+  assert.equal(result.exitCode, 7); assert.equal(result.record?.cli.nativeExit, 7); assert.equal(result.failure, "suite");
+  assert.equal(failed.state.invocations, 1); assert.equal(failed.state.compatibility, 1);
+});
+
+// OWNED-PARENT-ADMISSION-TESTS-BEGIN
+const ownedParentSource = () => {
+  const text = source(".github/workflows/ci.yml");
+  const begin = text.indexOf("          private_root=\"$(/usr/bin/timeout");
+  const first = text.indexOf("          import os, stat, time\n", begin);
+  const last = text.indexOf("          PY_OWNED_PARENT", first);
+  assert.ok(begin > 0 && first > begin && last > first);
+  return text.slice(first, last).split("\n").map(line => line.startsWith("          ") ? line.slice(10) : line).join("\n");
+};
+const ownedParentHarness = "import json,sys,stat,types,ast,builtins,re\nrequest=json.loads(sys.stdin.read());source=request['source'];fault=request['fault'];now=0\nallowed={'geteuid','fstat','fstatvfs','listxattr','open','close','urandom','fsencode','mkdir','write'}\ntree=ast.parse(source)\nassert [a.name for n in tree.body if isinstance(n,ast.Import) for a in n.names]==['os','stat','time']\nassert {n.func.attr for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and isinstance(n.func.value,ast.Name) and n.func.value.id=='os'}<=allowed\nassert sum(isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and isinstance(n.func.value,ast.Name) and n.func.value.id=='os' and n.func.attr=='mkdir' for n in ast.walk(tree))==1\nassert not any(isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id in ['open','eval','exec','__import__'] for n in ast.walk(tree))\nclass FakeOS:\n    O_RDONLY=0;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288;ST_NOEXEC=8\n    def __init__(self):self.fds={};self.nextfd=10;self.baseopens=0;self.childopens=0;self.created=False;self.mkdirCalls=0;self.entropyCalls=0;self.output=b'';self.calls=[];self.closeFailed=False\n    def __getattr__(self,name):raise AssertionError('DENIED unallocated OS effect')\n    def geteuid(self):return 1001\n    def open(self,path,flags,dir_fd=None):\n        assert flags & self.O_DIRECTORY and flags & self.O_NOFOLLOW and flags & self.O_CLOEXEC\n        if dir_fd is None:assert path=='/';full='/'\n        elif path in ('var','tmp'):full=self.fds[dir_fd]['path'].rstrip('/')+'/'+path\n        else:\n            assert self.fds[dir_fd]['path']=='/var/tmp' and re.fullmatch('kopplas-owned-[0-9a-f]{32}',path) and self.created\n            full='/var/tmp/'+path;self.childopens+=1\n        if fault=='symlink' and full=='/var':raise OSError(40,'PRIVATE symlink')\n        if full=='/var/tmp':self.baseopens+=1\n        inode={'/':1,'/var':2,'/var/tmp':3}.get(full,4)\n        if full=='/var/tmp' and (fault=='parent-substitution' and self.baseopens==2 or fault=='parent-substitution-after' and self.created):inode=93\n        if fault=='entry-substitution' and self.childopens==2 and full not in ['/','/var','/var/tmp']:inode=94\n        mode=0o1777 if full=='/var/tmp' else 0o700 if inode in [4,94] else 0o755\n        uid=1001 if inode in [4,94] else 0;gid=uid\n        if full=='/var':\n            if fault=='foreign-0750':mode=0o750;gid=987\n            if fault=='unsafe-owner':uid=1001\n            if fault=='writable-ancestor':mode=0o777\n        if full=='/var/tmp' and fault=='nonsticky-base':mode=0o777\n        if inode in [4,94] and fault=='creation-mode':mode=0o755\n        fd=self.nextfd;self.nextfd+=1;self.fds[fd]={'path':full,'st_dev':1,'st_ino':inode,'st_uid':uid,'st_gid':gid,'st_mode':stat.S_IFDIR|mode};self.calls.append('open');return fd\n    def fstat(self,fd):\n        global now\n        self.calls.append('fstat')\n        if fault=='inaccessible' and self.fds[fd]['path']=='/var':raise PermissionError(13,'PRIVATE metadata')\n        if fault=='deadline':now=2\n        row={k:v for k,v in self.fds[fd].items() if k!='path'}\n        if fault=='malformed':row['st_ino']=None\n        return types.SimpleNamespace(**row)\n    def fstatvfs(self,fd):\n        self.calls.append('fstatvfs')\n        if fault=='unsupported-mount':raise OSError(95,'PRIVATE mount')\n        return types.SimpleNamespace(f_flag=None if fault=='unknown-mount' else 8 if fault=='noexec' else 0)\n    def listxattr(self,fd):\n        self.calls.append('listxattr')\n        if fault=='unknown-acl':raise OSError(95,'PRIVATE ACL')\n        if fault=='access-acl':return ['system.posix_acl_access']\n        if fault=='default-acl':return ['system.posix_acl_default']\n        return ['user.PRIVATE']\n    def urandom(self,n):self.entropyCalls+=1;assert n==16;return b'1'*15 if fault=='entropy' else b'1'*16\n    def fsencode(self,s):return b'X'*5000 if fault=='overflow' else s.encode('ascii')\n    def mkdir(self,name,mode,dir_fd):\n        global now\n        self.mkdirCalls+=1;assert self.fds[dir_fd]['path']=='/var/tmp' and mode==0o700 and not self.created\n        if fault=='collision':raise FileExistsError('PRIVATE collision')\n        self.created=True;self.calls.append('mkdir')\n        if fault=='late-creation':now=2\n    def close(self,fd):\n        self.calls.append('close')\n        if fault=='close-error' and not self.closeFailed:self.closeFailed=True;raise OSError(5,'PRIVATE close')\n        assert fd in self.fds;del self.fds[fd]\n    def write(self,fd,data):\n        global now\n        self.calls.append('write');assert fd==1 and len(data)<=4096 and not self.fds\n        if fault=='write-error':raise OSError(5,'PRIVATE publication')\n        self.output=data[:-1] if fault=='short-write' else data\n        if fault=='late-publication':now=2\n        return len(self.output)\nfake=FakeOS();fake_time=types.SimpleNamespace(monotonic=lambda:now)\nimports={'os':fake,'stat':stat,'time':fake_time}\ndef only_import(name,*a,**k):assert name in imports;return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ntry:exec(compile(source,'actual-inline-parent-admission','exec'),scope);raise AssertionError('missing terminal path')\nexcept SystemExit as err:code=err.code\nassert not fake.fds and fake.mkdirCalls<=1 and fake.entropyCalls<=1\nif code==0:assert fault=='positive' and fake.output==b'/var/tmp/kopplas-owned-'+b'31'*16+b'\\n' and fake.created and fake.mkdirCalls==1\nelse:assert code==1\nprint(json.dumps({'code':code,'published':code==0,'outputBytes':len(fake.output),'retainedCreatedTree':fake.created,'mkdirCalls':fake.mkdirCalls,'entropyCalls':fake.entropyCalls,'openHandles':len(fake.fds),'calls':fake.calls,'nativeActions':0}))\n";
+const ownedParentCases = ["positive", "symlink", "foreign-0750", "unsafe-owner", "writable-ancestor", "nonsticky-base",
+  "access-acl", "default-acl", "unknown-acl", "noexec", "unknown-mount", "unsupported-mount", "inaccessible", "malformed",
+  "deadline", "late-creation", "overflow", "collision", "parent-substitution", "parent-substitution-after",
+  "entry-substitution", "creation-mode", "entropy", "write-error", "short-write", "late-publication", "close-error"];
+for (const fault of ownedParentCases) test("actual owned parent admission " + fault, { timeout: 5000 }, async () => {
+  const { spawnSync } = await import("node:child_process");
+  const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", ownedParentHarness], {
+    input: JSON.stringify({ source: ownedParentSource(), fault }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+  });
+  assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stderr);
+  const value = JSON.parse(result.stdout);
+  assert.equal(value.nativeActions, 0); assert.equal(value.openHandles, 0);
+  assert.ok(value.mkdirCalls <= 1); assert.ok(value.entropyCalls <= 1); assert.ok(value.outputBytes <= 4096);
+  assert.equal(value.published, fault === "positive");
+  if (["collision", "late-creation", "parent-substitution-after", "entry-substitution", "creation-mode", "write-error", "short-write", "late-publication"].includes(fault)) {
+    assert.equal(value.mkdirCalls, 1);
+    assert.equal(value.retainedCreatedTree, fault !== "collision");
+  }
+  if (["symlink", "foreign-0750", "unsafe-owner", "writable-ancestor", "nonsticky-base", "access-acl", "default-acl",
+    "unknown-acl", "noexec", "unknown-mount", "unsupported-mount", "inaccessible", "malformed", "deadline", "overflow",
+    "parent-substitution", "entropy"].includes(fault)) assert.equal(value.mkdirCalls, 0);
+});
+
+test("owned parent admission retains descriptor authority and refuses unsafe placement", () => {
+  const parent = ownedParentSource();
+  assert.equal(sha(parent), "4cd0bbd7f47d6f5db25d372fc9a6f08e7486833f8a0a5611d51f5c69723d4f38");
+  assert.ok(source(".github/workflows/ci.yml").includes(`private_root="$(/usr/bin/timeout --signal=TERM --kill-after=1s 2s python3 - <<'PY_OWNED_PARENT' 2>/dev/null`));
+  assert.match(parent, /MAX_SECONDS = 1\.0/); assert.match(parent, /MAX_BYTES = 4096/);
+  assert.match(parent, /os\.O_RDONLY \| os\.O_DIRECTORY \| os\.O_NOFOLLOW \| os\.O_CLOEXEC/);
+  assert.match(parent, /os\.fstatvfs/); assert.match(parent, /os\.ST_NOEXEC/); assert.match(parent, /os\.listxattr/);
+  assert.match(parent, /system\.posix_acl_access/); assert.match(parent, /system\.posix_acl_default/);
+  assert.equal((parent.match(/os\.mkdir\(/g) ?? []).length, 1);
+  assert.match(parent, /dir_fd=parent/); assert.match(parent, /0o700/);
+  assert.doesNotMatch(parent, /\bmktemp\b|os\.(?:chmod|chown|unlink|rmdir|system|popen)|subprocess/);
+});
+
+// GENERATED-NEXT-ENV-TESTS-BEGIN
+function generatedNextEnvWorkflowInverse(value: string) {
+  return value.replace(/          # GENERATED-NEXT-ENV-BIND-BEGIN[\s\S]*?          # GENERATED-NEXT-ENV-BIND-END\n/, "          python3 - \"$private_root\" \"$generation\" \"$source_sha\" \"$unit\" \"$node_path\" \"$candidate\" \"$cli_relative\" \"$uid\" \"$gid\" <<'PY'\n          import pathlib,sys\n          root,generation,source,unit,node,candidate,cli,uid,gid=sys.argv[1:]\n          values=[('generation',generation),('source',source),('unit',unit),('node',node),('repo',root+'/workload'),('candidate',candidate),('cli',root+'/workload/'+cli),('home',root+'/home'),('root',root),('uid',uid),('gid',gid)]\n          if any('\\n' in value or '\\r' in value or '\\0' in value for _,value in values): raise SystemExit(1)\n          pathlib.Path(root+'/control/session').write_text(''.join(key+'='+value+'\\n' for key,value in values))\n          PY\n")
+    .replace(/          # GENERATED-NEXT-ENV-ADMISSION-BEGIN[\s\S]*?          # GENERATED-NEXT-ENV-ADMISSION-END\n/, "");
+}
+function generatedNextEnvUnitInverse(value: string) {
+  return value.slice(0, value.indexOf("\n// GENERATED-NEXT-ENV-TESTS-BEGIN"))
+    .replace("const inverse = generatedNextEnvWorkflowInverse(text).replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN", "const inverse = text.replace(/          # HOSTED-PATH-METADATA-BASH-BEGIN")
+    .replace("const previous = generatedNextEnvWorkflowInverse(text).replace(/          # OWNED-PARENT-ADMISSION-BEGIN", "const previous = text.replace(/          # OWNED-PARENT-ADMISSION-BEGIN")
+    .replace('const unit = generatedNextEnvUnitInverse(source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"));', 'const unit = source("tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts");');
+}
+function generatedNextEnvSource(marker: string, ending: string) {
+  const text = source(".github/workflows/ci.yml");
+  const block = text.slice(text.indexOf(marker), text.indexOf(ending, text.indexOf(marker)));
+  const first = block.indexOf("          import ");
+  const last = block.indexOf("          PY", first);
+  assert.ok(first > 0 && last > first);
+  return block.slice(first, last).split("\n").map(line => line.startsWith("          ") ? line.slice(10) : line).join("\n");
+}
+const generatedNextEnvRootSource = () => generatedNextEnvSource("# GENERATED-NEXT-ENV-ADMISSION-BEGIN", "# GENERATED-NEXT-ENV-ADMISSION-END");
+const generatedNextEnvSessionSource = () => generatedNextEnvSource("# GENERATED-NEXT-ENV-BIND-BEGIN", "# GENERATED-NEXT-ENV-BIND-END");
+const generatedNextEnvHarness = "import ast,builtins,json,re,stat,sys,types\nrequest=json.loads(sys.stdin.read());source=request['source'];fault=request['fault'];now=0\ntree=ast.parse(source)\nallowed={'geteuid','open','fstat','fstatvfs','listxattr','stat','fchown','fchmod','close','write'}\nassert {n.func.attr for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and isinstance(n.func.value,ast.Name) and n.func.value.id=='os'}<=allowed\nroot='/var/tmp/kopplas-owned-'+'aa'*16\nclass FakeOS:\n    O_RDONLY=0;O_WRONLY=1;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288;O_CREAT=64;O_EXCL=128;ST_NOEXEC=8\n    def __init__(self):\n        self.nodes={};self.fds={};self.nextfd=10;self.calls=[];self.mutations=[];self.created=0;self.output=b'';self.slotstats=0\n        for name,ino,mode in [('/',1,0o755),('/var',2,0o755),('/var/tmp',3,0o1777),(root,4,0o711),(root+'/workload',5,0o555)]:\n            self.nodes[name]=dict(st_dev=1,st_ino=ino,st_uid=0,st_gid=0,st_mode=stat.S_IFDIR|mode,st_size=0,st_nlink=1)\n        self.foreign=dict(st_dev=1,st_ino=99,st_uid=23,st_gid=24,st_mode=stat.S_IFREG|0o644,st_size=7,st_nlink=1);self.foreignbefore=dict(self.foreign)\n    def __getattr__(self,name):raise AssertionError('DENIED effect')\n    def geteuid(self):return 0\n    def open(self,name,flags,mode=None,dir_fd=None):\n        self.calls.append('open:'+name)\n        path=name if dir_fd is None else self.fds[dir_fd][0].rstrip('/')+'/'+name\n        if name=='next-env.d.ts':\n            assert flags==self.O_WRONLY|self.O_CREAT|self.O_EXCL|self.O_NOFOLLOW|self.O_CLOEXEC and mode==0o600\n            assert self.fds[dir_fd][0]==root+'/workload' and self.created==0\n            if fault in ('collision','symlink-collision','directory-collision'):raise FileExistsError('PRIVATE')\n            self.created+=1;self.nodes[path]=dict(st_dev=1,st_ino=6,st_uid=0,st_gid=0,st_mode=stat.S_IFREG|0o600,st_size=0,st_nlink=1)\n        else:\n            assert flags==self.O_DIRECTORY|self.O_NOFOLLOW|self.O_CLOEXEC\n            if fault=='symlink-parent' and name=='var':raise OSError(40,'PRIVATE')\n        node=self.nodes[path];fd=self.nextfd;self.nextfd+=1;self.fds[fd]=(path,node);return fd\n    def fstat(self,fd):\n        global now\n        path,node=self.fds[fd];value=dict(node)\n        if fault=='inaccessible' and path=='/var':raise PermissionError('PRIVATE')\n        if fault=='foreign-owner' and path=='/var':value['st_uid']=17\n        if fault=='foreign-0750' and path=='/var':value['st_mode']=stat.S_IFDIR|0o750\n        if fault=='writable-parent' and path==root:value['st_mode']=stat.S_IFDIR|0o777\n        if fault=='malformed':value['st_ino']=None\n        if fault=='deadline':now=2\n        if path.endswith('next-env.d.ts') and fault=='nonregular':value['st_mode']=stat.S_IFDIR|0o600\n        return types.SimpleNamespace(**value)\n    def fstatvfs(self,fd):\n        if fault=='unsupported-mount':raise OSError('PRIVATE')\n        return types.SimpleNamespace(f_flag=None if fault=='unknown-mount' else 8 if fault=='noexec' else 0)\n    def listxattr(self,fd):\n        if fault=='unknown-acl':raise OSError('PRIVATE')\n        if fault=='access-acl':return ['system.posix_acl_access']\n        if fault=='default-acl':return ['system.posix_acl_default']\n        if fault=='overflow':return ['x'*4097]\n        return []\n    def stat(self,name,dir_fd=None,follow_symlinks=None):\n        assert follow_symlinks is False\n        path=name if dir_fd is None else self.fds[dir_fd][0].rstrip('/')+'/'+name\n        if name=='next-env.d.ts':\n            self.slotstats+=1\n            if fault=='substitution-before':self.nodes[path]=self.foreign\n        if fault=='parent-substitution' and name=='workload':return types.SimpleNamespace(**dict(self.nodes[path],st_ino=88))\n        return types.SimpleNamespace(**self.nodes[path])\n    def fchown(self,fd,uid,gid):\n        path,node=self.fds[fd];assert node['st_ino']==6 and uid==999 and gid==987\n        if fault=='substitution-during-chown':self.nodes[path]=self.foreign\n        self.mutations.append(['fchown',node['st_ino']]);node['st_uid']=uid;node['st_gid']=gid\n        if fault=='chown-error':raise OSError('PRIVATE')\n    def fchmod(self,fd,mode):\n        path,node=self.fds[fd];assert node['st_ino']==6 and mode==0o600\n        if fault=='substitution-during-chmod':self.nodes[path]=self.foreign\n        self.mutations.append(['fchmod',node['st_ino']]);node['st_mode']=stat.S_IFREG|mode\n        if fault=='chmod-error':raise OSError('PRIVATE')\n    def close(self,fd):\n        global now\n        del self.fds[fd]\n        if fault=='late-close':now=2\n        if fault=='close-error':raise OSError('PRIVATE')\n    def write(self,fd,data):\n        global now\n        assert fd==1 and not self.fds and data==b'next_env_admitted=true\\n' and len(data)<=128\n        if fault=='write-error':raise OSError('PRIVATE')\n        self.output=data[:-1] if fault=='short-write' else data\n        if fault=='late-publication':now=2\n        return len(self.output)\nfake=FakeOS();argv=['capsule',root,'999','987','1','4','1','5']\nif fault=='wrong-input':argv[2]='0999'\nif fault=='stale-binding':argv[4]='44'\nimports={'os':fake,'re':re,'stat':stat,'sys':types.SimpleNamespace(argv=argv),'time':types.SimpleNamespace(monotonic=lambda:now)}\ndef only_import(name,*a,**k):assert name in imports;return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ntry:exec(compile(source,'actual-inline-slot','exec'),scope);raise AssertionError('missing terminal')\nexcept SystemExit as error:code=error.code\nassert code in [0,1] and not fake.fds and fake.created<=1 and fake.foreign==fake.foreignbefore\nassert all(row[1]==6 for row in fake.mutations)\nif code==0:assert fault=='positive' and fake.created==1 and fake.mutations==[['fchown',6],['fchmod',6]]\nif fault=='substitution-before':assert not fake.mutations\nif fault=='substitution-during-chown':assert fake.mutations==[['fchown',6]]\nprint(json.dumps({'code':code,'created':fake.created,'mutations':fake.mutations,'foreignUnchanged':True,'handles':len(fake.fds),'outputBytes':len(fake.output),'nativeActions':0}))\n";
+const generatedNextEnvSessionHarness = "import builtins,json,stat,sys,types,io,contextlib\nrequest=json.loads(sys.stdin.read());source=request['source'];mode=request['mode'];calls=[];saved=[]\nroot='/var/tmp/kopplas-owned-'+'aa'*16\nargv=['prep',root,'generation','sha','unit','node','candidate','cli','999','987',mode]\nclass FakePath:\n    def __init__(self,path):assert path==root+'/control/session'\n    def write_text(self,text,encoding=None):assert encoding in (None,'ascii');saved.append(text)\nclass FakeOS:\n    O_RDONLY=0;O_DIRECTORY=65536;O_NOFOLLOW=131072;O_CLOEXEC=524288\n    def __init__(self):self.fds={};self.nextfd=10\n    def __getattr__(self,name):raise AssertionError('DENIED effect')\n    def geteuid(self):return 1001\n    def open(self,name,flags,dir_fd=None):\n        assert flags==self.O_DIRECTORY|self.O_NOFOLLOW|self.O_CLOEXEC\n        assert name==root if dir_fd is None else name=='workload'\n        fd=self.nextfd;self.nextfd+=1;self.fds[fd]=4 if dir_fd is None else 5;calls.append('open');return fd\n    def fstat(self,fd):return types.SimpleNamespace(st_dev=1,st_ino=self.fds[fd],st_uid=1001,st_gid=1001,st_mode=stat.S_IFDIR|0o700)\n    def stat(self,name,dir_fd=None,follow_symlinks=None):\n        assert follow_symlinks is False;return types.SimpleNamespace(st_dev=1,st_ino=4 if dir_fd is None else 5)\n    def close(self,fd):del self.fds[fd];calls.append('close')\nfake=FakeOS();out=io.StringIO();fake_sys=types.SimpleNamespace(argv=argv,stdout=out)\nimports={'pathlib':types.SimpleNamespace(Path=FakePath),'sys':fake_sys,'os':fake,'stat':stat,'time':types.SimpleNamespace(monotonic=lambda:0)}\ndef only_import(name,*a,**k):assert name in imports;return imports[name]\nscope={'__builtins__':dict(vars(builtins),__import__=only_import)}\ncode=0\ntry:\n    with contextlib.redirect_stdout(out):exec(compile(source,'actual-session-prep','exec'),scope)\nexcept SystemExit as error:code=error.code\nassert code==0 and len(saved)==1 and not fake.fds\nassert out.getvalue()==('1 4 1 5\\n' if mode=='application' else '')\nassert len(calls)==(4 if mode=='application' else 0)\nprint(json.dumps({'code':code,'output':out.getvalue(),'session':saved[0],'calls':calls,'nativeActions':0}))\n";
+async function runGeneratedNextEnv(fault: string) {
+  const { spawnSync } = await import("node:child_process");
+  const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", generatedNextEnvHarness], {
+    input: JSON.stringify({ source: generatedNextEnvRootSource(), fault }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+  });
+  assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stderr);
+  const value = JSON.parse(result.stdout);
+  assert.equal(value.nativeActions, 0); assert.equal(value.foreignUnchanged, true); assert.equal(value.handles, 0);
+  assert.ok(value.created <= 1 && value.outputBytes <= 128);
+  assert.equal(value.code, fault === "positive" ? 0 : 1);
+  return value;
+}
+test("generated Next file retains held-descriptor mutation and home-transfer ordering", { timeout: 10000 }, async () => {
+  const value = await runGeneratedNextEnv("positive");
+  assert.deepEqual(value.mutations, [["fchown", 6], ["fchmod", 6]]);
+  const text = source(".github/workflows/ci.yml");
+  const root = generatedNextEnvRootSource();
+  assert.match(root, /os\.O_WRONLY \| os\.O_CREAT \| os\.O_EXCL \| os\.O_NOFOLLOW \| os\.O_CLOEXEC, 0o600, dir_fd=workload/);
+  assert.match(root, /call\(os\.fchown, slot, user, group\)/);
+  assert.match(root, /call\(os\.fchmod, slot, 0o600\)/);
+  assert.doesNotMatch(root, /os\.(?:chmod|chown|unlink|remove|system|popen)|subprocess/);
+  assert.ok(text.includes('sudo -n /bin/chown "$uid:$gid" "$private_root/home"\n          sudo -n /bin/chmod 0700 "$private_root/home"\n          # GENERATED-NEXT-ENV-ADMISSION-BEGIN'));
+  assert.match(text, /--signal=TERM --kill-after=1s 2s \/usr\/bin\/python3 -I -/);
+  assert.match(generatedNextEnvRootSource(), /MAX_SECONDS = 1\.0/); assert.match(generatedNextEnvRootSource(), /MAX_BYTES = 128/);
+});
+test("application binds parent descriptors while capability session behavior stays unchanged", { timeout: 10000 }, async () => {
+  const { spawnSync } = await import("node:child_process");
+  const values = [];
+  for (const mode of ["application", "capability"]) {
+    const result = spawnSync(process.platform === "win32" ? "python" : "python3", ["-c", generatedNextEnvSessionHarness], {
+      input: JSON.stringify({ source: generatedNextEnvSessionSource(), mode }), encoding: "utf8", timeout: 4000, maxBuffer: 65536,
+    });
+    assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stderr);
+    values.push(JSON.parse(result.stdout));
+  }
+  assert.equal(values[0].session, values[1].session); assert.deepEqual(values[1].calls, []);
+  const text = source(".github/workflows/ci.yml");
+  const block = text.slice(text.indexOf("# GENERATED-NEXT-ENV-ADMISSION-BEGIN"), text.indexOf("# GENERATED-NEXT-ENV-ADMISSION-END"));
+  assert.ok(block.includes('if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then'));
+});
+test("generated Next file refuses existing regular collision without mutation", async () => {
+  assert.deepEqual((await runGeneratedNextEnv("collision")).mutations, []);
+});
+test("generated Next file refuses symlink collision without foreign mutation", async () => {
+  assert.deepEqual((await runGeneratedNextEnv("symlink-collision")).mutations, []);
+});
+test("generated Next file refuses directory collision or nonregular returned descriptor", async () => {
+  for (const fault of ["directory-collision", "nonregular"]) assert.deepEqual((await runGeneratedNextEnv(fault)).mutations, []);
+});
+test("generated Next file fails closed on unqualified metadata bounds and publication", { timeout: 10000 }, async () => {
+  for (const fault of ["symlink-parent", "foreign-owner", "foreign-0750", "writable-parent", "malformed", "inaccessible", "access-acl", "default-acl", "unknown-acl", "noexec", "unknown-mount", "unsupported-mount", "overflow", "deadline", "wrong-input", "stale-binding", "close-error", "late-close", "write-error", "short-write", "late-publication"]) await runGeneratedNextEnv(fault);
+});
+test("generated Next descriptor transfer refuses namespace substitution with no foreign mutation", { timeout: 10000 }, async () => {
+  const before = await runGeneratedNextEnv("substitution-before"); assert.deepEqual(before.mutations, []);
+  const between = await runGeneratedNextEnv("substitution-during-chown"); assert.deepEqual(between.mutations, [["fchown", 6]]);
+  for (const fault of ["substitution-during-chmod", "parent-substitution", "chown-error", "chmod-error"]) await runGeneratedNextEnv(fault);
+});
+test("pinned Next direct writer needs only the existing generated file writable", async () => {
+  const nextPackage = JSON.parse(source("node_modules/next/package.json")); assert.equal(nextPackage.version, "16.4.1");
+  const actual = source("node_modules/next/dist/lib/typescript/writeAppTypeDeclarations.js");
+  const { posix } = await import("node:path");
+  for (const present of [false, true]) {
+    const calls: string[] = []; let body = "";
+    const fs = { readFile: async (path: string) => { assert.equal(path, "/owned/workload/next-env.d.ts"); calls.push("readFile"); if (!present) throw Object.assign(new Error("mock absent"), { code: "ENOENT" }); return body; },
+      writeFile: async (path: string, content: string) => { assert.equal(path, "/owned/workload/next-env.d.ts"); calls.push("writeFile"); if (!present) throw Object.assign(new Error("mock readonly parent"), { code: "EACCES" }); body = content; } };
+    const exports: Record<string, unknown> = {};
+    const context = { exports, require: (name: string) => { if (name === "fs") return { promises: fs }; if (name === "path") return posix; if (name === "os") return { EOL: "\n" }; throw new Error("denied writer import: " + name); } };
+    vm.runInNewContext(actual, context);
+    const writer = exports.writeAppTypeDeclarations as (options: Record<string, unknown>) => Promise<void>;
+    const run = writer({ baseDir: "/owned/workload", distDir: ".next", imageImportsEnabled: true, hasAppDir: true, hasPagesDir: false, strictRouteTypes: false, typedRoutes: false });
+    if (present) { await run; assert.match(body, /reference types="next"/); } else await assert.rejects(run, { code: "EACCES" });
+    assert.deepEqual(calls, ["readFile", "writeFile"]);
+  }
+});
+
+// RUNTIME-PATHSET-TESTS-BEGIN
+const runtimeAddedPaths = ["tests/e2e/support/scheduling-lifecycle-metadata.ts", "tests/e2e/support/booking-editor-atdd.ts", "tests/e2e/support/resource-cdp-attachment.ts"];
+async function actualPathCollection(missing?: string) {
+  const { posix } = await import("node:path");
+  const text = source("tests/diagnostics/fixed-chromium-application-runner.mjs");
+  const begin = text.indexOf("function productionRuntime() {");
+  const end = text.indexOf("\nexport async function runApplication", begin);
+  const actual = text.slice(begin, end).replaceAll("import.meta.url", "'file:///repo/tests/diagnostics/fixed-chromium-application-runner.mjs'");
+  const authoritative = Object.fromEntries(SOURCES.map(p => [p, readFileSync(p)]));
+  const readPaths: string[] = [];
+  const denied = () => { throw new Error("DENIED unallocated effect"); };
+  const runtime = vm.runInNewContext(`(${actual})()`, {
+    SOURCES, CONFIG: "playwright.fixed-chromium-application.config.ts", OUTPUT: "test-results/fixed-chromium-application",
+    resolve: posix.resolve, dirname: posix.dirname, join: posix.join, relative: posix.relative, isAbsolute: posix.isAbsolute,
+    fileURLToPath: (url: string) => new URL(url).pathname, hash: (value: Buffer) => sha(value),
+    process: { platform: "linux", version: "v22.23.3", argv: [], env: {}, on() {}, off() {} },
+    performance: { now: () => 0 }, Buffer, URL, requireFact: (v: unknown) => { if (!v) throw new Error("binding"); },
+    admitCandidate: denied, packageAdmission: denied, bounded: denied, lstat: denied, writeFile: denied, mkdir: denied,
+    realpath: denied, execFile: denied, createRequire: denied, spawn: denied, createHostedOwner: denied,
+    setTimeout: denied, clearTimeout: denied,
+    readFile: async (p: string) => { assert.ok(p.startsWith("/repo/")); const key = p.slice(6); readPaths.push(key); if (key === missing) throw new Error("fixture read unavailable"); assert.ok(Object.hasOwn(authoritative, key)); return authoritative[key]; },
+  });
+  try { const result = await runtime.bindings(); return { result, authoritative, readPaths }; } finally { runtime.releaseLifetime(); }
+}
+test("runtime exact21 pathset enrolls approved dependencies and owned cleanup/focus and recovers Q runner", () => {
+  assert.equal(SOURCES.length, 21); assert.equal(new Set(SOURCES).size, 21);
+  for (const p of runtimeAddedPaths) assert.ok(SOURCES.includes(p));
+  const inverse = source("tests/diagnostics/fixed-chromium-application-runner.mjs").replace("  'tests/e2e/global-setup.ts', 'tests/e2e/global-teardown.ts',\n  'src/components/scheduling/SchedulingWorkspace.tsx', 'src/components/scheduling/BookingBlock.tsx',\n  'src/components/scheduling/SchemaView.tsx', 'src/components/scheduling/focus-restoration.ts',\n", "").replace("  'tests/e2e/support/scheduling-lifecycle-metadata.ts', 'tests/e2e/support/booking-editor-atdd.ts',\n  'tests/e2e/support/resource-cdp-attachment.ts',\n", "");
+  assert.equal(Buffer.byteLength(inverse), 45690); assert.equal(sha(inverse), "07eb719a1012e07c6db4a9fc7a5a32578eb4dd0b60f09368a170ef2c285c2617");
+});
+test("actual source shape rejects every missing path and extra or malformed binding", async () => {
+  const { checkSourceBindings } = await import("../../../diagnostics/fixed-chromium-application-runner.mjs");
+  checkSourceBindings(bindings());
+  for (const path of SOURCES) { const value = bindings(); delete value[path]; assert.throws(() => checkSourceBindings(value), /binding/); }
+  assert.throws(() => checkSourceBindings({ ...bindings(), "not-approved.ts": { bytes: 1, sha256: "a".repeat(64) } }), /binding/);
+  for (const path of runtimeAddedPaths) for (const bad of [{ bytes: 0, sha256: "a".repeat(64) }, { bytes: 1, sha256: "not-hex" }, { bytes: 1, sha256: "a".repeat(64), extra: true }]) assert.throws(() => checkSourceBindings({ ...bindings(), [path]: bad }), /binding/);
+});
+test("actual production collector reads all21 authoritative source bytes without native work", async () => {
+  const value = await actualPathCollection(); assert.deepEqual([...value.readPaths].sort(), [...SOURCES].sort());
+  for (const path of SOURCES) { assert.equal(value.result[path].bytes, value.authoritative[path]!.length); assert.equal(value.result[path].sha256, sha(value.authoritative[path]!)); }
+});
+test("actual production collector refuses unavailable enrolled runtime dependency", async () => {
+  for (const path of runtimeAddedPaths) await assert.rejects(actualPathCollection(path), /fixture read unavailable/);
+});
+test("actual provenance schema requires all21 sources and preserves strict top-level shape", async () => {
+  const f = fixture(); const result = await f.run(); validateProvenance(result.record);
+  assert.equal(Object.keys(result.record.sources).length, 21);
+  for (const path of runtimeAddedPaths) { const value = JSON.parse(JSON.stringify(result.record)); delete value.sources[path]; assert.throws(() => validateProvenance(value), /binding/); }
+  assert.throws(() => validateProvenance({ ...result.record, arbitrary: true }), /binding/);
+});
+test("valid-shaped stale hashes are rejected by actual authoritative revalidation not shape alone", async () => {
+  const { checkSourceBindings } = await import("../../../diagnostics/fixed-chromium-application-runner.mjs");
+  for (const path of runtimeAddedPaths) {
+    const f = fixture(), authoritative = bindings(), stale = { ...authoritative, [path]: { bytes: 10, sha256: "f".repeat(64) } };
+    checkSourceBindings(stale); // Shape deliberately cannot prove freshness.
+    let collections = 0; f.io.bindings = async () => ++collections === 1 ? authoritative : stale;
+    const result = await f.run(); assert.equal(result.exitCode, 1); assert.equal(result.failure, "binding"); assert.equal(f.state.invocations, 0);
+    assert.equal(collections, 2); assert.equal(f.state.compatibility, 1);
+  }
+});
+test("actual collected hashes detect stale declared metadata through independent comparison", async () => {
+  const value = await actualPathCollection();
+  for (const path of runtimeAddedPaths) {
+    const declared = { ...value.result, [path]: { bytes: value.result[path].bytes, sha256: "f".repeat(64) } };
+    assert.notEqual(JSON.stringify(declared), JSON.stringify(value.result));
+    assert.notEqual(declared[path].sha256, sha(value.authoritative[path]!));
+  }
+});
+test("runtime enrollment retains exact authority and refuses every missing or stale source", async () => {
+  assert.deepEqual(SOURCES, ["playwright.fixed-chromium-application.config.ts", "tests/diagnostics/fixed-chromium-application-runner.mjs",
+    "tests/diagnostics/fixed-chromium-owned-process.c", "tests/diagnostics/no-store-stream-probe.mjs", ".github/workflows/ci.yml", "playwright.config.ts",
+    "tests/e2e/scheduling-views.atdd.e2e.spec.ts", "tests/e2e/support/scheduling-views-atdd.ts", "tests/e2e/support/scheduling-lifecycle-metadata.ts",
+    "tests/e2e/support/booking-editor-atdd.ts", "tests/e2e/support/resource-cdp-attachment.ts", "tests/e2e/global-setup.ts", "tests/e2e/global-teardown.ts",
+    "src/components/scheduling/SchedulingWorkspace.tsx", "src/components/scheduling/BookingBlock.tsx", "src/components/scheduling/SchemaView.tsx",
+    "src/components/scheduling/focus-restoration.ts", "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md", "package.json", "pnpm-lock.yaml", ".nvmrc"]);
+  assert.equal(SOURCES.length, 21); assert.equal(new Set(SOURCES).size, 21); assert.equal(Object.isFrozen(SOURCES), true);
+  for (const path of SOURCES) {
+    const missing = fixture();
+    missing.io.bindings = async () => { const value = bindings(); delete value[path]; return value; };
+    const absent = await missing.run();
+    assert.equal(absent.failure, "binding", `missing ${path}`);
+    assert.equal(missing.state.compatibility, 0); assert.equal(missing.state.invocations, 0);
+    const stale = fixture(); let collections = 0;
+    stale.io.bindings = async () => { const value = bindings(); if (++collections > 1) value[path] = { bytes: 11, sha256: "f".repeat(64) }; return value; };
+    const changed = await stale.run();
+    assert.equal(changed.failure, "binding", `stale ${path}`); assert.equal(collections, 2);
+    assert.equal(stale.state.compatibility, 1); assert.equal(stale.state.invocations, 0);
+  }
+  const extra = fixture();
+  extra.io.bindings = async () => ({ ...bindings(), "unapproved.ts": { bytes: 1, sha256: "f".repeat(64) } });
+  assert.equal((await extra.run()).failure, "binding");
+  assert.equal(extra.state.compatibility, 0); assert.equal(extra.state.invocations, 0);
+});
+
+// OWNED-AUTH-FD-TESTS-BEGIN
+import { createRequire } from "node:module";
+import { pathToFileURL } from "node:url";
+const authRuntimeAdded = ["tests/e2e/global-setup.ts", "tests/e2e/global-teardown.ts", "src/components/scheduling/SchedulingWorkspace.tsx", "src/components/scheduling/BookingBlock.tsx", "src/components/scheduling/SchemaView.tsx", "src/components/scheduling/focus-restoration.ts"];
+type MockAuthNode = { dev: number; ino: number; uid: number; gid: number; mode: number; size: number; nlink: number; kind: string };
+function authHarness(fault = "positive") {
+  const cwd = "/var/tmp/kopplas-owned-" + "a".repeat(32) + "/workload", auth = cwd + "/tests/e2e/.auth";
+  let now = 0, nextFD = 10, active = 0, maxActive = 0, enumReads = 0, iteratorCloses = 0, iteratorOpens = 0;
+  let file: MockAuthNode | null = null, named: MockAuthNode | null = null, contents = Buffer.alloc(0), consuming = false;
+  const originalFixture = JSON.stringify({ tenantA: { id: "original-A" }, tenantB: { id: "original-B" }, auth: { token: "mock-sensitive" } });
+  const dir: MockAuthNode = { dev: 1, ino: 8, uid: 999, gid: 987, mode: 0o40755, size: 0, nlink: 1, kind: "directory" };
+  const foreign: MockAuthNode = { dev: 1, ino: 99, uid: 777, gid: 778, mode: 0o100600, size: 13, nlink: 1, kind: "file" };
+  const foreignBefore = JSON.stringify(foreign), fds = new Map<number, MockAuthNode>();
+  const operations: string[] = [], mutations: number[] = [], published: string[] = [], database: unknown[] = [];
+  const stats = (node: MockAuthNode) => ({ ...node, isDirectory: () => node.kind === "directory", isFile: () => node.kind === "file" });
+  const tick = (label: string) => { operations.push(label); if (fault === "deadline") now = 1001; };
+  const constants = { O_RDONLY: 0, O_RDWR: 2, O_CREAT: 64, O_EXCL: 128, O_DIRECTORY: 65536, O_NOFOLLOW: 131072 };
+  const io = {
+    constants, cwd, uid: 999, gid: 987, platform: fault === "unsupported" ? "win32" : "linux", now: () => now,
+    lstatSync(p: string) {
+      tick("lstat"); if (fault === "inaccessible") throw new Error("PRIVATE mock-sensitive");
+      if (p.endsWith("fixture.json")) {
+        if (consuming && fault === "substitution-before") named = foreign;
+        assert.ok(named); return stats(named);
+      }
+      if (p === auth) return stats(fault === "directory-substitution" && consuming ? { ...dir, ino: 88 } : dir);
+      const mode = p === "/var/tmp" ? 0o41777 : 0o40555;
+      return stats({ dev: 1, ino: 1, uid: fault === "foreign-parent" ? 999 : 0, gid: 0, mode: fault === "writable-parent" ? 0o40777 : mode, size: 0, nlink: 1, kind: fault === "symlink-parent" ? "symlink" : "directory" });
+    },
+    openSync(p: string, flags: number, mode?: number) {
+      tick("open"); const fd = nextFD++;
+      if (p === auth) { assert.equal(flags, constants.O_DIRECTORY | constants.O_NOFOLLOW); fds.set(fd, dir); }
+      else {
+        assert.match(p, /^\/proc\/self\/fd\/10\/fixture\.json$/);
+        assert.equal(flags, constants.O_RDWR | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW); assert.equal(mode, 0o600);
+        if (fault === "collision" || fault === "symlink-file") throw new Error("PRIVATE collision");
+        file = { dev: 1, ino: 11, uid: 999, gid: 987, mode: 0o100600, size: 0, nlink: 1, kind: "file" }; named = file; fds.set(fd, file);
+      }
+      maxActive = Math.max(maxActive, ++active); return fd;
+    },
+    fstatSync(fd: number) {
+      tick("fstat"); const node = fds.get(fd); assert.ok(node);
+      if (consuming && node === file) {
+        if (fault === "unlinked") node.nlink = 0;
+        if (fault === "hardlinked") node.nlink = 2;
+        if (fault === "reused") return stats({ ...foreign, ino: 9999 });
+      }
+      return stats(node);
+    },
+    statSync(p: string) { tick("stat"); assert.equal(p, "/proc/self/fd/10"); return stats(fault === "untrusted-proc" ? { ...dir, ino: 888 } : dir); },
+    realpathSync(p: string) { tick("realpath"); assert.equal(p, "/proc/self/fd/10"); return fault === "wrong-proc" ? "/foreign" : auth; },
+    opendirSync(p: string, options: unknown) {
+      tick("opendir"); assert.equal(p, "/proc/self/fd/10"); assert.equal(JSON.stringify(options), JSON.stringify({ bufferSize: 1, recursive: false }));
+      ++iteratorOpens; maxActive = Math.max(maxActive, ++active); let index = 0;
+      const entries = consuming && fault === "unexpected-entry" ? ["fixture.json", "foreign"] : named ? ["fixture.json"] : [];
+      if (!consuming && fault === "existing-entry") entries.push("foreign");
+      return {
+        readSync() { tick("iterator.read"); ++enumReads; const name = entries[index++]; return name ? { name, isFile: () => name === "fixture.json" } : null; },
+        closeSync() { tick("iterator.close"); ++iteratorCloses; --active; if (fault === "iterator-close") throw new Error("PRIVATE close"); },
+      };
+    },
+    writeSync(fd: number, input: Buffer, offset: number, length: number, position: number) {
+      tick("write"); assert.equal(fds.get(fd), file); if (fault === "write-error") throw new Error("PRIVATE write");
+      const count = fault === "partial-write" ? 1 : length;
+      const next = Buffer.alloc(Math.max(contents.length, position + count)); contents.copy(next); input.copy(next, position, offset, offset + count); contents = next; file!.size = contents.length; return count;
+    },
+    readSync(fd: number, output: Buffer, offset: number, length: number, position: number) {
+      tick("read"); assert.equal(fds.get(fd), file); if (fault === "read-error") throw new Error("PRIVATE read");
+      if (fault === "changed-payload") { output.fill(120, offset, offset + length); return length; }
+      contents.copy(output, offset, position, position + length); return length;
+    },
+    ftruncateSync(fd: number, size: number) {
+      tick("truncate"); assert.equal(fds.get(fd), file); assert.equal(size, 0);
+      if (consuming && fault === "substitution-between") named = foreign;
+      if (consuming && fault === "hardlink-between") file!.nlink = 2;
+      if (consuming && fault === "unlink-between") file!.nlink = 0;
+      mutations.push(file!.ino); contents = Buffer.alloc(0); file!.size = 0;
+      if (fault === "truncate-error") throw new Error("PRIVATE truncate");
+    },
+    closeSync(fd: number) { tick("close"); assert.ok(fds.has(fd)); fds.delete(fd); --active; if (fault === "late-close") now = 1001; if (fault === "close-error") throw new Error("PRIVATE close"); },
+    publish(row: string) { published.push(row); if (fault === "sink-sync") throw new Error("PRIVATE sink"); if (fault === "sink-async") return Promise.reject(new Error("PRIVATE sink")); if (fault === "sink-pending") return new Promise(() => {}); },
+  };
+  const text = source("tests/e2e/global-setup.ts"), begin = text.indexOf("// OWNED-AUTH-FD-BEGIN"), end = text.indexOf("// OWNED-AUTH-FD-END");
+  assert.ok(begin > 0 && end > begin);
+  const actual = ts.transpileModule(text.slice(begin, end), { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS } }).outputText;
+  const scope = vm.createContext({ exports: {}, Buffer, createHash, ownedAuthFs: io });
+  vm.runInContext(actual + "\nglobalThis.authActual={createOwnedAuthFixture,installOwnedAuthFixture,finishOwnedAuthCleanup,hasOwnedAuthRoute,enter:()=>{ownedAuthRouteEntered=true;}};", scope);
+  type Holder = { consume(): Promise<{ erasure: string; closed: boolean; retained: boolean; database: string }>; result(): unknown };
+  const api = vm.runInContext("authActual", scope) as { createOwnedAuthFixture(io: unknown, text: string, cleanup: (original: unknown) => Promise<void>): Holder;
+    installOwnedAuthFixture(text: string, loader: () => Promise<(original: unknown) => Promise<void>>, io: unknown): Promise<() => Promise<void>>;
+    finishOwnedAuthCleanup(): Promise<{ erasure: string }>; enter(): void };
+  const cleanup = async (identity: unknown) => { database.push(identity); if (fault === "db-error") throw new Error("PRIVATE DB"); };
+  function create(text = originalFixture) { return api.createOwnedAuthFixture(io, text, cleanup); }
+  return { api, io, scope, originalFixture, create, cleanup, startCleanup: () => { consuming = true; }, database, mutations, operations, published,
+    snapshot: () => ({ active, maxActive, enumReads, iteratorOpens, iteratorCloses, named: named?.ino, size: file?.size, foreignUnchanged: JSON.stringify(foreign) === foreignBefore }),
+  };
+}
+async function authOutcome(fault: string) {
+  const h = authHarness(fault); let result: { erasure: string; closed: boolean; retained: boolean; database: string } | null = null;
+  try { const keeper = h.create(); h.startCleanup(); result = await keeper.consume(); } catch { /* creation refusal is an expected observation */ }
+  await Promise.resolve(); const state = h.snapshot(); assert.ok(state.maxActive <= 3 && state.iteratorOpens <= 3 && state.enumReads <= 6 && state.iteratorCloses <= 3);
+  assert.equal(state.foreignUnchanged, true); assert.ok(h.mutations.every(ino => ino === 11));
+  for (const row of h.published) { assert.ok(Buffer.byteLength(row) <= 512); assert.ok(!/mock-sensitive|PRIVATE|original-A|\/proc|\/var/.test(row)); }
+  return { h, result, state };
+}
+function actualAuthTeardown(h: ReturnType<typeof authHarness>, mode = "verify-application") {
+  const text = source("tests/e2e/global-teardown.ts"), begin = text.indexOf("export default async function globalTeardown()"), body = text.slice(begin);
+  const code = ts.transpileModule(body, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS } }).outputText;
+  const ordinary: string[] = [];
+  const scope = { exports: {} as { default?: () => Promise<void> }, process: { env: { KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE: mode } },
+    hasOwnedAuthRoute: () => false, finishOwnedAuthCleanup: h.api.finishOwnedAuthCleanup,
+    readFileSync: () => { ordinary.push("read"); return h.originalFixture; }, cleanupOriginalFixture: async () => { ordinary.push("DB"); },
+    rmSync: () => { ordinary.push("remove"); }, path: { dirname: () => "/ordinary/auth" }, FIXTURE_FILE: "/ordinary/auth/fixture.json", console: { warn() {} } };
+  vm.runInNewContext(code, scope); return { run: scope.exports.default!, ordinary };
+}
+function pinnedAuthRunner(load: (file: string) => Promise<unknown>) {
+  const packagePath = createRequire(import.meta.resolve("@playwright/test/package.json")).resolve("playwright/package.json");
+  const manifest = JSON.parse(readFileSync(packagePath, "utf8")) as { name: string; version: string };
+  assert.equal(manifest.name, "playwright");
+  assert.equal(manifest.version, "1.61.1");
+  const pinned = readFileSync(new URL("./lib/runner/index.js", pathToFileURL(packagePath)), "utf8");
+  assert.equal(sha(pinned), "42772378ebad5d2387726d02d377721112edbdde99d495c1259855ddb701b08e");
+  const task = pinned.slice(pinned.indexOf("var TaskRunner = class"), pinned.indexOf("var TimeoutWatcher = class"));
+  const hooks = pinned.slice(pinned.indexOf("function createGlobalSetupTask("), pinned.indexOf("function createRemoveOutputDirsTask("));
+  const errors: unknown[] = [];
+  const scope = vm.createContext({
+    ManualPromise4: function () { const deferred = Promise.withResolvers<void>(); let done = false; return { then: deferred.promise.then.bind(deferred.promise), resolve: () => { done = true; deferred.resolve(); }, isDone: () => done }; },
+    SigIntWatcher: class { promise() { return new Promise(() => {}); } disarm() {} hadSignal() { return false; } },
+    TimeoutWatcher: class { promise = new Promise(() => {}); disarm() {} timedOut() { return false; } },
+    debug4: () => () => {}, colors5: { red: (s: string) => s }, import_util11: { serializeError: (e: unknown) => e }, loadGlobalHook: (_config: unknown, file: string) => load(file),
+  });
+  vm.runInContext(task + hooks + "globalThis.pinnedAPI={TaskRunner,createGlobalSetupTask,createGlobalTeardownTask};", scope);
+  type Task = { title: string; setup?: () => Promise<void>; teardown?: () => Promise<void> };
+  const api = vm.runInContext("pinnedAPI", scope) as {
+    TaskRunner: new (reporter: unknown, timeout: number) => { addTask(t: Task): void; run(context: unknown, deadline: number): Promise<string>; runDeferCleanup(context: unknown, deadline: number, cancel: unknown): Promise<{ status: string; cleanup(): Promise<string> }> };
+    createGlobalSetupTask(file: string, config: unknown): Task; createGlobalTeardownTask(file: string, config: unknown): Task };
+  return { ...api, errors, runner: new api.TaskRunner({ onError: (error: unknown) => errors.push(error) }, 1000), config: { config: { config: {} } } };
+}
+test("owned auth pinned returned callback runs before configured teardown in the same loader closure", async () => {
+  const h = authHarness(); h.api.enter(); const order: string[] = [];
+  const pinned = pinnedAuthRunner(async file => file === "setup" ? async () => {
+    const callback = await h.api.installOwnedAuthFixture(h.originalFixture, async () => h.cleanup, h.io);
+    return async () => { h.startCleanup(); await callback(); order.push("returned"); };
+  } : async () => { await actualAuthTeardown(h).run(); order.push("configured"); });
+  pinned.runner.addTask(pinned.createGlobalTeardownTask("teardown", { globalTeardowns: ["teardown"] }));
+  pinned.runner.addTask(pinned.createGlobalSetupTask("setup", { globalSetups: ["setup"] }));
+  assert.equal(await pinned.runner.run(pinned.config, 0), "passed");
+  assert.deepEqual(order, ["returned", "configured"]); assert.equal(h.snapshot().size, 0); assert.equal(pinned.errors.length, 0);
+});
+test("owned auth test failure stays original while cleanup either verifies or rejects", async () => {
+  for (const fault of ["positive", "close-error"]) {
+    const h = authHarness(fault); h.api.enter(); const first = new Error("original test failure");
+    const pinned = pinnedAuthRunner(async file => file === "setup" ? async () => {
+      const callback = await h.api.installOwnedAuthFixture(h.originalFixture, async () => h.cleanup, h.io);
+      return async () => { h.startCleanup(); await callback(); };
+    } : actualAuthTeardown(h).run);
+    pinned.runner.addTask(pinned.createGlobalTeardownTask("teardown", { globalTeardowns: ["teardown"] }));
+    pinned.runner.addTask(pinned.createGlobalSetupTask("setup", { globalSetups: ["setup"] }));
+    pinned.runner.addTask({ title: "test", setup: async () => { throw first; } });
+    assert.equal(await pinned.runner.run(pinned.config, 0), "failed"); assert.equal(pinned.errors[0], first); assert.equal(h.snapshot().size, 0);
+    if (fault === "positive") assert.equal(pinned.errors.length, 1);
+    else { assert.equal(pinned.errors.length, 3); for (const error of pinned.errors.slice(1)) assert.equal((error as Error).message, "e2e owned auth cleanup unverified"); }
+  }
+});
+test("owned auth setup failure before creation grants no descriptor authority", async () => {
+  const h = authHarness(); h.api.enter(); const first = new Error("original setup error");
+  await assert.rejects(h.api.installOwnedAuthFixture(h.originalFixture, async () => { throw first; }, h.io), error => error === first);
+  assert.equal((await h.api.finishOwnedAuthCleanup()).erasure, "unknown"); assert.deepEqual(h.operations, []);
+});
+test("owned auth creation write failure finalizes the original FD without replacing the first error", async () => {
+  const h = authHarness("write-error"); assert.throws(() => h.create(), /PRIVATE write/); assert.equal(h.snapshot().size, 0); assert.equal(h.snapshot().active, 0); assert.deepEqual(h.mutations, [11]);
+});
+test("owned auth pending setup cannot create after configured teardown closes its latch", async () => {
+  const h = authHarness(); h.api.enter(); let release!: (value: typeof h.cleanup) => void;
+  const pending = h.api.installOwnedAuthFixture(h.originalFixture, () => new Promise(resolve => { release = resolve; }), h.io);
+  assert.equal((await h.api.finishOwnedAuthCleanup()).erasure, "unknown"); release(h.cleanup);
+  await assert.rejects(pending, /owned auth unavailable/); assert.deepEqual(h.operations, []);
+});
+test("owned auth interruption or missing callback has no positive erasure claim", async () => {
+  const h = authHarness(); const keeper = h.create();
+  const pinned = pinnedAuthRunner(async () => { throw new Error("no loaded hook"); });
+  pinned.runner.addTask({ title: "pending setup", setup: async () => new Promise(() => {}) });
+  const cancelled = Object.assign(Promise.resolve(), { isDone: () => true, resolve() {} });
+  const result = await pinned.runner.runDeferCleanup(pinned.config, 0, cancelled);
+  assert.equal(result.status, "interrupted"); assert.equal(JSON.parse(JSON.stringify(keeper.result())).erasure, "unknown");
+  assert.equal(h.snapshot().active, 2); assert.equal(h.mutations.length, 0); // No claim about forced-termination cleanup.
+});
+test("owned auth consumes before awaiting DB and late completion cannot promote a revoked cleanup", async () => {
+  const h = authHarness(); let release!: () => void;
+  const holder = h.api.createOwnedAuthFixture(h.io, h.originalFixture, async () => new Promise<void>(resolve => { release = resolve; })); h.startCleanup();
+  const pending = holder.consume(); assert.equal((await holder.consume()).erasure, "unknown"); release(); assert.equal((await pending).erasure, "unknown"); assert.equal(h.mutations.length, 0); assert.equal(h.snapshot().active, 0);
+});
+test("owned auth authentic original fixture is read through its FD before DB identity use", async () => {
+  const { h, result } = await authOutcome("positive"); assert.equal(result?.erasure, "verified-original-zero"); assert.equal(h.database.length, 1); assert.ok(Object.isFrozen(h.database[0])); assert.ok(h.operations.indexOf("read") < h.operations.indexOf("truncate"));
+});
+test("owned auth missing or uncertain holder fails passing tests without pathname fallback", async () => {
+  const missing = authHarness(); const configured = actualAuthTeardown(missing);
+  await assert.rejects(configured.run(), { message: "e2e owned auth cleanup unverified" });
+  assert.deepEqual(configured.ordinary, []); assert.deepEqual(missing.operations, []);
+  for (const fault of ["missing", "close-error"]) {
+    const h = authHarness(fault); if (fault !== "missing") h.api.enter();
+    const pinned = pinnedAuthRunner(async file => file === "setup" ? async () => {
+      if (fault === "missing") return undefined;
+      const callback = await h.api.installOwnedAuthFixture(h.originalFixture, async () => h.cleanup, h.io);
+      return async () => { h.startCleanup(); await callback(); };
+    } : actualAuthTeardown(h).run);
+    pinned.runner.addTask(pinned.createGlobalTeardownTask("teardown", { globalTeardowns: ["teardown"] }));
+    pinned.runner.addTask(pinned.createGlobalSetupTask("setup", { globalSetups: ["setup"] }));
+    pinned.runner.addTask({ title: "passing test", setup: async () => {} });
+    assert.equal(await pinned.runner.run(pinned.config, 0), "failed");
+    assert.equal(pinned.errors.length, fault === "missing" ? 1 : 2);
+    for (const error of pinned.errors) assert.equal((error as Error).message, "e2e owned auth cleanup unverified");
+    if (fault === "missing") assert.deepEqual(h.operations, []);
+  }
+});
+test("owned auth ordinary cleanup conserves fixture read DB cleanup and recursive removal order", async () => {
+  const h = authHarness(); const configured = actualAuthTeardown(h, ""); await configured.run(); assert.deepEqual(configured.ordinary, ["read", "DB", "remove"]);
+  const setup = source("tests/e2e/global-setup.ts").replaceAll("\r\n", "\n"); assert.ok(setup.endsWith('  mkdirSync(path.dirname(FIXTURE_FILE), { recursive: true });\n  writeFileSync(FIXTURE_FILE, JSON.stringify(fixture, null, 2), "utf8");\n}\n'));
+});
+test("owned auth exclusive collision leaves foreign targets unchanged", async () => { const { h, result, state } = await authOutcome("collision"); assert.equal(result, null); assert.deepEqual(h.mutations, []); assert.equal(state.active, 0); });
+test("owned auth refuses symlink parents and final file without path fallback", async () => { for (const fault of ["symlink-parent", "symlink-file"]) { const { result, h } = await authOutcome(fault); assert.equal(result, null); assert.deepEqual(h.mutations, []); } });
+test("owned auth verified zero means original inode zero and retained directory only", async () => { const { state, result } = await authOutcome("positive"); assert.equal(state.size, 0); assert.equal(state.named, 11); assert.equal(state.active, 0); assert.equal(result?.retained, true); assert.equal(result?.closed, true); });
+test("owned auth substitution before validation cannot mutate replacement or read its data", async () => { const { h, result } = await authOutcome("substitution-before"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []); assert.deepEqual(h.database, []); assert.equal(h.operations.includes("read"), false); });
+test("owned auth substitution between validation and truncate affects only original inode and refuses success", async () => { const { h, result, state } = await authOutcome("substitution-between"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, [11]); assert.equal(state.named, 99); assert.equal(state.size, 0); });
+test("owned auth unlinked original refuses positive cleanup", async () => { const { result, h } = await authOutcome("unlinked"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []); });
+test("owned auth additional hardlink refuses erasure and racing links stay original-inode-only", async () => {
+  const { result, h } = await authOutcome("hardlinked"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []);
+  for (const fault of ["hardlink-between", "unlink-between"]) { const racing = await authOutcome(fault); assert.equal(racing.result?.erasure, "unknown"); assert.deepEqual(racing.h.mutations, [11]); }
+});
+test("owned auth unexpected directory entry stops bounded enumeration with no recursive fallback", async () => { const { result, h, state } = await authOutcome("unexpected-entry"); assert.equal(result?.erasure, "unknown"); assert.deepEqual(h.mutations, []); assert.ok(state.enumReads <= 3); });
+test("owned auth closed or reused FD never receives a later operation", async () => {
+  const h = authHarness(); const keeper = h.create(); h.startCleanup(); await keeper.consume(); const count = h.operations.length; await keeper.consume(); assert.equal(h.operations.length, count);
+  const reused = await authOutcome("reused"); assert.equal(reused.result?.erasure, "unknown"); assert.deepEqual(reused.h.mutations, []); assert.equal(reused.state.active, 1);
+});
+test("owned auth close failure consumes authority without retry or positive cleanup", async () => { const { h, result } = await authOutcome("close-error"); assert.equal(result?.erasure, "unknown"); assert.equal(result?.closed, false); assert.equal(h.operations.filter(op => op === "close").length, 2); });
+test("owned auth partial writes have finite call bounds and retain original failure", async () => { const { h, result, state } = await authOutcome("partial-write"); assert.equal(result, null); assert.ok(h.operations.filter(op => op === "write").length <= 32); assert.equal(state.active, 0); assert.ok(h.mutations.every(ino => ino === 11)); });
+test("owned auth byte time metadata and proc bounds fail closed without another route", async () => {
+  const badFlags = authHarness(); badFlags.io.constants.O_NOFOLLOW = 0; assert.throws(() => badFlags.create(), /owned auth unavailable/); assert.deepEqual(badFlags.operations, []);
+  const huge = authHarness(); assert.throws(() => huge.create('"' + "a".repeat(1048576) + '"'), /owned auth unavailable/); assert.deepEqual(huge.operations, []);
+  for (const fault of ["deadline", "unsupported", "inaccessible", "foreign-parent", "writable-parent", "untrusted-proc", "wrong-proc", "directory-substitution", "iterator-close", "read-error", "changed-payload", "truncate-error", "late-close"]) { const { result } = await authOutcome(fault); assert.notEqual(result?.erasure, "verified-original-zero"); }
+});
+test("owned auth sync async and pending sink failures are nonwaiting and preserve erasure outcome", async () => { for (const fault of ["sink-sync", "sink-async", "sink-pending"]) { const { result, h } = await authOutcome(fault); assert.equal(result?.erasure, "verified-original-zero"); assert.equal(h.published.length, 1); } });
+test("owned auth database uses immutable creation identity and DB failure does not undo verified erasure", async () => {
+  const { h, result } = await authOutcome("db-error"); assert.equal(result?.database, "unknown"); assert.equal(result?.erasure, "verified-original-zero"); assert.equal(JSON.parse(JSON.stringify(h.database[0])).tenantA.id, "original-A");
+  const swapped = await authOutcome("substitution-between"); assert.equal(JSON.parse(JSON.stringify(swapped.h.database[0])).tenantA.id, "original-A");
+});
+test("owned auth actual runtime21 collector binds all six additions without native execution", async () => {
+  assert.equal(SOURCES.length, 21); assert.equal(new Set(SOURCES).size, 21); const value = await actualPathCollection(); assert.equal(Object.keys(value.result).length, 21);
+  for (const path of authRuntimeAdded) { assert.equal(value.result[path].sha256, sha(readFileSync(path))); await assert.rejects(actualPathCollection(path), /fixture read unavailable/); }
+});
+test("owned auth PRIMARY32 definition uses fixed unique seven-field source schema and exact additions", () => {
+  const expected = ["tests/e2e/global-setup.ts", "tests/e2e/global-teardown.ts", "src/components/scheduling/SchedulingWorkspace.tsx", "src/components/scheduling/BookingBlock.tsx", "src/components/scheduling/SchemaView.tsx", "src/components/scheduling/focus-restoration.ts", "tests/unit/features/scheduling/focus-restoration.test.ts"];
+  assert.equal(expected.length, 7); assert.equal(new Set(expected).size, 7); assert.ok(expected.slice(0, 6).every(p => SOURCES.includes(p))); assert.ok(!SOURCES.includes(expected[6]!));
+  const actual = source("tests/e2e/global-setup.ts"); assert.ok(!actual.includes("unlinkSync") && !actual.includes("rmdirSync"));
+  assert.match(actual, /opendirSync\(dirPath\(\), \{ bufferSize: 1, recursive: false \}\)/);
+});
+test("owned auth valid-shaped stale hashes for each six additions fail actual authoritative second collection", async () => {
+  const { checkSourceBindings } = await import("../../../diagnostics/fixed-chromium-application-runner.mjs");
+  for (const path of authRuntimeAdded) {
+    const f = fixture(), actual = bindings(), stale = { ...actual, [path]: { bytes: 10, sha256: "f".repeat(64) } }; checkSourceBindings(stale);
+    let collections = 0; f.io.bindings = async () => ++collections === 1 ? actual : stale;
+    const result = await f.run(); assert.equal(result.failure, "binding"); assert.equal(result.exitCode, 1); assert.equal(collections, 2); assert.equal(f.state.compatibility, 1); assert.equal(f.state.invocations, 0);
+  }
+});
+// OWNED-AUTH-FD-TESTS-END

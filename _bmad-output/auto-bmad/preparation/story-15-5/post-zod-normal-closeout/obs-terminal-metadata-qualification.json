@@ -1,0 +1,179 @@
+{
+  "status": "QUALIFIED_POST_ZOD_NORMAL_ACTUAL_TERMINAL_METADATA_ONLY",
+  "outcome": "QUALIFIED_POST_ZOD_NORMAL_ACTUAL_TERMINAL_METADATA_ONLY",
+  "independent": true,
+  "findings": [],
+  "result": {
+    "Outcome": "QUALIFIED_POST_ZOD_NORMAL_ACTUAL_TERMINAL_METADATA_ONLY",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-terminal-metadata-qualification.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [],
+      "scope": "Actual owned-terminal metadata, finite ownership and closed native-receipt qualification only. No logs/artifacts/test-body evidence, source recertification or broad story review.",
+      "route": "Root recorded Sol6.1 High c7f0d8/native0 before dispatch",
+      "identity": {
+        "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+        "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+        "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+        "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+        "run_id": 40109869919,
+        "attempt": 1,
+        "mode": "normal",
+        "repo": "rthunborg/Kopplas",
+        "branch": "codex/epic-15-scheduling-time-calendar",
+        "workflow_id": 296219797,
+        "event": "workflow_dispatch",
+        "actor": "rthunborg",
+        "triggering_actor": "rthunborg",
+        "cause_proof": false,
+        "release_validation": false,
+        "original_int009": false
+      },
+      "evidence": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-actual-root-ownership.json",
+          "bytes": 57057,
+          "sha256": "2d31cf302a42d4de78006cfd19970d9e4395568d266e759a32c8be93b41611d8"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/terminal.json",
+          "bytes": 24085,
+          "sha256": "9e8ff486cf8485dca04f3b85d2a027ae2cd649f16c5d1bd5ac3bce373b31fb2f"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/operation.json",
+          "bytes": 867,
+          "sha256": "3ae2aca4a519e1187f6b147bb5c250384a356783ecda5dedc72cf0591c6f81e9"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-observation-effects-allocation.json",
+          "bytes": 6109,
+          "sha256": "c6d2df7700603cf4cd6dc2ac0548aab83e06f09d4aef0e1a84c2a67f0c08e46e"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-current-source-proof.json",
+          "bytes": 60788,
+          "sha256": "1a7abac1b423d2efeed053722fb606235de93744ce6ce2b049806a4ae908a3ab"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-vercel-readonly-qualification.json",
+          "bytes": 30497,
+          "sha256": "4ff8739ca493f7c3b27a9c18b989c68ec74eaaf3c4e92c544da05d295ae66fa9"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-execution-receipt.json",
+          "bytes": 2273,
+          "sha256": "825079ae9c39a21fa90d5b660961775ccfa6288af6a4d3be061c353773156b97"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-provider-actual-root-attribution.json",
+          "bytes": 873,
+          "sha256": "ae19de3958e08a8186f02a18f21c3ea905be04d58c025634cb9d0e647d78fcfe"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json",
+          "bytes": 10225,
+          "sha256": "148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212"
+        }
+      ],
+      "ownership": "Accepted6109-byte finite grant records completed Coordinator turn01a16ea5-a6d3-7561-a0f8-2a07a89c5ba4/allocationtool exec-2a42cb27-2612-4625-a00b-c0be38b07ed8, Root actual completed-turn read and native0 verification before effects. Trusted parent confirms actual completion. This reviewer inspected local accepted metadata; no remote chat or service request.",
+      "terminal": {
+        "status": "completed",
+        "conclusion": "failure",
+        "all_jobs_completed": 9,
+        "unique_job_ids": 9,
+        "unique_job_names": 9,
+        "all_job_run_and_head_tuples_match": true,
+        "operation_phase": "ROOT_STOPPED",
+        "stopped_at_UTC": "2026-10-24T16:23:07.531041Z",
+        "final_observation20_byte_identical_to_terminal": true,
+        "required_jobs": {
+          "checkpoint-admission": "success",
+          "verify": "success",
+          "db": "failure",
+          "e2e": "success",
+          "recovery-storage-loader": "success"
+        },
+        "failure": {
+          "job_id": 120919907332,
+          "job": "db",
+          "step": 11,
+          "name": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+          "started_at_UTC": "2026-10-24T16:10:48Z",
+          "completed_at_UTC": "2026-10-24T16:22:19Z",
+          "precise_test_failure_or_cause": "UNKNOWN_PENDING_SEPARATELY_QUALIFIED_EVIDENCE"
+        },
+        "optional4": "dashboard-e2e/native-stream-probe/fixed-chromium-paired-probe/fixed-chromium-application-verification: all skipped, no execution/coverage credit",
+        "verify_step_metadata": "Current verify job120919173803 succeeded. Blocking audit step8, Lint step11, Unit step12 and Build step15 each success in metadata. The previous local full-lint failures and tracked-source recovery remain distinct historical evidence; no local full-lint PASS is invented.",
+        "cleanup_step_metadata": "DB Stop local stack step13 and e2e stop step14 report success; recovery Remove synthetic resources step16 reports success. These statuses do not prove backend rollback, key deletion or protected-row integrity contents."
+      },
+      "finite_closure": {
+        "resolver_used": 1,
+        "poll_pairs_used": 20,
+        "unused_resolvers_CLOSED": 5,
+        "unused_poll_pairs_CLOSED": 70,
+        "all_remaining_slots_CLOSED": true,
+        "no_retry_reset_extension": true,
+        "controller_native_children": 45,
+        "controller_breakdown": "3 Git +1 canonical Node +1 resolver GET +20 run GET +20 jobs GET",
+        "receipt_verification": "Every one of45 ownership references matches the actual local receipt bytes/SHA and embedded receipt JSON. All45 native0/categorynull/full capture/readers joined/handles closed/process settled; all stream EOF/done, no reader error/overflow. Zero pin/copy/closure discrepancies.",
+        "attribution": "45 excludes helper7 local Git metadata commands and provider inner CLI/outer capture. Canonical4preGET1POST occur inside one Node child; they are not five native children. Provider1logicalCLI GET is separate; physical/internal HTTP attempt count UNKNOWN. Native0/closed capture alone does not establish workflow or test success.",
+        "max_controller_native_elapsed_seconds": 3.206287,
+        "publish_to_stop_seconds": 1120.357296,
+        "minimum_observation_spacing_seconds": 32.144503,
+        "budget_meaning": "Resolver1<=6, polls20<=90, observed spacing>=30s and publish-to-stop<5400s. Receipt loop budgets/tails retain reviewed meaning; no strict process-tree hardwall assertion."
+      },
+      "freshness_and_provider": {
+        "source_proof_age_at_publish_seconds": 49.829679,
+        "source_proof_age_at_dispatch_acceptance_upperbound_seconds": 56.887482,
+        "provider_age_at_dispatch_acceptance_upperbound_seconds": 42.139445,
+        "qualification": "Freshness timestamp upper bounds meet reviewed300s source-proof and180s provider pre-canonical limits. Exact immutable grant/proof/review tuple matches. Source corpus/SQL/DEBUG not reread or renewed by this review.",
+        "provider_inner_elapsed_seconds": 2.198991,
+        "provider_outer_elapsed_seconds": 2.310252,
+        "provider_loops": "15s inner/60s outer, with disclosed wait/join tails",
+        "provider_closure": "Inner native0 and outer native0/full EOF/readers joined/closed/settled; no provider retry",
+        "provider_containment": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT for exact owned feature branch at observation. Actual identity matches; previewdisabled=true and unconditional ignored-build exit0 gate retained. createDeployments=enabled is raw status metadata, not blanket manual/production disable or a deployment observation."
+      },
+      "host_provenance": {
+        "helper": "e66086/native0, separate helper7 metadata receipts",
+        "provider": "7106a3/native0; no initial session or waits, full outer closure",
+        "publication": "754cc0 initially running/session61127, one wait0df61e/native0 completion",
+        "resolver": "969883/native0",
+        "polls": "20 returned outer native0 calls; terminal call1a8ebb/native0",
+        "wall": "Tool-reported wait walls are attribution metadata and sums only, not independently measured end-to-end process elapsed; caller gaps excluded. No reuse/relabel of pending initial-session output as final completion."
+      },
+      "coverage_and_custody": {
+        "required95": "UNQUALIFIED_PENDING_BOUNDED_ACTUAL_EVIDENCE",
+        "case_counts": "Actual passed/failed/skipped/unexecuted case counts UNKNOWN from job metadata. Zero new individual passing-case claims are made; this is not a claim that all95 were unexecuted.",
+        "recovery": "Successful recovery job/step metadata is not a qualified direct recovery-storage report or row proof.",
+        "IP_question": "UNOBSERVED_UNTIL_QUALIFIED_ACTUAL_EVIDENCE",
+        "current_cleanup": "UNKNOWN: job/stack stop cannot establish key deletion/backend rollback or clear failed-DB custody",
+        "historical_custody": "Prior39998246278 retained-key/deletion-unverified/backend-UNKNOWN custody remains unresolved. Current successful unrelated jobs cannot clear it.",
+        "historical95": "Prior39998246278 93P/API019failed/API020unexecuted remains history only; not added to current run counts"
+      },
+      "preservation": "Source-only v2 review10225/148e83bf... remains PASS. v1 NONPASS15218/1634fabbee94aec323474370c6d77af101f6df7ab16e18bcff3b6537df56f63c remains preserved. No source guard, story/spec/state or other report was edited.",
+      "normal_acceptance": 0,
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "new_effect_or_acquisition_authority": false,
+      "no_deployment": true,
+      "reviewer_activity": "Read local JSON metadata/receipts and hashes only; no source corpus/SQL/DEBUG/raw log/body/ZIP read, operator/helper/import/network/resource/Git mutation or new run. Sole write is this report."
+    },
+    "Open questions": [
+      "Which actual test/cause led to DB step11 failure, and what are the95 current case outcomes? Metadata cannot answer.",
+      "Was a lifetime-first integration/IP refusal observed, and if so its pipe/rendered form? UNKNOWN until separately allocated actual evidence.",
+      "Current and historical key/backend custody clearance remain unproven."
+    ],
+    "Deferred work": [
+      "Root may separately allocate bounded immutable-terminal evidence qualification with its own precise source review/grant. This report performs or authorizes no acquisition.",
+      "Keep unused operation slots closed. No replay, reset, repair, rerun or deployment follows from this metadata qualification."
+    ],
+    "Blockers": [
+      "Run40109869919 concluded failure because required db job/step11 failed. No NORMAL/development/95 acceptance.",
+      "Individual case counts, IP observation and cleanup/custody evidence remain unqualified; P5 stays open."
+    ]
+  }
+}

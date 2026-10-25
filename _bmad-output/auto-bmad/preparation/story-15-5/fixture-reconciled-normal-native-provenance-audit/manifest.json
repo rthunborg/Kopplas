@@ -1,0 +1,25 @@
+{
+  "schema": "FIXTURE_RECONCILED_FAILED_NORMAL_NATIVE_AUDIT_MANIFEST_v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/original-report.md",
+      "bytes": 5235,
+      "sha256": "265096dd2b2d2d3da13f863743c100d8925c5c16cde5f97c430d9d58e3d45135"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/original-attestation.json",
+      "bytes": 28349,
+      "sha256": "6334abca9b4a3c3d2f7e93b1ab1ab65573d1e69a3435bc8dded5c1f8ea8ef0b5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/result.json",
+      "bytes": 2698,
+      "sha256": "9070c21c6efed0cb3baf116725972eaa88f24af99c464cbf971c4a3158c38708"
+    }
+  ],
+  "frozen": true,
+  "packet_manifest_sha256": "cb2e4f7a6c9ef21463d2b261c0963192c12084b333c5caa6bb4477cddb959c61",
+  "normal_acceptance": 0,
+  "execution_authority": false
+}

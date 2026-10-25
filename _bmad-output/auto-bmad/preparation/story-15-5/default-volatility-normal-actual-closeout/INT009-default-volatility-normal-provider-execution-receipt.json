@@ -1,0 +1,96 @@
+{
+  "schema": "INT009_DEFAULT_VOLATILITY_NORMAL_PROVIDER_EXECUTION_RECEIPT_V1",
+  "actual_tool": {
+    "exec_command_chunk": "0377e0",
+    "outer_native_exit": 0,
+    "wall_seconds": 2.1609214,
+    "session": null,
+    "waits": [],
+    "attribution": "NativeHighobserved actualtools.exec_command completion; no claimRootindependentlyobserved childlifecycle"
+  },
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/provider-readonly.py",
+    "--execute-once-after-new-root-provider-grant"
+  ],
+  "cwd": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+  "login": false,
+  "qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-vercel-readonly-qualification.json",
+    "bytes": 30470,
+    "sha256": "cbd44cf150d0ac1dc734a5d2cb4a0001a896c2137b4730743f963f4b09e171cd"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-effects-allocation.json",
+    "bytes": 3523,
+    "sha256": "0895a06d1bd346e22cb56cb098cd4b809e035ab1d7422707d0866c1876c79550"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-provider-readonly-activation.json",
+    "bytes": 2520,
+    "sha256": "7f85138195be549b02adce2278c26dad45e99de96ca9415f927f60163be26e0e"
+  },
+  "provider_reader": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/provider-readonly.py",
+    "bytes": 20367,
+    "sha256": "d38b1214794fbcd8d1fe83437c1b6f039871efc88173f58689150cb865cab7a4"
+  },
+  "child_transport": {
+    "native_exit": 0,
+    "elapsed_seconds": 2.008659,
+    "launch_error": false,
+    "timed_out": false,
+    "capture_complete": true,
+    "direct_process_settled": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "streams": {
+      "stdout": {
+        "observed_bytes": 17940,
+        "physical_EOF": true,
+        "reader_done": true,
+        "read_error": false,
+        "overflow": false,
+        "observed_sha256": "5078a17c7808addc7c78b668a79fa651accf812a3d18ccfa49a87b1a2c8a7013"
+      },
+      "stderr": {
+        "observed_bytes": 0,
+        "physical_EOF": true,
+        "reader_done": true,
+        "read_error": false,
+        "overflow": false,
+        "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "logical_GET_invocations": 1,
+  "sole_invocation": 1,
+  "all_provider_slots_closed": true,
+  "retry": false,
+  "status": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT",
+  "selected_five_fields": {
+    "id": "prj_QYRxEeUBlCStlPL0YZd72y8245rg",
+    "accountId": "team_jvgtCLGEU7h6atn0TyGLNncd",
+    "commandForIgnoringBuildStep": "exit 0",
+    "previewDeploymentsDisabled": true,
+    "gitProviderOptions.createDeployments": "enabled"
+  },
+  "identity_matches": {
+    "project_id_exact": true,
+    "account_id_exact": true,
+    "project_name_exact": true,
+    "repository_provider_github": true,
+    "repository_owner_exact": true,
+    "repository_name_exact": true
+  },
+  "limited_contract": "ExactownedMAINordinaryGitpushcontainmentonly; no futurecancel/alias or blanketCLI/manual/productiondisable proof. createDeploymentsenabled isnotdisabled.",
+  "normal_acceptance": 0,
+  "provider_mutations": 0,
+  "raw_persisted": false,
+  "publication_or_dispatch_by_author": 0,
+  "utc_completed": "2026-10-23T12:05:51.799714+00:00"
+}

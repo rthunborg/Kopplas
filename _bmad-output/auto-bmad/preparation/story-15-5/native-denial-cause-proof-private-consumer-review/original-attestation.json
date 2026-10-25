@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-private-diagnostic-consumer-first-review",
+  "verdict": "NOTPASS",
+  "reviewed_at_utc": "2026-10-21T05:03:35.828166+00:00",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "fresh": true,
+    "distinct_from_author_and_root": true,
+    "author_native_qualifier": "/root/native15_5_high",
+    "scope_independent": true
+  },
+  "route": {
+    "phase": "review-native-cause-proof-private-diagnostic-consumer",
+    "recorded_by_root_before_dispatch": true
+  },
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "head_sha": "2524306ca9edd6079c23d205cf01268797288d89",
+  "producer_source_sha": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+  "checkpoint_id": "59829dee-b02e-4343-a11f-1874f1ead5d8",
+  "scope": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 36247,
+      "sha256": "cb6e61638cbdb0faec689fc7db9b3681b117b93edfc59e037b10affdb54da90d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 24907,
+      "sha256": "db22e9f2a7b3cc7c8748fc0ad07476306f8f73ca4608b2e408f9d20bbe617b01"
+    }
+  ],
+  "context_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-2524306c-diagnostic-private-helper-review-binding.json",
+      "bytes": 2056,
+      "sha256": "b5dd9066a167151ae2e6eb6dd0bc9ff5fa634e998cfbc047577de1ede8d1366c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-denial-cause-proof.json",
+      "bytes": 852019,
+      "sha256": "23b1751be315acab911ae84bc864a0d9005513a4b9419332c50b3f2465b4fac9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-private-consumer-allocation.json",
+      "bytes": 3289,
+      "sha256": "3b6cb5ddbdc847ca9dfbd2e7ceb2b2e2418227b661b9d14447016a1aea530c00"
+    }
+  ],
+  "producer_schema_sha256": "a9c12ab2e7cba2746aaf1b7e15e500ee73a45e8180e6ad58a9ad64fc2bef405e",
+  "actual_producer_context": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 45083,
+      "raw_sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+      "git_clean_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "checkpoint_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "producer_source_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 82859,
+      "raw_sha256": "1db49932052511104c0df77f79729950de582134bd0eff098d65436ab0c936ec",
+      "git_clean_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "checkpoint_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "producer_source_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36884,
+      "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "git_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "checkpoint_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19247,
+      "raw_sha256": "4df524954f2f1f290d2670a365a26643eeb17245be6036219cdd380b68dc5e86",
+      "git_clean_oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d",
+      "checkpoint_oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d",
+      "producer_source_oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "git_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "checkpoint_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "git_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "checkpoint_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "git_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "checkpoint_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "git_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "checkpoint_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "git_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "checkpoint_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "git_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "checkpoint_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "git_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "checkpoint_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "producer_binding_verification": {
+    "members": 11,
+    "raw_bytes": 11,
+    "raw_sha256": 11,
+    "git_clean_oid": 11,
+    "checkpoint_oid": 11,
+    "producer_source_oid": 11,
+    "all_match": true,
+    "atomic_snapshot_claim": false
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/original-report.md",
+    "bytes": 7582,
+    "sha256": "fca5663518c501c3648f02365227b24771377786236c6b59adc31da57d0bfe5b"
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "P2",
+      "file": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "line": 210,
+      "title": "Null Root artifact ID permits unadmitted archive GET",
+      "caller": "main explicit terminal collection invocation -> collect -> listing_artifact -> archive getter",
+      "invariant": "Nonempty artifact listing requires exact positive Root-admitted artifact ID before second GET",
+      "reachable_injected_reproduction": true,
+      "downstream_enforcement_checked": "No exact-ID guard after the null wildcard; archive digest/receipt checks occur after acquisition",
+      "status": "OPEN",
+      "required_fix": "Reject null for nonempty listing before archive GET; add refusal-before-second-GET negative control; retain exact-ID and empty/null positives"
+    }
+  ],
+  "proof_checked": [
+    "Frozen two-file identities before review and output write",
+    "Root binding/source-freeze/allocation digests",
+    "Actual eleven producer/dependency raw and Git/source/checkpoint bindings",
+    "Actual source receipt/manifest and four launch states",
+    "Exact ten observation fields/max16 events and source-enforced strict absence proof",
+    "Actual DIAG001 declaration and Vitest4.1.9 reporter/runner/snapshot source",
+    "Closed privacy fields, finite preinterpretation caps, failure/missing report and launch uncertainty",
+    "Pure template nine Root-only null placeholders and disabled network gate",
+    "Five missing terminal fields refuse before transport",
+    "Null artifact-ID injected reproduction makes second GET"
+  ],
+  "supplied_pure_controls": {
+    "command": "python -B .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2524306c-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+    "tests_passed": 22,
+    "positive_controls": 14,
+    "negative_controls": 178,
+    "nonadditive_control_counts": true,
+    "failures": 0,
+    "errors": 0,
+    "network_executed": false
+  },
+  "additional_pure_checks": {
+    "template_checked": true,
+    "missing_terminal_fields_refused_before_transport": 5,
+    "artifact_null_bypass_reproduced": true,
+    "injected_get_calls": 2,
+    "real_get_calls": 0
+  },
+  "read_only_limits": {
+    "writes_only_three_new_review_files": true,
+    "source_changes": false,
+    "prior_artifact_changes": false,
+    "git_mutations": false,
+    "network_executed": false,
+    "collector_cli_network_mode": false,
+    "db_rpc_native_ci_resources_browser": false,
+    "initial_cwd_enumeration_anomaly": "Initial read-only tool command defaulted outside requested cwd; produced access errors. No outside material used. Explicit Set-Location used for all substantive review."
+  },
+  "review_cap": {
+    "completed_broad_story_rounds": 3,
+    "fourth_broad_review": false,
+    "bounded_new_two_file_first_review": true,
+    "bmad_code_review_invoked": false
+  },
+  "root_expected_and_terminal_unborn_when_checked": true,
+  "authorization_granted": false,
+  "normal_acceptance_credit": 0,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "retained_limits": [
+    "43 DB and14 browser failures unresolved",
+    "normal95/full2039/browser/recovery/pilot not passed by diagnostics",
+    "backend cause UNPROVEN",
+    "historical JWT/clock/input/snapshot equivalence unknown",
+    "F1 correction/refreeze and distinct bounded review required before adoption",
+    "actual expected/terminal facts, availability/admission and separate Root terminal authorization still required"
+  ]
+}

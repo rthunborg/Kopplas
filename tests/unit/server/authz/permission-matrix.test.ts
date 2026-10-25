@@ -2,9 +2,17 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  PERMISSION_MATRIX,
   resolveCapability,
   resolveSensitiveFieldEntitlement,
 } from "@/server/authz/permission-matrix";
+
+test("15.1-AC2 scheduling references one exact resource Bookings.View grant", () => {
+  assert.equal(PERMISSION_MATRIX.resources["Bookings.View"], PERMISSION_MATRIX.scheduling["Bookings.View"]);
+  assert.deepEqual(PERMISSION_MATRIX.scheduling["Bookings.View"].roles, ["tenant_admin", "projektledare", "montor"]);
+  assert.deepEqual(PERMISSION_MATRIX.resources["Bookings.Manage"].roles, ["tenant_admin", "projektledare"]);
+  assert.equal(resolveCapability({roles:["montor"],module:"scheduling",capability:"Bookings.Manage"}).granted, false);
+});
 
 test("[P0] 11.1-UNIT-001 legacy tenant_admin remains a role when membership_roles has no rows", () => {
   assert.equal(
@@ -62,10 +70,20 @@ test("14.2 booking read/write capabilities preserve Montor own-read permission a
 });
 
 
+test("15.4 ReportOwn and Review preserve the exact reporting/reviewer role union", () => {
+  assert.deepEqual(PERMISSION_MATRIX.scheduling["TimeReports.ReportOwn"].roles, ["tenant_admin", "projektledare", "montor"]);
+  assert.deepEqual(PERMISSION_MATRIX.scheduling["TimeReports.Review"].roles, ["tenant_admin", "projektledare"]);
+  for (const role of ["tenant_admin", "projektledare", "montor", "saljare", "ekonomi"] as const) {
+    assert.equal(resolveCapability({roles:[role],module:"scheduling",capability:"TimeReports.ReportOwn"}).granted, ["tenant_admin","projektledare","montor"].includes(role));
+    assert.equal(resolveCapability({roles:[role],module:"scheduling",capability:"TimeReports.Review"}).granted, ["tenant_admin","projektledare"].includes(role));
+  }
+  assert.equal(resolveCapability({roles:["saljare","montor"],module:"scheduling",capability:"TimeReports.ReportOwn"}).granted,true);
+  assert.equal(resolveCapability({roles:["saljare","montor"],module:"scheduling",capability:"TimeReports.Review"}).granted,false);
+  assert.equal(resolveCapability({roles:["ekonomi","projektledare"],module:"scheduling",capability:"TimeReports.Review"}).granted,true);
+});
 test("[P0] 16.2 dedicated manager capabilities confer no tenant-wide lead grant", () => {
   for (const role of ["tenant_admin", "projektledare", "montor", "saljare", "ekonomi"]) {
     for (const capability of ["Jobs.ManageCrew", "Jobs.SetLead", "Jobs.UpdatePlannedDates", "Jobs.WorkOrders.Edit"])
       assert.equal(resolveCapability({roles: [role], module: "jobs", capability}).granted, ["tenant_admin", "projektledare"].includes(role));
   }
 });
-

@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "phase": "independent-specification-validation",
+  "outcome": "done",
+  "status": "FAIL",
+  "date": "2026-10-20",
+  "validator": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true,
+    "delegates_spawned": 0
+  },
+  "baseline_revision": "159557e114f18123e73282c39c90830917de9948",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "candidate": {
+    "spec_path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "kernel_sha256": "e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8",
+    "raw_spec_sha256": "0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88",
+    "raw_spec_bytes": 26156,
+    "approved_kernel": null,
+    "tasks": 10,
+    "gwt_acceptance_criteria": 9,
+    "source_ac_sketches_preserved_verbatim": 1,
+    "canonical_status": "ready-for-dev",
+    "parse_warnings": [],
+    "review_loop_iteration": 0,
+    "followup_review_recommended": false,
+    "deferred_count": 0,
+    "warning": "oversized"
+  },
+  "verdict": "Candidate is not ready for Root kernel approval or implementation admission until the two bounded contract repairs below receive targeted independent revalidation. Other assessed design is sufficient for planning only. No implementation/security acceptance, resource grant, release approval or deployment authorization is given.",
+  "counts": {
+    "checks": 14,
+    "passed": 12,
+    "failed": 2,
+    "findings": 2,
+    "human_blockers": 0,
+    "runtime_tests_executed": 0,
+    "resources_started": 0,
+    "implementation_changes": 0,
+    "code_review_rounds_consumed": 0
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "status": "PASS",
+      "subject": "Canonical HEAD, original 15-file author freeze and tracked source conservation",
+      "evidence": "All 14 manifest bindings plus manifest matched the supplied hashes before this validator wrote anything. Git HEAD/branch exact; only two known Root-owned state paths are tracked-dirty. Post-write reproducible validator checks the same boundaries."
+    },
+    {
+      "id": "C02",
+      "status": "PASS",
+      "subject": "Canonical reader/discovery and source acceptance preservation",
+      "evidence": "Independently ran story_plan.py --spec and --find-spec: ready-for-dev, parse_warnings=[], found=true, ambiguous=false, hard_stop=false. Counted T1-T10 and AC1-AC9; complete Story15.5 source sketch present once. Candidate kernel is unapproved."
+    },
+    {
+      "id": "C03",
+      "status": "PASS",
+      "subject": "ADR-B004/FR91/NFR46/scope/Phase C preservation",
+      "evidence": "Architecture §6 expressly requires self service, hash-only 32-byte tokens, atomic audited rotation, live minimal own feed, independent DB token/IP counters, Admin queue and shell isolation. Active scheduling currently has no calendar_feed or token table; only those two manifest additions are proposed. Global IP infrastructure must remain separately ACL/RLS tested."
+    },
+    {
+      "id": "C04",
+      "status": "PASS",
+      "subject": "Current exact self authority, manager/mixed role and tenant-isolation design",
+      "evidence": "Current Bookings.View is Admin/PL/Montör role union. person_profiles unique membership/composite tenant FK and booking_assignees provide the exact subject join. readScheduling is broad for managers and cookie-bound; latest booking_owned_by_current_user is Montör-specific and omits profile archive. Candidate correctly forbids both as public authority. SQL must independently derive and enforce current self membership/role, not JWT role metadata or proof alone. Tenant lifecycle terminology is separately failed in C05."
+    },
+    {
+      "id": "C05",
+      "status": "FAIL",
+      "subject": "Exact active/inactive tenant predicate and legacy compatibility",
+      "finding": "F15.5-01"
+    },
+    {
+      "id": "C06",
+      "status": "PASS",
+      "subject": "Token lifecycle, replay/uncertainty, audit and transactional design",
+      "evidence": "Server 32-byte CSPRNG/base64url issuance, SHA-256 only, immutable exact membership binding, at most one active generation, expected revision/attempt, current-auth checked SQL and atomic audit are coherent. Duplicate issue retry returns metadata only; lost URL requires explicit fresh rotation, not escrow or silent generation. T7 and AC2 require rollback/CAS/audit/fetch concurrency evidence, not just adapter success."
+    },
+    {
+      "id": "C07",
+      "status": "PASS",
+      "subject": "Signed narrow RPC and least-privilege owner feasibility",
+      "evidence": "Dedicated domain/key/short TTL/length-prefixed canonical bytes bind token/IP hashes and management actor/tenant/membership/action/revision/attempt/new hash. It prevents raw anon RPC choosing a fresh IP hash and authenticated direct RPC installing a chosen weak hash. Proof cannot select arbitrary subject/projection. NOLOGIN NOINHERIT owner with exact table/column policies, revoked effective PUBLIC/JWT execute and postgres-owned narrowly filtered key helper is feasible in existing provisioning pattern; no service role is needed. Implementation must prove all effective grants/private helper denial; no code exists yet."
+    },
+    {
+      "id": "C08",
+      "status": "PASS",
+      "subject": "Live subject/assignment authority and commit ordering",
+      "evidence": "Candidate requires compatible current-authority locking, fetch/revoke ordering and removal/cancel/archive omission on next committed fetch; a fetch admitted before revoke can finish. Existing scheduling/time-report migration locks establish relevant transaction context, but historical tests are not 15.5 evidence. New actual race/barrier tests are required."
+    },
+    {
+      "id": "C09",
+      "status": "PASS",
+      "subject": "Independent limiting, uniform responses, trusted IP and monitoring",
+      "evidence": "Existing unsubscribe limiter is token/IP paired and accepts caller IP hash; it is unsuitable. Candidate requires independent DB-owned 900s 60/token and 120/IP axes, common invalid-token IP budget, no revoked-only token oracle, safe counters that persist on limited outcomes, Retry-After, bounded global IP housekeeping/cardinality and Admin-only sanitized aggregates. Trusted platform IP is conditional on verified deployment context, otherwise shared unknown bucket. No arbitrary forwarded header or HTTP-controlled test seam is authorized."
+    },
+    {
+      "id": "C10",
+      "status": "PASS",
+      "subject": "Complete minimal calendar serialization",
+      "evidence": "Live JSON/complete paging avoids PostgREST row caps, one event per current planned own booking, stable booking UID, materialized recurrence authority, omitted cancellation, UTC timed values and Stockholm DATE/exclusive all-day end are coherent. Safe work-role/Bokning summary removes arbitrary description. Independent known bytes/parser, CRLF escaping, UTF-8 folding, DST and >row-cap cases are explicitly required; no arbitrary horizon or stored feed. Large data failure may not become false-empty/partial success."
+    },
+    {
+      "id": "C11",
+      "status": "PASS",
+      "subject": "Real public middleware/cookie/import/cache isolation",
+      "evidence": "Actual middleware refreshes every matching route; unsubscribe transitively uses createSupabaseServerClient→next/headers. Root layout is generic. Candidate's exact one-segment feed bypass before env/auth work plus new anon cookie-free client and transitive dependency guard is necessary and sufficiently scoped. AC7/T8/T9 require real no-cookie and hostile-cookie HTTP, no Set-Cookie/redirect/304, preserved protected refresh and unchanged unsubscribe behavior."
+    },
+    {
+      "id": "C12",
+      "status": "FAIL",
+      "subject": "Approved personal calendar subscription entry in actual usable view",
+      "finding": "F15.5-02"
+    },
+    {
+      "id": "C13",
+      "status": "PASS",
+      "subject": "Headless usable UI, required evidence and development/release separation",
+      "evidence": "Types/validation/actions/state/serializer are separate from replaceable settings components; failure/pending/uncertain/reconcile, selectable copy fallback and essential 360x640 keyboard flow are explicit. Full required DB/RLS+direct Storage, actual public HTTP/parser, essential production-server browser, independent High actual-diff review and delivery gate remain mandatory. Exhaustive visuals/provider/device/manual/performance certification deferred with owners/status/next action, never passed. Final author Suggested Review Order is deferred correctly until implementation."
+    },
+    {
+      "id": "C14",
+      "status": "PASS",
+      "subject": "Bounded ownership/E16/protected operations handoff",
+      "evidence": "No scheduling proof/editor/capacity/job DTO consumption is proposed. If discovered later, actual-head E16 coordination is required. Exact shared paths, fresh combined migration timestamp/reservation after current E15/E16 chronology, new serial fault/DDL files, isolated fixtures, test-only Vault/key/runtime and resources require later Coordinator allocation. Current 105-109 immutable history and reserved E16 workorder migration are retained. Preparation requires no new resource grant/remote mutation. Hosted key/IP prerequisites remain release-operator-owned."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F15.5-01",
+      "priority": "P1 specification ambiguity",
+      "title": "Define tenant eligibility using the current model before binding the kernel",
+      "candidate_evidence": [
+        {
+          "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+          "line": 31,
+          "excerpt": "rechecks active tenant/membership/current permission"
+        },
+        {
+          "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+          "line": 97,
+          "excerpt": "current inactive tenant/membership/permission loss also invalidates access"
+        },
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/current-contracts-and-design.md",
+          "line": 7,
+          "excerpt": "Recheck active tenant, active current membership and current Bookings.View permission at each operation"
+        }
+      ],
+      "actual_evidence": [
+        {
+          "path": "supabase/migrations/20260625122433_tenant_foundation.sql",
+          "line": 45,
+          "detail": "tenants has id/name/timestamps; membership status lives in tenant_memberships, not tenants"
+        },
+        {
+          "path": "supabase/migrations/20260919090000_tenant_provisioning.sql",
+          "line": 21,
+          "detail": "later tenant fields add nullable provisioning_state; CHECK line25 allows NULL and invitation/provisioning handoff states, no disabled/inactive tenant value; legacy null identity compatibility is explicit at line26"
+        },
+        {
+          "path": "src/server/auth/resolve-tenant-context-core.ts",
+          "line": 99,
+          "detail": "the current resolver gates membership.status==='active'; returns membership-derived tenant and roles at lines128/130, no tenant lifecycle gate"
+        },
+        {
+          "path": "supabase/migrations/20260904120000_role_storage_and_permission_matrix.sql",
+          "line": 45,
+          "detail": "has_tenant_role gates exact active membership and scalar/additional allowed roles; no tenant-active predicate"
+        }
+      ],
+      "caller_and_invariant": "An authorized existing user with active exact membership, including a legacy tenant whose provisioning_state is NULL, opens settings or presents a previously issued feed. The frozen wording leaves the implementer to invent what independently deactivates the tenant. Treating provisioning_state='ready' as active would deny currently valid legacy membership paths; dropping an undefined inactive-tenant test would leave AC4 untestable. Existing downstream helpers enforce membership eligibility only and cannot resolve this distinct new condition.",
+      "minimal_correction": "Author should explicitly define eligibility from existing tenant existence, the exact membership's active status and current Bookings.View role union, preserving current legacy NULL provisioning_state compatibility; remove the independent inactive-tenant claim/fixture if that is the intended existing-model meaning. Do not add a new tenant lifecycle or repurpose provisioning_state. If a separate tenant-wide suspension predicate is actually intended, identify its approved existing authority/column or surface that material expansion separately before implementation.",
+      "required_revalidation": "Targeted High source/spec comparison must confirm kernel, AC4, companion, test/fixture requirements and handoff use one executable current-model predicate. Include legacy NULL+active-member positive and disabled membership/role-loss negative expectations. No new owner question is needed for the minimal existing-model correction.",
+      "affects": [
+        "kernel",
+        "AC4",
+        "C05",
+        "T2",
+        "T3",
+        "T7"
+      ]
+    },
+    {
+      "id": "F15.5-02",
+      "priority": "P2 missing approved UI entry",
+      "title": "Include the subscription entry in the real personal calendar view",
+      "candidate_evidence": [
+        {
+          "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+          "line": 85,
+          "excerpt": "T5 names settings/calendar, CalendarSubscription and AppShell only"
+        },
+        {
+          "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+          "line": 94,
+          "excerpt": "opening Kalenderprenumeration through Min kalender"
+        },
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/current-contracts-and-design.md",
+          "line": 35,
+          "excerpt": "Add a profile-menu Min kalender link ... Existing personal scheduling agenda is linked from there"
+        },
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md",
+          "line": 46,
+          "excerpt": "Profile link Min kalender→/settings/calendar"
+        }
+      ],
+      "actual_evidence": [
+        {
+          "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+          "line": 244,
+          "detail": "Min kalender personal agenda/week-grid explicitly includes Kalenderprenumeration create/rotate/revoke and warning"
+        },
+        {
+          "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+          "line": 120,
+          "detail": "user-menu entry is an additional specified entry, not a replacement of §4.5"
+        },
+        {
+          "path": "src/components/scheduling/PersonalCalendarView.tsx",
+          "line": 4,
+          "detail": "actual Min kalender section only renders agenda/week grid/empty state; no subscription entry"
+        },
+        {
+          "path": "src/components/scheduling/SchedulingWorkspace.tsx",
+          "line": 175,
+          "detail": "personal view mounts PersonalCalendarView; proposed exact shared write inventory includes neither view nor workspace"
+        }
+      ],
+      "caller_and_invariant": "A Bookings.View user is already using Planering→Min kalender. Building exactly the proposed task/path inventory leaves no Kalenderprenumeration entry in that view, even though approved UX §4.5 includes it. A reverse settings→agenda link and a profile-menu item do not implement that direction. No downstream UI provides an existing subscription entry.",
+      "minimal_correction": "Add a small accessible Kalenderprenumeration link from the actual personal calendar view to the shared /settings/calendar management surface; no duplicate lifecycle component or new nav/module is needed. Name the exact existing view (or equivalent host) and small test delta in T5/ownership handoff for Coordinator allocation.",
+      "required_revalidation": "Targeted source/spec comparison plus planned essential browser flow starting in the actual personal view must show entry→settings→self lifecycle. Preserve the separate profile-menu entry and headless shared management logic. Owner-authorized design defaults do not replace this explicit approved UX requirement.",
+      "affects": [
+        "AC1",
+        "C12",
+        "T5",
+        "T9",
+        "implementation ownership"
+      ]
+    }
+  ],
+  "assessment_limits": [
+    "This is independent specification validation, not a code-review round or implementation acceptance.",
+    "No new feed table/function/client/UI/HTTP endpoint exists at the reviewed baseline. Security design sufficiency is not proof its future implementation is correct.",
+    "No build, app unit/integration/RLS/HTTP/browser, DB/Vault runtime, CI or provider test was executed in this validation. Historical 15.1-15.4 evidence is predecessor evidence only.",
+    "No legacy URL was used, browsed or cited. New user-supplied owner decisions supersede historical worktree AGENTS oracle language.",
+    "Supabase docs and RFC mechanics were read from primary sources; hosted topology, trusted-IP overwrite guarantees for this deployment and production secret provisioning remain unverified."
+  ],
+  "open_questions": [],
+  "deferred_work": [
+    {
+      "owner": "Original specification author",
+      "item": "Repair F15.5-01/F15.5-02 in spec/companions/handoff, refresh affected source-preservation/reader/kernel/raw manifest receipts; keep repairs bounded."
+    },
+    {
+      "owner": "Independent High validator + Root",
+      "item": "Targetedly revalidate the repairs, reusing unchanged security assessment with exact provenance; Root may freeze the repaired kernel only after actual PASS."
+    },
+    {
+      "owner": "Coordinator + Root",
+      "item": "After PASS, allocate exact shared deltas, fresh combined E15/E16 migration order, newly owned serial DDL/fault files and isolated mutable test fixtures/runtime/Vault/test-key/resource lane before writes."
+    },
+    {
+      "owner": "Implementation author + independent High reviewer",
+      "item": "Implement and execute required full development evidence, actual public HTTP/SQL/RLS/ACL and essential browser; final author Suggested Review Order and delivery contract; independent actual-diff review capped at three completed rounds."
+    },
+    {
+      "owner": "Release operator",
+      "item": "Separately authorized hosted key/Vault/runtime and deployment/proxy trusted-IP evidence before hosted feed enablement; no fallback/unsigned/service-role path."
+    },
+    {
+      "owner": "QA/UX + Product/Architect/ops + delivery owner",
+      "item": "Deferred release provider/device/visual/manual/performance/polish work retains explicit evidence/status/next action. release_ready=false; inherited epic review_unverifiedTRUE remains."
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "specification",
+      "owner": "Original specification author",
+      "finding": "F15.5-01",
+      "resume_condition": "Executable existing-model tenant eligibility and legacy compatibility specified, then targeted independent PASS"
+    },
+    {
+      "kind": "specification",
+      "owner": "Original specification author",
+      "finding": "F15.5-02",
+      "resume_condition": "Approved actual personal-view entry and its allocated implementation/browser obligations specified, then targeted independent PASS"
+    }
+  ],
+  "source_preservation": {
+    "author_freeze": {
+      "_bmad-output/auto-bmad/preparation/story-15-5/candidate-intent-contract.txt": "e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8",
+      "_bmad-output/auto-bmad/preparation/story-15-5/current-contracts-and-design.md": "cd8c6ee5b803162789c006fcd8d87ef9d45a8e5ccacfe101f749faaedcd4faa3",
+      "_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md": "784c25c39ba97732a4f5af8a11dccdfd100e5090679a0a1091195cab045410b7",
+      "_bmad-output/auto-bmad/preparation/story-15-5/routes.json": "429a75e1a5fed758625f7854c1e943f229c59444ca19e56ef4b813eb12e4fdfb",
+      "_bmad-output/auto-bmad/preparation/story-15-5/source-discovery.md": "d186642b9d01b2ef9637fd4161ddddb962852897d0a84070c0dfd77d0484c935",
+      "_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-after.json": "928d6c01912f46198cbd9f64be6e4ac75fd8e6257478ab54e4f99e7a80fdd07c",
+      "_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-before.json": "e7d1bdefc1e0dec8e8569bd3c58bb6cf980359490f6c4821abdecff6f11d514d",
+      "_bmad-output/auto-bmad/preparation/story-15-5/spec-discovery.json": "c631c068d139cdc4645bc1ec5983efac32f15137c52852bd1e6203b2f2e516c7",
+      "_bmad-output/auto-bmad/preparation/story-15-5/spec-reader.json": "2a14cbb66ea27f51d8efc44c959fd4649b6a16e161d6ad9397220f7b1c10987a",
+      "_bmad-output/auto-bmad/preparation/story-15-5/spec-self-validation.md": "24425ac3ba6c819709ce3564cb9e217ac1a62041bc8a476591152bfa035dce90",
+      "_bmad-output/auto-bmad/preparation/story-15-5/story-file-audit.md": "192eaa53f9d33bff1a9cdc358f1244ae24ee3cc78ce6edf8c07bf88a57be6399",
+      "_bmad-output/auto-bmad/preparation/story-15-5/validate-planning.py": "348fcdfe4f61ce45002edc56ec79077438625168f316048ae497513f6a2ae9f0",
+      "_bmad-output/auto-bmad/preparation/story-15-5/validation.json": "a4e466326b6ae80cc3ce93a40a7d67a3dd1f3f011cd017ec379269b02fb32802",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md": "0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88",
+      "_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json": "bcaf54e0f8914e777acc281413de5652902734e6ba8c7c99218f1893bde419e5"
+    },
+    "allowed_root_tracked_changes": [
+      "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+      "_bmad-output/auto-bmad/state/epic/epic-15.yaml"
+    ],
+    "tracked_source_changes": [],
+    "cached_epic_context_sha256": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a",
+    "method": "Original author 15 raw files independently hashed before review; full git diff lists only known Root states; read-only validator rechecks freeze/HEAD/current source hashes and canonical source acceptance after report writes."
+  },
+  "commands_executed": [
+    "git -C <worktree> rev-parse HEAD; git branch --show-current; git status --short; git diff --name-only HEAD (read-only)",
+    "python .agents/skills/auto-bmad/scripts/story_plan.py --spec <candidate> (read-only PASS, status ready-for-dev, warnings[])",
+    "python .agents/skills/auto-bmad/scripts/story_plan.py --find-spec --impl-dir _bmad-output/implementation-artifacts --story-key 15-5-personal-calendar-feed-adr-b004-surface-1 (read-only PASS, unambiguous)",
+    "Bounded rg/Get-Content source/ADR/manifest/security/process/preparation inspection and SHA256 original freeze comparison",
+    "Primary-source web reads; Supabase changelog.md fetched read-only with bounded Invoke-WebRequest after web content-type rejection"
+  ],
+  "primary_sources": [
+    {
+      "title": "Supabase Row Level Security",
+      "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+      "use": "Grants and RLS are separate boundaries; direct caller effective grants require actual tests."
+    },
+    {
+      "title": "Vercel request headers",
+      "url": "https://vercel.com/docs/headers/request-headers",
+      "use": "IP/proxy behavior is deployment-sensitive; candidate's fail-closed fallback and release-owned trust evidence are necessary."
+    },
+    {
+      "title": "RFC 5545",
+      "url": "https://www.rfc-editor.org/rfc/rfc5545.html",
+      "use": "CRLF text escaping/folding, UTC timed values and exclusive DATE event end corroborate proposed independent encoding vectors."
+    },
+    {
+      "title": "Supabase changelog",
+      "url": "https://supabase.com/changelog.md",
+      "use": "Scanned relevant breaking entries read-only. No upgrade, DDL or hosted runtime verification."
+    },
+    {
+      "title": "PostgreSQL minor-release changes",
+      "url": "https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes",
+      "use": "Reviewed extension changes; no legacy PGP cipher dependence is proposed; runtime version behavior remains implementation verification."
+    },
+    {
+      "title": "TLS cipher deprecation",
+      "url": "https://supabase.com/changelog/cbc-tls-ciphers-deprecated",
+      "use": "Reviewed current API compatibility notice; no task-specific policy change or release/runtime claim."
+    }
+  ],
+  "release_ready": false,
+  "implementation_admitted": false,
+  "resource_granted": false,
+  "approved_kernel": null,
+  "source_snapshot_sha256": {
+    "AGENTS.md": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823",
+    "docs/process/development-completion-policy.md": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893",
+    "docs/process/agent-model-routing.md": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891",
+    "docs/process/local-setup.md": "c533f25c64c176b01d21c0a06141aa4287752922cd586e3f23fb4b15a784bfe7",
+    "docs/process/review-order.md": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115",
+    "_bmad-output/project-context.md": "f5bf5333ab8147b5dccd0a88e12848b17b6a29967b1175cea352d7aaec51f973",
+    "_bmad-output/planning-artifacts/epics-phase-b.md": "72983bf3d3154cebb52891a244a40434af19aacddf699bd45c5f7561cbe18387",
+    "_bmad-output/planning-artifacts/prd-phase-b.md": "55ea67f8fd08b0abd9fec611751891a5362f3b25e52cda84deca266075f46d4e",
+    "_bmad-output/planning-artifacts/architecture-phase-b.md": "a96ff60740a87ff35ad6bdd53a1319565475aba6c5b960633e25f5e646f0fa94",
+    "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md": "97a7bec5874622b508c6f2da3a794d9a1b2c204b2dc3f464dae253809f5977b1",
+    "_bmad-output/test-artifacts/test-design-epic-15.md": "ebd67ef139d180a47af03fa885b0b50fb52905b335d81fe07fc9169b49bff955",
+    "src/scope/manifest.ts": "61d54f63c309470038426fa69fa64dd40fd5fb9b402fdc727eeb748f9129527b",
+    "src/server/auth/resolve-tenant-context.ts": "1d46e1504583d08d0a0d805dc7e3df7ac3f502fc2ab89e976d5a86c439280cf2",
+    "src/server/auth/resolve-tenant-context-core.ts": "014279223fffb62e5bace20c9920a4fe8e89186768e7354cb075f26b99d37153",
+    "src/server/authz/permission-matrix.ts": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc",
+    "src/server/commands/envelope.ts": "ce5fa6b75e5950256e891a2bc39c53cdb81df2c03393c74d0c425767291dd6eb",
+    "src/server/read-models/scheduling.ts": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+    "src/server/db/supabase-server-client.ts": "492cb7b5bd242d4b6b731a8c84cc77bd5159579fb3338ed0251d0065bacea99e",
+    "middleware.ts": "df31ff3a6227edb70aa10e29bea11c61bb12735b02a6795a2a3a48f1d1e39340",
+    "src/app/layout.tsx": "194eb7f66f7e20763e0633531e42cd620ffd10ff18abfc3387b94eb6ae797ef2",
+    "src/app/(public)/unsubscribe/[token]/route.ts": "7ad7203b96d266661f4019417974848f44842a2a8f9daa03755a831f301d0e75",
+    "src/server/email/unsubscribe.ts": "30c504ba0cf26bce8da51655ea1fd396b68ad98adb39ff21643e9f597020db73",
+    "src/server/bookings/conflict-attestation.ts": "34f0d813ce2624a2afa6c082dc1e608ab9775d517b36323f7cb81b744157f6f1",
+    "src/components/app-shell/AppShell.tsx": "1ecfaf9e0447c9c2f0a8c22de6367cee2f9910bf4043ab6c7db0a3b427dec661",
+    "src/components/scheduling/PersonalCalendarView.tsx": "2ae1e210dc770f69db8929bf4515c611c1d6aefa31fa34e5ba88b9cb92219e4b",
+    "src/components/scheduling/SchedulingWorkspace.tsx": "1ee89cbf2c1680bbe78b07e93bb290fb28c02731a7211888a3bd5540f79c2701",
+    "supabase/migrations/20260625122433_tenant_foundation.sql": "884f8205e1e271883ee116ee122b8a55788c30b9c4e5902c8ee8078ee959f627",
+    "supabase/migrations/20260904120000_role_storage_and_permission_matrix.sql": "8e04f52e2366b28b7d806b76516d70333aab352f9a4d6a5119bd232b86b05641",
+    "supabase/migrations/20260919090000_tenant_provisioning.sql": "7e0c801d75b5fabadcf29bca10ebb125e8344ff25b5cce7b9354dc3869121c3c",
+    "supabase/migrations/20260919120000_provisioning_decision_8a_authority.sql": "471cb1b1b06c87de28c6cadd74123043a5d7fadd3fe51d957520d12c4a7412f7",
+    "supabase/migrations/20260919121000_provisioning_vault_reader_owner.sql": "946ed18da8df2790de25d60c7f1a04b6efc9e48321badfe97bd7567b646cabfc",
+    "supabase/migrations/20260924120000_email_delivery_followup_fixes.sql": "b4e31b67ecb248791ffd1a975521ef3d04d4fea58d51bee4aa453dd50b76a436",
+    "supabase/migrations/20260929120000_resource_person_profiles_and_work_hours.sql": "6051d94fe8527656086d43d86aa4b2ea2a36fd8517bfd6abf828e67d1208d67c",
+    "supabase/migrations/20261006101609_bookings_and_assignees.sql": "c3af5bdeb49b5edf56c9bafb8a7b1c5ec6220bddb513015eea6ecdd4939f371d",
+    "supabase/migrations/20261006104143_booking_invariant_corrections.sql": "e5dd4285979feae93f364283f8ae553c9d6aad1c8e6ba2c5fa7f296b6b969aac",
+    "supabase/migrations/20261020190000_time_reports.sql": "90e685665d0f05722d59850c4a195df3fbeef8a39a719d426ce1f443e07ee139",
+    "scripts/verify/check-service-role-containment.mjs": "64e8020399dbf77b85082910863b49d44f6456457d5c688b871502eb4f9b6012",
+    "tests/integration/rls/tenant-table-inventory.ts": "271110c92a6b4215126ef745741da688e58ca2617ddd0d924070ea985f59b3bd",
+    "_bmad/custom/bmad-build-auto.toml": "fa32e3f797d556e116fa60acdaaf1b274b071d72e6ae42863b24e14384477970",
+    ".agents/skills/auto-bmad/scripts/story_plan.py": "13cf46aceda340152fd10cb0bc57991c498c36e28628a98bfb4e60e1fd99d5ae"
+  },
+  "artifact_validator_note": "The initial independent helper run found an over-escaped task regex in this helper, not in the candidate; corrected only the owned helper and regenerated its manifest before final read-only verification."
+}

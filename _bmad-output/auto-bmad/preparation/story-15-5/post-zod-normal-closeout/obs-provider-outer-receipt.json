@@ -1,0 +1,72 @@
+{
+  "schema": "ROOT_POST_ZOD_PROVIDER_NATIVE_OUTER_RECEIPT_V1",
+  "transport": {
+    "native_exit": 0,
+    "category": null,
+    "elapsed_seconds": 2.310252,
+    "timeout_seconds": 60,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 999,
+        "sha256": "d945021e7e17fad1bae34dfd63862c68f46d45afff485072491e448b267e4bcc",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "safe_provider_result": {
+    "qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-vercel-readonly-qualification.json",
+      "bytes": 30497,
+      "sha256": "4ff8739ca493f7c3b27a9c18b989c68ec74eaaf3c4e92c544da05d295ae66fa9"
+    },
+    "status": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT",
+    "category": null,
+    "logical_GET_invocations": 1,
+    "transport": {
+      "native_exit": 0,
+      "elapsed_seconds": 2.198991,
+      "launch_error": false,
+      "timed_out": false,
+      "capture_complete": true,
+      "direct_process_settled": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "streams": {
+        "stdout": {
+          "observed_bytes": 17938,
+          "physical_EOF": true,
+          "reader_done": true,
+          "read_error": false,
+          "overflow": false,
+          "observed_sha256": "2a3d75c4878666fbe21e5d8f80414acaeb31174ef408a097d29b7ee23cbbd675"
+        },
+        "stderr": {
+          "observed_bytes": 0,
+          "physical_EOF": true,
+          "reader_done": true,
+          "read_error": false,
+          "overflow": false,
+          "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    "normal_acceptance": 0
+  },
+  "raw_provider_payload_persisted": false,
+  "native_function_sha256": "57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1"
+}

@@ -1,0 +1,19 @@
+{
+  "Outcome": "NOTPASS",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/result.json"
+  ],
+  "Status": "Composite new-acquisition code review complete; supplied26-test suite passes, but two independently reproduced P2 failure-evidence defects remain open.",
+  "Open questions": [],
+  "Deferred work": [
+    "Correct F1/F2, refreeze exact changed code and obtain independent targeted corrective review before acquisition activation.",
+    "Root actual posthoc expected/terminal/result admission and later offline exact-three publication remain separately gated.",
+    "43 DB and14 browser causes unresolved; normal/native acceptance credit remains zero."
+  ],
+  "Blockers": [
+    "F1 P2: reader error/overflow completion can be recorded as physical EOF and verified custody.",
+    "F2 P2: cap/timeout transport failures report zero bytes despite observed stdout."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "ROOT_REVIEWED_EXACT_SOURCE_COMMIT_V1",
+  "parent": "104976f7fc88844394abd48d02f1a8392c25ad8b",
+  "source_commit": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "changed_paths": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "raw_LF_bindings_verified": 10,
+  "index_Git_blobs_verified": 5,
+  "independent_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-first-origin-actual-patch-independent-review.json",
+    "bytes": 14394,
+    "sha256": "53747652a4d270646964277c6b45c09dca2df7fb97fbd6bffae00bc47aa276c2"
+  },
+  "Spec_metadata": "Rootstory_plan96493d/native0:in-review/review3/followupfalse; historicalAutoRunResultunchanged",
+  "whole_Spec_raw_inverse": false,
+  "outside_SRO_raw_and_whole_LF_inverse": true,
+  "P5": "OPEN",
+  "development_complete": false,
+  "release_ready": false,
+  "pushes": 0
+}

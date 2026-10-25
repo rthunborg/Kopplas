@@ -1,0 +1,208 @@
+{
+  "schema": "POST_F1_STATIC_ENROLLMENT_v1",
+  "method": "Current source declarations and explicit finite vector expansion; six unchanged Node source raw identities reuse the earlier exact literal expansion, not execution. No application module/test runner invoked.",
+  "Node": {
+    "count": 30,
+    "files": [
+      {
+        "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+        "literal_declarations": 4,
+        "expanded_cases": 4
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+        "literal_declarations": 8,
+        "expanded_cases": 13
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/validation.test.ts",
+        "literal_declarations": 3,
+        "expanded_cases": 3
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+        "literal_declarations": 4,
+        "expanded_cases": 4
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+        "literal_declarations": 3,
+        "expanded_cases": 3
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+        "literal_declarations": 3,
+        "expanded_cases": 3
+      }
+    ],
+    "case_ids_or_exact_regression_titles": [
+      "UNIT-009",
+      "UNIT-010",
+      "UNIT-011",
+      "R1-07 authoritative post-commit refresh removes a concurrent revoke/rotation URL and retains current issuance",
+      "UNIT-001",
+      "UNIT-002-spring",
+      "UNIT-002-autumn",
+      "UNIT-003",
+      "UNIT-004",
+      "UNIT-005",
+      "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.000001Z",
+      "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.1Z",
+      "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.999999Z",
+      "R1-05 positive microsecond range projects to distinct supported RFC seconds 1969-12-31T23:59:59.999998Z",
+      "R1-05 positive microsecond range projects to distinct supported RFC seconds 9999-12-31T23:59:59.000001Z",
+      "R1-05 microsecond ordering rejects reversed intervals within one millisecond",
+      "R1-06 snapshot omits METHOD and both revision stamps advance while UID stays stable",
+      "UNIT-006",
+      "UNIT-007",
+      "UNIT-008",
+      "UNIT-012",
+      "UNIT-013",
+      "UNIT-014",
+      "UNIT-021",
+      "UNIT-018",
+      "UNIT-019",
+      "UNIT-020",
+      "UNIT-015",
+      "UNIT-016",
+      "UNIT-017"
+    ],
+    "expansion": "UNIT002 spring/autumn2; R1-05 positive literal vector.start5; other declarations once."
+  },
+  "Vitest_ordinary": {
+    "count": 51,
+    "files": [
+      {
+        "group": "INT",
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "case_ids": [
+          "INT001",
+          "INT002",
+          "INT003",
+          "INT004",
+          "INT005",
+          "INT006",
+          "INT007",
+          "INT008",
+          "INT009",
+          "INT010",
+          "INT011",
+          "INT012",
+          "INT013",
+          "INT014",
+          "INT015"
+        ],
+        "count": 15
+      },
+      {
+        "group": "RLS",
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "case_ids": [
+          "RLS001",
+          "RLS002",
+          "RLS003",
+          "RLS004",
+          "RLS005",
+          "RLS006",
+          "RLS007",
+          "RLS008",
+          "RLS009",
+          "RLS010",
+          "RLS011",
+          "RLS012"
+        ],
+        "count": 12
+      },
+      {
+        "group": "COMP",
+        "path": "tests/integration/components/calendar-feed.test.ts",
+        "case_ids": [
+          "COMP-001",
+          "COMP-002",
+          "COMP-003",
+          "COMP-004"
+        ],
+        "count": 4
+      },
+      {
+        "group": "API",
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "case_ids": [
+          "API001",
+          "API002",
+          "API003",
+          "API004",
+          "API005",
+          "API006",
+          "API007",
+          "API008",
+          "API009",
+          "API010",
+          "API011",
+          "API012",
+          "API013",
+          "API014",
+          "API015",
+          "API016",
+          "API017",
+          "API018",
+          "API019",
+          "API020"
+        ],
+        "count": 20
+      }
+    ],
+    "new_case_delta": 0,
+    "new_proof": "One awaited calendarOwnerAclRegression() inside existing RLS010 before row fixture. No new declaration or additive native case.",
+    "DIAG001": "Declared only under CALENDAR_FEED_CAUSE_PROOF_MODE=1; absent/uncredited in normal mode."
+  },
+  "essential_browser": {
+    "count": 14,
+    "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+    "case_ids": [
+      "E2E-001",
+      "E2E-002A",
+      "E2E-002B",
+      "E2E-002C",
+      "E2E-003",
+      "E2E-004",
+      "E2E-005",
+      "E2E-006",
+      "E2E-007",
+      "E2E-008",
+      "E2E-009",
+      "E2E-010-rotate",
+      "E2E-010-revoke",
+      "E2E-011"
+    ],
+    "expansion": "002A/B/C3 variants;010 rotate/revoke2; other9 declarations once.",
+    "retries": "CI retry attempts are nonadditive; actual attempts/flaky/skipped remain separately observed."
+  },
+  "total": 95,
+  "DIAG001": "Absent in normal cause-proof=false mode; not skipped credit.",
+  "recovery": {
+    "count": 1,
+    "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+    "separate_from95": true,
+    "title": "serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts"
+  },
+  "partition": {
+    "total_static_files": 165,
+    "parallel": 159,
+    "serial_files": [
+      "tests/integration/jobs/job-runs.int.test.ts",
+      "tests/integration/commands/conflict-resolver.int.test.ts",
+      "tests/integration/commands/time-reports.int.test.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts"
+    ],
+    "serial_count": 6,
+    "file_membership_digest": "ebe17a40a2bb2c6a010c77e48210bf951f70e3083b4e1f84f2ab84f3f22ae7ff",
+    "actual_installed_collection_and_order": "Not rerun here; future native verify must execute current partition controls and runtime report must establish once/order/nonoverlap after parallel report completion. Physical teardown timestamps only if actually retained.",
+    "supported_predicate": "Exact2 projects/current isolate+parallelism+orders, serial maxWorkers1/bail1; parallel project configured maxWorkers!=1; every selected project full predicate before setup/import. No blanket CPU/CLI1 refusal.",
+    "failure_contract": "Uncertainty reaches failed fixture/test; bail may leave cases unexecuted. Exact34 finite direct imported callback awaits guard remains required. No loss/skip credited as coverage."
+  },
+  "current_native_execution": 0,
+  "normal_acceptance_credit": 0
+}

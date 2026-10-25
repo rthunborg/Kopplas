@@ -1,0 +1,25 @@
+{
+  "execution_authorized": false,
+  "members": [
+    {
+      "bytes": 4650,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-high-review/original-report.md",
+      "sha256": "6ba5c109cff86792355d373aba6c8837cce8136e9710905868e3b30b5485b632"
+    },
+    {
+      "bytes": 12154,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-high-review/original-attestation.json",
+      "sha256": "434b877112deea80940b92dd1a376ece1936e09efe56ffe53d114689be839fc2"
+    },
+    {
+      "bytes": 1908,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-high-review/result.json",
+      "sha256": "355b8a58186f58df066f6d84f5a3c6d08443b9b7765ae101ae02cf22fbee116e"
+    }
+  ],
+  "native_acceptance": 0,
+  "reviewed_commit": "4cd5e944ae19785f4d7abfbcca4f1d471cc7491e",
+  "schema": "SELF_EXCLUDED_TARGETED_CODE_REVIEW_MANIFEST_v1",
+  "self_excluded": "manifest.json",
+  "source_only": true
+}

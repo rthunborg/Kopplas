@@ -1,0 +1,24 @@
+{
+  "kind": "ROOT_ORIGINAL_TARGETED_EXTRACTOR_NOTPASS_CUSTODY",
+  "files": [
+    {
+      "file": "original-report.md",
+      "bytes": 6583,
+      "sha256": "119463908240cc470c2f8af84ef97f2fa1c561272c9cc3b27fb3114aef13a8c3"
+    },
+    {
+      "file": "original-attestation.json",
+      "bytes": 7645,
+      "sha256": "a5e8793bb940f2ea9b4ea0367ecd86dd75558ee884d3cbfe6a08f417a30dac54"
+    },
+    {
+      "file": "result.json",
+      "bytes": 954,
+      "sha256": "0fad3e4ddeb38f945f67ad4692fce39b6cbc4a306df5b64ddcb5e5df7f53a97d"
+    }
+  ],
+  "original_code_sha256": "16bcb852e3923e03cff1e3c1fdd08dd38045299851c27fbc8e01c25728a5364a",
+  "proposal_sha256": "b266966e2dec8dd74235d7a9edda2b41731b124e328ec3ea567822d94d1ba1fe",
+  "activation": false,
+  "GETs": 0
+}

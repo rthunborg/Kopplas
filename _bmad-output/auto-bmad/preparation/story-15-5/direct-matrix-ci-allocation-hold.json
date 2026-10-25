@@ -1,0 +1,20 @@
+{
+  "schema": "direct-matrix-ci-allocation-hold-v1",
+  "status": "AUTOMATIC_APPROVAL_REJECTED_NO_EXECUTION_GRANT",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "coordinator_completed_turn": "01a15e67-70f5-7210-8b68-4294e946ce4c",
+  "coordinator_final_message": "msg_0954b60b44796db1016ad8ae646c5c819189ad316f2cbbf77a",
+  "hold_only_handoff": "exec-c98dc3e1-3a06-4ef8-997e-5f3c8e950e27",
+  "reason": "Automatic review requires direct human approval for hosted migrations/reset-seed/Auth/Vault/JWT owned writes/cleanup effects despite earlier fix/retry and standing authorization. Attempted grant was rejected and not delivered.",
+  "checkpoint_head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+  "source_head": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "checkpoint_id": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+  "actual_dispatches": 0,
+  "actual_archive_gets": 0,
+  "checkpoint_uuid_consumed": false,
+  "human_question": "Approve one Epic15 diagnostic run in disposable GitHub CI including migrations/reset-seed/synthetic tenant-Auth fixtures/temporary Vault key/owned token-audit writes/scoped cleanup or retained custody on uncertainty. No production/demo, merge or deployment.",
+  "human_reply": "PENDING",
+  "allowed_independent_work": "Already authorized extractor preparation/pure controls and independent review only; no network from this hold.",
+  "resume_condition": "Actual direct human approval of these exact hosted effects, concrete Coordinator execution allocation and unchanged exact source/checkpoint/admission/once bindings.",
+  "normal_acceptance_credit": 0
+}

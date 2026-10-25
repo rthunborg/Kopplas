@@ -1,0 +1,92 @@
+{
+  "kind": "original-independent-context-free-vite-security-lock-latest-three-attestation",
+  "verdict": "PASS",
+  "finding_count": 0,
+  "reviewer": "/root/build15_5_high/native_dependency_three_review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "distinct_from_author": true,
+  "fresh_context_free": true,
+  "before": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "source_head": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/latest-fix-input.diff",
+    "bytes": 123810,
+    "sha256": "af29f6ea57780da357814dd23c3b6a1716c26bc30b0aa1c75073eca13d7f264c"
+  },
+  "binding": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/input-binding.json",
+    "bytes": 9191,
+    "sha256": "41f77c6562e6553bbc7511a8fd2f3b00b8a0a69d53be0d88590e7a70bc367ee0"
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/original-review.md",
+    "bytes": 3671,
+    "sha256": "15c0bcaefd07b562e486a7ed9b1b87e17c98b2918664be3d85d88e83b4ac3e2d",
+    "preserved_original_final_text": true
+  },
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "latest_fix_only": true,
+  "fourth_broad_review": false,
+  "kernel_bytes": 5760,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_literal_stops": 61,
+  "spec_status": "in-review",
+  "spec_after_review_delta": false,
+  "required_lock_package_snapshot_records": 78,
+  "unrelated_manifest_script_gate_override_change": false,
+  "patched_applicability_primary_sources": [
+    "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
+    "https://raw.githubusercontent.com/vitejs/vite/v8.1.6/packages/vite/CHANGELOG.md",
+    "https://raw.githubusercontent.com/vitejs/launch-editor/v2.14.2/packages/launch-editor/parse-file.js"
+  ],
+  "registry_HTTP_unavailable_no_fresh_tarball_or_install": true,
+  "local_checks_inspected_not_rerun": {
+    "node_passed": 67,
+    "node_failed": 0,
+    "node_skipped": 0,
+    "node_cancelled": 0,
+    "high_audit_exit": 0,
+    "high": 0,
+    "moderate": 2,
+    "typecheck": "PASS",
+    "lock_install_build_bundle": "PASS",
+    "focused_lint": "PASS",
+    "canonical_local_lint": "INCOMPLETE_TERMINATED_EXIT1_NOT_PASS_CLEAN_CI_REQUIRED"
+  },
+  "native_credit_for_controls": 0,
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "prior43DB14browser_and_attachment_privacy_unresolved": true,
+  "changed_dependency_bytes_invalidate_whole_installed_runtime_reuse": true,
+  "all10failed_native_histories_preserved": true,
+  "reviewer_no_edits_tests_runtime_resources_commits_pushes": true,
+  "parent_current_three_bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_sha256": "b33f59ebf25955b7d5acf082ce255907b462ca6171aacf50ab5621df9f7da5c1",
+      "head_blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "head_blob_sha256": "0ea107912c53c54f3755cc162d08bd9ee084e4c7b52363fa5e13c8bdb7024264",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    },
+    {
+      "path": "package.json",
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "head_blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "head_blob_sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "head_blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "head_blob_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    }
+  ]
+}

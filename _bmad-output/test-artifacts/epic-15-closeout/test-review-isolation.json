@@ -1,0 +1,9 @@
+{
+  "dimension": "isolation",
+  "score": 100,
+  "grade": "A",
+  "violations": [],
+  "recommendations": [],
+  "scope_limit": "Complete126file static pins/declaration collector reused; qualified original independent reviews/runtime retained for unchanged files. No new per-lens/full-corpus review, new tests/browser/acquisition or other source context. Absolute mechanically verified findings below are actual; no all-files bonus or fresh blanket code-review PASS.",
+  "execution": "sequential dimension step in combined delegate; existing independent body review reused, no new broad fanout"
+}

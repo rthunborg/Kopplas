@@ -1,0 +1,48 @@
+{
+  "schema": "ROOT_INT009_DEFAULT_VOLATILITY_EXACT_SOURCE_COMMIT_PROOF_V1",
+  "before": "ca240693766ae9141fb2b768569629e39231d042",
+  "after": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+  "actual_source_author": "/root/native15_5_high gpt-6.1-sol High",
+  "independent_reviewer": "/root/validate15_4_high gpt-6.1-sol High",
+  "review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-actual-patch-review.json",
+    "bytes": 12229,
+    "sha256": "36edb72452d3e14543137d9381b4e7ffe5d5909d355a878e8816f62b8d5f09de"
+  },
+  "Root_review_admission": "actualpin/status/outcome/independent/findings parsed; source semantics delegated",
+  "paths": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 139867,
+      "raw_sha256": "d50d45e73f2a3a7c649188658ed9271a832ce41277314d8dd723b3c2a06f2234",
+      "LF_bytes": 138474,
+      "LF_sha256": "22c0b6da90b43e19a13534acbd5c1e11d9cc5de909b732f821c58141b689e3ca",
+      "Git_blob": "082364547fbea8143898e5fc5eae3f3da97eff6e"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 320520,
+      "raw_sha256": "c9bff97184e76b5f27372091be6f043efdc7184314fc76418e35f8d8488a72ed",
+      "LF_bytes": 317555,
+      "LF_sha256": "08087e70ad4abf5fe7eddd988a5ffd946190c7e03423712503c1b7c59fe3627c",
+      "Git_blob": "e08a9eaa4374c4b5884326fa47f7be4a08a4f663"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 256899,
+      "raw_sha256": "6ed06e2f84b12d412374a156016c6fadc8bf09291cf124c9a59070062ec859c3",
+      "LF_bytes": 253814,
+      "LF_sha256": "1ecb3642f1d2f2eb6149482477026ae9bd22d0f84e5492f54c1dfc4b5f2d5c9c",
+      "Git_blob": "0da70dca08c5946e8fd316643e8e3010d3dfbccd"
+    }
+  ],
+  "staged_actual_Git_normalized_blobs_checked": true,
+  "tracked_clean": true,
+  "Root_story_code_or_spec_authorship": false,
+  "SQL_changed": false,
+  "DEBUG_changed": false,
+  "push": false,
+  "normal_acceptance": 0,
+  "P5": "OPEN",
+  "next": "Docs evidence fold then independently reviewed minimal existing NORMAL lane rebind/finite allocation"
+}

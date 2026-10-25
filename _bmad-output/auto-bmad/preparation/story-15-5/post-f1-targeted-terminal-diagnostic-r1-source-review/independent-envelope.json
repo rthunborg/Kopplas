@@ -1,0 +1,43 @@
+{
+  "status": "PASS_INDEPENDENT_ENVELOPE",
+  "production_preflight": {
+    "schema": "PRODUCTION_ASSEMBLER_BUDGET_v1",
+    "bytes": 30983,
+    "sha256": "7e1008b85969eabf5ef14f03913ce4fa7accfc099036daf5d10f644cdc5aa7ba",
+    "cap": 32768,
+    "margin": 1785,
+    "source_paths": 74,
+    "maximum_path_escaped_bytes": 92,
+    "errors": 16,
+    "locations": 64,
+    "closed_tuples": 64,
+    "selected_error_containers": 11,
+    "integer_bound": 2147483647
+  },
+  "scalar_domain_checks": {
+    "error_kind": true,
+    "sqlstate": true,
+    "code": true,
+    "error_reason": true,
+    "vocabulary": true,
+    "stage": true,
+    "category": true,
+    "location_kind": true,
+    "paths": true,
+    "booleans": true,
+    "nullable_int": true,
+    "global_reason": true,
+    "browser_status": true,
+    "attempt_status": true,
+    "signed32_nonnegative_width": true
+  },
+  "containers": 11,
+  "errors": 16,
+  "locations": 64,
+  "tuples": 64,
+  "serialization_same_exact_ASCII_LF": true,
+  "live_effect_sentinel_calls": [],
+  "API_GETs": 0,
+  "native_acquisition": 0,
+  "all_accepted_shape_argument": "Every variable-length array is bounded by production selectors and one shared budget. All11 containers persist. The single16-error list maximizes separator overhead; maximum-width per-error fields, four tuples, four locations, all finite scalar domains, longest escaped pinned path and signed32 counters overapproximate every production projection. Fixed identities/hash lengths/header/member metadata remain production literals."
+}

@@ -1,0 +1,141 @@
+{
+  "schema": "CURRENT_BROWSER_DIAGNOSTIC_NATIVE_AUDIT_ATTESTATION_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent": true,
+  "verdict": "PASS_QUALIFIED_BROWSER_DIAGNOSTIC_EVIDENCE",
+  "scope": "one offline actual projection/provenance/truth audit; source/control qualification reused",
+  "proof": {
+    "verdict": "PASS_QUALIFIED_BROWSER_DIAGNOSTIC_EVIDENCE",
+    "packet_members": 8,
+    "hash_bound_members": 7,
+    "packet_manifest_sha256": "cf58e7b2c085356e27b9f08c1633a5f486927deeeccd6f22c8287b6ced080345",
+    "projection_bytes": 4352,
+    "projection_sha256": "a2687a641a62a896b68ff7b6137b9c95d42e8ddbc11bcf5f7c0fc26b03d7325f",
+    "run": 39694409020,
+    "head": "72651ada5392ff5b194fd674e07b300cef60e64b",
+    "source": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+    "attempt": 1,
+    "operation_id": "f4f52caf-2116-497f-ade4-647bc3b01d76",
+    "one_pinned_GET_closed": true,
+    "Native_tool_provenance": "Native-reported isolated265239 receipt; Root/auditor no direct child lifecycle observation.",
+    "startup_failure_preserved": "004f05 preimport/0GET; distinct explicitly amended isolated invocation, no total-one-invocation claim.",
+    "old5_GET_packet_preserved_closed": true,
+    "selected_published_cases": 4,
+    "attempts": 8,
+    "failed_attempts": 7,
+    "fixed_tuples": 10,
+    "reported_omissions": false,
+    "calendar_observations": {
+      "E2E-001": "failed retries0/1: cleanup-lifecycle timeout NULL + custody-retained unverified NULL",
+      "E2E-010-revoke": "failed retries0/1: same two fixed tuples",
+      "E2E-007": "retry0 failed same tuples; retry1 passed UNKNOWN_NO_MATCH"
+    },
+    "other_unexpected": {
+      "source_path": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "full_report_title_sha256": "555be84538dd0146ec007445bb33b13f9854789f03104a924cd32a5fc99ece94",
+      "attempts": "both failed retries0/1 UNKNOWN_NO_MATCH",
+      "candidate_only": true
+    },
+    "identity_limit": "Pinned report-path/full-title hash only; no source declaration/title match or original-cause proof.",
+    "cause": "UNKNOWN",
+    "settlement": "UNKNOWN",
+    "canonical_custody": "UNKNOWN",
+    "normal_acceptance": 0,
+    "auditor_GETs": 0,
+    "operator_execution": 0,
+    "new_controls": 0
+  },
+  "proof_script": "import pathlib,json,hashlib,re,uuid\nroot=pathlib.Path.cwd();prep=root/'.env.epic15.mail-runtime/story-15-5-preparation';p=prep/'checkpoint-72651ada-current-browser-diagnostic'\ndef sha(b):return hashlib.sha256(b).hexdigest()\ndef load(n):return json.loads((p/n).read_bytes())\ndef bound(r):\n b=(root/r['path']).read_bytes();assert len(b)==r['bytes']and sha(b)==r['sha256'],r['path'];return b\nm=load('manifest.json');assert len(list(p.iterdir()))==8 and len(m['files'])==7 and sha((p/'manifest.json').read_bytes())=='cf58e7b2c085356e27b9f08c1633a5f486927deeeccd6f22c8287b6ced080345'\nassert {f.name for f in p.iterdir()}=={'manifest.json'}|{pathlib.Path(r['path']).name for r in m['files']}\nfor r in m['files']:bound(r)\nq=load('diagnostic-qualification.json');er=load('execution-receipt.json');d=load('browser-diagnostic-projection.json');summary=load('acquisition-summary.json');intent=load('operator-intent.json');ri=load('request-01-intent.json');rr=load('request-01-result.json')\nfor ref in q['references']+intent['inputs']:bound(ref)\nadmission=json.loads((prep/'root-current-browser-isolated-launch-admission.json').read_bytes())\nfor key in ['startup_failure','independent_qualification','actual_completed_grant','original_activation_unchanged','operator_source_unchanged','original_630Gitobjectproof']:bound(admission[key])\ngrant=json.loads(bound(admission['actual_completed_grant']));assert grant['tool_id']=='exec-7131987b-59b7-40d5-b1f9-36c0c0f466a6'and grant['tool_status']=='completed'and grant['turn_id']=='01a160f8-e80d-7e12-82d0-842aed7409d3'\nassert admission['new_invocations_authorized']==admission['maximum_logical_GETs']==1 and admission['added_flag_only']=='-I'and admission['no_retry']is True\nactivation=json.loads(bound(admission['original_activation_unchanged']));b=json.loads(bound(activation['operator_bindings']));op=bound(activation['operator_source'])\nassert sha(op)==intent['operator_sha256']=='e1f27daef874cc5c08cc181a917f234fb0ac66683792323b911686ada5c3e531'\nterm=json.loads(bound(activation['actual_terminal']));run=39694409020;head='72651ada5392ff5b194fd674e07b300cef60e64b';source='7864550818ce130fbd5d1fd1bb530f0f4c2b19f4';cp='6d5e27c3-74f8-4d87-b269-1627a7e45818'\nfor x in [d,q,m,intent]:assert x['run']==run and x['head']==head and x['source']==source and x['normal_acceptance']==0\nassert d['checkpoint']==q['checkpoint']==intent['checkpoint']==activation['checkpoint_id']==cp\nassert d['attempt']==q['attempt']==1 and term['ownership']==b['ownership']and term['run']['id']==run and term['run']['head_sha']==head and term['run']['status']=='completed'\noperation=d['operation_id'];assert str(uuid.UUID(operation))==operation and uuid.UUID(operation).version==4 and operation!=cp\nassert operation==q['operation_id']==intent['operation_id']==admission['operation_id']==activation['operation_id']\npin=d['artifact'];assert pin==b['artifact']==activation['artifact']==intent['artifact']\nassert pin['id']==12390259515 and pin['bytes']==13243 and pin['sha256']=='ced554e722b8ae1d59bf5fcd3a4c4c84b35d51186f3fe0962ba2d0e0aaec1982'\nassert pin['member']=='general-browser.json'and pin['member_bytes']==153960 and pin['member_sha256']=='6c51ffef0648c27d3936401aa3ab518ba2e1a4e04f156a6611d282cf1d15e316'\nfor x in [ri,rr]:\n assert x['argv']==['gh','api','--method','GET','repos/rthunborg/Kopplas/actions/artifacts/12390259515/zip']and x['sequence']==1 and x['label']=='pinned-general-browser'and x['inline_source_sha256']==sha(op)\n assert x['intent_persisted_before_spawn']is True and x['raw_persisted']is False and x['stdout_cap']==33554432 and x['stderr_cap']==65536 and x['timeout_seconds']==15\nassert rr['native_exit']==0 and rr['category']is None and all(rr[k]is True for k in ['capture_complete','handles_closed','settled'])and 0<=rr['elapsed_seconds']<=15\nassert len(rr['streams'])==2 and rr['streams'][0]['observed_bytes']==13243 and rr['streams'][0]['sha256']==pin['sha256']and rr['streams'][1]['observed_bytes']==0\nfor st in rr['streams']:assert all(st[k]is True for k in ['joined','physical_EOF','reader_done'])and st['overflow']is st['reader_error']is False\nmeta=er['actual_returned_tools_exec_command_metadata'];assert meta['argv']==admission['new_launch']and meta['argv'][1:5]==['-I','-X','utf8','-B']\nassert meta['chunk_id']=='265239'and meta['exit_code']==0 and meta['wall_time_seconds']==1.2008643 and meta['session_id']is None and meta['waits']==[]\nassert er['Root_independent_child_lifecycle_observation']is False and er['logical_GETs_this_launch']==1\nbound(er['original_failed_invocation']);assert er['original_failed_invocation']==admission['startup_failure']\nassert summary['logical_GETs']==1 and summary['ZIP_sha256']==pin['sha256']and summary['member_sha256']==pin['member_sha256']\nrawprojection=(p/'browser-diagnostic-projection.json').read_bytes();assert len(rawprojection)==summary['projection_bytes']==4352<=32768 and sha(rawprojection)==summary['projection_sha256']=='a2687a641a62a896b68ff7b6137b9c95d42e8ddbc11bcf5f7c0fc26b03d7325f'\nfacts=d['projection'];cases=facts['cases'];assert len(cases)==facts['selected_case_count']==facts['published_case_count']==4 and facts['omission_UNKNOWN']is False\nallowed={x['path']for x in b['smoke_source_bindings']}\nfor ref in b['smoke_source_bindings']+[b['browser_helper_binding']]:bound(ref)\nexpectedtuple=[{'category':'timeout','kind':'BROWSER','sqlState':None,'stage':'cleanup-lifecycle'},{'category':'unverified','kind':'BROWSER','sqlState':None,'stage':'custody-retained'}]\nseen=set();totalattempts=totaltuples=failedattempts=0\nfor case in cases:\n assert set(case)=={'attempts','attempts_UNKNOWN','calendar_id','candidate_only','framework_status','full_title_sha256','identity','source_path'}\n assert case['source_path']in allowed and case['identity']=='BOUND_PATH_HASHED_REPORT_TITLE'and re.fullmatch('[0-9a-f]{64}',case['full_title_sha256'])and case['candidate_only']is True\n assert case['attempts_UNKNOWN']is False and len(case['attempts'])==2 and [a['retry']for a in case['attempts']]==[0,1]\n seen.add((case['source_path'],case['full_title_sha256']))\n for a in case['attempts']:\n  totalattempts+=1;ff=a['fixed_failure'];totaltuples+=len(ff['tuples'])\n  assert ff['unknown_headers']==0 and ff['omission_UNKNOWN']is False and ff['cause']=='UNKNOWN'\n  if case['calendar_id']in ['E2E-001','E2E-010-revoke']or(case['calendar_id']=='E2E-007'and a['retry']==0):\n   assert a['status']=='failed'and ff['availability']=='AVAILABLE_FIXED_TUPLES'and ff['tuples']==expectedtuple\n  else:\n   assert ff['availability']=='UNKNOWN_NO_MATCH'and ff['tuples']==[]\n   assert a['status']==('passed'if case['calendar_id']=='E2E-007'else'failed')\n  if a['status']=='failed':failedattempts+=1\n  for t in ff['tuples']:\n   assert t['kind']=='BROWSER'and t['stage']in b['producer_enum_arrays']['calendarDiagnosticStages']and t['category']in b['producer_enum_arrays']['calendarDiagnosticCategories']and t['sqlState']is None and t['category']!='database'\nassert len(seen)==4 and totalattempts==8 and totaltuples==facts['global_tuples_published']==10 and failedattempts==7\nassert {x['calendar_id']for x in cases}=={'E2E-001','E2E-007','E2E-010-revoke',None}\nother=next(x for x in cases if x['calendar_id']is None);assert other['source_path']=='tests/e2e/conflict-resolver.e2e.spec.ts'and other['full_title_sha256']=='555be84538dd0146ec007445bb33b13f9854789f03104a924cd32a5fc99ece94'\nassert [x['framework_status']for x in cases]==['unexpected','unexpected','flaky','unexpected']\nassert q['closed_projection']['cases']==cases and q['closed_projection']['attempts']==8 and q['closed_projection']['fixed_tuples']==10\nassert facts['cause']==facts['settlement']==q['cause']==q['canonical_backend_custody']=='UNKNOWN'\nprior=prep/'checkpoint-72651ada-fixture-reconciled-normal-ci-independent';pm=json.loads((prior/'manifest.json').read_bytes());assert len(list(prior.iterdir()))==23\nfor ref in pm['files']:bound(ref)\nassert sha((prior/'manifest.json').read_bytes())=='cb2e4f7a6c9ef21463d2b261c0963192c12084b333c5caa6bb4477cddb959c61'\nprint(json.dumps({'verdict':'PASS_QUALIFIED_BROWSER_DIAGNOSTIC_EVIDENCE','packet_members':8,'hash_bound_members':7,'packet_manifest_sha256':sha((p/'manifest.json').read_bytes()),'projection_bytes':4352,'projection_sha256':sha(rawprojection),'run':run,'head':head,'source':source,'attempt':1,'operation_id':operation,'one_pinned_GET_closed':True,'Native_tool_provenance':'Native-reported isolated265239 receipt; Root/auditor no direct child lifecycle observation.','startup_failure_preserved':'004f05 preimport/0GET; distinct explicitly amended isolated invocation, no total-one-invocation claim.','old5_GET_packet_preserved_closed':True,'selected_published_cases':4,'attempts':8,'failed_attempts':7,'fixed_tuples':10,'reported_omissions':False,'calendar_observations':{'E2E-001':'failed retries0/1: cleanup-lifecycle timeout NULL + custody-retained unverified NULL','E2E-010-revoke':'failed retries0/1: same two fixed tuples','E2E-007':'retry0 failed same tuples; retry1 passed UNKNOWN_NO_MATCH'},'other_unexpected':{'source_path':other['source_path'],'full_report_title_sha256':other['full_title_sha256'],'attempts':'both failed retries0/1 UNKNOWN_NO_MATCH','candidate_only':True},'identity_limit':'Pinned report-path/full-title hash only; no source declaration/title match or original-cause proof.','cause':'UNKNOWN','settlement':'UNKNOWN','canonical_custody':'UNKNOWN','normal_acceptance':0,'auditor_GETs':0,'operator_execution':0,'new_controls':0},indent=2))\n",
+  "proof_script_sha256": "16bcfa4a4595e3ffeb2de6a5981c912dd0a9e412c0f5f4dc9efd46f4198ea941",
+  "proof_exit": 0,
+  "proof_wall_seconds": 0.1397245,
+  "packet_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/manifest.json",
+    "bytes": 2168,
+    "sha256": "cf58e7b2c085356e27b9f08c1633a5f486927deeeccd6f22c8287b6ced080345"
+  },
+  "packet_members": [
+    {
+      "bytes": 454,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/acquisition-summary.json",
+      "sha256": "0cfd85d004b91f90e0446618c0feac2e02a0a8711274cd792b810f99844c972e"
+    },
+    {
+      "bytes": 4352,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/browser-diagnostic-projection.json",
+      "sha256": "a2687a641a62a896b68ff7b6137b9c95d42e8ddbc11bcf5f7c0fc26b03d7325f"
+    },
+    {
+      "bytes": 11155,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/diagnostic-qualification.json",
+      "sha256": "d639363d11f7e544dac3e5c6b1f4a37e2045d5d76eeb0de2580bad04f9fa2160"
+    },
+    {
+      "bytes": 1574,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/execution-receipt.json",
+      "sha256": "7987975a9fa776e03c07492d888522fe67647a4e231e6b182e223515e6c7aa2d"
+    },
+    {
+      "bytes": 5314,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/operator-intent.json",
+      "sha256": "b4bfab511ee727af3c9e24b7bb4c0c2c359f30f416254af12341774731111610"
+    },
+    {
+      "bytes": 421,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/request-01-intent.json",
+      "sha256": "24a62081453cb35f83114d22266922227b9f55fc93adb7966ad8e3cfccccbf73"
+    },
+    {
+      "bytes": 1141,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-current-browser-diagnostic/request-01-result.json",
+      "sha256": "556e940754122d6441375de561a650e8004f6d95fbe3058930c8f8bb79292c2e"
+    }
+  ],
+  "attribution_limits": [
+    "Native-reported265239 child lifecycle; no direct Root/auditor observation.",
+    "RAM-only raw report unavailable for independent offline reparse; retained hash-bound source/stream/member/projection consistency checked.",
+    "4selected failed/flaky cases only; no complete report error/cause guarantee.",
+    "Ten tuples repeat two local boundary types across five attempts; not original exception, order or backend settlement.",
+    "Path/report-title hash is candidate identity, not source declaration/title matching.",
+    "UNKNOWN_NO_MATCH on failed retries does not mean absence of error."
+  ],
+  "launch_history": {
+    "original_startup_failure": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-browser-diagnostic-startup-failure.json",
+      "bytes": 3131,
+      "sha256": "3a05ae8a71b7190ddd351ffc6ae4a8775358ef04a0a29e4f4fa1b2c36b2aa37e"
+    },
+    "amendment": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-current-browser-isolated-launch-amendment.json",
+      "bytes": 2386,
+      "sha256": "91d5a56d8d0e8096b8f04d1a3d9d3b0646df9b83c61beb82d4765ef04c165cd7"
+    },
+    "Root_admission": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-current-browser-isolated-launch-admission.json",
+      "bytes": 2390,
+      "sha256": "57e52795cfbc6c4b5cd302354aa9ef7ba3755dff22e66ad17a62c93d51bd367c"
+    },
+    "prior004f05": "preimport/0GET; preserved",
+    "amended265239": "one explicit isolated operational invocation/oneGET; distinct",
+    "old_normal5GETs": "closed unchanged"
+  },
+  "reader_history": "Initial sample reader used native-qualification.json from previous packet; actual manifest diagnostic-qualification.json then read; no effect.",
+  "normal_acceptance": 0,
+  "required95_unchanged": true,
+  "review_counter": 3,
+  "broad_review_increment": 0,
+  "cause": "UNKNOWN",
+  "settlement": "UNKNOWN",
+  "canonical_custody": "UNKNOWN",
+  "auditor_effects": {
+    "GETs": 0,
+    "operator_execution": 0,
+    "new_controls": 0,
+    "Git_commands_mutations": 0,
+    "source_SQL_Spec_state_writes": 0,
+    "provider_resources_services": 0
+  },
+  "execution_authority": false,
+  "development_complete": false
+}

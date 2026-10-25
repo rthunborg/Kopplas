@@ -1,0 +1,44 @@
+{
+  "schema": "ROOT_FINAL_BOUNDED_V3_PRODUCER_SOURCE_ADMISSION_v1",
+  "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+  "parent": "599dafaa4537a26803a7a5b3c087f34bed5b51ba",
+  "source_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-owned-request-lifetime-v3-source-allocation.json",
+    "bytes": 3200,
+    "sha256": "81483dc48f0dd0cc9cbbbcdd888d3a2407ae5120776d437fb0e0dcda5a4c3179"
+  },
+  "author_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-request-lifetime-v3-source-correction/manifest.json",
+    "bytes": 929,
+    "sha256": "8a6ff3bdbe9e680279dddac555f71e9be76318639000dfb41809777381f1d1c7"
+  },
+  "Root_precommit": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-request-lifetime-v3-root-precommit-admission.json",
+    "bytes": 3139,
+    "sha256": "076dfaad0773e41e50e9aa5fb291f177795de7b537c00940b53f42b233332696"
+  },
+  "independent_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-source-high-review/manifest.json",
+    "bytes": 1007,
+    "sha256": "252cc1d4959ef41204ae644804b733f19043e4196712df0a605601148cb5907b"
+  },
+  "verdict": "PASS_TARGETED_OWNED_REQUEST_V3_PRODUCER_SOURCE_ONLY",
+  "Root_review_exact4_hashes": "PASS",
+  "source_scope": "Exactly helper, existingwrapperunit, ownSpec evidence/SRO; sameownedRequest once synchronous postdrain/beforeteardown category; preserve all118SQL/2series/selectors/actions/assertions/nativefinished/custody.",
+  "evidence_attribution": {
+    "author": "161P0F0skip0cancel(all157prior+4v3)/wholeTS0/2TS lint0/diff0/reader0/SRO195/kernel5760unchanged/statusin-review/counter3",
+    "independent": "8focusedP0F0skip0cancel; sourceandfrozen118SQL+2series/selectors unchanged",
+    "Root": "exact3rawclean/nativeprospective/baselines+118SQL/2seriesrawcleanHEADnative/stageddiff/reader beforecommit"
+  },
+  "pending": [
+    "Native strictv3 consumer exact2def revision",
+    "Actual28producerrows retained byte-for-byte by parser; NEW real32768 productionassembler proof",
+    "Fullrequiredfunctional/PostgreSQL/application/catalog/ACL/rollback/all95/sixserial/11smoke",
+    "Actualdiscriminator/backendsettlement/custody UNKNOWN"
+  ],
+  "final_bounded_observation": "No furthergenericdiagnosticfamily/polish; ambiguousnativefacts stopautofix/rerun; successfulfunctional gates neednotmanufacturefailurelabels.",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "review_counter": 3,
+  "effect_authority": "NONE; source-only pass"
+}

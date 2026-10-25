@@ -1,0 +1,59 @@
+{
+  "mode": "uncertain",
+  "argv": [
+    "node",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+    "run",
+    "--config",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-custody-containment-proposal\\uncertain.config.mjs",
+    "--configLoader",
+    "runner"
+  ],
+  "config_bytes": 779,
+  "config_sha256": "d66fb96138905bbd042b66d25b4eb0a6c7cdbc23c7464708e4632ef0a858bbad",
+  "native_exit": 1,
+  "elapsed_seconds": 0.652,
+  "stdout_bytes": 1916,
+  "stdout_sha256": "8935fa14bade773144d739ea6b93506f29a39ca7acabd95dc0aa8b89de393256",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "summary": {
+    "numTotalTests": 1,
+    "numPassedTests": 0,
+    "numFailedTests": 1,
+    "numPendingTests": 0,
+    "success": false
+  },
+  "observations": [
+    {
+      "events": [
+        "C4_FIXTURE_IMPORTED",
+        "C4_FIRST_MODULE_IMPORTED",
+        "C4_ADMIT"
+      ],
+      "unhandled": 0,
+      "reason": "interrupted"
+    }
+  ],
+  "test_states": [
+    {
+      "file": "parallel.test.mjs",
+      "cases": []
+    },
+    {
+      "file": "a-uncertain.test.mjs",
+      "cases": [
+        {
+          "status": "failed",
+          "id": "uncertainty reaches test failure"
+        }
+      ]
+    },
+    {
+      "file": "z-next.test.mjs",
+      "cases": []
+    }
+  ],
+  "raw_persisted": false,
+  "network_or_app_SQL": 0
+}

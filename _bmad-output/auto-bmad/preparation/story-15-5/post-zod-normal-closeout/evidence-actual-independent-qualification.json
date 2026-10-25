@@ -1,0 +1,274 @@
+{
+  "status": "QUALIFIED_POST_ZOD_NORMAL_ACTUAL_NATIVE_FAILURE_NO_ACCEPTANCE",
+  "outcome": "QUALIFIED_POST_ZOD_NORMAL_ACTUAL_NATIVE_FAILURE_NO_ACCEPTANCE",
+  "independent": true,
+  "findings": [
+    {
+      "kind": "OBSERVED_REQUIRED_CASE_FAILURE",
+      "case": "API019",
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "status": "failed",
+      "closed_leaf": "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+      "category": "unknown",
+      "sqlState": null,
+      "cause": "UNKNOWN",
+      "related_unexecuted": "API020 pending/null duration, zero execution credit",
+      "action": "Preserve privacy refusal and owned DB custody. Any subsequent source assessment must start from this exact stdout/OTHER_OR_UNKNOWN fact and unresolved cleanup, without assuming benign formatter noise or authorizing suppression/retry."
+    }
+  ],
+  "result": {
+    "Outcome": "QUALIFIED_POST_ZOD_NORMAL_ACTUAL_NATIVE_FAILURE_NO_ACCEPTANCE",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-actual-native-qualification.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [
+        {
+          "kind": "OBSERVED_REQUIRED_CASE_FAILURE",
+          "case": "API019",
+          "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+          "status": "failed",
+          "closed_leaf": "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+          "category": "unknown",
+          "sqlState": null,
+          "cause": "UNKNOWN",
+          "related_unexecuted": "API020 pending/null duration, zero execution credit",
+          "action": "Preserve privacy refusal and owned DB custody. Any subsequent source assessment must start from this exact stdout/OTHER_OR_UNKNOWN fact and unresolved cleanup, without assuming benign formatter noise or authorizing suppression/retry."
+        }
+      ],
+      "scope": "Actual closed acquired-evidence qualification only; no new source/reader/helper/wrapper/function/control/native/network/Git/source75/SQL/DEBUG execution or acquisition.",
+      "route": "Root explicit Sol6.1 Highce74b9/native0 before dispatch",
+      "identity": {
+        "run_id": 40109869919,
+        "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+        "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+        "normal_operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+        "acquisition_operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+        "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+        "attempt": 1,
+        "mode": "normal",
+        "cause_proof": false,
+        "release_validation": false,
+        "original_int009": false
+      },
+      "authority_and_closure_refs": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-actual-root-ownership.json",
+          "bytes": 8847,
+          "sha256": "b9782920686ef7a2cf0d5b9fa8fda088a3bb1823a35032de46c27f30a213f2ea"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-terminal-evidence-allocation.json",
+          "bytes": 7097,
+          "sha256": "b5c2efcd4eea71df7cab61904604f85a8befc8c67b35d5739c997887223e755d"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-fresh-source-proof.json",
+          "bytes": 15618,
+          "sha256": "f80232423fca824574b2747e03c1461b02bada54424cbd6e04b79d9164c117c9"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-activation.json",
+          "bytes": 4862,
+          "sha256": "95021cb586be9d2df4a653348e532b8840bb658d9190b679c4a1fa8d3bb9a014"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-once-journal.json",
+          "bytes": 1596,
+          "sha256": "bc211d99f3e42bf73cee56965dfd9c55600a0155a83fd959cdcc8447cbbb9531"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-native-outer-receipt.json",
+          "bytes": 1977,
+          "sha256": "724eb5d7e566af813651a43f7d60ada6f2528cb1c5893af44a2c1cf078513a54"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-invocation-consumed.json",
+          "bytes": 1485,
+          "sha256": "6673de7736dd354f3e9a7485c7d864d182887cc21693692ebeb28066f7933826"
+        }
+      ],
+      "packet_refs": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/acquisition-summary.json",
+          "bytes": 2552,
+          "sha256": "7a385726dde7ed7b182a5d5629fa011cde1523d1fab6851b871af2587278464e"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/run-archive-projection.json",
+          "bytes": 48553,
+          "sha256": "103aabed0f6689e784d0149ef1feca186d99b760ffe77e0e3ee361f6cbc3c1b7"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/native-full-integration-projection.json",
+          "bytes": 67186,
+          "sha256": "30533e50a60079800cf16902ead780be19131dd55ea7a128badb4e21343da442"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/native-general-browser-projection.json",
+          "bytes": 13366,
+          "sha256": "ba022c50bb6ff5e466f6724aed54ec60e01b09eb29edd0a32fa572120b36be25"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/native-isolated-storage-recovery-projection.json",
+          "bytes": 2008,
+          "sha256": "5cb4b454acfb209e7592e422ee0b67ac6271d4263d0f987cd2ed18e6aed854fc"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent/source-label-projection.json",
+          "bytes": 1691,
+          "sha256": "2fb135864dc0917ad899821655196a4868bccec8ed76c4bf158ffb4fec01c897"
+        }
+      ],
+      "provenance": "Actual completed finite Coordinator turn01a16ed5-44d8-7c00-a964-27e75853472d/tool exec-4a55c9af-b166-43aa-a186-a9d952b16e79, verification exec-82fd6d91-2d01-4680-8647-976aff98ef5e/native0. Root independently read completion before materialization per trusted handoff/accepted grant. Reviewed7442 wrapper784ebfcf... and7760 independent review48a50257... are exact bound inputs; current reader52883/b4a6ed83.../proposal206884/028813ea... remained fixed. V1 NONPASS reports are preserved history.",
+      "packet_integrity": "All20 local files exactly match ownership inventory byte sizes/SHA256; directory contains exactly20 closed JSON files. Zero pin/identity/receipt discrepancies. No raw ZIP/log/report bodies were retained; observed stream/archive/member fingerprints are deliberately retained under the qualified policy, not described as zero hash retention.",
+      "transport": {
+        "reader_invocations": 1,
+        "logical_GETs": 5,
+        "remaining_GETs": 0,
+        "all_slots_CLOSED": true,
+        "no_retry": true,
+        "endpoints": "Owned-run archive/listing then uniquely eligible artifact IDs12566473215 full integration,12566417082 isolated recovery,12565923068 browser. All five exact request intents match results.",
+        "five_closures": "Each native0/categorynull/full capture/settled/closed handles; both EOF/read done/joined/no readerror/no overflow.15s loops,32MiB archive/ZIP or4MiB listing,64KiB stderr; actual max request elapsed2.440s. No malformed/unsettled request receives evidence credit.",
+        "outer": "Actual Root555309/native0/no initialsession/no waits/toolwall6.41134s. Actual child native0/categorynull/EOF/join/closed/settled6.241712s/stdout731/stderr0 under180s/512KiB/64KiB; safe final ACQUISITION_COMPLETE/logicalGETs5. Source helper54559a/native0 separately produced7 local Git metadata receipts. Host tool wall and inner elapsed are distinct; tool-wait sums are not end-to-end process proof.",
+        "HTTP": "Five logical CLI calls only; internal/physical HTTP attempt/redirect count UNKNOWN. No remaining slot, retry, refetch, extension or replay authority."
+      },
+      "artifacts": {
+        "identity": "Listing total3 unique expected, nonexpired, run/head bound. Each request ID matches artifact; advertised size equals captured archive bytes; API digest equals actual request stdout digest and recorded archive digest; fixed expected single member/CRC/schema boundary source-qualified.",
+        "full_integration": "ID12566473215; archive111947 bytes; member full-integration.json1029145 bytes; one ZIP entry.",
+        "browser": "ID12565923068; archive9911 bytes; member general-browser.json92928 bytes; one ZIP entry.",
+        "recovery": "ID12566417082; archive677 bytes; member isolated-storage-recovery.json1154 bytes; one ZIP entry.",
+        "run_archive": "835267 captured bytes/85entries/4535215 declared/2262657 selected inflated. Recorded archive digest matches request1. Selected members are actual enrolled terminal job/step names; no optional attachment/report acquired."
+      },
+      "required95": {
+        "expected": 95,
+        "passed": 93,
+        "failed": 1,
+        "unexecuted": 1,
+        "attempted": 94,
+        "Node": {
+          "expected": 30,
+          "passed": 30,
+          "failed": 0,
+          "unexecuted": 0,
+          "basis": "Bound actual verify unit step12 positive records.32 markers resolve30 distinct required IDs; repeated R1-06 and R1-07 each counted once. No SKIP/TODO credit."
+        },
+        "DB_RLS": {
+          "expected": 51,
+          "passed": 49,
+          "failed": 1,
+          "unexecuted": 1,
+          "unique_reported": 51,
+          "duplicates": 0,
+          "missing": 0,
+          "unexpected": 0,
+          "INT": "15passed",
+          "RLS": "12passed",
+          "COMP": "4passed",
+          "API": "API001..018 passed;API019 failed;API020 pending/null duration, unexecuted"
+        },
+        "essential_browser": {
+          "expected": 14,
+          "passed": 14,
+          "failed": 0,
+          "unexecuted": 0,
+          "basis": "All14 exact story IDs, one retry0 passed attempt each, expected status; no missing/duplicate/unexpected IDs or flaky outcomes."
+        },
+        "no_doublecount": "Required Node30 +DB51 +browser14 only. Recovery1, other smoke42, global suite counts, duplicates and four optional skipped jobs are excluded from95. Job success alone is not case coverage."
+      },
+      "global_count_disclosures": {
+        "Node": "Actual unit step header3443tests/3443pass/0fail/0skip/103suites; not an additional3443 story passes.",
+        "full_integration_header": "numTotalTests2169,numPassedTests2115,numFailedTests1,numPendingTests52,numTotalTestSuites547,numFailedTestSuites2;successfalse.",
+        "flattened": "Assertion records:2115passed+1failed+1pending+52skipped=2169. Header pending52 and flattened pending1/skipped52 are distinct fields and cannot be substituted or added as new cases. RequiredAPI020 is the explicit pending leaf;52 flattened skipped records give no coverage.",
+        "suite_limit": "Header failed-suite2 is not a second required failed case; projected file-status list exposes one failed public-feed file. No unsupported second failure/cause is inferred. Reader report_counts_consistent is its total/passed/failed/unknown-status check, not a claim every pending/suite header field was fully reconciled.",
+        "browser": "56expected/0unexpected/0flaky/0skipped global;14 requiredstory +42 other smoke. Attachment references0. Other smoke does not enlarge95."
+      },
+      "observed_IP": {
+        "observed": true,
+        "case": "API019",
+        "leaf": "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+        "owned_leaf_tuple_count": 1,
+        "invalid_tuple_headers": 0,
+        "stream": "STDOUT",
+        "renderedForm": "OTHER_OR_UNKNOWN",
+        "meaning": "Lifetime-first privacy refusal classification from the reviewed first-only seam is now observed for integration/IP. Complete installed formatter header grammar was not qualified; OTHER_OR_UNKNOWN may include partial/framed/other unknown form, not proof that no header/emitter exists.",
+        "category": "unknown",
+        "sqlState": null,
+        "raw_value": "NOT RETAINED",
+        "cause": "UNKNOWN",
+        "forgery_limit": "Fixed syntax/shape is forgeable. No benignity, emitter authenticity, hosted first native throw, actual raw IP/value, request linkage or source-fix/whitelist/suppression conclusion."
+      },
+      "direct_recovery": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "test_file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "basis": "Current native isolated recovery artifact:1 actual passed assertion, report_counts_consistenttrue/successtrue, no failed/pending records; bound reviewed test source. Actual recovery job14 physical Storage loader step also succeeded. Separate direct recovery execution is qualified, not merely job metadata.",
+        "scope": "Isolated recovery target/protected-row test only, outside95. It cannot prove cleanup/rollback/deletion of current DB/browser keys or prior399982 custody."
+      },
+      "cleanup_and_custody": {
+        "current_DB": {
+          "keyDeleted": false,
+          "keyOutcome": "unverified",
+          "custody_retained": true,
+          "dbClosed": true,
+          "failure_count": 1,
+          "diagnostic_count": 1,
+          "closed_diagnostics_count": 0,
+          "childExitCodes": [
+            0,
+            1
+          ],
+          "ready": true,
+          "launchAttempted": false,
+          "childLaunchState": "not-attempted",
+          "meaning": "Current DB lifecycle explicitly retains owned custody and does not verify key deletion. dbClosed=true/stack-stop/jobend/child-close are not backend rollback or key-delete proof. Sparse final launch flags are retained literally, not used to deny independently observed native case execution or infer failure origin."
+        },
+        "current_browser": {
+          "keyDeleted": true,
+          "keyOutcome": "deleted-confirmed",
+          "custody_retained": false,
+          "dbClosed": true,
+          "failure_count": 0,
+          "diagnostic_count": 0,
+          "childExitCodes": [
+            0
+          ],
+          "ready": false,
+          "launchAttempted": false,
+          "meaning": "Deletion-confirmed/closed lifecycle is scoped to this current browser runtime only; no transfer of its clearance to DB/recovery or historical key."
+        },
+        "authority": "Both current runtime projections record setup-admin/current/session same-identity booleans true and four matched settable privacy controls. These fixed facts do not disclose credentials or establish absent raw-leak/cause.",
+        "historical": "Prior39998246278 retained key/deletion UNVERIFIED/backend UNKNOWN remains unresolved. Current browser and isolated recovery cannot clear it. Current DB is separately retained; no cross-run clearance or doublecount."
+      },
+      "source_evidence": {
+        "Root": "Fresh local metadata proof76unique75+workspace,7Git commands, trackedclean/source-head/publishedtracking equality; Root raw75false and migrationbytes0. Historical dispatch60788 remains lineage.",
+        "reader": "Successful exact admitted reader proves its75 raw/clean/computedGit hash loop and generic exactrefs/compile-bytehashrefs were reached under the separate finite grant, including3 enrolledSQL. Source-provenance raw_current_count75 records this distinct current admission. No118 raw reconstruction, compiler execution, extractor or DEBUG qualification.",
+        "catalog": "448 declaration rows/19 excluded/199 wrapper source metadata reused unchanged. No extractor/census rerun or448-test coverage inference.",
+        "labels": "Actual source-label file1691bytes within32768; nudgeUNKNOWN_MISSING and browserUNKNOWN_PARTIAL with missing records; settlement/slot completeness/causeUNKNOWN, verify-unit failure candidatesUNKNOWN_NOT_ACQUIRED. Missing opt-in labels get no timing/cause/custody credit despite framework passes. API019 leaf is from native failure tuple, not missing source-label records."
+      },
+      "history": "Current40109869919 independently yields93P/1F/1unexecuted. Numerically similar prior39998246278 evidence remains history only and is not carried forward or added. Intermediate40097034333 audit-prerequisite stop is also history; no historical audit-cause attribution or retry follows.",
+      "normal_acceptance": 0,
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "new_effect_authority": false,
+      "no_merge_or_deployment": true,
+      "reviewer_activity": "Only existing closed JSON evidence/pins were read and reconciled. No raw log/ZIP/provider body/source75/SQL/DEBUG read, process/operator/function/control invocation, network or additional acquisition. Sole write is this report."
+    },
+    "Open questions": [
+      "Underlying API019 raw predicate trigger/value/emitter/cause/native first throw/request linkage remain UNKNOWN.",
+      "Current DB key deletion/backend settlement and prior399982 custody remain unverified. Missing source-label records do not fill these gaps."
+    ],
+    "Deferred work": [
+      "Root may allocate a bounded source-backed assessment starting from observed integration/IP STDOUT/OTHER_OR_UNKNOWN and retained DB custody; no source fix, suppression, cleanup or new observation is authorized here.",
+      "Keep all acquisition/run slots closed. Any later work requires its own precise ownership/authorization; existing development/delivery/release/merge/deployment gates remain."
+    ],
+    "Blockers": [
+      "RequiredAPI019 fails andAPI020 has zero execution coverage:93/95 passed, not NORMAL/development acceptance.",
+      "Current DB retains custody with deletion unverified; historical399982 custody is not cleared.",
+      "P5 remains open; no automatic fix/retry/acquisition/merge/deployment authority."
+    ]
+  }
+}

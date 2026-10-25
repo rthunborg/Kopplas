@@ -1,0 +1,127 @@
+{
+  "schema": "ROOT_ACCEPTED_FINITE_TERMINAL_ALLOCATION_V1",
+  "recorded_at_utc": "2026-10-23T17:21:21.995441+00:00",
+  "authority": "Standing human authority and actual completed Coordinator finite terminal-acquisition allocation.",
+  "actual_turn": "01a169c6-13c3-7123-a2bb-756bcd2ce765",
+  "turn_status": "completed",
+  "actual_tool": "exec-2b16dbde-d178-4c2b-bc87-d0372e674f8b",
+  "tool_status": "completed",
+  "actual_verification_tool": "exec-fbaa211e-c611-4ee8-ac65-ecad75de4b37",
+  "verification_native_exit": 0,
+  "actual_read": "Root read_thread observed idle Coordinator/completedturn/completed allocationmessage tool and native0 completed verification command; actual full result retained in functions store API019PrivacyOriginTerminalGrantActualRead.",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "run_id": 39990057474,
+  "attempt": 1,
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+  "repo": "rthunborg/Kopplas",
+  "workflow_id": 296219797,
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/reader.py",
+      "bytes": 52638,
+      "sha256": "8a1985592420ab2271e484ee52d238286f6ef92a081d0998f67acdd5a277eb68"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26294,
+      "sha256": "5abc36d28f1f7e36a004a7aa510150d1f7f9e53bcb9ddb141d1efbecb989b811"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/proposal.json",
+      "bytes": 113205,
+      "sha256": "bdf29463f744fa29faf03208867370be895c70fdd9420af43103e3c6179fe550"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/manifest.json",
+      "bytes": 1182,
+      "sha256": "85968d82cad505e37e78ea043055bf85cf9a7daf921bb7b1f059f62084fdbfae"
+    }
+  ],
+  "independent_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+    "bytes": 13171,
+    "sha256": "3ab0bc9c4ed85bc189b11790ea476f103334b1e183e3ebcbb935771d0502e483"
+  },
+  "supplementary_admission_check": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-root-admission-interface-check.json",
+    "bytes": 6169,
+    "sha256": "d9d7119045f55da9ec357137d2bc1da4c304f6f8678b60fdbd4ed5b789f96486"
+  },
+  "root_closed_ownership": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-root-ownership.json",
+    "bytes": 34524,
+    "sha256": "5626dc096d8dbdcb406c1d77b555c1539ce6b4299a98bd8299d829cad22368ed"
+  },
+  "effects": {
+    "invocations": 1,
+    "logical_GETs_max": 5,
+    "owned_archive": 1,
+    "artifact_listing": 1,
+    "artifact_list_page": 100,
+    "eligible_native_ZIPs_max": 3,
+    "each_unique_report_max": 1,
+    "eligibility": "Exact owned run/head, unexpired, positiveID,digest-qualified; missing/ineligible DBreport staysABSENT/zero coverage; no fallback/download.",
+    "native_report_names": [
+      "native-full-integration/full-integration.json",
+      "native-general-browser/general-browser.json",
+      "native-isolated-storage-recovery/isolated-storage-recovery.json"
+    ]
+  },
+  "caps": {
+    "per_GET_LOOP_seconds": 15,
+    "per_GET_same_child_wait_seconds": 2,
+    "per_GET_reader_joins": 2,
+    "per_GET_each_join_seconds": 1,
+    "ZIP_bytes": 33554432,
+    "list_bytes": 4194304,
+    "list_entries": 100,
+    "selected_entry_bytes": 16777216,
+    "declared_and_actual_inflate_bytes": 134217728,
+    "stderr_bytes": 65536,
+    "SOURCE_LABEL_channel_ONLY_bytes": 32768,
+    "generic_projection_cap": null,
+    "outer_reader_capture_LOOP_seconds": 120,
+    "outer_same_child_wait_seconds": 2,
+    "outer_reader_joins": 2,
+    "outer_each_join_seconds": 1,
+    "interpretation": "Cooperative LOOP with explicit cleanup tails, not strict totalwall. Outer observation never changes perGET caps or request budget."
+  },
+  "preconditions": [
+    "Actual supplementary helperPASS verified before this admission.",
+    "Fresh clean204Git/86nonSQLrawLF/118Git-only historicalvectors/75source/10triggers/install/Gitproof<=300s.",
+    "Exclusive fsynced23fieldactivation and oncejournal.",
+    "All former operational/terminal grants remain closed; output scope must not exist."
+  ],
+  "handling": "RawZIP/log/secret values RAM-only; existing closedprojections only. Capture actual outsidechunk/session/waits/wall/nativeexit/fullEOFjoinedclosedsettled and exactinventory. Refusal/partial/unknown/nonzero/cap/digest/structurefailure STOP consumes and closes unused, no retry/refetch/pagination/perjob/status/otherGET.",
+  "excluded_effects": [
+    "provider GET or write",
+    "Gitnetwork or mutation",
+    "push",
+    "POST",
+    "admissionvariables",
+    "local resources",
+    "otherCI",
+    "merge",
+    "deployment",
+    "demo",
+    "dbpush"
+  ],
+  "output_scope": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent",
+  "normal_acceptance": 0,
+  "source_cause_counts_custody": "UNKNOWN until distinct actual qualification. DBstackstartupF/integrationSKIP/stopP imply no API019execution or backend/keydeletion proof.",
+  "P5": "OPEN",
+  "review_counter": 3
+}

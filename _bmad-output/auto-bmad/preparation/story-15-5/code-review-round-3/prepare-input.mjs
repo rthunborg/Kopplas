@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+const root='C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas';
+const before='672099e9dc6569f4ac1cb9a967037e0d91df689c';
+const expected='360fe850c18552f23a2bf74d8eda865431f0af38';
+const dir=path.join(root,'_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3');
+const git=(args,input)=>execFileSync('git',args,{cwd:root,input,windowsHide:true,stdio:['pipe','pipe','pipe']});
+const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+const head=git(['rev-parse','HEAD']).toString().trim();
+if(head!==expected)throw new Error('Source HEAD mismatch');
+const paths=git(['diff','--name-only',before,head]).toString().trim().split('\n').filter(Boolean);
+const spec='_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md';
+const specText=fs.readFileSync(path.join(root,spec),'utf8').replace(/\r\n/g,'\n');
+const kernel=specText.match(/<intent-contract>[\s\S]*?<\/intent-contract>/)?.[0];
+if(sha(kernel??'')!=='0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977')throw new Error('Frozen kernel mismatch');
+if((specText.match(/^\*\*Round [123] of 3\*\*$/gm)??[]).length!==3)throw new Error('Review cap header mismatch');
+const contexts=['code-review-round-2/triage.json','source-creator-boundary-clarification.json','accepted-pg17-probe-allocation.json','code-review-round-2/source-role-disposition.json','code-review-round-2/native-role-case-allocation.json'];
+const buffers=[Buffer.from(`Story15.5 FINAL Round3 targeted follow-up. Source before ${before}; source HEAD ${head}. Review only two R2 fixes, the separately admitted native proof and consequential regressions. Unchanged R1/R2 reviews reused; no fourth broad review. Native DB/RLS/HTTP/browser/recovery/installed-collection evidence remains PENDING Root CI.\n\nFROZEN INTENT:\n${kernel}\n\nCOMMITTED SOURCE DELTA:\n`),git(['diff','--binary',before,head]),Buffer.from('\nUNCOMMITTED REVIEW-GUARD METADATA ONLY:\n'),git(['diff','--binary','--',spec])];
+for(const p of contexts){buffers.push(Buffer.from(`\nREAD-ONLY AUTHORITY/TRIAGE CONTEXT: ${p}\n`),fs.readFileSync(path.join(root,'_bmad-output/auto-bmad/preparation/story-15-5',p)));}
+const input=Buffer.concat(buffers);fs.writeFileSync(path.join(dir,'review-content.diff'),input);
+const bindings=paths.map(p=>{const raw=fs.readFileSync(path.join(root,p));const committed=git(['cat-file','blob',`${head}:${p}`]);return{path:p,rawBytes:raw.length,rawSha256:sha(raw),headBytes:committed.length,headSha256:sha(committed),headBlob:git(['rev-parse',`${head}:${p}`]).toString().trim(),worktreeGitNormalizedBlob:git(['hash-object',`--path=${p}`,'--stdin'],raw).toString().trim()};});
+const binding={round:3,prior_completed_rounds:2,cap:3,before,source_head:head,input_sha256:sha(input),input_bytes:input.length,paths,bindings,guard_metadata_uncommitted:true,kernel_sha256:sha(kernel),contexts,scope:'Latest two fixes, allocated restricted-PG17 proof and consequential regressions only; all unchanged R1/R2 assessments reused.',route_before_dispatch:{model:'gpt-6.1-sol',effort:'high',reason:'Sensitive public capability UI race, restricted role ownership and cleanup/qualification sanitization',layers:['blind-hunter','edge-case-hunter','verification-gap','intent-alignment','auto-bmad-security','auto-bmad-cross-model']},runtime:'Native execution remains pending Root exact-head CI; no local Docker/Supabase qualification or managed resource launch.'};
+fs.writeFileSync(path.join(dir,'input-binding.json'),JSON.stringify(binding,null,2)+'\n');process.stdout.write(JSON.stringify({sourceHead:head,inputBytes:input.length,inputSha256:sha(input),paths,kernel:sha(kernel)})+'\n');

@@ -1,0 +1,150 @@
+{
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal",
+  "member_count": 28,
+  "members": [
+    {
+      "path": "a-caught-inner.test.mjs",
+      "bytes": 296,
+      "sha256": "dbaa74e06aea8121c557e421303715723e98cb77245cd22538bce60e59673399"
+    },
+    {
+      "path": "a-caught-outer.test.mjs",
+      "bytes": 307,
+      "sha256": "7adba7bbb80c82d0bc5b20ef0dc30c7220dcaa9822382eff212dfe3966f064b1"
+    },
+    {
+      "path": "a-healthy.test.mjs",
+      "bytes": 294,
+      "sha256": "c7f24884784d1e1a87800c89441e65cbf12c70790d4d7afd02eac306b7ece343"
+    },
+    {
+      "path": "a-uncertain.test.mjs",
+      "bytes": 247,
+      "sha256": "23f4eee2f2a2ed606e9465cbaa7df88506ff9e9a7314a0943636715671e684bf"
+    },
+    {
+      "path": "bindings.json",
+      "bytes": 11117,
+      "sha256": "f1e203bf240fc03e3eaf3c319c202f698bf8b06c4d91c4451870e213fbef18a0"
+    },
+    {
+      "path": "caller-boundary-check.mjs",
+      "bytes": 1923,
+      "sha256": "b5c03362a1e55f9e8538f2c684f075fc89c51123d7cefea6dd85eecdd7e19b71"
+    },
+    {
+      "path": "caller-boundary-result.json",
+      "bytes": 7449,
+      "sha256": "d2eb4cca14f7e11615c063c51419e3d80fe595d546fc1e52d8361759e3877589"
+    },
+    {
+      "path": "caught-inner-observed-result.json",
+      "bytes": 1607,
+      "sha256": "d15b0bba352171936a1445c20b27ebaa13ab087d8348599619d0ed90e2a6001c"
+    },
+    {
+      "path": "caught-inner-ordered-result.json",
+      "bytes": 1830,
+      "sha256": "60f29045767bd1ab22eef6153886861c5512e1d5a2d236951de908cbc7400576"
+    },
+    {
+      "path": "caught-inner.config.mjs",
+      "bytes": 782,
+      "sha256": "128c627211f3dc3be6211ba63c01a4304912a354621a2231fda0cdd91062e67e"
+    },
+    {
+      "path": "caught-outer-observed-result.json",
+      "bytes": 2033,
+      "sha256": "0663c3e24bd7b2dbb4190d836c8dbe9b2f47ed733c919dbab4fac5e7f3209ddb"
+    },
+    {
+      "path": "caught-outer-ordered-result.json",
+      "bytes": 2092,
+      "sha256": "b6ca808a9591b192aabdbf211c593be0819f74f7227785dfa60e9d305b0267a6"
+    },
+    {
+      "path": "caught-outer.config.mjs",
+      "bytes": 782,
+      "sha256": "0aa75951ff1fe61891db72619b93ef2e1743c3f987d8cce2552168f409395822"
+    },
+    {
+      "path": "fixture.mjs",
+      "bytes": 306,
+      "sha256": "7e6fff5d2c3a0a026e12e6d7948b59ded8810565cb41238bdb86dee5dec9ae8e"
+    },
+    {
+      "path": "healthy-observed-result.json",
+      "bytes": 2091,
+      "sha256": "684f5b06350ed4114f53f40a53c56322d8209754dbf87802cb030086bb17ac5d"
+    },
+    {
+      "path": "healthy-ordered-result.json",
+      "bytes": 2150,
+      "sha256": "fe014f6fbf8b95eea0bf0076e5c43a9f33e1816550a5d75a16bedbc79216e1e3"
+    },
+    {
+      "path": "healthy-result.json",
+      "bytes": 1132,
+      "sha256": "f1ef0fd7ef61903fd58e4d9e75ebf8630cb46d737a29ea0c52a5083c0fa27c89"
+    },
+    {
+      "path": "healthy.config.mjs",
+      "bytes": 777,
+      "sha256": "2023dce493f9b366615176b8159149e7558ff998eca9bc33896682f1f5ec4584"
+    },
+    {
+      "path": "parallel.test.mjs",
+      "bytes": 203,
+      "sha256": "953cf550b24fe251a3ebd1d88a74da05afcb093d01c5127e52ec1811e13e301a"
+    },
+    {
+      "path": "probe-assembly-history.json",
+      "bytes": 810,
+      "sha256": "ad3be418a86cc2c6be6030584a2b8b5e3a95b9f2b407627f85925c6795ea4163"
+    },
+    {
+      "path": "probe-order-correction.json",
+      "bytes": 918,
+      "sha256": "02ebd8366b48a554336694dd9dd1402d095dec58f6e968284b2059d437d28415"
+    },
+    {
+      "path": "proposal.json",
+      "bytes": 10670,
+      "sha256": "e48f91f5b7ccb67e93b211a4d9f609d64d1ae04b2fb7eb023ca70577b40015d6"
+    },
+    {
+      "path": "proposal.md",
+      "bytes": 2745,
+      "sha256": "384b5994662e8c25985581dca7ed3d31b0bf6b6407b1c2603c19414296bcdc24"
+    },
+    {
+      "path": "sentinel-reporter.mjs",
+      "bytes": 617,
+      "sha256": "bc5b315f3396a928b139c9c471a4ce609fb5901c2d5df3f0bb5ae92cdff67828"
+    },
+    {
+      "path": "uncertain-observed-result.json",
+      "bytes": 1564,
+      "sha256": "a23b09019010a8b563dbcf809eb7f33fe13af7df65124a6ba00df6d1aa7c7706"
+    },
+    {
+      "path": "uncertain-ordered-result.json",
+      "bytes": 1787,
+      "sha256": "b9b3f1e37c6b3185a6e333003890f2b3b1ec3a51f3e6e5004bf7e41af212d5ff"
+    },
+    {
+      "path": "uncertain.config.mjs",
+      "bytes": 779,
+      "sha256": "6deb1aa6fa31e7b7f769f8c160b1819f5e15e9ea6ce0d506de227e191eca58ff"
+    },
+    {
+      "path": "z-next.test.mjs",
+      "bytes": 256,
+      "sha256": "0a7807df21c8a1e8fdd918d81afe36076555af43dde0de89526c75fcdb654d2d"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0,
+  "effects": "read-only source/installed metadata plus owned pure synthetic Vitest/AST processes only; no source/network/SQL/resource effects"
+}

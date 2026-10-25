@@ -1,0 +1,183 @@
+{
+  "kind": "independent-targeted-original-function-catalog-probe-review",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_from_sql_and_transport_authors": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_story_review": false
+  },
+  "scope": {
+    "checkout": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "head": "92ea25dee3c378a6de1772b6599cb3860a1b7c05",
+    "source_commit": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+    "input_count": 4,
+    "fixture_uuid": "b452b2c4-9e9e-4004-b644-4cc07a7be90c",
+    "fixture_role": "cf_cat_owner_b452b2c49e9e4004b6444cc07a7be90c",
+    "fixture_schema": "cf_cat_b452b2c49e9e4004b6444cc07a7be90c",
+    "fixture_function": "cf_cat_b452b2c49e9e4004b6444cc07a7be90c.catalog_probe()"
+  },
+  "reviewed_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-catalog-probe-01/probe.sql",
+      "bytes": 9241,
+      "sha256": "8a6eca71e0b89c1decca00760c166b9c3931dcdb29d4d2efc2367f599aad962f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-catalog-probe-01/verify-cleanup.sql",
+      "bytes": 1070,
+      "sha256": "a4520521c0a93807ad8b9724d323659600406b364678b1872129c1adc0f371d1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-catalog-probe-01/proposal.json",
+      "bytes": 9096,
+      "sha256": "90a30b0d579ad544a7028e6e0315d0ca7503a81fdffd83331dc486ed537ae514"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-runner.py",
+      "bytes": 10251,
+      "sha256": "00a321e3196f80feea34efbac54f7908d8bf9e5cc5adc40cc456ca87573b8867"
+    }
+  ],
+  "actual_source_bindings": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11947,
+      "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "head_blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 153160,
+      "sha256": "95396c27bd511c5df8cf7ffb5acebac520a1247fea92bae7c0a5962f547f4285",
+      "head_blob": "cba57251555d860ab8ba24bd578eed7715e7b7aa"
+    }
+  ],
+  "compose_binding": {
+    "path": ".env.epic15.compose.yaml",
+    "bytes": 4942,
+    "sha256": "be8c416c4e43fd7956ccb88561ff1849d651db045c22225dd48203272cb01f8f"
+  },
+  "provenance_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-catalog-probe-allocation.json",
+      "bytes": 2131,
+      "sha256": "f3d274e277725c62922ef2af7af61e11fa2f82356eb2f774fd013c5dd2bf0534"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-input-admission.json",
+      "bytes": 1296,
+      "sha256": "f1e83063a307288a45fa893a747f7e147bc84192f6a95aee417d314185b33cec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-runner.py",
+      "bytes": 9204,
+      "sha256": "90f0cb9215a2609e807b2c2515494960c3be8998421cd6b2b61b2dd4ef7ce76a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-report.md",
+      "bytes": 5330,
+      "sha256": "1756792af12612805d082898674e7f4c6249a3c9f8fa813d6a77aa7d92c144ea"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-attestation.json",
+      "bytes": 6529,
+      "sha256": "eeb59490acd0491ed184be0fe5898c6a32cebd8f1ae56d16027a1ee321ab7141"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/result.json",
+      "bytes": 800,
+      "sha256": "731bc1508a67c6667e5ee2e20734307f3504190111d7e7acaf8c4abc38d29472"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-qualification.json",
+      "bytes": 10184,
+      "sha256": "f45092e068564833b91f5e42cc0feba1a991cbe74f4c69ab2e13d1cf89d82bb4"
+    }
+  ],
+  "review_observations": [
+    "Pre-DDL server102-prefix/original SupAdmin and non-superuser postgres/collision/timeouts/logging gates; existing-catalog fingerprint preservation; actual postgres-only function creation with separate setup ownership/ACL mutation.",
+    "One new UUID role/schema/inert never-invoked function; no existing membership/role/default/Auth/public ACL change; all changes transactionally rolled back; same/fresh absence and identity checks.",
+    "Public-schema default ACL entry forces incomparability; global postgres function defaults remain in force; setup-superuser transfer is not ordinary executor authority proof.",
+    "Eleven false/true conditions remain evidence independent of setup/transport; no hosted body/index/predicate recovery; alltrue or incomparable STOP UNKNOWN/no opaque retry; no guard weakening or source-fix authority.",
+    "Exact closed nested parser with strict own boolean/integer values and duplicate-key rejection; source/historical result comparability always UNQUALIFIED.",
+    "Unchanged bounded capture and live readiness/container/project/workdir/image/port gates; one exclusive consumed marker before SQL clients; no retry; fresh read-only child only after full transport and reported native psql0/3."
+  ],
+  "checks": [
+    {
+      "kind": "AST parse",
+      "passed": true,
+      "files": [
+        "new runner",
+        "old reviewed runner"
+      ],
+      "module_imported_or_main_called": false
+    },
+    {
+      "kind": "AST reuse comparison",
+      "passed": true,
+      "capture_statements_before_new_validator": 22,
+      "main_statements_including_exclusive_marker": 27,
+      "previous_runner_bytes": 9204,
+      "previous_runner_sha256": "90f0cb9215a2609e807b2c2515494960c3be8998421cd6b2b61b2dd4ef7ce76a"
+    },
+    {
+      "kind": "pure extracted parser controls",
+      "passed": 29,
+      "failed": 0,
+      "scope": "Only in-memory JSON validation AST block and duplicate-key helper; synthetic returncode/bytes. No capture/main/subprocess/Docker/SQL invocation.",
+      "cases": [
+        "all checks true acquisition",
+        "each of11 checks individually false preserved",
+        "false default comparability observation still true but qualification false",
+        "integer fields reject bool",
+        "setup flags false refuse qualification",
+        "nested extra/missing/nonboolean reject",
+        "top-level pollution/duplicate keys/nonJSON reject",
+        "native3 rejects observation qualification",
+        "fresh cleanup true/false"
+      ]
+    },
+    {
+      "kind": "psql static branch balance and rollback/reset placement",
+      "passed": true,
+      "engine_syntax_or_semantics_executed": false
+    },
+    {
+      "kind": "input/source/compose identity",
+      "four_inputs_verified": true,
+      "three_source_bindings_verified": true,
+      "compose_verified": true
+    },
+    {
+      "kind": "new activation/consumed/result absence",
+      "observed": true,
+      "runtime_effects": 0
+    }
+  ],
+  "qualification_limits": {
+    "native_sql_executions": 0,
+    "docker_clients": 0,
+    "resource_operations": 0,
+    "api_ci_provider_calls": 0,
+    "normal_acceptance_credit": 0,
+    "actual_hosted_catalog_rows_observed": false,
+    "actual_new_resource_readiness_verified": false,
+    "postgres_transfer_or_set_authority_proven": false,
+    "source_or_historical_comparability": "UNQUALIFIED",
+    "alltrue_or_incomparable": "STOP UNKNOWN; no opaque normal CI retry",
+    "conditional_allocation": "Concrete Coordinator receipt retained; review independently evaluated tuple; no launch by reviewer",
+    "source_fix_authority": false
+  },
+  "write_scope": "Only original-report.md, original-attestation.json and result.json in this new owned review directory. Prior reviews/probe/qualification, payload, source and Spec remain unchanged."
+}

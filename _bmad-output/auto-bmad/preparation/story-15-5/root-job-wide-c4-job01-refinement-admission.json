@@ -1,0 +1,23 @@
+{
+  "kind": "ROOT_MECHANICAL_REFINEMENT_ADMISSION_ONLY",
+  "head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+  "refinement": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/refinement.json",
+    "bytes": 9134,
+    "sha256": "94e0c70758fefe97fee429c2627836b319f2c249513765da37dfbd9948c67c5a"
+  },
+  "bindings": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/bindings.json",
+    "bytes": 13181,
+    "sha256": "bd60202b486fc34bb8df5e79fb91f79a4f189d05483b4f07e6c65df9a419118b"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/manifest.json",
+    "bytes": 2197,
+    "sha256": "14778fe1ca466f9008954aa9dcd6fe1e911fc752bae599f80a5adc88fab8329d"
+  },
+  "verified_file_ref_occurrences": 52,
+  "native_acceptance_credit": 0,
+  "source_edit_authorized": false,
+  "next": "Distinct High targeted correction validation of C4-JOB-01 and supported-config predicate only."
+}

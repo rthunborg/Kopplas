@@ -1,0 +1,47 @@
+{
+  "all_slots_closed": true,
+  "members": [
+    {
+      "bytes": 4327,
+      "path": "operator-intent.json",
+      "sha256": "b63394df9ddeefec470bfd5069316aafe63279e6bb4ef14459aa1654a57d9ece"
+    },
+    {
+      "bytes": 438,
+      "path": "request-01-intent.json",
+      "sha256": "6bae57480e3fef0642df326c984ce0dc1d625592995d1c746c4c65cb9bdecc37"
+    },
+    {
+      "bytes": 1156,
+      "path": "request-01-result.json",
+      "sha256": "3cc5e7b411fe39ddf9b44cb5b7f0ff9e90ad8ff3db049dd25b633954f0088e05"
+    },
+    {
+      "bytes": 547,
+      "path": "artifact-list-projection.json",
+      "sha256": "86aec3f63d8cda1ae637eb672b31be1b1e2ff7248221c73f4d7258b8fa230eca"
+    },
+    {
+      "bytes": 418,
+      "path": "request-02-intent.json",
+      "sha256": "1e059b59721fb620852dfcb41579545a927a30db54e238a6af5a11b5cdca1ec8"
+    },
+    {
+      "bytes": 1137,
+      "path": "request-02-result.json",
+      "sha256": "cd8e505f82c5c21d0a25c61e7a8120a69c7ee7d441b30fe3da855cedadfaa7a5"
+    },
+    {
+      "bytes": 4457,
+      "path": "native-projection.json",
+      "sha256": "529bf433d024f546f65de6303dd149b96b63b2ab3ea4beaee11319648efe6e80"
+    },
+    {
+      "bytes": 143,
+      "path": "acquisition-summary.json",
+      "sha256": "bbed1668d73cc89a55be6d43be95153cfe3e2c9bf1bd6f3107a52c227ad04413"
+    }
+  ],
+  "normal_acceptance": 0,
+  "self_excluded": true
+}

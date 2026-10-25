@@ -1,0 +1,222 @@
+{
+  "schema": "kopplas.resumed-B-six-source-targeted-review.v1",
+  "verdict": "PASS_TARGETED_SCOPE_B_CI_PRIVACY_SOURCE_ONLY",
+  "review": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true,
+    "route": "P5-resumed-temporary-E2E001-committed-CI-privacy-review",
+    "scope": "Six committed diagnostic paths, consequential changed-line regressions and their enforced CI/capture dependencies only; no fourth broad review."
+  },
+  "revision": {
+    "diagnostic_commit": "584e97329ea516d49b49dec242e8e097594adf95",
+    "parent": "0d1ab835c4274f313cc6a62ef461c96f3641d924",
+    "branch": "codex/epic-15-original-failure-debug",
+    "source_checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-original-failure-debug/Kopplas",
+    "main_metadata_head_at_assignment": "be20005c44ddacaa9765c7478d363399487fff08",
+    "provenance": "Root independently qualified the committed six-file scope and clean diagnostic tree. Reviewer bound each current raw/LF/computed-clean-Git identity; no Git commands were run."
+  },
+  "findings": [],
+  "independent_checks": {
+    "chunk": "41dc1d",
+    "native_exit": 0,
+    "wall_seconds": 0.2788985,
+    "description": "Read/hash/source-inverse checks only, via Python -I -X utf8 -B. No function import/evaluation, control tests or runtime.",
+    "six_sources_raw_LF_and_computed_blob": true,
+    "two_completed_grant_hashes": true,
+    "workflow_exact_once_inverse_pairs": 8,
+    "workflow_inverse_to_parent_raw_and_LF": true,
+    "diagnostic_inverse_precedes_causeProofInverse": true,
+    "complete_helper_and_wrapper_LF_inverses_to_parent": true,
+    "ordinary_three_argv_declaration_hashes_equal": true,
+    "fixed_diagnostic_argv": true,
+    "single_exact_wrapper_LF_hash_pin": true,
+    "installed_Playwright_literal_source_hashes": true,
+    "SQL118_exact_members_and_baseline_hash_after_LF_or_CRLF_only": true,
+    "history": "An initial raw-SQL assertion stopped at checkout line-ending differences. The final check compared only whole-file LF/CRLF representations to the immutable baseline hashes; no SQL bytes were written or altered."
+  },
+  "assessment": {
+    "admission": {
+      "locations": [
+        ".github/workflows/ci.yml:86-118",
+        "scripts/ci/with-calendar-feed-runtime.mjs:201-220"
+      ],
+      "facts": [
+        "Explicit workflow_dispatch boolean defaults false.",
+        "Dispatch binds exact expected SHA to GITHUB_SHA, UUID v4, attempt 1 and branch ref.",
+        "Diagnostic rejects cause-proof, release validation and other diagnostic flags before dependent jobs.",
+        "Wrapper requires Linux GitHub-hosted e2e job, exact owned disposable-stack run/attempt/job tuple, fixed local endpoints, exact diagnostic flag/checkpoint and no cause-proof environment collision.",
+        "Existing qualification of fresh isolated stack, runtime privilege, key and cleanup remains byte-conserved by the complete wrapper inverse."
+      ],
+      "branch_support": "The existing branch-ref check accepts codex/epic-15-original-failure-debug; neither the new wrapper admission nor the workflow hard-codes the calendar branch. Actual remote ref/identity/ownership must still be bound before any dispatch."
+    },
+    "execution": {
+      "locations": [
+        "scripts/ci/with-calendar-feed-runtime.mjs:12-15",
+        "scripts/ci/with-calendar-feed-runtime.mjs:631",
+        ".github/workflows/ci.yml:484-490",
+        ".github/workflows/ci.yml:560-580"
+      ],
+      "argv": [
+        "exec",
+        "playwright",
+        "test",
+        "tests/e2e/calendar-feed.e2e.spec.ts",
+        "--grep",
+        "(?:^| )15[.]5-E2E-001(?: |$)",
+        "--retries=0",
+        "--workers=1",
+        "--reporter=list,json"
+      ],
+      "facts": [
+        "No arbitrary command or selector is accepted.",
+        "Only diagnostic DB/recovery and ordinary full-smoke execution are skipped; verify remains required and E2E depends on verify, not DB/recovery.",
+        "Diagnostic uses existing production app, isolated privileged setup, report upload and teardown.",
+        "INTEGRATION_ARGS, BROWSER_ARGS and CAUSE_PROOF_ARGS remain byte-identical; false/default diagnostic inputs preserve ordinary workflow bytes after the finite inverse."
+      ]
+    },
+    "capture": {
+      "locations": [
+        "tests/e2e/support/calendar-feed-atdd.ts:31-53",
+        "tests/e2e/support/calendar-feed-atdd.ts:539",
+        "tests/e2e/support/calendar-feed-atdd.ts:650-652",
+        "tests/e2e/support/calendar-feed-atdd.ts:775-779"
+      ],
+      "facts": [
+        "Binds only the already matched rotate Request in its existing completion callback.",
+        "Samples synchronously at most once after the existing cancelAndSettle returns or throws, before fault disposal/page/context cleanup.",
+        "No request, listener, observer, promise, await, poll, timer, timeout, action, reload, assertion or cleanup dependency is introduced; all previous helper bytes are recovered by the exact inverse.",
+        "Native failure object/errorText is inspected only locally in RAM. Only own data-property equality to net::ERR_ABORTED or net::ERR_FAILED survives; unknown, malformed, accessor, unavailable, throwing or ambiguous binding yields UNKNOWN.",
+        "The installed Playwright core/type files and exact literals are hash-bound.",
+        "Existing Playwright annotation calendar-original-rotate-post-drain receives only the safe literal or UNKNOWN; sink failure is caught and cannot suppress or replace the original failure.",
+        "No raw text, URL, body, token, DOM, stack, provider payload or new wire family is emitted. Normal-mode capture is disabled."
+      ],
+      "limits": "A code or UNKNOWN does not establish abort origin, causal defect, native completion, backend rollback or settlement. Missing annotation is also UNKNOWN, including a fixture failure before the boundary."
+    },
+    "guard_companions": {
+      "locations": [
+        "tests/support/calendar-feed-ci-contract.ts:29-63",
+        "tests/support/calendar-feed-ci-contract.ts:118-149",
+        "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts:57-58"
+      ],
+      "facts": [
+        "Eight exact-once diagnostic workflow fragments are inverted before existing cause-proof fragments; their complete inverse equals parent 0d workflow raw/LF hashes.",
+        "The contract pins exactly one new wrapper LF hash and the fixed new argv; it adds no alternate allowed hash.",
+        "The operative sixth-file allocation is the two explicit assertions: E2E retains its prior cause-proof exclusion, recovery asserts cause-proof OR original-E2E001 exclusion.",
+        "The two scoped canonical-LF SQL readers retain assertions. Root baseline/preimage qualification and author focused evidence are reused for this test-only conservation; this review independently verifies SQL canonical equivalence without mutating SQL."
+      ]
+    }
+  },
+  "author_evidence": {
+    "receipt_path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-B-six-source-author-result.json",
+    "receipt_bytes": 13663,
+    "receipt_sha256": "d659562d83937a2bfcb8c347cc2793e7d599a86ae14ce1ccfd0a080778851510",
+    "reused": [
+      "Final actual-source five-consumer suite: 452 passed, 0 failed/skipped/cancelled; seven new controls are included.",
+      "Separate final affected sixth-file suite: 5 passed, 0 failed/skipped/cancelled; not a new full-suite total.",
+      "Final TypeScript, affected lint and diff checks exit 0.",
+      "Frozen offline install: 398 dependencies, 0 downloads, lifecycle scripts disabled; no package/lock changes."
+    ],
+    "history": "Initial 162/167, 165/167 and exploratory RAM-LF-overlay 453/457 results remain historical failures. The overlay is not final source evidence; final 452 tests used direct checkout reads. No author tests were rerun or represented as independent passes."
+  },
+  "future_effect_requirements": {
+    "authority": "SOURCE_ONLY_PASS; all provider/push/dispatch/runtime effects remain separately unallocated.",
+    "minimum_proposal": "Root may seek an exact bounded allocation for one provider check, two owned branch pushes and one fixed diagnostic dispatch. No full NORMAL substitution, retry, variable mutation or deployment follows from this verdict.",
+    "before_effect": [
+      "Bind actual diagnostic commit/ref, repository/actors/workflow, fresh checkpoint UUID, expected SHA and attempt 1; reconcile actual remote state and preserve no-blind-retry ownership.",
+      "Independently verify the protected no-preview/no-deployment boundary and use only the existing qualified isolated privileged setup/cleanup.",
+      "Dispatch only calendar_feed_original_e2e001=true with release/cause/other diagnostics false, fixed E2E001 argv, retries 0 and workers 1.",
+      "Qualify the actual one-case report, safe annotation, native exit/EOF/child settlement and custody separately. No runtime gate or cause credit is granted now."
+    ]
+  },
+  "effects": {
+    "source_or_Spec_writes": 0,
+    "Git_commands": 0,
+    "API_calls": 0,
+    "tests_or_control_harness_runs": 0,
+    "operator_or_browser_invocations": 0,
+    "resource_actions": 0,
+    "only_write": "This new review JSON in the main owned checkout."
+  },
+  "remaining": {
+    "policy_version": "2026-10-19",
+    "broad_review_counter": 3,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "required_missing_cases": 35,
+    "prior_failure_truth_retained": true,
+    "original_abort_origin": "UNPROVEN",
+    "backend_settlement": "UNPROVEN",
+    "custody": "Unchanged retained/unverified conditions; no cleanup or foreign-adoption authority."
+  },
+  "source_bindings": [
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 66604,
+      "raw_sha256": "634c0c6d8375f0b555d22f2ef0d6201ab3cfa1a7350cd3c1bf18bc813ff58233",
+      "lf_bytes": 65776,
+      "lf_sha256": "6319a38678a350774c9167a3dc6d073e8d3947b457dffb03f3da0916a91afefa",
+      "computed_clean_git_blob": "21e838b7332a2211eb19370c9e6b56a53e77a1eb",
+      "retains_checkout_CRLF": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 49486,
+      "raw_sha256": "723b7ff2ce499a03d38c9fc680cbc85bc841cf97748e5612dcea8f9ba26c49c3",
+      "lf_bytes": 48794,
+      "lf_sha256": "8e6235531201a1fed01e4bb30eeaad98218b24747c6cac2ff38a2158f87a7f07",
+      "computed_clean_git_blob": "af5d8eb5f41380e7a59f7d5be9e75e1d2296a82c",
+      "retains_checkout_CRLF": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 78850,
+      "raw_sha256": "a7618cf8f8875eed4d8e5d018c384dbb1c9a52ada1474e386a8c620989ce3ddf",
+      "lf_bytes": 77327,
+      "lf_sha256": "d3d4e1c592b9a90157a654f016a711fb130f7fcf0eefccc8fa3a509d50c1d690",
+      "computed_clean_git_blob": "b2369021e0ef85707538fdffb0cc4511f1fc8da7",
+      "retains_checkout_CRLF": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 12621,
+      "raw_sha256": "ebe89cf371b95da2818a8e40b3ad17b1ff065eb6e646ccf53e3e0f222544748a",
+      "lf_bytes": 12470,
+      "lf_sha256": "122e5df7a7cdadb104b29b60d1784b83ce785ad6cce4849a1b48f9f930735d79",
+      "computed_clean_git_blob": "1f94fb8611543a5fac23b672336cc6ca30940c5f",
+      "retains_checkout_CRLF": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 292216,
+      "raw_sha256": "e8710749c28825b8d6ea00973607680382697885b9cd899d72ae9e19793a0359",
+      "lf_bytes": 289451,
+      "lf_sha256": "1e9b41fcf2b78aa96a300440f012f1de049604c359123c722e778d754e0c7967",
+      "computed_clean_git_blob": "ecef8e1a53e54ae27bd98295d4bbcaefd334cab5",
+      "retains_checkout_CRLF": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "raw_bytes": 3547,
+      "raw_sha256": "efa3740188120ac870d31e81755ec160340fde9e00d2537b39c18a72eb546e36",
+      "lf_bytes": 3486,
+      "lf_sha256": "0832007eb64b1829230d6b61baf5676bdee37b5ca0f40f7800e132272f66ea89",
+      "computed_clean_git_blob": "1d2993c2d20d3ee27c90e10c5971a0c34907fe88",
+      "retains_checkout_CRLF": true
+    }
+  ],
+  "allocation_bindings": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-B-five-source-allocation.json",
+      "bytes": 3063,
+      "sha256": "36fe12fc67bcf2846d1aee8f518e6816b615f75041cbbe03388f85cd7ff5d216"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-B-sixth-refined-source-allocation.json",
+      "bytes": 2618,
+      "sha256": "cf8b86fbef1a4e7dc9d33ea0ee997c656d0a3f90e5d5093aee6d7620cb9e3bbd",
+      "operative_tool": "exec-29c555db-2f0d-410f-a325-ae7e006f0673"
+    }
+  ]
+}

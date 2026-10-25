@@ -1,0 +1,7 @@
+{
+  "all_slots_closed": true,
+  "logical_GETs": 2,
+  "no_retry": true,
+  "normal_acceptance": 0,
+  "status": "OWNED_SETUP_CAPTURE_AVAILABLE"
+}

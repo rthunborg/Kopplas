@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "kind": "PROPOSAL_SELF_EXCLUDED_MANIFEST",
+  "status": "PLAN_ONLY_NOT_EXECUTION_ADMISSION",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal",
+  "directory_members": [
+    "plan.md",
+    "plan.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "plan.md",
+      "bytes": 6003,
+      "sha256": "fb4dfcd43fadd8b310b5773843e93bff9c20f82078320911ce0f03215a254b1a"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 16679,
+      "sha256": "9d76227a081e40081ade028595add5e27c22ce71c7639b3267acc18799e26cd3"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "self_identity": "Actual manifest bytes/SHA256 returned externally to Root; no recursive self-hash claim.",
+  "immutable_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+      "bytes": 884427,
+      "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/expected-admission.json",
+      "bytes": 6705,
+      "sha256": "a5d0ca28fd7bce83aa2f3105f6122610091fab52bf7d935aaf040483b9f3cbc1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/terminal-facts.json",
+      "bytes": 3135,
+      "sha256": "aa00fd0c2158d02f2a42bc989624b611c36be44b0059627f5d9ac42d750d1754"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-terminal-metadata-proof.json",
+      "bytes": 2721,
+      "sha256": "d13590179752a3b4d84bfe0c283afebd677bd4ab6760e6c5a8ee71ad9c891c9d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-operation-stop.json",
+      "bytes": 1096,
+      "sha256": "89585f71abc74d6656157e95453e0b297d29d44861e65e4a67d003d3e286780e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-prepost-diagnostic-intent.json",
+      "bytes": 2729,
+      "sha256": "40f043cbd0a34a771999327671fa4a7cb76de4fa3c91a3389b913d3fc3402b22"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-pipe-driver.py",
+      "bytes": 10294,
+      "sha256": "16b981a7153f227f82f17d892a7709fa4577a78ecfb836bde0fb0da694f74ab8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-rebound-33cfa8df-review/original-report.md",
+      "bytes": 6399,
+      "sha256": "ecfa4c1a66afa11a487825fab9d5e17a730fd5ca35e6e63e9c5cb8f24cc0dc8c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-rebound-33cfa8df-review/original-attestation.json",
+      "bytes": 12275,
+      "sha256": "bb285365d38461f82d142d3f3dbc67323cd90729c35c1a4543904a8fcf339997"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-rebound-33cfa8df-review/result.json",
+      "bytes": 1032,
+      "sha256": "7069644e09c5bcd6e2e8160d5d9f530cc5fa9927e31214b42612423a625672f2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-started.json",
+      "bytes": 315,
+      "sha256": "d6e34e861f1b5c51475337049fdacbd6fe582586f19dbc056ba47570bbab1261"
+    }
+  ],
+  "requests_executed": 0,
+  "code_implemented": false,
+  "normal_acceptance_credit": 0,
+  "provenance_deviation_recorded_in": "plan.json#proposal_provenance"
+}

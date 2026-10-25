@@ -1,0 +1,171 @@
+{
+  "schema": "INDEPENDENT_ACCEPTED_INT009_LOCAL_READONLY_RECONCILIATION_REVIEW_v1",
+  "outcome": "PASS_CORRECTED_INT009_READONLY_RECONCILIATION_ONLY",
+  "status": "PASS_CORRECTED_INT009_READONLY_RECONCILIATION_ONLY",
+  "execution_authorized": false,
+  "normal_acceptance": 0,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route": "Root canonical3f41e3",
+    "independent": true,
+    "kind": "Critical targeted GET-only controller reconciliation; not broad story review/new workflow/framework"
+  },
+  "scope": {
+    "MAIN": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "MAIN_head": "85cd59ae (Root-reported; no Git commands)",
+    "DEBUG_head": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e (unchanged Root-qualified source)",
+    "branch": "codex/epic-15-int009-debug",
+    "checkpoint_id": "a6d7e90f-4486-4093-a407-b5b3c495d88a",
+    "accepted_dispatch_status": "Accepted native0/empty complete POST response from pinned receipt; current actual run status UNKNOWN",
+    "only_commands": "init is local-only; observe auto-selects one remaining resolver GET or one exact bound-run/job pair, or WAIT0GET",
+    "no_mutation_surface": true
+  },
+  "pins": {
+    "wrapper": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation.py",
+      "bytes": 11090,
+      "sha256": "2c307074b582bb34f2c76d7c779d729c3313065b1c9c7fa68b4b104e756778f3"
+    },
+    "packet": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation-packet.json",
+      "bytes": 3987,
+      "sha256": "1b119c07078f708940e2ba1fabf3d4cbbdbe516756d72bd7b3e0cf5884df5a31"
+    },
+    "independent_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation-independent-controls.py",
+      "bytes": 13355,
+      "sha256": "295aa953a04817056942193886b250f0474e41bff8dd15d3e69f7558da255d9e"
+    },
+    "qualified_capture_driver": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-driver.py",
+      "bytes": 15113,
+      "sha256": "a4d977837d3fa49f85f840271787e9407190a5422259b375d52e9886b568d1f5"
+    },
+    "prior_operational_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-one-case-operational-review.json",
+      "bytes": 11556,
+      "sha256": "38aab01ca883b37468706001ffb9fdfa08010caad5cd354a4f7925613def3b7b"
+    },
+    "allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-one-case-effects-allocation.json",
+      "bytes": 3523,
+      "sha256": "e5c32d77eb2f20aaebbb464c339c9739fe1b1b321582172fe63c432b3a6ab14b"
+    },
+    "clarification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-readonly-scope-clarification.json",
+      "bytes": 1565,
+      "sha256": "f8fa9eeaf92923a25128efa25fbf68614863e5ea6553cd35f4172be572f25758"
+    },
+    "original_operation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-operation/operation.json",
+      "bytes": 486,
+      "sha256": "300fa6b97c8fb922c05a94e25b48797e1a855d92ccebe13a84418bd8d77e7df3"
+    },
+    "preimage": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-operation-premature-poll-preimage.json",
+      "bytes": 486,
+      "sha256": "300fa6b97c8fb922c05a94e25b48797e1a855d92ccebe13a84418bd8d77e7df3"
+    },
+    "dispatch_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-operation/dispatch-receipt.json",
+      "bytes": 696,
+      "sha256": "f0b08dbbcc5b6c187c70ee2f3d3c98d396f1468cce1f427c787310465927b3a3"
+    },
+    "hold": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-local-premature-poll-hold.json",
+      "bytes": 1789,
+      "sha256": "58a03acbd43880b12ccb237d1ed3652c4dbb83234e20ce265cd35ec447a3ca4b"
+    }
+  },
+  "findings": [],
+  "required_repairs": 0,
+  "accepted_boundary": {
+    "operator_error": "First original resolver returned zero matches. Premature old poll hit local run_id assertion before run/jobs GET or poll-counter increment, preserving local UNKNOWN_STOP. It did not replay or render accepted push/POST uncertain.",
+    "actual_clarification": "Pinned1565/f8fa completed Coordinator turn01a16436-91d1-7d91-9694-47fdc707bc2c/tool exec-fdecdd1a-0821-4e6a-9502-2c0adca58f64 narrows the existing finite grant to remaining readonly capacity only after independent High wrapper PASS. It permits no new provider/mutation/second poller or counter/deadline reset.",
+    "original_preserved": "Original operation486 and immutable preimage486 both SHA300fa6b97c8fb922c05a94e25b48797e1a855d92ccebe13a84418bd8d77e7df3 remain UNKNOWN_STOP. Hold1789/58a03acb and actual glob checks prove resolution_used1, poll_pairs0, run_idnull and no run/jobs GET intents. The superseded preparation-only metadata phase-flip proposal was not applied.",
+    "new_namespace": "retry-INT009-readonly-reconciliation is exclusive and absent before activation. New init copies original started_at, cumulative counters, checkpoint/head/accepted dispatch and original operation ID into attributed readonly state. Original records never become writable targets.",
+    "source_only": "This review is the required source gate; Root must still create the explicit new exclusive activation and remain sole observer under the actual clarified grant. No request is authorized/executed by this report."
+  },
+  "budget": {
+    "original_started_at": "2026-10-22T15:22:02.887786+00:00",
+    "original_deadline_UTC": "2026-10-22T16:52:02.887786+00:00",
+    "original_resolution_consumed": 1,
+    "remaining_resolver_GET_max": 5,
+    "cumulative_resolver_max": 6,
+    "resolver_min_interval_seconds": 5,
+    "original_poll_pairs_consumed": 0,
+    "remaining_poll_pairs_max": 90,
+    "run_GET_max": 90,
+    "jobs_GET_max": 90,
+    "poll_min_interval_seconds": 60,
+    "max_wall_seconds_from_original_start": 5400,
+    "reset_allowed": false,
+    "each_GET_capture_timeout": "min(20 seconds, remaining original wall);2MiB stdout/64KiB stderr",
+    "counter_and_intent_order": "Cumulative count saved before GET; exclusive intent fsynced before native capture; uncertainty consumes slot and stops."
+  },
+  "assessment": {
+    "admission_and_pins": "Actual admit checks review outcome, completed allocation/clarification records, exact pinned self/ref bytes+hashes, old==preimage/head/checkpoint/UNKNOWN/count1/count0/run_idnull/accepted dispatch, original wall, complete native0 empty dispatch response and hold identity. Actual original directory has no run/jobs intent. No fresh provider/300s mutation gate is required or introduced for these already allocated readonly GETs.",
+    "default_and_auto_selection": "Only init/observe accepted. Default refuses before activation or native process. Observe selects resolver only while run is unknown; it cannot manually poll a null run. Early interval calls return WAIT and zero GET without consuming counters.",
+    "resolver": "At most remaining5/cumulative6, exact workflow/branch filter and fixed source/title. Zero resumes within bound, unique exact tuple binds run, final-empty/ambiguity/foreign identity stops UNKNOWN without adopting first/foreign result.",
+    "poller": "Only uniquely bound integer run. Exact current tuple verifies SHA/ref/title/UUID/event/workflow/actors/repository/attempt1. At most90 cumulative pairs under original wall/min60. Same unique expected9jobs/ids/run/head checks and closed report projection are retained. Completed run+9completed jobs freezes terminal and STOP; postterminal call performs no request and preserves terminal artifact.",
+    "failure_and_deadline": "Failed/unsettled/incomplete capture stops without retry; cumulative slot stays consumed. Original wall checked at admission/state and per GET, so a run GET near deadline cannot authorize later jobsGET after expiry. Missing/ambiguous/exhausted/deadline states remain UNKNOWN with handoff.",
+    "GET_and_privacy": "get accepts no method/body parameter and emits literal gh api --method GET only at three fixed source-owned endpoint patterns. No provider/push/dispatch/artifact/log code path is exposed. Qualified native concurrent capture helper is byte-identical; complete EOF/join/closed/native0 predicates and RAM-only raw response with fixed projections remain. Unreachable generic qualification helpers are unchanged code, not an exposed command.",
+    "preservation": "No story/application/schema/config/fixture/source changes or broad re-review. Reused current15113/a4d native capture, exact ownedrun and prior projection/finite algorithms. Only new controller reconciliation, pins, local attribution/selection and remaining-wall GET timeout reviewed."
+  },
+  "actual_verification": {
+    "command": "python -I -B .env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-readonly-reconciliation-independent-controls.py",
+    "tool_chunk": "997e05",
+    "native_exit": 0,
+    "checks_passed": 15,
+    "checks_failed": 0,
+    "method": "AST-extracted actual now/elapsed/admit/save/get/ownedrun/main and actual final error handler. Real immutable metadata refs read; synthetic review/activation and in-memory state/write/native/time responses only. No real GET or mutation. Actual no-argument child executes only default refusal.",
+    "checks": [
+      "Actual local init preserves original deadline/operation attribution/counters/preimage;0GET",
+      "Premature resolver observe WAIT0GET, count unchanged",
+      "Empty then unique resolver cumulative2/3 and exact run binding",
+      "Last empty resolver cumulative6 UNKNOWN_STOP/no extra request",
+      "Ambiguous matches UNKNOWN_STOP after one consumed request",
+      "Foreign actor match denied",
+      "Premature poll observe WAIT0GET, count unchanged",
+      "Nine-job terminal STOP and postterminal0GET/terminal preserved",
+      "Last cumulative90 pair stops/no reset or extra request",
+      "Original90minute expiry refuses before initialization/request",
+      "Near-deadline runGET timeout1s, jobsGET blocked after wall",
+      "Incomplete capture consumes resolution slot and stops/no retry",
+      "Actual default invocation native2/refusal before activation/API",
+      "Original UNKNOWN_STOP/preimage remain byte-identical",
+      "LiteralGET-only adapter and qualified helper/tuple conservation"
+    ],
+    "source_equality": "now/binding/write/native/required/git/ownedrun exact source equal15113/a4d predecessor; read/checkref AST equal (formatting-only whitespace). Packet and all six actual reference pins validated. Controls did not create activation/state namespace.",
+    "default_result": {
+      "native_exit": 2,
+      "stdout_bytes": 0,
+      "stderr": "REFUSED_OR_UNKNOWN_STOP; GET-only, no mutation or automatic retry",
+      "API_requests": 0
+    },
+    "limitations": "Mocked responses establish local controller invariants only; they do not observe the accepted run or qualify native response/artifact/INT009 execution. Actual remote status remains UNKNOWN. Terminal extra invalid observe is refused with no GET and immutable terminal retained; no post-stop success claim.",
+    "zero_effects": {
+      "API_run_jobs_provider_Git_or_artifact_requests": 0,
+      "push_POST_dispatch": 0,
+      "services_resources_DB_browser_or_test_workloads": 0,
+      "source_state_dependency_or_configuration_edits": 0,
+      "nested_agents": 0,
+      "normal_acceptance": 0
+    }
+  },
+  "next_action": "Root may admit the independently reviewed concrete GET-only wrapper through a fresh exclusive activation under the actual completed clarification, initialize its new namespace locally, and observe solely within the remaining original counters/deadline. Any actual unavailable/ambiguous/expired/budget state stops; never reopen mutation/provider slots. Artifact acquisition remains a separately admitted later step after actual terminal freeze.",
+  "continuity": {
+    "normal_required": 95,
+    "normal_passed": 68,
+    "normal_failed": "INT009",
+    "normal_unexecuted": 26,
+    "qualified_feed_browser_retry0_passed": 14,
+    "INT009_current_reproduction_status": "UNKNOWN/unobserved",
+    "original_native_cause": "UNKNOWN",
+    "development_complete": false,
+    "release_ready": false,
+    "old15_4_work": false
+  },
+  "authority": "PASS is readonly-controller SOURCE ONLY. execution_authorized=false. No new finite grant, no mutation/provider reallocation, no counter/deadline reset, second poller, generic workflow, deployment or normal acceptance."
+}

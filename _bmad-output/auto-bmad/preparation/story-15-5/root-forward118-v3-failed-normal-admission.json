@@ -1,0 +1,135 @@
+{
+  "schema": "ROOT_FORWARD118_V3_FAILED_NORMAL_ADMISSION_v1",
+  "at": "2026-10-22T02:47:55.576334+00:00",
+  "outcome": "QUALIFIED_FAILED_FORWARD118_V3_NORMAL_EVIDENCE",
+  "run": 39710514719,
+  "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39710514719",
+  "attempt": 1,
+  "head": "193361acf6cc6b0d8275bff41470f647e2404b34",
+  "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+  "checkpoint_id": "fc6f206d-b3ac-4393-884e-49d98b922a30",
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "binding_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/forward118-v3-actual-terminal-binding-high-review/manifest.json",
+    "bytes": 939,
+    "sha256": "00870ba69549e05ae12ddae94843eaf482e013d0046f880982612f237dcfd8c2"
+  },
+  "independent_actual_audit": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/forward118-v3-normal-native-provenance-audit/manifest.json",
+    "bytes": 912,
+    "sha256": "e3bf42eb011edb592cfd1dbd3a6e3b52ce2d4f4e811eb046fd8715ea53ce2a5f"
+  },
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-193361ac-forward118-v3-normal-ci-independent/manifest.json",
+    "bytes": 6101,
+    "sha256": "624aabd1fff6444ec3c14551bcfb3897287113cfe3ef9134b41d8f24d546846b"
+  },
+  "native_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-193361ac-forward118-v3-normal-ci-independent/native-qualification.json",
+    "bytes": 14807,
+    "sha256": "b365b6f49d3c43e3eedde05df6fe5a9f81dad12ddd7a3991209b8cdc9a5c9747"
+  },
+  "actual_execution_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-193361ac-forward118-v3-normal-ci-independent/actual-execution-receipt.json",
+    "bytes": 8131,
+    "sha256": "34e6c5fb96b0880318b046401efb0ba476f45bf80f35ee08c7a70fa8a00a7671"
+  },
+  "root_mechanical_checks": {
+    "packet_exact23_and22_hashes": "PASS",
+    "binding_audit4_hashes": "PASS",
+    "native_audit4_hashes": "PASS",
+    "source_rows_raw_clean": 206,
+    "source_current_pushed_Git_object_checks": 618,
+    "source_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal-current-source-proof.json",
+      "bytes": 523,
+      "sha256": "cda74728d284eb411b5bdbe3a9f49dd595848f2c69cbe260c57979037d5f1316"
+    }
+  },
+  "qualified_counts": {
+    "Node": {
+      "passed": 3405,
+      "failed": 0,
+      "suites": 103,
+      "distinct_story_ids": 30
+    },
+    "Python_separate": 43,
+    "DB": {
+      "passed": 2068,
+      "failed": 1,
+      "skipped": 52,
+      "story_passed": 16,
+      "mandatory_story_unexecuted": 35
+    },
+    "browser": {
+      "expected": 54,
+      "flaky": 1,
+      "unexpected": 1,
+      "story_expected": 12,
+      "story_flaky": "E2E009",
+      "story_unexpected": "E2E001",
+      "story_attempts": 16,
+      "attempt_passed": 13,
+      "attempt_failed": 3,
+      "other_expected": 42
+    },
+    "recovery_separate": 1
+  },
+  "remaining_failure_identity": {
+    "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+    "title_sha256": "ec3353808a6677b3e602d3d1106f420ab5ce6b579dde48cbaf043010be874812",
+    "id": null,
+    "original_error": "NOT_PERSISTED",
+    "cause": "UNKNOWN"
+  },
+  "browser_observation": {
+    "case": "E2E001",
+    "action": "rotate",
+    "attempts": [
+      0,
+      1
+    ],
+    "terminalAtDrain": "FAILED_OPEN",
+    "completion": "PENDING",
+    "completionPhase": "FINISHED",
+    "scenario_readback": "SETTLED_SUCCESS",
+    "boundary": "post-drain/pre-disposal",
+    "causal_status": "AMBIGUOUS",
+    "failure_origin_body_event_linkage_backend_settlement": "UNKNOWN"
+  },
+  "custody": "Retained/unverified keys;dbClosedtrue is not backend settlement",
+  "limits": {
+    "missing35_are_coverage": false,
+    "specific118_statement_metadata_ACL_rollback": "NOT_PROJECTED",
+    "six_serial_completion": "NOT_FULLY_QUALIFIED",
+    "passed007_010_missing_labels": "UNKNOWN;not negative proof",
+    "success_requires_manufactured_labels": false
+  },
+  "effects_closed": {
+    "native_invocations": 1,
+    "GETs_consumed": 5,
+    "unused_slots_open": 0,
+    "retry": false,
+    "metadata_poller": "STOPPED",
+    "native_tool": "b1f907",
+    "native_exit": 0,
+    "native_wall_seconds": 6.3434927,
+    "session": null,
+    "waits": [],
+    "child_EOF_readers_handles_settlement": "Native/operator-observed;Root/reviewer hash-qualified receipts",
+    "resources": 0,
+    "deployments": 0
+  },
+  "migration118_scope": "All118 frozen;futureSQLforwardonly",
+  "decision": "STOP_AUTOMATIC_FIX_AND_RERUN_UNDER_CAUSAL_AMBIGUITY",
+  "P5": "open",
+  "story15_6": "unstarted",
+  "P6_automate": "not reached;still required",
+  "broad_review_counter": 3,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "next": "Resolve the named original browser failure/body-event linkage and retained-key settlement/custody with an explicit bounded course decision; no further generic diagnostic family or automatic retry."
+}

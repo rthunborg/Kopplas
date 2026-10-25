@@ -1,0 +1,62 @@
+{
+  "kind": "original-reviewer-authored-attestation",
+  "round": 3,
+  "rounds_completed_before": 2,
+  "cap": 3,
+  "rederivation_iteration": 0,
+  "source_head": "3bd815887a6c4a246d94956eb021b1b6ea0525c2",
+  "baseline": "1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent_from_author": true,
+  "report_path": "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-3/original-review-report.md",
+  "report_bytes": 7315,
+  "report_raw_sha256": "b18721dcc05b6d9a4da5c025de0737f0cfc9f55705cb09d95eec79601426c16f",
+  "report_authorship": "Original reviewer-authored bytes; not rewritten from parent summary",
+  "input_path": "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-3/review-content.diff",
+  "input_bytes": 67026,
+  "input_lines": 670,
+  "input_raw_sha256": "92ec897c3ef096dec65d645078c6d7723e2865b8d6e571ba5addca573ba4112f",
+  "input_binding_bytes": 3114,
+  "input_binding_raw_sha256": "6350c45d564ec8b8557c1f6b74842abc23485b7b8807bb0a7038d9d0ea4c102e",
+  "all_input_read": true,
+  "source_bindings_verified": 7,
+  "source_head_verified": true,
+  "findings": [],
+  "findings_count": 0,
+  "residuals": [
+    {
+      "id": "R2-01",
+      "original": "R1-03",
+      "status": "closed-source-level"
+    },
+    {
+      "id": "R2-02",
+      "original": "R1-02",
+      "status": "closed-source-level"
+    }
+  ],
+  "result": "passed-limited-review",
+  "scope": "Only latest detachment residuals and consequential changed-line regressions; no broad unchanged scan",
+  "execution": {
+    "bounded_source_git_hash_inspection": true,
+    "tests_rerun": 0,
+    "runtime_launched": false,
+    "database_executed": false,
+    "browser_executed": false,
+    "commits": false,
+    "pushes": false,
+    "nested_delegates": 0
+  },
+  "limits": [
+    "Author-reported local17component+17pure/type/lint/build/containment passes are inspected historical evidence only.",
+    "Controller VM substitutes hook scheduling, action/read transport and router effects; no DOM/focus, network, auth or persistence proof.",
+    "38 database cases plus3browser remain pending Root exact-head CI; migration/reset/seed/ACL/Storage/Linux xattr/clean-checkout checks remain unexecuted in this lane.",
+    "Prior qualified reviews reused as supplied; failedR1external wrapper history retained.",
+    "No development-complete, release-ready, merge or deployment approval."
+  ],
+  "allowed_writes": [
+    "original-review-report.md",
+    "original-review-attestation.json"
+  ]
+}

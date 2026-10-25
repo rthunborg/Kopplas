@@ -1,0 +1,29 @@
+{
+  "schema": "ROOT_INT014_NORMAL_ONCE_JOURNAL_V1",
+  "operation_id": "9ace75d3-954d-40b4-b870-cc3dea11265f",
+  "phase": "PROVIDER_ONCE_ALLOCATED_ROOT_PUBLISH_PENDING_SUCCESS",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-effects-allocation.json",
+    "bytes": 4177,
+    "sha256": "e9ce2ca0f25ce32b11cbabbe8916910fa6e495bcb8f69c70795efd6681cf9146"
+  },
+  "current_source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-current-source-proof.json",
+    "bytes": 59132,
+    "sha256": "8519ff335a3acfa1f22800777b3f31f393336246e4fa9ec78bc8bb9baadd18bc"
+  },
+  "review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-review.json",
+    "bytes": 15855,
+    "sha256": "7ffb7e0074993f6902ffe8a51067f69ca04b2b8c88e45aa74a510cc065b524c8"
+  },
+  "admission_resolution": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-admission-interface-resolution.json",
+    "bytes": 3904,
+    "sha256": "61ecf4b252cd25d9e2792fae233f64d1c81c59f787d309f62def067d072d8737"
+  },
+  "provider_GETs_allocated": 1,
+  "root_publish_invocations_allocated": 1,
+  "retry": false,
+  "normal_acceptance": 0
+}

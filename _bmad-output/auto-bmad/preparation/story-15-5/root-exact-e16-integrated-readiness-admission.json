@@ -1,0 +1,35 @@
+{
+  "outcome": "READY_FOR_EXACT_NORMAL_ALLOCATION",
+  "reviewed_source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "readiness_metadata_head": "af3186f80df3186b99523839f136bd0c5cbde84a",
+  "readiness_manifest": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-checkpoint-readiness/manifest.json",
+  "manifest_sha256": "e33f404a406fd2db805700d59d3f45d6f83a18670d548d18c3a2a795e8291ec6",
+  "root_mechanical_checks": "4membership/hashes;75raw/native;201rowraw+source/currentGitobjects, including116SQLand10triggerinputs",
+  "counts": {
+    "changed_vs_frozen_4cd_rows": 10,
+    "current_raw_vs_clean_normalizations": 37,
+    "exact_incoming5": 5,
+    "migrations": 116,
+    "preserved111": 111,
+    "provider_trigger_inputs": 10,
+    "smoke_union_files": 11,
+    "source_rows": 75,
+    "unchanged_trigger_inputs": 9,
+    "unchanged_vs_frozen_4cd_rows": 65,
+    "version_collisions": 0
+  },
+  "checkpoint_id": "35dd743c-c66c-4989-b9c4-3e20be8efc60",
+  "fresh_effect_proposal": {
+    "provider_GETs": 1,
+    "FFpush": 1,
+    "NORMAL_dispatcher": 1,
+    "cause_proof": false,
+    "release_validation": false,
+    "Root_sole_poller": true,
+    "admission_variable_mutations": 0,
+    "artifact_GETs_now": 0
+  },
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "effects_granted_by_this_record": false
+}

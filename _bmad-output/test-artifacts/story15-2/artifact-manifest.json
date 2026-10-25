@@ -1,0 +1,124 @@
+{
+  "story": "15.2",
+  "phase": "ATDD",
+  "sourceHead": "eb3da24daf45a13e2a29fffb020d4cd9c0c65879",
+  "files": [
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\integration\\commands\\booking-series.int.test.ts",
+      "sha256": "cffa823b4fb5df328bde8a5c350fe14731cd92a7847c07e9698481f12c3337bd",
+      "bytes": 36314
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\integration\\rls\\booking-series.rls.test.ts",
+      "sha256": "91f34fe7c576e56430bda3b21feea32754bd776b1c6d18ca069899f333b5449b",
+      "bytes": 12380
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\e2e\\booking-series.e2e.spec.ts",
+      "sha256": "3ba32b8e25a82f28196da4a81af285331af437b6da334540fb3b2052ab7bc0b5",
+      "bytes": 22537
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\integration\\components\\booking-series.test.ts",
+      "sha256": "2f1f8f1613dd0345f28f4b5ae1d125961246753b08d764b34d7d920fa978340b",
+      "bytes": 5315
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\unit\\features\\scheduling\\recurrence.test.ts",
+      "sha256": "9695d4e4c6463125b81a9ed6596989e21effbea437c376b0e7bfcec63b732df3",
+      "bytes": 8011
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\unit\\features\\resources\\booking-series-state.test.ts",
+      "sha256": "8837358b997a440e63b4cbbb55c0e269bd14b308ee57bb1488e44f143709fff8",
+      "bytes": 4335
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-atdd.ts",
+      "sha256": "9ac4ccf71bea1f5263c96d53b5463f1302f1a3813b1ab3eb041ea4c62f79a14b",
+      "bytes": 14881
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\e2e\\support\\booking-series-atdd.ts",
+      "sha256": "0a313be40933ea8a285452f5d122e7083a2d29f4c33effa5f9e276ccfcf6dd20",
+      "bytes": 7826
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts",
+      "sha256": "7c27dcedd2e90914fe5c3fd9a542021daa252331f34aa7c295b40eb18108fb6e",
+      "bytes": 4280
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\fixtures\\golden\\scheduling\\recurrence.json",
+      "sha256": "db9407d6fe28b19122ce4d4e24181162e5132e5cbf81be3182d959d2a0607cef",
+      "bytes": 8885
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\atdd-checklist-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "sha256": "9ee528fdd5c678961eaf8d232411aab989ac8fe6e6101239a3f782e760901190",
+      "bytes": 24569
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\tea-atdd-api-tests-2026-10-19-story15-2.json",
+      "sha256": "2d7b927e0464452dc875045a26b671076898140fc59e088adb11e4e0c4265bbc",
+      "bytes": 91396
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\tea-atdd-e2e-tests-2026-10-19-story15-2.json",
+      "sha256": "a2913661aa83e969e20cba070b9ce0ee3910fc3914c034fc62d6c65bf5f9f8f4",
+      "bytes": 42763
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\activate-receipt.json",
+      "sha256": "9a607859a34ff79a3adaaf4117ce2de14d3cb12d18c4af465335a31dd451b33d",
+      "bytes": 1153
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\activate.tap",
+      "sha256": "fbee1e4069296a0259f5720571fa91faf063094e83ab9369281cb68a81cc7ec3",
+      "bytes": 71335
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\atdd-summary.json",
+      "sha256": "64ef35535037d13f9298b20e84a21dd330f41d23ed3e108a265bd701b1126eb4",
+      "bytes": 4678
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\run-pure-red.mjs",
+      "sha256": "e39ac158e1a37bcc3e7590294637a0043120342066dc994fc54b0da3ff0c102f",
+      "bytes": 3226
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\scaffolds-receipt.json",
+      "sha256": "e6d3e2a5d02b42bd2c68bbbfe959a368d3e2f50e6bc9f94760ad0826c298cde3",
+      "bytes": 1001
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\scaffolds.tap",
+      "sha256": "59e61b3fe34364f4e364cd680a16ac2b88ccde6219269d27a50346e6499935ac",
+      "bytes": 13001
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\validate-atdd.mjs",
+      "sha256": "7a9859cc0727e64f2a2aa246e037f32e98ee44e5ac330ebf837e430943964fca",
+      "bytes": 3068
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\verification-receipt.json",
+      "sha256": "a225b6034d980c28e02d39ee18117ec558a8dc067ad05dbab7d06a92449020d6",
+      "bytes": 2206
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts",
+      "sha256": "b7af3c120ee1d0204a7f42dded307cead68f99dc61bdeac123b751bfba1d832e",
+      "bytes": 4314
+    },
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts",
+      "sha256": "6e73055eb638334ef6b5fd4f453c128da8c668e784bde8d7cc4ea60a7d6521e8",
+      "bytes": 7979
+    }
+  ],
+  "self": "_bmad-output/test-artifacts/story15-2/artifact-manifest.json",
+  "selfHashExcluded": true
+}

@@ -1,0 +1,315 @@
+{
+  "run_id": 39924479291,
+  "head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+  "source": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+  "branch": "codex/epic-15-int009-debug",
+  "title": "checkpoint:original-int009:8167a3f6-c1f5-4324-b720-a85e9e50b803:3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+  "checkpoint_id": "8167a3f6-c1f5-4324-b720-a85e9e50b803",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "workflow_id": 296219797,
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "mode": "original-int009",
+  "cause_proof": false,
+  "release_validation": false,
+  "original_int009": true,
+  "status": "completed",
+  "conclusion": "failure",
+  "observed_at": "2026-10-23T08:25:32.037300+00:00",
+  "jobs": [
+    {
+      "id": 120317398678,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T08:25:07Z",
+      "completed_at": "2026-10-23T08:25:09Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:08Z",
+          "completed_at": "2026-10-23T08:25:08Z"
+        },
+        {
+          "number": 2,
+          "name": "Bind dispatch to its immutable source revision",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:08Z",
+          "completed_at": "2026-10-23T08:25:08Z"
+        },
+        {
+          "number": 3,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:08Z",
+          "completed_at": "2026-10-23T08:25:08Z"
+        }
+      ]
+    },
+    {
+      "id": 120317432861,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-23T08:25:12Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:13Z",
+          "completed_at": "2026-10-23T08:25:14Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:14Z",
+          "completed_at": "2026-10-23T08:25:17Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:17Z",
+          "completed_at": "2026-10-23T08:25:18Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:18Z",
+          "completed_at": "2026-10-23T08:25:23Z"
+        },
+        {
+          "number": 5,
+          "name": "Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:23Z",
+          "completed_at": "2026-10-23T08:25:23Z"
+        },
+        {
+          "number": 6,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:23Z",
+          "completed_at": "2026-10-23T08:25:25Z"
+        },
+        {
+          "number": 7,
+          "name": "Verify lockfiles (single package manager)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:25Z",
+          "completed_at": "2026-10-23T08:25:25Z"
+        },
+        {
+          "number": 8,
+          "name": "Audit dependencies (blocking, high severity)",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-10-23T08:25:25Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 9,
+          "name": "Verify service-role containment (no client-path leakage)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 10,
+          "name": "Typecheck",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 11,
+          "name": "Lint",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 12,
+          "name": "Unit tests (pure logic, node --test)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 13,
+          "name": "BMAD focused concurrent memlog contracts",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 14,
+          "name": "Auto-BMAD focused routing and process-API contracts",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 15,
+          "name": "Build",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 16,
+          "name": "Verify built-bundle service-role containment (no leakage in .next)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 29,
+          "name": "Post Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 31,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 32,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        },
+        {
+          "number": 33,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T08:25:26Z",
+          "completed_at": "2026-10-23T08:25:26Z"
+        }
+      ]
+    },
+    {
+      "id": 120317553617,
+      "name": "recovery-storage-loader",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T08:25:28Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": []
+    },
+    {
+      "id": 120317554417,
+      "name": "fixed-chromium-paired-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T08:25:28Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": []
+    },
+    {
+      "id": 120317554427,
+      "name": "db",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T08:25:28Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": []
+    },
+    {
+      "id": 120317554686,
+      "name": "fixed-chromium-application-verification",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T08:25:28Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": []
+    },
+    {
+      "id": 120317554720,
+      "name": "dashboard-e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T08:25:28Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": []
+    },
+    {
+      "id": 120317554770,
+      "name": "e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T08:25:28Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": []
+    },
+    {
+      "id": 120317554854,
+      "name": "native-stream-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T08:25:28Z",
+      "completed_at": "2026-10-23T08:25:28Z",
+      "run_id": 39924479291,
+      "head_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "steps": []
+    }
+  ]
+}

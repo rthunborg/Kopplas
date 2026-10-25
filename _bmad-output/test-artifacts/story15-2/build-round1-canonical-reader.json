@@ -1,0 +1,50 @@
+{
+  "spec_path": "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+  "exists": true,
+  "artifact_format": "bmad-build-auto",
+  "legacy_story_status": null,
+  "frontmatter": {
+    "title": "15.2 \u2014 Recurring Bookings \u2014 Series, Materialized Occurrences, Exceptions",
+    "type": "feature",
+    "created": "2026-10-19",
+    "status": "done",
+    "review_loop_iteration": 0,
+    "followup_review_recommended": true,
+    "baseline_revision": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
+    "context": [
+      "docs/process/review-order.md",
+      "docs/process/agent-model-routing.md",
+      "docs/process/development-completion-policy.md",
+      "docs/process/local-setup.md",
+      "docs/decisions/epic-14-story-ownership-contract-d-2026-10-07.md",
+      "docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md",
+      "_bmad-output/test-artifacts/test-design-epic-15.md",
+      "_bmad-output/auto-bmad/preparation/story-15-2/implementation-ownership-handoff.md",
+      "_bmad-output/auto-bmad/preparation/story-15-2/post-integration-refresh-33c68c5a/integrated-source-contracts.md",
+      "_bmad-output/auto-bmad/preparation/story-15-2/post-integration-refresh-33c68c5a/ownership-reconciliation.md"
+    ],
+    "warnings": [
+      "oversized"
+    ],
+    "deferred": [],
+    "deferred_count": 0
+  },
+  "auto_run_result": {
+    "present": true,
+    "status": "done",
+    "blocking_condition": null
+  },
+  "last_review_pass": {
+    "date": "2026-10-20",
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 8,
+    "defer": 0,
+    "reject": 1,
+    "dismissed": 0,
+    "dismissed_reasons": []
+  },
+  "status": "done",
+  "parse_warnings": [],
+  "error": null
+}

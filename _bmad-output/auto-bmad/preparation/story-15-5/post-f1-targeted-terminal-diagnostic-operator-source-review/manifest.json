@@ -1,0 +1,80 @@
+{
+  "API_GETs": 0,
+  "execution_authorized": false,
+  "files": [
+    {
+      "bytes": 236,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/binding-attempt-history.json",
+      "sha256": "c704e8a01525872af46cbf09568ecaac34b9c19f084093705a0e874421aa2edd"
+    },
+    {
+      "bytes": 4119,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/bindings-after.json",
+      "sha256": "dcfce1440834e2dd1ab452cc8c0b3ffe9324c7cac976efb5d745904da6e9bd8a"
+    },
+    {
+      "bytes": 4120,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/bindings-before.json",
+      "sha256": "c1cd2845e4b498ce5dc7c1ad9c026d19f9685d22c9ee42ad2b0ca67d7709499f"
+    },
+    {
+      "bytes": 12067,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/original-attestation.json",
+      "sha256": "c5b03cd4e5838a0734b8781ea14d4c267410a7f6547fc5107045d5a5881b3890"
+    },
+    {
+      "bytes": 4781,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/original-report.md",
+      "sha256": "97b0f5e1d6a6ae15e8208bbbfc2d921a4a1d5348962c1983fe15c8a45a64e750"
+    },
+    {
+      "bytes": 1,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/pure-tests.exit",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "bytes": 123,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/pure-tests.stderr.txt",
+      "sha256": "9a33de03c217f9a15f72aba40e255c8246a2a7b78cb838428b60e85a7fa76aa8"
+    },
+    {
+      "bytes": 123,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/pure-tests.stdout.txt",
+      "sha256": "2182be66999b06cca481756a2fbc30f6cc925435594342a1ca6a2ded7811a28d"
+    },
+    {
+      "bytes": 2401,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/result.json",
+      "sha256": "5fad25a7761d4b11ab3cd8a12288ebd07cf6ac130023ffe324da433b279f0a06"
+    },
+    {
+      "bytes": 810,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/run-pure-tests.py",
+      "sha256": "a4908230ed73dbdc2fe5188c3a7a0d7cbbf8c0bedbedd1f9e56c7737061a8da3"
+    },
+    {
+      "bytes": 475,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/selector-compatibility.json",
+      "sha256": "ce3c7d141f853702e5947754513b8948e837a868ef80b227deb1fd1e51670584"
+    },
+    {
+      "bytes": 4866,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/verify-bindings-initial.py",
+      "sha256": "351928594efdbc06b95dcbc63ad5e6514eb1556787a89e800aafdcfd8f2c02e1"
+    },
+    {
+      "bytes": 4926,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/verify-bindings.py",
+      "sha256": "552ca097e1a09ced3232e828d45a73563a3fdb0060bb64753e5d666ad3ec5034"
+    }
+  ],
+  "listed_members": 13,
+  "normal_acceptance": 0,
+  "operator_sha256": "560b3accc66323a853b36a57d09fc12c1cc4dbc97059b705c15b79da59b4c559",
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "self": {
+    "hash_excluded": true,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/manifest.json"
+  },
+  "total_members_including_self": 14
+}

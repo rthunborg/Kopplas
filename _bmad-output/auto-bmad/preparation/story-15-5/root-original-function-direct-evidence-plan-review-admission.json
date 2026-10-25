@@ -1,0 +1,29 @@
+{
+  "schema": "root-original-function-direct-evidence-plan-review-admission-v1",
+  "reviewer": "/root/review15_5_preselected_id_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "PASS_PLAN_SUFFICIENCY_PRIVACY_ONLY",
+  "execution_ready": false,
+  "originals": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-report.md",
+      "bytes": 5520,
+      "sha256": "00f0be2b5123e3c254d4c719aa9719ce02e627077fb5c7368a437d3333aceb27"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-attestation.json",
+      "bytes": 7629,
+      "sha256": "acd292edd210fe2fc727532a1436a9bbbdc547b2fd626ed48bcf4f6d486f98d9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/result.json",
+      "bytes": 1613,
+      "sha256": "c68152e49132abfdc698c3234810fdee98b597327a2a752592710fae50a61b7a"
+    }
+  ],
+  "actual_plan_source_context_bindings_verified": 9,
+  "required_before_dispatch": "Explicit current-v2 conditional branch/effect binding and allocation, implementation/focused controls/committed-delta review and exact acquisition activation.",
+  "normal_acceptance_credit": 0,
+  "initial_root_schema_assumption_failure": "No mutation; Root first expected generic PASS/inputs but exact original uses PASS_PLAN_ONLY/input/five_source_bindings/necessary_conditional_context. Original bytes preserved."
+}

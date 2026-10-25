@@ -1,0 +1,1689 @@
+{
+  "operation_id": "0d860414-873f-4b55-a578-05cf743c9cf0",
+  "run_id": 40192543175,
+  "head": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "acquisition": {
+    "ordinal": 6,
+    "label": "native-general-browser",
+    "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/12599435236/zip",
+    "status": "COMPLETE_VERIFIED_ZIP",
+    "intent_utc": "2026-10-25T12:47:39.319116+00:00",
+    "native_exit": 0,
+    "elapsed_seconds": 0.8863022000005003,
+    "stdout_bytes": 12012,
+    "stderr_bytes": 0,
+    "full_EOF": true,
+    "faults": [],
+    "body_sha256": "c7bf9b3da53438231a07bac5399776b8054772c09574d7a1b1d4924fdf6ea62e",
+    "selected_JSON_bytes": 114573,
+    "selected_JSON_sha256": "2b216e31c19fcaa4cdc343f1c630a0beb77205104324b642069b5b42e1ce7dab",
+    "ZIP_CRC_caps": "PASS",
+    "redirect_count": "UNOBSERVED standard gh HTTPS transport; no URLs retained"
+  },
+  "stats": {
+    "startTime": "2026-10-25T12:24:20.431Z",
+    "duration": 311158.56799999997,
+    "expected": 63,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 2
+  },
+  "global_errors_field": "present",
+  "global_errors": [],
+  "equivalent_runner_errors": {},
+  "cases": [
+    {
+      "file": "tests/e2e/auth/auth-mail-callback.e2e.spec.ts",
+      "title": "[P0] local Auth invitation establishes a session then activates the matching membership",
+      "line": 96,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1141,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/auth/auth-mail-callback.e2e.spec.ts",
+      "title": "[P0] local Auth recovery email establishes a recovery session and persists the new password",
+      "line": 158,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1133,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "title": "AC3: an anonymous visitor to a protected (app) route is redirected to /login",
+      "line": 65,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 313,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "title": "AC1: a tenant_admin can sign in with email + password and lands in the (app) shell",
+      "line": 72,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1136,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "title": "AC1/G-2: after sign-in, the top bar displays the resolved active tenant/company context and current user",
+      "line": 79,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1171,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "title": "AC2: an authenticated user WITHOUT active membership sees a user-safe no-access state and ZERO tenant data",
+      "line": 92,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 621,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "title": "login/logout loop: signing out returns to /login and a protected route again redirects (AC1 + AC3 round-trip)",
+      "line": 108,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1507,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke",
+      "line": 73,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3926,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P1] 15.5-E2E-002A [AC1 AC6] actual Egen agenda own-and-foreign exposes one keyboard subscription link",
+      "line": 138,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2779,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P1] 15.5-E2E-002B [AC1 AC6] actual Egen veckokalender own-and-foreign exposes one keyboard subscription link",
+      "line": 138,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2592,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P1] 15.5-E2E-002C [AC1 AC6] actual Egen agenda no-profile exposes one keyboard subscription link",
+      "line": 138,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2699,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P1] 15.5-E2E-003 [AC1 AC6] profile Min kalender entry reaches the same settings surface by keyboard",
+      "line": 162,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3461,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P1] 15.5-E2E-004 [AC1 AC6] never-used, clipboard denial selectable fallback and revisit never recover the one-time URL",
+      "line": 186,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3179,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-005 [AC2 AC6] confirmation cancellation, pending persistence and failed rotation retry preserve old generation",
+      "line": 211,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3298,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-006 [AC1 AC2 AC6] lost committed issuance reconciles sanitized metadata and needs separate explicit rotation",
+      "line": 269,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3069,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-008 [AC1 AC5 AC6 AC9] manager self-service cannot read Admin aggregate or peer capability",
+      "line": 349,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3754,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-009 [AC5 AC6 AC9] Admin sees only sanitized own-tenant abuse counters and separate own lifecycle",
+      "line": 366,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3759,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-010-rotate [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent rotate",
+      "line": 388,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3582,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-010-revoke [AC2 AC6] automatic refresh removes a superseded issuance and success announcement after concurrent revoke",
+      "line": 388,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3465,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P0] 15.5-E2E-011 [AC2 AC6] automatic refresh retains the current issuance, copy control and success announcement",
+      "line": 456,
+      "column": 3,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2901,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "title": "[P1] 15.5-E2E-007 [AC1 AC6] 360×640 keyboard entry, touch issue and revoke confirmation remain usable",
+      "line": 308,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2829,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "title": "15.3-E2E-001 chip → complete detail → selective acceptance → reload/history/notification",
+      "line": 25,
+      "column": 6,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6633,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "title": "15.3-E2E-002 common current-segment fix preserves stable exception and cancelled tombstone rows",
+      "line": 43,
+      "column": 6,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5966,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "title": "15.3-E2E-003 connected 360×640 keyboard edit retains unknown outcome and explicitly replays one durable result",
+      "line": 62,
+      "column": 6,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5102,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-members.e2e.spec.ts",
+      "title": "[P0] 16.2-E01 manager archives/reactivates the same project member and selects/replaces/clears one order lead with stale refetch",
+      "line": 95,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 7551,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-members.e2e.spec.ts",
+      "title": "[P0] 16.2-E02 phone lead manages ordinary crew/dates only; a lost real save response retries once, and stale dates require refetch",
+      "line": 176,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3910,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-members.e2e.spec.ts",
+      "title": "[P0] 16.2-E03 designated Sales user reaches own My Jobs/detail without money or unrelated reads, then loses access when removed",
+      "line": 275,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3040,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-members.e2e.spec.ts",
+      "title": "[P0] 16.2-E04 deliberate stale assignment retry uses the currently visible eligible person",
+      "line": 335,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3514,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-members.e2e.spec.ts",
+      "title": "[P0] 16.2-E05 cross-lane refetch synchronizes pristine lead and cannot silently authorize a dirty lead",
+      "line": 359,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3932,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+      "title": "[P0] 16.4-Consumer-E01 actual job entry defaults D120 elapsed; job changes refresh only untouched defaults, and explicit/edit intervals plus distinct hints persist",
+      "line": 106,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3369,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+      "title": "[P0] 16.4-Consumer-E02 actual capacity advice counts candidate once; preview/save/reload stays advisory and stale responses retain the newer draft",
+      "line": 181,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6307,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+      "title": "[P0] 16.4-Consumer-E03 actual new defaults follow earliest and CRM clears; delayed options preserve newer job/interval edits",
+      "line": 279,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 4695,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+      "title": "[P0] 16.4-Consumer-E04 untouched fold start and same-wall-time changed end retain canonical UTC defaults",
+      "line": 314,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6298,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+      "title": "[P0] 16.4-Consumer-E05 changing only actual end updates distinct date advice without rewriting or blocking the interval",
+      "line": 343,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3912,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-upgrade.e2e.spec.ts",
+      "title": "[P0] 16.4-Upgrade-E01 manager uses full card on both kinds; same-ID upgrade preserves accepted source and every child",
+      "line": 171,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 8352,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-upgrade.e2e.spec.ts",
+      "title": "[P0] 16.4-Upgrade-E02 current lead gains no manager grant; phone response-loss retry keeps state and commits once",
+      "line": 249,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3740,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-upgrade.e2e.spec.ts",
+      "title": "[P0] 16.4-Upgrade-E03 definitive refusal dismisses; failed/duplicate refetch retains confirmation and cannot overwrite a newer save",
+      "line": 309,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 4363,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "title": "[P0] 16.5-E01 manager desktop keeps real header/overview and all five consumers, shared job file and server-confirmed edit across reload",
+      "line": 175,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 8020,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "title": "[P0] 16.5-E02 phone current member reads own booking subset, denied files fall back, and private PL/money/event payloads stay absent",
+      "line": 307,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2867,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "title": "[P1] 16.5-E03 keyboard/Mer, back/refresh and old document return keep selection and drafts; exact real save failure offers honest retry",
+      "line": 376,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6764,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "title": "[P0] 16.5-E04 two-child back restores identity and files; late real create retains current tab and query",
+      "line": 516,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6154,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "title": "[P0] 16.5-E05 accepted child navigation wins over a late real create completion",
+      "line": 613,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3918,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "title": "[P0] checkpoint stale full-card draft is refused, retained, and only replaced after explicit fresh-read consent",
+      "line": 415,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 4051,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "title": "[P0] external follow-up selected tenant scopes Mine/all/deep links and entitled source filters agree",
+      "line": 457,
+      "column": 5,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3743,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "title": "[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree",
+      "line": 124,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3406,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "title": "[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload",
+      "line": 184,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 4137,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "title": "[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save",
+      "line": 302,
+      "column": 7,
+      "status": "flaky",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "duration": 3392,
+          "errors": [
+            {
+              "location": {
+                "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+                "column": 57,
+                "line": 337
+              },
+              "message": {
+                "relevant_excerpt": "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n\n      |                                                         ^",
+                "original_characters": 839,
+                "sanitized_bytes": 179,
+                "retained_bytes": 179,
+                "truncated": false,
+                "unretained_parts": "UNKNOWN",
+                "raw_stack_fixtures_persisted": false
+              }
+            },
+            {
+              "location": {
+                "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+                "column": 57,
+                "line": 337
+              },
+              "message": {
+                "relevant_excerpt": "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier",
+                "original_characters": 112,
+                "sanitized_bytes": 112,
+                "retained_bytes": 112,
+                "truncated": false,
+                "unretained_parts": "UNKNOWN",
+                "raw_stack_fixtures_persisted": false
+              }
+            }
+          ],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        },
+        {
+          "status": "passed",
+          "retry": 1,
+          "duration": 5301,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "title": "[P1] 16.1-E04 dependency dates display unknown, a linked violated-order warning, then clear only after a durable date correction",
+      "line": 379,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6536,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/work-orders.e2e.spec.ts",
+      "title": "[P0] 16.3-E01 manager creates and edits own dates/plural assignees, reloads and opens an own shared file",
+      "line": 82,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 4865,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/work-orders.e2e.spec.ts",
+      "title": "[P1] 16.3-E02 phone lead progresses status; lost-response/stale retries retain newer draft and cannot reopen",
+      "line": 160,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3896,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/work-orders.e2e.spec.ts",
+      "title": "[P0] 16.3-E03 distinct same-parent work orders warn from their own dates, clear at equality and show unknown; scoped reads/writes remain bounded",
+      "line": 254,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 4982,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/work-orders.e2e.spec.ts",
+      "title": "[P0] 16.3-E04 lost create reconciles the original child after another mutation without a duplicate or newer-draft loss",
+      "line": 316,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3898,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/jobs/work-orders.e2e.spec.ts",
+      "title": "[P0] 16.3-E05 never-committed stale create retains draft until explicit refresh/consent and creates once",
+      "line": 378,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3786,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P0] 15.6-E01 pure Montör lands on today's phone agenda, ordered own cards, explicit map click and same-job workspace",
+      "line": 132,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2490,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P0] 15.6-E02 exact inline prefill, unknown committed response, frozen same attempt and one durable own report",
+      "line": 188,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2625,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P0] 15.6-E03 keyboard refresh failure clears lists, retries current date and a real pull fetches changed server facts",
+      "line": 264,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3398,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P1] 15.6-E04 successful empty agenda differs from own-jobs empty; jobless card has no invented destination",
+      "line": 415,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2790,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P1] 15.6-E05 active jobs render own current designation and preserve identity; pending jobs contribute no UI",
+      "line": 491,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3177,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P1] 15.6-E06 own unread booking.changed is a safe generic banner with its existing route",
+      "line": 527,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2478,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P0] 15.6-E07 direct route requires login/current booking entitlement and office landing remains stable",
+      "line": 579,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 3239,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P0] 15.6-E08 manager's Min dag is still own-person and excludes other assignees' cards/actions",
+      "line": 611,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2370,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/my-day.e2e.spec.ts",
+      "title": "[P0] 15.6-E09 a real tenant-switch RSC navigation discards the prior report owner and ignores its late read",
+      "line": 629,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2648,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "title": "[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week",
+      "line": 15,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 4127,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "title": "[P0] 15.4-E2E-002 no-profile standalone at 360×640 retains its attempt through lost commit, revoked denial and restored retry",
+      "line": 87,
+      "column": 7,
+      "status": "flaky",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "duration": 2032,
+          "errors": [
+            {
+              "location": {
+                "file": "tests/e2e/time-reports.e2e.spec.ts",
+                "column": 56,
+                "line": 139
+              },
+              "message": {
+                "relevant_excerpt": "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n\n      |                                                        ^",
+                "original_characters": 1121,
+                "sanitized_bytes": 178,
+                "retained_bytes": 178,
+                "truncated": false,
+                "unretained_parts": "UNKNOWN",
+                "raw_stack_fixtures_persisted": false
+              }
+            },
+            {
+              "location": {
+                "file": "tests/e2e/time-reports.e2e.spec.ts",
+                "column": 56,
+                "line": 139
+              },
+              "message": {
+                "relevant_excerpt": "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier",
+                "original_characters": 112,
+                "sanitized_bytes": 112,
+                "retained_bytes": 112,
+                "truncated": false,
+                "unretained_parts": "UNKNOWN",
+                "raw_stack_fixtures_persisted": false
+              }
+            }
+          ],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        },
+        {
+          "status": "passed",
+          "retry": 1,
+          "duration": 3297,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    },
+    {
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "title": "[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload",
+      "line": 172,
+      "column": 7,
+      "status": "expected",
+      "expectedStatus": "passed",
+      "projectName": "chromium",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6729,
+          "errors": [],
+          "source_labels": {
+            "state": "UNKNOWN",
+            "accepted": [],
+            "unrecognized_count": 0,
+            "candidate_count": 0,
+            "absence": true
+          }
+        }
+      ]
+    }
+  ],
+  "raw_corpus_persisted": false
+}

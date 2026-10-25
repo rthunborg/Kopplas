@@ -1,0 +1,24 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "source": "dec30783a23dcac35d6ba57f649420221d741ecd",
+  "metadata_HEAD": "5da9bc694d86d0754737b2bba8c47a163d871ae0",
+  "verdict": "PASS_BROWSER_V2_NORMAL_PARSER_SOURCE_ONLY",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-normal-parser-high-review/original-report.md",
+      "bytes": 4027,
+      "sha256": "311caa3576b7cadfde52c4fde163b30db43c32cc4b3021766c2e9298edd6fd23"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-normal-parser-high-review/original-attestation.json",
+      "bytes": 7891,
+      "sha256": "8417793c6ddada89606582b5ff4afccf9915849e02c09f1d774fe1942e67f563"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-normal-parser-high-review/result.json",
+      "bytes": 1256,
+      "sha256": "8c34293b169042d74030e825c4597279a8306d89d9be178dbd5866e289451d11"
+    }
+  ]
+}

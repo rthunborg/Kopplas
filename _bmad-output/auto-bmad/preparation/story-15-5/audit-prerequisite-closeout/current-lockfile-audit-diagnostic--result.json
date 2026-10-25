@@ -1,0 +1,262 @@
+{
+  "Outcome": "CURRENT_LOCKFILE_HIGH_ADVISORY_CONFIRMED_READ_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/current-lockfile-audit-diagnostic/result.json"
+  ],
+  "Status": {
+    "allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-lockfile-audit-diagnostic-allocation.json",
+      "bytes": 2958,
+      "sha256": "903bfcc4ec949fec8fa786ddcfc3377a9fe6f82cdec0d5a852f9503e1fc92802"
+    },
+    "scope": "One separately authorized current-lockfile audit; no repair or historical CI attribution.",
+    "actual_evidence": {
+      "allocation": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-lockfile-audit-diagnostic-allocation.json",
+        "bytes": 2958,
+        "sha256": "903bfcc4ec949fec8fa786ddcfc3377a9fe6f82cdec0d5a852f9503e1fc92802"
+      },
+      "audit_cli_invocations": 1,
+      "manual_requests_or_retries": 0,
+      "internal_HTTP_attempt_count": "UNKNOWN",
+      "started_utc": "2026-10-24T14:35:55.607648+00:00",
+      "ended_utc": "2026-10-24T14:35:57.234660+00:00",
+      "pre": {
+        "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "branch": "codex/epic-15-scheduling-time-calendar",
+        "tracked_clean": true,
+        "source_is_head_ancestor": true,
+        "files": [
+          {
+            "path": "package.json",
+            "bytes": 2509,
+            "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+          },
+          {
+            "path": "pnpm-lock.yaml",
+            "bytes": 162159,
+            "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+          },
+          {
+            "path": "pnpm-workspace.yaml",
+            "bytes": 434,
+            "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e"
+          }
+        ]
+      },
+      "post": {
+        "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "branch": "codex/epic-15-scheduling-time-calendar",
+        "tracked_clean": true,
+        "source_is_head_ancestor": true,
+        "files": [
+          {
+            "path": "package.json",
+            "bytes": 2509,
+            "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+          },
+          {
+            "path": "pnpm-lock.yaml",
+            "bytes": 162159,
+            "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+          },
+          {
+            "path": "pnpm-workspace.yaml",
+            "bytes": 434,
+            "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e"
+          }
+        ]
+      },
+      "before_after_equal": true,
+      "cached_pnpm_entry": {
+        "bytes": 1102,
+        "sha256": "b276da51dc8ca5b0d3ee3371695b50fc8b3244b281b091c63a3f082a88dadeb9"
+      },
+      "native_source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-execution-preparation/root-driver.py",
+        "bytes": 21160,
+        "sha256": "730b1e1c37a45b3d49dceb4f02aba9314c67d69f11b4113eb1a78d7d982b653a"
+      },
+      "native_function_sha256": "57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1",
+      "capture": {
+        "native_exit": 1,
+        "category": "PROCESS_NONZERO",
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "timeout_seconds": 30,
+        "streams": [
+          {
+            "observed_bytes": 25861,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      },
+      "projection": {
+        "status": "COMPLETE_CURRENT_AUDIT_REPORT",
+        "code": "REPORTED_HIGH_CRITICAL",
+        "severity_counts": {
+          "info": 0,
+          "low": 0,
+          "moderate": 3,
+          "high": 1,
+          "critical": 0
+        },
+        "high_critical_records": [
+          {
+            "numeric_id": 1243066,
+            "GHSA": "GHSA-mrhx-c7xc-m3w5",
+            "module": "zod",
+            "severity": "high",
+            "vulnerable_range": "<4.6.6",
+            "patched_range": ">=4.6.6",
+            "verification": "UNVERIFIED"
+          }
+        ],
+        "advisory_identity": "UNVERIFIED",
+        "cause_of_historical_CI": "UNKNOWN",
+        "normal_acceptance": 0,
+        "raw_persisted": false
+      },
+      "raw_response_stderr_payload_hashes_persisted": false
+    },
+    "command": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/npm-cache/_npx/92afc42852bb890b/node_modules/pnpm/bin/pnpm.cjs",
+      "audit",
+      "--json",
+      "--audit-level=high",
+      "--registry=https://registry.npmjs.org/"
+    ],
+    "exit_semantics": {
+      "classification": "EXPECTED_VULNERABILITY_REPORT_NONZERO",
+      "source": "Pinned pnpm10.24.0 dist/pnpm.cjs133154-133159 JSON branch returns exit1 when totalVulnerabilityCount>0, regardless of audit-level; full JSON counts establish the high finding. No request/error body is inferred from exit1.",
+      "capture_qualified": true,
+      "report_complete": true,
+      "request_error_observed": false,
+      "additional_CLI_invocations": 0,
+      "internal_HTTP_attempt_count": "UNKNOWN",
+      "retry_scope": "Root explicitly allowed built-in pnpm HTTP retries inside the exact one invocation and30s capture; no manual HTTP or CLI retry."
+    },
+    "official_verification": [
+      {
+        "GHSA": "GHSA-mrhx-c7xc-m3w5",
+        "numeric_audit_id": 1243066,
+        "module": "zod",
+        "severity": "high",
+        "CVE": "CVE-2023-54404",
+        "verification": "OFFICIAL_REVIEWED_ADVISORY_CONFIRMED",
+        "official_affected_range": "<4.6.6",
+        "official_patched_minimum": "4.6.6",
+        "locked_version": "4.4.3",
+        "dependency_version_applicability": "AFFECTED",
+        "dependency_graph": [
+          {
+            "type": "root_devDependency",
+            "module": "eslint-config-next",
+            "version": "16.3.8"
+          },
+          {
+            "type": "dependency",
+            "module": "eslint-plugin-react-hooks",
+            "version": "7.1.1"
+          },
+          {
+            "type": "dependency",
+            "module": "zod",
+            "version": "4.4.3"
+          }
+        ],
+        "related_peer": "zod-validation-error4.0.2 is resolved with zod4.4.3 in the current lock.",
+        "parent_declared_zod_range": "^3.25.0 || ^4.0.0",
+        "installed_parent_manifest": {
+          "module": "eslint-plugin-react-hooks",
+          "version": "7.1.1",
+          "bytes": 1981,
+          "sha256": "c745f6ec0ce838f395eb5da17e3f907094fcd14c87c30b94810f217fe5e7b476"
+        },
+        "source_locations": {
+          "lock_dependency_edge_line": 3718,
+          "lock_zod_snapshot_line": 4921,
+          "package_devDependency": "eslint-config-next"
+        },
+        "primary_sources": [
+          {
+            "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+            "supports": "Reviewed high advisory; affected<4.6.6, patched4.6.6. Published2026-10-01, updated2026-10-23."
+          },
+          {
+            "url": "https://github.com/colinhacks/zod/pull/6652",
+            "supports": "Maintainer fix rejects oversized bounded arrays/sets/maps before walking elements. Unbounded containers remain unchanged."
+          },
+          {
+            "url": "https://github.com/colinhacks/zod/releases/tag/v4.6.6",
+            "supports": "Official4.6.6 release includes that fix."
+          }
+        ],
+        "reachability_limit": "Version applicability and a development dependency graph are established. An exploitable production caller or deployed-runtime dependency path was not established; no exploit or workload was executed."
+      }
+    ],
+    "recommended_minimal_repair_GUIDANCE_ONLY": {
+      "mechanism": "Coordinate a parent-scoped transitive zod resolution override for eslint-plugin-react-hooks7.1.1 to the official patched baseline4.6.6, then regenerate only its lock resolution under a separately allocated bounded repair.4.6.6 fits the installed parent's existing4.x-compatible declaration.",
+      "expected_owned_paths": [
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml"
+      ],
+      "expected_churn": {
+        "pnpm-workspace.yaml": "One parent-scoped override in the existing root overrides map; retain all other settings/patches.",
+        "pnpm-lock.yaml": "Matching override metadata and affected zod package/snapshot/resolution plus parent and zod-validation-error peer suffix references4.4.3->4.6.6. Actual resolver churn must be reviewed; stop unrelated changes."
+      },
+      "package_json_change_expected": false,
+      "unrelated_parent_framework_upgrades_expected": false,
+      "source_code_change_expected": false,
+      "threshold_or_ignore_bypass": false,
+      "semantics_primary_source": "https://pnpm.io/10.x/settings#overrides",
+      "semantics_source_check": "Pinned pnpm parsePkgAndParentSelector and createVersionsOverrider support parent>child selectors and match the parent's name/version. Existing workspace already uses a parent-scoped override.",
+      "later_validation": "After exact ownership/allocation: review generated lock delta, verify the selected public patched artifact, frozen install compatibility and relevant lint behavior, then obtain fresh bounded audit evidence under new authority. This task performs none of those mutations or another audit.",
+      "authorization": "GUIDANCE_ONLY_NO_REPAIR_AUTHORITY"
+    },
+    "raw_response_stderr_payload_hashes_persisted": false,
+    "tracked_files_modified": false,
+    "Git_mutations": 0,
+    "managed_resources": 0,
+    "installs_or_updates": 0,
+    "CI_reruns": 0,
+    "normal_acceptance": 0,
+    "historical_joblog_operation": "760ebc9b-d32a-4b1c-8e39-49f3242f644d remains consumed/CLOSED; no replay/refetch/fallback.",
+    "historical_CI_cause": "UNKNOWN",
+    "IP_question": "UNOBSERVED",
+    "current_required95": {
+      "passed": 0,
+      "failed": 0,
+      "unexecuted": 95
+    },
+    "P5": "OPEN",
+    "broad_review_counter": 3,
+    "story15_6": "UNSTARTED"
+  },
+  "Open questions": [
+    "The historical verify audit-step failure reason remains UNKNOWN; this fresh registry report cannot attribute the earlier hosted failure.",
+    "Runtime exploitability was not qualified. The3 moderate observations are counted but not projected or individually reviewed under the high/critical record scope.",
+    "Exact lockfile churn, patched artifact integrity and post-change compatibility remain unexecuted."
+  ],
+  "Deferred work": [
+    "Root coordinates current shared dependency ownership and exact two-path repair allocation before any override/lockfile/install change.",
+    "Independent targeted review and fresh applicable validation are required for any repair; no audit retry, CI rerun, acceptance or deployment follows from this diagnostic."
+  ],
+  "Blockers": [
+    "Current lockfile has one officially confirmed affected high-severity dependency version. The audit prerequisite has not been repaired or revalidated.",
+    "No package, lockfile or dependency mutation is authorized within this read-only diagnostic."
+  ]
+}

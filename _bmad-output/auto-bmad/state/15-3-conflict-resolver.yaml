@@ -1,0 +1,304 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 15-3-conflict-resolver
+epic_num: 15
+story_num: 3
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-15-scheduling-time-calendar
+status: done
+updated_at: "2026-10-25T15:43:28Z"
+started_at: "2026-10-20T01:09:10Z"
+completed_at: "2026-10-25T15:43:28Z"
+active_seconds: 10176
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: tea_per_story
+selected_role: tea-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate, trace-advisory]
+tea_rationale: "Scheduling conflict resolution includes recurring-series bulk changes and persistent accepted-conflict identity; six-story/after3 long-epic trace advisory applies."
+epic_story_count: 6
+stories_after_in_epic: 3
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-3-conflict-resolver.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: [oversized]
+followup_passes: 0
+hitl_halt: "auto-continued (epic — no halt)"
+review_unverified: false
+story_trace:
+  verdict: PASS
+  uncovered: []
+  ran: true
+  P0: "5/5=100%"
+  P1: "3/3=100%"
+  overall: "8/8=100%"
+  skill_gate: NOT_EVALUATED
+  allow_gate: false
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [3a0282a70ab9cc539e2d85bd660635820e618731, e02403ace7a0a26c8c0cd01149d88054904fb7b9, 3245042f1f9e08c3ec6c2445c1cb6109e326be33, 9548c5cd33d6696817ed334fc832b2259e592437, 8d06d549432479ad3e2261f8e746d716adcb4dd2, 3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4, 39d02efcc3d08515fe45ad4087aeaad255f69ed6, 9b862185f6dd6485c5c8b6d87be943bb9d8c5939, 27667164a2a10a8252b12bc0a692268aaf745765, 4e727322c55a672c5ec0e244569158fe91d4847e, 2b7f6b03c70f4113a326c194264cf09205118d22, a80e615214ade42f25b18906ca8c1ee86fadc187, 58c4cac847fd0de26cd13e57f08643cd9a965cd6, dc68ea6d9f06ecae8235468a742eb1f514ded2c7, 53e91365b1c1db5042173190d7ec1550229b5c35, 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc, 4633f51b19b68ef7686fdca82ae8421ef680145f, 5a04e94cad8cad3ee18f519774af1ef278e7116b, d550029abac34360af7d9d928f6e66f906665d38, 81296feda0443e1965dff304a7fbbb1a88bb5821, fe80fbaf89993bd8f57dfc30a7a489be1e9392ae, 11687c2e2fae80d87318a156505cdc910503639d, c67950dbd154126e1d3b04444d68764e3271479b, 51bbf0667f5055368e799e24b2f6ed7a20bc9665]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/108"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39363860222"
+ci_status: passed
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
+  ownership: "Own15.3spec/epic15contextpreparationonlyinitially; coordinateactualDocuments/E16sharedfiles/migrations/mutablefixturesbeforeoverlappingimplementation."
+  spec_validation: Prepare and independently validate every story specification before build.
+  unattended: "Full sequential epic request; ordinarySol6.1Low, actualsensitiveSol6.1High delegates."
+  calendar_host: "ContractD acceptance transferred/carried in15.1; preserveintegratedoutcomes."
+  deploy: Forbidden
+  merge: "No main merge this run; retainbranches; onefinalepicPR."
+  merge_main: false
+  retro: "Epic14 October8 accepted-with-open-items authoritative; October7 rejection historical."
+  checkpoint_push: "Reviewedboundedcheckpointpushes/standardCI authorized; preserveownership/exactsourceevidence andno deployment."
+  development_completion_policy: 2026-10-19
+  deployment: false
+  one_epic_pr: true
+  owner_preview_policy: "AutomaticPreviewsremain disabled untilownerreenables; no manualdeployment/provider/secrets changes authorized."
+  frontend_final_PR: "Apply and verify agent-fix label; attach finalepicPR."
+  owner_resume: "Explicit owner authorization after2026-10-19 development-completion policy; no implicit paused-session resumes."
+constraints:
+  - "Predecessor15.1/15.2 internallylanded; currentapplication sourcea00dd595 qualified exactCI39348312783 withdisclosedunchangedJobsE03 flakyretry; metadataRoot244/af4328 appdependenciesunchanged. Thisispredecessorevidence, not15.3implementationcoverage."
+  - "Fresh15.3plan writesonly ownspec+ownedepic15context, then distinct High validation. No app/schema/test/runtime changes beforeapprovedspec andconcreteoverlapallocation."
+  - "ExistingDocuments/E16claims remain reserved byactualscope. Preserve16.2membership/schema/ACLassertions onlaterintegration andderive migrationinventory fromactualcombinedhistory; do notmodifyforeigncheckouts."
+  - "No newlegacy observations or inferredparity. MaintainapprovedPhaseBscope, headlessdomain/state/validation/actions withusableUI, authorization/transactioninvariants, independentreviewandthree-roundcap."
+  - "Fresh20OctCoordinator snapshot 05b65e8c75f01ff19e2f37bf9680500d84cea3134e28fcdaf69f1e0a8fe55dcb: Documentsnoactiveclaim/E16idle90f53dc8,16.3noimplementationreservation; protectedv3facts/perbookingjobId/distinctproof/currentlocks/conflictrefresh andE16logicalsharedownershipremain. No new15.3migration/resourceallocated; exactactualoverlapbeforeedits; nonoverlappingownspec/contextmayproceed."
+p3_preparation:
+  status: independently-validated-and-frozen
+  baseline: 3a0282a70ab9cc539e2d85bd660635820e618731
+  spec_raw_sha256: 451795a63f9fd046ccc6f89a9e91f192b1f0f21beddf7a9a5391c0a6b8ccc873
+  kernel_sha256: aa081c72088e5019d311764e68a0fb495822422dbb677b23f0db6f7e0c5d17a1
+  independent_successor_report: "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation-inventory-successor-20261020.md"
+  independent_successor_sha256: baf46d6545f95b77c6bddc851d185f6894b03c0f0a1795a6710ab8211779d571
+  verified_author_artifacts: 13
+  protected_sources: 1150
+  coordinator_allocation_status: SAME-Sol6.1High-FINAL-CONDITIONAL-PASS
+  coordinator_receipt: ".env.epic15.mail-runtime\\story-15-3-preparation\\root-coordinator-allocation-20261020.json"
+  coordinator_receipt_sha256: c88c8a805cd30cd92c18934709341d7071d5823902ce7ad0655e02b4bcf69897
+  migration_reserved: 20261020180000_conflict_resolver.sql
+  migration_recheck_before_creation: true
+  resources_started: 0
+  product_implementation_started: false
+  broad_review_rounds: 0
+p4_atdd:
+  status: created-red-scaffolds-not-executed-acceptance
+  test_files: 4
+  declared_skips: 13
+  declarations_by_suite: "{\"command\": 6, \"RLS\": 2, \"read\": 2, \"browser\": 3}"
+  acceptance_bodies_executed: 0
+  runner_skip_count: unmeasured
+  missing_seam_probes: "{\"passed\": 0, \"failed\": 3, \"skipped\": 0}"
+  static_typecheck_lint_AST: passed
+  AC_mapping: 8
+  checklist: "_bmad-output/test-artifacts/atdd-checklist-spec-15-3-conflict-resolver.md"
+  required_development_gaps: proof/locking/rollback/all-three-refresh-writers/suggestions and all other named integrity activation gaps remain development requirements
+  route: Sol6.1High parent/API/E2E synchronous
+  runtime_started: 0
+additional_smoke_allocation:
+  receipt: ".env.epic15.mail-runtime\\story-15-3-preparation\\root-coordinator-allocation-smoke-successor-20261020.json"
+  sha256: 376e89026afb3642e024d32496d5cbccad2597d00884d68a5a30484ede946bd9
+  path: package.json
+  only_field: "scripts.test:smoke"
+  append: tests/e2e/conflict-resolver.e2e.spec.ts
+  P5_required_resolver_bodies_executed: 3
+  P5_resolver_skips_required: 0
+  E16_later_join: "union-existingAuth-Jobsdepth-plus-jobmembers-plus-resolver; no missing-file import"
+baseline_CI_3a:
+  run: 39352496057
+  head: 3a0282a70ab9cc539e2d85bd660635820e618731
+  status: independentPASS-with-one-disclosed-browserflake
+  report_sha256: 548449cee32e0e8f28f623d94ae33d8a08dc29509d28214e763675041c1394fa
+  root_qualified_receipt_sha256: 4fc7db2ec695159c50ae499658b07cb06320d28224285e898525b588cbd25066
+  story15_3_implementation_coverage: false
+  release_validation: false
+p5_checkpoint:
+  status: reviewed-E03-transport-prerequisite-new-runtime-pending
+  author_head: 5a04e94cad8cad3ee18f519774af1ef278e7116b
+  source: 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc
+  application_source: a80e615214ade42f25b18906ca8c1ee86fadc187
+  source_manifest_sha256: c26765ef82819be5dec369cd5a4de133d9d041012e446b40e4a515c9815be1d1
+  source_paths_verified: 57
+  prior56_source_paths_unchanged: true
+  new_source_delta: one E03testfile+4/-2
+  counted_review_rounds: 3
+  review_cap: 3
+  broad_rounds: 1
+  targeted_rounds: 2
+  separate_exact_assertion_checks: 2
+  unresolved_findings: 0
+  latest_narrow_review_sha256: 3e4e5f1f8cabe7de9fa68efa2563e7dcc77aa4ecd8bf3e3c0d43e93e4ae2125a
+  latest_review_summary_sha256: 2b1a701c7c078447c532e9e38ed73b64106cc37a5dd1b609558ffc88362bb0d0
+  new_local_checks: "type/focusedlint/diffcheckPASS;configured4Jobs+3resolvercollection7active0skip0executed/errors[]"
+  reused_application_checks: "a80localbuild/unit/static and53eactual3020unit/1862DB/25resolver/3resolverbrowser for unchanged56 only; newexactCIstillrequired"
+  SRO: oneauthorsection16verifiedreferences0errors
+  bad_spec_rederivations: 0
+  verification_route: "one new reviewed materiallychanged standard exactheadCI release_validation:false"
+  new_E03_runtime_executed: 0
+  development_complete: false
+  release_ready: false
+  resources_started: 0
+  no_fourth_broad_review: true
+p5_failed_CI_2b:
+  head: 2b7f6b03c70f4113a326c194264cf09205118d22
+  run: 39359274325
+  status: independently-qualified-FAIL
+  attempt: 1
+  dispatches: 1
+  units: 3019P0F0S
+  process: 43P0F
+  fullDB: 1851P10F52S/1913
+  RLS_nonadditive: 812P0F14S/826
+  Storage: "1P0F0S;2objects66bytes"
+  browser: "12expected2unexpected0skipped0flaky/errors[]; bothfailedcases failedretry1"
+  failed_resolver_cases: [INT002, INT005, INT007, INT017, E2E001, E2E002]
+  other_failures: 6mockedtransportreadcases
+  unreached: INT002accept/INT005complete3writers/INT007protected+ordinarysiblings/INT017fraction+all-day/E2E001accept/E2E002persistence+following
+  pilot: "NOTEXECUTED aftertest:int exit1"
+  migration108: "startup+firstreset all3DBjobs; no resetrecovery/retry"
+  skips: "37historical15.2commandREDATDD+14historical15.2RLSREDATDD+1StorageDBlane(separaterecoverypassed); nonecoverage"
+  report_sha256: 9a0c639fb41eddc54d43e71076c368c3a9ed9a2501b0bfd00382e890e08e8c26
+  json_sha256: effd6d901f32feb5f57a842e0e459934a071bb401bc8f8b6eb5d67c8ba1701ab
+  manifest_sha256: d2f558ed7015fb16c1d7512bcfea3083baff3037af32fdae3a4b160e8b24bee9
+  root_verified_evidence_files: 100
+  E2E002_original_cause: "UNKNOWN; no uploadedtracebytes/no inventedSQLSTATE"
+  reruns_or_cancellation: 0
+additional_read_fixtures_allocation:
+  receipt: ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-read-fixtures-allocation-20261020.json"
+  sha256: d9a808cbb816f77f9062c66d0c82b35e5503f0ac455a8a0d95b4f0c8d2bfe6e7
+  status: SAME-Sol6.1High-FINAL-CONDITIONAL-PASS
+  paths: [tests/integration/features/booking-read-actions.test.ts, tests/integration/scheduling/scheduling-read.atdd.int.test.ts, src/server/read-models/scheduling.ts]
+  conditions: "internalderivedidentityaftercurrentauth/defaultrealscan;noactioninput/failopen;honestprojectedfixtures;actualauthenticateddefaultscan;preserveprivacy/paging/count/batch and requirednegatives"
+  additional_ACK_required: false
+  runtime_evidence: false
+p5_failed_CI_53:
+  head: 53e91365b1c1db5042173190d7ec1550229b5c35
+  run: 39362047987
+  status: independently-qualified-FAIL-sole-JobsE03
+  attempt: 1
+  dispatches: 1
+  units: 3020P0F0S
+  process: 43P0F
+  fullDB: 1862P0F52S/1914
+  resolver: "17INT+4RLS+2READ+2SSR=25P0F0resolverS; all prior tails reached"
+  real_authenticated_default_SQL_reads: 4P
+  transport: "23projected+13mockhostP; no DB/RLScoverage"
+  Storage: requiredphysicalproofPASS
+  browser: "13P1F/14cases15attempts/0S0flaky/errors[]; all3resolverfirstpass"
+  sole_failure: "JobsE03 bothattempts CDPNetwork.getResponseBody beforePREVIEW_STALE/tail; causeUNKNOWN"
+  pilot: "ACTUALLYRAN narrowAdmin120/24members25reads p95~7.408ms CPU~2.930ms2RLSrequests/read; NOTSchedulingR012"
+  migration108: startup+FIRSTresetall3success/no retry
+  report_sha256: f2d84d499a71eaf48df593b5782482c4d2e5b73db2db5b64a3d14ac2c12baccb
+  json_sha256: ac1258c68b0b732a63c2dec111113420fd27772287400bb8cd9f8065ffa34d2e
+  manifest_sha256: 6071544c73d30743216bb7ac10bbce4bb8d1bfaf2dd49bafc571f1005a3be639
+  root_verified_evidence_files: 100
+  reruns_or_cancellation: 0
+additional_E03_transport_allocation:
+  receipt: ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-E03-transport-allocation-20261020.json"
+  sha256: e99ce1ec1366887c38cdecc2e20405a1f9a9ceb895e1d25cab233a64b739a0fb
+  status: SAME-explicit-Sol6.1High-FINAL-CONDITIONAL-PASS
+  path: tests/e2e/jobs/jobs-depth.e2e.spec.ts
+  conditions: "correlatedactualPOST/HTTPoktransportonly+preclickerrorABSENT+exactUNIQUESTALEUI; preservematcher+wholeSQLsnapshot/reset/retry/singlebooking-conflicts-audit-reload; no otherpath/helper/mock/catch/skip/timeout/product/config/bodylogs"
+  additional_ACK_required: false
+  runtime_evidence: false
+p5_final_admission:
+  status: completed-after-Root-gate-and-distinct-High-provenance
+  source: 6d9836044f643a5ab6df8a1dd430e2801d8a7cdc
+  CI_head: d550029abac34360af7d9d928f6e66f906665d38
+  run: 39363860222
+  author_record_head: 81296feda0443e1965dff304a7fbbb1a88bb5821
+  closure: fe80fbaf89993bd8f57dfc30a7a489be1e9392ae
+  normalization: 11687c2e2fae80d87318a156505cdc910503639d
+  delivery_raw_sha256: 886c133b4c76ed98668a8fbf1aadbc3510b57aa557cf29d3ccc73e540134aef2
+  Root_gate_sha256: ec906ce78d55e15bfa0253933ff34ac7f338f301ebfbffa4ca72a149da9ffbc1
+  distinct_provenance_sha256: 0938fb50eed56e7c401a09c05bea18d89d3092d8963bbcfedcd55e04444e1dfc
+  checks: 46
+  errors: []
+  status_only_admission_sha256: ba5a3aa0a2c03f7ed4dc35e3a86d31d98053814332d87c627aa4b12ae4b00b35
+  source_paths_conserved: 57
+  SRO_references: 16
+  counted_rounds: 3
+  cap: 3
+  separate_narrow_checks: 2
+  bad_spec_rederivations: 0
+  parse_warnings: []
+  P6_P7_E5h_pending: false
+  release_ready: false
+p6_automate:
+  status: done-no-consequential-gap
+  ACs_mapped: 8
+  artifact_checks_passed: 22
+  artifact_checks_total: 22
+  focused_native_units: 16
+  native_resolver_DB_SSR: 25
+  native_essential_browser: 3
+  new_tests: 0
+  new_runtime_or_CI: 0
+  source_paths_conserved: 57
+  evidence_files_conserved: 102
+  browser_menu_selection: "not executed; INT012 API coverage only"
+  artifact_paths: ["_bmad-output/test-artifacts/story15-3/automation15-3-api-assessment.json", "_bmad-output/test-artifacts/story15-3/automation15-3-e2e-assessment.json", "_bmad-output/test-artifacts/story15-3/automation15-3-generation-summary.json", "_bmad-output/test-artifacts/story15-3/automation15-3-provenance.json", "_bmad-output/test-artifacts/story15-3/automation15-3-routing.json", "_bmad-output/test-artifacts/story15-3/automation15-3-summary.md", "_bmad-output/test-artifacts/story15-3/automation15-3-validation.json"]
+  release_ready: false
+p7_tail:
+  followup_gate: "recommended false; no new review pass"
+  trace_artifacts: ["_bmad-output/test-artifacts/story15-3/trace15-3-coverage-matrix.json", "_bmad-output/test-artifacts/story15-3/trace15-3-e2e-trace-summary.json", "_bmad-output/test-artifacts/story15-3/trace15-3-matrix.md", "_bmad-output/test-artifacts/story15-3/trace15-3-validation.json"]
+  artifact_checks_passed: 12
+  generic_harvested: 0
+  release_items_mirrored: 3
+  release_rows_extended: 4
+  release_ledger_sha256: 91ae99df2afe212206110cecbe72d13053f836f8b7fd9dec6ac30cfd4d79eb78
+  General_and_E16_rows_byte_identical: true
+  new_tests_runtime_CI_reviews: 0
+  release_ready: false

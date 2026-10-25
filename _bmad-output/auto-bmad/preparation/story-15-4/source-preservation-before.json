@@ -1,0 +1,6 @@
+{
+  "head_before": "5040f683cf9446d39de8512cdca82242c55fca3e",
+  "tracked_changes": [],
+  "cached_context_sha256": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a",
+  "method": "clean tracked Git status binds source to canonical HEAD; compact receipt replaces redundant copied file inventory"
+}

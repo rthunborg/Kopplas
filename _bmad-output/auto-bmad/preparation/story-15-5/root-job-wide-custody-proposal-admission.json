@@ -1,0 +1,29 @@
+{
+  "kind": "ROOT_MECHANICAL_ADMISSION_ONLY",
+  "head": "a189b65712f7984024cec5ce39a8471609224a66",
+  "source": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+  "base": "f0000e7c107f10371543148280e555971e753342",
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/proposal.json",
+    "bytes": 10670,
+    "sha256": "e48f91f5b7ccb67e93b211a4d9f609d64d1ae04b2fb7eb023ca70577b40015d6"
+  },
+  "bindings": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/bindings.json",
+    "bytes": 11117,
+    "sha256": "f1e203bf240fc03e3eaf3c319c202f698bf8b06c4d91c4451870e213fbef18a0"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/manifest.json",
+    "bytes": 4963,
+    "sha256": "0ca268dc035995cd3b7e23a1dfa141c084c1b52dc457fe59778b5c7067d69d33"
+  },
+  "verified_member_count": 28,
+  "verified_source_rows": 23,
+  "verified_installed_rows": 7,
+  "verified_historical_refs": 3,
+  "source_semantics_reviewed_by_root": false,
+  "native_acceptance_credit": 0,
+  "source_edit_authorized": false,
+  "next": "Distinct High targeted C4 proposal challenge; no fourth broad review."
+}

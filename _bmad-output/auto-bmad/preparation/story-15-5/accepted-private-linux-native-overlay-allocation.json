@@ -1,0 +1,18 @@
+{
+  "kind": "PRIVATE_LOCK_PINNED_LINUX_NATIVE_OVERLAY_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15dad-ce6f-77f1-921a-6054afd35b12",
+  "grant_tool": "exec-c8da4a8b-84e7-45a0-926d-f6f0b8692e17",
+  "final_message": "msg_0954b60b44796db1016ad87e802674819198c559fa629fe743",
+  "directory": ".env.epic15.mail-runtime\\story-15-5-preparation\\linux-node-v22.23.2\\native-bindings",
+  "packages": {
+    "@img/sharp-linux-x64": "0.35.5",
+    "@img/sharp-libvips-linux-x64": "1.3.4",
+    "@rolldown/binding-linux-x64-gnu": "1.1.5"
+  },
+  "downloads": "Directfixedregistrytarballs only45s/50MiBeach, actualSHA512 againstexistingf0block BEFOREsafecontainedextract/nativeexec",
+  "effects": "Privatearchives/node_modules/provenance only; perchildNODE_PATH/freshuniqueLinuxTMPDIR/serializedboundedtests",
+  "exclusions": "No appdeps/node_modules/package/lock/global/profile/PATH/CI/oldGETretry/arbitrarytransitives/scripts/DB/Docker/browser/provider/mainmerge/deploy/monitorresume",
+  "compatibility_before_probe": "UNPROVEN",
+  "normal_acceptance_credit": 0
+}

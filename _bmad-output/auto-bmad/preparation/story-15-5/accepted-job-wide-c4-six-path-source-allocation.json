@@ -1,0 +1,42 @@
+{
+  "kind": "ACCEPTED_EXACT6_C4_SOURCE_OFFLINE_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "independently_observed_turn": "01a15fd1-5d73-74d1-8733-26a78cd10208",
+  "observed_turn_status": "inProgress",
+  "completed_tool_id": "exec-2843d73f-70be-4609-a4fa-8933cdca6565",
+  "completed_tool": "codex_app.send_message_to_thread",
+  "tool_status": "completed",
+  "source_head": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+  "metadata_head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+  "paths": [
+    "vitest.config.ts",
+    "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "allowed": "Serial bail1/full resolved-project predicate from every selected project before globalsetup/tests; partition current34 directimport top-levelawait guard/inverse controls; conservative existing wrapper keycustody after unsuccessful DB runtime/unknown settlement; successcleanup unchanged; wrapper unit; SHAcontract repin only; Spec samekernel/SRO/ARRtruth. Bounded offline/static/pure tests and Root exact localcommit.",
+  "conditions": [
+    "Six serial once after parallel; all95 mandatory on success; ordinary expected-negative assertions retained.",
+    "No new client/principal/query/protocol/channel/runner abstraction.",
+    "Applied SQL immutable; privacy/browser/custody unresolved; no Done/acceptance claims.",
+    "If resolved API cannot meet bounds safely stop with precise gap; no implicit additional path."
+  ],
+  "not_granted": [
+    "actual SQL/connections",
+    "CI",
+    "push",
+    "GET",
+    "resources",
+    "browser",
+    "key mutation",
+    "provider changes",
+    "main merge",
+    "deployment"
+  ],
+  "plan_closure_admission": "_bmad-output/auto-bmad/preparation/story-15-5/root-job-wide-c4-plan-closure-admission.json",
+  "source_owner": "/root/build15_5_high",
+  "root_owns_all_git": true,
+  "normal_acceptance_credit": 0
+}

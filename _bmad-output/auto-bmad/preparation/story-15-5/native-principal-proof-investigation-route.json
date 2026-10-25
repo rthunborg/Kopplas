@@ -1,0 +1,9 @@
+{
+  "kind":"required-native-assertion-reach-investigation",
+  "checkpoint_head":"c57580580217e34a0b933a23f7c36737306333b7",
+  "run":"39457178499",
+  "route_before_dispatch":{"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Actual source/recovery principal identity and real public-schema ownership/CREATE grant lifecycle qualification"},
+  "authorization":"READONLY investigation while native run continues. Find existing actual tests/log assertions if present; otherwise propose smallest exact assertion/effect/path inventory for Root coordination. No source/shared path writes or runtime commands authorized by this investigation.",
+  "question":"INT015 proves restricted UUID fixture only. Locate actual source executor and SupAdmin restore current/session identity/attributes, real calendar owner public-schema CREATE prerequisite, actual ownership transfer and final grant revocation evidence; fixture success and job success alone are insufficient.",
+  "limits":"No fourth broad code review or unchanged rereview. Do not elevate roles or add persistent CREATE/BYPASSRLS/JWT/Vault grants. Wait for actual native results; coordinate any new shared path/effect before edits. No local DB/server/Docker/Supabase qualification or resources."
+}

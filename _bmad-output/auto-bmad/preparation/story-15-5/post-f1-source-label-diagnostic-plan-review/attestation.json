@@ -1,0 +1,272 @@
+{
+  "schema": "POST_F1_SOURCE_LABEL_DIAGNOSTIC_PLAN_REVIEW_v1",
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "same_existing_independent_reviewer": true,
+    "independent_from_author_and_Root": true,
+    "fresh_context_free": false
+  },
+  "outcome": "NOTPASS_PLAN_REQUIRES_BOUNDARY_AND_STATE_REFINEMENT",
+  "scope": "Finite new source-label diagnostic plan only; no fourth broad story review.",
+  "inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/report.md",
+      "bytes": 7367,
+      "sha256": "dd90121796cf99f361eb79f67e29277851f05b81dd6e5cee7347a8dcd736fc7d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/attestation.json",
+      "bytes": 13546,
+      "sha256": "8111bd6a24fb287149bfb661f7ce1b44d796f403b273c9f4865798e2d008c5ba"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/manifest.json",
+      "bytes": 646,
+      "sha256": "515eb63aa317beaed214df1cdc7b15764d926ba2e183b5e1ce105a6c3b5db1b5"
+    }
+  ],
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/manifest.json",
+      "bytes": 2298,
+      "sha256": "c42a24acbe014a59e23bfcff362c2bfd6663e56af3b2778d4aeda1da78c78f78"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/targeted-diagnostic.json",
+      "bytes": 16204,
+      "sha256": "3563e20690f73e44d06ed018428868482216e7a5ef6cb74bf629e43fab8b8d27"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/original-report.md",
+      "bytes": 5194,
+      "sha256": "51a50a5d20dfdc658ea6fe418f753c9bbf67cf7f45e0bbdba13533517d4b9b08"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/original-attestation.json",
+      "bytes": 20049,
+      "sha256": "1f887839000a51bba03fa23abc14d768141c5abaffb3f20b8e4dd901508e39f6"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/manifest.json",
+      "bytes": 852,
+      "sha256": "859574b70ca87f2c7cc6b039c8d05c9f1b950c6f007f7a030fc4dce6ff7e153e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.json",
+      "bytes": 42219,
+      "sha256": "8c1a52067b2a6cd7031727a9f46039343c4e1b4d5dcc7df370cb3618640c674b"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40586,
+      "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+      "source_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "pushed_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "local_HEAD_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "current_clean_oid": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 17518,
+      "sha256": "fae7ad38abb947dfe148d6ab1b8f37ec9ebc50d80350929ebfb285fa31ee065d",
+      "source_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "pushed_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "local_HEAD_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "current_clean_oid": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569"
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "bytes": 22030,
+      "sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681",
+      "source_blob": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "pushed_blob": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "local_HEAD_blob": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "current_clean_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27968,
+      "sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+      "source_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "pushed_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "local_HEAD_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "current_clean_oid": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 55454,
+      "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "source_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "pushed_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "local_HEAD_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "current_clean_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "source_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "pushed_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "local_HEAD_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "current_clean_oid": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "source_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "pushed_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "local_HEAD_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "current_clean_oid": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "source_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "pushed_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "local_HEAD_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "current_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+      "bytes": 81765,
+      "sha256": "2b112ecee170676c8468d246dbbe695f4d07f040c76b3f1c3c2710fc43400c0c",
+      "source_blob": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292",
+      "pushed_blob": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292",
+      "local_HEAD_blob": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292",
+      "current_clean_oid": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 193028,
+      "sha256": "68aa8a537fb771a0cd028f560124bc660dd8247522d7c5591dd54b27e77e0a0e",
+      "source_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "pushed_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "local_HEAD_blob": "12df0ae9303a1e519408428063443708b2d39560",
+      "current_clean_oid": "12df0ae9303a1e519408428063443708b2d39560"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 231674,
+      "sha256": "3db48e3e5f3f5da61b863e1cc16da97aac6e8be354250cc9043743a93ecc471b",
+      "source_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "pushed_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "local_HEAD_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+      "current_clean_oid": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c"
+    }
+  ],
+  "installed_primary_implementation": [
+    {
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/worker/workerProcessEntry.js",
+      "bytes": 75892,
+      "sha256": "e8b654850c073df3996816eb09edf845490d9a6e75785477a9ddb69d586cca54"
+    },
+    {
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/util.js",
+      "bytes": 15165,
+      "sha256": "6d5e08165ec78f576d4724c0e4693d07cf1e8e2662156daa706e380550d272a5"
+    }
+  ],
+  "prospective_exact_source_paths": [
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/support/time-reports-atdd.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "findings": [
+    {
+      "id": "LABEL-PLAN-01",
+      "target": "NUDGE004 proposed nudge_sites / withTimeReportFixture outer boundary",
+      "consequence": "The next native failure can reproduce the same outer157 coordinate without any new label, so the proposed comparison does not reliably distinguish the critical setup/callback/cleanup alternatives.",
+      "reachable_source": "withBookingFixture awaits createRoleAwarePhaseAFixture at188 and seedBookingFixture at189 before invoking the time-report callback, then always awaits outer cleanup at190. withTimeReportFixture also awaits client construction at53 before its callback try. Proposed SEED_ROLE_BATCH starts later at withNudgeRecipients206.",
+      "required_correction": "Define a NUDGE004-only enclosing final-rejection label and finite local phase/entered/returned/failure facts at the already allowed test/time-report-helper boundaries, covering pre-callback clients/base-fixture boundary, recipients/callback, report cleanup and outer fixture return/failure. Keep setup-versus-outer-cleanup UNKNOWN where existing opaque factory behavior cannot discriminate without changing that factory. No generic factory instrumentation or new path is required; if finer internals are essential, stop and name the additional scope rather than silently edit it.",
+      "controls": [
+        "Synthetic failure before helper callback entry, client-construction rejection, recipient setup failure, scenario rejection, inner cleanup failure and outer cleanup rejection all produce the correct finite boundary evidence.",
+        "Original final thrown object/cause and existing primary/cleanup ordering (including factory finally precedence) unchanged; healthy/default callers produce no labels."
+      ]
+    },
+    {
+      "id": "LABEL-PLAN-02",
+      "target": "owned_browser_state / CLEANUP_LIFECYCLE snapshot semantics",
+      "consequence": "A case-level mixture of completed create facts and outstanding rotate/revoke facts can falsely describe the unresolved owned operation, defeating the intended distinction between unmatched event, readback and native completion. A resolved waiter must also not be mistaken for a matched event when cancellation rejected it.",
+      "reachable_source": "E2E001 observes create, rotate and revoke; observation entries and independent completion/readback promises coexist in createCalendarLifecycleObservations106..164. The plan lists six booleans without defining their association, not-started applicability, or rejection/cancellation meaning.",
+      "required_correction": "Freeze a finite per-observation/action snapshot or an equivalent explicit conservative aggregate truth table, distinguishing not-registered/not-started, matched, pending, fulfilled and rejected/cancelled states as needed. Use fixed create/rotate/revoke/unknown enum or bounded local observation ordinal only, never request fields. Define started/settled as actual existing invocation/continuation facts; settled includes failure and is not successful completion, backend settlement or cleanup permission. Unexecuted/inapplicable fields stay UNKNOWN/null or carry an explicit applicability flag; false cannot mean absence of native work. Update existing event predicates/continuations only, no additional Promise observer/query/wait or changed completion/custody predicate.",
+      "controls": [
+        "Completed create plus outstanding rotate or revoke cannot report all work successfully complete.",
+        "Response matched while request matcher unfulfilled, cancelled/rejected waiter, started failed readback/native completion and never-started work remain distinguishable without inferring absence/backend rollback.",
+        "Default/unrelated cases and existing result/error identity, operation count and settlement/custody behavior unchanged."
+      ]
+    }
+  ],
+  "ready_claims": {
+    "application_SQL_fix_supported": false,
+    "source_implementation_ready": false,
+    "native_comparison_ready": false,
+    "plan_direction": "Finite original failure-boundary diagnostics supported subject to exact two refinements.",
+    "AggregateError_children_loss": "Contradicted by installed worker recursive error.errors traversal; no fix supported."
+  },
+  "recovery_policy": {
+    "version": "2026-10-19",
+    "two_failed_normal_attempts_retained": true,
+    "unchanged_third_normal_forbidden": true,
+    "material_difference_possible": "Failure labels at original operations with unchanged acceptance/guards eliminate posthoc location loss and can distinguish source branches; no new retrieval framework.",
+    "full_normal_effects_are_smaller": false,
+    "future_admission_conditions": [
+      "Close LABEL-PLAN-01 and LABEL-PLAN-02.",
+      "Exact shared ownership/source allocation and actual pure branch/error/privacy/existing-reporter controls.",
+      "Distinct targeted committed-delta High review.",
+      "Coordinator actual effect allocation and Root fresh one-shot identity/head/source/custody activation explicitly naming changed-information benefit and stop/resume condition."
+    ],
+    "no_filtered_DIAG001_or_new_driver": true
+  },
+  "review_stops": [
+    "No new source path without exact separately coordinated scope.",
+    "No error identity/cause/receiver/args/once/order/result or timeout/guard/cleanup change.",
+    "Nonthrowing bounded fixed-label emission; no raw data or arbitrary property access.",
+    "No extra Promise observers, waits, clients, principals, queries or public/protocol channels.",
+    "Existing all95/fullDB-RLS/recovery/essential-browser gates remain; custodyUNKNOWN never treated as backend rollback.",
+    "No automatic next normal retry, extractor or migration repair."
+  ],
+  "checks": {
+    "assessment_hashes": 3,
+    "evidence_refs_rehashed": 7,
+    "source_raw_and_computed_clean_OID_bindings": 11,
+    "installed_files_rehashed": 2,
+    "pure_executable_tests": 0,
+    "native_execution": 0,
+    "Git_commands": 0,
+    "prior_R1_provenance_audit": "Reused unchanged, with truncation/UNKNOWN/custody limits.",
+    "reader_limit": "Initial multi-span output truncated; relevant spans reread explicitly UTF8."
+  },
+  "effects": {
+    "network_API_GET": 0,
+    "SQL_connections": 0,
+    "CI": 0,
+    "resources": 0,
+    "Git_mutations": 0,
+    "source_Spec_state_edits": 0,
+    "executable_imports": 0
+  },
+  "broad_reviews_completed": 3,
+  "new_broad_review": false,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/report.md",
+    "bytes": 5115,
+    "sha256": "1e40afb06d0f75531e4ba47eae362d3103ea3de0ce76379633de24c364766c5d"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-25",
+  "repo": "Kopplas",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "priority_thresholds",
+  "source_sha": "8134b6a86bfc2f2a0d29cdd19767b3ac76412b71",
+  "target": {
+    "type": "epic",
+    "id": "15",
+    "label": "E15 scheduling/time/calendar"
+  },
+  "decision_mode": "deterministic",
+  "evaluator": "/root/combined_epic15_closeout_high",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md",
+      "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "_bmad-output/implementation-artifacts/spec-15-3-conflict-resolver.md",
+      "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "coverage": {
+    "inventory": {
+      "covered": 49,
+      "total": 49,
+      "pct": 100
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 35,
+        "covered": 35,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 14,
+        "covered": 14,
+        "percentage": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 43,
+        "criteria_covered": 35
+      },
+      "api": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "component": {
+        "tests": 8,
+        "criteria_covered": 9
+      },
+      "unit": {
+        "tests": 101,
+        "criteria_covered": 24
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 149,
+        "criteria_covered": 37
+      }
+    }
+  },
+  "tests": {
+    "files": 35,
+    "cases": 301,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0
+  },
+  "risk_summary": {
+    "critical_open": 0,
+    "high_open": 0,
+    "medium_open": 0,
+    "low_open": 0
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "present",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable"
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "8134b6a86bfc2f2a0d29cdd19767b3ac76412b71",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "blockers": [],
+  "recommendations": [
+    {
+      "priority": "LOW",
+      "action": "Retain zero-credit retired scaffolds and separate historical/current evidence; no required source-test remediation identified."
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "QA/CI owner investigate two retained response-body ProtocolError flakes; return any actual consequential product defect to development."
+    },
+    {
+      "priority": "LOW",
+      "action": "Execute owned exhaustive visual/manual/performance and hosted feed release checks at finalPhaseBcheckpoint; no deployment authorization."
+    }
+  ],
+  "links": {
+    "trace_report_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\epic-15-closeout\\traceability-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "gate_status": "PASS",
+  "gate_criteria": {
+    "p0_coverage_required": "100%",
+    "p0_coverage_actual": "100%",
+    "p0_status": "MET",
+    "p1_coverage_target": "90%",
+    "p1_coverage_minimum": "80%",
+    "p1_coverage_actual": "100%",
+    "p1_status": "MET",
+    "overall_coverage_minimum": "80%",
+    "overall_coverage_actual": "100%",
+    "overall_status": "MET"
+  },
+  "limits": "301literal mapped declarations across static source files are not parameter-expanded/runtime counts; current63+95cases remain separate158unique passed. Historical essentials reuse retains attribution. Development gate only."
+}

@@ -1,0 +1,41 @@
+{
+  "status": "SCOPED_CUSTODY_DISPOSITION_NO_ACCEPTANCE_OR_CLEANUP_PASS",
+  "basis": {
+    "path": ".env.epic15.mail-runtime\\story-15-5-preparation\\post-zod-custody-acceptance-contract-assessment.json",
+    "bytes": 14273,
+    "sha256": "55c3e566963d616fac20df5b6dd1213e3ebde83373042749b3a2c0c734ce5bc7",
+    "Root_actual_six_field_read": "06f326/native0"
+  },
+  "current_run": {
+    "run": 40109869919,
+    "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+    "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+    "db_job": 120919907332,
+    "job_status": "completed",
+    "job_conclusion": "failure",
+    "completed_at": "2026-10-24T16:22:44Z",
+    "operational_disposition": "Existing exact terminal job metadata satisfies the wrapper source-defined whole-disposable-job-ended custody resume alternative, limited to that job scope.",
+    "keyDeleted": false,
+    "keyOutcome": "unverified",
+    "original_custody_retained": true,
+    "dbClosed": true,
+    "backend_rollback_or_canonical_restoration": "UNKNOWN",
+    "physical_host_destruction": "NOT OBSERVED",
+    "required95": "93P/API019F/API020unexecuted",
+    "acceptance": "FAILED"
+  },
+  "historical399982": {
+    "run": 39998246278,
+    "operational_job_ended_disposition": "UNKNOWN_NOT_NEWLY_QUALIFIED",
+    "key_deleted_or_backend_settled": "UNKNOWN_UNRESOLVED",
+    "owner": "E15 Root control-plane record; historical evidence retained",
+    "next_action": "Preserve exact failure and UNKNOWN. Use existing exact identity-bound terminal metadata for any later job-end disposition; no resurrection, adoption, SQL cleanup or new GET allocated.",
+    "universal_future_deletion_hard_gate": "No additional such hard gate found in enrolled approved contract; no known live resource is waived."
+  },
+  "other_scopes": "Current browser/recovery/child-close/stack-stop does not prove current or historical DB key deletion or rollback. No 398-series identity is substituted.",
+  "P5": "OPEN",
+  "review_counter": 3,
+  "story15_6": "UNSTARTED",
+  "deployment_authority": false,
+  "new_effect_slots": 0
+}

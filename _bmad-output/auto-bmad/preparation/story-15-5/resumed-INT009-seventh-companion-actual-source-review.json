@@ -1,0 +1,458 @@
+{
+  "schema": "INDEPENDENT_INT009_SEVENTH_COMPANION_ACTUAL_SOURCE_REVIEW_v1",
+  "outcome": "PASS_INT009_SEVENTH_COMPANION_SOURCE_ONLY",
+  "reviewer": {
+    "role": "Distinct independent CI privilege/integrity source reviewer; not implementation author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_route": "9051cf",
+    "policy_version": "2026-10-19",
+    "kind": "Narrow sole seventh companion delta and prior protected-source conservation; not fourth broad story review"
+  },
+  "source": {
+    "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+    "branch": "codex/epic-15-int009-debug",
+    "commit": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "parent": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+    "sole_path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "raw_bytes": 32905,
+    "raw_sha256": "5e5b1fdc0b5f0e1501c4097aa25bb939f6034ed8fc8996ab8fceb62d886efd2f",
+    "LF_bytes": 32533,
+    "LF_sha256": "15bda73ff015b881b4a9c0b3152d2fbf6a49f280331d9260125b1f49ff04fc75",
+    "clean_blob": "151bd0668a2830cd7433efc1f985db3115185f56",
+    "baseline": {
+      "raw_bytes": 30068,
+      "raw_sha256": "fca96cfd7fdb63a0dde332d21c4e2bae3da83b9cee094f39ab3754994a73a19c",
+      "LF_bytes": 29711,
+      "LF_sha256": "99bb62d37e65e539089f638f43a13312c4650a04bfea4a364aaa22beceb089bf",
+      "HEAD_blob": "a99cfcb6ce8177844b950039cdfefa7bedfb5807"
+    },
+    "identity_provenance": "Root actual sole-path commit proof8ffedb; reviewer independently matched current raw/LF and computed clean blob without Git commands."
+  },
+  "input_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-seventh-companion-author-result.json",
+      "bytes": 24780,
+      "sha256": "992c46d1bca2722a5984a4478756f1713631907ce29d485af999253a31b1bfa2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-seventh-companion-root-commit-proof.json",
+      "bytes": 1747,
+      "sha256": "965c112cf1973ccc1070a1b3a762c9eff9b88853c8ce5acda02c7d5818cd742a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-seventh-companion-committed.diff",
+      "bytes": 7199,
+      "sha256": "354fdc8b6d219ea1fe1d04f9cb7f1ca10824f87b3533c3b87efad95112b642b0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-INT009-seventh-companion-conditional-source-allocation.json",
+      "bytes": 3006,
+      "sha256": "64cdcd9471c3ce2b2167d61ed34095634185e2adcc955027956c9aa92d02311f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-seventh-companion-source-activation.json",
+      "bytes": 4856,
+      "sha256": "2d9631853cd74476538721efd6c0adfa91c959fadf5e8e44d65895e62525c1f0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-checkpoint-companion-targeted-proof.json",
+      "bytes": 7440,
+      "sha256": "d58d70ecbeba40335e6e90a98153050fca9b56a02c5f0dcece4ca1ec58ab9040"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-debug-initial-root-proof.json",
+      "bytes": 5640,
+      "sha256": "de5c0d3865f4f5793a99e950a19239caba75c5baa9d6bf6720913bcd3ba586e5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-six-capability-actual-source-review.json",
+      "bytes": 22331,
+      "sha256": "a68940f3ac6c32cab37277862fe1366da1ec2a22aa858005a2b596956a6e5ba5"
+    }
+  ],
+  "findings": [],
+  "scope_judgment": "The sole changed unit file supplies an explicitly disabled fixture input and nine fixed-mode rows in its existing admission table, plus two necessary repairs to existing negative mutations. No production parser/guard/workflow/runtime, capture test/helper, Spec, configuration, dependency or SQL source changes. These repairs preserve existing rejection assertions and the full previous file can be recovered exactly. No source/effects capability is widened by this unit-only delta.",
+  "checks_independently_performed": {
+    "method": "Local Python -I -X utf8 -B read/hash/static parsing and exact in-memory inverse application only; no project source evaluation, imports, tests, Git commands or native workload.",
+    "tools": [
+      "061bd0",
+      "d50aab",
+      "026baa",
+      "f4f339"
+    ],
+    "source_and_diff": "Actual sole source raw32905/LF32533 and clean blob151bd0668a2830cd7433efc1f985db3115185f56 match frozen commit proof. Exact7199-byte committed diff has only the three expected hunks.",
+    "complete_inverse": {
+      "recipe_as_data_only": true,
+      "steps": "Replace exact one fixture-flag addition, remove each of nine exact table rows once, restore each of the two exact mutation expressions once. Independently reverse actual three committed-diff hunks and require identical recovered bytes.",
+      "LF_bytes": 29711,
+      "LF_sha256": "99bb62d37e65e539089f638f43a13312c4650a04bfea4a364aaa22beceb089bf",
+      "raw_CRLF_bytes": 30068,
+      "raw_CRLF_sha256": "fca96cfd7fdb63a0dde332d21c4e2bae3da83b9cee094f39ab3754994a73a19c",
+      "both_inverses_and_baseline_match": true
+    },
+    "named_mutation_target": "Inspected actual workflow source: exactly one named cause-proof input block, exactly one default:false inside it; exactly two existing fixed release-validation false guards.",
+    "preserved13_independent_raw_and_clean_blob_checks": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 49972,
+        "sha256": "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0",
+        "HEAD_blob": "eab9f7a1b170b600209edbe5dc7bf050a3cf66d4",
+        "raw_conserved": true
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 78497,
+        "sha256": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d",
+        "HEAD_blob": "6b9f2897a89695fe7a5f63c2cef9d90e6b160dc7",
+        "raw_conserved": true
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 13782,
+        "sha256": "99fb81590ad3bf232c7cbf73f12c69a9441d6430c6fd813b199ae41bf7b8f652",
+        "HEAD_blob": "1f8c961bd4a3b5db4610523144dcaa8d1a35242d",
+        "raw_conserved": true
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 319180,
+        "sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+        "HEAD_blob": "c725a1c77b4d84f4ee6c924c94a50a4fe79de2a7",
+        "raw_conserved": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "bytes": 3416,
+        "sha256": "a29cd53e57b34152ecaec11b34a94db636f39eda79a931a542ecc8fffc9b9fbf",
+        "HEAD_blob": "46d079e57492d220e85658fc0df4005f7c3a6eab",
+        "raw_conserved": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "bytes": 4602,
+        "sha256": "4bced2920f386a254d5b335442c5bbc41d2b7fbc09664c0e864999c9355dab78",
+        "HEAD_blob": "c690a9d2c244d1788745e194b2ddf41f48e0949e",
+        "raw_conserved": true
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 37507,
+        "sha256": "c703429ee6b1518b89a0ce93c97cbaeb65dee9b2b98ca5f549e8dece131a3d24",
+        "HEAD_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd",
+        "raw_conserved": true
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 139439,
+        "sha256": "c3b599846d0c604192f7cb52e7e2851ec63bc9228145a94b581f50b755f0b454",
+        "HEAD_blob": "b2217ebb023207097b688c4c78c037643b239cbf",
+        "raw_conserved": true
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 251180,
+        "sha256": "b13bd79235829d8359351bf562dafb016f68a3efb512048dd98dd5df9763fd6b",
+        "HEAD_blob": "58736c8bcde2288ee74dc18c1eb90c3e6b2ae5ed",
+        "raw_conserved": true
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 4805,
+        "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+        "HEAD_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+        "raw_conserved": true
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "bytes": 19782,
+        "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+        "HEAD_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "raw_conserved": true
+      },
+      {
+        "path": "package.json",
+        "bytes": 2562,
+        "sha256": "790f9ddeda122073fbcb6752f08ad8536e2a6cd70fdd4722687ff6fa43e3089d",
+        "HEAD_blob": "c9a10117ed149a876f529edd1d2c730359dbdd98",
+        "raw_conserved": true
+      },
+      {
+        "path": "playwright.config.ts",
+        "bytes": 4872,
+        "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+        "HEAD_blob": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+        "raw_conserved": true
+      }
+    ],
+    "SQL": "Reuse Root immutable118 SQL source/Git chain and author canonical conservation, bound by the receipt and Root commit proof. No redundant SQL scan or broad review.",
+    "reviewer_test_reruns": 0,
+    "reviewer_API_provider_effects": 0,
+    "reviewer_DB_browser_services_resources": 0,
+    "reviewer_Git_commands_or_mutations": 0,
+    "other_source_writes": 0
+  },
+  "assessments": [
+    {
+      "topic": "Explicit fixture base and real admission cases",
+      "status": "PASS",
+      "locations": [
+        "tests/unit/scripts/ci/checkpoint-dispatch.test.ts:191",
+        "tests/unit/scripts/ci/checkpoint-dispatch.test.ts:204"
+      ],
+      "evidence": "The existing test extracts the checked-in workflow admission shell, rather than duplicating its logic. ORIGINAL_INT009:\"0\" explicitly disables the new branch in its ordinary baseline; mode checks activate only on literal true. This stabilizes the fixture independently of ambient ORIGINAL_INT009 and leaves PR/push/SHA/UUID/attempt/tag assertions intact. Nine rows exercise valid fixed mode plus wrong repository/actor/triggering actor/ref, cause-proof/release/other-probe conflict and PR refusal. They retain the same actual-shell runner and pass/fail assertion, without a skip, shim or new test family. Existing wrong SHA/UUID/attempt cases are unchanged; prior six-source guard controls remain applicable."
+    },
+    {
+      "topic": "Cause-proof default inverse",
+      "status": "PASS",
+      "locations": [
+        "tests/unit/scripts/ci/checkpoint-dispatch.test.ts:273",
+        "scripts/ci/checkpoint-dispatch.mjs:75"
+      ],
+      "evidence": "The previous first generic default:false replacement now hits the newly preceding INT009 input. The changed test instead finds exactly one named cause-proof block and asserts exactly one default:false before changing only that default. It still calls the real unchanged assertCauseProofWorkflow inside assert.throws. The strict recognizer and exact cause-proof boolean/default declaration require refusal. This repairs the intended target rather than weakening the old negative assertion."
+    },
+    {
+      "topic": "Release-guard absence inverse",
+      "status": "PASS",
+      "locations": [
+        "tests/unit/scripts/ci/checkpoint-dispatch.test.ts:314",
+        "scripts/ci/checkpoint-dispatch.mjs:80"
+      ],
+      "evidence": "The actual unchanged assertCauseProofWorkflow tests global presence of the fixed release guard. Two legitimate occurrences now exist in the reviewed workflow, so mutating only the first no longer removes the fact that this predicate checks. The new exact-count2 assertion followed by replaceAll makes the old global-absence negative valid again. It preserves assert.throws against the recognizer, mocked checkpoint rejection and zero POST/mutation assertion. This is global-presence coverage only, not a new claim of per-mode structural validation; original mode execution and source guards remain separately reviewed."
+    },
+    {
+      "topic": "Old assertions, inverse and dispatch semantics",
+      "status": "PASS",
+      "evidence": "All prior file bytes recover through both exact recipe and actual committed-patch inverses. Existing PR/push behavior, durable pre-POST intent, only-POST/count, mode conflicts, no-fallback/uncertain dispatch, candidate/default availability, malformed declarations, blob/ref/workflow checks, default-source recognizer and golden/source-mutation assertions remain conserved. No existing rejection assertion is deleted or skipped. The dispatcher and prior six capability sources retain their actual raw and clean blob identities."
+    },
+    {
+      "topic": "Evidence provenance and limits",
+      "status": "PASS",
+      "evidence": "Reused author-attributed selected1P, final file35P and exactly one full canonical Node22.23.2 run. Final full native0/capture/EOF/join/closed/settled predicates are retained in the frozen author receipt; reviewer did not independently observe its child lifecycle or rerun it. One versioned file-backend restore test is skipped and supplies zero coverage. Prior file33P2F/localization and pre-launch parse/metadata failures remain historical and nonadditive. No matching local failure implies the actual hosted first throw; INT009 did not execute in the failed prior diagnostic run."
+    }
+  ],
+  "reused_author_evidence_nonadditive": {
+    "source": "Frozen author receipt; inspected results/argv/caps and meaningful source controls, not author prose alone.",
+    "selected_counts": {
+      "tests": 1,
+      "suites": 0,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "final_file": {
+      "outer": {
+        "chunk_id": "dd1e43",
+        "exit_code": 0,
+        "wall_time_seconds": 1.9952762000000002,
+        "session_id": null
+      },
+      "result": {
+        "label": "affected_file_final",
+        "argv": [
+          "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+          "--experimental-strip-types",
+          "--import",
+          "./tests/support/register.mjs",
+          "--test",
+          "tests/unit/scripts/ci/checkpoint-dispatch.test.ts"
+        ],
+        "transport": {
+          "native_exit": 0,
+          "elapsed_seconds": 1.867124,
+          "launch_error": false,
+          "timed_out": false,
+          "capture_complete": true,
+          "direct_process_settled": true,
+          "readers_joined": true,
+          "handles_closed": true,
+          "streams": {
+            "stdout": {
+              "observed_bytes": 8387,
+              "physical_EOF": true,
+              "reader_done": true,
+              "read_error": false,
+              "overflow": false,
+              "observed_sha256": "c860caa6b901e73245477bc42a78a688b29e95816a16d97deb9963a53a9bd960"
+            },
+            "stderr": {
+              "observed_bytes": 0,
+              "physical_EOF": true,
+              "reader_done": true,
+              "read_error": false,
+              "overflow": false,
+              "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "counts": {
+          "tests": 35,
+          "suites": 0,
+          "pass": 35,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        }
+      }
+    },
+    "full_canonical_once": {
+      "start": {
+        "chunk_id": "3b221b",
+        "wall_time_seconds": 10.0077035,
+        "session_id": 85291
+      },
+      "completion": {
+        "chunk_id": "26d180",
+        "exit_code": 0,
+        "wall_time_seconds": 8.6e-06,
+        "session_id": null
+      },
+      "waits": [
+        {
+          "session_id": 85291,
+          "chars": "",
+          "chunk_id": "26d180",
+          "exit_code": 0
+        }
+      ],
+      "result": {
+        "phase": "full_pure_completed",
+        "Node_version": "v22.23.2",
+        "argv": [
+          "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+          "--experimental-strip-types",
+          "--import",
+          "./tests/support/register.mjs",
+          "--test",
+          "tests/unit/**/*.test.ts"
+        ],
+        "unit_files": 314,
+        "explicit_concurrency": null,
+        "env_changes": false,
+        "caps": {
+          "seconds": 600,
+          "stdout_bytes": 8388608,
+          "stderr_bytes": 1048576
+        },
+        "transport": {
+          "native_exit": 0,
+          "elapsed_seconds": 25.002356,
+          "launch_error": false,
+          "timed_out": false,
+          "capture_complete": true,
+          "direct_process_settled": true,
+          "readers_joined": true,
+          "handles_closed": true,
+          "streams": {
+            "stdout": {
+              "observed_bytes": 1034235,
+              "physical_EOF": true,
+              "reader_done": true,
+              "read_error": false,
+              "overflow": false,
+              "observed_sha256": "16ff78e140b7a4275dfc058807870f63314799eed36de214d83ee1f964d67d5f"
+            },
+            "stderr": {
+              "observed_bytes": 0,
+              "physical_EOF": true,
+              "reader_done": true,
+              "read_error": false,
+              "overflow": false,
+              "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "counts": {
+          "tests": 3429,
+          "suites": 103,
+          "pass": 3428,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 1,
+          "todo": 0
+        },
+        "source_bound_failures": [],
+        "failure_omission_UNKNOWN": false,
+        "skips": [
+          {
+            "static_test_name": "versioned file-backend restore preserves the DB-owned identity and refuses overwrite",
+            "coverage": 0
+          }
+        ],
+        "skip_omission_UNKNOWN": false,
+        "API_CI_provider_requests": 0,
+        "native_SQL_browser_workloads": 0
+      }
+    },
+    "initial_affected_file_counts": {
+      "tests": 35,
+      "suites": 0,
+      "pass": 33,
+      "fail": 2,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "initial_affected_file_child_exit": 1,
+    "localization_counts": {
+      "tests": 35,
+      "suites": 0,
+      "pass": 33,
+      "fail": 2,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "history": {
+      "before_fix_immutable_proof": {
+        "bytes": 7440,
+        "sha256": "d58d70ecbeba40335e6e90a98153050fca9b56a02c5f0dcece4ca1ec58ab9040"
+      },
+      "first_selected_after_flag_cases": "1P",
+      "first_file": "33P2F; full suite not invoked then",
+      "localization": "33P2F nonadditive; static test identities/frames only, two same-path mutation repairs explicitly authorized afterward",
+      "pre_effect_or_metadata_failures": [
+        "a26fe6 edit native0; outer JSON decode failed due truncated result inventory; source edit was not repeated",
+        "6e9752 Python parse1 before child/test launch; quoting corrected",
+        "receipt assembly V8 btoa unavailable before tool call/write; replaced with literal structured JSON"
+      ],
+      "raw_test_stdout_stderr": "RAM only, never persisted; only closed counts/digests/static identities/frames retained"
+    },
+    "accounting": "35 is the existing file test count; nine new admission table rows are not nine extra test cases. Selected/file/localization runs are subsets or history, never added to the one full3429-test run. Final3428pass/0fail/1skip/103suites over314files is pure evidence only; skipped backend restore is0coverage."
+  },
+  "prior_source_review_reuse": {
+    "verdict": "PASS_INT009_SIX_TEMPORARY_CAPABILITY_SOURCE_ONLY",
+    "artifact": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-six-capability-actual-source-review.json",
+    "bytes": 22331,
+    "sha256": "a68940f3ac6c32cab37277862fe1366da1ec2a22aa858005a2b596956a6e5ba5",
+    "six_current_source_raw_clean_blob_identities_verified_unchanged": true,
+    "reopened": false
+  },
+  "policy_and_limits": {
+    "AGENTS_and_development_completion_policy_read": true,
+    "three_broad_round_cap": 3,
+    "fourth_broad_round": false,
+    "P5": "open",
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "current_full95": "Historical68pass/1failed/26unexecuted-or-unknown; this pure companion fix does not close any native gate.",
+    "original_INT009_cause": "UNKNOWN",
+    "custody_backend_rollback_global_key_cleanup": "UNKNOWN"
+  },
+  "open_questions": [
+    "Actual hosted first throw is unobserved; the prior terminal diagnostic skipped DB, so it supplies no INT009 execution/cause facts."
+  ],
+  "remaining_effect_requirements": [
+    "This SOURCE_ONLY verdict grants no provider GET/push/dispatch/variable/artifact-log acquisition/runtime/resource/deployment/merge authority. Any next finite owned operation requires a fresh actual completed allocation, exact reviewed head/ref/UUID/attempt binding and Root ownership/precondition checks.",
+    "Preserve prior closed effects slots and failed-run history. Do not automatically rerun from pure-suite success. Subsequent actual diagnostic result/cardinality and bounded failure metadata require separate evidence qualification; required full95 and custody gates remain."
+  ],
+  "deferred_work": "Separately authorized bounded diagnostic operation and evidence qualification; required native acceptance gates remain failed/unexecuted. No generic diagnostic family or broad source re-review approved.",
+  "blockers": {
+    "source_review": [],
+    "functional": "P5 remains blocked by the actual failed/required unexecuted gates; normal acceptance0. No claim of cause repair, runtime PASS, development completion or release readiness."
+  }
+}

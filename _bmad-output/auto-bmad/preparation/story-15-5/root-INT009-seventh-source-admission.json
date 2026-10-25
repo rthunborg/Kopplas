@@ -1,0 +1,24 @@
+{
+  "schema": "ROOT_INT009_SEVENTH_SOURCE_ADMISSION_v1",
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-seventh-companion-source-activation.json",
+    "bytes": 4856,
+    "sha256": "2d9631853cd74476538721efd6c0adfa91c959fadf5e8e44d65895e62525c1f0"
+  },
+  "status": "SOURCE_ONLY_ACTIVE_AFTER_ACTUAL_TERMINAL",
+  "sole_path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+  "head": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/terminal.json",
+    "bytes": 9693,
+    "sha256": "299e59a0b270e6adc4bef5feee37cb14fd1073216f524df64744594302dc7178"
+  },
+  "Root_poller": "STOPPED",
+  "run_id": 39797377455,
+  "onecase_executed": 0,
+  "full95": "68P1F26unexecuted unchanged",
+  "native_cause": "UNKNOWN",
+  "scope": "NativeHigh seventhcompanion+samecases only, prior6+capture/Spec/118SQL unchanged; boundedpuretarget/file+ONEfullNode; RootallGit, distinctHighonepathreview afterward",
+  "new_effects": 0,
+  "next": "Implementfixtureexplicitdisabledflag+samecasefixedmodeinverses; fullcanonicalNode1run<=600s; Rootlocalcommit/independentHightargetedreview; separatelyadmittedfreshCIproposal onlyafterfullpurePASS."
+}

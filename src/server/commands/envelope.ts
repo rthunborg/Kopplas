@@ -49,6 +49,11 @@ type CommandCapability = NonNullable<CommandConfig<unknown, unknown>["capability
  * It remains server-only and is validated against the active matrix by tests.
  */
 export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> = {
+  "calendar_feed.create": { module: "scheduling", capability: "Bookings.View" },
+  "calendar_feed.rotate": { module: "scheduling", capability: "Bookings.View" },
+  "calendar_feed.revoke": { module: "scheduling", capability: "Bookings.View" },
+  "time_report.file": { module: "scheduling", capability: "TimeReports.ReportOwn" },
+  "time_report.annotate": { module: "scheduling", capability: "TimeReports.Review" },
   "customer.create": { module: "crm", capability: "Customers.Create" },
   "customer.update": { module: "crm", capability: "Customers.Edit" },
   "customer.archive": { module: "crm", capability: "Customers.Delete" },
@@ -120,6 +125,9 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "resource.profile_form.save": { module: "resources", capability: "Resources.Maintain" },
   createBooking: { module: "resources", capability: "Bookings.Manage" },
   updateBooking: { module: "resources", capability: "Bookings.Manage" },
+  createBookingSeries: { module: "resources", capability: "Bookings.Manage" },
+  updateBookingSeries: { module: "resources", capability: "Bookings.Manage" },
+  resolveBookingConflict: { module: "resources", capability: "Bookings.Manage" },
 };
 
 /**

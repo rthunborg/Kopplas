@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-targeted-F1-F2-corrective-review",
+  "verdict": "NOTPASS",
+  "F1": "OPEN_BUFFERED_ADMISSION_PATH",
+  "F1_false_EOF_custody_subpart": "CLOSED",
+  "F2": "CLOSED",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "P2",
+      "file": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "line": 60,
+      "related_lines": [
+        62,
+        69,
+        70,
+        99,
+        100,
+        101,
+        102
+      ],
+      "title": "Buffered candidate releases continuation after known reader capture failure",
+      "caller": "Actual Root driver main -> Lines.line -> accept -> write_final/send",
+      "invariant": "A known reader/capture failure must stop protocol interpretation and Root continuation before terminal/ZIP admission",
+      "reproduction": {
+        "actual_driver_main": true,
+        "reader_thread": "actual controlled thread",
+        "child": "mocked only",
+        "Root_storage": "memory-only",
+        "ordered_events": [
+          "reader_error_known",
+          "write_final",
+          "send_ack"
+        ],
+        "terminal_in_memory": "CONFIRMED_PRESENT",
+        "continuation_sent": true,
+        "final_exit": 1,
+        "physical_EOF": false,
+        "final_custody": "UNKNOWN",
+        "final_category": "CUSTODY_UNKNOWN",
+        "real_API_or_file_effects": 0
+      },
+      "minimal_fix": "Unconditional capture-error check for buffered records plus current known-failure gate before admission side effects; add ordered queued-stage/candidate driver-main control preserving no-mutation/no-continuation on known error",
+      "status": "OPEN"
+    }
+  ],
+  "reviewed_at_utc": "2026-10-21T06:51:09.083671+00:00",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author_and_root": true,
+    "same_reviewer_as_original_F1_F2": true
+  },
+  "route": {
+    "phase": "P5_artifact_recovery_F1_F2_targeted_review",
+    "recorded_before_dispatch": true
+  },
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "operation_id": "6395eae9-7110-49a9-9c16-12a55c06c0bf",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+    "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+    "run_id": 39551805476,
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof"
+  },
+  "current_frozen_code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 33788,
+      "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "bytes": 25975,
+      "sha256": "b8d19bafd48ed14f51588b5ec5ecc2b1d91c3640e3dee14f8e74b9a6a5db7df0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 12150,
+      "sha256": "3296d05e6086af0bf104076bad5e31ac66c9015d62b949a754a257f279139b37"
+    }
+  ],
+  "original_custody_code_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 31137,
+      "sha256": "6e730bd7d56684ba5c5586ab77871c570ad85af3f9ea785743ff444b5bbf8b9c",
+      "encoding": "base64"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "bytes": 19563,
+      "sha256": "70713595f5f1cdc138a75809b6c55370d77393f016aac7b76ad4cdbec45ce61e",
+      "encoding": "base64"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 10483,
+      "sha256": "0c49397576042a9881cbfa001d36b5d1c5dbe7c139fdddb34e1bc880076fb2c6",
+      "encoding": "base64"
+    }
+  ],
+  "preserved_author_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/review-input.md",
+      "bytes": 4823,
+      "sha256": "34153caeb299c67d9ec826fb6da4fe8e4d047b8a46e357038bdef5c5ddc056a4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/input-binding.json",
+      "bytes": 43306,
+      "sha256": "d48a54ccdd8c0b94762eb15f4a80c71924f81c33272b380b859c55e2173034f8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/local-checks.json",
+      "bytes": 4896,
+      "sha256": "e5960f5a787c9107f755684a4dd031c627948febe0bcb083bf4f78b336a1f5d6"
+    }
+  ],
+  "immutable_bindings_checked": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-corrective-review-allocation.json",
+      "bytes": 2163,
+      "sha256": "0199f9a96ccb5b01979705d1e3fae94ac4619d7e4433fe41d4c1e35d18d43c95",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-original-code-byte-custody.json",
+      "bytes": 82682,
+      "sha256": "c7fdffac0076361cbd6bbbbbaa74ec0f2f7ce3ec487c3490f3fce2201d4f76c6",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/review-input.md",
+      "bytes": 4948,
+      "sha256": "dc1c45994bcbacc20141b8941cf33395e7891d20293c146633ded7b92dd6ef33",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/input-binding.json",
+      "bytes": 35641,
+      "sha256": "01449d748bb95e16e3578e487ea0ce75a6153c3274ba748d831f05807a9c500d",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/local-checks.json",
+      "bytes": 3489,
+      "sha256": "fa9c5c4fdf05ef8ed4f7743752a562f25fa813da8ea57238788ce86ed5c14f79",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/original-report.md",
+      "bytes": 9753,
+      "sha256": "bcaa7d08f4217897fa99b3edbc9c77539bac5cca10c00ecf59d86264bbe043a5",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/original-attestation.json",
+      "bytes": 16099,
+      "sha256": "4afbacfc86a5990333d97bd481f257d39354659ef76a2c79a33faa46ce3dfcb4",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/result.json",
+      "bytes": 1222,
+      "sha256": "df16b72c31e3ab67179dd492cd6885de6e4b09503a54fb2147ebe1e49f8e4f0d",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review/manifest.json",
+      "bytes": 1604,
+      "sha256": "55b315f7da6cfd2876d2dffb3050c443dd34dff8a3a1cc02bab4ab2c83bd8cc8",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-allocation.json",
+      "bytes": 3727,
+      "sha256": "b4bd1f15c6e87c4771d89c48e7137c15420e4a041cd767b24b00921b82d2b364",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal-revision-1/plan.json",
+      "bytes": 25199,
+      "sha256": "6fdde434e7e4853e70e9bebd6a64d1f960f33e35cf7d7025d07ea6cc5019be2e",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal-revision-1/manifest.json",
+      "bytes": 6907,
+      "sha256": "5c04c4457240909ec0c239f9af0c58d12332e3d7adbb2b76b113e9faf520cba0",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/expected-admission.json",
+      "bytes": 6705,
+      "sha256": "a5d0ca28fd7bce83aa2f3105f6122610091fab52bf7d935aaf040483b9f3cbc1",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/terminal-facts.json",
+      "bytes": 3135,
+      "sha256": "aa00fd0c2158d02f2a42bc989624b611c36be44b0059627f5d9ac42d750d1754",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-prepost-diagnostic-intent.json",
+      "bytes": 2729,
+      "sha256": "40f043cbd0a34a771999327671fa4a7cb76de4fa3c91a3389b913d3fc3402b22",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-terminal-metadata-proof.json",
+      "bytes": 2721,
+      "sha256": "d13590179752a3b4d84bfe0c283afebd677bd4ab6760e6c5a8ee71ad9c891c9d",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-operation-stop.json",
+      "bytes": 1096,
+      "sha256": "89585f71abc74d6656157e95453e0b297d29d44861e65e4a67d003d3e286780e",
+      "verified": true
+    }
+  ],
+  "actual_diff_scope_independently_verified": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "old_bytes": 31137,
+      "old_sha256": "6e730bd7d56684ba5c5586ab77871c570ad85af3f9ea785743ff444b5bbf8b9c",
+      "new_bytes": 33788,
+      "new_sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7",
+      "changed_top_level_AST_nodes": [
+        "bounded_command",
+        "main",
+        "pipe_read",
+        "progress_state",
+        "transport_initial",
+        "validate_record"
+      ],
+      "added_lines": 68,
+      "removed_lines": 26,
+      "unified_diff_sha256": "834ac4a986485bdcecb6077c19e8ac5fd168404effd2dcc7a699f030c422b9ef"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "old_bytes": 19563,
+      "old_sha256": "70713595f5f1cdc138a75809b6c55370d77393f016aac7b76ad4cdbec45ce61e",
+      "new_bytes": 25975,
+      "new_sha256": "b8d19bafd48ed14f51588b5ec5ecc2b1d91c3640e3dee14f8e74b9a6a5db7df0",
+      "changed_top_level_AST_nodes": [
+        "Controls",
+        "[Name(id='GOV', ctx=Store())]",
+        "driver_main_control"
+      ],
+      "added_lines": 81,
+      "removed_lines": 20,
+      "unified_diff_sha256": "07809b6b2bef299ae67e609ceeeba4b0d27dd7499ef54981f0a34723bf2e1173"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "old_bytes": 10483,
+      "old_sha256": "0c49397576042a9881cbfa001d36b5d1c5dbe7c139fdddb34e1bc880076fb2c6",
+      "new_bytes": 12150,
+      "new_sha256": "3296d05e6086af0bf104076bad5e31ac66c9015d62b949a754a257f279139b37",
+      "changed_top_level_AST_nodes": [
+        "Lines",
+        "main"
+      ],
+      "added_lines": 44,
+      "removed_lines": 23,
+      "unified_diff_sha256": "ccb01cc77606eae7bad35b1013a953aef01d57c4286a2d7f86ff054bb5e3b4c5"
+    }
+  ],
+  "Root_payload_equals_actual_driver": true,
+  "F2_closure": [
+    "Observed primary/drain/combined bytes and digests survive cap/timeout/read errors",
+    "Real cap+1 plus drain counts/hash checked and retained in Root closed handoff",
+    "Real seven-byte timeout count/hash retained",
+    "Reader error plus drain preserves progress with unverified completeness/custody",
+    "Observation integer limits do not enlarge listing/archive payload acceptance; failed/partial reads are not interpreted"
+  ],
+  "F1_fixed_subparts": [
+    "Physical EOF separated from reader completion/error/cap/queue flags",
+    "Final custody conservative on incomplete capture",
+    "Zero observed stages no longer prove no transport",
+    "Unjoined reader active buffered lock not synchronously closed"
+  ],
+  "executed_suite": {
+    "methods": 32,
+    "failures": 0,
+    "errors": 0,
+    "positive_checks": 35,
+    "negative_checks": 107,
+    "bounded_owned_Python_children": 19,
+    "acquisition_requests": 0,
+    "native_credit": 0,
+    "counts_nonadditive": true
+  },
+  "additional_reviewer_controls": {
+    "adapter_buffered_error_reproduction": true,
+    "actual_driver_main_buffered_error_reproduction": true,
+    "additional_real_processes": 0,
+    "mocked_child_only": true,
+    "memory_only_Root_storage": true,
+    "actual_Root_writes": 0,
+    "API_requests": 0,
+    "reader_threads_joined": true,
+    "not_added_to_suite_counts": true
+  },
+  "author_observations_not_repeated": {
+    "startup_processes": 2,
+    "historical_help_process": 1,
+    "historical26P_and_corrective31P_not_aggregated": true
+  },
+  "source_context": {
+    "current_raw_producer_bindings_rechecked_by_suite": 11,
+    "source_checkpoint_Git_bindings": "Unchanged prior independently verified context; no new Git command in this targeted turn",
+    "unchanged_metadata_API_version_endpoints_caps_budgets_admission_report_readers": true
+  },
+  "Root_facts_result_when_checked": {
+    "expected_recovery_admission_unborn": true,
+    "terminal_recovery_facts_unborn": true,
+    "outside_operation_result_unborn": true
+  },
+  "limits": {
+    "targeted_latest_F1_F2_and_consequential_capture_admission_only": true,
+    "fourth_broad_story_review": false,
+    "writes_only_three_new_reviewer_files": true,
+    "author_and_old_review_records_immutable": true,
+    "Root_seventh_manifest_not_written": true,
+    "source_helper_test_driver_Spec_Root_fact_result_or_old_record_changes": false,
+    "actual_acquisition_help_API_ZIP_resources_CI_DB_RPC_provider_deployment": false,
+    "raw_payload_persistence": false,
+    "bytecode_cache_files": false,
+    "execution_or_publication_authority": false
+  },
+  "remaining_conditions": [
+    "Fix remaining F1 buffered known-error admission, refreeze and independently confirm targeted closure",
+    "Reuse unchanged F2 fix only with exact provenance",
+    "Actual Root posthoc once-admission and separate execution activation remain pending",
+    "Later offline High exact-three publication needs separate grant",
+    "Consumed P33 not retried; old listing UNKNOWN0or1 and old cause UNKNOWN",
+    "43 DB and14 browser causes unresolved; no normal/native acceptance"
+  ],
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/original-report.md",
+    "bytes": 8104,
+    "sha256": "7323045a1e15cda7626839b97ed4feb4321dd77e579de6e95e9076c86b05a098"
+  },
+  "normal_acceptance_credit": 0,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false
+}

@@ -19,7 +19,7 @@ export async function PUT(request: Request) {
   const input = await request.json().catch(() => null) as { category?: unknown; channel?: unknown; enabled?: unknown } | null;
   if (!input || typeof input.category !== "string" || (input.channel !== "in_app" && input.channel !== "email") || typeof input.enabled !== "boolean") return NextResponse.json({ error: "Invalid preference" }, { status: 400 });
   const category = notificationPreferenceCategory(input.category);
-  if (!category || (category.essential && !input.enabled)) return NextResponse.json({ error: "Required notifications cannot be disabled" }, { status: 422 });
+  if (!category || !(category.channels as readonly string[]).includes(input.channel) || (category.essential && !input.enabled)) return NextResponse.json({ error: "Invalid notification preference" }, { status: 422 });
   const db = await createSupabaseServerClient();
   const { error } = await db.from("notification_preferences").upsert({ tenant_id: context.data.tenantId, user_id: context.data.userId, category: input.category, channel: input.channel, enabled: input.enabled, updated_at: new Date().toISOString() }, { onConflict: "tenant_id,user_id,category,channel" });
   if (error) return NextResponse.json({ error: "Could not save preference" }, { status: 500 });

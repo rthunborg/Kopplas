@@ -1,0 +1,353 @@
+{
+  "schema": "story-15-5-targeted-C4-CONFIG01-closure-review-v1",
+  "verdict": "PASS_PLAN_ONLY_C4_GAPS_CLOSED",
+  "reviewer": {
+    "identity": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "BuildHigh/source/correction author",
+      "Root"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_claim": false,
+    "nested_work": []
+  },
+  "scope": {
+    "head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+    "partial_source": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+    "kind": "Only C4-CONFIG-01 exact early-return correction",
+    "prior_context": "Strict34/C4-JOB01, queue/wrapper and C1-C7/F1 reused unchanged, not reopened",
+    "broad_review_rounds_retained": 3,
+    "policy_version": "2026-10-19",
+    "normal_acceptance_credit": 0
+  },
+  "frozen_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/correction.json",
+      "bytes": 4949,
+      "sha256": "6b7f7f0e725a18a5e46fdf4cd95e80d4b688b95ad15afddcd995ec8ba461f0f9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/bindings.json",
+      "bytes": 13242,
+      "sha256": "6900f4f61e88ba367aa1e5a35b92b924c462a2de9993fbc11b6cee42c2d3de2a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/manifest.json",
+      "bytes": 1264,
+      "sha256": "75b4509a76e750b9d89059f45285759208e2754a9965c2543500fc5efa585704"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/guard.config.mjs",
+      "bytes": 1178,
+      "sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/probe-results.json",
+      "bytes": 4799,
+      "sha256": "bcaeb077eb2be0bf9d1415f0dde142b69a5b58ced94fbea733855e26263e5343"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-job-wide-c4-config01-correction-admission.json",
+      "bytes": 976,
+      "sha256": "b329916d23d1370a0dadaab6bbc24b66f464c37d2e526b6a05a8d13690e7641e"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "verified_vector": {
+    "bindings_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/bindings.json",
+      "bytes": 13242,
+      "sha256": "6900f4f61e88ba367aa1e5a35b92b924c462a2de9993fbc11b6cee42c2d3de2a"
+    },
+    "source_rows": 23,
+    "installed_refs": 10,
+    "frozen_refs": 9,
+    "all_raw_bytes_SHA_verified": true,
+    "source_HEAD_objects_and_explicit_CRLF_to_LF_verified": true,
+    "proposal_manifest_members_rehashed": 7,
+    "not_claimed": "No new73-path whole-source or full unchanged review; exact frozen23 context vector verified."
+  },
+  "direct_installed_refs": [
+    {
+      "path": "node_modules/vitest/package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/defaults.9aQKnqFk.js",
+      "bytes": 2190,
+      "sha256": "e500ba917d0d320a037b4ad92ae691462b50a939e21b1f98d0073c45d55466ab"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/index.DXx9Dtk7.js",
+      "bytes": 7330,
+      "sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js",
+      "bytes": 495252,
+      "sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/base.BE3cXZj3.js",
+      "bytes": 8972,
+      "sha256": "51b3c786fb87ab41d6ecefb8df4a3f0e51d77ca27d3033c710c4158b6f198262"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/package.json",
+      "bytes": 1156,
+      "sha256": "f65bab94ffa60ceff123e4aed2dc88a8f62d522391244d5aff1eef57d802c614"
+    },
+    {
+      "path": "node_modules/typescript/package.json",
+      "bytes": 3620,
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    },
+    {
+      "path": "node_modules/vitest/dist/config.d.ts",
+      "bytes": 4163,
+      "sha256": "88ba2660f5b024c7afd02ea700bc0c677687e17e34f0a94c3256ddb55e0f1c5d"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/plugin.d.DwFIiJ7i.d.ts",
+      "bytes": 1194,
+      "sha256": "e53757f3e6688e8be16b36ccbeedc85637e607353fc67ff7b6665d6005aeaa12"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js",
+      "bytes": 54974,
+      "sha256": "e509f3cc1bd81ae6426265253fa926cbde02be5cebfe35b1df422017bffdca31"
+    }
+  ],
+  "prior_frozen_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/refinement.json",
+      "bytes": 9134,
+      "sha256": "94e0c70758fefe97fee429c2627836b319f2c249513765da37dfbd9948c67c5a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/bindings.json",
+      "bytes": 13181,
+      "sha256": "bd60202b486fc34bb8df5e79fb91f79a4f189d05483b4f07e6c65df9a419118b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/manifest.json",
+      "bytes": 2197,
+      "sha256": "14778fe1ca466f9008954aa9dcd6fe1e911fc752bae599f80a5adc88fab8329d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/guard.config.mjs",
+      "bytes": 1226,
+      "sha256": "f3251da24dc3bcab9ce9e4597e7540a167b73f5759ebb343677be5e36e96fc4c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/caller-contract-controls.mjs",
+      "bytes": 5919,
+      "sha256": "43c606bc428cf441f0c7f94e2a84ab42023856358967d973dce1a22ee8ac87d8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/caller-contract-results.json",
+      "bytes": 10338,
+      "sha256": "6fe52ba609833d0d5ff112f2701ae645c29582634cdf5817b171292ab9dce444"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-job01-correction-review/original-report.md",
+      "bytes": 4213,
+      "sha256": "63ee05a546981aac5167d25d802e8fb211f1b5ee6aaadeda2db5cc11aab7d9b1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-job01-correction-review/original-attestation.json",
+      "bytes": 13034,
+      "sha256": "fa0f5f532018eaa77f9d2409af6f7d1899e1b711a368473425c4e271eb108baf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-job-wide-c4-job01-correction-review-admission.json",
+      "bytes": 825,
+      "sha256": "787ced5ef87e20eeb8691bb449ac053b8679f0a792a03842659c4219f68b4bf5"
+    }
+  ],
+  "closure": {
+    "finding": "C4-CONFIG-01",
+    "status": "CLOSED_AT_PLAN_LEVEL",
+    "exact_delta": "Remove only parallel-project-name early return; full predicate bytes unchanged.",
+    "hook_guarantee": "Each selected project with inherited plugin invokes full predicate; missing parallel no longer bypasses its validator. Zero selected projects has no test effects and installed runner no-project handling remains.",
+    "preserved_predicate": "Exact named two projects; parallel isolate true/fileParallelism true/group0/project.config.maxWorkers not1; serial isolate true/fileParallelism false/maxWorkers1/group1/bail1.",
+    "timing": "Previously inspected installed resolveProjects assignment precedes configureVitest loop; globalSetup/test execution later. No timing change here.",
+    "remaining_findings": []
+  },
+  "independent_pure_control": {
+    "kind": "Exact old/new guard comparison plus corrected supported predicate/hook executed in memory",
+    "native_exit": 0,
+    "checks": 8,
+    "passed": 8,
+    "failed": 0,
+    "one48byte_substring_removal": true,
+    "serial_only_parallel_only_extra_each_project_refused": true,
+    "supported_each_project_accepted": true,
+    "predicate_unchanged": true,
+    "app_runner_SQL_network": 0
+  },
+  "author_installed_probe_evidence": {
+    "ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/probe-results.json",
+      "bytes": 4799,
+      "sha256": "bcaeb077eb2be0bf9d1415f0dde142b69a5b58ced94fbea733855e26263e5343"
+    },
+    "runs": [
+      {
+        "name": "supported",
+        "argv": [
+          "node",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+          "run",
+          "--config",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\guard.config.mjs",
+          "--configLoader",
+          "runner",
+          "--reporter=default",
+          "--reporter=json"
+        ],
+        "config_sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f",
+        "native_exit": 0,
+        "elapsed_seconds": 0.774,
+        "stdout_bytes": 2161,
+        "stdout_sha256": "6b1734fe2f0938daaf2e9a5fcb6b43d343786774f22376e2f52d36b1b15660bd",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed_unsupported_stop": false,
+        "serial_module_import_observed": true,
+        "serial_hook_observed": true,
+        "parallel_body_observed": true,
+        "summary": {
+          "numTotalTests": 3,
+          "numPassedTests": 3,
+          "numFailedTests": 0,
+          "numPendingTests": 0
+        }
+      },
+      {
+        "name": "serial-only",
+        "argv": [
+          "node",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+          "run",
+          "--config",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\guard.config.mjs",
+          "--configLoader",
+          "runner",
+          "--reporter=default",
+          "--reporter=json",
+          "--project=integration-audit-ddl"
+        ],
+        "config_sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f",
+        "native_exit": 1,
+        "elapsed_seconds": 0.38,
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 1928,
+        "stderr_sha256": "5672efaee8c3fc3b1ba41de7336cdf90b8e729c4e03b5a44a21a69d8aa01cda6",
+        "fixed_unsupported_stop": true,
+        "serial_module_import_observed": false,
+        "serial_hook_observed": false,
+        "parallel_body_observed": false,
+        "summary": null
+      },
+      {
+        "name": "parallel-only",
+        "argv": [
+          "node",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+          "run",
+          "--config",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\guard.config.mjs",
+          "--configLoader",
+          "runner",
+          "--reporter=default",
+          "--reporter=json",
+          "--project=integration-parallel"
+        ],
+        "config_sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f",
+        "native_exit": 1,
+        "elapsed_seconds": 0.374,
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 1928,
+        "stderr_sha256": "5672efaee8c3fc3b1ba41de7336cdf90b8e729c4e03b5a44a21a69d8aa01cda6",
+        "fixed_unsupported_stop": true,
+        "serial_module_import_observed": false,
+        "serial_hook_observed": false,
+        "parallel_body_observed": false,
+        "summary": null
+      },
+      {
+        "name": "extra-project",
+        "argv": [
+          "node",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+          "run",
+          "--config",
+          "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-c4-config01-correction\\extra-project.config.mjs",
+          "--configLoader",
+          "runner",
+          "--reporter=default",
+          "--reporter=json"
+        ],
+        "config_sha256": "f88790de8829a8d6a7ac3c5631b9126b64f02cd297667f2c1dba926cf37567f8",
+        "native_exit": 1,
+        "elapsed_seconds": 0.43,
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 1928,
+        "stderr_sha256": "5672efaee8c3fc3b1ba41de7336cdf90b8e729c4e03b5a44a21a69d8aa01cda6",
+        "fixed_unsupported_stop": true,
+        "serial_module_import_observed": false,
+        "serial_hook_observed": false,
+        "parallel_body_observed": false,
+        "summary": null
+      }
+    ],
+    "independent_reexecution": false,
+    "observations": "Supported3P; selected serial-only, parallel-only and extra each fixed native1/no import-hook-body-report. Retained synthetic controls, not normal native/backend proof.",
+    "history": "Prior assembly/CLI1/caught-counterexample histories remain frozen through verified refs, not overwritten or added to counts."
+  },
+  "exact_six_prospective_source_paths": [
+    "vitest.config.ts",
+    "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "implementation_conditions": [
+    "Implement unconditional full resolved predicate in existing config plugin, with inherited hook present on selected projects. No condition on a required project that might be absent.",
+    "Actual-source/installed controls must retain supported success and missing-parallel/missing-serial/extra/explicit-project1/parallel-disabled/bail0 refusals before setup/import. CPU/CLI-effective1 alone is not the unsupported project property.",
+    "Keep strict current34 direct import/callback/top-level-await/enrollment contract and catch/finally-return/void/wrapper/binding inverses; all six serial files exactly once after parallel, no successful95 case suppression.",
+    "Implement reviewed unsuccessful/uncertain committed-DB-runtime custody retention and no key DELETE/readback; preserve setup rollback, browser/diagnostic, bounded owned stopping/db close and healthy cleanup.",
+    "Wrapper contract path only changes reviewed SHA pin; Spec author preserves kernel/counter3/in-review evidence. No new protocol, collector, backend termination, app/schema/helper/factory or runner-source capability.",
+    "Targeted committed-delta High review plus pending cumulative partial-source review after actual implementation; then separately authorized exact-head native gates."
+  ],
+  "effects_split": {
+    "now": "Read-only input/source/installed metadata verification and one in-memory eight-check control; only new review outputs written.",
+    "source_offline_after_allocation": "Exact6 authored changes with meaningful AST/config/wrapper controls and static/process checks; no runtime authorization.",
+    "future_native": "Separate exact-head normal CI ownership/activation; required all95/full DB/RLS/browser/recovery, actual settlement/canonical/key custody evidence. No inferred rollback/restoration or unexecuted coverage."
+  },
+  "limits": {
+    "normal_acceptance_credit": 0,
+    "API019_privacy_browser_flaky_custody": "Remain open",
+    "applied_migrations": "Immutable",
+    "source_Spec_state_Git_mutation": 0,
+    "network_env_SQL_connections_CI_resources": 0,
+    "execution_authority": false
+  },
+  "report": {
+    "path": "original-report.md",
+    "bytes": 3733,
+    "sha256": "63e55e6f6f2f491835d9102f1890f707878ec67e2d8f956365c85aaa0fe41a67"
+  }
+}

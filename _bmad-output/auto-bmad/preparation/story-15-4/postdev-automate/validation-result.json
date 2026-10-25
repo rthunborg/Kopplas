@@ -1,0 +1,341 @@
+{
+  "kind": "postdev-automate-artifact-validation",
+  "status": "PASS",
+  "checks_passed": 52,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "input hash .env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\report.json",
+      "passed": true,
+      "detail": "d92811e5c91ae4429fd14e40d5a68a32adc3c7b87cb4c166cdcea88ffc54a360"
+    },
+    {
+      "name": "input hash .env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\sha256-manifest.json",
+      "passed": true,
+      "detail": "d3558fc2b6a98f1ac4fdf32eff6b497a9ea28dcc367ff6bd1c64bb4b8479733a"
+    },
+    {
+      "name": "input hash _bmad-output\\auto-bmad\\preparation\\story-15-4\\sourcefreeze-ci-followup-d798b286.json",
+      "passed": true,
+      "detail": "e575391c9df265a21df890ba02dc1ea9dc1c538aada289e14325a9f0946afe17"
+    },
+    {
+      "name": "input hash _bmad-output\\auto-bmad\\delivery\\15-4-time-reporting-filing-timesheet-review.json",
+      "passed": true,
+      "detail": "acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6"
+    },
+    {
+      "name": "input hash _bmad-output\\auto-bmad\\preparation\\story-15-4\\development-completion-cad4d37f\\truth-audit\\final-audit.json",
+      "passed": true,
+      "detail": "0bb6a1cbb414ead7d3404efc08c72632268c5fee8a39c71a5bffba2857155e29"
+    },
+    {
+      "name": "input hash _bmad-output\\implementation-artifacts\\spec-15-4-time-reporting-filing-timesheet-review.md",
+      "passed": true,
+      "detail": "2b112ecee170676c8468d246dbbe695f4d07f040c76b3f1c3c2710fc43400c0c"
+    },
+    {
+      "name": "190 immutable packet file bindings",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "60 current source raw hashes",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "60 current/checkpoint/reviewed Git blob identities",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "approved LF kernel preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nine approved ACs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "CI identity/checkpoint/attempt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all five required jobs successful",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "release validation false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native full unit counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "43 process tests",
+      "passed": true,
+      "detail": [
+        2,
+        26,
+        10,
+        5
+      ]
+    },
+    {
+      "name": "full integration executed counts / skips not credited",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native source suite tests/integration/commands/time-reports.int.test.ts",
+      "passed": true,
+      "detail": {
+        "expected": 11,
+        "actual": 11
+      }
+    },
+    {
+      "name": "source/native title inventory tests/integration/commands/time-reports.int.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no committed story skips/focus tests/integration/commands/time-reports.int.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native source suite tests/integration/rls/time-reports.rls.test.ts",
+      "passed": true,
+      "detail": {
+        "expected": 7,
+        "actual": 7
+      }
+    },
+    {
+      "name": "source/native title inventory tests/integration/rls/time-reports.rls.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no committed story skips/focus tests/integration/rls/time-reports.rls.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native source suite tests/integration/read-models/time-reports.int.test.ts",
+      "passed": true,
+      "detail": {
+        "expected": 7,
+        "actual": 7
+      }
+    },
+    {
+      "name": "source/native title inventory tests/integration/read-models/time-reports.int.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no committed story skips/focus tests/integration/read-models/time-reports.int.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native source suite tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "passed": true,
+      "detail": {
+        "expected": 13,
+        "actual": 13
+      }
+    },
+    {
+      "name": "source/native title inventory tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no committed story skips/focus tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native source suite tests/integration/components/time-reports.test.ts",
+      "passed": true,
+      "detail": {
+        "expected": 18,
+        "actual": 18
+      }
+    },
+    {
+      "name": "source/native title inventory tests/integration/components/time-reports.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no committed story skips/focus tests/integration/components/time-reports.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unit titles reached native passing TAP action-state.test.ts",
+      "passed": true,
+      "detail": 7
+    },
+    {
+      "name": "no committed unit skips/focus action-state.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unit titles reached native passing TAP domain.test.ts",
+      "passed": true,
+      "detail": 6
+    },
+    {
+      "name": "no committed unit skips/focus domain.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unit titles reached native passing TAP validation.test.ts",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "no committed unit skips/focus validation.test.ts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "17 first-pass browser bodies",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "three story browser cases",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "76 distinct existing story cases",
+      "passed": true,
+      "detail": {
+        "real_DB": 38,
+        "component": 18,
+        "pure": 17,
+        "browser": 3
+      }
+    },
+    {
+      "name": "separate physical Storage actual1P0F0S",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "serial DDL actual order and nonoverlap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "six owned release deferrals retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "independent final truth audit reused",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "worker schema and zero-generation api",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "worker nine-AC map api",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "worker schema and zero-generation e2e",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "worker nine-AC map e2e",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "aggregate zero-generation and existing counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "summary workflow completion and required sections",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "summary Markdown hygiene",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "current_head_observed": "92dbbef351b694ea58138bee73091c4e9c4cdcaf",
+  "qualified_ci_head": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+  "source_paths_verified": 60,
+  "source_git_revisions_verified": 3,
+  "packet_files_verified": 190,
+  "input_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\report.json",
+      "sha256": "d92811e5c91ae4429fd14e40d5a68a32adc3c7b87cb4c166cdcea88ffc54a360"
+    },
+    {
+      "path": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\sha256-manifest.json",
+      "sha256": "d3558fc2b6a98f1ac4fdf32eff6b497a9ea28dcc367ff6bd1c64bb4b8479733a"
+    },
+    {
+      "path": "_bmad-output\\auto-bmad\\preparation\\story-15-4\\sourcefreeze-ci-followup-d798b286.json",
+      "sha256": "e575391c9df265a21df890ba02dc1ea9dc1c538aada289e14325a9f0946afe17"
+    },
+    {
+      "path": "_bmad-output\\auto-bmad\\delivery\\15-4-time-reporting-filing-timesheet-review.json",
+      "sha256": "acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6"
+    },
+    {
+      "path": "_bmad-output\\auto-bmad\\preparation\\story-15-4\\development-completion-cad4d37f\\truth-audit\\final-audit.json",
+      "sha256": "0bb6a1cbb414ead7d3404efc08c72632268c5fee8a39c71a5bffba2857155e29"
+    },
+    {
+      "path": "_bmad-output\\implementation-artifacts\\spec-15-4-time-reporting-filing-timesheet-review.md",
+      "sha256": "2b112ecee170676c8468d246dbbe695f4d07f040c76b3f1c3c2710fc43400c0c"
+    }
+  ],
+  "workers": [
+    {
+      "path": "_bmad-output\\auto-bmad\\preparation\\story-15-4\\postdev-automate\\tea-automate-api-tests-2026-10-20T12-08-37-492Z.json",
+      "bytes": 22365,
+      "sha256": "48dacf02d15ab9253616f47d76e3a56e9b4051360a9fa853fac67839329012a3"
+    },
+    {
+      "path": "_bmad-output\\auto-bmad\\preparation\\story-15-4\\postdev-automate\\tea-automate-e2e-tests-2026-10-20T12-08-37-492Z.json",
+      "bytes": 27791,
+      "sha256": "b0065c39348bf30b41176cded08de0f468a1afb96aa51df321abae46c4c9d60c"
+    }
+  ],
+  "new_product_tests": 0,
+  "runtime_test_runs": 0,
+  "resources_started": 0,
+  "source_or_spec_mutations": 0,
+  "release_ready": false
+}

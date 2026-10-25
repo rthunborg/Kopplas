@@ -1,0 +1,29 @@
+{
+  "kind": "EXACT_TWO_PATH_DISCOVERY_ORDER_UNIT_FIX_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15db1-890c-73a0-8d4a-0b1d2cc3dfc5",
+  "grant_tool": "exec-ce2a8056-e45e-42d5-b75a-2f3a1e70832d",
+  "final_message": "msg_0954b60b44796db1016ad87f748b9c8191bc4e42d8611696da",
+  "baseline_head": "f0b1e5735872ba2effcd7c1480756326125f6752",
+  "unit_path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+  "unit_raw_bytes": 8628,
+  "unit_raw_sha256": "0556b02982fcf2b66d4ecf3f2c06828ea83f13a4a310555e9a6cd7c96c4c555e",
+  "unit_HEAD_blob": "b109fe505ab12e755289170802cbda503025a0a5",
+  "hunks": "OnlyorderedserialdeepEqual -> existingassertExactPartition(serialCollected,[...ddlFiles].sort()); existingnegativecase shuffle/reverseacceptance/missingduplicaterejection",
+  "spec_path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+  "spec_scope": "rationale/SRO/evidenceONLY; approvedkernelunchanged",
+  "preserve": "EXACT6uniqueDDLmembership/parallel exclusion/group0to1/fileParallelismfalse/teardown/settings/allotherassertions",
+  "exclusions": "NoVitestconfig/executionsemantics/app/schema/migration/dependency/foreigncheckout/provider/default/mainmerge/deploy/monitorresume",
+  "required": "Highauthor; focusedWindowsLinux/fullLinux; distincttargetedcommitteddeltaHighreview beforeRootcheckpointpush; freshdiagnosticretryunderactualnewheadUUIDonceintentbindings only",
+  "actual_local_evidence": {
+    "tests": 3179,
+    "passed": 3178,
+    "failed": 1,
+    "skipped": 0,
+    "suites": 103,
+    "provenance_sha256": "867272b829bd7575b039ce274cfca4da9781b72fc869562724f91a920c9b0d28"
+  },
+  "hosted_cause": "UNKNOWN",
+  "DB43_browser14_gaps": "UNRESOLVED",
+  "normal_acceptance_credit": 0
+}

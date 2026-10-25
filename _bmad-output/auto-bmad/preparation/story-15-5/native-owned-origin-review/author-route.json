@@ -1,0 +1,27 @@
+{
+  "kind": "author-postimplementation-route-binding",
+  "baseline": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "source": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "root_implementation_route_recorded_before_handoff": "build-native-owned-origin-diagnostic-repair/build-author-bounded-owned-issuance-and-assertion-origins",
+  "root_review_route_recorded_before_dispatch": "review-native-owned-origin-latest-four/independent-context-free-owned-origin-and-rls-assertion-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "exact_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-owned-origin-diagnostic-repair.json",
+    "bytes": 4462,
+    "sha256": "76a6c87a3e87fac2b36b3b231b4de09461a691ae5ad2ca480e3f090d47a09d0a"
+  },
+  "authored_after_implementation": true,
+  "does_not_claim_preedit_artifact_bytes": true,
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "latest_serious_fix_only": true,
+  "fourth_broad_review": false,
+  "scope": "Compile-time matcher/token/HTTP origins; already-consumed issuance enum classification; four RLS001 allowed-subject assertions through synchronous once-call wrapper; six bounded controls and author trail. No native error/matcher argument inspection, operation/query/RPC/client/then/pool/principal/authority/result/settlement/custody/sharedcase/UI change. All43 causes and first actual branches unknown. Outcomes localize failed contracts only; ambiguous/uninstrumented outcomes require targeted cause-proof proposal, never assumed opaque retry."
+}

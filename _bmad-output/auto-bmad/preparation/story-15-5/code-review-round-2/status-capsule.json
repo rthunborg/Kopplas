@@ -1,0 +1,26 @@
+{
+  "story": "15.5",
+  "source_head": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "completed_review_rounds": 2,
+  "review_cap": 3,
+  "completed_layers": 6,
+  "triage_sha256": "16d7c37aa94cdab2fbc3ca40cee536ad342e48579160f4346539d5a01a133867",
+  "original_report_sha256": {
+    "blind-original.md": "7f861610373f5ab80896e4925f6c2ababc68a09d2179352a491f4cefce3d3c61",
+    "edge-original.md": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "verification-original.md": "d545c9f35e351fbc69496624e77f85a2d776d2350e91cf47a5207ea1d65ca3a0",
+    "intent-original.md": "945d34d8a066d6d6363f8ee6305f9b55f31552619550af7f64760db77f4ea3cc",
+    "security-original.md": "2557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5",
+    "external-report.md": "2557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5"
+  },
+  "external_native_exit": 0,
+  "external_observed_model": "gpt-6.1-sol",
+  "external_observed_effort": "high",
+  "unique_findings": 2,
+  "R2-01": "Source migration fix held for Coordinator SAME High source creator ADMIN versus recovery SupAdmin NOADMIN clarification. No new transactional test-role effect allocated or written.",
+  "R2-02": "Already allocated SAME High browser author active on exactly the two E2E files; actual production issuance/competing action/automatic refresh regression, no runtime launch.",
+  "main_author": "Separate R1/R2 chronology and held disposition prepared; no role or browser-child-file writes.",
+  "native_runtime": "Required exact-head CI DB/RLS/HTTP/browser/recovery and actual installed collection pending. No resource launched and no acceptance pass claimed.",
+  "next_review": "Final automatic Round 3, restricted to latest fixes and consequential regressions; unchanged completed reviews reused. No fourth broad review.",
+  "completion": "Spec remains in-review; no delivery record or development-complete claim."
+}

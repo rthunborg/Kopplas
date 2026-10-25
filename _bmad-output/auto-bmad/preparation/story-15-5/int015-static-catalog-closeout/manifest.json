@@ -1,0 +1,148 @@
+{
+  "status": "CLOSED_EVIDENCE_ONLY_NO_EXECUTION_AUTHORITY",
+  "copies": [
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/unit-source-catalog.json",
+      "source_pin": {
+        "bytes": 76870,
+        "sha256": "2bc70be7214ba27e843a195fbf594033861c75a7b886e12ae4088d06fd0d8602",
+        "LF_bytes": 76870,
+        "LF_sha256": "2bc70be7214ba27e843a195fbf594033861c75a7b886e12ae4088d06fd0d8602",
+        "LF_Git_blob_SHA1": "3ffd9cf06267647fc897c08f57d418311add31b3"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-static-catalog-closeout/catalog.json",
+      "tracked_pin": {
+        "bytes": 76870,
+        "sha256": "2bc70be7214ba27e843a195fbf594033861c75a7b886e12ae4088d06fd0d8602",
+        "LF_bytes": 76870,
+        "LF_sha256": "2bc70be7214ba27e843a195fbf594033861c75a7b886e12ae4088d06fd0d8602",
+        "LF_Git_blob_SHA1": "3ffd9cf06267647fc897c08f57d418311add31b3"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/result.json",
+      "source_pin": {
+        "bytes": 2935,
+        "sha256": "542e6549d62024a6fae21287732334588c5fea93c78aa42e16783986dfe95e72",
+        "LF_bytes": 2935,
+        "LF_sha256": "542e6549d62024a6fae21287732334588c5fea93c78aa42e16783986dfe95e72",
+        "LF_Git_blob_SHA1": "c3e8b1e8c0a6f7e48208fde5e56daf7b997a2aa9"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-static-catalog-closeout/actual-native-result.json",
+      "tracked_pin": {
+        "bytes": 2935,
+        "sha256": "542e6549d62024a6fae21287732334588c5fea93c78aa42e16783986dfe95e72",
+        "LF_bytes": 2935,
+        "LF_sha256": "542e6549d62024a6fae21287732334588c5fea93c78aa42e16783986dfe95e72",
+        "LF_Git_blob_SHA1": "c3e8b1e8c0a6f7e48208fde5e56daf7b997a2aa9"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-static-catalog-v4-independent-source-review.json",
+      "source_pin": {
+        "bytes": 12571,
+        "sha256": "aa4bff3793af97295a4ca2bbf0bece57d7e9c069036e368dee8f4195e0d0a73b",
+        "LF_bytes": 12465,
+        "LF_sha256": "39ff04f1fb2a8d87e9b729c4ae935b4fa4cc21d3eabe711cc3d068569197de14",
+        "LF_Git_blob_SHA1": "2c448578d5bc802e342b6c54a1068f828f15ac7e"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-static-catalog-closeout/source-review.json",
+      "tracked_pin": {
+        "bytes": 12571,
+        "sha256": "aa4bff3793af97295a4ca2bbf0bece57d7e9c069036e368dee8f4195e0d0a73b",
+        "LF_bytes": 12465,
+        "LF_sha256": "39ff04f1fb2a8d87e9b729c4ae935b4fa4cc21d3eabe711cc3d068569197de14",
+        "LF_Git_blob_SHA1": "2c448578d5bc802e342b6c54a1068f828f15ac7e"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-static-catalog-v4-actual-publication-qualification.json",
+      "source_pin": {
+        "bytes": 12410,
+        "sha256": "d3f2ae2f59e0b48e63ba44444163247f950fadfabb527e0810800ac7bbc8b01b",
+        "LF_bytes": 12255,
+        "LF_sha256": "c8864aaaeb704725aeacb78a4cd7f67355a3fce2cbf037e91704889b66cea9d3",
+        "LF_Git_blob_SHA1": "6405ad49ee3b67ead295687c1bd7ac6096299113"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/story-15-5/int015-static-catalog-closeout/actual-publication-qualification.json",
+      "tracked_pin": {
+        "bytes": 12410,
+        "sha256": "d3f2ae2f59e0b48e63ba44444163247f950fadfabb527e0810800ac7bbc8b01b",
+        "LF_bytes": 12255,
+        "LF_sha256": "c8864aaaeb704725aeacb78a4cd7f67355a3fce2cbf037e91704889b66cea9d3",
+        "LF_Git_blob_SHA1": "6405ad49ee3b67ead295687c1bd7ac6096299113"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    }
+  ],
+  "facts": {
+    "status": "QUALIFIED_STATIC_PUBLICATION_ONLY",
+    "source_commit": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+    "catalog": "_bmad-output\\auto-bmad\\preparation\\story-15-5\\int015-static-catalog-closeout\\catalog.json",
+    "catalog_source_raw_sha256": "2bc70be7214ba27e843a195fbf594033861c75a7b886e12ae4088d06fd0d8602",
+    "qualification": "_bmad-output\\auto-bmad\\preparation\\story-15-5\\int015-static-catalog-closeout\\actual-publication-qualification.json",
+    "Root_actual_read": "3e59f3/native0",
+    "static_rows": 450,
+    "fresh_wrapper_rows": 201,
+    "other19_reused_rows": 249,
+    "dynamic_exclusions_reused": 19,
+    "runtime_credit": 0,
+    "actual_native": "0/settled368.892ms/timeoutfalse",
+    "remaining_budget": 0,
+    "cumulative_refresh_Node": 3,
+    "cumulative_AST": 2,
+    "old448_19_199": "historical, not current aggregate",
+    "P5": "OPEN"
+  },
+  "private_retained_refs_not_copied": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog/result.json",
+      "bytes": 1929,
+      "sha256": "f7e4bb109550e2ac77f8adb37059901332fdb3e659e6c9951a9f4d6f628019fc",
+      "LF_bytes": 1889,
+      "LF_sha256": "bfb9e7839e16e073238d1495405199186d8ac15e505814670d1251339e7cbf13",
+      "LF_Git_blob_SHA1": "b0278e43d5ad36ec79c12a080a02b71def63e276"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v3/result.json",
+      "bytes": 2247,
+      "sha256": "8ea19a219b072eaa81d3c907fdf665f913ae5b4e30fb1a4fec41c7e081a7ecb2",
+      "LF_bytes": 2247,
+      "LF_sha256": "8ea19a219b072eaa81d3c907fdf665f913ae5b4e30fb1a4fec41c7e081a7ecb2",
+      "LF_Git_blob_SHA1": "992a9f5951a7ad18cc9f8af2271834aa0872aa65"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-static-catalog-publication-guard-recovery-assessment.json",
+      "bytes": 17897,
+      "sha256": "f4a9a68c75b9027a932061b0de5c041b515d89105640d1cab65d3bebae8959c3",
+      "LF_bytes": 17897,
+      "LF_sha256": "f4a9a68c75b9027a932061b0de5c041b515d89105640d1cab65d3bebae8959c3",
+      "LF_Git_blob_SHA1": "7fda1800fcce5903986949067d08c1cf31a2749c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-INT015-final-static-catalog-single-refresh-allocation-v4.json",
+      "bytes": 9012,
+      "sha256": "d7a31948f65386d9433d13ca4fa187dded2566eaefcdf2d6647f42c688c3f92d",
+      "LF_bytes": 8874,
+      "LF_sha256": "c80e543f145c2757aef7377401744b2e70a7d2adb1e2aa7e655e538699604d2d",
+      "LF_Git_blob_SHA1": "9eedd431056f352d24780d8eb8689ff1e4302c1b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/refresh-static-catalog.mjs",
+      "bytes": 5409,
+      "sha256": "f92b370cbb620bb84f5a26c3cfa0388e79482f9919170cd1c89bf5c033658471",
+      "LF_bytes": 5391,
+      "LF_sha256": "70a5abd37ea7c39b48d434fc7d147e51988a2280938cd83df4c01b4e1ca1e7a5",
+      "LF_Git_blob_SHA1": "de968146f8923a879d47fc550e2b3f07188599dc"
+    }
+  ],
+  "normalization": "Raw/LF/Git-blob pins are distinct; no raw equality across Git newline normalization. EOF-only changes/projection explicit per copy.",
+  "no_live_capabilities": "No executable operator/helper/refresh script, raw provider/ZIP/runtime log/SQL/capability or raw Git capture body copied. Historic allocations are evidence, not replay authority."
+}

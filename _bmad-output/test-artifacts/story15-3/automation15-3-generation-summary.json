@@ -1,0 +1,91 @@
+{
+  "detected_stack": "frontend",
+  "execution_mode": "BMad-Integrated / Create",
+  "requested_worker_mode": "auto",
+  "resolved_worker_mode": "subagent",
+  "api_tests": 0,
+  "e2e_tests": 0,
+  "backend_tests": 0,
+  "total_tests": 0,
+  "api_test_files": 0,
+  "e2e_test_files": 0,
+  "backend_test_files": 0,
+  "fixtures_created": 0,
+  "factories_created": 0,
+  "helpers_created": 0,
+  "dependencies_added": 0,
+  "priority_coverage": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "new_runtime_executions": 0,
+  "new_managed_resources": 0,
+  "healing_iterations": 0,
+  "playwright_utils_deviations": [],
+  "pactjs_utils_deviations": [],
+  "consequential_gaps": [],
+  "assessment_outcome": "No new test warranted; retain existing activated coverage without duplication",
+  "existing_counts": {
+    "focused_native_integration_lane": {
+      "command_DB": 17,
+      "resolver_RLS": 4,
+      "read_DB": 2,
+      "SSR_only": 2,
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "real_DB_RLS_bodies": 23
+    },
+    "focused_units": {
+      "fixed_declarations": 14,
+      "parameterized_DST_bodies": 2,
+      "actual_native_pass_bodies": 16,
+      "evidence": "16 explicit native TAP ok records verified in verify.log; 7resolver+3state+5suggestions+1attestation"
+    },
+    "full_native_units": {
+      "passed": 3020,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_integration": {
+      "declared": 1914,
+      "passed": 1862,
+      "failed": 0,
+      "explicit_skipped": 52
+    },
+    "RLS_nonadditive_subset": {
+      "passed": 812,
+      "skipped": 14
+    },
+    "real_default_authenticated_scheduling": 4,
+    "mock_projected_transport_no_DB_credit": 23,
+    "mock_host_boundaries_no_DB_credit": 13
+  },
+  "essential_existing_browser": {
+    "cases": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "retry_attempts": 0,
+    "flaky": 0
+  },
+  "focused_existing_assessed_priorities": {
+    "P0": 24,
+    "P1": 20
+  },
+  "priority_count_basis": "Assessments classify existing untagged current declarations; not new test counts. Extra two inherited regressions excluded from focused totals.",
+  "native_evidence_revision": "d550029abac34360af7d9d928f6e66f906665d38",
+  "current_head": "c67950dbd154126e1d3b04444d68764e3271479b",
+  "source_conserved": true,
+  "native_packet_conserved": true,
+  "workflow_completed": true,
+  "development_complete_claim": "No new development completion decision; reuse previously admitted unchanged story evidence",
+  "release_ready": false,
+  "performance_gain": "Not measured",
+  "worker_outputs": [
+    "automation15-3-api-assessment.json",
+    "automation15-3-e2e-assessment.json"
+  ]
+}

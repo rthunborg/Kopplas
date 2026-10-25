@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "kind": "INVOKER_ADAPTER_FAILED_NORMAL_NATIVE_SUMMARY",
+  "status": "QUALIFIED_FAILED_RUN_WITH_STARTUP_CAUSE_UNKNOWN",
+  "head_sha": "93473f1208f5b883b560903faf10348c205d2211",
+  "source_sha": "571f5014efc5edad9649b947c26d391a804afe66",
+  "run_id": 39587739462,
+  "attempt": 1,
+  "checkpoint_id": "705cfa7f-8bcd-4ef7-8675-bc8935e8da65",
+  "mode": "normal",
+  "release_validation": false,
+  "jobs": [
+    {
+      "id": 119180750134,
+      "name": "checkpoint-admission",
+      "conclusion": "success"
+    },
+    {
+      "id": 119180787237,
+      "name": "verify",
+      "conclusion": "success"
+    },
+    {
+      "id": 119182003188,
+      "name": "e2e",
+      "conclusion": "failure"
+    },
+    {
+      "id": 119182003204,
+      "name": "recovery-storage-loader",
+      "conclusion": "failure"
+    },
+    {
+      "id": 119182003304,
+      "name": "db",
+      "conclusion": "failure"
+    },
+    {
+      "id": 119182004635,
+      "name": "dashboard-e2e",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 119182849371,
+      "name": "fixed-chromium-application-verification",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 119182850191,
+      "name": "fixed-chromium-paired-probe",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 119182850619,
+      "name": "native-stream-probe",
+      "conclusion": "skipped"
+    }
+  ],
+  "verify": {
+    "Node": {
+      "tests": 3183,
+      "suites": 103,
+      "pass": 3183,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "story_Node_passed": 30,
+    "Python_batches": [
+      2,
+      26,
+      10,
+      5
+    ],
+    "Python_total_separate": 43,
+    "audit": "2Moderate;0High/Critical with successful blocking audit",
+    "installed_versions": {
+      "@supabase/supabase-js": "2.108.2",
+      "@playwright/test": "1.61.1",
+      "pg": "8.22.0",
+      "vite": "8.1.6",
+      "vitest": "4.1.9"
+    },
+    "focused_wrapper_native_count": null
+  },
+  "unexecuted": {
+    "story_Vitest": 51,
+    "story_browser": 14,
+    "fullDB_RLS_pilot": true,
+    "direct_recovery": 1
+  },
+  "artifacts": 0,
+  "startup_cause": "UNKNOWN; newmigration markers/statement0 and unmatched final error directives only; no guard or SQLSTATE qualified.",
+  "cleanup_custody_limits": {
+    "wrapper_lifecycle_receipts": 0,
+    "normal_wrapper_not_invoked": "Positive workflow step SKIPPED facts; no key or wrapper child launch credit/receipt invented from missing reports.",
+    "wrapper_runtime_key_outcome": "NOT_ATTEMPTED_BY_ENFORCED_SKIPPED_STEP",
+    "runtime_setupAuthority7_privacy4_readiness_group_settlement": "UNEXECUTED",
+    "CI_cleanup": "See actual cleanup job-step conclusions. Disposable hosted cleanup step success does not independently prove physical container shutdown; recovery cleanup commands contain masked outcomes.",
+    "migration_rollback_catalog_or_source_cleanup": "UNQUALIFIED_NOT_OBSERVED",
+    "local_managed_resources_started_by_qualifier": 0
+  },
+  "acquisition": "6logicalGETs:2job-logtransport failures,2successful terminalarchives (second explicitly admitted causal recovery,identicalSHA),1metadata,1emptyartifactlist. Raw bodies RAMonly.",
+  "private_packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-93473f12-ci-independent/native-qualification.json",
+      "bytes": 16364,
+      "sha256": "6752bace15d6fd5fe5dda91604779c6bc908773a8226ea761ccd833cf26ce125"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-93473f12-ci-independent/native-qualification.md",
+      "bytes": 2230,
+      "sha256": "d150668501998000eac94db0a45fc17a860f8b1433844f40fe65aa6bf42df0f8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-93473f12-ci-independent/manifest.json",
+      "bytes": 1921,
+      "sha256": "e98693552034dd4ceed9ea2c99cb70541e930fae15384aa8d9c2a07ccf949503"
+    }
+  ],
+  "source_provenance": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-93473f12-ci-independent/source-provenance.json",
+    "bytes": 2181,
+    "sha256": "81f65e656790bed7865d8494a783bbd057b782514c39efe7d2a381086666141c"
+  },
+  "observed_vs_proposed": {
+    "observed": "Three setup failures;30Node passed;65runtime story cases+directrecovery1 unexecuted.",
+    "source_fix_proposed": null,
+    "next_proof": "Actual startup error/guard condition under a separately owned evidence-supported route; no opaque normal rerun."
+  },
+  "normal_acceptance_credit": 0,
+  "development_complete": false,
+  "release_ready": false
+}

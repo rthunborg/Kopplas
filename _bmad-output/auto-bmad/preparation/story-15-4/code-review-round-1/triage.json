@@ -1,0 +1,126 @@
+{
+  "round": 1,
+  "counted_rounds": 1,
+  "cap": 3,
+  "rederivation_iteration": 0,
+  "source_head": "73169cc0c75d88fbb16dc999ef99cbd9028ff361",
+  "review_input_sha256": "2e277b82726fe7f5ab1ae0324731b6d24a13677fb99b8492a99fede5cfa76164",
+  "status": "completed-with-failed-external-wrapper; source-not-accepted",
+  "internal_layers": {
+    "blind-hunter": "2 findings; full5034line attestation",
+    "edge-case-hunter": "2 findings; full5034line attestation",
+    "verification-gap": "2 verification gaps; full5034line attestation",
+    "intent-alignment": "descriptive report, no additional concrete defect; full5034line+kernel attestation",
+    "auto-bmad-security": "No findings; full5034line coverage message"
+  },
+  "external_layer": {
+    "wrapper_exit": 1,
+    "output": "The system cannot find the file specified.",
+    "recovered_report_bytes": 2644,
+    "recovered_report_sha256": "38b3b043014597eef252f5d1d24e8489dc9aec2b0a92fb216ee1b14691baea01",
+    "status": "unqualified; triage only",
+    "requested_model": "gpt-6.1-sol",
+    "requested_effort": "high",
+    "actual_model_metadata": "unavailable; configured command suppressed diagnostics"
+  },
+  "raw_actionable_claims": 11,
+  "duplicate_claims": 2,
+  "triage": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 9,
+    "defer": 0,
+    "reject": 0,
+    "patch_high": 3,
+    "patch_medium": 6,
+    "patch_low": 0,
+    "followup_recommended": true,
+    "score": 18
+  },
+  "findings": [
+    {
+      "id": "R1-01",
+      "severity": "high",
+      "category": "patch",
+      "location": "src/components/time-reports/TimeReportEntry.tsx:45",
+      "claim": "Lost committed filing response, then revoked access retry clears unresolved attempt; restored authority can file a new attempt and duplicate the report. Preserve known-unresolved exact payload/attempt across authorization rejection until reconciled; real lost-response/revocation/restoration coverage.",
+      "source": "cross-model recovered report"
+    },
+    {
+      "id": "R1-02",
+      "severity": "high",
+      "category": "patch",
+      "location": "src/components/time-reports/TimeReportEntry.tsx:35",
+      "claim": "Editing one local interval endpoint reparses unchanged UTC endpoint, losing later-fold offset/microseconds; 2026-10-25T01:30Z start plus edited local04:30 end must remain120minutes, not180. Preserve each unchanged instant independently.",
+      "source": "cross-model recovered report"
+    },
+    {
+      "id": "R1-03",
+      "severity": "medium",
+      "category": "patch",
+      "location": "src/components/time-reports/TimeReportEntry.tsx:11",
+      "claim": "20-minute booking prefill becomes0.3333333333333333 hours and exact parser rejects unchanged hours mode; preserve canonical minutes across mode changes without accepting rounded edited durations.",
+      "source": "cross-model recovered report"
+    },
+    {
+      "id": "R1-04",
+      "severity": "high",
+      "category": "patch",
+      "location": "src/components/time-reports/TimeReportForm.tsx:29",
+      "claim": "First standalone start leaves today report date because previous start empty; default to local start date until caller explicitly edits report date.",
+      "source": "cross-model recovered report"
+    },
+    {
+      "id": "R1-05",
+      "severity": "medium",
+      "category": "patch",
+      "location": "src/components/time-reports/TimeReportReview.tsx:23",
+      "claim": "Internal Next booking/job links bypass beforeunload/Dialog guards and discard dirty/pending/unknown note+attempt. Guard links against unresolved navigation and confirm dirty discard; real interaction coverage.",
+      "source": "edge; cross-model duplicate"
+    },
+    {
+      "id": "R1-06",
+      "severity": "medium",
+      "category": "patch",
+      "location": "supabase/migrations/20261020190000_time_reports.sql:209",
+      "claim": "Nudge locks existing preference rows only. Existing authenticated preferences PUT uses direct upsert; first opt-out can commit after predicate but before notification/audit. Serialize absent-row creation/key change with emission without unsafe lock-order inversion or raw grants.",
+      "source": "blind"
+    },
+    {
+      "id": "R1-07",
+      "severity": "medium",
+      "category": "patch",
+      "location": "src/features/time-reports/domain.ts:16",
+      "claim": "Binary subtraction plus literal formatter renders75-60.1 as14.899999999999999 minutes. Decimal-safe nonmonetary delta/formatting and0.1 boundary coverage, preserving raw booked provenance and integer filed minutes.",
+      "source": "blind; edge duplicate"
+    },
+    {
+      "id": "R1-08",
+      "severity": "medium",
+      "category": "patch",
+      "location": "tests/unit/features/time-reports/action-state.test.ts:27",
+      "claim": "Stale annotation helper test has no production consumer; real component conflict branch can become confirmation without tested failure. Bind headless transition to production and assert actual stale feedback/lock/no-save behavior.",
+      "source": "verification; intent alignment corroboration"
+    },
+    {
+      "id": "R1-09",
+      "severity": "medium",
+      "category": "patch",
+      "location": "tests/unit/features/time-reports/action-state.test.ts:28",
+      "claim": "Latest-response helper has no production consumer; actual workspace sequence branches untested. Bind tested state logic to production and prove latest selection remains when reads resolve out of order.",
+      "source": "verification; intent alignment corroboration"
+    }
+  ],
+  "scope_notes": [
+    "All nine can be corrected within existing approved intent and allocated paths; no kernel amendment/rederivation indicated.",
+    "Intent report host/runner/exhaustive coverage boundaries are descriptive evidence limits, not extra accepted defects or net-new release gates.",
+    "No DB/browser execution claimed; source review only."
+  ],
+  "fix_route": {
+    "phase": "review-fix",
+    "agent": "original author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Filing integrity, exact unknown outcome and SQL preference serialization"
+  }
+}

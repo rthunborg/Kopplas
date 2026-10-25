@@ -1,0 +1,23 @@
+{
+  "Outcome": "Bounded F1/F2 corrective plan and separate availability amendment proposed; no implementation.",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/proposal.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/bindings-and-effects.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/manifest.json"
+  ],
+  "Status": "PROPOSED_NOT_ALLOCATED; source cb8 and NOTPASS review frozen",
+  "Open questions": [
+    "Root must choose/admit exact owned auth.users existence read; no assumption of current admin DSN Auth read permission.",
+    "Fresh distinct High and Coordinator must approve default-presence/candidate-capability contract distinction and exact shared hunks before edits."
+  ],
+  "Deferred work": [
+    "All seven source hunks and focused controls",
+    "Implementation allocation, committed-delta High review, future private qualifier and any hosted availability/solePOST",
+    "All43 DB causes and14 browser failures remain unresolved"
+  ],
+  "Blockers": [
+    "SOURCE_WRITE_HOLD",
+    "WORKFLOW_INPUT_AVAILABILITY_UNKNOWN"
+  ]
+}

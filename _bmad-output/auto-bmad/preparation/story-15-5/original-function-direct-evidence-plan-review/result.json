@@ -1,0 +1,29 @@
+{
+  "Outcome": "PASS — targeted plan sufficiency/privacy only; no consequential plan findings. Execution NOT READY.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-report.md",
+      "bytes": 5520,
+      "sha256": "00f0be2b5123e3c254d4c719aa9719ce02e627077fb5c7368a437d3333aceb27"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-attestation.json",
+      "bytes": 7629,
+      "sha256": "acd292edd210fe2fc727532a1436a9bbbdc547b2fd626ed48bcf4f6d486f98d9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/result.json",
+      "identity": "Final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": "Materially new direct-refusal evidence approach; unchanged IF/P0001 and closed matrix required. Five source bindings verified; actual current v2 conditional effects inspected.",
+  "Open questions": [
+    "Actual refused target/predicate and cause remain UNKNOWN; no current source fix justified."
+  ],
+  "Deferred work": [
+    "Actual implementation/controls, exact committed-delta High review, current v2 producer/consumer/effect binding and allocation, once activation and bounded archive acquisition."
+  ],
+  "Blockers": [
+    "Execution hold: unexpected-success reset/Vault/fixture/claims/baseline/cleanup/custody effects and current v2 consumer must be explicitly rebound/allocated before dispatch, or dispatch must be refused. Old v1 cannot qualify v2."
+  ]
+}

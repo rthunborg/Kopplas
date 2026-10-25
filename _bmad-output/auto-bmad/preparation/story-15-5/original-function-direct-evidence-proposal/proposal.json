@@ -1,0 +1,137 @@
+{
+  "schema": "story-15-5-original-function-direct-evidence-proposal-v1",
+  "status": "PLAN_ONLY_NOT_ALLOCATED_NOT_IMPLEMENTED",
+  "selection": "Observe a closed matrix at the original failing migration guard in the existing cause-proof lane; do not replay eight migrations or repeat the local metadata fixture.",
+  "reason": "The fixture exposed no failing metadata predicate; normalized public/global defaults are now equal, but neither establishes the actual predecessor application sequence or hosted target rows. Transactional replay would require proving prefix source equality and applying eight unrelated migrations. A failure-only matrix on the already failing native invocation directly names its function ordinal and invariant, with substantially less new mutable scope.",
+  "source_head": "ff3ceef8fc7c76acbbc1cc7919017053c112914c",
+  "source_commit": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+  "known_facts": {
+    "normal_run": 39591492500,
+    "observed": "All three startup steps emitted calendar actor original function refused/P0001 at statement0. Owner/SET guard passed; no adapter/transientCREATE/replacements reached.",
+    "fixture": "All eleven fixture predicates true; ordinary predecessor ownership/ACL sequence not executed.",
+    "default_acl_result": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-result.json",
+      "bytes": 2305,
+      "sha256": "bc00a5d7449790aea56028c97b75a4abf82184b54671f6d7aff3f4d5787e15bf",
+      "qualification": "Root-provided qualified ordinary-postgres PG17.6/read-only/prefix102; normalized public_combined equals global; no unexpected/grantable entries. Separate independent qualification pending at handoff."
+    },
+    "remaining_gap": "Actual first refused target and individual stored-catalog predicate remain unknown. Local defaults equality does not prove hosted catalog rows or prior migration application bytes."
+  },
+  "candidate_scope": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "hunk": "Inside the existing original-function IF failure branch only: replace the fixed RAISE text with a fixed-prefix/versioned closed JSON matrix carrying current loop ordinal and eleven positive invariant booleans. Keep original IF expression, target order, SELECT, prior guards and subsequent definitions/DDL byte-identical. Evaluate the matrix only after that unchanged IF has refused. Default P0001 remains unchanged."
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "hunk": "Actual-source seam controls for unchanged IF/guard reach and emitted closed schema. Demonstrate each predicate failure maps to its named false bit and first ordinal; all-true path never emits; NULL remains NULL/UNKNOWN; raw catalog/source/ACL/OIDs/role names excluded. Preserve existing99 controls and all inverse workflow/pin negatives."
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "hunk": "Author rationale/evidence/SRO only; kernel5760 unchanged, status/ARR in-review, baseline/counter3 unchanged, no normal acceptance or causal repair claim."
+    }
+  ],
+  "matrix": {
+    "prefix": "calendar actor original function refused ",
+    "schema_value": "calendar-original-function-guard-v1",
+    "exact_keys": [
+      "schema",
+      "ordinal",
+      "checks"
+    ],
+    "ordinal": "integer1..3: status/manage/abuse, bound by unchanged target_oids order",
+    "checks_exact_keys": [
+      "owner_matches",
+      "security_definer",
+      "volatile",
+      "plpgsql",
+      "exact_proconfig",
+      "authenticated_execute",
+      "anon_denied",
+      "service_role_denied",
+      "acl_grantees_safe",
+      "body_exact",
+      "call_count_exact"
+    ],
+    "types": "checks values are own booleans or explicit SQL NULL, never coerced to true/false; any NULL remains unavailable/UNKNOWN. No raw values, arrays or dynamic keys.",
+    "expressions": "Positive complements of the eleven existing refusal predicates: owner equality; prosecdef; provolatile='v'; lanname='plpgsql'; proconfig IS NOT DISTINCT FROM exact existing array; authenticated EXECUTE; NOT anon EXECUTE; NOT service_role EXECUTE; NOT existing unsafe-acl EXISTS; prosrc IS NOT DISTINCT FROM expected_sources[i]; exact original call_counts[i]. No new predicate semantics.",
+    "privacy": "Never include prosrc/function definitions, proconfig values, ACL rows/grantees/grantors/OIDs, claims, query parameters, error detail/hint/context/stack or arbitrary messages. Only fixed prefix/schema, integer ordinal, fixed keys and booleans/NULL. No SQL body/log archive persisted by diagnosis acquisition.",
+    "evaluation_effect": "Additional evaluation of the same bounded catalog predicates after the existing refusal; no extra SQL statement, connection or data query. Earlier IF short-circuiting means some catalog predicates may newly be evaluated on refusal; this is an explicit observation effect requiring allocation. Any unexpected expression exception produces no qualified matrix and STOP UNKNOWN."
+  },
+  "execution_plan": {
+    "lane": "Existing calendar_feed_cause_proof=true workflow_dispatch with fresh Root-owned SHA/checkpoint UUID/nonce and existing exact candidate/default admission guards. No new input, dispatcher, workflow, wrapper or collector source changes.",
+    "scope": "Admission/verify and the db startup job only; existing mode suppresses normal integration/pilot/browser/recovery jobs. Expected startup refusal exposes matrix in the actual predecessor-applied native catalog state. This is a diagnostic failed run, not a normal test run or diagnostic1PASS.",
+    "acquisition": "After terminal run binding, one separately allocated bounded whole-run archive GET using the already successful manual method; RAM-only ZIP, fixed db startup member, <=15s/32MiB compressed/128MiB inflate/4KiB redacted context. Retain only exact matrix, source/run/member digests and closed transport facts. Do not call the existing artifact collector when startup produced no native test artifact.",
+    "unexpected_startup_success": "Existing lane would proceed to migration reset and the existing one-case cause-proof wrapper, including its reviewed ordinary JWT call/conditional unmodified baseline/cleanup. This is not silently authorized by this proposal. Root must explicitly include those existing conditional effects and rebind their current reviewed consumer, OR refuse dispatch. No new source guard or alternate POST is proposed to bypass that requirement.",
+    "preservation": "Existing full normal five-gate/95-case/recovery/pilot contracts remain unchanged and mandatory after an eventual demonstrated fix. Diagnostic evidence gives zero normal acceptance. No default-branch update, hosted secret/provider changes, normal rerun, replay or automatic retry.",
+    "gates_before_any_effect": [
+      "Distinct High targeted sufficiency/privacy review of this plan",
+      "Coordinator exact three source-hunk/allocation plus diagnostic/exclusive-runtime and once archive acquisition effects, including unexpected-success branch disposition",
+      "Actual implementation and meaningful controls, exact committed-delta independent High review",
+      "Root source/checkpoint proof/push and exact hosted input/admission availability/identity bindings",
+      "Root sole fresh once activation; old run/GET/checkpoint identities never reused"
+    ]
+  },
+  "decision_table": [
+    {
+      "observation": "Valid matrix, known ordinal, one or more false bits, no NULL",
+      "meaning": "Directly observed refused invariants for the original native target at its actual guard. Prepare a fix only if source/primary semantics establish that observed condition is an invalid assumption; preserve all other guards. This is not automatic permission to relax a false predicate."
+    },
+    {
+      "observation": "body_exact false or ACL/config bit false but cause of drift not established",
+      "meaning": "Names the actual missing invariant, not the transformation/grantor cause. STOP with exact source-comparability/catalog prerequisite; no automatic more-detailed observer, guessed edit or normal retry."
+    },
+    {
+      "observation": "NULL, malformed/missing matrix, all true despite refusal, mixed source/run, setup/cleanup/transport uncertain or different failure",
+      "meaning": "STOP UNKNOWN. Owner Root; evidence closed run/matrix/capture receipt; resume only after a specifically reviewed proof addresses the named condition."
+    },
+    {
+      "observation": "Startup unexpectedly succeeds",
+      "meaning": "No original refusal was reproduced. Any existing conditional cause-proof result remains separately qualified diagnostic-only, never historical cause or normal95 acceptance."
+    }
+  ],
+  "limits": [
+    "No safe production fix is currently justified.",
+    "One new information approach only: original-invocation per-invariant observation, not another static family label or generic logging framework.",
+    "No source/Spec/SQL/resource/API/CI/Git mutations authorized by preparing this plan.",
+    "If successful application of the existing migration is discovered, freeze it and coordinate a forward migration instead.",
+    "No fourth broad review; prior failed packets, local proofs, normal failures and UNKNOWN states remain immutable."
+  ],
+  "source_bindings": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11947,
+      "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "head_blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757",
+      "actual_clean_oid": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 153160,
+      "sha256": "95396c27bd511c5df8cf7ffb5acebac520a1247fea92bae7c0a5962f547f4285",
+      "head_blob": "cba57251555d860ab8ba24bd578eed7715e7b7aa",
+      "actual_clean_oid": "cba57251555d860ab8ba24bd578eed7715e7b7aa"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 154891,
+      "sha256": "d214e9582d628be4f5250a207bb2e80233c9c83d0efcdd80448ae423021ebcf1",
+      "head_blob": "5c806d57bf009bad013826b07aaecdb49c178b0b",
+      "actual_clean_oid": "5c806d57bf009bad013826b07aaecdb49c178b0b"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "head_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "actual_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+      "head_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+      "actual_clean_oid": "2a5fec9b04c3259f608c95db25668836016808e5"
+    }
+  ]
+}

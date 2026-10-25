@@ -1,0 +1,625 @@
+{
+  "schema": "ROOT_BYTE_IDENTICAL_EVIDENCE_FOLD_V1",
+  "created_at_utc": "2026-10-23T15:56:57.788538+00:00",
+  "count": 103,
+  "rows": [
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-effects-allocation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/accepted-normal-API019-NORMAL-effects-allocation.json",
+      "bytes": 4081,
+      "sha256": "255bd6aaf021c8cf52b59bae83eee228041344b592fb5c294bc60de97bc8c2e3"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-terminal-effects-allocation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/accepted-normal-API019-NORMAL-terminal-effects-allocation.json",
+      "bytes": 3914,
+      "sha256": "15e291469cdcb3626af5a0b679b021720b001f76a97e4dbd554b0b840c015e80"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/acquisition-summary.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/acquisition-summary.json",
+      "bytes": 2544,
+      "sha256": "fe4f92a60aa6659968de81b90bd3c5faaa0db32ff690ab8611a26913f180bc35"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/artifact-list-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "5e849be7eae76a26563b62953f0630c1a03015c48a5c0f8c19b703a6b039be1a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-full-integration-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-full-integration-projection.json",
+      "bytes": 67030,
+      "sha256": "03c1fbfdeb41f5253b90cc4e56ba260b8d7204e6dc295eadfdcd21b07cbc4d03"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-general-browser-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-general-browser-projection.json",
+      "bytes": 13358,
+      "sha256": "10b2b92b3c773707d4f377db035a18c0b463f6100f5d40270e6c028897fde41c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-isolated-storage-recovery-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "9a4d676a63e5fe273ac8128b9c50e78157b34d6193f8a2796942c1a60e2cfb9f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/operator-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/operator-intent.json",
+      "bytes": 11540,
+      "sha256": "a7a6950fb6d23a2fec43d710ecf6fc3aa3dbdbe7b8e4cec9480d6ffb6ffa1063"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-01-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "99e9a913f2e09897216810e320f91d8259d8137ee9e819307aa8c1823adcac94"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-01-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-01-result.json",
+      "bytes": 1134,
+      "sha256": "d08a1edf45aa38fd9d5020d42977a3fdef70cb5a5fd76dd6cdfc3a591124d679"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-02-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "6820820abd9a454c045452c0451a2c9a75d57ccae2906e1f96bb1153af210036"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-02-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "67595c9a3d68852a01c2c4e5b55ffeabfa9e5fbfd153f76b75c2eb019ddabd29"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-03-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-03-intent.json",
+      "bytes": 421,
+      "sha256": "7f8caecbea000227199ce065e9e1028a73382ffed785949c71ef4c589b7c5573"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-03-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-03-result.json",
+      "bytes": 1140,
+      "sha256": "99646ac336409ce2809dfd181b55ab073c9a5ff663390efac7782836ded9679f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-04-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-04-intent.json",
+      "bytes": 431,
+      "sha256": "05f46180bdb2547ea36fa45f6ee82afa0a6573745e1a305f468ac8c759fe44f5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-04-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-04-result.json",
+      "bytes": 1149,
+      "sha256": "0489050251c5b85a25a543f5b29217cf4120f85fb5ce701a4639accf1eac0e99"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-05-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-05-intent.json",
+      "bytes": 422,
+      "sha256": "e019d2fe3cd96b1b2fd3635524b72e5199468c7d3b4c1fc334b0f241f128e792"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-05-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/request-05-result.json",
+      "bytes": 1143,
+      "sha256": "fbde86365d54f70a6762dfe64c8c6bf779bbbc7e658a0044927f65537bcf035b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/run-archive-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/run-archive-projection.json",
+      "bytes": 48552,
+      "sha256": "1a0f47d977ee33793d8a38591103855a876436b91901055753b81767ae62fd48"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/source-label-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "16a75428d71a64737d0e676188203868023a48f67c67a602f7ea4c7ef0364886"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/source-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/source-provenance.json",
+      "bytes": 10814,
+      "sha256": "ad66f606296444c69a8757eeb352ae937bcfddc4d44d3ed69371479ac312a86f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/terminal-bindings.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "8a48fffaf82f322a28394c46b0aecb638a0eaf197c25b0207e4b321aab42f7df"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-booking-editor-merge-seam-confirmation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/inherited-15-2-booking-editor-merge-seam-confirmation.json",
+      "bytes": 10886,
+      "sha256": "2388615818d3baf54b85cfe37ae693a2eb1accdd1b43a81aafbef2c68988fcb5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-changed-blob-applicability-map.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/inherited-15-2-changed-blob-applicability-map.json",
+      "bytes": 24527,
+      "sha256": "43cb0de148347bf95e3635c43621022cfc7a25323ba5cc169c802dca853f8075"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-actual-initial-outer-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-actual-initial-outer-provenance.json",
+      "bytes": 1243,
+      "sha256": "299126b7c999c8040fc4726cd235172436ddf40263e95ef41246285a296af4ad"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-actual-poll-outer-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-actual-poll-outer-provenance.json",
+      "bytes": 7106,
+      "sha256": "a70c7f2e432340850af8d2a24063e911d69565a85a5c86811b01fd1d1e8b0d8f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-actual-publication-resolver-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-actual-publication-resolver-proof.json",
+      "bytes": 4780,
+      "sha256": "0f4ac26338137aa62a432b4609052a948863119120024e25ae7a3dd47a8ac641"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-actual-root-ownership.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-actual-root-ownership.json",
+      "bytes": 40879,
+      "sha256": "c463bba2925d0b49485b1f2b08e330089637c90ebe0d918d72855f11ba438c9f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-current-source-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-current-source-proof.json",
+      "bytes": 59054,
+      "sha256": "91f63f404e2da4b44e4934b34d89bbcbe6d40de231c56aeace1a1ce1b75fb041"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-dispatch-state.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-dispatch-state.json",
+      "bytes": 485,
+      "sha256": "98e951068d3044a1b5e62984b9a3f2b3a4711469b274644ff145b2a47e48cdaa"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-inert-binding.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-inert-binding.json",
+      "bytes": 329,
+      "sha256": "c4990b393fae877972657f272a2a210fabdc826e3253ded0ba08e549a6eac208"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/manifest.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-operational-preparation/manifest.json",
+      "bytes": 1148,
+      "sha256": "7208774925d2bc38ebf594ef5135afdf107c9047a2c8dc4c20fdce3d7081d322"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/proposal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-operational-preparation/proposal.json",
+      "bytes": 217350,
+      "sha256": "e79f5dc5cfc399d3c84cb75425c92b2e360c92ddbe717d9bb5cc1114f10a382e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/pure-controls.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-operational-preparation/pure-controls.json",
+      "bytes": 12123,
+      "sha256": "55b7fa5692846d1ea18472d089c03bfbb528be6189f563c4f73fdaf784236d2d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-review.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-operational-review.json",
+      "bytes": 15773,
+      "sha256": "c88070b98eed3825c4de55ef522cd2b02ff3621a7141c19e9961969fd086554b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-provider-execution-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-provider-execution-receipt.json",
+      "bytes": 2459,
+      "sha256": "4ad4d488d2929fb628422b6698b2f1be648479a4feb782eaa9030cad1e2fa480"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-provider-readonly-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-provider-readonly-activation.json",
+      "bytes": 2460,
+      "sha256": "a6956ba367b4dbe364d7e4feee1057ff13c81fef8979c8d2bc27ee884825cae3"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-effects-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-effects-activation.json",
+      "bytes": 1746,
+      "sha256": "efbf97cdc2204c98f518c04822aa132ac63983a82d5ab127cce4d8e3bbe04139"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-once-journal.json",
+      "bytes": 1423,
+      "sha256": "9f4dc26aec0c44a2598e0e4ad9f46137b84678e43dc3594fcf76e07153c7b74a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/dispatch-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/dispatch-intent.json",
+      "bytes": 463,
+      "sha256": "5cd1681586f1c80f85539b4133ad209e879b34c39dce45856fc172c2b1e3bb23"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/dispatch-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/dispatch-receipt.json",
+      "bytes": 842,
+      "sha256": "1ff9544c862e94f8d56a75fda79c78256454e2c8eb01c7eaf80bb3b5c0fa69e7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-1-intent.json",
+      "bytes": 276,
+      "sha256": "2b644f8274b05a7106e9a96759ee78a86e3d3517324b19347f9f09009889815d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-1-receipt.json",
+      "bytes": 699,
+      "sha256": "d8b6ad3a0791706da698148428a6164d237b2b2db6dbceb9e3eda58cf1ca3872"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-2-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-2-intent.json",
+      "bytes": 276,
+      "sha256": "0b20f707338d44920f5eb95b0ca205f86a1814788504308228cc431c4cb3b72a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-2-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-2-receipt.json",
+      "bytes": 700,
+      "sha256": "adef897e293ae7924df7c32ca794ea3c19d720ea64aaf77791f1c10b11593716"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-3-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-3-intent.json",
+      "bytes": 276,
+      "sha256": "524f15fd89b8b07b8bef6327f81dc1500c36c1a9c03dcac77110137c49d14714"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-3-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-3-receipt.json",
+      "bytes": 700,
+      "sha256": "2df9aff87aca30f5e4cecfe79a746fbb5d4f9122acf49ddb85d9a4aeac2669a4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-4-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-4-intent.json",
+      "bytes": 276,
+      "sha256": "d0f2f8689ca450559f2540124e748d8657f588df4c5c856a4ff46e2f295c319c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-4-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-4-receipt.json",
+      "bytes": 700,
+      "sha256": "0f9c9195b11a8580a777f50c27ae7a6774c303a24ec030ef32ef6fa3159078a2"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-5-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-5-intent.json",
+      "bytes": 276,
+      "sha256": "2849a47ad75fb151baacb2b42561900cba68a2ddcd149fd7396542af16facadd"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-5-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-5-receipt.json",
+      "bytes": 700,
+      "sha256": "48a495ff088eab0d1a1d56a23d1d4f02954efedad0bdf46868e805e1f4210aff"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-6-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-6-intent.json",
+      "bytes": 276,
+      "sha256": "9c89527dbe1a331ce5ad5d74c7edd5f484ead3c922e4c8237d4953d6833b816a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-6-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-6-receipt.json",
+      "bytes": 700,
+      "sha256": "527b3dc2a9ec507493d65331f58308a8ac76adaab4a74f5a945128852a14e8a8"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-7-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-7-intent.json",
+      "bytes": 276,
+      "sha256": "879fc8d89dbfdcb85a3819b092f64c8bbaf8dc609c1666d6da4bb3c643373e35"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-7-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-7-receipt.json",
+      "bytes": 700,
+      "sha256": "d70d8c7ba3c89d86cc17c7082d7a01d71a21bed23938ff1321b9e90447b744c9"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-8-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-8-intent.json",
+      "bytes": 276,
+      "sha256": "f3f9015f3e0da9625a471af5dfe8d90a917a9ed50b4d892c26922c6fc964b875"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/jobs-8-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/jobs-8-receipt.json",
+      "bytes": 699,
+      "sha256": "df582b28c9a6e21b09bdd3a191e339ab286f07893ac0c6d686108ccba162996e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-1.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-1.json",
+      "bytes": 7022,
+      "sha256": "fdf29c52f10790e712dd796465defcc1d0d01242c2d08bc97728c915d27ed30a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-2.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-2.json",
+      "bytes": 20815,
+      "sha256": "6d65b39f96566ecde978de94fc13b17ee90a598f1f07d25a5ff3f7b9c090f867"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-3.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-3.json",
+      "bytes": 21789,
+      "sha256": "921831a681560b44f8f1ea62c8c28d9c1fcd3b0e9cfe88036f1b905d1fb5f1b7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-4.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-4.json",
+      "bytes": 21789,
+      "sha256": "7b054a0063d8171c012b0fcf4162e990cca1fbb3c641f126aa8003e44d3ec9a4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-5.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-5.json",
+      "bytes": 21875,
+      "sha256": "b1c2c86446795002999f49e4bb0014043bdaca5a355360ab8291896c56a23eb1"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-6.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-6.json",
+      "bytes": 21961,
+      "sha256": "6214e611bd47583f115b8583d34a086f5b9eddc9690a74007e25510d26b9e567"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-7.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-7.json",
+      "bytes": 22462,
+      "sha256": "5f4b718a07d91615cab83b4e3e0f0fd0af94d8563d2ee8659a407cd1ff66b9e4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/observation-8.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/observation-8.json",
+      "bytes": 24085,
+      "sha256": "4332452fea4d3b387f15c2f84f43d1dcd626b2d072a40dc32de743c71a2181ac"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/operation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/operation.json",
+      "bytes": 859,
+      "sha256": "4b624ad7d134200af1f96083e4494d9c614c44e4d3be445202d8b5ad70717e93"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/push-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/push-intent.json",
+      "bytes": 201,
+      "sha256": "c2af716bcacb4e534f6f654955afa4b72cfce3cbb9519929f7ea1e7a69504aa3"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/push-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/push-receipt.json",
+      "bytes": 698,
+      "sha256": "4c36b50e9a861258cbbd1366e7296cf06a9c08639d131a5f31eba25db75dddca"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/remote-before-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/remote-before-receipt.json",
+      "bytes": 697,
+      "sha256": "4975aa44b6e3c8c670bfae67128933168ad630c397e28c1c6d9f1c6256c24b78"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/remote-readback-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/remote-readback-receipt.json",
+      "bytes": 697,
+      "sha256": "a68125267fe0757899dbfc738594cb1cfa223deee1ba40fda42767eddf3eb60e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/resolve-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/resolve-1-intent.json",
+      "bytes": 334,
+      "sha256": "28859b2c027bf805af6ca90f32b571f93184996de33a1befc48b8cef52ac65ed"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/resolve-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/resolve-1-receipt.json",
+      "bytes": 701,
+      "sha256": "92dbf934dce8eb219fca9ef6cebdf355d01e1694db66ee5d13d2ad02d6fe412e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-1-intent.json",
+      "bytes": 244,
+      "sha256": "b6999610144dc35acc124510c61e47dc64077f02c6478ea99210a89fb21d40f8"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-1-receipt.json",
+      "bytes": 700,
+      "sha256": "f609653b2c6951fd7bd0e73665ceb6c2e43926ee230883545c0740f24be71083"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-2-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-2-intent.json",
+      "bytes": 244,
+      "sha256": "f9d5670d8c3a1f1a668900c38b355d5c7cc3b2d97744f882eb7435af63d3a635"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-2-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-2-receipt.json",
+      "bytes": 700,
+      "sha256": "4074ed7753bd1c103830e16b8144c668ae14ab30e8fd756e0f593b83608ad3f3"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-3-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-3-intent.json",
+      "bytes": 244,
+      "sha256": "e386bfd7bec5ffc63992b7702794c8f462cd47d2d5c8a4ef8d86f6ee84861c06"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-3-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-3-receipt.json",
+      "bytes": 700,
+      "sha256": "7bc48dc6d4383d7a5ce580c734f4d0e9f0921673c88a833243a5b3ffc7ce98d5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-4-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-4-intent.json",
+      "bytes": 244,
+      "sha256": "4741c849600393ebdc10f68f2c7cd71114ce5c1b3c6cb54b8f1be7f21372d7f6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-4-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-4-receipt.json",
+      "bytes": 700,
+      "sha256": "17994b0cde84c03cae9c26990a9a7b968488be6302f42c6d2785d9106c582572"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-5-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-5-intent.json",
+      "bytes": 244,
+      "sha256": "c0cb3631b1c9274bbaec623fab8fa002f28136c9e3ab43d4a18a2b7db85834d9"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-5-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-5-receipt.json",
+      "bytes": 699,
+      "sha256": "02015126c148fafac56abc5a509f91fe784205277bd2a499ee652e2aa98ad421"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-6-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-6-intent.json",
+      "bytes": 244,
+      "sha256": "a41a22697d4835979eb13f1f4a05dfc26fb5747d67a33f799892caab11670782"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-6-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-6-receipt.json",
+      "bytes": 697,
+      "sha256": "e34081b93dd3247a98bb32f52e6ca6f98a0418b4f774ea85e0566c6518c9d5ad"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-7-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-7-intent.json",
+      "bytes": 244,
+      "sha256": "6bbd8f00f87437579f76f14cbeec9ba562a2f0b319ba960c5865798142ba4089"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-7-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-7-receipt.json",
+      "bytes": 700,
+      "sha256": "d6a9c5b05a885c699bb801008d5b5e16b59ba75b2882df6c2fb6d8ebc16d587a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-8-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-8-intent.json",
+      "bytes": 244,
+      "sha256": "bb8e7c9c92bb020732084f7ef4a32c244d8a88277ed32bf25d3320affaab426f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/run-8-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/run-8-receipt.json",
+      "bytes": 698,
+      "sha256": "fd431c0ca0eff3b4b0d59825a32243b55d43a187a5134ce4776d7a1310da9ce7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-root-operation/terminal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "4332452fea4d3b387f15c2f84f43d1dcd626b2d072a40dc32de743c71a2181ac"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-native-qualification.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-actual-native-qualification.json",
+      "bytes": 24754,
+      "sha256": "9525eff4ea62388c62f1e4adea432083426280cc95ce1796c8154e8e894065eb"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26956,
+      "sha256": "d7aebdb3427bcf4d3e0d23e81ae9f87ce3c60fbc3c670f0cd7f277c70ab96466"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/manifest.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-actual-preparation/manifest.json",
+      "bytes": 1293,
+      "sha256": "674bc4a652c3b7a217a942f7f1ceb61c45c155551ecb9ac0ad1c38593067f098"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/proposal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-actual-preparation/proposal.json",
+      "bytes": 194113,
+      "sha256": "27e5d11896725d7b0f3cd87aaecd7bb620f62412c25187d698112f825a8427e8"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/source-rows.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-actual-preparation/source-rows.json",
+      "bytes": 34648,
+      "sha256": "0b75cb944e9d6a6ad2bfa7876041020ae966bc59cc1188c8aee3630b96c17ed9"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-draft-source-precheck.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-draft-source-precheck.json",
+      "bytes": 6888,
+      "sha256": "3a757e4839a9261f6798799c25503d41d56cb5799d2c3ecf452c6f3c2413beaa"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-evidence-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-evidence-activation.json",
+      "bytes": 4100,
+      "sha256": "d47d8f6c266aad6a70ab30d3583f41538f4cc494104febc2e06a19440c045bbf"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-execution-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-execution-receipt.json",
+      "bytes": 11982,
+      "sha256": "d85a7cde19e7d45518782d960465cd44564608563d3e1b4024d2eb5b9d2a6ca9"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-fresh-source-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-fresh-source-proof.json",
+      "bytes": 59815,
+      "sha256": "539f9f4903a31c2c9a2efa1863fd286d607dd5599f94a0b7546a6a3dd7028b27"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-reader-operational-review.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-reader-operational-review.json",
+      "bytes": 15744,
+      "sha256": "db86efc22e40b29dbcd94a06a5e1bbaee8a09cf17aaf9ed605fee15489fff987"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-terminal-root-once-journal.json",
+      "bytes": 1323,
+      "sha256": "49abf3bff92ec2bc67d5a0e54fb2257578ca953cb68eee38994307cf91526cee"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-vercel-readonly-consumed-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-vercel-readonly-consumed-intent.json",
+      "bytes": 1171,
+      "sha256": "b554fd8cb68aabc240b10a829bf1d355a6194f1d50ba4f29b643afcb96d7a9e1"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-vercel-readonly-qualification.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-NORMAL-vercel-readonly-qualification.json",
+      "bytes": 30459,
+      "sha256": "b0a69554bff518cef4e40e8898fdca85742c0d1754ffc26f8ae7e49bbae628d6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-refusal-source-assessment.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-normal-privacy-refusal-actual-closeout/normal-API019-privacy-refusal-source-assessment.json",
+      "bytes": 11193,
+      "sha256": "d05437078dd0ee68f2d7fbf552f4524ee5780c00881c87818d6236e2fa0bfb3c"
+    }
+  ]
+}

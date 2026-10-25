@@ -1,0 +1,34 @@
+[
+  {
+    "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "sha256": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144"
+  },
+  {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-ownership-allocation.json",
+    "sha256": "a00bd6d75e7d3c56e0e5985dce9f6c26e43776be6c3670ae319159bdbe1ac0ed"
+  },
+  {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md",
+    "sha256": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f"
+  },
+  {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/ownership-inventory-successor.md",
+    "sha256": "a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419"
+  },
+  {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/approval.json",
+    "sha256": "7e8f6a00d0536622764f478f0baff919c22abc0c7f1e29a1c0da9a049759e771"
+  },
+  {
+    "path": "package.json",
+    "sha256": "ce3edc035ee55dba8df4b8595ff3d220cd9b5bae7fb372af943d9638dfbf955d"
+  },
+  {
+    "path": "vitest.config.ts",
+    "sha256": "8cd410556ef614c306f54496c595e110ee214f4804d81468e95f350fabd2704c"
+  },
+  {
+    "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "sha256": "265fd3aeab80a82fd6903e2c556b97df04b0c614620ae594fd4543fe57e8b935"
+  }
+]

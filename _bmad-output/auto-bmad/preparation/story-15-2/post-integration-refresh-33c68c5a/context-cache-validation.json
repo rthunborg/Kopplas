@@ -1,0 +1,10 @@
+{
+  "source_rule": ".agents/skills/bmad-build-auto/step-01-clarify-and-route.md:54",
+  "exists": true,
+  "nonempty": true,
+  "correct_header": true,
+  "newer_planning_files": [],
+  "valid": true,
+  "raw_sha256": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a",
+  "context_recompiled": false
+}

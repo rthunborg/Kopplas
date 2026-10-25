@@ -1,0 +1,77 @@
+{
+  "Outcome": "FOUR_STATIC_STAGE_ENUM_ADDITIONS_SUFFICIENT_FOR_INERT_PARSER_COMPATIBILITY_PLAN_ONLY",
+  "Files changed": [".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility-plan.json"],
+  "Status": {
+    "status": "FROZEN_READ_ONLY_COMPATIBILITY_PLAN; NO_COUNTERPART_CREATED",
+    "independent": true,
+    "review_role": "gpt-6.1-sol High; narrow private-consumer compatibility planning only, not a broad story review or actual implementation review.",
+    "declared_revision": {"head": "fe1826587c225736893ca000fa4c6453ff051f2e", "functional_source": "48a7c32faa1be7ae2b6d81095282521cebfaa621", "basis": "Root-declared pre-amendment baseline. The tracked author's partial patch was not inspected."},
+    "minimum_plan_review": {"path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-minimum-plan-independent-review.json", "bytes": 12948, "sha256": "46a80ac3e5ae3caac628a71b60d3ea534eb2de7b01a7583805ee91f3ef929b53", "pin_rechecked": true, "binding_clarifications": "C1-C3 remain required; this plan does not replace or weaken them."},
+    "baseline": {
+      "reader": {"path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/reader.py", "bytes": 52631, "sha256": "278531786c36acaf5c219e23b9970c45533b647358b75a544742e6e68af44007", "pin_matches_request": true},
+      "descriptor": {"path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/proposal.json", "bytes": 78340, "sha256": "3aa3e629fd0ff3aa49fb80313a16f50d562e01bb1415d2f0642ebacaebc57da7"},
+      "source_bindings": {"path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/source-rows.json", "bytes": 32933, "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"},
+      "manifest": {"path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/manifest.json", "bytes": 901, "sha256": "575991b7222a8224b91d1d2793cc3cd435edb06a8e91f2275398257b270d31e7"},
+      "source_inventory": {"source": "48a7c32faa1be7ae2b6d81095282521cebfaa621", "source_rows": 75, "unit_paths": 20, "literal_titles": 444, "excluded_dynamic_titles": 19, "wrapper_titles": 195, "qualification": "Existing descriptor/source-rows metadata read only; no catalog reconstruction, source75 reread, raw SQL scan or execution coverage claim. Historical inventory is not qualification of the in-progress tracked amendment."}
+    },
+    "source_inspection": {
+      "method": "Narrow source/data inspection and hashes only; no import, evaluation or execution of reader.py or its functions.",
+      "constant_container": "Top-level stages set literal, reader.py:18.",
+      "only_membership_consumer": "failure_facts at lines125-138; line128 accepts a tuple only when its stage is in stages, category is in cats and SQLSTATE is in codes or unavailable. Exact source search finds stages only at its declaration and this membership test.",
+      "actual_projection_path": "project_vitest lines150-172 calls failure_facts for failed story cases at line163 and failed nonstory cases at line166. Existing parser already recognizes the four labels' fixed ASCII syntax under the unchanged 80-character stage bound.",
+      "functions": "41 source def statements, including nested definitions, counted without invoking the module. No function edit is necessary for these additions; actual preservation must be proven on the future counterpart.",
+      "meaning_limit": "failure_facts recognizes grammar and allowlisted data; arbitrary text can forge its tuple syntax. A projected leaf authenticates neither emitter nor raw output and proves no benignity, cause, request linkage or custody. Existing underlying_cause/raw_failure_details semantics remain unchanged."
+    },
+    "exact_reader_delta": {
+      "operation": "Copy the pinned inert reader to the new same-depth counterpart, then add exactly these four distinct static string constants to stages. Every other byte, including all 41 function sources and all other top-level assignments/imports/guards, remains identical.",
+      "constants": [
+        "scenario-telemetry-privacy-refused-integration-ip-stdout-header",
+        "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+        "scenario-telemetry-privacy-refused-integration-ip-stderr-header",
+        "scenario-telemetry-privacy-refused-integration-ip-stderr-other"
+      ],
+      "bounds": "Exactly four fixed leaves, maximum 63 ASCII bytes; no wildcard, regex, generated label, dynamic suffix, normalization rule or acceptance of arbitrary stages. Keep every original stage, category, SQLSTATE and parser cap unchanged."
+    },
+    "fail_closed_source_proof": [
+      "Globals line8 remain RUN=HEAD=CP=OUT=OWNERSHIP=None; requests empty and OPERATOR_CODE_SHA256=None. SOURCE remains the historical 48a7c32 baseline and UNIT_CATALOG remains empty until validated admission.",
+      "main lines585-590 refuses default argv before admission, and catches admission/budget failure as PRE_GET_REFUSED with zero logical GETs. Reader module invocation is prohibited for these offline controls because it contains real runtime acquisition code.",
+      "validate_admission lines552-558 retains execution_authorized is True, source/mode/no-retry/zero-credit requirements and the contradictory run==None followed by type(run)is int and positive run bound. This conjunction is unsatisfiable. Historical fixed head/checkpoint literals remain byte-identical; they are inert constraints, not a future target or grant.",
+      "Terminal/job/source75/current-byte/operator/self-binding and independent-review checks remain identical at lines559-580. Any altered tracked source byte causes those historical bindings to refuse; this plan does not refresh them or convert them into amended-source authority.",
+      "Only after successful validate_admission does main assign runtime globals/create output and reach acquire_normal. Preserve that ordering and __main__ guard. No activation, target, journal, runtime invocation or grant is created in this lane."
+    ],
+    "prospective_closed_artifact_scope_NOT_ALLOCATED": {
+      "directory": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/",
+      "members": [
+        {"name": "reader.py", "limit": "Pinned inert baseline plus only four stages constants; all other bytes identical."},
+        {"name": "proposal.json", "limit": "Inert descriptor, named proposal.json because unchanged BINDINGS resolves it beside reader.py. Bind the new reader pin, baseline lineage, exact four additions, unchanged historical source75/catalog references and safe proof. Keep execution/current-effect authority false, preparation-only true, actual run fields null and zero acceptance. No new source extraction or live target."},
+        {"name": "manifest.json", "limit": "Self-excluded finite member pins; execution_authorized false; no activation or enrollment semantics."},
+        {"name": "safe-proof.json", "limit": "Record only actual separately allocated offline parser controls and structural comparison results, with source pins and zero effects. Proposed criteria here are not executed proof."}
+      ],
+      "excluded": "Do not create this counterpart during the present read-only task. Later author allocation and independent actual review are separate. No edits to either old reader, no source-rows copy/rebuild, parser/collector/transport/catalog-extractor family, actual target, output packet, activation, journal or grant. Reuse the baseline source-rows reference as historical data only."
+    },
+    "proposed_small_offline_actual_parser_controls_NOT_EXECUTED": [
+      "First prove structural delta: exactly four added string elements in the single top-level stages set, no removals/duplicates, and byte-identical source outside that literal. Independently compare all 41 function source slices including nested functions. Pin both readers and require unchanged null globals, admission contradiction, main/default-refusal and runtime acquisition source bytes. Do not import/run the module or exercise main/validate_admission/get.",
+      "Reuse the reviewed safe actual-function control method: bind narrowly selected actual failure_facts source to its exact candidate bytes, with only its existing re/stages/cats/codes dependencies in RAM. Invoke only this pure parser in the separately allocated control lane. No replacement parser or whole-module load, no subprocess/network/filesystem sink in the executed namespace.",
+      "For each exact new leaf, feed one synthetic fixed Calendar fixture failure tuple with category unknown and sqlstate unavailable; require one identical owned_leaf_tuple with sqlState null, one count and no invalid header. Baseline rejects each as an invalid owned tuple; candidate accepts only these four. Semantic proof is syntax membership only.",
+      "Run a finite differential table covering every original stage with existing valid category/state: baseline and candidate results must be identical. Retain legacy integration/ip-literal and generic privacy-refused behavior, unavailable mapping, existing invalid counters and tuple truncation/count rules. Compare explicit relevant baseline boundary cases, not a new broad parser suite.",
+      "Negative controls: one-character/case/whitespace/unknown-suffix changes to new stages, non-ASCII and over-bound labels, invalid category/state, truncated delimiter and malformed headers. Candidate must not manufacture any valid new tuple from them; existing invalid-header versus no-match behavior must match the actual unchanged regex. Arbitrary surrounding text may contain a forged valid tuple, so never assert authenticity or whole-message validation.",
+      "Include synthetic secret/IP/path/title strings surrounding a valid tuple and standalone: only the fixed leaf/category/SQLSTATE and existing finite parser facts may leave RAM. Assert no synthetic raw value or derived identifier appears in retained proof/projection. Do not assert stronger suppression than failure_facts actually provides.",
+      "One small actual project_vitest downstream control, using only its actual necessary pure dependency definitions, should project a synthetic failed API019 report for each new leaf and preserve failed status, counts, source-owned tuple, raw_failure_details and zero normal_acceptance. Use the existing finite extraction/control approach; never execute acquisition code. This is a synthetic publisher-to-consumer grammar witness, not an actual run or API019 acceptance."
+    ],
+    "authority": "Present authority is read-only compatibility planning plus this one new plan artifact. Root separately allocates the four-constant author delta and safe controls; independent actual review then binds it with the frozen five tracked source paths. No native/remote observation authority follows. All prior operation/artifact slots stay CLOSED.",
+    "actions": {"reader_or_source_edits": 0, "counterparts_created": 0, "module_or_function_invocations": 0, "tests_or_controls": 0, "partial_tracked_patch_reads": 0, "catalog_or_census_rebuilds": 0, "raw_SQL_reads": 0, "network_or_GETs": 0, "Git_operations": 0, "resources_or_workloads": 0}
+  },
+  "Open questions": [
+    "The future counterpart and its executed offline safe proof do not yet exist; this plan cannot claim actual function-byte conservation or a control pass.",
+    "The author is still completing the tracked amendment. Historical source75/catalog pins are retained for inert lineage and cannot qualify the amended current source. A later execution proposal would require separate exact source/control/ownership evidence and finite authority, outside this plan.",
+    "Any need beyond four stages constants in the actual reader must stop this lane and return a concrete discrepancy; do not edit parser functions or weaken guards."
+  ],
+  "Deferred work": [
+    "Root: allocate the exact four-file inert counterpart and four-constant reader delta separately, then obtain independent actual review alongside the completed frozen five-path tracked source/control delta.",
+    "Any later observation remains a separate precise single-question allocation/grant after actual source/control review. No NORMAL replay, automatic retry or runtime reader invocation is authorized here."
+  ],
+  "Blockers": [
+    "No implementation/control approval or runtime acceptance is produced by this plan. Existing API019 refusal and API020 nonexecution remain unresolved; 95-case acceptance and P5 advancement remain unavailable.",
+    "Emitter provenance, benignity, actual cause, native first throw, deletion and backend settlement retain their prior UNKNOWN/UNVERIFIED states. Preserve the 118-SQL boundary, three-round broad-review cap and 15.6 unstarted status."
+  ]
+}

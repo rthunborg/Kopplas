@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "layer": "verification-gap",
+  "round": 2,
+  "sourceHead": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "beforeHead": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "inputPath": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+  "inputSha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "nativeOriginalCompletion": true,
+  "originalCompletion": "Actual final reviewer response after absolute-path/login:false plumbing repair; UI race assertion gap report.",
+  "initialPlumbingFailure": "Separate uncredited failure; not the completed review report.",
+  "persistenceOnly": true,
+  "persistedAtUtc": "2026-10-20T14:52:03.5227826Z",
+  "provenance": "Later verbatim persistence of previously completed final response; no new review, source validation, or claim of original on-disk persistence.",
+  "reportPath": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/verification-original.md",
+  "reportEncoding": "UTF-8 without BOM; LF; no trailing newline",
+  "reportBytes": 1932,
+  "reportSha256": "d545c9f35e351fbc69496624e77f85a2d776d2350e91cf47a5207ea1d65ca3a0"
+}

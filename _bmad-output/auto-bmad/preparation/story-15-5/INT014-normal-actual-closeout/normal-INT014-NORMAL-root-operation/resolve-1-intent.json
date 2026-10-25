@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-23T13:35:19.529995+00:00",
+  "method": "GET",
+  "endpoint": "repos/rthunborg/Kopplas/actions/workflows/296219797/runs?event=workflow_dispatch&branch=codex/epic-15-scheduling-time-calendar&per_page=20",
+  "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "operation_id": "9ace75d3-954d-40b4-b870-cc3dea11265f"
+}

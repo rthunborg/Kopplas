@@ -1,0 +1,25 @@
+{
+  "kind": "ROOT_MECHANICAL_DISTINCT_FAILED_RUN_AUDIT_ADMISSION",
+  "run_id": 39664130401,
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/manifest.json",
+    "bytes": 950,
+    "sha256": "4c1ed6f72322617d39cadda2b2218fff8673794666f18b7efdc78fb0d43b4f2a"
+  },
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/original-attestation.json",
+    "bytes": 18912,
+    "sha256": "8e79be9484918c26a1f4aba2bc68fb5b7b8186884c717ed231e412ef50a378e9"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/original-report.md",
+    "bytes": 7517,
+    "sha256": "9369f5e42286761f72977ab6f7fb293210e469c6df765534fedce0ba216b0a07"
+  },
+  "verified_members": 3,
+  "auditor_verdict": "PASS_QUALIFIED_FAILED_RUN",
+  "normal_acceptance_credit": 0,
+  "development_complete": false,
+  "tool_lineage_limit": "Native tool8163e5/native0 attributed; raw tooloutput not independently read",
+  "next": "Evidence-led materially simpler targeted terminal diagnostic plan; no native retry or sourceeffect authorized by this receipt"
+}

@@ -1,0 +1,15 @@
+{
+  "round": 3,
+  "layer": "edge",
+  "task": "/root/build15_5_high/round3_edge",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "source_head": "360fe850c18552f23a2bf74d8eda865431f0af38",
+  "before": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "input_sha256": "18c68c9e6a2cdf51439d2c496025ad6cac1adaf846f43a060b6d9a84eac0f164",
+  "original_native_final": "completed before later persistence",
+  "persistence_only": true,
+  "new_review": false,
+  "report_file": "edge-original.md",
+  "report_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+}

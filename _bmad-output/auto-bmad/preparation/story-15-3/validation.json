@@ -1,0 +1,80 @@
+{
+  "outcome": "done",
+  "halt_status": "ready-for-dev",
+  "blocking_condition": null,
+  "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-3-conflict-resolver.md",
+  "baseline_revision": "3a0282a70ab9cc539e2d85bd660635820e618731",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "phase": "planning-only",
+  "tasks": 9,
+  "acceptance_criteria": 8,
+  "source_ac_sketches_preserved_verbatim": 1,
+  "story_file_audit_checks_passed": 7,
+  "kernel_sha256": "aa081c72088e5019d311764e68a0fb495822422dbb677b23f0db6f7e0c5d17a1",
+  "kernel_hash_definition": "UTF-8 LF exact text from <intent-contract> through </intent-contract>, tags included, no appended newline",
+  "raw_sha256": "451795a63f9fd046ccc6f89a9e91f192b1f0f21beddf7a9a5391c0a6b8ccc873",
+  "raw_bytes": 25848,
+  "approved_kernel": null,
+  "approval_status": "pending-root-approval-freeze-and-independent-bounded-inventory-verification",
+  "reader_passed": true,
+  "discovery_passed": true,
+  "preservation_passed": true,
+  "source_files_checked": 1150,
+  "cached_epic_context": "valid-reused-byte-unchanged",
+  "runtime_tests_executed": 0,
+  "resources_started": 0,
+  "code_review_rounds": 0,
+  "independent_spec_review": "original-High-PASS-reported-by-Root; bounded-inventory-successor-verification-pending",
+  "release_ready": false,
+  "companions": [
+    "implementation-ownership-handoff.md",
+    "current-contracts-and-design.md"
+  ],
+  "proposed_migration": {
+    "logical_basename": "conflict_resolver",
+    "filename": "supabase/migrations/20261020180000_conflict_resolver.sql",
+    "timestamp_reserved": true,
+    "reservation_owner": "Coordinator",
+    "final_shared_allocation_granted": false,
+    "sql_write_grant": false,
+    "conditional_allocation_pass": true
+  },
+  "proposed_new_table": "booking_conflict_resolutions",
+  "proposed_notification": "booking.changed (in_app only)",
+  "build_prerequisites": [
+    "Root distinct independent High specification validation/approval/freeze",
+    "Coordinator exact shared delta/migration/isolated fixture-resource allocation"
+  ],
+  "bounded_inventory_amendments": [
+    {
+      "date": "2026-10-20",
+      "source": "Coordinator SAMEHigh allocation reviewer via Root",
+      "added_shared_paths": [
+        "tests/support/authz/role-harness.ts",
+        "tests/integration/rls/role-harness.atdd.int.test.ts"
+      ],
+      "scope": "ledger H4 metadata, checked minimal manager history fixture projection and own/foreign role-denial proofs only",
+      "preserve": [
+        "E16 job-scope helper and cases",
+        "private request/result/outcome projection exclusion"
+      ],
+      "spec_raw_unchanged": "451795a63f9fd046ccc6f89a9e91f192b1f0f21beddf7a9a5391c0a6b8ccc873",
+      "kernel_unchanged": "aa081c72088e5019d311764e68a0fb495822422dbb677b23f0db6f7e0c5d17a1",
+      "final_allocation_granted": false,
+      "product_implementation_started": false,
+      "coordinator_conditional_allocation_pass": true
+    }
+  ],
+  "coordinator_allocation": {
+    "status": "FINAL CONDITIONAL ALLOCATION PASS reported by Root",
+    "receipt": ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-allocation-20261020.json",
+    "scope": "original exact inventory plus two named role-harness paths",
+    "remaining_conditions": [
+      "independent bounded-successor verification",
+      "Root implementation release",
+      "migration name recheck before creation"
+    ],
+    "planning_task_write_authority": "own companion/validation receipts only"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "independent-build-parent-third-source-freeze-check",
+  "status": "PASS",
+  "source_head": "a76fc492a5273da776ba807559b2eb81d41bfe10",
+  "capsule_bytes": 247377,
+  "capsule_sha256": "3a4391820a34d7b9feca705d329e19eb2d7a5060f29edcfe53d5a7294c7a4c65",
+  "prior_two_capsules_unchanged": true,
+  "source_bindings": 67,
+  "raw_normalized_differences": 40,
+  "author_commits": 7,
+  "root_checkpoint_commits_excluded": [
+    "9487c0d9dc6f622b472780587e20e834abf98595",
+    "c57580580217e34a0b933a23f7c36737306333b7"
+  ],
+  "historical_migrations": 109,
+  "protected_consumers": 37,
+  "historical_preparation_blobs": 69,
+  "artifact_reference_occurrences": 112,
+  "unique_artifact_paths": 110,
+  "failed_checkpoint_source_equalities": 126,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "review_cap": 3,
+  "latest_distinct_high_delta_review": "PASS; not fourth broad",
+  "inventory": {
+    "feature": 95,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "bootstrap_separate": 23
+  },
+  "author_source_clean": true,
+  "global_clean_not_claimed": true,
+  "limits": "Mechanical path/hash/provenance/accounting check only; unchanged source semantics reuse independent reviews. SQL compilation/65 native bodies/real lifecycle/API remain pending new exact-head CI. Both failed checkpoints preserved; their unit passes are historical, not passing runtime acceptance.",
+  "errors": []
+}

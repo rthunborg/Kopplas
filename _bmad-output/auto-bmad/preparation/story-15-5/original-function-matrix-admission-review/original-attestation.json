@@ -1,0 +1,159 @@
+{
+  "schema": "original-function-matrix-admission-independent-high-v1",
+  "review_date": "2026-10-21",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of": [
+      "diagnosis/payload author",
+      "Root orchestrator"
+    ]
+  },
+  "verdict": "PASS_BOUNDED_CORRECTED_SUCCESSOR_PREPARATION_ONLY",
+  "unchanged_original01_readmission": "REFUSE",
+  "execution_authorized": false,
+  "normal_acceptance_credit": 0,
+  "run_id": 39627344465,
+  "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+  "source": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "checkpoint": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+  "attempt": 1,
+  "inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/extract.py",
+      "bytes": 22147,
+      "sha256": "b2819bf337454a1f1960e9661ac72ff0a9be27801ac80e89f222457d2bba9ff0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/test_extract.py",
+      "bytes": 17772,
+      "sha256": "e3d1f0a4b32c3a7b879e62c6a636080a188b6c2138092bc63d8ff5530c3f9970"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/proposal.json",
+      "bytes": 19751,
+      "sha256": "017a1c5af250d04927b0afe60c46c5e7a8e0b954d5c1caf4c4d4a99882ea88f0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-activation.json",
+      "bytes": 2097,
+      "sha256": "27b0430f9da28f10e6637018161d794ea74d27cd1a695a0db28152bfced54fcd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json",
+      "bytes": 895,
+      "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-invocation-stop.json",
+      "bytes": 820,
+      "sha256": "08185ce64b5bc0a523993f4ddf9fbe5bb488bf8ee369ac1a7d7122e77a794188"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-c97f9ac5-terminal-job-facts.json",
+      "bytes": 8313,
+      "sha256": "0da10d845a11f68c3007920101d79b9686509d1bf4222b3163e174babfc7e076"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-diagnosis.json",
+      "bytes": 10469,
+      "sha256": "505c3434137596e62004fc1a8e286515130cbba60f73fdc9163ae1b89bfc0bd0"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "independently_verified": {
+    "activation_raw_references": 7,
+    "proposal_source_raw_bindings": 18,
+    "Root_terminal_jobs": 9,
+    "Root_selected_steps": 4,
+    "pre_guard_raw_data_predicates_match": true,
+    "selected_workflow_git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+    "workflow_raw_clean_checkpoint_match": true,
+    "read_only_Git_calls": 2,
+    "extractor_imported": false,
+    "extractor_invoked": false,
+    "extractor_executable_compilation": false,
+    "extractor_tests_run": 0,
+    "API_network_resources_queries_CI": 0
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "location": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/extract.py:400",
+      "caller": "Root terminal-admitted original01 extractor",
+      "invariant": "Truthful workflow-reachable startup failure is admitted for startup-only archive observation",
+      "actual_step_tuple": {
+        "startup": "failure",
+        "cause_proof": "skipped",
+        "upload": "failure",
+        "Stop": "success"
+      },
+      "guard_requires": "cause_proof and upload both skipped after startup failure",
+      "consequence": "Deterministic pre-marker/pre-GET refusal for these frozen inputs",
+      "minimum_fix": "Keep cause_proof skipped requirement; admit failed upload as well as skipped; retain startup-only selection and all source/terminal/raw pins"
+    }
+  ],
+  "zero_effect_proof": {
+    "source_validation_call_line": 424,
+    "source_exclusive_marker_line": 449,
+    "source_sole_capture_line": 457,
+    "source_sole_popen_line": 278,
+    "marker_flush_fsync_precedes_capture": true,
+    "capture_call_sites": 1,
+    "marker_deletion_paths": 0,
+    "marker_absent": true,
+    "result_absent": true,
+    "successful_consumption": 0,
+    "this_invocation_logical_gh_acquisitions": 0,
+    "this_extractor_archive_GETs": 0,
+    "scope": "This sole extractor invocation under retained file custody; no claims about producer or other actors",
+    "generic_stop_alone_identifies_inner_exception": false,
+    "actual_raw_SHA_CLI_argument_retained": false,
+    "TERMINAL_STEP_CONFLICT_captured_runtime_claim": false
+  },
+  "selection_preservation": {
+    "failure_selected_titles": [
+      "Start local Supabase stack"
+    ],
+    "archive_projection_line": 231,
+    "upload_failure_bodies_must_not_be_selected": true,
+    "no_body_or_hosted_cleanup_inference": true
+  },
+  "required_resume_conditions": [
+    "Preserve original01 code/proposal/activation/terminal/stop byte identities",
+    "Explicit Root bounded successor ownership/preparation admission",
+    "Independent High actual exact-delta code/control/proposal review",
+    "Refresh current code/review/allocation/source pins and truthful unchanged actual terminal binding",
+    "Confirm absent consumed/result and unconsumed specific one-GET authority",
+    "Separate Root exactly-once successor execution authorization; uncertainty stops"
+  ],
+  "limits": [
+    "No successor payload inspected or approved here",
+    "No automatic re-invocation or retry despite unconsumed request budget",
+    "No upload failure-body cause, matrix, backend or first-error cause observed",
+    "Stop success is metadata, not hosted shutdown proof",
+    "All43 DB/14browser failures unresolved; development/release completion unestablished"
+  ],
+  "effects": {
+    "only_files_written": [
+      "original-report.md",
+      "original-attestation.json"
+    ],
+    "old_files_author_diagnosis_source_Spec_Git_state_reports_changed": false,
+    "API_network_resources_or_query_effects": 0,
+    "normal_acceptance_credit": 0,
+    "native_acceptance_credit": 0,
+    "backend_cause_proven": false
+  }
+}

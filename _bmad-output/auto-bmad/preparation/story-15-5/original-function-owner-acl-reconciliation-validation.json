@@ -1,0 +1,129 @@
+{
+  "Outcome": "PASS_PLAN_ONLY — the specific remaining ACL/grantor/options, all8 preflight order and native-regression placement conditions are sufficiently defined. No consequential unsafe path identified in this refinement. This is plan sufficiency, not implementation approval or actual native proof.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-validation.json",
+      "purpose": "Only new independent refinement validation; identity is returned out of band after exclusive write."
+    }
+  ],
+  "Status": {
+    "reviewer": "Existing distinct gpt-6.1-sol High reviewer, independent from proposal author and Root; reused prior conditional source/PG17 semantic assessment. Not a fresh context claim or fourth story broad review.",
+    "scope": "Only mandatory remaining conditions of original-function-acl-source-assessment-review. No repeated broad source, runtime or hosted-cause assessment.",
+    "policy_version": "2026-10-19",
+    "reviewed_head": "8d7b5c13a6673a55c3f3c858838de4bd54ab6d95",
+    "source_commit": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+    "checkpoint_source_comparison": "All six bound raw inputs equal current HEAD and c97f9ac509e642cb7337b8fcd2deaad90540db1c Git bytes; all stated HEAD blob OIDs verified. Current metadata-only head does not change the source assessment.",
+    "proposal": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-proposal.json",
+      "bytes": 26010,
+      "sha256": "ec7e512c7689ca17ef48ae661f01ef36b6069980233bdfc2672a8c79e0de5b79"
+    },
+    "source_bindings": [
+      {
+        "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+        "bytes": 13136,
+        "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+        "head_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+        "clean_oid": "93b55ab54ec63a775894e92db9d83219add909dd"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 163537,
+        "sha256": "4f502cd88dd23269113e84aef733462f68156733f9a38297c020d3a0609a58d7",
+        "head_blob": "02442fd8034b573d376397e1eee105c7b3d96849",
+        "clean_oid": "02442fd8034b573d376397e1eee105c7b3d96849"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 89043,
+        "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+        "head_blob": "a78e3f6a336f84fc3d44d042516808748622feb8",
+        "clean_oid": "a78e3f6a336f84fc3d44d042516808748622feb8"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "bytes": 14957,
+        "sha256": "52716fa7a627b96d6b9397b775b4603ce85860fe4f5c101a0523cc95cab21838",
+        "head_blob": "14e2cb42fb816d88e2b67f9223dfa573d30bb663",
+        "clean_oid": "14e2cb42fb816d88e2b67f9223dfa573d30bb663"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 160774,
+        "sha256": "32eb365d1b6b523ef07e3fc950ae824d4cc94e226558947e6d32342f2f27b77f",
+        "head_blob": "26327a36a8f89cf503036239def64b0585465136",
+        "clean_oid": "26327a36a8f89cf503036239def64b0585465136"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+        "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+      }
+    ],
+    "verified_prior_refs": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-report.md",
+        "bytes": 5643,
+        "sha256": "1b7e27b3c3ce40f3094159894400d6c8235a7c67a3a32196c65dbf1554ae0d78"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-attestation.json",
+        "bytes": 12844,
+        "sha256": "967809fe02ac1c42f2e576fb1c381703567c1256bdcaed961cea53f3f50f83ac"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/result.json",
+        "bytes": 1747,
+        "sha256": "f696b058461e257babccf2c00eb608a26641b8b98f77c9643a2417eede287695"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-known-adoption-check.json",
+        "bytes": 1571,
+        "sha256": "c994f4f7b47dd97ff41f53d951e41ed23b24bcd1449098969f44e03d82e6f728"
+      }
+    ],
+    "exact_candidate_paths": [
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "satisfied_conditions": [
+      "Each exact function allows only standard default D or its own source-intended I set. Every raw entry must be owner-granted EXECUTE without grantability, with the sole owner entry and exact cardinality. Unexpected grantors, privileges, roles, D+JWT, duplicate/missing entries and raw grant options reject before effects. Implicit owner grant authority is not confused with a raw grant-option row.",
+      "Read-only preflight resolves eight distinct identities and checks overload absence, owner, complete signature/defaults, language/security/config/volatility and exact immutable source bodies before any role/DCL/schema/adapter mutation. All eight supplied body lengths and SHA256s independently match the predecessor bodies. Missing or incomparable evidence fails SOURCE_ACL_NOT_COMPARABLE.",
+      "Existing hardened role, session and effective/direct SET authority are required; no membership or privilege repair. SET LOCAL owner is followed by actual identity checks, exact eight-target revokes/grants, RESET/requalification and exact non-ACL/role/schema conservation. No CASCADE, broad schema grants, new persistent authority or existing Auth/business mutation is proposed.",
+      "Post-reconciliation raw I sets and effective owner/JWT boundaries are checked, including inherited effective access; unexpected inherited access aborts instead of repairing membership. Full original3 guard/matrix remains unchanged before adapter DDL. Adapter metadata baseline is taken after intentional ACL reconciliation, preserving the later strict adapter invariants.",
+      "Single-statement failure, reset failure or postcondition drift aborts all reconciliation/adapter changes. Savepoint negative and final success branches in the future native fixture are explicitly distinct; full rollback and same/fresh-connection absence with settled query/timer/client custody are required.",
+      "Existing helper/RLS010 inventory gains subject and now plus closed raw/effective ACL facts, retaining secret/actor special checks. All eight transferred functions are covered. No new acceptance-case count or global runner/config change.",
+      "Ordinary non-superuser/non-inheriting grantor regression is placed in a separate helper invoked by existing RLS010. Its new effects are explicit: qualified setup only for UUID fixture bootstrap, ordinary identity for the grantor sequence, one inert never-invoked function, actual extracted source ACL contrast, rollback branch, two bounded read-only metadata subprocesses and main plus fresh read-only DB client. Existing roles/memberships/ACLs and shared functions remain untouched. Any competing exclusive proof scope stops for allocation.",
+      "Exact five proposed paths are sufficient and proportional. No wrapper/pin, predecessor, workflow, dispatcher, dependency, additional private payload or global runner change is included."
+    ],
+    "actual_checks": {
+      "proposal_identity": "26010 bytes / exact expected SHA256",
+      "source_bindings_verified": 6,
+      "review_adoption_refs_verified": 4,
+      "exact_source_body_hashes_verified": 8,
+      "reader_note": "Initial lexical body reader expected CREATE OR REPLACE and stopped on CREATE FUNCTION. Corrected reader accepts both actual forms; all8 then verified. This was a reader correction, not an author/source defect or native test.",
+      "performed": "Bounded Python-B source/hash/lexical checks and read-only Git metadata only. Prior PG17 semantic evidence reused unchanged.",
+      "not_performed": "No SQL, DB/catalog query, fixture, extractor, API, CI, Docker/resource, source/Spec/state/report edit or Git mutation. No new native test or runtime claim."
+    },
+    "consequential_findings": [],
+    "preserved": "Original predecessor immutable; all earlier review/qualification artifacts untouched; source111 unchanged; kernel5760/SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977, review baseline/counter3 and in-review obligations retained. Normal acceptance0."
+  },
+  "Open questions": [
+    "Actual hosted grant identities, grantors/options and application sequence remain unobserved. Conditional ordinary-grantor source defect is already established; this refinement neither proves hosted causality nor requires another observer.",
+    "Known E16/Documents non-adoption facts do not establish global absence. Concrete111 edit clearance remains Root/Coordinator responsibility; any discovered successful application/adoption freezes111 and requires separately coordinated forward/bootstrap compatibility."
+  ],
+  "Deferred work": [
+    "After concrete source allocation: implement only the exact five paths and these fail-closed conditions, update author single SRO/evidence, run actual-source focused/static controls and receive distinct targeted committed-delta High review. No fourth broad story round.",
+    "After separate exact-head runtime allocation: execute the meaningful ordinary-grantor regression with its explicit UUID/identity/settlement/rollback/fresh-absence effects, full required DB/RLS including INT015 and extended RLS010, all95 normal cases and separate recovery. Skips/unavailable services are not coverage; any uncertainty retains custody and fails.",
+    "Unexpected default/catalog ACL shape must stop SOURCE_ACL_NOT_COMPARABLE before mutation, without automatic detail observer, relaxed allowlist, grant repair or opaque retry."
+  ],
+  "Blockers": [
+    "No remaining author plan-refinement blocker identified. PASS_PLAN_ONLY grants no source assignment, runtime, CI, push, migration, release or deployment authority.",
+    "Before implementation: concrete111 edit clearance and exact five-path source/effect allocation remain pending. Before native work: independent committed implementation review plus separate owned checkpoint/runtime allocation covering the new fixture effects remain required. Current normal acceptance remains0."
+  ]
+}

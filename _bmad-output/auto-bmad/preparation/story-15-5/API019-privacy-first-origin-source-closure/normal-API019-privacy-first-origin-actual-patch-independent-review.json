@@ -1,0 +1,275 @@
+{
+  "schema": "kopplas.targeted-first-privacy-origin-actual-patch-review.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T16:28:29.902053+00:00",
+  "status": "PASS_API019_PRIVACY_FIRST_ORIGIN_SOURCE_ONLY",
+  "outcome": "PASS_API019_PRIVACY_FIRST_ORIGIN_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "route": "Root26ee7a; explicit gpt-6.1-sol High",
+  "scope": "Only frozen five-path diff and consequential regressions in evidence seam, not fourth broad review/functional fix/runtime admission.",
+  "author": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/author-result.json",
+    "bytes": 26728,
+    "sha256": "971ffc4b929f860e1ea4e3c62f938df2841e6778dd090c0a831e208f27f51e49"
+  },
+  "plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-refusal-minimum-plan-independent-review.json",
+    "bytes": 14161,
+    "sha256": "7249e6a7eb55afb675ea4b435dfa897ad4e53a566937b088fda3041ce6177ca0"
+  },
+  "base_HEAD": "104976f7fc88844394abd48d02f1a8392c25ad8b",
+  "base_source": "e52568795789034c556f64b0721318f75aa13691",
+  "exact_source_bindings": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 49378,
+      "sha256": "90abe3fa71e637b6022a6a47d93b4180b2acf317723da6eba5f803db871fe8eb",
+      "LF_bytes": 48686,
+      "LF_sha256": "8798c1ba86885a6fec5214c2a18da4844e5716a3795370b53ed47422085f3eac",
+      "prospective_LF_git_blob": "ff918a3057a5dcf53bf2e7b86a6812c73bb0e626",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 143615,
+      "sha256": "83f8cfd2e82e00616398cf7ccd817415506ba05710481f63e0cc7f4e7b5b684b",
+      "LF_bytes": 142170,
+      "LF_sha256": "d89c354efa97b8710f125a98e557f69ad3d6d9d20933be26b69ca44614ee23a3",
+      "prospective_LF_git_blob": "e88ac532c7bfb1192cd34087bac947a4588e46b7",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 340518,
+      "sha256": "7c8e4e2684de09b7dee376af393a618677a2db16f35abfd968593dffcdc17fd0",
+      "LF_bytes": 337393,
+      "LF_sha256": "e0a317ddaef8ed436cc1f898e142ca2d6f2d0a9dbb96ee10268c34b789a82245",
+      "prospective_LF_git_blob": "8712fdb2bcb93688322168e595fa328ff7ef15be",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "bbbea7f1f12d0662b2b7e09fa6c6648c82cee2797d72357aa47bc62130bccd72",
+      "LF_bytes": 8024,
+      "LF_sha256": "3e4adaf1060424ad80ee2477ab6fcf8ab3b1ce9bc94d5204482383465a09156e",
+      "prospective_LF_git_blob": "e3bfa37f57e29468b71531e0cb98705952ec78fa",
+      "LF_inverse": true,
+      "raw_inverse": true,
+      "unchanged": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 262876,
+      "sha256": "fa16e59053bbc01435a9b38694976d3bbff7c0619271d05f4f4e45de21bb6a02",
+      "LF_bytes": 259770,
+      "LF_sha256": "8f2b28c58132ea91da3f046c1864ced662e4763be1eceaf375076af208262a50",
+      "prospective_LF_git_blob": "5118ffe354686567f078dd690ff802fe7c41fe90",
+      "LF_inverse": true,
+      "raw_inverse": false,
+      "unchanged": false
+    }
+  ],
+  "inverses": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/final-source-inverses.json",
+    "bytes": 5534,
+    "sha256": "4e2726667469759a85755cd31347b6268206a4053fda5371fbbd342a40166f4e"
+  },
+  "independent_assessment": [
+    "Detector source normalization independently restores the EXACT preimage function: same regex/conditions/infrastructure exemption/order, only true/false become fixedlabel/null. Public facade returns boolean. No added matcher, extra scan or relaxation; raw text remains transient local memory.",
+    "Observer snapshots only closed child/predicate synchronously before the existing first increment/await, Object.freeze and first-null guard prevent replacement. Shared monotone counter, rawprivacy-first scan, original response schema, persist call count/order and rejection behavior retained. Clean observation shape unchanged; only firstPrivacy fixedpair appears after detection.",
+    "Exactly three fixed db child closures wrap existing build/server/integration observe arguments with direct return. No mutable phaseglobal/command-derived label/new launch/wait/listener/await/query/env/timeout. Browser/causeproof retain unknowncontext/global original observer and privacyFailed behavior.",
+    "Helper chooses labels only after original strict privacy flag/count refusal. Exact child,predicate own keys and static own-key lookup select28 fixed ASCII stages; malformed/missing/extra/injected values fall back original generic refusal, never success. One ownedError/leaf, timing3s20ms, readFile/parse/IO handling and returned successful bytes retained.",
+    "CI contract change is only exact new wrapperLF SHA8798c1ba86885a6fec5214c2a18da4844e5716a3795370b53ed47422085f3eac. Existing fullhash/argv/workflowinverse/unrelated-drift guards unchanged. Four executable raw inverses prove no other source behavior change.",
+    "SRO current rationale/stops describe evidence-only scope, retained cause/custody unknowns and actual check limits. OutsideSRO raw prefix exact and complete canonicalLF inverse exact; whole rawSpec inverse is explicitly NOT established because author serialized assigned SRO CRLF. This does not touch approved kernel/status/counter3."
+  ],
+  "conservation": {
+    "actual_dirty_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "four_executable_complete_raw_and_HEAD_LF_inverses": true,
+    "all10_current_raw_LF_blob_pins_matched": true,
+    "other5direct_source_pins_unchanged": [
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "src/server/calendar-feed/public-feed.ts",
+      ".github/workflows/ci.yml"
+    ],
+    "ownerFacts": {
+      "bytes": 3563,
+      "sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085"
+    },
+    "outsideSRO_raw_prefix_sha256": "dbf33b53bb46cbf50e193f1e6cb9ca4d7fde15537c84eb37d2c87d5dbf90614e",
+    "whole_Spec_LF_inverse_and_HEAD_equal": true,
+    "whole_Spec_raw_inverse": false,
+    "Spec_raw_limit": "Owned SRO CRLF serialization only; failed earlier raw-serialization probes never changed source or became proof. No false whole-raw claim.",
+    "SQL118": "No changed SQL path; historical qualified vectors/source proof reused, no SQL raw rescan."
+  },
+  "meaningful_author_evidence": {
+    "RED": "0P4F/childnative1 against unchanged producer",
+    "initial_GREEN": "3P1F: new extractor omitted static table dependency; preserved history, not a production defect",
+    "corrected_GREEN": "4P0F0skip/native0",
+    "affected": "195P0F0skip/native0/13.71698s; four focused overlap, not199",
+    "whole_TS": "InitialTS2322 localized to new mock persist return inference; type-only accurate signature annotation then corrected native0",
+    "scoped4source_ESLint": "native0",
+    "SRO": "native0/216refs/errors[]",
+    "diff_and_paths": "native0/exact5/SQL0",
+    "principal_native_closures": [
+      {
+        "label": "GREEN-corrected-extractor",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-GREEN-corrected-extractor-native.json",
+          "bytes": 1215,
+          "sha256": "ba046cc4e9fa188fa99d549aa5446fb45679cdc505732e8a580a7fd8ee5ee1dd"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.371964
+      },
+      {
+        "label": "affected",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-affected-native.json",
+          "bytes": 1142,
+          "sha256": "5ed62e9ecf769a8e6dce315cb661760c5cb881c1c774cd84ae46da72434e70d8"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 13.71698
+      },
+      {
+        "label": "typecheck-corrected",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-typecheck-corrected-native.json",
+          "bytes": 1224,
+          "sha256": "a0569ed4875f350171ff4e485fa6a06bdfa73f60606522b346d891fc748ded25"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 4.076426
+      },
+      {
+        "label": "lint",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-lint-native.json",
+          "bytes": 1412,
+          "sha256": "307b09cf4e96ca756dfb711c2475487ef2f3542b60841fe971f1b98f44abf6cb"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 3.0799
+      },
+      {
+        "label": "review-order",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-review-order-native.json",
+          "bytes": 1122,
+          "sha256": "3c9a5d5380d660f82b6a6c899d626692112d4ca604467ddc45edd40c490b9110"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.188128
+      },
+      {
+        "label": "diff-check",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-diff-check-native.json",
+          "bytes": 952,
+          "sha256": "66ec753235a3fc6184451099438235a5cb8113e601f6da3c26dd8f94d9011d1d"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.064241
+      },
+      {
+        "label": "changed-paths",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-changed-paths-native.json",
+          "bytes": 961,
+          "sha256": "136aa2d624f4d9149de7ec17ce174ba96d3908433190911ce2378362547f3cb1"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.097172
+      },
+      {
+        "label": "parser-type-compatibility-corrected",
+        "ref": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/ORIGIN-parser-type-compatibility-corrected-native.json",
+          "bytes": 2713,
+          "sha256": "c991d07f91f14ce961f895afffacabbbc8c9676520c5bf43dd9f235b705c9907"
+        },
+        "native_exit": 0,
+        "elapsed_seconds": 0.13008
+      }
+    ],
+    "attribution": "All author proof-ref bytes/hashes read; primary native EOF/readersjoined/handlesclosed/directsettled/nooverflow checked. Author host outer records bind RED33b813, GREEN192c33, affected50dcc2/session70653\u2192a7e282, correctedTS193353,lintf67de5,parser7b84ef. No reviewer test rerun.",
+    "type_only_postaffected": "195P predates only return-type annotation. Exact type hunk plus author actual stripped prefix/signature/body/suffix proof shows runtime unchanged; correctedTS/lint follow. No redundant suite required.",
+    "history": "Initial427ad2 local receipt-path error grants no RED/pass credit; failed extraction/type/token/rawSpec probes retained as unknown/failed attempts, not qualified outcomes."
+  },
+  "private_reader_compatibility": {
+    "ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/reader-stage-data-successor.py",
+      "bytes": 52622,
+      "sha256": "f6d39f15c21a643850909790d7cd9b90b42a5ceb5457a2b6d6fdeb926daedb31"
+    },
+    "proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/reader-and-type-compatibility-proof.json",
+      "bytes": 5146,
+      "sha256": "2cb109940242c94b76dfd2c0839a9f8ae31193080b5755aff0bed7b9d2dbdf1e"
+    },
+    "baseline": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/reader-stage-data-successor.py",
+      "bytes": 50846,
+      "sha256": "b7a34c43b1b1cd1e088685c31f29787c908f201354468b71f6929a2d788e5d9c"
+    },
+    "full_raw_inverse": true,
+    "all41_AST_function_segments_byte_equal": true,
+    "only_added_stage_constants": 28,
+    "table_equal_consumer_set_delta": true,
+    "longest_ASCII": 80,
+    "author_actual_roundtrips": 28,
+    "author80accepted81refused_injectionrefused": true,
+    "limits": "Only stage compatibility. Historical consumed tuple/path/source proof retained; no new operational enrollment/admission/invocation. Later currenttuple/terminal/source data and independently reviewed finite effects remain separate."
+  },
+  "eligibility": {
+    "Root_exact5_commit_candidate": true,
+    "source_eligibility_only": true,
+    "functional_repair": false,
+    "runtime_effect_authority": false,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "remaining": {
+    "last_qualified_required95": "93P1F(API019)1zero(API020pending); separate recovery1P/browser14retry0P",
+    "hosted_first_predicate_child": "UNKNOWN, new bookkeeping not yet exercised in hosted report",
+    "actual_disclosure_vs_falsepositive_cause": "UNKNOWN",
+    "main_DB_key_custody": "Retained/unverified/backendsettlementUNKNOWN",
+    "P5": "OPEN",
+    "counter": 3,
+    "next": "Root alone integrates reviewed exact5 and qualifies future inert operational/source data. Any later finite run/GET needs actual separate admission; no blind retry/newcollector/assertion weakening."
+  },
+  "reviewer_execution": {
+    "reads": [
+      "bd52fb/native0",
+      "c25040/native0",
+      "d8620c/native0",
+      "5eedc1/native0",
+      "9a648d/native0"
+    ],
+    "final": "Bounded Python hash/inverse/source-normalization/fixedtable/AST/nativecapture checks and readonly Git diff/show metadata only. No application/source module imports, extractor/config/test suite/reader/native/API/Gitremote/resource action; no foreign checkout.",
+    "source_edits": 0,
+    "Git_mutations": 0,
+    "API": 0,
+    "tests": 0,
+    "resources": 0
+  },
+  "blockers_to_source_eligibility": []
+}

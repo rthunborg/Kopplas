@@ -1,0 +1,19 @@
+{
+  "schema": "ROOT_LABEL_NORMAL_OPERATOR_PREAUDIT_ADMISSION_v1",
+  "status": "MECHANICAL_PASS_PENDING_DISTINCT_HIGH_OPERATOR_AUDIT",
+  "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+  "metadata_head": "501cd4e2e172967c6b0bb28bb58c69ac7fc05907",
+  "private_manifest_sha256": "c8d4f71ea9def529aa8e18aebd03e87a9828fd59993db4a560a4508be6647ddc",
+  "tracked_manifest_sha256": "0c3b7e4875e7b23a492f4da486410076e605eaeb0517ecf8606e80e3965d9423",
+  "private_files": 6,
+  "tracked_files": 3,
+  "native_clean_source_rows": 75,
+  "actual_source_and_metadata_objects": 150,
+  "input_refs": 12,
+  "offline_controls_author_attributed": 27,
+  "global_label_records": 48,
+  "actual_production_assembler_bytes_author_attributed": 25631,
+  "output_cap": 32768,
+  "native_acceptance": 0,
+  "effects": 0
+}

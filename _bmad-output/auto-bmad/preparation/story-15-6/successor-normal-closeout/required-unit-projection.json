@@ -1,0 +1,616 @@
+{
+  "operation_id": "28ec7655-c7c4-4781-8efc-fd5394701a8d",
+  "run_id": 40192543175,
+  "head": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "job_id": 121166457943,
+  "acquisition": {
+    "tool": "mcp__codex_apps__github_fetch_workflow_job_logs",
+    "args": {
+      "job_id": 121166457943,
+      "repo_full_name": "rthunborg/Kopplas"
+    },
+    "start_epoch_ms": 1792934923178,
+    "end_epoch_ms": 1792934925412,
+    "wall_elapsed_seconds": 2.234,
+    "promise_settled": true,
+    "promise_rejected": false,
+    "inflight_deadline_observed": false,
+    "native_exit": "NOT_APPLICABLE",
+    "transport_hardcap_claimed": false,
+    "safe_shape_file": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-6-preparation/shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d/verify-safe-return-shape.json",
+    "monotonic_envelope_seconds": 2.4816851999967184,
+    "timing_basis": "Date.now connector wall interval plus local Python monotonic upper-bound envelope",
+    "decoded_utf8_bytes": 1745765,
+    "decoded_text_sha256": "296ef168218c8be2e46ea2c9a245d8dffcaa6a32cb9cbd262105aa9e8289b312",
+    "tool_isError": false,
+    "decoded_representation": "decoded string",
+    "body_path": "root.structuredContent.content"
+  },
+  "step": {
+    "number": 12,
+    "name": "Unit tests (pure logic, node --test)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-25T12:19:52Z",
+    "completed_at": "2026-10-25T12:20:41Z"
+  },
+  "footer": {
+    "tests": 3483,
+    "suites": 103,
+    "pass": 3483,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 49101.67598
+  },
+  "footer_occurrences": {
+    "tests": 1,
+    "suites": 1,
+    "pass": 1,
+    "fail": 1,
+    "cancelled": 1,
+    "skipped": 1,
+    "todo": 1,
+    "duration_ms": 1
+  },
+  "full_native_point_count": 3586,
+  "full_typed_test_count": 3483,
+  "full_typed_suite_count": 103,
+  "required_selected_points": [
+    {
+      "title": "[P0] 15.5-UNIT-009 AC2 lost response freezes same attempt/revision; no success or automatic new generation",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 352,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-010 AC1 AC2 reconciliation never recovers raw URL and requires explicit fresh rotation",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 353,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-011 AC1 AC2 only confirmed current issuance exposes one-time URL; stale/revisit/revoke clears it",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 354,
+      "type": "test"
+    },
+    {
+      "title": "R1-07 authoritative post-commit refresh removes a concurrent revoke/rotation URL and retains current issuance",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 355,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.5-UNIT-001 AC3 AC8 timed autumn fold preserves independent UTC instants",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 356,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.5-UNIT-002-spring AC3 AC8 all-day Stockholm exclusive end across DST",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 357,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.5-UNIT-002-autumn AC3 AC8 all-day Stockholm exclusive end across DST",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 358,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.5-UNIT-003 AC3 AC8 edit/split with retained booking ID retains UID and stable update stamp",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 359,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-004 AC8 malicious UTF8 text is escaped and octet folded without property injection",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 360,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.5-UNIT-005 AC3 AC8 empty and >PostgREST-cap input are complete calendars",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 361,
+      "type": "test"
+    },
+    {
+      "title": "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.000001Z",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 362,
+      "type": "test"
+    },
+    {
+      "title": "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.1Z",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 363,
+      "type": "test"
+    },
+    {
+      "title": "R1-05 positive microsecond range projects to distinct supported RFC seconds 2026-10-25T00:30:00.999999Z",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 364,
+      "type": "test"
+    },
+    {
+      "title": "R1-05 positive microsecond range projects to distinct supported RFC seconds 1969-12-31T23:59:59.999998Z",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 365,
+      "type": "test"
+    },
+    {
+      "title": "R1-05 positive microsecond range projects to distinct supported RFC seconds 9999-12-31T23:59:59.000001Z",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 366,
+      "type": "test"
+    },
+    {
+      "title": "R1-05 microsecond ordering rejects reversed intervals within one millisecond",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 367,
+      "type": "test"
+    },
+    {
+      "title": "R1-06 snapshot omits METHOD and both revision stamps advance while UID stays stable",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 368,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-006 AC1 issuance requests 32 entropy bytes and stores independent SHA256 only",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 369,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-007 AC1 AC4 canonical token shape rejects padding, encodings, identity and path tricks",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 370,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-008 AC1 failed entropy never derives capability from an identity or timestamp",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 371,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.6-UNIT-D01 AC2 initial today is Stockholm local date across UTC midnight",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 567,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D02 AC2 Stockholm 2026-03-29 uses actual 23-hour day",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 568,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D02 AC2 Stockholm 2026-10-25 uses actual 25-hour day",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 569,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D03 AC2 week navigation retains selected local weekday across fall DST",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 570,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.6-UNIT-D04 AC2 invalid calendar dates never normalize to another date",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 571,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D05 AC2 agenda half-open overlap sorts start then ID and deduplicates shared/series rows",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 572,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.6-UNIT-D06 AC3 map URL safely encodes Swedish text, query delimiters and script-like input",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 573,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D07 AC6 retryable after success clears cards, actions and notices",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 574,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D07 AC6 denied after success clears cards, actions and notices",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 575,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D08 AC6 late previous date response cannot restore old data",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 576,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D08 AC6 late previous tenantKey response cannot restore old data",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 577,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D08 AC6 late previous userKey response cannot restore old data",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 578,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D09 AC6 only current connected successful empty read becomes empty",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 579,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D10 AC6 older refresh for identical selection cannot replace a newer failed refresh",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 580,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-D11 AC2 complete supported weeks reject both four-digit boundary overflows",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 581,
+      "type": "test"
+    },
+    {
+      "title": "versioned file-backend restore preserves the DB-owned identity and refuses overwrite",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1020,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-A01 AC1 normalized pure Montor lands on the single authorized Min dag item",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1848,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-A02 AC1 mixed office unions preserve existing office landing priority regardless of order",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1849,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-A03 AC1 absent Bookings.View has no direct/nav grant and no landing loop",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1850,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-012 AC4 AC9 canonical bytes are deterministic, length safe and domain separated",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1924,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-013 AC4 every token/IP/lifecycle/proof field mutation invalidates signature",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1925,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-014 AC4 AC9 dedicated key missing/short/badly encoded fails closed",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1926,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-021 AC4 proof expires, rejects future issuance and lifetime over sixty seconds",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1927,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-018 AC7 exact public GET route exists with dynamic no-store behavior",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1928,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-019 AC7 only exact single-token public feed bypasses before auth/env/cookies",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1929,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-020 AC7 AC9 transitive imports exclude cookie/session/service/client-secret dependencies",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1930,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-015 AC4 AC5 unsigned forwarded headers cannot select an IP bucket",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1931,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-016 AC4 AC5 verified platform canonicalizes single IPv4/IPv6, rejects lists/ports/invalid",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1932,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.5-UNIT-017 AC4 AC5 IP HMAC uses canonical domain and shared unknown bucket without raw address",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 1933,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R01 AC1/2 cookie authority supplies exact four RPC arguments; hostile selectors have no effect",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2810,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R02 AC1 current anonymous denies before projection/notice reads",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2811,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R02 AC1 current invited denies before projection/notice reads",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2812,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R02 AC1 current disabled denies before projection/notice reads",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2813,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R02 AC1 current no-booking-grant denies before projection/notice reads",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2814,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R02 AC1 current scheduling-pending denies before projection/notice reads",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2815,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R03 AC3/7 exact browser allowlists strip money, peers, source and authority for managers too",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2816,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R04 AC3 filing prefill is exact existing contract with Stockholm date and elapsed DST minutes",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2817,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R05 AC3/6 own-time capability revoked between reads removes prefill immediately",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2818,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.6-UNIT-R06 AC3 jobless/addressless booking has explicit absence and valid jobless prefill",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2819,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R07 AC4 jobs pending sets false, queries no jobs source and contributes no section payload/actions",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2820,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R08 AC5 filter own unread booking.changed before cap; safe generic notices and honest more-link",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2821,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.6-UNIT-R09 AC5 notices empty/failure are distinct and never manufacture a schedule change",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2822,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R10 AC6 malformed projection fails closed instead of reporting connected empty",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2823,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R10 AC6 malformed projection fails closed instead of reporting connected empty",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2824,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R10 AC6 malformed projection fails closed instead of reporting connected empty",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2825,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R11 AC6 failed refresh or membership revocation never returns previous success",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2826,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.6-UNIT-R12 AC2/4 confirmed booking empty and active-job empty remain independent",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2827,
+      "type": "test"
+    },
+    {
+      "title": "[P0] 15.6-UNIT-R13 AC6 opaque render context is stable for one actor/tenant and changes across authority",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2828,
+      "type": "test"
+    },
+    {
+      "title": "[P1] 15.6-UNIT-R14 AC5 invalid notice page cannot reach the projection or notification source",
+      "native_point": "ok",
+      "status": "passed",
+      "indent": 0,
+      "ordinal": 2829,
+      "type": "test"
+    }
+  ],
+  "selection": "Independent qualification new38+retained30 native ordinals plus separate exact xattr point; no suite/duplicate inflation",
+  "full_safe_projection_sha256": "de7518c4cd322545dd1ac4ae7e3f19d4dde0bf4366bb4dfbb9144a77197a877b"
+}

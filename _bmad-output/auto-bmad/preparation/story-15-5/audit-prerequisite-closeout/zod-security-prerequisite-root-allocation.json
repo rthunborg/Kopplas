@@ -1,0 +1,57 @@
+{
+  "allocation": "ROOT_ZOD_SECURITY_PREREQUISITE_EXACT_TWO_PATHS",
+  "Coordinator_actual_completed_turn": "01a16e5a-ee99-78e1-8545-819ff74e644c",
+  "Coordinator_actual_allocation_tool": "exec-55201711-d139-408f-94b2-e4b2d086a99f",
+  "Coordinator_actual_verify": {
+    "tool": "exec-63b95558-3616-4e63-8c76-e1fd0e8f76b2",
+    "native_exit": 0,
+    "duration_ms": 259,
+    "facts": "Mode=ro sharedclaims no dependency conflict; MAINHEADclean/pins exact."
+  },
+  "Root_actual_read": "read_thread completed actual turn/nativeverification/allocationtool seen, Coordinator idle",
+  "base": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+  "source_before": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+  "current_finding": {
+    "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\current-lockfile-audit-diagnostic\\result.json",
+    "bytes": 11569,
+    "sha256": "60a38ea75b2b3148f1fa05d75758681702a9ff7948142fa2d1155ca3db6d3500",
+    "official_advisory": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+    "version_applicability": "zod4.4.3 affected;4.6.6 patched; dev eslint-plugin-react-hooks7.1.1 parent range compatible; production exploit not established; historicalCIcauseUNKNOWN"
+  },
+  "owned_tracked_paths": {
+    "pnpm-workspace.yaml": "Only parent-specific eslint-plugin-react-hooks@7.1.1>zod override4.6.6",
+    "pnpm-lock.yaml": "Only corresponding override/zod integrity-resolution/snapshot and parent+zod-validation-error peer suffix4.4.3->4.6.6; stop unrelated dependency churn"
+  },
+  "owned_private_directory": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\zod-security-prerequisite-author",
+  "owned_private_members": [
+    "result.json",
+    "checks.json",
+    "source-proofs.json"
+  ],
+  "expected_preimages": {
+    "pnpm-workspace.yaml": [
+      434,
+      "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e"
+    ],
+    "pnpm-lock.yaml": [
+      162159,
+      "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+    ],
+    "package.json": [
+      2509,
+      "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+    ]
+  },
+  "mutations": "Recheck actual base/pins/clean and sharednode_modules usage beforewrite. Root strictlyholds ownedDEBUG readers/mutations/validityclaims; no foreignsession adoption. One bounded cached pnpm10.24 lock regeneration --ignore-scripts officialregistry only, then inspect actualchurn BEFORE one frozen install into ownedMAIN existingcompatiblev10store. Preserve sharp/unrs ignoredBuiltDependencies, pendingbuildpolicy,patch andallotheroverrides. Lockregen loop<=180s/install<=180s; exact existingnative capture with boundedoutput, actualnative/EOF/joinclose/settled and outertool/sessionwait provenance. No blind retry on uncertain mutation. If refusal/unrelatedchurn/newdependency/lifecycle/storemigration/newoverlap STOP precise blocker, retain state. No force/CI-TTYoverride/globalshim/config/approvebuilds/prune/delete/store-server/reacquisition.",
+  "validation": "After qualified install: verify selected package integrity and actual eslint-plugin-react-hooks resolution+zod-validation-error peers to4.6.6, frozenlockunchanged, focused existing lint-consumer smoke/checks plus full applicable lint/typecheck/productionbuild and one current exact highthresholdaudit. No new tests mirroring lockliteral, no redundant broad story suite. Use ordinary bounded foreground commands; no managed server/resources. Audit cause remains current evidence only; do not claim historicalCIrepair or runtime95 coverage. Capture statuses/counts and meaningful failures safely.",
+  "review": "Independent explicitHigh actualtwo-pathdiff+graph/evidence review beforeRootcommit; separate bounded prerequisite review, broadstorycounter remains3. Include concise author SuggestedReviewOrder for this prerequisite in result.Status and sourceproofs. No SRO/spec change now.",
+  "forbidden": [
+    "othertracked edits/packagejson/framework/otherdeps/CIthreshold/spec/app/SQL",
+    "Gitmutations",
+    "push/provider/remoteGETPOST/CI/NORMAL",
+    "DB/browser/server/resources",
+    "demo/dbpush/merge/deploy",
+    "DEBUG checkout replay/edits/reader runs"
+  ],
+  "result": "Nested or top standard6fields in result.json; exact2rawandLFsourcepins and package/workspacepolicy invariants; actualcommandcaps/results/outerattribution in checks.json, sourceproofs; concise finalpins. Keep only these3 private members. Current0P0F95unexecuted/P5open/15.6unstarted/custodyunchanged."
+}

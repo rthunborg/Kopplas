@@ -54,6 +54,31 @@ BEGIN
 END
 $$;
 
+-- Logical feed function owners must exist before the schema restore. Only the
+-- isolated restore principal receives membership; JWT/runtime roles do not.
+do $$
+declare feed_owner record;
+begin
+ if not exists(select 1 from pg_roles where rolname='calendar_feed_owner') then
+  create role calendar_feed_owner nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;
+ end if;
+ select * into feed_owner from pg_roles where rolname='calendar_feed_owner';
+ if feed_owner.rolcanlogin or feed_owner.rolinherit or feed_owner.rolsuper or feed_owner.rolcreatedb
+    or feed_owner.rolcreaterole or feed_owner.rolreplication or feed_owner.rolbypassrls then
+  raise exception 'calendar_feed_owner is not hardened';
+ end if;
+ -- Fail closed for retained grants; do not repair privileged or runtime roles.
+ if exists(select 1 from pg_auth_members m where m.member=feed_owner.oid
+   or (m.roleid=feed_owner.oid and (m.member<>(select oid from pg_roles where rolname='supabase_admin') or m.admin_option))) then
+  raise exception 'calendar_feed_owner has unexpected membership';
+ end if;
+ if not exists(select 1 from pg_roles where rolname='supabase_admin') then
+  raise exception 'calendar feed ownership principal absent';
+ end if;
+ grant calendar_feed_owner to supabase_admin with admin false;
+end
+$$;
+
 -- ALTER ROLE is repeatable and keeps the generated recovery credential out of logs.
 \set pgpass `echo "$POSTGRES_PASSWORD"`
 ALTER USER authenticator WITH PASSWORD :'pgpass';

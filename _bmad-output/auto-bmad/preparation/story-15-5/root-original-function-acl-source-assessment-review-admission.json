@@ -1,0 +1,29 @@
+{
+  "schema": "root-acl-source-assessment-review-admission-v1",
+  "verdict": "PASS_PLAN_ONLY",
+  "review_artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-report.md",
+      "bytes": 5643,
+      "sha256": "1b7e27b3c3ce40f3094159894400d6c8235a7c67a3a32196c65dbf1554ae0d78"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-attestation.json",
+      "bytes": 12844,
+      "sha256": "967809fe02ac1c42f2e576fb1c381703567c1256bdcaed961cea53f3f50f83ac"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/result.json",
+      "bytes": 1747,
+      "sha256": "f696b058461e257babccf2c00eb608a26641b8b98f77c9643a2417eede287695"
+    }
+  ],
+  "assessment_input_verified": true,
+  "actual_current_and_checkpoint_context_bindings_verified": 6,
+  "actual_matrix_bindings_verified": 2,
+  "remaining": "Author refinement of exact legacy ACL/grantor/option allowlist, all8 preflight-before-mutation ordering and ordinary native regression placement; separate111application clearance and allocation.",
+  "source_edits_authorized": false,
+  "runtime_effects_authorized": false,
+  "hosted_causality": "UNPROVEN",
+  "normal_acceptance_credit": 0
+}

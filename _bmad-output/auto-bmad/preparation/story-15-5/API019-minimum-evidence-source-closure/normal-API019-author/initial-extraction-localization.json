@@ -1,0 +1,8 @@
+{
+  "initial_RED": "0P4F; control compilation not behavior evidence",
+  "localized_native_tool": "54be78",
+  "error_name": "SyntaxError",
+  "code": "ERR_INVALID_TYPESCRIPT_SYNTAX",
+  "fixed_message": "Return statement is not allowed here",
+  "repair": "Keep return outside stripTypeScriptTypes; compile only actual extracted expression. No producer change."
+}

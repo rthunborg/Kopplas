@@ -1,0 +1,177 @@
+{
+  "Outcome": "ASSESSED_CUSTODY_ACCEPTANCE_CONTRACT_NO_ACCEPTANCE_OR_CLEANUP_AUTHORITY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-custody-acceptance-contract-assessment.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "route": "Root 8d9c45/native0, explicit Sol6.1 High bounded custody-contract assessment",
+    "scope": "Stable approved contracts, immutable approved baseline spec and already qualified closed-run metadata only. No in-flight author spec/test/source inspection, cleanup, acquisition, execution or broad review.",
+    "approved_contract": {
+      "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "immutable_spec": "603ef74a2afa150638979805c3ed98f07928a5ce:_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "single_allocated_git_object_read": "One read-only Git show, native0, captured into RAM; no checkout/write. Immutable object reconstruction LF260940/SHA25699e050e1a8840d78e3db6bc2cbef16bbb2842632a7723e9243c6c38302dd5ee6; distinct from historical worktree raw264061/74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb.",
+      "locators": [
+        "Immutable spec Intent Contract Always/BlockIf/Never at lines33–37: required abuse suite, exact allocation, no secret logging or privilege bypass.",
+        "Immutable spec task T10 line93 and AC9 line105: actual executed required gates, revision/counts, independent High, Root delivery gate/truth audit and required positive/negative coverage.",
+        "docs/process/development-completion-policy.md: Development completion gate; deferred release validation is not a consequential security/integrity waiver.",
+        "docs/security/calendar-feed-operations.md: Development gate and CI key lifecycle; separate release/operator gate.",
+        "docs/quality/ci.md: ordinary required jobs and lines231–243 exact-head success, no skipped/failing acceptance waiver.",
+        "scripts/ci/with-calendar-feed-runtime.mjs lines666–691: deliberate failure retention, exact key absence verification, isolated-job owner, expiry and alternative resume condition.",
+        ".github/workflows/ci.yml db job193 onward: ubuntu-latest, isolated local setup, always-stop step298–300. No hosted-project lifecycle inference."
+      ]
+    },
+    "acceptance_matrix": [
+      {
+        "boundary": "Current run40109869919 CI acceptance",
+        "classification": "APPROVED_HARD_GATE_NOT_MET",
+        "reason": "Required db job failed; required95=93 passed, API019 failed, API020 unexecuted. Retained/unverified DB lifecycle is failure-path evidence, not a clean cleanup PASS. verify/e2e/recovery success and optional skips do not replace missing DB/case evidence."
+      },
+      {
+        "boundary": "Story15.5 P5/development completion and delivery",
+        "classification": "APPROVED_HARD_GATE_NOT_MET",
+        "reason": "Full executed required integration/RLS/ACL/abuse and consequential checks plus exact-revision independent review/Root delivery truth audit remain required. Current failed DB/case evidence cannot satisfy these or be deferred as release-only polish. Source assessment/remediation/checkpoint work may proceed under separate ownership; it is not development acceptance."
+      },
+      {
+        "boundary": "Current and historical disposable-job operational custody",
+        "classification": "EXPLICIT_JOB_END_ALTERNATIVE_SEPARATE_FROM_KEY_DELETION",
+        "reason": "Wrapper preserves exact-key job custody after uncertain DB runtime. Its resumeCondition permits owned children settled plus captured UUID/name absence OR the entire disposable job ending. The current exact owned DB job is terminal completed. This supports the job-ended alternative, without establishing key deletion, backend rollback, canonical restoration, physical host destruction, or any shared/hosted backend disposition."
+      },
+      {
+        "boundary": "Historical failed-run evidence as a universal future delivery gate",
+        "classification": "NO_SUCH_ADDITIONAL_HARD_GATE_FOUND_IN_ENROLLED_APPROVED_CONTRACT",
+        "reason": "Historical39998246278 remains failed/unverified evidence and cannot be relabelled PASS or cleared by another runtime. No enrolled approved kernel/policy clause requires recovering every old disposable runner and proving its key deletion before a later independently qualified successful exact-head run can meet development gates. This is a bounded contract interpretation, not a waiver or a declaration that old backend work settled. Root must preserve the history and state the scoped custody disposition honestly."
+      },
+      {
+        "boundary": "Release/merge/deployment",
+        "classification": "CUMULATIVE_SEPARATE_GATES_REMAIN",
+        "reason": "Development failure prevents readiness now. Release additionally requires its own qualified dedicated key/Vault/runtime/trusted-IP and deferred exhaustive validations/owners; test-key custody evidence cannot authorize those operations. Neither this assessment nor a later development PASS authorizes merge or deployment."
+      }
+    ],
+    "observed_current": {
+      "run_id": 40109869919,
+      "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "normal_operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+      "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+      "db_job_id": 120919907332,
+      "db_job_status": "completed",
+      "db_job_conclusion": "failure",
+      "db_job_completed_at": "2026-10-24T16:22:44Z",
+      "run_status": "completed",
+      "run_conclusion": "failure",
+      "terminal_observed_at": "2026-10-24T18:23:07.519528+02:00",
+      "required95": {
+        "passed": 93,
+        "failed": 1,
+        "unexecuted": 1
+      },
+      "current_DB": {
+        "keyDeleted": false,
+        "keyOutcome": "unverified",
+        "custody_retained": true,
+        "dbClosed": true,
+        "failure_count": 1,
+        "diagnostic_count": 1,
+        "closed_diagnostics_count": 0,
+        "childExitCodes": [
+          0,
+          1
+        ]
+      },
+      "scopes": "Current browser deletion-confirmed and isolated recovery1P are separate runtimes. They do not clear current DB or historical399982 custody. dbClosed/child close/stack-stop/job completion are not deletion, rollback or canonical-restoration evidence."
+    },
+    "historical_identity_limits": {
+      "enrolled_run": 39998246278,
+      "enrolled_head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+      "enrolled_source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+      "retained_facts": "Historical qualification reports retained main DB custody, keyDeletedfalse/keyOutcomeunverified/dbClosedtrue; backend termination/rollback/settlement UNKNOWN. These facts stay unchanged.",
+      "identity_boundary": "No separate 398-series run/job/backend identity or terminal-disposal proof was enrolled in this bounded assessment. A 398-series reference must not be silently treated as39998246278, and current40109869919 job completion cannot discharge either historical identity.",
+      "historical_disposition_limit": "This assessment does not newly establish a historical exact-job ended/destruction boundary, captured UUID/name identity, absent key or live backend. Root may use already enrolled exact historical terminal metadata to record the documented job-end alternative if the identity is established; otherwise keep that operational disposition UNKNOWN with owner/next action."
+    },
+    "least_effect_future_route": [
+      "First use already closed exact owned terminal metadata and existing disposable-job/source binding to record a scoped job-ended custody disposition. For current DB the exact completed-job boundary is present here. Describe this as the source-defined resume alternative, never as keyDeletedtrue or backend rollback proof. No new GET, SQL or resource operation is needed for that metadata interpretation.",
+      "For any historical identity not established by already pinned metadata, resolve only that identity/whole-job terminal boundary from existing authorized evidence before claiming its job-end condition. Keep missing identity or backend state UNKNOWN. Do not recreate or adopt an old runner/backend to manufacture proof.",
+      "If evidence instead identifies a still-live owned resource, use the existing exact captured UUID/name and child/transaction ownership route only after a separate precise allocation and appropriate authorization. Confirm settlement/absence using the established owner; never retry creation, delete by name, target an unknown backend, or treat a local connection close as settlement. This report allocates no such work.",
+      "A later source-reviewed normal observation requires its own finite ownership/grant and exact-source evidence. All95 required cases and native required gates must execute successfully, applicable cleanup/integrity evidence must qualify, and Root must complete delivery reconciliation/truth audit. Preserve prior failure/UNKNOWN records; do not sum or carry old passes into the new run."
+    ],
+    "inference_limits": [
+      "The current job-ended conclusion is limited to authenticated closed GitHub job metadata plus the source-defined isolated disposable-job contract. Physical runner destruction and inaccessible backend state were not observed.",
+      "The explicit resume-condition alternative concerns job-scoped custody; it does not silently weaken any successful-run cleanup/integrity or current acceptance gate.",
+      "No perpetual historical deletion gate was found in the enrolled approved contract. This does not authorize changing the contract, ignoring a known live resource, asserting no outstanding resource, or clearing history without an owner disposition.",
+      "Actual first emitter/raw trigger/cause/benignity/native first throw/request linkage remain UNKNOWN. The current fixed STDOUT/OTHER_OR_UNKNOWN classification does not prove them."
+    ],
+    "evidence_refs": [
+      {
+        "path": "docs/process/development-completion-policy.md",
+        "bytes": 8460,
+        "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+      },
+      {
+        "path": "docs/security/calendar-feed-operations.md",
+        "bytes": 4251,
+        "sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494"
+      },
+      {
+        "path": "docs/quality/ci.md",
+        "bytes": 17553,
+        "sha256": "58f860e05eaf8fd790fb3efd676880c25ae7020641e5e7e5248c77a6381e91dc"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 50465,
+        "sha256": "e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/approval.json",
+        "bytes": 6429,
+        "sha256": "7e8f6a00d0536622764f478f0baff919c22abc0c7f1e29a1c0da9a049759e771"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-actual-native-qualification.json",
+        "bytes": 18772,
+        "sha256": "899bef863a818e2833f28e34abd2ad5506f0038e39c9d1de5fc32822ce4d89fc"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-native-qualification.json",
+        "bytes": 25188,
+        "sha256": "b86f59322070b8e2744ab45b5174dc8463fd2c13174f778ea43cf562efc71831"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-operation/terminal.json",
+        "bytes": 24085,
+        "sha256": "9e8ff486cf8485dca04f3b85d2a027ae2cd649f16c5d1bd5ac3bce373b31fb2f"
+      }
+    ],
+    "boundary": {
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "acceptance_granted": false,
+      "cleanup_authorized": false,
+      "new_acquisition_authorized": false,
+      "no_merge_or_deployment": true
+    },
+    "reviewer_activity": "Only stable contract/source text and already closed qualified JSON metadata read. Sole Git operation was the separately allocated immutable spec-object read. No source/spec/test/state/other-report change, in-flight author read, workload/function/control/test/Node/native/operator execution, network/GET, raw logs/secrets/SQL file/DEBUG read, resource action or cleanup."
+  },
+  "Open questions": [
+    "Current and historical literal key deletion/backend termination/rollback/canonical restoration remain unverified; this assessment does not answer them.",
+    "Historical exact-job ended/disposal disposition requires its own already pinned identity evidence; no 398-series identity was established here."
+  ],
+  "Deferred work": [
+    "Root records each operational custody scope and owner disposition using existing exact terminal evidence, retaining deletion/backend UNKNOWN separately. This is a recommended least-effect evidence organization, not a new hard gate or cleanup authorization.",
+    "Finish separately owned source correction and targeted actual-diff validation; any later normal observation requires separate finite grant, followed by actual complete current gates and Root delivery audit.",
+    "Release-specific qualification and deferred release validations remain under their approved owners and explicit authorization."
+  ],
+  "Blockers": [
+    "Current run is not acceptable: required DB job failed; API019 failed and API020 unexecuted. P5/development/delivery acceptance remains blocked.",
+    "Current and historical unverified DB/key/backend facts cannot be presented as cleanup or integrity PASS; any actual known-live-resource obligation must retain an owner/next action.",
+    "No authorization for cleanup, retry, new acquisition, resource use, merge or deployment is created by this assessment."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "Outcome": "PASS — no consequential findings in the exact private extractor/test/proposal tuple.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-review/original-report.md",
+      "bytes": 5180,
+      "sha256": "c370875446d68d2484cf9e4ce4f49845861b45c8b21d1d4c4a57accbf85a490c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-review/original-attestation.json",
+      "bytes": 11663,
+      "sha256": "72117389a2c73eacaa72287055d25c9609448c2029f152a4b3856df5186b754f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-review/result.json",
+      "identity": "Final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": "31 offline controls pass; five additional pure checks/defaultCLI refusal pass;18 checkpoint/raw bindings verified. Remaining extractor-review gate complete only.",
+  "Open questions": [
+    "Actual run/archive/matrix/lifecycle/custody facts are unborn; backend cause and unacquired artifact bodies remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Specific authorized CI/GET effects, exact terminal/activation binding and independent actual-result qualification; no source fix or normal credit."
+  ],
+  "Blockers": [
+    "CI approval handoff was automatically rejected; direct human approval is pending. No CI/activation/GET grant exists and this review supplies none."
+  ]
+}

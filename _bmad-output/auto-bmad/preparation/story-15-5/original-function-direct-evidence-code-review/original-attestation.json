@@ -1,0 +1,187 @@
+{
+  "kind": "independent-targeted-direct-matrix-committed-delta-review",
+  "verdict": "PASS",
+  "consequential_findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_implementation_author": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_review": false
+  },
+  "scope": {
+    "base": "cc3ad2fc77e15ef21b37aa7162eca49f4f66d57e",
+    "head": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "checkout": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "exact_changed_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ]
+  },
+  "reviewed_inputs": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 160774,
+      "sha256": "32eb365d1b6b523ef07e3fc950ae824d4cc94e226558947e6d32342f2f27b77f",
+      "head_blob": "26327a36a8f89cf503036239def64b0585465136",
+      "base": {
+        "blob": "5c806d57bf009bad013826b07aaecdb49c178b0b",
+        "bytes": 154891,
+        "sha256": "d214e9582d628be4f5250a207bb2e80233c9c83d0efcdd80448ae423021ebcf1"
+      }
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "head_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+      "base": {
+        "blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757",
+        "bytes": 11947,
+        "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91"
+      }
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 163537,
+      "sha256": "4f502cd88dd23269113e84aef733462f68156733f9a38297c020d3a0609a58d7",
+      "head_blob": "02442fd8034b573d376397e1eee105c7b3d96849",
+      "base": {
+        "blob": "cba57251555d860ab8ba24bd578eed7715e7b7aa",
+        "bytes": 153160,
+        "sha256": "95396c27bd511c5df8cf7ffb5acebac520a1247fea92bae7c0a5962f547f4285"
+      }
+    }
+  ],
+  "readiness_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-readiness.json",
+    "bytes": 19598,
+    "sha256": "ef40c382b3e28e51f2f5ada7160e38cca885296085b195d88b015e39905585fc"
+  },
+  "readiness_addendum": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/readiness-addendum.json",
+    "bytes": 11089,
+    "sha256": "482b9816c05e5a8ff02694d998a05ccade4e0a87e2f7b20509cb6401408a1519"
+  },
+  "provenance_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-187a4c6f-source-admission.json",
+      "bytes": 27103,
+      "sha256": "6455b8e03f53f95ed682e645d0cbb46535215260743a23846166d7840e4fcc68"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-original-function-direct-evidence-source-allocation.json",
+      "bytes": 2215,
+      "sha256": "dc052ce7e080d91f88c1429a4a15dedf74eea80bcd449568eb3c716a27bad606"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json",
+      "bytes": 11241,
+      "sha256": "9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48"
+    }
+  ],
+  "prior_plan_originals": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-report.md",
+      "bytes": 5520,
+      "sha256": "00f0be2b5123e3c254d4c719aa9719ce02e627077fb5c7368a437d3333aceb27"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/original-attestation.json",
+      "bytes": 7629,
+      "sha256": "acd292edd210fe2fc727532a1436a9bbbdc547b2fd626ed48bcf4f6d486f98d9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-plan-review/result.json",
+      "bytes": 1613,
+      "sha256": "c68152e49132abfdc698c3234810fdee98b597327a2a752592710fae50a61b7a"
+    }
+  ],
+  "checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"actual unchanged original guard|actual original guard preserves|failure-message inverse\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 221.2522,
+      "scope": "Only new pure source/evaluator controls; no SQL engine. Unselected tests not credited."
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <spec>",
+      "exit": 0,
+      "sections": 1,
+      "references": 118,
+      "errors": []
+    },
+    {
+      "check": "raw/source HEAD equality and base binding for exactly3 inputs",
+      "passed": true
+    },
+    {
+      "check": "whole migration inverse after replacing only new RAISE",
+      "passed": true,
+      "restored_bytes": 11947,
+      "restored_sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "exact_base_bytes": true
+    },
+    {
+      "check": "existing99 unit bytes unchanged prefix",
+      "passed": true
+    },
+    {
+      "command": "git diff --check cc3ad2fc77e15ef21b37aa7162eca49f4f66d57e 187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+      "exit": 0
+    },
+    {
+      "check": "approved tagged kernel",
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged_from_base": true
+    },
+    {
+      "check": "state",
+      "status": "in-review",
+      "review_loop_iteration": 3,
+      "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12"
+    },
+    {
+      "check": "readiness context bindings",
+      "total": 16,
+      "unchanged": 15,
+      "updated_migration": 1,
+      "raw_CRLF_to_LF_context_files": 8,
+      "initial_reader_stop": "raw==Git overly strict on unchanged CRLF source; corrected only offline reader to verify declared rawhash and normalized exact Git content."
+    }
+  ],
+  "observations": [
+    "Failure-only closed11nullable-positive-complement matrix, original ordinal and defaultP0001; no raw catalog output or guard weakening.",
+    "Additional post-refusal predicate evaluation is explicit; expression error/race/alltrue/malformed/NULL remains UNKNOWN.",
+    "Current v2 in-producer consumer condition fulfilled for source/plan scope by explicit addendum; no external oldv1 collector/artifact-body qualification."
+  ],
+  "reported_not_reexecuted": {
+    "author_final_passed": 102,
+    "author_failed": 0,
+    "author_initial": "101P1F corrected privacy test; one corrected TS annotation error; separate/nonadditive",
+    "typescript_exit": 0,
+    "affected_lint_exit": 0,
+    "full_unchanged_suite_rerun": false
+  },
+  "limits": {
+    "sql_engine_parse_or_execution": 0,
+    "api_docker_resource_ci_provider_git_effects": 0,
+    "source_spec_writes": 0,
+    "normal_acceptance_credit": 0,
+    "actual_failing_predicate_or_cause": "UNKNOWN",
+    "readiness_conclusion": "SOURCE_AND_PLAN_CONDITION_FULFILLED; EXECUTION_NOT_READY",
+    "ci_archive_effect_allocation": false,
+    "unacquired_artifact_bodies": "NULL/UNKNOWN/UNAVAILABLE_UNQUALIFIED",
+    "source_fix_or_normal_retry_authority": false,
+    "writes": "Only new original3 plus readiness-addendum; all prior originals unchanged."
+  }
+}

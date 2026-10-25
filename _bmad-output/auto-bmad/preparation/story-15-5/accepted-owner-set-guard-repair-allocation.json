@@ -1,0 +1,39 @@
+{
+  "kind": "EXACT_THREE_PATH_OWNER_SET_GUARD_REPAIR_CLEARANCE",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15e28-ab3a-7f72-a08b-83e1deae410a",
+  "grant_tool": "exec-4512aade-5b61-4c42-ab89-ef82fffc2e3f",
+  "final_message": "msg_0954b60b44796db1016ad89def0bec81919b4c1942ebf4bdf8",
+  "source_head": "571f5014efc5edad9649b947c26d391a804afe66",
+  "failed_checkpoint": "93473f1208f5b883b560903faf10348c205d2211",
+  "failed_run": 39587739462,
+  "exact_paths": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "scope": "Within original seven-path allocation: only membership bad-row predicate, existing wrapper unit regressions and Spec/SRO/evidence",
+  "effect_limits": [
+    "Preserve effective and direct SET checks and all other role/inherit/member/ACL/atomic/OID/owner guards",
+    "No arbitrary ADMIN exception or privilege expansion",
+    "No new migration/name/schema surface or changes to other original source paths",
+    "Approved kernel unchanged; review counter3/baseline retained; no fourth broad review"
+  ],
+  "application_inventory": [
+    "Current main migration path HTTP404 at Root observation",
+    "Only known owned applications were three failed startup jobs at first guard, before adapter changes; no owned local SQL or deployment calls",
+    "Actual E16 reply: not adopted/copied/successfully applied and no planned adoption; only own20261021102151 used",
+    "No known Documents adoption/application in retained completed records; other actors unknown"
+  ],
+  "if_successful_application_discovered": "Stop editing existing migration and use a separately coordinated forward migration",
+  "causal_limit": "Actual owner/SET P0001 guard error observed in all3 startup steps. Exact hosted membership rows were not observed; specific subpredicate explanation remains source-backed inference.",
+  "required_next": [
+    "High author meaningful positive and negative regression fixtures",
+    "Distinct targeted High committed-delta review",
+    "Fresh normal exact-head five required gates and all95 cases plus separate recovery"
+  ],
+  "no_effects": [
+    "No local resources/SQL/CI by author",
+    "No repository variable/provider/main merge/deployment/monitor resume/foreign writes"
+  ]
+}

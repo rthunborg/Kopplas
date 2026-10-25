@@ -1,0 +1,7 @@
+{
+  "Root_decision": "STOP_BROAD_FORMATTERS_ONE_BOUNDED_TRACKED_SOURCE_LINT_API",
+  "actual_blocker": "Merged diagnostic native2/fullcapture/stdout6247/stderr0 identifies RangeError at ESLint stylish.js37:10/84:5 aggregation/join. No qualified offending file/rule/count or Zod regression. Prior JSONoverflow/defaultstderrblind approaches preserved; no more same broad attempts.",
+  "scope": "Read existing lint options/config and exact Git ls-files NUL inventory; all tracked configured JS/TS variants, existing ignores/options/threshold unchanged, no newignore or bypass. Existing ESLint API once with no formatter/rawsource serialization; results RAMonly, aggregate counts and<=20 safe diagnostics<=64KiB. Record inventory digest/count and matched/ignored/configured coverage. Do not assume untrackedruntime contamination without evidence. One tiny foreground Node API script avoids Windowsargvlimit, no newframework/deps/capture family; existing native<=180s/4MiBstdout64KiBstderr/tails.",
+  "meaning": "Tracked-source lint success is separately named, never relabels failed original fullscript. CI clean-checkout original lint remains required; no done/deliveryclaim. If tracked thresholdpasses continuealreadyallocated type/build/audit; actualsource/configfailureSTOPprecise. No source/config/ignoreedits/newmutations.",
+  "authorization": "Standing owner boundedrecovery/necessaryfixauthority; existingHighauthor, exact2trackedpaths and3privatefiles; no additional approval."
+}

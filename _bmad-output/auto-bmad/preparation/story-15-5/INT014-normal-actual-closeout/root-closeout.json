@@ -1,0 +1,29 @@
+{
+  "schema": "ROOT_INT014_NORMAL_ACTUAL_CLOSEOUT_V1",
+  "run": 39962445963,
+  "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "source": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "required95": {
+    "passed": 93,
+    "failed": 1,
+    "zero_coverage": 1,
+    "failed_case": "API019",
+    "pending_case": "API020"
+  },
+  "INT009_INT014_INT015": "passed",
+  "direct_recovery": "1 passed; separate from95",
+  "cause": "UNKNOWN: only scenario/unknown/sqlStateNULL projected; no exact native error or matcher inferred",
+  "DB_custody": "retained; keyDeleted=false; deletion unverified; backend settlement UNKNOWN",
+  "browser_custody": "own key deletion confirmed only within browser lane",
+  "acquisition": "Exactly5 GETs; native0, full EOF/readers joined/handles closed/settled; all unused slots closed; no retry",
+  "cap_scope": "Source-label projection only32768 bytes. No generic32KiB projection claim. Historical exceptions retained.",
+  "development_gate": "P5 OPEN; required failed/pending cases and DB custody unresolved; no done/delivery/acceptance claim",
+  "next_action": "Read-only High API019 exact source assessment; cause-backed minimum next step independently reviewed before edits or another run",
+  "next_story_15_6": "unstarted",
+  "final_merge_containment": "Independent minimum plan only; actual current production containment UNKNOWN; no merge/deployment effects",
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-normal-actual-closeout/root-fold-manifest.json",
+    "bytes": 67945,
+    "sha256": "a6b846892f93e60e2a9435c722634be0c67a9e41a273a31e8461f558962acbe3"
+  }
+}

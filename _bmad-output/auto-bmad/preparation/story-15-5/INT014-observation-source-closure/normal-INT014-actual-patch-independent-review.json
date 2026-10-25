@@ -1,0 +1,253 @@
+{
+  "schema": "INDEPENDENT_INT014_ACTUAL_MINIMUM_PATCH_REVIEW_V1",
+  "status": "PASS_INT014_MINIMUM_PATCH_SOURCE_ONLY",
+  "outcome": "PASS_INT014_MINIMUM_PATCH_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "scope": "Targeted actual minimum INT014 fixture correction and author SRO follow-up only; not fourth broad story review. Prior approved plan/architecture/integrity/source proofs reused where unchanged.",
+  "baseline": {
+    "HEAD_as_Root_owned": "bd4121e55489bf8f5a35fdd80d3f9ffd68fb98ea",
+    "functional_source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+    "run": 39950998114
+  },
+  "actual_author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/author-result.json",
+    "bytes": 20724,
+    "sha256": "9b99210e19781469affdbc02e6894aa8d798b3ca4ad5671f728c1ebae7849a79"
+  },
+  "actual_source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 139901,
+      "sha256": "74721f43ece77fac70414592317ce06556b5cfc0718d9d6014afbec32bdf2c25",
+      "LF_bytes": 138508,
+      "LF_sha256": "d3d7a13919233a6bbd75646449a4de80257c015aa718a16616c513c6c5e8cef5",
+      "prospective_git_blob": "f97ac4c551d0e42fd47b46995ec6148ec64f82b7"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 325812,
+      "sha256": "8594bcc0bfb6fcd9c721868c93ee39a8b0744bca3d8df673f6ea050b2e0941b7",
+      "LF_bytes": 322787,
+      "LF_sha256": "fa217e6880476974af32babd14ad9991cff3d9877d4e37cdc99f53975f233e63",
+      "prospective_git_blob": "71970ab77e69ad475e5e900d25ffb4e2ef70dff6"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 258842,
+      "sha256": "59da7f5ba3731d56fe50a52409717ee527a920a728cc942ed66f4e30a6d25a16",
+      "LF_bytes": 255757,
+      "LF_sha256": "318c8ecd123d052eb29ab388538a313cc55f3048d7f63eadeeab105f07eccb8a",
+      "prospective_git_blob": "d5aca299a5cb0d15e45bb13601720acbe19f5f8b"
+    }
+  ],
+  "change_and_consequence": "Only fixture status return canonicalizes validated lastUsedAt via existing iso. Both existing ordinary JWT RPCs, raw-field/privacy checks, actual mapper and raw publicDto object/spelling remain intact. Physical readback already used this JS millisecond observation boundary. No production mapper/database time/count/authorization behavior changes.",
+  "actual_review_checks": [
+    {
+      "name": "Exact scope and conservation",
+      "result": "PASS",
+      "evidence": "04b799:Gitstatus exactly helper/unit/spec;3pathdiff68insertions1deletion, no other tracked/index dirt.4e24a7/native0:HEADbd4121; current3raw/LF/computedGitblob pins verified; complete raw inverse hashes match qualified pre-edit baselines and inverseLF equals each actual HEAD Gitblob. Six consequential integration/mapper/wrapper/config/package/lock raw pins remain unchanged. No118SQLraw rescan."
+    },
+    {
+      "name": "Fixture status invariants",
+      "result": "PASS",
+      "evidence": "c21b50 actual diff:only return adds lastUsedAt:iso(status.lastUsedAt) after actual mapper. All other helper raw bytes unchanged, preserving2RPC calls/args/order, raw allowlist/privacy/hash query, ownerFacts3563/3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085, transactions, rollback, role/tenant/custody and cleanup behavior."
+    },
+    {
+      "name": "Meaningful actual path tests",
+      "result": "PASS",
+      "evidence": "New extractor executes actual status method, actual production mapper and existing iso under inert client controls; does not copy mapper/normalizer logic. Frozen raw object identity/spelling,2RPC argument/order,offset/no-ms/fraction/null/canonical inputs,safe count upper bound and different1ms/count preserved. Rawextra/privacy/RPC errors and mapperinvalidtimestamp/count/42501 reject beforeiso. Existing physical hash read before privacy refusal is explicitly preserved."
+    },
+    {
+      "name": "SRO only author refresh",
+      "result": "PASS",
+      "evidence": "c21b50+4e24a7:exact inserted INT014 subsection inside existing Suggested Review Order; remove it to recover complete raw baseline/HEADLF. OutsideSRO/kernel/status/counter3 unchanged. Final stops and overlap/RED correction,current73P1F21zero/cap exception/hostedcauseUNKNOWN/exactheadpending are accurate."
+    },
+    {
+      "name": "Native evidence provenance",
+      "result": "PASS",
+      "evidence": "809e4e/f3446c plus finalization: actual final author20724/9b992... and all12 native receipt pins+11 summary pins verified, physicalEOF/readersjoined/handlesclosed/directsettled/nooverflow/readerrors. Actual current3pins remain frozen. No verification commands reexecuted."
+    }
+  ],
+  "executed_author_gates": [
+    {
+      "name": "Corrected semantic RED",
+      "command": "Node22.23.2 --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern \"^actual fixture status observation\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "native_exit": 1,
+      "counts": "1P2F/3tests/0skip/0cancel",
+      "elapsed_seconds": 0.33009,
+      "outer_tool": "87dad8",
+      "baseline_helper_sha256": "d50d45e73f2a3a7c649188658ed9271a832ce41277314d8dd723b3c2a06f2234",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-corrected-controls-native.json",
+        "bytes": 1233,
+        "sha256": "c0c88ef6ae359843a6b29f50c2812478a6c03dd0b68d42d7cfdba075b0a02441"
+      },
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-corrected-controls-summary.json",
+        "bytes": 600,
+        "sha256": "d90611dbf667a019233f136fa0657e685d9f59c4c563d82b9ca73b02f946591c"
+      }
+    },
+    {
+      "name": "GREEN same focused invocation",
+      "native_exit": 0,
+      "counts": "3P0F/3tests/0skip/0cancel",
+      "elapsed_seconds": 0.310578,
+      "outer_tool": "75108d",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-GREEN-native.json",
+        "bytes": 1217,
+        "sha256": "6a323a4c89ecdfb3c8ff9e5d78226c51a179a3084e1e7789555c884467894304"
+      },
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-GREEN-summary.json",
+        "bytes": 382,
+        "sha256": "9e8b0934aa6dc561bc7d379bbef47c25a4effbcdce996ba140028ebbe23043fb"
+      }
+    },
+    {
+      "name": "Full affected wrapper unit file",
+      "command": "Same Node/register --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts; no pattern",
+      "native_exit": 0,
+      "counts": "187P0F/187tests/0skip/0cancel",
+      "elapsed_seconds": 12.397508,
+      "outer_initial": "8a6e43/session14183",
+      "outer_completion": "7df40b/0",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-full-affected-unit-native.json",
+        "bytes": 1153,
+        "sha256": "0ab620e309cf7a86ebf2ff138ed82a9b731478d3aaf8b704f2e86a24f13ee346"
+      },
+      "nonadditive": "Focused3 overlap the187; not190 distinct passes."
+    },
+    {
+      "name": "Whole TypeScript",
+      "command": "Qualified pinned pnpm run typecheck",
+      "native_exit": 0,
+      "elapsed_seconds": 3.883076,
+      "outer_tool": "1337d2",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-typecheck-native.json",
+        "bytes": 1198,
+        "sha256": "e3b89cacfb85386bf493b35b705410ccbe46f195362af68f19997f4b0d7fe931"
+      }
+    },
+    {
+      "name": "Scoped ESLint",
+      "command": "Qualified pinned pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "native_exit": 0,
+      "elapsed_seconds": 3.110545,
+      "outer_tool": "693a72",
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-scoped-lint-native.json",
+        "bytes": 1304,
+        "sha256": "bd4f7a6c82bb0b34af3fc01f5ba0449b5f643d34110d4a17f32744cff1efe4f0"
+      }
+    },
+    {
+      "name": "Diffcheck and SQL dirt metadata",
+      "native_exit": 0,
+      "outer_tool": "1fdadb",
+      "detail": "Actual author native0 diffcheck,stderrnonempty causeUNKNOWN/no raw warning claim;SQLdirtymetadata0paths, no rawSQLscan."
+    }
+  ],
+  "initial_control_history": "Initial3F contained2 real normalization failures and1 new test assertion expecting privacy refusal before required physical hash read. Bounded localization retained including harness extraction ReferenceError; corrected only new test order and equivalent-offset case ordering, then unchanged-helper RED1P2F. Old failures were not relabelled passes. Initial unit-insertion.json is historical; final raw inverse independently uses actual inserted helper+3test segment to next existing mapper test.",
+  "conserved_contracts": [
+    "Production mapper and exact INT014 integration assertions unchanged; invalid/nonfinite timestamp still refused before iso and different admitted millisecond instant/wrong usagecount remains different.",
+    "Raw publicDto remains original frozen mock object in tests and actual data object in fixture; no raw payload/source/error message publication or field masking.",
+    "All preexisting unit bytes retained, no selection/bail/script/workflow/dependency change. ownerFacts/OID/ACL/authority/custody/transactions/SQL118 conserved by exact helper inverse and source scope.",
+    "Spec outsideSRO/kernel/statusinreview/reviewcounter3 conserved; no state mutation or acceptance flip."
+  ],
+  "source_eligibility": {
+    "eligible_for_Root_owned_exact3_commit": true,
+    "eligible_for_later_full_NORMAL_readiness": true,
+    "authority_limit": "This verdict establishes source eligibility only. Root owns Git/publication and later concrete operational bindings/admission; no effect grant is created by review.",
+    "actual_patch_review_complete": true,
+    "development_complete": false,
+    "release_ready": false,
+    "normal_acceptance": 0,
+    "P5": "OPEN"
+  },
+  "limitations_and_remaining_gates": [
+    "Exact hosted INT014 failed assertion, observed timestamp spelling and native firstthrow/rootcause remainUNKNOWN. Reachable representation mismatch is fixed, not certified hosted cause.",
+    "Normalization uses existing JS millisecond observation semantics; raw publicDto preserves spelling, no arbitrary PGsubmillisecond precision claim.",
+    "Current independently qualified95 remains73P1F21zero with projection-cap scope exception. New patch has no exact-head runtime95 evidence yet; INT015pending/API20absence do not pass.",
+    "Required exact-head fullNORMAL integration/RLS/Node/browser evidence and separate direct recovery plus main DB backend/key/custody qualification remain pending. Retained custody/keyDeletedfalse/unverified not repaired by this fixture change.",
+    "Historical configured20/granted15 and genericprojection32KiB vs source-label-only enforcement discrepancies remain recorded, no retroactivecompliance or approval.",
+    "No local build/fullNode/DB/browser/CI rerun by reviewer; prior unchanged evidence reused, focused/integrity gates inspected. Later exact-head required lane supplies fresh runtime evidence."
+  ],
+  "evidence_references": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-minimum-plan-independent-review.json",
+      "bytes": 11286,
+      "sha256": "0d72ca477ba474a16d716924453f0da57c8f0575220f9a0e263de1f22eb4ecb6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-native-qualification.json",
+      "bytes": 21077,
+      "sha256": "59474427cc70223c2547d75915dd62b602ffb04ea5f5373d33a1d06489ae92d7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/final-source-delta.json",
+      "bytes": 1572,
+      "sha256": "b9fd4c5e134954ce9488e4204db889cc4b0d03c4f7e4fa5261ce8d02f71d30c9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/SRO-only-delta.json",
+      "bytes": 2518,
+      "sha256": "41a72284d8eeffd828cf987d4e498fe858e4f7502177a68442f610d3f919f119"
+    }
+  ],
+  "reviewer_commands": [
+    {
+      "chunk": "04b799",
+      "native_exit": 0,
+      "action": "Readonly scopedGitstatus/diffstat"
+    },
+    {
+      "chunk": "ce2b88",
+      "native_exit": 0,
+      "action": "Frozen source delta/private artifact metadata"
+    },
+    {
+      "chunk": "c21b50",
+      "native_exit": 0,
+      "action": "Actual3pathdiff"
+    },
+    {
+      "chunk": "3f1c06",
+      "native_exit": 0,
+      "action": "Actual pre-edit and delta/gate summaries"
+    },
+    {
+      "chunk": "4e24a7",
+      "native_exit": 0,
+      "action": "Currentpins/fullrawinverses/read-onlyHEADblobs/6unchangeddependency pins"
+    },
+    {
+      "chunk": "809e4e",
+      "native_exit": 0,
+      "action": "Primary native gate receipts"
+    },
+    {
+      "chunk": "f3446c",
+      "native_exit": 0,
+      "action": "Final frozen authorreceipt fullread"
+    },
+    {
+      "chunk": "finalization",
+      "action": "All12native and11summarybytepins/closure assertions and3sourcepins; no test execution"
+    }
+  ],
+  "reviewer_effects": {
+    "source_spec_state_edits": 0,
+    "Git_mutations_remote": 0,
+    "tests": 0,
+    "API_network": 0,
+    "DB_browser_resources": 0,
+    "dependency_mutation": 0
+  },
+  "files_changed": "This new private review only."
+}

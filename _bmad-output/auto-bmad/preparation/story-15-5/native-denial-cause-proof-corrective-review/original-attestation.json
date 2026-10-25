@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_EXACT_COMMITTED_LATEST7_CORRECTIVE_REVIEW",
+  "verdict": "NOTPASS",
+  "created_utc": "2026-10-21T00:19:29.7811488Z",
+  "source": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+  "base": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "route": {
+    "phase": "review-native-cause-proof-corrective-latest7",
+    "role": "independent-sensitive-latest7-corrective-regression-reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_by_root_before_dispatch": true,
+    "dispatch_owner": "Parent; author does not dispatch",
+    "source": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+    "base": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+    "scope": "Exact committed seven-path latest-fix regression review; not fourth broad story review",
+    "completed_broad_rounds": 3,
+    "source_spec_index_frozen": true,
+    "verdict": "PENDING",
+    "native_credit": 0,
+    "root_identity_metadata_only": {
+      "current_source_paths": 70,
+      "normalization_differences": 41,
+      "delta_normalization_differences": 3,
+      "author_commits": 18,
+      "root_commits": 11,
+      "ancestry": 29,
+      "root_dirty_state_report_excluded": true,
+      "mutable_root_raw_not_resampled": true
+    },
+    "limits": {
+      "native_diagnostic": "UNEXECUTED",
+      "all43_db_causes": "UNRESOLVED",
+      "browser14": "UNRESOLVED",
+      "hosted_availability": "UNKNOWN before later fresh Root checks",
+      "private_consumer": "UNBORN; later exact-schema High review/adoption required; no consumer instantiated",
+      "acceptance_credit": 0,
+      "original_cb8_code_review": "NOTPASS F1+F2; findings require reviewer resolution",
+      "original_F1_plan_sufficiency": "NOT_ADOPTED; same-connection visibility addendum supersedes",
+      "F1_claim": "Physical absence only exact10 returned AuthIDs and2tenantIDs in same statement with actual-role SUPERUSER OR BYPASSRLS; not historical deletion or partial setup closure"
+    },
+    "effect_fences": [
+      "ONE expanded existing final parameterized SELECT; no new roundtrip/HTTP/connection/principal/grant",
+      "Same statement directly reads actual current_user pg_roles plus auth.users and public.tenants",
+      "Actual adapter spawn/refusal facts, uncertain launch is not proven no-start; no exitcode/group-absence conflation",
+      "Existing captured identity/group stop, command/query/HTTP/output drain, COMMIT and key-custody guards retained",
+      "Default registered active/path/hash/root dispatch presence vs full reviewed candidate capability; same GET/sole POST/nonce/mode/ref guards",
+      "No default update/fallback/retry/normal gate/artifact/inverse weakening"
+    ]
+  },
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "fresh_context_free": true,
+    "distinct_from_author_and_prior_reviewer": true,
+    "role": "independent-sensitive-latest7-corrective-regression-reviewer",
+    "route_recorded_before_dispatch": true,
+    "no_nested_delegation": true
+  },
+  "cap": {
+    "completed_broad_rounds": 3,
+    "scope": "latest-seven regressions and unresolved serious finding closure only",
+    "fourth_broad_review": false,
+    "no_unchanged_story_reaudit": true
+  },
+  "findings": [
+    {
+      "id": "F3",
+      "priority": "P2",
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "start": 59,
+      "end": 63,
+      "title": "Reject malformed plain event scalars before sole POST",
+      "status": "OPEN",
+      "caller": "write/maintain/admin operator -> checkpoint dispatch195 -> diagnosticAvailability94",
+      "invariant": "Malformed/ambiguous default event data must refuse before intent and sole POST",
+      "bypass": "Exact recognizer accepts inputs: x: y; hash/active metadata and candidate checks do not parse default event",
+      "consequence": "Records availability and sends sole request despite malformed default; provider rejection cannot restore pre-POST refusal or one-shot intent",
+      "no_acceptance_or_key_custody_bypass": true,
+      "hosted_reproduction": "NOT_EXECUTED"
+    }
+  ],
+  "prior_findings": [
+    {
+      "id": "F1",
+      "status": "CLOSED",
+      "evidence": "Actual helper875-899 same-statement current_user pg_roles SUPERUSER OR BYPASSRLS plus exact2tenant/10Auth absence, exact strict single3ownboolean validation, downstream custody",
+      "limits": "Physical known-returned-ID absence only; no native/partialsetup/historical-delete/freshSupAdmin claim"
+    },
+    {
+      "id": "F2",
+      "status": "CLOSED",
+      "evidence": "Actual Node adapter384-431 plus wrapper502-523/641 and finish69-75; real monotonic spawn/refusal facts independent done; started/uncertain missing reports capture failure",
+      "limits": "No native child execution; settlement/output/key custody unchanged"
+    }
+  ],
+  "original_actual14_verdict": "NOTPASS preserved, never relabelled PASS",
+  "original_unqualified_F1_plan_PASS": "NOT_ADOPTED; visibility addendum and validation supersede",
+  "composite_review": "Original14 historical NOTPASS plus latest7 targeted NOTPASS; original F1/F2 closed, F3 open; no composite PASS",
+  "immutable_inputs_and_references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/latest.diff",
+      "bytes": 52357,
+      "sha256": "7b0d3ead71a3c721193145bc39013c80ee2ebb7c0ca61cd40e78bc198f92b6d9",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/review-input.md",
+      "bytes": 143357,
+      "sha256": "08d47625a44b1e4546fdaf411098cbcaadc9dd8676fb96be6e88550794e36d4a",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/local-checks.json",
+      "bytes": 4341,
+      "sha256": "269cb56bd1cbeedf7681e6428d2d703f7c8c80daefc64dad8406d8510c991d47",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/route-context.json",
+      "bytes": 2318,
+      "sha256": "1110bbe29a1ff929aa85ee3b63be10ee5f02e5e72ca2d6805bd4c8b20c658adc",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/input-binding.json",
+      "bytes": 33636,
+      "sha256": "375634ad2bd8e0025ab16641eab6b77bd97a70c78c2fb3756b233300e55dbae8",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/review-input.md",
+      "bytes": 573067,
+      "sha256": "b0bbbc6364f450be9376fe3a6474c5451ff355cd3620158a7d747dc57f89e129",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json",
+      "bytes": 25398,
+      "sha256": "1a9aba65ad16f19a019e4963ce0bb76107b4dbe7888a82a40b0d8e96ee1eb83d",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-report.md",
+      "bytes": 10116,
+      "sha256": "9206dc8a152ab3d51dfd1134479a8806fdcd11c4e263b61bdc0727e633a797a8",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-attestation.json",
+      "bytes": 21979,
+      "sha256": "7c41cef482032d7590b6834448ed47ed1116fac8b49c5707455e5ef3fef96882",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/proposal.md",
+      "bytes": 12514,
+      "sha256": "7898802e407adeaf2979ca7c5cbe3852c973a8a69d8f64b3d5a106bbf37c62af",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/manifest.json",
+      "bytes": 955,
+      "sha256": "cb60ec58fef30b9d74558a6bbea700dba739fa576cbdd36f62c40e27df35bfdb",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/bindings-and-effects.json",
+      "bytes": 9151,
+      "sha256": "9dcbf4b4231cace92eb142e30e8d6b1371e870d3c78924722b05ae7015812cf5",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/compact-addendum.md",
+      "bytes": 4442,
+      "sha256": "5bd602ddf2c569260a33a47630dce7f4bfe83eaca86b61a6771a89b0dc85b385",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/binding-and-result.json",
+      "bytes": 6708,
+      "sha256": "43bfb1f49432f7bf3adf6b5b286fccb20344c07e9ea85e24164769af63260189",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/manifest.json",
+      "bytes": 743,
+      "sha256": "35196fe5089a896fed5f8b40d21f48bdb037fbaf7249efb72e57661f28b99b74",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-report.md",
+      "bytes": 10919,
+      "sha256": "8b903986a32bb3c8bd96f115898f1ac244adbd669c43bf63cbda97142ecb9116",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-attestation.json",
+      "bytes": 21886,
+      "sha256": "55e7c99876bcf7dd3cbfbdcc6d9c9417892e9fe8457100642dbcd73db2d2b869",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/result.json",
+      "bytes": 1594,
+      "sha256": "dd489a769ef530de5b1c96185a14dc477e451a6688b949bab86b9f3f88bffec4",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-validation/original-report.md",
+      "bytes": 7784,
+      "sha256": "f05a4a1572fce9f667a256106e8a436a7a5b0d5a6809d964a2dd040b8e4387dd",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-validation/original-attestation.json",
+      "bytes": 14575,
+      "sha256": "34cdb92ab1ac67b0037638dc175050c82e7ad88717b9f26f6cc297cca194fbc0",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-validation/result.json",
+      "bytes": 1379,
+      "sha256": "bd855e3c0ccc58fd73ed7fa1c53d43ef92560691c29f658e19224b1d768e72e6",
+      "verified_equal": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-denial-cause-proof-corrective-allocation.json",
+      "bytes": 4261,
+      "sha256": "956b92aaaeda0d028a4c53e2b48c00b8f86916bae2523f069f28ce2363451079",
+      "verified_equal": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-52007b76-source-path-admission.json",
+      "bytes": 38957,
+      "sha256": "d6526ad95f7d167ba070a1d0f867b8a985f4e9f1e5e2d8bd145aa0950bd2a61f",
+      "verified_equal": true
+    }
+  ],
+  "committed_scope_bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 128003,
+        "sha256": "44ddc4c80e4943d3cbe79d77939e7b53b5e18269b288641776e427aaabba1461"
+      },
+      "actual_git_clean_oid": "bf3cb98a08c72b8fd5347f004978c75961a9acf8",
+      "committed": {
+        "oid": "bf3cb98a08c72b8fd5347f004978c75961a9acf8",
+        "bytes": 128003,
+        "sha256": "44ddc4c80e4943d3cbe79d77939e7b53b5e18269b288641776e427aaabba1461"
+      },
+      "baseline": {
+        "oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+        "bytes": 121125,
+        "sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw": {
+        "bytes": 18930,
+        "sha256": "2f214382758b22f3f21a0141866cd63615ff3914858282602264b01b2a00adb1"
+      },
+      "actual_git_clean_oid": "b5430f80e04fe136fe3b6dece75da35e7941e5ba",
+      "committed": {
+        "oid": "b5430f80e04fe136fe3b6dece75da35e7941e5ba",
+        "bytes": 18649,
+        "sha256": "a777335c5456aeaeefc013051982452690a082affe2495168abd019b02ea7a01"
+      },
+      "baseline": {
+        "oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+        "bytes": 15874,
+        "sha256": "38bf5d39ed827733faed00b5411b10522034305a33b94e9f446f250941978aba"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw": {
+        "bytes": 45083,
+        "sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91"
+      },
+      "actual_git_clean_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "committed": {
+        "oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+        "bytes": 45083,
+        "sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91"
+      },
+      "baseline": {
+        "oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+        "bytes": 43506,
+        "sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw": {
+        "bytes": 82859,
+        "sha256": "1db49932052511104c0df77f79729950de582134bd0eff098d65436ab0c936ec"
+      },
+      "actual_git_clean_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "committed": {
+        "oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+        "bytes": 82088,
+        "sha256": "5b043237d761afdca1b5f549aecd14ee6eb7b263cb4f3f1376f009def78a4fe3"
+      },
+      "baseline": {
+        "oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+        "bytes": 80579,
+        "sha256": "fe3e2f3bba6829ec26be7e930f42006d8d9d198e6cefdc8172826d66ea54cb94"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw": {
+        "bytes": 8024,
+        "sha256": "1500cdb0fca5076840fe9107da927e8604d5887a8a1bedde5a3faf251b08b7c1"
+      },
+      "actual_git_clean_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+      "committed": {
+        "oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+        "bytes": 8024,
+        "sha256": "1500cdb0fca5076840fe9107da927e8604d5887a8a1bedde5a3faf251b08b7c1"
+      },
+      "baseline": {
+        "oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+        "bytes": 8024,
+        "sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw": {
+        "bytes": 23924,
+        "sha256": "5364846e5603e89150edcaed78688d2947efb746866d5aa64521419966e34ac1"
+      },
+      "actual_git_clean_oid": "2c1c16a38ab7d5639cbf5affe719aeb8e395e1f4",
+      "committed": {
+        "oid": "2c1c16a38ab7d5639cbf5affe719aeb8e395e1f4",
+        "bytes": 23680,
+        "sha256": "db517aac87b61b8f7bfb9c52eb56278f1520c41a178e6c12c457d544c80cb4ab"
+      },
+      "baseline": {
+        "oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+        "bytes": 18891,
+        "sha256": "ab59f4d8fd8a240f256aec3a260e5f0ebfa17a146f4c185cbf395732af89a01a"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw": {
+        "bytes": 128425,
+        "sha256": "c3289fe335b83bd546b8d41ad13533019edea57b1cea7b2149d881265515aad2"
+      },
+      "actual_git_clean_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+      "committed": {
+        "oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+        "bytes": 128425,
+        "sha256": "c3289fe335b83bd546b8d41ad13533019edea57b1cea7b2149d881265515aad2"
+      },
+      "baseline": {
+        "oid": "d8d614476df3508acde978048588f672664e8ba2",
+        "bytes": 117230,
+        "sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b"
+      },
+      "baseline_equal": false,
+      "raw_equals_committed_blob": true
+    }
+  ],
+  "unchanged_original_context": [
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "actual_current_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "cb8_context_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "actual_current_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "cb8_context_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "actual_current_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "cb8_context_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "actual_current_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "cb8_context_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "actual_current_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "cb8_context_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "actual_current_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "cb8_context_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "actual_current_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "cb8_context_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "actual_current_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "cb8_context_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "actual_current_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "cb8_context_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "actual_current_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "cb8_context_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context.ts",
+      "actual_current_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "cb8_context_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context-core.ts",
+      "actual_current_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "cb8_context_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "actual_current_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "cb8_context_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "actual_current_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "cb8_context_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "actual_current_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "cb8_context_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "unchanged": true,
+      "old_context_reference": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/input-binding.json"
+    }
+  ],
+  "report": {
+    "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\native-denial-cause-proof-corrective-review\\original-report.md",
+    "bytes": 8610,
+    "sha256": "5b480c25b39069f3fff270ce90977e272dee7a3b0f9d7b12c8bb3926f4ecdcbf"
+  },
+  "identity_provenance": {
+    "source_and_native_diff_identity": "Root supplied strict identity/admission and packet bindings; no independent Git commands in reviewer scope",
+    "root_receipt_path": ".env.epic15.mail-runtime/story-15-5-preparation/root-52007b76-source-path-admission.json",
+    "root_receipt_sha256": "d6526ad95f7d167ba070a1d0f867b8a985f4e9f1e5e2d8bd145aa0950bd2a61f",
+    "reviewer_source_Spec_index_mutations": 0,
+    "reviewer_Git_actions": 0,
+    "source_Spec_no_drift": "Root frozen verified source/Spec identity reused; reviewer made no source/Spec changes",
+    "global_clean_claim": false,
+    "metadata_dirty_allowed": true,
+    "raw_space_context_lines_each": 9,
+    "normalization_not_rewritten": true
+  },
+  "pure_exact_source_check": {
+    "input": "Exact immutable review-input dispatcher lines26-68",
+    "extracted_function_lines": 43,
+    "transformation": "Remove module export prefix only; Function compilation",
+    "case": "name: CI\non:\n  workflow_dispatch:\n    inputs: x: y\njobs:\n  verify: {}\n",
+    "actual_result": "ACCEPTED",
+    "no_suite_or_native_or_provider_action": true
+  },
+  "check_limits": {
+    "author_actual_history": "initial116=112P4F, corrected116P; seven-file374P BEFORE late alias; final affected dispatcher30P AFTER, other344 unchanged bindings",
+    "final_combined374_rerun": false,
+    "evidence_is_composite": true,
+    "whole_TypeScript": "final exit0",
+    "lint": "six files before late change and affected2 after:0errors/0warnings",
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "author_SRO_stops": 87,
+    "story_status": "in-review",
+    "build_rerun": false,
+    "tests_rerun": false,
+    "native_SQL_Auth_process_proof": false,
+    "normal95_fullDB_browser_recovery_pilot_INT015": "Required unchanged",
+    "protected109plus37": "Preserved within latest delta; no broad inventory audit"
+  },
+  "limits": {
+    "native_diagnostic": "UNEXECUTED",
+    "all43_DB_causes": "UNRESOLVED",
+    "browser14": "UNRESOLVED",
+    "eleven_failed_native_histories": "PRESERVED",
+    "hosted_availability": "UNKNOWN",
+    "private7_consumer": "UNBORN; later fresh sensitive High review/adoption required",
+    "native_credit": 0,
+    "acceptance_credit": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "later_gates": "Bounded F3 fix/checks/targeted review; private qualifier review/adoption; Root freeze/push; fresh hosted availability and admission before sole POST"
+  },
+  "actions": {
+    "readonly_inspection_hashes": true,
+    "public_primary_docs_only": true,
+    "pure_function_checks": 1,
+    "semantic_suite_runs": 0,
+    "SQL_RPC_Auth_HTTP_queries": 0,
+    "CI_provider_repository_actions": 0,
+    "resource_launches": 0,
+    "source_Spec_index_Git_changes": 0,
+    "prior_artifact_changes": 0,
+    "new_output_paths_only": [
+      "original-report.md",
+      "original-attestation.json",
+      "result.json"
+    ],
+    "initial_metadata_write": "Relative .NET path resolved outside PowerShell location and failed before writing; corrected absolute CreateNew paths",
+    "changelog_fetch": "web unsupported text/markdown; no implementation performed"
+  },
+  "docs": [
+    "https://yaml.org/spec/1.2.2/#733-plain-style",
+    "https://www.postgresql.org/docs/17/ddl-rowsecurity.html",
+    "https://www.postgresql.org/docs/17/view-pg-roles.html",
+    "https://www.postgresql.org/docs/17/functions-info.html",
+    "https://nodejs.org/api/child_process.html",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_dispatch",
+    "https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event"
+  ]
+}

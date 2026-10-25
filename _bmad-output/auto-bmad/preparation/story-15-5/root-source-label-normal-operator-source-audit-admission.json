@@ -1,0 +1,17 @@
+{
+  "schema": "ROOT_NORMAL_LABEL_OPERATOR_SOURCE_AUDIT_ADMISSION_v1",
+  "status": "PASS_SOURCE_ONLY_NORMAL_LABEL_OPERATOR_WITH_FRESH_EFFECTS_CONDITIONS",
+  "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+  "review_directory": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-evidence-source-review",
+  "review_manifest_sha256": "9a25fa4a77cbd985f01a401e7269f636b4817ffa33831951f574c5e1f82bf698",
+  "operator_sha256": "fcbdec106b6906e98f55256e4655a88e2c48c14b3428c62e1af01706133732ac",
+  "private_manifest_sha256": "c8d4f71ea9def529aa8e18aebd03e87a9828fd59993db4a560a4508be6647ddc",
+  "readiness_manifest_sha256": "0c3b7e4875e7b23a492f4da486410076e605eaeb0517ecf8606e80e3965d9423",
+  "offline_controls": 27,
+  "actual_production_envelope": 25631,
+  "output_cap": 32768,
+  "native_acceptance": 0,
+  "effects": 0,
+  "hosted_publication": "UNKNOWN",
+  "next": "Coordinate actual fresh provider/checkpoint NORMAL effects; Root fresh exact-head source proof. After typed terminal ownership, separately allocated five-request acquisition and exclusive activation; no automatic retry."
+}

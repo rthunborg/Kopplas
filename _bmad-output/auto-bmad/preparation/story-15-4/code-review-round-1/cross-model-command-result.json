@@ -1,0 +1,11 @@
+{
+  "path": "C:/Users/Rasmus/AppData/Local/Temp/auto-bmad-15-4-round1-73169cc0c75d.diff.review",
+  "bytes": 2644,
+  "sha256": "38b3b043014597eef252f5d1d24e8489dc9aec2b0a92fb216ee1b14691baea01",
+  "wrapperExit": 1,
+  "wrapperOutput": "The system cannot find the file specified.",
+  "layerStatus": "failed-wrapper; recovered report is evidence for triage only, not qualified PASS",
+  "requestedModel": "gpt-6.1-sol",
+  "requestedEffort": "high",
+  "actualModelMetadata": "unavailable: exact configured command suppressed diagnostic stream"
+}

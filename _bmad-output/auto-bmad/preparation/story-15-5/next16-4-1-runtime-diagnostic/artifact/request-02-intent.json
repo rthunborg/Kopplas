@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "--method",
+    "GET",
+    "repos/rthunborg/Kopplas/actions/artifacts/12497177124/zip"
+  ],
+  "inline_source_sha256": "cb08895c292db089bb9d8e67d8c8fb1eff6bdd0a562c0d922505b633d282bfc9",
+  "intent_persisted_before_spawn": true,
+  "label": "owned-INT009-native",
+  "raw_persisted": false,
+  "sequence": 2,
+  "stderr_cap": 65536,
+  "stdout_cap": 33554432,
+  "timeout_seconds": 15
+}

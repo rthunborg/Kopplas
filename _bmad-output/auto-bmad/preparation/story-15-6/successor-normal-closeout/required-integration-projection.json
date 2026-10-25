@@ -1,0 +1,3461 @@
+{
+  "operation_id": "0d860414-873f-4b55-a578-05cf743c9cf0",
+  "run_id": 40192543175,
+  "head": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "acquisition": {
+    "ordinal": 4,
+    "label": "native-full-integration",
+    "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/12599002143/zip",
+    "status": "COMPLETE_VERIFIED_ZIP",
+    "intent_utc": "2026-10-25T12:47:37.027332+00:00",
+    "native_exit": 0,
+    "elapsed_seconds": 1.2359467999995104,
+    "stdout_bytes": 113569,
+    "stderr_bytes": 0,
+    "full_EOF": true,
+    "faults": [],
+    "body_sha256": "81260cf2aa9e80b9ada701fb9017858566f3a6ccfeb9aa94f74193c2921ff13b",
+    "selected_JSON_bytes": 1041708,
+    "selected_JSON_sha256": "6f5b438b44cf691aabd1c3f2424098f9d89da846f7d5674b3b4fe9a8af10e4ba",
+    "ZIP_CRC_caps": "PASS",
+    "redirect_count": "UNOBSERVED standard gh HTTPS transport; no URLs retained"
+  },
+  "native_header": {
+    "success": true,
+    "numTotalTests": 2198,
+    "numPassedTests": 2146,
+    "numFailedTests": 0,
+    "numPendingTests": 52,
+    "numTodoTests": 0,
+    "numTotalTestSuites": 551,
+    "numPassedTestSuites": 551,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0
+  },
+  "all_file_statuses": [
+    {
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "status": "passed",
+      "assertion_count": 20,
+      "leaf_status_counts": {
+        "passed": 20
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "status": "passed",
+      "assertion_count": 15,
+      "leaf_status_counts": {
+        "passed": 15
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "status": "passed",
+      "assertion_count": 17,
+      "leaf_status_counts": {
+        "passed": 17
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "status": "passed",
+      "assertion_count": 11,
+      "leaf_status_counts": {
+        "passed": 11
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/jobs/job-runs.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "status": "passed",
+      "assertion_count": 13,
+      "leaf_status_counts": {
+        "passed": 13
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/accept-quote-and-create-job.int.test.ts",
+      "status": "passed",
+      "assertion_count": 14,
+      "leaf_status_counts": {
+        "passed": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/acceptance-evidence-link.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/accepted-record-lock.int.test.ts",
+      "status": "passed",
+      "assertion_count": 31,
+      "leaf_status_counts": {
+        "passed": 31
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/admin-invitation-retry-flow.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/admin-user-management.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/audit-actor-on-delete-set-null.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/audit-anon-isolation.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/audit-append-only.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/audit-metadata-hygiene-e2e.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/booking-conflicts.int.test.ts",
+      "status": "passed",
+      "assertion_count": 62,
+      "leaf_status_counts": {
+        "passed": 62
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/booking-editor-review-fixes.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/booking-editor-round2.int.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/booking-editor.int.test.ts",
+      "status": "passed",
+      "assertion_count": 58,
+      "leaf_status_counts": {
+        "passed": 58
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "status": "passed",
+      "assertion_count": 60,
+      "leaf_status_counts": {
+        "skipped": 37,
+        "passed": 23
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/bookings-replay-authority.int.test.ts",
+      "status": "passed",
+      "assertion_count": 12,
+      "leaf_status_counts": {
+        "passed": 12
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/bookings.int.test.ts",
+      "status": "passed",
+      "assertion_count": 16,
+      "leaf_status_counts": {
+        "passed": 16
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/calculation-commands.int.test.ts",
+      "status": "passed",
+      "assertion_count": 17,
+      "leaf_status_counts": {
+        "passed": 17
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/calculation-row-source.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/capture-quote-acceptance.int.test.ts",
+      "status": "passed",
+      "assertion_count": 14,
+      "leaf_status_counts": {
+        "passed": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/create-job.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/create-new-quote-version.int.test.ts",
+      "status": "passed",
+      "assertion_count": 12,
+      "leaf_status_counts": {
+        "passed": 12
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/crm-command-coverage.int.test.ts",
+      "status": "passed",
+      "assertion_count": 15,
+      "leaf_status_counts": {
+        "passed": 15
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/crm-customer-commands.int.test.ts",
+      "status": "passed",
+      "assertion_count": 9,
+      "leaf_status_counts": {
+        "passed": 9
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/crm-parent-ownership.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/disabled-membership-no-access.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "status": "passed",
+      "assertion_count": 9,
+      "leaf_status_counts": {
+        "passed": 9
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "status": "passed",
+      "assertion_count": 26,
+      "leaf_status_counts": {
+        "passed": 26
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "status": "passed",
+      "assertion_count": 38,
+      "leaf_status_counts": {
+        "passed": 38
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "status": "passed",
+      "assertion_count": 76,
+      "leaf_status_counts": {
+        "passed": 76
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/envelope-audit-write.int.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/envelope-failure-modes.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/file-audit-events.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/file-link-lock.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/file-link-ownership.int.test.ts",
+      "status": "passed",
+      "assertion_count": 18,
+      "leaf_status_counts": {
+        "passed": 18
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/file-signed-access-refresh.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/file-signed-access.int.test.ts",
+      "status": "passed",
+      "assertion_count": 14,
+      "leaf_status_counts": {
+        "passed": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/file-upload.int.test.ts",
+      "status": "passed",
+      "assertion_count": 19,
+      "leaf_status_counts": {
+        "passed": 19
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/generate-quote-pdf-storage-privacy.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/job-booking-facts.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/job-members.int.test.ts",
+      "status": "passed",
+      "assertion_count": 15,
+      "leaf_status_counts": {
+        "passed": 15
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/job-scheduling-consumers.int.test.ts",
+      "status": "passed",
+      "assertion_count": 28,
+      "leaf_status_counts": {
+        "passed": 28
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/job-source-of-truth.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/job-upgrade.int.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/jobs-depth.int.test.ts",
+      "status": "passed",
+      "assertion_count": 9,
+      "leaf_status_counts": {
+        "passed": 9
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/mark-quote-version-lost.int.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/mark-quote-version-sent.int.test.ts",
+      "status": "passed",
+      "assertion_count": 26,
+      "leaf_status_counts": {
+        "passed": 26
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/pricing-commands.int.test.ts",
+      "status": "passed",
+      "assertion_count": 17,
+      "leaf_status_counts": {
+        "passed": 17
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/provision-tenant.int.test.ts",
+      "status": "passed",
+      "assertion_count": 13,
+      "leaf_status_counts": {
+        "passed": 13
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-attachment-carry-forward.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-audit-rollback.int.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-follow-ups.int.test.ts",
+      "status": "passed",
+      "assertion_count": 15,
+      "leaf_status_counts": {
+        "passed": 15
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-pdf-validity.int.test.ts",
+      "status": "passed",
+      "assertion_count": 27,
+      "leaf_status_counts": {
+        "passed": 27
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-review-authorization.int.test.ts",
+      "status": "passed",
+      "assertion_count": 15,
+      "leaf_status_counts": {
+        "passed": 15
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-successor-non-admin-audit.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/quote-version.int.test.ts",
+      "status": "passed",
+      "assertion_count": 8,
+      "leaf_status_counts": {
+        "passed": 8
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/record-audit-event-search-path.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/resources-boundaries.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/resources.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/server-error-vs-no-access.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/settings-commands.int.test.ts",
+      "status": "passed",
+      "assertion_count": 14,
+      "leaf_status_counts": {
+        "passed": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/tax-answer-acceptance-job.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/tax-answer-reconciliation.int.test.ts",
+      "status": "passed",
+      "assertion_count": 25,
+      "leaf_status_counts": {
+        "passed": 25
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/update-draft-quote-version.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/update-job.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/work-order-files.int.test.ts",
+      "status": "passed",
+      "assertion_count": 14,
+      "leaf_status_counts": {
+        "passed": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/commands/work-orders.int.test.ts",
+      "status": "passed",
+      "assertion_count": 25,
+      "leaf_status_counts": {
+        "passed": 25
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/booking-editor.test.ts",
+      "status": "passed",
+      "assertion_count": 14,
+      "leaf_status_counts": {
+        "passed": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/booking-series.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/buyer-vat-number-fact.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/calendar-feed.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/conflict-resolver.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/create-new-version-attachment-selection.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/dialog-pending-close-gate.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/follow-up-error-visibility.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/legacy-draft-recovery.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/tax-settings-fixed-price-authoring.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "status": "passed",
+      "assertion_count": 18,
+      "leaf_status_counts": {
+        "passed": 18
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/email/email-delivery-activation.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/email/outbox.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/email/quote-delivery-attachment.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/email/quote-delivery-finalization-failure.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/email/quote-delivery-recipient-snapshot.int.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/factories/cleanup-teardown.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/features/booking-read-actions.test.ts",
+      "status": "passed",
+      "assertion_count": 13,
+      "leaf_status_counts": {
+        "passed": 13
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/fixtures/provisioning-cleanup.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/notifications/notifications.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 11,
+      "leaf_status_counts": {
+        "passed": 11
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "skipped": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/read-models/admin-users-current-tenant.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/read-models/onboarding-authorization-boundaries.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/read-models/onboarding-checklist.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/read-models/operator-console.int.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/scheduling/booking-reassignment-flags.int.test.ts",
+      "status": "passed",
+      "assertion_count": 8,
+      "leaf_status_counts": {
+        "passed": 8
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "status": "passed",
+      "assertion_count": 16,
+      "leaf_status_counts": {
+        "passed": 16
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/scheduling/scheduling-read.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 27,
+      "leaf_status_counts": {
+        "passed": 27
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/perf/auth-rls-baseline.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/snapshots/source-ownership.int.test.ts",
+      "status": "passed",
+      "assertion_count": 16,
+      "leaf_status_counts": {
+        "passed": 16
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/admin-user-detail-isolation.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/admin-user-management.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/admin-users-current-tenant-counts.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/anon-path-isolation.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 235,
+      "leaf_status_counts": {
+        "passed": 235
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/approved-public-acl-repair.int.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/audit-anon-mutation-enrollment.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 19,
+      "leaf_status_counts": {
+        "passed": 5,
+        "skipped": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/bookings.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 14,
+      "leaf_status_counts": {
+        "passed": 14
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 12,
+      "leaf_status_counts": {
+        "passed": 12
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/crm-tables-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 233,
+      "leaf_status_counts": {
+        "passed": 233
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/dashboard-pipeline.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 11,
+      "leaf_status_counts": {
+        "passed": 11
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 28,
+      "leaf_status_counts": {
+        "passed": 28
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 16,
+      "leaf_status_counts": {
+        "passed": 16
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/documents.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 24,
+      "leaf_status_counts": {
+        "passed": 24
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/email-outbox.rls.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/email-unsubscribe.atdd.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/epic-12-function-execute-acl.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/factory-isolation.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/file-index-isolation.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/file-link-lock.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 19,
+      "leaf_status_counts": {
+        "passed": 19
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/file-tables-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 16,
+      "leaf_status_counts": {
+        "passed": 16
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/has-tenant-role.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/helper-semantics.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 9,
+      "leaf_status_counts": {
+        "passed": 9
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/job-members.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/job-workspace.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/jobs-depth.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 8,
+      "leaf_status_counts": {
+        "passed": 8
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/membership-integrity.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/membership-roles.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 8,
+      "leaf_status_counts": {
+        "passed": 8
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/membership-self-grant.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 15,
+      "leaf_status_counts": {
+        "passed": 15
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/onboarding-checklist.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/onboarding-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/platform-operators.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/pricing-tables-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/provisioning-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-follow-ups-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 10,
+      "leaf_status_counts": {
+        "passed": 10
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-follow-ups.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-lost-reasons-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 12,
+      "leaf_status_counts": {
+        "passed": 12
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-lost-reasons.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-pdf-validity-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 8,
+      "leaf_status_counts": {
+        "passed": 8
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-pipeline-read-model.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 9,
+      "leaf_status_counts": {
+        "passed": 9
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-table-db-hardening.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/quote-tables-migration-reset.int.test.ts",
+      "status": "passed",
+      "assertion_count": 17,
+      "leaf_status_counts": {
+        "passed": 17
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/resources.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/rls-inventory-gate.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "status": "passed",
+      "assertion_count": 11,
+      "leaf_status_counts": {
+        "passed": 11
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/role-storage-grants.int.test.ts",
+      "status": "passed",
+      "assertion_count": 2,
+      "leaf_status_counts": {
+        "passed": 2
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/security-definer-search-path.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 5,
+      "leaf_status_counts": {
+        "passed": 5
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/settings-rls.int.test.ts",
+      "status": "passed",
+      "assertion_count": 15,
+      "leaf_status_counts": {
+        "passed": 15
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/storage-object-isolation.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/rls/work-orders.rls.test.ts",
+      "status": "passed",
+      "assertion_count": 3,
+      "leaf_status_counts": {
+        "passed": 3
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/features/jobs/job-read-mapping.int.test.ts",
+      "status": "passed",
+      "assertion_count": 17,
+      "leaf_status_counts": {
+        "passed": 17
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/features/jobs/job-workspace.int.test.ts",
+      "status": "passed",
+      "assertion_count": 4,
+      "leaf_status_counts": {
+        "passed": 4
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/features/jobs/my-jobs.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/features/quotes/quote-pipeline-list-filters.int.test.ts",
+      "status": "passed",
+      "assertion_count": 7,
+      "leaf_status_counts": {
+        "passed": 7
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    },
+    {
+      "file": "tests/integration/server/auth/resolve-tenant-context.int.test.ts",
+      "status": "passed",
+      "assertion_count": 6,
+      "leaf_status_counts": {
+        "passed": 6
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    }
+  ],
+  "root_errors": {},
+  "required_current_SQL_leaves": [
+    {
+      "status": "passed",
+      "duration": 3128.443797,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API001 AC3 AC4 AC9 own minimal projection rejects tenant subject and date overrides",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API001 AC3 AC4 AC9 own minimal projection rejects tenant subject and date overrides",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2505.3015219999997,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API002 AC4 AC7 revoked rotated unknown and malformed have equal-history generic HTTP404",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API002 AC4 AC7 revoked rotated unknown and malformed have equal-history generic HTTP404",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2895.786131,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API003 AC5 sixty per token across independent IPs then61 is limited",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API003 AC5 sixty per token across independent IPs then61 is limited",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3070.719580000001,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API004 AC5 one IP across multiple tokens reaches120 independently of token budgets",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API004 AC5 one IP across multiple tokens reaches120 independently of token budgets",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2859.0699910000003,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API005 AC5 token boundary under65 concurrent requests admits exactly60 without lost increments",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API005 AC5 token boundary under65 concurrent requests admits exactly60 without lost increments",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3407.9717640000017,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API006 AC5 IP boundary under125 concurrent cross-token requests admits exactly120",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API006 AC5 IP boundary under125 concurrent cross-token requests admits exactly120",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3237.0121209999998,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API007 AC5 DB clock owns fixed window and rollover restores both independent budgets",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API007 AC5 DB clock owns fixed window and rollover restores both independent budgets",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3588.1053870000032,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API008 AC4 AC5 unknown malformed rotated and revoked consume common IP budget and limited failures persist",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API008 AC4 AC5 unknown malformed rotated and revoked consume common IP budget and limited failures persist",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3065.399679000002,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API009 AC4 AC5 AC7 arbitrary forwarded headers cannot escape shared unknown-IP enforcement",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API009 AC4 AC5 AC7 arbitrary forwarded headers cannot escape shared unknown-IP enforcement",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2366.786860999997,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API010 AC4 AC5 raw RPC proof forgery cannot choose hash IP domain key or time; replay is counted",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API010 AC4 AC5 raw RPC proof forgery cannot choose hash IP domain key or time; replay is counted",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2353.061410000002,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API011 AC1 AC4 raw lifecycle proof binds every authority action revision attempt and new hash",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API011 AC1 AC4 raw lifecycle proof binds every authority action revision attempt and new hash",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2329.038219000002,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API012 AC4 AC8 missing or mismatched dedicated key never borrows another Vault secret",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API012 AC4 AC8 missing or mismatched dedicated key never borrows another Vault secret",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 6641.849433999996,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API013 AC3 AC7 AC8 complete materialized feed exceeds PostgREST row cap with no arbitrary horizon",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API013 AC3 AC7 AC8 complete materialized feed exceeds PostgREST row cap with no arbitrary horizon",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2313.634334000002,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API014 AC3 AC8 independent parser sees escaped labels and no injected properties or UTF8 splits",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API014 AC3 AC8 independent parser sees escaped labels and no injected properties or UTF8 splits",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2371.056607999999,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P1] 15.5-API015 AC3 AC8 Stockholm DST all-day exclusive dates and overnight UTC instants are independent",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P1] 15.5-API015 AC3 AC8 Stockholm DST all-day exclusive dates and overnight UTC instants are independent",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3314.4575410000034,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API016 AC3 AC9 live edit exception cancel and series split preserve surviving booking UIDs",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API016 AC3 AC9 live edit exception cancel and series split preserve surviving booking UIDs",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2466.6159870000047,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API017 AC7 hostile cookies auth headers validators never authenticate cache or redirect public feed",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API017 AC7 hostile cookies auth headers validators never authenticate cache or redirect public feed",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 7353.631827999998,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API018 AC5 AC8 projection and counter failures return503 before any partial or false empty feed",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API018 AC5 AC8 projection and counter failures return503 before any partial or false empty feed",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2631.3407860000007,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API019 AC1 AC4 AC5 AC9 logs audit and public errors disclose no raw token hash proof key or IP",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API019 AC1 AC4 AC5 AC9 logs audit and public errors disclose no raw token hash proof key or IP",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2717.9664080000002,
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "title": "[P0] 15.5-API020 AC3 AC9 feed reads preserve existing booking series resolver reports and job facts",
+      "fullName": "15.5 public capability HTTP, projection and independent abuse budgets [P0] 15.5-API020 AC3 AC9 feed reads preserve existing booking series resolver reports and job facts",
+      "ancestorTitles": [
+        "15.5 public capability HTTP, projection and independent abuse budgets"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2839.97953,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT001 AC1 AC6 own issuance stores only SHA256 and publishes a fresh URL once",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT001 AC1 AC6 own issuance stores only SHA256 and publishes a fresh URL once",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2615.898415,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT002 AC1 AC2 rotate revokes old generation and revoke is audited once",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT002 AC1 AC2 rotate revokes old generation and revoke is audited once",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2646.894875,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT003 AC2 concurrent CAS rotations cannot overwrite or create two active generations",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT003 AC2 concurrent CAS rotations cannot overwrite or create two active generations",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2752.4104690000004,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT004 AC2 exact attempt replay is sanitized and old attempt cannot accept a different new hash",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT004 AC2 exact attempt replay is sanitized and old attempt cannot accept a different new hash",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2638.740388,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT005 AC2 lost committed response reconciles metadata and needs a separate explicit rotation",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT005 AC2 lost committed response reconciles metadata and needs a separate explicit rotation",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2642.5337179999988,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT006 AC1 AC2 create audit fault proves intended stage then rolls back generation",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT006 AC1 AC2 create audit fault proves intended stage then rolls back generation",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2737.773025999999,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT007 AC2 failed rotation audit leaves old usable and installs no new generation",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT007 AC2 failed rotation audit leaves old usable and installs no new generation",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2480.811098000002,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT008 AC2 failed revoke audit leaves token usable with no false revocation",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT008 AC2 failed revoke audit leaves token usable with no false revocation",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2554.5667869999997,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2882.637555000001,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT010 AC2 AC9 admitted fetch may finish before revoke while later fetch is denied",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT010 AC2 AC9 admitted fetch may finish before revoke while later fetch is denied",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2509.523860999998,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT011 AC2 AC9 revoke commits before a waiting fetch and prevents its disclosure",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT011 AC2 AC9 revoke commits before a waiting fetch and prevents its disclosure",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3059.404051999998,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT012 AC1 AC2 AC9 committed rotation rejects waiting old fetch and preserves new token",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT012 AC1 AC2 AC9 committed rotation rejects waiting old fetch and preserves new token",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2568.196415999999,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT013 AC2 simultaneous initial create and later revoke/rotate never resurrect stale intent",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT013 AC2 simultaneous initial create and later revoke/rotate never resurrect stale intent",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2639.2839289999974,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P1] 15.5-INT014 AC6 last-used is database admitted fetch time and lifecycle alone never increments usage",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P1] 15.5-INT014 AC6 last-used is database admitted fetch time and lifecycle alone never increments usage",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1083.6828030000033,
+      "file": "tests/integration/commands/calendar-feed.int.test.ts",
+      "title": "[P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership",
+      "fullName": "15.5 authenticated lifecycle, atomic audit and commit-order [P0] 15.5-INT015 AC4 AC9 native PG17 restricted creator executes the exact owner bootstrap and SET ownership",
+      "ancestorTitles": [
+        "15.5 authenticated lifecycle, atomic audit and commit-order"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 12.496062999999992,
+      "file": "tests/integration/components/calendar-feed.test.ts",
+      "title": "[P1] 15.5-COMP-001 AC1 AC6 warning, never used and copy fallback are explicit",
+      "fullName": "15.5 accessible calendar subscription presentation (SSR only) [P1] 15.5-COMP-001 AC1 AC6 warning, never used and copy fallback are explicit",
+      "ancestorTitles": [
+        "15.5 accessible calendar subscription presentation (SSR only)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3.2490549999999985,
+      "file": "tests/integration/components/calendar-feed.test.ts",
+      "title": "[P0] 15.5-COMP-002 AC2 AC6 pending and uncertain cannot announce confirmed success or recover raw URL",
+      "fullName": "15.5 accessible calendar subscription presentation (SSR only) [P0] 15.5-COMP-002 AC2 AC6 pending and uncertain cannot announce confirmed success or recover raw URL",
+      "ancestorTitles": [
+        "15.5 accessible calendar subscription presentation (SSR only)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 4.683848000000012,
+      "file": "tests/integration/components/calendar-feed.test.ts",
+      "title": "[P1] 15.5-COMP-003 AC2 AC6 failure offers explicit retry and revisit requires new rotation",
+      "fullName": "15.5 accessible calendar subscription presentation (SSR only) [P1] 15.5-COMP-003 AC2 AC6 failure offers explicit retry and revisit requires new rotation",
+      "ancestorTitles": [
+        "15.5 accessible calendar subscription presentation (SSR only)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1.060194000000024,
+      "file": "tests/integration/components/calendar-feed.test.ts",
+      "title": "[P0] 15.5-COMP-004 AC5 AC6 separate nonAdmin presentation contains no abuse data",
+      "fullName": "15.5 accessible calendar subscription presentation (SSR only) [P0] 15.5-COMP-004 AC5 AC6 separate nonAdmin presentation contains no abuse data",
+      "ancestorTitles": [
+        "15.5 accessible calendar subscription presentation (SSR only)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 177.208165,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-01 AC1 authenticated-only stable checked definer ACL and no-session denial",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-01 AC1 authenticated-only stable checked definer ACL and no-session denial",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2221.755814,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-02 AC1/2 normal JWT cannot read foreign tenant or unentitled/invited/disabled/orphan authority",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-02 AC1/2 normal JWT cannot read foreign tenant or unentitled/invited/disabled/orphan authority",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1649.7935439999997,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-03 AC1 own profile archived cannot be replaced by a peer profile",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-03 AC1 own profile archived cannot be replaced by a peer profile",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1380.912131,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-03 AC1 own profile missing cannot be replaced by a peer profile",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-03 AC1 own profile missing cannot be replaced by a peer profile",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1698.1919870000002,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-04 AC2 every role including managers sees only own assignments, once and no peers",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-04 AC2 every role including managers sees only own assignments, once and no peers",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1534.8195319999995,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-05 AC2/6 removed assignment and revoked current membership disappear on next read",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-05 AC2/6 removed assignment and revoked current membership disappear on next read",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1562.2016210000002,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-06 AC2 shared/recurring/all-day/overnight DST overlap is complete and half-open",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-06 AC2 shared/recurring/all-day/overnight DST overlap is complete and half-open",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1860.1009350000004,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-07 AC2 own projection exceeds a transport page and deterministic equal-start order has no omissions",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-07 AC2 own projection exceeds a transport page and deterministic equal-start order has no omissions",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1675.7969699999994,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-08 AC2 exact eight-day bound allows fall-DST week, rejects null/reverse/equal/infinite/oversized ranges",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-08 AC2 exact eight-day bound allows fall-DST week, rejects null/reverse/equal/infinite/oversized ranges",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1479.0850420000006,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-09 AC3/4/7 false branch has no job identity/role/label and only explicit booking context",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-09 AC3/4/7 false branch has no job identity/role/label and only explicit booking context",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1794.824512000001,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-10 AC4 true is composition control; actual personal relationship and readable active lifecycle still govern",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-10 AC4 true is composition control; actual personal relationship and readable active lifecycle still govern",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1604.1098530000017,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-11 AC4 assignment-only job disappears immediately after its final own relationship is removed",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-11 AC4 assignment-only job disappears immediately after its final own relationship is removed",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1699.0140260000007,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-12 AC3 address uses explicit booking facility, then job override, then job facility; never billing",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-12 AC3 address uses explicit booking facility, then job override, then job facility; never billing",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1553.4028009999965,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-13 AC3 booking assignment label is booking work role, never resource default or a peer list",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-13 AC3 booking assignment label is booking work role, never resource default or a peer list",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 1711.5204190000004,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-14 AC4 true flag cannot grant job authority to an ordinary related sales member",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-14 AC4 true flag cannot grant job authority to an ordinary related sales member",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 2842.4005350000007,
+      "file": "tests/integration/scheduling/my-day.int.test.ts",
+      "title": "[P0] 15.6-INT-15 AC4 active own member jobs exceed a transport page without dropping relationships",
+      "fullName": "15.6 Min dag minimal authenticated SQL projection [P0] 15.6-INT-15 AC4 active own member jobs exceed a transport page without dropping relationships",
+      "ancestorTitles": [
+        "15.6 Min dag minimal authenticated SQL projection"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 4531.7494750000005,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 4834.855978,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS002 AC1 AC4 AC9 admin manager peer foreign and platform cannot act on behalf of a subject",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS002 AC1 AC4 AC9 admin manager peer foreign and platform cannot act on behalf of a subject",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 4632.620658,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS003 AC4 AC9 legacy NULL and non-ready provisioning state preserve active membership access",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS003 AC4 AC9 legacy NULL and non-ready provisioning state preserve active membership access",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 4234.170410999997,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS004 AC4 AC9 current role removal and inactive invited missing exact membership fail despite an old JWT",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS004 AC4 AC9 current role removal and inactive invited missing exact membership fail despite an old JWT",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3836.850022999999,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS005 AC1 AC4 AC9 membership replacement invalidates an active old capability",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS005 AC1 AC4 AC9 membership replacement invalidates an active old capability",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3878.018093999999,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS006 AC3 AC9 manager feed contains only exact assigned planned bookings once",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS006 AC3 AC9 manager feed contains only exact assigned planned bookings once",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3786.301894,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS007 AC3 AC4 AC9 no profile and archived profile yield a valid empty calendar without team fallback",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS007 AC3 AC4 AC9 no profile and archived profile yield a valid empty calendar without team fallback",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3588.3710390000015,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS008 AC1 AC4 AC9 direct token DML and sensitive column reads are denied to all JWT roles",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS008 AC1 AC4 AC9 direct token DML and sensitive column reads are denied to all JWT roles",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 3910.7237250000035,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS009 AC4 AC5 AC9 global IP table has RLS and no effective JWT SELECT DML or subject linkage",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS009 AC4 AC5 AC9 global IP table has RLS and no effective JWT SELECT DML or subject linkage",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 5753.107166999995,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 4420.5891550000015,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS011 AC4 AC5 AC6 Admin monitoring is sanitized tenant-only and ordinary roles cannot read it",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS011 AC4 AC5 AC6 Admin monitoring is sanitized tenant-only and ordinary roles cannot read it",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "passed",
+      "duration": 4362.523501999996,
+      "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "title": "[P0] 15.5-RLS012 AC4 AC9 missing own tenant invalidates an issued capability through SQL authority and constraints",
+      "fullName": "15.5 exact self authority, raw SQL boundary and least privilege [P0] 15.5-RLS012 AC4 AC9 missing own tenant invalidates an issued capability through SQL authority and constraints",
+      "ancestorTitles": [
+        "15.5 exact self authority, raw SQL boundary and least privilege"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    }
+  ],
+  "explicit_skipped_leaves": [
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-001 atomic series, all occurrences, assignees, selected acceptance, outcome and audit (AC3/6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-001 atomic series, all occurrences, assignees, selected acceptance, outcome and audit (AC3/6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-002 racing identical identity returns one durable result and writes once (AC3)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-002 racing identical identity returns one durable result and writes once (AC3)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-003 lost committed response retry preserves exact attempt and causes no delta (AC3)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-003 lost committed response retry preserves exact attempt and causes no delta (AC3)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-004 same key changed rule rejected without overwriting outcome (AC3)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-004 same key changed rule rejected without overwriting outcome (AC3)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-005 same key changed selected acceptance or reason rejected (AC3/6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-005 same key changed selected acceptance or reason rejected (AC3/6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-006 authorized replay ignores expired transport and changed historical references (AC3/7)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-006 authorized replay ignores expired transport and changed historical references (AC3/7)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-007 audit fault rolls back all durable state including outcome and acceptance (AC3/6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-007 audit fault rolls back all durable state including outcome and acceptance (AC3/6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-008 fault after acceptance proves acceptance UPDATE then whole rollback (AC3/6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-008 fault after acceptance proves acceptance UPDATE then whole rollback (AC3/6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-009 fault after durable outcome rolls back the entire batch (AC3)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-009 fault after durable outcome rolls back the entire batch (AC3)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-010 current v3/v1 facts retain each booking job and ordered independent null/empty inputs (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-010 current v3/v1 facts retain each booking job and ordered independent null/empty inputs (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-011 empty windows prohibit whole interval; unbound and null facts inherit no other job (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-011 empty windows prohibit whole interval; unbound and null facts inherit no other job (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-012 genuine proof becomes stale after recorded job child change (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-012 genuine proof becomes stale after recorded job child change (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-013 genuine proof becomes stale after booking job rebinding (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-013 genuine proof becomes stale after booking job rebinding (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-014 series proof domain separates without changing 13 legacy claims and SQL bytes agree (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-014 series proof domain separates without changing 13 legacy claims and SQL bytes agree (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-015 metadata-only revision/slot/exception/tombstone/lineage changes invalidate genuine baseline (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-015 metadata-only revision/slot/exception/tombstone/lineage changes invalidate genuine baseline (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-016 genuine single-booking receipt cannot authorize a batch (AC6/7)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-016 genuine single-booking receipt cannot authorize a batch (AC6/7)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-017 genuine job-card receipt cannot authorize a batch (AC6/7)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-017 genuine job-card receipt cannot authorize a batch (AC6/7)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-018 real signed wrong claim/output/payload and unsigned reviewed list fail closed (AC6/7)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-018 real signed wrong claim/output/payload and unsigned reviewed list fail closed (AC6/7)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-019 full affected-ID review includes sibling aggregate, retained exception and occurrence beyond tenth (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-019 full affected-ID review includes sibling aggregate, retained exception and occurrence beyond tenth (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-020 partial association group or unrelated group rejection leaves no writes (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-020 partial association group or unrelated group rejection leaves no writes (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-021 each warning requires current acknowledgment and nonblank reason (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-021 each warning requires current acknowledgment and nonblank reason (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-022 unchanged natural-key acceptance survives and changed key reopens (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-022 unchanged natural-key acceptance survives and changed key reopens (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-023 one sole-engine overlay and one batch finalizer, no committed single save loop (AC3/6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-023 one sole-engine overlay and one batch finalizer, no committed single save loop (AC3/6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-024 current role rechecked after gate wait before new mutation (AC3/7)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-024 current role rechecked after gate wait before new mutation (AC3/7)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-025 current role rechecked before returning durable replay after gate wait (AC3/7)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-025 current role rechecked before returning durable replay after gate wait (AC3/7)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-026 inactive assignee retention belongs only to its persisted occurrence (AC7)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-026 inactive assignee retention belongs only to its persisted occurrence (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-027 one-occurrence move survives full series edit with same UUID and nominal slot (AC4)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-027 one-occurrence move survives full series edit with same UUID and nominal slot (AC4)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-028 cancelled and removed ordinary slots persist exceptional tombstones without regeneration (AC4/5)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-028 cancelled and removed ordinary slots persist exceptional tombstones without regeneration (AC4/5)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-029 split uses edited pivot's nominal slot, retains exception/tombstone UUIDs and lineage (AC5)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-029 split uses edited pivot's nominal slot, retains exception/tombstone UUIDs and lineage (AC5)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-030 two distinct concurrent split identities yield one successor and stale loser (AC5)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-030 two distinct concurrent split identities yield one successor and stale loser (AC5)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P1] 15.2-INT-031 unchanged rule preserves original remaining end, explicit count applies from pivot (AC1/5)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P1] 15.2-INT-031 unchanged rule preserves original remaining end, explicit count applies from pivot (AC1/5)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-032 job-card interleaving serializes current complete facts or rejects stale series (AC6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-032 job-card interleaving serializes current complete facts or rejects stale series (AC6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-033 exception omitted by new rule retains all values and immutable slot (AC4/5)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-033 exception omitted by new rule retains all values and immutable slot (AC4/5)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-034 moved exception colliding with introduced nominal slot keeps both IDs and detects collision (AC4/6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-034 moved exception colliding with introduced nominal slot keeps both IDs and detects collision (AC4/6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-035 actual action JSON admission checks exact 3 MiB and byte+1 before expensive work (AC1/3)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-035 actual action JSON admission checks exact 3 MiB and byte+1 before expensive work (AC1/3)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-036 encrypted review receipt includes 28-byte overhead at 750000 ceiling and rejects byte+1 (AC1/3/6)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-036 encrypted review receipt includes 28-byte overhead at 750000 ceiling and rejects byte+1 (AC1/3/6)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "title": "[P0] 15.2-INT-037 documented occurrence bound materializes all at boundary and rejects +1 without truncation (AC1/3)",
+      "fullName": "Story 15.2 checked series transaction ATDD (unexecuted RED) [P0] 15.2-INT-037 documented occurrence bound materializes all at boundary and rejects +1 without truncation (AC1/3)",
+      "ancestorTitles": [
+        "Story 15.2 checked series transaction ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "title": "serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+      "fullName": "isolated recovery Storage physical-loader proof serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+      "ancestorTitles": [
+        "isolated recovery Storage physical-loader proof"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-001 FORCE RLS and explicit public column grants keep all outcome/proof fields private (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-001 FORCE RLS and explicit public column grants keep all outcome/proof fields private (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-002 active Admin and PL role sets including union can create/update through checked authority (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-002 active Admin and PL role sets including union can create/update through checked authority (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-003 anonymous/foreign/inactive/revoked/Montor/Sales/Economy cannot mutate series (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-003 anonymous/foreign/inactive/revoked/Montor/Sales/Economy cannot mutate series (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-004 current authorization precedes private durable replay for every denied caller (AC3/7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-004 current authorization precedes private durable replay for every denied caller (AC3/7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-005 Montor sees assigned real occurrences including safe exception/tombstone metadata only (AC4/7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-005 Montor sees assigned real occurrences including safe exception/tombstone metadata only (AC4/7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-006 nonmanager callers have no template/private outcome projection or foreign occurrence disclosure (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-006 nonmanager callers have no template/private outcome projection or foreign occurrence disclosure (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-007 foreign series/pivot/assignee/job/customer/facility/contact references reject atomically (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-007 foreign series/pivot/assignee/job/customer/facility/contact references reject atomically (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-008 manager and Montor direct DML cannot forge rule, outcome or recurrence linkage (AC4/5/7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-008 manager and Montor direct DML cannot forge rule, outcome or recurrence linkage (AC4/5/7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-009 checked RPC cannot accept absent/unsigned human review even with otherwise genuine detector proof (AC6/7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-009 checked RPC cannot accept absent/unsigned human review even with otherwise genuine detector proof (AC6/7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-010 every checked fresh SQL overload rejects missing review and no obsolete overload bypass exists (AC6/7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-010 every checked fresh SQL overload rejects missing review and no obsolete overload bypass exists (AC6/7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-011 private helpers have no PUBLIC/anon/authenticated/service-role EXECUTE grants (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-011 private helpers have no PUBLIC/anon/authenticated/service-role EXECUTE grants (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-012 all checked RPC entrypoints enforce caller identity and current matrix (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-012 all checked RPC entrypoints enforce caller identity and current matrix (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P0] 15.2-RLS-013 same-tenant SQL lineage/slot/index integrity resists direct authenticated bypass (AC5/7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P0] 15.2-RLS-013 same-tenant SQL lineage/slot/index integrity resists direct authenticated bypass (AC5/7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    },
+    {
+      "status": "skipped",
+      "duration": null,
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "title": "[P1] 15.2-RLS-014 authorized standalone bookings preserve valid optional-null links (AC7)",
+      "fullName": "Story 15.2 series/occurrence authorization ATDD (unexecuted RED) [P1] 15.2-RLS-014 authorized standalone bookings preserve valid optional-null links (AC7)",
+      "ancestorTitles": [
+        "Story 15.2 series/occurrence authorization ATDD (unexecuted RED)"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    }
+  ],
+  "full_safe_projection_sha256": "e3eb1995c395e7d571699d810402c4d866f38feca81ef3cf39144e9ca458f71d"
+}

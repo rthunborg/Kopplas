@@ -1,0 +1,23 @@
+{
+  "baseline_revision": "3a0282a70ab9cc539e2d85bd660635820e618731",
+  "scope": "successor verification only; original report history retained",
+  "reviewed_input_sha256": {
+    "_bmad-output/auto-bmad/preparation/story-15-3/implementation-ownership-handoff.md": "554fe3b71f0e53e502676e1c3cfed2f6028835762757c7a17a621c3d0ac29f87",
+    "_bmad-output/auto-bmad/preparation/story-15-3/validation.json": "6e118d98a5dbc4f79aa4a2a5add70d23b40b1699e553e4ff155486f56dfa24b3",
+    "_bmad-output/auto-bmad/preparation/story-15-3/artifact-manifest.json": "0bbd0b989eec2e8b562f2d85491c920aa9f4b4a8625ffc02eb4996d91ee99a21",
+    "_bmad-output/auto-bmad/preparation/story-15-3/inventory-amendment-validation.json": "9291021595c23abf09f914b4b8a119eb0077764120c5960a153b7c2994057ccc",
+    "_bmad-output/auto-bmad/preparation/story-15-3/current-contracts-and-design.md": "6c4a2d7700809171472977681718a053bfcd7d5d85c4cd38cb9675811befc015",
+    "_bmad-output/implementation-artifacts/spec-15-3-conflict-resolver.md": "451795a63f9fd046ccc6f89a9e91f192b1f0f21beddf7a9a5391c0a6b8ccc873",
+    "tests/support/authz/role-harness.ts": "291d73ad15c7a2d7c7cdb02a4b14e4a3c49a37fef62c6e4915eec78ac2734193",
+    "tests/integration/rls/role-harness.atdd.int.test.ts": "18859cf90994edeff6d3bcaad310877df8c485e28a0bf9760c9b2f27c3fe78cf",
+    ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-allocation-20261020.json": "c88c8a805cd30cd92c18934709341d7071d5823902ce7ad0655e02b4bcf69897",
+    "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation.md": "1077bffe606abb76188d52288cf65e57224078e73d71b1246fa5633591810013",
+    "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation.json": "8830ae4b970bb7fdfc4a8466d49ec32e4a81799cb92c1c78c3742102c2a98aa8",
+    "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/hash-manifest.json": "811cf75242e4d23cc310e291f380eb39e80c771c7583e78ad415b363e52c9808"
+  },
+  "successor_output_sha256": {
+    "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation-inventory-successor-20261020.md": "baf46d6545f95b77c6bddc851d185f6894b03c0f0a1795a6710ab8211779d571",
+    "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation-inventory-successor-20261020.json": "1c5ffd87de52ce4cceb1f6dbe1ad8a16b605ebeb9d154c07728f7c7565404686"
+  },
+  "note": "This manifest excludes itself."
+}

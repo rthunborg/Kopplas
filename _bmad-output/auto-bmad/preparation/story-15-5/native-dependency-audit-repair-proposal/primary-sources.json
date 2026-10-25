@@ -1,0 +1,51 @@
+{
+  "kind": "current-primary-source-links-and-bounded-observations",
+  "checked_date": "2026-10-20",
+  "source_bytes_not_claimed_captured": true,
+  "sources": [
+    {
+      "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
+      "observed": "Current reviewed advisory, updated2026-10-20, high/CVE-2026-112942. AffectedVite8.0.0–8.1.5; patched8.1.6. launch-editor<=2.14.1 patched2.14.2. Windows path-normalization existence bypass can combine with prior escaping issue. No project exploitability/exploitation inferred.",
+      "browse_receipt": "turn168view0"
+    },
+    {
+      "url": "https://github.com/vitejs/vite/releases/tag/v8.1.6",
+      "observed": "Official immutable8.1.6 release dated2026-10-06; signed tag dade886 abbreviated source identity.",
+      "browse_receipt": "turn169view0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/vitejs/vite/v8.1.6/packages/vite/CHANGELOG.md",
+      "observed": "8.1.6 entry dates2026-10-06 and explicitly updates launch-editor2.14.2 viae46fc9c77edc7703570e96bd84cd2c7e76f06ae3; also HTML/server fixes. Intervening8.1 patches contain transform/SSR/module-runner/dependency changes; patch compatibility still requires native gates.",
+      "browse_receipt": "turn170view0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/vitejs/vite/v8.1.6/packages/vite/package.json",
+      "observed": "Official tag package version8.1.6; Nodeengine unchanged; selected runtime dependency lower bounds and editor bundling requirement recorded in graph artifact.",
+      "browse_receipt": "turn169view1"
+    },
+    {
+      "url": "https://github.com/vitejs/vite/commit/e46fc9c77edc7703570e96bd84cd2c7e76f06ae3",
+      "observed": "Vite upstream change raises bundled editor-middleware requirement2.14.1→2.14.2.",
+      "browse_receipt": "turn171view1"
+    },
+    {
+      "url": "https://github.com/vitejs/launch-editor/releases/tag/v2.14.2",
+      "observed": "Official2.14.2 tag dated2026-10-06, abbreviated source b533489.",
+      "browse_receipt": "turn169view2"
+    },
+    {
+      "url": "https://github.com/vitejs/launch-editor/commit/f13cd83",
+      "observed": "Official fix resolves path before existence checking; upstream regression covers a parent component created by a position suffix. No exploit or editor process executed locally.",
+      "browse_receipt": "turn170view1"
+    },
+    {
+      "url": "https://pnpm.io/10.x/cli/install#--lockfile-only",
+      "observed": "lockfile-only updates manifest/lock without node_modules; frozen-lockfile refuses drift. ignore-scripts is separately documented. Future proposed commands only, none executed.",
+      "browse_receipt": "turn172view1"
+    }
+  ],
+  "unavailable_web_fetches": [
+    "registry.npmjs.org/vite/8.1.6 via web unavailable; bounded pnpm view metadata succeeded instead",
+    "vitejs/vite/security advisory URL with sameGHSA returned404; canonical GitHub advisory and official release/fix used"
+  ]
+}

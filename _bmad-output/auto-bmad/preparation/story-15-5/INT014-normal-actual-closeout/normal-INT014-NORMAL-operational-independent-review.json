@@ -1,0 +1,243 @@
+{
+  "schema": "INDEPENDENT_INT014_NORMAL_OPERATIONAL_REBIND_REVIEW_V1",
+  "status": "PASS_INT014_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_INT014_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "scope": "Targeted source/data/privacy/finite-operation rebind review only. Prior qualified algorithms/capture/authorization/JSON and heterogeneous-bytepin controls reused where byteidentical; not fourth broad story review.",
+  "execution_authorized": false,
+  "effect_authority": false,
+  "packet_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/provider-readonly.py",
+      "bytes": 20259,
+      "sha256": "d514e9734be731d52fa0ec632f098d94fc93ed24cb14fdbb202a7cbada0a6a7e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/root-driver.py",
+      "bytes": 20704,
+      "sha256": "ecdd53035cf5ea58753ce33786640b4683bf31b8401d137f762a44f9007dba77"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/proposal.json",
+      "bytes": 211933,
+      "sha256": "234185e82ff1b78f500c177f48204a51aaefd79f3f8aedf69babdaf1a953096c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/pure-controls.json",
+      "bytes": 12131,
+      "sha256": "83df3fd03ef2a316211f812aabbce31d31d32d52d9bd3f514e17e571523c24be"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/manifest.json",
+      "bytes": 1148,
+      "sha256": "5c29a53de784aac282d1bad48de4813bdfba1161fe670fd72a992d8ed5f29f1f"
+    }
+  ],
+  "prospective_identity": {
+    "schema": "ROOT_INT009_CANONICAL_CATALOG_NORMAL_INERT_CANDIDATE_V1",
+    "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+    "source": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+    "checkpoint_id": "127ec671-bb41-4c77-9f30-64b8c386f3fe",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "expected_remote_preimage": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "mode": "NORMAL",
+    "release_validation": false,
+    "cause_proof": false,
+    "original_int009": false,
+    "source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT014-observation-source-closure/normal-INT014-actual-patch-independent-review.json",
+      "bytes": 13637,
+      "sha256": "374466ac6b85f9fb41118893361d3dfe9ad61cde22ace83b216526b021b1acfc"
+    },
+    "effects_authorized": false,
+    "all_old_slots_closed": true,
+    "normal_acceptance": 0
+  },
+  "actual_run_id": null,
+  "commit_bridge": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-root-source-commit-proof.json",
+      "bytes": 2329,
+      "sha256": "c3a713701eb33d5cef9dc72ef373ae766da90449f5229384e018e5c77e935a9f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-root-docs-fold-proof.json",
+      "bytes": 4892,
+      "sha256": "e77bfc27ae2c447e2649876660a93b6539a879be082b6b32fc1486db0f739c6d"
+    }
+  ],
+  "independent_checks": [
+    {
+      "name": "Whole-file source conservation",
+      "result": "PASS",
+      "evidence": "13afae/native0:exact recorded inverse hunks reconstruct qualified provider20367/d38b1214... and driver20841/83c2d107... byteforbyte. Provider7defs unchanged; driver17/18defs unchanged except admit namespace/latestpatchreview literals. Embedded canonicalADAPTER1762bytes/SHA4aa63a58e373ebb1dd2d7d34188f1d5175144b1ec332a2ae001f3a34a966ca8e exact. Provider receipt prose only clarified rawcreateDeployments metadata; predicates/transport unchanged."
+    },
+    {
+      "name": "Current source rows and review authority",
+      "result": "PASS",
+      "evidence": "4f830a/native0:source203samepaths;only reviewed helper/unit/SRO3rows updated;other200 and explicit image-test supplemental row dataequal qualified predecessor. Updated3actualraw/LF/blob independently verified. Current review exact13637/374466... PASS matched current sourceclosure. Root current204proof/118SQLGitconservation still required beforeeffect; no rawSQLscan."
+    },
+    {
+      "name": "Exact NORMAL dispatch/input identity",
+      "result": "PASS",
+      "evidence": "13afae/native0:ordinary canonical201B body SHA b39bc60453f7bba3e66b4a5f751acf4931ce248c5fd5ce048b6731aa48f4a596, exact2c8e head/127ec671 CP/releasefalse inputs. Causefalse/originalabsentdefaultfalse; no directPOST/bodyoverlay. Candidate329B SHA d17acb009dbe757259098598cd449d16099bc9c836b48af7a064a2be1acd5958 matches exact future Rootmaterialization UTF8."
+    },
+    {
+      "name": "Catalog data-only delta",
+      "result": "PASS",
+      "evidence": "20f4b7/native0:current436static/19excluded/wrapper187 from recorded actualNativeASTonly result; old184wrappertitlehashes retained+3actualsource-line titlehashes and coordinates, same20paths/other19catalogs equal. Reviewer did not rerun AST extractor/tests/config loads. Static declarations/inherited suite labels are not actual leaf passes or coverage."
+    },
+    {
+      "name": "Actual focused control provenance",
+      "result": "PASS",
+      "evidence": "Inspected source of frozen7offlinegroups/0fail: actual completeproviderpreGETprefix and Rootadmit/localproof with actual86nonSQLfile guards/204rows; future grant/review/proof/provider/candidate files and Git answers virtual; all real Popen/run disabled. Actualdefault/wronghead refusals checked. Prior13groups nonadditively reused; reviewer did not rerun unchangedmatrix."
+    },
+    {
+      "name": "Actual caps/current command paths",
+      "result": "PASS",
+      "evidence": "4f830a source callsites and5f14b9 actual unchanged githubApi113-121:remoteGitrequired default20, push60, canonicalouter90/APIspawnSync15000ms/maxBuffer4MiB, resolver/poll20. Currentargv/templates/endpoints/body use newnamespace/tuple. 32KiBfutureterminal claim is source-label-only explicitly; no genericprojection compliance."
+    }
+  ],
+  "closed_admission_interface_items": [
+    {
+      "id": "INT014-OP-ALIAS",
+      "fact": "Assigned independent report path differs from actual enforced operational_review path. Strict code remains unchanged.",
+      "resolution": "Root explicitly selected exclusive byteexact xb-copy ONLY after completed actualPASS fullread. Root verifies source/copy bytes+SHA equality and pins both in admission/proof/completedfiniteallocation. Reviewer writes only assigned source report; does not claim copy exists.",
+      "source_report_path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-independent-review.json",
+      "required_copy_path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-review.json",
+      "condition": "No overwrite/copy ofNOTPASS/placeholder; exact status+outcomeenum and independenttrue required before Rootcopy/admission."
+    },
+    {
+      "id": "INT014-OP-DESCRIPTIVE-REFS",
+      "fact": "Frozen proposal.provider.REF_PATHS dictionary retains historical default-volatility paths. Actual provider REF_PATHS and current activation templates below match each other and enforce current paths beforeGET.",
+      "resolution": "Root explicitly supersedes ONLY that descriptive dictionary via separate minimal admission-resolution JSON binding originalproposal211933/234185... and this actualreview/currentmap/copyproof; pins it in Rootproof/admission/completedallocation evidence. All actualsource guards/templates remain authoritative. No generic override, code/pathguard weakening, oldref replay or newpacketfamily.",
+      "actual_current_provider_REF_PATHS": {
+        "allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-effects-allocation.json",
+        "current_source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-current-source-proof.json",
+        "operational_review": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-review.json",
+        "source_review": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+        "capture_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+        "browser_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+        "candidate": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-inert-binding.json",
+        "proposal": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/proposal.json"
+      }
+    }
+  ],
+  "actual_future_caps": {
+    "provider": {
+      "GET_max": 1,
+      "loop_seconds": 15,
+      "stdout_bytes": 4194304,
+      "stderr_bytes": 262144,
+      "cleanup": "Afterloop samechild wait(timeout=2), eachof2threads join(timeout=2); additional bounded cleanup, not hard15s totalwall."
+    },
+    "remote_before": {
+      "GET_max": 1,
+      "timeout_seconds": 20,
+      "expected_sha": "215078e7dd74d9c4b4511581682b4c0be1a21c8d"
+    },
+    "push": {
+      "max": 1,
+      "nonforceFF": true,
+      "timeout_seconds": 60,
+      "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba"
+    },
+    "remote_readback": {
+      "GET_max": 1,
+      "timeout_seconds": 20,
+      "expected_sha": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba"
+    },
+    "Git_and_canonical_outer_capture": {
+      "stdout_bytes": 524288,
+      "stderr_bytes": 65536,
+      "cleanup": "Native helper loop timeout then samechild kill if needed/wait\u22642s/2joins\u22641s each. Explicit timeout arguments are not absolute whole-invocation wall guarantees; unknown/nonzero/partial STOP, no retry."
+    },
+    "canonical": {
+      "invocations_max": 1,
+      "outer_loop_seconds": 90,
+      "metadata_GET_max": 4,
+      "POST_max": 1,
+      "API_spawnSync_timeout_ms": 15000,
+      "API_spawnSync_maxBuffer_bytes": 4194304,
+      "unchanged_API_sequence": [
+        {
+          "method": "GET",
+          "endpoint": "user"
+        },
+        {
+          "method": "GET",
+          "endpoint": "repos/rthunborg/Kopplas/collaborators/rthunborg/permission"
+        },
+        {
+          "method": "GET",
+          "endpoint": "repos/rthunborg/Kopplas/branches/codex%2Fepic-15-scheduling-time-calendar"
+        },
+        {
+          "method": "GET",
+          "endpoint": "repos/rthunborg/Kopplas/actions/workflows/ci.yml"
+        }
+      ],
+      "POST_endpoint": "repos/rthunborg/Kopplas/actions/workflows/296219797/dispatches",
+      "body201_SHA256": "b39bc60453f7bba3e66b4a5f751acf4931ce248c5fd5ce048b6731aa48f4a596"
+    },
+    "resolver": {
+      "max_GETs": 6,
+      "per_page": 20,
+      "minimum_interval_seconds": 5,
+      "timeout_seconds": 20
+    },
+    "poll": {
+      "max_pairs": 90,
+      "run_GET_max": 90,
+      "jobs_GET_max": 90,
+      "minimum_interval_seconds": 30,
+      "per_page": 100,
+      "timeout_seconds": 20,
+      "stdout_bytes": 2097152,
+      "stderr_bytes": 65536
+    },
+    "wall": "New operation has one immutable started_at and5400s wall; no counter/deadline reset/extension. Exact unique owned repo/head/CP/ref/title/workflow/actors/event/attempt1 beforepoll; all9terminal immediateROOT_STOPPED closesunusedslots. Unknown/refusal/partial/ambiguity/budgetexpirySTOP/noadoption/retry/unallocatedcancel/secondpoller.",
+    "forbidden_now": "Noartifact/logGET, provider writes, repo vars, newdiagnostic, DEBUGeffects, localmanagedresources, merge/deployment/demoDBpush. Futureterminalreader enrollment+freshmax5GETgrant is separate; source-label-only32768 cap and actualgenericprojection sizes must remain explicit."
+  },
+  "Root_execution_obligations": [
+    "Fully read this actualcompletedreview, perform exact selected xb-copy and minimal descriptive-dictionary admission resolution, verify/pin both reportpaths and resolution evidence. Actual enforced currentmap above supersedes only the stale prose dictionary.",
+    "NEWactualcompletedCoordinatorfiniteallocation with exactsourcecaps including20sremoteGit and boundedcleanup tails; never reuse prior grant/operation/provider qualifications. Currentpreparation and review grant0effects.",
+    "Rootmaterializes exact329B inert candidate exclusively; fresh current204source/Git+86nonSQLrawLF/118Gitconservation and historicalvectors/10triggers/cleanownedbranch/Next16.4.1 proof; no fabricatedfreshremote/provider/run/terminal fact.",
+    "Newprovideractivation pins source/proposal/candidate/currentreviews/allocation/proof; <=300s UTC freshness and exclusiveconsumedintent beforeONEproviderGET. Require actualsuccessfulqualifiedcapture/outerreceipt before Root effectactivation.",
+    "Immediatelybeforepush and dispatcher allthree freshness stamps<=300s; provider<=180s beforebounded90s canonicalinvoke and<=300s immediatelybeforePOST in unchangedadapter. Sourceguardidentityuser rthunborg/workflow296219797/path validated from SAME4GETs, no duplicateGET.",
+    "Rootsolepublisher/operator/poller with newexclusive operation/state/intents. Verify exact remote2150 preimage/nonforceFFpush/readback2c8e; unknown STOP/no blindretry. Use currentfutureargv and canonicaloptions, originalfalse/causefalse/releasefalse.",
+    "Preserve every prior consumedgrant/activation/journal/discrepancy. No resourcelease/autorenewal: no managedresources requested; finite5400 operation authority is from actualallocation, not thisreview."
+  ],
+  "deployment_boundary": "Point-in-time ordinary owned feature-branch Git-push containment only: explicit git.deploymentEnabledfalse plus bound project/team/repo/settings. Raw gitProviderOptions.createDeployments=enabled is GitHubdeployment-status metadata, not evidence Git deployment creation enabled/disabled. Ignoredexit0/Previewdisabled do not establish blanket manual/CLI or MAINproduction containment. Finalmainmerge/production containment is separateUNKNOWN/held; no deploymentauthority.",
+  "limits": [
+    "Actual source2c8e/a948 futureCIrun remainsNULL; no newruntime/cause/current95/provider/publication success is inferred.",
+    "Latest qualified prior source5e0 run39950998114 remains73P1F21zero with custodyretained/keyDeletedfalse/backendUNKNOWN and explicit capscopeexception. Patch sourceeligible does not make95passed.",
+    "FutureexactheadNORMAL95 plus separate recovery/custody and actualterminalacquisition/evidencequalification remain required; P5OPEN/developmentnotcomplete/releasenotready.",
+    "Historical20configured/15granted remote mismatch and genericprojection32KiB/source-label-only mismatch remain immutable; futurecaps explicit, no retroactivecompliance claim."
+  ],
+  "reviewer_commands": [
+    "b05a08/native0:smallactualsourcecommit/docsbridgeproofs",
+    "add49d/203860/73d72d native0:actualpacketpins/fields/strictcurrentrefmap; broadJSONprinttruncated, focused fields checked separately",
+    "13afae/native0:wholefileinverse/function+ADAPTER/body/candidate checks",
+    "4f830a/native0:current3sourcepins/sourcepartition/callsitecaps",
+    "20f4b7/native0:catalogdata/hashconservation and actualofflinecontrolsource inspected, noexecution",
+    "5f14b9/native0:unchanged canonicalgithubApi actualtimeout/maxBuffer source",
+    "Finalization:manifest4memberhashes/currenttemplateactualmap/source-reviewPASS guard checked; no externalcalls/tests."
+  ],
+  "reviewer_effects": {
+    "API_network": 0,
+    "Git_mutations_remote": 0,
+    "tests_or_configloads": 0,
+    "resources": 0,
+    "source_spec_state_writes": 0
+  },
+  "files_changed": "This new private independent review only."
+}

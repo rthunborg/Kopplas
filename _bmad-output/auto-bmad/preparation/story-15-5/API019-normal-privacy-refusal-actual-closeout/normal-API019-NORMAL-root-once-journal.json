@@ -1,0 +1,31 @@
+{
+  "schema": "ROOT_API019_NORMAL_ONCE_JOURNAL_V1",
+  "phase": "PROVIDER_ONCE_ALLOCATED_ROOT_PUBLISH_PENDING_SUCCESS",
+  "created_at_utc": "2026-10-23T15:01:01.446502+00:00",
+  "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+  "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-effects-allocation.json",
+    "bytes": 4081,
+    "sha256": "255bd6aaf021c8cf52b59bae83eee228041344b592fb5c294bc60de97bc8c2e3"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-current-source-proof.json",
+    "bytes": 59054,
+    "sha256": "91f63f404e2da4b44e4934b34d89bbcbe6d40de231c56aeace1a1ce1b75fb041"
+  },
+  "provider": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/provider-readonly.py",
+    "bytes": 20460,
+    "sha256": "3dbaf1cf1bd9b969d73a66ba1132f8d38bfdb193bf94f095e58776cb357225ec"
+  },
+  "controller": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/root-driver.py",
+    "bytes": 20990,
+    "sha256": "cb7c0415f6265c8ffa1f2465a776fb8584b3f7f76e239d76397e7c1ce322a4d8"
+  },
+  "normal_acceptance": 0,
+  "no_retry": true
+}

@@ -1,0 +1,47 @@
+{
+  "Blockers": [
+    "E16-COMPOSE-ENCODING-01 blocks source admission for merge aa1a16adf2980355f0228badf889c95a4f230248."
+  ],
+  "Deferred work": [
+    "The isolated encoding correction and its targeted regression follow-up remain outstanding. Existing native quality gates remain separately unexecuted; no push/run/deployment authority is granted."
+  ],
+  "Files changed": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/ only (four review artifacts)",
+  "Open questions": [
+    "Full DB/RLS/reset/recovery/build and essential browser union remain unexecuted here.",
+    "Earlier E15 functional/custody failures and unknown hosted exceptions remain unresolved; source review cannot clear them."
+  ],
+  "Outcome": "NOTPASS_TARGETED_COMPOSITION_ENCODING_REGRESSION",
+  "Status": {
+    "attestation": {
+      "bytes": 24281,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-attestation.json",
+      "sha256": "239f27449f64d022ef917501ab024985f3fe24dcd7449c924ee15499723ad209"
+    },
+    "author_evidence_reused": "81P and173P separate, nonadditive; no full native gates",
+    "commit": "aa1a16adf2980355f0228badf889c95a4f230248",
+    "diffcheck": "scoped16Root0; wholeRoot2/outside16/33paths",
+    "effects": 0,
+    "findings": [
+      {
+        "affected_authored_paths": 6,
+        "id": "E16-COMPOSE-ENCODING-01",
+        "line": 49,
+        "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+        "priority": "P1"
+      }
+    ],
+    "native_acceptance": 0,
+    "parents": [
+      "8b77f94c191ea31bb2b216215f834619c793100b",
+      "99104d0ffa0360cf7d4ce4de174789c4a4605224"
+    ],
+    "provenance": "16source identities/both parents/116SQL/5canonicalLFbodies/11smoke/exactmontorClient bridge/kernel bound",
+    "report": {
+      "bytes": 5782,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-report.md",
+      "sha256": "f431e5fe2f3597d30611777b7cb0286fbcb00ee219d4bccd1d7388bacea6ae95"
+    },
+    "reviewer_checks": "read-only byte/provenance/selector checks; no runtime suite",
+    "tree": "e0737d547e62c4cac8ae5780ffc4ba1be7ef00c6"
+  }
+}

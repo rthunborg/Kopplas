@@ -1,0 +1,107 @@
+{
+  "schema": "ROOT_NEXT1641_RUNTIME_EVIDENCE_MEMBERSHIP_V1",
+  "self_excluded": true,
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-publish-only-actual-root-ownership.json",
+      "bytes": 6232,
+      "sha256": "6fa0a7099de047de88d06dd68ee046f4ffccf5b8d7c2d279dc65e436015ab7be"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-original-INT009-dispatch-only-operational-review.json",
+      "bytes": 12401,
+      "sha256": "1e0bb664cbd604bf40b84b74e5b7763d28437d29b7686af931b5acc8fe23641c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-original-INT009-dispatch-only-actual-root-ownership.json",
+      "bytes": 15458,
+      "sha256": "727c2d5a28f5a7f3e7c8cb5f710f464a6fa2057faa3d1655543ef8c9f63b98fc"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-original-INT009-terminal-reader-operational-review.json",
+      "bytes": 12740,
+      "sha256": "45d1e0119153e3b8e429168bca25690e0634b0c2ba2824c6117e136fcafb0b45"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-original-INT009-terminal-reader-execution-receipt.json",
+      "bytes": 6522,
+      "sha256": "e606ae308e56326c040c25c5873af3434dfb18ab29c09a3bb4b93c72d5947c82"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-original-INT009-terminal-actual-native-qualification.json",
+      "bytes": 13358,
+      "sha256": "37542c26e290a0a3cf3a0f096fc54117c587e6a6131fc9a4efa2628d824933fd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-original-INT009-restore-definition-cause-assessment.json",
+      "bytes": 9842,
+      "sha256": "8a3391f732513e8797e260c0705a5ee36477562e8bac8247e45222e6fb5c73de"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/Next16-4-1-original-INT009-restore-definition-primary-corroboration.json",
+      "bytes": 3813,
+      "sha256": "6997d567a5d116ec5d83ea9995fc3652fd1e0c3a174a2daabc92c81957e3a40a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/actual-dispatch-operation.json",
+      "bytes": 637,
+      "sha256": "036c864f5d0968f6a70f2b74af36c2c0d0b540dd7ae73a55e074377a8160fe1a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/actual-dispatch-terminal.json",
+      "bytes": 14868,
+      "sha256": "1a79febc202375e5cbc586fd584601361fbc49cf9d9161bc47551d5ae1f07a0e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/acquisition-summary.json",
+      "bytes": 143,
+      "sha256": "bbed1668d73cc89a55be6d43be95153cfe3e2c9bf1bd6f3107a52c227ad04413"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/artifact-list-projection.json",
+      "bytes": 547,
+      "sha256": "86aec3f63d8cda1ae637eb672b31be1b1e2ff7248221c73f4d7258b8fa230eca"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/manifest.json",
+      "bytes": 1360,
+      "sha256": "66ba10008644fd643a9d14bf5fb07d9d99fb33a0368e6a825169fbd3b3bd47b2"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/native-projection.json",
+      "bytes": 4457,
+      "sha256": "529bf433d024f546f65de6303dd149b96b63b2ab3ea4beaee11319648efe6e80"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/operator-intent.json",
+      "bytes": 4327,
+      "sha256": "b63394df9ddeefec470bfd5069316aafe63279e6bb4ef14459aa1654a57d9ece"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/request-01-intent.json",
+      "bytes": 438,
+      "sha256": "6bae57480e3fef0642df326c984ce0dc1d625592995d1c746c4c65cb9bdecc37"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/request-01-result.json",
+      "bytes": 1156,
+      "sha256": "3cc5e7b411fe39ddf9b44cb5b7f0ff9e90ad8ff3db049dd25b633954f0088e05"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/request-02-intent.json",
+      "bytes": 418,
+      "sha256": "1e059b59721fb620852dfcb41579545a927a30db54e238a6af5a11b5cdca1ec8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/artifact/request-02-result.json",
+      "bytes": 1137,
+      "sha256": "cd8e505f82c5c21d0a25c61e7a8120a69c7ee7d441b30fe3da855cedadfaa7a5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-runtime-diagnostic/root-closeout.json",
+      "bytes": 2157,
+      "sha256": "d0c847398b54bd2c5e07fec2da207e6c5130c2e989eb9d6c233bc49cdf41c256"
+    }
+  ],
+  "new_acceptance": 0
+}

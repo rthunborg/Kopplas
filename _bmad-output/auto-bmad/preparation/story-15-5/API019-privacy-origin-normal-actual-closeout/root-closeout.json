@@ -1,0 +1,36 @@
+{
+  "status": "ACTUAL_NATIVE_EVIDENCE_QUALIFIED_REQUIRED95_INCOMPLETE",
+  "run": 39990057474,
+  "required95": {
+    "passed": 44,
+    "failed_cases": 0,
+    "unexecuted": 51
+  },
+  "startup_boundary": "DB step7 Start local Supabase stack failed; migration8 and integration11 skipped; native DB report absent. Cause UNKNOWN.",
+  "Node": "3439 passed/0 failed/0 skipped;30 distinct required story cases",
+  "browser": "14 distinct required cases passed at retry0; own fixture key deleted/client closed only",
+  "separate_direct_recovery": "1 passed; no credit toward required95",
+  "DB_custody": "Current main DB key/backend settlement UNKNOWN; previous retained custody remains historical/open",
+  "privacy_first_origin": "UNKNOWN; current API019 did not execute",
+  "operational_closure": "15 controller native captures/8 actual Root outer returns;1 resolver/5 poll pairs; 4 terminal logical GETs/17 safe projected members; all slots closed",
+  "history": "Prior run39975009683/sourcee525 93P1F1pending is historical only, never carried into current counts.",
+  "development_complete": false,
+  "release_ready": false,
+  "P5": "OPEN",
+  "review_counter": 3,
+  "story15_6": "UNSTARTED",
+  "readiness15_2": "Three broad rounds exhausted; inherited recommendation and review_unverified retained pending author final evidence and explicit supported independent closure disposition. No automatic flag clear.",
+  "next": "One fresh unchanged NORMAL plan independently qualified. New exact bindings/proofs/finite allocation/exclusive admission required; all old slots closed. Second consecutive startup7 failure stops this approach.",
+  "no_deployment": true,
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/root-fold-manifest.json",
+    "bytes": 41409,
+    "sha256": "3458848d2ca5812ad376212e5bb217e189a72582ccc643f0057c19d09fa256f9"
+  },
+  "minimum_plan_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/current-stack-start-failure-minimum-plan-independent-review.json",
+    "bytes": 8035,
+    "sha256": "e689f0af2b2bdbc230c7dab2e8d4ee98acef85dc1f3ff937b7df41aea744f8c7"
+  },
+  "fold_recovery": "Initial fold stopped at epic-ledger prefix assertion after safe JSON copies and story update, before epic/report updates. Distinct historical ledger roots preserved; only12 new routes appended. First recovery reader expected top-level findings; stopped before mutation; actual review findings nested in Status. No runtime effects."
+}

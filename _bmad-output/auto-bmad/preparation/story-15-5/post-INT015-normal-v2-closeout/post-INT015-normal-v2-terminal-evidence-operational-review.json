@@ -1,0 +1,192 @@
+{
+  "status": "PASS_POST_INT015_NORMAL_V2_TERMINAL_EVIDENCE_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_POST_INT015_NORMAL_V2_TERMINAL_EVIDENCE_OPERATIONAL_SOURCE_ONLY",
+  "independent": true,
+  "findings": [],
+  "reviewed_refs": [
+    {
+      "bytes": 52895,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/reader.py",
+      "sha256": "ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09"
+    },
+    {
+      "bytes": 220347,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+      "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+    },
+    {
+      "bytes": 3420,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/pure-controls.json",
+      "sha256": "5274c3ed4ac7eda33b51a5a1a5d2a8ee3794573758159e3eae9e737e70c63c25"
+    },
+    {
+      "bytes": 1519,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/manifest.json",
+      "sha256": "bc92bca530975e08a45acf5ccf00e624d7bf3dffc9dc4c25779e4cce8830161a"
+    },
+    {
+      "bytes": 24546,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/source-delta.json",
+      "sha256": "4243ae9f07dd7557c0ab0452430c529e88efe25e3808305c1c98031b664f7c5f"
+    },
+    {
+      "bytes": 7281,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+      "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+    },
+    {
+      "bytes": 7495,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+      "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/result.json",
+      "bytes": 16791,
+      "sha256": "3346b4ef685826a833c65f45d6cb610acf7bd9d4c81d3c6d27fce99821859147"
+    }
+  ],
+  "result": {
+    "Outcome": "PASS_POST_INT015_NORMAL_V2_TERMINAL_EVIDENCE_OPERATIONAL_SOURCE_ONLY",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [],
+      "route": "Root45ca1f/native0 explicit Sol6.1 High independent targeted review",
+      "scope": "Fresh terminal-reader/source75/catalog/current-run/Root-helper/outer literal and data binding review only. Prior qualified parser/ZIP/privacy/output/transport kernels reused after exact source conservation; not story broad review4.",
+      "reviewed_refs": [
+        {
+          "bytes": 52895,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/reader.py",
+          "sha256": "ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09"
+        },
+        {
+          "bytes": 220347,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+          "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+        },
+        {
+          "bytes": 3420,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/pure-controls.json",
+          "sha256": "5274c3ed4ac7eda33b51a5a1a5d2a8ee3794573758159e3eae9e737e70c63c25"
+        },
+        {
+          "bytes": 1519,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/manifest.json",
+          "sha256": "bc92bca530975e08a45acf5ccf00e624d7bf3dffc9dc4c25779e4cce8830161a"
+        },
+        {
+          "bytes": 24546,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/source-delta.json",
+          "sha256": "4243ae9f07dd7557c0ab0452430c529e88efe25e3808305c1c98031b664f7c5f"
+        },
+        {
+          "bytes": 7281,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+          "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+        },
+        {
+          "bytes": 7495,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+          "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/result.json",
+          "bytes": 16791,
+          "sha256": "3346b4ef685826a833c65f45d6cb610acf7bd9d4c81d3c6d27fce99821859147"
+        }
+      ],
+      "identity": {
+        "checkpoint_id": "7d700bbe-f620-4be5-b158-6c37f788266d",
+        "head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+        "normal_operation_id": "ee690878-b3e0-4e9f-9eba-5b5a293a2d4a",
+        "read_operation_id": "f27670b7-0d69-42b7-8035-e3325e060ce0",
+        "run_id": 40125241153,
+        "source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe"
+      },
+      "prior_qualified_reviews": [
+        {
+          "bytes": 14294,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-operational-review.json",
+          "sha256": "8487ee0f010d9650d53b7f2bea5f523d5bfe8fb2153634260dc13ec6554ee5ce"
+        },
+        {
+          "bytes": 7760,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-review.json",
+          "sha256": "48a5025767ebf26f81f64079b6e24a60fa482ee0ff3f4543681d574591c39ec8"
+        }
+      ],
+      "current_terminal_metadata_qualification": {
+        "bytes": 15810,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-metadata-independent-qualification.json",
+        "sha256": "545db0753e2953ba8e4ed986654304736864a518577a5df6680c1083cc10aee2"
+      },
+      "independent_checks": [
+        "All8 actual frozen refs verified and rechecked before exclusive report publication.",
+        "Reconstructed actual reader/helper/outer text from their exact pinned baselines by each ordered literal replacement and independently matched full raw-preserving source text. Reader35 top-level functions retain34 exactly; validate_admission changes only current namespace/run/HEAD/CP literals. Helper5 and outer3 top-level function bodies conserved; nested native reader also conserved by whole-source reconstruction.",
+        "Inline native raw segment independently verified2449/57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1 without newline normalization, compilation, extraction into an executable or target invocation. Existing final physical stdout JSON-line projection retained.",
+        "All3 exact UTF-8 templates independently match proposed byte lengths/SHA: terminal25378/773f4b3d33e3d9ba8fca353d6b883ae58171587454bae69c92a70c8caf0cc4ba, source7533787/550adce9da34f92f118ba0e7eee3a273a4d8fab48e09a602342fd7fa3ad8f1b6, capture1118/298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6. No template file materialized.",
+        "Terminal template current run/HEAD/attempt/title/status/conclusion match qualified actual terminal; all9 job and nested step objects equal actual data independent of JSON object key order. No artifact IDs or artifact existence invented.",
+        "All75 unique source rows exactly equal the qualified current normal-v2 proposal vector. Catalog20 objects exactly equal qualified current terminal_catalog_delta.unit_sources;450static/201wrapper/249other19 and19reused dynamic exclusions remain metadata, not fresh discovery or native coverage. Workspace/lock overlay agrees between source75 template and proposal.",
+        "All11 author-enumerated future paths absent before creation of this one allocated review."
+      ],
+      "current_bindings": {
+        "target": "Immutable actual40125241153/attempt1/normal/HEAD019f/sourcecbe3/normalOPee690878/CP7d700bbe; fresh acquisitionOPf27670b7 is distinct. Five required jobs succeeded/four optional skipped by qualified metadata only.",
+        "source75": "Exactly3 disclosed rows changed against old retained75: INT015 integration, wrapper unit and spec. Other72 retained data conserved; exact current75 equals current normal proposal. No raw75/86/118 source scan performed by reviewer or new preparation.",
+        "SQL_future_hash_scope": [
+          "ops/recovery/bootstrap-roles.sql",
+          "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+          "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql"
+        ],
+        "SQL_limit": "Future exact75 raw/clean/computedGit hash-only reader admission includes these3SQL only after completed explicit grant; no118 raw reconstruction/scan. Root helper uses7localGit metadata calls and76unique source75+workspace blob equality, no raw75/SQL content reads. Current lock retained75 and workspace absent75 are separately pinned through overlay/input refs.",
+        "compiler": "TypeScript5.9.3 module/package refs are bytehash inputs only. Neither compiler/module nor test/catalog extractor is executed; unit_sources is retained data only.",
+        "review_chain": "Current INT015 source9373/e46f, dependency9994/8e12, normal-v2 operational15265/6245, terminal metadata15810/545d and catalog publication12410/d3f2 refs remain explicit; prior functional/security/restore references retain historical roles. No old hash alias or new actual-source qualification fabricated."
+      },
+      "helper_and_grant": {
+        "helper": "Actual helper7281/c2e2 checks four frozen preparation members, current exact independent two-token PASS/empty findings, completed finite grant/current acquisitionOP/HEAD/run, operator_review and exact Root_admission_helper. Builds exact2templates exclusively only after byte-pin/RAM identity checks;7localGit metadata calls verify HEAD/branch/clean/localtrackingHEAD/ancestrySOURCEHEAD/two trees and76blob metadata. Writes fresh source proof/journal/activation exclusively under grant; raw75false/migration bytes0 truthfully recorded.",
+        "outer": "Actual inline outer7495/08c6 binds self, acquisitionOP/run/HEAD, completed grant IDs, exact Root_outer_wrapper and Root_outer_capture_contract, exact current review ref/PASS, fixed reader52895/ab017, exact activation/allocation/operator source, fresh proof<=300s and current once journal. Exclusive consumed intent precedes the one fixed isolated Python reader argv. Output/receipt/consumed path absence prevents replay. No dynamic driver-module import or ad hoc Root AST caller extraction.",
+        "exact_future_grant": "Root must separately obtain/read actual completed finite Coordinator allocation and enroll all8 reviewed_refs as these exact objects, current independent report ref, acquisition identity, Root_admission_helper, Root_outer_wrapper, exact1118 Root_outer_capture_contract template and Root_outer_wrapper_review equal this current review. All8 enrollment is an explicit Root finite-grant responsibility: helper hard-pins4 preparation members and outer hard-pins reader/self/contract; no false claim that a runtime generic all8 loop exists.",
+        "materialization": "Grant/proof/activation/journal/terminal envelope/source75 envelope/capture contract/output packet/consumed intent/outer receipt do not exist at this review. Source PASS does not create them. Any refusal/unknown/partial/failure consumes STOP; no old grant, reset, retry, extension or alternate acquisition family authorized."
+      },
+      "finite_capture_and_effects": {
+        "reader_GETs": "One reader invocation <=5logical GET only: exact current run archive, artifact listing per_page100, and at most3uniquely eligible fullintegration/generalbrowser/isolatedrecovery ZIPs. No pagination/fallback/optional artifact/refetch/retry. Missing, ambiguous or malformed evidence gives no credit and halts. Artifact IDs/digests/existence still unobserved.",
+        "inner": "Existing get site only: gh api --method GET, MAIN inherited cwd;15s loop,32MiBarchive/ZIP or4MiBlisting stdout,64KiBstderr, wait2/twojoins1. Byte return requires native0/physicalEOF/readers done+joined/closed handles/direct settlement/no error/overflow. No Git, Node, compiler, installation or resource action in reader.",
+        "ZIP": "Conserved <=4096entries/128MiBaggregate/ratio1000/member16MiB/CRC/name/schema/size/digest guards and RAM-only processing; no filesystem archive extraction. Existing artifact/member/output predicates unchanged.",
+        "outer": "180s loop/stdout512KiB/stderr64KiB/wait2/twojoins1, conserved2449 native kernel. Loop+tails, not strict process-tree/global filesystem hardwall or descendant rollback guarantee. Fixed final-line status/intGET projection preserves raw-output privacy; native0/closed transport alone is not successful evidence or95 acceptance.",
+        "host": "Root must separately retain actual outside toolchunk/nativeexit/wall/initialsession/waits after real tool return and qualify inner/outer native capture/EOF/join/handles/direct settlement before using packet. Directory presence or ACQUISITION_COMPLETE alone is insufficient. No host observations fabricated by source review.",
+        "Root_Git": "Fresh helper7localmetadata commands20s each, post-return stdout<2MiB/stderr<64KiB checks; these are not live output caps or remote refresh. Any extra before/after metadata action must be separately enumerated in the finite grant.",
+        "retention": "Raw log/ZIP/report/error/body/source bytes remain RAM-only. Intended stream/artifact/archive/member/source fingerprints, lengths, capture metadata and closed fixed projections are deliberately retained under qualified policy; no zero-hash promise. source-label32768 cap applies only to that projection, not generic packet size."
+      },
+      "controls": {
+        "author_new_RAM_cases": 12,
+        "failed": 0,
+        "new_effects": 0,
+        "provenance": "Frozen actual current-source identity/typed terminal assertion statements and unchanged outer final-line projection evaluated in RAM by author; old run/HEAD/CP/ownership/missing or duplicate jobs rejected. Raw native segment hashed but not compiled/called. Actual reader/admission/helper/ref/compiler/native functions/module not invoked.",
+        "limits": "One prewrite synthetic attempt-field fixture failure retained with0credit/no source change/output/effect. Prior algorithm controls9430/a845 pinned historical, not rerun. These12 current binding checks do not establish fresh full parser/ZIP/transport/runtime/custody proof.",
+        "reviewer": "Static pin/literal/source/template/metadata comparisons only; no mirrored control rerun. Initial job comparison falsely differed because JSON property order changed; corrected canonical metadata comparison proved all9 job/step values equal without edits. No source/evidence rewrite."
+      },
+      "normal_acceptance": 0,
+      "native95": "UNQUALIFIED_PENDING_SEPARATELY_GRANTED_ACTUAL_EVIDENCE",
+      "IP": "UNKNOWN for this run; fixed stream/rendered-form leaves are forgeable shape facts, not emitter/cause/benignity/native-first-throw/request-linkage proof.",
+      "cleanup_and_direct_recovery": "UNKNOWN_UNQUALIFIED; current/historical key/backend deletion or rollback not proved by job success. Scoped job-ended resume disposition remains limited; historical399982 unresolved, no perpetual physical-deletion gate invented.",
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "new_effect_authority": false,
+      "no_merge_or_deployment": true
+    },
+    "Open questions": [
+      "Future artifact IDs/digests/member identity, actual current95 case breakdown, IP stream/form and cleanup/direct recovery evidence remain unobserved and unqualified.",
+      "Actual fresh completed acquisition grant, source proof and native/outer host closure do not exist yet."
+    ],
+    "Deferred work": [
+      "Root reads this frozen source verdict and separately obtains actual completed finite Coordinator grant binding all8refs/currentreview/helper/outer/capture contract/once outputs and <=5GET plus exact75 hash-only scope including3SQL.",
+      "Only after that grant may Root exclusively materialize exact templates/proof/journal/activation and invoke the frozen outer once; qualify actual native and host closure and all acquired evidence before acceptance claims."
+    ],
+    "Blockers": [
+      "No concrete introduced operational source defect found.",
+      "Source-only PASS grants no acquisition, runtime95/P5 completion, custody closure, merge or deployment authority; applicable actual evidence and delivery gates remain required."
+    ]
+  }
+}

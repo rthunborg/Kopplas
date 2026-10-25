@@ -1,0 +1,55 @@
+{
+  "schema": "ROOT_ACTUAL_POLL_OUTER_PROVENANCE_V1",
+  "run_id": 39990057474,
+  "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+  "records": [
+    {
+      "poll_count": 1,
+      "chunk_id": "2e943b",
+      "native_exit": 0,
+      "wall_time_seconds": 1.3392025,
+      "session_id": null,
+      "wait_calls": 0,
+      "phase": "ROOT_ACTIVE"
+    },
+    {
+      "poll_count": 2,
+      "chunk_id": "0c2782",
+      "native_exit": 0,
+      "wall_time_seconds": 1.3507533,
+      "session_id": null,
+      "wait_calls": 0,
+      "phase": "ROOT_ACTIVE"
+    },
+    {
+      "poll_count": 3,
+      "chunk_id": "4d4a49",
+      "native_exit": 0,
+      "wall_time_seconds": 1.4045103,
+      "session_id": null,
+      "wait_calls": 0,
+      "phase": "ROOT_ACTIVE"
+    },
+    {
+      "poll_count": 4,
+      "chunk_id": "bfb17c",
+      "native_exit": 0,
+      "wall_time_seconds": 1.3805576,
+      "session_id": null,
+      "wait_calls": 0,
+      "phase": "ROOT_ACTIVE"
+    },
+    {
+      "poll_count": 5,
+      "chunk_id": "b943ff",
+      "native_exit": 0,
+      "wall_time_seconds": 1.3590744,
+      "session_id": null,
+      "wait_calls": 0,
+      "phase": "ROOT_STOPPED"
+    }
+  ],
+  "actual_outer_returns": 5,
+  "closed": true,
+  "actual_tool_source": "Root primary tool results checked against stored exact returns; no timing reconstructed from child captures."
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "phase": "AUTHOR_FROZEN_PENDING_DISTINCT_HIGH_PRIVATE_REVIEW",
+  "created_at_utc": "2026-10-21T08:08:12.622735+00:00",
+  "code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+      "bytes": 42478,
+      "sha256": "60f776c01e1ba5ac464d46ed756e5b98c1887ecb43913c609e548fd44ba614aa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/test_collect_diagnostic_evidence.py",
+      "bytes": 39929,
+      "sha256": "fbcfc53cd1a1c0f76e34538de5249776d57afb8e2eb7bc440f0792318eb484d0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+      "bytes": 12427,
+      "sha256": "541d3c9ed1680f796985da027c599037f70302097c8813926beb1dbb4728b573"
+    }
+  ],
+  "run_history": [
+    {
+      "methods": 33,
+      "held": "actual Root driver match excluded before birth",
+      "failures": 5,
+      "errors": 1,
+      "positive_checks": 27,
+      "negative_checks": 106,
+      "owned_python_children": 11,
+      "cause": "Test-only rebound storage had not injected the still-unborn driver raw bytes/model, so driver-main fixtures stopped before child. Added explicit memory-only injection; no production driver alteration."
+    },
+    {
+      "methods": 42,
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 86,
+      "negative_checks": 253,
+      "owned_python_children": 20
+    },
+    {
+      "methods": 43,
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 91,
+      "negative_checks": 253,
+      "owned_python_children": 20,
+      "status": "LATEST_SUITE_PASS"
+    }
+  ],
+  "counts_nonadditive": true,
+  "actual_qualifier_controls": "All17 single-false candidates times both table-bit values through actual archive->new observation->qualifier; zero/multiple/token-only UNKNOWN, external origin, incomp/nonrepro, schema/type/duplicate/cap/privacy, receipt/run/prePOST mismatch.",
+  "retained_protocol_controls": "Real bounded owned Python children: F1 known failure with buffered candidate no Root writes/ack, physicalEOF/done/error, healthy queued-after-exit, F2 cap+1/drain/partial-timeout digests, once listing/positiveID/empty/refusal/EOF/cleanup. All injected acquisition; API0.",
+  "actual_startup_controls": [
+    {
+      "argument": "--template",
+      "status": "EXPECTED_NONAUTHORIZING_TEMPLATE",
+      "stdout_bytes": 5381,
+      "stdout_sha256": "42576dd41f74ef1f03992d5e6ceb5cf83feb61a6f05f8bb462b13c4d65f869ae",
+      "transport": {
+        "spawned": true,
+        "settled": true,
+        "exit_code": 0,
+        "stdout_eof": true,
+        "stdout_bytes": 5381,
+        "stdout_sha256": "42576dd41f74ef1f03992d5e6ceb5cf83feb61a6f05f8bb462b13c4d65f869ae",
+        "primary_stdout_bytes": 5381,
+        "primary_stdout_sha256": "42576dd41f74ef1f03992d5e6ceb5cf83feb61a6f05f8bb462b13c4d65f869ae",
+        "drain_stdout_bytes": 0,
+        "drain_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary_complete": true,
+        "stdout_complete": true,
+        "reader_error": false
+      }
+    },
+    {
+      "argument": "--unallocated-flag",
+      "status": "EXPECTED_CLOSED_EXIT1",
+      "transport": {
+        "spawned": true,
+        "settled": true,
+        "exit_code": 1,
+        "stdout_eof": true,
+        "stdout_bytes": 250,
+        "stdout_sha256": "f6e253dfcc1f03ec1ac1b7903343fe5ff069cb0e1b5385c3dc60bbd7a76602b8",
+        "primary_stdout_bytes": 250,
+        "primary_stdout_sha256": "f6e253dfcc1f03ec1ac1b7903343fe5ff069cb0e1b5385c3dc60bbd7a76602b8",
+        "drain_stdout_bytes": 0,
+        "drain_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary_complete": true,
+        "stdout_complete": true,
+        "reader_error": false
+      }
+    }
+  ],
+  "local_CLI_capability": {
+    "historical_help_proof": {
+      "gh_binary_sha256": "a1701e3c806a805981554ace7df04812772c6449bdcfd1a77675013d97786401",
+      "gh_binary_bytes": 42166072,
+      "help_stdout_sha256": "c6136b139e05d1b4e9271a1edf08473b6f57df6ff01dc6da64b7079f53852e82",
+      "help_stdout_bytes": 7770,
+      "method": true,
+      "header": true,
+      "escape": true
+    },
+    "actual_current_binary_identity_matches": true,
+    "new_help_processes": 0,
+    "meaning": "Same actual gh binary and unchanged API flag argv; one original help observation reused, no help repeated."
+  },
+  "source_current_raw_bindings": 11,
+  "unchanged_F2_function_ASTs": [
+    "pipe_read",
+    "bounded_command",
+    "progress_state",
+    "transport_initial"
+  ],
+  "unchanged_F1_reader_AST": true,
+  "schema_private_matches_current_source18_and_SHA_pin": true,
+  "syntax": {
+    "files": 3,
+    "passed": true
+  },
+  "Root_inputs_unborn": true,
+  "Root_result_unborn": true,
+  "final3_unborn": true,
+  "API_requests": 0,
+  "CI_dispatches": 0,
+  "native_cases": 0,
+  "normal_acceptance_credit": 0
+}

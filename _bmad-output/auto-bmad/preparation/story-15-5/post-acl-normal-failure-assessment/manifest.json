@@ -1,0 +1,15 @@
+{
+  "kind": "bounded-assessment-manifest",
+  "metadata_head": "bc5e9b90ba05f7f60ff68d0d1693315691d61bbe",
+  "source": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "actual_runhead": "b459af22d490eadc90113fd713a73b65aff89471",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-normal-failure-assessment/assessment.json",
+      "bytes": 30681,
+      "sha256": "8eec50f192e5b509801b87fc1866eeac641432ca80b109281602d88d99f75957"
+    }
+  ],
+  "source_writes": 0,
+  "native_effects": 0
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-job01-correction-review",
+  "member_count": 3,
+  "members": [
+    {
+      "path": "original-report.md",
+      "bytes": 4213,
+      "sha256": "63ee05a546981aac5167d25d802e8fb211f1b5ee6aaadeda2db5cc11aab7d9b1"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 13034,
+      "sha256": "fa0f5f532018eaa77f9d2409af6f7d1899e1b711a368473425c4e271eb108baf"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1787,
+      "sha256": "59f384f2a3819b5a76f67f56efde99f9c5ac1e236ab99e36784a256574baf73e"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0
+}

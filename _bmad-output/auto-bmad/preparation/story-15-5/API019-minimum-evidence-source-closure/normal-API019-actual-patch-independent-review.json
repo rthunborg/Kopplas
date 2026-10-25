@@ -1,0 +1,215 @@
+{
+  "schema": "kopplas.targeted-independent-actual-evidence-seam-patch-review.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T14:44:01.488765+00:00",
+  "status": "PASS_API019_MINIMUM_EVIDENCE_PATCH_SOURCE_ONLY",
+  "outcome": "PASS_API019_MINIMUM_EVIDENCE_PATCH_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "scope": "Targeted three-tag API019 evidence-seam patch review, not a functional fix, hosted cause diagnosis, fourth broad story review or runtime admission.",
+  "route": "Root45c63c; explicit gpt-6.1-sol High",
+  "base_HEAD": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+  "functional_preimage": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "author": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/author-result.json",
+    "bytes": 14132,
+    "sha256": "94ebd435d23279bbe71d2d9df95c62b08efae2268f600a94695477b654b7d90d"
+  },
+  "approved_plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-minimum-plan-independent-review.json",
+    "bytes": 11819,
+    "sha256": "86fc7d77a0d22ce0a84e9e14a930eab5641b8c481c917f9cdfa6ad88cc78e4a1"
+  },
+  "current_candidate": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 140182,
+      "sha256": "31238ec8852e5636d1d0dab3391a7224da50c2349f39cd28711ca85dba81968a",
+      "LF_bytes": 138786,
+      "LF_sha256": "571b4cb4d939e66e850303873f577f2256a11084330863ea5f303f7d2cb470e3",
+      "prospective_LF_git_blob": "579c0f4afa82358ec85643870d508c4d2a8b7b40",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 331036,
+      "sha256": "e6ce95880d24c7908f5f708dedb3671c554ff087d8e652a6aa135bbd21c0dfba",
+      "LF_bytes": 327960,
+      "LF_sha256": "aa80e7440037b0ae0b8c68a0e416ceba4f10a611695a251653f8dc1b9a536278",
+      "prospective_LF_git_blob": "4d557609a88f195956219cdd525d74433f869043",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 260470,
+      "sha256": "d8236c69d18030002cc97384787103dd50604df0dd13760bcb1eb5ae935e9332",
+      "LF_bytes": 257379,
+      "LF_sha256": "49d1fac6483c13c74ad959440016b60009e3b6b766120303fff9c67d8145f917",
+      "prospective_LF_git_blob": "1390e95937236980c89cb7ecb64955e4778d868b",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    }
+  ],
+  "introduced_change_assessment": [
+    {
+      "file": "tests/support/calendar-feed-atdd.ts",
+      "lines": "230,549-564",
+      "result": "Exactly three closed owned origins, parse transformation catch and existing timeout/privacy throws. await readFile remains outside catch; no new await/request/timer/listener/success condition. Original3s deadline/20ms cadence, privacy flags/count comparisons and unchanged returned bytes preserved. Other malformed shapes may still be UNKNOWN; no diagnosis guarantee."
+    },
+    {
+      "file": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "lines": "1307-1356",
+      "result": "One controlled actual-source extraction helper and four tests. Real telemetry expression compiled with existing type-strip mechanism and real origin/diagnostic functions; real existing observer supplies success/privacy records. Controls check unchanged bytes/one read/no sleep; missing-marker/observation/zero-count150reads and sleeps at3000ms; privacy shape/count refusal; malformedJSON fixed tag; exact IO object identity and missing-path erasure. No authored replica replaces production method."
+    },
+    {
+      "file": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "result": "Only existing SRO changed: evidence-only subsection,59 current helper/unit stop coordinates and spacing Serial bail:1 prose to avoid path:line parsing. OutsideSRO byte-identical; kernel/status/inreview/reviewcounter3 unchanged. Existing integration assertions and95 IDs unchanged."
+    }
+  ],
+  "independent_conservation": {
+    "all8_raw_LF_and_prospective_Git_blob_pins_matched": true,
+    "all3_full_raw_inverses_match_preimages_and_HEAD_LF": true,
+    "exact_dirty_tracked_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "other5direct_pins_unchanged": [
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "package.json",
+      "pnpm-lock.yaml"
+    ],
+    "ownerFacts": {
+      "bytes": 3563,
+      "sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+      "unchanged": true
+    },
+    "outsideSRO_prefix_sha256": "dbf33b53bb46cbf50e193f1e6cb9ca4d7fde15537c84eb37d2c87d5dbf90614e",
+    "SQL118": "No SQL dirty path; unchanged prior raw-vector/qualified source evidence reused, no SQL raw rescan.",
+    "inverses_ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/final-inverse-conservation-v2.json",
+      "bytes": 4503,
+      "sha256": "047bd4e4ccfc447aa64726d095baa864c96b02233f16952c9543684395b33156"
+    }
+  },
+  "actual_author_gate_provenance": {
+    "attribution": "Native author native/summary receipts independently hash-read and closure-checked; no reviewer test rerun. Raw streams RAM-only, stream digests/argv/caps retained. Author outer tool attribution is distinct from child native exit.",
+    "semantic_RED": {
+      "native_exit": 1,
+      "pass": 1,
+      "fail": 3,
+      "skip": 0,
+      "failed_names": [
+        "API019 actual telemetry absence retains exact deadline cadence and owned timeout origin",
+        "API019 actual telemetry privacy refusals retain detection and publish only fixed owned origin",
+        "API019 actual telemetry parse origin never exposes raw text and IO or missing path remain unknown"
+      ]
+    },
+    "GREEN": {
+      "native_exit": 0,
+      "pass": 4,
+      "fail": 0,
+      "skip": 0
+    },
+    "whole_affected": {
+      "native_exit": 0,
+      "pass": 191,
+      "fail": 0,
+      "skip": 0,
+      "elapsed_seconds": 13.47861
+    },
+    "whole_TypeScript": "native0",
+    "scoped_ESLint": "native0",
+    "diff_check": "native0",
+    "native_receipt_count": 12,
+    "summary_receipt_count": 10,
+    "all12_native_full_EOF_readers_joined_handles_closed_direct_settled": true,
+    "initial_history": "Initial0P4F was extraction-only ERR_INVALID_TYPESCRIPT_SYNTAX; corrected boundary before producer change, not semantic RED. Initial SRO coordinate validation failed then only assigned SRO coordinates/prose corrected; history immutable.",
+    "SRO": {
+      "native_exit": 0,
+      "actual_pinned_refsCount": 216,
+      "errors": [],
+      "metadata_discrepancy": "Frozen author says217, pinned corrected native summary says216. This review qualifies actual216/errors[]; no gate outcome changed."
+    },
+    "nonadditive": "Focused4 overlap whole191. No fullNode/build/DB/integration/browser/CI performed for this seam; synthetic local controls are not hosted cause or95 execution evidence.",
+    "outer_tools": {
+      "initialRED": "93f6b2/outer0/0.613344s child1",
+      "semanticRED": "e23293/outer0/0.6972125s child1",
+      "GREEN": "77e48a/outer0/0.6316512s child0",
+      "affected": "b7e1f2 session9846;onewait15340a/outer0 child0; actual child elapsed in receipt",
+      "TS": "e328ad/outer0/5.4099524s child0",
+      "lint": "0558bf/outer0/4.1564445s child0",
+      "parsercompatibility": "c6b80c/outer0/0.3777356s child0",
+      "SROcorrected": "5b27c3/outer0/0.4060876s child0"
+    },
+    "receipt_pins_are_bound_via_author": true
+  },
+  "reader_stage_compatibility_only": {
+    "successor": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/reader-stage-data-successor.py",
+      "bytes": 50846,
+      "sha256": "b7a34c43b1b1cd1e088685c31f29787c908f201354468b71f6929a2d788e5d9c"
+    },
+    "proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/reader-stage-data-proof.json",
+      "bytes": 1409,
+      "sha256": "537bf789756a38a980855d1f7aa96bb1d51dc9f59e8037fbd6cae922f3b8729f"
+    },
+    "full_inverse_to_qualified_baseline": {
+      "path": ".env.epic15.mail-runtime\\story-15-5-preparation\\normal-INT014-NORMAL-terminal-actual-preparation\\reader.py",
+      "bytes": 50733,
+      "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+    },
+    "exact3_stage_literals": true,
+    "all41_function_segments_including_nested_byte_equal": true,
+    "author_actual_origin_diagnostic_to_production_failure_facts_groups": 4,
+    "limits": "Stage-only source compatibility qualified. Historical consumed identity/path/activation refs intentionally retained. Not current operational enrollment or executable admission. Any future tuple/current sources/grant/activation must receive separate bounded operational review; no reader invocation authorized."
+  },
+  "eligibility": {
+    "Root_exact3_source_commit_candidate": true,
+    "meaning": "Independent source eligibility only. Root may integrate reviewed source/docs under its existing ownership; any checkpoint/effects require their actual separate admission.",
+    "functional_repair": false,
+    "development_complete": false,
+    "release_ready": false,
+    "normal_acceptance": 0,
+    "effect_authority": false
+  },
+  "remaining_uncertainty": {
+    "required95_historical_current_qualified": "93P1F(API019)1zero(API020pending); unchanged by local seam tests",
+    "actual_API019_origin_matcher_value_cause": "UNKNOWN",
+    "3009ms": "Compatible with telemetry deadline, not causal proof",
+    "main_DB_key": "Retained/keyDeletedfalse; backend settlement UNKNOWN",
+    "direct_recovery": "Prior actual1P separate, not mainDBcustody proof",
+    "P5": "OPEN",
+    "focused_API019_workload": "Current wrapper does not admit proposed arbitraryfilter. Future minimal fixed capability requires exact guard/source allocation plus independent review and fresh finite effects grant. No blindNORMAL repeat or automatic retry."
+  },
+  "reviewer_checks": {
+    "source_diff_tool": "0d7e53/native0",
+    "bounded_source_and_receipt_reads": [
+      "054fd5/native0",
+      "d26bc5/native0",
+      "ba4a4e/native0",
+      "a314c7/native0",
+      "189ecd/native0",
+      "25b822/native0",
+      "2a2dca/native0"
+    ],
+    "final_check": "Bounded offline metadata/hash/full-inverse/Python AST checks only; local Git show and diff name reads. No source/module import, application compilation, test suite, reader invocation, transport or external request."
+  },
+  "reviewer_effects": {
+    "source_edits": 0,
+    "Git_mutations": 0,
+    "API": 0,
+    "GET": 0,
+    "tests": 0,
+    "runtime": 0,
+    "resources": 0,
+    "foreign_checkout_reads": 0
+  },
+  "blockers_to_source_eligibility": []
+}

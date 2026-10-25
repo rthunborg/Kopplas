@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "kind": "original-independent-native-authority-transport-delta-review-attestation",
+  "result": "PASS_SOURCE_REVIEW_ONLY",
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-transport-review/original-review.md",
+    "bytes": 2425,
+    "sha256": "4615e8a8fd1610da8e70e704d375b5745fffd9eb1c0141d3684abc290fa9604e",
+    "preservation": "Exact original completed report text; UTF-8 without BOM, LF with final newline. No re-review."
+  },
+  "source_head": "4562cfd0031b32b6921f668cd953384b64116973",
+  "baseline": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-transport-review/latest-delta-input.diff",
+    "bytes": 179712,
+    "sha256": "cd9514d6a6552bb57e432acb6f4b4c6075af6f141e9e5691613c81391bf94da6"
+  },
+  "binding": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-transport-review/input-binding.json",
+    "bytes": 10561,
+    "sha256": "a1105c5a755bfff19be7429a327b2ab86e6a365ac52eca82b191650788cb473d"
+  },
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json",
+    "bytes": 5160,
+    "sha256": "91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13"
+  },
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "reviewer_task": "/root/build15_5_high/native_authority_transport_delta_review"
+  },
+  "scope": {
+    "completed_broad_review_rounds": 3,
+    "broad_review_cap": 3,
+    "fourth_broad_review": false,
+    "latest_committed_delta_and_consequential_regressions_only": true,
+    "paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ]
+  },
+  "original_verified_binding_facts": {
+    "exact_source_head_and_branch": true,
+    "exactly_five_allocated_committed_delta_paths": true,
+    "five_working_files_equal_committed_blobs": true,
+    "recorded_raw_clean_head_and_baseline_bindings_match": true,
+    "ten_context_raw_and_lf_bindings_match": true,
+    "reconstructed_diff_matches": true,
+    "complete_wrapper_and_INT015_context_bindings_match": true,
+    "frozen_input_and_binding_and_allocation_hashes_match": true,
+    "source_paths_unchanged_by_reviewer": true
+  },
+  "original_review_execution": "Read-only source inspection and bounded binding verification only. No tests rerun, service contact, managed resource launch, DB/Docker/native probe, file edits or commit during the review.",
+  "persistence_execution": "Only this attestation and original-review.md were created after the original report, under the parent allocation. No re-review, new tests, native probe, source edits or commit. No original review timestamp is asserted.",
+  "limits": {
+    "credential_mapping_unverified": true,
+    "TCP_authentication_unverified": true,
+    "SupAdmin_LOGIN_SUPER_unverified": true,
+    "effective_native_privacy_unverified": true,
+    "feature_runtime_bodies_unexecuted": 65,
+    "prior_native_failures_remain_failures": true,
+    "design_pass_not_code_or_runtime_pass": true,
+    "source_review_pass_not_runtime_proof": true,
+    "development_complete": false,
+    "release_ready": false
+  }
+}

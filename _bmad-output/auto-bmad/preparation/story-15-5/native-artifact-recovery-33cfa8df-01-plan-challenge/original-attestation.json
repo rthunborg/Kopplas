@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "kind": "independent-sensitive-new-artifact-recovery-plan-challenge",
+  "verdict": "REVISE",
+  "reviewed_at_utc": "2026-10-21T06:10:03.465024+00:00",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_plan_author_and_root": true
+  },
+  "route": {
+    "phase": "P5_artifact_recovery_plan_challenge",
+    "recorded_before_dispatch": true
+  },
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+    "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+    "run_id": 39551805476,
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof",
+    "producer_evidence_class": "diagnostic-only"
+  },
+  "input_bindings": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.md",
+      "bytes": 6003,
+      "sha256": "fb4dfcd43fadd8b310b5773843e93bff9c20f82078320911ce0f03215a254b1a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.json",
+      "bytes": 16679,
+      "sha256": "9d76227a081e40081ade028595add5e27c22ce71c7639b3267acc18799e26cd3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/manifest.json",
+      "bytes": 4128,
+      "sha256": "f513193abad375ecde85bec2795aef708fae435cae2f8b250a03323a709a8c93"
+    }
+  ],
+  "manifest_check": {
+    "exact_directory_members": 3,
+    "nonself_files": 2,
+    "immutable_inputs": 13,
+    "all_match": true
+  },
+  "immutable_input_checks": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+      "bytes": 884427,
+      "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/expected-admission.json",
+      "bytes": 6705,
+      "sha256": "a5d0ca28fd7bce83aa2f3105f6122610091fab52bf7d935aaf040483b9f3cbc1",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/terminal-facts.json",
+      "bytes": 3135,
+      "sha256": "aa00fd0c2158d02f2a42bc989624b611c36be44b0059627f5d9ac42d750d1754",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-terminal-metadata-proof.json",
+      "bytes": 2721,
+      "sha256": "d13590179752a3b4d84bfe0c283afebd677bd4ab6760e6c5a8ee71ad9c891c9d",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-operation-stop.json",
+      "bytes": 1096,
+      "sha256": "89585f71abc74d6656157e95453e0b297d29d44861e65e4a67d003d3e286780e",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-prepost-diagnostic-intent.json",
+      "bytes": 2729,
+      "sha256": "40f043cbd0a34a771999327671fa4a7cb76de4fa3c91a3389b913d3fc3402b22",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-pipe-driver.py",
+      "bytes": 10294,
+      "sha256": "16b981a7153f227f82f17d892a7709fa4577a78ecfb836bde0fb0da694f74ab8",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-rebound-33cfa8df-review/original-report.md",
+      "bytes": 6399,
+      "sha256": "ecfa4c1a66afa11a487825fab9d5e17a730fd5ca35e6e63e9c5cb8f24cc0dc8c",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-rebound-33cfa8df-review/original-attestation.json",
+      "bytes": 12275,
+      "sha256": "bb285365d38461f82d142d3f3dbc67323cd90729c35c1a4543904a8fcf339997",
+      "verified": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-rebound-33cfa8df-review/result.json",
+      "bytes": 1032,
+      "sha256": "7069644e09c5bcd6e2e8160d5d9f530cc5fa9927e31214b42612423a625672f2",
+      "verified": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-collector-started.json",
+      "bytes": 315,
+      "sha256": "d6e34e861f1b5c51475337049fdacbd6fe582586f19dbc056ba47570bbab1261",
+      "verified": true
+    }
+  ],
+  "mechanical_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-plan-identity-admission.json",
+    "bytes": 510,
+    "sha256": "59f4b93534eeb5dd06d5f92cbbaee9be00d3c91fa5d5c2c676369da527ace18a",
+    "verified": true
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "P2",
+      "location": "plan.json implementation_constraints.listing_schema and strict old listing-validator reuse",
+      "title": "Recovery artifact-metadata grammar rejects documented expires_at",
+      "caller": "Future new recovery helper after sole additional listing GET before candidate/ZIP admission",
+      "invariant": "Finite reviewed metadata grammar must accept the intended authoritative valid artifact shape without weakening exact-ID/provenance/privacy controls",
+      "evidence": "Official response example includes expires_at; baseline fixture accepted, adding only a well-formed expires_at refused COMPATIBILITY_STOP",
+      "historical_cause_claim": false,
+      "minimum_fix": "Bind intended authoritative metadata/API-version contract; define strict expires_at type/nullability/time grammar, positive documented-shape and negative malformed/unknown controls; avoid old strict listing revalidation; keep old source immutable and exact-ID/caps/raw digests unchanged"
+    }
+  ],
+  "primary_source": {
+    "url": "https://docs.github.com/en/rest/actions/artifacts?apiVersion=2022-11-28#list-workflow-run-artifacts",
+    "retrieval_date": "2026-10-21",
+    "purpose": "Read-only official API contract documentation, not owned-run API acquisition",
+    "supporting_excerpt": "\"expires_at\": \"2020-03-21T14:59:22Z\"",
+    "requested_apiVersion": "2022-11-28",
+    "rendered_sample_version_header": "2026-03-10",
+    "limit": "Published shape only; no assertion of historical response or negotiated version"
+  },
+  "workflow_graph": {
+    "path": ".github/workflows/ci.yml",
+    "bytes": 75930,
+    "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+    "selected_jobs": [
+      "checkpoint-admission",
+      "verify",
+      "db"
+    ],
+    "selected_graph_artifact_uploads": [
+      "native-calendar-feed-cause-proof"
+    ],
+    "normal_db_upload_disabled": true,
+    "other_six_jobs_recorded_skipped": true,
+    "additional_artifact_producer_established": false,
+    "cardinality_le_one_supported": true
+  },
+  "pure_controls": {
+    "baseline_sole_matching_artifact_accepted": true,
+    "adding_only_documented_expires_at_refused": "COMPATIBILITY_STOP",
+    "real_requests": 0,
+    "native_evidence": false,
+    "bytecode_cache": false
+  },
+  "plan_constraints_retained": [
+    "Fresh Coordinator ownership/effects allocation before implementation or operational effects",
+    "New operation identity distinct from historical producer checkpoint; new admission honestly posthoc",
+    "Old P33 operation consumed, listing execution UNKNOWN0or1; no historical cause claim",
+    "Additional fixed listing at most1 and conditional exact Root-admitted ZIP at most1; no automatic retry",
+    "Five-field Root admission, frozen inputs, capped line/EOF/60s and final-terminal hash",
+    "Closed failure envelope, queued-output drain after exit, bounded transport/reader/child settlement; uncertainty CUSTODY_UNKNOWN",
+    "Deterministic startup/import/argv/input and bounded local help qualification before new GET",
+    "Offline High exact-three publication from frozen closed handoff; six nonself packet hashes and external manifest identity"
+  ],
+  "scope_limits": {
+    "plan_only": true,
+    "fourth_broad_story_review": false,
+    "writes_only_three_assigned_review_metadata_files": true,
+    "source_helper_packet_Spec_Root_or_old_report_writes": false,
+    "recovery_implementation": false,
+    "official_documentation_read": true,
+    "owned_run_API_ZIP_POST_CI_DB_RPC_resources": false,
+    "local_help_execution": false,
+    "execution_or_publication_authorization": false,
+    "foreign_checkout_inspected_or_changed": false
+  },
+  "proposal_author_provenance_deviation": "Disclosed foreign draft writes/correction retained without claiming prior foreign state independently verified",
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-plan-challenge/original-report.md",
+    "bytes": 8224,
+    "sha256": "cf4bcf50e940b8ea6c06219b20f9823d3e3021a27a7625fd27b8f396a06ab0cb"
+  },
+  "normal_acceptance_credit": 0,
+  "native_credit": 0,
+  "development_complete": false,
+  "release_ready": false
+}

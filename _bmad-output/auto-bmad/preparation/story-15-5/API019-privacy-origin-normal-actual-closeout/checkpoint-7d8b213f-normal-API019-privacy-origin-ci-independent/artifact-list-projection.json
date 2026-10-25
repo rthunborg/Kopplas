@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "advertised_bytes": 9630,
+      "digest": "sha256:7467e186fc946aed98e20e16abf1f2ae7b6c7c77336d22ff0a95384c205b545b",
+      "expired": false,
+      "expires_at_null": false,
+      "expires_at_present": true,
+      "id": 12517772674,
+      "name": "native-general-browser",
+      "qualified_for_single_download": true,
+      "run_head_bound": true
+    },
+    {
+      "advertised_bytes": 678,
+      "digest": "sha256:aaa5b23b895e12ba12be8667ec3872748c8417a7e3393600ba4867cf6126f688",
+      "expired": false,
+      "expires_at_null": false,
+      "expires_at_present": true,
+      "id": 12517243442,
+      "name": "native-isolated-storage-recovery",
+      "qualified_for_single_download": true,
+      "run_head_bound": true
+    }
+  ],
+  "listing_bytes": 1474,
+  "listing_sha256": "95f01f3e3b39e09707db11236a900da636dd37f34f20bad2731029196974ceae",
+  "raw_persisted": false,
+  "total_count": 2
+}

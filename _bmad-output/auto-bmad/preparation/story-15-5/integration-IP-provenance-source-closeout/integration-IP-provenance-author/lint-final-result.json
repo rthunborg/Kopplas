@@ -1,0 +1,15 @@
+{
+  "phase": "lint-final",
+  "native_exit": 0,
+  "signal": null,
+  "spawn_error": false,
+  "elapsed_ms": 2781,
+  "counts": {},
+  "failed_static_control_names": [],
+  "closed_source_diagnostics": [],
+  "stdout_bytes": 456,
+  "stderr_bytes": 0,
+  "raw_persisted": false,
+  "direct_process_settled": true,
+  "full_EOF": true
+}

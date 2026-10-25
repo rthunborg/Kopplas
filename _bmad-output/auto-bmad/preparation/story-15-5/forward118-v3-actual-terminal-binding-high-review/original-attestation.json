@@ -1,0 +1,161 @@
+{
+  "schema": "forward118-v3-actual-terminal-binding-audit/v1",
+  "verdict": "PASS_PRE_EFFECT_FORWARD118_V3_TERMINAL_BINDING_SOURCE_ONLY",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true
+  },
+  "scope": {
+    "type": "finite data binding only",
+    "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+    "run": 39710514719,
+    "head": "193361acf6cc6b0d8275bff41470f647e2404b34",
+    "UUID": "fc6f206d-b3ac-4393-884e-49d98b922a30",
+    "attempt": 1,
+    "broad_review": false,
+    "counter": 3
+  },
+  "frozen_preparation": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 50709,
+      "sha256": "ff7e8249629c3c618016c38637f06c436d39f50ec6a11b8e3e8ff0413159d140"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal-evidence-preparation/bindings.json",
+      "bytes": 75287,
+      "sha256": "f43b17cc90a75837608dff626f6fb2e506ad70bc3ef59982cbdeefc966a5167e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal-evidence-preparation/result.json",
+      "bytes": 11583,
+      "sha256": "075c9b748b79e7808721446057338596e5d2174ae3ca44abce6dbd42beb1526c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal-evidence-preparation/manifest.json",
+      "bytes": 1093,
+      "sha256": "b87449f5300d379e7ac3b30dd53ff7891bfba0a95bcb4f148e03a2d9d59e60a2"
+    }
+  ],
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal.json",
+    "bytes": 23429,
+    "sha256": "deaed13193b66b38aeebc99a71b193f1c8ee2dd9b4edf3ebb3586a6c9378a070"
+  },
+  "Root_fresh_source_proof": {
+    "ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/forward118-v3-normal-terminal-current-source-proof.json",
+      "bytes": 523,
+      "sha256": "cda74728d284eb411b5bdbe3a9f49dd595848f2c69cbe260c57979037d5f1316"
+    },
+    "hash_bound": true,
+    "identity_matched": true,
+    "checks_attributed_to_Root": {
+      "raw_clean_rows": 206,
+      "source_current_pushed_Git_objects": 618,
+      "migrations": 118,
+      "tracked_clean": true
+    },
+    "reviewer_Git_commands": 0,
+    "tool_chunk": "13398a",
+    "exit": 0
+  },
+  "independent_binding_command": {
+    "chunk": "766a28",
+    "exit": 0,
+    "wall_seconds": 0.1840663,
+    "proof": {
+      "verdict": "PASS_PRE_EFFECT_FORWARD118_V3_TERMINAL_BINDING_SOURCE_ONLY",
+      "inverse_bytes": 50719,
+      "inverse_sha256": "bdd99f4e7db387175d68c82b1a6122a3c000a8c54401f58966b70507bc6dbfe5",
+      "literal_substitutions": 5,
+      "unchanged_definitions": 35,
+      "unchanged_helpers": 16,
+      "source206_basis_unchanged": true,
+      "catalog410_dynamic19_unchanged": true,
+      "terminal9_jobs": {
+        "checkpoint-admission": "success",
+        "verify": "success",
+        "recovery-storage-loader": "success",
+        "db": "failure",
+        "e2e": "failure",
+        "dashboard-e2e": "skipped",
+        "fixed-chromium-paired-probe": "skipped",
+        "native-stream-probe": "skipped",
+        "fixed-chromium-application-verification": "skipped"
+      },
+      "typed_identity_exact": true,
+      "ownership_activation_mode": "normal",
+      "archive_member_keys_unique": true,
+      "activation_absent": true,
+      "output_absent": true,
+      "isolated_argv_enrolled": true,
+      "max5_no_retry_unchanged": true,
+      "budget27213": "reused not remeasured",
+      "prior9_13controls": "not rerun",
+      "Root_postpush_source_proof": "467B/16a35847 hash-bound; Root refresh required",
+      "operator_import_main": 0,
+      "controls": 0,
+      "GET_API": 0,
+      "Git": 0,
+      "normal_acceptance": 0
+    },
+    "methods": "Hash-bound refs, literal full inverse, AST source-span comparison only, exact unchanged source/catalog basis, typed terminal/jobs/step names, absent output/activation, isolated argv and unchanged strict guard inspection. No algorithm/control execution."
+  },
+  "reuse": {
+    "baseline50719_sha256": "bdd99f4e7db387175d68c82b1a6122a3c000a8c54401f58966b70507bc6dbfe5",
+    "consumer_review_manifest": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-consumer-high-review/manifest.json",
+      "bytes": 958,
+      "sha256": "0a1d735a29e02fd2ab8a4bb1ccdd8659b037fe101ce45e0dfa9f7019bae224e3"
+    },
+    "source206_basis_unchanged": true,
+    "catalog410_dynamic19_unchanged": true,
+    "inherited_nonleaf_limit_retained": true,
+    "budget27213_cap32768": "Prior freshly evaluated v3 proof reused; not remeasured",
+    "prior9_v3_13_v2_controls": "Not rerun; nonadditive",
+    "producer_review": "Unchanged; not repeated"
+  },
+  "admission": {
+    "mode": "normal",
+    "attempt": 1,
+    "new_activation_exists": false,
+    "new_output_exists": false,
+    "argv_Python314_isolated": true,
+    "max_GETs": 5,
+    "archive": 1,
+    "list": 1,
+    "eligible_ZIPs": 3,
+    "no_retry": true,
+    "existing_allocation": "Completed push/dispatch only; no acquisition authority",
+    "required_before_any_effect": [
+      "Separate actual completed acquisition allocation",
+      "Root fresh exact source/terminal proof still applicable",
+      "Exclusive Root activation binding exact operator/review/allocation and new output"
+    ],
+    "effect_authority": false
+  },
+  "findings": [],
+  "limits": {
+    "actual_counts": "UNKNOWN",
+    "native_terminalAtDrain_discriminator": "UNKNOWN",
+    "artifact_availability": "UNKNOWN",
+    "cause": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "DB_E2E_job_conclusions": "failure",
+    "successful_gates_require_manufactured_labels": false,
+    "ambiguous_fact_authorizes_fix_retry_or_diagnostic_family": false,
+    "normal_acceptance": 0,
+    "development_complete": false
+  },
+  "effects": {
+    "operator_imports": 0,
+    "controls": 0,
+    "main_transport_API": 0,
+    "Git": 0,
+    "runtime_resources_network": 0,
+    "source_Spec_state_foreign_writes": 0
+  },
+  "policy": "development-completion-policy2026-10-19; required95 unchanged"
+}

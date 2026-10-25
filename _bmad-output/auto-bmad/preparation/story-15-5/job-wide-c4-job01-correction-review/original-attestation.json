@@ -1,0 +1,268 @@
+{
+  "schema": "story-15-5-targeted-C4-JOB01-correction-review-v1",
+  "verdict": "NOTPASS_SUPPORTED_CONFIG_REFINEMENT_REQUIRED",
+  "reviewer": {
+    "identity": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "BuildHigh/source/refinement author",
+      "Root"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_claim": false,
+    "nested_work": []
+  },
+  "scope": {
+    "metadata_head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+    "source": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+    "kind": "Only C4-JOB-01 correction and resolved-project supported-config condition",
+    "prior_C1_C7_F1_wrapper": "Unchanged evidence reused, not reopened",
+    "broad_rounds_retained": 3,
+    "policy_version": "2026-10-19",
+    "normal_acceptance_credit": 0
+  },
+  "frozen_input_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/refinement.json",
+      "bytes": 9134,
+      "sha256": "94e0c70758fefe97fee429c2627836b319f2c249513765da37dfbd9948c67c5a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/bindings.json",
+      "bytes": 13181,
+      "sha256": "bd60202b486fc34bb8df5e79fb91f79a4f189d05483b4f07e6c65df9a419118b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/manifest.json",
+      "bytes": 2197,
+      "sha256": "14778fe1ca466f9008954aa9dcd6fe1e911fc752bae599f80a5adc88fab8329d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-job-wide-c4-job01-refinement-admission.json",
+      "bytes": 1054,
+      "sha256": "71234ad57b698061b8df5ef045b73859b38c12dd83cd7eb09eb6e7368d45a373"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "binding_vector": {
+    "ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/bindings.json",
+      "bytes": 13181,
+      "sha256": "bd60202b486fc34bb8df5e79fb91f79a4f189d05483b4f07e6c65df9a419118b"
+    },
+    "source_raw_unchanged": 23,
+    "installed_primary": 10,
+    "frozen_refs": 7,
+    "all_recorded_raw_bytes_SHA_verified": true,
+    "source_HEAD_clean_objects_verified": true,
+    "explicit_raw_CRLF_to_LF_comparison": true
+  },
+  "source_candidates": [
+    "vitest.config.ts",
+    "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "primary_installed_refs": [
+    {
+      "path": "node_modules/vitest/package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/defaults.9aQKnqFk.js",
+      "bytes": 2190,
+      "sha256": "e500ba917d0d320a037b4ad92ae691462b50a939e21b1f98d0073c45d55466ab"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/index.DXx9Dtk7.js",
+      "bytes": 7330,
+      "sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js",
+      "bytes": 495252,
+      "sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/base.BE3cXZj3.js",
+      "bytes": 8972,
+      "sha256": "51b3c786fb87ab41d6ecefb8df4a3f0e51d77ca27d3033c710c4158b6f198262"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/package.json",
+      "bytes": 1156,
+      "sha256": "f65bab94ffa60ceff123e4aed2dc88a8f62d522391244d5aff1eef57d802c614"
+    },
+    {
+      "path": "node_modules/typescript/package.json",
+      "bytes": 3620,
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    },
+    {
+      "path": "node_modules/vitest/dist/config.d.ts",
+      "bytes": 4163,
+      "sha256": "88ba2660f5b024c7afd02ea700bc0c677687e17e34f0a94c3256ddb55e0f1c5d"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/plugin.d.DwFIiJ7i.d.ts",
+      "bytes": 1194,
+      "sha256": "e53757f3e6688e8be16b36ccbeedc85637e607353fc67ff7b6665d6005aeaa12"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js",
+      "bytes": 54974,
+      "sha256": "e509f3cc1bd81ae6426265253fa926cbde02be5cebfe35b1df422017bffdca31"
+    }
+  ],
+  "additional_readonly_primary": {
+    "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/dist/chunk-artifact.js",
+    "bytes": 119048,
+    "sha256": "c10a7a80fca65fb42e27eabf7655c5ce5ecf36e8aaeb1811499efd063df62556"
+  },
+  "frozen_history_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/proposal.json",
+      "bytes": 10670,
+      "sha256": "e48f91f5b7ccb67e93b211a4d9f609d64d1ae04b2fb7eb023ca70577b40015d6"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/bindings.json",
+      "bytes": 11117,
+      "sha256": "f1e203bf240fc03e3eaf3c319c202f698bf8b06c4d91c4451870e213fbef18a0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/manifest.json",
+      "bytes": 4963,
+      "sha256": "0ca268dc035995cd3b7e23a1dfa141c084c1b52dc457fe59778b5c7067d69d33"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-review/original-report.md",
+      "bytes": 5857,
+      "sha256": "9095aedb0af40dd39fab0bea1cb18fdc50f284e2ad726881182863742d06db62"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-review/original-attestation.json",
+      "bytes": 21734,
+      "sha256": "7064b8e00a0a59c2581f209b5a3a46dc6876dad2b9a2aba310e7bdc474466ab9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-job-wide-custody-review-admission.json",
+      "bytes": 1201,
+      "sha256": "1f019bf3f85044780d25a86d97d96fdc29fe488a31a5a3844f16acc22299f7e7"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    }
+  ],
+  "author_probe_manifest": {
+    "ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-c4-job01-refinement/manifest.json",
+      "bytes": 2197,
+      "sha256": "14778fe1ca466f9008954aa9dcd6fe1e911fc752bae599f80a5adc88fab8329d"
+    },
+    "members_verified": 12,
+    "AST_evidence": {
+      "file": "caller-contract-results.json",
+      "native_exit": 0,
+      "positive": 3,
+      "negative": 24,
+      "current_calls": 34,
+      "actual_finally_return_suppression_reproduced": true,
+      "negative_types": [
+        "whole catch",
+        "finally return",
+        "void",
+        "not awaited",
+        "wrapper",
+        "return",
+        "conditional",
+        "then catch",
+        "wrong import",
+        "fixture alias",
+        "fixture reassignment",
+        "test shadow"
+      ]
+    },
+    "config_evidence": {
+      "file": "supported-config-results.json",
+      "supported": "3P native0 including ordinary expected denial",
+      "unsupported": "three native1 fixed config stops: actual project maxWorkers1, parallel fileParallelismfalse, serial bail0; no test report emitted",
+      "each_process_cap_seconds": 25
+    },
+    "assembly_history_nonadditive": [
+      "AST assembly initially rejected a nonbinding regex .test property name; distinguished property names from binding references. A wrong-import inverse initially changed an earlier helper import instead of the fixture import; inverse now changes all exact helper module strings. Three native1 assembly stops preceded final3positive/24negative native0; no app/source effects.",
+      "Two config harness attempts used --maxWorkers=1 as an unsafe inverse; native0 disproved that assumption. First had explicit project2, second undefined projectmax; neither established the exact unsafe predicate. No failed/unsafe native scenario is claimed. Final inverses modify only own synthetic resolved project configuration and produce the fixed startup stop."
+    ],
+    "reused_not_reexecuted": true,
+    "no_native_backend_credit": true
+  },
+  "original_finding": {
+    "id": "C4-JOB-01",
+    "status": "CLOSED_AT_PLAN_LEVEL",
+    "reason": "Immediate imported test callback top-level await expression and binding/enrollment checks reject enclosing catch/finally-return/void/wrapper forms while current34 remain valid.",
+    "limit": "Source-only contract; meaningful actual implementation controls and cumulative committed review remain required."
+  },
+  "findings": [
+    {
+      "id": "C4-CONFIG-01",
+      "classification": "Remaining supported-project admission bypass",
+      "location": "job-wide-custody-c4-job01-refinement/guard.config.mjs configureVitest early return",
+      "caller": "Installed Vitest initialization with only integration-audit-ddl selected.",
+      "invariant": "Reject any selected-project set other than exact required parallel+serial projects before globalSetup/test import/effects.",
+      "actual_control": "supported([serial]) returned false; exact configureVitest({project:serial,vitest:{projects:[serial]}}) returned without throwing.",
+      "downstream_check": "Installed cli-api maps configureVitest only over resolved selected projects. No parallel invocation exists when parallel is absent. Later coverage accounting cannot retroactively prevent serial effects.",
+      "correction": "Run the full predicate from every selected project carrying the hook or a guaranteed root hook; add serial-only/missing-parallel fixed-error/no-setup/import inverse and preserve missing-serial/extra-project checks. No general replan or new source path."
+    }
+  ],
+  "independent_control": {
+    "kind": "Exact frozen supported() and configureVitest hook invoked in memory with only required serial selected",
+    "native_exit": 0,
+    "assertions": 2,
+    "observed": {
+      "supportedPredicate": false,
+      "actualHookRefused": false,
+      "hookReturned": true
+    },
+    "no_actual_Vitest_child": true,
+    "app_import_setup_env_SQL_network_resources": 0,
+    "raw_errors_retained": false
+  },
+  "timing_and_predicate_observations": [
+    "Installed cli-api: resolveProjects -> assign this.projects -> each selected project configureVitest hook; setup/test execution follows, so the hook can provide an early boundary if guaranteed to validate.",
+    "Predicate exact2 names/isolate/parallelism/group0 vs1/serial maxWorkers1+bail1 is appropriate. Failure is conditional invocation, not timing or scheduling predicate.",
+    "Unsafe branch specifically reads isolated group0 project.config.maxWorkers1. CPU-derived1 or CLI1 not mapped into that property must not be blanket rejected.",
+    "Existing supported3P and explicit-project1/parallel-disabled/bail0 stops are partial source capability evidence; they do not cover the missing-parallel invocation gap."
+  ],
+  "implementation_effect_split": {
+    "source_only": "Same exact6 paths after plan closure/shared allocation; no helper/factory/app/schema/runner-source/config file expansion. Config hook and partition-unit inverse correction suffice.",
+    "offline": "Actual source/AST and installed isolated runner controls; author Spec/SRO and wrapper pin. No native/backend proof.",
+    "future_native": "Separately allocated reviewed exact-head CI with existing full95/DB/RLS/browser/recovery and owned settlement/custody requirements; no authority here."
+  },
+  "remaining_conditions": [
+    "Evaluate full predicate even when required parallel project is absent; prove rejection before setup/import with a biting serial-only inverse.",
+    "Keep original caller rejection contract, sixserial once after159parallel, bail1 and expected-negative successful assertions.",
+    "Keep reviewed conservative failed-DB runtime key retention/no DELETE/readback, safe startup/readiness/stop and healthy cleanup; no child/client closure rollback inference.",
+    "Pending cumulative partial helper/factory review and distinct committed-delta review remain; all applied migrations immutable.",
+    "API019, browser failure/flakiness/custody and normal acceptance0 remain; no automatic retry/collector/source or runtime grant."
+  ],
+  "effects": {
+    "allowed_writes": "Only new review output directory artifacts",
+    "source_Spec_rootstate_Git_changes": 0,
+    "SQL_connections_network_CI_browser_resources": 0
+  },
+  "report": {
+    "path": "original-report.md",
+    "bytes": 4213,
+    "sha256": "63ee05a546981aac5167d25d802e8fb211f1b5ee6aaadeda2db5cc11aab7d9b1"
+  }
+}

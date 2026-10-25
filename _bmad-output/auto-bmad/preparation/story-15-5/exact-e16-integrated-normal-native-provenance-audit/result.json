@@ -1,0 +1,55 @@
+{
+  "schema": "EXACT_E16_FAILED_NORMAL_NATIVE_PROVENANCE_AUDIT_RESULT_v1",
+  "Outcome": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-normal-native-provenance-audit/manifest.json"
+  ],
+  "Status": {
+    "run": 39691553004,
+    "head": "98134335cd52e396fe4878bc5e49921f70c0f6b6",
+    "source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+    "attempt": 1,
+    "checkpoint": "35dd743c-c66c-4989-b9c4-3e20be8efc60",
+    "packet_manifest_sha256": "1f7f9101aebaae40a8e2f7674572b3408e999e1f868e232f18709d8adaebeece",
+    "packet_members": 14,
+    "hash_bound_members_excluding_self": 13,
+    "offline_proof_exit": 0,
+    "logical_GETs_consumed": 2,
+    "eligible_ZIPs": 0,
+    "unused_slots_closed": 3,
+    "Node": {
+      "cancelled": 0,
+      "fail": 35,
+      "pass": 3354,
+      "skipped": 0,
+      "suites": 103,
+      "tests": 3389,
+      "todo": 0
+    },
+    "distinct_positive_markers_nonadditive": 30,
+    "positive_lines": 32,
+    "failure_candidates": 0,
+    "unqualified_markers": 35,
+    "underlying_failure_count": null,
+    "original_cause": "UNKNOWN",
+    "source75_SQL116_unchanged": true,
+    "downstream_runtime_coverage": 0,
+    "normal_acceptance": 0,
+    "auditor_native_actions": 0,
+    "child_tool_attribution": "Native-reported retained receipt; no independent direct observation",
+    "execution_authority": false,
+    "consequential_contradictions": 0
+  },
+  "Open questions": [
+    "Actual failed identities, original exceptions and backend custody remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Failure identification and remaining native gates are outside this frozen evidence audit."
+  ],
+  "Blockers": [
+    "Normal acceptance remains blocked by the failed Node gate and unexecuted required downstream gates."
+  ]
+}

@@ -74,7 +74,7 @@ describe("16.5 current-job workspace composition", () => {
       const directWorkerHost = await readBookingHost({jobId: f.jobs.both.id}, f.fx.montorClient);
       expect(directWorkerHost.canView).toBe(true);
       expect(directWorkerHost.canManage).toBe(false);
-      expect((await readBookingEditorOptions(f.fx.montorClient)).people).toEqual([]);
+      expect((await readBookingEditorOptions({client:f.fx.montorClient})).people).toEqual([]);
       const worker = await h.readWorkspace(f.fx.montorClient, f.jobs.both.id, { tab: "schedule" });
       expect(worker.workspace?.schedule).toEqual(directWorkerHost);
       expect(worker.error).toBeNull();

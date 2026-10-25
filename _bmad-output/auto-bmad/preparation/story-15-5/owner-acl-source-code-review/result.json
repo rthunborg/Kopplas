@@ -1,0 +1,36 @@
+{
+  "Outcome": "PASS — exact five-file committed delta; no consequential findings. Source review only, not native acceptance.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-source-code-review/original-report.md",
+      "bytes": 4632,
+      "sha256": "e4b08c44661538c625c8352674f5c30a9f4f097b4081c99f440dd41307c2f69c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-source-code-review/original-attestation.json",
+      "bytes": 15523,
+      "sha256": "adc177622dd241a14573aff55ca45fc6e207be631bcb066f1678a49050964f3f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-source-code-review/result.json",
+      "identity": "Returned out of band after exclusive write."
+    }
+  ],
+  "Status": {
+    "base": "00cf6d4331944b38c09b2b3a9c446128b1862fde",
+    "head": "589652335657df7153d7578b1a421b020fa2ce8c",
+    "scope": "Distinct independent Sol6.1 High latest-delta/regression review; no fourth broad round.",
+    "focused_controls": "110 pass / 0 fail / 0 skipped / 0 cancelled; native exit0.",
+    "conservation": "Exact prior111 inverse, immutable predecessor, kernel5760 and single SRO126 stops verified.",
+    "normal_acceptance_credit": 0
+  },
+  "Open questions": [
+    "Actual hosted grant identities/grantors and original cause remain UNKNOWN. Unforeseen actual catalog/ACL shape must stop SOURCE_ACL_NOT_COMPARABLE."
+  ],
+  "Deferred work": [
+    "Separately allocated exact-head native current111 application and ordinary-grantor regression; required INT015/full DB/RLS/normal95/recovery with actual executed counts. No opaque retry or historical proof substitution."
+  ],
+  "Blockers": [
+    "No consequential source-review blocker identified. Runtime remains unallocated and native development gates remain unexecuted. This PASS grants no CI/API/resource/push/merge/deployment authority."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "kind": "ROOT_SELF_EXCLUDED_ORIGINAL_COMPOSITE_REVIEW_MANIFEST",
+  "verdict": "NOTPASS",
+  "members": [
+    "input-binding.json",
+    "local-checks.json",
+    "original-attestation.json",
+    "original-report.md",
+    "result.json",
+    "review-input.md",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "input-binding.json",
+      "bytes": 35641,
+      "sha256": "01449d748bb95e16e3578e487ea0ce75a6153c3274ba748d831f05807a9c500d"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 3489,
+      "sha256": "fa9c5c4fdf05ef8ed4f7743752a562f25fa813da8ea57238788ce86ed5c14f79"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 16099,
+      "sha256": "4afbacfc86a5990333d97bd481f257d39354659ef76a2c79a33faa46ce3dfcb4"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 9753,
+      "sha256": "bcaa7d08f4217897fa99b3edbc9c77539bac5cca10c00ecf59d86264bbe043a5"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1222,
+      "sha256": "df16b72c31e3ab67179dd492cd6885de6e4b09503a54fb2147ebe1e49f8e4f0d"
+    },
+    {
+      "path": "review-input.md",
+      "bytes": 4948,
+      "sha256": "dc1c45994bcbacc20141b8941cf33395e7891d20293c146633ded7b92dd6ef33"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "original_unexecuted_code_byte_custody": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-recovery-original-code-byte-custody.json",
+    "bytes": 82682,
+    "sha256": "c7fdffac0076361cbd6bbbbbaa74ec0f2f7ce3ec487c3490f3fce2201d4f76c6"
+  },
+  "no_runtime_execution_or_acquisition": true,
+  "normal_acceptance_credit": 0
+}

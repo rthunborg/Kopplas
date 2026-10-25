@@ -1,0 +1,252 @@
+{
+  "kind": "calendar_feed.status_origin_02_targeted_binding_review_attestation",
+  "schema_version": 1,
+  "review_date": "2026-10-21",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of": [
+      "author/native qualifier",
+      "Root orchestrator"
+    ]
+  },
+  "verdict": "PASS",
+  "scope": "Fresh P2 literals/defaults/identity/admission binding only; unchanged private composite protocol review reused; not fourth broad review",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "1a643e24968a06cdeaba23ffc2506471b659c62a",
+    "producer_source_sha": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+    "producer_checkpoint_id": "3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437",
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof"
+  },
+  "operation_id": "498ff285-2261-4d92-a0ea-1283ae3f45bc",
+  "actual_run_id": null,
+  "author_metadata": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-02-binding-review/review-input.md",
+      "bytes": 2490,
+      "sha256": "1aba65c74627d6da3cd401394db2d45f34c04643b9b1db9c99cbe7a98c6695f3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-02-binding-review/input-binding.json",
+      "bytes": 39597,
+      "sha256": "9a28f671e826df067ffae339daf2101b650a9173490f9c82b8a693dc85810c34"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-02-binding-review/local-checks.json",
+      "bytes": 1196,
+      "sha256": "0e475d2355d08666c564ec0fd8833467fc9a0546ae483a45c84a56567d856535"
+    }
+  ],
+  "actual_code": {
+    "collector": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-02/collect-diagnostic-evidence.py",
+      "bytes": 42467,
+      "sha256": "208305296e69e09a5df646db0fdb586af7046185d0f44a866e897acb23013f71"
+    },
+    "tests": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-02/test_collect_diagnostic_evidence.py",
+      "bytes": 43761,
+      "sha256": "976a9d72c8e9c6f55bb660f5aa948dfb6b84cb9a8a9488c64218a8f1bc177dfc"
+    },
+    "Root_driver": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-02-driver.py",
+      "bytes": 12428,
+      "sha256": "611dab209ff8e01f504e6db4ec5a953819ecf82248902924e50fe66ffc9bc944"
+    }
+  },
+  "direct_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-02/collect-diagnostic-evidence.py",
+      "bytes": 42467,
+      "sha256": "208305296e69e09a5df646db0fdb586af7046185d0f44a866e897acb23013f71"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-02/test_collect_diagnostic_evidence.py",
+      "bytes": 43761,
+      "sha256": "976a9d72c8e9c6f55bb660f5aa948dfb6b84cb9a8a9488c64218a8f1bc177dfc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-02-driver.py",
+      "bytes": 12428,
+      "sha256": "611dab209ff8e01f504e6db4ec5a953819ecf82248902924e50fe66ffc9bc944"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-status-origin-02-binding-allocation.json",
+      "bytes": 2142,
+      "sha256": "ffc0babf86b81ebf99ede1367864a45bd133cd8158d29745279e128eee3cffcf"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-02-actual-target.json",
+      "bytes": 1630,
+      "sha256": "d42e3f263076841862c07ef01614941e0ae0aac8712f00fd14d0acaf8dee5630"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-source-delta.json",
+      "bytes": 9056,
+      "sha256": "4eeff5a41cc991857a51ca3fa8fc315b34498f67bc3976097bea7d47e0af0b9a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/manifest.json",
+      "bytes": 800,
+      "sha256": "7d891243f37882825b75e87a02095cf2c3aff2dd15dbf3c9db2704cf69d761bf"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-02-driver-materialization.json",
+      "bytes": 772,
+      "sha256": "99483fe3053a5c22ac06abd14d8dc52dc5f88092b72c4f88d69b62fe97b6ecec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+      "bytes": 42478,
+      "sha256": "60f776c01e1ba5ac464d46ed756e5b98c1887ecb43913c609e548fd44ba614aa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/test_collect_diagnostic_evidence.py",
+      "bytes": 42346,
+      "sha256": "fef011ff0c877aae492c6b3cb3fcb97b8688b6403df06a063d55e27bf2e97702"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+      "bytes": 12428,
+      "sha256": "9d929412349ef58c28f0a75870325ef6267fba4da86df5590dd029b5fadd3666"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-review/manifest.json",
+      "bytes": 1628,
+      "sha256": "6630df413803083f3eae9e8d8999ab6fe8b939c2f02b858a855e62d08edd9be7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-corrective-review/manifest.json",
+      "bytes": 1493,
+      "sha256": "c2efd0ba1199206ecef4af5d33ba4b76751777062015546052de13fff7654cb4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-status-origin-discriminator.json",
+      "bytes": 132497,
+      "sha256": "8a72fe86d44ec0c5602ade15560d302926f8c00279a66a0c6a06012450c85a5e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-02-binding-review/local-checks.json",
+      "bytes": 1196,
+      "sha256": "0e475d2355d08666c564ec0fd8833467fc9a0546ae483a45c84a56567d856535"
+    }
+  ],
+  "verification": {
+    "direct_rows": 15,
+    "unique_paths": 15,
+    "author_metadata_files": 3,
+    "producer_raw_source_checkpoint_rows": 11,
+    "actual_immutable_Git_blob_reads": 22,
+    "driver_equals_declared_payload": true,
+    "helper_identical_function_class_ASTs_to_P1": 37,
+    "driver_identical_function_class_ASTs_to_P1": 10,
+    "diff_only_declared_literal_bindings": true,
+    "actual_default_RESULT_equals_helper_and_allocated_P2": true,
+    "default_RESULT_namespace_override": false,
+    "actual_P2_members": 2,
+    "Root_expected_terminal_result_final3_unborn": true
+  },
+  "reviewer_controls": {
+    "selected_methods": [
+      "01",
+      "02",
+      "03",
+      "11",
+      "19",
+      "25",
+      "40",
+      "41",
+      "42",
+      "44",
+      "45",
+      "46"
+    ],
+    "methods": 12,
+    "passed": 12,
+    "failures": 0,
+    "errors": 0,
+    "positive_checks": 9,
+    "negative_checks": 52,
+    "children": 0,
+    "API_requests": 0,
+    "CLI_help_processes": 0,
+    "operational_activations": 0,
+    "normal_acceptance_credit": 0,
+    "additional_pure_template_inspection": "target/schema/defaults correct; no run ID in expected; all future actual-proof slots unfilled; terminal run null/jobs empty"
+  },
+  "historical_proof_reuse": {
+    "private_P1_protocol_and_F1_closure": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+        "bytes": 42478,
+        "sha256": "60f776c01e1ba5ac464d46ed756e5b98c1887ecb43913c609e548fd44ba614aa"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/test_collect_diagnostic_evidence.py",
+        "bytes": 42346,
+        "sha256": "fef011ff0c877aae492c6b3cb3fcb97b8688b6403df06a063d55e27bf2e97702"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+        "bytes": 12428,
+        "sha256": "9d929412349ef58c28f0a75870325ef6267fba4da86df5590dd029b5fadd3666"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-review/manifest.json",
+        "bytes": 1628,
+        "sha256": "6630df413803083f3eae9e8d8999ab6fe8b939c2f02b858a855e62d08edd9be7"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-corrective-review/manifest.json",
+        "bytes": 1493,
+        "sha256": "c2efd0ba1199206ecef4af5d33ba4b76751777062015546052de13fff7654cb4"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-status-origin-discriminator.json",
+        "bytes": 132497,
+        "sha256": "8a72fe86d44ec0c5602ade15560d302926f8c00279a66a0c6a06012450c85a5e"
+      }
+    ],
+    "historical_suite_methods": 45,
+    "historical_positive": 93,
+    "historical_negative": 253,
+    "historical_children": 20,
+    "rerun_or_additive_current_claim": false,
+    "source_capsule14": "Historical; compact reviewed two-file delta and fresh pushed-target receipt bind current source; not newly relabelled freeze",
+    "source_latest_delta_review": "independent existing exact unit/Spec review reused; source implementation not rereviewed here"
+  },
+  "producer_schema_sha256": "814a790e877f9df269bb35368281e219836a9da14413a26c024c15dfa1e8d937",
+  "findings": [],
+  "limits": [
+    "No actual native run or new request; previous failed producer and consumed UNKNOWN log read remain historical",
+    "No actual workflow/actor/availability/fsync/review/terminal fact fabricated",
+    "Source and checkpoint equality local immutable Git proof only; no fresh remote-head lookup",
+    "All43 DB/14 browser failures unresolved; backend UNPROVEN; TABLE_ACL_ONLY alone unresolved"
+  ],
+  "remaining_conditions": [
+    "Root adoption of exact reviewed P2 bytes",
+    "Actual prePOST metadata/admission and durable Root intent before separate once POST activation",
+    "Actual terminal/jobs proof before separate once collection activation",
+    "Separate later offline final-three publication grant",
+    "UNKNOWN terminates approach; no opaque normal retry"
+  ],
+  "effects": {
+    "files_written": [
+      "original-report.md",
+      "original-attestation.json",
+      "result.json"
+    ],
+    "source_Spec_private_code_Root_files_author_or_old_records_changed": false,
+    "API_queries_connections_DB_CI_resources_Git_mutations_provider_main_deploy": false,
+    "normal_acceptance_credit": 0,
+    "native_acceptance_credit": 0,
+    "backend_cause_proven": false,
+    "development_complete": false,
+    "release_ready": false,
+    "execution_authorized": false
+  }
+}

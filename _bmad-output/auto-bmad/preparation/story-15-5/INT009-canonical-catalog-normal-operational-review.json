@@ -1,0 +1,613 @@
+{
+  "schema": "INDEPENDENT_INT009_CANONICAL_CATALOG_NORMAL_OPERATIONAL_SOURCE_REVIEW_V1",
+  "status": "PASS_INT009_CANONICAL_CATALOG_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_INT009_CANONICAL_CATALOG_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority_granted": false,
+  "route": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-ops-review-route.json",
+    "bytes": 867,
+    "sha256": "5166f102736b2a6d3a8c3372a663b76052fa26eaa36ccb0d699f1597826a944c"
+  },
+  "reviewer": "/root/validate15_4_high; explicit gpt-6.1-sol High, independent of NativeHigh author and Root operator",
+  "scope": "Targeted actual NORMAL provider/controller/programmatic adapter source/privacy review. No fourth broad story review, no new collector/transport/framework and no application implementation or effect fulfillment.",
+  "findings": [],
+  "finding_count": 0,
+  "required_repairs": [],
+  "actual_bindings": {
+    "frozen5": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/provider-readonly.py",
+        "bytes": 18529,
+        "sha256": "e4527c1808a33120c1424aa47b608ed896fd889c0827d784fc6b355df94ec3dd"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/root-driver.py",
+        "bytes": 18938,
+        "sha256": "dd97a8d5b3e087826b15909eeea896448c49fc23d57de88377e6cc27aad05d7b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+        "bytes": 129335,
+        "sha256": "0085c22b70b84d0041fba8fdda5600f4a43fa15903d2394f9ecbd750b107acc1"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/pure-controls.json",
+        "bytes": 8749,
+        "sha256": "b04c0e9b0fcc6cea78481871a39b1bf85248f2dc101f7ff706e264b2802106c5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/manifest.json",
+        "bytes": 1259,
+        "sha256": "54700aceb179ccad4748147ec1a9c600290cf73978634845e0ba2d783618eb7c"
+      }
+    ],
+    "candidate": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-inert-candidate.json",
+      "bytes": 965,
+      "sha256": "302fcf747cdf8e097659f367b308b86556d069d65ea9552d39910dff0d20aa05"
+    },
+    "independent_source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+      "bytes": 19693,
+      "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+    },
+    "unchanged_capture_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+      "bytes": 18126,
+      "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+    },
+    "unchanged_browser_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+      "bytes": 12881,
+      "sha256": "0d956247e8f80611fed17e4c7bfb16c5578b10ab96b6552a8974550d27ab9684"
+    },
+    "Root_source_commit_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-root-commit-proof.json",
+      "bytes": 1351,
+      "sha256": "4d962f44fb84909d3b74f7e7aa6830dafe897c7e06ef5828b055049fdbbd20f8"
+    },
+    "all8_input_refs_actual_hashes_match": true,
+    "consumed_inert_references": [
+      {
+        "label": "mutation",
+        "reference": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-consumed-mutation-reference.txt",
+          "bytes": 9370,
+          "sha256": "3297755c524750b8386090921877337ca47e8965c76d371d822d4d02c0799427"
+        },
+        "execution_authority": false
+      },
+      {
+        "label": "poller",
+        "reference": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-consumed-poller-reference.txt",
+          "bytes": 3368,
+          "sha256": "5aa56a21c2d84ffacf4eba4a94d5206710b8c1becd15f9fe1e63cdcceb0b3585"
+        },
+        "execution_authority": false
+      },
+      {
+        "label": "native_helpers",
+        "reference": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-consumed-helpers-reference.txt",
+          "bytes": 3107,
+          "sha256": "57c4a14faab3af1141ba4fd098a2ff0136a56307889e78d60c4fb1898ffb0730"
+        },
+        "execution_authority": false
+      }
+    ],
+    "independent_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-independent-controls.json",
+      "bytes": 4254,
+      "sha256": "2be220fdc1ac79282f7818b23171ff4ca46156ffb80f63be61f5bc5c10b30b60"
+    },
+    "actual_dispatcher": {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "lf_bytes": 19492,
+      "lf_sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+      "blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    "adapter": {
+      "bytes": 1762,
+      "sha256": "4aa63a58e373ebb1dd2d7d34188f1d5175144b1ec332a2ae001f3a34a966ca8e"
+    },
+    "policies": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 11938,
+        "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+      },
+      {
+        "path": "docs/process/development-completion-policy.md",
+        "bytes": 8460,
+        "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+      }
+    ]
+  },
+  "identity": {
+    "schema": "ROOT_INT009_CANONICAL_CATALOG_NORMAL_INERT_CANDIDATE_V1",
+    "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "expected_remote_preimage": "a857417162fd73e3dc6ce4b0e1e82b19256ac944",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "mode": "NORMAL",
+    "release_validation": false,
+    "cause_proof": false,
+    "original_int009": false,
+    "source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+      "bytes": 19693,
+      "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+    },
+    "effects_authorized": false,
+    "all_old_slots_closed": true,
+    "normal_acceptance": 0
+  },
+  "source_checks": {
+    "category_rows": 207,
+    "unique_paths": 203,
+    "changed_unique_rows": 4,
+    "unchanged_unique_rows": 199,
+    "categories_from_actual_pinned_predecessor": {
+      "source": 75,
+      "SQL": 118,
+      "provider_triggers": 10,
+      "supplemental": 3,
+      "CDP_companion": 1
+    },
+    "method": "Assembled actual pinned historical207 category rows, normalized field names and checked duplicate consistency. Unique path set exactly203; actual new unique203 differs at exactly declared4 paths.199 rows identical, including all118 SQL metadata rows. Current85 nonSQL raw/LF sizes/hashes/clean Git blob identities verified. No118 raw SQL read/rescan and no Git command. Root must confirm actual HEAD/ancestry/clean-tree/Git object equality and fresh118-vector proof before effects.",
+    "source_inventory_reference": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+      "bytes": 129335,
+      "sha256": "0085c22b70b84d0041fba8fdda5600f4a43fa15903d2394f9ecbd750b107acc1"
+    },
+    "source_review_result": "PASS_INT009_CANONICAL_CATALOG_SOURCE_ONLY;19693/b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1",
+    "source_focused18": "Reused actual source-review evidence, not rerun or NORMAL acceptance.",
+    "provider_inverse": {
+      "predecessor": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-one-case-operational-preparation/provider-readonly.py",
+        "bytes": 21751,
+        "sha256": "acadb13f07890b352c72bb4b158f9fa7d6664d2f5066289fc0704f904744fce9"
+      },
+      "full_inverse_actual_exact": true,
+      "declared_replacements": 15,
+      "restores_sha256": "acadb13f07890b352c72bb4b158f9fa7d6664d2f5066289fc0704f904744fce9",
+      "five_helper_and_capture_predicate_qualification": "Full-file inverse conserves unchanged provider transport/predicate and exact old CLI foundation; no new live transport family."
+    },
+    "driver_helpers": {
+      "actual_byte_identical_count": 12,
+      "predecessor": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-driver.py",
+        "bytes": 15113,
+        "sha256": "a4d977837d3fa49f85f840271787e9407190a5422259b375d52e9886b568d1f5"
+      },
+      "names": [
+        "now",
+        "binding",
+        "write",
+        "native",
+        "required",
+        "git",
+        "read",
+        "checkref",
+        "fresh",
+        "save",
+        "mutation_fresh",
+        "ownedrun"
+      ]
+    }
+  },
+  "assessments": [
+    {
+      "area": "Actual export ABI, options and import behavior",
+      "result": "PASS",
+      "evidence": "Read actual unchanged scripts/ci/checkpoint-dispatch.mjs. checkpoint(command, options, {api,now}) and synchronous githubApi are exported. Programmatic option names match parser output including checkpoint_id, release_validation/cause_proof string false and exact private state path. Module imports only builtins and defines helpers/globals; CLI main runs only when process.argv[1] resolves to its own file. With node -e, argv[1] is options JSON, so the imported module does not run CLI main. Adapter calls SAME checkpoint dispatch; source files are untouched."
+    },
+    {
+      "area": "Fixed adapter and downstream checks before POST",
+      "result": "PASS",
+      "evidence": "Complete actual adapter plus actual checkpoint/githubApi definitions were VM simulated, with all filesystem and spawnSync actions mocked. Exactly4 canonical preGETs then one POST; returned user must equal rthunborg and returned workflow tuple must equal296219797/.github/workflows/ci.yml/active BEFORE POST. No extra GETs. Existing checkpoint validates repository permission and remote branch SHA; negative user/workflow/permission/branch cases all stop with0 POST. Actual JSON.stringify POST is201 bytes/SHA256cf0d0038eaa42a8f3ee41f2b63e2ac7c3fdff7d48e069bdf2d08b47dfaad7f07; inputs only expected_sha/checkpoint_id/release_validation:false. No original-int009 or cause-proof input."
+    },
+    {
+      "area": "Canonical journaling, mutual exclusion and uncertainty",
+      "result": "PASS",
+      "evidence": "Same canonical state.lock exclusive open, exclusive fsynced dispatch-uncertain record before only POST, dispatched state save afterward and lock finally-close/unlink remain active. Source adapter assertions cannot bypass these. VM confirmed healthy normal/dispatched/run_id null/actor/workflow/mode and retained dispatch-uncertain state after POST uncertainty or direct freshness refusal; one POST maximum and no raw response persistence. Root marks dispatch consumed before invocation; partial/timeout/nonzero/invalid capture sets UNKNOWN_STOP through actual top-level failure guard and never retries push/POST."
+    },
+    {
+      "area": "Provider gates, containment and privacy",
+      "result": "PASS",
+      "evidence": "Fixed provider strict fresh activation/current tuple/UUID/self/source reviews/candidate/proposal/allocation/current-proof paths and hashes precede exclusive intent and single GET. Provider scans current nonSQL source and same10 trigger bindings, immutable lock and explicit branch deploymentEnabled=false/no ignoreCommand; source SQL is supplied by fresh Root118-vector proof. Exact project/team/name/GitHub repo identity plus previewDeploymentsDisabled=true and unconditional commandForIgnoringBuildStep=exit0 are checked with closed types before finite values persist. Capture/predicate and5 helpers match qualified21751 predecessor under complete inverse. Raw provider output/errors remain bounded RAM; native/EOF/join/handles/settlement/stream hashes persist. Result is limited ordinary owned-branch Git-push containment only, with Git creation enabled; it makes no blanket manual/CLI/production deployment claim."
+    },
+    {
+      "area": "Root source, activation and once boundaries",
+      "result": "PASS",
+      "evidence": "Root activation exact fields/source/head/ref/checkpoint/UUID/self/proposal and new fixed operational-review/allocation/current-proof/provider paths and byte/hash refs are admitted; actual completed grant turn/tool required, same8 input refs rechecked. Both top-level review status and outcome use required PASS enum for provider/driver interfaces. Publication requires fresh checked source flags/118vectors, source/HEAD/ref/clean tree,203 Git object identities, nonSQL raw/LF identities, no SQL diff and expected remote preimage ancestry. Root source proof and exact frozen5 packet must be independently pinned in the future allocation/activation. Fresh OWN mkdir, absent canonical state/lock, exclusive provider/Root intents and sole Root operator prevent reuse of consumed namespaces; old txt records are inert references only."
+    },
+    {
+      "area": "Freshness at mutations and direct POST",
+      "result": "PASS",
+      "evidence": "Unchanged mutation_fresh checks activation/current source proof/provider completion0..300s immediately after push intent and before bounded nonforce push, and after consumed dispatch intent before invocation. Root additionally requires provider age<=180s before90s bounded adapter process. Actual embedded adapter checks same pinned provider timestamp0..300s immediately before unchanged githubApi POST. VM verifies exact300 boundary passes and future/>300 refuse before POST; uncertain canonical record remains. Any expired boundary closes remaining operation without renewed provider GET or retry. Host UTC clock assumption retained."
+    },
+    {
+      "area": "Finite resolver/poller and closed observations",
+      "result": "PASS",
+      "evidence": "No root duplicate user/workflow GETs: canonical dispatch owns4GET+1POST. Controller allows remote-before1, nonforce FFpush1/readback1, resolver<=6 single bounded pages with5s cooldown, then<=90 run/jobs pairs with30s cooldown and90min wall measured from original operation started_at. observe picks resolver OR poll. Actual AST controls confirm premature poll/early cooldown/closed phase0GET, unique match registration, sixth-empty stop, ambiguity refusal and all9 terminal stop/no later request. Ownedrun pins exact head/ref/title/event/workflow/attempt/actors/repo/id. GET intents fsynced before20s/2MiB read; incomplete capture throws, with counters consumed before read and UNKNOWN_STOP via top-level handler. Job/step projection is metadata only, no artifacts/logs."
+    },
+    {
+      "area": "Evidence and functional NORMAL limits",
+      "result": "PASS",
+      "evidence": "This source PASS grants no effects and proves no native gate. Required NORMAL95 remains68P1F26unexecuted until actual fresh full run/evidence qualification; historical14 feed browser retry0P is retained separately. Existing unfiltered/full DB+RLS, C4 serial/config, essential browser and direct recovery-storage gates/custody are not waived. key deletion, same-session backend/canonical settlement and recovery evidence remain actual-execution requirements; child close/stack stop/job terminal alone do not establish them. Separate terminal evidence acquisition requires its own actual finite allocation/activation/review."
+    }
+  ],
+  "independent_controls": {
+    "evidence": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-independent-controls.json",
+      "bytes": 4254,
+      "sha256": "2be220fdc1ac79282f7818b23171ff4ca46156ffb80f63be61f5bc5c10b30b60"
+    },
+    "AST_and_binding_groups": {
+      "qualified": 8,
+      "failed": 0,
+      "initial_tool": "290530",
+      "initial_counts": "7P1F",
+      "initial_native_exit": 0,
+      "targeted_closure_tool": "eb5e66",
+      "targeted_native_exit": 0,
+      "history": "Actual admit reached input_refs omitted from reviewer synthetic checkref map, yielding KeyError. Complete synthetic reference map fixes only sandbox fixture. Original7P1F retained;1 targeted group closes,7 other groups reused nonadditively. No operational source edit."
+    },
+    "actual_complete_composition_VM": {
+      "tool": "a0977b",
+      "native_exit": 0,
+      "wall_seconds": 0.1441898,
+      "qualified_checks": 8,
+      "failed": 0,
+      "method": "Actual checkpoint module source with static imports/export declarations/CLI main guard removed, compiled inside Node VM; actual full embedded adapter with static imports removed invokes those actual definitions. Fake filesystem/spawnSync and bounded fixed clock only; no actual application module import, real gh/API or state file.",
+      "checks": [
+        "healthy exact4GET+1POST/201byte body/canonical normal state",
+        "wrong user before POST",
+        "wrong workflow before POST",
+        "downstream missing write permission before POST",
+        "downstream wrong branch SHA before POST",
+        "expired provider before POST retains durable uncertain state",
+        "uncertain POST retains state/no retry/raw omitted",
+        "exact300s passes/future refuses"
+      ]
+    },
+    "author_evidence_reused": {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/pure-controls.json",
+        "bytes": 8749,
+        "sha256": "b04c0e9b0fcc6cea78481871a39b1bf85248f2dc101f7ff706e264b2802106c5"
+      },
+      "qualified_AST_groups": 9,
+      "nested_adapter_VM_checks": 6,
+      "failed": 0,
+      "nonadditive": true,
+      "history": "Initial7P1F omitted computed TITLE sandbox expression and preparse failures retained by author; final targeted ownership/admit closure reused other groups. Prior12 provider/capture controls remain unchanged evidence. Independent VM tests complete actual dispatcher composition rather than only extracted adapter functions."
+    },
+    "effects": {
+      "live_provider_API": 0,
+      "Git_commands": 0,
+      "real_Popen_or_spawnSync": 0,
+      "actual_application_module_imports": 0,
+      "application_tests_config_load": 0,
+      "managed_resources": 0,
+      "source_state_tracked_edits": 0
+    }
+  },
+  "full_interfaces": {
+    "paths": {
+      "provider_activation": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-provider-readonly-activation.json",
+      "root_activation": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-effects-activation.json",
+      "source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-current-source-proof.json",
+      "allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-canonical-catalog-normal-effects-allocation.json",
+      "operational_review": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-review.json",
+      "provider_qualification": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-vercel-readonly-qualification.json",
+      "provider_intent": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-vercel-readonly-consumed-intent.json",
+      "provider_outer_receipt": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-provider-execution-receipt.json",
+      "state": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-dispatch-state.json",
+      "root_operation": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation"
+    },
+    "provider_activation_NONAUTHORIZING": {
+      "schema": "ROOT_INT009_PROVIDER_ACTIVATION_v1",
+      "execution_authorized": false,
+      "operation_id": null,
+      "issued_at_utc": null,
+      "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+      "branch": "codex/epic-15-scheduling-time-calendar",
+      "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+      "provider_reader_sha256": "e4527c1808a33120c1424aa47b608ed896fd889c0827d784fc6b355df94ec3dd",
+      "provider_GETs": 1,
+      "allocation": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-canonical-catalog-normal-effects-allocation.json",
+        "bytes": null,
+        "sha256": null
+      },
+      "current_source_proof": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-current-source-proof.json",
+        "bytes": null,
+        "sha256": null
+      },
+      "operational_review": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-review.json",
+        "bytes": null,
+        "sha256": null
+      },
+      "source_review": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+        "bytes": 19693,
+        "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+      },
+      "capture_review": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+        "bytes": 18126,
+        "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+      },
+      "browser_review": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+        "bytes": 12881,
+        "sha256": "0d956247e8f80611fed17e4c7bfb16c5578b10ab96b6552a8974550d27ab9684"
+      },
+      "candidate": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-inert-candidate.json",
+        "bytes": 965,
+        "sha256": "302fcf747cdf8e097659f367b308b86556d069d65ea9552d39910dff0d20aa05"
+      },
+      "proposal": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+        "bytes": null,
+        "sha256": null
+      }
+    },
+    "root_activation_NONAUTHORIZING": {
+      "schema": "ROOT_CANONICAL_CATALOG_NORMAL_EFFECTS_ACTIVATION_V1",
+      "execution_authorized": false,
+      "operation_id": null,
+      "issued_at_utc": null,
+      "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+      "ref": "codex/epic-15-scheduling-time-calendar",
+      "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+      "driver_sha256": "dd97a8d5b3e087826b15909eeea896448c49fc23d57de88377e6cc27aad05d7b",
+      "proposal": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+        "bytes": null,
+        "sha256": null
+      },
+      "operational_review": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-review.json",
+        "bytes": null,
+        "sha256": null
+      },
+      "allocation": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-canonical-catalog-normal-effects-allocation.json",
+        "bytes": null,
+        "sha256": null
+      },
+      "current_source_proof": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-current-source-proof.json",
+        "bytes": null,
+        "sha256": null
+      },
+      "provider_qualification": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-vercel-readonly-qualification.json",
+        "bytes": null,
+        "sha256": null
+      }
+    },
+    "source_proof_NONAUTHORIZING": {
+      "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+      "branch": "codex/epic-15-scheduling-time-calendar",
+      "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+      "checked_at_utc": null,
+      "tracked_clean": false,
+      "source_candidate_Git_equal": false,
+      "all_source_bindings_verified": false,
+      "provider_trigger_bindings_verified": false,
+      "source_rows": 203,
+      "SQL_count": 118,
+      "SQL_RAW_vector_sha256": "a6381d9d17d296fb5b20587ccf06c65f4c4d58fe45bf0e6711b4d61a584ef82e",
+      "SQL_LF_vector_sha256": "44affd4128ee22262017d27d461784a63ded12075c5196b5c7a1316cb356476b"
+    },
+    "operational_review_required_outcome": "PASS_INT009_CANONICAL_CATALOG_NORMAL_OPERATIONAL_SOURCE_ONLY",
+    "allocation_required_fields": {
+      "turn_status": "completed",
+      "tool_status": "completed",
+      "actual_turn": "<actual trusted completed Coordinator turn>",
+      "actual_tool": "<actual completed finitegrant tool>"
+    },
+    "activation_types": "Fresh canonical UUIDv4 operation distinctcheckpoint; fresh issued_at_utc UTC<=300s. All references exactnewownedpath/bytespositiveinteger<=1MiB/64lowercasehexSHA. Root fills actual bytes/hash after source review/actualallocation/currentproof. False/null templates refuse. Provider source pins candidate/source reviews/proposal; driver pins self/proposal, actualsource/currentproof/provider/grant/operationalreview via exclusiveRootactivation.",
+    "sourceproof_limits": "Root fresh proof must confirm source0ed/candidatefd930actual Git/203rawLF/118SQLvectors/current10guards/branchclean. Preparation computed only4changed-file identities and reused199bindings; author ran noGit/no118rawscan. Driver checks203Gitobjects and nonSQLraw/currentcleantree+noSQLdiff vspriorpusheda857.",
+    "outer_attribution": "NativeHigh provider records actual returned tool chunk/exit/wall/session/waits in NEW outside receipt; qualification stays immutable. Root reads actualqualification/closure+outer attribution before creating root-effects activation. Driver native receipts record ownchildren, not independentRoot hostobservation.",
+    "once": "Root journals one invocation before provider/publish. Exclusive provider intent; fresh root OWN directory/state and exclusive mutation intents. Any refusal/uncertainty consumesRootinvocation, no retry/oldgrantreplay. UNKNOWN_STOP/ROOT_STOPPED close remaining slots; read-only observe returnsWAIT0GET when early/closed/unregisteredpoll. Root is sole operator.",
+    "review_gates": "DistinctHigh actualprovider/controller/adapter source/privacy/custody review, then actualcompleted finiteCoordinatorallocation, then Rootfreshproof/exclusiveactivations. Currentpreparation grants no effects."
+  },
+  "actual_canonical_dispatch_contract": {
+    "original_equivalent_CLI_not_invoked": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "dispatch",
+      "--repo",
+      "rthunborg/Kopplas",
+      "--ref",
+      "codex/epic-15-scheduling-time-calendar",
+      "--sha",
+      "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "--checkpoint-id",
+      "ec23cc94-24db-4b37-827b-3cba5246222b",
+      "--release-validation",
+      "false",
+      "--cause-proof",
+      "false",
+      "--state",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\INT009-canonical-catalog-normal-dispatch-state.json"
+    ],
+    "actual_programmatic_options": {
+      "repo": "rthunborg/Kopplas",
+      "ref": "codex/epic-15-scheduling-time-calendar",
+      "sha": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+      "release_validation": "false",
+      "cause_proof": "false",
+      "state": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\INT009-canonical-catalog-normal-dispatch-state.json"
+    },
+    "actual_invocation_delta": "Fixed Node program embedded in root-driver uses SAME exported checkpoint(dispatch,options,{api:guardedApi}) and unchanged exported githubApi. No dispatcher/product/file edits. Existing CLI did not pin rthunborg or workflow296219797; adapter checks those actual already-returned replies beforePOST. No duplicateGETs.",
+    "actual_Node_argv_shape": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "--input-type=module",
+      "-e",
+      "<exact embedded ADAPTER>",
+      "<compact exact options JSON>",
+      "<pinned provider utc_completed>"
+    ],
+    "adapter_UTF8_bytes": 1762,
+    "adapter_sha256": "4aa63a58e373ebb1dd2d7d34188f1d5175144b1ec332a2ae001f3a34a966ca8e",
+    "dispatcher_source_row": {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "lf_bytes": 19492,
+      "lf_sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+      "blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    "prePOST_requests": [
+      {
+        "method": "GET",
+        "endpoint": "user"
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/collaborators/rthunborg/permission"
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/branches/codex%2Fepic-15-scheduling-time-calendar"
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/workflows/ci.yml"
+      }
+    ],
+    "POST": {
+      "method": "POST",
+      "endpoint": "repos/rthunborg/Kopplas/actions/workflows/296219797/dispatches",
+      "body": {
+        "ref": "codex/epic-15-scheduling-time-calendar",
+        "inputs": {
+          "expected_sha": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+          "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+          "release_validation": "false"
+        }
+      },
+      "JSON_stringify_bytes_no_newline": 201,
+      "JSON_stringify_sha256": "cf0d0038eaa42a8f3ee41f2b63e2ac7c3fdff7d48e069bdf2d08b47dfaad7f07",
+      "ordinary_inputs_only": true
+    },
+    "preserved": "Canonical validation/permission/branch/currentworkflow/state.lock/exclusivefsynceddispatch-uncertain record/onlyPOST/no-retry and normalflag semantics unchanged. Supplying checkpoint_id preserves exact UUID rather than generated identity. original_int009 is absent/defaultfalse; causeproof false produces no diagnostic input. No temporary6/7 code transplanted.",
+    "freshness": "Unchanged300s mutation_fresh immediately beforepush and dispatcher. Additional providerage<=180s before bounded90s invocation. Embedded fixed API adapter directly checks same immutable completion stamp<=300s immediately before unchanged githubApiPOST. Actualnative0/fullsettledwithin90 required; any uncertainty STOP, no retry. HostUTC clock assumption explicit; no freshness claim at remote server response.",
+    "registration": "A successful canonical POST leaves exact owned state phase dispatched/run_idnull. Root controller resolves actualrun by exacthead/title/workflow/actors/repo/ref/event/attempt1; no defaultregistration/inputacceptance preclaim. ActualPOST outcome determines accepted/refused/uncertain."
+  },
+  "future_effect_bounds": {
+    "provider_GET": {
+      "max": 1,
+      "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd",
+      "caps": {
+        "seconds": 15,
+        "stdout": 4194304,
+        "stderr": 262144
+      },
+      "mutations": 0,
+      "limited_contract": "Fresh point-in-time ordinary ownedbranch Git-push buildskip only; previewDisabledtrue/unconditionalexit0/exactprojectteamrepo/mainbranchmapfalse/noignoreoverride. Gitcreationenabled/cancelledrecordspossible. Not blanketmanualCLI/productiondisable or actualfuturealias proof."
+    },
+    "remote_before": {
+      "max": 1,
+      "required_sha": "a857417162fd73e3dc6ce4b0e1e82b19256ac944",
+      "ref": "refs/heads/codex/epic-15-scheduling-time-calendar"
+    },
+    "FFpush": {
+      "max": 1,
+      "force": false,
+      "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "timeout_seconds": 60
+    },
+    "remote_readback": {
+      "max": 1,
+      "required_sha": "fd930e7158e7fd9dc89cc7d759667e75803f6e89"
+    },
+    "canonical_dispatch": {
+      "invocations_max": 1,
+      "prePOST_GETs_max": 4,
+      "POSTs_max": 1,
+      "outer_seconds": 90,
+      "per_API_seconds": 15,
+      "per_API_stdout_cap": 4194304,
+      "outer_stdout": 524288,
+      "stderr": 65536
+    },
+    "resolve": {
+      "GET_max": 6,
+      "per_page": 20,
+      "minimum_cooldown_seconds": 5,
+      "no_pagination": true,
+      "unique_owned_only": true
+    },
+    "poll": {
+      "run_GET_max": 90,
+      "jobs_GET_max": 90,
+      "minimum_cooldown_seconds": 30,
+      "max_wall_seconds": 5400,
+      "jobs_per_page": 100,
+      "no_pagination": true,
+      "stop_all9terminal": true,
+      "API_seconds": 20,
+      "API_stdout": 2097152,
+      "stderr": 65536
+    },
+    "provider_writes": 0,
+    "repository_variables": 0,
+    "artifact_logs_GET_now": 0,
+    "diagnostic_runs": 0,
+    "main_merge_deploy_demo_db_push": 0,
+    "local_managed_resources": 0
+  },
+  "remaining_execution_conditions": [
+    "Actual completed Coordinator finite-effects allocation must explicitly pin this exact reviewed5-file packet, fixed candidate/ref/source/checkpoint, provider1+remotes2+FFpush1+canonical4GET1POST+resolver6+poll90pair/90min bounds. No current allocation/effect authority is inferred.",
+    "Root independently reads exact source-only PASS and pins both status/outcome enum evidence before constructing activations.",
+    "Root fresh current-source proof must qualify actual source0ed/candidatefd930/ancestor expectedremotea857/clean tracked tree/203 Git identities+85 nonSQL source/118 SQL vectors/same10 triggers and actual current source reviews.",
+    "Provider executes only after new exact fixed-path activation and one-invocation journal; Root qualifies actual settled provider receipt plus outer tool provenance before Root effects activation.",
+    "Root remains sole operator; fresh exclusive namespaces, no old TXT/activation execution, no retries or provider refresh after uncertainty.",
+    "Only actual terminal full NORMAL evidence and separate reviewed artifact acquisition can change coverage/cause/custody status; merge/deploy/provider mutation/resources remain outside this source review."
+  ],
+  "continuity": {
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "qualified_feed_browser_retry0_passed": 14,
+    "native_acceptance_added": 0,
+    "recovery_storage_and_custody": "pending actual evidence",
+    "current_remote_provider_dispatch_run": "UNKNOWN; not queried by reviewer"
+  },
+  "open_questions": [],
+  "deferred_work": [
+    "Actual finite allocation, fresh Root proofs and activation, provider qualification and bounded NORMAL operation by Root.",
+    "Separate native fulfillment, terminal acquisition/qualification and development/release gate assessment."
+  ],
+  "blockers": [],
+  "conservation": "Frozen5 rehashed unchanged immediately before this private report. Only owned private controls and this review written; no tracked/state/Git/source/preparation mutations. No live GET/provider/push/POST/runtime/resource effects."
+}

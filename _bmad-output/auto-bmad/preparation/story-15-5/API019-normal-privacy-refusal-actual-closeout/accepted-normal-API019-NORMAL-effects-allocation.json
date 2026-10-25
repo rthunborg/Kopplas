@@ -1,0 +1,28 @@
+{
+  "schema": "ROOT_API019_NORMAL_ACTUAL_COMPLETED_ALLOCATION_V1",
+  "actual_turn": "01a16945-a0ec-7f52-babc-b1ff633605cd",
+  "turn_status": "completed",
+  "turn_completed_at": 1792767582,
+  "actual_tool": "exec-d0138dae-75f9-4134-b469-35be130dc24b",
+  "tool_status": "completed",
+  "tool_arguments": {
+    "threadId": "01a120bb-ec6d-7611-9dde-ca64bc8e280f",
+    "prompt": "Coordinator grants ONE NEW finite NORMAL API019 evidence checkpoint, notfunctionalrepair or unchangedblindrerun. Actual independentHigh15773/SHAc88070b98eed3825c4de55ef522cd2b02ff3621a7141c19e9961969fd086554b bothPASS_API019_NORMAL_OPERATIONAL_SOURCE_ONLY/findings[] verifiedf02904. Saveactualcompletedturn/tool beforeexclusiveactivation. Bind exact5 B/normal-API019-NORMAL-operational-preparation provider20460/3dbaf1cf1bd9b969d73a66ba1132f8d38bfdb193bf94f095e58776cb357225ec driver20990/cb7c0415f6265c8ffa1f2465a776fb8584b3f7f76e239d76397e7c1ce322a4d8 proposal217350/e79f5dc5cfc399d3c84cb75425c92b2e360c92ddbe717d9bb5cc1114f10a382e controls12123/55b7fa5692846d1ea18472d089c03bfbb528be6189f563c4f73fdaf784236d2d manifest1148/7208774925d2bc38ebf594ef5135afdf107c9047a2c8dc4c20fdce3d7081d322/currentactualreviewREF_PATHS/noalias.\nExactHEADedce7b8725ad379224bfa9fea517ad097f3906cb/sourcee52568795789034c556f64b0721318f75aa13691/ownedMAINrefcodex/epic-15-scheduling-time-calendar/CP7718bd09-e9b0-4f0b-956b-3cece4d8a28a/ope7f012f0-db8c-427c-9d5c-52b20fcb4914/workflow296219797/actor+trigger rthunborg/attempt1/NORMALallotherflagsfalse. Remote-before2c8e8077f74067a06cd5e6c5136e4c545b83a5ba exactcleanFF. Inert329candidatec4990b393fae877972657f272a2a210fabdc826e3253ded0ba08e549a6eac208/current204Git86rawLF118SQLGitonly10triggersinstall/27pins/3deltacatalog440-19-191 proof<=300s mandatory; no rawSQLrescan/duplicatecatalog.\nFiniteONEfreshreadonlyexactVercelproject/teamGET15sLOOP4MiBstdout256KiBstderr PLUSsamechildwait<=2s+<=2joins<=2seach, nothardtotalwall. ActualpointintimeownedbranchgitdeploymentEnabled=false/identity/config/nooverride ordinaryGitcontainmentONLY/no manualmainproductionclaim/createDeploymentsstatusmetadata. Rootreadsactualqualification+outercapture thenfreshrootactivation/provider<=180s/sourceproof<=300s immediatelymutations/POST. Rootremote-beforeGit1LOOP20s/nonforceexplicitFFpush1LOOP60s/readbackGit1LOOP20s; canonicalSAMEexportcheckpoint+unchanged1762adapter FOURstrictmetadataGET+<=ONEPOST/NodeLOOP90s/API15s4MiB. ControllerGit/Node512KiBstdout64KiBstderr, metadataLOOP20s2MiBstdout64KiBstderr; PLUSsamechildwait<=2s+<=2joins<=1seach. No silenthardwallclaim.\nRootSOLEresolver<=6GET/page20/min5s/uniqueactualtuplebeforepoll; <=90exactrun+90latestjobsGET/page100/min30s/immutableoriginal5400sstartedclock/all9terminalimmediateSTOPfreezecloseunused/no postterminalpoll/secondpoller/extraPOST/unallocatedcancel. Exclusivefsyncedconsumedper-effectintents/fullphysicalEOFjoinedclosedsettled/nativeexit+actualouterattribution/rawRAMclosedprojections. Refusal/drift/partial/unknown/ambiguitySTOPconsumesunusedclosed/no retry/replay/reset/renewal/leaseextension/adoption.\nArtifact/logGET0NOW/separateactualterminalreaderreview+newmax5grantlater/source-label-only32KiBexplicitnotgeneric. Variables/providerwrites/otherCI/localresources/sourceedits/merge/deploy/demo/dbpush0. Alloldrun/readslotsclosed. Current93P1F1zero/causeUNKNOWN/DBcustodyretained/P5OPEN/full95+recoveryqualificationstillmandatory. Proceedexactnewinformationcheckpoint/reportactualtupleorpreciserefusal."
+  },
+  "source_thread_id": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+  "maximum_provider_GETs": 1,
+  "maximum_remote_Git_operations": 3,
+  "maximum_canonical_GETs": 4,
+  "maximum_POSTs": 1,
+  "maximum_resolver_GETs": 6,
+  "maximum_poll_pairs": 90,
+  "original_clock_seconds": 5400,
+  "artifact_GETs": 0,
+  "normal_acceptance": 0,
+  "no_retry": true,
+  "all_prior_slots_closed": true
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "ROOT_MECHANICAL_C4_F1_REVIEW_ADMISSION_v1",
+  "at": "2026-10-21T17:59:20.458332+00:00",
+  "verdict": "PASS_PLAN_ONLY_F1_CLOSED",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-review/original-report.md",
+      "bytes": 4918,
+      "sha256": "ce9addb2e75809a1e808fd3548ffb81196c1a5e3bfbe00b00965596fc66030b1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-review/original-attestation.json",
+      "bytes": 11145,
+      "sha256": "1ab47703ba2ce6f9b2469c00cdfa2096191cc7770bede0562c2d0dc66e437c60"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-review/result.json",
+      "bytes": 1801,
+      "sha256": "5c581882f26b54b142f76dd34be434cef5d54760e37b4b98f8c26f1c1b5cb928"
+    }
+  ],
+  "bound_refs_checked": 23,
+  "independent_pure_checks": 19,
+  "native_or_SQL_queries": 0,
+  "source_edit_authorized": false,
+  "native_effects_authorized": false,
+  "normal_acceptance_credit": 0,
+  "remaining": "All C1-C7 and factory/native lifecycle/rollback/restoration unimplemented/unproved; actual six-path source allocation required, then code review and native gates. Privacy/browser/custody failures remain."
+}

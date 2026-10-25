@@ -1,0 +1,51 @@
+{
+  "schema": "ROOT_INT009_CONDITIONAL_FOUR_PATH_SOURCE_ADMISSION_v1",
+  "status": "ADMITTED_SOURCE_ONLY_AFTER_DISTINCT_HIGH_PLAN_PASS",
+  "actual_completed_coordinator_turn": "01a163b2-1d57-75d0-965e-d6081be0d78b",
+  "actual_completed_coordinator_tool": "exec-7de95253-7054-47ef-bd83-1cc6cc07a638",
+  "Root_grant_read": "read_thread actual completed turn/tool then saved fb7c85/native0",
+  "grant": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-main-INT009-four-path-source-allocation.json",
+    "bytes": 3132,
+    "sha256": "94cb549cd20e1de470c821389d1c08028ff59e3dfb53cb4c02308a064346937c"
+  },
+  "plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-qualified-setup-assessment.json",
+    "bytes": 15556,
+    "sha256": "d4af7e4c430b43013ed7f55bed05707b0bac910ffb0e1b850652be37acd23c98"
+  },
+  "independent_plan_privacy_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-capture-plan-review.json",
+    "bytes": 18020,
+    "sha256": "d012c3d3612b7c47df0518ffbc167fbf26d7a85fadd837c847e096c2ed24f083"
+  },
+  "Root_actual_review_read": "042325/native0",
+  "review_verdict": "PASS_PLAN_WITH_MANDATORY_IMPLEMENTATION_CONDITIONS",
+  "mandatory_conditions": [
+    "CAPTURE-P1",
+    "CAPTURE-P2",
+    "CAPTURE-P3",
+    "CAPTURE-P4",
+    "CAPTURE-P5"
+  ],
+  "baseline": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-four-path-preimplementation-baseline.json",
+    "bytes": 3779,
+    "sha256": "7a1a21783d8088e7aebb026f9c03f95af51cbb2c7458d0710e4df670e373ff65"
+  },
+  "exclusive_source_claims": [
+    "tests/integration/commands/calendar-feed.int.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_claim_owner": "Epic15 Root and existing explicitSolHigh author; no concurrent writer authorized",
+  "ownership_basis": "Completed Coordinator exact4grant uses actually read Documents owner notLoaded/completedOct13 and retained integrated claims; E16complete/noactiveclaims; no known new overlap, not fresh owner ACK or foreign adoption; stop on actual conflict",
+  "all118SQL": "immutable RAW/LF vectors preimplementation verified a2cc47",
+  "bounded_unit_static_controls": "Actual affected source controls, TS/lint/reader/SRO allowed; not native DB/browser execution",
+  "native_runtime_API_resources_push_dispatch_vars_deploy_merge_authorized": false,
+  "normal_acceptance": 0,
+  "P5": "OPEN",
+  "broad_review_counter": 3,
+  "fourth_broad_review": false
+}

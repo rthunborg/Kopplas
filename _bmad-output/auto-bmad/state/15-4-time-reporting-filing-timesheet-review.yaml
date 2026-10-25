@@ -1,0 +1,250 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 15-4-time-reporting-filing-timesheet-review
+epic_num: 15
+story_num: 4
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-15-scheduling-time-calendar
+status: done
+updated_at: "2026-10-25T15:43:28Z"
+started_at: "2026-10-20T04:02:04Z"
+completed_at: "2026-10-25T15:43:28Z"
+active_seconds: 16534
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: tea_per_story
+selected_role: tea-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Post-dev coverage audit of actual time-report RLS, nudge concurrency and transactional integrity; reuse qualified native evidence, no broad code review"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, rls, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, rls, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"cross_model_layer\",\"profile\":\"diverse_review\",\"role\":\"independent-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Explicit High ownership-inventory successor for actual service-only authorization and shared fault-DDL/test-resource contracts; approvedspec/source unchanged\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, rls, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Resume same explicit High ATDD parent after first model-capacity failure; completed High API/E2E workers reused; no new broad generation or runtime\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, rls, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent exact-head native CI qualification of actual time-report RLS, transactional opt-out barriers, migration and physical Storage assertion provenance; evidence-only no source review round\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent native qualification of successor d798b286 after bounded CI fixture cleanup and accessible-selector repair; actual previouslyunreached nudge/race/rollback/browser tails, prior51ffailure immutable; evidence-only no reviewround\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent native qualification of cad4d37f after exact two-E2E numeric-assertion repair; priorDB fullypassed but current001 SQLboolean/audit/week/reload tails require fresh execution; evidence-only, no reviewround\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct final delivery truth/provenance audit of actual cad4 native RLS/transactional evidence and frozen-source dependency bindings; evidence audit only, not another code-review round\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Post-dev coverage audit of actual time-report RLS, nudge concurrency and transactional integrity; reuse qualified native evidence, no broad code review\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "New time_reports schema and own-row versus PL/Admin review RLS require high-risk ATDD/automate; no last-three story trace advisory."
+epic_story_count: 6
+stories_after_in_epic: 2
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-4-time-reporting-filing-timesheet-review.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: [oversized]
+followup_passes: 0
+hitl_halt: "auto-continued (epic — no halt)"
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [5040f683cf9446d39de8512cdca82242c55fca3e, 05b10ce2c35e33269e4ccb359b770fb25eae2938, eba8a9de49153bf5e9cc86098ddaf4b7c39ea058, 38b3a60257e32a482fca93e840fd7e5c858e1f86, 4862704665cb12e4f577ecac59ee173c49c36763, 73169cc0c75d88fbb16dc999ef99cbd9028ff361, 1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34, 3bd815887a6c4a246d94956eb021b1b6ea0525c2, 2150c07cafb44eedc31baab45dcc20473382ce82, 51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7, 71f061b83de04d8f888aaa18f98c4e1960d9d9f4, 0563b4eb65ca5229ffe94c0bf63188a6070a26ad, d798b28609676198e5f975d1a5ea3d301a84b647, f20208dca11f4f1f4106cab4a4f8322b945ace21, 738d62dd095706b58a2c85fe9a1c25b5ffbfffb1, cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1, 8a6244072975181a7505e85006accc5aeb0663c3, 549999e2535d4c2ace3d262e23a6774adfc06dbd, 92dbbef351b694ea58138bee73091c4e9c4cdcaf, 5820e0f1e65f70d914b9adfbb9713c29df682667]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/108"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39415418173"
+ci_status: passed
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  oracle: "Owner2026-10-15 prohibits legacyURLs/browsing; useapprovedrequirements/existingdesignsystem/accessibility andrecordowner-authorizeddefaults, notlegacyobservations."
+  ownership: "Own15.3spec/epic15contextpreparationonlyinitially; coordinateactualDocuments/E16sharedfiles/migrations/mutablefixturesbeforeoverlappingimplementation."
+  spec_validation: Prepare and independently validate every story specification before build.
+  unattended: "Full sequential epic request; ordinarySol6.1Low, actualsensitiveSol6.1High delegates."
+  calendar_host: "ContractD acceptance transferred/carried in15.1; preserveintegratedoutcomes."
+  deploy: Forbidden
+  merge: "No main merge this run; retainbranches; onefinalepicPR."
+  merge_main: false
+  retro: "Epic14 October8 accepted-with-open-items authoritative; October7 rejection historical."
+  checkpoint_push: "Reviewedboundedcheckpointpushes/standardCI authorized; preserveownership/exactsourceevidence andno deployment."
+  development_completion_policy: 2026-10-19
+  deployment: false
+  one_epic_pr: true
+  owner_preview_policy: "AutomaticPreviewsremain disabled untilownerreenables; no manualdeployment/provider/secrets changes authorized."
+  frontend_final_PR: "Apply and verify agent-fix label; attach finalepicPR."
+  owner_resume: "Explicit owner authorization after2026-10-19 development-completion policy; no implicit paused-session resumes."
+constraints:
+  - "Fresh15.4 specification and distinct High validation before build; preparation may write only ownspec/ownedepic15context/story15.4preparation artifacts. No15.4source/schema/test/runtime allocation yet."
+  - "FreshCoordinator20Oct snapshot7e1e05d64ff28638b2b606a78ba293922e65ab9f359e00f86049f6929c78a4b8: E16idle90f53dc8/16.3blocked2actualproductdecisions, no activeDocumentsclaim orcollisionwith15.4spec/context preparation. Exactdelta before overlapping edits; no blanket ACK gate or E16dependency."
+  - "Preserve v3facts/proofs/domains+13claims/tenantlocks/atomicconflictrefresh, 16.2membership/lead/date/jobscope/role/24migrationassertion contracts on later integration, immutable105/106/107 and owned108. Derive inventories fromactualhistory; do notimport absent E16files."
+  - "Prior15.3 source qualified atd550/run39363860222 all5requiredPASS. Latermetadata/P6/P7 only through e6db; not new15.4implementation evidence. Inherited epic review_unverifiedTRUE mustremain."
+  - "No legacyURLs/browsing/inferredparity. Use approvedscope, existingdesignsystem/accessibility, proportionalheadless domain/state/validation/actions and usableUI; owner-authorizeddefaults documented asdesign, not legacyevidence."
+  - "No inferred money rates/valuation frommerejoblinks; actualtime/money/auth/acceptedstate integrity decisions High. Preserve3roundcap/independentreview/actualexecutedevidence. Developmentcomplete distinct from deferredreleasevalidation."
+  - "No mainmerge/deployment/provider/secretschanges/pausedsessionresume/foreigncheckoutwrites. One finalepicPR labeledagent-fix/attached, retainbranches."
+  - "Coordinatorlatest20Octnotice2c79aa0ae8a2f8196a7f2f949b4b97cf947104c8cb7acf741b7bfbfd435c4107: E16ownerdecisionsresolved/16.3PLANNINGONLY/no sharedimplementationgrant. Continueaccepted15.4scope/109reservation; E16futureexactsharedoverlapserializedviaCoordinator; no extraACK/newfreeze/otherchatresume."
+p3_author_plan:
+  HALT: ready-for-dev
+  baseline: 5040f683cf9446d39de8512cdca82242c55fca3e
+  tasks: 10
+  GWT_ACs: 9
+  candidate_kernel_sha256: 3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb
+  approved_kernel: null
+  trackedsource_and_context_unchanged: true
+  owned_preparation_files: 13
+  audit: 7/7+READY+validator+reader+discovery+preservation+diffcheckPASS
+  implementation_started: false
+  resources_started: 0
+p3_preparation:
+  status: independently-validated-and-frozen
+  baseline: 5040f683cf9446d39de8512cdca82242c55fca3e
+  approved_kernel_sha256: 3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb
+  spec_raw_sha256: 7933d020fba0986d283294cb94f85859a58d1fdc83f884a4d29e8b69751c89bb
+  independent_checks: 26
+  independent_findings: 0
+  tasks: 10
+  GWT_ACs: 9
+  author_artifacts_verified: 13
+  all_preparation_files_frozen: 19
+  report_sha256: bc2a5e15a4a588a6de0dd974ca40424927767abd1ad5e88ead7e2d33245bfdaa
+  Root_admission_sha256: e26abdbdc1b3dc4629ed3a5102a92b644c41dbe439868737c6117b934d330a44
+  coordinator_allocation: pending exact actual scope
+  implementation_started: false
+  resources_started: 0
+ownership_coordination:
+  status: "ACCEPTED-conditional-scope; priorholdresolvedbydirecthumanapproval"
+  receipt: ".env.epic15.mail-runtime/story-15-4-preparation/root-coordinator-allocation-20261020.json"
+  sha256: c3d1d00b3b52e215bbf2c7be7ac5b1281b7527a8286bc3d2090c10ef1a057450
+  verified_human_turn: 01a1584f-0333-7b22-84ea-cb6557a0a6f8
+  migration_reserved: 20261020190000_time_reports.sql
+  migration_write_grant: true
+  migration_recheck_before_creation: true
+  additional_ACK_required: false
+  original_bindings_conserved: 19
+  P4_started: false
+  implementation_started: false
+  resources_started: 0
+p4_recovery:
+  status: "resolved after one sameHighparentfinalizationretry; childrennotrespawned"
+  model_capacity_failures: 1
+  bounded_retries: 1
+  model_changed: false
+  duplicate_generation: false
+p4_atdd:
+  status: "complete RED scaffolds; no acceptance execution"
+  ACs_mapped: 9
+  skipped_declarations: 50
+  framework_parameterized_declarations: 0
+  API: 32
+  E2E: 3
+  unit: 11
+  SSR_component: 4
+  unit_native_skipped: 11
+  temporary_missing_module_failures_before_assertions: 11
+  acceptance_assertions_passed: 0
+  acceptance_assertions_failed: 0
+  DB_browser_Storage_executions: 0
+  typecheck_native_exit: 0
+  focused_ESLint_native_exit: 0
+  unused_destructuring_warnings: 8
+  required_nested_workers: API+E2E explicitSolHigh/completed/reusedafterparentcapacityerror
+  original_bindings_conserved: 19
+  all50_P5_activation_required: true
+  NUDGE001_SQL_DST_midnight_vectors_required: true
+  resources_started: 0
+  artifact_paths: ["_bmad-output/test-artifacts/atdd-checklist-spec-15-4-time-reporting-filing-timesheet-review.md", "_bmad-output/test-artifacts/atdd-15-4-api-worker.json", "_bmad-output/test-artifacts/atdd-15-4-e2e-worker.json", "_bmad-output/test-artifacts/atdd-15-4-red-probes.json", "_bmad-output/test-artifacts/atdd-15-4-preservation.json", "_bmad-output/test-artifacts/atdd-15-4-summary.json"]
+p5_final_admission:
+  status: complete-Root-gate-and-distinct-High-provenance
+  source_reviewed: f20208dca11f4f1f4106cab4a4f8322b945ace21
+  CI_head: cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1
+  run: 39415418173
+  attempt: 1
+  checkpoint: 420be87e-0913-42fe-8909-f7fda85cb934
+  closure: 8a6244072975181a7505e85006accc5aeb0663c3
+  final_author_head: 549999e2535d4c2ace3d262e23a6774adfc06dbd
+  delivery_raw_sha256: acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6
+  Root_gate_sha256: 820355cf3af1b01b389b83b76994d129d946d4f0d2ec95386364ea2a9363d7f5
+  distinct_truth_sha256: 0bb6a1cbb414ead7d3404efc08c72632268c5fee8a39c71a5bffba2857155e29
+  truth_checks: 44
+  truth_errors: 0
+  status_only_admission_sha256: 0ec8d7a34a9f1c8a696182cac5c83dd61311746599ea360fe008b0d4623c6132
+  sources_conserved: 60
+  packet_files_verified: 190
+  unit: 3041P0F0S
+  process: 43P
+  fullDB: 1928P0F52historicalS/1980
+  RLS_nonadditive: 829P14S/843
+  new76: 17pure18component38DB3browser ALLPASS
+  browser: "17cases17firstpassattempts0F0retry0flaky0S/errors[]"
+  Storage: directphysical1P0F0S/2objects66bytes
+  counted_reviews: 3
+  broad_reviews: 1
+  limited_reviews: 2
+  separate_narrow_CI_followups: 2
+  remaining_findings: 0
+  SRO_stops: 20
+  parse_warnings: []
+  release_ready: false
+  deferred_release_checks: 6
+  release_ledger: "Allsixappended;previousbytes/General/E16unchanged"
+  prior_failure_history: CI39408197808+39412225741 immutable/unreachedtailsnotretrocredited/old004causeUNKNOWN
+  truth_auditor_checker_attempt: "Initialbasenamecollision preserved; finalfullpathchecks corrected; final-auditonly authoritative"
+  P6_P7_E5h_pending: false
+p6_automate:
+  status: done-artifact-only
+  ACs: 9
+  required_High_workers: 2
+  consequential_gaps: 0
+  validation_passed: 52
+  validation_failed: 0
+  new_tests: 0
+  new_runtime_runs: 0
+  existing76cases: 17pure18SSRcontroller38realDB3browser ALLqualifiedPASS
+  source_evidence_revision: cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1
+  report_sha256: 64c11437a4918ff033f556e67b623e8f919dfad56359f3b923e45b0cdc5cf010
+  validation_sha256: dcdf60b49c8d7375048d6fd365ea9abf3d13c0dd47fd4711362f93e2fb8ae71c
+  manifest_sha256: 27637c6ad66577675615619657b4357adb39d88511a824312ace3e04e2d5014a
+  Spec_source_delivery_unchanged: true
+  release_checks_deferred: 6
+  release_ready: false
+p7_closeout:
+  followup_gate: recommendedfalse/noadditionalpass
+  review_cap_preserved: 3counted1broad2limited+2narrow/no4thbroad
+  story_trace: notselectedlast3/noadvisory
+  harvested: 0
+  skipped_existing: 0
+  release_checks: 6
+  release_ready: false

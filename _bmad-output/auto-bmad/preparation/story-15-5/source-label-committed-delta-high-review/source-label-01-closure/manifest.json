@@ -1,0 +1,23 @@
+{
+  "schema": "SOURCE_LABEL_01_CORRECTIVE_COMMIT_CLOSURE_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/source-label-01-closure/report.md",
+      "bytes": 3461,
+      "sha256": "f838fe5d432c40ec7b17060efda8706dcdb623c6bbe064711f45e2fb1150ab36"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/source-label-01-closure/attestation.json",
+      "bytes": 9408,
+      "sha256": "b993ecc60a5ac61beeafaa3b040ef8a040103d18087f5d6116b29ab5dbd0d847"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/source-label-01-closure/result.json",
+      "bytes": 1224,
+      "sha256": "11613760355b85f2dc7bf90900390dc5190762d78acef0a33ab476d5b485db66"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 4,
+  "normal_acceptance": 0
+}

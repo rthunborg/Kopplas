@@ -1,0 +1,153 @@
+{
+  "schema": "original-function-uid-count-static-assessment-v1",
+  "outcome": "VALID_LITERAL_SUBSTRING_COUNT_NO_REGEX_ESCAPE_DEFECT",
+  "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+  "source_commit": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "locations": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:102",
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:117"
+  ],
+  "actual_expression": "(length(item.prosrc)-length(replace(item.prosrc,'auth.uid()','')))/length('auth.uid()')",
+  "expression_occurrences": 2,
+  "matching_operation": "pg_catalog replace(text,text,text) literal substring replacement; NOT regex",
+  "sql_literal": {
+    "source": "'auth.uid()'",
+    "value": "auth.uid()",
+    "characters": 10,
+    "backslashes": 0,
+    "standard_conforming_strings_effect": "No backslash or embedded quote exists; standard_conforming_strings does not alter this literal. Dot/parentheses have no regex meaning because replace is not a regex function."
+  },
+  "proof": "replace removes each exact non-overlapping ten-character occurrence. length counts characters, so the difference is exactly10 times the number removed and integer division is exact. The literal cannot overlap itself. Expected bodies contain3/2/3 exact occurrences; these bodies equal the embedded expected_sources.",
+  "source_bodies": [
+    {
+      "ordinal": 1,
+      "function": "read_calendar_feed_status",
+      "expected": 3,
+      "actual_literal_count": 3,
+      "embedded_body_equal": true,
+      "body_sha256": "b48db0ace3e97f7de078e38c30185d6bfc4b53d7c3548861cdc772db4f5f6888"
+    },
+    {
+      "ordinal": 2,
+      "function": "manage_calendar_feed",
+      "expected": 2,
+      "actual_literal_count": 2,
+      "embedded_body_equal": true,
+      "body_sha256": "28dbac3004d9309feb566dd0c62a273eaeb2260949cf660db1da03250bb9b99b"
+    },
+    {
+      "ordinal": 3,
+      "function": "read_calendar_feed_abuse",
+      "expected": 3,
+      "actual_literal_count": 3,
+      "embedded_body_equal": true,
+      "body_sha256": "0df30bdd54e6fed03481a6f691dda04fb5cae4bea4b22af13b29bf889a6ab979"
+    }
+  ],
+  "pure_controls": [
+    {
+      "case": "positive_one",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "case": "positive_adjacent",
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "case": "empty",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "case": "no_match",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "case": "dot_lookalike",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "case": "missing_parentheses",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "case": "space_lookalike",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "case": "case_lookalike",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "case": "backslash_lookalike",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "case": "quoted_literal",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "case": "comment_literal",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "case": "unicode_surrounding",
+      "expected": 1,
+      "actual": 1
+    }
+  ],
+  "scope_limit": "Counts literal text, including text inside comments/quoted SQL, not parsed semantic function calls. Existing exact prosrc equality separately pins known bodies; tested lookalikes do not create a source bypass. This is not native SQL execution or evidence that hosted prosrc equals source.",
+  "primary_sources": [
+    {
+      "url": "https://www.postgresql.org/docs/17/functions-string.html",
+      "support": "replace substitutes all occurrences of a literal substring; length(text) counts characters."
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/sql-syntax-lexical.html",
+      "support": "Ordinary strings under standard_conforming_strings; here no escapes occur at all."
+    }
+  ],
+  "bindings": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "head_blob": "93b55ab54ec63a775894e92db9d83219add909dd"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    }
+  ],
+  "checks": {
+    "source_body_controls": 3,
+    "synthetic_literal_controls": 12,
+    "passed": 15,
+    "failed": 0,
+    "sql_executions": 0,
+    "native_credit": 0
+  },
+  "disposition": "No correction or native probe justified for this assumption. Stop this assessment. Actual refused native predicate remains UNKNOWN. CI remains held for direct human approval; no workaround or activation.",
+  "effects": {
+    "source_edits": 0,
+    "spec_edits": 0,
+    "sql": 0,
+    "resources": 0,
+    "api_or_ci": 0,
+    "git_mutations": 0
+  },
+  "broad_review_rounds": 3,
+  "normal_acceptance_credit": 0
+}

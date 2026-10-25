@@ -1,0 +1,337 @@
+{
+  "scope": "Read-only documented linked-backend project/migration metadata; no tenant data/secrets/SQL/dbpush/deployment",
+  "project": {
+    "id": "wmqmzznmwpheswjjozhq",
+    "name": "Kopplas",
+    "organization_id": "oykbutypisxdgifmrxid",
+    "region": "eu-north-1",
+    "status": "ACTIVE_HEALTHY"
+  },
+  "project_tool_calls": 1,
+  "migration_tool_calls": 1,
+  "migrations": [
+    {
+      "version": "20260625122433",
+      "name": "tenant_foundation"
+    },
+    {
+      "version": "20260629121136",
+      "name": "audit_events"
+    },
+    {
+      "version": "20260629140000",
+      "name": "audit_events_actor_null_exemption"
+    },
+    {
+      "version": "20260630120000",
+      "name": "crm_data_model"
+    },
+    {
+      "version": "20260630130000",
+      "name": "company_settings_and_quote_terms"
+    },
+    {
+      "version": "20260630140000",
+      "name": "work_roles_and_articles"
+    },
+    {
+      "version": "20260702120000",
+      "name": "calculation_data_model"
+    },
+    {
+      "version": "20260703120000",
+      "name": "calculation_row_pricing_source"
+    },
+    {
+      "version": "20260704120000",
+      "name": "file_storage_foundation"
+    },
+    {
+      "version": "20260705120000",
+      "name": "quote_version_model"
+    },
+    {
+      "version": "20260706120000",
+      "name": "quote_pdf_render_state"
+    },
+    {
+      "version": "20260707120000",
+      "name": "quote_version_sent_lock"
+    },
+    {
+      "version": "20260708120000",
+      "name": "quote_new_version"
+    },
+    {
+      "version": "20260709120000",
+      "name": "acceptance_to_job_model"
+    },
+    {
+      "version": "20260710120000",
+      "name": "accept_quote_and_create_job"
+    },
+    {
+      "version": "20260711120000",
+      "name": "accepted_record_lock"
+    },
+    {
+      "version": "20260712120000",
+      "name": "file_link_lock"
+    },
+    {
+      "version": "20260714095225",
+      "name": "standalone_job_creation"
+    },
+    {
+      "version": "20260719120000",
+      "name": "quote_lost_reasons_and_lost_status"
+    },
+    {
+      "version": "20260719130000",
+      "name": "quote_follow_ups"
+    },
+    {
+      "version": "20260805120000",
+      "name": "tax_answer_reconciliation"
+    },
+    {
+      "version": "20260831124310",
+      "name": "story_10_8_quote_review_authorization"
+    },
+    {
+      "version": "20260831124312",
+      "name": "story_10_9_quote_pdf_attachment_validity"
+    },
+    {
+      "version": "20260902120000",
+      "name": "story_10_5_quote_table_hardening_and_pagination"
+    },
+    {
+      "version": "20260902123000",
+      "name": "story_10_5_authorized_terminal_follow_up_closure"
+    },
+    {
+      "version": "20260904120000",
+      "name": "role_storage_and_permission_matrix"
+    },
+    {
+      "version": "20260907161230",
+      "name": "role_storage_explicit_grants"
+    },
+    {
+      "version": "20260907171252",
+      "name": "role_aware_phase_a_policy_evolution"
+    },
+    {
+      "version": "20260910165124",
+      "name": "admin_user_management"
+    },
+    {
+      "version": "20260914092606",
+      "name": "admin_accept_membership_invitation_identity_binding"
+    },
+    {
+      "version": "20260914092850",
+      "name": "story_11_3_invitation_lifecycle_remediation"
+    },
+    {
+      "version": "20260919090000",
+      "name": "tenant_provisioning"
+    },
+    {
+      "version": "20260919100000",
+      "name": "provisioning_dispatch_generation_rotation"
+    },
+    {
+      "version": "20260919100100",
+      "name": "provisioning_previous_token_hash"
+    },
+    {
+      "version": "20260919120000",
+      "name": "provisioning_decision_8a_authority"
+    },
+    {
+      "version": "20260919121000",
+      "name": "provisioning_vault_reader_owner"
+    },
+    {
+      "version": "20260919122000",
+      "name": "provisioning_owner_operator_helper_grant"
+    },
+    {
+      "version": "20260919123000",
+      "name": "provisioning_owner_attestation_dependencies"
+    },
+    {
+      "version": "20260919124000",
+      "name": "provisioning_owner_auth_schema_usage"
+    },
+    {
+      "version": "20260919125000",
+      "name": "provisioning_owner_auth_usage_repair"
+    },
+    {
+      "version": "20260919175836",
+      "name": "provisioning_actor_claim_repair"
+    },
+    {
+      "version": "20260919180249",
+      "name": "provisioning_tenant_returning_id_grant"
+    },
+    {
+      "version": "20260919180337",
+      "name": "provisioning_membership_returning_id_grant"
+    },
+    {
+      "version": "20260919180556",
+      "name": "provisioning_actor_claims_json_repair"
+    },
+    {
+      "version": "20260919181436",
+      "name": "provisioning_fourth_dispatch_renewal"
+    },
+    {
+      "version": "20260919182046",
+      "name": "provisioning_reconcile_read"
+    },
+    {
+      "version": "20260919183425",
+      "name": "provisioning_review_authority_fixes"
+    },
+    {
+      "version": "20260919183740",
+      "name": "provisioning_membership_reservation_lock_grant"
+    },
+    {
+      "version": "20260919192439",
+      "name": "provisioning_rpc_attestation_coherence"
+    },
+    {
+      "version": "20260919192619",
+      "name": "provisioning_request_validation_persistence"
+    },
+    {
+      "version": "20260919193752",
+      "name": "provisioning_rpc_coherence_execute_grants"
+    },
+    {
+      "version": "20260919193857",
+      "name": "provisioning_company_settings_trigger_owner"
+    },
+    {
+      "version": "20260919194051",
+      "name": "provisioning_company_settings_conflict_read"
+    },
+    {
+      "version": "20260920100000",
+      "name": "operator_console_projection"
+    },
+    {
+      "version": "20260920101500",
+      "name": "operator_console_resume_state"
+    },
+    {
+      "version": "20260920102000",
+      "name": "operator_console_resume_target"
+    },
+    {
+      "version": "20260920110000",
+      "name": "first_admin_onboarding_dismissal"
+    },
+    {
+      "version": "20260921090000",
+      "name": "onboarding_dismissal_ready_gate"
+    },
+    {
+      "version": "20260921170545",
+      "name": "repair_provisioning_idempotency_conflict"
+    },
+    {
+      "version": "20260922111215",
+      "name": "provisioning_invite_recovery_approval"
+    },
+    {
+      "version": "20260922112830",
+      "name": "provisioning_renewal_trigger_and_replay_guard"
+    },
+    {
+      "version": "20260922121240",
+      "name": "epic_12_function_execute_acl"
+    },
+    {
+      "version": "20260923160000",
+      "name": "authenticated_job_runner"
+    },
+    {
+      "version": "20260923161000",
+      "name": "job_runs_authenticated_select_grant"
+    },
+    {
+      "version": "20260923162000",
+      "name": "job_runs_lifecycle_constraints"
+    },
+    {
+      "version": "20260923170000",
+      "name": "in_app_notifications"
+    },
+    {
+      "version": "20260923175035",
+      "name": "email_outbox_pipeline"
+    },
+    {
+      "version": "20260923181728",
+      "name": "email_outbox_transition_guard_fix"
+    },
+    {
+      "version": "20260923182954",
+      "name": "email_outbox_security_and_state_fixes"
+    },
+    {
+      "version": "20260924090000",
+      "name": "email_sending_activation"
+    },
+    {
+      "version": "20260924110000",
+      "name": "quote_email_delivery_artifacts"
+    },
+    {
+      "version": "20260924120000",
+      "name": "email_delivery_followup_fixes"
+    },
+    {
+      "version": "20260924130000",
+      "name": "quote_delivery_recipient_correction"
+    },
+    {
+      "version": "20260925100000",
+      "name": "quote_email_delivery_recovery"
+    },
+    {
+      "version": "20260927100000",
+      "name": "remove_quote_delivery_preferences"
+    },
+    {
+      "version": "20260927110000",
+      "name": "quote_delivery_recovery_sender_roles"
+    },
+    {
+      "version": "20260927120000",
+      "name": "attest_quote_delivery_recoveries"
+    },
+    {
+      "version": "20260927130000",
+      "name": "quote_delivery_pdf_send_roles"
+    },
+    {
+      "version": "20260927140000",
+      "name": "preserve_failed_job_checkpoints"
+    },
+    {
+      "version": "20260928110819",
+      "name": "epic_13_reviewbot_followup_atomic_job_run_audit_and_config_recovery"
+    }
+  ],
+  "link_basis": "Canonical docs/process/demo-environment.md identifies this exact backend; current Vercel environment value not reread",
+  "settings_writes": 0,
+  "database_writes": 0
+}

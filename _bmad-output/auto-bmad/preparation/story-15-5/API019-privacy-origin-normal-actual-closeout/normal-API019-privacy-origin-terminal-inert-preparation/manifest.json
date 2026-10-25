@@ -1,0 +1,22 @@
+{
+  "schema": "PRIVACY_ORIGIN_INERT_TERMINAL_REUSE_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/reader.py",
+      "bytes": 52631,
+      "sha256": "278531786c36acaf5c219e23b9970c45533b647358b75a544742e6e68af44007"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/proposal.json",
+      "bytes": 78340,
+      "sha256": "3aa3e629fd0ff3aa49fb80313a16f50d562e01bb1415d2f0642ebacaebc57da7"
+    }
+  ]
+}

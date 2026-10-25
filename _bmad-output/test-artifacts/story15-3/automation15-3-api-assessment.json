@@ -1,0 +1,1208 @@
+{
+  "success": true,
+  "subagent": "api-tests",
+  "mode": "bounded-existing-coverage-assessment",
+  "tests": [],
+  "test_count": 0,
+  "fixture_needs": [],
+  "summary": "No additional consequential API coverage gap identified for approved Story15.3. Reuse production-bound activated ATDD and qualified native exact-CI-head evidence; no test generation needed. All count/priority fields at the root describe new tests only.",
+  "knowledge_fragments_used": [
+    "library-integration-mandate",
+    "playwright-utils-mandate",
+    "pactjs-utils-mandate",
+    "api-testing-patterns",
+    "api-request",
+    "data-factories"
+  ],
+  "priority_coverage": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "playwright_utils_deviations": [],
+  "pactjs_utils_deviations": [],
+  "configuration_qualification": {
+    "detected_stack": "frontend: Next.js/React/Playwright; backend checked-SQL boundary assessed using existing Vitest DB/RLS and Node units",
+    "playwright_utils": {
+      "flag": true,
+      "package_installed": false,
+      "gate_2": false,
+      "mandate_binds": false,
+      "action": "No imports, dependencies or wiring generated; future framework adoption is separate scope"
+    },
+    "pactjs_utils": {
+      "flag": true,
+      "package_installed": false,
+      "independent_consumer_provider_boundary": false,
+      "artifacts_generated": 0
+    },
+    "pact_mcp_reachable": false,
+    "pact_fallback_source": "provider-source",
+    "broker_probe_repeated": false
+  },
+  "revision": {
+    "current_head": "c67950dbd154126e1d3b04444d68764e3271479b",
+    "tested_ci_head": "d550029abac34360af7d9d928f6e66f906665d38",
+    "implementation_source": "6d9836044f643a5ab6df8a1dd430e2801d8a7cdc",
+    "new_runtime_at_current_head": false,
+    "reuse_basis": "All57 owned source Git blobs independently compared to author conservation hashes at both current HEAD and tested CI; zero mismatches and zero dirty source paths. Metadata-only later heads do not represent new runtime."
+  },
+  "provider_scrutiny": "source-only coverage sufficiency, not CDC generation",
+  "provider_files_read": [
+    "src/server/commands/bookings/resolve-booking-conflict.ts",
+    "src/server/commands/bookings/conflict-resolution-validation.ts",
+    "src/server/bookings/conflict-resolution.ts",
+    "src/server/bookings/conflict-resolution-attestation.ts",
+    "src/server/read-models/booking-conflicts.ts",
+    "src/features/resources/booking-conflict-actions.ts",
+    "src/app/api/scheduling/conflicts/route.ts",
+    "src/app/(app)/scheduling/conflicts/page.tsx",
+    "supabase/migrations/20261020180000_conflict_resolver.sql",
+    "supabase/migrations/20261006122441_booking_conflict_detection_integration.sql"
+  ],
+  "authority_assessment": {
+    "production_reach": "prepare() runs real validator, fresh real detector scan and production receipt issuance; commands call runCommand(resolveBookingConflict), then actual snapshot/finalizer RPC. Proxies forward real SQL except named read-failure injection and observe real RPC failure codes; no mocked command success or proof verifier.",
+    "read_authority": "Manager gate resolves request client/current tenant/roles before real snapshot/history/editor context. Complete shared deriveSeriesConflicts runs with current v3 facts. Unknown failures return explicit error. SQL gate binds auth.uid to actor, serializes tenant and rechecks current roles after waiting.",
+    "sql_authority": "Finalizer rechecks current role, HMAC domain/13claims, candidate/fact/workflow/current series baseline and complete target/decision. Immutable table and minimal safe column grants deny direct ledger writes/private reads. Shared refresh function is the enforced route for all3 writer functions.",
+    "rollback_and_lock_evidence": "INT006 passed real P5301 only after accepted workflow, P5302 only after ledger/audit, true observer flags and complete snapshots unchanged; awaited cleanup then successful retry. INT008 passed actual Lock/pg_blocking_pids barrier before revocation for fresh and replay. No independently printed SQL trace claimed.",
+    "acceptance_refresh_limit": "Direct unchanged acceptance readbacks are provided by active inherited single14.3-INT004 and series15.2-INT-REAL012. INT005 directly runs all3 writers for resolved retention/reopen. Job-card accepted retention additionally follows the same checked refresh implementation; no claim of an extra dedicated job-card accepted-row runtime case."
+  },
+  "existing_coverage": [
+    {
+      "id": "15.3-INT-017",
+      "variant": "15.3-INT-017 common assignment and both all-day conversions persist literal microseconds and original nominal bounds",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 56,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC7"
+      ],
+      "behavior": "Common assignment preserves literal fractional microseconds; timed to all-day and back persist exact two-row times, original nominal bounds and sorted assignees.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-013",
+      "variant": "15.3-INT-013 returning capacity identity from changed work hours reopens before selective acceptance",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 69,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC5",
+        "AC8"
+      ],
+      "behavior": "Changed work-hours capacity returning identity reopens before selective acceptance; terminal fields consistent and repeated acceptance denied without delta.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-014",
+      "variant": "15.3-INT-014 successful still-conflicting adjustment persists remaining history and open workflow",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 82,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC6"
+      ],
+      "behavior": "Still-conflicting successful adjustment persists remaining history/audit/open workflow and actual changed description.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-015",
+      "variant": "15.3-INT-015 genuine receipt identity mismatch denies while its complete target is still current",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 91,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC5",
+        "AC8"
+      ],
+      "behavior": "Genuine receipt with mismatching command identity denies while complete target is still current; state unchanged.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-016",
+      "variant": "15.3-INT-016 following resolver split preserves prefix, protected payloads, stable ids and an existing successor bound",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 96,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC6",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "Following split preserves prefix, protected payloads, stable IDs and existing later successor bound; ordinary occurrence persisted time and replay no delta.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-012",
+      "variant": "15.3-INT-012 real available slot and matching-role person suggestions commit through fresh checked preview",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 121,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC3",
+        "AC4",
+        "AC8"
+      ],
+      "behavior": "Actual available slot and matching-role person suggestions use fresh checked previews; changed facts stale old proof; fresh writes persist.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-002",
+      "variant": "15.3-INT-002 accept-only is selective, immutable, replayable and never diverges an occurrence",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 143,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "Actual validated series fixture followed by selective acceptance; unchanged bookings/assignees/series, one ledger/audit/notification, exact replay unchanged, changed reason COMMAND_CONFLICT, direct ledger mutation42501.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-001",
+      "variant": "15.3-INT-001 move resolves only disappeared targets; later single, series and job-card writers retain/reopen history",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 155,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "Checked move resolves disappeared targets; single/series/job-card refreshes retain history and single returning identity reopens.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-003",
+      "variant": "15.3-INT-003 current workflow, description/customer baseline and complete aggregate proofs reject stale/partial/unrelated writes",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 173,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC5",
+        "AC8"
+      ],
+      "behavior": "Actual genuine-HMAC partial aggregate plan42501 plus stale description/customer/workflow and unrelated proof denial with unchanged snapshots.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-010",
+      "variant": "15.3-INT-010 genuine single and series review receipts and genuine single signature cannot authorize resolver",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 188,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC5",
+        "AC8"
+      ],
+      "behavior": "Authentic single/series donor review receipts and genuine single signature cannot authorize resolver; SQL42501 and unchanged state.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-004",
+      "variant": "15.3-INT-004 exact concurrent replay/lost response emits one event; expired receipt replay survives facts but revoked authority denies",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 199,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC5",
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "Concurrent identical command returns same durable result once; expired authentic receipt replay survives changed facts; revoked current authority denies.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-005",
+      "variant": "15.3-INT-005 every effective single/series/job-card writer retains resolved rows and itself reopens a returning identity",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 207,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC5",
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "All three writer-loop iterations single/series/job-card must retain terminal rows, then themselves reopen returning identity; immutable ledger preserved; replay has no delta.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-006",
+      "variant": "15.3-INT-006 audit and notification failure roll back booking, conflicts, ledger and every effect",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 223,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "Actual RPC P5301 only after accepted workflow and P5302 only after ledger/audit reach; observer flags true, complete snapshots unchanged; finally awaits trigger/function removal and later checked command succeeds. Reporter may not print these codes; source assertion plus passed completion qualifies reach.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-007",
+      "variant": "15.3-INT-007 current-segment common fix preserves bounds, stable ids, exceptions and tombstones",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 241,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC4",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "Current-segment common fix protects exception/tombstone rows, stable IDs/nominal bounds, and exact persisted ordinary sibling start/end/assignee values; stale retry no delta.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-008",
+      "variant": "15.3-INT-008 role revocation while actually waiting denies both a fresh command and immutable replay",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 255,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "Both new and immutable-replay variants require actual pg_blocking_pids/wait_event_type Lock barrier before disabling membership, then TENANT_ACCESS_DENIED and unchanged snapshots.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-009",
+      "variant": "15.3-INT-009 before/after recipient union includes affected actor, honors preferences and dedupes by event rather than day",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 269,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "Before/after recipient union including actor; disabled in-app preferences; event-based dedupe; booking-email constraints.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-INT-011",
+      "variant": "15.3-INT-011 complete v3 mixed job facts retain job identity and independent unavailable/empty rules",
+      "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "line": 283,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC2",
+        "AC3",
+        "AC4",
+        "AC8"
+      ],
+      "behavior": "Actual mixed-job v3 facts preserve job identity and independent unavailable/null/empty semantics.",
+      "qualification": {
+        "level": "INT",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-RLS-001",
+      "variant": "15.3-RLS-001 only current managers read safe history; own-only, foreign and anonymous paths cannot inspect or mutate it",
+      "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "line": 16,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC2",
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "Current managers read safe history; private request_digest/result/target_keys/command_id select42501; own/foreign/anon denied and direct ledger mutation42501.",
+      "qualification": {
+        "level": "RLS",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-RLS-002",
+      "variant": "15.3-RLS-002 booking preference/channel SQL and API reject email while preserving self-scope and quote email",
+      "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "line": 36,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC6",
+        "AC8"
+      ],
+      "behavior": "Booking email preferences/outbox23514, foreign preference42501, API422, unchanged snapshots; quote email remains permitted.",
+      "qualification": {
+        "level": "RLS",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-RLS-003",
+      "variant": "15.3-RLS-003 checked entries are authenticated-only and every helper/trigger is owner-only with empty search path",
+      "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "line": 50,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC8"
+      ],
+      "behavior": "Checked entrypoints authenticated-only; private helpers/triggers no PUBLIC/anon/service_role execution and empty search_path.",
+      "qualification": {
+        "level": "RLS",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-RLS-004",
+      "variant": "15.3-RLS-004 current multi-role manager can scan; sales/economy/inactive/own-only cannot preview, suggest, commit or read peers",
+      "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "line": 55,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC1",
+        "AC2",
+        "AC3",
+        "AC4",
+        "AC8"
+      ],
+      "behavior": "Current manager role union succeeds; sales/economy/inactive/own-only preview/suggest/commit/read paths deny.",
+      "qualification": {
+        "level": "RLS",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-READ-001",
+      "variant": "15.3-READ-001 complete four-booking multi-assignee groups keep out-of-scope peers and truthful scan recency",
+      "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+      "line": 9,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC1",
+        "AC2"
+      ],
+      "behavior": "Complete four-booking multi-assignee groups preserve out-of-filter peers and truthful recency; private proof fields absent.",
+      "qualification": {
+        "level": "READ",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-READ-002",
+      "variant": "15.3-READ-002 denied/failed scan never publishes successful empty or peer facts",
+      "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+      "line": 21,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC1",
+        "AC2",
+        "AC8"
+      ],
+      "behavior": "Denied/failed scan remains explicit error; no false successful-empty result or peer facts.",
+      "qualification": {
+        "level": "READ",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": true,
+        "limits": "Production detector/checked SQL with actual authenticated fixture; source injection only at client factory or fault observer where named"
+      }
+    },
+    {
+      "id": "15.3-COMP-001",
+      "variant": "every aggregate participant and interval is readable and action target selection is explicit",
+      "file": "tests/integration/components/conflict-resolver.test.ts",
+      "line": 9,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC1",
+        "AC2",
+        "AC8"
+      ],
+      "behavior": "Two SSR static-markup structure/accessibility assertions only; no browser keyboard/layout credit.",
+      "qualification": {
+        "level": "SSR",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": false,
+        "limits": "SSR static markup only; no interactive keyboard/layout credit"
+      }
+    },
+    {
+      "id": "15.3-COMP-001",
+      "variant": "queue has native keyboard buttons, pressed state and accepted label",
+      "file": "tests/integration/components/conflict-resolver.test.ts",
+      "line": 15,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; source declarations have no P tag",
+      "acs": [
+        "AC1",
+        "AC2",
+        "AC8"
+      ],
+      "behavior": "Two SSR static-markup structure/accessibility assertions only; no browser keyboard/layout credit.",
+      "qualification": {
+        "level": "SSR",
+        "native_status": "passed",
+        "full_body": true,
+        "native_evidence": "checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+        "database_credit": false,
+        "limits": "SSR static markup only; no interactive keyboard/layout credit"
+      }
+    },
+    {
+      "id": "AC1/2 scope and Stockholm grouping preserve complete aggregate peers and full DST interval",
+      "file": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "line": 13,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC1",
+        "AC2"
+      ],
+      "behavior": "AC1/2 scope and Stockholm grouping preserve complete aggregate peers and full DST interval",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5649,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "R1-10 assignment-only common fix preserves independent literal microsecond endpoints and duration",
+      "file": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "line": 30,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC4",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "R1-10 assignment-only common fix preserves independent literal microsecond endpoints and duration",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5655,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "R1-06 timed/all-day common conversions keep nominal bounds and valid exclusive endpoints both directions",
+      "file": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "line": 35,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC4",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "R1-06 timed/all-day common conversions keep nominal bounds and valid exclusive endpoints both directions",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5661,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "R1-02 resolver following candidate uses actual suffix planner and retains original remaining bound",
+      "file": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "line": 42,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC4",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "R1-02 resolver following candidate uses actual suffix planner and retains original remaining bound",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5667,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "R1-08 real resolver validation canonicalizes SQL field order and following receipt input identically",
+      "file": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "line": 47,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC4",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "R1-08 real resolver validation canonicalizes SQL field order and following receipt input identically",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5673,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "CI series fixture preview uses the exact production-normalized candidate before receipt issuance",
+      "file": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "line": 55,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC4",
+        "AC7",
+        "AC8"
+      ],
+      "behavior": "CI series fixture preview uses the exact production-normalized candidate before receipt issuance",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5679,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "AC5/8 acceptance rejects whitespace, blanket series, unrelated selection and unknown input fields",
+      "file": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "line": 63,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC5",
+        "AC8"
+      ],
+      "behavior": "AC5/8 acceptance rejects whitespace, blanket series, unrelated selection and unknown input fields",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5685,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "AC8 unknown outcome retains exact request identity and older read response cannot replace latest",
+      "file": "tests/unit/features/scheduling/conflict-resolver-state.test.ts",
+      "line": 4,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC8"
+      ],
+      "behavior": "AC8 unknown outcome retains exact request identity and older read response cannot replace latest",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5627,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "R1-03 first definite denial releases the form but denied retry retains an already unknown identity",
+      "file": "tests/unit/features/scheduling/conflict-resolver-state.test.ts",
+      "line": 11,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC8"
+      ],
+      "behavior": "R1-03 first definite denial releases the form but denied retry retains an already unknown identity",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5633,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "R1-12 remaining result has an explicit truthful notice, distinct from resolution",
+      "file": "tests/unit/features/scheduling/conflict-resolver-state.test.ts",
+      "line": 16,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC8"
+      ],
+      "behavior": "R1-12 remaining result has an explicit truthful notice, distinct from resolution",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5639,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "AC3 schedule-derived capacity and unrelated tenant conflicts do not suppress candidate suggestions",
+      "file": "tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "line": 7,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC3"
+      ],
+      "behavior": "AC3 schedule-derived capacity and unrelated tenant conflicts do not suppress candidate suggestions",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5695,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "R1-09 multi-day availability labels actual start-date load rather than implying a total",
+      "file": "tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "line": 13,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC3"
+      ],
+      "behavior": "R1-09 multi-day availability labels actual start-date load rather than implying a total",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5701,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "AC3 cancelled and malformed schedule facts are unknown, empty known job access is busy",
+      "file": "tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "line": 18,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC3"
+      ],
+      "behavior": "AC3 cancelled and malformed schedule facts are unknown, empty known job access is busy",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5707,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "AC3 Stockholm DST week 2026-03-29 preserves elapsed duration and Sunday closure",
+      "file": "tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "line": 24,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC3"
+      ],
+      "behavior": "AC3 Stockholm DST week 2026-03-29 preserves elapsed duration and Sunday closure",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5713,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "AC3 Stockholm DST week 2026-10-25 preserves elapsed duration and Sunday closure",
+      "file": "tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "line": 24,
+      "priority": "P1",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC3"
+      ],
+      "behavior": "AC3 Stockholm DST week 2026-10-25 preserves elapsed duration and Sunday closure",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 5719,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    },
+    {
+      "id": "AC8 resolver encrypted receipt round-trip, tamper rejection and genuine editor/series proof separation",
+      "file": "tests/unit/server/bookings/conflict-resolution-attestation.test.ts",
+      "line": 7,
+      "priority": "P0",
+      "priority_basis": "assessed consequence; existing untagged unit title",
+      "acs": [
+        "AC8"
+      ],
+      "behavior": "AC8 resolver encrypted receipt round-trip, tamper rejection and genuine editor/series proof separation",
+      "qualification": {
+        "level": "unit",
+        "native_status": "passed",
+        "native_evidence": "checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+        "native_line": 13691,
+        "database_credit": false,
+        "limits": "Pure detector/planner/validator/state or cryptographic unit scope; not DB/RLS or browser evidence"
+      }
+    }
+  ],
+  "existing_supporting_regressions": [
+    {
+      "id": "[P1] 14.3-INT-004",
+      "file": "tests/integration/commands/booking-conflicts.int.test.ts",
+      "line": 116,
+      "priority": "P1",
+      "acs": [
+        "AC5",
+        "AC8"
+      ],
+      "behavior": "Existing actual single/series command verifies unchanged accepted natural-key metadata and changed-key reopening; no skipped RED case credit",
+      "native_status": "passed",
+      "current_and_ci_git_blob_sha256": "1dfa9abcf85aa036f2a9ff83bd3fe5f6785187b73cd4e077a4dce74a1b9c17bb",
+      "nonadditive": true
+    },
+    {
+      "id": "15.2-INT-REAL-012",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 710,
+      "priority": "P0",
+      "acs": [
+        "AC5",
+        "AC8"
+      ],
+      "behavior": "Existing actual single/series command verifies unchanged accepted natural-key metadata and changed-key reopening; no skipped RED case credit",
+      "native_status": "passed",
+      "current_and_ci_git_blob_sha256": "0fb1db19441e2240e20b653d3bdbfea744545fe1214ca04f7191c39fb6c88e73",
+      "nonadditive": true
+    }
+  ],
+  "existing_counts": {
+    "focused_native_integration_lane": {
+      "command_DB": 17,
+      "resolver_RLS": 4,
+      "read_DB": 2,
+      "SSR_only": 2,
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "real_DB_RLS_bodies": 23
+    },
+    "focused_units": {
+      "fixed_declarations": 14,
+      "parameterized_DST_bodies": 2,
+      "actual_native_pass_bodies": 16,
+      "evidence": "16 explicit native TAP ok records verified in verify.log; 7resolver+3state+5suggestions+1attestation"
+    },
+    "full_native_units": {
+      "passed": 3020,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_integration": {
+      "declared": 1914,
+      "passed": 1862,
+      "failed": 0,
+      "explicit_skipped": 52
+    },
+    "RLS_nonadditive_subset": {
+      "passed": 812,
+      "skipped": 14
+    },
+    "real_default_authenticated_scheduling": 4,
+    "mock_projected_transport_no_DB_credit": 23,
+    "mock_host_boundaries_no_DB_credit": 13
+  },
+  "ac_map": {
+    "AC1": {
+      "covered_by": [
+        "15.3-READ-001",
+        "15.3-READ-002",
+        "15.3-COMP-001",
+        "scope/Stockholm unit",
+        "qualified E2E001"
+      ],
+      "assessment": "Complete scope/dedup/unknown semantics at DB and unit levels; actual chip/count/filter interaction is separately qualified browser scope."
+    },
+    "AC2": {
+      "covered_by": [
+        "15.3-READ-001",
+        "15.3-READ-002",
+        "15.3-RLS-001",
+        "15.3-RLS-004",
+        "15.3-COMP-001"
+      ],
+      "assessment": "Complete aggregate peers/recency/safe history and denied generic output are exercised; SSR earns structure only."
+    },
+    "AC3": {
+      "covered_by": [
+        "15.3-INT-012",
+        "15.3-INT-011",
+        "conflict-suggestions units",
+        "15.3-RLS-004"
+      ],
+      "assessment": "Actual move and matching-role reassignment suggestions selected through fresh preview/commit, old facts reject and fresh persistence succeeds; actual load, malformed/unknown, unrelated groups and spring/fall DST covered. Browser Flytta/Omfördela suggestion selection is not claimed; qualified API+unit coverage supports nonexhaustive essential smoke."
+    },
+    "AC4": {
+      "covered_by": [
+        "15.3-INT-001",
+        "15.3-INT-003",
+        "15.3-INT-006",
+        "15.3-INT-007",
+        "15.3-INT-012",
+        "15.3-INT-014",
+        "15.3-INT-016",
+        "15.3-INT-017"
+      ],
+      "assessment": "Actual reviewed move/reassign/adjust overlay, resolved versus remaining workflow/history and atomic failure are exercised."
+    },
+    "AC5": {
+      "covered_by": [
+        "15.3-INT-002",
+        "15.3-INT-003",
+        "15.3-INT-005",
+        "15.3-INT-010",
+        "15.3-INT-013",
+        "15.3-INT-015",
+        "14.3-INT-004",
+        "15.2-INT-REAL-012",
+        "acceptance-validator unit"
+      ],
+      "assessment": "Selective complete acceptance, nonblank reason, stale/unrelated/partial/domain negatives, no occurrence divergence, stable acceptance and returning identities are covered without crediting old skipped ATDD."
+    },
+    "AC6": {
+      "covered_by": [
+        "15.3-INT-002",
+        "15.3-INT-004",
+        "15.3-INT-006",
+        "15.3-INT-008",
+        "15.3-INT-009",
+        "15.3-INT-014",
+        "15.3-RLS-001",
+        "15.3-RLS-002"
+      ],
+      "assessment": "Durable ledger/audit/history, exact concurrent/replay result, changed content/revocation, real fault rollback, before/after recipients/preferences/event dedupe and email exclusion are exercised."
+    },
+    "AC7": {
+      "covered_by": [
+        "15.3-INT-007",
+        "15.3-INT-016",
+        "15.3-INT-017",
+        "actual planner units",
+        "qualified E2E002"
+      ],
+      "assessment": "All12 current-segment slots, warnings beyond10, protected exception/tombstone rows, all10 ordinary sibling times/assignees, stable IDs/bounds, following successor and microseconds/all-day conversions are exercised."
+    },
+    "AC8": {
+      "covered_by": [
+        "15.3-RLS-001",
+        "15.3-RLS-002",
+        "15.3-RLS-003",
+        "15.3-RLS-004",
+        "15.3-INT-003",
+        "15.3-INT-004",
+        "15.3-INT-006",
+        "15.3-INT-008",
+        "15.3-INT-010",
+        "resolver-state/attestation units",
+        "qualified E2E001/003"
+      ],
+      "assessment": "Actual command/RPC/ledger authority, inactive/own/foreign/anonymous/multi-role controls, current-role wait/replay and transaction truth are covered. UI confirmation/input/explicit retry is qualified separately by browser packet, not by API/SSR."
+    }
+  },
+  "epic_design_to_activated_ATDD": {
+    "15.3-INT-001": [
+      "15.3-INT-003",
+      "15.3-INT-008",
+      "15.3-INT-010",
+      "15.3-INT-011",
+      "15.3-INT-012",
+      "15.3-INT-015"
+    ],
+    "15.3-INT-002": [
+      "15.3-INT-002",
+      "15.3-INT-003",
+      "acceptance-validator unit"
+    ],
+    "15.3-INT-003": [
+      "15.3-INT-001",
+      "15.3-INT-004",
+      "15.3-INT-006",
+      "15.3-INT-008",
+      "15.3-INT-009"
+    ],
+    "15.3-INT-004": [
+      "15.3-INT-005",
+      "15.3-INT-013",
+      "14.3-INT-004",
+      "15.2-INT-REAL-012"
+    ],
+    "15.3-INT-005": [
+      "15.3-INT-012",
+      "conflict-suggestions units"
+    ],
+    "15.3-INT-006": [
+      "15.3-INT-007",
+      "15.3-INT-016",
+      "15.3-INT-017",
+      "15.3-INT-001",
+      "15.3-INT-009"
+    ],
+    "15.3-COMP-001": [
+      "15.3-READ-002",
+      "SSR structure cases",
+      "resolver-state units",
+      "qualified E2E001/003"
+    ],
+    "rule": "Keys are epic scenario families, values are activated current IDs; do not equate family numbering/counts with executable test totals. Historical checklist is generation-time data, not current activation status."
+  },
+  "consequential_gaps": [],
+  "proposed_new_tests": [],
+  "reused_evidence": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/report.json",
+      "sha256_verified": "9d3b582912bfccb3cecf0edee300018c9d89cb4d5c647ff709cb0e51791ea236"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/report.md",
+      "sha256_verified": "3ecfece99d037155cdefbe6d6de58e52b1ddffad1001067e297cc0f1220fa183"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/sha256-manifest.json",
+      "sha256_verified": "688b9d0fc9e4621e92d1d3ea01f2d70ce88b9f728a896a28cfb33b162cbbb8c4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/author-final-delivery-conservation.json",
+      "sha256_verified": "bbc0be07a48d6ccd3f417851e073ad48673804f4743a13c1118162abff87e3c9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/final-delivery-independent/report.json",
+      "sha256_verified": "0938fb50eed56e7c401a09c05bea18d89d3092d8963bbcfedcd55e04444e1dfc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/extracted/native-full-integration/full-integration.json",
+      "sha256_verified": "6bdb9a9b44da9ff9354933e1c796e34d816a9cdc9b61d5d2cd387a71c979ecae"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/logs/118436061364-verify.log",
+      "sha256_verified": "f51ae5611179aa02bdcbbf8e8d14addad0449d5df4f60aa0f0c6f944ab27d08c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/assertion-reach-qualification.json",
+      "sha256_verified": "6f49338c2f8c66f674b95f1f0e5f53c3695b87350d3ccc6a3ca75836bbaea59b"
+    }
+  ],
+  "verification": {
+    "native_packet_files_bytes_and_SHA256_checked": 102,
+    "native_packet_hash_errors": [],
+    "current_and_tested_source_paths_checked": 57,
+    "source_hash_errors": [],
+    "dirty_source_paths": [],
+    "native_resolver_assertions_checked": 25,
+    "native_focused_unit_pass_records_checked": 16,
+    "supporting_regression_cases_checked": 2,
+    "runtime_executed_by_this_worker": 0,
+    "source_or_test_writes": 0
+  },
+  "limitations": [
+    "Assessment is bounded to named Story15.3 coverage, not a fourth broad code-review round or exhaustive security/browser matrix. Three counted review rounds remain conserved.",
+    "52 global skips =37old15.2command RED+14old15.2RLS RED+1disabled isolatedStorage: no passing coverage. Separate physicalStorage1P and migration108 startup/first-reset proof are reused qualification only, not executed here.",
+    "Four real authenticated scheduling-default cases are distinct from23 projected-read and13 mock-host cases; mocks earn zero actual DB/RLS credit.",
+    "SSR two static markup bodies earn no browser keyboard/layout credit. Flytta/Omfördela browser suggestion selection is not present in the essential smoke; actual production suggestions/commit are INT012 coverage.",
+    "All3 deferred release items remain deferred, including exhaustive visual/manual/device exploration and representative resolver performance. Narrow Admin pilot supplies no Scheduling/R012 or production-load certification.",
+    "Native pass completion plus frozen source proves INT006/008 assertion reach; no hidden SQLSTATE/trace bytes or prior browser-failure cause invented.",
+    "Historical ATDD unchecked generation items and future P5 directives are source data, not instructions to execute or mutate anything in this assessment.",
+    "No remote calls, broker calls, database queries, test executions, runtime launches, CI or Git writes. Current HEAD did not rerun the earlier CI."
+  ],
+  "runtime_executed": 0,
+  "new_tests": 0,
+  "new_resources": 0,
+  "release_ready": false
+}

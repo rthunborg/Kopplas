@@ -1,0 +1,381 @@
+{
+  "policy_version": "2026-10-19",
+  "key": "epic-15",
+  "record_status": "verification-authored-development-evidence-ready-for-Root-gate-and-final-PR-review",
+  "contract_reconciliation": "Approved sixE15stories preserve49substantive developmentACs and manifest-governedPhaseB scope. Oct19 requires applicable static/build, focused integrity/currentauthorization/RLS/privacy/transaction tests, essential actual browser and independent review; all supported by current qualified evidence plus explicitly justified source-specific historic reuse, not aggregate158alone. ContractD actualSchema+ResurserclickANDdrag/persistedpersonstartend belongs15.1 and remains required/supported by qualified historicalnativeessentials. UXB-A9arbeitsrollgrouping is ownerdecided; October23DESIGN/EXPERIENCE remains shared visualauthority without scopewidening. October8E14accepted-with-open-items is authoritative; no October7/newlegacyoracle acceptance. Actual independentHigh2026-10-25 targetedpostcap15.2P7 PASS0patch/score0/FALSE earns new terminal recommendation; preserve prior3broadrounds/historicalscore6TRUE/frameworkloop0. No fourthbroadpass,no waiver. TracePASS49/49requireddevelopmentACs,0exactuncovered. AdvisoryNFRCONCERNS/MEDIUM and testreview0/F/Block remain literal and nonblocking under explicit ownersteering; testreview predicates51retiredskipreasonplacement+8oversizefiles+1fixedmailpollwait are testhygiene, not proof of an uncoveredAC. Any actual consequential security/authorization/privacy/integrity defect remains blocking; none identified in this bounded assessment. All25storyownedreleaseentries remain deferred; release_readyfalse. FinalfreshchatPRreview/currentpushedheadCI/mergeapproval/noDeploy and finalPhaseBreleasecheckpoint remain separate, unexecuted future gates.",
+  "evidence_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "worktree_evidence": {
+    "start_metadata_head": "4ed86264ae59a46d71f03917da354b5a619d8029",
+    "targeted_metadata_commit": "8134b6a8",
+    "source_dependency_bridge": ".env.epic15.mail-runtime/story-15-6-preparation/root-tested-b57-to-closeout-source-dependency-bridge.json",
+    "bridge_sha256": "abe1f144f56291132a962cc339dc17663c65f0904cc676b846c6672b5de78cbf",
+    "interpretation": "Root verified alltracked source/test/schema/build/script/workflow/dependency/config outside_bmad-output identical testedb57->4ed. Own8134changes4metadatafiles only; remainingcloseoutwritesmetadataonly. No latermetadatahead build execution claimed."
+  },
+  "development_checks": [
+    {
+      "name": "Current canonical static/build/dependency audit/containment and required CI",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json bcbf0197; actualrun40192543175/attempt1/exacttestedb57;5requiredjobsP includingverify/db/e2e/directrecovery/checkpoint. No newremoteacquisition."
+    },
+    {
+      "name": "Current full unit and required integration/RLS execution",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json actualNode3483P0F0S;fullintegration2198=2146P0F52S,175files551suitesP;includedRLS903=889P14S.52skips=37seriescommand+14seriesRLS+1full-lanerecovery,each0coverage.158currentrequiredcalendarcases=63new15.6+95retained15.5allP0requiredskip; no totals-onlyACproof."
+    },
+    {
+      "name": "Story-specific series integrity and consequential post-cap closure",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/epic-15/inherited-15-2-targeted-post-cap-p7-result.json actualdistinctHighPASS; current45namedfocusedNode/23REALseriescommand/5REALseriesRLS/7SSR;originalHighR3-01correction7fbb279a/R3-02implemented9d22c98c reused. Actualeffective-flow/dependencyreuse supports historical15.2essentialbrowser, not executednow. Rootnormalfollowupbookkeeping2->3 remains next."
+    },
+    {
+      "name": "Essential production browser with scoped historical flow reuse",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json current23calendarcorebrowsercasesallretry0P. Browser65=63expected/0unexpected/2flaky/0skip:15.4-E2E002and16.1-E03retry0ProtocolError/retry1P retained without firstattemptcredit,rootcauseinferenceorfunctionalwritefailureclaim. Sixstoryrecordsretainoriginalessentialsourcepins;15.1ContractDactualfourgesturesand15.2seriesessentialsreuseexplicitlyscoped;current15.3E002commonseries/protectedrows/splitand003standalonephone/keyboardretryoverlap."
+    },
+    {
+      "name": "Direct physical recovery and current scoped lifecycle integrity",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json separatephysicalStoragerecovery1P suppliesimmutability/overwriteproof;full-laneskippedcase0credit. CurrentDB/browserkeydeleted/clientclosed,0failures/diagnostics;historicalcustodyunknownunchanged. No generalDR/SLA/hostdeletionclaim."
+    },
+    {
+      "name": "Required epic development traceability",
+      "status": "passed",
+      "evidence": "_bmad-output/test-artifacts/epic-15-closeout/gate-decision.json actualdeterministicPASS35/35P0,14/14P1,49/49overall;formalapprovedACoracle/highconfidence;uncoveredrequiredACs[]. Originalsource-specific/currentexecutionandqualifiedreuserecorded in trace-mapping.json;no waiver,no live-onlyrequirement."
+    },
+    {
+      "name": "Approved contract and metadata conservation",
+      "status": "passed",
+      "evidence": "_bmad-output/test-artifacts/epic-15-closeout/contract-conservation.json;15.2approvedintent/tasks8ACsconserved,oneSRO26refs/errors[]native0,old53247bytea40archiveexact,originalRound3recordunchanged;nomigrations/source/test/dependencies/config/workflowchanged.119and118priorAPPLIEDIMMUTABLE."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Actual existing independent implementation/source/fix reviews for allsixstorydeliveryrecords, with originalsource/owner/roundlimits retained in story_evidence below.15.2 actualdistinctHigh targetedpostcapP7PASS is _bmad-output/auto-bmad/preparation/epic-15/inherited-15-2-targeted-post-cap-p7-result.json;currentnativeevidenceindependentHighqualification _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json bcbf0197. This field covers actual storyreview/applicability evidence; it does not claim future fresh-chat finalPRPASS, Root new deliverygate/admission or releaseapproval."
+  },
+  "story_evidence": [
+    {
+      "story": "15.1",
+      "path": "_bmad-output/auto-bmad/delivery/15-1-the-five-scheduling-views.json",
+      "sha256": "f5152363c1967e41341a8d09f052fa0cc7f0d35f5bd4756e61c14479230aa38f",
+      "evidence_revision": "0f56d487f96185f111d3378f2807b89c02dc9b81",
+      "development_check_names": [
+        "Current exact-head CI/static/audit/lockfiles/build/containment",
+        "Current unit and focused workspace regressions",
+        "BMAD/Auto-BMAD process contracts",
+        "REQUIRED integration/RLS/migration/transaction integrity",
+        "Isolated direct recovery Storage integrity",
+        "Essential authentication/real local email smoke",
+        "Qualified essential native scheduling flows"
+      ],
+      "independent_review_evidence": "Original whole-change R1 six-layer coverage and independently qualified source/helper/finalread reviews retained unchanged (original provenance receipt .env.epic15.mail-runtime/delivery-provenance-review-bf0cee04-fe27-473d-964d-ea79fc48581f/review-receipt.json14578B SHA256 e9e5a8de60987dbee69c2a0ee4d4aebb4e7bbafb4d88b1d0c8e883bb17d5a2c3). Current R2 all6 configured independent layers on targeted latestfix diff72225B SHA256 9ac86a73752ad4c54a5bd32d85a88d8c4c1a0f7bc88cf9b5af46e6eea3c92583; raw original reports+completions in .env.epic15.mail-runtime/P7-review-round2-225af940-71fe-4e27-9def-165f4c0c7374/. One deduplicated medium patch,0bad_spec/intent_gap/defer/reject, score3/followupfalse, broad2/3, loop0; original2processdeferrals preserved. Original external643B SHA256 2fdae6617f65784db4233edf619176c2dd7a0781fe8c387359243fd8ec8779f3 retained despite trailing CMDtype native1; same report recovered readnative0, no reviewer relaunch. Latest bounded fix independently HighNoFindings report4915B SHA256 1c57e8c46f3e12ce2a9ea401830b4265700e1bbe54339771ffb2ef94ad027f8d; native-test Highaddendum2789B SHA256 6031c7f02fa86189045483289806b6041440e44693304fa94c455a4ebaef3904; ten-case Highreuse8131B SHA256 767692a2b6e7723502f68e57c79593be1ef02027315157c15612407b637e2494. These are original reports persisted by actual reviewers at completion, not later author attestations/new broad rounds. Separate final frozen-artifact provenance review and Root delivery_gate receipts are retained outside this record before terminal transition. IndependentHigh CI terminal-conflict assessment .env.epic15.mail-runtime/ci-terminal-conflict-assessment-09d4a713-c5f9-4e8c-bd5b-5853dc44b51d/assessment.json12947B SHA256 93ed79528a77a489e9cf228ed9ecea119d2d51102480f4cf3485dffc9bca4249 verifies actual no-cache terminal Auth/DB job/checkrun bindings and all5requiredsuccess, no policyexception; stale snapshots remain.",
+      "release_items": 5
+    },
+    {
+      "story": "15.2",
+      "path": "_bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json",
+      "sha256": "6405619f5408fe2eccd00b9fadb4303a49bf6eb0b41a6453a3a5899b52848906",
+      "evidence_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+      "development_check_names": [
+        "Current canonical static/build/containment and required CI",
+        "Eight-AC series integrity/current authority and focused R3 regressions",
+        "Essential series browser effective-flow applicability",
+        "Direct isolated recovery and current scoped key/client closure",
+        "Original approved contract and historical evidence conservation"
+      ],
+      "independent_review_evidence": "Original independent six-layer R1-3 and final Highclosures7fbb279a/9d22c98c; completed25/28source-reviewmap43cb0de1 plus one-seam23886158 and named later15.3-15.6/E16reviews retain scoped ownership/provenance. Actual distinctHigh /root/combined_epic15_closeout_high2026-10-25 targetedP7 result PASS0patch/score0/FALSE, no fourthbroadpass. Current native independentqualificationbcbf0197. This is actual story-source/reuse review, not future fresh-chat finalPRreview or Root new record admission.",
+      "release_items": 3
+    },
+    {
+      "story": "15.3",
+      "path": "_bmad-output/auto-bmad/delivery/15-3-conflict-resolver.json",
+      "sha256": "886c133b4c76ed98668a8fbf1aadbc3510b57aa557cf29d3ccc73e540134aef2",
+      "evidence_revision": "CI d550029abac34360af7d9d928f6e66f906665d38, run39363860222 attempt1 release_validation:false, independently qualified PASS all5requiredjobs. Implementation/test source6d9836044f643a5ab6df8a1dd430e2801d8a7cdc; reviewed author metadata5a04e94cad8cad3ee18f519774af1ef278e7116b;57source blobs match CI and remain conserved through this docs-only author refresh. report.json SHA2569d3b582912bfccb3cecf0edee300018c9d89cb4d5c647ff709cb0e51791ea236; report.md SHA2563ecfece99d037155cdefbe6d6de58e52b1ddffad1001067e297cc0f1220fa183; manifest SHA256688b9d0fc9e4621e92d1d3ea01f2d70ce88b9f728a896a28cfb33b162cbbb8c4 under checkpoint-d550029a-ci-independent. Later metadata-only head is not falsely claimed rerun.",
+      "development_check_names": [
+        "Applicable static, dependency and production build checks",
+        "Focused domain and full unit/process checks",
+        "Full required DB/RLS, current-history replay and resolver integrity",
+        "Direct recovery-Storage integrity",
+        "Essential production browser smoke"
+      ],
+      "independent_review_evidence": "CURRENT source approval retains3/3counted(1broad2targeted)+2separate exactchecks, zero unresolvedfindings,0bad_spec. Finalround3 report SHA256a9a1309061ffe7cd13e013549e09d37334cec7cd49e6a0cda93ef2129c13a646; exactE03 report SHA2563e4e5f1f8cabe7de9fa68efa2563e7dcc77aa4ecd8bf3e3c0d43e93e4ae2125a. Distinct Sol6.1High CIqualification PASS all5requiredjobs atd550/run39363860222,102evidencefiles+3nativeZIPdigests verified; prior2failedpackets200files preserved. Nativequalified report/manifest hashes in evidence_revision, Rootownership receipt SHA256ad9a3b6da162dd7689e5b6933d1ee5210ccd48e80d8d4fe4318229c9565a5946. No fourth broadpass or fabricatedruntime. This finalauthorrecord still requires Rootdelivery_gate plus fresh DISTINCT independentHigh artifact provenance before statusadmission; neither is claimed performed here. HISTORICAL SOURCE REVIEW RECORD: CURRENT round3/3 independent gpt-6.1-sol High targeted actual-CI repair review PASS, zero findings/required repairs, sourcea80e615214ade42f25b18906ca8c1ee86fadc187/metadata58c4cac847fd0de26cd13e57f08643cd9a965cd6; all56source+2metadata blobs and pinned nine-path input verified. Independent probes7P0F0S focused and36P0F4filteredDBcases transport/no DBprobe;16SROrefs0errors; privacy/default-real scan/identity/fail-closed/no-body diagnostics/proof/SQL invariants source-checked. Raw .env.epic15.mail-runtime/story-15-3-build-review-round-3/review.raw.md SHA256a9a1309061ffe7cd13e013549e09d37334cec7cd49e6a0cda93ef2129c13a646 and summary.json. Total3counted reviews(1broad+2targeted) plus1separate prior exact-locator check; no fourth broadpass. Runtimecause E2E002 remainsUNKNOWN; no runtimefix claim. This docs-only reconciliation conserves source and keeps all3runtime gates pending, development_completefalse/release_readyfalse. HISTORICAL PRIOR CHECKPOINT RECORD (its then-pending statements are superseded by current round3 PASS): Independent gpt-6.1-sol High source checkpoint PASS at source/test9b862185f6dd6485c5c8b6d87be943bb9d8c5939 / metadata27667164a2a10a8252b12bc0a692268aaf745765, zero unresolved findings. Counted rounds2/3: one broad six-layer review and one targeted13fix review, plus one separately recorded same-reviewer exact-locator check; no new broadpass. Round1 had13accepted patches(2high11medium), all independently verified fixed; round2 had1medium test-body patch, independently verified fixed with exact2remaining/resolved histories and durable replay intact. Reviewer verified all56Git blobs/path scope/author trail and no product drift. Raw .env.epic15.mail-runtime/story-15-3-build-review-round-2/review.raw.md SHA256910a036833a498a187c1786dc92ddfce0801523ccfdb70a09107827ada3b5bba; narrow-check.raw.md SHA256ffe5beda8308eb760bbc9037b43e2ed29bde19ab177729b22afb697aa4a57149; summary.json records source_checkpoint_ready/runtime_executed0/development_completefalse/release_readyfalse. This author reconciliation changes only spec/delivery documents and conserves all54source paths. This passes source review for checkpoint, not runtime qualification/development completion; three required runtime checks and Root final provenance/delivery admission remain pending. HISTORICAL PASS ONLY for old reviewed source. Current a80e seven-path CI repair requires latest-delta independent SolHigh verification; parent guard accounts2/3counted plus prior separate locatorcheck, with final review limited to actual delta. No changed-source approval or new broad pass inferred. LATEST E03-ONLY DELTA: previous final3/3 PASS qualifies unchanged56source at a80/53e. New exactallocated Jobs test6d983 requires independent High latest-fix verification only; no fourth broadpass/capreset.3countedrounds+1prior separate locatorcheck remain preserved; review_loop_iteration0 correctly counts0bad_spec re-derivations. Production proof/auth/SQL/source unchanged. No new approval or runtime pass inferred for E03. New nativequalification report.json SHA256ac1258c68b0b732a63c2dec111113420fd27772287400bb8cd9f8065ffa34d2e and report.md SHAf2d84d499a71eaf48df593b5782482c4d2e5b73db2db5b64a3d14ac2c12baccb under checkpoint-53e91365-ci-independent preserve wholeCI FAIL and all actual passed/reached limits. SUPERSEDING CURRENT EXACT-E03 RESULT: existing independent gpt-6.1-sol High reviewer PASS0findings0requiredrepairs at source6d9836044f643a5ab6df8a1dd430e2801d8a7cdc/metadata4633f51b19b68ef7686fdca82ae8421ef680145f. All57source+2metadata bound; old56source unchanged; actual production mapping/fresh-error/HTTPtransport-only and unchanged matcher+whole reset/SQLsnapshot/retry/durable/readback tail verified. Raw .env.epic15.mail-runtime/story-15-3-build-review-round-3/E03-check.raw.md SHA2563e4e5f1f8cabe7de9fa68efa2563e7dcc77aa4ecd8bf3e3c0d43e93e4ae2125a and E03-check-summary.json. Counted3/3(1broad2targeted), two separate checks(prior exactlocator/postcap E03); no fourth broadpass;0bad_spec counter remains correct. This docs-only reconciliation conserves all57source blobs. No new runtime evidence/pass;3runtime gates stillpending exacthead qualification and Root finaldelivery/provenance.",
+      "release_items": 3
+    },
+    {
+      "story": "15.4",
+      "path": "_bmad-output/auto-bmad/delivery/15-4-time-reporting-filing-timesheet-review.json",
+      "sha256": "acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6",
+      "evidence_revision": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+      "development_check_names": [
+        "Canonical frozen-install, dependency, static and production-build checks",
+        "Executed full units and focused process contracts",
+        "Required complete integration lane and RLS execution",
+        "Story-specific own filing, review, authority and exact-duration invariants",
+        "All bounded nudge SQL, preference serialization and rollback assertions",
+        "Current-history migration, H4/policy/ACL and serial isolation",
+        "Essential configured-production browser and prior smoke preservation",
+        "Direct isolated recovery Storage physical integrity",
+        "Exact native identity, source/review binding and evidence admission"
+      ],
+      "independent_review_evidence": "Sensitive implementation and fixes retained gpt-6.1-sol High review independent of the implementation author. EXACT accounting is THREE counted reviews:ONE broad R1 plus TWO limited R2/R3, PLUS TWO separate narrow CI-repair follow-ups, re-derivation0, remaining source findings0. R1 accepted9 patches; its configured external wrapper FAILED exit1 ('The system cannot find the file specified.'); recovered2644-byte report SHA25638b3b043014597eef252f5d1d24e8489dc9aec2b0a92fb216ee1b14691baea01 is unqualified triage input, not a passed layer and actual model metadata was unavailable. R2 native external command genuinely qualified exit0/observed gpt-6.1-sol High/read-only; it identified a residual, not a source PASS. Both bounded detachment residuals were fixed and independent final LIMITED R3 passed0findings at3bd815887a6c4a246d94956eb021b1b6ea0525c2. Separate narrow1 passed0 at71f061b83de04d8f888aaa18f98c4e1960d9d9f4; separate narrow2 passed0 atf20208dca11f4f1f4106cab4a4f8322b945ace21. Latest reviewer read ALL1032lines/131976bytes input SHA256d8031d6886aa36cce98fed0e37b880cfd084033842eaad925bcc17aca1f6d67b and verified3 source bindings; original report7641bytes SHA256d95e2166a67fcdf139b0a7fab6714b3c60fcab7c360da9fc4e86929fd32d6d8b, attestation2672bytes SHA2563ccafb0a21efabca99d9d64d7aa28f4bbf80f6f8c525418b7e18b70387f9675f. Original artifacts under preparation/story-15-4/code-review-round-{1,2,3} and ci-followup-{51f37bc9,d798b286} are preserved. Root's cad4 native qualifier verifies current60 source bindings against reviewedf202 and unchanged relevant dependencies; unchanged reviews are reused under the completion policy, not rerun as a fourth broad review. Original71f commit-body 'three broad' shorthand remains historical and does not alter this exact accounting. The one author20-stop SRO was checked at each fix/reconciliation; current frozen spec is not edited by this record.",
+      "release_items": 6
+    },
+    {
+      "story": "15.5",
+      "path": "_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json",
+      "sha256": "e02e2ffebdac2f93e5ff58871cc6273730793cfeb50cf1d474c9837460a83d44",
+      "evidence_revision": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+      "development_check_names": [
+        "Exact-head CI audit, static checks and production build",
+        "Required Node story cases",
+        "Required full integration, RLS, API and component lane",
+        "Essential browser flow",
+        "Direct isolated recovery-storage integrity",
+        "Current scoped runtime-key cleanup and closure",
+        "Focused reporting-source and checkout-portability checks",
+        "Closed evidence and execution-authority integrity",
+        "Stage1 author review-trail reference check"
+      ],
+      "independent_review_evidence": "Three completed broad story rounds remain capped at3. Current bounded source correction has independent High PASS in _bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/crlf-followup-pass.json; current native evidence has independent High findings[] qualification in _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json (30202bytes/SHA2566b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f). These passed reviews cover unchanged source/current evidence. Root targeted review of this new SRO/delivery metadata delta remains pending before STAGE2; this record claims neither that review nor a fourth broad review.",
+      "release_items": 3
+    },
+    {
+      "story": "15.6",
+      "path": "_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json",
+      "sha256": "0b1f87e9aca54393bd8784d1592f68f02af469f7b08599b55f07319510d07ef8",
+      "evidence_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+      "development_check_names": [
+        "Exact source/checkpoint/native-run binding",
+        "Canonical static, build and containment gates",
+        "Full current unit lane and named Linux-xattr integrity",
+        "Full required integration/RLS lane execution with explicit inherited-skip disposition",
+        "Focused production Min dag journeys within configured full essential smoke",
+        "Configured full essential browser smoke with disclosed outside-core flakes",
+        "Required new and retained case-matrix completeness",
+        "Direct isolated recovery-storage integrity",
+        "Scoped current DB/browser key deletion and client closure",
+        "Independent complete current-native evidence qualification",
+        "Author Suggested Review Order reference integrity"
+      ],
+      "independent_review_evidence": "Implementation review: independent context-free gpt-6.1-sol High Round2 reviewer /root/build15_6_high/round2_targeted PASS over63991byte fix delta SHAaa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2; see public preparation/story-15-6/review-round-2-results.json. Unchanged SQL retains Round1 High security provenance. Distinct retained High actual-diff narrow checks passed the added quote nav fixture and login/E04 repairs; comment-only hygiene retained every noncomment byte. Broad review counter2(onefull,onetargeted), plus documented two narrow checks, unchanged. Current25source binding is _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/tested-source-object-proof.json. Separate independent High current-native qualification is _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json (COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE,independent=true,blockers[]). Stage1 final metadata/provenance check and Root delivery gate remain next; this record is not an author completion/status claim.",
+      "release_items": 5
+    }
+  ],
+  "deferred_release_validation": [
+    {
+      "item": "15.1: E15 remaining exhaustive calendar/actor/gesture browser combinations",
+      "owner": "Epic15 verification owner",
+      "status": "deferred",
+      "evidence": "Current essential11 =10 independently qualified priorpasses+1fresh enhanced date-during-failure recovery. All six command history12PASS/4FAIL/7SKIP preserved; remaining exhaustive combinations have zero blanket credit. Functional/auth/RLS/integrity gates remain development requirements.",
+      "next_action": "Execute remaining release-candidate combinations at stabilization; investigate consequential failures. Run optional diagnostics only for a named outcome."
+    },
+    {
+      "item": "15.1: E15 eleven visual design comparisons",
+      "owner": "Epic15 UI/release owner",
+      "status": "deferred",
+      "evidence": "No completed eleven-comparison design review supplied by functional CI/native assertions; historical0/11 retained, not reclassified.",
+      "next_action": "Capture and review all eleven comparisons against current approved design at release stabilization; retain results and repair consequential defects."
+    },
+    {
+      "item": "15.1: E15 manual phone/daylight/one-hand/assistive-tech and polish",
+      "owner": "Product/release owner",
+      "status": "deferred",
+      "evidence": "No representative-device daylight/one-hand/manual assistive-tech, timing or polish certification. Automated functional evidence remains distinct.",
+      "next_action": "Perform representative-hardware phone/daylight/one-hand/assistive-tech and polish walkthrough before the applicable release decision; record method/results."
+    },
+    {
+      "item": "15.1: E15 broad General and dashboard browser suites",
+      "owner": "Coordinator/release owner",
+      "status": "deferred",
+      "evidence": "Fresh CI39282080632 release_validation=false: Auth7passed; optional exhaustive-browser/diagnostic/dashboard lanes intentionally skipped. Auth7 and qualified native11 are not broad General/dashboard acceptance.",
+      "next_action": "Deliberately dispatch release_validation=true against the qualified release candidate at stabilization, or earlier when consequential changed behavior requires broader browser evidence."
+    },
+    {
+      "item": "15.1: E15 representative performance workload/measurements/approval",
+      "owner": "Product + Architect",
+      "status": "deferred",
+      "evidence": "R-012 workload/threshold approval and full-surface measurements remain open. Harness durations/budgets and Epic11 pilot are not scheduling product-performance certification.",
+      "next_action": "Approve representative volumes and latency/resource/throughput thresholds, measure complete scheduling surfaces, and record the performance release decision."
+    },
+    {
+      "item": "15.2: Exhaustive five-view/gesture/device and screenshot/visual matrix",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Owner Oct19 policy; actual selected essential host receipts are narrower than exhaustive release matrix.",
+      "next_action": "Before release execute tracked remaining view/device/gesture matrix, inspect image differences, record evidence and triage consequential failures."
+    },
+    {
+      "item": "15.2: Manual accessibility/daylight/exploratory scheduling validation",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "SSR/selected real keyboard/phone evidence does not establish manual accessibility or readability certification.",
+      "next_action": "Before release perform recorded keyboard/screen-reader/zoom/daylight walkthroughs and exploratory checks; resolve consequential findings."
+    },
+    {
+      "item": "15.2: Representative scheduling performance thresholds/workloads certification",
+      "owner": "Product/Architect",
+      "status": "deferred",
+      "evidence": "Exacta00/run39348312783 currentconfigured pilot120/24memberships,5warmups25measurements readp9518.046681ms/permissionsCPU4.864174ms/2RLSrequests perread passed. Narrow localAdminusersread/CPU only; fullprivatebaseline/queryplanJSONnotuploaded. No representativeScheduling/releaseperformance certification.",
+      "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build and record acceptance before release."
+    },
+    {
+      "item": "15.3: Exhaustive resolver view/device/gesture/browser permutations and screenshot/visual comparison",
+      "owner": "Release validation owner, coordinated by Root",
+      "status": "deferred",
+      "evidence": "Not executed; development covers only the3essential resolver browser flows after CI qualification. Historical15.1/15.2 observations are not new resolver visual evidence. Currentd550 essential3resolver browser bodies actually passed, but exhaustive device/gesture/browser/screenshot matrix remains unexecuted/deferred.",
+      "next_action": "Root mirror this item into the existing deferred release ledger; release owner schedule and record the exhaustive matrix against a qualified release candidate."
+    },
+    {
+      "item": "15.3: Manual accessibility, daylight, exploratory walkthrough and visual polish",
+      "owner": "Release validation owner, coordinated by Root",
+      "status": "deferred",
+      "evidence": "Not executed; SSR structure and essential keyboard smoke do not replace manual accessibility/exploration. Functional accessibility failures in essential flow still block development. Currentd550 essential keyboard/SSR assertions passed in their limited scope; no manual accessibility/daylight/exploration/polish execution or release acceptance.",
+      "next_action": "Root mirror ownership/status into the deferred ledger; release owner run and triage manual checks on the release candidate before release readiness."
+    },
+    {
+      "item": "15.3: Representative resolver performance certification and inherited epic release validation",
+      "owner": "Release validation owner, coordinated by Root",
+      "status": "deferred",
+      "evidence": "No representative performance measurement or inherited release-work closure claimed; source uses bounded suggestion search and full facts scan without certification. Currentd550 narrow Admin syntheticpilot executed only its existing scope; noSchedulingR012/resolver representative performance or inherited release closure inferred.",
+      "next_action": "Root retain inherited15.1/15.2 and Epic14 open release work, add resolver performance scope to the ledger and schedule representative measurement before release readiness."
+    },
+    {
+      "item": "15.4: Exhaustive browser/device/view matrices",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Current exact-head essential17-case configured-production smoke and360x640 flow passed; exhaustive matrices were not executed because release_validation=false. Essential smoke is not exhaustive matrix evidence.",
+      "next_action": "Define the owned release browser/device/view matrix, admit a separate release-validation run and retain every executed/failed/skipped result before release readiness."
+    },
+    {
+      "item": "15.4: Screenshots, visual comparison and visual inspection",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "No screenshot-comparison or exhaustive visual inspection pass is claimed by CI3. No uploaded trace/HTML bytes were inspected. Older visual gate language is reconciled to the authorized2026-10-19 completion policy, not marked passed.",
+      "next_action": "Capture approved viewport/state screenshots on a qualified release candidate, compare them against approved design/defaults and record review outcomes and required corrections."
+    },
+    {
+      "item": "15.4: Manual accessibility, daylight and exploratory walkthroughs",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "Connected essential controls and flows have current browser/SSR evidence; exhaustive manual accessibility/daylight/exploration work remains unexecuted and distinct from explicit-label/essential-flow checks.",
+      "next_action": "Run the scoped keyboard/focus/assistive/manual daylight and exploratory checklist on the qualified release candidate, preserve observations and resolve consequential defects before release approval."
+    },
+    {
+      "item": "15.4: Actual <=30-second one-hand filing timing",
+      "owner": "QA/UX",
+      "status": "deferred",
+      "evidence": "The360x640 essential workflow passed; no measured one-hand completion-time study was performed. Automated timeout/duration is not the requested human timing evidence.",
+      "next_action": "Execute and record actual representative one-hand booking/standalone filing timing, including failure/retry usability, then evaluate against the <=30-second requirement."
+    },
+    {
+      "item": "15.4: Representative workload, target approval and performance certification",
+      "owner": "Product/Architect",
+      "status": "deferred",
+      "evidence": "The admin-users-only pilot executed but no approved representative Scheduling/time-report workload/threshold or performance certification exists; unrelated pilot timings do not supply that credit.",
+      "next_action": "Approve representative tenant/history/concurrency workloads and thresholds, then admit and execute performance validation and record actual measurements against those approved targets."
+    },
+    {
+      "item": "15.4: Release polish",
+      "owner": "Delivery owner",
+      "status": "deferred",
+      "evidence": "Required functional/security/integrity/essential-browser gates passed at the evidence revision. Exhaustive release polish review has not executed and is not needed to hide or defer any consequential failure.",
+      "next_action": "Maintain the owned polish list, inspect the qualified release candidate, resolve agreed items and attach actual release-review evidence before requesting release approval."
+    },
+    {
+      "item": "15.5: Exhaustive role/device/browser matrices beyond essential14 smoke",
+      "owner": "Kopplas release-validation coordinator",
+      "status": "deferred",
+      "evidence": "Run40125241153 used release_validation=false: required14browser+42other smoke passed;4optional jobs skipped with0coverage. Exhaustive combinations were not executed; _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json preserves limits.",
+      "next_action": "On a separately qualified and authorized release candidate, enumerate and execute remaining role/device/browser combinations, retain results and resolve consequential defects before release readiness."
+    },
+    {
+      "item": "15.5: Screenshot comparison, representative manual visual/accessibility walkthrough and polish",
+      "owner": "Kopplas release-validation coordinator",
+      "status": "deferred",
+      "evidence": "No screenshot/manual/visual pass claimed. Essential usable-flow evidence remains qualified separately. Authority: _bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md, EXPERIENCE.md and incorporated derived PhaseB UX annex.",
+      "next_action": "Before release readiness, retain screenshot and representative viewport/manual/accessibility validation against approved authority. Consequential functional/accessibility defects remain development blockers, not polish."
+    },
+    {
+      "item": "15.5: Release-operator hosted feed enablement and release/deployment approval",
+      "owner": "Kopplas release operator",
+      "status": "deferred",
+      "evidence": "Approved intent requires separately authorized dedicated key/Vault/runtime and trusted-IP evidence for hosted enablement. Current isolated CI runtime-key qualification supplies no production enablement or release/deployment approval.",
+      "next_action": "Before hosted feed enablement, obtain existing separate release/deployment approvals and qualify dedicated target key/Vault/runtime/trusted-IP configuration; retain operator evidence rather than infer it from CI."
+    },
+    {
+      "item": "15.6: Full Min dag role/device/browser matrix beyond nine essential journeys",
+      "owner": "QA / release-validation coordinator",
+      "status": "deferred",
+      "evidence": "Exhaustive release matrix remains unexecuted. Required current native core9new+14retained browser cases passed clean retry0 at b57de610/run40192543175; global smoke also records two outside-core protocol flakes:15.4-E2E-002 and16.1-E03 retry0failed/retry1passed. These are separately retained verification-reliability observations, not presentation polish or inferred application-write failures. See _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json.",
+      "next_action": "QA/release-validation coordinator executes the qualified release-head role/device/browser matrix. QA/CI verification maintainer separately investigates the two response-body protocol flakes using per-attempt native evidence, records disposition without hiding retries, and routes any demonstrated consequential functional defect back to development remediation; this is not an acceptance waiver."
+    },
+    {
+      "item": "15.6: Canonical design screenshot comparison, measured contrast and presentation polish",
+      "owner": "UX / QA",
+      "status": "deferred",
+      "evidence": "No screenshot, visual comparison or measured rendered contrast performed. Existing neutral primitives used per bounded owner default; shared font/token migration is outside this story allocation.",
+      "next_action": "Compare the rendered Min dag states against approved DESIGN/EXPERIENCE at release viewports; assess shared-token migration in its owned design lane and resolve findings."
+    },
+    {
+      "item": "15.6: Manual accessibility, keyboard, daylight and exploratory walkthrough",
+      "owner": "QA / UX",
+      "status": "deferred",
+      "evidence": "Not executed; semantic controls and focus styles are source choices, not manual evidence.",
+      "next_action": "Run and attach the manual connected-field release walkthrough, including long Swedish text and zoom/reflow."
+    },
+    {
+      "item": "15.6: E14 advisory triage and approved performance volumes/targets",
+      "owner": "QA / Product / Architect",
+      "status": "deferred",
+      "evidence": "October8 accepted-with-open-items governs 48 advisory triage and unapproved performance targets; this run made no performance claim.",
+      "next_action": "Reconcile advisory resolution evidence and approve representative performance volumes/targets before qualification claims."
+    },
+    {
+      "item": "15.6: Final Phase B release validation and stabilization checkpoint",
+      "owner": "Coordinator / release-validation coordinator",
+      "status": "deferred",
+      "evidence": "October22 final milestone remains pending, unexecuted; development completion alone cannot satisfy it.",
+      "next_action": "After current PhaseB epics are integrated/development-complete, open assigned checkpoint and execute applicable release checks before explicit release approval."
+    }
+  ],
+  "release_ready": false,
+  "advisory_assessments": {
+    "trace": {
+      "status": "PASS",
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/gate-decision.json",
+      "uncovered_required_ACs": []
+    },
+    "NFR": {
+      "status": "CONCERNS",
+      "risk": "MEDIUM",
+      "numeric_score": null,
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-assessment.md"
+    },
+    "test_review": {
+      "score": 0,
+      "grade": "F",
+      "recommendation": "Block",
+      "advisory_nonblocking": true,
+      "context_waivers": 0,
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review.md",
+      "finding_counts": {
+        "CRITICAL_C1": 51,
+        "HIGH_H5": 8,
+        "HIGH_H1": 1
+      },
+      "coverage_inference": "none;zero-creditretiredscaffoldsnotmissingREALcoverage"
+    }
+  },
+  "deferred_reconciliation": {
+    "marked_resolved": 0,
+    "ledger_unchanged": true,
+    "path": "_bmad-output/test-artifacts/epic-15-closeout/deferred-reconciliation-result.json"
+  },
+  "pending_approval_boundaries": [
+    "Root structuraldelivery_gate on exactnewrecords and normalstatebookkeeping",
+    "Finalfresh-chat independentPRreview boundactualPRhead",
+    "Exactpushed-headrequiredGitHubchecks",
+    "Authorizedmerge withproduction-autodeploycontainment andnoDeploy",
+    "FinalPhaseBreleasevalidation/stabilizationcheckpoint;explicitrelease/deploymentapproval"
+  ],
+  "blockers": []
+}

@@ -419,6 +419,17 @@ existing AC, recorded so it is not re-triaged a third time.
   location: src/server/email/templates.ts
   severity: medium
 
+## Deferred from: build-auto review of 15-1-the-five-scheduling-views (2026-10-19)
+
+- source_spec: `spec-15-1-the-five-scheduling-views-2.md`
+  summary: Optional privileged diagnostic broker can miss a final pipe write before reaping/empty fence
+  evidence: Scope: Separately opted-in inactive diagnostic lane; not standard CI/product acceptance Owner: CI/diagnostic maintainer Evidence: tests/diagnostics/fixed-chromium-owned-process.c:273 drain occurs before waitid; actual source is branch-added, optional caller only Next action: Before future opt-in diagnostic use, independently qualify and fix bounded post-exit drain with an interleaving regression; no current execution or acceptance claim.
+  severity: medium
+- source_spec: `spec-15-1-the-five-scheduling-views-2.md`
+  summary: Upstream PR-feedback mutable-workspace gate attestation candidate
+  evidence: Scope: Byte-unchanged versus actual origin/main; commit ba2dcdcff1e0ef3c5c63da7f721b8507f0dde358; outside current scheduling repair Owner: PR-feedback controller maintainer Evidence: .github/workflows/pr-feedback.yml:218; external report; unchanged upstream-source comparison Next action: Focused upstream process-security qualification of test-time workspace mutation and immutable gate provenance before changing that controller; no scheduling source repair.
+  severity: medium
+
 ## Deferred from: build-auto review of 16-1-jobs-depth-activation-container-evolution-and-my-jobs (2026-10-19)
 
 - source_spec: `spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md`
@@ -495,3 +506,26 @@ existing AC, recorded so it is not re-triaged a third time.
   evidence: Status: deferred. Owner: Epic16 release validation owner (root). Automated essential retention,refusal,retry and persistence acceptance executed; manual release walkthrough/polish was not executed. Consequential behavior remains a development requirement. Next action: Perform the Epic16 release walkthrough,resolve presentation-polish findings and attach manual evidence before release readiness.
   location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/2
   severity: low
+
+## Deferred from: Story15.6 Min dag implementation (2026-10-25)
+
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Full Min dag role/device/browser matrix beyond nine essential journeys
+  evidence: Status: deferred. Owner: QA / release-validation coordinator. Exhaustive release matrix remains unexecuted. Required current native core9new+14retained browser cases passed clean retry0 at b57de610/run40192543175; global smoke also records two outside-core protocol flakes:15.4-E2E-002 and16.1-E03 retry0failed/retry1passed. These are separately retained verification-reliability observations, not presentation polish or inferred application-write failures. See _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json. Next action: QA/release-validation coordinator executes the qualified release-head role/device/browser matrix. QA/CI verification maintainer separately investigates the two response-body protocol flakes using per-attempt native evidence, records disposition without hiding retries, and routes any demonstrated consequential functional defect back to development remediation; this is not an acceptance waiver.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/0
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Canonical design screenshot comparison, measured contrast and presentation polish
+  evidence: Status: deferred. Owner: UX / QA. No screenshot, visual comparison or measured rendered contrast performed. Existing neutral primitives used per bounded owner default; shared font/token migration is outside this story allocation. Next action: Compare the rendered Min dag states against approved DESIGN/EXPERIENCE at release viewports; assess shared-token migration in its owned design lane and resolve findings.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/1
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Manual accessibility, keyboard, daylight and exploratory walkthrough
+  evidence: Status: deferred. Owner: QA / UX. Not executed; semantic controls and focus styles are source choices, not manual evidence. Next action: Run and attach the manual connected-field release walkthrough, including long Swedish text and zoom/reflow.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/2
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: E14 advisory triage and approved performance volumes/targets
+  evidence: Status: deferred. Owner: QA / Product / Architect. October8 accepted-with-open-items governs 48 advisory triage and unapproved performance targets; this run made no performance claim. Next action: Reconcile advisory resolution evidence and approve representative performance volumes/targets before qualification claims.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/3
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Final Phase B release validation and stabilization checkpoint
+  evidence: Status: deferred. Owner: Coordinator / release-validation coordinator. October22 final milestone remains pending, unexecuted; development completion alone cannot satisfy it. Next action: After current PhaseB epics are integrated/development-complete, open assigned checkpoint and execute applicable release checks before explicit release approval.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/4

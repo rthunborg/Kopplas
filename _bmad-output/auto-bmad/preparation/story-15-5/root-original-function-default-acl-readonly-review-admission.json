@@ -1,0 +1,28 @@
+{
+  "schema": "root-original-function-default-acl-readonly-review-admission-v1",
+  "reviewer": "/root/review15_5_preselected_id_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "scope": "Targeted new read-only ACL proof and Root transport, no fourth broad review",
+  "verdict": "PASS",
+  "originals": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/original-report.md",
+      "bytes": 4530,
+      "sha256": "8a4cf7e91f7abda7c91aa9b1ee78778d0d5ff5e0807c18d7740d9d3bfd808880"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/original-attestation.json",
+      "bytes": 7084,
+      "sha256": "16cd76f3eb67ef9b4bea2be34ece2a204970015e41e2c556a13662ae176ffa52"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-default-acl-readonly-review/result.json",
+      "bytes": 1319,
+      "sha256": "ebba156337baeda96313726e89289309ec342f4c9f1f0cd919369dbf6aa8026c"
+    }
+  ],
+  "inputs_verified": 3,
+  "executed": false,
+  "normal_acceptance_credit": 0
+}

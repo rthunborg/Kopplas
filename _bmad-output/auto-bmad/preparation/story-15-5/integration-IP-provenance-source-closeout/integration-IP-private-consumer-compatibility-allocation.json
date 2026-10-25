@@ -1,0 +1,32 @@
+{
+  "allocation": "ROOT_EXPLICIT_PRIVATE_INERT_FOUR_CONSTANT_COUNTERPART",
+  "created_utc": "2026-10-24T12:26:04.456078+00:00",
+  "base_HEAD": "fe1826587c225736893ca000fa4c6453ff051f2e",
+  "plan": {
+    "path": ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility-plan.json",
+    "bytes": 12949,
+    "sha256": "841bcaa77315932825f953f107e99654554a8c88b65b2685ab01c53dc56da218"
+  },
+  "owned_new_members": [
+    ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility\\reader.py",
+    ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility\\proposal.json",
+    ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility\\manifest.json",
+    ".env.epic15.mail-runtime\\story-15-5-preparation\\integration-IP-private-consumer-compatibility\\safe-proof.json"
+  ],
+  "reader_delta": "Copy pinned inert52631/278531786c36acaf5c219e23b9970c45533b647358b75a544742e6e68af44007 plus exactly4 static stage leaves. All other bytes and41function sources identical. Null globals and unsatisfiable admission contradiction retained. No actual run/head/CP binding.",
+  "controls": "Finite RAM-only calls to exact extracted actual pure parser and necessary downstream pure projection functions. Baseline4reject/candidate4recognize, originalstage differential, small malformed/boundary/privacy table, synthetic downstream4failed reports. No whole module import/invocation, main/acquisition/admission/GET execution. No raw synthetic runtime values retained.",
+  "descriptor": "Inert preparation only; historical source75/catalog inventory references not current evidence. No extraction/recount. Self-excluded manifest pins actual4members.",
+  "excluded": [
+    "tracked source or spec edits",
+    "other sessions checkouts",
+    "Git",
+    "network",
+    "resources",
+    "DB/browser/native application workload",
+    "new parser collector transport or catalog family",
+    "activation/journal/grant",
+    "runtime acceptance or repair claim"
+  ],
+  "independent_actual_review_required": true,
+  "current_required95": "93PASS API019FAIL API020UNEXECUTED; P5OPEN; broad review3 exhausted; all old effect slots CLOSED"
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "EXACT_TWO_PRIVATE_PATHS_CONDITIONAL_ONE_LOG_GET_ALLOCATION",
+  "created_at_utc": "2026-10-21T08:33:08.972185+00:00",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15d96-3534-7c91-8c56-3f5fb5cd1ba7",
+  "completed_grant_tool": "exec-324d9d7a-df43-4bbd-b1e3-bfcb40463e3f",
+  "final_message": "msg_0954b60b44796db1016ad878b361fc81919b3f7eab267b831e",
+  "run_id": 39569322317,
+  "job_id": 119119310666,
+  "head_sha": "f0b1e5735872ba2effcd7c1480756326125f6752",
+  "paths": [
+    ".env.epic15.mail-runtime\\story-15-5-preparation\\root-status-origin-verify-tap-01.mjs",
+    ".env.epic15.mail-runtime\\story-15-5-preparation\\root-status-origin-verify-tap-01-result.json"
+  ],
+  "additional_scope": "Retained Root assignment/review metadata only",
+  "preconditions": [
+    "High author plus distinct targeted High review before Root-only acquisition/execution",
+    "Fresh exclusive no overwrite",
+    "Exact admitted failed verify job identity and unchanged producerhead"
+  ],
+  "transport": {
+    "method": "GET",
+    "endpoint": "repos/rthunborg/Kopplas/actions/jobs/119119310666/logs",
+    "request_cap": 1,
+    "timeout_ms": 15000,
+    "max_observed_bytes": 4194304,
+    "raw_bytes_memory_only": true,
+    "retry": false
+  },
+  "persisted_output_only": [
+    "Actual static repository sourcepath/bounded line",
+    "Verified bounded STATIC source test title ELSE admitted digest",
+    "Fixed error category",
+    "Observed bytecount/SHA explicitly observed bytes",
+    "Complete/truncated/UNKNOWN state"
+  ],
+  "failure_rule": "Timeout/cap/malformedTAP/incomplete transport/uncertain completion => incomplete UNKNOWN and consumed; no blind retry; partial absence proves nothing.",
+  "exclusions": [
+    "No raw logs/body/error causes stderr messages values stacks runtimepayload persistence/output",
+    "No alternate targets/URLs/CI dispatch",
+    "No fix or CI retry authority from location extraction",
+    "No sharedsource Docs E16 migrations DB resources provider mainmerge deploy monitorresume"
+  ],
+  "normal_acceptance_credit": 0,
+  "activated": false
+}

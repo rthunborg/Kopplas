@@ -1,0 +1,5 @@
+{
+  "Root_decision": "MAXIMUM_ONE_CLI_INVOCATION_NO_AGENT_RETRY",
+  "allocation": "current-lockfile-audit-diagnostic-allocation.json",
+  "scope": "Exact allocated argv unchanged; pnpm builtin registry request retry behavior may occur within30s bounded native loop; internal HTTP attempt count UNKNOWN. No manual request/retry or second CLI invocation. Audit JSON exit1 may indicate any severity; require complete parsed report and actual high/critical counts. Read-only current dependency evidence only, no historical cause attribution or mutation authority."
+}

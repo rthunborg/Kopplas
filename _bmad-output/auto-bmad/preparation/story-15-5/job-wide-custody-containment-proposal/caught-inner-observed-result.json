@@ -1,0 +1,60 @@
+{
+  "mode": "caught-inner",
+  "argv": [
+    "node",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+    "run",
+    "--config",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-custody-containment-proposal\\caught-inner.config.mjs",
+    "--configLoader",
+    "runner"
+  ],
+  "config_bytes": 782,
+  "config_sha256": "29857ab0c18b6b2a7b119b6340f09621fa0096c720206efa6df2c0ecd780b763",
+  "native_exit": 1,
+  "elapsed_seconds": 0.653,
+  "stdout_bytes": 1948,
+  "stdout_sha256": "7b2f710f56f3055876a73b5eecb6851773e273e26aac106641bf5187a5c5ea98",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "summary": {
+    "numTotalTests": 1,
+    "numPassedTests": 0,
+    "numFailedTests": 1,
+    "numPendingTests": 0,
+    "success": false
+  },
+  "observations": [
+    {
+      "events": [
+        "C4_FIXTURE_IMPORTED",
+        "C4_FIRST_MODULE_IMPORTED",
+        "C4_ADMIT",
+        "C4_INNER_CAUGHT"
+      ],
+      "unhandled": 0,
+      "reason": "interrupted"
+    }
+  ],
+  "test_states": [
+    {
+      "file": "parallel.test.mjs",
+      "cases": []
+    },
+    {
+      "file": "a-caught-inner.test.mjs",
+      "cases": [
+        {
+          "status": "failed",
+          "id": "caught inner still outer fixture fails"
+        }
+      ]
+    },
+    {
+      "file": "z-next.test.mjs",
+      "cases": []
+    }
+  ],
+  "raw_persisted": false,
+  "network_or_app_SQL": 0
+}

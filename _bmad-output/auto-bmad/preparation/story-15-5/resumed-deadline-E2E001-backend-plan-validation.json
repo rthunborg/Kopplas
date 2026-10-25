@@ -1,0 +1,171 @@
+{
+  "schema": "kopplas.resumed-deadline-E2E001-backend-plan-validation.v1",
+  "verdict": "CONDITIONAL_PASS_EXACT_COMMIT_CERTIFICATE_AND_BOUNDED_CORRECTION_PLAN",
+  "status": "CONDITIONAL_PASS_SOURCE_PLAN_ONLY",
+  "review": {
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "Narrow validation of the frozen backend assessment and proposed helper/unit/Spec correction. No implementation approval, fourth broad review or runtime evidence."
+  },
+  "assessment": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-deadline-E2E001-backend-contract-assessment.json",
+    "bytes": 15226,
+    "sha256": "b110b78beedeeebe502c8228d8004f49e978d64850f7eb764222ba6ee5e4d3f9"
+  },
+  "actual_qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-deadline-E2E001-actual-causal-qualification.json",
+    "bytes": 12247,
+    "sha256": "37972b59ef8fa68f2b106cbc63e59f6d1d4752ca2ceecb1a21761e955c7ec5ff",
+    "reuse": "Actual three fulfilled observations/zero tracked readbacks/three completion records at RESPONSE_FINISHED and exact SDK mismatch remain qualified. They do not retrospectively prove cleanup/key disposition."
+  },
+  "binding": {
+    "main": "09df64ee72892fc543f4bdaf75ebfa69790891fe",
+    "diagnostic": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1",
+    "source_authority": "All eight assessment source bindings and retained evidence hashes independently verified; current source read-only."
+  },
+  "commit_proof_judgment": {
+    "valid_in_principle": true,
+    "scope": "Positive certificate of this exact checked manage_calendar_feed transaction's committed fixture writes; independent of delivery or Response.finished.",
+    "chain": [
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "lines": "36-50,162-193",
+        "fact": "Actor/subject/proof/tenant checks, tenant transaction lock, unique membership/revision/attempt and exact replay guards bind the operation. Token write and attributable audit insert occur in the same transaction before RETURN."
+      },
+      {
+        "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+        "lines": "317-350",
+        "fact": "The effective forward adapter performs exact auth.uid substitutions and enforces unchanged nonbody metadata/ACL and expected body; it adds no postcommit mutation."
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "lines": "537-570",
+        "fact": "Independent tracked reads require the subject membership, exact request attempt/action/next revision token and exactly one audit for that token, subject actor, attempt and revision. Token membership/tenant constraints and globally unique IDs preserve scope. Source-backed external visibility of these atomically written rows is positive committed-transaction evidence; it is not a generic truthy readback."
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "lines": "10-32,43-52",
+        "fact": "One checked manage RPC follows read-only status/proof preparation. Successful manage return is followed by pure result/issuedPath construction; reconciliation is read-only."
+      },
+      {
+        "path": "src/server/commands/envelope.ts",
+        "lines": "233-309",
+        "fact": "The adapter passes config.auditable through to the awaited core and has no later mutation or detached completion path."
+      },
+      {
+        "path": "src/server/commands/envelope-core.ts",
+        "lines": "255-304",
+        "fact": "auditable:false skips the only post-execute audit branch; typed ok return follows."
+      },
+      {
+        "path": "src/features/calendar-feed/actions.ts",
+        "lines": "7-9",
+        "fact": "The action awaits the command once and maps unavailable without a later fixture mutation. A catch/unavailable mapping itself is not a rollback certificate."
+      }
+    ],
+    "transaction_visibility": "Seeing the exact new token/audit through independent PostgreSQL sessions proves their writer transaction committed, including its atomic/deferred transactional work. The two reads need not share one snapshot to prove this positive immutable operation identity. This does not prove no other transaction is active.",
+    "limits": [
+      "No row, timeout, local rejection or client ERR_ABORTED is rollback evidence.",
+      "A same-attempt commit may originate from one of multiple duplicate invocations; it does not settle every duplicate Request or a delayed replay.",
+      "A checked manage commit does not settle anonymous-feed counters, fault routes/bodies, auth/setup, RSC/status reads, another fixture or global key consumers.",
+      "No claim of exact failed-run cleanup, key deletion, backend rollback or full scenario success is made."
+    ]
+  },
+  "required_implementation_conditions": [
+    {
+      "id": "PLAN-A1",
+      "requirement": "Maintain a per-Request admission ledger and an effective admission fence before any fixture row/Auth deletion.",
+      "current_insufficiency": "The current requestListener only appends parsed Attempt inputs; it does not retain exact Request identity or certify every admitted invocation. It is removed at cleanup start before drain. createCalendarLifecycleObservations.closing stops registry callbacks, not browser/server-action dispatch. These mechanisms are not a backend admission fence.",
+      "minimum": "Freeze tenant/subject/actor and expected action/attempt/revision with each relevant owned Request at admission, and bind each certificate to that exact entry. Cover unmatched, duplicate/replayed, malformed, mismatched, extra and late relevant requests; none may inherit another entry's certificate. Before cleanup, enforce that no additional relevant manage invocation can start, or prove irreversible closure of every owning target and account for all admitted work. Keep ownership/intake until that boundary is established. Turning off a listener, taking one empty snapshot, JS busy flags, source-only explicit-retry behavior or database replay uniqueness is insufficient.",
+      "why_consequential": "A delayed extra same-attempt invocation remains a separate operation. Deleting its token history while its principal can still run can invalidate the premise of the replay guard; a prior commit certificate cannot authorize that race.",
+      "stop_condition": "If an effective bounded fence/ledger cannot fit the exact helper/unit/Spec allocation while preserving ownership, stop for an exact scope decision. Do not weaken this condition or add an unbounded framework."
+    },
+    {
+      "id": "PLAN-A2",
+      "requirement": "Issue an exact source-backed per-owner COMMIT certificate; uncertified operations remain UNKNOWN.",
+      "minimum": "Use the existing successful committedAttempt predicate, preserving its token/audit uniqueness, subject membership/actor, action, attempt and expected-next-revision checks and constraint-backed tenant binding. Freeze identity rather than consult a later mutable subject. Carry a trusted certificate from that checked path, not arbitrary {committed:true}, any snapshot, matching action name, a stale certificate or a public caller-provided flag. Extra or inconsistent requests prevent cleanup unless separately proven not admitted or fully settled under an authorized contract.",
+      "negative": "Missing rows, frontend failure, unavailable mapping, cancellation and unconfirmed backend response cannot become rollback/terminal-backend proof. No generic rejection certificate is introduced."
+    },
+    {
+      "id": "PLAN-A3",
+      "requirement": "Separate frontend SUCCESS / TERMINAL_FAILURE / UNKNOWN from certified managed-write COMMIT / UNKNOWN.",
+      "minimum": "An aborted/failed response is never successful native finish. A committed managed write may be proven independently, while wire outcome remains failed/unknown. Do not construct then abandon a pending Response.finished promise; any continuation actually started must remain owned and joined/contained according to its effects. Preserve original returned values, error identity/cause/precedence and every scenario assertion. A failed scenario remains failed even if safe cleanup later becomes provable."
+    },
+    {
+      "id": "PLAN-A4",
+      "requirement": "Preserve all other settlement and cleanup gates.",
+      "minimum": "Keep actual observations/readbacks joined, late readback invocation closed, fault gates released, actual fault/body/HTTP/disposal work accounted for, and transport uncertainty outside the certified managed write fail-closed. Canonical SQL/Auth deletion requires all relevant certificates/fence/other-work gates, exact existing row scope and unchanged cleanup error aggregation. Global wrapper-key deletion remains outside the certificate and this source scope."
+    },
+    {
+      "id": "PLAN-A5",
+      "requirement": "Verify the exact implementation with meaningful existing-unit controls and separate High review.",
+      "minimum": "Controls must reject wrong/missing/stale certificate identity, wrong owner/subject/tenant/attempt/action/revision, ambiguous/duplicate/unmatched/late requests and pending actual readback/fault work; show admitted-late races cannot write through cleanup; preserve any started continuation and original error/assertion outcomes. Positive committed-write plus frontend failure must remain failed on the wire, with cleanup admitted only after the complete ownership proof. Use actual source seams; no mirroring-only matrix or new generic diagnostic family."
+    }
+  ],
+  "scope_and_authority": {
+    "proposed_paths": [
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "outside_scope": "No production SQL/app/envelope/wrapper/workflow/selector/dependency changes are needed or authorized by this plan validation.",
+    "approval": "Conditional plan validation only. Root must obtain/verify an actual exact source allocation including the fence requirements before implementation. Actual committed code receives separate targeted High review before any functional verification effects.",
+    "next_route": "Implement the bounded ownership/certificate correction only after allocation, then review and run separately admitted essential functional gates. No additional generic diagnostics or automatic rerun is proposed."
+  },
+  "independent_evidence": {
+    "source_binding_and_chain_read": {
+      "chunk": "d45de9",
+      "native_exit": 0,
+      "wall_seconds": 0.1712602
+    },
+    "envelope_adapter_read": {
+      "chunk": "c78cfc",
+      "native_exit": 0,
+      "wall_seconds": 0.1582664
+    },
+    "kind": "Exact local file/hash and bounded source reads only; prior SDK/actual qualification reused nonadditively.",
+    "tests": 0,
+    "API_calls": 0,
+    "SQL_execution": 0,
+    "app_imports": 0,
+    "Git_commands": 0,
+    "resources": 0
+  },
+  "skills": {
+    "applied": [
+      "C:/Users/Rasmus/.agents/skills/supabase/SKILL.md",
+      "C:/Users/Rasmus/.agents/skills/supabase-postgres-best-practices/SKILL.md"
+    ],
+    "limit": "This is pinned-source plan validation with no implementation or remote/runtime effects; the explicit source-only/no-API task boundary is preserved."
+  },
+  "findings": {
+    "backend_certificate_rejected": false,
+    "implementation_approved": false,
+    "hard_condition": "PLAN-A1 admission fence/per-Request accounting must be explicit and demonstrated; current helper bookkeeping alone is insufficient for the proposed cleanup-authority change."
+  },
+  "remaining": {
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "required_missing_cases": 35,
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "broad_review_counter": 3,
+    "abort_initiator": "UNKNOWN",
+    "actual_retained_key_deletion": "UNKNOWN",
+    "failed_run_backend_cleanup": "UNKNOWN"
+  },
+  "additional_read_bindings": [
+    {
+      "path": "src/server/commands/envelope.ts",
+      "bytes": 18651,
+      "sha256": "718028b4d77799f99381f29e0e442e8148660e8b9357d758aea8caf5e8e4dd0a"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "bytes": 8674,
+      "sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504"
+    }
+  ]
+}

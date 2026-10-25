@@ -1,0 +1,319 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-19T16:51:38.576614+00:00",
+  "repo": "Kopplas",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "none",
+  "source_sha": "cc6ef30a8cb03000ac3fcd13bb216b1e9de544c6",
+  "evidence_revision": "0f56d487f96185f111d3378f2807b89c02dc9b81",
+  "target": {
+    "type": "story",
+    "id": "15.1",
+    "label": "The Five Scheduling Views"
+  },
+  "decision_mode": "advisory_only_allow_gate_false",
+  "evaluator": "TEA story trace delegate; explicitgpt-6.1-sol High",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "coverage": {
+    "inventory": {
+      "covered": 8,
+      "total": 8,
+      "pct": 100
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 6,
+        "covered": 6,
+        "pct": 100
+      },
+      "P1": {
+        "total": 2,
+        "covered": 2,
+        "pct": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 20,
+        "criteria_covered": 8
+      },
+      "api": {
+        "tests": 92,
+        "criteria_covered": 7
+      },
+      "component": {
+        "tests": 24,
+        "criteria_covered": 6
+      },
+      "unit": {
+        "tests": 47,
+        "criteria_covered": 7
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    },
+    "definition": "FULL means complete current rerunnable automated assertion mapping for8development-scopeACs under owner policy. It is not100% executed browser/release validation. Authored-only browser cases have explicit no-pass execution metadata."
+  },
+  "tests": {
+    "files": 12,
+    "cases": 183,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0
+  },
+  "tests_added": 0,
+  "application_tests_executed_this_workflow": 0,
+  "risk_summary": {
+    "critical_open": 0,
+    "high_open": 0,
+    "medium_open": 0,
+    "low_open": 0,
+    "scope": "development automated assertion gaps; release validation remains deferred"
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "present",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable",
+    "formal_story_ui_note": "Rerunnable UI assertions exist;9authored browser whole cases lack qualified current passes and remain release execution gaps."
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "cc6ef30a8cb03000ac3fcd13bb216b1e9de544c6",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "blockers": [],
+  "recommendations": [
+    {
+      "priority": "release",
+      "action": "Execute remaining release-candidate combinations at stabilization; investigate consequential failures. Run optional diagnostics only for a named outcome.",
+      "owner": "Epic15 verification owner",
+      "item": "E15 remaining exhaustive calendar/actor/gesture browser combinations",
+      "status": "deferred"
+    },
+    {
+      "priority": "release",
+      "action": "Capture and review all eleven comparisons against current approved design at release stabilization; retain results and repair consequential defects.",
+      "owner": "Epic15 UI/release owner",
+      "item": "E15 eleven visual design comparisons",
+      "status": "deferred"
+    },
+    {
+      "priority": "release",
+      "action": "Perform representative-hardware phone/daylight/one-hand/assistive-tech and polish walkthrough before the applicable release decision; record method/results.",
+      "owner": "Product/release owner",
+      "item": "E15 manual phone/daylight/one-hand/assistive-tech and polish",
+      "status": "deferred"
+    },
+    {
+      "priority": "release",
+      "action": "Deliberately dispatch release_validation=true against the qualified release candidate at stabilization, or earlier when consequential changed behavior requires broader browser evidence.",
+      "owner": "Coordinator/release owner",
+      "item": "E15 broad General and dashboard browser suites",
+      "status": "deferred"
+    },
+    {
+      "priority": "release",
+      "action": "Approve representative volumes and latency/resource/throughput thresholds, measure complete scheduling surfaces, and record the performance release decision.",
+      "owner": "Product + Architect",
+      "item": "E15 representative performance workload/measurements/approval",
+      "status": "deferred"
+    }
+  ],
+  "links": {
+    "trace_report_path": "_bmad-output/test-artifacts/traceability/story-15-1-2026-10-19/traceability-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "skill_gate_decision": "NOT_EVALUATED",
+  "allow_gate": false,
+  "gate_eligible": false,
+  "gate_file_written": false,
+  "advisory": {
+    "verdict": "PASS",
+    "basis": "separate supplied P0/P1/overall thresholds; not a skill gate or release decision",
+    "P0": {
+      "covered": 6,
+      "total": 6,
+      "pct": 100
+    },
+    "P1": {
+      "covered": 2,
+      "total": 2,
+      "pct": 100
+    },
+    "overall": {
+      "covered": 8,
+      "total": 8,
+      "pct": 100
+    },
+    "uncovered_development_ACs": [],
+    "deferred_release_partial_ACs": [
+      "AC-2",
+      "AC-5",
+      "AC-6",
+      "AC-7",
+      "AC-8"
+    ],
+    "unexecuted_release_portions": {
+      "2": "Standalone manager/own/denied browser payload/tampering case has no qualified current whole-case pass. Actual DB/JWT authority negatives pass.",
+      "5": "Standalone Schema/Resurser interval-dialog cases and opposite host/operation move/resize combinations have no qualified current whole-case passes. Essential actual click/drag, selected move/resize alternatives and focus qualify.",
+      "6": "Dedicated Team/no-role/current-lifecycle rendering matrix has no qualified current whole-case pass. Basic Team projection and actual DB/JWT lifecycle semantics have evidence.",
+      "7": "Dedicated capacity color/zero-budget/full-hidden-demand drilldown case has no qualified current whole-case pass. Independent arithmetic/data correctness and basic native capacity have evidence.",
+      "8": "Two dedicated360x640 cases plus visual/manual phone/daylight/one-hand/assistive-tech/polish have no qualified current whole-case/certification evidence. Desktop recovery/focus and structural/state/transaction evidence remain distinct."
+    },
+    "no_blocking_or_forced_draft_effect": true
+  },
+  "evidence_qualification": {
+    "current_CI_run": 39282080632,
+    "CI_source_revision": "0f56d487f96185f111d3378f2807b89c02dc9b81",
+    "analysis_metadata_revision": "cc6ef30a8cb03000ac3fcd13bb216b1e9de544c6",
+    "runtime_dependencies_unchanged": true,
+    "unit": {
+      "passed": 2860,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_integration": {
+      "passed": 1737,
+      "failed": 0,
+      "explicit_storage_skip": 1,
+      "files": 145
+    },
+    "RLS_subset_nonadditive": {
+      "passed": 752,
+      "files": 50
+    },
+    "isolated_same_storage_body": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "Auth_only_smoke": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "scheduling_reader_subset": {
+      "actual_JWT_cases": 4,
+      "mock_transport_no_RLS_cases": 22
+    },
+    "lifecycle_RPC_subset": {
+      "actual_DB_JWT_cases": 8
+    },
+    "current_essential_native": {
+      "distinct_qualified_cases": 11,
+      "fresh_enhanced_cases": 1,
+      "bounded_reused_cases": 10,
+      "fresh_case_duration_ms": 5528,
+      "same_binary_claim": false
+    },
+    "old_five_command_history": {
+      "passed": 11,
+      "failed": 4,
+      "skipped": 7
+    },
+    "all_six_command_history": {
+      "passed": 12,
+      "failed": 4,
+      "skipped": 7
+    },
+    "outgoing_abort_is_not_final_page_server_IO_or_RLS": true,
+    "historical_RED62_is_zero_coverage": true,
+    "prior_phase6_mapping_superseded_only_where_R2_changed_dependencies": true,
+    "P7_complete": "trustedRoothandoff; this trace performs no status transition"
+  },
+  "deferred_release_validation": [
+    {
+      "item": "E15 remaining exhaustive calendar/actor/gesture browser combinations",
+      "owner": "Epic15 verification owner",
+      "status": "deferred",
+      "evidence": "Current essential11 =10 independently qualified priorpasses+1fresh enhanced date-during-failure recovery. All six command history12PASS/4FAIL/7SKIP preserved; remaining exhaustive combinations have zero blanket credit. Functional/auth/RLS/integrity gates remain development requirements.",
+      "next_action": "Execute remaining release-candidate combinations at stabilization; investigate consequential failures. Run optional diagnostics only for a named outcome."
+    },
+    {
+      "item": "E15 eleven visual design comparisons",
+      "owner": "Epic15 UI/release owner",
+      "status": "deferred",
+      "evidence": "No completed eleven-comparison design review supplied by functional CI/native assertions; historical0/11 retained, not reclassified.",
+      "next_action": "Capture and review all eleven comparisons against current approved design at release stabilization; retain results and repair consequential defects."
+    },
+    {
+      "item": "E15 manual phone/daylight/one-hand/assistive-tech and polish",
+      "owner": "Product/release owner",
+      "status": "deferred",
+      "evidence": "No representative-device daylight/one-hand/manual assistive-tech, timing or polish certification. Automated functional evidence remains distinct.",
+      "next_action": "Perform representative-hardware phone/daylight/one-hand/assistive-tech and polish walkthrough before the applicable release decision; record method/results."
+    },
+    {
+      "item": "E15 broad General and dashboard browser suites",
+      "owner": "Coordinator/release owner",
+      "status": "deferred",
+      "evidence": "Fresh CI39282080632 release_validation=false: Auth7passed; optional exhaustive-browser/diagnostic/dashboard lanes intentionally skipped. Auth7 and qualified native11 are not broad General/dashboard acceptance.",
+      "next_action": "Deliberately dispatch release_validation=true against the qualified release candidate at stabilization, or earlier when consequential changed behavior requires broader browser evidence."
+    },
+    {
+      "item": "E15 representative performance workload/measurements/approval",
+      "owner": "Product + Architect",
+      "status": "deferred",
+      "evidence": "R-012 workload/threshold approval and full-surface measurements remain open. Harness durations/budgets and Epic11 pilot are not scheduling product-performance certification.",
+      "next_action": "Approve representative volumes and latency/resource/throughput thresholds, measure complete scheduling surfaces, and record the performance release decision."
+    }
+  ],
+  "process_followups_separate": [
+    {
+      "owner": "CI/diagnostic maintainer",
+      "item": "Optional privileged diagnostic broker final pipe-write/post-exit drain candidate",
+      "next_action": "Independently qualify/fix bounded interleaving regression before future opt-in use."
+    },
+    {
+      "owner": "PR-feedback controller maintainer",
+      "item": "Upstream mutable-workspace gate attestation candidate",
+      "next_action": "Focused immutable-provenance qualification before changing controller."
+    }
+  ],
+  "release_ready": false,
+  "open_questions": []
+}

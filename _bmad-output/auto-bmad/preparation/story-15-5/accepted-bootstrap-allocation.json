@@ -1,0 +1,30 @@
+{
+  "kind": "Root-recorded-narrow-bootstrap-allocation",
+  "accepted_at": "2026-10-20T13:51:34.353753+00:00",
+  "source": "Coordinator01a1160d-b5b1-7623-a8e8-54ef3dc537ed successfully delivered SAMEexplicitSol6.1High FINALCONDITIONALALLOCATION PASS",
+  "proposal": "_bmad-output/auto-bmad/preparation/story-15-5/bootstrap-proposal.md",
+  "proposal_sha256": "d6d82ba08850710267db6e0009ce323ffc754e3b0dcfb6ca7724c800429748f9",
+  "direct_owner_authorization": "Existing exact15.5 isolated TEST-key/runtime verification; accepted-ownership-allocation.json",
+  "paths": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    ".github/workflows/ci.yml:existingDBintegration+ordinaryessentialbrowserstepsONLY",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "fresh_E16_head": "dd7e54d0",
+  "no_foreign_path_conflict_or_Documents_claim_reported": true,
+  "conditions": [
+    "Bind job-created disposable stack identity+expected current migration ledger/feed functions; loopback alone insufficient; reject hosted/arbitrarycommands/occupiedappport before mutation",
+    "CI-only; no local managedlaunch authority; Rootguard required if ever separately admitted",
+    "DB build/publicSupabaseconfig match owned Next child; bounded readiness/captured own group; fixed fullintegrationargv/SUPABASE_TEST_REQUIRED/nativeJSON",
+    "Browser key before fixedsmoke/Playwright build-server; await runner/serverteardown before keydelete; no secondNext",
+    "Keep Playwrightconfig/globalsetup/verify-development/env/deps/provider unchanged; feed-only artifact suppression in ownedtestfile; unrelated evidence preserved",
+    "Exhaustive-release branch command/conditions preserved; not allocated to newruntimeintegration; no false coverage",
+    "Parameterized unique Vaultcreate/capturedUUID; delete exactUUID ANDownedname only; collision/uncertaincreate failclosed/no retry/name-onlydelete/generalVaultgrant/testRPC",
+    "Signalhandlers beforemutation; settle capturedchildren/pendingwork/DBconnection; primary and all cleanup failures sanitized and preserved; bounded normal-signal cleanup; no forcedkill guarantee",
+    "No secret/rawURL/token/proof/IP/SQLargs logs or artifacts; Next output suppression AND feed assertion/native-error sanitization",
+    "Injected launch/DB/clock unitcases only; refusal-beforemutation/fixedargv/ownershipmismatch/readiness/child/uncertaincreate/signalorder/cleanupaggregation",
+    "DistinctHigh actual-source+lifecycle review before exactheadCI; actual fullDBRLS/recovery/essentialHTTPbrowser; allocation is no runtimePASS",
+    "No persistentsecret/hostedkey/IPtrust/provider/deploy/mainmerge/foreignresources"
+  ],
+  "resource_launches": 0
+}

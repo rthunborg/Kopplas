@@ -1,0 +1,168 @@
+{
+  "Git_basis": "Root fresh exact pushed/current object proof plus current raw/clean/computedGit75 recheck",
+  "input_refs": [
+    {
+      "bytes": 27101,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/actual-terminal-envelope.json",
+      "sha256": "b9848eab2c828a4d60a9fc8476bccf50b167434e7ec6d8bf5734cffe56d49155"
+    },
+    {
+      "bytes": 56578,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+      "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+    },
+    {
+      "bytes": 3414,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-terminal-effects-allocation.json",
+      "sha256": "26d86f56c36ff02c3edef23dfdadac79a7e0ff0028e62ac93b7df506b0fdec41"
+    },
+    {
+      "bytes": 56578,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+      "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+    },
+    {
+      "bytes": 12651,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+      "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+    },
+    {
+      "bytes": 120926,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/proposal-v2.json",
+      "sha256": "7ebda6dfd20f6682805505f49e8d3acb7065e77d349698814a71bc4102b3658a"
+    },
+    {
+      "bytes": 1936,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/manifest-v2.json",
+      "sha256": "ef0fc4225b5289dbe794a14b51faea509c147722e1a52adb6e08cb485fe3559b"
+    },
+    {
+      "bytes": 1271,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/manifest.json",
+      "sha256": "1e82d467e1c8d4ef5fbdb5bd39c9ed7b9857a9712aab0643507d7aec9542fd9c"
+    },
+    {
+      "bytes": 32107,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/source-rows.json",
+      "sha256": "4608d866358dcacb41a355b38b1f718fd1a34cbcaadde49ff65bbc51f99d81fd"
+    },
+    {
+      "bytes": 24085,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/terminal.json",
+      "sha256": "c6753fd270588112c73d9d512a2a599b655a60ba257162328085aa31765bbe81"
+    },
+    {
+      "bytes": 15880,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-root-ownership.json",
+      "sha256": "5d66c65015fd81291fae597e1540934fcccd3be5b8cb5a90f124e21a130af5e6"
+    },
+    {
+      "bytes": 12651,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+      "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+    },
+    {
+      "bytes": 31634,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/source-rows.json",
+      "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+    },
+    {
+      "bytes": 139186,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/proposal.json",
+      "sha256": "95e43d8e89d528ee67070448495d096e7effcbba17c398976b6fea29bdc7862f"
+    },
+    {
+      "bytes": 2181,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-root-source-commit-proof.json",
+      "sha256": "3c20957745be14c7ecfe856c8cb498426da4fdbba3a9287a274ecab12c4c19af"
+    },
+    {
+      "bytes": 2808,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-root-docs-fold-proof.json",
+      "sha256": "8309f664f88db692a30317f6657960a5f7e9f0c7525455b3ad4b4ae09f27fc8e"
+    },
+    {
+      "bytes": 50755,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/reader.py",
+      "sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb"
+    },
+    {
+      "bytes": 120353,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/proposal.json",
+      "sha256": "1589645c9f286fbc84c89e188042a01fe30d2a1ea23c66369a0cf7f2b20a7c93"
+    },
+    {
+      "bytes": 31634,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/source-rows.json",
+      "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+    },
+    {
+      "bytes": 139186,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/proposal.json",
+      "sha256": "95e43d8e89d528ee67070448495d096e7effcbba17c398976b6fea29bdc7862f"
+    },
+    {
+      "bytes": 2181,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-root-source-commit-proof.json",
+      "sha256": "3c20957745be14c7ecfe856c8cb498426da4fdbba3a9287a274ecab12c4c19af"
+    },
+    {
+      "bytes": 2808,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-root-docs-fold-proof.json",
+      "sha256": "8309f664f88db692a30317f6657960a5f7e9f0c7525455b3ad4b4ae09f27fc8e"
+    },
+    {
+      "bytes": 19693,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+      "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+    },
+    {
+      "bytes": 18126,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+      "sha256": "b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55"
+    },
+    {
+      "bytes": 12881,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+      "sha256": "0d956247e8f80611fed17e4c7bfb16c5578b10ab96b6552a8974550d27ab9684"
+    },
+    {
+      "bytes": 13795,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/Next16-4-1-final-four-source-independent-patch-review.json",
+      "sha256": "49b5b590fc42a54e5b87461a2d066fe00e12d16b0ba33db5327741941905dc86"
+    },
+    {
+      "bytes": 12229,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/INT009-default-volatility-actual-patch-review.json",
+      "sha256": "36edb72452d3e14543137d9381b4e7ffe5d5909d355a878e8816f62b8d5f09de"
+    },
+    {
+      "bytes": 24085,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/terminal.json",
+      "sha256": "c6753fd270588112c73d9d512a2a599b655a60ba257162328085aa31765bbe81"
+    },
+    {
+      "bytes": 15880,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-root-ownership.json",
+      "sha256": "5d66c65015fd81291fae597e1540934fcccd3be5b8cb5a90f124e21a130af5e6"
+    },
+    {
+      "bytes": 32107,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/source-rows.json",
+      "sha256": "4608d866358dcacb41a355b38b1f718fd1a34cbcaadde49ff65bbc51f99d81fd"
+    },
+    {
+      "bytes": 9112572,
+      "path": "node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/typescript.js",
+      "sha256": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+    },
+    {
+      "bytes": 3620,
+      "path": "node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/package.json",
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    }
+  ],
+  "normal_acceptance": 0,
+  "raw_current_count": 75,
+  "source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41"
+}

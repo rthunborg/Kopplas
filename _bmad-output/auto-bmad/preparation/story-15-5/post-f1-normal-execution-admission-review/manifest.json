@@ -1,0 +1,24 @@
+{
+  "schema": "SELF_EXCLUDED_SHA256_MANIFEST_v1",
+  "directory": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-execution-admission-review",
+  "member_count": 3,
+  "members": [
+    {
+      "path": "original-report.md",
+      "bytes": 5125,
+      "sha256": "ea743653dcea3bc693b0a949987d4ff6bf3e38e91d72f9d86590e3ffe0ab990b"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 23169,
+      "sha256": "f248b856fb56144e50af09e79325bfc01e24efeeb350038ecfdf193ed2e1aa07"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1999,
+      "sha256": "23b6927222f10285554c763333c9e075ed11d4a39f8613af9cd68e106f190158"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0
+}

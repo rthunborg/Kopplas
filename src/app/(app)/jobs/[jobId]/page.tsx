@@ -1,3 +1,4 @@
+import { readTimeReportActionDescriptor } from "@/server/read-models/time-reports";
 import Link from "next/link";
 import {notFound} from "next/navigation";
 import type {ReactNode} from "react";
@@ -30,6 +31,7 @@ export default async function JobDetailPage({params, searchParams}: {
   const {detail, members} = workspace;
   const context = await resolveTenantContext();
   const roles = context.ok ? context.data.roles ?? [context.data.role] : [];
+  const reportAction = workspace.schedule ? await readTimeReportActionDescriptor() : undefined;
   const canDocuments = resolveCapability({roles, module: "documents", capability: "Documents.View"}).granted;
   const canFiles = workspace.tabs.some(tab => tab.id === "files");
   const filesRead = canFiles ? await readEntityFiles({ownerType: "job", ownerId: jobId}) : null;
@@ -49,7 +51,7 @@ export default async function JobDetailPage({params, searchParams}: {
     actions={detail.entitlement?.canEdit && detail.type && members.ok ? <JobUpgradeDialog jobId={jobId} type={detail.type} expectedState={members.projection.expectedState} /> : undefined}
     panels={{overview: <div className="space-y-6"><JobDetailView detail={detail} members={members.ok ? members.projection : undefined} membersError={members.ok ? undefined : members.message} cardOptions={workspace.cardOptions} />{workspace.events && <JobEventsPanel events={workspace.events} compact />}</div>,
       "work-orders": workOrders,
-      schedule: workspace.schedule && <JobWorkspaceSchedule schedule={workspace.schedule} jobId={jobId} customerId={detail.customerId} />,
+      schedule: workspace.schedule && <JobWorkspaceSchedule reportAction={reportAction} schedule={workspace.schedule} jobId={jobId} customerId={detail.customerId} />,
       files: filesRead && <div className="space-y-4">
         {canDocuments && <EntityDocumentsLink link={await readEntityDocumentsLink({module: "jobs", ownerType: "job", ownerId: jobId})} />}
         <EntityFilePanel ownerType="job" ownerId={jobId} purpose="job_evidence" ownerLabel={detail.title ?? detail.currentCustomerName ?? "Jobb"} files={filesRead.files} readError={filesRead.error} />

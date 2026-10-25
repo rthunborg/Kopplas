@@ -1,0 +1,10 @@
+PASS — no concrete reachable defect found in the exact five-path repair delta `cba60486` → `e74cae6c`. This is a limited latest-delta review, not a fourth broad story review.
+
+- **Diagnostics:** Reviewed actual fixture callers and downstream canonical helpers. Existing operations remain single-invocation, with successful values preserved. Fixed stages and allowlisted own-data SQLSTATEs survive owned catches without copying native payloads or introducing queries, RPC observers, clients, pools or privileges. Aggregate handling remains bounded. Upstream erased, swallowed or masked failures remain explicitly UNKNOWN.
+- **UI:** The fallback at `CalendarSubscription.tsx:69` reuses existing failure guidance and preserves runtime-message precedence, uncertainty blocking, reconciliation, retry eligibility and issuance behavior. All four existing SSR assertions remain unchanged.
+- **Policy assertion:** The case at `acceptance-tables-migration-reset.int.test.ts:212` exactly matches the allocated proposal. Full-row equality requires nine authenticated policies plus the canonical owner SELECT; unexpected names, roles, commands or rows still fail. Required-stack gating, three-query count and production RLS are unchanged.
+- **Evidence:** Independently verified all three frozen packet hashes, committed diff, five raw/Git-normalized/baseline bindings, supplied caller contexts, excerpts and references, and exact proposed shared hunk. Also verified the current admission receipt and all 68 source bindings, including 41 raw/Git-blob differences. Branch and HEAD match; the five source paths remain clean, with no post-commit Spec drift.
+
+Reported 58 Node and four isolated SSR passes retain their documented limits; I did not rerun them. Current-head native acceptance remains unexecuted. Prior failed histories, unknown DB causes and unavailable browser attachment content receive no new pass credit.
+
+Read-only review completed without edits, tests, launches, pushes, or browser/database/Vault/Docker probes.

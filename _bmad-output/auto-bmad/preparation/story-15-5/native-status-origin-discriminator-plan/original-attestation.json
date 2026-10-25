@@ -1,0 +1,293 @@
+{
+  "kind": "calendar_feed.status_origin_discriminator_plan_independent_high_attestation",
+  "schema_version": 1,
+  "review_date": "2026-10-21",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of": [
+      "Root orchestrator",
+      "plan author/native qualifier"
+    ]
+  },
+  "verdict": "REVISE",
+  "scope": "Distinct status-origin discriminator plan only; no fourth broad story review",
+  "source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "checkpoint_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+  "author_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/plan.md",
+      "bytes": 12982,
+      "sha256": "8529b93439ae1d52675cd483326ff9383f36126753f8ec67a7a1161f2ca1308d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/input-binding.json",
+      "bytes": 9016,
+      "sha256": "4c1a9ed35d8027b516bcf6e699f02ca03d7655d4e96a8d8151604bc44747d81b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/local-checks.json",
+      "bytes": 1885,
+      "sha256": "dc094a25ff8bb0f7de42e58417bd199af164473bc7049673826de35594b1be98"
+    }
+  ],
+  "bound_inputs_verified": {
+    "rows": 20,
+    "unique_paths": 20,
+    "source_raw_files": 10,
+    "installed_driver_files": 3,
+    "frozen_refs": 6,
+    "plan_row": 1,
+    "git_hash_object_equals_HEAD_blob_pairs": 10,
+    "all_current_bytes_sha256_rechecked_before_output": true
+  },
+  "bound_input_rows": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/plan.md",
+      "bytes": 12982,
+      "sha256": "8529b93439ae1d52675cd483326ff9383f36126753f8ec67a7a1161f2ca1308d"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 82859,
+      "sha256": "1db49932052511104c0df77f79729950de582134bd0eff098d65436ab0c936ec",
+      "head_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "git_normalized_bytes": 82088,
+      "git_normalized_sha256": "5b043237d761afdca1b5f549aecd14ee6eb7b263cb4f3f1376f009def78a4fe3",
+      "actual_hash_object": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 45083,
+      "sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+      "head_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "git_normalized_bytes": 45083,
+      "git_normalized_sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+      "actual_hash_object": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 128425,
+      "sha256": "c3289fe335b83bd546b8d41ad13533019edea57b1cea7b2149d881265515aad2",
+      "head_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+      "git_normalized_bytes": 128425,
+      "git_normalized_sha256": "c3289fe335b83bd546b8d41ad13533019edea57b1cea7b2149d881265515aad2",
+      "actual_hash_object": "911ed4e0d01053011d3850d9250593b05265cc66"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "1500cdb0fca5076840fe9107da927e8604d5887a8a1bedde5a3faf251b08b7c1",
+      "head_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+      "git_normalized_bytes": 8024,
+      "git_normalized_sha256": "1500cdb0fca5076840fe9107da927e8604d5887a8a1bedde5a3faf251b08b7c1",
+      "actual_hash_object": "0d2e0e0743dbc0d42d13e58de6a10b541589c925"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 135154,
+      "sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41",
+      "head_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+      "git_normalized_bytes": 135154,
+      "git_normalized_sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41",
+      "actual_hash_object": "c12885d9464e569b726c163431f64549bc4ed0d0"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "git_normalized_bytes": 24435,
+      "git_normalized_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "actual_hash_object": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "bytes": 3472,
+      "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "head_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "git_normalized_bytes": 3472,
+      "git_normalized_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "actual_hash_object": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "bytes": 4856,
+      "sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "head_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "git_normalized_bytes": 4856,
+      "git_normalized_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "actual_hash_object": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2352,
+      "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "head_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "git_normalized_bytes": 2299,
+      "git_normalized_sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+      "actual_hash_object": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "head_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "git_normalized_bytes": 162159,
+      "git_normalized_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "actual_hash_object": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    },
+    {
+      "path": "node_modules/.pnpm/pg-protocol@1.15.0/node_modules/pg-protocol/dist/parser.js",
+      "bytes": 13445,
+      "sha256": "7abb711bf087571db432102e1d2fe8321c3176b1191d1f026b97fee86b89b545"
+    },
+    {
+      "path": "node_modules/.pnpm/pg@8.22.0/node_modules/pg/lib/client.js",
+      "bytes": 22776,
+      "sha256": "86cda0e1fda47e03d27dde65f10c7b9d597f7411f77ed853c8d27d5f150978a2"
+    },
+    {
+      "path": "node_modules/.pnpm/pg@8.22.0/node_modules/pg/lib/query.js",
+      "bytes": 7454,
+      "sha256": "4253bb48364243573c330a2d5827a0f306f632f84f5ac56feaa3ac83f2293001"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-result.json",
+      "bytes": 8036,
+      "sha256": "ecd676f7aef1728f5fe5c7c61e2646779e9bb874a50e20d29959141d38477645"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/manifest.json",
+      "bytes": 2992,
+      "sha256": "a994a0046d10b5c939581b8a8aa6936e07740fd18da3b2b09d829a4aa2374f5e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-status-origin-discriminator-plan-allocation.json",
+      "bytes": 1169,
+      "sha256": "ac3ed06c557d44a4d94a40fc6bd0470866e816069fdd735520aa265b9475c226"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "checks": {
+    "source_callgraph": "restricted SELECT, one controlled status invocation, catch and finally; migration status/subject/ownership/grants; wrapper validation/caps",
+    "predicate_count": 18,
+    "routine_literal_count": 3,
+    "synthetic_installed_parser_frames": 6,
+    "synthetic_installed_parser_passed": 6,
+    "synthetic_installed_parser_failed": 0,
+    "proposed_classifier_tests_executed": false,
+    "proposed_database_predicates_executed": false,
+    "database_connections": 0,
+    "native_or_CI_runs": 0,
+    "managed_resources": 0,
+    "provider_API_calls": 0,
+    "documentation_only_HTTP": true
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "location": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/plan.md",
+        "lines": [
+          36,
+          61
+        ]
+      },
+      "title": "A false table-level SELECT bit does not establish a necessary status privilege gap",
+      "caller": "Root interpreting the future qualified controlled status observation",
+      "invariant": "Only genuinely necessary privilege gaps may enter the missing-necessary-privilege decision branch",
+      "reachable_configuration": "Table SELECT absent but all referenced calendar_feed_tokens columns selectable; ACL_ENGINE can originate in another unmeasured dependency",
+      "observed_historical_cause": false,
+      "minimal_correction": "Explicitly label owner_tokens_select table-ACL-only and route its lone false value to unresolved STOP; or separately specify reviewed fixed effective-column-coverage semantics without extra query",
+      "required_control": "table ACL false / effective required-column coverage true must not imply necessary privilege missing"
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://www.postgresql.org/docs/17/protocol-error-fields.html",
+      "retrieved": "2026-10-21",
+      "support": "R is reporting source routine, not causal SQL identity"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/functions-info.html#FUNCTIONS-INFO-ACCESS-TABLE",
+      "retrieved": "2026-10-21",
+      "support": "named-role privilege inquiries; column-level checks include table grants"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_6/src/backend/executor/execMain.c",
+      "retrieved": "2026-10-21",
+      "bytes": 91928,
+      "sha256": "2e7c5593c13b28ff0b453132217afbfe122367d0b97c4ad0f67915c34a51aad0",
+      "support": "ExecCheckOneRelPerms permits column-level satisfaction of SELECT without relation SELECT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_6/src/backend/catalog/aclchk.c",
+      "retrieved": "2026-10-21",
+      "bytes": 143231,
+      "sha256": "997908f8407cdc77d1c41524b85ee56f35d10edb5083918bfc1008b3af73cda3",
+      "support": "two ACL error reporting routines"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/REL_17_6/src/pl/plpgsql/src/pl_exec.c",
+      "retrieved": "2026-10-21",
+      "bytes": 263280,
+      "sha256": "6262fdab288e77bc882da69e2555983498fcaf99f3f28c4250eb5beb1bcff706",
+      "support": "explicit PL/pgSQL RAISE reporting routine"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/brianc/node-postgres/pg-protocol%401.15.0/packages/pg-protocol/src/parser.ts",
+      "retrieved": "2026-10-21",
+      "bytes": 12991,
+      "sha256": "2b8459b9b7e244d692e6b2fa93bedeb8f87f29f27486f816fcbb2d0c78801aa3",
+      "support": "R copied to routine; local installed transport checked separately"
+    },
+    {
+      "url": "https://supabase.com/changelog.md",
+      "retrieved": "2026-10-21",
+      "bytes": 102319,
+      "sha256": "15b3d0d1a7dc3b3f2c0af4788e49acfdf2d2edbd2613f22de0705fa43b1cf58b",
+      "support": "skill-required changelog research; no actual runtime-version or upgrade claim"
+    }
+  ],
+  "limits": [
+    "PLAN ONLY; no implementation or execution authorization",
+    "No actual SQL, native routine, deployed minor-source equivalence or original-JWT first cause observed",
+    "Synthetic parser controls are transport evidence only, not proposed implementation coverage",
+    "Old diagnostic/review/code/custody records preserved",
+    "43 DB and 14 browser failures unresolved",
+    "Exact future allocation, actual implementation, independent High committed-delta review, source freeze/push/fresh private target and Root once activation still required"
+  ],
+  "effects": {
+    "files_written": [
+      "original-report.md",
+      "original-attestation.json",
+      "result.json"
+    ],
+    "source_or_spec_or_test_changes": false,
+    "old_records_changed": false,
+    "Root_facts_results_changed": false,
+    "Git_provider_or_deployment_changes": false,
+    "normal_acceptance_credit": 0,
+    "native_acceptance_credit": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "backend_cause_proven": false
+  }
+}

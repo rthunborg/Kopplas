@@ -1,0 +1,468 @@
+{
+  "run_id": 39943446009,
+  "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+  "source": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+  "branch": "codex/epic-15-int009-debug",
+  "title": "checkpoint:original-int009:430dbc33-7e01-440e-aa3c-dcd1f528908a:1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+  "checkpoint_id": "430dbc33-7e01-440e-aa3c-dcd1f528908a",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "workflow_id": 296219797,
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "mode": "original-int009",
+  "cause_proof": false,
+  "release_validation": false,
+  "original_int009": true,
+  "status": "completed",
+  "conclusion": "failure",
+  "observed_at": "2026-10-23T11:10:15.399946+00:00",
+  "jobs": [
+    {
+      "id": 120380231211,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T11:03:53Z",
+      "completed_at": "2026-10-23T11:03:56Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:03:53Z",
+          "completed_at": "2026-10-23T11:03:54Z"
+        },
+        {
+          "number": 2,
+          "name": "Bind dispatch to its immutable source revision",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:03:54Z",
+          "completed_at": "2026-10-23T11:03:54Z"
+        },
+        {
+          "number": 3,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:03:54Z",
+          "completed_at": "2026-10-23T11:03:54Z"
+        }
+      ]
+    },
+    {
+      "id": 120380268099,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T11:03:58Z",
+      "completed_at": "2026-10-23T11:06:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:03:59Z",
+          "completed_at": "2026-10-23T11:04:02Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:02Z",
+          "completed_at": "2026-10-23T11:04:06Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:06Z",
+          "completed_at": "2026-10-23T11:04:06Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:06Z",
+          "completed_at": "2026-10-23T11:04:07Z"
+        },
+        {
+          "number": 5,
+          "name": "Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:07Z",
+          "completed_at": "2026-10-23T11:04:07Z"
+        },
+        {
+          "number": 6,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:07Z",
+          "completed_at": "2026-10-23T11:04:11Z"
+        },
+        {
+          "number": 7,
+          "name": "Verify lockfiles (single package manager)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:11Z",
+          "completed_at": "2026-10-23T11:04:11Z"
+        },
+        {
+          "number": 8,
+          "name": "Audit dependencies (blocking, high severity)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:11Z",
+          "completed_at": "2026-10-23T11:04:11Z"
+        },
+        {
+          "number": 9,
+          "name": "Verify service-role containment (no client-path leakage)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:11Z",
+          "completed_at": "2026-10-23T11:04:12Z"
+        },
+        {
+          "number": 10,
+          "name": "Typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:12Z",
+          "completed_at": "2026-10-23T11:04:26Z"
+        },
+        {
+          "number": 11,
+          "name": "Lint",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:26Z",
+          "completed_at": "2026-10-23T11:04:47Z"
+        },
+        {
+          "number": 12,
+          "name": "Unit tests (pure logic, node --test)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:04:47Z",
+          "completed_at": "2026-10-23T11:05:31Z"
+        },
+        {
+          "number": 13,
+          "name": "BMAD focused concurrent memlog contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:05:31Z",
+          "completed_at": "2026-10-23T11:05:32Z"
+        },
+        {
+          "number": 14,
+          "name": "Auto-BMAD focused routing and process-API contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:05:32Z",
+          "completed_at": "2026-10-23T11:05:33Z"
+        },
+        {
+          "number": 15,
+          "name": "Build",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:05:33Z",
+          "completed_at": "2026-10-23T11:05:57Z"
+        },
+        {
+          "number": 16,
+          "name": "Verify built-bundle service-role containment (no leakage in .next)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:05:57Z",
+          "completed_at": "2026-10-23T11:05:57Z"
+        },
+        {
+          "number": 29,
+          "name": "Post Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:05:57Z",
+          "completed_at": "2026-10-23T11:05:57Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:05:57Z",
+          "completed_at": "2026-10-23T11:06:05Z"
+        },
+        {
+          "number": 31,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:05Z",
+          "completed_at": "2026-10-23T11:06:05Z"
+        },
+        {
+          "number": 32,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:05Z",
+          "completed_at": "2026-10-23T11:06:05Z"
+        },
+        {
+          "number": 33,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:05Z",
+          "completed_at": "2026-10-23T11:06:06Z"
+        }
+      ]
+    },
+    {
+      "id": 120381133081,
+      "name": "db",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-23T11:06:11Z",
+      "completed_at": "2026-10-23T11:10:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:12Z",
+          "completed_at": "2026-10-23T11:06:15Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:15Z",
+          "completed_at": "2026-10-23T11:06:19Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:19Z",
+          "completed_at": "2026-10-23T11:06:20Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:20Z",
+          "completed_at": "2026-10-23T11:06:36Z"
+        },
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:36Z",
+          "completed_at": "2026-10-23T11:06:38Z"
+        },
+        {
+          "number": 6,
+          "name": "Install Supabase CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:38Z",
+          "completed_at": "2026-10-23T11:06:40Z"
+        },
+        {
+          "number": 7,
+          "name": "Start local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:06:40Z",
+          "completed_at": "2026-10-23T11:08:22Z"
+        },
+        {
+          "number": 8,
+          "name": "Migration reset (empty DB \u2192 migrate \u2192 seed)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:08:22Z",
+          "completed_at": "2026-10-23T11:08:55Z"
+        },
+        {
+          "number": 9,
+          "name": "Calendar feed cause proof (diagnostic only; no pilot or acceptance)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T11:08:55Z",
+          "completed_at": "2026-10-23T11:08:55Z"
+        },
+        {
+          "number": 10,
+          "name": "Upload native calendar feed cause proof JSON",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T11:08:55Z",
+          "completed_at": "2026-10-23T11:08:55Z"
+        },
+        {
+          "number": 11,
+          "name": "Original INT009 (fixed diagnostic only; zero acceptance)",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-10-23T11:08:55Z",
+          "completed_at": "2026-10-23T11:09:42Z"
+        },
+        {
+          "number": 12,
+          "name": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T11:09:42Z",
+          "completed_at": "2026-10-23T11:09:42Z"
+        },
+        {
+          "number": 13,
+          "name": "Upload native full integration JSON",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T11:09:42Z",
+          "completed_at": "2026-10-23T11:09:42Z"
+        },
+        {
+          "number": 14,
+          "name": "Upload native original INT009 JSON",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:09:42Z",
+          "completed_at": "2026-10-23T11:09:43Z"
+        },
+        {
+          "number": 15,
+          "name": "Stop local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:09:43Z",
+          "completed_at": "2026-10-23T11:10:05Z"
+        },
+        {
+          "number": 28,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T11:10:05Z",
+          "completed_at": "2026-10-23T11:10:05Z"
+        },
+        {
+          "number": 29,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:10:05Z",
+          "completed_at": "2026-10-23T11:10:05Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:10:05Z",
+          "completed_at": "2026-10-23T11:10:05Z"
+        },
+        {
+          "number": 31,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T11:10:05Z",
+          "completed_at": "2026-10-23T11:10:05Z"
+        }
+      ]
+    },
+    {
+      "id": 120381135003,
+      "name": "recovery-storage-loader",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T11:06:08Z",
+      "completed_at": "2026-10-23T11:06:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": []
+    },
+    {
+      "id": 120381135368,
+      "name": "native-stream-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T11:06:08Z",
+      "completed_at": "2026-10-23T11:06:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": []
+    },
+    {
+      "id": 120381135454,
+      "name": "fixed-chromium-application-verification",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T11:06:08Z",
+      "completed_at": "2026-10-23T11:06:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": []
+    },
+    {
+      "id": 120381135689,
+      "name": "e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T11:06:08Z",
+      "completed_at": "2026-10-23T11:06:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": []
+    },
+    {
+      "id": 120381135774,
+      "name": "fixed-chromium-paired-probe",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T11:06:08Z",
+      "completed_at": "2026-10-23T11:06:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": []
+    },
+    {
+      "id": 120381135976,
+      "name": "dashboard-e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T11:06:08Z",
+      "completed_at": "2026-10-23T11:06:08Z",
+      "run_id": 39943446009,
+      "head_sha": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "steps": []
+    }
+  ]
+}

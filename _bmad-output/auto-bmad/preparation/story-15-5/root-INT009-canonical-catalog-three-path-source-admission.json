@@ -1,0 +1,58 @@
+{
+  "schema": "ROOT_INT009_CANONICAL_CATALOG_THREE_PATH_SOURCE_ADMISSION_V1",
+  "qualified_actual_evidence": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-actual-native-qualification.json",
+    "bytes": 28111,
+    "sha256": "82e73b0c9ebf293aa40c59646ace2a3949bd2819e641ef379ea1c7709e194279"
+  },
+  "Root_actual_qualification_read": "a8f78b/native0",
+  "completed_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-canonical-catalog-three-path-source-allocation.json",
+    "bytes": 2412,
+    "sha256": "88845618b679e4d224cf46619310b66e3ccda2e503cd8d39b5afd402e10146b4"
+  },
+  "Root_actual_allocation_read_save": "ccaba8/native0",
+  "exact_source_paths": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 139439,
+      "raw_sha256": "c3b599846d0c604192f7cb52e7e2851ec63bc9228145a94b581f50b755f0b454",
+      "LF_bytes": 138050,
+      "LF_sha256": "c8ca8e4e7bec96bb7cb602c3eaba0de09f43db338b1f4d2d07d97edfd6547202"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 313827,
+      "raw_sha256": "38e3fce52e693ddebaf83ba1af547a3ccadce2381eab22441db8e91c0173f225",
+      "LF_bytes": 310937,
+      "LF_sha256": "f53a3b48f08afca40bef68ae015c8ef9eb436c957594051c7bcb303851795cd2"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 251180,
+      "raw_sha256": "b13bd79235829d8359351bf562dafb016f68a3efb512048dd98dd5df9763fd6b",
+      "LF_bytes": 248158,
+      "LF_sha256": "c65732db79630d7793d3c6fdc0333c54fc267f2b83b305f083b57d7b839c8898"
+    }
+  ],
+  "author": "existing explicit gpt-6.1-sol High build15_5_high",
+  "first_phase": "READ_ONLY_SOURCE_CONTRACT_ASSESSMENT",
+  "conditional_write": "Only if mechanically established serialization/comparison contract mismatch with concrete minimal repair; record proof before edit; otherwise HOLD precise issue",
+  "observed_primary": {
+    "guard": "FIELD:proargtypes",
+    "kind": "PRIMARY",
+    "nativeClass": "UNKNOWN",
+    "operation": "PRE_CATALOG",
+    "publication": "CAPTURE",
+    "sqlstate": "UNKNOWN"
+  },
+  "actual_native_value_type": "UNKNOWN",
+  "debug_source_frozen": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+  "normal_acceptance": 0,
+  "effects_authorized": false,
+  "required95": {
+    "passed": 68,
+    "failed": 1,
+    "unexecuted": 26
+  }
+}

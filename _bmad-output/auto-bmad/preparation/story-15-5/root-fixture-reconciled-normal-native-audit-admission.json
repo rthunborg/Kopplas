@@ -1,0 +1,82 @@
+{
+  "schema": "ROOT_FIXTURE_RECONCILED_NORMAL_NATIVE_AUDIT_ADMISSION_v1",
+  "outcome": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "source": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+  "application_source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "pushed_head": "72651ada5392ff5b194fd674e07b300cef60e64b",
+  "run": 39694409020,
+  "attempt": 1,
+  "checkpoint": "6d5e27c3-74f8-4d87-b269-1627a7e45818",
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "review_manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/manifest.json",
+    "bytes": 1038,
+    "sha256": "0d8754366a8123c6457207665cc2cab5ebe7d46c80694ec44566629963751152"
+  },
+  "Root_review_exact4_hashes": "PASS",
+  "Root_packet_exact23_22hashes": "PASS",
+  "native_lifecycle_attribution": "Native-reported ONE invocation6e12bd, outer/native0,6.5102445s,no session/waits; not directly Root/auditor-observed",
+  "requests": {
+    "consumed": 5,
+    "reports": 3,
+    "remaining": 0,
+    "closed": true,
+    "retry_authorized": false
+  },
+  "qualified_results": {
+    "Node": {
+      "passed": 3390,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 103
+    },
+    "Python_separate_batches": [
+      2,
+      26,
+      10,
+      5
+    ],
+    "DB": {
+      "passed": 2025,
+      "failed": 28,
+      "pending_assertions": 16,
+      "skipped_assertions": 52,
+      "summary_numPendingTests": 52,
+      "summary_pending_not_additive": true,
+      "unique_failure_file_title_hashes": 28
+    },
+    "DB_failure_files": {
+      "commands/booking-series.int.test.ts": 23,
+      "rls/booking-series.rls.test.ts": 4,
+      "commands/conflict-resolver.int.test.ts": 1
+    },
+    "story_DB": {
+      "passed": 16,
+      "missing_unexecuted": 35
+    },
+    "story_browser": {
+      "cases": 14,
+      "expected": 11,
+      "flaky": 1,
+      "unexpected": 2,
+      "flaky_ID": "007",
+      "unexpected_IDs": [
+        "001",
+        "010-revoke"
+      ]
+    },
+    "other_browser": "42 cases,41expected1unexpected; omitted identity UNAVAILABLE",
+    "recovery_passed_cases": 1
+  },
+  "labels": {
+    "NUDGE004": "NULL_MISSING",
+    "E2E001": "six repeated records per retry0/1; interpretation/cause UNKNOWN"
+  },
+  "custody": "Projected keyDeletedfalse/custodyretained/dbClosedtrue; canonicalbackendUNKNOWN; defaultlaunchfields not absence proof",
+  "review_counter": 3,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "next": "High read-only match existing28file/titlehashes and safe facts to local source; concrete bounded correction only after ownership coordination and independent review"
+}

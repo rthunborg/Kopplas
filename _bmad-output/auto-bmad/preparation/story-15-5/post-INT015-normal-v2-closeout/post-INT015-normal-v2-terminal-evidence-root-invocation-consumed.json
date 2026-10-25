@@ -1,0 +1,34 @@
+{
+  "schema": "ROOT_POST_ZOD_TERMINAL_EVIDENCE_INVOCATION_CONSUMED_V1",
+  "operation_id": "f27670b7-0d69-42b7-8035-e3325e060ce0",
+  "at": "2026-10-24T20:17:10.423068+00:00",
+  "wrapper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+    "bytes": 7495,
+    "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+  },
+  "wrapper_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+    "bytes": 17301,
+    "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+  },
+  "grant": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+    "bytes": 9579,
+    "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-activation.json",
+    "bytes": 5161,
+    "sha256": "0cf9594280f54ec139ed26ca336d0bc7b151590635b4798b07e810408cc54729"
+  },
+  "journal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-once-journal.json",
+    "bytes": 1626,
+    "sha256": "a5add78a3e16b7572d3f53160df971ea335267b572372fdf40e243204149e8b1"
+  },
+  "no_retry": true,
+  "maximum_reader_invocations": 1,
+  "maximum_logical_GETs": 5,
+  "normal_acceptance": 0
+}

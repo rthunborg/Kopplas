@@ -1,0 +1,19 @@
+{
+  "Blockers": [],
+  "Deferred work": [
+    "Independent operator audit, separate fresh operational allocations and exact terminal/native audit."
+  ],
+  "Files changed": [
+    {
+      "bytes": 3257,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/transport-qualified/readiness.json",
+      "sha256": "881f654116f7f82549f6981f037b0b6c3a67350e0d23d54923dbf91df3cf840c"
+    }
+  ],
+  "Open questions": [
+    "Future run/source-label publication and failure causes UNKNOWN."
+  ],
+  "Outcome": "SOURCE_TRANSPORT_GATE_CLOSED_OFFLINE_OPERATOR_AUDIT_PENDING",
+  "Status": "27 pure controls passed; global48-label compact budget25631/32768; API0/native publication UNKNOWN; all95 actual gates still required.",
+  "normal_acceptance": 0
+}

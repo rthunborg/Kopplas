@@ -1,0 +1,13 @@
+{
+  "authority": "Root relayed Coordinator SAME gpt-6.1-sol High FINAL PASS/ALLOCATE; paused monitoring remains paused",
+  "route_before_dispatch": {"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Restricted operator role creation/SET/ownership and fail-closed transaction cleanup"},
+  "write_scope": "Append exactly one native case to existing serial tests/integration/commands/calendar-feed.int.test.ts; author spec/trail refresh remains owned",
+  "effect": "Exactly two UUID-owned NOLOGIN roles, one UUID schema and harmless function, all one rollback-only transaction in the existing isolated full-DB job/connection; no new process/workflow/hosted effects",
+  "identity": "Original authenticated isolated superuser required; restricted credit uses SET LOCAL SESSION AUTHORIZATION and immediately reasserts both IDs and restricted attributes before each credited source/SET/ownership operation. No SECURITY DEFINER wrapper or elevation of existing roles.",
+  "source": "Unique actual leading migration DO block; reversible role-name-only substitution preserving every statement/guard. Separate native creator baseline qualifies createrole_self_grant and rolls its savepoint back before genuinely fresh exact bootstrap.",
+  "faults": "Owned-role-only unsafe attributes/membership must exercise source guard, not engine cycle rejection. Every expected error rolls back to its savepoint before further assertions.",
+  "cleanup": "Bound queries/locks; settle all promises. Unexpected abort requires full rollback before identity reset. Unconditional rollback, reset and identity verification; preserve primary plus every cleanup failure; never release unverified pooled connection. Same and fresh read-only connection assert exact role/schema/function absence.",
+  "limits": "Transactional fixture schema CREATE is not source/recovery public-schema lifecycle proof. No existing role ALTER, persistent CREATE, BYPASSRLS, JWT, Vault, hosted or resource expansion. Native execution remains pending reviewed Root exact-head CI.",
+  "qualification_interpretation": "Root clarified ordinary bounded read-only qualification commands are within the grant, not managed workload effects. Reuse existing exported validators with fixed allowlisted execFile argv, shell false and bounded timeouts. Docker inspect/Supabase status observations captured and parsed only in memory; never raw stdout, JSON, error causes, SQL arguments or assertion dumps. Qualify before mutation; no shared wrapper/path/marker writes or lifecycle commands.",
+  "review": "Final targeted Round3 only after stable fixture/source; actual source/recovery ownership qualification remains mandatory. Include read-only qualification and sanitization in High source review."
+}

@@ -1,0 +1,132 @@
+{
+  "kind": "post-cap-latest-native-setup-diagnostic-delta-only",
+  "completed_review_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "before": "1cea5c4caa4996566ca95f5b872c6623da22f807",
+  "source_head": "1cea5c4caa4996566ca95f5b872c6623da22f807",
+  "source_state": "UNCOMMITTED_FOUR_PATH_WORKING_DELTA",
+  "input_bytes": 43259,
+  "input_sha256": "6066a8c53d71c299f4f5aaa4da16ba680d440c087c5681e6713d842340479f4d",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 72426,
+      "raw_sha256": "954147c94b473792fef3b010362d68e10db55c7344f28af89ae21f2aad49f43b",
+      "git_clean_normalized_bytes": 72426,
+      "git_clean_normalized_sha256": "954147c94b473792fef3b010362d68e10db55c7344f28af89ae21f2aad49f43b",
+      "git_clean_oid": "c94c0e7b4461db3544dd726bb12f6d8689a734b3",
+      "baseline_head_blob": "92ea0e5bab13cb80a8165306838a8ade3acb55c9",
+      "baseline_bytes": 68221,
+      "baseline_sha256": "90f2ad2bd45d9f8b6915fe268e688c44eb2e64bfa7d635d21e892fa1d4a87601",
+      "clean_object_written": false,
+      "source_committed": false
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 28046,
+      "raw_sha256": "3b680b435875ab7023f12db379d4f90fcd2705c6b4a778fad2a68de4ac709ac2",
+      "git_clean_normalized_bytes": 28046,
+      "git_clean_normalized_sha256": "3b680b435875ab7023f12db379d4f90fcd2705c6b4a778fad2a68de4ac709ac2",
+      "git_clean_oid": "eaa93b28addae171d2b7b2741c5eb6e014f8aecc",
+      "baseline_head_blob": "1b286b87c9121ac19858ff527c71d048b9484361",
+      "baseline_bytes": 25358,
+      "baseline_sha256": "cca0ccc6c0221f70a63f05a9fda715e8551de3fb58c3c99559772fbe137af0a6",
+      "clean_object_written": false,
+      "source_committed": false
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 3777,
+      "raw_sha256": "e003e96ff66982982e4ac460089012190679ec9b7f5800806682fea016922a04",
+      "git_clean_normalized_bytes": 3777,
+      "git_clean_normalized_sha256": "e003e96ff66982982e4ac460089012190679ec9b7f5800806682fea016922a04",
+      "git_clean_oid": "a599491bc071363f6c79f788236a2adf86ae57c5",
+      "baseline_head_blob": "f53a5e73c9070ce0b54da2845355fd6675448fcb",
+      "baseline_bytes": 3777,
+      "baseline_sha256": "947f5017d40e06860839fa0d975b14c51b20090e323e32a2000cd63b311b1ca7",
+      "clean_object_written": false,
+      "source_committed": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 32483,
+      "raw_sha256": "7a62496a68917cca5708e83f7cb902a491a9c1f680a6177934f56aa59125e2e4",
+      "git_clean_normalized_bytes": 32483,
+      "git_clean_normalized_sha256": "7a62496a68917cca5708e83f7cb902a491a9c1f680a6177934f56aa59125e2e4",
+      "git_clean_oid": "7a52936ad122e9735f713f615c257d9261f899b6",
+      "baseline_head_blob": "b18dafb0be5411433b4321c3b6e7d9f53a058976",
+      "baseline_bytes": 27499,
+      "baseline_sha256": "f1c67a4ca513d69709f700cd2982f9de682cfb6dcb8d5fe88169d1448a3840cb",
+      "clean_object_written": false,
+      "source_committed": false
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/author-native-setup-diagnostic-route.json",
+      "raw_bytes": 2201,
+      "raw_sha256": "b1b8bf5626e05c2129c0b180f4c5ed7521251615f7dc411300120fdf5a30f37b",
+      "included_lf_bytes": 2201,
+      "included_lf_sha256": "b1b8bf5626e05c2129c0b180f4c5ed7521251615f7dc411300120fdf5a30f37b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-1cea5c4c-ci-independent/native-qualification.md",
+      "raw_bytes": 3120,
+      "raw_sha256": "1c48697e0dd5c3d37125bee861c27d7ea0e1b68b00ff7eac1b5b6502b57b6e7a",
+      "included_lf_bytes": 3120,
+      "included_lf_sha256": "1c48697e0dd5c3d37125bee861c27d7ea0e1b68b00ff7eac1b5b6502b57b6e7a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-1cea5c4c-ci-independent/native-runtime-log-extracts.json",
+      "raw_bytes": 3159,
+      "raw_sha256": "fc05608c243cc5beb6b6917af6a31a21168ab8b6f3b3a9d451b496bbfaccab38",
+      "included_lf_bytes": 3159,
+      "included_lf_sha256": "fc05608c243cc5beb6b6917af6a31a21168ab8b6f3b3a9d451b496bbfaccab38"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-1cea5c4c-ci-independent/manifest.json",
+      "raw_bytes": 2875,
+      "raw_sha256": "c961673416fa0f1aa9ec527d63096906daa7cd375be8d51fff44597e71303fc8",
+      "included_lf_bytes": 2875,
+      "included_lf_sha256": "c961673416fa0f1aa9ec527d63096906daa7cd375be8d51fff44597e71303fc8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-1cea-packet-admission.json",
+      "raw_bytes": 1002,
+      "raw_sha256": "ccd45391630775f7e7759b2ea159b0703b224b5ff7c188ed836867b1150ec43e",
+      "included_lf_bytes": 983,
+      "included_lf_sha256": "6524ab5fec906f0d1b44e8a49c4d9ecc5136ef512797bc675de70009a4f2bfbe"
+    }
+  ],
+  "normalization": "LF candidate verified by unfiltered Git hash equality to actual --path clean hash; no object writes, staging or commits. Input is LF only; raw context hashes retained separately.",
+  "root_authorization": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "raw_bytes": 34433,
+    "raw_sha256": "6ad77aa14d3d4340456c26be207e4b2ae2ec5f9dd087bfe1e89b86e64fea65e2",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 614,
+    "included_lf_sha256": "e72f19d2cfe96fe0c1df989a2bef1a043adc2f6dc3259b16e703068120440942",
+    "owner": "Root",
+    "source_commit_excluded": true
+  },
+  "route_before_dispatch": {
+    "reviewer": "native_setup_diagnostic_delta_review",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "reason": "Secret-bearing setup diagnostic allowlists, irrevocable COMMIT uncertainty and exact cleanup/custody preservation"
+  },
+  "scope": "Four stable paths only and consequential regressions. No broad unchanged review/cap increment, functional speculation, raw native payload or local runtime.",
+  "runtime": "Native DB/browser cause remains unknown;65 feature bodies unexecuted. Qualified recovery case is separate from feature95. Future exact-head diagnostic CI required."
+}

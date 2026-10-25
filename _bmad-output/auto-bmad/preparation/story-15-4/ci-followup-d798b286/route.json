@@ -1,0 +1,43 @@
+{
+  "kind": "second-narrow-CI-followup-route",
+  "before": "d798b28609676198e5f975d1a5ea3d301a84b647",
+  "run": 39412225741,
+  "attempt": 1,
+  "root_partial_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-4-preparation/root-browser-d798b286-admission.json",
+    "raw_sha256": "8e65f67195c3902cc1a4bff37b48680fbc44f450a3524fdcf7aa658c55681264",
+    "errors": [],
+    "subset_files_verified": 136
+  },
+  "author": {
+    "agent": "original author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Preserve exact immutable nonmonetary snapshot semantics and truthful physical DB assertion typing."
+  },
+  "allowed_paths": [
+    "tests/e2e/support/time-reports-atdd.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md"
+  ],
+  "repair": "RawPG numeric ReportRow string|null, exact tenant+report scoped booked_minutes_at_filing=120::numeric SQLboolean assertion. Preserve every other row/core/audit/count/week/missingdate/reload/peer assertion.",
+  "prohibited": "No JS coercion/rounding/scale pin/global parser/production/schema/env/CI/credentials/runtime changes; no oldpacket/freeze edits or Rootstate sweep.",
+  "review_accounting": {
+    "counted_rounds": 3,
+    "breakdown": "1broadR1+2limitedR2/R3",
+    "completed_separate_narrow_followups": 1,
+    "next": "Distinct SolHigh NARROW latest2path regression check, separate followup2; no fourth broad review"
+  },
+  "limits": "DBjobsuccess actualcounts/assertionreach qualification pending. Current E2E001 latestphysicalnumericassertion stops remainingaudit/week/reloadtails; oldNUDGE004callbackcause historicalUNKNOWN. No completeCIgatePASS.",
+  "full_failure_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-4-preparation/root-checkpoint-d798b286-qualified-failure.json",
+    "raw_sha256": "3df9de8682bd6ed2057d78499a0728ce769d1134beb4f2209ec1a5306d57db38",
+    "verified_native_files": 331,
+    "report_json_sha256": "e6a3c7b3d189c55b2c8dd77ea8621ee1dfc208b39258257a83e0d55fd229f206",
+    "report_md_sha256": "063bc74820c9bf19b90724a65d19091c911829b64488793e27a09117ea772345",
+    "manifest_sha256": "12e320ab1e916fe61d3a8ec66e97978d81790512d3cee5b3e2b484a9288a3dd0",
+    "errors": [],
+    "qualified_db": "1980=1928P0F52historicalS;56newintegrationALLPASS38realDB+18component;all13nudgeactualassertionreach",
+    "remaining": "ONLY001browsernumericassertionFAIL;lateraudit/week/reloadtailUNREACHED. Historical004callbackcauseUNKNOWN."
+  }
+}

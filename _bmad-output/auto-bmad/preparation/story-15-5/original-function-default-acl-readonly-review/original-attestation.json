@@ -1,0 +1,156 @@
+{
+  "kind": "independent-targeted-original-function-default-acl-readonly-review",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_from_payload_and_transport_authors": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_story_review": false
+  },
+  "scope": {
+    "checkout": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "head": "ff3ceef8fc7c76acbbc1cc7919017053c112914c",
+    "source_commit": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+    "pushed_prior_failed_head": "92ea25dee3c378a6de1772b6599cb3860a1b7c05",
+    "inputs": 3
+  },
+  "reviewed_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-default-acl-readonly-01/probe.sql",
+      "bytes": 5409,
+      "sha256": "58060efbeb6284316cbd225ea8107d0ada08fde1a272b38afb5be1b2fea3a79b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-default-acl-readonly-01/proposal.json",
+      "bytes": 6450,
+      "sha256": "4f5c2971f618a9773df66386f561512ad5831475f59d27256620fee29ce743fa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-runner.py",
+      "bytes": 10192,
+      "sha256": "9d6bf741bc2ceaa7b063326a2d61d11e19c5c839a35622c0409a63570745a739"
+    }
+  ],
+  "actual_source_bindings": [
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11947,
+      "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "head_blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+    }
+  ],
+  "prior_provenance": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-runner.py",
+      "bytes": 10251,
+      "sha256": "00a321e3196f80feea34efbac54f7908d8bf9e5cc5adc40cc456ca87573b8867"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-qualification.json",
+      "bytes": 9324,
+      "sha256": "d09015e73c78f3593b79a33d6c51618de806a37178544416648429ad13efeb02"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/original-report.md",
+      "bytes": 4998,
+      "sha256": "a996351bccd2bd527e4f9026c67fac019ab4b0f162cf544e086761c764832bda"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/original-attestation.json",
+      "bytes": 8329,
+      "sha256": "10fcf2bc04c0586a512f5b06cb207e63155d9c2923b0f898d8a2b7363a5b714e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/result.json",
+      "bytes": 1296,
+      "sha256": "f95c187d0995f5395bc5fc85dd2b86ce72194163e391db5b08d27eddb1924c57"
+    }
+  ],
+  "source_review": [
+    "One fixed read-only SELECT/CTE; no DDL/DML/role/session/transaction mutation, application function invocation, source sequence or fixture. Only catalog identity/default ACLs and aggregate ledger prefix.",
+    "Ordinary postgres/current=session/non-superuser, PG170006/exact102-prefix, transaction_read_only and JWT-role admission. Gate-false zero/false placeholders cannot qualify as observed absence.",
+    "Global default row or acldefault plus additive public entries; normalized by grantor/grantee/privilege with bool_or grant option. Bidirectional EXCEPT is normalized-entry equality, not inherited/effective-call equivalence.",
+    "Two9-field finite direct ACL scopes; creator/PUBLIC/three JWT roles excluded from residual other classes; no role names, OIDs or raw ACL arrays emitted. Owner substitution remains hypothetical and no ordinary DDL/ACL authority is exercised.",
+    "Actual validator exact14 topkeys/two9field scopes, strict bool/int types, nonnegative counts, five admissiontrue/version170006/count102 and false source/cause constants. Observation facts mayfalse/nonzero.",
+    "Single read-only psql postgres client, ON_ERROR_STOP; no fresh SQL cleanup; exact live owned readiness/container/image/project/workdir/port gates; exclusive fsynced consumed marker before client and fsynced exclusive result; no retry.",
+    "Source/historical comparability always UNQUALIFIED; unavailable/nonreproducing/incomparable/alltrue => UNKNOWN; no source repair or normalretry authority."
+  ],
+  "pure_checks": [
+    {
+      "check": "Python AST parse and complete old/new diff inspected",
+      "passed": true,
+      "prior_runner_bytes": 10251,
+      "prior_runner_sha256": "00a321e3196f80feea34efbac54f7908d8bf9e5cc5adc40cc456ca87573b8867"
+    },
+    {
+      "check": "acquisition AST prefix comparison",
+      "statements": 22,
+      "only_changed_statement_indexes": [
+        0,
+        7,
+        12
+      ],
+      "adaptations": [
+        "postgres/ON_ERROR_STOP argv",
+        "8192 stdout cap",
+        "15-second child deadline"
+      ],
+      "duplicate_key_helper_identical": true
+    },
+    {
+      "check": "pure extracted JSON validation controls",
+      "passed": 86,
+      "failed": 0,
+      "executed_scope": "Only validation AST block and duplicate-key helper; synthetic bytes/returncode. No capture/main/subprocess/SQL/Docker.",
+      "cases": [
+        "false facts/nonzero scopes accepted",
+        "all admission bits tested false",
+        "integer bool/float/null/negative rejected",
+        "scope leaf bool types/missing/extra/null reject",
+        "top-level pollution/duplicate/nonJSON reject",
+        "version/count and source/cause constants enforced",
+        "native3 refuses observation qualification"
+      ]
+    },
+    {
+      "check": "one SELECT lexical read-only control",
+      "passed": true,
+      "engine_parse_or_execution": false
+    },
+    {
+      "check": "exact3 input hashes/2 source hashes and current Git blobs/prior qualification and review hashes",
+      "passed": true
+    },
+    {
+      "check": "activation/consumed/result absent at inspection",
+      "passed": true
+    }
+  ],
+  "limits": {
+    "sql_executions": 0,
+    "docker_clients": 0,
+    "resource_operations": 0,
+    "api_ci_provider_calls": 0,
+    "git_mutations": 0,
+    "source_spec_writes": 0,
+    "normal_acceptance_credit": 0,
+    "actual_live_readiness_verified": false,
+    "actual_engine_default_acl_observed": false,
+    "actual_source_sequence_executed": false,
+    "hosted_cause_proven": false,
+    "source_or_historical_comparability": "UNQUALIFIED",
+    "source_fix_authority": false,
+    "execution_allocation": "Not supplied or exercised during this review; PASS is semantic review only.",
+    "writes": "Only the three owned review outputs; frozen inputs and prior artifacts unchanged."
+  }
+}

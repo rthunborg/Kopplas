@@ -1,0 +1,63 @@
+{
+  "original": "a84d2a521cfe055ea39d0f783d12571f6c14bb21",
+  "original_committer_time": "2026-10-20T21:02:35+02:00",
+  "amended_source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "amended_committer_time": "2026-10-20T21:03:07+02:00",
+  "sequence": "Parent explicitly agreed comment-only amend before freeze; amend completed before newer Root append-only instruction. No rewrite after that instruction. Root retained original via local branch only; no checkout/remote change.",
+  "retention_ref": "refs/heads/codex/epic-15-pre-review-a84d2a52",
+  "original_on_current_ancestry": false,
+  "original_reviewed": false,
+  "original_native_qualified": false,
+  "current_review_source_only": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "original_additional_author_commit_credit": false,
+  "exact_comment_only_equality": true,
+  "retained": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-commit-payload.bin",
+      "bytes": 525,
+      "sha256": "5288d005e569bbdad5955aec20ce13cbf5d073ed04c270ca2e755679604097e0",
+      "git_object_type": "commit",
+      "git_object_oid": "a84d2a521cfe055ea39d0f783d12571f6c14bb21"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-root-tree-payload.bin",
+      "bytes": 1408,
+      "sha256": "49b3131a5be1360a1c61d014d8076f54b67a2b4be688028363cb9c4ddf18e15e",
+      "git_object_type": "tree",
+      "git_object_oid": "7998336c681e1ef861430cc94474eb9acffa3eed"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-tests-tree-payload.bin",
+      "bytes": 279,
+      "sha256": "4f43cdd2ce20c98beb344745fe0ba4edfe6ab1ef51d649f0933207a8e5aea691",
+      "git_object_type": "tree",
+      "git_object_oid": "256b99fedb2084926b40107577887baf7cc21957"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-e2e-tree-payload.bin",
+      "bytes": 1119,
+      "sha256": "6e392e943fe2498e6948ef59b69374103c0d361ef671d02ef741f7d872526a84",
+      "git_object_type": "tree",
+      "git_object_oid": "ff84d30c891d7ceda4f7af74b6ee2b64076f9733"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-support-tree-payload.bin",
+      "bytes": 417,
+      "sha256": "fe96b0a239d72c2bef1f05fed613fa28a21e8c1b95093b207a890211f7db2b31",
+      "git_object_type": "tree",
+      "git_object_oid": "09482203536f4d5c2b572c14a42876c405a52d40"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-helper-payload.bin",
+      "bytes": 53456,
+      "sha256": "1c528434d64a3c8bf8d498516114d8a84e2ac67c16a14302cd4e7a4430b4f7ad",
+      "git_object_type": "blob",
+      "git_object_oid": "029748f2425c9bc0ac2faeba3f4b6d3c7ecc1ed3"
+    }
+  ],
+  "comment_diff": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/original-to-final-comment.diff",
+    "bytes": 734,
+    "sha256": "24d6a27b7266ab7d3d2a79b415edb4992333fd2a5b3b0d7dc04d7f4977c05f7b"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "source_head": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "HEAD": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+  "preimages": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 139901,
+      "sha256": "74721f43ece77fac70414592317ce06556b5cfc0718d9d6014afbec32bdf2c25",
+      "LF_bytes": 138508,
+      "LF_sha256": "d3d7a13919233a6bbd75646449a4de80257c015aa718a16616c513c6c5e8cef5"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 325812,
+      "sha256": "8594bcc0bfb6fcd9c721868c93ee39a8b0744bca3d8df673f6ea050b2e0941b7",
+      "LF_bytes": 322787,
+      "LF_sha256": "fa217e6880476974af32babd14ad9991cff3d9877d4e37cdc99f53975f233e63"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 258842,
+      "sha256": "59da7f5ba3731d56fe50a52409717ee527a920a728cc942ed66f4e30a6d25a16",
+      "LF_bytes": 255757,
+      "LF_sha256": "318c8ecd123d052eb29ab388538a313cc55f3048d7f63eadeeab105f07eccb8a"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "LF_bytes": 47931,
+      "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "LF_bytes": 26504,
+      "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+      "LF_bytes": 8024,
+      "LF_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "LF_bytes": 162159,
+      "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+    }
+  ],
+  "spec_outsideSRO_sha256": "dbf33b53bb46cbf50e193f1e6cb9ca4d7fde15537c84eb37d2c87d5dbf90614e",
+  "ownerFacts_LF_segment_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+  "no_SQL_edits": "118SQL immutable; no raw rescan performed"
+}

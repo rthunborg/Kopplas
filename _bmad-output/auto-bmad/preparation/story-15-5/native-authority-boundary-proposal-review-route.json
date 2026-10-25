@@ -1,0 +1,22 @@
+{
+  "kind": "independent-sensitive-permission-transport-proposal-review",
+  "phase": "READ_ONLY_DESIGN_BEFORE_ADMISSION_OR_IMPLEMENTATION",
+  "source_head": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md",
+    "bytes": 16753,
+    "sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4"
+  },
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "context_free": true,
+  "distinct_from_author": true,
+  "reason": "Existing admin credential custody, authenticated setup authority, session privacy and restricted-session PG17 oracle",
+  "scope": "Concrete five-path authority/transport proposal only; source inspected only to verify proposed boundaries, not a new broad story review",
+  "completed_story_code_review_rounds": 3,
+  "increments_story_code_review_cap": false,
+  "implementation_authorized_by_review": false,
+  "resource_or_native_probe_authorized": false,
+  "root_owns_effect_admission_coordinator_and_runtime": true,
+  "limits": "Source and all prior capsules/packets remain frozen. Candidate source admin password mapping/TCP login/superuser availability are unverified and must not be claimed as actual facts."
+}

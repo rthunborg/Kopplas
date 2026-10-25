@@ -1,0 +1,5 @@
+The source establishes blocking coupling, but I cannot substantiate the stronger functional-failure claim. Ordinary scheduling writes and `admin_manage_membership` hold the matching tenant transaction lock; however, I have no evidence that a permitted invocation holds it—or that an accepted feed projects—long enough to cause a timeout or budget failure. The original finding should therefore be treated as an unproven availability/performance concern, not a demonstrated isolation defect.
+
+I cannot identify a small equivalent fix under the stated constraints. Releasing the global lock before commit lets concurrent admissions miss uncommitted IP rows and exceed the cardinality bound. Replacing it with a session lock does not resolve that visibility problem.
+
+Separate committed admission requires another transaction/protocol. Fixed deterministic buckets could retain three columns and bounded cardinality, but introduce earlier shared-IP collisions and change the approved budgeting policy. Neither is a justified routine fix for this finding without further design/evidence.

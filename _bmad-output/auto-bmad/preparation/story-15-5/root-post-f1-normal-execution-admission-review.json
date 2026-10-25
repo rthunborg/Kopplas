@@ -1,0 +1,29 @@
+{
+  "kind": "ROOT_MECHANICAL_NORMAL_EXECUTION_ADMISSION_REVIEW",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "metadata_head": "ab9b8e620f336401aa2b973061b576bd3e2d3245",
+  "verdict": "PASS_NORMAL_EXECUTION_ALLOCATION_WITH_FINITE_CONDITIONS",
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-execution-admission-review/original-attestation.json",
+    "bytes": 23169,
+    "sha256": "f248b856fb56144e50af09e79325bfc01e24efeeb350038ecfdf193ed2e1aa07"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-execution-admission-review/original-report.md",
+    "bytes": 5125,
+    "sha256": "ea743653dcea3bc693b0a949987d4ff6bf3e38e91d72f9d86590e3ffe0ab990b"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-execution-admission-review/manifest.json",
+    "bytes": 726,
+    "sha256": "122416044a78e63af29edd2f77db02ea57b68b1c5fb5d11b904117ad462c149e"
+  },
+  "verified_ref_occurrences": 47,
+  "verified_current_HEAD_source_objects": 73,
+  "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+  "future_pushed_head": null,
+  "future_run_id": null,
+  "effects_executed_by_this_review": 0,
+  "normal_acceptance_credit": 0,
+  "next": "Coordinator exactactualpush/normalCIallocation; finalheadsource/ownership checks; terminalGEToperator/schema separate."
+}

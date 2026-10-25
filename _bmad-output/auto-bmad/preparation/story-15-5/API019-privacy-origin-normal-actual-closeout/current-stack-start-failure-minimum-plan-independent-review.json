@@ -1,0 +1,87 @@
+{
+  "Outcome": "done",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-minimum-plan-independent-review.json"
+  ],
+  "Status": {
+    "verdict": "PASS_MINIMUM_PLAN_ONLY",
+    "findings": [],
+    "decision": "Exactly ONE new separately admitted unchanged full NORMAL observation is proportionate. This is not a retry of an uncertain mutation, a transient-cause diagnosis, a source fix or execution authority.",
+    "inputs": {
+      "frozen_assessment": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-source-assessment.json",
+        "bytes": 14305,
+        "sha256": "c21531f7bb70329288587085b571cd699d7f1229517bee4bf96aa15c9a8b4247"
+      },
+      "distinct_actual_qualification": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-native-qualification.json",
+        "bytes": 25597,
+        "sha256": "f7f4d85f1c3bc5e3af0ec5d785a7f333e8ed90989b6c722f99fc0a84dfccde4d"
+      },
+      "development_completion_policy": {
+        "path": "docs/process/development-completion-policy.md",
+        "bytes": 8460,
+        "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+      }
+    },
+    "source_supported_basis": [
+      "Current39990057474 is uniquely owned, accepted, terminal and ROOT_STOPPED; four acquisition requests settled and allfive slots closed. No replay/adoption of old push/POST/provider/grant is allowed.",
+      "CurrentDB step7 startup failed before reset/integration; integration11 skipped and fullintegrationreport absent. Currentrequired95=44P0F51zero, not historical93P. No new privacy-origin pair or supported functional repair was observed.",
+      "Actual relevant CI/config/package/lock/workspace/.nvmrc bytepins match frozen assessment; startup is supabase start with CLI2.115.0 and frozen install. Newobserver is first invoked at integration11, after startup7; package has no install lifecycle hook. SQL seed/migration trees unchanged per retained Git metadata; no raw SQL scan.",
+      "Prior relevant ownedrun39975009683 successfully passed startup under the same repository startup inputs. Independent browser/recovery startup also passed in currentrun. Neither fact proves current failure transient or equivalent runner/Docker/health state.",
+      "The reviewed new source evidence seam never executed in currentDB. One fresh full required lane uses the existing authorized family without speculative repairs, new collectors, altered assertions or focus capabilities."
+    ],
+    "permitted_prospective_scope": {
+      "tracked_product_test_workflow_SQL_dependency_changes": 0,
+      "functional_source": "48a7c32faa1be7ae2b6d81095282521cebfaa621 unchanged",
+      "candidate_head": "Actual fresh owned docs-only bridge after closed evidence fold; verify clean and exact source equality, do not assume unpublished currentHEAD.",
+      "operation_count": 1,
+      "mode": "Existing canonical fullNORMAL only; cause_proof:false/release_validation:false/original:false.",
+      "preparation": "Small actual tuple/ref/data rebind of already reviewed provider/controller/terminal reader family; targeted independent source/admission review only for changed bindings. No new algorithms/framework/transport/sourcecatalog extractor or unchanged broad review.",
+      "effects": "Only a future actual completed finite allocation may authorize exact required provider/ordinaryownedGit/canonicaldispatch/ownedobserver effects; no effects granted here. Retain existing byte caps, process LOOP/cleanup/join bounds and <=6resolver/<=90pairs/original5400clock semantics.",
+      "future_terminal": "Only after unique actualrun/all9terminal STOP and separate new finite eligible-only <=5GET grant/fresh sourceproof/exclusive activation. Source-label32768 ONLY, no generic projection cap."
+    },
+    "resume_conditions": [
+      "Root folds current44P0F51zero and exact closed evidence/unknown custody into owned readiness without clearing P5 or carrying historical passes. Old journals, grants, outputs and run identity remain immutable/closed.",
+      "Actual candidate source and relevant dependencies remain unchanged and independently reviewed; docs-only head bridge/current rawLF/Git/proof/install/SQL-Git conserved. Any functional/source difference requires its own targeted review before relying on this plan.",
+      "New distinct checkpoint/operation/once namespace; known old run fully terminal, no active old soleoperator/poller/remaining request authority. No unknown old mutation adoption or replay.",
+      "New exact inert operational bindings and targeted independent admission review; actual fresh provider containment/source proof. Ordinary branch push qualification does not prove main production/manual deployment suppression. No merge/deployment.",
+      "Actual completed Coordinator finite allocation and freshly verified <=300s source/provider timing plus exclusive Root journals/activations before effects. Root remains sole dispatcher/observer and Native sole separately admitted reader.",
+      "Retain requiredfullDB51/RLS/directrecovery/Node30/browser14 and privacy/assertion/custody behavior; no resets/exemptions/skips/timeout increase/health-check waiver/privilege change."
+    ],
+    "stop_rule": {
+      "current_consecutive_same_startup_failures": 1,
+      "maximum_additional_unchanged_NORMAL_observations_under_plan": 1,
+      "if_second_consecutive_startup_step7_failure": "STOP this automatic route. No third same NORMAL approach. Preserve actual proof/closed terminal/evidence and name Root-owned startup cause blocker. Any further route must materially differ, have an exact missing safe fact and separately reviewed finite scope/admission; no raw secret/error retention.",
+      "if_startup_succeeds": "Qualify this newrun actualfull95/recovery/scopedcustody; react only to its reached concrete first failure. Do not presume API019 fixed, failed or caused anything.",
+      "any_other_failure_or_uncertainty": "No automatic repeat under this plan. Consume/close owned slots, qualify actualresult or UNKNOWN; obtain a distinct concrete next-step review if needed."
+    },
+    "actual_controls": {
+      "read_commands": [
+        "e1f758/native0",
+        "6c685d/native0"
+      ],
+      "method": "Read frozenassessment and own actualqualification; check assessment six current nonSQL startup bytepins and all nine evidence refs, policy two-unsuccessful-attempt rule, CI startup-before-wrapper/upload ordering and package script absence. Reuse prior current ownership/catalog/SQL metadata/closedcapture proofs.",
+      "tests_GET_network_Gitmutations_resources": 0
+    }
+  },
+  "Open questions": {
+    "hosted_startup_first_error": "UNKNOWN; existing closedprojection contains no fixedsafe startup category or owned nativeleaf.",
+    "runner_Docker_images_network_disk_memory_health": "Not established by source; no transient diagnosis.",
+    "current_API019_origin_behavior_or_mainDB_backend_key_custody": "UNKNOWN. Browser key/clientclosure and directrecovery1P do not clear mainDB."
+  },
+  "Deferred work": {
+    "owner": "Root for new-operation admission and startup blocker; Native for bounded reused preparation; independentHigh for actual changed-bindings and later evidence qualification.",
+    "next_action": "Root complete closed evidence/docs readiness fold, then prepare one new inert unchangedNORMAL candidate and request exact finite admission only after its source review.",
+    "development": "Required95 and mainDB custody remain incomplete. 15.6 UNSTARTED, P5 OPEN, broadreviewcounter3. No release/devcomplete acceptance."
+  },
+  "Blockers": {
+    "plan_qualification": [],
+    "current_development": "FullDB51 unavailable/currentzero coverage and mainDB custody unknown. No source-proven repair.",
+    "effect_authority_now": false
+  },
+  "status": "PASS_MINIMUM_PLAN_ONLY",
+  "outcome": "PASS_MINIMUM_PLAN_ONLY",
+  "independent": true,
+  "execution_authorized": false
+}

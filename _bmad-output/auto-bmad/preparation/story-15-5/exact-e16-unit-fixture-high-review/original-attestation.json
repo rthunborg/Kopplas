@@ -1,0 +1,257 @@
+{
+  "schema": "EXACT_E16_THREE_UNIT_FIXTURE_HIGH_REVIEW_ATTESTATION_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent": true,
+  "verdict": "PASS_TARGETED_THREE_FIXTURE_RECONCILIATION",
+  "new_consequential_findings": [],
+  "bindings": {
+    "binding_proof": "PASS",
+    "head": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+    "parent": "bbf84feb7d90a214296d269d5625cdb5bf569790",
+    "tree": "b47f8f8e11a367e7b7df0a4c61f9d641e8282909",
+    "exact_paths": [
+      "tests/unit/features/jobs/job-workspace-domain.test.ts",
+      "tests/unit/features/resources/booking-series-editor.test.ts",
+      "tests/unit/server/bookings/series-plan.test.ts"
+    ],
+    "source_binding_hashes": [
+      {
+        "path": "tests/unit/features/jobs/job-workspace-domain.test.ts",
+        "bytes": 8425,
+        "sha256": "a7698008e0871863303559c9e7ce920460833f3b55a0910ed2c9ebf9aa6be220",
+        "clean_bytes": 8425,
+        "clean_sha256": "a7698008e0871863303559c9e7ce920460833f3b55a0910ed2c9ebf9aa6be220",
+        "prospective_clean_oid": "3c3966e4fbe6ebfb5a4827dd71b8d1846a1a36da",
+        "baseline_blob": "e31c78f30dd6ab636c40eb1319b49e4916e4e421",
+        "baseline_body_sha256": "33597d4baba05617e7db4e9b6f5c0c4bbff366c2ce9eab258155676d623f1fc3"
+      },
+      {
+        "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+        "bytes": 10818,
+        "sha256": "30dbb3a94e881c69cc96db21581cfae7231af499456a1c333a72fd20655d63fb",
+        "clean_bytes": 10818,
+        "clean_sha256": "30dbb3a94e881c69cc96db21581cfae7231af499456a1c333a72fd20655d63fb",
+        "prospective_clean_oid": "7523ffba81d55bd8824c9191f0717c48d7719729",
+        "baseline_blob": "5e369642cd35aa79b3011554c642ad1a14f9435f",
+        "baseline_body_sha256": "99f44215540bbea3b17306202b4c1dd1c59473c45386dcd9e93771bfb30b720b"
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "bytes": 29415,
+        "sha256": "da5a4ed9987caee817961245ee55c956a0683dcaf670ec15118a6e4521363ac6",
+        "clean_bytes": 29415,
+        "clean_sha256": "da5a4ed9987caee817961245ee55c956a0683dcaf670ec15118a6e4521363ac6",
+        "prospective_clean_oid": "276acb1be1914c126970db59c432c3ffe980031e",
+        "baseline_blob": "0c711e1340b4606baab0f0ec549d0b3820133d6c",
+        "baseline_body_sha256": "60cb711c59dc3cf58b3e2679443260799c88ec1b53e0be969605726da902da2e"
+      }
+    ],
+    "protected_src_SQL116_Spec_unchanged": true,
+    "contract_bindings": [
+      {
+        "path": "src/features/jobs/job-workspace-domain.ts",
+        "bytes": 2834,
+        "sha256": "54c98b58c80f070a15637c450712255feba81a617d6188a4d7837a5ab025829f"
+      },
+      {
+        "path": "src/scope/manifest.ts",
+        "bytes": 18392,
+        "sha256": "77d19ce956d91266268211e0ea62b8d14df9bf244f5e7408b730f8542b370561"
+      },
+      {
+        "path": "src/components/resources/BookingEditor.tsx",
+        "bytes": 36761,
+        "sha256": "0321627f0fc5496a9ba1d15f8fb135a3f75d4b5a0639ec3489d1a3d40a4bfecf"
+      },
+      {
+        "path": "src/features/jobs/job-scheduling-consumers.ts",
+        "bytes": 5080,
+        "sha256": "9488aa38440cfb828abb8fac6dd2379ca26cdc6cb9a5fcaeb8dfcc8065b20a0a"
+      },
+      {
+        "path": "src/features/scheduling/time-zone.ts",
+        "bytes": 5832,
+        "sha256": "cca3406ce349545d882f18227beb7717c8589190cae72878b709a6aa7c6aed72"
+      },
+      {
+        "path": "src/server/bookings/series-conflicts.ts",
+        "bytes": 16845,
+        "sha256": "75477523e1e7d67061a22459e7a93d7f0b97c3defae94654d977b133c7a60ad4"
+      },
+      {
+        "path": "src/server/bookings/series-attestation.ts",
+        "bytes": 2891,
+        "sha256": "898b6fea3c851f723b3977df6a90b3ddcd141459c54a945c3806d9aa2c954cb5"
+      },
+      {
+        "path": "src/server/bookings/conflict-attestation.ts",
+        "bytes": 2373,
+        "sha256": "bd0c65ab4ec8a1540340a6d31a9c502031c556ca2b777d218877ffa6df6f5764"
+      },
+      {
+        "path": "src/features/scheduling/types.ts",
+        "bytes": 3499,
+        "sha256": "463e293a7f1ed1d8a482e817ff93167cf1e90e7f3e5e8423db6b164d00349259"
+      }
+    ],
+    "author_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-unit-fixture-correction/receipt.json",
+      "bytes": 11784,
+      "sha256": "2cda6d8f671ba8d7f3b4fc0013a065f77870cff3c0bf56d8f78a65dc08bd773b"
+    },
+    "author_manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-unit-fixture-correction/manifest.json",
+      "bytes": 830,
+      "sha256": "c27a3d734f70edf3ca75bc80cb7837a3993d17dbd2606a96023a683496eb287a"
+    },
+    "Root_identification_admission": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-exact-e16-local-unit-identification-admission.json",
+      "bytes": 2888,
+      "sha256": "1a640c89b2871d0e9c7fa66dc7aa9df2191375b65e990c37612fbe3e9beee26c"
+    },
+    "Root_identification_admission_summary": {
+      "outcome": "LOCAL_FULL_UNIT_IDENTITIES_OBSERVED",
+      "author": "gpt-6.1-sol Low /root/triage15_4_low",
+      "head_verified_by_Root": "e2dd7b98280678f4e5f926325086745d70d72cec",
+      "source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+      "tree_clean_verified_by_Root": true,
+      "reported_diagnosis": "1staleschedulingpendingassertion;7VMloadernewjob-scheduling-consumersimportfailures;27series-planfixturesretainoldengine/configv3/v1whilecurrentguardrequiresv4/v2. SensitivecontractreconciliationrequiresHighverification.",
+      "attribution": "Actual local execution reported by Low delegate; Root verified current Git/tree/bindings, not child execution directly.",
+      "hosted_comparison": "Equal35failurecountdoesnotprovehostedidentities; local1skiprequiresLinuxxattrs; native0skip remainsdistinct.",
+      "normal_acceptance": 0,
+      "development_complete": false,
+      "next": "Coordinateexact3test-onlyownership; explicitHigh verifiesauthorityandrepairsfixtures/loaderswithoutweakeningproductionguards; fullpureunitvalidationandtargetedindependentreviewbeforeanyhostedretry."
+    }
+  },
+  "test_body_conservation": {
+    "proof": "PASS",
+    "cases": [
+      {
+        "path": "tests/unit/features/jobs/job-workspace-domain.test.ts",
+        "before_test_call_nodes": 6,
+        "after_test_call_nodes": 6,
+        "byte_identical_old_test_bodies": 5,
+        "changed_old_test_bodies": 1,
+        "added_or_replaced_test_bodies": 1
+      },
+      {
+        "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+        "before_test_call_nodes": 6,
+        "after_test_call_nodes": 6,
+        "byte_identical_old_test_bodies": 6,
+        "changed_old_test_bodies": 0,
+        "added_or_replaced_test_bodies": 0
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "before_test_call_nodes": 19,
+        "after_test_call_nodes": 20,
+        "byte_identical_old_test_bodies": 19,
+        "changed_old_test_bodies": 0,
+        "added_or_replaced_test_bodies": 1
+      }
+    ],
+    "application_imports": 0
+  },
+  "erasedJS": {
+    "proof": "PASS",
+    "bytes": 33947,
+    "sha256": "ce0069645d10c568f09f4c7da6647762e1b2dccb60e15d9eb4bc1cd61ee00679",
+    "erased_type_cast_variant_equal": true,
+    "application_imports": 0
+  },
+  "binding_script": "import pathlib,json,subprocess,hashlib\ndef sha(b):return hashlib.sha256(b).hexdigest()\ndef git(*a):return subprocess.check_output(['git',*a])\ndef bind(r):\n raw=pathlib.Path(r['path']).read_bytes();assert len(raw)==r['bytes'] and sha(raw)==r['sha256'];return raw\np=pathlib.Path('.env.epic15.mail-runtime/story-15-5-preparation/exact-e16-unit-fixture-correction');r=json.loads((p/'receipt.json').read_bytes());m=json.loads((p/'manifest.json').read_bytes())\nassert sha((p/'receipt.json').read_bytes())=='2cda6d8f671ba8d7f3b4fc0013a065f77870cff3c0bf56d8f78a65dc08bd773b'\nassert sha((p/'manifest.json').read_bytes())=='c27a3d734f70edf3ca75bc80cb7837a3993d17dbd2606a96023a683496eb287a'\nfor row in m['files']+r['refs']+r['contract_bindings_readonly']:bind(row)\nhead='7864550818ce130fbd5d1fd1bb530f0f4c2b19f4';parent='bbf84feb7d90a214296d269d5625cdb5bf569790';source=r['source']\nassert git('rev-parse','HEAD').decode().strip()==head\nassert git('show','-s','--format=%P',head).decode().strip()==parent\nnames=git('diff','--name-only',parent,head).decode().splitlines();assert set(names)=={x['path']for x in r['source_bindings']} and len(names)==3\nfor x in r['source_bindings']:\n raw=bind(x);new=git('show',head+':'+x['path']);old=git('show',parent+':'+x['path'])\n assert raw==new and sha(old)==x['baseline_body_sha256']\n assert git('rev-parse',head+':'+x['path']).decode().strip()==x['prospective_clean_oid']\n assert git('rev-parse',parent+':'+x['path']).decode().strip()==x['baseline_blob']\nassert git('diff','--name-only',source,head,'--','src','supabase/migrations','_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md')==b''\nsql=git('ls-tree','-r','--name-only',head,'supabase/migrations').decode().splitlines();assert sum(x.endswith('.sql')for x in sql)==116\nadmission=pathlib.Path('_bmad-output/auto-bmad/preparation/story-15-5/root-exact-e16-local-unit-identification-admission.json')\nd=json.loads(admission.read_bytes());print(json.dumps({'binding_proof':'PASS','head':head,'parent':parent,'tree':git('show','-s','--format=%T',head).decode().strip(),'exact_paths':names,'source_binding_hashes':r['source_bindings'],'protected_src_SQL116_Spec_unchanged':True,'contract_bindings':r['contract_bindings_readonly'],'author_receipt':{'path':(p/'receipt.json').as_posix(),'bytes':11784,'sha256':sha((p/'receipt.json').read_bytes())},'author_manifest':{'path':(p/'manifest.json').as_posix(),'bytes':830,'sha256':sha((p/'manifest.json').read_bytes())},'Root_identification_admission':{'path':admission.as_posix(),'bytes':len(admission.read_bytes()),'sha256':sha(admission.read_bytes())},'Root_identification_admission_summary':{k:v for k,v in d.items()if not isinstance(v,(dict,list))}},indent=2))\n",
+  "test_body_script": "const fs=require('node:fs'),cp=require('node:child_process'),ts=require('typescript'),crypto=require('node:crypto');\nconst paths=['tests/unit/features/jobs/job-workspace-domain.test.ts','tests/unit/features/resources/booking-series-editor.test.ts','tests/unit/server/bookings/series-plan.test.ts'];let result=[];\nfunction calls(path,text){const sf=ts.createSourceFile(path,text,ts.ScriptTarget.Latest,true),out=[];function v(n){if(ts.isCallExpression(n)&&ts.isIdentifier(n.expression)&&n.expression.text==='test')out.push(n.getText(sf));ts.forEachChild(n,v)}v(sf);return out}\nfor(const path of paths){const old=cp.execFileSync('git',['show','bbf84feb7d90a214296d269d5625cdb5bf569790:'+path],{encoding:'utf8'}),now=fs.readFileSync(path,'utf8'),before=calls(path,old),after=calls(path,now),preserved=before.filter(x=>after.includes(x));let changed=before.filter(x=>!after.includes(x)),added=after.filter(x=>!before.includes(x));\nif(path.includes('job-workspace')){if(changed.length!==1||added.length!==1||!changed[0].includes('16.5-D02')||!added[0].includes('16.5-D02'))throw Error('workspace delta');const expected=changed[0].replace('Schema consumes active E14 resources independently of pending scheduling; inactive owners remove their consumers','Schema consumes active E14 resources with integrated scheduling and independently of pending consumers; inactive owners remove their consumers').replace('?.status, \"pending\"','?.status, \"active\"').replace('[[], [\"overview\", \"work-orders\", \"schedule\", \"files\", \"events\"]],','[[], [\"overview\", \"work-orders\", \"schedule\", \"files\", \"events\"]],\\n    [[\"scheduling\"], [\"overview\", \"work-orders\", \"schedule\", \"files\", \"events\"]],');if(expected!==added[0])throw Error('workspace unexpected assertion delta')}\nelse if(path.includes('booking-series-editor')){if(changed.length||added.length)throw Error('editor test bodies changed')}\nelse if(changed.length||added.length!==1||!added[0].includes('obsolete versions and changed facts fail real admission'))throw Error('series negative body change');\nresult.push({path,before_test_call_nodes:before.length,after_test_call_nodes:after.length,byte_identical_old_test_bodies:preserved.length,changed_old_test_bodies:changed.length,added_or_replaced_test_bodies:added.length})}\nprocess.stdout.write(JSON.stringify({proof:'PASS',cases:result,application_imports:0},null,2));",
+  "independent_checks": {
+    "focused_command": [
+      "node",
+      "--experimental-strip-types",
+      "--import",
+      "./tests/support/register.mjs",
+      "--test",
+      "--test-concurrency=2",
+      "tests/unit/features/jobs/job-workspace-domain.test.ts",
+      "tests/unit/features/resources/booking-series-editor.test.ts",
+      "tests/unit/server/bookings/series-plan.test.ts"
+    ],
+    "focused_tool_chunk": "7aff5e",
+    "focused_exit": 0,
+    "pass": 52,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "todo": 0,
+    "TAP_duration_ms": 1579.023,
+    "wall_seconds": 1.706665,
+    "returned_tool_output_truncated": true,
+    "complete_output_hash_claimed": false,
+    "warnings": [
+      "Node MODULE_TYPELESS_PACKAGE_JSON; unchanged package typing warning"
+    ],
+    "byte_binding_proof_exit": 0,
+    "AST_test_body_proof_exit": 0,
+    "erasedJS_proof_exit": 0
+  },
+  "mechanical_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-exact-e16-three-fixture-precommit-admission.json",
+    "bytes": 544,
+    "sha256": "8c09dc779fbeaddb25f2aaed2c4964c8a9824d1b39d94a54f1a69b335d58510c"
+  },
+  "author_guide": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-unit-fixture-correction/guide.md",
+    "bytes": 1376,
+    "sha256": "b5b01a393d668a58980307d8e8da446dcaa92b6aeb15330b8e4459e8fa49d363"
+  },
+  "author_full_run_reused": {
+    "enrollment": 314,
+    "runtime": "Windows Node22.23.2",
+    "test_concurrency": 2,
+    "tests": 3390,
+    "suites": 103,
+    "pass": 3389,
+    "fail": 0,
+    "skip": 1,
+    "cancel": 0,
+    "elapsed_seconds": 51.095,
+    "output_sha256": "55f35ae46b3a9ca5c27cd097645ed551c2ae99929431529ef3b7bcd92b4a7b13",
+    "nonadditive": true,
+    "independently_rerun": false,
+    "timing_limit": "In flight during type-only unknown-cast restoration; no frozen-final-raw execution claim; equivalent erasedJS independently reproduced.",
+    "skip_limit": "Linux xattrs unavailable on Windows; skipped is not coverage.",
+    "final_TS_lint_diff": "author reported exit0; not duplicated"
+  },
+  "negative_case_boundaries": [
+    "workspace resources/files/jobs inactivity and role/admission preserved",
+    "all original editor case bodies preserved",
+    "all nineteen original series case bodies preserved",
+    "actual v3/v1/bad-fact-hash snapshot rejection control passes",
+    "synthetic RPC claim hashes are not PostgreSQL/RLS/backend proof"
+  ],
+  "historical_hosted_failure": {
+    "run": 39691553004,
+    "head": "98134335cd52e396fe4878bc5e49921f70c0f6b6",
+    "pass": 3354,
+    "fail": 35,
+    "bound_failure_identities": 0,
+    "cause": "UNKNOWN",
+    "matching_local_failure_count_is_identity_proof": false
+  },
+  "required_cases": 95,
+  "normal_acceptance": 0,
+  "custody": "UNKNOWN",
+  "review_counter": 3,
+  "broad_review_increment": 0,
+  "effects": {
+    "network": 0,
+    "GETs": 0,
+    "hostedCI": 0,
+    "provider": 0,
+    "services_resources": 0,
+    "DB_browser_build": 0,
+    "source_Spec_writes": 0,
+    "Git_mutations": 0
+  },
+  "execution_authority": false,
+  "development_complete": false
+}

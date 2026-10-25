@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_HIGH_COMMITTED_TWO_PATH_DISCOVERY_ORDER_REVIEW",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_implementation_author": true,
+    "existing_reviewer_reused": true,
+    "fresh_context_free": false,
+    "new_broad_review": false
+  },
+  "scope": {
+    "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "source": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+    "base": "f0b1e5735872ba2effcd7c1480756326125f6752",
+    "paths": [
+      "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "insertions": 44,
+    "deletions": 2,
+    "only_new_delta_and_consequential_CI_integrity": true
+  },
+  "verified_source_bindings": [
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "raw": {
+        "bytes": 9087,
+        "sha256": "ea88c63c7fda518328fe7a2ab5f2c9d90628995f64f76607e184ef47b405f1f0"
+      },
+      "head": {
+        "oid": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+        "bytes": 9087,
+        "sha256": "ea88c63c7fda518328fe7a2ab5f2c9d90628995f64f76607e184ef47b405f1f0"
+      },
+      "base": {
+        "oid": "b109fe505ab12e755289170802cbda503025a0a5",
+        "bytes": 8487,
+        "sha256": "79817b8418557df79669167c2c42d8b0063415da5fba2e43b61cd4516b6fb76f"
+      }
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 142632,
+        "sha256": "36db88f8f121c050f4349ea1dc5ce57854574bee22f85295dce6eaef49dbc85a"
+      },
+      "head": {
+        "oid": "53d0d2765a81b05aee331f420929f582785d5517",
+        "bytes": 142632,
+        "sha256": "36db88f8f121c050f4349ea1dc5ce57854574bee22f85295dce6eaef49dbc85a"
+      },
+      "base": {
+        "oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+        "bytes": 139916,
+        "sha256": "d3c25f266c2490d7c287d886b384dbd015f9a040a032c5a2a737ccb41f5f92e9"
+      }
+    }
+  ],
+  "allocation": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/accepted-discovery-order-unit-fix-allocation.json",
+    "bytes": 1810,
+    "sha256": "e7ae8c8d127306c3a0c708f9fea297e7bcd9ecaf173b49671c96282cb6fd5401"
+  },
+  "pre_fix_overlay_provenance": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/linux-node-v22.23.2/overlay-provenance.json",
+    "bytes": 5290,
+    "sha256": "867272b829bd7575b039ce274cfca4da9781b72fc869562724f91a920c9b0d28"
+  },
+  "independent_execution": {
+    "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "host": "Windows owned worktree",
+    "source": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "todo": 0,
+    "native_exit": 0,
+    "duration_ms": 2190.8266,
+    "actual_checks": [
+      "Installed Vitest exact total/serial collection and resolved execution settings",
+      "Exact partition duplicate/missing/reverse/shuffle and order negatives",
+      "Actual bounded scheduling teardown-before-DDL and reversed-group interference"
+    ],
+    "temporary_fixtures": "Existing test-owned OS-temp files created/cleaned by unchanged test body",
+    "DB_or_global_integration_setup": false,
+    "full_3179_rerun": false,
+    "Linux_runtime_started": false
+  },
+  "author_Root_attributed_evidence": {
+    "focused_Windows": 3,
+    "focused_Linux": 3,
+    "full_Linux": {
+      "tests": 3179,
+      "pass": 3179,
+      "suites": 103,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "todo": 0,
+      "duration_ms": 35756.921857,
+      "native_exit": 0,
+      "memory_only_output_sha256": "95a8bdeb4247f0440999d5f5a8bc59b7f58fa696b7d41f1df57408314acecb1e"
+    },
+    "whole_TS_exit": 0,
+    "affected_ESLint_exit": 0,
+    "not_rerun_or_added_to_reviewer_counts": true,
+    "pre_fix_overlay_is_not_post_fix_execution_proof": true
+  },
+  "integrity_checks": {
+    "head_and_parent_match": true,
+    "committed_paths_exactly_two": true,
+    "current_raw_and_clean_and_HEAD_base_bindings_verified": true,
+    "allocation_prior_CRLF_raw_matches_base_LF_blob": true,
+    "owned_source_worktree_and_index_compare_exit": 0,
+    "committed_diffcheck_exit": 0,
+    "vitest_config_bytes_identical_to_parent": true,
+    "no_global_clean_claim": true
+  },
+  "review_conclusions": {
+    "exact_six_unique_membership_preserved": true,
+    "extra_missing_duplicate_rejection_preserved": true,
+    "parallel_exclusion_preserved": true,
+    "group_order_and_serial_execution_settings_preserved": true,
+    "unchanged_teardown_and_reversed_group_probe_passed": true,
+    "only_discovery_enumeration_order_relaxed": true,
+    "app_schema_migration_producer_dependencies_config_unchanged": true
+  },
+  "trail": {
+    "single_author_SRO": true,
+    "stops": 101,
+    "checker_exit": 0,
+    "checker_errors": 0,
+    "new_stops": [
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "line": 50,
+        "anchor": "assertExactPartition(specs.filter"
+      },
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "line": 70,
+        "anchor": "const serialExpected = [...ddlFiles].sort();"
+      },
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "line": 82,
+        "anchor": "test(\"installed Vitest finishes parallel teardown"
+      }
+    ],
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "kernel_identical_to_base": true,
+    "status": "in-review",
+    "iteration": 3,
+    "historical_ARR_mismatch_retained": true
+  },
+  "limits": {
+    "hosted_cause": "UNKNOWN",
+    "unresolved_DB": 43,
+    "unresolved_browser": 14,
+    "native_acceptance_credit": 0,
+    "normal_acceptance_credit": 0,
+    "no_Done_or_release_claim": true
+  },
+  "actions": {
+    "reviewer_authored_writes_only": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/original-report.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/original-attestation.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/result.json"
+    ],
+    "source_spec_Git_index_state_mutations": 0,
+    "API_CI_log_retry_new_managed_resource_effects": 0,
+    "source_commit_or_push_by_reviewer": false,
+    "existing_owner_authorization_and_Root_gates_preserved": true
+  },
+  "report": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/original-report.md",
+    "bytes": 3897,
+    "sha256": "b4f2c891d64a60ce741016384cf5325cb9da170911e429b62ec8600078130e90"
+  },
+  "result": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/discovery-order-unit-fix-review/result.json",
+    "bytes": 818,
+    "sha256": "1e1c0c8d3a12f2b61b229977269929b5acfa12704f6437929ad3b8a1e810cc92"
+  }
+}

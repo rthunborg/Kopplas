@@ -1,0 +1,50 @@
+{
+  "kind": "original-independent-privacy-preflight-review-persistence-attestation",
+  "original_report_path": "_bmad-output/auto-bmad/preparation/story-15-5/native-privacy-preflight-review/original-review.json",
+  "original_report_bytes": 4496,
+  "original_report_sha256": "b5e330883edfa94091f1ce74487cc15c36f93377f2a2d13c55eb1e8b693b8f16",
+  "serialization": "Original completed JSON response text, preserved with UTF-8 without BOM and one terminal LF; no report field or prose changed.",
+  "original_review_timestamp": null,
+  "original_review_timestamp_note": "No original review timestamp was captured or asserted; none has been reconstructed.",
+  "original_review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "verdict": "PASS",
+    "findings": 0
+  },
+  "original_scope": "Only exact committed four-path latest privacy-preflight delta plus necessary unchanged wrapper context, installed pg startup source and line/literal review-trail reference verification. No fourth broad review or unchanged scope/spec audit.",
+  "completed_broad_rounds": 3,
+  "broad_review_cap": 3,
+  "fourth_broad_review": false,
+  "baseline": "e91b366b8b362f8ffbd867940dfe1cd2d817e72b",
+  "source_head_observed_at_original_review_end": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "source_unchanged_at_original_review_end": true,
+  "original_binding_observations": {
+    "input_bytes": 96857,
+    "input_sha256": "1474a3f537ee994df1cfd1d72660983f64688b87b2e79a7388e907f05fa9c6f9",
+    "input_binding_sha256": "c0816235d1e094a5b461f0e807318ac9c769b6a30aea9b27caa57e24caf3afc5",
+    "exact_committed_diff_bytes": 46143,
+    "exact_committed_diff_sha256": "1a768700da8dcb388a13773045d7ecce796420e970c1ab3274ba89daf1cbc52d",
+    "all_four_raw_clean_and_head_blob_bindings_verified": true,
+    "baseline_blob_bindings_verified": true,
+    "six_sanitized_context_bindings_verified": true,
+    "input_contains_exact_diff_and_complete_wrapper": true,
+    "source_sha_pin_verified": true,
+    "suggested_review_order_single_heading_and_31_line_literal_references_verified": true
+  },
+  "original_execution_limits": {
+    "read_only": true,
+    "tests_rerun": false,
+    "native_runtime": false,
+    "database_connection": false,
+    "resources_launched": false,
+    "external_actions": false,
+    "source_edits": false,
+    "commits": false
+  },
+  "evidence_limits": "Author-reported 30/30 bounded wrapper cases and static checks are supplied evidence, not execution by this reviewer. Previous native startup42501 leaves denied parameter, connected principal and effective settings unknown. Recovery1 is separate; all65 feature runtime bodies remain unexecuted. No completion/release/merge/deployment claim.",
+  "persistence_actions": "Only this allocated original report and this attestation are written. No re-review, test execution, runtime, resources, source edits or commit. The original report files_written=false describes the completed read-only review before this separately authorized persistence step.",
+  "persistence_correction": "The first attestation serialization failed on PowerShell boolean syntax and wrote null. This attestation replaces only that invalid intermediate artifact. The original report was preserved unchanged."
+}

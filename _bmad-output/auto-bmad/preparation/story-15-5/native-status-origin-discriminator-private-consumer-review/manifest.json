@@ -1,0 +1,54 @@
+{
+  "kind": "ROOT_PRIVATE_STATUS_ORIGIN_INITIAL_REVIEW_SELF_EXCLUDED_MANIFEST",
+  "verdict": "NOTPASS_F1_WRONG_RESULT_PATH",
+  "members": [
+    "input-binding.json",
+    "local-checks.json",
+    "original-attestation.json",
+    "original-report.md",
+    "result.json",
+    "review-input.md",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "input-binding.json",
+      "bytes": 41608,
+      "sha256": "a72af9b1763f3fecad79facfd2daf91d6c8d4122df4fe1786ae784cb1d25015d"
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 5026,
+      "sha256": "607917fc6fea45e8209cf4528809e969780f7bec15511624590302e0c4e72b62"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 18507,
+      "sha256": "67b551e9e6720c06a2d7843c1fde6c3155451c5aecf8a9c3d106eda76bb571bb"
+    },
+    {
+      "path": "original-report.md",
+      "bytes": 8456,
+      "sha256": "6cdf6c0d0db8e2a58f58c45dea05e67cb0afdf16cfb8c892310b11f05d74d77b"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1146,
+      "sha256": "eae27c97bb0dc4d0749f2eb2d753811494d1aa57d1a9aec923c6aaf1680b7674"
+    },
+    {
+      "path": "review-input.md",
+      "bytes": 5740,
+      "sha256": "28d8673b89fc50d6cca7353a2d2a731c612c1d472fe92a98245d9cc563022f7a"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "initial_code_byte_custody": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-private-initial-code-byte-custody.json",
+    "bytes": 127933,
+    "sha256": "f2e8b92d0f11379bbf5b4cb06ed421de8029821f2ff0be2f4872082fafdc75c3"
+  },
+  "API": 0,
+  "new_operation_executed": false,
+  "normal_acceptance_credit": 0
+}

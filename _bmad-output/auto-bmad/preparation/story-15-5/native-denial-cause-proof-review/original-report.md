@@ -1,0 +1,50 @@
+# Committed native denial cause-proof delta review
+
+Verdict: **NOTPASS**. Two consequential introduced defects require bounded fixes. This is the latest14-path committed-delta review after three completed broad rounds, not a fourth broad story review.
+
+Reviewed source `cb8d696d19c53e63be05ecb1ae273449af60efaf`, direct parent/base `56324120f8e08de995e8cc7432ab27f2d0c98635`, branch `codex/epic-15-scheduling-time-calendar`. Fresh distinct generic sensitive reviewer, gpt-6.1-sol High; no author/proposal-challenger role reuse. No implementation fix is included.
+
+## F1 — [P2] Verify owned Auth absence before crediting fixture cleanup
+
+Location: `tests/support/calendar-feed-atdd.ts:877-879` (introduced caller and incomplete absence predicate).
+
+Caller and authority: the explicit CI-only `15.5-DIAG001` callback invokes `runCalendarFeedCauseProof` on a fresh disposable stack, with the existing fixture Auth admin capability. After its actual ordinary JWT command and any baseline settle, the new path calls `cleanupRoleAwarePhaseAFixture`, then checks only the two tenant IDs. It leaves `cleanupVerified=true` if those calls resolve and tenants are absent.
+
+Reachable failure: `cleanupRoleAwarePhaseAFixture` delegates to unchanged `cleanupFixture` (`tests/factories/tenants/core.ts:323-330,391-394,428-439`). Its `await admin().auth.admin.deleteUser(id)` ignores a resolved Supabase `{error}`; a thrown failure only warns. Tenant deletion subsequently runs independently with the owned tenant IDs (`core.ts:448-455`). Therefore an Auth delete can fail, tenant deletion can succeed, and one or more owned Auth users remain while the new observation still reports verified cleanup and no cleanup failure. This is a new qualification error at the diagnostic caller, not a request to broadly repair the shared factory.
+
+Downstream bypass: DIAG001 at `tests/integration/commands/calendar-feed.int.test.ts:24` tests the three booleans only. `validateCauseProofObservation` (`scripts/ci/with-calendar-feed-runtime.mjs:47`) trusts them; the wrapper then deletes the key at `:607-612` and produces a receipt with verified cleanup. The future private qualifier sees no owned Auth IDs or independent Auth-absence result, so it cannot recover the swallowed failure from the closed artifact. The author Spec's caveat about inherited best-effort cleanup does not turn that evidence into verified Auth cleanup. A resolved `{error}` also produces no warning that telemetry could catch.
+
+Fix scope: within the allocated diagnostic helper and its focused controls, preserve the exact owned user IDs, use the existing error-reporting deletion path or verify exact owned Auth absence after canonical cleanup, and set a sanitized retained cleanup failure/custody state on every failed or unverified deletion. Keep the shared factory and unrelated tests unchanged unless separately allocated. Add a meaningful injected resolved-Auth-error/tenant-absence-success control; no native rerun is authorized by this report.
+
+## F2 — [P2] Track actual child launch separately from successful wait completion
+
+Location: `scripts/ci/with-calendar-feed-runtime.mjs:69-73`; causal wait branch `:496-500`.
+
+Caller and authority: the same qualified hosted diagnostic wrapper launches its sole fixed pnpm child. `run()` adds the handle before awaiting `bounded(handle.done, 240000, ...)`, but appends `childExitCodes` only after that await resolves. A child that really starts and then exceeds the wait deadline takes the catch at `:499`, leaving that array empty even if final cleanup later joins/stops its group.
+
+Reachable wrong output: `finishCauseProof` derives `childStarted` from that array length (`:73`) and marks missing/refused native or observation files as capture failure only when the length is nonzero (`:69`). A launched, timed-out child with no reports is therefore published as `childStarted:false` and `captureFailed:false`, the same start/availability classification as a pre-child refusal. This breaks the explicit missing-report-after-start contract and loses whether fixture/Auth/ordinary-call effects may have begun.
+
+Downstream assessment: existing `diagnosticUnverified` retains the key and the wrapper stays failed; this finding does not allege a key-deletion or normal-acceptance bypass. Those guards do not repair the false receipt/manifest fields. The private collector's required NOT_CREATED-versus-CAPTURE_FAILED decision cannot reconstruct actual launch from these fields without undocumented inference from unrelated failure codes.
+
+Fix scope: record an explicit monotonic child-started/launch-attempted state at the actual launch boundary, distinguish uncertain spawn from proven no-start, and use that state for report-availability failure classification and emitted receipt/manifest. Preserve existing settlement/custody guards. Add a focused timeout-before-done control proving that no native/observation report after a started child remains CAPTURE_FAILED, even when no exit code was observed.
+
+## Targeted dispatcher feasibility stop (not an additional code finding)
+
+Root requested this narrow assessment during review. `diagnosticAvailability` passes both the candidate and default source through `assertCauseProofWorkflow` (`scripts/ci/checkpoint-dispatch.mjs:35,44`), so the code requires the new diagnostic input, title, admission text and command on the default branch. The frozen proposal/allocation also requires BOTH; the implementation follows that stricter contract.
+
+GitHub documents default-branch workflow existence and execution at a selected branch/tag. The REST request supplies that workflow ref and its inputs. The official CLI obtains prompted inputs from the selected ref and POSTs the same ref. These sources support distinguishing default registration from the candidate definition; they do not establish a GitHub requirement to copy the new input onto default. [GitHub workflow_dispatch](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_dispatch), [REST dispatch](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event), [official CLI implementation](https://raw.githubusercontent.com/cli/cli/trunk/pkg/cmd/workflow/run/run.go) (selected-ref content at line286, request at305-307). Candidate-only input support is an inference from these primary sources, not newly observed hosted behavior.
+
+The existing local `origin/main` snapshot `e5e0308d8ef270fdf8b91f68c4a7675c0ee1392c` contains `workflow_dispatch` but no cause-proof input/title. Workflow blob:31731 bytes, SHA256 `150211c35affc4cbaa3204b4fa036d97844eb044b93267892196d7cf3956dd39`. This is a local snapshot, not a claim of current hosted absence. Under that known default definition the current stricter check deterministically refuses before POST; pushing only the candidate cannot satisfy it. No hosted repository GET/POST, fetch, rejected dispatch, default update or alternate route was attempted.
+
+Retain **WORKFLOW_INPUT_AVAILABILITY_UNKNOWN**. Owner: Root. Next prerequisite: reconcile the exact admitted availability contract with the primary-source distinction and obtain any needed bounded source allocation/review before freeze; if the stricter BOTH contract remains required and absent, remain stopped. No default-branch mutation, merge, deployment, fallback or retry follows from this finding or the public docs.
+
+## Reviewed invariants and limits
+
+- Independently verified actual HEAD/direct parent, exact14 native diff (793 insertions/73 deletions), every changed/context raw byte binding, actual clean/committed/base blobs, all five packet hashes and the accepted allocation. Frozen diff is exactly130414 bytes/SHA256 `ee863b3048266665ae603fddfd61243d21c19f6e283a8d272216b069c4a8876f`; raw intentional single-space context lines remain untouched.
+- Production trace uses module-private AsyncLocalStorage, a closed event list, bounded events and cleared expected context. The changed branches retain the original RPC awaits, stable mapping, auth/proof inputs and returned outcomes. No concrete production authorization/privacy regression was identified in those three modules.
+- Baseline selection requires matching owned context and, for manage, membership; it selects at most one original unmodified function. Dedicated restricted identity/privacy, rollback ordering, protocol-boundary checks and same/fresh state/catalog verification were inspected. No test, SQL, RPC, query, fixture, connection or resource was executed by this reviewer.
+- Mode/nonce persistence, distinct title, owned-run attempt checks, refusal/no retry, finite workflow inverse, normal full+pilot/browser/recovery paths and immutable context-only consumers were inspected. No absent future private helper is reported as a defect; its fresh High review and pre-POST adoption remain necessary.
+- Author evidence was inspected, not rerun: final changed wrapper file79 passed/0 failed/skipped/cancelled; earlier seven-file361 pass is separately bound and temporally limited. Initial359=358 pass/1 failure and four TypeScript inference errors are preserved as corrected history. Whole TypeScript/focused lint/build/built-bundle passes retain their recorded scope; no inferred current combined364 run or native acceptance.
+- Approved intent kernel remains5760 bytes/SHA256 `0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977`; status remains in-review. Exactly one author Suggested Review Order with79 literal stops resolves to current source. Historical ARR ready-for-dev/parser-warning text is retained, not reinterpreted as current completion.
+- Native DIAG001 remains unexecuted; native/normal acceptance credit0. The43 DB causes,14 browser failures and11 failed historical packets remain unresolved/preserved. No DONE, delivery, release, checkpoint push, CI dispatch, merge or deployment authorization is given.
+- Bound source and index were unchanged at final verification; the three pre-existing Root report/state modifications remain excluded. No global-clean claim is made. Reviewer writes are only the three new review artifacts.

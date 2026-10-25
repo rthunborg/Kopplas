@@ -1,0 +1,80 @@
+{
+  "kind": "original-independent-context-free-latest-three-review-attestation",
+  "verdict": "PASS",
+  "finding_count": 0,
+  "reviewer": "/root/build15_5_high/native_fixture_report_transport_review",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "distinct_from_author": true,
+  "fresh_context_free": true,
+  "before": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "source_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/latest-fix-input.diff",
+    "bytes": 142458,
+    "sha256": "038ef738b106fadb8eeeb25eb2b1c143ff3693196356792e982cf5c025b270e7"
+  },
+  "binding": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/input-binding.json",
+    "bytes": 9473,
+    "sha256": "ef521e9e1758a51f08372a9e96769c8a29d1aa3e0e790cdbbc8f73c6471a5ab9"
+  },
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/original-review.md",
+    "bytes": 2119,
+    "sha256": "16e9b045233c6c4ea337558446d501741f858b4755cb4808fb771cb19a09a1ca",
+    "preserved_original_final_text": true
+  },
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "latest_fix_only": true,
+  "fourth_broad_review": false,
+  "kernel_bytes": 5760,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_literal_stops": 52,
+  "spec_status": "in-review",
+  "spec_after_review_delta": false,
+  "local_checks_inspected_not_rerun": {
+    "node_passed": 61,
+    "node_failed": 0,
+    "node_skipped": 0,
+    "node_cancelled": 0,
+    "typecheck": "PASS",
+    "focused_lint_errors": 0,
+    "focused_lint_warnings": 0
+  },
+  "native_credit_for_controls": 0,
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "actual43prior_causes": "UNKNOWN_NOT_OBSERVABLE_IN_REPORT",
+  "all8failed_native_histories_preserved": true,
+  "reviewer_no_edits_tests_runtime_resources_commits_pushes": true,
+  "reviewer_execution_note": "Initial inventory command unexpectedly started at C:/ despite requested workdir and was canceled; subsequent explicit Set-Location; no outside content informed review.",
+  "parent_current_three_bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a",
+      "head_blob_oid": "d8768abae03342de2f424a9a24b4f43e416bda6d",
+      "head_blob_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_sha256": "c04a8041429361b1cb1cbfa21394bc8f12032c7a58d752e269851c0a10e05349",
+      "head_blob_oid": "d712a086a457a7e71ab8c8028e4803674658838c",
+      "head_blob_sha256": "adc846f77f7213fc8153ba325d72585d448930e9f3c21a85d17854ab180cfd7b",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+      "head_blob_oid": "6bd5ce61427c7e77203b64bf35e1765be2de3877",
+      "head_blob_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+      "current_raw_gitclean_committed_and_index": "PASS"
+    }
+  ]
+}

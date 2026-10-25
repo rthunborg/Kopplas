@@ -71,7 +71,7 @@ export async function readJobWorkspace(injectedClient: Client | undefined, jobId
     if (has("schedule")) {
       const {readBookingHost, readBookingEditorOptions} = await import("@/features/resources/bookings-read");
       const host = await readBookingHost({jobId}, client);
-      schedule = {...host, ...(host.canManage ? {options: await readBookingEditorOptions(client)} : {})};
+      schedule = {...host, ...(host.canManage ? {options: await readBookingEditorOptions({client})} : {})};
     }
     return {workspace: {jobId, detail, header: projectJobWorkspaceHeader(detail, members, cardOptions), tabs,
       selectedTab: selectJobWorkspaceTab({availableTabs: tabs.map(tab => tab.id), tab: query.tab, workOrder: query.workOrder}),

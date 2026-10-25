@@ -1,0 +1,179 @@
+{
+  "schema": "INDEPENDENT_CORRECTED_INT009_OPERATIONAL_DELTA_REVIEW_v1",
+  "outcome": "PASS_INT009_ONE_CASE_OPERATIONAL_SOURCE_ONLY",
+  "status": "PASS_INT009_ONE_CASE_OPERATIONAL_SOURCE_ONLY",
+  "execution_authorized": false,
+  "normal_acceptance": 0,
+  "release_ready": false,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route": "Root canonical2de6a2",
+    "independent": true,
+    "scope": "Targeted corrected-case operational delta only; not fourth broad story review, no new generic framework"
+  },
+  "source": {
+    "MAIN": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "MAIN_metadata": "4e317aed (Root-reported)",
+    "DEBUG": "C:/Users/Rasmus/.codex/worktrees/epic-15-int009-debug/Kopplas",
+    "head": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "parent": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+    "head_provenance": "Root-frozen commit/clean proof; independently matched current14 source raw/LF/computed blobs without Git commands",
+    "checkpoint_id": "a6d7e90f-4486-4093-a407-b5b3c495d88a",
+    "branch": "codex/epic-15-int009-debug",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "attempt": 1
+  },
+  "pins": {
+    "packet": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-operational-packet.json",
+      "bytes": 2916,
+      "sha256": "db4dd29457661975a7ed14a2f704ff28c1b0658a77868fa48d093fa97d31a864"
+    },
+    "driver": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-driver.py",
+      "bytes": 15113,
+      "sha256": "a4d977837d3fa49f85f840271787e9407190a5422259b375d52e9886b568d1f5"
+    },
+    "driver_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-driver-pure-controls.py",
+      "bytes": 8509,
+      "sha256": "3baf7ecc033f74320e86b7927a6c03df77b25f2bd6fcb406571404f6f70cc1c1"
+    },
+    "driver_delta_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-driver-delta-proof.json",
+      "bytes": 464,
+      "sha256": "426744251bde8e51c82911b105de5e61b8b35a2b16340d80eed19b4d86497247"
+    },
+    "provider": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-one-case-operational-preparation/provider-readonly.py",
+      "bytes": 21751,
+      "sha256": "acadb13f07890b352c72bb4b158f9fa7d6664d2f5066289fc0704f904744fce9"
+    },
+    "proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-one-case-operational-preparation/proposal.json",
+      "bytes": 46453,
+      "sha256": "e8bd98313430fcbf0573b04299a5e7e34bf4bd03aa56580b7b8a5a17b63cccdd"
+    },
+    "provider_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-one-case-operational-preparation/pure-controls.json",
+      "bytes": 2568,
+      "sha256": "3596e32ff8a8299de234f42734fe1fc0f8d841bf2561371593d20a7192291793"
+    },
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-one-case-operational-preparation/manifest.json",
+      "bytes": 908,
+      "sha256": "0a31758a9a1756dc94dc99c09667118ab1b8e535d8d49fa04c65eebb97dbed35"
+    },
+    "candidate": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-fixed-diagnostic-inert-candidate.json",
+      "bytes": 1596,
+      "sha256": "911d0bf76fd61af981ed7b347a7b92efe8861dd93a7799e1fadb7173c7ddf68a"
+    },
+    "source7_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-seventh-companion-actual-source-review.json",
+      "bytes": 21888,
+      "sha256": "1f0e3e6803057cfd7a2a8a14c093e85a4581f89ddf62dd37ac3461f3f92f0a81"
+    },
+    "prior_operational_PASS": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-INT009-one-case-operational-review.json",
+      "bytes": 13201,
+      "sha256": "17034da6937a556027ceceea2faa817d99af32da9f850e740a14e44263efa201"
+    },
+    "old_operation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/operation.json",
+      "bytes": 545,
+      "sha256": "5542fbfaa0b108f61b9bca5e2adafad77d7f7ce4a36b53109640b5657003cb1b"
+    },
+    "old_terminal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operation/terminal.json",
+      "bytes": 9693,
+      "sha256": "299e59a0b270e6adc4bef5feee37cb14fd1073216f524df64744594302dc7178"
+    }
+  },
+  "findings": [],
+  "required_repairs": 0,
+  "delta_assessment": {
+    "review_reuse": "Prior13201/17034 operational PASS and OP1 closure reused after full inverse verification. Original six source/capture/118SQL and source7 independent review remain preserved; no broad reopening or runtime credit.",
+    "driver": "Actual15113/a4d9 delta consists only of new head/UUID/private pathnames/proposal+body pins, one additional reviewed-companion source loop row and exact remote preimage assertion. Full inverse restores15017/5505 byte-for-byte. Native capture, exclusive fsynced intents, freshness boundaries, API/resolver/poller algorithms unchanged.",
+    "remote_preimage_and_publication": "Before publication, remote exact owned branch must equal d818 parent. Missing/foreign head fails before push intent or mutation. Only nonforce FF push3bb is permitted, followed by exact3bb readback. No force/ref replacement/new branch adoption is introduced. Fresh300s activation/proof/provider checks still run before push and POST; expiry consumes attempt into UNKNOWN_STOP without new GET/retry.",
+    "provider": "Actual21751/acad delta is fixed tuple/namespaces/candidate pins plus required seventh-review key/path/exact21888/1f0 pin and outcome guard and14th source row. Full declared inverse restores20830/40ada. Five unchanged functions, capture/privacy predicate/caps/once invocation remain identical; admit_activation changes only its required-key literal. Existing direct upstream provider guard blocks missing/invalid source7 review before effects, so no redundant downstream missing-guard finding is raised.",
+    "source7_gate": "Exact PASS_INT009_SEVENTH_COMPANION_SOURCE_ONLY is read from outcome, not status. Actual guard positive and missing/status-only/NOTPASS/wrong-hash inverses all bite. Six current_refs bind new candidate, old unchanged refs1..3, new source7 Root commit proof and exact source7 PASS. Current14 raw/LF/clean blobs verified.",
+    "identity_and_body": "New source3bb, fresh UUIDa6d7e90f and matching distinct title are coherent. Fixed dispatch body265/SHA9b73324b71dae315a8f03a13e98f356272a3f5ba9b6fcf2b77396b78c6bf8c88 retains exact input set: release_validation=false, cause_proof=false, original_int009=true.",
+    "namespaces_and_closed_old_case": "Actual oldrun39797377455 is ROOT_STOPPED, all9jobs terminal, verify failure/db skipped. It executed no INT009 DB case. Old operation/provider slots are not reused. New root operation, effects/provider activations, consumed provider intent/output and accepted allocation were all absent at review read; candidate is inert. No duplicate old poller is introduced.",
+    "finite_scope": "Unchanged future maximum: providerGET1; user+workflowGET2; remote-before+readback2; owned nonforcepush1; fixedPOST1; resolver6; sole90run+90jobs/60s/90min and same9job terminalSTOP. Raw provider response stays RAM; exact typed privacy projection and limited ordinary-Git-push containment contract only. No broader no-deploy claim. Artifact reader absent and separately allocated after actual new terminal."
+  },
+  "actual_verification": {
+    "provider_delta_and_bindings": {
+      "tool_chunk": "447a21",
+      "native_exit": 0,
+      "results": {
+        "full_provider_inverse_restores_bytes": 20830,
+        "unchanged_functions": 5,
+        "activation_positive": 1,
+        "activation_inverse_refusals": 5,
+        "seventh_guard_positive": 1,
+        "seventh_guard_inverse_refusals": 4,
+        "current_source_rows": 14,
+        "current_refs": 6,
+        "manifest_members": 3,
+        "body_bytes": 265,
+        "old_terminal_jobs": 9,
+        "old_operation_phase": "ROOT_STOPPED",
+        "new_effect_namespaces_absent": 6
+      },
+      "execution": "AST-extracted literal data/fresh/admit_activation and two actual seventh-review if guards only; no provider module/main execution or API"
+    },
+    "driver_controls": {
+      "command": "python -I -B .env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-driver-pure-controls.py",
+      "tool_chunk": "1db78d",
+      "native_exit": 0,
+      "checks_passed": 11,
+      "checks_failed": 0,
+      "inverse_bytes": 15017,
+      "inverse_sha256": "5505ebe73b38bb2014c22253ec220e077652bd54ecbefa829f9cf5985056e589",
+      "cases": [
+        "Healthy: one push+POST stub, DISPATCH_ACCEPTED",
+        "Expiry-before-push:0push0POST UNKNOWN_STOP",
+        "Expiry-before-POST:1push0POST UNKNOWN_STOP",
+        "Wrong remote preimage:0push0POST UNKNOWN_STOP before push intent",
+        "Each activation/proof/provider rejects stale/future (6); exact300s accepted (1)"
+      ],
+      "meaning": "Inspected actual driver AST with in-memory file/process/API/time stubs. No actual Git/API/workload. Counts are nonadditive with prior b9610a/38ac8c controls."
+    },
+    "control_history": "Initial provider check in1db78d used old manifest name key, raised KeyError before inverse/guard/effect work; corrected root-relative path accessor yielded447a21 native0. Same1db78d shell then ran driver controls successfully; its outer0 does not qualify that failed preliminary provider probe.",
+    "prior_evidence_not_reexecuted": "Root full canonical Node314files/3429tests/103suites3428P0F1skip/native0 and full capture closure plus distinct source7 review are predecessor/source evidence only. Root cfe4a8 localproof and b9610a11P0F read as author evidence, not relabelled current reviewer execution; prior provider12P reused, not rerun.",
+    "zero_effect_limits": {
+      "API_provider_CI_requests": 0,
+      "Git_commands": 0,
+      "pushes": 0,
+      "dispatches": 0,
+      "artifact_requests": 0,
+      "workloads_or_DB_browser_services_resources": 0,
+      "source_state_dependencies_or_config_edits": 0,
+      "nested_agents": 0,
+      "normal_acceptance": 0
+    }
+  },
+  "activation_conditions": [
+    "Actual completed finite Coordinator grant and new exclusive Root/provider activations remain required; this artifact grants none.",
+    "Fresh source proof, actual oneGET provider success with complete capture and outer tool attribution, then separate Root effects admission. Both top-level status/outcome PASS fields are supplied for unchanged interfaces.",
+    "Exact current driver/source/review/body/head/UUID/pins and d818 remote preimage; freshness must remain valid at both mutation boundaries. Accepted/uncertain slots consume; no automatic retry.",
+    "Only after actual new terminal freeze may Root allocate separate finite listing/ZIP reader. No artifact/log fallback or extra poller authority."
+  ],
+  "continuity": {
+    "normal_required": 95,
+    "normal_passed": 68,
+    "normal_failed": "INT009",
+    "normal_unexecuted": 26,
+    "feed_browser_retry0_passed": 14,
+    "feed_browser_cases": 14,
+    "original_native_cause": "UNKNOWN",
+    "prior_case": "39797377455 terminal UNITFAIL/DBSKIP; no INT009 execution",
+    "development_complete": false,
+    "release_ready": false,
+    "old15_4_work": false
+  },
+  "authority": "SOURCE ONLY. Execution false, no finite-effects grant/allocation, no runtime/normal acceptance, deployment or source-changing authority."
+}

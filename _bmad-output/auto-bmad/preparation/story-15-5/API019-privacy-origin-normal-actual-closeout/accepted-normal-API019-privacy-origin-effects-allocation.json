@@ -1,0 +1,133 @@
+{
+  "schema": "ROOT_ACCEPTED_FINITE_ALLOCATION_V1",
+  "recorded_at_utc": "2026-10-23T16:45:48.374883+00:00",
+  "authority": "Standing human authorization; completed finite Coordinator allocation, not a proposal.",
+  "actual_turn": "01a169a5-bbc0-7d73-ab23-c8ce1e5e6be1",
+  "turn_status": "completed",
+  "actual_tool": "exec-18ac2363-a973-4d90-b295-972f6ad83e39",
+  "tool_status": "completed",
+  "actual_verification_tool": "exec-0bf6b45a-c2cd-4a0b-8db2-798bb682cb5f",
+  "verification_native_exit": 0,
+  "actual_read": "Root read_thread(turnLimit1,includeOutputs=true) observed Coordinator idle, completed turn and completed grant-message tool; no inference from relayed text alone.",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "identity": {
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "expected_remote_preimage": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+    "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+    "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "mode": "NORMAL",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false
+  },
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+      "bytes": 20591,
+      "sha256": "0b33181f9cbbfdc1b36a463d3a66fc5d1b33db8e9a170ccc1379822ca7c2fdcc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/root-driver.py",
+      "bytes": 21115,
+      "sha256": "ecb4a35f94fee0090d2952c53feaa3251c1bcaa3e416ecb634ebb2eabddb0797"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+      "bytes": 237192,
+      "sha256": "8defb9f6a1bfc753bd4d857a392ecf44a3c2fda37caa9157a43684017dcfabfe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "bytes": 12906,
+      "sha256": "0b10bff10b6576fc1e8ee2a06c5d18e6ede0ddd3e3c0cf096403aad22f0ba329"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/manifest.json",
+      "bytes": 1163,
+      "sha256": "4ff07b35b147969ab05c0fe09d3f348d9b479a4fdb145d887189de71cb259158"
+    }
+  ],
+  "independent_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-operational-review.json",
+    "bytes": 12655,
+    "sha256": "43010f3139f0a864bd5130cb2f581027eceaae0caf4d1bf6278766066a0aacac"
+  },
+  "effects": {
+    "provider_project_GETs": 1,
+    "remote_before": 1,
+    "nonforce_FFpush": 1,
+    "remote_readback": 1,
+    "canonical_pre_GETs": 4,
+    "canonical_POSTs": 1,
+    "resolvers_max": 6,
+    "resolver_page": 20,
+    "resolver_min_interval_seconds": 5,
+    "poll_pairs_max": 90,
+    "latest_jobs_page": 100,
+    "poll_min_interval_seconds": 30,
+    "immutable_original_elapsed_max_seconds": 5400,
+    "artifact_or_log_GETs": 0,
+    "Root_sole_operator_poller": true,
+    "unique_actual_owned_tuple_before_poll": true,
+    "all9_terminal_STOP_closes_unused": true
+  },
+  "caps": {
+    "provider": {
+      "LOOP_seconds": 15,
+      "same_child_wait_seconds": 2,
+      "reader_joins": 2,
+      "each_join_seconds": 2,
+      "stdout_bytes": 4194304,
+      "stderr_bytes": 262144
+    },
+    "controller": {
+      "remote_Git_LOOP_seconds": 20,
+      "push_LOOP_seconds": 60,
+      "canonical_LOOP_seconds": 90,
+      "resolver_poll_LOOP_seconds": 20,
+      "same_child_wait_seconds": 2,
+      "reader_joins": 2,
+      "each_join_seconds": 1,
+      "Git_Node_stdout_bytes": 524288,
+      "Git_Node_stderr_bytes": 65536,
+      "metadata_stdout_bytes": 2097152,
+      "metadata_stderr_bytes": 65536
+    },
+    "canonical_API": {
+      "timeout_seconds": 15,
+      "stdout_bytes": 4194304,
+      "stderr_bytes": 65536
+    },
+    "interpretation": "Cooperative LOOP plus explicit cleanup tails; no strict total-wall claim."
+  },
+  "required_before_execution": [
+    "Supplementary independent top-level Root admission helper binding check PASS; current helper7167/1319d6ee70774787c4b3a177cab5dfd5848742552456484454398fb3f79e0f4e.",
+    "After this completed allocation: exclusive exact329B inert candidate SHA2b19a3a5769c7b74dc125b47d2e0c557672285f8e4d2ad189d28b33ed0659640.",
+    "Fresh current clean/source204Git/86nonSQLrawLF/118Git-only historicalvectors/10triggers/install proof and activation <=300s at push/POST.",
+    "Provider qualification <=180s before canonical invocation and <=300s directly at POST; actual native exit/fullEOF joined closed settled plus outside Root-observed receipt before publish activation.",
+    "Exclusive fsynced consumed invocation/intents; real outer chunk/exit/wall/session/waits attributed."
+  ],
+  "stop_rules": "Unknown/refused/partial/expiry STOP closes all unused; no blind retry/replay/reset/extension/adoption. Original clock/counters retained.",
+  "excluded_effects": [
+    "admission variable mutations",
+    "provider writes",
+    "new workflows",
+    "other CI",
+    "local managed resources",
+    "main merge",
+    "deployment",
+    "demo access",
+    "database push"
+  ],
+  "all_old_slots": "CLOSED",
+  "later_terminal": "Actual terminal only, then separately enrolled reader, independentHigh review and separate finite acquisition grant; artifact/log GET0 now.",
+  "scope_limit": "Limited ordinary owned branch Git containment only; no production/main containment, hosted cause, functional repair, native95 acceptance or release/development-complete claim."
+}

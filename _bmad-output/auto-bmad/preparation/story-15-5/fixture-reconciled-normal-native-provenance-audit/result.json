@@ -1,0 +1,51 @@
+{
+  "schema": "FIXTURE_RECONCILED_FAILED_NORMAL_NATIVE_AUDIT_RESULT_v1",
+  "Outcome": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/result.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/fixture-reconciled-normal-native-provenance-audit/manifest.json"
+  ],
+  "Status": {
+    "packet_manifest_sha256": "cb2e4f7a6c9ef21463d2b261c0963192c12084b333c5caa6bb4477cddb959c61",
+    "packet_members": 23,
+    "hash_bound_members": 22,
+    "run": 39694409020,
+    "head": "72651ada5392ff5b194fd674e07b300cef60e64b",
+    "source": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+    "attempt": 1,
+    "checkpoint": "6d5e27c3-74f8-4d87-b269-1627a7e45818",
+    "offline_proof_exit": 0,
+    "requests_consumed_closed": 5,
+    "eligible_ZIPs": 3,
+    "Node": "3390pass/0fail/0skip/103suites",
+    "Python": "separate2 and26/10/5 batches",
+    "DB": "2025passed/28failed/16pending/52skipped; native numPendingTests52 distinct",
+    "DB_failure_hashed_identities": 28,
+    "DB_failure_file_counts": {
+      "tests/integration/commands/conflict-resolver.int.test.ts": 1,
+      "tests/integration/commands/booking-series.int.test.ts": 23,
+      "tests/integration/rls/booking-series.rls.test.ts": 4
+    },
+    "DB_story": "16pass/35missing-unexecuted inclAPI019",
+    "browser": "56=52expected/1flaky/3unexpected; story11expected/flaky007/unexpected001+010revoke; other42=41expected/1unexpected identity unavailable",
+    "recovery_passed_cases": 1,
+    "source_labels": "NUDGE004NULL; E2E0016perretry0/1 with repeats, UNKNOWN interpretation/cause/settlement",
+    "custody": "projected keyDeletedfalse/custodyretained/dbClosedtrue; canonicalbackendUNKNOWN; defaultno-launch not absence proof",
+    "native_child_attribution": "Native-reported receipt; no Root/auditor direct observation",
+    "normal_acceptance": 0,
+    "auditor_GETs": 0,
+    "review_counter": 3,
+    "execution_authority": false
+  },
+  "Open questions": [
+    "Original causes, canonical backend custody and noncalendar unexpected browser identity remain UNKNOWN/unavailable."
+  ],
+  "Deferred work": [
+    "Source-title hash matching can use existing28 DB records; this audit performs no diagnosis or further acquisition."
+  ],
+  "Blockers": [
+    "DB28 failures and35 missing mandatory cases; browser unexpected/flaky outcomes; retained/unverified runtime custody."
+  ]
+}

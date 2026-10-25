@@ -1,0 +1,60 @@
+{
+  "kind": "independent-build-parent-tenth-source-freeze-check",
+  "status": "PASS",
+  "source_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "capsule_bytes": 662207,
+  "capsule_sha256": "9e962d4d40d5962370ce461c282f93927f6e779cbde6af514bbfdeef892d9c3e",
+  "source_bindings": 68,
+  "raw_normalized_differences": 42,
+  "author_commits": 15,
+  "root_checkpoints_excluded": 9,
+  "attributed_ancestry": 24,
+  "prior_capsules_unchanged": 9,
+  "frozen_artifact_reference_occurrences": 442,
+  "current_full_reference_count_matches_capsule": true,
+  "predecessor_ninth_count_qualification": {
+    "reported_core": 384,
+    "full": 385,
+    "unique": 329,
+    "exact_duplicate_location": "preparation_integrity.raw_review_input_single_0x20_context_lines.artifact",
+    "old_capsule_sha256": "019864c1fa982730868a3bf25c14b5b6d6464c64659c5e4b963319cc56e3c198",
+    "preserved": true
+  },
+  "parent_reader_stops": [
+    "Initial reader expected historicale74 superseded_by_current_three_path_review; tenth uses exact current_four_path field. Corrected new reader field only; no capsule/source/input changes."
+  ],
+  "author_generator_reader_stops": [
+    "New generator inherited mojibake SRO separator matched zero; corrected only new reader to Unicode escape before capsule generation; approved source58 stops unchanged."
+  ],
+  "unique_frozen_artifact_paths": 376,
+  "historical_migrations": 109,
+  "protected_consumers": 37,
+  "historical_preparation": 69,
+  "failed_native_histories": 9,
+  "failed_checkpoint_actual_source_equalities": 597,
+  "native_blob_batch_objects": 105,
+  "mutable_snapshot_rows": 21,
+  "historical_raw_uncredited_rows": 12,
+  "baseline_object_only_rows": 9,
+  "raw_frozen_context_lines": 30,
+  "composite_review": "Historical33b NOTPASS resolved by historicale3 three-path PASS; historical objects reverified. Historicale74 five-path actual objects/two unchanged path dependencies; historical906 three-path actual objects superseded; current exact380 four-path High PASS, no post-review Spec drift",
+  "original_a84_retention_and_native_payloads": true,
+  "historical3383_spec_inversion_and_e472_4562_review_objects": true,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "completed_broad_rounds": 3,
+  "inventory": {
+    "feature": 95,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "separate_injected_unit": 67,
+    "historical_isolated_local_SSR": 4
+  },
+  "source_worktree_and_index_clean": true,
+  "global_clean_not_claimed": true,
+  "native_execution_by_parent": false,
+  "development_complete": false,
+  "release_ready": false,
+  "limits": "Mechanical bindings/provenance only. Nine qualified failed native histories retain bounded positives; current380 managed native CI pending;67 in-memory Node controls have zero native case credit. Historical isolated SSR4 remains historical. Ninth transport is PRESENT with44valid scenario/unknown leaves across43cases; all backend causes/first branches remain UNKNOWN. New closed origins are contract localization only, not a functional fix or backend cause proof. Attachment content remains unavailable/unqualified. Pure-source tests do not prove full helper import/native caller behavior. No fourth broad review, delivery or DONE.",
+  "errors": []
+}

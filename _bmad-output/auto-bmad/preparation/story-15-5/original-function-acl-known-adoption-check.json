@@ -1,0 +1,26 @@
+{
+  "schema": "root-known-migration-adoption-check-v1",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "root_independently_read_completed_tools": true,
+  "coordinator_completed_turns": [
+    "01a15f31-b879-7990-85ac-934b7bc7ba36",
+    "01a15f30-b109-7350-ae24-e62f60d77bbb"
+  ],
+  "coordinator_completed_fact_tools": [
+    "exec-44e002b9-6426-49fb-a4dc-f802674f4cc0",
+    "exec-8e083cf0-794f-4a6a-941b-cb94c3b73abb"
+  ],
+  "paths": [
+    "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql"
+  ],
+  "known_E16_actors": "Root, e16_test_design author and nested delegates, e16_readiness reviewer report no adoption/copy/successful application/current or prospective write claims for either path.",
+  "Documents": "Retained completed checkout ac569d51a433aceb5d0055e522f17a801b58ac2e lacks both paths and current known claims; completed owner terminal/PR97-99 history preserved. Checkout evidence only, no paused session resumed.",
+  "other_actors_and_global_application": "UNKNOWN",
+  "historical_predecessor": "Immutable, including earlier own successful startup/diagnostic application history.",
+  "migration111": "Known successful application unproven; current own hosted attempts fail before adapter DDL. No global application-negative claim.",
+  "write_conflicts": "No known current cross-owner write claim; semantic allocation still required.",
+  "source_edit_authorized": false,
+  "runtime_effects_authorized": false,
+  "normal_acceptance_credit": 0
+}

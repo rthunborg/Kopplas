@@ -1,0 +1,17 @@
+{
+  "listing_bytes": 750,
+  "listing_sha256": "f0c7746d41a979e532455d553f63c6f8b537bbabb57bd3749e3bc5d2b0824041",
+  "raw_persisted": false,
+  "selected": {
+    "advertised_bytes": 2001,
+    "digest": "sha256:441df439abc7e6f7fbd746e1e3cb8fdcfe2d7fd20f9291d6a769a2d0466cfb94",
+    "expires_at_null": false,
+    "expires_at_present": true,
+    "id": 12497177124,
+    "name": "native-calendar-feed-original-int009",
+    "qualified_for_single_download": true,
+    "run_head_bound": true
+  },
+  "total_count": 1,
+  "unselected_names_persisted": false
+}

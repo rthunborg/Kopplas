@@ -1,0 +1,71 @@
+{
+  "kind": "actual-poll-query-settlement-author-checks",
+  "before": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "source": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+  "state": "Exact committed three-path append-only fix; no post-commit Spec/verdict mutation; Root metadata excluded.",
+  "commands": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "81b2a1",
+      "receipt_completion": "12520e",
+      "limit": "47 retained +4 new pure/injected regressions, including actual installed1.61.1 polling helper with injected promises. No real SQL/browser/process signals/resources. Module-type and experimental-strip warnings emitted."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "54a242",
+      "receipt_completion": "83851c"
+    },
+    {
+      "command": "pnpm exec eslint tests/e2e/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "f23db9"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec>",
+      "exit_code": 0,
+      "sections": 1,
+      "literal_stops": 42,
+      "observed_errors": []
+    },
+    {
+      "command": "git diff --check -- <exact3> / git diff --cached --check",
+      "exit_code": 0,
+      "receipts": [
+        "fadd4e",
+        "d1abb2"
+      ],
+      "unchanged_wrapper_pin_browserSpec": "0a8131"
+    }
+  ],
+  "intermediate": "Initial51 run50P1F only expected cancellation category after outer entry already removed. Corrected regression to require actual callback completion and original timeout retention; independent actual query drain remained enforced. No implementation relaxation. Final51/type/lint passed.",
+  "historical": {
+    "source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+    "targeted_consumer_suite_actual": {
+      "passed": 326,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "includes_bootstrap47": true,
+      "other_contracts": 279
+    },
+    "reuse": "279 consumers unchanged; not rerun because wrapper/pin/workflow/enrollment unchanged. Do not infer330 or current native counts."
+  },
+  "feature_inventory": {
+    "total": 95,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "bootstrap_separate_current": 51
+  },
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "75a27fccf72a3ad252f1fc1ff00d7eb8b697ef736130a4de9ecafe434c7a791c",
+  "SRO_normalization": "Body after exact heading LF through EOF; heading excluded, no trim, final newline retained.",
+  "limits": "Only pure helper source uniquely extracted with TypeScript stripping and installed polling helper execute locally. Full-helper alias plumbing/native DB/SQL/browser unexecuted. Six failed native histories preserved: latest14browserF/28attempts,51DBunexecuted,contentNULL/unavailable.33b preflight7+4/recovery1 old-head facts only. No app/privilege/workflow/INT015/key/lifecycle authority change; no native inference, build rerun, fourth broad review, push/runtime/DONE/delivery."
+}

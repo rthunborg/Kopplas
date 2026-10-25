@@ -1,0 +1,220 @@
+{
+  "schema": "INDEPENDENT_HIGH_BOOKING_EDITOR_MERGE_SEAM_CONFIRMATION_V1",
+  "route": "5b8653 explicitgpt-6.1-solHigh",
+  "outcome": "PASS_TARGETED_BOOKING_EDITOR_TEST_MERGE_SEAM_SOURCE_PROVENANCE_ONLY",
+  "scope": "Sole remaining documentary scope item; no fourth broad review, no other24 source-semantic review. Saved evidence read first, followed by the explicitly authorized one-path exact delta check.",
+  "previous_map": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-changed-blob-applicability-map.json",
+    "bytes": 24527,
+    "sha256": "43cb0de148347bf95e3635c43621022cfc7a25323ba5cc169c802dca853f8075",
+    "retained_unchanged": true
+  },
+  "documentary_result": {
+    "plan_required_seam": true,
+    "author_compact_receipt": "Names broader clean seams but does not explicitly name the booking-editor test.",
+    "independent_compact_attestation": "Binds composition and inspected authored/RLS/named shared scopes but does not explicitly name this file.",
+    "conclusion": "Do not invent retrospective coverage. Resolve the bounded gap with the actual narrow source-delta review authorized in this task."
+  },
+  "exact_interval": {
+    "path": "tests/integration/commands/booking-editor.int.test.ts",
+    "from": "a00dd595d96a73c398328ed1778bac334aca9de6",
+    "ours_premerge": "8b77f94c191ea31bb2b216215f834619c793100b",
+    "incoming": "99104d0ffa0360cf7d4ce4de174789c4a4605224",
+    "semantic_merge": "aa1a16adf2980355f0228badf889c95a4f230248",
+    "to": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+    "current_blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+    "introduced_in_incoming_history": "6260c5a2544dc0999cc9700935edcd4e5cce54ac",
+    "diff_bytes": 1679,
+    "diff_sha256": "2396bead21704d7ed2f2f39eb055c21272311cf50e9b38088f2c456cf3369bb0",
+    "hunks": 1,
+    "location": {
+      "line": 101,
+      "section": "Story14.4 current candidate preview and private authority"
+    },
+    "only_change": "engineVersion: booking-conflicts-v3 -> booking-conflicts-v4; configVersion: stockholm-capacity-v1 -> stockholm-capacity-v2 in the existing claims.toMatchObject assertion.",
+    "replacement_count": 1,
+    "complete_inverse_restores_original_bytes": true,
+    "original_and_current_Git_bytes": 41789,
+    "expect_call_lexeme_count_before": 173,
+    "expect_call_lexeme_count_after": 173,
+    "assertion_preservation": "The complete inverse proves every other byte, including tenant/actor/operation/booking ID, expected groups, candidate digest, fact digest, expiry and persisted-key assertions plus all other test cases/negatives, unchanged. Lexeme counts are only a supporting census.",
+    "both_parent_meaning": "Ours premerge equals the original15.2 file; incoming contains the updated version pair. The composed file preserves every ours-side byte except that exact pair; it is not falsely described as wholesale incoming-file identity."
+  },
+  "source_contract_check": [
+    {
+      "path": "tests/support/booking-editor-atdd.ts",
+      "line": 164,
+      "fact": "loadBookingEditorBindings imports actual production adapters."
+    },
+    {
+      "path": "tests/support/booking-editor-production.ts",
+      "line": 193,
+      "fact": "verifyReceipt opens/decrypts the real editor receipt, then maps its groups; it does not replace the version claims with fixture constants."
+    },
+    {
+      "path": "src/server/bookings/conflict-attestation.ts",
+      "line": 6,
+      "fact": "Actual engine constant is booking-conflicts-v4."
+    },
+    {
+      "path": "src/features/scheduling/types.ts",
+      "line": 19,
+      "fact": "Actual rules/config constant is stockholm-capacity-v2."
+    },
+    {
+      "path": "src/server/bookings/conflict-facts.ts",
+      "line": 47,
+      "fact": "Snapshot parsing rejects engine/config mismatch against those constants before the preview can produce its receipt."
+    },
+    {
+      "path": "src/server/bookings/editor-preview.ts",
+      "line": 53,
+      "fact": "Receipt claims are built from the validated snapshot; preview seals them. assertEditorReceiptCurrent separately retains request identity, digest, expiry and protocol-equality rejection."
+    }
+  ],
+  "verdict_basis": "The test updates strict expected values to the enforced current producer/consumer protocol. It neither relaxes production validation nor removes a test oracle. No introduced consequential defect or remaining source-scope gap found in this one interval. No runtime execution/coverage claim.",
+  "findings": [],
+  "remaining_scope_item_closed": true,
+  "conservation": [
+    {
+      "revision": "a00dd595d96a73c398328ed1778bac334aca9de6",
+      "blob": "0419871f1d4fa88adb112ee0f26efb8fa3bbf29f",
+      "bytes": 41789,
+      "sha256": "b9d4ede8510612e241b34f87a2636b714555e518826844555ae17def0e62e9be",
+      "equals_current": false
+    },
+    {
+      "revision": "8b77f94c191ea31bb2b216215f834619c793100b",
+      "blob": "0419871f1d4fa88adb112ee0f26efb8fa3bbf29f",
+      "bytes": 41789,
+      "sha256": "b9d4ede8510612e241b34f87a2636b714555e518826844555ae17def0e62e9be",
+      "equals_current": false
+    },
+    {
+      "revision": "99104d0ffa0360cf7d4ce4de174789c4a4605224",
+      "blob": "4c30f0eb68997edf45dd1367860f947994807a1e",
+      "bytes": 41584,
+      "sha256": "f161ae138f95e462b0dfe491af90eefbb152bf51278a79ffa6299d2305a34c80",
+      "equals_current": false
+    },
+    {
+      "revision": "aa1a16adf2980355f0228badf889c95a4f230248",
+      "blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+      "bytes": 41789,
+      "sha256": "1c4c130d5f4500f1def12ab9f09e71f0670f99ec3476d3a1abf8f8124cde7a84",
+      "equals_current": true
+    },
+    {
+      "revision": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+      "blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+      "bytes": 41789,
+      "sha256": "1c4c130d5f4500f1def12ab9f09e71f0670f99ec3476d3a1abf8f8124cde7a84",
+      "equals_current": true
+    },
+    {
+      "revision": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+      "blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+      "bytes": 41789,
+      "sha256": "1c4c130d5f4500f1def12ab9f09e71f0670f99ec3476d3a1abf8f8124cde7a84",
+      "equals_current": true
+    },
+    {
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+      "bytes": 41789,
+      "sha256": "1c4c130d5f4500f1def12ab9f09e71f0670f99ec3476d3a1abf8f8124cde7a84",
+      "equals_current": true
+    }
+  ],
+  "all25_previous_map_blobs_equal_at_edce": true,
+  "reuse_other24": "Existing20exact+4named dependency bridges remain reused with their original provenance and limits. This closure supplies the previously missing25th item only.",
+  "source_pins": [
+    {
+      "path": "tests/integration/commands/booking-editor.int.test.ts",
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+      "bytes": 41789,
+      "sha256": "1c4c130d5f4500f1def12ab9f09e71f0670f99ec3476d3a1abf8f8124cde7a84"
+    },
+    {
+      "path": "src/server/bookings/conflict-attestation.ts",
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "022d6527a24edb9248ca418435a52a2b4ad30fb0",
+      "bytes": 2340,
+      "sha256": "a8654f01309a4d8741f5e2eb34abdaa4898844419741c998cf967657350c6e75"
+    },
+    {
+      "path": "src/features/scheduling/types.ts",
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "fa0979d1c9eac8ec9c7f6ebd1adb8ea3d2a72c7a",
+      "bytes": 3449,
+      "sha256": "6bb9476ccbf4ee240a17859fcfff8fca0c7c1162d84dc6491435441129d36220"
+    },
+    {
+      "path": "src/server/bookings/conflict-facts.ts",
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "4236f8313ddab4247f125c2b0c7a3664583e8b1c",
+      "bytes": 11138,
+      "sha256": "4e2bf9899eacc91315da1fdcc93d295887b294a9c3f5af7f864bd5812160cda7"
+    },
+    {
+      "path": "src/server/bookings/editor-preview.ts",
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "ef3eb83fa943078fdb3e55f1affd5d7bbbb6bde1",
+      "bytes": 6800,
+      "sha256": "75300b4022e4995c2a20d3b14ecb970512cccaf897eb9e5c3cbb338eef702df8"
+    },
+    {
+      "path": "tests/support/booking-editor-atdd.ts",
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "14992312aafc44b262856064727f362b5a2d6e68",
+      "bytes": 10326,
+      "sha256": "ac171b75eaf8446e6ce278d997cb968b5196e6f6036fa26b40685f0fd10e5e6b"
+    },
+    {
+      "path": "tests/support/booking-editor-production.ts",
+      "revision": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "blob": "8b575d3422f19279dcdee107ea76c408db99a914",
+      "bytes": 34174,
+      "sha256": "f598e302c96381f0523fc3eb59b507e86f7fce31bf12f7717a218578617733fd"
+    }
+  ],
+  "saved_evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-integration-plan/plan.json",
+      "bytes": 26693,
+      "sha256": "3b3f4a23c15cfc90f5cbf687edc45da6da71f6798e8f08a7152477c6f4bb0d07"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-composition-author/receipt.json",
+      "bytes": 22467,
+      "sha256": "1a9d677257f3e8ce87d200060b042d61f8e64cd3653c8e2a5bd7d05fed39d1ad"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-attestation.json",
+      "bytes": 24281,
+      "sha256": "239f27449f64d022ef917501ab024985f3fe24dcd7449c924ee15499723ad209"
+    }
+  ],
+  "reader_history": "One proposed source lookup used a nonexistent editor-attestation.ts path; Git refused it. No evidence or effect credit is assigned. Actual receipt code is in editor-preview.ts, read and pinned above.",
+  "E8_requirements": {
+    "owner": "Root canonical metadata, with independent final-head provenance/review qualification",
+    "authoritative_final_head": "Bind this closure and the previous map to the actual final source/PR head. Any later change to this seam or relevant dependencies receives only targeted regression assessment.",
+    "CI_delivery": "Use actual final-head delivery and required CI/full95/recovery/custody qualification; the current all-pass evidence is not yet available. Source match is not executed test coverage.",
+    "metadata": "Record old pending-third-pass override as completed history. Preserve broad3/3 and followup recommendation/review_unverified until the authoritative policy disposition; do not silently clear or waive them.",
+    "external_review": "Coordinator fresh Codex-chat external review of the actual final PR head remains required.",
+    "whole_epic_review_PASS": false,
+    "flag_clear": false,
+    "acceptance": 0
+  },
+  "effects": {
+    "tests": 0,
+    "API": 0,
+    "Git_network": 0,
+    "Git_mutations": 0,
+    "source_Spec_state_writes": 0,
+    "other_checkouts": 0,
+    "resources": 0,
+    "own_private_confirmation_files": 1
+  }
+}

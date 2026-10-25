@@ -1,0 +1,33 @@
+{
+  "schema": "F1_CLOSURE_SELF_EXCLUDED_MANIFEST_v1",
+  "verdict": "PASS_CODE_ONLY_F1_CLOSED",
+  "prior_reviewed_source": "22508ef2773bb872d6c880328390812dbc358559",
+  "reviewed_source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "cumulative_base": "f0000e7c107f10371543148280e555971e753342",
+  "members": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "original-report.md",
+      "bytes": 5217,
+      "sha256": "917b33ccef9969486b28ff7795407976a963a85dd47825ec0001742394c35d33"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 16971,
+      "sha256": "2c9cbb50ea9ab8b15bfadfcb73a2dd86d3f93b0d6e7550bce70506cf46ac12d8"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1085,
+      "sha256": "ddd919a75651c12ea02ba40ee997fe8e0aa8207b1f56a20dd9931cf9c0144fa6"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0,
+  "execution_authorized": false
+}

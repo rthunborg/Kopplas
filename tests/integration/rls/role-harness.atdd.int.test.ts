@@ -1,3 +1,4 @@
+import { cleanupOwnedTimeReports, seedCheckedReport } from "../../support/time-reports-atdd";
 import { seedBookingReadRows } from "../../support/bookings-atdd";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { buildEffectivePermissions } from "@/server/authz/role-catalogue";
@@ -17,7 +18,7 @@ import {
   adminUpdateQuoteVersionStatus, cleanupRoleAwarePhaseAFixture, createRoleAwarePhaseAFixture,
   makeAuthedServerClient, type RoleAwarePhaseAFixture, type TestServerClient,
 } from "../../factories/tenants";
-import { adminQuery, closeAdminPool } from "../../factories/admin-sql";
+import { adminQuery, adminSession, closeAdminPool } from "../../factories/admin-sql";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 
@@ -28,6 +29,7 @@ let ownTableIds: Record<TenantTableName, string>;
 let foreignTableIds: Record<TenantTableName, string>;
 let selfTableIds: Record<TenantRole, Pick<Record<TenantTableName, string>, "tenant_memberships" | "membership_roles">>;
 let bookingTableIds: Record<TenantRole, Record<"bookings" | "booking_assignees" | "booking_conflicts", string>>;
+let reportIds: Partial<Record<TenantRole,string>>;
 let personalTableIds: Record<TenantRole, Pick<Record<TenantTableName, string>, "notifications" | "notification_preferences">>;
 
 beforeAll(async () => {
@@ -61,6 +63,8 @@ beforeAll(async () => {
     }
     return [role, await seedBookingReadRows(fixture.base.tenantA.id,profile.id)] as const;
   }))) as typeof bookingTableIds;
+  reportIds = Object.fromEntries(await Promise.all((["tenant_admin", "projektledare", "montor"] as const).map(async role =>
+    [role, await seedCheckedReport(fixture.base.tenantA.id, fixture.users[role].id)] as const)));
   personalTableIds = Object.fromEntries(await Promise.all(TENANT_ROLES.map(async (role) => {
     const userId = fixture.users[role].id;
     const notification = (await adminQuery<{ id: string }>("insert into public.notifications (tenant_id, recipient_user_id, category, title, body, route, logical_subject_id, logical_period) values ($1, $2, 'quote.follow_up_due', 'Role harness', 'Personal notification', '/notifications', gen_random_uuid(), current_date) returning id", [fixture.base.tenantA.id, userId]))[0]?.id;
@@ -70,7 +74,11 @@ beforeAll(async () => {
   }))) as Record<TenantRole, Pick<Record<TenantTableName, string>, "notifications" | "notification_preferences">>;
 });
 afterAll(async () => {
-  if (stackUp && fixture) await cleanupRoleAwarePhaseAFixture(fixture);
+  if (stackUp && fixture) {
+    await adminSession(async ({query})=>{await query("begin");try{await query("set local session_replication_role=replica");await query("delete from public.booking_conflict_resolutions where tenant_id=any($1::uuid[])",[[fixture.base.tenantA.id,fixture.base.tenantB.id]]);await query("commit");}catch(e){await query("rollback");throw e;}});
+    await cleanupOwnedTimeReports([fixture.base.tenantA.id,fixture.base.tenantB.id]);
+    await cleanupRoleAwarePhaseAFixture(fixture);
+  }
   if (stackUp) await closeAdminPool();
 });
 
@@ -149,16 +157,24 @@ async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<
   const calendarDay = (await adminQuery<{ id: string }>("insert into public.tenant_calendar_days (tenant_id, local_date, variant) values ($1, '2099-01-01', 'closed') returning id", [tenantId]))[0]?.id;
   if (!personProfile || !personWorkHours || !calendarDay) throw new Error("role harness seed: resource rows missing");
   const bookingRows = await seedBookingReadRows(tenantId, personProfile);
+  const [{id:bookingSeries}] = await adminQuery<{id:string}>("insert into public.booking_series(id,tenant_id,rule,defaults) values(gen_random_uuid(),$1,'{}','{}') returning id", [tenantId]);
   const [jobMember] = await adminQuery<{id:string}>("insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3) returning id", [tenantId,job,personProfile]);
   const [jobRole] = await adminQuery<{id:string}>("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3) returning id", [tenantId,job,workRole]);
   const [jobWindow] = await adminQuery<{id:string}>("insert into public.job_access_windows(tenant_id,job_id,starts_at,ends_at) values($1,$2,'2026-10-12T06:00:00Z','2026-10-12T07:00:00Z') returning id", [tenantId,job]);
   const [{id: prerequisite}] = await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,title) values($1,$2,'Prerequisite') returning id", [tenantId,customer]);
   const [jobDependency] = await adminQuery<{id:string}>("insert into public.job_dependencies(tenant_id,job_id,prerequisite_job_id) values($1,$2,$3) returning id", [tenantId,job,prerequisite]);
+  const [{id:resolution}] = await adminQuery<{id:string}>("insert into public.booking_conflict_resolutions(tenant_id,actor_id,command_id,booking_id,request_digest,action,outcome,target_keys,affected_booking_ids,result) values($1,$2,gen_random_uuid(),$3,repeat('a',64),'accept','accepted','[]',array[$3::uuid],'{}') returning id",[tenantId,actorId,bookingRows.bookings]);
+  const timeReport = await seedCheckedReport(tenantId, actorId);
+  const [{id:feedToken}] = await adminQuery<{id:string}>("insert into public.calendar_feed_tokens(tenant_id,membership_id,token_hash,revision,attempt_id,action,expected_revision) values($1,$2,encode(extensions.gen_random_bytes(32),'hex'),1,gen_random_uuid(),'create',0) returning id",[tenantId,membership]);
   const [{id: workOrder}] = await adminQuery<{id:string}>("insert into public.work_orders(tenant_id,job_id,title) values($1,$2,'Harness work order') returning id",[tenantId,job]);
   const [{id: workOrderAssignee}] = await adminQuery<{id:string}>("insert into public.work_order_assignees(tenant_id,job_id,work_order_id,person_profile_id) values($1,$2,$3,$4) returning id",[tenantId,job,workOrder,personProfile]);
   const [{id: workOrderDependency}] = await adminQuery<{id:string}>("insert into public.work_order_dependencies(tenant_id,dependent_job_id,dependent_work_order_id,prerequisite_job_id) values($1,$2,$3,$4) returning id",[tenantId,job,workOrder,prerequisite]);
   return {
+    calendar_feed_tokens: feedToken,
+    time_reports: timeReport,
+    booking_conflict_resolutions:resolution,
     ...bookingRows,
+    booking_series: bookingSeries,
     work_orders: workOrder, work_order_assignees: workOrderAssignee, work_order_dependencies: workOrderDependency,
     tenants: tenantId, tenant_memberships: membership, membership_roles: membershipRole,
     membership_admin_operations: membershipOperation, audit_events: auditEvent, job_runs: jobRun,
@@ -203,6 +219,7 @@ describe("Story 11.4 role harness", () => {
           ? personalTableIds[obligation.role][table]
         : table === "bookings" || table === "booking_assignees" || table === "booking_conflicts"
           ? bookingTableIds[obligation.role][table]
+        : table === "time_reports" ? reportIds[obligation.role] ?? ownTableIds.time_reports
         : ownTableIds[table];
       const own = await adapter.read(clients[obligation.role] as never, ownId);
       if (adapter.directReadDenied) {
@@ -216,6 +233,20 @@ describe("Story 11.4 role harness", () => {
       const foreign = await adapter.read(clients[obligation.role] as never, foreignTableIds[table]);
       expect(foreign.error, `${obligation.id}:foreign`).toBeNull();
       expect(foreign.data ?? [], `${obligation.id}:foreign`).toEqual([]);
+    }
+  });
+
+  test("[P0] 15.4 reporting-capable roles read own reports; only reviewers read a concrete peer", async ctx => {
+    if (skipUnlessStack(ctx, stackUp)) return;
+    const peer = ownTableIds.time_reports;
+    for (const role of TENANT_ROLES) {
+      const result = await tableRlsProjectionAdapter("time_reports").read(clients[role] as never, peer);
+      expect(result.error).toBeNull();
+      expect((result.data ?? []).length).toBe(["tenant_admin","projektledare"].includes(role) ? 1 : 0);
+      if (reportIds[role]) {
+        const own = await tableRlsProjectionAdapter("time_reports").read(clients[role] as never, reportIds[role]!);
+        expect(own.error).toBeNull(); expect(own.data).toHaveLength(1);
+      }
     }
   });
 
@@ -291,4 +322,3 @@ test("[P0] 16.2 existing role fixture lead exception reaches only its job and ch
     await adminQuery("delete from public.job_members where tenant_id=$1 and job_id=$2 and person_profile_id=$3", [fixture.base.tenantA.id, ownTableIds.jobs, profile.id]);
   }
 });
-

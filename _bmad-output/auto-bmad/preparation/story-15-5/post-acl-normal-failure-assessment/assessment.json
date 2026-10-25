@@ -1,0 +1,499 @@
+{
+  "kind": "post-acl-normal-failure-source-assessment",
+  "scope": "targeted current failed/flaky paths only; not a fourth broad review",
+  "model_route": "gpt-6.1-sol High; sensitive source assessment; independent future challenge required",
+  "Outcome": "READ_ONLY_ASSESSMENT_COMPLETE; five-path test-harness repair proposal; unresolved native privacy/browser evidence gaps retained",
+  "Files changed": [
+    "Only this new assessment and its manifest; all source, Spec, applied migrations and frozen packets unchanged"
+  ],
+  "Status": {
+    "development_complete": false,
+    "normal_acceptance_credit": 0,
+    "backend_functional_defect_established": false,
+    "actual_run": {
+      "id": 39637925040,
+      "attempt": 1,
+      "head": "b459af22d490eadc90113fd713a73b65aff89471",
+      "checkpoint_id": "b34acf03-1116-4411-9ce4-7dbe04d48745",
+      "mode": "normal",
+      "release_validation": false,
+      "conclusion": "FAILURE"
+    },
+    "current_metadata_head": "bc5e9b90ba05f7f60ff68d0d1693315691d61bbe",
+    "author_source": "589652335657df7153d7578b1a421b020fa2ce8c",
+    "counts": {
+      "node": {
+        "passed": 3196,
+        "suites": 103,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "python_passed_separate": 43,
+      "full_database": {
+        "total": 2039,
+        "passed": 1975,
+        "failed": 12,
+        "pending": 52
+      },
+      "story_database": {
+        "total": 51,
+        "passed": 39,
+        "failed": 12,
+        "skipped": 0
+      },
+      "story_browser": {
+        "total": 14,
+        "expected": 8,
+        "flaky": 4,
+        "unexpected": 2,
+        "skipped": 0
+      },
+      "other_browser_expected": 17,
+      "recovery_passed_separate": 1,
+      "distinct_story_95": {
+        "clean_pass": 77,
+        "flaky": 4,
+        "failed": 14
+      }
+    },
+    "migration_111": "SUCCESSFULLY_APPLIED_IMMUTABLE; all future database corrections forward-only"
+  },
+  "findings": [
+    {
+      "id": "H1",
+      "classification": "PROVEN_SOURCE_HARNESS_MISMATCH",
+      "cases": [
+        "RLS002"
+      ],
+      "locations": [
+        "tests/integration/rls/calendar-feed.rls.test.ts:42-45",
+        "tests/support/calendar-feed-atdd.ts:363-376"
+      ],
+      "caller_authority": "ordinary foreign subject managing its own current tenant/membership/actor",
+      "proof": "The supposed tenant override uses foreign.tenantId for caller foreign, leaving the actor, membership, tenant and all matching claims unchanged. The denial expectation therefore includes an authorized self-management invocation. Production still checks actor/current identity, exact active membership, current role and signed proof; this test has not bypassed those guards.",
+      "native_limit": "Current report does not retain first failed assertion, so this is not a claim of the actual native first-failure position.",
+      "minimal_hunk": "Construct a genuinely different tenant per caller (and assert the negative fixture input differs before invocation). Preserve all admin/planner/peer/foreign/platform spoof combinations and before/after unchanged-state assertion; keep a separate own-self positive control rather than declaring legitimate self-management denied."
+    },
+    {
+      "id": "H2",
+      "classification": "SOURCE_SUPPORTED_TEST_FIXTURE_AUTHORITY_MISMATCH; NATIVE_STATEMENT_UNKNOWN",
+      "cases": [
+        "API003",
+        "API004",
+        "API005",
+        "API006",
+        "API007",
+        "API008",
+        "API010",
+        "API018",
+        "INT009",
+        "INT014"
+      ],
+      "locations": [
+        "tests/support/calendar-feed-atdd.ts:628-640",
+        "tests/support/calendar-feed-atdd.ts:649-707",
+        "tests/factories/admin-sql.ts:20-42,56-89"
+      ],
+      "caller_authority": "local-only configured postgres pool; this is not the wrapper original SupAdmin session and must not be relabelled as such",
+      "proof": "Clock replacement/restoration, subject barrier replacement/restoration and projection fault replacement use generic adminQuery without owner SET and schema CREATE qualification. Counter/infrastructure reads execute the private calendar_feed_now_internal() the same way. SET authorization without inherited ownership is not automatic owner-context execution. The checked-in private owner-only EXEC and hardened owner are intentional. Clock fixture redacts both primary and restoration failures into UNKNOWN; API010/API018 retain only the 42501 class.",
+      "native_limit": "Actual pool identity and failed statement were not retained. The source mismatch is reachable under the intended non-inheriting ordinary postgres setup; it does not prove which native query failed. No missing production grant is alleged.",
+      "minimal_hunk": "Test-only exact-function owner-context operations through existing adminSession: qualify actual same-connection session/current identity, native SET authority and needed schema grant authority; atomic capture/temporary CREATE if required/SET LOCAL ROLE exact existing owner/replace only bound function/reset/revoke/assert absence/commit. Restore captured original definition, owner, ACL and all non-body metadata in a similarly bounded atomic path before releasing the serial fixture. Owner-only clock reads use the same bounded owner context, not new EXEC grants. Do not change the generic pool/factory or any role attribute/membership. Stop if authority or restoration cannot be proven.",
+      "required_isolation": "Only the already serialized command/public test files after the parallel project; preserve six serial files once, existing barriers and no concurrent shared function/clock/fault mutation. Real SQL promises must settle before reset/rollback/catalog deletion; uncertain restoration retains custody and fails the case."
+    },
+    {
+      "id": "H3",
+      "classification": "PROVEN_EMPTY_STATE_ASSERTION_TARGET_MISMATCH; NATIVE_FIRST_FAILURE_UNKNOWN",
+      "cases": [
+        "E2E002C"
+      ],
+      "locations": [
+        "tests/e2e/calendar-feed.e2e.spec.ts:133-157",
+        "src/components/scheduling/PersonalCalendarView.tsx:5-12",
+        "tests/e2e/support/calendar-feed-atdd.ts:506,519-520",
+        "src/server/read-models/scheduling.ts:120-123"
+      ],
+      "caller_authority": "ordinary Montor with no person profile; existing own-association RLS and Bookings.View remain enforced",
+      "proof": "For zero bookings the agenda div contains no children; the empty-state paragraph and keyboard subscription link are siblings outside it. A visible-empty-agenda-container assertion consequently targets an empty zero-height wrapper, rather than the visible usable empty-state content. Actual-source SSR confirms empty div plus visible-copy markup outside it and the subscription anchor; no browser geometry was executed.",
+      "minimal_hunk": "For only the no-profile variant retain visible personal region, structural agenda presence, visible exact empty-state copy, exact one link/href and keyboard destination/create control. Retain agenda visibility for populated A/B and all existing personal/foreign/privacy assertions. No production UI/auth change is proposed.",
+      "native_limit": "A prior navigation/read failure could precede this deterministic incorrect expectation; current projection cannot distinguish that."
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "U1",
+      "case": "API019",
+      "required_gate": "privacy; consequential development blocker",
+      "locations": [
+        "tests/integration/calendar-feed/public-feed.int.test.ts:389-402",
+        "tests/support/calendar-feed-atdd.ts:493-505"
+      ],
+      "source_path": "Real HTTP 200 -> tampered RPC -> physical audit/monitoring -> telemetry -> status -> nonempty sensitive-value and absence checks. telemetry can fail at file read, JSON parsing, missing response/observation, or sensitive-output flags before the final absence assertions.",
+      "observed": "One UNKNOWN failure; no retained typed assertion pair or exact branch.",
+      "cannot_infer": [
+        "actual sensitive-output leak",
+        "detector passed",
+        "response/audit/status privacy passed",
+        "attachment content absence"
+      ],
+      "minimum_resume_evidence": "Closed reached failure branch at the existing telemetry/source assertion boundary, identifying infrastructure/parse/observation/detector-flag versus a specific fixed privacy assertion site. Preserve true failure; no arbitrary message, values, expected/actual, log body or attachment acquisition. If needed, Root must separately allocate minimal existing call-site fixed labels plus actual-source controls; no new collector or automatic query/GET is authorized."
+    },
+    {
+      "id": "U2",
+      "cases": [
+        "E2E001",
+        "E2E005 first attempt",
+        "E2E006 first attempt",
+        "E2E010rotate first attempt",
+        "E2E010revoke first attempt"
+      ],
+      "locations": [
+        "tests/e2e/calendar-feed.e2e.spec.ts:73-131,206-299,380-443",
+        "tests/e2e/support/calendar-feed-atdd.ts:547-630"
+      ],
+      "observed": "001 failed twice; four other cases failed first and passed retry. Current browser projection has zero owned leaf tuples/typed assertion pairs/fixed categories for failed attempts.",
+      "source_limits": "001 spans navigation, issuance, physical commit, independent feed projection, last-used UI, hostile-cookie feed, rotate/revoke. Fault tests span route interception, actual SQL readback, lost/held response, explicit reconciliation and competing revision. Finite timeout/settlement bounds exist, but current evidence does not identify a failing step or prove a timing/selector/server defect.",
+      "minimum_resume_evidence": "Exact closed existing step/assertion/transport boundary for failed attempt with primary versus cleanup distinction. A fixed source-owned label/report-serialization closure, if Root later allocates it, must be meaningful and privacy bounded. Do not change matchers, assertions, timeout budgets, physical-commit checks or routing just to clear flakiness. No new browser collector/infrastructure is proposed."
+    },
+    {
+      "id": "U3",
+      "cases": [
+        "browser cleanup/key custody"
+      ],
+      "locations": [
+        "scripts/ci/with-calendar-feed-runtime.mjs:535-548,631-663",
+        "tests/e2e/support/calendar-feed-atdd.ts:660-701"
+      ],
+      "observed": "Browser nonzero child exit, key unverified/custody retained, db closed. DB lane key deleted and custody released independently.",
+      "source_explanation": "Nonzero browser exit intentionally latches browserTeardownUnverified even if the captured pnpm group later stops; that does not independently prove a detached Playwright webServer settled. The key-deletion fence consequently withholds cleanup. Fixture cleanup similarly requires actual request/body/readback/fault settlement before deletion.",
+      "disposition": "No cleanup-fence relaxation or wrapper change supported. Successful corrected browser tests plus existing owned child/server settlement remain required; otherwise a separate exact owned-server settlement proof would be needed before relaxing any uncertainty. Current packet proves neither actual remaining server nor cleanup success."
+    }
+  ],
+  "Open questions": [
+    "Which exact API019 privacy/infrastructure predicate failed?",
+    "Which existing E2E001 and four flaky-step boundaries failed first, and did any primary failure prevent complete fixture cleanup?",
+    "Will the currently configured ordinary adminSession satisfy the exact bounded owner-context/schema authority prerequisites? A test-only repair must qualify them in the actual session rather than infer from wrapper setup."
+  ],
+  "proposal": {
+    "candidate_write_paths": [
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "no_current_write_allocation": true,
+    "production_changes": [],
+    "migration_changes": [],
+    "wrapper_changes": [],
+    "read_only_context_paths": [
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "src/components/scheduling/PersonalCalendarView.tsx",
+      "src/server/read-models/scheduling.ts",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/factories/admin-sql.ts",
+      "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "vitest.config.ts",
+      "playwright.config.ts"
+    ],
+    "effect_inventory": {
+      "now": "Only source/immutable projection reads, two bounded pure controls and new assessment metadata; zero SQL/network/Git mutation/native/runtime effects.",
+      "future_if_allocated": "Test helper would add narrowly scoped existing-session transaction/SET LOCAL ROLE operations and transient schema CREATE/revoke only when qualified, limited to existing serial clock/subject/projection fault seams; captured-definition restoration, strict metadata/ACL invariants and real promise settlement required. This is additional test effect scope to admit/review, not an existing grant. RLS002/browser spec changes affect fixture input and semantic assertion target only.",
+      "forbidden": "No production/table/Auth/role/membership/ACL broadening, helper EXEC grants to pool, migration111/predecessor edits, dependency/workflow changes, new pool/principal, added generic observer, source-guard weakening, API/log acquisition or opaque full retry."
+    },
+    "expected_focused_controls": [
+      "Actual rawManage construction: every spoof case genuinely differs from the current caller; own-self positive remains valid; exact one invocation and before/after mutation denial retained.",
+      "Actual serial owner operation construction/adapter: correct session qualification and failure before mutation on missing SET/schema grant authority; minimal captured-function-only change; restoration on success/assertion/SQL failure; no persistent public CREATE; unknown/pending work retains custody; no raw errors.",
+      "Counter reads use owner context without granting EXEC to postgres; original private ACL remains denied to ordinary roles.",
+      "Actual PersonalCalendarView empty/nonempty render and browser case semantic wiring: empty region/copy/link remain visible and keyboard reachable; populated agenda visibility remains required.",
+      "Affected Node tests, whole TypeScript, focused lint, source diff and Spec reader/kernel/SRO after any later admitted implementation; meaningful installed reporter controls only if a separately admitted fixed-branch serialization change is necessary."
+    ],
+    "required_native_gates": [
+      "Fresh exact committed-head normal admission/verify/database/browser/recovery and existing pilot/serial placement; no mode suppression or retry of old once-operation.",
+      "All 95 distinct cases clean passing, including API019 privacy, E2E001 and zero unexpected/flaky essential browser cases; ordinary RLS010/INT015 and all unrelated required suites preserved.",
+      "Actual child/request/query settlement, key cleanup/custody and available artifact/privacy evidence qualified independently."
+    ],
+    "stop_rule": "Do not start another normal run solely to observe a finer UNKNOWN family. Root must first challenge/admit the known narrow harness repairs and decide the smallest separately allocated evidence needed for unresolved U1/U2. A current failure remains a failure until actual required evidence passes."
+  },
+  "checks": [
+    {
+      "kind": "child High read-only actual rawManage-construction control",
+      "passed": "six identity comparisons unchanged; exactly one injected RPC stub call",
+      "native_exit": 0,
+      "initial_failure": "First pure control omitted injected key and failed; corrected control alone passed. Counts are nonadditive; no backend execution or hosted-cause credit."
+    },
+    {
+      "kind": "parent pure current PersonalCalendarView SSR",
+      "assertions": 5,
+      "passed": 5,
+      "failed": 0,
+      "native_exit": 0,
+      "ports": "Link/BookingBlock/SchemaView ports replaced for focused render; actual PersonalCalendarView transpiled from current source",
+      "limits": "No Playwright/browser geometry, native SQL, backend authorization or failure-position credit."
+    }
+  ],
+  "Deferred work": [
+    "Independent targeted High proposal challenge, exact source/effect ownership and implementation allocation.",
+    "Only after allocation: exact five-path author implementation/trail plus meaningful offline controls and independent committed-delta High review.",
+    "Unresolved U1/U2 minimum closed-branch evidence requires separate bounded decision; current task performs no acquisition or implementation.",
+    "Fresh normal exact-head gates/all95, then normal story/epic delivery requirements; no Done, release-ready, merge or deployment claim."
+  ],
+  "Blockers": {
+    "assessment": "None; bounded localization is complete.",
+    "development": "12 DB failures, two unexpected browser cases, four flaky cases, API019 privacy and browser custody remain unresolved.",
+    "owner": "Root coordinates exact five-path test effect scope and independent challenge; implementation author owns admitted fixes; native qualifier owns future exact-head evidence only after explicit activation.",
+    "resume_condition": "Root accepts/challenges this finite proposal, reconciles exact test-only authority/serial-isolation effects and allocates actual changed paths. No current source or runtime activation is granted by this file."
+  },
+  "conservation": {
+    "applied_111": "32551B / SHA256 73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567 / Git da1270c7238db113f0cd2485581a635a66981a65; immutable",
+    "predecessor_110": "immutable; no rewrite proposed",
+    "spec": "in-review, approved kernel and counter3 unchanged; source binding below",
+    "packet": "unchanged; all five prior GETs consumed, no reacquisition",
+    "attachments": "eight path-only references; bodies unavailable; neither leak nor content-level PASS inferred",
+    "review_cap": "three broad rounds retained; this is targeted read-only assessment, not a fourth review"
+  },
+  "evidence_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/manifest.json",
+      "bytes": 4947,
+      "sha256": "a964912b04fff6fc7f93a29f63ef84fa2aa5788e357e9f57a24a07eb95f46a81"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/native-qualification.json",
+      "bytes": 55310,
+      "sha256": "82933a54c3093d4b6e31a8fca97f6844b362593716b0cd1f91d5735606a00b84"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/native-full-integration-projection.json",
+      "bytes": 78353,
+      "sha256": "49207a2076b9db04a99b4598b05777de7d5070b79c80a1c7fa9ebe8ef26049e3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/native-general-browser-projection.json",
+      "bytes": 11458,
+      "sha256": "bf8c9de1542ad515399439e16866f35abb9f66105d89da8199830612206e6834"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-report.md",
+      "bytes": 6639,
+      "sha256": "5b2689aa3cc872f31a2d84dec6529f05589a4f2ee7cdef2da31816967d5c644e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-attestation.json",
+      "bytes": 13713,
+      "sha256": "ca77d3173dfff1ee08702a46a37e386a56f575bea73dea714eb0e564c24008cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/result.json",
+      "bytes": 1181,
+      "sha256": "8a1889c6bc1090cf4b32c25433e1d97742d528591c0cc800af3be5d5c07a6121"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 110189,
+      "sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde",
+      "proposed_write": true,
+      "clean_git_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "metadata_head_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "author_source_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "actual_runhead_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "actual_git_blob_bytes": 110189,
+      "actual_git_blob_sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 189039,
+      "sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580",
+      "proposed_write": true,
+      "clean_git_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "metadata_head_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "author_source_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "actual_runhead_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "actual_git_blob_bytes": 189039,
+      "actual_git_blob_sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 16017,
+      "sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950",
+      "proposed_write": true,
+      "clean_git_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "metadata_head_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "author_source_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "actual_runhead_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "actual_git_blob_bytes": 16017,
+      "actual_git_blob_sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27768,
+      "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "proposed_write": true,
+      "clean_git_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "metadata_head_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "author_source_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "actual_runhead_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "actual_git_blob_bytes": 27768,
+      "actual_git_blob_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 170000,
+      "sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d",
+      "proposed_write": true,
+      "clean_git_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "metadata_head_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "author_source_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "actual_runhead_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "actual_git_blob_bytes": 170000,
+      "actual_git_blob_sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "proposed_write": false,
+      "clean_git_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "metadata_head_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "author_source_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "actual_runhead_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "actual_git_blob_bytes": 26504,
+      "actual_git_blob_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "proposed_write": false,
+      "clean_git_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "metadata_head_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "author_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "actual_runhead_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "actual_git_blob_bytes": 36884,
+      "actual_git_blob_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 55454,
+      "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "proposed_write": false,
+      "clean_git_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "metadata_head_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "author_source_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "actual_runhead_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "actual_git_blob_bytes": 54738,
+      "actual_git_blob_sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3"
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "bytes": 905,
+      "sha256": "f70bf49b2d6fac7a9c194d1f2c5bb09d76abd997956095771d6a705029e14202",
+      "proposed_write": false,
+      "clean_git_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "metadata_head_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "author_source_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "actual_runhead_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "actual_git_blob_bytes": 904,
+      "actual_git_blob_sha256": "d426154fb3888241ed6b36e98c3b25756f40f85c059dca9bf0785b88bc6eade1"
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "bytes": 13920,
+      "sha256": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "proposed_write": false,
+      "clean_git_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "metadata_head_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "author_source_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "actual_runhead_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "actual_git_blob_bytes": 13920,
+      "actual_git_blob_sha256": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "proposed_write": false,
+      "clean_git_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "metadata_head_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "author_source_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "actual_runhead_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "actual_git_blob_bytes": 47151,
+      "actual_git_blob_sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "proposed_write": false,
+      "clean_git_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "metadata_head_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "author_source_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "actual_runhead_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "actual_git_blob_bytes": 3593,
+      "actual_git_blob_sha256": "02e592a1cb08892aea3513cb439840c2b0495cd90a2cf5eee916ba5061539ed2"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "proposed_write": false,
+      "clean_git_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "metadata_head_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "author_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "actual_runhead_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "actual_git_blob_bytes": 24435,
+      "actual_git_blob_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 32551,
+      "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "proposed_write": false,
+      "clean_git_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "metadata_head_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "author_source_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "actual_runhead_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "actual_git_blob_bytes": 32551,
+      "actual_git_blob_sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 3602,
+      "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+      "proposed_write": false,
+      "clean_git_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "metadata_head_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "author_source_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "actual_runhead_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "actual_git_blob_bytes": 3536,
+      "actual_git_blob_sha256": "5f2cb605e2109c38a5606c035ab71fbba935e5f32713257f2a75cb66fb87c123"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 4872,
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+      "proposed_write": false,
+      "clean_git_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "metadata_head_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "author_source_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "actual_runhead_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "actual_git_blob_bytes": 4780,
+      "actual_git_blob_sha256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31"
+    }
+  ],
+  "binding_checks": {
+    "finite_source_rows": 16,
+    "all_raw_clean_git_head_source_runhead_equal": true,
+    "evidence_rows_rehashed": 7,
+    "index_empty_at_observation": true,
+    "native_source_queries": 0,
+    "api_requests": 0,
+    "runtime_tests": 0
+  }
+}

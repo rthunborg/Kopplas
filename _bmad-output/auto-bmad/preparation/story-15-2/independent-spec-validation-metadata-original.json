@@ -1,0 +1,200 @@
+{
+  "kind": "independent-pre-build-spec-validation-metadata",
+  "reviewer": "validate15_2_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "baseline": "76f50d3854a2f6d5bb2b3e810f06b1c65cb0e9af",
+  "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+  "raw_sha256": "05770b8c408209935d0521f861410b484bd58c88e7bd28dfb5fab206650ef816",
+  "raw_bytes": 31088,
+  "kernel_sha256": "013b7ae0d0614d20dbc021885786ca1803976e10bd634ddc0bc3791b19de4ee1",
+  "checks": {
+    "raw_hash_matches_author": true,
+    "kernel_hash_matches_author": true,
+    "candidate_contract_equals_kernel": true,
+    "source_ac_exactly_once": true,
+    "eight_gwt_criteria": true,
+    "nine_tasks": true,
+    "reader_reproduces_author_metadata": true,
+    "discovery_reproduces_author_metadata": false,
+    "discovery_exit_zero": true,
+    "cache_valid": true,
+    "preserved_receipts_consistent": true,
+    "current_protected_inputs_match": false,
+    "head_matches_baseline": true,
+    "canonical_spec_approved_false": true,
+    "discovery_semantics_reproduce_author_metadata": true,
+    "all_current_protected_source_and_history_match": true
+  },
+  "protected_inputs": {
+    "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "18bd5e71802ebe055e564837a40d6bdd2b4e85a2bad5962a8f9a9392f5e3888c"
+    },
+    "_bmad-output/implementation-artifacts/epic-15-context.md": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a"
+    },
+    "_bmad-output/implementation-artifacts/epic-14-retro-2026-10-08.md": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "f4137cdae55235f1dca86360f8f3b0945c34079d02ebeab62a8543d2e68ee10d"
+    },
+    "_bmad-output/implementation-artifacts/sprint-status.yaml": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "e6e018f1531503e343870ca0a8269e73ff3b6f9d9497169023e1aa32e62b2521"
+    },
+    "_bmad-output/auto-bmad/state/15-2-recurring-bookings-series-materialized-occurrences-exceptions.yaml": {
+      "before_after_match": true,
+      "current_matches": false,
+      "current_sha256": "9a79b83600895897103b073f7d972f05121f2add8ebba377f6e1848ca0d271ab"
+    },
+    "src/scope/manifest.ts": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "5bcce4869eae64c3b99c48e78e3e5a05a60f0ca4786600146e159a7d85ba74dd"
+    },
+    "src/server/authz/permission-matrix.ts": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "3b0b893a1db22b491820e3f0c8e27d32171f3b16b9ad0fd803687442b3877dea"
+    },
+    "src/features/scheduling/capacity.ts": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "54034427803bfd0ce6f3baace8c7879bf269dd3def54e1fddca9f1a78873f652"
+    },
+    "tests/unit/server/authz/phase-a-surface.test.ts": {
+      "before_after_match": true,
+      "current_matches": true,
+      "current_sha256": "34c043972dff469e37752c429b2d673bae5201556543eaae0bb7ddbae82a2384"
+    }
+  },
+  "reader": {
+    "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+    "exists": true,
+    "artifact_format": "bmad-build-auto",
+    "legacy_story_status": null,
+    "frontmatter": {
+      "title": "15.2 — Recurring Bookings — Series, Materialized Occurrences, Exceptions",
+      "type": "feature",
+      "created": "2026-10-19",
+      "status": "ready-for-dev",
+      "review_loop_iteration": 0,
+      "followup_review_recommended": false,
+      "baseline_revision": "76f50d3854a2f6d5bb2b3e810f06b1c65cb0e9af",
+      "context": [
+        "docs/process/review-order.md",
+        "docs/process/agent-model-routing.md",
+        "docs/process/development-completion-policy.md",
+        "docs/process/local-setup.md",
+        "docs/decisions/epic-14-story-ownership-contract-d-2026-10-07.md",
+        "docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md",
+        "_bmad-output/test-artifacts/test-design-epic-15.md",
+        "_bmad-output/auto-bmad/preparation/story-15-2/implementation-ownership-handoff.md"
+      ],
+      "warnings": [
+        "oversized"
+      ],
+      "deferred": [],
+      "deferred_count": 0
+    },
+    "auto_run_result": {
+      "present": true,
+      "status": "ready-for-dev",
+      "blocking_condition": "none for planning; implementation requires parent independent specification approval and focused coordinator allocation from the ownership handoff before any overlapping app/schema/shared-fixture write."
+    },
+    "last_review_pass": null,
+    "status": "ready-for-dev",
+    "parse_warnings": [],
+    "error": null
+  },
+  "discovery": {
+    "story_key": "15-2-recurring-bookings-series-materialized-occurrences-exceptions",
+    "impl_dir": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts",
+    "candidates": [
+      {
+        "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+        "status": "ready-for-dev",
+        "artifact_format": "bmad-build-auto",
+        "legacy_story_status": null,
+        "mtime": 1792429840.3981369
+      }
+    ],
+    "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+    "status": "ready-for-dev",
+    "artifact_format": "bmad-build-auto",
+    "legacy_story_status": null,
+    "found": true,
+    "ambiguous": false,
+    "siblings": [],
+    "hard_stop": false,
+    "hard_stop_reason": null,
+    "warnings": [],
+    "error": null
+  },
+  "runtime_tests_executed": 0,
+  "broad_code_review_rounds_consumed": 0,
+  "approved_state_written": false,
+  "provenance_observations": [
+    {
+      "kind": "discovery-mtime-only",
+      "author_mtime": 1792429827.808392,
+      "current_mtime": 1792429840.3981369,
+      "meaning": "Strict discovery JSON differs only in filesystem mtime. Exact raw SHA256 and discovery status/candidate semantics match; no content discrepancy."
+    },
+    {
+      "kind": "root-owned-canonical-state-change",
+      "path": "_bmad-output/auto-bmad/state/15-2-recurring-bookings-series-materialized-occurrences-exceptions.yaml",
+      "author_before_after_sha256": "99280a9c03689574c78666396e600898afc68923abdd1456a610ea33f33871f6",
+      "current_sha256": "9a79b83600895897103b073f7d972f05121f2add8ebba377f6e1848ca0d271ab",
+      "meaning": "Author before/after receipts match. Current state differs in concurrent root-owned orchestration; reviewer did not change it. Current spec_approved remains false."
+    }
+  ],
+  "verdict": "PASS",
+  "technically_ready_to_freeze": true,
+  "consequential_findings": [],
+  "freeze_scope": "Exact reviewed candidate at baseline76f50d3854a2f6d5bb2b3e810f06b1c65cb0e9af only; no approved-state write or uninspected E16 contract certification.",
+  "retained_implementation_prerequisites": [
+    "Root approval/freeze and existing BMAD phase order",
+    "Coordinator exact manifest, H4/schema/ACL-role, SQL batch/proof/finalizer, envelope and shared facts/proof allocation",
+    "Actual integrated16.1 job-facts/proof/migration and16.2 overlap evidence reconciled before authoritative shared implementation; migration chronology check before reserving ID",
+    "Isolated resource/fixture allocation before DB/browser execution; no command/UI exposure under pure recurrence lane authorization"
+  ],
+  "coordination_addendum": {
+    "source": "Root relay of Coordinator evidence; no independent Git/ref/source verification by this validator",
+    "integration_ancestor": "26dac3ab539ad54a79916135c53f25931e958d76",
+    "reported_current_e16_head": "70ec78ee",
+    "reported_sibling_base": "c989",
+    "reported_contracts": [
+      "booking-conflicts-v3",
+      "per-job facts.jobInputs array; null-versus-empty semantics",
+      "booking.jobId",
+      "checked job-card finalizer uses shared tenant lock/conflict replacement"
+    ],
+    "required_paired_forward_migrations": [
+      "20261019133151",
+      "20261019133200"
+    ],
+    "retain_e15": [
+      "scheduling manifest activation",
+      "matrix alias",
+      "capacity signature",
+      "20261013201515 reassignment migration",
+      "view interfaces"
+    ],
+    "integration_authorized_after": [
+      "preparation checkpoint",
+      "this specification PASS"
+    ],
+    "targeted_high_source_conflict_spec_compatibility_review_required_before_authoritative_shared_build": true,
+    "recurrence_migration_id": "20261019180000 reserved E15 pending actual inventory recheck",
+    "no_sql_only_cherry_pick_or_parser_relaxation": true,
+    "root_confirms_state_mtime_bookkeeping": true
+  },
+  "report_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-2\\independent-spec-validation-report-original.md",
+  "report_sha256": "9bd0c6c16e14fb9fc576565a8ab9586caa6c2fb86522740f90a081522d3c0898"
+}

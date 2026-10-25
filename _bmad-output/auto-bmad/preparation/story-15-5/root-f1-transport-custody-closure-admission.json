@@ -1,0 +1,28 @@
+{
+  "kind": "ROOT_MECHANICAL_F1_CLOSURE_ADMISSION_ONLY",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "current_metadata_head": "a329f572f6abeca0864092f3b93b74562785321f",
+  "verdict": "PASS_CODE_ONLY_F1_CLOSED",
+  "composite": "Original f000\u219222508 cumulative non-F1 review plus22508\u2192b1 latest3 closure; original NOTPASS retained.",
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-attestation.json",
+    "bytes": 16971,
+    "sha256": "2c9cbb50ea9ab8b15bfadfcb73a2dd86d3f93b0d6e7550bce70506cf46ac12d8"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-report.md",
+    "bytes": 5217,
+    "sha256": "917b33ccef9969486b28ff7795407976a963a85dd47825ec0001742394c35d33"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/manifest.json",
+    "bytes": 994,
+    "sha256": "a30ddc476ed2360eeaf5aa603b089919d70ffac5feaec54916849a94514c019a"
+  },
+  "verified_ref_occurrences": 24,
+  "verified_current_HEAD_source_objects": 73,
+  "normal_acceptance_credit": 0,
+  "source_semantics_reviewed_by_root": false,
+  "native_effects_authorized": false,
+  "next": "High read-only exact-source normal-checkpoint readiness/effect inventory; actualeffects separately allocated."
+}

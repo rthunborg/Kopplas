@@ -1,0 +1,20 @@
+{
+  "phase": "planning_discovery",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Personal hashed public tokens, rotation/revocation, anonymous disclosure and tenant/member authorization boundaries",
+  "author_route": "gpt-6.1-sol high",
+  "baseline_revision": "159557e114f18123e73282c39c90830917de9948",
+  "delegate_scope": "read-only distilled current source/security/scheduling inventory",
+  "resources": 0,
+  "approval": "candidate only; Root independent High spec validation and admission still required",
+  "bounded_repair": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "F15.5-01 current membership/tenant eligibility and F15.5-02 explicit approved UX entry; retained same author",
+    "delegates": 0,
+    "implementation_granted": false,
+    "approval": "candidate only; targeted independent High revalidation pending",
+    "source_revision": "159557e114f18123e73282c39c90830917de9948"
+  }
+}

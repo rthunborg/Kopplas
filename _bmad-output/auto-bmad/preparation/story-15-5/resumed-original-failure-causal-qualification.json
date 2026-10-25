@@ -1,0 +1,203 @@
+{
+  "schema": "kopplas.resumed-original-failure-causal-qualification.v1",
+  "verdict": "QUALIFIED_BOUNDED_DB_EXPECTATION_DEFECT_BROWSER_CAUSE_OPEN",
+  "review": {
+    "role": "independent original-cause and custody qualifier",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route": "P5-resumed-original-failure-independent-causal-qualification",
+    "scope": "Finite frozen-evidence and current source-contract correlation; no broad review or new execution."
+  },
+  "binding": {
+    "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+    "metadata_head": "0d1ab835c4274f313cc6a62ef461c96f3641d924",
+    "all_118_sql_immutable": true
+  },
+  "evidence": {
+    "diagnosis": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-failure-two-read-debug/diagnosis.json",
+      "bytes": 26483,
+      "sha256": "77267859870659f32c73b6d0c0d436621e4a76d7becd83a60b0f7c2697503633"
+    },
+    "execution_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-failure-two-read-debug/actual-execution-receipt.json",
+      "bytes": 6298,
+      "sha256": "a1237177741f3616f69fd58e3413a397c98ec1cbf8fc37d505475408ae13f311"
+    },
+    "completed_allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-original-failure-two-read-allocation.json",
+      "bytes": 3427,
+      "sha256": "4b4db39fc0c650d9e306597df82dbc8cb54945535dee0b88d24b67811e61829a"
+    },
+    "exclusive_activation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-failure-two-read-activation.json",
+      "bytes": 3666,
+      "sha256": "ad1cbdb2bda47f045702ecd6ef481b815c30be4424cdedeb7523c9376837f2bb"
+    },
+    "additional_db_source_binding": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-failure-extra-db-source-binding.json",
+      "bytes": 774,
+      "sha256": "112655c17e9a727c278f1e115e0dafcf5b26cdfe871e8679ac10b1e64d595397"
+    },
+    "independently_qualified": {
+      "verdict": "QUALIFIED_BOUNDED_DB_EXPECTATION_DEFECT_BROWSER_CAUSE_OPEN",
+      "six_files_five_receipt_hashes": true,
+      "Native_reported_once_two_GETs": true,
+      "exact_prior_ZIP_member_digest_match": true,
+      "DB_unique_INT011_original_AssertionError_toEqual_frame": [
+        290,
+        39
+      ],
+      "DB_source_contract_extra_fields": [
+        "estimatedDurationMinutes",
+        "crewSize",
+        "plannedTravelMinutes",
+        "plannedStartDate",
+        "plannedEndDate",
+        "earliestDate",
+        "desiredDate",
+        "latestDate",
+        "customerPresenceRequired"
+      ],
+      "DB_stale_strict_expectation_proven": true,
+      "actual_received_key_values": "NOT_RETAINED; not invented",
+      "browser_failed_attempts_original_report_errors": "4ordered:2constructedAggregates,cleanup-lifecycle timeout,custody-retained unverified",
+      "original_request_failure_text": "NOT_RECORDED; not recoverable from these reports",
+      "custody": "ENDED_JOB_OPERATOR_HANDOFF; not key deletion/backend rollback/settlement",
+      "API_controls_harness_runtime_Git": 0,
+      "acceptance": 0
+    }
+  },
+  "effect_attribution": {
+    "actual_execution": "Native-reported one effects-bearing command, chunk 24ebfd, native/outer exit 0, wall 4.1923409 seconds, no session or waits. Root and this reviewer did not directly observe the child lifecycle.",
+    "logical_GETs": 2,
+    "all_slots_closed": true,
+    "retry": false,
+    "transport": "Frozen request/result pairs report complete EOF, joined readers, closed handles, settled processes and native exit 0; exact prior ZIP/member size and digest matches were independently checked.",
+    "pre_effect_failures": "Retained JavaScript/Python parse stops consumed zero GETs; the AST-only correction check also consumed zero GETs. These are not remote retries.",
+    "raw_data": "Raw archives and original messages/stacks were RAM-only; this qualification reproduces no raw errors or custody identifiers."
+  },
+  "db": {
+    "case_id": "15.3-INT-011",
+    "source": "tests/integration/commands/conflict-resolver.int.test.ts",
+    "failure_title_sha256": "ec3353808a6677b3e602d3d1106f420ab5ce6b579dde48cbaf043010be874812",
+    "original_observation": {
+      "error_class": "AssertionError",
+      "first_bound_frame": {
+        "line": 290,
+        "column": 39
+      },
+      "static_matcher": "toEqual",
+      "unique_source_case": true
+    },
+    "qualification": "The original hosted failure is localized to the current strict three-object jobInputs expectation. The current enforced snapshot contract includes nine additional fields that the expectation omits. This is a bounded stale strict fixture defect sufficient for an exact expectation correction.",
+    "source_binding": {
+      "raw_bytes": 48269,
+      "raw_sha256": "72e942bd65ba8fcbc1904c06035535b5570b097613751e5daf31a47ee52a0104",
+      "clean_bytes": 47971,
+      "clean_sha256": "517fc0393e818abec554333618dab3acfffb870ea17093d794797f935a5f43d2",
+      "computed_clean_git_blob": "e05ded491723a1f72fcfc7a402014fa7993cb673",
+      "root_bound_source_runhead_current_equal": true
+    },
+    "enforced_contract": [
+      {
+        "path": "src/server/bookings/conflict-resolution.ts",
+        "lines": "24-33",
+        "fact": "The authorized snapshot RPC result canonicalFacts is parsed and its jobInputs array is returned without field stripping. The read-only null-input path does not apply mutation claims verification."
+      },
+      {
+        "path": "supabase/migrations/20261020180000_conflict_resolver.sql",
+        "lines": "39-48,60-83",
+        "fact": "The tenant/manager-authorized resolver snapshot delegates to booking_series_facts_internal and emits canonicalFacts unchanged."
+      },
+      {
+        "path": "supabase/migrations/20261019180000_recurring_booking_series.sql",
+        "lines": "39-54",
+        "fact": "Series facts delegate detection to the current booking_detection_facts_internal."
+      },
+      {
+        "path": "supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql",
+        "lines": "26-35",
+        "fact": "The effective detection producer always includes the nine additional E16 job fields."
+      }
+    ],
+    "omitted_expected_fields": [
+      "estimatedDurationMinutes",
+      "crewSize",
+      "plannedTravelMinutes",
+      "plannedStartDate",
+      "plannedEndDate",
+      "earliestDate",
+      "desiredDate",
+      "latestDate",
+      "customerPresenceRequired"
+    ],
+    "expected_fixture_values": "All nine are null under these fixture inserts and the independently checked nullable/no-default column definitions. This is source-derived expected fixture data, not retained actual received data.",
+    "value_provenance": [
+      "supabase/migrations/20261019133151_e16_16_1_job_depth.sql",
+      "supabase/migrations/20260709120000_acceptance_to_job_model.sql"
+    ],
+    "evidence_limit": "The safe projection retained no actual key/value differences. It does not establish the actual received values, absence of other differences, or that these nine fields were the sole hosted difference.",
+    "minimal_correction_proposal": "Correct only the three strict expected objects at line 290 with the nine authoritative fixture values. Preserve strict toEqual, sorted job identity, null/empty distinctions, access/competence assertions, PREVIEW_STALE and physical-state equality. Preserve resolver v3/v1 protocol, all 118 migrations and production guards. Separate author allocation and review are required; no correction was made."
+  },
+  "browser": {
+    "observations": [
+      {
+        "case_id": "15.5-E2E-001",
+        "attempts": "Both failed retries",
+        "reported_errors_per_attempt": 4
+      },
+      {
+        "case_id": "15.5-E2E-009",
+        "attempts": "Retry 0 failed with four errors; retry 1 passed with zero errors",
+        "reported_errors_per_failed_attempt": 4
+      }
+    ],
+    "error_order": "Two source-constructed AggregateErrors at helper line 101, followed by closed cleanup-lifecycle timeout and custody-retained/unverified diagnostics at helper line 97. These locations are aggregate/diagnostic construction boundaries, not the original Request failure origin.",
+    "original_request_failure_text": "NOT_RECORDED_AND_UNRECOVERABLE_FROM_THESE_REPORTS",
+    "prior_discriminator_limit": "The same already-matched rotate Request was FAILED_OPEN at the post-drain/pre-disposal boundary in both failed E2E-001 attempts. This does not identify original failure text, native completion, backend settlement or a causal linkage defect.",
+    "one_reproduction_proposal": {
+      "authorization": "PROPOSAL_ONLY_UNALLOCATED",
+      "scope": "One fresh isolated existing E2E-001 run, retries 0, with a qualified owned disposable stack; no full NORMAL or automatic retry.",
+      "capture": "Capture the same already-matched rotate Request's original failure text privately in RAM at the existing post-drain/pre-disposal boundary. Prefer reuse of the existing once-probe failure object, and correlate the existing reload/action ordering.",
+      "prohibitions": "No new request, listener, observer, polling, wait, timer, client, body, URL or token capture; no new wire schema or generic diagnostic family; no raw text persistence or tool output.",
+      "qualification": "Publish only a source-backed redacted causal qualification or UNKNOWN. The capture may not resolve backend causality. Exact capture/source/resource/runtime ownership allocation and independent review are required before writing or running."
+    }
+  },
+  "custody": {
+    "disposition": "ENDED_JOB_OPERATOR_HANDOFF",
+    "basis": "The two owned disposable jobs are terminal and their Stop local Supabase stack steps succeeded. The existing wrapper resumeCondition explicitly permits handoff once the entire disposable job has ended.",
+    "source": "scripts/ci/with-calendar-feed-runtime.mjs:654-672",
+    "limits": [
+      "Key deletion remains unverified.",
+      "Projected dbClosed is not backend rollback or canonical settlement.",
+      "Job end and successful stop steps do not prove backend cleanup.",
+      "No cleanup, foreign adoption or further resource authority is granted."
+    ]
+  },
+  "independent_audit": {
+    "command_chunk": "d249f2",
+    "exit_code": 0,
+    "wall_seconds": 0.1934821,
+    "kind": "Bounded file/hash/metadata and source-contract correlation only",
+    "tests_run": 0,
+    "API_calls": 0,
+    "operator_invocations": 0,
+    "source_harness_runs": 0,
+    "Git_commands": 0,
+    "resource_actions": 0,
+    "reader_stops": "Earlier bounded reader/path errors were corrected; they are not passing evidence."
+  },
+  "remaining_state": {
+    "required_cases": 95,
+    "missing_cases": 35,
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "broad_review_counter": 3,
+    "normal_acceptance": 0,
+    "development_completion_credit": 0,
+    "existing_DB_browser_failures_retained": true,
+    "causes_and_backend_settlement": "UNKNOWN beyond the bounded DB expectation defect",
+    "effect_authority": false
+  }
+}

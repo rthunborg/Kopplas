@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_TARGETED_OWNED_CLEANUP_VISIBILITY_ADDENDUM_VALIDATION",
+  "verdict": "PASS_WITH_LIMITS_PLAN_ONLY",
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "reviewer": {
+    "task": "/root/build15_5_high/native_denial_corrective_contract_validation",
+    "role": "independent-sensitive-owned-cleanup-visibility-addendum-validator",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_from_addendum_author": true,
+    "same_prior_validator_targeted_followup": true,
+    "context_free_at_initial_dispatch_only": true,
+    "new_context_free_review_claim": false,
+    "fourth_broad_review": false,
+    "route_recorded_before_activation": true
+  },
+  "route": "validate-native-cause-proof-corrective-visibility",
+  "addendum_artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/compact-addendum.md",
+      "bytes": 4442,
+      "sha256": "5bd602ddf2c569260a33a47630dce7f4bfe83eaca86b61a6771a89b0dc85b385"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/binding-and-result.json",
+      "bytes": 6708,
+      "sha256": "43bfb1f49432f7bf3adf6b5b286fccb20344c07e9ea85e24164769af63260189"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-addendum/manifest.json",
+      "bytes": 743,
+      "sha256": "35196fe5089a896fed5f8b40d21f48bdb037fbaf7249efb72e57661f28b99b74"
+    }
+  ],
+  "references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/proposal.md",
+      "bytes": 12514,
+      "sha256": "7898802e407adeaf2979ca7c5cbe3852c973a8a69d8f64b3d5a106bbf37c62af"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/manifest.json",
+      "bytes": 955,
+      "sha256": "cb60ec58fef30b9d74558a6bbea700dba739fa576cbdd36f62c40e27df35bfdb"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/bindings-and-effects.json",
+      "bytes": 9151,
+      "sha256": "9dcbf4b4231cace92eb142e30e8d6b1371e870d3c78924722b05ae7015812cf5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-report.md",
+      "bytes": 10919,
+      "sha256": "8b903986a32bb3c8bd96f115898f1ac244adbd669c43bf63cbda97142ecb9116"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/original-attestation.json",
+      "bytes": 21886,
+      "sha256": "55e7c99876bcf7dd3cbfbdcc6d9c9417892e9fe8457100642dbcd73db2d2b869"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-validation/result.json",
+      "bytes": 1594,
+      "sha256": "dd489a769ef530de5b1c96185a14dc477e451a6688b949bab86b9f3f88bffec4"
+    }
+  ],
+  "root_identity_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-native-cause-proof-visibility-addendum-admission.json",
+    "bytes": 521,
+    "sha256": "376b7481c986bb1fe576f455a8e7baa0ecf0afd262962baf1b6bf159b8b8fb0a"
+  },
+  "original_code_review": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-report.md",
+      "bytes": 10116,
+      "sha256": "9206dc8a152ab3d51dfd1134479a8806fdcd11c4e263b61bdc0727e633a797a8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/original-attestation.json",
+      "bytes": 21979,
+      "sha256": "7c41cef482032d7590b6834448ed47ed1116fac8b49c5707455e5ef3fef96882"
+    }
+  ],
+  "original_report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-validation/original-report.md",
+    "bytes": 7784,
+    "sha256": "f05a4a1572fce9f667a256106e8a436a7a5b0d5a6809d964a2dd040b8e4387dd"
+  },
+  "source_checks": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 81332,
+      "sha256": "cec60f3bda555b95442e1c92e844a50821510d9abfe6fc905e3e3520c59c44e1",
+      "clean_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_oid": "976d1f944958e9fb41eebbcf96c549b36eb38d75",
+      "head_bytes": 80579,
+      "head_sha256": "fe3e2f3bba6829ec26be7e930f42006d8d9d198e6cefdc8172826d66ea54cb94",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 43506,
+      "sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560",
+      "clean_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_oid": "111f7fcc2856f544388c713d1b481d75e3bb0c23",
+      "head_bytes": 43506,
+      "head_sha256": "44798a4e836ad7e99e0c38f6aaf9ddce4bde4605e39722e432d0884f1fa85560",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 117230,
+      "sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b",
+      "clean_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_oid": "d8d614476df3508acde978048588f672664e8ba2",
+      "head_bytes": 117230,
+      "head_sha256": "1a598eacd5baea92156ff4f843c8e034238b5ed887f9d827dd62233dde91066b",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b",
+      "clean_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_oid": "ebadcee5eccce25a53f92f314f48a8be6499d84c",
+      "head_bytes": 8024,
+      "head_sha256": "7c41d9afb3e8482bc5e2e43ebe87b648c9f7298f316c22d27a8c32c4c58f813b",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "bytes": 16105,
+      "sha256": "a735cefcfc73f6d69dc07a20e811ac7b599221ee1dae34b067ad93fe95bd66de",
+      "clean_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_oid": "57fd4d45f15c8635f934b0696b5771c9165e3f21",
+      "head_bytes": 15874,
+      "head_sha256": "38bf5d39ed827733faed00b5411b10522034305a33b94e9f446f250941978aba",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "bytes": 19133,
+      "sha256": "5108db252d36384412f8712b37efff4933dea8690964a946a79a30a9976d9491",
+      "clean_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_oid": "8d0f2694b5956b8f03ca9c6a0b5e1f4d04e38bc9",
+      "head_bytes": 18891,
+      "head_sha256": "ab59f4d8fd8a240f256aec3a260e5f0ebfa17a146f4c185cbf395732af89a01a",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 121125,
+      "sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1",
+      "clean_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_oid": "da9f3c0d44721140429dfa2061a6e5ed5d293b97",
+      "head_bytes": 121125,
+      "head_sha256": "ce7b6b4daf1787a28a7d76b93e9ed5475f57f299415bfb8b7e714fb0606de0c1",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "tests/factories/tenants/core.ts",
+      "bytes": 21309,
+      "sha256": "e877c463e15173bc6b5a8ed0018de919289217c5e9b4379a6eb5aa8fc9457265",
+      "clean_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "head_oid": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0",
+      "head_bytes": 20816,
+      "head_sha256": "dfe7ca6cae90cecb6faa56d00616310f627d4b995de9ad875522e64c6204224d",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "clean_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "head_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "head_bytes": 3593,
+      "head_sha256": "02e592a1cb08892aea3513cb439840c2b0495cd90a2cf5eee916ba5061539ed2",
+      "matches_frozen_binding": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "head_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "head_bytes": 75930,
+      "head_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "matches_frozen_binding": true
+    }
+  ],
+  "specific_readonly_context": [
+    {
+      "path": "supabase/config.toml",
+      "bytes": 18183,
+      "sha256": "afc7204122637dcaf89319d4c89639546f707281189161b46e99c0c28b17cc87"
+    },
+    {
+      "path": "supabase/migrations/20260625122433_tenant_foundation.sql",
+      "bytes": 13811,
+      "sha256": "884f8205e1e271883ee116ee122b8a55788c30b9c4e5902c8ee8078ee959f627"
+    },
+    {
+      "path": "tests/support/test-env.ts",
+      "bytes": 12287,
+      "sha256": "4ad1f1e80782da40f653bdf5a69a1b5ea0e41db08ed334c460f95a49875130df"
+    }
+  ],
+  "scope": {
+    "F1_visibility_only": true,
+    "same_seven_paths": true,
+    "new_source_paths": 0,
+    "source_allocation": false,
+    "protected109_SQL_and37_consumers_no_edits_proposed": true,
+    "full_inventory_reaudit": false
+  },
+  "correction": {
+    "initial_F1_plan_sufficiency": "NOT_ADOPTED",
+    "targeted_reply": "My earlier plan-sufficiency conclusion was too broad; no enforced same-adminQuery-connection full visibility invariant was found. Same-statement role catalog qualification required.",
+    "old_originals_rewritten": false,
+    "source_code_verdict": "NOTPASS",
+    "unresolved_P2_findings": [
+      "F1",
+      "F2"
+    ]
+  },
+  "assessment": {
+    "consequential_findings": [],
+    "same_statement_current_user_rolsuper_OR_rolbypassrls": "Sufficient documented table-RLS bypass basis including forced tenant RLS, conditional on actual strict observation and successful table reads.",
+    "strict_result": [
+      "visibilityQualified",
+      "tenantsAbsent",
+      "authUsersAbsent"
+    ],
+    "rows": 1,
+    "all_own_data_strict_true": true,
+    "null_missing_false_malformed_access_denied": "fixture-absence / CLEANUP_UNVERIFIED / retained custody",
+    "exact_auth_UUID_count": 10,
+    "exact_tenant_UUID_count": 2,
+    "new_auth_and_catalog_reads_allocated": false,
+    "extra_roundtrips": 0,
+    "extra_HTTP": 0,
+    "extra_connections": 0,
+    "principal_grant_role_changes": 0,
+    "claimed_cleanup_scope": "Physical absence of exact known returned fixture IDs at that observation only",
+    "excluded_claims": [
+      "Historical delete response success",
+      "Fresh SupAdmin or bootstrap7 qualification",
+      "Partial setup closure",
+      "Arbitrary unrelated or child object absence"
+    ],
+    "controls": "Planned actual-source cleanup/result-validation controls and actual SQL binding inspection; no copied model, no tests executed"
+  },
+  "reused_unchanged_assessments": {
+    "F2": {
+      "status": "Prior plan assessment retained; implementation unverified",
+      "report_sha256": "8b903986a32bb3c8bd96f115898f1ac244adbd669c43bf63cbda97142ecb9116",
+      "attestation_sha256": "55e7c99876bcf7dd3cbfbdcc6d9c9417892e9fe8457100642dbcd73db2d2b869"
+    },
+    "availability": {
+      "status": "Prior safe engineering amendment assessment retained; hosted availability UNKNOWN; Coordinator amended grant pending",
+      "same_provenance_as_F2": true,
+      "new_GitHub_docs_or_repository_queries": 0
+    }
+  },
+  "primary_public_PG_docs": [
+    {
+      "url": "https://www.postgresql.org/docs/17/ddl-rowsecurity.html",
+      "supports": "Superuser/BYPASSRLS always bypass; FORCE qualification applies to ordinary table-owner exemption"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/view-pg-roles.html",
+      "supports": "Boolean rolsuper/rolbypassrls and publicly readable role catalog"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/functions-info.html",
+      "supports": "current_user is execution permission identity"
+    }
+  ],
+  "PG_doc_version": {
+    "project_configured_major": 17,
+    "current18_same_topics_also_read": true,
+    "native_version_queried": false
+  },
+  "admission_required": [
+    "Coordinator exact seven-path and new Auth+catalog observation plus availability amendment allocation",
+    "Root sensitive fix route/allocation before any source write"
+  ],
+  "kernel": {
+    "bytes": 5760,
+    "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "unchanged": true
+  },
+  "execution": {
+    "semantic_tests": 0,
+    "native_queries": 0,
+    "application_HTTP": 0,
+    "DB_connections": 0,
+    "fixtures": 0,
+    "provider_repository_queries": 0,
+    "CI": 0,
+    "resources": 0,
+    "source_or_Spec_writes": 0,
+    "Git_or_index_mutations": 0,
+    "native_credit": 0,
+    "normal_acceptance_credit": 0,
+    "new_original_outputs": 3,
+    "artifact_assembly_check_correction": "First pure snapshot equality compared extended source binding objects with plain byte metadata; corrected comparison to exact byte metadata. Report already written was preserved without rewriting."
+  },
+  "preservation": {
+    "all_bound_inputs_reverified": true,
+    "HEAD_unchanged": true,
+    "index_empty_before_and_after": true,
+    "old_artifacts_and_reply_correction_preserved": true,
+    "normal95_full2039_DB_browser_recovery_pilot_gates_required": true,
+    "all43_DB_causes_and14_browser_failures_unresolved": true,
+    "development_complete": false,
+    "release_ready": false,
+    "global_clean_claim": false,
+    "write_scope": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-validation/original-report.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-validation/original-attestation.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-visibility-validation/result.json"
+    ]
+  },
+  "limits": [
+    "Plan only, no implemented SQL or tests validated",
+    "Original committed code NOTPASS2P2 persists",
+    "F2/availability reused with verified provenance, no repeated broad survey",
+    "New Auth/catalog effects unallocated; no source write or runtime/provider/CI authorization follows"
+  ]
+}

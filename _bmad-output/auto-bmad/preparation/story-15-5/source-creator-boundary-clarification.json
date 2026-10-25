@@ -1,0 +1,22 @@
+{
+  "kind": "Root-recorded-interpretation-of-existing-distinct-source-and-recovery-allocation",
+  "recorded_at": "2026-10-20T14:59:36.729598+00:00",
+  "source": "Coordinator SAMEexplicitSolHigh focused interpretation",
+  "successful_delivery_verified_by_Root": "Coordinator native read_thread turn01a159d0-077d-7250-916b-e05682e657d9/tool exec-8dd266d0-6c0e-4846-909c-aaa789ece1fd statuscompleted",
+  "human_authorization": "Existing direct owner15.5 implementation/isolatedverification authorization remains controlling; Coordinator also reports later focusedhandoff approval; Root did not independently observe newhumaninput in API itemstream",
+  "historical_failed_handoffs_not_authority": [
+    "exec-e03d0526-8ee0-48bf-881a-08ce31659b22",
+    "exec-26df60d0-08cc-4b0c-a992-cc4f18369b5b",
+    "exec-d6908f50-7a9a-4b59-af59-c42b588d0637"
+  ],
+  "interpretation": [
+    "Source trustedpostgres nativePG17 creatorADMIN is distinct from recoveryNoADMIN; sourceguard must not blindly reject expectednativecreatorADMIN",
+    "NativeADMIN doesnot supplySET; actual narrowlyscoped sourceexecutorSET/ownership must be qualified",
+    "Preserve all7 hardenedtargetroleattrs/unexpectedinbound+outboundmembership andJWT-runtime denials",
+    "Recovery remains existingSupabaseAdmin-onlyNoADMIN; neverimportsourceexception",
+    "No persistentCREATE/BYPASS/superuser/JWT workaround; mandatoryactualrecoverybootstrapprincipal/ownertransfer evidence",
+    "Pinned17.6.1.136 compose image is sourceidentityonly; actualCI version required for nativeclaims"
+  ],
+  "new_two_testrole_effect": "UNALLOCATED; exactshortproposal beforewrite/runtime: actualmajor/exactsourceextraction/rolenamesonly/existingoperatorSETauthority/fresh-replay-unsafe+SETownership/SAVEPOINTexpectedfailures/unconditionalRESET-ROLLBACK-settledrefs-catalogabsence",
+  "other_scope": "Existingowned UI refresh race mayproceed; finaltargetedHighreview cap3; no runtime/deploy/monitoringresume"
+}
