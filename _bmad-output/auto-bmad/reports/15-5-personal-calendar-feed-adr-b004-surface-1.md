@@ -174,3 +174,38 @@ Epic reconcile/archive remains pending.
 1. None for this completed build gate or the authorized P6/P7 continuation.
 
 **Next:** Required P6 testarch-automate, then P7 tail before landing15.5;15.6 unstarted.
+
+## Report — 2026-10-25T08:26:32Z (progress — P6 complete)
+
+**Story:** `15-5-personal-calendar-feed-adr-b004-surface-1` (epic 15, story 5) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\_bmad-output\implementation-artifacts\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `4d854f6`).
+**Pipeline status:** in-progress; P5 andP6 complete;P7tailpending
+**Continues:** yes;run P7tail beforelanding15.5
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 116h 07m (≈24h 13m AI-run, ≈91h 53m human/idle wait); resumed 5×.
+
+**Phases run:** P6bmad-testarch-automate Create/BMad-integrated
+**Skipped:** No duplicate tests orunchanged-source runtime rerun justified.
+
+**Overrides:** Preserveexisting105092summaryprefix;scopedownership/current95evidence;no deploy.
+
+**TEA:** AC1–9concretelycovered;testsadded0/modified0;qualified95reused;directrecovery1Pseparate. API/E2E Highassessmentscompleted.
+
+**Build:** P5done/null blocker;cap3/recommendfalse/deferred0.
+
+**Review:** P7configuredrecommended andbuildrecommendfalse;anotherbroadpassnotrequired.
+
+**Retrospective:** Epiceventpending.
+
+**Open questions:**
+1. None fromP6. Existing observer/recovery/historicalcustody limits remain.
+
+**Deferred work:**
+1. 0newfindings;3releasedeferrals unchanged in canonicaldelivery.
+P7harvest/epicreconcilepending.
+
+**⚠️ Needs human:**
+1. None.
+
+**Next:** P7canonicaldeferredharvest/no-op andearnedstate/landing;15.6unstarted.

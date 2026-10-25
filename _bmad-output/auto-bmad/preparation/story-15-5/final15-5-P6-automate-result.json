@@ -1,0 +1,236 @@
+{
+  "Outcome": "COMPLETED_P6_BMAD_TESTARCH_AUTOMATE_COVERAGE_DELIVERABLE_NO_NEW_TESTS_JUSTIFIED",
+  "Files changed": [
+    {
+      "path": "_bmad-output/test-artifacts/automation-summary.md",
+      "bytes": 123872,
+      "sha256": "263cab08ccb4d884067aaab56dca47f3aa41b16baf908fb39a830356c24fdc37",
+      "scope": "Only unique Story15.5 P6 section appended; all original105092 bytes preserved.",
+      "owned_append_bytes": 18780,
+      "owned_append_sha256": "41a7100a436bc0453045c37a56dc83025bb42304a626fd119bab2a4ef234d049"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-P6-automate-result.json",
+      "scope": "This six-field author metadata report; own frozen pin returned externally."
+    }
+  ],
+  "Status": {
+    "route": "Rootba9c05/native0 explicit gpt-6.1-sol High, canonical Story15.5 P6 public-token/auth/RLS/transactional coverage.",
+    "skill": "bmad-testarch-automate",
+    "mode": "Create / BMad-integrated",
+    "workflow_steps_completed": [
+      "step-01-preflight-and-context",
+      "step-02-identify-targets",
+      "step-03-generate-tests",
+      "step-03c-aggregate",
+      "step-04-validate-and-summarize"
+    ],
+    "on_complete": {
+      "actual_tool": "8c9d3a",
+      "native_exit": 0,
+      "resolved_value": "",
+      "action": "Empty hook; no further hook effect."
+    },
+    "execution_mode": {
+      "requested": "auto",
+      "capability_probe": true,
+      "supports_subagent": true,
+      "supports_agent_team": false,
+      "resolved": "subagent",
+      "workers": [
+        "p6_api_coverage: explicit Sol6.1 High/read-only/completed",
+        "p6_e2e_coverage: explicit Sol6.1 High/read-only/completed"
+      ],
+      "followup": "One API worker follow-up solely reconciled an initial local-helper candidate against the existing raw E2E assertion; no broad review or new scope."
+    },
+    "coverage": {
+      "AC1": "Entropy/hash-only issuance, exact current own authority/audit and real entry/one-time capability.",
+      "AC2": "CAS/replay/rollback/fetch ordering/lost commit/explicit recovery and honest superseded UI.",
+      "AC3": "Complete minimal own live materialized events, assignment/cancel/profile, independent dates/UIDs.",
+      "AC4": "Equal-history invalid response, forged proof/IP/current role/membership/tenant negatives and legacy-NULL positive.",
+      "AC5": "Independent60/token+120/IP/900s boundaries, concurrent increments/rollover/persistence and sanitized direct Admin monitoring.",
+      "AC6": "Admitted-fetch last-use/never-used, actual copy fallback/confirmation/error/retry/phone/keyboard, Admin separation.",
+      "AC7": "Exact no-auth middleware/transitive scope, real hostile-cookie/header/cache probes and capability-only no-store path.",
+      "AC8": "Independent RFC5545/UTF8/CRLF/octets/DST/microseconds/completeness and atomic503.",
+      "AC9": "Caller/effectiveACL/RLS/SET-owner bootstrap/ordering/closed manifest and physical scheduling/job integrity."
+    },
+    "consequential_uncovered_AC_gaps": [],
+    "candidate_resolved": {
+      "id": "API-COVERAGE-RAW-ABUSE-DTO",
+      "initial": "Integration helper projects raw monitoring fields before its local privacy assertions.",
+      "resolution": "Covered cross-lane; no proposed test changes remain justified.",
+      "raw_witness": "tests/e2e/support/calendar-feed-atdd.ts:789 own ordinary Admin RPC/:790 foreign RPC/:794 exact3rawkeys/:796-798 physical counters/time + foreign error; tests/e2e/calendar-feed.e2e.spec.ts:372-377 asserts receipt.",
+      "scope": "Coverage reconciliation only, not an observed production leak or new execution."
+    },
+    "tests_added": 0,
+    "tests_modified": 0,
+    "fixtures_added": 0,
+    "test_runtime_effects": 0,
+    "existing_required_cases_reused": {
+      "Node": 30,
+      "DB_RLS_API_component": 51,
+      "browser": 14,
+      "total": 95,
+      "failed": 0,
+      "skipped": 0,
+      "pending": 0,
+      "unexecuted": 0,
+      "browser_retry": 0
+    },
+    "separate_recovery_reused": {
+      "passed": 1,
+      "outside95": true
+    },
+    "native_evidence": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json",
+      "bytes": 30202,
+      "sha256": "6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f",
+      "independent": true,
+      "findings": [],
+      "CI_run": 40125241153,
+      "tested_head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+      "behavioral_source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+      "later_metadata_checkpoint_from_Root": "4d854f647fe4f91aada8ddcef01a9dd1b77eb2be",
+      "provenance": "P6 reads actual qualification/source assertions and reuses unchanged evidence. Author did not invoke Git or claim current/future metadata HEAD was tested."
+    },
+    "preservation": {
+      "preimage_bytes": 105092,
+      "preimage_sha256": "b6ee788325eab4349706d6efac2836e110ad633ba0d93461faf50e256df7184d",
+      "exact_prefix_preserved": true,
+      "unique_owned_section": true,
+      "all_other_entries_frontmatter_unchanged": true,
+      "spec_unchanged": {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 276780,
+        "sha256": "7573f7cf8724b1606b54a7a98131ab792c640d50316aa83d53895d1f584e0014"
+      },
+      "canonical_delivery_unchanged": {
+        "path": "_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json",
+        "bytes": 10984,
+        "sha256": "e02e2ffebdac2f93e5ff58871cc6273730793cfeb50cf1d474c9837460a83d44"
+      },
+      "approved_kernel_unchanged": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "review_counter": 3,
+      "followup_review_recommended": false,
+      "deferred_findings": 0,
+      "other_source_input_pins_unchanged": [
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json",
+          "bytes": 30202,
+          "sha256": "6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f"
+        },
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/manifest.json",
+          "bytes": 28843,
+          "sha256": "4af53f3c1727b3ebb10f6a78905ae30fcb3b06eae53cca1364f7825d21994684"
+        },
+        {
+          "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+          "bytes": 4086,
+          "sha256": "2536d7a63ff437cd21cd22982d505dd60fc98cbb8ffa908abe044bd393f4db9b"
+        },
+        {
+          "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+          "bytes": 6651,
+          "sha256": "862aa51c0c100f993949e60b96d035a25eef5a976f4edac6e4c76681258729a9"
+        },
+        {
+          "path": "tests/unit/features/calendar-feed/validation.test.ts",
+          "bytes": 2581,
+          "sha256": "1f1f2fda1a02070d5d02298d53d21ff258fe5276976bd441da3c017db538647f"
+        },
+        {
+          "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+          "bytes": 4728,
+          "sha256": "b7e33cfbe5f4ef1e2352d65117ba63fcb2601eb771027bad9ca359b2029b8003"
+        },
+        {
+          "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+          "bytes": 4458,
+          "sha256": "f02a1015ba35b08d9c6cc2926f1b8f8c5cb8c736feba3e260b9c51a1ccd33386"
+        },
+        {
+          "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+          "bytes": 2416,
+          "sha256": "e9afe40327412798a22f2af0100b8df9c1911c42338cf452c241272a648420e0"
+        },
+        {
+          "path": "tests/integration/commands/calendar-feed.int.test.ts",
+          "bytes": 36375,
+          "sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169"
+        },
+        {
+          "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+          "bytes": 16989,
+          "sha256": "fb636129a2497479f7826b18f08ffd574d200c2512d2624e8d913dfb502cf9fc"
+        },
+        {
+          "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+          "bytes": 26921,
+          "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40"
+        },
+        {
+          "path": "tests/integration/components/calendar-feed.test.ts",
+          "bytes": 3534,
+          "sha256": "6ac7a41a4dca5bccf4aae4300be8ccf38689b3ae19ceb4daa9c8c22d7282db42"
+        },
+        {
+          "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+          "bytes": 28818,
+          "sha256": "ea3e477d12e2f76fea44c9ecba91f4d304b5b88160021548e0995f7e798e6d0f"
+        },
+        {
+          "path": "tests/support/calendar-feed-atdd.ts",
+          "bytes": 144864,
+          "sha256": "bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5"
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "bytes": 72626,
+          "sha256": "7fc1678c81bd74d37c3433c1134efe7e6c8dbcd84968bc6fe3afe21e6489ffe6"
+        },
+        {
+          "path": "package.json",
+          "bytes": 2509,
+          "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+        },
+        {
+          "path": "vitest.config.ts",
+          "bytes": 4805,
+          "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30"
+        },
+        {
+          "path": "playwright.config.ts",
+          "bytes": 4872,
+          "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+        }
+      ]
+    },
+    "verification": "Pure RAM/file-read metadata assertions below recheck exact prior prefix, unique owned section, AC1..9 table mapping, required95 actual qualification tuple and all20 input byte/hash pins. No product test, build, API, CI, resource, Git, source module evaluation, spec/ledger/state rewrite or acquisition.",
+    "limits": [
+      "No instrumentation/branch-coverage percentage or universal test-quality proof calculated; this is bounded AC assessment, not review round4.",
+      "Global totals3445Node/2130integration+52pending-vs-skipped/56browser do not add story coverage. Optional skipped jobs, static450 catalog and repeated markers give no extra required cases.",
+      "Current scoped DB/browser keys deleted-confirmed/custodyfalse/dbClosedtrue. Recovery1P source/artifact bound separately; per-assertion flags/recoverykey tuple/physicalhost deletion unretained; historical custody/failure facts unchanged.",
+      "Source-label/observer settlement/slot completeness/IP stream/form/first-emitter cause UNKNOWN; no current IP refusal observed; no invented cause or observer-completeness claim.",
+      "Framework utility flags true but packages absent; no installation/import/migration. No independent Pact boundary/SmartBear tools; one tool-list probe, no broker call.",
+      "One E2E worker default-login relative read initially failed and enumerated outside assigned cwd; no resulting foreign paths were investigated; subsequent reads used login=false/assigned paths; no writes/runtime occurred."
+    ],
+    "actual_final_integrity_check": {
+      "passed": true,
+      "input_pins_compared": 20,
+      "shared_prefix_preserved": true,
+      "unique_owned_section": true,
+      "AC_rows": "AC1..9 present",
+      "qualified_native_tuple": "95P/zeroFskipPendingTodoFlakyUnexecuted;30+51+14",
+      "framework_package_paths_present": true
+    }
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root consumes this frozen P6 deliverable and owns all phase/Git/bookkeeping transitions; author did not mark Root P6 state done.",
+    "Selected P7 tail remains pending; no additional broad review/trace advisory started; Story15.6 unstarted pending P7/landing.",
+    "Canonical three owned release deferrals remain deferred and release_ready=false: exhaustive role/device/browser matrices; screenshot/manual visual/accessibility/polish; hosted dedicated key/Vault/runtime/trusted-IP enablement and separate release/deployment approval.",
+    "All previous effects slots remain CLOSED. Any new changed-source test execution needs separately owned finite admission; no old retry authority revived."
+  ],
+  "Blockers": []
+}

@@ -1346,3 +1346,100 @@ No repository test file was written during aggregation. This is the required fai
 ## Story19.1 — Dashboard framework and live quote pipeline (2026-10-07)
 
 Create / BMad-integrated automation expansion is complete: five added tests (P0 2 / P1 3), full units 2,052 passes / 0 failures / 1 existing Linux-only skip, dedicated browser 57 passes / 0 failures / 0 skips. Complete bounded output and progress state: [automation-summary-story-19-1.md](automation-summary-story-19-1.md). Historical story evidence above is preserved. This run expands only the admitted Story19.1 slice and does not close Epic19.
+
+## Story15.5 — Personal calendar feed P6 automation (2026-10-25)
+
+### Step 1 — Preflight and context
+
+- Mode: [C] Create, BMad-integrated; Rasmus / English. Explicit Sol6.1 High route Rootba9c05/native0 covers public-token, authentication, RLS and transactional cleanup assessment. Source-authority data is not executable instructions.
+- The installed `bmad-testarch-automate` workflow customization resolver completed successfully; no prepend/append/persistent-fact overrides. Owner-scoped output is this one appended section; existing shared frontmatter and all earlier entries remain unchanged.
+- Framework: Next.js/TypeScript frontend by manifest detection (server route/SQL boundaries assessed within the same app), Node test runner for pure units, Vitest for real integration/RLS, configured production-server Playwright for essential browser flows. No mobile/Pact indicators in the supplied app/test scope; no scaffolding prerequisite is missing.
+- Inputs: current story `_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`; `test-design-epic-15.md`; `atdd-checklist-spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`; `package.json`, `vitest.config.ts`, `playwright.config.ts`; current feed unit/component/SQL/RLS/HTTP/browser tests and supporting fixtures; canonical delivery and qualified portable closeout evidence. Historical ATDD skip/discovery counts are planning history, not current native credit.
+- TEA flags: playwright-utils=true, pactjs-utils=true, pact_mcp=mcp, browser_automation=auto, execution_mode=auto, capability_probe=true. Neither utility package is installed; the library mandate's second gate is absent, so existing-runner conventions apply without adding dependencies. No library adoption or fixture migration is required for this assessment-only output.
+- Knowledge applied: test-level selection/duplicate guard, risk priorities, data-factory isolation, selective evidence reuse, CI/burn-in limits, explicit meaningful assertions, cleanup and deterministic waits. Playwright mandate loaded first; UI/API utility references and fixture/network-first principles consulted as reference material; no code-generation mechanism is emitted. Pact broker: unreachable (SmartBear MCP tools not available; one tool-list check, no broker call). Provider semantics derive from repository source/tests; no consumer/provider Pact boundary justifies new Pact artifacts.
+- Existing development-completion and model-routing policies govern. Qualified unchanged-source evidence is reused; no browser exploration, API call, test process, workload, install, CI or resource launch is admitted by P6. The owned-summary scope overrides default temporary worker files/shared-frontmatter updates.
+- Step-01 complete. No application verification was executed by this P6 run.
+
+### Step 2 — Targets and coverage plan
+
+All nine approved AC are assessed at their existing lowest useful level; secondary layers test integration/user outcomes rather than repeat pure logic. The existing ATDD checklist is a historical plan, reconciled against current active assertions.
+
+| AC | Existing target witnesses (assertion reconciliation below) | Priority and rationale |
+| --- | --- | --- |
+| AC1 | UNIT006–008; INT001–002; RLS001–002/008; API011/019; E2E001/003/004 | P0 capability entropy/hash-only/current self authority; P1 entry/copy usability |
+| AC2 | UNIT009–011 + R1-07; INT003–013; COMP002–003; E2E005/006/010/011 | P0 CAS/audit rollback/replay/commit-order/lost-response integrity |
+| AC3 | UNIT001–005 + R1-05/06; API001/013–016/020; RLS006–007 | P0 complete minimal own projection and live invariants; P1 independent time/UID goldens |
+| AC4 | UNIT007/012–017/021; RLS001–012; API002/008–012/019 | P0 equal-history invalidity, direct-proof/current authority/ACL negatives |
+| AC5 | UNIT015–017; API003–010/018; RLS009/011; E2E008–009 | P0 independent token/IP windows, concurrency, persistence and sanitized monitoring |
+| AC6 | INT014; COMP001–004; E2E001/003–011 | P0 honest persistence/reconciliation and Admin isolation; P1 last-use/keyboard/phone/copy |
+| AC7 | UNIT018–020; API002/009/017; E2E001 | P0 public preauth/transitive/cache/cookie isolation and hostile-header integration |
+| AC8 | UNIT001–005; API012–015/018 | P0 injection/complete output/failure atomicity; P1 independent RFC5545/date vectors |
+| AC9 | INT009–015; RLS001–012; API001/016/019/020; E2E001/008–009 plus shared manifest/H4/containment regressions | P0 auth/RLS/privileged ownership and prior scheduling/job integrity |
+
+The exact public provider route is `GET /calendar/feed/[token]` at `src/app/(public)/calendar/feed/[token]/route.ts`, backed by `src/server/calendar-feed/public-feed.ts`; validation/DTOs live under `src/features/calendar-feed/`. Authenticated lifecycle goes through existing checked own commands and SQL, not a newly invented management REST endpoint. No independently deployable consumer/provider contract or queue is introduced; Pact endpoint-map generation is inapplicable.
+
+No new target is authorized merely because a historical scaffold was skipped. Step 3 verifies consequential assertions and test-to-real-system seams, then either reuses sufficient coverage or returns an exact gap before any code/test writes. Browser exploration is replaced by source and qualified native evidence under the explicit no-runtime scope.
+
+Step-02 complete. Step-03 source-only worker route recorded before dispatch: API/SQL/RLS and E2E assessment workers use explicit `gpt-6.1-sol` High, because both inspect public-token/authorization/transactional fixtures. Config auto; native subagent capability available; no agent-team facility. Workers run synchronously to completion, read only, and return structured data in their messages. Their default temporary-file output is consolidated here under the owner output override. No worker runs tests or generates duplicate tests.
+
+### Step 3 — Generation decision and aggregation
+
+Execution mode resolved from auto with capability probe=true: subagent support available, no agent-team facility; frontend dispatch used API and E2E workers, both explicit Sol6.1 High. Both finished and their structured results were consumed before aggregation. No backend/mobile worker applies to this manifest-detected frontend stack. No elapsed-time or parallel-speedup measurement is claimed.
+
+API worker result: success=true, tests=[], test_count=0, fixture_needs=[].
+E2E worker result: success=true, tests=[], test_count=0, fixture_needs=[].
+Parent inspected the six actual-bound pure-unit files. This is a coverage assessment, not another broad implementation review. Both workers performed source reads only.
+
+| AC | Meaningful existing assertion evidence, beyond test titles |
+| --- | --- |
+| AC1 | `tests/unit/features/calendar-feed/validation.test.ts:14` checks requested entropy length32 and independent SHA256; `tests/integration/commands/calendar-feed.int.test.ts:37` checks exact persisted tenant/membership/hash and :40–48 attributable audit/sanitized status; `tests/integration/rls/calendar-feed.rls.test.ts:52` rejects on-behalf overrides; `tests/e2e/calendar-feed.e2e.spec.ts:81` checks real issuance/audit/isolation. |
+| AC2 | `tests/integration/commands/calendar-feed.int.test.ts:76` checks one committed CAS winner; :91–98 rejects changed replay without mutation; :131–166 observes intended audit faults and rollback; :205–249 checks both fetch/revoke commit orders and rotation. `tests/unit/features/calendar-feed/action-state.test.ts:10` checks honest uncertainty, :41 authoritative supersession. Browser :279–302 joins committed loss/reconciliation and explicit replacement; :417–441 removes superseded issuance. |
+| AC3 | `tests/integration/calendar-feed/public-feed.int.test.ts:30` checks complete minimal own event allowlist, :276 >1000-row completeness/unique UIDs/distant event, :316 independent dates, :334 live series edits/splits/cancellation. `tests/integration/rls/calendar-feed.rls.test.ts:114` checks assigned-once/nonpeer data and :119 immediate unassignment; :128–135 valid empty no/archived-profile behavior. |
+| AC4 | `tests/integration/calendar-feed/public-feed.int.test.ts:71` and :79 compare equal-history invalid404 contracts; :215 and :240 reject forged fetch/lifecycle proofs without changes. `tests/integration/rls/calendar-feed.rls.test.ts:66` preserves legacy-NULL positive, :80–100 checks current role/membership invalidation, :249 missing-tenant denial. Pure attestation vectors check every field/domain/key/time mutation against real exports. |
+| AC5 | `tests/integration/calendar-feed/public-feed.int.test.ts:88`/ :107 independently trip60/token and120/IP; :122/ :137 assert exact concurrent admissions/increments; :152–162 database clock/Retry-After/rollover; :179–188 shared invalid-IP enforcement/persistence. `tests/integration/rls/calendar-feed.rls.test.ts:165` checks effective global-IP denial. Raw monitoring contract is directly checked by the E2E witness described below. |
+| AC6 | `tests/integration/commands/calendar-feed.int.test.ts:276`–284 distinguishes creation from actual admitted-fetch timestamp/usage. Browser :193–207 checks never-used/copy-denial/revisit; :316–342 checks real360×640 touch/44×44 target/keyboard confirmation; :233–265 failed rotation/retry/physical state. Component assertions are SSR markup only, supplemented by real browser interaction. |
+| AC7 | `tests/unit/server/calendar-feed/public-shell.test.ts:44` checks exact middleware bypass with zero auth/env/cookie calls and nonmatching protected paths; :52 checks transitive dependency closure and exact active public surfaces. `tests/integration/calendar-feed/public-feed.int.test.ts:350`–360 checks hostile cookies/auth/cache validators, equivalent events, no Set-Cookie/redirect/ETag and revoked-cache denial. |
+| AC8 | `tests/unit/features/calendar-feed/icalendar.test.ts:24`–92 contains independent UTC/DST/exclusive-date/UTF8-folding/injection/completeness/microsecond/stable-UID revision vectors. `tests/integration/calendar-feed/public-feed.int.test.ts:291`–303 checks real response CRLF/75-octet/no injection; :372–383 observes scoped counter/projection faults and503 before partial output or false usage. |
+| AC9 | `tests/integration/rls/calendar-feed.rls.test.ts:24`–35 checks ordinary current-role positives/negatives; :182–211 effective owner/function/filtered-key ACLs. `tests/integration/commands/calendar-feed.int.test.ts:425`–480 checks native PG17 restricted source bootstrap/SET ownership and hostile retained-state refusal; `tests/integration/calendar-feed/public-feed.int.test.ts:411`/ :414 compares physical scheduling/series/resolver/report/job facts across reads/rotation. Full-suite/scope/browser execution credit comes only from the separately qualified evidence. |
+
+A candidate duplication was explicitly resolved before generation: the integration helper `tests/support/calendar-feed-atdd.ts:579`–580 projects monitoring fields before its local privacy assertions. Adding another raw-DTO assertion there is not necessary to cover the AC: `tests/e2e/support/calendar-feed-atdd.ts:789`–798 directly calls the ordinary Admin monitoring RPC for own/foreign tenants, requires exactly `lastSpikeAt,limited,requests`, compares counts/time against physical rows and requires foreign denial. `tests/e2e/calendar-feed.e2e.spec.ts:372`–377 asserts that receipt. The API worker withdrew its initial local-helper candidate after this concrete cross-lane check. This is existing raw-contract coverage, not a source-only SQL invariant substituted for a test.
+
+Real-system seams and cleanup: `tests/support/calendar-feed-atdd.ts:444` invokes the actual command; :451 ordinary status RPC is checked before mapping; :474/:491 actual raw RPCs; :568 real HTTP; :570 actual anonymous RPC with an explicit trusted-IP seam; :572 physical token/audit/seven scheduling-table readbacks. Fixture :381–398 settles owned work before Auth/row deletion, retains uncertainty/errors and checks absence; fault :982 and barrier :1007 verify owned catalog cleanup. These source witnesses explain what the qualified native cases exercised; reading them does not reexecute cleanup.
+
+Automation decision: no consequential uncovered development AC identified within this bounded assessment. No tests, fixtures, factories, mocks, dependencies, scripts or configurations were generated/changed. Existing unit logic, SQL/HTTP interactions and browser outcomes are intentionally complementary; new mirrored tests would add maintenance without a missing boundary. No raw token/proof/key/IP, fixture credential, log body or ZIP is copied into this deliverable.
+
+### Step 4 — Validation and final summary
+
+Section-scoped workflow state (shared historical frontmatter is preserved):
+`stepsCompleted=[step-01-preflight-and-context,step-02-identify-targets,step-03-generate-tests,step-03c-aggregate,step-04-validate-and-summarize]`;
+`lastStep=step-04-validate-and-summarize`; `lastSaved=2026-10-25`.
+
+| Checklist area | Disposition |
+| --- | --- |
+| Framework/context/ATDD/targets/priorities | Complete; real installed configuration and all nine canonical AC mapped; historical scaffold discovery never counted as acceptance. |
+| Workers/aggregation | API and E2E source workers completed; initial monitoring candidate reconciled; zero generated test files/fixtures means no missing generated infrastructure. Structured results are consolidated here under explicit owner output scope. |
+| Quality | Independent oracles, authorization/negative/concurrency cases, actual persistence and essential interaction witnesses recorded. No coverage percentage or universal branch/flakiness claim is calculated. Priorities are P0 sensitive integrity/security and P1 essential flow/date/entry witnesses; no new P0/P1/P2/P3 counts are invented. |
+| Validation/execution/healing | No new tests or changed runtime source: product execution, burn-in, browser exploration, healing, build/type/lint reruns are inapplicable to this documentation-only P6 assessment. Reuse qualified actual evidence; no local native pass is asserted. No CLI/browser/resource session or temporary worker file was created. |
+| Preservation | Exact105092-byte shared preimage SHA256 `b6ee788325eab4349706d6efac2836e110ad633ba0d93461faf50e256df7184d` checked before first append; every prior entry/frontmatter retained byte-exact. Final readback verifies the same prefix, unchanged spec/delivery/input pins and this one unique owned section. No deferred-ledger/Root-state edit. |
+| Output boundary | Only this Story15.5 section and optional private six-field result; no README/package/test/spec edit. Existing task/runtime grants remain CLOSED; documentation creates no execution authority. |
+
+Existing execution evidence reused, not rerun here:
+
+- `_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json`:30202 bytes/SHA256 `6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f`; independent=true/findings[]. Exact95 attempted/passed, zero failed/skipped/pending/todo/flaky/unexecuted:30 required Node IDs +51 DB/RLS/API/component leaves(INT15/RLS12/API20/COMP4) +14 browser retry0. Current API019/API020 passed; historical40109869919 93P/API019F/API020unexecuted remains historical.
+- CI40125241153 tested HEAD `019f21d1d484ebe02ab1ed00ace10e4eb0be4d36` and behavioral source `cbe3e5d5f462b9be2a992bba56c4bf33b71706fe`. Root reports later metadata checkpoint `4d854f647fe4f91aada8ddcef01a9dd1b77eb2be`; neither that nor a future P6 metadata commit is relabeled CI-tested. No author Git invocation; Root owns unchanged-source/provenance disposition.
+- Global3445 Node passes, fullintegration2182total/2130passed/header52pending versus flattened52skipped, and browser56expected(14required+42other smoke) remain separate; skipped leaves/optional jobs give zero story coverage. Catalog450 static rows and repeated unit markers are not extra native passes.
+- Separate isolated recovery1P is outside95 and source/artifact-digest bound. Current DB/browser runtime keys are deleted-confirmed/custody=false/dbClosed=true; direct recovery per-assertion telemetry/key tuple and physical-host deletion are not inferred. Historical399982/current-prior custody distinctions remain intact.
+- Current observer/source-label settlement/slot completeness/IP stream/form/first emitter remain UNKNOWN; no current IP refusal was observed. No failure cause, diagnostic completeness or cleanup fact is manufactured from green CI.
+- Portable closeout manifest28843/SHA256 `4af53f3c1727b3ebb10f6a78905ae30fcb3b06eae53cca1364f7825d21994684` preserves39 closed JSON copy mappings. Canonical delivery10984/SHA256 `e02e2ffebdac2f93e5ff58871cc6273730793cfeb50cf1d474c9837460a83d44` and spec276780/SHA256 `7573f7cf8724b1606b54a7a98131ab792c640d50316aa83d53895d1f584e0014` remain unchanged.
+
+Future execution instructions are references only: existing `pnpm run test:unit`, `pnpm run test:int` with `SUPABASE_TEST_REQUIRED=1`, and `pnpm run test:smoke` through the configured production server and Root's separately authorized, isolated runtime lane. Required direct recovery remains a separately qualified lane. Any newly justified changed source or future execution requires its own scope/finite admission; none is activated by these commands or this summary.
+
+#### Playwright Utils deviations
+
+None emitted: zero new/edited test files. Config flag=true but package absent, so the two-gate mandate is inactive. Existing fixture/transport-fault conventions are retained, with no utility-install/migration recommendation elevated into a development blocker. No recommended utility wiring was required to deliver this assessment.
+
+#### Pact.js Utils deviations
+
+Not applicable: no relevant independent consumer/provider contract and no contract artifact generated. No broker state or provider response was invented.
+
+Final result: P6 automation coverage deliverable complete for Root consumption; tests added0, existing required cases reused95, direct recovery1 separate, consequential uncovered AC gaps0 within assessed scope. This is not a fourth broad review or a new test run. Root alone records phase completion and proceeds to the selected P7 tail; no extra trace/test-review workflow is started. The three owned canonical release deferrals remain deferred: exhaustive matrices; visual/manual/accessibility/polish validation; hosted dedicated key/Vault/runtime/trusted-IP enablement and release/deployment approval. Release_ready=false;15.6 remains unstarted pending P7/landing. No story/epic/release/merge/deployment completion is claimed here.

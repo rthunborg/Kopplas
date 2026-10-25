@@ -8326,3 +8326,40 @@ Epic reconcile/archive pending.
 1. No generic reapproval required; merge remains conditional on independent final review and all required checks.
 
 **Next:** Complete15.5 P6/P7, then prepare/validate15.6 before building; finish epic gates and final review.
+
+## Report — 2026-10-25T08:26:32Z (progress —15.5 P6complete)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `4d854f6`).
+**Pipeline status:** in-progress;15.5P5/P6complete,P7tailpending;15.6unstarted
+**Continues:** yes
+
+**Summary:** Scheduling/time/calendar PhaseBdelivery.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 379h 28m (≈77h 41m AI-run, ≈301h 47m human/idle wait); resumed 251×.
+
+**Stories:**
+1. 15.1–15.4landed;15.5native95+delivery+P6complete;P7tailpending;15.6unstarted.
+
+**Skipped:**
+1. None.
+
+**Epic gate:** Epictrace/closingnotyetdue.
+
+**TEA:** 15.5P6completed;AC1–9covered,0testsadded,qualified95reused.
+
+**Retrospective:** Pendingepicend.
+
+**Overrides:** No fourthbroadreview;no deploy.
+
+**Open questions:**
+1. Inherited15.2reviewflagremains;existingevidencelimits preserved.
+
+**Deferred work:**
+1. 0newP6findings;releasedeferralsowned.
+Pending.
+
+**⚠️ Needs human:**
+1. Noneforauthorizedcontinuation.
+
+**Next:** Complete15.5P7tail,thenprepare/validate15.6.
