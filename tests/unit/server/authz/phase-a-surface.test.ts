@@ -50,7 +50,7 @@ test("[P0] 16.2 trusted lead admission adds jobs only while tenant landing and u
   }
 });
 
-// Story 15.6 RED: append-only; historical active assertions remain untouched.
+// Story 15.6 landing regressions retain existing route and role boundaries.
 test("[P0] 15.6-UNIT-A01 AC1 normalized pure Montor lands on the single authorized Min dag item", () => {
   for (const roles of [["montor"], ["montor", "montor"], ["unknown", "montor", null]]) {
     assert.equal(resolveLandingRoute(roles), "/my-day");

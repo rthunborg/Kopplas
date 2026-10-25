@@ -170,18 +170,25 @@ The pending delivery JSON intentionally does not pass the completion gate: requi
 
 R1-01..R1-11 are implemented; source and rationale are recorded in author-implementation-notes.md. The catalog now has63new active cases:15domain,20read,3auth,16SQL and9browser. Actual post-fix local evidence is43focused passes/0failures/0skips, typecheck, affected lint, production build, source/bundle containment and browser syntax passes. Previous full Windows3480/3479pass/one historical Linux-xattr skip is pre-fix broad evidence; exact-head full CI/DB-RLS/direct recovery/browser remains pending. No new SQL/table/policy/grant or shared notification change was needed. Subsequent independent context-free SolHigh Round2 follow-up passed on the63991-byte fix snapshot `aa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2`, with all23source bytehashes matched and unchanged SQL High review reused. Delivery now records independent review passed; required hosted checks remain pending and release_ready remains false.
 
+
+### Prior-head CI and partial-repair checkpoint
+
+Root-qualified run40184844339 at supplied prior head1b49522d passed admission/verify/recovery. DB2145passed/1failed/52skipped, including all16newMyDaySQL passes; the two failed-suite headers aggregate one nav-fixture file/leaf. Its explicit approved route pin now includes/my-day once; no SQL changes were made, and119applied migrations are immutable. Browser65cases yielded62expected/2unexpected/1flaky,rooterrors0: E01 expected/my-day failed with actualreceivedURL redacted/unretained UNKNOWN; E04's correct date-validator alert collided with Next's route announcer. Seven other new cases passed retry0. Existing16.1E03 first-attempt Network.getResponseBody/response.text protocolerror then retry1PASS remains separate, unfixed and unexplained here.52skips are not coverage or waivers.
+
+The reviewed bounded repairs use the existing server root as login's successful default destination (no client roles/new next behavior) and target the existing E04 date-error node with role/visibility/exact-text assertions. Allowed static/pure checks passed: nav parser/lint and existing pure manifest6; login/E04lint/typecheck/parser and existing pure landing8, zero failures/skips. Distinct retained High checks passed both actual repair diffs; broad counter remains2(onefull,onetargeted) plus two narrow checks. Current source registry25 and provenance are in author-checks.json; catalog remains63new=38units16SQL9browser. Fresh full required CI/E01/E04/smoke and finalT7 remain pending; statusin-review/P5OPEN, delivery remains pending and release_readyfalse. No prior-head case fact is a fresh runtime pass. Root subsequently authorized exact stale-comment hygiene in three original unit files:3domain header lines,1adapter header line and1auth landing comment line. Byte-segment replacement preserved all other bytes/line counts/test bodies and all63case declarations; three parsers and exact-file lint passed. Current25pins were frozen afterward; this adds no executed coverage or review round.
+
 ## Suggested Review Order
 
 Author: Story15.6 implementation/fix author, with the recorded ordinary UI and High test-binding delegates.
-Refreshed after bounded R1-01..R1-11 fixes against baseline `118ebced2898b96f4b3dfce86f2dec8b52dd8f72` plus current author working tree; current byte hashes and historical pre-fix evidence are separate in author-checks.json.
+Refreshed after bounded R1-01..R1-11 fixes and the independently checked login/E04/nav-fixture repairs against baseline `118ebced2898b96f4b3dfce86f2dec8b52dd8f72` plus current author working tree; current25post-comment byte hashes and historical pre-fix evidence are separate in author-checks.json; exact comment-only changes retain all test bodies and review-stop line numbers.
 
 ### Begin with current identity and the usable field landing
 
-The server-derived opaque digest controls presentation lifetime only; no command or read accepts it as authority. A resolved actor/tenant change resets lists and report ownership, while the same identity's unknown attempt survives ordinary date/read failure. Pure Montor keeps the approved landing preference and mixed office roles retain theirs.
+Successful login now delegates its default destination to the existing cookie-derived server root, preserving refresh/error behavior without client role inference or new next handling. The server-derived opaque digest controls presentation lifetime only; no command or read accepts it as authority. A resolved actor/tenant change resets lists and report ownership, while the same identity's unknown attempt survives ordinary date/read failure. Pure Montor keeps the approved landing preference and mixed office roles retain theirs.
 
-- `src/app/(app)/my-day/page.tsx:7` — `MyDayPage`: initializes the connected landing.
+- `src/app/(auth)/login/page.tsx:51` — `router.replace("/")`: delegates default sign-in landing to server authority.
 - `src/components/my-day/MyDayWorkspace.tsx:20` — `MyDayWorkspace`: keys state to resolved server context.
-- `src/server/read-models/my-day.ts:60` — `renderContextKey =`: derives non-granting lifetime metadata.
+- `src/app/page.tsx:14` — `Home`: resolves the cookie-bound server landing.
 - `src/server/authz/phase-a-surface.ts:33` — `resolveLandingRoute`: preserves normalized landing priorities.
 
 ### Follow own-person authority and the closed payload
@@ -204,11 +211,11 @@ Complete four-digit Stockholm week destinations are validated before state chang
 
 ### Check the actual outer-surface assertions and evidence limits
 
-E04 now checks real multi-date week then day-only output, dated all-day cards,44px targets and one main; E06 proves actual personal continuation past the shared center's cap. E09 binds real filing, changed-tenant RSC navigation and late prior-read rejection. These source assertions supplement the passed focused units; they still require Root's browser/DB execution.
+E04 checks real multi-date week then day-only output, dated all-day cards,44px targets and one main; its specific validator node avoids Next-announcer collisions without weakening either bound; E06 proves actual personal continuation past the shared center's cap. E09 binds real filing, changed-tenant RSC navigation and late prior-read rejection. These source assertions supplement the passed focused units; they still require Root's browser/DB execution.
 
-- `tests/e2e/my-day.e2e.spec.ts:415` — `15.6-E04`: covers AC2/7 actual week/date/target composition.
-- `tests/e2e/my-day.e2e.spec.ts:524` — `15.6-E06`: covers AC5 actual category-filtered continuation.
-- `tests/e2e/my-day.e2e.spec.ts:626` — `15.6-E09`: covers AC6 actual context reset and old-response rejection.
+- `tests/e2e/my-day.e2e.spec.ts:480` — `const dateError =`: checks the actual E04 validator role/text and both bounds.
+- `tests/e2e/my-day.e2e.spec.ts:527` — `15.6-E06`: covers AC5 actual category-filtered continuation.
+- `tests/e2e/my-day.e2e.spec.ts:629` — `15.6-E09`: covers AC6 actual context reset and old-response rejection.
 - `tests/integration/scheduling/my-day.int.test.ts:191` — `15.6-INT-09`: retains AC4 zero-job scans with a positive control.
 
-Evidence: author-checks.json records post-fix43focused passes, typecheck, affected lint, production build, containment and source parse, all native exits0. It retains pre-fix full Windows3479pass/one historical Linux-xattr skip separately. Limits: mocked unit transport is not RLS evidence;16SQL/9browser scenarios remain unexecuted here; Next16 serializes actions/REFRESH, so E03 uses real queued callbacks and E09 uses real NAVIGATE preemption rather than fabricated parallel transport. Independent context-free High Round2 follow-up passed and verified this trail; exact-head canonical lint/full DB-RLS/direct recovery/essential production browser remain pending. Exhaustive visual/manual matrices remain tracked release deferrals; no development-complete or release-ready claim.
+Evidence: author-checks.json records post-fix43focused passes, typecheck, affected lint, production build, containment and source parse, all native exits0. It retains pre-fix full Windows3479pass/one historical Linux-xattr skip separately. Limits: mocked unit transport is not RLS evidence. Root qualified the prior-head16newSQL passes and seven new browser passes alongside the two concrete failures described above; author did not execute runtime here. Fresh full required CI/E01/E04/smoke remain pending;52prior skips are not coverage; Next16 serializes actions/REFRESH, so E03 uses real queued callbacks and E09 uses real NAVIGATE preemption rather than fabricated parallel transport. Independent context-free High Round2 follow-up and the two distinct narrow actual-diff repair checks passed; exact-head canonical lint/full DB-RLS/direct recovery/essential production browser remain pending. Exhaustive visual/manual matrices remain tracked release deferrals; no development-complete or release-ready claim.

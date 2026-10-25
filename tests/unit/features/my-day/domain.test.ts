@@ -1,6 +1,6 @@
-/** Story 15.6 RED. Proposed pure seams: reconcile names before activation, retain
- * the literal behavior. Future production imports live only in skipped callbacks.
- * This suite does not implement a second date/state engine or claim passing cover.
+/** Story 15.6 production pure seams: date, map and request-state regression tests.
+ * Assertions exercise the approved behavior through actual production helpers.
+ * Pure checks do not claim database, browser or RLS execution coverage.
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";

@@ -35,6 +35,7 @@ const APPROVED_ACTIVE_NAV_ROUTES = [
   "/files",
   "/settings",
   "/scheduling",
+  "/my-day",
   "/time-reports",
 ].sort();
 

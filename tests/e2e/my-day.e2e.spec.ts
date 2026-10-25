@@ -477,7 +477,10 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(page.getByRole("button", { name: direction, exact: true })).toBeDisabled();
         await expect(selected).toHaveValue(boundary);
         await selected.fill(invalid);
-        await expect(page.getByRole("alert")).toBeVisible();
+        const dateError = page.locator("#my-day-date-error");
+        await expect(dateError).toHaveAttribute("role", "alert");
+        await expect(dateError).toBeVisible();
+        await expect(dateError).toHaveText("Välj ett datum inom det tillgängliga intervallet.");
         await expect(selected).toHaveValue(boundary);
         await expect(page.getByRole("heading", { name: "Min dag", exact: true })).toBeVisible();
       }

@@ -1,4 +1,4 @@
-/** Story 15.6 RED — actual future server adapter, mocked transport only (no RLS credit).
+/** Story 15.6 production server adapter, mocked transport only (no RLS credit).
  * Proposed binding: readMyDay({date,mode}, {client,isModuleActive,noticeLimit,
  * resolveCapability?}).
  * Dependency options are server/test-only, never action parameters or authority.
