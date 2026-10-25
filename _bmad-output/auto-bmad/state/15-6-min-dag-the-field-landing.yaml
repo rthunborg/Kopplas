@@ -8,10 +8,10 @@ story_source: sprint
 spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
-status: in-progress
-updated_at: "2026-10-25T14:37:42Z"
+status: done
+updated_at: "2026-10-25T15:43:28Z"
 started_at: "2026-10-25T08:33:08Z"
-completed_at: null
+completed_at: "2026-10-25T15:43:28Z"
 active_seconds: 20850
 timing_anchor: null
 is_first_in_epic: false
@@ -76,7 +76,7 @@ retro:
   verdict: null
   open_action_items: 0
 bmad_status_flipped_at: null
-pr_url: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/108"
 ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40192543175"
 ci_status: passed
 pr_merged: false
