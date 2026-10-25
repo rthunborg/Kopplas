@@ -209,3 +209,38 @@ P7harvest/epicreconcilepending.
 1. None.
 
 **Next:** P7canonicaldeferredharvest/no-op andearnedstate/landing;15.6unstarted.
+
+## Report — 2026-10-25T08:31:14Z (progress)
+
+**Story:** `15-5-personal-calendar-feed-adr-b004-surface-1` (epic 15, story 5) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\_bmad-output\implementation-artifacts\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `753b2ca`).
+**Pipeline status:** in-progress
+**Continues:** Story15.5 P7 complete; story15.6 planning next.
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 116h 12m (≈24h 18m AI-run, ≈91h 53m human/idle wait); resumed 6×.
+
+**Phases run:** P7 tail completed; phases0–7 complete.
+**Skipped:** P7 followup not required: recommendation false; no trace advisory selected.
+
+**Overrides:** No deployment. Merge only after independent review and all gates; retain branches.
+
+**TEA:** P6 AC1–9 covered by qualified existing tests; no additions.
+
+**Build:** done; canonical delivery gate passed, required95 passed.
+
+**Review:** Three broad rounds preserved; recommendation false; no fourth broad review.
+
+**Retrospective:** Epic-end pending.
+
+**Open questions:**
+1. none
+
+**Deferred work:**
+1. P7 harvest0; ledger unchanged; owned release validation remains deferred.
+not yet
+
+**⚠️ Needs human:**
+1. none
+
+**Next:** Prepare and independently validate story15.6 specification before build.

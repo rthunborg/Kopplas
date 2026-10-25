@@ -8363,3 +8363,40 @@ Pending.
 1. Noneforauthorizedcontinuation.
 
 **Next:** Complete15.5P7tail,thenprepare/validate15.6.
+
+## Report — 2026-10-25T08:31:26Z (progress)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `753b2ca`).
+**Pipeline status:** in-progress
+**Continues:** Story15.5 P7 complete; story15.6 planning next.
+
+**Summary:** Epic15: five of six stories landed in epic branch.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 379h 33m (≈77h 46m AI-run, ≈301h 47m human/idle wait); resumed 252×.
+
+**Stories:**
+1. 15.1–15.5 landed at review; 15.6 backlog.
+
+**Skipped:**
+1. none
+
+**Epic gate:** Pending E8; inherited15.2 review_unverified preserved.
+
+**TEA:** P6 AC1–9 covered by qualified existing tests; no additions. P7 followup not required; no trace advisory selected.
+
+**Retrospective:** Epic-end pending.
+
+**Overrides:** No deployment. Merge only after independent review and all gates; retain branches.
+
+**Open questions:**
+1. none
+
+**Deferred work:**
+1. P7 harvest0; ledger unchanged; owned release validation remains deferred.
+not yet
+
+**⚠️ Needs human:**
+1. none
+
+**Next:** Prepare and independently validate story15.6 specification before build.

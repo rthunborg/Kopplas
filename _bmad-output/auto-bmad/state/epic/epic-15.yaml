@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-25T08:26:32Z"
+updated_at: "2026-10-25T08:31:14Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 279694
-timing_anchor: 1792916792
+active_seconds: 279976
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -540,8 +540,9 @@ stories_landed:
   - 15-2-recurring-bookings-series-materialized-occurrences-exceptions
   - 15-3-conflict-resolver
   - 15-4-time-reporting-filing-timesheet-review
+  - 15-5-personal-calendar-feed-adr-b004-surface-1
 epic_slug: scheduling-time-calendar
-active_story: 15-5-personal-calendar-feed-adr-b004-surface-1
+active_story: 15-6-min-dag-the-field-landing
 stories_skipped: []
 ownership_reservation:
   branch: codex/epic-15-scheduling-time-calendar
@@ -4996,3 +4997,8 @@ p6_15_5_automate:
   tested_head: 019f21d1d484ebe02ab1ed00ace10e4eb0be4d36
   behavioral_source: cbe3e5d5f462b9be2a992bba56c4bf33b71706fe
   review_counter: 3
+p7_15_5_tail:
+  status: COMPLETED_LANDED
+  followup_passes: 0
+  inherited15_2_review_flag: preserved
+  sprint15_5: review_until_epic_batch_flip

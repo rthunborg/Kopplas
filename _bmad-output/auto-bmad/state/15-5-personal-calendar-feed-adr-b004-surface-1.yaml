@@ -9,11 +9,11 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-25T08:26:31Z"
+updated_at: "2026-10-25T08:31:14Z"
 started_at: "2026-10-20T12:18:56Z"
 completed_at: null
-active_seconds: 87239
-timing_anchor: 1792916791
+active_seconds: 87522
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
@@ -476,7 +476,7 @@ tea_selected: [atdd, automate]
 tea_rationale: "Hashed public tokens, rotation/revocation, externalfeed andcross-tenant abuseprotection requireHigh-riskATDD+automate; lastthreeno traceadvisory"
 epic_story_count: 6
 stories_after_in_epic: 1
-completed_phases: [0, 1, 2, 3, 4, 5, 6]
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
 spec_approved: true
 build:
@@ -487,7 +487,7 @@ build:
   deferred_count: 0
   warnings: [oversized]
 followup_passes: 0
-hitl_halt: null
+hitl_halt: "auto-continued (epic — no halt)"
 review_unverified: false
 story_trace: null
 legacy_review_resume: false
@@ -2625,3 +2625,10 @@ p6_automate:
   tested_head: 019f21d1d484ebe02ab1ed00ace10e4eb0be4d36
   behavioral_source: cbe3e5d5f462b9be2a992bba56c4bf33b71706fe
   review_counter: 3
+p7_tail:
+  status: COMPLETED
+  followup_gate: not_required_recommended_false
+  trace_advisory: not_selected
+  harvest: "0 harvested; ledger unchanged"
+  review_rounds_preserved: 3
+  source_and_dependency_changes: false
