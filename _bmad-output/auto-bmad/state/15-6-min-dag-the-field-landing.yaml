@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-25T14:13:07Z"
+updated_at: "2026-10-25T14:37:06Z"
 started_at: "2026-10-25T08:33:08Z"
 completed_at: null
-active_seconds: 20067
+active_seconds: 20850
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: 15.6-P5-build-run
-selected_role: build delegate
+selected_phase: tea_per_story
+selected_role: tea-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Implement checked personal RPC/tenant authorization, route permissions and server-confirmed time-report composition; ordinary presentation may use explicitLow nestedowner."
+escalation_reason: "Automatic sensitive-task escalation: authentication, security, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-build-plan\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Independent validation of own-person RPC authorization, mixed-role landing, pending-jobs no-query privacy seam and migration/tenant boundaries before build.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-spec-validation\",\"profile\":\"critical\",\"role\":\"independent specification validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -34,12 +34,13 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Mechanical CLI help/version and empty migrationfilename generation only after independentHighspecPASS; no SQL/schema/runtime/auth decision.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-migration-filename-generation\",\"profile\":\"light\",\"role\":\"preparation author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Acceptance scaffolds for own-person RPC authorization, tenant isolation, pending-job privacy, route permissions and persisted time-report integrity.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-P4-testarch-atdd\",\"profile\":\"standard\",\"role\":\"TEA\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Implement checked personal RPC/tenant authorization, route permissions and server-confirmed time-report composition; ordinary presentation may use explicitLow nestedowner.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-P5-build-run\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication, security, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Read-only triage: schedule-change notices and time-ordered bookings trigger scheduling risk."
 epic_story_count: 6
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2, 3, 4, 5]
+completed_phases: [0, 1, 2, 3, 4, 5, 6]
 spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-6-min-dag-the-field-landing.md"
 spec_approved: true
 build:
@@ -59,7 +60,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [4cf343c8, "84620996", aa4e3f9b, 118ebced, 1b49522d, b57de610]
+commits: [4cf343c8, "84620996", aa4e3f9b, 118ebced, 1b49522d, b57de610, 6c4268fb]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -137,3 +138,22 @@ atdd:
   runtime_services: 0
   result: "_bmad-output/auto-bmad/preparation/story-15-6/atdd-result.json"
   checklist: "_bmad-output/test-artifacts/atdd-checklist-spec-15-6-min-dag-the-field-landing.md"
+p6_automate:
+  ACs: "AC1–7 mapped to meaningful assertions"
+  tests_added: 0
+  tests_modified: 0
+  current_required_passes: 63
+  retained_required_passes: 95
+  core_browser_retry0: 23
+  separate_recovery: 1
+  tested_revision: b57de61075646820ce9cb5feff7fd054fd2f8320
+  run_id: 40192543175
+  model: gpt-6.1-sol
+  effort: high
+  reason: auth/privacy/RLS/time integrity
+  review_rounds_consumed: 0
+  runtime_network_git_effects: 0
+  prior_prefix_preserved: true
+  summary_bytes: 147540
+  summary_sha256: 33e67cbd6ba7a232b06ca132d1526705b69693b821d2570b429297dad060ea10
+  terminal_hook: empty
