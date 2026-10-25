@@ -4,7 +4,7 @@ type: feature
 created: '2026-10-19'
 status: done
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 baseline_revision: '85755eb7cea3affdc77dbe1d30bb18279b614c5a'
 story_key: '15-2-recurring-bookings-series-materialized-occurrences-exceptions'
 context:
@@ -186,6 +186,17 @@ Round 3 of 3 final configured review.
 
 No implementation/code review has run. Parent-owned independent specification validation is required before approval/build; no broad review round is consumed by this plan.
 
+### 2026-10-25 — Review pass (TARGETED post-cap P7 terminal closure/reuse)
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Independent gpt-6.1-sol High `/root/combined_epic15_closeout_high` executed the allocated latest-fix/remaining-serious-finding lane under AGENTS post-cap rules and October19 unchanged-review reuse. R3-01 correction7fbb279a and R3-02 implemented9d22c98c remain closed; completed25changed/28unchanged map and booking-editor-test seam23886158 are reused. The one identified uncovered dependency question was the later composed editor effective-flow bridge: exact BookingEditor/BookingEntry/action-state interval inspected; bounded historical series create/occurrence cancellation/exact retry/phone evidence reuse is supported, with current real command/RLS and common-series browser overlap. No new consequential defect, patch or scope gap found. Actual triage and reasoning: `_bmad-output/auto-bmad/preparation/epic-15/inherited-15-2-targeted-post-cap-p7-result.json`. This is one targeted follow-up after broad3/3, not a fourth broad round. Historical Round3 two medium patches/score6/TRUE remain unchanged below/above as recorded history; framework loop0 remains0. Root owns honest followup_passes2→3 bookkeeping.
+
 ## Design Notes
 
 Owner-authorized defaults (2026-10-15 design direction), grounded in approved recurrence scope: daily means calendar days; weekly uses selected ISO weekdays and biweekly uses the start date’s ISO Monday week as alternating anchor; monthly uses the start’s day-of-month and skips missing dates without clamping/drift. Count counts emitted occurrences and until is inclusive by local start date. Preserve the original local start/end clocks plus end-day offset, rather than elapsed UTC duration; all-day uses local midnight boundaries. Expansion is pure/no clock/no I/O. No tenant timezone UI; existing Stockholm helper is the current setting seam. Display these choices in concise editor help/preview so dates are predictable.
@@ -266,6 +277,10 @@ Current approved-kernel metadata: no15.2 approved kernel; canonical spec_approve
 Completion hook: planning exit only under docs/process/review-order.md. Future implementation author writes one final Suggested Review Order after actual source/evidence; no completed implementation trail is manufactured here. Development complete remains distinct from release ready/deployment approval.
 
 
+### 2026-10-25 — TARGETED post-cap terminal result
+
+Status: done. Actual independent High targeted P7/reuse verdict PASS;0new high/medium/low patches, score0 and followup_review_recommended=false under unchanged step04 computation. No product/source/test/contract change. Historical broad3/3, prior followups2 and Round3score6TRUE remain history; this actual targeted follow-up earns the new terminal recommendation, not CI or metadata alone. Framework review_loop_iteration0 is preserved. No intent_gap/bad_spec/defer/reject. Current source actually tested is b57de61075646820ce9cb5feff7fd054fd2f8320/run40192543175; Root bridge to metadatahead4ed86264 is Git-byte equality outside_bmad-output, not later-head execution.45exact focused/23REALcommand/5REALRLS/7SSR pass;51scaffolds0coverage. Current15.3-E2E002 common-series protected-row/split and003standalonephone/keyboardretry pass retry0; historical15.2 browser receipts retain bounded effective-flow reuse, never current execution labels. Old a40delivery retained byte-exact in preparation/epic-15/inherited-15-2-historical-delivery-a40a8ec4.json. Three release deferrals and release_readyfalse remain. Root delivery_gate/admission and final fresh-chat PR review/current-head CI are separate pending gates; no deployment/merge approval.
+
 ## Implementation Verification
 
 Current Round3 qualified exacta00 evidence —2026-10-20: independentHigh report `.env.epic15.mail-runtime/story-15-2-ci-a00dd595-independent/qualification-final.md` SHAabdf275966b5338f4bd631d720cd4648e646acea6b2c601efe5b1c52e09d5b7c, JSON2082dd02bb9e844e221e4f8954bed3a04dc6be6fbeba7db4a52700bc6174d930 and manifestcb44b2be2b2b87c07b586ddb562f7f018e605ac84941754394bec8e71a067b4d bind run39348312783/sourcea00. All5requiredjobs/11identitybindings pass;3004units/43process/fullDB1828P52S/RLS800P14S included/directStorage1P/empty107/all45namedfocuscases and requestedREAL023+RLS005 actualbodyreach qualified. Skips/optionaljobs supply no coverage.
@@ -302,15 +317,15 @@ Author: existing implementation/fix and verification delegate. Final Round3 sour
 
 AC2/3/8 keep the explicit drag/resize/reassignment proposal separate from stored defaults, show effective retained assignees, and reload current source ownership/version after stale preview or save. Draft values survive; receipt, review, reason, selection and unsent command identity reset, while missing metadata fails closed instead of becoming create authority.
 
-- `src/components/resources/BookingEditor.tsx:23` — `export function BookingEditor`: composes effective draft, admission and metadata recovery.
+- `src/components/resources/BookingEditor.tsx:26` — `export function BookingEditor`: composes effective draft, admission and metadata recovery.
 - `src/components/scheduling/SchedulingWorkspace.tsx:144` — `function edit(proposal: BookingProposal`: preserves explicit gesture fields separately.
 - `src/features/resources/booking-editor-input.ts:24` — `export function followingBookingDraft`: combines stored defaults with explicit proposal only.
-- `tests/unit/features/resources/booking-series-editor.test.ts:46` — `for(const origin of ["preview","save"]`: exercises actual TSX stale recovery through action ports.
+- `tests/unit/features/resources/booking-series-editor.test.ts:48` — `for(const origin of ["preview","save"]`: exercises actual TSX stale recovery through action ports.
 
 Round2 explicit following retry also reloads current ownership after generic denial, preserving draft and pending/unknown protection. Actual TSX action-port proof covers this routing; unchanged recovery/rendering has scoped prior GLK007 evidence.
 
-- `src/components/resources/BookingEditor.tsx:119` — `function retryPreview()`: reloads metadata on explicit following retry.
-- `tests/unit/features/resources/booking-series-editor.test.ts:77` — `Round2 explicit following preview retry`: proves denied retry preserves draft and uses current ownership.
+- `src/components/resources/BookingEditor.tsx:135` — `function retryPreview()`: reloads metadata on explicit following retry.
+- `tests/unit/features/resources/booking-series-editor.test.ts:79` — `Round2 explicit following preview retry`: proves denied retry preserves draft and uses current ownership.
 
 ### Nominal ownership and requested calendar dates stay distinct
 
@@ -318,22 +333,22 @@ AC1/4/5 honor forward requested starts and reject genuinely changed earlier coor
 
 - `src/features/resources/booking-series-actions.ts:62` — `export async function previewBookingSeriesAction`: checks public manager admission before signed planning.
 - `src/server/bookings/series-conflicts.ts:55` — `export function planBookingSeries`: separates rule start, nominal cutoff and lineage bounds.
-- `tests/unit/server/bookings/series-plan.test.ts:203` — `Round3 public preview and save envelope`: proves effective suffix admission through public preview and save.
-- `tests/unit/server/bookings/series-plan.test.ts:209` — `Round3 effective DST failure`: checks effective-date recovery and blocks preview/save finalization.
+- `tests/unit/server/bookings/series-plan.test.ts:216` — `Round3 public preview and save envelope`: proves effective suffix admission through public preview and save.
+- `tests/unit/server/bookings/series-plan.test.ts:222` — `Round3 effective DST failure`: checks effective-date recovery and blocks preview/save finalization.
 
 ### Effective references and forward SQL preserve historical assignment authority
 
 Round3 public preview checks the effective plan before issuing a receipt. An unused archived default must match signed source defaults; each retained row must match its original occurrence and role under SQL107. Trusted planner non-exception rows directly identify template use, including cancelled ordinary/new slots; protected/omitted historical exceptions require signed source IDs. This admits a newly copied historical tombstone while keeping ordinary inactive-template assignments denied. Following plans exclude unaffected prefixes before the predicate; whole-series shortening follows the same rule. Cookie-RLS role existence and all other reference relationships remain checked; missing defaults fail retention closed. Actual public-action tests cover protected exceptions/cancellations, active replacement defaults, new inactive/cancelled assignments, substitution and foreign references. The first-applied1800 migration is immutable. Forward220000 narrowly allows an unchanged existing protected work-role reference and enforces predecessor lower bounds on requested/effective rules plus every complete row; existing protected-payload equality, auth, locks, proof domains, replay, outcomes and audit remain intact. AC4/5/6 have historical effbf5e1/run39335595653 all22real command passes plus local106020-0221+2P;105 RED stays a failure.106 GitLF57e7 and frozenlocalCRLFc55 differ only in176line endings; neither is rewritten.
 
 - `src/features/resources/booking-series-actions.ts:29` — `async function validateEffectiveReferences`: checks defaults and rows against the same signed snapshot.
-- `tests/unit/server/bookings/series-plan.test.ts:228` — `Round3 R3-02 completeness`: covers thirteen public-action retention and assignment boundaries.
-- `tests/integration/commands/booking-series.int.test.ts:1066` — `15.2-INT-REAL-020`: pairs protected retention with inactive-new-assignment denial.
-- `tests/integration/commands/booking-series.int.test.ts:1089` — `15.2-INT-REAL-021`: tests real JWT signed-overlay denial and zero durable delta.
+- `tests/unit/server/bookings/series-plan.test.ts:241` — `Round3 R3-02 completeness`: covers thirteen public-action retention and assignment boundaries.
+- `tests/integration/commands/booking-series.int.test.ts:1076` — `15.2-INT-REAL-020`: pairs protected retention with inactive-new-assignment denial.
+- `tests/integration/commands/booking-series.int.test.ts:1099` — `15.2-INT-REAL-021`: tests real JWT signed-overlay denial and zero durable delta.
 
 Round2 forward107 additionally permits the unchanged existing role when an omitted ordinary slot first becomes cancelled. Same tenant/booking/original role remains mandatory; new inactive assignments and substitution deny. Native REAL023 passed in exacta515/run39342433474 through the checkedcommand/RPC with projectedpayload/replay/denial snapshots; not an isolatedrawSQL or blanketcancellationproof.
 
 - `supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql:21` — `and (b.is_exception`: admits same-occurrence historical role on cancellation.
-- `tests/integration/commands/booking-series.int.test.ts:1139` — `15.2-INT-REAL-023`: checks retention/replay and inactive-assignment negatives.
+- `tests/integration/commands/booking-series.int.test.ts:1149` — `15.2-INT-REAL-023`: checks retention/replay and inactive-assignment negatives.
 
 ### One current-facts transaction still owns conflicts and replay
 
@@ -342,12 +357,12 @@ AC3/6/7 continue using the sole detector over the complete proposed overlay and 
 - `src/server/bookings/series-attestation.ts:5` — `export const SERIES_ATTESTATION_DOMAIN`: separates batch proof authority.
 - `src/server/bookings/series-conflicts.ts:112` — `export function deriveSeriesConflicts`: derives whole-overlay associations through the sole detector.
 - `supabase/migrations/20261019180000_recurring_booking_series.sql:151` — `create function public.finalize_booking_series`: preserves the immutable first-applied transaction baseline.
-- `tests/integration/commands/booking-series.int.test.ts:847` — `15.2-INT-REAL-007`: proves last-stage failure rolls back all durable collections.
+- `tests/integration/commands/booking-series.int.test.ts:849` — `15.2-INT-REAL-007`: proves last-stage failure rolls back all durable collections.
 
 Round2 ready admission measures the exact compact p_plan TEXT sent to SQL before JSONB parsing. Later conflict-output validation has no aggregate byte cap, so JSONB whitespace cannot cause another size rejection. The boundary unit is synthetic serialization evidence, not a full SQL3MiB transaction. Effective decision SQL permits long logical IDs within transport/receipt limits.
 
 - `src/server/bookings/series-conflicts.ts:146` — `export function serializeBookingSeriesPlan`: applies SQL UTF8 bounds before ready/save.
-- `tests/unit/server/bookings/series-plan.test.ts:116` — `Round2 preview rejects`: exercises actual planner/preview over the complete oversized conflict plan.
+- `tests/unit/server/bookings/series-plan.test.ts:130` — `Round2 preview rejects`: exercises actual planner/preview over the complete oversized conflict plan.
 
 ### Match essential host proof to actual execution and unchanged dependencies
 
@@ -381,3 +396,6 @@ Six configured layers completed:3patches(2high1medium),2rejects,0intent/badspec/
 **Round 3 of 3**
 
 Final automatic configured review completed all six context-free layers before triage against ecb3f6d0b835388d73a81aadf8beec9f6f899469/frozen diffbc62fe746e4019ff012df67dda1be5d7c2078bd1bcd1214c0c683e3acd4a96b1. Two medium patches addressed, three low candidates rejected, zero intentgap/badspec/defer; weighted score6/followupTRUE. Current45focusedP/staticnative0 after R3-01 effective-date correction and R3-02 complete13case matrix (accepted-finding RED8P1F). InitialsourcePASS/trailqualification/obsolete3cCANCELLED/c533SUCCESShistory retained. ImplementedHigh9d22 and exacta00CIqualification2082 pass with disclosed1browserflake; Rootfinaldeliverygate/separate frozen-recordprovenance PASS and explicit status-only admission now establish developmentDONE only; immutablea40/85bfrozenrecords preserved. Specin-review. Broad3/3 is final; nonconvergence0 remains separate, no fourth broad pass.
+
+
+Targeted closeout evidence (2026-10-25): the existing authored review trail remains intact; new metadata author verified the composed editor effective-path reuse and records actual targeted score0/FALSE in preparation/epic-15/inherited-15-2-targeted-post-cap-p7-result.json. Earlier implementation author was not re-engaged; no earlier design rationale is reconstructed or relabelled author-written. Current45/23REAL/5RLS/7SSR plus scoped historical browser reuse are separate from release validation and final PR approval.
