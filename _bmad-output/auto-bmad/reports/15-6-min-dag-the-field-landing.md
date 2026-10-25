@@ -103,3 +103,38 @@ not yet
 **⚠️ Needs human:** (none)
 
 **Next:** P6 testarch-automate; P7 conditional follow-up gate/tail; E8 blocking trace, inherited15.2supporteddisposition, closing and final PR review.
+
+## Report — 2026-10-25T14:40:30Z (P6 and P7 complete; all six stories landed; epic gates pending)
+
+**Story:** `15-6-min-dag-the-field-landing` (epic 15, story 6) — last-in-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\_bmad-output\implementation-artifacts\spec-15-6-min-dag-the-field-landing.md`
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `71d219c`).
+**Pipeline status:** Story inner pipeline complete; sprint review; whole-epic acceptance/PR/merge pending
+**Continues:** True
+
+**Timing:** started 2026-10-25T08:33:08Z; completed in progress — elapsed 6h 07m (≈5h 47m AI-run, ≈19m human/idle wait); resumed 3×.
+
+**Phases run:** P6 testarch-automate and P7 gated tail; E5h landed once
+**Skipped:** Follow-up review gate false (recommendationfalse); trace advisory omitted under last3stories policy
+
+**Overrides:** No legacy oracle evidence; owner-authorized design defaults; one epicPR; no deployment; mergecommit/retainbranch only after required gates
+
+**TEA:** P6 AC1–7 mapped; no consequential uncovered gap;0testsadded. Reused actual63new+95retainedP with required0skip,23corebrowser retry0; separate recovery1P
+
+**Build:** Development complete under actual Root delivery gate; source b57de610/run40192543175. No source change in metadata commits
+
+**Review:** Two formal15.6rounds plus documented narrow checks retained;0newrounds; followuprecommendedfalse. Separate inherited15.2flagTRUE remains an epic predicate
+
+**Retrospective:** Epic retrospective pending
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Five release-validation obligations remain deferred with owners/evidence/next actions
+2. Two outside-core protocol flakes retained;52inheritedintegration skips carry zero coverage
+3. release_ready=false; required final PhaseB releasecheckpoint remains separate
+P7 harvest actual0; no ledger change
+
+**⚠️ Needs human:** (none)
+
+**Next:** Complete narrow15.2disposition with distinctHighvalidation, then E8trace/NFR/testreview/deferredreconcile/retro; final independent PR review/current checks and no-deploy containment before conditionalmerge

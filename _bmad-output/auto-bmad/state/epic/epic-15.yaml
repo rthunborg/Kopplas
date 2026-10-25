@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-25T09:14:25Z"
+updated_at: "2026-10-25T14:51:25Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 282121
-timing_anchor: 1792919665
+active_seconds: 301531
+timing_anchor: 1792939075
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: 15.6-P5-build-run
-selected_role: build delegate
+selected_phase: E8-combined-consequential-validation
+selected_role: independent targeted P7 and TEA closeout
 selected_profile: standard
 selected_model: gpt-6.1-sol
 selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Implement checked personal RPC/tenant authorization, route permissions and server-confirmed time-report composition; ordinary presentation may use explicitLow nestedowner."
+escalation_reason: "Distinct High validates current author assessment and genuine narrowP7 terminal disposition; sequential E8trace plus advisory NFR/testreview/reconcile using qualified evidence; no fourth broad or repeated census."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -463,12 +463,15 @@ routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Mechanical CLI help/version and empty migrationfilename generation only after independentHighspecPASS; no SQL/schema/runtime/auth decision.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-migration-filename-generation\",\"profile\":\"light\",\"role\":\"preparation author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Acceptance scaffolds for own-person RPC authorization, tenant isolation, pending-job privacy, route permissions and persisted time-report integrity.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-P4-testarch-atdd\",\"profile\":\"standard\",\"role\":\"TEA\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Implement checked personal RPC/tenant authorization, route permissions and server-confirmed time-report composition; ordinary presentation may use explicitLow nestedowner.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-P5-build-run\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Narrow closure of inherited review predicate using completed3of3 reviews/current native coverage and dependency provenance; sensitive recurrence authorization/transaction evidence; no fourth broad pass\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.2-final-metadata-disposition\",\"profile\":\"standard\",\"role\":\"author final-metadata/coverage disposition\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Coordinator relayed direct owner simplification: combine remaining trace,15.2metadata and advisory audits; actual recurrence authorization/RLS/privacy/transaction evidence High; distinct consequential validation and finalPRreview retained\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"E8-combined-closeout-author\",\"profile\":\"standard\",\"role\":\"TEA and bounded closeout author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Distinct High validates current author assessment and genuine narrowP7 terminal disposition; sequential E8trace plus advisory NFR/testreview/reconcile using qualified evidence; no fourth broad or repeated census.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"E8-combined-consequential-validation\",\"profile\":\"standard\",\"role\":\"independent targeted P7 and TEA closeout\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
 epic_story_count: 6
 stories_after_in_epic: null
-completed_phases: [0, 1, 2]
+completed_phases: [0, 1, 2, 5]
 spec_path: null
 spec_approved: true
 build:
@@ -548,8 +551,9 @@ stories_landed:
   - 15-3-conflict-resolver
   - 15-4-time-reporting-filing-timesheet-review
   - 15-5-personal-calendar-feed-adr-b004-surface-1
+  - 15-6-min-dag-the-field-landing
 epic_slug: scheduling-time-calendar
-active_story: 15-6-min-dag-the-field-landing
+active_story: null
 stories_skipped: []
 ownership_reservation:
   branch: codex/epic-15-scheduling-time-calendar
@@ -5009,3 +5013,10 @@ p7_15_5_tail:
   followup_passes: 0
   inherited15_2_review_flag: preserved
   sprint15_5: review_until_epic_batch_flip
+p7_15_6_tail:
+  status: COMPLETED_LANDED
+  followup_passes: 0
+  inherited15_2_review_flag: preserved TRUE
+  sprint15_6: review until qualified epic batch flip
+  source: b57de610
+  CI: 40192543175
