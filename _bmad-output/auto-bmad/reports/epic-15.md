@@ -8289,3 +8289,40 @@ none newly archived
 1. none; authorized work continues
 
 **Next:** prepare exact-source fresh finite NORMAL, old budgets closed;15.6 unstarted
+
+## Report — 2026-10-25T08:06:23Z (progress — 15.5 P5 complete)
+
+**Epic:** `15` — 6 stories.
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `019f21d`).
+**Pipeline status:** in-progress;15.1–15.4 landed;15.5 build gate complete with P6/P7 pending;15.6 unstarted
+**Continues:** yes; complete remaining story and epic gates
+
+**Summary:** Scheduling, time reporting and personal calendar delivery under approved Phase B contracts.
+
+**Timing:** started 2026-10-09T12:57:49Z; completed in progress — elapsed 379h 08m (≈77h 24m AI-run, ≈301h 44m human/idle wait); resumed 250×.
+
+**Stories:**
+1. 15.1–15.4 landed.15.5 exactrequired95 passed, author/delivery gates complete, P6/P7 pending.15.6 unstarted.
+
+**Skipped:**
+1. None.
+
+**Epic gate:** Not yet run; blocking epic trace and closing gates remain required.
+
+**TEA:** 15.5 P6 automate required; epic trace/NFR/test review remain separate.
+
+**Retrospective:** Pending epic end; Epic14 October8 accepted-with-open-items remains predecessor authority.
+
+**Overrides:** Sequential Auto-BMAD; independent review/cap3 preserved; owner-authorized design defaults; no legacy evidence or deployment.
+
+**Open questions:**
+1. Inherited15.2 review_unverified remains true pending its supported final disposition. Scoped observer/recovery/historical custody limits are preserved.
+
+**Deferred work:**
+1. No new15.5 deferred findings; release-validation items remain in canonical delivery.
+Epic reconcile/archive pending.
+
+**⚠️ Needs human:**
+1. No generic reapproval required; merge remains conditional on independent final review and all required checks.
+
+**Next:** Complete15.5 P6/P7, then prepare/validate15.6 before building; finish epic gates and final review.

@@ -60,7 +60,7 @@
 # use the current Epic 10 statuses and approved corrective-story entries below.
 
 generated: 2026-06-12
-last_updated: 10-21-2026 00:41  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
+last_updated: 10-25-2026 09:03  # ADR-B009 connected-field course correction verified; governance Story 10.7 done, no PWA/offline functionality delivered.
 project: Kopplas
 project_key: NOKEY
 tracking_system: file-system
@@ -259,7 +259,7 @@ development_status:
   15-2-recurring-bookings-series-materialized-occurrences-exceptions: review
   15-3-conflict-resolver: review
   15-4-time-reporting-filing-timesheet-review: review
-  15-5-personal-calendar-feed-adr-b004-surface-1: in-progress
+  15-5-personal-calendar-feed-adr-b004-surface-1: review
   15-6-min-dag-the-field-landing: backlog
   epic-15-retrospective: optional
 

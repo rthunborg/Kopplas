@@ -1,0 +1,144 @@
+{
+  "Outcome": "CONDITIONAL_PASS_TERMINAL_ADMISSION_RELATIVE_FILE_CALLER_AND_NEW_AUTHORITY_BRIDGE_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/terminal-admission-caller-path-independent-review.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "route": "Root650035/native0 explicit Sol6.1 High minimum independent caller/authority review",
+    "scope": "Only deterministic relative __file__/MAIN cwd/raw-helper caller and proposed explicit NEW authority versus immutable original DATA-envelope bridge. Prior17301/0a0569 operational review/all8 kernels retained; no broad round4 or additional collector/source family.",
+    "assessment": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/terminal-admission-caller-path-minimum-assessment.json",
+      "bytes": 17108,
+      "sha256": "42af0101226d42d66fc34c423747b53cfa8ff3d820dfbd24f9568e30ca19a3d2"
+    },
+    "basis": {
+      "reviewed_source_packet": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/reader.py",
+          "bytes": 52895,
+          "sha256": "ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+          "bytes": 220347,
+          "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/pure-controls.json",
+          "bytes": 3420,
+          "sha256": "5274c3ed4ac7eda33b51a5a1a5d2a8ee3794573758159e3eae9e737e70c63c25"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/manifest.json",
+          "bytes": 1519,
+          "sha256": "bc92bca530975e08a45acf5ccf00e624d7bf3dffc9dc4c25779e4cce8830161a"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/source-delta.json",
+          "bytes": 24546,
+          "sha256": "4243ae9f07dd7557c0ab0452430c529e88efe25e3808305c1c98031b664f7c5f"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/result.json",
+          "bytes": 16791,
+          "sha256": "3346b4ef685826a833c65f45d6cb610acf7bd9d4c81d3c6d27fce99821859147"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+          "bytes": 7281,
+          "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+          "bytes": 7495,
+          "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+        }
+      ],
+      "independent_source_review": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+        "bytes": 17301,
+        "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+      },
+      "original_closed_grant_envelope": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+        "bytes": 9579,
+        "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+      },
+      "capture_contract_envelope": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json",
+        "bytes": 1118,
+        "sha256": "298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6"
+      },
+      "actual_refusal": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-INT015-terminal-admission-path-refusal.json",
+        "bytes": 1936,
+        "sha256": "fae2f20b9503e945644a5c28911a0d6a3a00e72eba648864cf95c940d956aff5"
+      }
+    },
+    "verified_boundary": {
+      "actual_refusal": "d8ef4a/native1, helperline34 exact selfref equality before7Git/templates/proof/journal/activation/reader/GET; Root104a51 checked boundary.",
+      "helper_Git": 0,
+      "reader_invocations": 0,
+      "logical_GETs": 0,
+      "already_created": "Original accepted grant9579/2d7817 and capture1118/298a remain present and immutable. They are data inputs, not absent or renewed.",
+      "all8_future_outputs_absent": true,
+      "all8_sources_unchanged": true,
+      "original_remaining_slots": "CLOSED; no retry under original allocation",
+      "reviewer_verification": "13 exact source/review/grant/capture/refusal/assessment refs byte-pin checked; eight future output absences independently rechecked. No target helper/function/native/Git/API or synthetic code executed."
+    },
+    "caller_contract": {
+      "snippet": "os.chdir(MAIN)\nrelative_helper = '.env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py'\nassert Path.cwd().resolve() == Path(MAIN).resolve()\nraw = Path(relative_helper).read_bytes()\nassert len(raw) == 7281 and hashlib.sha256(raw).hexdigest() == 'c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6'\nexec(compile(raw, relative_helper, 'exec'), {'__file__': relative_helper, '__name__': '__main__'})\n",
+      "snippet_bytes": 463,
+      "snippet_sha256": "a2a836c52bf79b7580d58af3a1da901ac72359dae58074aa4f10d3ddc0518d73",
+      "qualification": "Exact raw7281/c2e2 helper bytes are hashed before compile; explicit os.chdir(MAIN) and resolved cwd assertion; compile filename and real exec __file__ are the exact repository-relative enrolled helper path, __name__ is __main__. Actual helper ref uses Path(__file__).as_posix without relativization, so this context satisfies its unchanged literal path component as well as byte pin. No runpy relative-path assumption, fake Path/ref/filesystem, normalization, guard relaxation or grant-loader spoof.",
+      "author_control_limit": "Two tiny synthetic RAM observations show explicit relative/absolute __file__ representation and co_filename; they do not execute actual helper, prove fresh filesystem/Git state, or qualify runtime success. Source inspection independently establishes ref behavior; no mirrored synthetic controls rerun."
+    },
+    "governance_assessment": {
+      "decision": "A fresh uniquely identified completed Coordinator allocation under existing standing owner authorization may expressly authorize this one new bounded attempt and enroll the original fixed envelope solely as immutable compatibility DATA. This is conditional contract qualification only; it does not issue that allocation or deem it already completed.",
+      "approved_basis": "Supplied AGENTS standing owner authorization permits similar independently reviewed bounded CI operations without repeat human approval, retaining exact ownership, actual completed allocation/source review and no blind retry under uncertainty. The original finite grant closes original slots. A different explicit new allocation must supply new slots; old completed fields/no_retry remain historical facts and cannot themselves authorize another invocation.",
+      "no_invented_policy": "No supplied approved rule requires every internal packet correlation/readOP or machine-recorded data-envelope ref to equal the fresh external authority ID. Therefore a separately evidenced external authority chain is permissible in principle. This conclusion does not waive closed-slot/no-retry semantics or authorize an inferred exception.",
+      "internal_labels": "Unchanged helper/reader/outer will retain original grant path/ref and readOPf27670b7. Those fields must be described as fixed data/correlation under new external authority, never as proof that original authority is active or that the generated records directly name the new allocation. No current-source or old-allocation alias/relabeling permitted.",
+      "why_no_source_rebind_required": "Known refusal preceded all7Git/templates/reader/GET effects and all exclusive future outputs remain absent; correction is caller representation only. Source/capture/parser/privacy/ZIP bounds remain exactly qualified. A new source family or literal rebind is not mechanically necessary when the explicit external bridge is accepted and evidenced."
+    },
+    "mandatory_new_authority_bridge": [
+      "Actual NEW completed Coordinator turn/tool, new unique authority/attempt ID and NEW immutable allocation/ref. Root must actually read the completed turn before any effect; explicit allocation must authorize unchanged-source reuse with old9579/2d7817 envelope and1118/298a capture as DATA, keep all original slots CLOSED, and grant only new bounded slots. This interpretation must be explicit, never inferred from this review/old grant.",
+      "NEW allocation pins current source review17301/0a0569, all8 unchanged source refs, assessment17108/42af010, this independent review, exact463-byte caller snippet/hash, raw7281 helper pin/cwd/__file__ convention, immutable target run40125241153/HEAD019f/sourcecbe3/normalOPee690878/CP7d700bbe and fixed readOPf276 only as correlation. Existing data/capture and exact output/hash scopes must be explicit.",
+      "Before helper execution create one NEW exclusive Root-attempt intent at a separately allocated unique path. Bind NEW allocation actualturn/tool/uniqueauthorityID and byte ref, old closed-data grant ref, source/review/helper/outer/capture refs, known-zero-effect refusal, exactcaller and rechecked absence of the8 future outputs. Do not overwrite original grant/capture/source/report, reset state, reuse old once intent/journal or refresh historical issue times.",
+      "Root must verify and retain the NEW allocation/intent linkage before the helper and again before the one outer/reader invocation. Outer intent/journal/activation produced by unchanged source mechanically refer to old data; preserve an explicit one-to-one NEW authority -> pre-effect Rootattemptintent -> actual helper tool/native closure -> generated fresh proof/journal/activation refs -> actual outer tool/native receipt/packet bridge. Do not infer this bridge from old internal allocation fields alone.",
+      "Only1 newly allocated helper invocation with7localGit metadata calls and fresh source75+workspace76 equality; only1 first reader invocation with<=5 NEW logicalGET slots. Fresh proof/activation<=300s/current guards, exclusive templates and exact75 future hash-only scope must qualify. Existing capture file is reused without rewrite. Any new refusal/partial/nonzero/uncertainty consumes NEW attempt and closes NEW unused slots; no automatic retry, reset, renewal or further approach.",
+      "After actual acquisition, independently qualify the NEW allocation/intent and exact actual helper/outer/host/inner capture refs together with generated records and packet before crediting evidence. If tool/native/EOF/join/handles/direct settlement or authority linkage is missing/ambiguous, withhold credit and close slots. Status strings/output presence alone are insufficient."
+    ],
+    "preserved_finite_scope": {
+      "Root_only": "No source author or reviewer effects. New allocation must cover actualRoot executor/unique owned scope.",
+      "helper": "7localGit20s/postreturn<2MiBstdout64KiBstderr; source75+workspace76 blob metadata; Root raw75/SQL0. No remote refresh or118rawscan.",
+      "reader": "Exactly1 isolated reader, <=5logicalGHGET for actual run archive/listing/3uniquely eligible fullintegration/browser/recovery ZIPs; no artifactIDs invented/optional/pagination/fallback/refetch/retry. Exact75 hash-only includes bootstrapSQL+two named migrations; compiler refs hash-only, no compiler.",
+      "capture": "Conserved inner15s loops/32MiBZIP-or4MiBlisting/64KiBstderr/wait2/twojoins1; ZIP4096/128MiB/ratio1000/16MiBselectedmember/CRC/name/schema guards. Outer180s/512KiB/64KiB/wait2/twojoins1, not a process-tree hardwall.",
+      "privacy": "RawRAM-only; deliberately retained stream/archive/member/artifact/source fingerprints and closed projections unchanged. source-label32768 only. No new retention exception.",
+      "host": "Actual fresh helper receipts and outer/inner native/EOF/join/handles/direct settlement plus Root outsidechunk/exit/wall/initialsession/waits, explicitly linked to NEW authority. No host facts fabricated here."
+    },
+    "strict_fallback": "If Coordinator refuses this explicit interpretation or an actual applicable contract requires every internal allocation/readOP to identify fresh authority directly, STOP for separately allocated minimal literal/data rebinding of the same source family to fresh paths/IDs. Do not patch guards, overwrite closed grant, spoof reads or automatically manufacture another collector. No such stricter requirement is established by the supplied contract.",
+    "normal_acceptance": 0,
+    "new_effect_authority": false,
+    "current_authority": "NONE; new completed allocation/attempt bridge do not exist in this review",
+    "native95": "UNQUALIFIED",
+    "IP_cleanup_direct_recovery": "UNKNOWN_UNQUALIFIED; historical custody not cleared",
+    "P5": "OPEN",
+    "broad_review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "no_merge_or_deployment": true
+  },
+  "Open questions": [
+    "Actual Coordinator must explicitly choose and complete the new-authority/data bridge route, or require the stated minimal literal-rebind fallback. No such new allocation is established by this review.",
+    "Current fresh Git/hash/native/acquisition/authority-to-packet linkage remain unobserved and must be qualified after separately authorized effects."
+  ],
+  "Deferred work": [
+    "Root presents this conditional review and minimum assessment for a new uniquely identified completed finite allocation with exact scope/pins/caller/output/bridge terms.",
+    "After actual completed allocation read, Root records exclusive new attempt intent and checks unchanged data/source pins and all8 output absences before any effect. Qualify actual new-authority/native/host/packet chain independently after acquisition."
+  ],
+  "Blockers": [
+    "Original grant and all its remaining slots are CLOSED; it provides no present authority. This review supplies no effects, retry or renewed slots.",
+    "A NEW explicit completed finite allocation and pre-effect exclusive Root-attempt authority linkage are mandatory before reuse. No concrete technical defect remains in the reviewed relative-file caller contract."
+  ]
+}

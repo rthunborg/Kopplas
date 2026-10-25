@@ -1,0 +1,270 @@
+{
+  "Outcome": "PASS_POST_INT015_NORMAL_V2_TERMINAL_METADATA_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-metadata-independent-qualification.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "route": "Rootdb5ccb/native0 explicit Sol6.1 High before handoff",
+    "scope": "Actual enrolled local terminal/operation/grant/provider/native/host metadata qualification only. Source/caller kernels reused from qualified15265/6245fcbf review. No fourth broad story review, source recertification, artifact or log acquisition.",
+    "basis": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-INT015-normal-v2-terminal-metadata-closeout.json",
+        "bytes": 1951,
+        "sha256": "d7e466eaa8a862201f0945246dec70e353eba66374b49727cea560cd34c955d3"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-observation-effects-allocation.json",
+        "bytes": 10380,
+        "sha256": "18e148182e02d6d2a723f2e4c06e3b97781a9ba9a76d64cc459b78d2037de0ef"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-current-source-proof.json",
+        "bytes": 61309,
+        "sha256": "c568278e5b6cd4feb0f559056d464c8a5749e3bd8a678e79eab397e5f3dbaaa3"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-operational-review.json",
+        "bytes": 15265,
+        "sha256": "6245fcbf89c6375b2d6c7574a47110c0c058c20e982de9b4a49f57b4025125e9"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-vercel-readonly-qualification.json",
+        "bytes": 30523,
+        "sha256": "e7f15245fe7fbe945f7b74b2f79fc6deb63bf10ab174fc7a8ab024f5dcea25fa"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-provider-host-attribution.json",
+        "bytes": 2603,
+        "sha256": "46fafbf22e32fb19f0b440730599fdee12a8663826a0854ffd878103e3258758"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-publish-and-resolve1-host-attribution.json",
+        "bytes": 8919,
+        "sha256": "a1e702242b92d25f5e53878b27f321f05b4fbed736215ff7207be4903ff61154"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-root-operation/operation.json",
+        "bytes": 873,
+        "sha256": "aaa2dd2fe79931b4862e7ec96dd3d6f2cc5dfe0c48afea6d6a3882bf0f60586f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-root-operation/terminal.json",
+        "bytes": 24085,
+        "sha256": "e526a9d254ddd0a407ead6d8137c70f8bd3cd1b5108a27947511f727291b9a8a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-root-outer/closed.json",
+        "bytes": 467,
+        "sha256": "1a9f2a460730757f4d24d08f3a950c2e42bf963edd8305ed484b78373260944f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-dispatch-state.json",
+        "bytes": 485,
+        "sha256": "6ec5b3b47bd3eb606f58bbe7daa9f9c8a27a69316fbac5903c1acfaa70c02bdb"
+      }
+    ],
+    "identity": {
+      "operation_id": "ee690878-b3e0-4e9f-9eba-5b5a293a2d4a",
+      "checkpoint_id": "7d700bbe-f620-4be5-b158-6c37f788266d",
+      "head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+      "source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+      "run_id": 40125241153,
+      "attempt": 1,
+      "branch": "codex/epic-15-scheduling-time-calendar",
+      "workflow_id": 296219797,
+      "repo": "rthunborg/Kopplas",
+      "actor": "rthunborg",
+      "triggering_actor": "rthunborg",
+      "event": "workflow_dispatch",
+      "mode": "normal",
+      "release_validation": false,
+      "cause_proof": false,
+      "original_int009": false
+    },
+    "grant_and_source": {
+      "completed_coordinator_turn": "01a16f5e-747d-7d70-97bd-2241214c71d6",
+      "completed_tool": "exec-9a5c7f46-bb96-4401-a91c-7f50ae3ca948",
+      "root_actual_completed_turn_read": true,
+      "qualification_limit": "Actual frozen grant records completed identity/tool and Root actual turn read, consistent with trusted Root handoff; reviewer did not replay Coordinator messages or execute source.",
+      "review": "Exact current independent source PASS15265/6245fcbf bound by accepted grant, helper proof, once intents and actual caller receipts; all9 reviewed_refs/new caller contract enrolled. Old69f/CPa68e slots remain CLOSED and unused.",
+      "fresh_source": "Actual helper2b46bf/native0 metadata records7 closed Git children, currentHEAD/branch/clean/localtracking/ancestry and two tree equality204;86 current nonmigration raw/LF admission including bootstrap SQL. This review only read proof metadata; no source86/118SQL bytes read or reconstructed.118 migration raw/LF vectors remain historical plus fresh Git metadata.",
+      "sourceproof_to_dispatch_accepted_upper_bound_seconds": 50.198638,
+      "provider_completed_to_dispatch_accepted_upper_bound_seconds": 42.837063,
+      "freshness": "Proof and provider completion precede accepted canonical dispatch by <=50.198638s/42.837063s, within300s and180s respective guards. Exact ISO strings used, including +02:00 conversion; no current-time freshness or future reuse asserted."
+    },
+    "provider": {
+      "actual_host_chunk": "68d340",
+      "host_native_exit": 0,
+      "host_complete_returned": true,
+      "host_tool_wall_seconds": 2.2365819,
+      "initial_session": null,
+      "wait_calls": 0,
+      "inner_elapsed_seconds": 1.9341,
+      "inner_stdout_bytes": 17938,
+      "inner_stderr_bytes": 0,
+      "outer_elapsed_seconds": 2.046305,
+      "outer_stdout_bytes": 1003,
+      "outer_stderr_bytes": 0,
+      "native_inner_outer_closure": "Both native0, complete physical EOF/readers done/joined/handles closed/direct process settled, no overflow/error/timeout. Outer60s/inner15s loops satisfied, with established wait/join tails.",
+      "status": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT",
+      "logical_GETs": 1,
+      "provider_writes": 0,
+      "limits": "Qualification exactHEAD/CP plus provider intent/caller chain bind current operation; no invented source/operation fields on provider qualification. All fixed project/team/repository identity checks true. Point-in-time owned-feature-branch ordinary Git-push containment only; not proof main/manual/CLI/production deployments disabled."
+    },
+    "publication": {
+      "actual_host_initial_chunk": "42eba4",
+      "initial_session": 6210,
+      "wait_chunks": [
+        "4afc3c"
+      ],
+      "final_host_native_exit": 0,
+      "caller_elapsed_seconds": 17.342466,
+      "caller_loop_seconds": 400,
+      "remote_before": "Expected eadd1436c7d807e19ef19838d2896c35abba2238 and exact refs/heads branch vector independently reconstructed in RAM and matched retained stdout byte count/SHA.",
+      "push": "One nonforce FF push, actual native0 closed receipt; current019f target independently bound by conserved driver guard, readback fingerprint and canonical state.",
+      "remote_readback": "Exact019f21d1d484ebe02ab1ed00ace10e4eb0be4d36 branch vector byte count/SHA independently matched.",
+      "canonical": "One canonical Node native0/category null/full closure; exact canonical dispatched state485/6ec5b3b47bd3eb606f58bbe7daa9f9c8a27a69316fbac5903c1acfaa70c02bdb binds repo/ref/HEAD/CP/workflow/actor/normal and false flags. Canonical state run_id remains null by design; actual resolver separately registers40125241153.",
+      "host_wall_limit": "Initial10.0009496s+wait4.6401225s are reported tool wait intervals only, not an end-to-end elapsed substitute for caller17.342466s. Host session was actually settled by final native0."
+    },
+    "resolution_polling": {
+      "resolver_host_chunk": "4b46e9",
+      "resolver_native_exit": 0,
+      "resolver_count": 1,
+      "resolver_caller_elapsed_seconds": 1.253461,
+      "poll_count": 25,
+      "poll_observations_verified": 25,
+      "poll_host_records_verified": 25,
+      "all_caller_receipts_verified": 28,
+      "all_once_intent_refs_verified": true,
+      "current_tuple_consistent": true,
+      "poll_caller_count_labels_verified": "Exact001..025 match safe_result counts and run40125241153; all caller transport closures0/null/completeEOF/joined/closed/settled, all actual poll host final exits0.",
+      "min_observation_spacing_seconds": 46.869974,
+      "cooldown": "All consecutive observed_at gaps>=30s; exact next count/once/cooldown driver guards conserved. No resolver cooldown repetition because only one resolver.",
+      "immutable_started_at": "2026-10-24T19:25:32.043936+00:00",
+      "stopped_at": "2026-10-24T19:46:05.135517+00:00",
+      "publish_to_stop_seconds": 1233.091581,
+      "within_operation_budget_seconds": 5400,
+      "timestamp_precision": "Exact ISO strings extracted from frozen JSON for arithmetic. Initial convenience ConvertFrom-Json date coercion rounded subsecond display; corrected read-only exact-string calculation reproduces Root values. No evidence rewritten.",
+      "terminal_equals_observation25_raw_bytes": true
+    },
+    "terminal": {
+      "run_status": "completed",
+      "run_conclusion": "success",
+      "operation_phase": "ROOT_STOPPED",
+      "all_jobs_terminal": 9,
+      "required_success": 5,
+      "optional_skipped": 4,
+      "jobs": [
+        {
+          "id": 120965145075,
+          "name": "checkpoint-admission",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120965162425,
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120965675157,
+          "name": "recovery-storage-loader",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120965675161,
+          "name": "e2e",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120965675164,
+          "name": "db",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120965676554,
+          "name": "dashboard-e2e",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "id": 120967524777,
+          "name": "fixed-chromium-application-verification",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "id": 120967524955,
+          "name": "fixed-chromium-paired-probe",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "id": 120967525460,
+          "name": "native-stream-probe",
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "verified_steps": "verify audit/type/lint/unit/build and db Integration/RLS step11, e2e essential smoke and recovery-loader proof step14 are successful step metadata. This establishes step/job outcome only, not case cardinality, assertion coverage, direct recovery artifact validity or cleanup.",
+      "skipped_limits": "Four optional jobs and skipped exhaustive browser/cause-proof steps receive zero coverage. Three optional skipped job API start times are one second later than completion times; preserved as received, no duration or execution inferred."
+    },
+    "closure_and_counts": {
+      "outer_closed_terminal": true,
+      "all_remaining_slots_closed": true,
+      "no_retry": true,
+      "unused_resolver_slots_closed": 5,
+      "unused_poll_pairs_closed": 65,
+      "remaining_effect_slots": 0,
+      "unused_label_intents_receipts_absent": true,
+      "controller_captured_children": 265,
+      "controller_formula": "214 publication+1resolver+50pollGET=265. Publication214 includes209 localproof+1remoteURL+3remoteGit+1canonicalNode; those first210 are source-backed successful-driver guard accounting, not210 separately persisted per-child receipts.",
+      "individually_retained_controller_closed_native_receipts_verified": 55,
+      "retained_controller_receipt_formula": "3remoteGit+1canonical+1resolver+50pollGET=55 individually read and closure-checked receipts.",
+      "helper_Git_separate": 7,
+      "provider_CLI_separate": 1,
+      "layered_outer_captures": 28,
+      "layered_formula": "1provider+1publish+1resolver+25poll=28 actual caller receipts",
+      "logical_resolver_poll_GETs": 51,
+      "canonical_internal_GETs": 4,
+      "canonical_POSTs": 1,
+      "provider_logical_GETs": 1,
+      "repository_variable_mutations": 0,
+      "physical_HTTP_or_process_tree_count": "UNKNOWN",
+      "Root_count_correction": "Frozen closeout truthfully preserves earlier27 arithmetic mistake and correction to28 before review; actual28 filenames/receipts verified, no source/effect change or new invocation."
+    },
+    "evidence_limits": {
+      "metadata_only": true,
+      "artifact_GETs": 0,
+      "case_evidence_qualified": 0,
+      "native95_qualified": false,
+      "normal_acceptance": 0,
+      "IP_pipe_rendered_form": "UNKNOWN for this new run until separately granted native evidence acquisition; no current first-emitter/cause/benignity/request-linkage inference.",
+      "custody": "Job/step success, stack stop and job-ended metadata do not prove current key deletion/backend rollback/physical destruction. Current native cleanup/custody unqualified pending separate evidence. Historical399982 retained/unverified custody is not cleared; prior run40109869919 93P/API019F/API020unexecuted remains historical.",
+      "retention": "Only enrolled fixed metadata and intentionally retained fingerprints/closure fields read; no raw body/log/ZIP/artifact/SQL/secret payload or DEBUG read."
+    },
+    "reviewer_activity": "Read frozen finite grant/proof/provider/host/operation/canonical/terminal metadata and exact bounded28caller/25host/25observation/55controller closure receipts; verified refs, identity, counts, expected fingerprint vectors, exact timestamps and unused-label absence in RAM. Created only this report. No source/helper/caller/native/Git/API/resources or acquisition executed.",
+    "P5": "OPEN",
+    "broad_review_counter": 3,
+    "story15_6": "UNSTARTED",
+    "no_merge_or_deployment": true
+  },
+  "Open questions": [
+    "Current95 executed/pass/fail/skipped breakdown, native per-case evidence and source-label/IP pipe/form remain unqualified without separate acquired packet.",
+    "Current cleanup/custody and direct recovery artifact proof remain unqualified; historical unresolved custody is preserved."
+  ],
+  "Deferred work": [
+    "Root reads this frozen metadata qualification; separately allocate preparation and independent review of an exact terminal evidence reader for this immutable run/HEAD/source/CP/operation, then a new finite acquisition grant.",
+    "Qualify the acquired native packet before claiming95 coverage, acceptance, P5 completion or custody closure. No remaining observation slots or retries are available."
+  ],
+  "Blockers": [
+    "No concrete blocking discrepancy found in the enrolled actual terminal metadata/closure chain.",
+    "Metadata PASS is not native95/CI acceptance/P5/delivery/merge/deployment authorization; separate evidence and applicable gates remain required."
+  ]
+}

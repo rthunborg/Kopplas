@@ -1,0 +1,80 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "STAGE1 P5 evidence record only. Preserve approved kernel0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977, OwnerFacts and all consequential public-token/lifecycle/tenant-isolation/rate-limit/cleanup gates. Independent current evidence qualifies95P0F0skip0pending0unexecuted (Node30+DB51+browser14), separate isolated recovery1P and scoped current DB/browser key deletion. Observer settlement/slot completeness/current IP pipe/form/first-emitter cause remain UNKNOWN; no current refusal or repair causation is invented. Prior40109869919 remains93P/API019failed/API020pending-unexecuted with retained DBcustody, and399982 facts remain historical. Current success neither erases them nor creates a perpetual historical physical-deletion gate. The Oct19 policy defers exhaustive visual/manual/browser release validation, not consequential functional/security/integrity failures. Approved Oct23 DESIGN/EXPERIENCE/derived PhaseB UX annex remain current visual/shared-experience authority; this handoff adds no design-migration scope. Spec status and AutoRunResult remain in-review, counter3/recommendationfalse/deferred findings0. Root canonical delivery_gate and targeted metadata/provenance check precede separately allocated STAGE2 P5 build-terminal authoring. That build-terminal signal is distinct from remaining selected P6automate/P7tail and final story/epic/release disposition; neither later phase starts here. CI40125241153 testedHEAD019f21d1d484ebe02ab1ed00ace10e4eb0be4d36/sourcecbe3e5d5f462b9be2a992bba56c4bf33b71706fe. This later spec/delivery metadata is not CI-tested at a future commit. Root must record its later metadata revision/diff separately and verify unchanged relevant source/dependencies before reusing CI; no unchanged-source CI rerun is claimed or required merely to decorate this record. Canonical copied evidence and manifest mapping preserve original nested refs without rewriting copies.",
+  "evidence_revision": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+  "development_checks": [
+    {
+      "name": "Exact-head CI audit, static checks and production build",
+      "status": "passed",
+      "evidence": "https://github.com/rthunborg/Kopplas/actions/runs/40125241153 tested the evidence_revision with sourcecbe3e5d5f462b9be2a992bba56c4bf33b71706fe. _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-metadata-independent-qualification.json Status.terminal.verified_steps records successful verify audit/type/lint/unit/build; _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/run-archive-projection.json retains selected-step outcomes/fingerprints. Current clean CI success does not rewrite historical local full-lint failure."
+    },
+    {
+      "name": "Required Node story cases",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json Status.required95.Node independently qualifies30 distinct required positive IDs;32markers deduplicate R1-06/R1-07. Global3445P/0F/0skip/0cancel/0todo is separate, not another3445 story passes."
+    },
+    {
+      "name": "Required full integration, RLS, API and component lane",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json Status.required95.DB_RLS and _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/native-full-integration-projection.json qualify51 exact native leaves: INT15/RLS12/API20/COMP4, zero missing/failed/skipped/pending/unexecuted. API019 passed3077.960116999995ms;API020 passed3147.5969729999924ms. Global2182total/2130passed/header52pending versus flattened52skipped remain distinct; skipped records confer0coverage. No historical cases carried forward."
+    },
+    {
+      "name": "Essential browser flow",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json Status.required95.essential_browser and _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/native-general-browser-projection.json qualify14 exact IDs, each one retry0 passed attempt, no flaky/failure/missing case. Global56expected includes42other smoke and does not enlarge95."
+    },
+    {
+      "name": "Direct isolated recovery-storage integrity",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json Status.direct_recovery and _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/native-isolated-storage-recovery-projection.json qualify1 actual passed assertion outside95, exact tests/integration/ops/recovery-storage-immutability.int.test.ts source binding, artifact12573081352/member digestffddfe3ed25ba119e0d7a73e8db33a82ed2fbc2c77460f2184ad45bc77ba1c4b. Integration-lane skipped recovery gives0credit. Individual assertion flags/recovery-key tuple were not retained; removal-step success is not physical deletion or unrelated-key settlement."
+    },
+    {
+      "name": "Current scoped runtime-key cleanup and closure",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json Status.current_cleanup_and_custody qualifies current DB/browser keyDeleted=true/keyOutcome=deleted-confirmed/custody_retained=false/dbClosed=true/failure_count0/diagnostic_count0; DBchildren[0,0],browser[0]. This is scoped runtime-key closure, not arbitrary rollback/physical-host destruction, and does not clear prior40109869919/399982 historical custody."
+    },
+    {
+      "name": "Focused reporting-source and checkout-portability checks",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/crlf-followup-pass.json (9373bytes/SHA256e46f51b28f65bea738f3062a7a72b04d073cac41d309ec59a88b655569c2b81e) records final focused2P/0F, affected unit201P/0F/0skip/0cancel, TypeScript0 and scopedlint0 with3unchangedwarnings. Reused actual source-verification evidence, not rerun tests or additional required95 cases."
+    },
+    {
+      "name": "Closed evidence and execution-authority integrity",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json Status.authority_bridge/packet_integrity/transport independently qualifies NEWauthority→actual helper/outer→20packet; original allocation refs remain closed compatibility DATA only. _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/manifest.json (28843bytes/SHA2564af53f3c1727b3ebb10f6a78905ae30fcb3b06eae53cca1364f7825d21994684) maps39byte-exact closed JSON records. All original/new observation and acquisition slots CLOSED; raw logs/ZIP/capabilities not exported."
+    },
+    {
+      "name": "Stage1 author review-trail reference check",
+      "status": "passed",
+      "evidence": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md — actuale9ff08/native0,240references,errors[]. Initialad598d/native1 identified5stale SRO line numbers among234references; only those5 were corrected and6portable current-evidence stops appended. Read-only story_plan.py --spec returned native0/statusin-review (84178b); unchanged frontmatter separately verifies counter3/recommendationfalse. No source/test/runtime/CI/Git/API execution or canonical delivery_gate run."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Three completed broad story rounds remain capped at3. Current bounded source correction has independent High PASS in _bmad-output/auto-bmad/preparation/story-15-5/int015-annotation-source-closeout/crlf-followup-pass.json; current native evidence has independent High findings[] qualification in _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json (30202bytes/SHA2566b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f). These passed reviews cover unchanged source/current evidence. Root targeted review of this new SRO/delivery metadata delta remains pending before STAGE2; this record claims neither that review nor a fourth broad review."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive role/device/browser matrices beyond essential14 smoke",
+      "owner": "Kopplas release-validation coordinator",
+      "status": "deferred",
+      "evidence": "Run40125241153 used release_validation=false: required14browser+42other smoke passed;4optional jobs skipped with0coverage. Exhaustive combinations were not executed; _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json preserves limits.",
+      "next_action": "On a separately qualified and authorized release candidate, enumerate and execute remaining role/device/browser combinations, retain results and resolve consequential defects before release readiness."
+    },
+    {
+      "item": "Screenshot comparison, representative manual visual/accessibility walkthrough and polish",
+      "owner": "Kopplas release-validation coordinator",
+      "status": "deferred",
+      "evidence": "No screenshot/manual/visual pass claimed. Essential usable-flow evidence remains qualified separately. Authority: _bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md, EXPERIENCE.md and incorporated derived PhaseB UX annex.",
+      "next_action": "Before release readiness, retain screenshot and representative viewport/manual/accessibility validation against approved authority. Consequential functional/accessibility defects remain development blockers, not polish."
+    },
+    {
+      "item": "Release-operator hosted feed enablement and release/deployment approval",
+      "owner": "Kopplas release operator",
+      "status": "deferred",
+      "evidence": "Approved intent requires separately authorized dedicated key/Vault/runtime and trusted-IP evidence for hosted enablement. Current isolated CI runtime-key qualification supplies no production enablement or release/deployment approval.",
+      "next_action": "Before hosted feed enablement, obtain existing separate release/deployment approvals and qualify dedicated target key/Vault/runtime/trusted-IP configuration; retain operator evidence rather than infer it from CI."
+    }
+  ],
+  "release_ready": false
+}

@@ -1,0 +1,107 @@
+{
+  "Outcome": "PASS_STAGE2_BUILD_TERMINAL_METADATA_ONLY",
+  "Files changed": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 276780,
+      "sha256": "7573f7cf8724b1606b54a7a98131ab792c640d50316aa83d53895d1f584e0014",
+      "changes": [
+        "Frontmatter status: 'in-review' -> 'done'.",
+        "Original ## Auto Run Result -> ## Historical Auto Run Result — retained snapshot; all original snapshot body bytes unchanged.",
+        "Append 1926 raw bytes containing one current canonical ## Auto Run Result, Status done/Blocking condition none, current qualified evidence and explicit P6/P7/release limitations."
+      ]
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-stage2-author-result.json",
+      "role": "This six-field author result; own hash reported externally to avoid circular self-pinning."
+    }
+  ],
+  "Status": {
+    "route": "Root1e465c/native0 explicit Sol6.1 High Stage2 metadata-only assignment",
+    "parsed": {
+      "status": "done",
+      "auto_run_result": {
+        "present": true,
+        "status": "done",
+        "blocking_condition": null
+      },
+      "review_loop_iteration": 3,
+      "followup_review_recommended": false,
+      "deferred_count": 0,
+      "warnings": [
+        "oversized"
+      ],
+      "parse_warnings": [],
+      "error": null
+    },
+    "checks": [
+      {
+        "kind": "existing SRO freshness check",
+        "chunk_id": "3c48e2",
+        "wall_time_seconds": 0.2046691,
+        "exit_code": 0,
+        "original_token_count": 65,
+        "output": "{\n  \"reports\": [\n    {\n      \"filePath\": \"_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md\",\n      \"sectionPresent\": true,\n      \"mode\": \"full-trail-candidate\",\n      \"refsCount\": 240,\n      \"errors\": []\n    }\n  ]\n}\n"
+      },
+      {
+        "kind": "existing read-only story_plan --spec",
+        "chunk_id": "5411ac",
+        "wall_time_seconds": 0.2256677,
+        "exit_code": 0,
+        "original_token_count": 84,
+        "output": "{\r\n  \"status\": \"done\",\r\n  \"warnings\": [\r\n    \"oversized\"\r\n  ],\r\n  \"native_exit\": 0,\r\n  \"auto_run_result\": {\r\n    \"present\": true,\r\n    \"status\": \"done\",\r\n    \"blocking_condition\": null\r\n  },\r\n  \"parse_warnings\": [],\r\n  \"deferred_count\": 0,\r\n  \"error\": null,\r\n  \"followup_review_recommended\": false,\r\n  \"review_loop_iteration\": 3\r\n}\r\n"
+      }
+    ],
+    "preservation": {
+      "method": "Remove exactly the 1926-byte terminal append and reverse only the two unique pre-existing line changes; reconstructed Stage1 spec exact bytes/hash. No parser code changes.",
+      "stage1_bytes": 274826,
+      "stage1_sha256": "3c9a0ca43b029053cc55c6742ee0f441b4ebc813a958afeb62d38c3c288ba35d",
+      "exact_inverse": true,
+      "approved_kernel_unchanged": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "intent_contract_bytes": 5786,
+      "intent_contract_sha256": "36d72b84f57420d15fa9ffcd2500cf3b7948fafe82277419e7ed9cc52e111950",
+      "OwnerFacts_and_historical_failures": "All original bytes unchanged except the expressly renamed historical ARR heading; the old 68P failure snapshot body remains byte-exact.",
+      "SRO": "Exactly one; entire approved Stage1 SRO bytes and existing line numbers unchanged; 240 refs/error[].",
+      "other_frontmatter": "Exact unchanged except status."
+    },
+    "gate_basis": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-final15-5-stage1-delivery-gate.json",
+      "bytes": 939,
+      "sha256": "c4936f8e62cea2b04c89eb231f79957c18851156ee03cb1e0c42cb38e3440752",
+      "actual": "Root970749/native0",
+      "result": {
+        "ok": true,
+        "development_complete": true,
+        "errors": [],
+        "approval_granted": false
+      },
+      "author_did_not_execute_gate": true
+    },
+    "independent_stage1": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-stage1-delivery-independent-review.json",
+      "bytes": 11618,
+      "sha256": "548ddcc2ca694bd72d99577982de33266b90be5a2418f1b2bac575c6d5fd5eb4",
+      "independent": true,
+      "findings": []
+    },
+    "canonical_delivery_unchanged": {
+      "path": "_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json",
+      "bytes": 10984,
+      "sha256": "e02e2ffebdac2f93e5ff58871cc6273730793cfeb50cf1d474c9837460a83d44",
+      "release_ready": false
+    },
+    "tested_head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+    "behavioral_source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+    "CI_run": 40125241153,
+    "later_metadata_provenance": "This edit is later metadata; no claim that its future commit was CI-tested.",
+    "effects": "Only allowed spec/result writes and bounded read-only existing validators. No Git, delivery gate, code/test build, CI, runtime, API, resources or other file writes."
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root owns subsequent earned P5 state/Git/bookkeeping transitions.",
+    "P6 automate and P7 tail pending; no P6 execution under this task.",
+    "Sprint/story final bookkeeping and Epic15 completion remain separate; 15.6 unstarted.",
+    "Release_ready=false; no release approval, merge or deployment."
+  ],
+  "Blockers": []
+}

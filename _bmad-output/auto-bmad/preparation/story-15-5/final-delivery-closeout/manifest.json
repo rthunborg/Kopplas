@@ -1,0 +1,81 @@
+{
+  "schema": "ROOT_FINAL15_5_AUTHOR_GATE_CLOSED_EVIDENCE_V1",
+  "copies": [
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-delivery-author-result.json",
+        "bytes": 7468,
+        "sha256": "5182b9ac4c752c33d2376c0ad3309bcaf9db5ee1d69f1acd9dc37ceea3f70fc0"
+      },
+      "repository_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/final-delivery-closeout/final15-5-delivery-author-result.json",
+        "bytes": 7468,
+        "sha256": "5182b9ac4c752c33d2376c0ad3309bcaf9db5ee1d69f1acd9dc37ceea3f70fc0"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-final15-5-stage1-delivery-gate.json",
+        "bytes": 939,
+        "sha256": "c4936f8e62cea2b04c89eb231f79957c18851156ee03cb1e0c42cb38e3440752"
+      },
+      "repository_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/final-delivery-closeout/root-final15-5-stage1-delivery-gate.json",
+        "bytes": 939,
+        "sha256": "c4936f8e62cea2b04c89eb231f79957c18851156ee03cb1e0c42cb38e3440752"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-stage1-delivery-independent-review.json",
+        "bytes": 11618,
+        "sha256": "548ddcc2ca694bd72d99577982de33266b90be5a2418f1b2bac575c6d5fd5eb4"
+      },
+      "repository_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/final-delivery-closeout/final15-5-stage1-delivery-independent-review.json",
+        "bytes": 11618,
+        "sha256": "548ddcc2ca694bd72d99577982de33266b90be5a2418f1b2bac575c6d5fd5eb4"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-stage2-author-result.json",
+        "bytes": 5411,
+        "sha256": "1213158b1a3a0084517074f192e03fe9106664f8174ce2f4c643c8bdcb3a54e7"
+      },
+      "repository_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/final-delivery-closeout/final15-5-stage2-author-result.json",
+        "bytes": 5411,
+        "sha256": "1213158b1a3a0084517074f192e03fe9106664f8174ce2f4c643c8bdcb3a54e7"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-stage2-independent-followup.json",
+        "bytes": 6539,
+        "sha256": "08e941c7229b487ee1117bfa1be627805a6bfbc3057a54d3c3817b5adcd05ebf"
+      },
+      "repository_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/final-delivery-closeout/final15-5-stage2-independent-followup.json",
+        "bytes": 6539,
+        "sha256": "08e941c7229b487ee1117bfa1be627805a6bfbc3057a54d3c3817b5adcd05ebf"
+      }
+    }
+  ],
+  "byte_exact": true,
+  "scope": "Stage1canonicalgate+independenttruth/SROcheck andStage2terminalmetadatapreservation. No broadreview4, effects orreleaseapproval.",
+  "tested_HEAD": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+  "behavioral_source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+  "canonical_delivery": {
+    "path": "_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json",
+    "bytes": 10984,
+    "sha256": "e02e2ffebdac2f93e5ff58871cc6273730793cfeb50cf1d474c9837460a83d44"
+  },
+  "current_build_spec": {
+    "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "bytes": 276780,
+    "sha256": "7573f7cf8724b1606b54a7a98131ab792c640d50316aa83d53895d1f584e0014"
+  },
+  "current_release_ready": false,
+  "P6_P7": "PENDING"
+}

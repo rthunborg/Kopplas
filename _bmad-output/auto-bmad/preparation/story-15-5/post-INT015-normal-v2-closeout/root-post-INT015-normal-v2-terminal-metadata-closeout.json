@@ -1,0 +1,48 @@
+{
+  "schema": "ROOT_POST_INT015_V2_TERMINAL_METADATA_CLOSED_V1",
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-root-operation/terminal.json",
+    "bytes": 24085,
+    "sha256": "e526a9d254ddd0a407ead6d8137c70f8bd3cd1b5108a27947511f727291b9a8a"
+  },
+  "operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-root-operation/operation.json",
+    "bytes": 873,
+    "sha256": "aaa2dd2fe79931b4862e7ec96dd3d6f2cc5dfe0c48afea6d6a3882bf0f60586f"
+  },
+  "outer_closed": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-observation-root-outer/closed.json",
+    "bytes": 467,
+    "sha256": "1a9f2a460730757f4d24d08f3a950c2e42bf963edd8305ed484b78373260944f"
+  },
+  "native_host_poll_records": 25,
+  "resolver_GETs": 1,
+  "poll_pairs": 25,
+  "controller_captured_children": 265,
+  "helper_Git": 7,
+  "provider_CLI": 1,
+  "layered_outer_captures": 28,
+  "logical_controller_resolver_poll_GETs": 51,
+  "canonical_internal_GETs": 4,
+  "canonical_POSTs": 1,
+  "provider_logical_GETs": 1,
+  "physical_HTTP_or_process_tree_count": "UNKNOWN",
+  "unused_resolver_slots_closed": 5,
+  "unused_poll_pairs_closed": 65,
+  "all_operation_slots_closed": true,
+  "metadata_only": true,
+  "artifact_GETs": 0,
+  "native95_qualified": false,
+  "normal_acceptance": 0,
+  "immutable_started_at": "2026-10-24T19:25:32.043936+00:00",
+  "stopped_at": "2026-10-24T19:46:05.135517+00:00",
+  "publish_to_stop_seconds": 1233.091581,
+  "min_observation_spacing_seconds": 46.869974,
+  "layered_outer_formula": "1provider+1publish+1resolver+25polls=28",
+  "Root_metadata_count_correction": {
+    "earlier_tool": "db5ccb/native0",
+    "earlier_layered_count": 27,
+    "correct_actual_count": 28,
+    "basis": "Actual28 fixed-action receipt filenames; Root arithmetic correction before independent handoff, no effects or new invocation"
+  }
+}

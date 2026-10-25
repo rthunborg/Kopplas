@@ -2,7 +2,7 @@
 title: '15.5 — Personal Calendar Feed (ADR-B004 Surface #1)'
 type: 'feature'
 created: '2026-10-20'
-status: 'in-review'
+status: 'done'
 review_loop_iteration: 3
 followup_review_recommended: false
 baseline_revision: '3a1c3bc9fbf22b13c926179288a8b6eefe440c12'
@@ -242,7 +242,7 @@ Cover actual HTTP no-cookies and malicious-cookies cases, direct anonymous/authe
 
 Deferred release validation: exhaustive browser/device/calendar-provider matrices and screenshots/visual comparison (QA/UX, deferred/unexecuted, execute approved representative matrix); manual accessibility/daylight/exploration (QA/UX, deferred/unexecuted, record actual observations); representative full-feed workload/performance thresholds (Product/Architect+ops, deferred/unapproved, approve volumes/targets then measure); polish (delivery owner, deferred, triage after functional evidence). Record scope/owner/status/evidence/next action in delivery/Root ledger, never PASS. Security/data/essential-flow failures block development. Done means development complete only, release_ready=false until actual release evidence and separate approvals. No automatic Preview/manual deploy/main merge/production enablement authorized; Root retains inherited review_unverifiedTRUE.
 
-## Auto Run Result
+## Historical Auto Run Result — retained snapshot
 
 Status: in-review
 Blocking condition: required95 remains68P, INT009F and26zero coverage. The separately qualified fixed INT009 diagnostic39804170137 failed at PRIMARY CAPTURE/PRE_CATALOG/FIELD:proargtypes; received type/value, native throw and DB custody remain UNKNOWN. Official PostgreSQL17 source establishes an oidvector JSON-array versus exact text-comparison contract mismatch. The current helper projection repair is source evidence only; independent targeted review and separately admitted native functional/cleanup gates remain pending. All14 browser retry0 successes remain historical qualified evidence, not new coverage. Development complete=false, acceptance0; no source fix authorizes a retry.
@@ -2551,7 +2551,7 @@ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
 - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 case failed at3e7; changed-head durability evidence pending.
 - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
-- `tests/integration/commands/calendar-feed.int.test.ts:446` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at3e7.
+- `tests/integration/commands/calendar-feed.int.test.ts:443` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at3e7.
 - `tests/support/calendar-feed-atdd.ts:685` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
 - `tests/integration/rls/calendar-feed.rls.test.ts:182` — `publicSchemaCreate: false`: AC4/9 RLS010 failed at3e7; individual predicate reach remains unknown.
 - `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
@@ -2569,7 +2569,7 @@ remain observations. The later admitted setup transport separately requires actu
 authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
 restricted-session oracle. No new privileged child configuration or grant is added.
 
-- `tests/integration/commands/calendar-feed.int.test.ts:487` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+- `tests/integration/commands/calendar-feed.int.test.ts:484` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
 - `scripts/ci/with-calendar-feed-runtime.mjs:356` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
 - `scripts/ci/with-calendar-feed-runtime.mjs:268` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1281` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
@@ -2581,7 +2581,7 @@ restricted-session oracle. No new privileged child configuration or grant is add
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:218` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
 - `scripts/ci/with-calendar-feed-runtime.mjs:182` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
 - `scripts/ci/with-calendar-feed-runtime.mjs:169` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
-- `tests/integration/commands/calendar-feed.int.test.ts:509` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
+- `tests/integration/commands/calendar-feed.int.test.ts:506` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
 - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:156` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
 
 - `tests/e2e/support/calendar-feed-atdd.ts:189` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
@@ -2650,8 +2650,8 @@ lock closure changes; scripts, Vitest versions, overrides and audit threshold st
 fixed. Local synthetic controls/build do not replace fresh native qualification.
 
 - `package.json:50` — `"vite": "8.1.6"`: pins the patched tool without changing scripts.
-- `pnpm-lock.yaml:2297` — `vite@8.1.6:`: binds the actual registry integrity and unchanged engine.
-- `pnpm-lock.yaml:2059` — `rolldown@1.1.5:`: carries the required types and matching platform bindings.
+- `pnpm-lock.yaml:2298` — `vite@8.1.6:`: binds the actual registry integrity and unchanged engine.
+- `pnpm-lock.yaml:2060` — `rolldown@1.1.5:`: carries the required types and matching platform bindings.
 
 Evidence: frozen installation, high-threshold audit (exit0/2moderate/no high),
 lock guard, full typecheck,67bounded controls, production build and bundle
@@ -3192,3 +3192,102 @@ cleanup, privacy predicates and the integration source remain unchanged.
 Independent targeted follow-up review and the separately allocated catalog
 refresh remain required. Current 93P/API019 failed/API020 unexecuted, unknown
 actual cause, P5 open, counter 3 and story 15.6 unstarted remain unchanged.
+
+
+### Current P5 required execution and scoped custody — 2026-10-25
+
+This author reconciliation supersedes earlier current-readiness statements only;
+their failure records, counts and source-only limits remain history.
+Run [40125241153](https://github.com/rthunborg/Kopplas/actions/runs/40125241153)
+tested `019f21d1d484ebe02ab1ed00ace10e4eb0be4d36`, with source
+`cbe3e5d5f462b9be2a992bba56c4bf33b71706fe`. Independent High qualification
+establishes all95 required cases passed: Node30, DB/RLS/API/component51 and
+essential browser14, with zero required failures/skips/pending/unexecuted cases.
+API019 passed3.077960s and API020 passed3.147597s; neither result identifies the
+earlier first emitter or proves why it failed. The unchanged privacy guard needs
+no manufactured refusal observation.
+
+- `_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json:237` — `required95`: binds exact required case sets, positive durations and retry0 browser results.
+- `_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json:342` — `current_cleanup_and_custody`: confirms only current DB/browser runtime-key deletion and closure tuples.
+- `_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json:467` — `direct_recovery`: qualifies one separate source/artifact-bound isolated recovery pass outside95.
+
+Current global unit3445P, integration2130P with52flattened skips and
+browser56expected are distinct totals, not additional story coverage.
+The integration-lane skipped recovery assertion gives no credit; the separate
+isolated artifact provides direct1P. Per-assertion recovery flags and a
+recovery-key lifecycle tuple were not retained. Recovery removal-step success
+is not physical-host deletion or unrelated backend rollback proof.
+Historical40109869919 remains93P/API019failed/API020pending-unexecuted with
+retained DBcustody, and399982 limits remain unchanged; current scoped clearance
+does not rewrite either history.
+
+### Current evidence provenance and remaining workflow — 2026-10-25
+
+The nine current privacy/provenance stops above retain their author-written
+rationale and verified anchors. Five older SRO line stops now point at current
+declarations after annotation/lockfile changes; anchors and historical outcomes
+are unchanged. Current evidence uses portable closed repository copies.
+Nested original private refs remain immutable provenance through the manifest.
+
+- `_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json:488` — `privacy_IP_and_observer`: retains UNKNOWN first-emitter/pipe/form/settlement/completeness without inventing failure.
+- `_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/manifest.json:615` — `mapping_rule`: maps original safe JSON references to byte-exact repository copies.
+- `_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json:3` — `contract_reconciliation`: separates qualified P5 evidence, terminal authoring, remaining workflow and release deferrals.
+
+The independent qualification is30202bytes/SHA256
+`6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f`.
+The closed manifest is28843bytes/SHA256
+`4af53f3c1727b3ebb10f6a78905ae30fcb3b06eae53cca1364f7825d21994684`.
+All original/new observation and acquisition slots are CLOSED. The new authority
+and actual helper/outer/packet chain qualify acquisition; the original allocation
+envelope remains compatibility DATA, not renewed authority. No raw logs, ZIPs or
+capabilities are added to the repository.
+
+Stage1 retains spec status/AutoRunResult `in-review`, counter3,
+recommendationfalse and deferred findings0. Root must validate canonical delivery
+and complete the targeted metadata/provenance check before separately allocated
+Stage2 P5 build-terminal authoring. Selected P6automate and the P7tail remain;
+this handoff starts neither. Release matrices, visual/manual work and hosted
+enablement have deferred-release owners and next actions.
+`release_ready=false`; no release, merge or deployment approval follows.
+
+This spec/delivery amendment follows the tested checkpoint. Its future metadata
+commit must not be presented as CI-tested. Root records that revision separately
+and verifies unchanged relevant source/dependencies when reusing qualified CI.
+Only bounded review-trail/process checks run for this authoring; no
+unchanged-source CI, product tests, runtime, resources or network effects run
+to decorate the trail.
+
+
+## Auto Run Result
+
+Status: done
+Blocking condition: none
+
+Build-terminal result — 2026-10-25: the earned P5 build-terminal signal supersedes
+the earlier current-result and Stage1 status holds. The historical Auto Run Result
+snapshot and all historical failures remain preserved.
+
+Required development evidence is qualified: required95 = 95 passed, zero failed,
+skipped, pending or unexecuted (Node30, DB51, browser14/retry0). Portable evidence:
+`_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json`,
+30202 bytes, SHA256 `6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f`.
+The current cleanup and separate direct-recovery evidence retain the limitations
+recorded in that qualification and the approved Stage1 evidence text above.
+
+Canonical delivery:
+`_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json`.
+Root's canonical Stage1 gate (970749/native0) returned development_complete=true,
+errors=[], approval_granted=false; independent Stage1 metadata/provenance review
+passed with no findings (11618 bytes, SHA256
+`548ddcc2ca694bd72d99577982de33266b90be5a2418f1b2bac575c6d5fd5eb4`).
+
+CI run40125241153 tested HEAD `019f21d1d484ebe02ab1ed00ace10e4eb0be4d36`,
+behavioral source `cbe3e5d5f462b9be2a992bba56c4bf33b71706fe`.
+This later terminal metadata is not a claim that a future metadata commit was CI-tested.
+Review iteration3, followup_review_recommended=false and deferred0 remain unchanged;
+no additional broad review was performed.
+
+This terminal signal completes only the build result required for P5. Root owns the
+subsequent phase transition. Required P6 automate, P7 tail and sprint/story final
+bookkeeping remain pending; 15.6 is unstarted. Release_ready remains false.
+No epic completion, release approval, merge or deployment is asserted.

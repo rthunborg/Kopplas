@@ -1,0 +1,106 @@
+{
+  "Outcome": "STAGE1_P5_DELIVERY_AND_AUTHOR_SRO_FROZEN_IN_REVIEW_ROOT_GATE_AND_TARGETED_CHECK_PENDING",
+  "Files changed": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 274826,
+      "sha256": "3c9a0ca43b029053cc55c6742ee0f441b4ebc813a958afeb62d38c3c288ba35d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json",
+      "bytes": 10984,
+      "sha256": "e02e2ffebdac2f93e5ff58871cc6273730793cfeb50cf1d474c9837460a83d44"
+    },
+    ".env.epic15.mail-runtime/story-15-5-preparation/final15-5-delivery-author-result.json"
+  ],
+  "Status": {
+    "route": "Root674149/native0 explicit Sol6.1 High narrow P5 delivery/SRO authoring",
+    "ownership": "Only allocated spec and new canonical delivery JSON edited; sole optional private six-field author report added. Root41 closed export paths/state/reports/Git/sharedautomation/deferred/sprint/code/migrations/dependencies/CI/runtime/resources/API/foreign files untouched.",
+    "tested_revision": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+    "source_revision": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+    "CI": "https://github.com/rthunborg/Kopplas/actions/runs/40125241153",
+    "later_metadata_provenance": "This spec/delivery authoring follows testedHEAD. No future metadata commit is claimed CI-tested. Root records/qualifies exact metadata delta separately and verifies unchanged relevant source/dependencies; no unchanged-sourceCI rerun.",
+    "qualification": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json",
+      "bytes": 30202,
+      "sha256": "6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f"
+    },
+    "portable_mapping": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/manifest.json",
+      "bytes": 28843,
+      "sha256": "4af53f3c1727b3ebb10f6a78905ae30fcb3b06eae53cca1364f7825d21994684",
+      "copies": 39,
+      "nested_refs": "Original private references retained byte-exact as provenance; canonical manifest maps portable safe copies. No closed copy rewritten."
+    },
+    "current_evidence": "Independent95P0F0skip0pending0unexecuted:Node30+DB51+browser14retry0. API0193.077960s/API0203.147597s actualP. Direct isolated recovery1P outside95/source+artifact-bound. Current DB/browserkeyDeletedtrue/deleted-confirmed/custodyfalse/dbClosedtrue/failure0/diagnostic0; DBchildren[0,0],browser[0].",
+    "limits": "Global3445unitP/integration2182total2130Pheader52pending(flattened52skipped)/browser56expected not additional95. Recovery per-assertion flags/key tuple not retained; removal-step success not physicaldeletion/rollback. Source-label settlement/slotcompleteness/currentIPpipe/form/firstemittercauseUNKNOWN/no refusal observed. Historical40109893P/API019F/API020pending/retainedDB and399982 limits preserved; no perpetualphysicaldeletiongate invented.",
+    "spec_preservation": {
+      "baseline_bytes": 270016,
+      "baseline_sha256": "91d39d3c4bb416b0fd7858b89c2e55cec8d61fb69e9d0193c337b5a66974455f",
+      "pre_SRO_prefix_bytes": 197245,
+      "pre_SRO_prefix_sha256": "dbf33b53bb46cbf50e193f1e6cb9ca4d7fde15537c84eb37d2c87d5dbf90614e",
+      "intent_contract_bytes": 5786,
+      "intent_contract_sha256": "36d72b84f57420d15fa9ffcd2500cf3b7948fafe82277419e7ed9cc52e111950",
+      "approved_kernel_pin": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "approved_kernel_and_OwnerFacts": "Frontmatter and full pre-SRO prefix/intent-contract bytes unchanged; no approval/kernel reassignment or claimed reapproval.",
+      "frontmatter_byte_exact": true,
+      "first9_stops_and_rationale_byte_exact": true,
+      "entire_original_spec_inverse_exact": true,
+      "only_existing_prefix_changes": "Five SRO reference line numbers:INT015446->443,487->484,509->506;lock2297->2298,2059->2060. Every other original byte retained; current evidence appended inside same SRO section.",
+      "Suggested_Review_Order_count": 1,
+      "AutoRunResult": "Unchanged in-review; historical failures/planning/source-only records retained."
+    },
+    "commands": [
+      {
+        "command": "node scripts/verify/check-review-order.mjs <spec> before edits",
+        "actual": "ad598d/native1",
+        "result": "234refs/5stale line errors; no pass credit"
+      },
+      {
+        "command": "node scripts/verify/check-review-order.mjs <spec> after edits",
+        "actual": "e9ff08/native0",
+        "result": "240refs/errors[]; spec unchanged afterward; delivery contract_reconciliation line3 anchor unchanged after adding actual process-check evidence"
+      },
+      {
+        "command": "python .agents/skills/auto-bmad/scripts/story_plan.py --spec <spec>",
+        "actual": "84178b/native0",
+        "result": "statusin-review; top-level extraction did not expose nested review fields, which are separately verified by byte-exact frontmatter"
+      },
+      {
+        "command": "Bounded author preservation comparisons",
+        "result": "Exact original270016byte inverse after removing appended current section and reversing five fixed-line repairs; pre-SRO197245byte prefix and intent5786byte block exact; first9stops/frontmatter/oneSRO/ARRin-review exact"
+      }
+    ],
+    "prewrite_history": [
+      {
+        "attempt": "Initial combined tool-source assembly",
+        "result": "JavaScript parse refusal before host command or writes; no credit"
+      },
+      {
+        "attempt": "First spec-inverse guard",
+        "actual": "810d32/native1",
+        "result": "Inverse assertion found duplicate valid506 target; no spec write occurred. Corrected positional inverse for exact five spans, then a07eff/native0 wrote verified candidate. Existing canonicaldelivery was already authored; no source/runtime effects."
+      }
+    ],
+    "delivery_contract": {
+      "policy_version": "2026-10-19",
+      "passed_development_checks": 9,
+      "independent_review": "passed source/native qualification only; new metadata targeted check still pending Root",
+      "deferred_release_items": 3,
+      "release_ready": false,
+      "canonical_delivery_gate": "NOT RUN \u2014 Root owns this gate"
+    },
+    "phase_boundaries": "P5stage1 authoring only. Spec/ARRremainin-review/counter3/recommendationfalse/deferredfindings0. Rootgate+targetedprovenancecheck then separately allocatedStage2buildterminalauthoring. P6automate REQUIRED/P7tailpending/15.6unstarted; no release/merge/deployment approval.",
+    "actual_product_tests_runtime_Git_API_resource_effects": 0
+  },
+  "Open questions": [
+    "Root canonical delivery_gate and targeted SRO/delivery provenance check have not run in this author handoff. Final metadata commit/provenance belongs to Root."
+  ],
+  "Deferred work": [
+    "Root validates canonical delivery and targeted metadata provenance, then explicitly allocates Stage2 P5 build-terminal metadata when earned.",
+    "P6automate and P7tail remain separate pending workflow steps; release-validation owners/next actions are in delivery JSON, with no shared ledger/automation writes in this assignment."
+  ],
+  "Blockers": [
+    "No Stage2 done flip, P6/P7 completion or release claim is authorized by this Stage1 authoring. Source/native required95 evidence itself is qualified; pending work is the stated Root gates/workflow."
+  ]
+}

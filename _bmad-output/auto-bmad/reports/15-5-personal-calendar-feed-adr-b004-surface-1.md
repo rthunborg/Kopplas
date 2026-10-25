@@ -139,3 +139,38 @@ none newly archived
 1. none; authorized work continues
 
 **Next:** prepare exact-source fresh finite NORMAL, old budgets closed;15.6 unstarted
+
+## Report — 2026-10-25T08:06:23Z (progress — P5 build gate complete)
+
+**Story:** `15-5-personal-calendar-feed-adr-b004-surface-1` (epic 15, story 5) — mid-epic.
+**Spec:** `C:\Users\Rasmus\.codex\worktrees\epic-15-calendar\Kopplas\_bmad-output\implementation-artifacts\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md`
+**Branch:** `codex/epic-15-scheduling-time-calendar` (HEAD `019f21d`).
+**Pipeline status:** in-progress; P5 completed; P6 automate and P7 tail pending
+**Continues:** yes; remaining authorized workflow continues
+
+**Timing:** started 2026-10-20T12:18:56Z; completed in progress — elapsed 115h 47m (≈23h 56m AI-run, ≈91h 50m human/idle wait); resumed 4×.
+
+**Phases run:** P5 continuation: exact-head CI/native95, scoped cleanup/direct recovery, independent qualification, canonical delivery and author terminal metadata
+**Skipped:** Four optional CI jobs skipped with zero coverage. No unchanged-source CI/runtime rerun for later metadata.
+
+**Overrides:** Owner no-legacy design authority and Oct19 development/release separation retained; no deployment.
+
+**TEA:** Selected P6 automate remains required; P7 trace advisory was not selected.
+
+**Build:** done;95P0F0skip0pending0unexecuted(Node30/DB51/browser14retry0), direct isolated recovery1P separately. CI40125241153 tested019f/sourcecbe3.
+
+**Review:** Broad counter3 retained; recommendationfalse/deferred0. Independent native30202/6b8053, Stage1metadata11618/548dd and Stage2metadata6539/08e941 all passed.
+
+**Retrospective:** Epic closing remains pending.
+
+**Open questions:**
+1. Observer completeness/first-emitter cause and stronger recovery/historical custody facts remain scoped limits, not invented current required-case failures.
+
+**Deferred work:**
+1. 0 story findings;3 release-validation items have owners/evidence/next actions in canonical delivery.
+Epic reconcile/archive remains pending.
+
+**⚠️ Needs human:**
+1. None for this completed build gate or the authorized P6/P7 continuation.
+
+**Next:** Required P6 testarch-automate, then P7 tail before landing15.5;15.6 unstarted.

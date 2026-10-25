@@ -1,0 +1,57 @@
+{
+  "schema": "ROOT_POST_ZOD_TERMINAL_EVIDENCE_NATIVE_OUTER_RECEIPT_V1",
+  "operation_id": "f27670b7-0d69-42b7-8035-e3325e060ce0",
+  "transport": {
+    "native_exit": 0,
+    "category": null,
+    "elapsed_seconds": 7.88574,
+    "timeout_seconds": 180,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 731,
+        "sha256": "7ff2868338722c5f95a8304d2134eba45db3c79a189eafb19dcbe063482f6444",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "safe_reader_result": {
+    "status": "ACQUISITION_COMPLETE",
+    "logical_GETs": 5,
+    "normal_acceptance": 0
+  },
+  "consumed_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-invocation-consumed.json",
+    "bytes": 1511,
+    "sha256": "9405394062946eb10b687684fd085901dbba6efe91a84c7364f3845e36b5f3b5"
+  },
+  "wrapper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+    "bytes": 7495,
+    "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+  },
+  "capture_contract": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json",
+    "bytes": 1118,
+    "sha256": "298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6"
+  },
+  "raw_stdout_stderr_persisted": false,
+  "native_function_sha256": "57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1",
+  "output_packet_present": true,
+  "no_retry": true,
+  "normal_acceptance": 0
+}

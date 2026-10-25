@@ -1,0 +1,92 @@
+{
+  "schema": "ROOT_TERMINAL_RELATIVE_CALLER_NEW_ACQUISITION_CLOSED_V1",
+  "authority_id": "coordinator-terminal-relative-caller-441472-20261024",
+  "new_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-terminal-relative-caller-new-allocation.json",
+    "bytes": 10159,
+    "sha256": "ca6630c55e7cf985ed719ef0322eb18b1ab19e0f7aff9815201b9dcc606e8085"
+  },
+  "new_pre_effect_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-attempt-intent.json",
+    "bytes": 5048,
+    "sha256": "1601e7beb3a03252cf3db7c0e440c515f895764c5a068d87d0a230910006b797"
+  },
+  "helper_bridge": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-helper-bridge.json",
+    "bytes": 5723,
+    "sha256": "2c0760a7c89a648e6586698f0bc3420033a2ce5f9b6e6e65ac9323f283d73ac0"
+  },
+  "native_host_bridge": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-native-host-qualification.json",
+    "bytes": 8435,
+    "sha256": "b8f755a2b11fb7efe141836fbe097780a253a353d765bba422426f45abfc511b"
+  },
+  "inner_results": [
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-01-result.json",
+        "bytes": 1134,
+        "sha256": "a6de448c9125309965f4afd413bf448a8d1812461fe1e9a69f478b0583b108b9"
+      },
+      "label": "normal-run-archive",
+      "elapsed_seconds": 2.757,
+      "native_exit": 0,
+      "closure_qualified": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-02-result.json",
+        "bytes": 1151,
+        "sha256": "1c0299f5bb91a6b75143da39674c781df13324296c4bc47f03f04ebe425a185e"
+      },
+      "label": "normal-artifact-list",
+      "elapsed_seconds": 0.498,
+      "native_exit": 0,
+      "closure_qualified": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-03-result.json",
+        "bytes": 1149,
+        "sha256": "a42afcb31c4797ff5fdd48cb0ff8254389e38dfbd129062ea944c12aeaf0907d"
+      },
+      "label": "native-isolated-storage-recovery",
+      "elapsed_seconds": 0.949,
+      "native_exit": 0,
+      "closure_qualified": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-04-result.json",
+        "bytes": 1140,
+        "sha256": "124316c8c8c030cc4732f9919d56626cdf079dbb8f580e8c6fc103139d7fc5f4"
+      },
+      "label": "native-general-browser",
+      "elapsed_seconds": 1.078,
+      "native_exit": 0,
+      "closure_qualified": true
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-05-result.json",
+        "bytes": 1143,
+        "sha256": "97c83c5b35b3582782152ded329e75c1b7a0d6d4ad8993535c28965ae05507a1"
+      },
+      "label": "native-full-integration",
+      "elapsed_seconds": 1.322,
+      "native_exit": 0,
+      "closure_qualified": true
+    }
+  ],
+  "acquisition_summary": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/acquisition-summary.json",
+    "bytes": 2543,
+    "sha256": "632c5d778d612ffa239e4baf0dc6c1c2742a4294c0b640af1899d2e1d2add565"
+  },
+  "actual_new_GETs": 5,
+  "new_reader_invocations": 1,
+  "all_new_slots_consumed_closed": true,
+  "old_allocation_remains_closed_data_only": true,
+  "normal_acceptance": 0,
+  "native95_qualified": false
+}
