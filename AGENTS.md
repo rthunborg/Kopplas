@@ -68,6 +68,10 @@ Keep existing legacy sessions excluded by their actual write scope. Only the
 coordinator updates aggregate progress and integrates verified worker results.
 Do not hot-upgrade a running loop or use heartbeat age alone to take its work.
 
+## Preview deployments and production merges
+
+**Owner decision — 2026-10-25:** [Earned merge-triggered production deployments are authorized](docs/process/production-merge-deployment-policy-2026-10-25.md) after the existing required CI, independent review and merge requirements. Automatic Previews remain disabled under October16; do not run post-merge automatic retry/redeployment loops. Manual deployment, provider/configuration changes and database pushes retain separate authorization. Earlier no-deployment records remain historical; E15 target-backend schema compatibility was not newly verified and `release_ready=false` remains.
+
 ## Code Review Rules
 
 - Future completed implementation stories must contain one author-written `## Suggested Review Order`, following [the project convention](docs/process/review-order.md). The implementation/fix author refreshes rationale, verified stops and evidence after fixes; reviewers check it against the final change. Use the project BMAD hooks and section scaffold; do not backfill historical stories. The auto-bmad root delegates this work and never authors story code or spec content.

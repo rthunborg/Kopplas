@@ -1,0 +1,202 @@
+[
+  {
+    "story": "15.1",
+    "item": "E15 remaining exhaustive calendar/actor/gesture browser combinations",
+    "owner": "Epic15 verification owner",
+    "status": "deferred",
+    "evidence": "Current essential11 =10 independently qualified priorpasses+1fresh enhanced date-during-failure recovery. All six command history12PASS/4FAIL/7SKIP preserved; remaining exhaustive combinations have zero blanket credit. Functional/auth/RLS/integrity gates remain development requirements.",
+    "next_action": "Execute remaining release-candidate combinations at stabilization; investigate consequential failures. Run optional diagnostics only for a named outcome."
+  },
+  {
+    "story": "15.1",
+    "item": "E15 eleven visual design comparisons",
+    "owner": "Epic15 UI/release owner",
+    "status": "deferred",
+    "evidence": "No completed eleven-comparison design review supplied by functional CI/native assertions; historical0/11 retained, not reclassified.",
+    "next_action": "Capture and review all eleven comparisons against current approved design at release stabilization; retain results and repair consequential defects."
+  },
+  {
+    "story": "15.1",
+    "item": "E15 manual phone/daylight/one-hand/assistive-tech and polish",
+    "owner": "Product/release owner",
+    "status": "deferred",
+    "evidence": "No representative-device daylight/one-hand/manual assistive-tech, timing or polish certification. Automated functional evidence remains distinct.",
+    "next_action": "Perform representative-hardware phone/daylight/one-hand/assistive-tech and polish walkthrough before the applicable release decision; record method/results."
+  },
+  {
+    "story": "15.1",
+    "item": "E15 broad General and dashboard browser suites",
+    "owner": "Coordinator/release owner",
+    "status": "deferred",
+    "evidence": "Fresh CI39282080632 release_validation=false: Auth7passed; optional exhaustive-browser/diagnostic/dashboard lanes intentionally skipped. Auth7 and qualified native11 are not broad General/dashboard acceptance.",
+    "next_action": "Deliberately dispatch release_validation=true against the qualified release candidate at stabilization, or earlier when consequential changed behavior requires broader browser evidence."
+  },
+  {
+    "story": "15.1",
+    "item": "E15 representative performance workload/measurements/approval",
+    "owner": "Product + Architect",
+    "status": "deferred",
+    "evidence": "R-012 workload/threshold approval and full-surface measurements remain open. Harness durations/budgets and Epic11 pilot are not scheduling product-performance certification.",
+    "next_action": "Approve representative volumes and latency/resource/throughput thresholds, measure complete scheduling surfaces, and record the performance release decision."
+  },
+  {
+    "story": "15.2",
+    "item": "Exhaustive five-view/gesture/device and screenshot/visual matrix",
+    "owner": "QA/UX",
+    "status": "deferred",
+    "evidence": "Owner Oct19 policy; actual selected essential host receipts are narrower than exhaustive release matrix.",
+    "next_action": "Before release execute tracked remaining view/device/gesture matrix, inspect image differences, record evidence and triage consequential failures."
+  },
+  {
+    "story": "15.2",
+    "item": "Manual accessibility/daylight/exploratory scheduling validation",
+    "owner": "QA/UX",
+    "status": "deferred",
+    "evidence": "SSR/selected real keyboard/phone evidence does not establish manual accessibility or readability certification.",
+    "next_action": "Before release perform recorded keyboard/screen-reader/zoom/daylight walkthroughs and exploratory checks; resolve consequential findings."
+  },
+  {
+    "story": "15.2",
+    "item": "Representative scheduling performance thresholds/workloads certification",
+    "owner": "Product/Architect",
+    "status": "deferred",
+    "evidence": "Exacta00/run39348312783 currentconfigured pilot120/24memberships,5warmups25measurements readp9518.046681ms/permissionsCPU4.864174ms/2RLSrequests perread passed. Narrow localAdminusersread/CPU only; fullprivatebaseline/queryplanJSONnotuploaded. No representativeScheduling/releaseperformance certification.",
+    "next_action": "Agree representative recurrence/tenant workloads and thresholds, measure production build and record acceptance before release."
+  },
+  {
+    "story": "15.3",
+    "item": "Exhaustive resolver view/device/gesture/browser permutations and screenshot/visual comparison",
+    "owner": "Release validation owner, coordinated by Root",
+    "status": "deferred",
+    "evidence": "Not executed; development covers only the3essential resolver browser flows after CI qualification. Historical15.1/15.2 observations are not new resolver visual evidence. Currentd550 essential3resolver browser bodies actually passed, but exhaustive device/gesture/browser/screenshot matrix remains unexecuted/deferred.",
+    "next_action": "Root mirror this item into the existing deferred release ledger; release owner schedule and record the exhaustive matrix against a qualified release candidate."
+  },
+  {
+    "story": "15.3",
+    "item": "Manual accessibility, daylight, exploratory walkthrough and visual polish",
+    "owner": "Release validation owner, coordinated by Root",
+    "status": "deferred",
+    "evidence": "Not executed; SSR structure and essential keyboard smoke do not replace manual accessibility/exploration. Functional accessibility failures in essential flow still block development. Currentd550 essential keyboard/SSR assertions passed in their limited scope; no manual accessibility/daylight/exploration/polish execution or release acceptance.",
+    "next_action": "Root mirror ownership/status into the deferred ledger; release owner run and triage manual checks on the release candidate before release readiness."
+  },
+  {
+    "story": "15.3",
+    "item": "Representative resolver performance certification and inherited epic release validation",
+    "owner": "Release validation owner, coordinated by Root",
+    "status": "deferred",
+    "evidence": "No representative performance measurement or inherited release-work closure claimed; source uses bounded suggestion search and full facts scan without certification. Currentd550 narrow Admin syntheticpilot executed only its existing scope; noSchedulingR012/resolver representative performance or inherited release closure inferred.",
+    "next_action": "Root retain inherited15.1/15.2 and Epic14 open release work, add resolver performance scope to the ledger and schedule representative measurement before release readiness."
+  },
+  {
+    "story": "15.4",
+    "item": "Exhaustive browser/device/view matrices",
+    "owner": "QA/UX",
+    "status": "deferred",
+    "evidence": "Current exact-head essential17-case configured-production smoke and360x640 flow passed; exhaustive matrices were not executed because release_validation=false. Essential smoke is not exhaustive matrix evidence.",
+    "next_action": "Define the owned release browser/device/view matrix, admit a separate release-validation run and retain every executed/failed/skipped result before release readiness."
+  },
+  {
+    "story": "15.4",
+    "item": "Screenshots, visual comparison and visual inspection",
+    "owner": "QA/UX",
+    "status": "deferred",
+    "evidence": "No screenshot-comparison or exhaustive visual inspection pass is claimed by CI3. No uploaded trace/HTML bytes were inspected. Older visual gate language is reconciled to the authorized2026-10-19 completion policy, not marked passed.",
+    "next_action": "Capture approved viewport/state screenshots on a qualified release candidate, compare them against approved design/defaults and record review outcomes and required corrections."
+  },
+  {
+    "story": "15.4",
+    "item": "Manual accessibility, daylight and exploratory walkthroughs",
+    "owner": "QA/UX",
+    "status": "deferred",
+    "evidence": "Connected essential controls and flows have current browser/SSR evidence; exhaustive manual accessibility/daylight/exploration work remains unexecuted and distinct from explicit-label/essential-flow checks.",
+    "next_action": "Run the scoped keyboard/focus/assistive/manual daylight and exploratory checklist on the qualified release candidate, preserve observations and resolve consequential defects before release approval."
+  },
+  {
+    "story": "15.4",
+    "item": "Actual <=30-second one-hand filing timing",
+    "owner": "QA/UX",
+    "status": "deferred",
+    "evidence": "The360x640 essential workflow passed; no measured one-hand completion-time study was performed. Automated timeout/duration is not the requested human timing evidence.",
+    "next_action": "Execute and record actual representative one-hand booking/standalone filing timing, including failure/retry usability, then evaluate against the <=30-second requirement."
+  },
+  {
+    "story": "15.4",
+    "item": "Representative workload, target approval and performance certification",
+    "owner": "Product/Architect",
+    "status": "deferred",
+    "evidence": "The admin-users-only pilot executed but no approved representative Scheduling/time-report workload/threshold or performance certification exists; unrelated pilot timings do not supply that credit.",
+    "next_action": "Approve representative tenant/history/concurrency workloads and thresholds, then admit and execute performance validation and record actual measurements against those approved targets."
+  },
+  {
+    "story": "15.4",
+    "item": "Release polish",
+    "owner": "Delivery owner",
+    "status": "deferred",
+    "evidence": "Required functional/security/integrity/essential-browser gates passed at the evidence revision. Exhaustive release polish review has not executed and is not needed to hide or defer any consequential failure.",
+    "next_action": "Maintain the owned polish list, inspect the qualified release candidate, resolve agreed items and attach actual release-review evidence before requesting release approval."
+  },
+  {
+    "story": "15.5",
+    "item": "Exhaustive role/device/browser matrices beyond essential14 smoke",
+    "owner": "Kopplas release-validation coordinator",
+    "status": "deferred",
+    "evidence": "Run40125241153 used release_validation=false: required14browser+42other smoke passed;4optional jobs skipped with0coverage. Exhaustive combinations were not executed; _bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json preserves limits.",
+    "next_action": "On a separately qualified and authorized release candidate, enumerate and execute remaining role/device/browser combinations, retain results and resolve consequential defects before release readiness."
+  },
+  {
+    "story": "15.5",
+    "item": "Screenshot comparison, representative manual visual/accessibility walkthrough and polish",
+    "owner": "Kopplas release-validation coordinator",
+    "status": "deferred",
+    "evidence": "No screenshot/manual/visual pass claimed. Essential usable-flow evidence remains qualified separately. Authority: _bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md, EXPERIENCE.md and incorporated derived PhaseB UX annex.",
+    "next_action": "Before release readiness, retain screenshot and representative viewport/manual/accessibility validation against approved authority. Consequential functional/accessibility defects remain development blockers, not polish."
+  },
+  {
+    "story": "15.5",
+    "item": "Release-operator hosted feed enablement and release/deployment approval",
+    "owner": "Kopplas release operator",
+    "status": "deferred",
+    "evidence": "Approved intent requires separately authorized dedicated key/Vault/runtime and trusted-IP evidence for hosted enablement. Current isolated CI runtime-key qualification supplies no production enablement or release/deployment approval.",
+    "next_action": "Before hosted feed enablement, obtain existing separate release/deployment approvals and qualify dedicated target key/Vault/runtime/trusted-IP configuration; retain operator evidence rather than infer it from CI."
+  },
+  {
+    "story": "15.6",
+    "item": "Full Min dag role/device/browser matrix beyond nine essential journeys",
+    "owner": "QA / release-validation coordinator",
+    "status": "deferred",
+    "evidence": "Exhaustive release matrix remains unexecuted. Required current native core9new+14retained browser cases passed clean retry0 at b57de610/run40192543175; global smoke also records two outside-core protocol flakes:15.4-E2E-002 and16.1-E03 retry0failed/retry1passed. These are separately retained verification-reliability observations, not presentation polish or inferred application-write failures. See _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json.",
+    "next_action": "QA/release-validation coordinator executes the qualified release-head role/device/browser matrix. QA/CI verification maintainer separately investigates the two response-body protocol flakes using per-attempt native evidence, records disposition without hiding retries, and routes any demonstrated consequential functional defect back to development remediation; this is not an acceptance waiver."
+  },
+  {
+    "story": "15.6",
+    "item": "Canonical design screenshot comparison, measured contrast and presentation polish",
+    "owner": "UX / QA",
+    "status": "deferred",
+    "evidence": "No screenshot, visual comparison or measured rendered contrast performed. Existing neutral primitives used per bounded owner default; shared font/token migration is outside this story allocation.",
+    "next_action": "Compare the rendered Min dag states against approved DESIGN/EXPERIENCE at release viewports; assess shared-token migration in its owned design lane and resolve findings."
+  },
+  {
+    "story": "15.6",
+    "item": "Manual accessibility, keyboard, daylight and exploratory walkthrough",
+    "owner": "QA / UX",
+    "status": "deferred",
+    "evidence": "Not executed; semantic controls and focus styles are source choices, not manual evidence.",
+    "next_action": "Run and attach the manual connected-field release walkthrough, including long Swedish text and zoom/reflow."
+  },
+  {
+    "story": "15.6",
+    "item": "E14 advisory triage and approved performance volumes/targets",
+    "owner": "QA / Product / Architect",
+    "status": "deferred",
+    "evidence": "October8 accepted-with-open-items governs 48 advisory triage and unapproved performance targets; this run made no performance claim.",
+    "next_action": "Reconcile advisory resolution evidence and approve representative performance volumes/targets before qualification claims."
+  },
+  {
+    "story": "15.6",
+    "item": "Final Phase B release validation and stabilization checkpoint",
+    "owner": "Coordinator / release-validation coordinator",
+    "status": "deferred",
+    "evidence": "October22 final milestone remains pending, unexecuted; development completion alone cannot satisfy it.",
+    "next_action": "After current PhaseB epics are integrated/development-complete, open assigned checkpoint and execute applicable release checks before explicit release approval."
+  }
+]

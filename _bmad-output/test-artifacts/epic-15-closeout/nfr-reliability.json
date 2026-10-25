@@ -1,0 +1,49 @@
+{
+  "domain": "reliability",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Transactional failure/exact retry/server confirmation",
+      "status": "PASS",
+      "description": "Actual real command fault/replay/race/current-authority tests plus essential production flows and supported historical series effective-flow reuse meet retained integrity/failure-state requirements.",
+      "evidence": [
+        "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+        "Six canonical story delivery records and closeout trace-mapping.json/nfr-thresholds.json"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Verification protocol stability",
+      "status": "CONCERNS",
+      "description": "15.4-E2E002 and16.1-E03 each retain retry0response-bodyProtocolError/retry1P; current23calendarcorebrowsercases cleanretry0. No observed functionalwritefailure is inferred or waived.",
+      "evidence": [
+        "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+        "Six canonical story delivery records and closeout trace-mapping.json/nfr-thresholds.json"
+      ],
+      "recommendations": [
+        "QA/CI maintainer investigate per-attempt evidence; route any real consequential product defect back to development."
+      ]
+    },
+    {
+      "category": "Availability/MTTR/failover monitoring",
+      "status": "CONCERNS",
+      "description": "OperationalSLA,errorrate,MTTR/failover targets/measurements UNKNOWN. Narrow directphysicalrecovery1P does not certify generalRTO/RPO/regionalrecovery.",
+      "evidence": [
+        "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+        "Six canonical story delivery records and closeout trace-mapping.json/nfr-thresholds.json"
+      ],
+      "recommendations": [
+        "Retain operational release qualification gaps with responsible release owner."
+      ]
+    }
+  ],
+  "compliance": {
+    "development_transaction_contract": "PASS",
+    "operational_availability": "CONCERNS"
+  },
+  "priority_actions": [
+    "Investigate two retained protocol flakes without erasing failed attempts."
+  ],
+  "summary": "Functional development reliability evidence passes; operational and verificationreliability concerns remain.",
+  "execution": "sequential domain audit in combined delegate; no new nested broad review or runtime"
+}

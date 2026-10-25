@@ -1,0 +1,178 @@
+{
+  "date": "2026-10-25",
+  "metadata_commit": "8134b6a86bfc2f2a0d29cdd19767b3ac76412b71",
+  "files": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "bytes": 79830,
+      "sha256": "db005a30fa7196ca5c7cf371bafa15c61a34ed8e3bc11031313a3895e2c1b0aa"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json",
+      "bytes": 50415,
+      "sha256": "6405619f5408fe2eccd00b9fadb4303a49bf6eb0b41a6453a3a5899b52848906"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/epic-15.json",
+      "bytes": 41021,
+      "sha256": "56b2028df0628a174fefa0480f562cde9bc6946f38d468d1afe07b75bfa14ab3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/epic-15/inherited-15-2-historical-delivery-a40a8ec4.json",
+      "bytes": 53247,
+      "sha256": "a40a8ec4a3b78e63809d99f18f34b0648f1e708aa4ba472e17792699db3a7048"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/epic-15/inherited-15-2-targeted-post-cap-p7-result.json",
+      "bytes": 6190,
+      "sha256": "714201e6150bfdad88e6946622d76c8d3396258168f1e4b75c40e28c3086ac55"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/contract-conservation.json",
+      "bytes": 492,
+      "sha256": "9c667b07d4e26f9b6f97f0efc245f634190938f97a0bb907370245a7972d760e"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/coverage-matrix.json",
+      "bytes": 530686,
+      "sha256": "41326d318e3cf4d6181a888bd5c216bb1b99dd173e286cec822b467932fcf53a"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/deferred-reconciliation-plan.json",
+      "bytes": 7324,
+      "sha256": "e0eab0ac4513a3402f0b67d95bf9eb6e93b1fde282050e631530b1d6ff099c19"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/deferred-reconciliation-result.json",
+      "bytes": 2803,
+      "sha256": "370a230f2d20453ec322d22db143f3a5ae2f36028c66b42af1942c9f909ce3a5"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/deferred-release-validation.json",
+      "bytes": 15452,
+      "sha256": "3dc408c74aed4fc2e0a26c82264a0e2ff6bca9dc29171c1eb6dfec59d815d81b"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/e2e-trace-summary.json",
+      "bytes": 4787,
+      "sha256": "0696615da78231d9b94037b5e7f83e5bfaf79b75c239f3af2c24f3bb11e3ebd2"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/gate-decision.json",
+      "bytes": 1354,
+      "sha256": "004b2d1e7fe5fb416cd4cfb882d60fcc65271ce19f3e79707e14b70b05da4345"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-assessment.md",
+      "bytes": 9711,
+      "sha256": "53349a99b6c355feaa1c91fd5648ca6823ddacd1551ab15a20be2028ae5093f5"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-checkpoint.json",
+      "bytes": 1846,
+      "sha256": "606ed872182d6723f28a793437fcce213bef38c3cc72e4d3fed45acef1abdda0"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-maintainability.json",
+      "bytes": 3182,
+      "sha256": "a8000ac67c593b2d60c968912b03f5535b6d1736245eb27dd306202361e36b6a"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-performance.json",
+      "bytes": 1850,
+      "sha256": "72aa5a1d77b49e591c76ec8f9a0191b801c7404ada5ce2f94908888a8839783c"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-reliability.json",
+      "bytes": 2545,
+      "sha256": "4e8749e331b98b13e87333490363c6ae9bda07f18c68a9381979676cb63f5677"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-security.json",
+      "bytes": 3129,
+      "sha256": "9ad02a955bde0e632f6b367a22623477f7a5038b23b3cec8c18f58f14593363a"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-summary.json",
+      "bytes": 13378,
+      "sha256": "4ab1c6565f03925459cfdf19413d928ce65127ca80824425e33098a67c5cd4cb"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/nfr-thresholds.json",
+      "bytes": 2329,
+      "sha256": "fd6f5398f087ab128dbdbba4e6f24696e279a8bcee40ee6f3b70c5194365bb77"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-inventory.json",
+      "bytes": 610119,
+      "sha256": "940210cbf6dcefa28456f5f1f985ade3a247e35058b94f262167d5659e774053"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review-checkpoint.json",
+      "bytes": 1308,
+      "sha256": "6c553aea071821ed58e9fe0d2acd1fca36072b387fc79236875ec0fa07583c41"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review-determinism.json",
+      "bytes": 43007,
+      "sha256": "b1071497852dc6e32a9c7bdf5e9b444347bc5982c05fb9472b3f6e2bfb8fec0e"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review-inputs.json",
+      "bytes": 20137,
+      "sha256": "c0845a9d5bb6a0425d436a30d99ad8d72ff6d43f4fee81a84871d2e95d16ea58"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review-isolation.json",
+      "bytes": 602,
+      "sha256": "ee2bc85510c78bb30217c6f52d48b51b75787252c555a9dd4416dcc043de11cb"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review-maintainability.json",
+      "bytes": 5111,
+      "sha256": "d48bd678e2fababc4df683d71ceaa5f222f337050863d7a9d6a9a3dda3ef5a24"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review-performance.json",
+      "bytes": 604,
+      "sha256": "1f202bae47345333208fe3be534571efc9148af295f3999b9908849bd22d8f94"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review-summary.json",
+      "bytes": 39494,
+      "sha256": "1ab99c69af94c309600b11ef256a899f7283996036ba6ef716f4d55ad197d7e0"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/test-review.md",
+      "bytes": 17156,
+      "sha256": "f887f0ea513bb57b12a1fd05898f4ebc13515c92690f14e870e3fb5691508faa"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/trace-checkpoint.json",
+      "bytes": 1616,
+      "sha256": "e26e702791987555537d3682949a2a2edc37c3313b87dee4706eadeeb60db4d9"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/trace-mapping.json",
+      "bytes": 330749,
+      "sha256": "55f7d5f205fcfdd7650b7e9f4c0aa2f381f4643b9288bd5566d22ea9facaeaa6"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/epic-15-closeout/traceability-matrix.md",
+      "bytes": 10779,
+      "sha256": "ad6216a5501e8a2474e6126390f218a6515ee6ff3f0110706d2a475af1954235"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 12583,
+      "sha256": "7824934a2d704648ede0969f1b278393d684c069905853d5761599abf48d3ab0"
+    },
+    {
+      "path": "docs/process/production-merge-deployment-policy-2026-10-25.md",
+      "bytes": 2467,
+      "sha256": "37e25afb6c7b667e5d836b3cd02b828101812695591156291b59e7c7cda8e076"
+    }
+  ],
+  "limits": "Postimagefilehashes; no new runtime/execution/gate/admission. Thismanifest and combinedresult exclude self-referentialhashes.",
+  "current_policy_note": "New2026-10-25standingownerdecision authorizesearnedmerge-triggeredproduction;earliernoDeployrecordsremainhistorical. Exact2governancedocdeltas areoutsideRootold4edbridge;Rootfinalsourcebridgewillaccountfortheseexplicitdoc-onlychanges."
+}
