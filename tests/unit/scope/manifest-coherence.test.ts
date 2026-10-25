@@ -93,7 +93,7 @@ test("15.1-SCOPE-001 scheduling activation owns only its current nav and preserv
   const resources = manifest.modules.find(m => m.id === "resources")!;
   assert.equal(scheduling.status, "active");
   assert.equal(scheduling.activatedAt, "2026-10-13");
-  assert.deepEqual(scheduling.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"},{route:"/time-reports",group:"primary",requiredCapability:"TimeReports.ReportOwn"}]);
+  assert.deepEqual(scheduling.navItems, [{route:"/scheduling",group:"primary",requiredCapability:"Bookings.View"},{route:"/my-day",group:"primary",requiredCapability:"Bookings.View"},{route:"/time-reports",group:"primary",requiredCapability:"TimeReports.ReportOwn"}]);
   assert.deepEqual(scheduling.tenantTables, ["booking_series", "booking_conflict_resolutions", "time_reports", "calendar_feed_tokens"]);
   assert.deepEqual(scheduling.publicSurfaces, ["calendar_feed"]);
   assert.deepEqual(scheduling.notificationCategories, ["booking.changed", "time_report.nudge"]);

@@ -77,6 +77,11 @@ export const navItems: readonly NavItem[] = [
     iconPaths: ["M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"],
   },
   {
+    label: "Min dag",
+    href: "/my-day",
+    iconPaths: ["M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"],
+  },
+  {
     label: "Tidrapporter",
     href: "/time-reports",
     iconPaths: ["M12 8v4l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"],

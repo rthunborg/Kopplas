@@ -1,11 +1,10 @@
-/** Story 15.6 RED — checked SQL projection under normal authenticated JWTs.
- * All cases intentionally skip until implementation activation. No passing RLS
- * coverage is claimed. read_my_day's FOUR arguments are approved by the spec;
- * JSON field spellings are proposed minimal bindings to reconcile before use.
+/** Story 15.6 checked SQL projection under normal authenticated JWTs.
+ * Active scenarios bind the approved four-argument projection. Runtime coverage
+ * requires the real local stack; discovery and skipped cases are not evidence.
  * Per-case existing factories allocate/dispose owned tenant rows. No global DDL,
  * grants, policy edits, settings, trigger faults or query-stat resets are added.
- * Empty jobs output is NOT proof that the false branch executes zero nested job
- * queries; that separate implementation/High-review evidence remains required.
+ * Transaction-local scan counters plus a true-branch positive control verify
+ * jobs isolation without global statistics resets or concurrent-worker noise.
  */
 import { randomUUID } from "node:crypto";
 import { describe, expect, test } from "vitest";
@@ -16,9 +15,9 @@ import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 
 type Card = { id: string; startsAt: string; endsAt: string; allDay: boolean; description: string;
-  ownAssignment: string | null; customerLabel: string | null; address: string | null; jobId?: string | null; jobLabel?: string | null };
+  ownAssignment: string | null; customerLabel: string | null; address: string | null; jobId: string | null; jobLabel: string | null; canReportBooking: boolean };
 type Job = { id: string; title: string; customerLabel: string | null; status: string; myRole: string };
-type Projection = { bookings: Card[]; activeJobs: Job[] };
+type Projection = { ownSelfPersonIds: string[]; bookings: Card[]; activeJobs: Job[] };
 const START = "2026-10-11T22:00:00.000Z", END = "2026-10-18T22:00:00.000Z";
 function rpc(client: TestServerClient, tenantId: string | null, includeJobs = false, start: string | null = START, end: string | null = END) {
   return client.rpc("read_my_day", { p_tenant_id: tenantId, p_start: start, p_end: end, p_include_jobs: includeJobs });
@@ -59,8 +58,8 @@ async function seedJobs(fx: BookingFixture) {
   return { ids, parents, assignedBooking };
 }
 
-describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
-  test.skip("[P0] 15.6-INT-01 AC1 authenticated-only stable checked definer ACL and no-session denial", async ctx => {
+describe("15.6 Min dag minimal authenticated SQL projection", () => {
+  test("[P0] 15.6-INT-01 AC1 authenticated-only stable checked definer ACL and no-session denial", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     const [meta] = await adminQuery<{ provolatile: string; prosecdef: boolean; proconfig: string[]; authenticated: boolean; anon: boolean; service_role: boolean; public_execute: boolean }>(`select p.provolatile,p.prosecdef,p.proconfig,
       has_function_privilege('authenticated',p.oid,'execute') authenticated,
@@ -79,7 +78,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-02 AC1/2 normal JWT cannot read foreign tenant or unentitled/invited/disabled/orphan authority", async ctx => {
+  test("[P0] 15.6-INT-02 AC1/2 normal JWT cannot read foreign tenant or unentitled/invited/disabled/orphan authority", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       await seedReadFixtures(fx);
@@ -93,7 +92,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
   });
 
   for (const state of ["archived", "missing"] as const) {
-    test.skip(`[P0] 15.6-INT-03 AC1 own profile ${state} cannot be replaced by a peer profile`, async ctx => {
+    test(`[P0] 15.6-INT-03 AC1 own profile ${state} cannot be replaced by a peer profile`, async ctx => {
       if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
       await withBookingFixture(async fx => {
         if (state === "archived") {
@@ -109,7 +108,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   }
 
-  test.skip("[P0] 15.6-INT-04 AC2 every role including managers sees only own assignments, once and no peers", async ctx => {
+  test("[P0] 15.6-INT-04 AC2 every role including managers sees only own assignments, once and no peers", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const seed = await seedReadFixtures(fx), before = await bookingSnapshot(fx.tenantIds);
@@ -118,6 +117,9 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
       const manager = await read(fx.plannerClient, fx.base.tenantA.id);
       expect(manager.bookings.map(row => row.id).sort()).toEqual([seed.coworker, seed.shared].sort());
       const admin = await read(fx.adminClient, fx.base.tenantA.id); expect(admin.bookings).toEqual([]);
+      expect(own.ownSelfPersonIds).toEqual([fx.ownProfile.id]);
+      expect(manager.ownSelfPersonIds).toEqual([fx.coworkerProfile.id]);
+      expect(admin.ownSelfPersonIds).toEqual([fx.adminProfile.id]);
       for (const result of [own, manager, admin]) {
         expect(JSON.stringify(result)).not.toContain(fx.foreignProfile.id);
         expect(JSON.stringify(result)).not.toMatch(/assigneeIds|membership_id|person_profile_id|roster|employment_percentage/);
@@ -126,7 +128,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-05 AC2/6 removed assignment and revoked current membership disappear on next read", async ctx => {
+  test("[P0] 15.6-INT-05 AC2/6 removed assignment and revoked current membership disappear on next read", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const seed = await seedReadFixtures(fx);
@@ -139,7 +141,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-06 AC2 shared/recurring/all-day/overnight DST overlap is complete and half-open", async ctx => {
+  test("[P0] 15.6-INT-06 AC2 shared/recurring/all-day/overnight DST overlap is complete and half-open", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const seriesId = randomUUID();
@@ -159,7 +161,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-07 AC2 own projection exceeds a transport page and deterministic equal-start order has no omissions", async ctx => {
+  test("[P0] 15.6-INT-07 AC2 own projection exceeds a transport page and deterministic equal-start order has no omissions", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const ids = Array.from({ length: 1001 }, () => randomUUID()).sort();
@@ -173,7 +175,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-08 AC2 exact eight-day bound allows fall-DST week, rejects null/reverse/equal/infinite/oversized ranges", async ctx => {
+  test("[P0] 15.6-INT-08 AC2 exact eight-day bound allows fall-DST week, rejects null/reverse/equal/infinite/oversized ranges", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       expect((await rpc(fx.montorClient, fx.base.tenantA.id, false, "2026-10-18T22:00:00Z", "2026-10-25T23:00:00Z")).error).toBeNull();
@@ -186,27 +188,66 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-09 AC3/4/7 false branch has no job identity/role/label and only explicit booking context", async ctx => {
+  test("[P0] 15.6-INT-09 AC3/4/7 false branch has no job identity/role/label and only explicit booking context", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const { ids, parents, assignedBooking } = await seedJobs(fx);
       const explicit = await seedBooking(fx, [fx.ownProfile.id], { jobId: ids.member, customerId: parents.customerId, facilityId: parents.facilityId, workRoleId: parents.workRoleId });
+      const jobless = await seedBooking(fx);
+      await adminQuery("update public.facilities set address_line1='Explicit street 2',postal_code='22233',city='Uppsala' where tenant_id=$1 and id=$2", [fx.base.tenantA.id, parents.facilityId]);
       const result = await read(fx.montorClient, fx.base.tenantA.id, false);
       const omitted = await fx.montorClient.rpc("read_my_day", { p_tenant_id: fx.base.tenantA.id, p_start: START, p_end: END });
       expect(omitted.error).toBeNull(); expect(omitted.data).toEqual(result);
-      expect(Object.keys(result).sort()).toEqual(["activeJobs", "bookings"]); expect(result.activeJobs).toEqual([]);
+      expect(Object.keys(result).sort()).toEqual(["activeJobs", "bookings", "ownSelfPersonIds"]); expect(result.activeJobs).toEqual([]);
+      expect(result.ownSelfPersonIds).toEqual([fx.ownProfile.id]);
       expect(result.bookings.find(row => row.id === assignedBooking)?.customerLabel).toBeNull();
       expect(result.bookings.find(row => row.id === explicit)?.customerLabel).toBe("Workshop customer");
+      expect(result.bookings.find(row => row.id === explicit)?.address).toContain("Explicit street 2");
+      expect(result.bookings.find(row => row.id === explicit)?.ownAssignment).toBe("Electrician");
+      expect(result.bookings.find(row => row.id === assignedBooking)?.address).toBeNull();
       for (const card of result.bookings) {
-        expect(Object.keys(card).sort()).toEqual(["address", "allDay", "customerLabel", "description", "endsAt", "id", "ownAssignment", "startsAt"]);
-        expect(card).not.toHaveProperty("jobId"); expect(card).not.toHaveProperty("jobLabel"); expect(card).not.toHaveProperty("myRole");
+        expect(Object.keys(card).sort()).toEqual(["address", "allDay", "canReportBooking", "customerLabel", "description", "endsAt", "id", "jobId", "jobLabel", "ownAssignment", "startsAt"]);
+        expect(card.jobId).toBeNull(); expect(card.jobLabel).toBeNull(); expect(card).not.toHaveProperty("myRole");
+        expect(card.canReportBooking).toBe(card.id === jobless);
       }
-      expect(JSON.stringify(result)).not.toMatch(/My day |quote|price|cost|margin|rate|source|jobId|jobLabel|myRole/);
-      // This is output evidence only. Nested zero-query proof is still required.
+      expect(JSON.stringify(result)).not.toMatch(/My day |quote|price|cost|margin|rate|source|myRole/);
+      // PostgreSQL documents these as this transaction's continuously updated
+      // counters, rather than shared/cached totals: no reset, global lock, helper
+      // replacement or observation of concurrent sessions is necessary.
+      // https://www.postgresql.org/docs/17/monitoring-stats.html#MONITORING-STATS-VIEWS
+      await adminSession(async ({ query }) => {
+        await query("begin");
+        try {
+          const [tracking] = await query<{ enabled: boolean }>("select current_setting('track_counts')='on' as enabled");
+          expect(tracking.enabled).toBe(true); // A disabled spy must fail, never pass silently.
+          await query("select set_config('request.jwt.claim.sub',$1,true),set_config('request.jwt.claims',$2,true)",
+            [fx.users.montor.id, JSON.stringify({ sub: fx.users.montor.id, role: "authenticated" })]);
+          await query("set local role authenticated");
+          const jobTables = ["job_access_windows", "job_dependencies", "job_members", "job_required_work_roles", "jobs"];
+          type Scans = { relname: string; seq_scan: string; idx_scan: string; seq_tup_read: string; idx_tup_fetch: string };
+          const scans = () => query<Scans>(`select relname,seq_scan::text,coalesce(idx_scan,0)::text as idx_scan,
+            seq_tup_read::text,coalesce(idx_tup_fetch,0)::text as idx_tup_fetch
+            from pg_catalog.pg_stat_xact_user_tables
+            where schemaname='public' and relname=any($1::text[]) order by relname collate "C"`, [jobTables]);
+          const before = await scans();
+          expect(before.map(row => row.relname)).toEqual(jobTables);
+          const [suppressed] = await query<{ projection: Projection }>("select public.read_my_day($1,$2,$3,false) as projection", [fx.base.tenantA.id, START, END]);
+          expect(suppressed.projection).toEqual(result);
+          const afterFalse = await scans();
+          expect(afterFalse).toEqual(before);
+          // Positive control proves this exact observer can detect the nested
+          // definer's job reads; an inert stats view would fail this assertion.
+          const [included] = await query<{ projection: Projection }>("select public.read_my_day($1,$2,$3,true) as projection", [fx.base.tenantA.id, START, END]);
+          expect(included.projection.activeJobs.map(row => row.id).sort()).toEqual([ids.member, ids.assigned, ids.both].sort());
+          const afterTrue = await scans();
+          const count = (row: Scans) => BigInt(row.seq_scan) + BigInt(row.idx_scan);
+          expect(count(afterTrue.find(row => row.relname === "jobs")!)).toBeGreaterThan(count(afterFalse.find(row => row.relname === "jobs")!));
+        } finally { await query("rollback"); }
+      });
     });
   });
 
-  test.skip("[P0] 15.6-INT-10 AC4 true is composition control; actual personal relationship and readable active lifecycle still govern", async ctx => {
+  test("[P0] 15.6-INT-10 AC4 true is composition control; actual personal relationship and readable active lifecycle still govern", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const { ids } = await seedJobs(fx);
@@ -214,6 +255,13 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
       expect(own.activeJobs.map(row => row.id).sort()).toEqual([ids.member, ids.assigned, ids.both].sort());
       expect(own.activeJobs.find(row => row.id === ids.member)?.myRole).toBe("arbetsledare");
       expect(own.activeJobs.find(row => row.id === ids.both)?.myRole).toBe("member");
+      expect(own.activeJobs.find(row => row.id === ids.assigned)?.myRole).toBe("booking_assignee");
+      for (const card of own.bookings) {
+        expect(Object.keys(card).sort()).toEqual(["address", "allDay", "canReportBooking", "customerLabel", "description", "endsAt", "id", "jobId", "jobLabel", "ownAssignment", "startsAt"]);
+        expect(card.canReportBooking).toBe(true);
+        expect([ids.assigned, ids.both]).toContain(card.jobId);
+        expect(card.jobLabel).toBe(card.jobId === ids.assigned ? "My day assigned" : "My day both");
+      }
       for (const job of own.activeJobs) {
         expect(Object.keys(job).sort()).toEqual(["customerLabel", "id", "myRole", "status", "title"]);
         expect(["created", "in_progress"]).toContain(job.status);
@@ -231,7 +279,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-11 AC4 assignment-only job disappears immediately after its final own relationship is removed", async ctx => {
+  test("[P0] 15.6-INT-11 AC4 assignment-only job disappears immediately after its final own relationship is removed", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const { ids, assignedBooking } = await seedJobs(fx);
@@ -243,7 +291,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-12 AC3 address uses explicit booking facility, then job override, then job facility; never billing", async ctx => {
+  test("[P0] 15.6-INT-12 AC3 address uses explicit booking facility, then job override, then job facility; never billing", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const { ids, parents } = await seedJobs(fx);
@@ -265,7 +313,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-13 AC3 booking assignment label is booking work role, never resource default or a peer list", async ctx => {
+  test("[P0] 15.6-INT-13 AC3 booking assignment label is booking work role, never resource default or a peer list", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const parents = await seedBookingParents(fx.base.tenantA.id);
@@ -278,7 +326,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-14 AC4 true flag cannot grant job authority to an ordinary related sales member", async ctx => {
+  test("[P0] 15.6-INT-14 AC4 true flag cannot grant job authority to an ordinary related sales member", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const { ids } = await seedJobs(fx);
@@ -295,7 +343,7 @@ describe("15.6 Min dag minimal authenticated SQL projection (RED)", () => {
     });
   });
 
-  test.skip("[P0] 15.6-INT-15 AC4 active own member jobs exceed a transport page without dropping relationships", async ctx => {
+  test("[P0] 15.6-INT-15 AC4 active own member jobs exceed a transport page without dropping relationships", async ctx => {
     if (skipUnlessStack(ctx, await isLocalStackReachable())) return;
     await withBookingFixture(async fx => {
       const parents = await seedBookingParents(fx.base.tenantA.id);

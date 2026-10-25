@@ -506,3 +506,26 @@ existing AC, recorded so it is not re-triaged a third time.
   evidence: Status: deferred. Owner: Epic16 release validation owner (root). Automated essential retention,refusal,retry and persistence acceptance executed; manual release walkthrough/polish was not executed. Consequential behavior remains a development requirement. Next action: Perform the Epic16 release walkthrough,resolve presentation-polish findings and attach manual evidence before release readiness.
   location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/2
   severity: low
+
+## Deferred from: Story15.6 Min dag implementation (2026-10-25)
+
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Full Min dag role/device/browser matrix beyond nine essential journeys
+  evidence: Status: deferred. Owner: QA / release-validation coordinator. Not executed in this implementation run; focused source/Windows checks only. Next action: Execute qualified release-head role/device/browser matrix and record results before release readiness.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/0
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Canonical design screenshot comparison, measured contrast and presentation polish
+  evidence: Status: deferred. Owner: UX / QA. No screenshot, visual comparison or measured rendered contrast performed. Existing neutral primitives used per bounded owner default; shared font/token migration is outside this story allocation. Next action: Compare the rendered Min dag states against approved DESIGN/EXPERIENCE at release viewports; assess shared-token migration in its owned design lane and resolve findings.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/1
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Manual accessibility, keyboard, daylight and exploratory walkthrough
+  evidence: Status: deferred. Owner: QA / UX. Not executed; semantic controls and focus styles are source choices, not manual evidence. Next action: Run and attach the manual connected-field release walkthrough, including long Swedish text and zoom/reflow.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/2
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: E14 advisory triage and approved performance volumes/targets
+  evidence: Status: deferred. Owner: QA / Product / Architect. October8 accepted-with-open-items governs 48 advisory triage and unapproved performance targets; this run made no performance claim. Next action: Reconcile advisory resolution evidence and approve representative performance volumes/targets before qualification claims.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/3
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Final Phase B release validation and stabilization checkpoint
+  evidence: Status: deferred. Owner: Coordinator / release-validation coordinator. October22 final milestone remains pending, unexecuted; development completion alone cannot satisfy it. Next action: After current PhaseB epics are integrated/development-complete, open assigned checkpoint and execute applicable release checks before explicit release approval.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/4

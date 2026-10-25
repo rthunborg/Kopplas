@@ -15,8 +15,8 @@ type Trace = { table: string; filters: [string, string, unknown][]; range?: [num
 function transport() {
   const tenantId = randomUUID(), userId = randomUUID(), membershipId = randomUUID(), bookingId = randomUUID(), jobId = randomUUID();
   let authenticated = true, roles = ["montor"], membershipStatus = "active", rpcError: unknown = null, noticeError: unknown = null;
-  let payload: unknown = { bookings: [{ id: bookingId, startsAt: "2026-10-25T00:30:00.000Z", endsAt: "2026-10-25T02:30:00.000Z",
-    allDay: false, description: "Install lighting", ownAssignment: "assigned", jobId, jobLabel: "Lighting job",
+  let payload: unknown = { ownSelfPersonIds: [randomUUID()], bookings: [{ id: bookingId, startsAt: "2026-10-25T00:30:00.000Z", endsAt: "2026-10-25T02:30:00.000Z",
+    allDay: false, description: "Install lighting", ownAssignment: "assigned", canReportBooking: true, jobId, jobLabel: "Lighting job",
     customerLabel: "Workshop customer", address: "Åvägen 2, Stockholm" }],
   activeJobs: [{ id: jobId, title: "Lighting job", customerLabel: "Workshop customer", status: "created", myRole: "member" }] };
   const notices: Row[] = [], trace: Trace[] = [], rpcCalls: { name: string; args?: Row }[] = [];
@@ -66,7 +66,7 @@ function notice(h: ReturnType<typeof transport>, patch: Row = {}): Row {
     read_at: null, created_at: "2026-10-25T03:00:00.000Z", ...patch };
 }
 
-test.skip("[P0] 15.6-UNIT-R01 AC1/2 cookie authority supplies exact four RPC arguments; hostile selectors have no effect", async () => {
+test("[P0] 15.6-UNIT-R01 AC1/2 cookie authority supplies exact four RPC arguments; hostile selectors have no effect", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport();
   const result = await readMyDay({ ...input, tenantId: "foreign-tenant", userId: "foreign-user", roles: ["tenant_admin"], includeJobs: false }, options(h));
@@ -78,7 +78,7 @@ test.skip("[P0] 15.6-UNIT-R01 AC1/2 cookie authority supplies exact four RPC arg
 });
 
 for (const denied of ["anonymous", "invited", "disabled", "no-booking-grant", "scheduling-pending"]) {
-  test.skip(`[P0] 15.6-UNIT-R02 AC1 current ${denied} denies before projection/notice reads`, async () => {
+  test(`[P0] 15.6-UNIT-R02 AC1 current ${denied} denies before projection/notice reads`, async () => {
     const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
     const h = transport();
     if (denied === "anonymous") h.auth(false);
@@ -92,7 +92,7 @@ for (const denied of ["anonymous", "invited", "disabled", "no-booking-grant", "s
   });
 }
 
-test.skip("[P0] 15.6-UNIT-R03 AC3/7 exact browser allowlists strip money, peers, source and authority for managers too", async () => {
+test("[P0] 15.6-UNIT-R03 AC3/7 exact browser allowlists strip money, peers, source and authority for managers too", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport(); h.roles(["tenant_admin", "montor"]);
   const raw = h.raw();
@@ -106,7 +106,7 @@ test.skip("[P0] 15.6-UNIT-R03 AC3/7 exact browser allowlists strip money, peers,
   assert.doesNotMatch(JSON.stringify(result), /PRIVATE_|rawRow|quoteId|quoteVersion|acceptedPrice|rate_ore|tenantId|userId|roles|members/);
 });
 
-test.skip("[P0] 15.6-UNIT-R04 AC3 filing prefill is exact existing contract with Stockholm date and elapsed DST minutes", async () => {
+test("[P0] 15.6-UNIT-R04 AC3 filing prefill is exact existing contract with Stockholm date and elapsed DST minutes", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport(); const result = await readMyDay(input, options(h)); assert.equal(result.ok, true);
   const expected: TimeReportBookingPrefill = { bookingId: h.bookingId, jobId: h.jobId, jobLabel: "Lighting job",
@@ -116,7 +116,7 @@ test.skip("[P0] 15.6-UNIT-R04 AC3 filing prefill is exact existing contract with
   assert.equal(Object.hasOwn(result.data.bookings[0], "timeReportHref"), false, "existing page does not accept query-string prefill");
 });
 
-test.skip("[P0] 15.6-UNIT-R05 AC3/6 own-time capability revoked between reads removes prefill immediately", async () => {
+test("[P0] 15.6-UNIT-R05 AC3/6 own-time capability revoked between reads removes prefill immediately", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport();
   assert.ok((await readMyDay(input, options(h))).data.bookings[0].timeReportPrefill);
@@ -131,7 +131,7 @@ test.skip("[P0] 15.6-UNIT-R05 AC3/6 own-time capability revoked between reads re
   assert.equal(h.authorityReads(), 2);
 });
 
-test.skip("[P1] 15.6-UNIT-R06 AC3 jobless/addressless booking has explicit absence and valid jobless prefill", async () => {
+test("[P1] 15.6-UNIT-R06 AC3 jobless/addressless booking has explicit absence and valid jobless prefill", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport(); Object.assign(h.raw().bookings[0], { jobId: null, jobLabel: null, customerLabel: null, address: null });
   const result = await readMyDay(input, options(h)); assert.equal(result.ok, true);
@@ -141,11 +141,11 @@ test.skip("[P1] 15.6-UNIT-R06 AC3 jobless/addressless booking has explicit absen
   assert.doesNotMatch(JSON.stringify(card), /\/jobs\/null|maps|undefined/);
 });
 
-test.skip("[P0] 15.6-UNIT-R07 AC4 jobs pending sets false, queries no jobs source and contributes no section payload/actions", async () => {
+test("[P0] 15.6-UNIT-R07 AC4 jobs pending sets false, queries no jobs source and contributes no section payload/actions", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport();
-  h.payload({ bookings: [{ id: h.bookingId, startsAt: "2026-10-25T00:30:00.000Z", endsAt: "2026-10-25T02:30:00.000Z",
-    allDay: false, description: "Install lighting", ownAssignment: "assigned", customerLabel: null, address: null }], activeJobs: [] });
+  h.payload({ ownSelfPersonIds: [randomUUID()], bookings: [{ id: h.bookingId, startsAt: "2026-10-25T00:30:00.000Z", endsAt: "2026-10-25T02:30:00.000Z",
+    allDay: false, description: "Install lighting", ownAssignment: "assigned", canReportBooking: false, customerLabel: null, address: null }], activeJobs: [] });
   const result = await readMyDay({ ...input, includeJobs: true }, options(h, false)); assert.equal(result.ok, true);
   assert.equal(h.rpcCalls[0].args?.p_include_jobs, false);
   assert.equal(h.trace.some(row => /jobs|job_members/.test(row.table)), false);
@@ -156,7 +156,7 @@ test.skip("[P0] 15.6-UNIT-R07 AC4 jobs pending sets false, queries no jobs sourc
   assert.equal(result.data.bookings[0].timeReportPrefill, null, "withheld job identity must never fabricate a jobless report");
 });
 
-test.skip("[P0] 15.6-UNIT-R08 AC5 filter own unread booking.changed before cap; safe generic notices and honest more-link", async () => {
+test("[P0] 15.6-UNIT-R08 AC5 filter own unread booking.changed before cap; safe generic notices and honest more-link", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport();
   h.notices.push(...Array.from({ length: 501 }, () => notice(h, { category: "quotes.follow-up" })),
@@ -164,7 +164,7 @@ test.skip("[P0] 15.6-UNIT-R08 AC5 filter own unread booking.changed before cap; 
     notice(h, { read_at: "2026-10-25T04:00Z" }), ...Array.from({ length: 4 }, () => notice(h)));
   const result = await readMyDay(input, options(h)); assert.equal(result.ok, true);
   assert.equal(result.data.notices.length, 3); assert.equal(result.data.noticesHasMore, true);
-  assert.equal(result.data.noticesMoreHref, "/notifications"); assert.equal(result.data.noticesUnavailable, false);
+  assert.equal(result.data.noticesMoreHref, null); assert.equal(result.data.noticePage, 1); assert.equal(result.data.noticesUnavailable, false);
   const reads = h.trace.filter(row => row.table === "notifications"); assert.ok(reads.length > 0);
   for (const read of reads) {
     for (const filter of [["eq", "tenant_id", h.tenantId], ["eq", "recipient_user_id", h.userId], ["eq", "category", "booking.changed"], ["is", "read_at", null]]) {
@@ -176,9 +176,16 @@ test.skip("[P0] 15.6-UNIT-R08 AC5 filter own unread booking.changed before cap; 
     assert.equal(Object.hasOwn(item, "bookingId"), false); assert.equal(Object.hasOwn(item, "date"), false);
   }
   assert.doesNotMatch(JSON.stringify(result.data.notices), /PRIVATE_PEER|FOREIGN_TENANT|idag|imorgon/);
+  const continued = await readMyDay({ ...input, noticePage: 2 }, options(h));
+  assert.equal(continued.ok, true); assert.equal(continued.data.noticePage, 2);
+  assert.equal(continued.data.notices.length, 1); assert.equal(continued.data.noticesHasMore, false);
+  assert.equal(continued.data.noticesMoreHref, null);
+  assert.ok(h.trace.filter(row => row.table === "notifications").some(row => row.range?.[0] === 3 && row.range?.[1] === 6));
+  assert.equal(new Set([...result.data.notices, ...continued.data.notices].map(row => row.id)).size, 4);
+
 });
 
-test.skip("[P1] 15.6-UNIT-R09 AC5 notices empty/failure are distinct and never manufacture a schedule change", async () => {
+test("[P1] 15.6-UNIT-R09 AC5 notices empty/failure are distinct and never manufacture a schedule change", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport();
   const empty = await readMyDay(input, options(h)); assert.equal(empty.ok, true);
@@ -191,7 +198,7 @@ test.skip("[P1] 15.6-UNIT-R09 AC5 notices empty/failure are distinct and never m
 
 for (const malformed of [null, { bookings: "not-an-array", activeJobs: [] },
   { bookings: [{ id: "not-a-uuid", startsAt: "bad", endsAt: "bad" }], activeJobs: [] }]) {
-  test.skip("[P0] 15.6-UNIT-R10 AC6 malformed projection fails closed instead of reporting connected empty", async () => {
+  test("[P0] 15.6-UNIT-R10 AC6 malformed projection fails closed instead of reporting connected empty", async () => {
     const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
     const h = transport(); h.payload(malformed);
     const result = await readMyDay(input, options(h)); assert.equal(result.ok, false);
@@ -200,7 +207,7 @@ for (const malformed of [null, { bookings: "not-an-array", activeJobs: [] },
   });
 }
 
-test.skip("[P0] 15.6-UNIT-R11 AC6 failed refresh or membership revocation never returns previous success", async () => {
+test("[P0] 15.6-UNIT-R11 AC6 failed refresh or membership revocation never returns previous success", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport(); assert.equal((await readMyDay(input, options(h))).ok, true);
   h.rpcError(new Error("PRIVATE_DATABASE_STACK"));
@@ -211,12 +218,35 @@ test.skip("[P0] 15.6-UNIT-R11 AC6 failed refresh or membership revocation never 
   assert.doesNotMatch(JSON.stringify([unavailable, denied]), /Install lighting|Lighting job|PRIVATE_DATABASE_STACK/);
 });
 
-test.skip("[P1] 15.6-UNIT-R12 AC2/4 confirmed booking empty and active-job empty remain independent", async () => {
+test("[P1] 15.6-UNIT-R12 AC2/4 confirmed booking empty and active-job empty remain independent", async () => {
   const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
   const h = transport(); const jobs = h.raw().activeJobs;
-  h.payload({ bookings: [], activeJobs: jobs });
+  h.payload({ ownSelfPersonIds: [randomUUID()], bookings: [], activeJobs: jobs });
   const withoutBookings = await readMyDay(input, options(h)); assert.equal(withoutBookings.ok, true);
   assert.deepEqual(withoutBookings.data.bookings, []); assert.equal(withoutBookings.data.activeJobs.length, 1);
-  h.payload({ bookings: [], activeJobs: [] }); const empty = await readMyDay(input, options(h));
+  h.payload({ ownSelfPersonIds: [randomUUID()], bookings: [], activeJobs: [] }); const empty = await readMyDay(input, options(h));
   assert.equal(empty.ok, true); assert.deepEqual(empty.data.bookings, []); assert.deepEqual(empty.data.activeJobs, []);
+});
+
+
+test("[P0] 15.6-UNIT-R13 AC6 opaque render context is stable for one actor/tenant and changes across authority", async () => {
+  const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
+  const h = transport(), other = transport();
+  const first = await readMyDay(input, options(h)); assert.equal(first.ok, true);
+  assert.match(first.renderContextKey, /^[0-9a-f]{64}$/);
+  const again = await readMyDay({ ...input, renderContextKey: "forged" }, options(h));
+  assert.equal(again.renderContextKey, first.renderContextKey);
+  h.rpcError(new Error("unavailable"));
+  assert.equal((await readMyDay(input, options(h))).renderContextKey, first.renderContextKey);
+  assert.notEqual((await readMyDay(input, options(other))).renderContextKey, first.renderContextKey);
+  assert.doesNotMatch(JSON.stringify(first), new RegExp(`${h.tenantId}|${h.userId}`));
+});
+
+test("[P1] 15.6-UNIT-R14 AC5 invalid notice page cannot reach the projection or notification source", async () => {
+  const name = "@/server/read-models/my-day"; const { readMyDay } = await import(name);
+  for (const noticePage of [0, -1, 1.5, 1000001, "2", Infinity]) {
+    const h = transport(); const result = await readMyDay({ ...input, noticePage }, options(h));
+    assert.equal(result.ok, false); assert.equal(result.code, "INVALID_INPUT");
+    assert.deepEqual(h.rpcCalls, []); assert.equal(h.trace.some(row => row.table === "notifications"), false);
+  }
 });

@@ -15,7 +15,7 @@ const selection = (patch: Record<string, unknown> = {}) => ({ date: "2026-10-25"
 const loaded = () => ({ bookings: [booking()], activeJobs: [{ id: "job-a", title: "Lighting", status: "created" }],
   notices: [{ id: "notice-a", title: "Planeringen har ändrats", route: "/scheduling" }] });
 
-test.skip("[P1] 15.6-UNIT-D01 AC2 initial today is Stockholm local date across UTC midnight", async () => {
+test("[P1] 15.6-UNIT-D01 AC2 initial today is Stockholm local date across UTC midnight", async () => {
   const name = "@/features/my-day/domain";
   const { myDayToday } = await import(name);
   assert.equal(myDayToday("2026-10-24T22:30:00.000Z"), "2026-10-25");
@@ -26,7 +26,7 @@ for (const [date, start, end, hours] of [
   ["2026-03-29", "2026-03-28T23:00:00.000Z", "2026-03-29T22:00:00.000Z", 23],
   ["2026-10-25", "2026-10-24T22:00:00.000Z", "2026-10-25T23:00:00.000Z", 25],
 ] as const) {
-  test.skip(`[P0] 15.6-UNIT-D02 AC2 Stockholm ${date} uses actual ${hours}-hour day`, async () => {
+  test(`[P0] 15.6-UNIT-D02 AC2 Stockholm ${date} uses actual ${hours}-hour day`, async () => {
     const name = "@/features/my-day/domain";
     const { myDayPeriod } = await import(name);
     const period = myDayPeriod(date, "day");
@@ -36,7 +36,7 @@ for (const [date, start, end, hours] of [
   });
 }
 
-test.skip("[P0] 15.6-UNIT-D03 AC2 week navigation retains selected local weekday across fall DST", async () => {
+test("[P0] 15.6-UNIT-D03 AC2 week navigation retains selected local weekday across fall DST", async () => {
   const name = "@/features/my-day/domain";
   const { myDayPeriod, shiftMyDayWeek } = await import(name);
   assert.equal(shiftMyDayWeek("2026-10-25", 1), "2026-11-01");
@@ -48,7 +48,7 @@ test.skip("[P0] 15.6-UNIT-D03 AC2 week navigation retains selected local weekday
   assert.equal((Date.parse(period.end) - Date.parse(period.start)) / 3_600_000, 169);
 });
 
-test.skip("[P1] 15.6-UNIT-D04 AC2 invalid calendar dates never normalize to another date", async () => {
+test("[P1] 15.6-UNIT-D04 AC2 invalid calendar dates never normalize to another date", async () => {
   const name = "@/features/my-day/domain";
   const { myDayPeriod } = await import(name);
   for (const date of ["2026-02-30", "2026-13-01", "25/10/2026", "", "2026-10-25T00:00Z"]) {
@@ -56,7 +56,7 @@ test.skip("[P1] 15.6-UNIT-D04 AC2 invalid calendar dates never normalize to anot
   }
 });
 
-test.skip("[P0] 15.6-UNIT-D05 AC2 agenda half-open overlap sorts start then ID and deduplicates shared/series rows", async () => {
+test("[P0] 15.6-UNIT-D05 AC2 agenda half-open overlap sorts start then ID and deduplicates shared/series rows", async () => {
   const name = "@/features/my-day/domain";
   const { myDayAgenda } = await import(name);
   const early = booking({ id: "a", startsAt: "2026-10-24T21:30:00Z", endsAt: "2026-10-24T23:00:00Z" });
@@ -72,7 +72,7 @@ test.skip("[P0] 15.6-UNIT-D05 AC2 agenda half-open overlap sorts start then ID a
   assert.equal(actual.find((row: { id: string }) => row.id === "all-day").allDay, true);
 });
 
-test.skip("[P1] 15.6-UNIT-D06 AC3 map URL safely encodes Swedish text, query delimiters and script-like input", async () => {
+test("[P1] 15.6-UNIT-D06 AC3 map URL safely encodes Swedish text, query delimiters and script-like input", async () => {
   // Google path/query is an author-adaptable presentation default, not an
   // exclusive provider requirement. Preserve HTTPS, one encoded address, no
   // injected parameters/fragments and absence behavior when reconciling it.
@@ -88,7 +88,7 @@ test.skip("[P1] 15.6-UNIT-D06 AC3 map URL safely encodes Swedish text, query del
 });
 
 for (const kind of ["retryable", "denied"] as const) {
-  test.skip(`[P0] 15.6-UNIT-D07 AC6 ${kind} after success clears cards, actions and notices`, async () => {
+  test(`[P0] 15.6-UNIT-D07 AC6 ${kind} after success clears cards, actions and notices`, async () => {
     const name = "@/features/my-day/domain";
     const { createMyDayState, reduceMyDayState } = await import(name);
     let state = createMyDayState(selection());
@@ -105,7 +105,7 @@ for (const kind of ["retryable", "denied"] as const) {
 }
 
 for (const changed of [{ date: "2026-10-26" }, { tenantKey: "tenant-b" }, { userKey: "user-b" }]) {
-  test.skip(`[P0] 15.6-UNIT-D08 AC6 late previous ${Object.keys(changed)[0]} response cannot restore old data`, async () => {
+  test(`[P0] 15.6-UNIT-D08 AC6 late previous ${Object.keys(changed)[0]} response cannot restore old data`, async () => {
     const name = "@/features/my-day/domain";
     const { createMyDayState, reduceMyDayState } = await import(name);
     const old = selection(), current = selection(changed);
@@ -118,7 +118,7 @@ for (const changed of [{ date: "2026-10-26" }, { tenantKey: "tenant-b" }, { user
   });
 }
 
-test.skip("[P0] 15.6-UNIT-D09 AC6 only current connected successful empty read becomes empty", async () => {
+test("[P0] 15.6-UNIT-D09 AC6 only current connected successful empty read becomes empty", async () => {
   const name = "@/features/my-day/domain";
   const { createMyDayState, reduceMyDayState } = await import(name);
   const initial = createMyDayState(selection()); assert.equal(initial.isEmpty, false);
@@ -128,7 +128,7 @@ test.skip("[P0] 15.6-UNIT-D09 AC6 only current connected successful empty read b
   assert.equal(empty.status, "ready"); assert.equal(empty.isEmpty, true);
 });
 
-test.skip("[P0] 15.6-UNIT-D10 AC6 older refresh for identical selection cannot replace a newer failed refresh", async () => {
+test("[P0] 15.6-UNIT-D10 AC6 older refresh for identical selection cannot replace a newer failed refresh", async () => {
   const name = "@/features/my-day/domain";
   const { createMyDayState, reduceMyDayState } = await import(name);
   let state = reduceMyDayState(createMyDayState(selection()), { type: "request", requestId: 1, selection: selection() });
@@ -136,4 +136,18 @@ test.skip("[P0] 15.6-UNIT-D10 AC6 older refresh for identical selection cannot r
   state = reduceMyDayState(state, { type: "failure", requestId: 2, selection: selection(), kind: "retryable" });
   const before = structuredClone(state);
   assert.deepEqual(reduceMyDayState(state, { type: "success", requestId: 1, selection: selection(), data: loaded() }), before);
+});
+
+
+test("[P0] 15.6-UNIT-D11 AC2 complete supported weeks reject both four-digit boundary overflows", async () => {
+  const name = "@/features/my-day/domain";
+  const { myDayPeriod, shiftMyDayWeek, validateMyDaySelection, MY_DAY_MIN_DATE, MY_DAY_MAX_DATE } = await import(name);
+  for (const date of [MY_DAY_MIN_DATE, MY_DAY_MAX_DATE]) {
+    assert.doesNotThrow(() => validateMyDaySelection(date));
+    assert.equal(myDayPeriod(date, "week").dates.length, 7);
+  }
+  for (const date of ["0001-01-01", "9999-12-31"]) assert.throws(() => validateMyDaySelection(date));
+  assert.throws(() => shiftMyDayWeek(MY_DAY_MIN_DATE, -1));
+  assert.throws(() => shiftMyDayWeek(MY_DAY_MAX_DATE, 1));
+  assert.throws(() => myDayPeriod("9999-12-31", "week"));
 });

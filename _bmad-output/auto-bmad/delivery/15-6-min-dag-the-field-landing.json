@@ -1,0 +1,94 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Approved15.6 intent/sketch and AC1-7 preserved. Current October19 development gate applies: static/build, full executed DB/RLS, direct recovery integrity, focused tests, essential production browser and independentHigh review are required. Full visual/manual/exhaustive matrices remain deferred release validation with owners. No historical planning evidence relabelled; no functional/privacy/transaction requirement deferred.",
+  "evidence_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72 plus author working-tree source hashes below",
+  "development_checks": [
+    {
+      "name": "Round1 affected domain/read/auth units",
+      "status": "passed",
+      "evidence": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/unit/server/authz/phase-a-surface.test.ts; native exit0; {\"passed\": 43, \"failed\": 0, \"skipped\": 0, \"new_feature_cases\": 38, \"retained_historical_auth_cases\": 5}"
+    },
+    {
+      "name": "Round1 final typecheck",
+      "status": "passed",
+      "evidence": "pnpm typecheck; native exit0; {}"
+    },
+    {
+      "name": "Round1 affected source/test lint",
+      "status": "passed",
+      "evidence": "pnpm exec eslint src/components/my-day src/features/my-day src/server/read-models/my-day.ts tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/e2e/my-day.e2e.spec.ts; native exit0; {\"warnings\": 0, \"errors\": 0}"
+    },
+    {
+      "name": "Round1 production build",
+      "status": "passed",
+      "evidence": "pnpm build; native exit0; {\"result\": \"Dynamic /my-day; current product code built before final browser-only test extensions\"}"
+    },
+    {
+      "name": "Round1 browser syntax",
+      "status": "passed",
+      "evidence": "node --experimental-strip-types --check tests/e2e/my-day.e2e.spec.ts; native exit0; {\"cases\": 9, \"limit\": \"Source parse only; no browser/database execution\"}"
+    },
+    {
+      "name": "Round1 source containment",
+      "status": "passed",
+      "evidence": "node scripts/verify/check-service-role-containment.mjs; native exit0; {}"
+    },
+    {
+      "name": "Round1 built bundle containment",
+      "status": "passed",
+      "evidence": "node scripts/verify/check-bundle-containment.mjs; native exit0; {}"
+    },
+    {
+      "name": "Round1 final diff whitespace",
+      "status": "passed",
+      "evidence": "git -c core.longpaths=true diff --check; native exit0; {\"limit\": \"Existing autocrlf warnings only\"}"
+    },
+    {
+      "name": "required exact-head clean-checkout lint/full DB-RLS/direct recovery/essential production browser",
+      "status": "pending",
+      "evidence": "Root-owned execution still pending; prior full Windows 3479pass/one Linux-xattr skip is pre-Round1 broad evidence, not current exact-head coverage for three added unit cases."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "{\"status\": \"passed\", \"round\": 2, \"reviewer\": \"/root/build15_6_high/round2_targeted\", \"model\": \"gpt-6.1-sol\", \"effort\": \"high\", \"independence\": \"Context-free explicit High targeted follow-up assigned by parent; author did not review its own work.\", \"fix_snapshot_bytes\": 63991, \"fix_snapshot_sha256\": \"aa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2\", \"source_hash_audit\": \"All23 current source byte hashes matched author and reviewer reports; unchanged SQL reused Round1 independent High security review.\", \"verdict\": \"PASS; no production-reachable regression or unresolved consequential R1 finding. SRO accurate.\", \"provenance\": \"Read parent-owned review-round-2-results.json after publication; actual PASS/fix snapshot/reviewer and all23current bytehashes verified.\", \"report\": \"_bmad-output/auto-bmad/preparation/story-15-6/review-round-2-results.json\", \"report_sha256\": \"19c3fb551f43f9b14b50f4fa4533185c121802ccd6c044d1c4228edb5ff4582a\"}"
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Full Min dag role/device/browser matrix beyond nine essential journeys",
+      "owner": "QA / release-validation coordinator",
+      "status": "deferred",
+      "evidence": "Not executed in this implementation run; focused source/Windows checks only.",
+      "next_action": "Execute qualified release-head role/device/browser matrix and record results before release readiness."
+    },
+    {
+      "item": "Canonical design screenshot comparison, measured contrast and presentation polish",
+      "owner": "UX / QA",
+      "status": "deferred",
+      "evidence": "No screenshot, visual comparison or measured rendered contrast performed. Existing neutral primitives used per bounded owner default; shared font/token migration is outside this story allocation.",
+      "next_action": "Compare the rendered Min dag states against approved DESIGN/EXPERIENCE at release viewports; assess shared-token migration in its owned design lane and resolve findings."
+    },
+    {
+      "item": "Manual accessibility, keyboard, daylight and exploratory walkthrough",
+      "owner": "QA / UX",
+      "status": "deferred",
+      "evidence": "Not executed; semantic controls and focus styles are source choices, not manual evidence.",
+      "next_action": "Run and attach the manual connected-field release walkthrough, including long Swedish text and zoom/reflow."
+    },
+    {
+      "item": "E14 advisory triage and approved performance volumes/targets",
+      "owner": "QA / Product / Architect",
+      "status": "deferred",
+      "evidence": "October8 accepted-with-open-items governs 48 advisory triage and unapproved performance targets; this run made no performance claim.",
+      "next_action": "Reconcile advisory resolution evidence and approve representative performance volumes/targets before qualification claims."
+    },
+    {
+      "item": "Final Phase B release validation and stabilization checkpoint",
+      "owner": "Coordinator / release-validation coordinator",
+      "status": "deferred",
+      "evidence": "October22 final milestone remains pending, unexecuted; development completion alone cannot satisfy it.",
+      "next_action": "After current PhaseB epics are integrated/development-complete, open assigned checkpoint and execute applicable release checks before explicit release approval."
+    }
+  ],
+  "release_ready": false
+}

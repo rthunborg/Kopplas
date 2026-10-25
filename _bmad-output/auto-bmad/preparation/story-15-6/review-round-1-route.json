@@ -1,0 +1,34 @@
+{
+  "round": 1,
+  "cap": 3,
+  "baseline_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72",
+  "diff_file": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\auto-bmad-cross-model-15-6-round1-f5xaxhck.diff",
+  "diff_sha256": "9f0158d2e8bce52a5535cfc9d321eac84a4312541ea9fb122e4e8b0d02db8f67",
+  "bytes": 139820,
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "reason": "Mixed diff changes authenticated RPC own-person tenant isolation, permissions and time-report action boundaries. All independent review lenses cover actual sensitive diff.",
+  "ordering": "Local source verification complete; hosted DB/recovery/browser remains pending. Root authorized source review before fresh checkpoint admission.",
+  "layers": [
+    "blind-hunter",
+    "edge-case-hunter",
+    "verification-gap",
+    "intent-alignment",
+    "auto-bmad-security",
+    "auto-bmad-cross-model"
+  ],
+  "files": [
+    "_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json",
+    "_bmad-output/auto-bmad/preparation/story-15-6/author-checks.json",
+    "_bmad-output/auto-bmad/preparation/story-15-6/author-implementation-notes.md",
+    "_bmad-output/auto-bmad/preparation/story-15-6/author-log-provenance.json",
+    "src/app/(app)/my-day/layout.tsx",
+    "src/app/(app)/my-day/page.tsx",
+    "src/components/my-day/MyDayBookingCard.tsx",
+    "src/components/my-day/MyDayWorkspace.tsx",
+    "src/features/my-day/actions.ts",
+    "src/features/my-day/domain.ts",
+    "src/features/my-day/types.ts",
+    "src/server/read-models/my-day.ts"
+  ]
+}

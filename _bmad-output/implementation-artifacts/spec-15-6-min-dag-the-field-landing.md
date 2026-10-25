@@ -2,7 +2,8 @@
 title: '15.6 Min Dag — the Field Landing'
 type: 'feature'
 created: '2026-10-25'
-status: 'ready-for-dev'
+status: 'in-review'
+baseline_revision: '118ebced2898b96f4b3dfce86f2dec8b52dd8f72'
 review_loop_iteration: 0
 followup_review_recommended: false
 context:
@@ -67,13 +68,13 @@ AC sketch: `/my-day` route + Montör landing redirect activates (completing EB-A
 
 > **No Design Gate Criteria for this story.** `epics-phase-b.md` provides this AC sketch without separate Visual/Behaviour/Animation/Visual-validation criteria. This is intentional per the source; canonical design and the explicit verification requirements below still apply.
 
-**Execution (all unchecked; proposed paths require Root allocation before build):**
+**Execution (Root-owned path allocation recorded; required runtime evidence remains pending):**
 
-- [ ] T1 — `src/features/my-day/types.ts`, `src/features/my-day/domain.ts` — define minimal DTO, date selection, sorting, safe map URL and latest-request state rules; no server imports. AC2/3/6/7.
-- [ ] T2 — `supabase/migrations/ (CLI-generated timestamp + story_15_6_my_day_projection.sql)` — add checked authenticated-only `read_my_day(p_tenant_id,p_start,p_end,p_include_jobs)` with explicit minimal JSON, bounded maximum eight-day UTC interval (covers a Stockholm week crossing DST), current active exact membership→unarchived own profile→assignment for all caller roles. Project related job/customer/facility labels only after relationship admission. Return no peers/money/source identity. Use `p_include_jobs boolean default false`, supplied only from server manifest state. FALSE is a separate branch with zero jobs-table/helper/join queries, activeJobs=[], no jobId/jobLabel/role/actions and only explicit booking customer/facility context. Suppress a job-linked report action if withholding jobId conflicts with the existing filing invariant. TRUE independently requires current job_can_read AND personal relationship for every job contribution. The flag grants no authority; authenticated direct RPC callers can request true, so it is server composition control, not proof of manifest status. Create via `supabase migration new story_15_6_my_day_projection` after CLI help discovery and capture its actual path; do not fabricate timestamp. Stable read-only checked SECURITY DEFINER projection for restricted related labels, empty search path, fully qualified names, authenticated-only ACL, no table/policy changes; any nested helper callable independently remains independently checked. AC1–4. High implementation/review required.
-- [ ] T3 — `src/server/read-models/my-day.ts`, `src/features/my-day/actions.ts` — derive current authority and manifest activation server-side; validate/translate selected date to bounded interval; validate exact RPC DTO and whitelist output; read own unread booking-change notices with category-before-pagination (bounded visible banners plus honest more-link if capped). Resolve existing own-time-report capability and construct exact filing prefill from checked own bookings using existing time-report duration/date helpers; keep tenant/user selectors server-only. Do not expose raw RPC rows or adopt broad scheduling/jobs DTO. AC1–7.
-- [ ] T4 — `src/app/(app)/my-day/layout.tsx`, `src/app/(app)/my-day/page.tsx`, `src/components/my-day/MyDayWorkspace.tsx`, `src/components/my-day/MyDayBookingCard.tsx` — add dynamic server entry and protected route; headless state/actions feed content-first single-column UI, today/date header, week arrows/swipe and day selection, named refresh control plus pull gesture, safe maps/job/time links, notices and isolated jobs section. Date/week navigation preserves selection and handles stale responses; failure removes old lists. Reuse `TimeReportEntry` inline with a server-constructed `TimeReportBookingPrefill` and current own-report capability rather than duplicating mutation logic; existing time-reports page does not consume URL prefill, so do not invent a query-string flow. AC2–7.
-- [ ] T5 — `src/scope/manifest.ts`, `src/components/app-shell/nav-items.ts`, `src/server/authz/phase-a-surface.ts` — enroll `Min dag` `/my-day` in active scheduling with `Bookings.View`; Pure Montör role set lands there when granted; mixed office/Montör role unions preserve their existing office priority, while non-Montör priorities and current per-job admission remain unchanged. Missing grant uses existing authorized fallback; no redirect loop. AC1.
+- [x] T1 — `src/features/my-day/types.ts`, `src/features/my-day/domain.ts` — define minimal DTO, date selection, sorting, safe map URL and latest-request state rules; no server imports. AC2/3/6/7.
+- [x] T2 — `supabase/migrations/ (CLI-generated timestamp + story_15_6_my_day_projection.sql)` — add checked authenticated-only `read_my_day(p_tenant_id,p_start,p_end,p_include_jobs)` with explicit minimal JSON, bounded maximum eight-day UTC interval (covers a Stockholm week crossing DST), current active exact membership→unarchived own profile→assignment for all caller roles. Project related job/customer/facility labels only after relationship admission. Return no peers/money/source identity. Use `p_include_jobs boolean default false`, supplied only from server manifest state. FALSE is a separate branch with zero jobs-table/helper/join queries, activeJobs=[], no jobId/jobLabel/role/actions and only explicit booking customer/facility context. Suppress a job-linked report action if withholding jobId conflicts with the existing filing invariant. TRUE independently requires current job_can_read AND personal relationship for every job contribution. The flag grants no authority; authenticated direct RPC callers can request true, so it is server composition control, not proof of manifest status. Create via `supabase migration new story_15_6_my_day_projection` after CLI help discovery and capture its actual path; do not fabricate timestamp. Stable read-only checked SECURITY DEFINER projection for restricted related labels, empty search path, fully qualified names, authenticated-only ACL, no table/policy changes; any nested helper callable independently remains independently checked. AC1–4. High implementation/review required.
+- [x] T3 — `src/server/read-models/my-day.ts`, `src/features/my-day/actions.ts` — derive current authority and manifest activation server-side; validate/translate selected date to bounded interval; validate exact RPC DTO and whitelist output; read own unread booking-change notices with category-before-pagination (bounded visible banners plus honest more-link if capped). Resolve existing own-time-report capability and construct exact filing prefill from checked own bookings using existing time-report duration/date helpers; keep tenant/user selectors server-only. Do not expose raw RPC rows or adopt broad scheduling/jobs DTO. AC1–7.
+- [x] T4 — `src/app/(app)/my-day/layout.tsx`, `src/app/(app)/my-day/page.tsx`, `src/components/my-day/MyDayWorkspace.tsx`, `src/components/my-day/MyDayBookingCard.tsx` — add dynamic server entry and protected route; headless state/actions feed content-first single-column UI, today/date header, week arrows/swipe and day selection, named refresh control plus pull gesture, safe maps/job/time links, notices and isolated jobs section. Date/week navigation preserves selection and handles stale responses; failure removes old lists. Reuse `TimeReportEntry` inline with a server-constructed `TimeReportBookingPrefill` and current own-report capability rather than duplicating mutation logic; existing time-reports page does not consume URL prefill, so do not invent a query-string flow. AC2–7.
+- [x] T5 — `src/scope/manifest.ts`, `src/components/app-shell/nav-items.ts`, `src/server/authz/phase-a-surface.ts` — enroll `Min dag` `/my-day` in active scheduling with `Bookings.View`; Pure Montör role set lands there when granted; mixed office/Montör role unions preserve their existing office priority, while non-Montör priorities and current per-job admission remain unchanged. Missing grant uses existing authorized fallback; no redirect loop. AC1.
 - [ ] T6 — `tests/unit/features/my-day/domain.test.ts`, `tests/unit/server/read-models/my-day.test.ts`, `tests/unit/server/authz/phase-a-surface.test.ts`, `tests/integration/scheduling/my-day.int.test.ts`, `tests/e2e/my-day.e2e.spec.ts` — assert matrix, exact minimal DTO, full/paged own relationships, auth/tenant negatives, failure clearing, map/prefill and essential 360×640 journey. `package.json` — add `tests/e2e/my-day.e2e.spec.ts` solely to the existing explicit `test:smoke` script list so required essential-browser verification includes this flow; no dependency, lockfile, workflow or controller change. Existing manifest-derived guards should derive the new nav automatically; repair only demonstrated hard-coded fixture expectations. AC1–7.
 - [ ] T7 — this spec, `_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json`, `_bmad-output/implementation-artifacts/deferred-work.md` — implementation author records actual revision/commands/counts, independent High review, one final Suggested Review Order with verified stops, contract reconciliation and named deferred release work. Supporting completion infrastructure, not a new product AC. Root owns status/delivery-gate transitions.
 
@@ -93,7 +94,40 @@ No review re-derivation yet.
 
 ## Review Triage Log
 
-No code review round consumed during planning.
+### Review Findings
+
+**Round 1 of 3**
+
+Round 1 completed: eleven deduplicated patches applied; required hosted verification remains pending.
+
+**Round 2 of 3**
+
+Targeted independent High review PASS: R1-01–R1-11 resolved; all 23 source hashes verified; unchanged SQL retains Round 1 security provenance. Required runtime gates remain pending.
+
+### 2026-10-25 — Review pass, Round 1
+- intent_gap: 0
+- bad_spec: 0
+- patch: 11: (high 1, medium 6, low 4)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[high]` `[patch]` R1-01: bind render/request lifetime to current server-derived identity; retain same-identity uncertain report ownership.
+  - `[medium]` `[patch]` R1-02/03/05/06/08/10: validated technical date bounds, dated all-day cards, field touch targets, honest recipient-filtered notice paging, scoped gestures and actual workspace race assertions.
+  - `[low]` `[patch]` R1-04/07/09/11: neutral absent-job copy, stable focus return, one main landmark and actual whole-week toggle assertions.
+- Patched score: high 1, medium 6, low 4; weighted score 22; follow-up recommended true for this patch pass.
+- Evidence: six configured independent lenses over frozen diff `9f0158d2e8bce52a5535cfc9d321eac84a4312541ea9fb122e4e8b0d02db8f67`; compact results in `preparation/story-15-6/review-round-1-results.json`. External Codex review artifact recovered read-only after the final Windows TYPE display failed on a forward-slash path; no model rerun.
+
+### 2026-10-25 — Review pass, Round 2 (targeted fixes/regressions)
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+- Verdict: independent Sol6.1 High PASS; R1-01–R1-11 resolved in source, full 63,991-byte fix delta `aa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2` and all 23 author source hashes verified. Current SRO accurately states evidence limits. No runtime execution by the reviewer.
+- Patched score: high 0, medium 0, low 0; weighted score 0; follow-up recommended false for this latest pass. Two completed rounds (one broad, one targeted), cap three; `review_loop_iteration` remains zero because no bad-spec re-derivation occurred.
+- Required canonical clean-checkout, full DB/RLS, direct recovery and essential production browser evidence remain pending. Source review PASS is not development completion.
 
 ## Design Notes
 
@@ -119,3 +153,62 @@ References: `AGENTS.md`; `_bmad-output/project-context.md`; `_bmad-output/planni
 
 Status: ready-for-dev
 Halt after planning as requested. No implementation or review round executed; sprint/status/Git transitions remain Root-owned. Self-audit passed all seven checks; High sensitive assessment and focused amendment integrated. Independent Root-owned High spec validation and allocation precede build. Migration directory/logical stem fixed; CLI-generated concrete filename is intentionally deferred to Root's filename-generation-only step after fresh combined inventory and ownership clearance. No previously applied migration is edited. Completion-hook protocol applied: planning exit preserved, no completed Suggested Review Order or verification trail manufactured.
+
+
+## Implementation Checkpoint — 2026-10-25
+
+Source/local-ready only, on `118ebced2898b96f4b3dfce86f2dec8b52dd8f72` plus the author working tree. Actual source SHA256 inventory and commands are in `_bmad-output/auto-bmad/preparation/story-15-6/author-checks.json`; implementation choices and recovery details are in `author-implementation-notes.md` in the same folder. The planning Verification and Auto Run Result above are preserved as historical planning evidence.
+
+Implemented T1–T5, activated all 59 new ATDD scenarios and added the smoke spec. Five demonstrated hard-coded nav fixtures were minimally extended only after Coordinator/Root exact-file clearance. No additional migration, table, role grant, dependency or privileged app client was introduced; the Root-generated forward migration is the only schema file authored. Runtime and independent review portions of T6/T7 remain incomplete.
+
+Actual local evidence: focused domain/read/auth 40/40 pass (35 new, five retained), approved scope fixtures33/33 pass, final full Windows units3480 discovered/3479 passed/0 failed/1 skipped, typecheck pass, scoped lint0 errors/31 existing warnings, changed source/tests lint0 errors/0 warnings, production build pass with dynamic `/my-day`, source/bundle containment pass. Canonical local `pnpm lint` failed exit2 while traversing ignored historical runtime traces; bounded recovery excluded `.env*/**` without config/data changes. The single Windows unit skip is the historical Linux-xattr recovery test, not coverage. Clean-checkout canonical lint, full required DB/RLS, direct recovery-storage integrity and essential production-server browser/smoke are Root-owned pending gates. No service/runtime was launched and no Git/provider action was taken by the author.
+
+The pending delivery JSON intentionally does not pass the completion gate: required hosted checks and independent High review are `pending`. No development-complete, release-ready, merge or deployment claim. Release work is recorded with QA/UX/Coordinator owners and concrete next actions in the delivery record and this story's appended deferred-work ledger entries; E14 advisory/performance and final PhaseB checkpoint obligations remain visible.
+
+
+### Round1 patch checkpoint
+
+R1-01..R1-11 are implemented; source and rationale are recorded in author-implementation-notes.md. The catalog now has63new active cases:15domain,20read,3auth,16SQL and9browser. Actual post-fix local evidence is43focused passes/0failures/0skips, typecheck, affected lint, production build, source/bundle containment and browser syntax passes. Previous full Windows3480/3479pass/one historical Linux-xattr skip is pre-fix broad evidence; exact-head full CI/DB-RLS/direct recovery/browser remains pending. No new SQL/table/policy/grant or shared notification change was needed. Subsequent independent context-free SolHigh Round2 follow-up passed on the63991-byte fix snapshot `aa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2`, with all23source bytehashes matched and unchanged SQL High review reused. Delivery now records independent review passed; required hosted checks remain pending and release_ready remains false.
+
+## Suggested Review Order
+
+Author: Story15.6 implementation/fix author, with the recorded ordinary UI and High test-binding delegates.
+Refreshed after bounded R1-01..R1-11 fixes against baseline `118ebced2898b96f4b3dfce86f2dec8b52dd8f72` plus current author working tree; current byte hashes and historical pre-fix evidence are separate in author-checks.json.
+
+### Begin with current identity and the usable field landing
+
+The server-derived opaque digest controls presentation lifetime only; no command or read accepts it as authority. A resolved actor/tenant change resets lists and report ownership, while the same identity's unknown attempt survives ordinary date/read failure. Pure Montor keeps the approved landing preference and mixed office roles retain theirs.
+
+- `src/app/(app)/my-day/page.tsx:7` — `MyDayPage`: initializes the connected landing.
+- `src/components/my-day/MyDayWorkspace.tsx:20` — `MyDayWorkspace`: keys state to resolved server context.
+- `src/server/read-models/my-day.ts:60` — `renderContextKey =`: derives non-granting lifetime metadata.
+- `src/server/authz/phase-a-surface.ts:33` — `resolveLandingRoute`: preserves normalized landing priorities.
+
+### Follow own-person authority and the closed payload
+
+The SQL branch and job predicate choices from the original implementation remain unchanged: every role gets own assignments, jobs-off performs no job queries, and every job contribution requires both existing readability and personal relationship. The adapter validates and reconstructs the browser DTO; notice pagination stays recipient/unread/category-scoped before its range.
+
+- `src/server/read-models/my-day.ts:52` — `readMyDay`: revalidates current authority and builds the DTO.
+- `supabase/migrations/20261025085310_story_15_6_my_day_projection.sql:23` — `if not coalesce`: separates the jobs-off query.
+- `supabase/migrations/20261025085310_story_15_6_my_day_projection.sql:56` — `left join public.jobs`: gates linked job contributions.
+- `tests/unit/server/read-models/my-day.test.ts:95` — `15.6-UNIT-R03`: exercises AC3/7 manager-safe allowlists.
+
+### Preserve selected facts and immutable report recovery
+
+Complete four-digit Stockholm week destinations are validated before state changes; current-request gates clear/withhold old facts. The stable heading gives the shared Dialog a surviving focus destination, and the retained filing owner stays independent of fetched lists. RSC today data cannot overwrite a different current date/week.
+
+- `src/components/my-day/MyDayWorkspace.tsx:69` — `async function refresh`: validates selection and guards response ownership.
+- `src/components/my-day/MyDayWorkspace.tsx:129` — `ref={reportHost}`: retains the existing immutable filing owner.
+- `tests/unit/features/my-day/domain.test.ts:142` — `15.6-UNIT-D11`: covers both technical date bounds.
+- `tests/e2e/my-day.e2e.spec.ts:264` — `15.6-E03`: asserts actual queued-read gating and native gestures.
+
+### Check the actual outer-surface assertions and evidence limits
+
+E04 now checks real multi-date week then day-only output, dated all-day cards,44px targets and one main; E06 proves actual personal continuation past the shared center's cap. E09 binds real filing, changed-tenant RSC navigation and late prior-read rejection. These source assertions supplement the passed focused units; they still require Root's browser/DB execution.
+
+- `tests/e2e/my-day.e2e.spec.ts:415` — `15.6-E04`: covers AC2/7 actual week/date/target composition.
+- `tests/e2e/my-day.e2e.spec.ts:524` — `15.6-E06`: covers AC5 actual category-filtered continuation.
+- `tests/e2e/my-day.e2e.spec.ts:626` — `15.6-E09`: covers AC6 actual context reset and old-response rejection.
+- `tests/integration/scheduling/my-day.int.test.ts:191` — `15.6-INT-09`: retains AC4 zero-job scans with a positive control.
+
+Evidence: author-checks.json records post-fix43focused passes, typecheck, affected lint, production build, containment and source parse, all native exits0. It retains pre-fix full Windows3479pass/one historical Linux-xattr skip separately. Limits: mocked unit transport is not RLS evidence;16SQL/9browser scenarios remain unexecuted here; Next16 serializes actions/REFRESH, so E03 uses real queued callbacks and E09 uses real NAVIGATE preemption rather than fabricated parallel transport. Independent context-free High Round2 follow-up passed and verified this trail; exact-head canonical lint/full DB-RLS/direct recovery/essential production browser remain pending. Exhaustive visual/manual matrices remain tracked release deferrals; no development-complete or release-ready claim.

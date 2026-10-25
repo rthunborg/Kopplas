@@ -1,0 +1,302 @@
+{
+  "status": "Source independently reviewed PASS after Round2; all required exact-head runtime gates remain pending",
+  "evidence_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72 plus author working-tree source hashes below",
+  "checks": [
+    {
+      "name": "Round1 affected domain/read/auth units",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/unit/server/authz/phase-a-surface.test.ts",
+      "exit": 0,
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0,
+      "new_feature_cases": 38,
+      "retained_historical_auth_cases": 5
+    },
+    {
+      "name": "Round1 final typecheck",
+      "command": "pnpm typecheck",
+      "exit": 0
+    },
+    {
+      "name": "Round1 affected source/test lint",
+      "command": "pnpm exec eslint src/components/my-day src/features/my-day src/server/read-models/my-day.ts tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/e2e/my-day.e2e.spec.ts",
+      "exit": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "name": "Round1 production build",
+      "command": "pnpm build",
+      "exit": 0,
+      "result": "Dynamic /my-day; current product code built before final browser-only test extensions"
+    },
+    {
+      "name": "Round1 browser syntax",
+      "command": "node --experimental-strip-types --check tests/e2e/my-day.e2e.spec.ts",
+      "exit": 0,
+      "cases": 9,
+      "limit": "Source parse only; no browser/database execution"
+    },
+    {
+      "name": "Round1 source containment",
+      "command": "node scripts/verify/check-service-role-containment.mjs",
+      "exit": 0
+    },
+    {
+      "name": "Round1 built bundle containment",
+      "command": "node scripts/verify/check-bundle-containment.mjs",
+      "exit": 0
+    },
+    {
+      "name": "Round1 final diff whitespace",
+      "command": "git -c core.longpaths=true diff --check",
+      "exit": 0,
+      "limit": "Existing autocrlf warnings only"
+    },
+    {
+      "name": "Round1 author review-order references",
+      "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+      "exit": 0,
+      "sections": 1,
+      "refs": 16,
+      "errors": 0
+    }
+  ],
+  "source_sha256": {
+    "src/features/my-day/types.ts": "831551df0821ecab7356663711f84b5db5d46e7bf0064a707db763e4a0620de0",
+    "src/features/my-day/domain.ts": "23a0efaf205a3183fda64018fe1ef8a43edf49e23d5d947f5079509167589699",
+    "src/features/my-day/actions.ts": "67f2c1b6aa618360e04f8ad12dcbbe60dffa596886d0fb461227b748febb344e",
+    "src/server/read-models/my-day.ts": "1001616017459d8edc883e0ff3a5aa2d11bf2324a090b58de3eb57c7f4dc504c",
+    "src/app/(app)/my-day/layout.tsx": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e",
+    "src/app/(app)/my-day/page.tsx": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747",
+    "src/components/my-day/MyDayWorkspace.tsx": "d470f32c941f3baee54cd8f729b6c1bb0c2d20d9e7583c1f73f5ee3ceefe8974",
+    "src/components/my-day/MyDayBookingCard.tsx": "609f46eb67dbafea5fd1fa14851038ad420d9f5f03ed353b3833e08024e3f770",
+    "src/scope/manifest.ts": "5bd5f101ece667ac16f63c787392522c0f0268e967f8f9196254c25699402130",
+    "src/components/app-shell/nav-items.ts": "8494a72b564c5221aac077b580f6ad0f24c1d31a21aa57849a7f4eb9ac3e2b47",
+    "src/server/authz/phase-a-surface.ts": "9f5096266d0c15ec64eb4b2ecf81f79b4e2212ef356796830df7a765a2602f22",
+    "package.json": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+    "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql": "548df5d9917c8e01fd0acacc8872430f96377200ef1841995144bcc00cefafe6",
+    "tests/unit/features/my-day/domain.test.ts": "b4efc34fc24a1d97527e3260f5bc9667429db16f4e0e43a2d931b6ad3c7112b2",
+    "tests/unit/server/read-models/my-day.test.ts": "f4c40794b4d974586a7c41c909ba114c34c1ad01a2aceeddf11735640f8156a1",
+    "tests/unit/server/authz/phase-a-surface.test.ts": "9245aefab1bebc5587d8ef9ca1cebf5d44cc04bfc3e52239072dc016de78ca24",
+    "tests/integration/scheduling/my-day.int.test.ts": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615",
+    "tests/e2e/my-day.e2e.spec.ts": "3f6c8f95c408c5bb8f5c425780c9db5b00505e4bc70a1ef28e0e5ed05e3d847e",
+    "tests/unit/scope/booking-editor-scope.test.ts": "9cfd49a9278d88fd9931ba0ec4d869d4b47b27fe92fb09a4690e7d24e7f9f047",
+    "tests/unit/scope/manifest-coherence.test.ts": "de30870d9191b9bb21597834159840923d12c18822cdd5d2467bfe252680116b",
+    "tests/unit/scope/manifest-derivations.test.ts": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+    "tests/unit/scope/manifest-shape.test.ts": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+    "tests/unit/scope/resources-activation.atdd.test.ts": "9b54697dc0401f712b568069ee7e154a0d571792e87c171edbe7241db80a4dd6"
+  },
+  "catalog": {
+    "domain": "D01-D11:15",
+    "read_model": "R01-R14:20",
+    "authz": "A01-A03:3",
+    "sql": "INT01-INT15:16 (archive/missing profile loop)",
+    "browser": "E01-E09:9",
+    "new_total": 63,
+    "new_unit_cases": 38,
+    "retained_original_cases": 59
+  },
+  "pending": [
+    "canonical clean-checkout lint",
+    "SUPABASE_TEST_REQUIRED=1 pnpm test:int (all required integration/RLS, not skipped)",
+    "direct recovery-storage integrity including Linux xattrs",
+    "production-server pnpm test:e2e tests/e2e/my-day.e2e.spec.ts and pnpm test:smoke",
+    "exact-head CI and required runtime evidence"
+  ],
+  "release_ready": false,
+  "resources_started": false,
+  "git_mutations": false,
+  "raw_local_outputs": [
+    ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-unit-output.txt",
+    ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-unit-final-output.txt",
+    ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-fixtures-output.txt"
+  ],
+  "publication_note": "No index or Git mutation by author; source hashes refer to unstaged working-tree bytes. Raw test outputs are local large evidence, not a required product checkpoint inclusion.",
+  "historical_pre_round_1": {
+    "checks": [
+      {
+        "name": "focused domain/read/auth units",
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/unit/server/authz/phase-a-surface.test.ts",
+        "exit": 0,
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0,
+        "new_cases": 35,
+        "historical_cases": 5
+      },
+      {
+        "name": "five approved scope fixture units",
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scope/booking-editor-scope.test.ts tests/unit/scope/manifest-coherence.test.ts tests/unit/scope/manifest-derivations.test.ts tests/unit/scope/manifest-shape.test.ts tests/unit/scope/resources-activation.atdd.test.ts",
+        "exit": 0,
+        "passed": 33,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "name": "final full Windows units",
+        "command": "pnpm test:unit",
+        "exit": 0,
+        "tests": 3480,
+        "suites": 103,
+        "passed": 3479,
+        "failed": 0,
+        "skipped": 1,
+        "skip": "tests/unit/ops/isolated-recovery-storage.test.ts:16 versioned file-backend restore preserves the DB-owned identity and refuses overwrite; Linux xattrs required, must execute on Ubuntu CI"
+      },
+      {
+        "name": "initial full units before allocated fixture repair",
+        "command": "pnpm test:unit",
+        "exit": 1,
+        "tests": 3480,
+        "passed": 3474,
+        "failed": 5,
+        "skipped": 1,
+        "failures": "Only hard-coded scheduling nav fixture expectations; repaired after exact five-file Root clearance"
+      },
+      {
+        "name": "static type check",
+        "command": "pnpm typecheck",
+        "exit": 0
+      },
+      {
+        "name": "canonical local lint attempt",
+        "command": "pnpm lint",
+        "exit": 2,
+        "result": "ESLint stylish formatter RangeError Invalid string length after traversing pre-existing ignored .env.epic15.mail-runtime trace JS; not a pass"
+      },
+      {
+        "name": "bounded local lint",
+        "command": "pnpm lint --ignore-pattern '.env*/**'",
+        "exit": 0,
+        "errors": 0,
+        "warnings": 31,
+        "limit": "Excludes ignored environment/runtime artifact trees. Warnings are existing paths outside Story15.6. Canonical clean-checkout CI lint remains required."
+      },
+      {
+        "name": "final changed source/test lint",
+        "command": "pnpm exec eslint src/features/my-day src/server/read-models/my-day.ts src/components/my-day 'src/app/(app)/my-day' tests/unit/scope/booking-editor-scope.test.ts tests/unit/scope/manifest-coherence.test.ts tests/unit/scope/manifest-derivations.test.ts tests/unit/scope/manifest-shape.test.ts tests/unit/scope/resources-activation.atdd.test.ts tests/integration/scheduling/my-day.int.test.ts tests/e2e/my-day.e2e.spec.ts",
+        "exit": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "production build final",
+        "command": "pnpm build",
+        "exit": 0,
+        "result": "/my-day dynamic; no server started. Earlier queued build interrupted while stopping owned failed-lint session is not counted."
+      },
+      {
+        "name": "source service-role containment",
+        "command": "node scripts/verify/check-service-role-containment.mjs",
+        "exit": 0
+      },
+      {
+        "name": "built-bundle containment",
+        "command": "node scripts/verify/check-bundle-containment.mjs",
+        "exit": 0
+      },
+      {
+        "name": "INT/browser syntax",
+        "command": "node --experimental-strip-types --check <each of tests/integration/scheduling/my-day.int.test.ts and tests/e2e/my-day.e2e.spec.ts>",
+        "exit": 0,
+        "limit": "16 integration plus eight browser cases activated; no DB/browser execution"
+      },
+      {
+        "name": "author review-order references",
+        "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+        "exit": 0,
+        "sections": 1,
+        "refs": 13,
+        "errors": 0
+      },
+      {
+        "name": "final author diff whitespace",
+        "command": "git -c core.longpaths=true diff --check",
+        "exit": 0,
+        "limit": "Git emitted existing autocrlf warnings only; no whitespace defects"
+      }
+    ],
+    "source_sha256": {
+      "src/features/my-day/types.ts": "582247a270772a26e6232f8c194779b753f52d6c9d775e5daaac7d753bef50ed",
+      "src/features/my-day/domain.ts": "719f7df4de9e50e3b3e822238e0be11b234a7a94fb198e681a17f037a53e6dd8",
+      "src/features/my-day/actions.ts": "67f2c1b6aa618360e04f8ad12dcbbe60dffa596886d0fb461227b748febb344e",
+      "src/server/read-models/my-day.ts": "b45172cedf5645673ca95ed31d302902415c4e8012f6e328a23d5641eb8d814d",
+      "src/app/(app)/my-day/layout.tsx": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e",
+      "src/app/(app)/my-day/page.tsx": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747",
+      "src/components/my-day/MyDayWorkspace.tsx": "f4c02162c7b01df21f28682c1812d8c5285301deae5cd29ee1f8a4ec2655c428",
+      "src/components/my-day/MyDayBookingCard.tsx": "6a3d8b2cb7cfbc31b683aae3e3b35208a175efac5b925caf579e30f4e618f257",
+      "src/scope/manifest.ts": "5bd5f101ece667ac16f63c787392522c0f0268e967f8f9196254c25699402130",
+      "src/components/app-shell/nav-items.ts": "8494a72b564c5221aac077b580f6ad0f24c1d31a21aa57849a7f4eb9ac3e2b47",
+      "src/server/authz/phase-a-surface.ts": "9f5096266d0c15ec64eb4b2ecf81f79b4e2212ef356796830df7a765a2602f22",
+      "package.json": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+      "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql": "548df5d9917c8e01fd0acacc8872430f96377200ef1841995144bcc00cefafe6",
+      "tests/unit/features/my-day/domain.test.ts": "0837147508d28644b38af1bc1d845aca49e080b91026319032dfb9189d7760e1",
+      "tests/unit/server/read-models/my-day.test.ts": "f9cfc2d33725a04449e7304046f0fcb57983470f1da9c6a222ce456089c74f0f",
+      "tests/unit/server/authz/phase-a-surface.test.ts": "9245aefab1bebc5587d8ef9ca1cebf5d44cc04bfc3e52239072dc016de78ca24",
+      "tests/integration/scheduling/my-day.int.test.ts": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615",
+      "tests/e2e/my-day.e2e.spec.ts": "608083ddf5d9bc29a6df9f8e61cb992f9369f6ab6d141c7890948de32aa4b0c2",
+      "tests/unit/scope/booking-editor-scope.test.ts": "9cfd49a9278d88fd9931ba0ec4d869d4b47b27fe92fb09a4690e7d24e7f9f047",
+      "tests/unit/scope/manifest-coherence.test.ts": "de30870d9191b9bb21597834159840923d12c18822cdd5d2467bfe252680116b",
+      "tests/unit/scope/manifest-derivations.test.ts": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+      "tests/unit/scope/manifest-shape.test.ts": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+      "tests/unit/scope/resources-activation.atdd.test.ts": "9b54697dc0401f712b568069ee7e154a0d571792e87c171edbe7241db80a4dd6"
+    },
+    "catalog": {
+      "domain": "D01-D10:14",
+      "read_model": "R01-R12:18",
+      "authz": "A01-A03:3",
+      "sql": "INT01-INT15:16 (archive/missing profile loop)",
+      "browser": "E01-E08:8",
+      "new_total": 59
+    }
+  },
+  "review_round_1_patch": {
+    "source_review": "review-round-1-results.json",
+    "ids": [
+      "R1-01",
+      "R1-02",
+      "R1-03",
+      "R1-04",
+      "R1-05",
+      "R1-06",
+      "R1-07",
+      "R1-08",
+      "R1-09",
+      "R1-10",
+      "R1-11"
+    ],
+    "result": "All 11 accepted source/verification patches implemented; targeted independent review pending, not author-approved",
+    "browser_limit": "Next16 serializes Server Actions and REFRESH. E03 tests actual queued read callback ordering while newer selection is pending; E09 tests ACTION_NAVIGATE preemption with real changed-tenant RSC followed by late old action. Runtime still pending.",
+    "bounds": "0001-01-08..9999-12-26 complete Stockholm weeks: UTC start never year0000 rejected by existing parser; exclusive endpoint never five-digit year10000. Technical, not business-year policy.",
+    "nested_route": "Reused /root/build15_6_high/implementation_author/integration_binding gpt-6.1-sol High for identity/transaction browser evidence; synchronously completed, sole owned e2e path."
+  },
+  "raw_log_provenance": "author-log-provenance.json; Root-authorized move preserved all three byte hashes",
+  "independent_review": {
+    "status": "passed",
+    "round": 2,
+    "reviewer": "/root/build15_6_high/round2_targeted",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independence": "Context-free explicit High targeted follow-up assigned by parent; author did not review its own work.",
+    "fix_snapshot_bytes": 63991,
+    "fix_snapshot_sha256": "aa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2",
+    "source_hash_audit": "All23 current source byte hashes matched author and reviewer reports; unchanged SQL reused Round1 independent High security review.",
+    "verdict": "PASS; no production-reachable regression or unresolved consequential R1 finding. SRO accurate.",
+    "provenance": "Read parent-owned review-round-2-results.json after publication; actual PASS/fix snapshot/reviewer and all23current bytehashes verified.",
+    "report": "_bmad-output/auto-bmad/preparation/story-15-6/review-round-2-results.json",
+    "report_sha256": "19c3fb551f43f9b14b50f4fa4533185c121802ccd6c044d1c4228edb5ff4582a"
+  },
+  "metadata_reconciliation": {
+    "source_hash_matches": 23,
+    "source_changes": false,
+    "runtime_checks": "remain pending",
+    "SRO_checker_exit": 0,
+    "SRO_sections": 1,
+    "SRO_refs": 16,
+    "SRO_errors": 0,
+    "encoding_repair": "85 reversible mojibake runs repaired; four newly inserted triage replacement-glyph separators normalized to unambiguous ASCII punctuation. Original frozen intent and AC sketch remain exact; both round triage entries and1SRO retained.",
+    "frozen_intent_sha256_LF": "03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd",
+    "both_round_triage_entries_verified": true
+  }
+}
