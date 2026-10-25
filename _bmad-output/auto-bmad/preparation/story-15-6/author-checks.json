@@ -1,6 +1,6 @@
 {
-  "status": "Reviewed bounded prior-CI repairs; source hash registry25 verified; P5 OPEN / status in-review; fresh full required CI remains pending",
-  "evidence_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72 plus author working-tree source hashes below",
+  "status": "HALTdone - development complete only; Stage2 authorized after Root delivery gate PASS; canonical phase5/sprint/final commit remain Root-owned",
+  "evidence_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
   "checks": [
     {
       "name": "Round1 affected domain/read/auth units",
@@ -181,9 +181,8 @@
     "retained_original_cases": 59
   },
   "pending": [
-    "Fresh exact-head full required canonical CI and DB/RLS lane; no skipped cases counted as coverage",
-    "Fresh production E01/E04 and full smoke including all9MyDay scenarios",
-    "Final author T7/development delivery reconciliation only after actual required native gates; P5 remains OPEN"
+    "Root-owned canonical phase5/sprint review and final commit; distinct tiny final provenance regression check",
+    "Five owned deferred release items/finalPhaseBcheckpoint and separately required release/merge/deployment approvals"
   ],
   "release_ready": false,
   "resources_started": false,
@@ -372,7 +371,7 @@
   "metadata_reconciliation": {
     "source_hash_matches": 25,
     "source_changes": false,
-    "runtime_checks": "Fresh full required native CI/E01/E04/smoke and finalT7 remain pending; P5OPEN/in-review",
+    "runtime_checks": "Authoritative current native evidence retained for tested b57/run40192543175; actual Root gate500022/native0 passed; authorized Stage2 development completion only, no author rerun",
     "SRO_checker_exit": 0,
     "SRO_sections": 1,
     "SRO_refs": 16,
@@ -380,7 +379,13 @@
     "encoding_repair": "85 reversible mojibake runs repaired; four newly inserted triage replacement-glyph separators normalized to unambiguous ASCII punctuation. Original frozen intent and AC sketch remain exact; both round triage entries and1SRO retained.",
     "frozen_intent_sha256_LF": "03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd",
     "both_round_triage_entries_verified": true,
-    "frozen_source_pins": "Current25 post-comment byte hashes all independently computed and matched; no further author source writes"
+    "frozen_source_pins": "Current25 post-comment byte hashes all independently computed and matched; no further author source writes",
+    "stage": "HALTdone Stage2 authorized development completion",
+    "status_transition": "Own spec frontmatter done/ARR HALTdone/T7 checked after actual Root gate PASS; canonical Root transitions separate",
+    "new_broad_review_rounds": 0,
+    "delivery_record": "_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json",
+    "delivery_record_sha256": "0b1f87e9aca54393bd8784d1592f68f02af469f7b08599b55f07319510d07ef8",
+    "delivery_record_unchanged": true
   },
   "historical_pre_partial_repairs_source_sha256": {
     "src/features/my-day/types.ts": "831551df0821ecab7356663711f84b5db5d46e7bf0064a707db763e4a0620de0",
@@ -537,5 +542,283 @@
     "meaning": "Production pure-seam, mocked transport with no RLS credit, and landing-regression descriptions now accurate. Test bodies/imports/assertions/titles/skip controls and all other bytes identical.",
     "catalog_unchanged": "63new=38unit16SQL9browser; alloriginal59 retained; no new executed coverage",
     "review_effect": "Comment-only source hygiene, no new broad round/test finding. Existing behavior review provenance retained; distinct metadata/provenance check remains parent-owned."
+  },
+  "historical_pre_delivery_ready": {
+    "status": "Reviewed bounded prior-CI repairs; source hash registry25 verified; P5 OPEN / status in-review; fresh full required CI remains pending",
+    "evidence_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72 plus author working-tree source hashes below",
+    "pending": [
+      "Fresh exact-head full required canonical CI and DB/RLS lane; no skipped cases counted as coverage",
+      "Fresh production E01/E04 and full smoke including all9MyDay scenarios",
+      "Final author T7/development delivery reconciliation only after actual required native gates; P5 remains OPEN"
+    ],
+    "metadata_reconciliation": {
+      "source_hash_matches": 25,
+      "source_changes": false,
+      "runtime_checks": "Current required native evidence qualified for b57/run40192543175; no author rerun",
+      "SRO_checker_exit": 0,
+      "SRO_sections": 1,
+      "SRO_refs": 16,
+      "SRO_errors": 0,
+      "encoding_repair": "85 reversible mojibake runs repaired; four newly inserted triage replacement-glyph separators normalized to unambiguous ASCII punctuation. Original frozen intent and AC sketch remain exact; both round triage entries and1SRO retained.",
+      "frozen_intent_sha256_LF": "03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd",
+      "both_round_triage_entries_verified": true,
+      "frozen_source_pins": "Current25 post-comment byte hashes all independently computed and matched; no further author source writes",
+      "stage": "DELIVERY_READY Stage1",
+      "status_transition": "NOT_PERFORMED; in-review/P5OPEN",
+      "new_broad_review_rounds": 0
+    }
+  },
+  "qualified_current_native": {
+    "run": 40192543175,
+    "tested_source": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+    "checkpoint": "9226ceaa-1456-47de-80d0-5cff0083b6e9",
+    "root_operation": "d6b089c1-fa6a-4cc5-9b03-f9d1bf5ea066",
+    "public_manifest": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/manifest.json",
+    "public_manifest_sha256": "6bf7b92acea864ec9fc68ef578e1b3be1319659b2f5e81090a848409472bdeb4",
+    "qualification": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+    "qualification_sha256": "bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23",
+    "qualification_result": "COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE",
+    "independent": true,
+    "blockers": [],
+    "new": {
+      "Node": 38,
+      "SQL": 16,
+      "browser": 9,
+      "passed": 63,
+      "failed": 0,
+      "skipped": 0,
+      "pending": 0,
+      "unexecuted": 0
+    },
+    "retained": {
+      "Node": 30,
+      "DB_RLS": 51,
+      "browser": 14,
+      "passed": 95,
+      "failed": 0,
+      "skipped": 0,
+      "pending": 0,
+      "unexecuted": 0
+    },
+    "unique_required_core": 158,
+    "global_unit": {
+      "tests": 3483,
+      "suites": 103,
+      "pass": 3483,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 49101.67598
+    },
+    "selected_unit_points": 69,
+    "named_xattr": {
+      "ordinal": 1020,
+      "status": "passed"
+    },
+    "global_integration": {
+      "total": 2198,
+      "passed": 2146,
+      "failed": 0,
+      "skipped": 52,
+      "files": 175,
+      "suites": 551,
+      "RLS_path_total": 903,
+      "RLS_path_passed": 889,
+      "RLS_path_inherited_skipped": 14,
+      "H4": "passed"
+    },
+    "global_browser": {
+      "cases": 65,
+      "startTime": "2026-10-25T12:24:20.431Z",
+      "duration": 311158.56799999997,
+      "expected": 63,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 2,
+      "root_errors": 0,
+      "core_retry0_passed": 23
+    },
+    "separate_isolated_recovery": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "lifecycle": {
+      "db": {
+        "event": "calendar_feed.ci_lifecycle",
+        "mode": "db",
+        "source_timestamp": "2026-10-25T12:36:46.2820973Z",
+        "ready": true,
+        "keyDeleted": true,
+        "dbClosed": true,
+        "launchAttempted": false,
+        "keyOutcome": "deleted-confirmed",
+        "childLaunchState": "not-attempted",
+        "childExitCodes": [
+          0,
+          0
+        ],
+        "custody_field": "present",
+        "custody_retained": false,
+        "custody_disposition": "NO_RETAINED_CUSTODY",
+        "failures_count": 0,
+        "diagnostics_count": 0,
+        "safe_diagnostics": []
+      },
+      "browser": {
+        "event": "calendar_feed.ci_lifecycle",
+        "mode": "browser",
+        "source_timestamp": "2026-10-25T12:29:31.6246988Z",
+        "ready": false,
+        "keyDeleted": true,
+        "dbClosed": true,
+        "launchAttempted": false,
+        "keyOutcome": "deleted-confirmed",
+        "childLaunchState": "not-attempted",
+        "childExitCodes": [
+          0
+        ],
+        "custody_field": "present",
+        "custody_retained": false,
+        "custody_disposition": "NO_RETAINED_CUSTODY",
+        "failures_count": 0,
+        "diagnostics_count": 0,
+        "safe_diagnostics": []
+      }
+    },
+    "source_pin_count": 25,
+    "current_raw_pin_matches": 25,
+    "source_object_proof": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/tested-source-object-proof.json",
+    "source_object_scope": "Working raw hashes are distinct from Git-blob hashes where EOL differs; Root immutable object proof binds tested b57. Later metadata-only heads are not claimed as tested code.",
+    "limits": "Global integration2198=2146passed/0failed/52skipped:37 inherited booking-series command,14 inherited booking-series RLS and1 full-lane recovery skip. Each skipped case gets zero coverage. RLS-path903=889passed/14inherited skips; H4 inventory/enrollment/negative control passed. Separate isolated recovery1passed supplies direct physical-loader immutability/overwrite proof; full-lane skipped recovery supplies none. Preserve separate inherited15.2skip/flag disposition and Root anchor TRUE; do not change another story or anchor. Browser65=63expected/0unexpected/2flaky/0skip/rooterrors0. Source25 proof distinguishes raw working SHA and Git-blob SHA/oid; metadata follow-up revisions are not claimed as tested source heads. Acquisition digests/timing/CRC are reported acquisition provenance, not author independent raw-body/ZIP replay.",
+    "outside_core_flaky_observations": [
+      {
+        "file": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+        "title": "[P0] 16.1-E03 actual job-bound booking preview/save consumes requirements and windows; changed job facts invalidate review before durable save",
+        "attempts": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "error_excerpt": [
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n\n      |                                                         ^",
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier"
+            ]
+          },
+          {
+            "status": "passed",
+            "retry": 1,
+            "error_excerpt": []
+          }
+        ]
+      },
+      {
+        "file": "tests/e2e/time-reports.e2e.spec.ts",
+        "title": "[P0] 15.4-E2E-002 no-profile standalone at 360\u00d7640 retains its attempt through lost commit, revoked denial and restored retry",
+        "attempts": [
+          {
+            "status": "failed",
+            "retry": 0,
+            "error_excerpt": [
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n\n      |                                                        ^",
+              "Error: response.text: Protocol error (Network.getResponseBody): No data found for resource with given identifier"
+            ]
+          },
+          {
+            "status": "passed",
+            "retry": 1,
+            "error_excerpt": []
+          }
+        ]
+      }
+    ],
+    "development_policy_assessment": "Under docs/process/development-completion-policy.md, a demonstrated consequential functional failure cannot be deferred as polish. The independent High native qualification identifies two outside-core response.text/Network.getResponseBody protocol flakes, each retry0 failed and retry1 passed; it identifies no application-write failure or new15.6 regression from them. All23 required core browser cases passed exactly once on retry0. We retain the two flaky observations without claiming clean first attempts or inferring the first attempt application outcome. They are verification-reliability follow-up, not hidden acceptance waivers or recategorized functional failures. QA/CI verification maintainer must investigate; any consequential product defect found returns to development remediation.",
+    "inherited15_2_anchor": "TRUE retained per Root; author neither edited nor reopened another story/anchor",
+    "history": "Prior failed40184844339 E01 receivedURL remains UNKNOWN; current run E01/E04 each passed retry0. Closed failed acquisition receipts remain history; completed alternate connector course does not diagnose prior unknown GET/shape causes."
+  },
+  "current_development_evidence": [
+    {
+      "name": "Exact source/checkpoint/native-run binding",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/manifest.json, run-metadata.json, jobs-metadata.json and tested-source-object-proof.json bind workflow run40192543175/attempt1, headb57de61075646820ce9cb5feff7fd054fd2f8320, checkpoint9226ceaa-1456-47de-80d0-5cff0083b6e9. Five required jobs succeeded; current25raw pins match immutable public object proof and author registry. Root operation d6b089c1-fa6a-4cc5-9b03-f9d1bf5ea066 is supplied orchestration identity; no author Git/network action."
+    },
+    {
+      "name": "Canonical static, build and containment gates",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/jobs-metadata.json: verify job121166457943 completed success for lockfiles, dependency audit, source service-role containment, Typecheck, Lint, Build and built-bundle containment at exactb57de61075646820ce9cb5feff7fd054fd2f8320. These are current native job/step results, not reuse of the earlier local lint exclusion."
+    },
+    {
+      "name": "Full current unit lane and named Linux-xattr integrity",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-unit-projection.json: full Node3483passed/0failed/0cancelled/0skipped/0todo,103suites.69selected native points=38new15.6+30retained calendar+separate exact Linux-xattr point1020, all passed. Suite points and overlapping selections do not inflate required-case totals."
+    },
+    {
+      "name": "Full required integration/RLS lane execution with explicit inherited-skip disposition",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-integration-projection.json and independent-native-qualification.json: full lane2198=2146passed/0failed/52inherited skips;175files/551suites passed, root errors empty. Current required67=16newMyDaySQL+51retained calendar DB/RLS passed with0skip/pending/unexecuted.903RLS-path leaves889passed/14inherited15.2skipped; H4live inventory/enrollment/negative control passed.52global skips are zero coverage;37command+14RLS keep separate inherited15.2 disposition/anchor TRUE and1full-lane recovery skip gives no direct recovery credit. Required-mode/full-lane completion is independently qualified in the public High record; author did not rerun or claim a separate command."
+    },
+    {
+      "name": "Focused production Min dag journeys within configured full essential smoke",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json: actual E01..E09 all9expected, each exactly1passed retry0, including current repaired E01 landing/E04 date validator, actual queued read/context races, notices continuation and durable same-attempt time filing. They executed in e2e job121166980901 essential authentication smoke (production app/local Auth); no separate focused CLI invocation is invented."
+    },
+    {
+      "name": "Configured full essential browser smoke with disclosed outside-core flakes",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json:65cases,63expected/0unexpected/2flaky/0skip/rooterrors0; required9new+14retained calendar browser cases all23clean retry0.15.4-E2E-002 and16.1-E03 separately failed retry0 response.text/Network.getResponseBody protocol errors then passed retry1; not relabelled clean. Under docs/process/development-completion-policy.md, a demonstrated consequential functional failure cannot be deferred as polish. The independent High native qualification identifies two outside-core response.text/Network.getResponseBody protocol flakes, each retry0 failed and retry1 passed; it identifies no application-write failure or new15.6 regression from them. All23 required core browser cases passed exactly once on retry0. We retain the two flaky observations without claiming clean first attempts or inferring the first attempt application outcome. They are verification-reliability follow-up, not hidden acceptance waivers or recategorized functional failures. QA/CI verification maintainer must investigate; any consequential product defect found returns to development remediation."
+    },
+    {
+      "name": "Required new and retained case-matrix completeness",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json and required unit/integration/browser projections match63new=38Node+16SQL+9browser and95retained=30Node+51DB_RLS+14browser,158unique required cases all passed/0failed/0skipped/0pending/0unexecuted. Separate named xattr/direct recovery and other global cases are not added to158."
+    },
+    {
+      "name": "Direct isolated recovery-storage integrity",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/isolated-recovery-projection.json: recovery-storage-loader job121166980883 separate physical-loader immutability and generic/quote-PDF overwrite rejection1passed/0failed/0skipped/pending, root errors empty. This proof is separate from the full integration recovery skip; no broad host deletion, custody transfer or backend rollback claim."
+    },
+    {
+      "name": "Scoped current DB/browser key deletion and client closure",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/db-lifecycle-projection.json and browser-lifecycle-projection.json: one exact current-mode record each, keyDeleted=true,keyOutcome=deleted-confirmed,dbClosed=true,custody_retained=false,0failures/diagnostics,0malformed candidates. Preserve DBready=true/browserready=false, bothlaunchAttempted=false/childLaunchState=not-attempted and child exits DB[0,0]/browser[0] as instrumentation. These fields prove only scoped current key deletion/client closure/no retained custody; neither no-child-launch nor whole-host shutdown/physical deletion/backend rollback follows."
+    },
+    {
+      "name": "Independent complete current-native evidence qualification",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json SHA256bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23: independent=true, explicit gpt-6.1-sol High, result COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE, blockers[]. Author read complete22188byte record and rehashed all15manifest-listed public file pins. Raw bodies/private corpus were not replayed or republished; qualification itself did no runtime/source execution."
+    }
+  ],
+  "final_status_reconciliation": {
+    "stage": 2,
+    "outcome": "HALTdone",
+    "development_complete": true,
+    "tested_source": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+    "run": 40192543175,
+    "Root_delivery_gate": {
+      "invocation": "500022",
+      "native_exit": 0,
+      "ok": true,
+      "development_complete": true,
+      "errors": [],
+      "approval_granted": false,
+      "provenance": "Actual Root result supplied in explicit Stage2 authorization; author did not rerun the gate"
+    },
+    "delivery_record_bytes": 14561,
+    "delivery_record_sha256": "0b1f87e9aca54393bd8784d1592f68f02af469f7b08599b55f07319510d07ef8",
+    "delivery_record_unchanged": true,
+    "frozen_intent_sha256_LF": "03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd",
+    "review_counter": "2(one broad/one targeted) plus documented narrow checks; no new broad round",
+    "source25_and_SQL119": "unchanged/immutable; no new census",
+    "release_ready": false,
+    "deferred_release_items": 5,
+    "inherited15_2_flag": "TRUE retained unchanged",
+    "author_Git_runtime_product_effects": false,
+    "SRO_check": {
+      "native_exit": 0,
+      "sections": 1,
+      "refs": 16,
+      "errors": 0,
+      "source_stops_unchanged": true
+    }
   }
 }

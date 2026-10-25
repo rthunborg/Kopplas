@@ -2,7 +2,7 @@
 title: '15.6 Min Dag — the Field Landing'
 type: 'feature'
 created: '2026-10-25'
-status: 'in-review'
+status: 'done'
 baseline_revision: '118ebced2898b96f4b3dfce86f2dec8b52dd8f72'
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -76,7 +76,7 @@ AC sketch: `/my-day` route + Montör landing redirect activates (completing EB-A
 - [x] T4 — `src/app/(app)/my-day/layout.tsx`, `src/app/(app)/my-day/page.tsx`, `src/components/my-day/MyDayWorkspace.tsx`, `src/components/my-day/MyDayBookingCard.tsx` — add dynamic server entry and protected route; headless state/actions feed content-first single-column UI, today/date header, week arrows/swipe and day selection, named refresh control plus pull gesture, safe maps/job/time links, notices and isolated jobs section. Date/week navigation preserves selection and handles stale responses; failure removes old lists. Reuse `TimeReportEntry` inline with a server-constructed `TimeReportBookingPrefill` and current own-report capability rather than duplicating mutation logic; existing time-reports page does not consume URL prefill, so do not invent a query-string flow. AC2–7.
 - [x] T5 — `src/scope/manifest.ts`, `src/components/app-shell/nav-items.ts`, `src/server/authz/phase-a-surface.ts` — enroll `Min dag` `/my-day` in active scheduling with `Bookings.View`; Pure Montör role set lands there when granted; mixed office/Montör role unions preserve their existing office priority, while non-Montör priorities and current per-job admission remain unchanged. Missing grant uses existing authorized fallback; no redirect loop. AC1.
 - [ ] T6 — `tests/unit/features/my-day/domain.test.ts`, `tests/unit/server/read-models/my-day.test.ts`, `tests/unit/server/authz/phase-a-surface.test.ts`, `tests/integration/scheduling/my-day.int.test.ts`, `tests/e2e/my-day.e2e.spec.ts` — assert matrix, exact minimal DTO, full/paged own relationships, auth/tenant negatives, failure clearing, map/prefill and essential 360×640 journey. `package.json` — add `tests/e2e/my-day.e2e.spec.ts` solely to the existing explicit `test:smoke` script list so required essential-browser verification includes this flow; no dependency, lockfile, workflow or controller change. Existing manifest-derived guards should derive the new nav automatically; repair only demonstrated hard-coded fixture expectations. AC1–7.
-- [ ] T7 — this spec, `_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json`, `_bmad-output/implementation-artifacts/deferred-work.md` — implementation author records actual revision/commands/counts, independent High review, one final Suggested Review Order with verified stops, contract reconciliation and named deferred release work. Supporting completion infrastructure, not a new product AC. Root owns status/delivery-gate transitions.
+- [x] T7 — this spec, `_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json`, `_bmad-output/implementation-artifacts/deferred-work.md` — implementation author records actual revision/commands/counts, independent High review, one final Suggested Review Order with verified stops, contract reconciliation and named deferred release work. Supporting completion infrastructure, not a new product AC. Root owns status/delivery-gate transitions.
 
 **Acceptance Criteria (executable elaboration of the preserved sketch/UX):**
 
@@ -151,6 +151,24 @@ References: `AGENTS.md`; `_bmad-output/project-context.md`; `_bmad-output/planni
 
 ## Auto Run Result
 
+Status: done
+
+Root actual delivery_gate invocation500022 exited0 for the unchanged14561-byte record SHA256`0b1f87e9aca54393bd8784d1592f68f02af469f7b08599b55f07319510d07ef8`: `ok=true, development_complete=true, errors=[], approval_granted=false`. Required evidence remains bound to tested source `b57de61075646820ce9cb5feff7fd054fd2f8320` / normal run40192543175 and the complete independent High public qualification. Author T7/status reconciliation is complete; Root owns canonical phase5/sprint review and final commit. Source25 pins and all119applied migrations remain immutable. Review counter stays2(one broad/one targeted) plus documented narrow checks. No new native run, source census, product change, Git action or broad review occurred.
+
+Five owned release items/finalPhaseBcheckpoint remain deferred, release_ready=false; inherited15.2flag/anchor TRUE and explicit outside-core flaky observations remain unchanged. Development completion grants no release, merge or deployment approval.
+
+### Historical Stage1 author delivery-ready result (preserved)
+
+Status: DELIVERY_READY — Stage1 author evidence reconciliation; frontmatter remains in-review / P5 OPEN.
+
+Actual tested source: `b57de61075646820ce9cb5feff7fd054fd2f8320`; [normal CI run40192543175](https://github.com/rthunborg/Kopplas/actions/runs/40192543175), checkpoint9226ceaa-1456-47de-80d0-5cff0083b6e9. Public portable evidence: `_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/manifest.json` and its independent-native-qualification.json (SHA256bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23), result COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE, independent High, blockers[].
+
+Current required63new+95retained cases all passed with0skip/pending/unexecuted; all23core browser cases passed retry0. Full Node3483P0F0skip (named Linux-xattr passed), full integration2198=2146P0F52inherited skips, separate isolated recovery1PASS. Browser65=63expected0unexpected2outsidecoreflaky0skip/rooterrors0; the two protocol-flake retry histories remain explicit, never clean first attempts.52integration skips give zero coverage; inherited15.2disposition/anchor TRUE remains separate. Current DB/browser scoped keys deleted-confirmed, clients closed/no retained current custody; instrumentation limits preserved.
+
+Valid development-evidence delivery record prepared at `_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json`; same author SRO/current25source binding refreshed. Implementation review counter remains2(one broad/one targeted), plus documented narrow checks. Stage1 does not perform Root delivery_gate, status transition, HALTdone, final Git, merge or deployment. Distinct High final metadata/provenance check and Root gate/finalization are next. Five owned release items and finalPhaseBcheckpoint remain deferred; release_ready=false.
+
+### Historical planning-only result (preserved)
+
 Status: ready-for-dev
 Halt after planning as requested. No implementation or review round executed; sprint/status/Git transitions remain Root-owned. Self-audit passed all seven checks; High sensitive assessment and focused amendment integrated. Independent Root-owned High spec validation and allocation precede build. Migration directory/logical stem fixed; CLI-generated concrete filename is intentionally deferred to Root's filename-generation-only step after fresh combined inventory and ownership clearance. No previously applied migration is edited. Completion-hook protocol applied: planning exit preserved, no completed Suggested Review Order or verification trail manufactured.
 
@@ -180,7 +198,7 @@ The reviewed bounded repairs use the existing server root as login's successful 
 ## Suggested Review Order
 
 Author: Story15.6 implementation/fix author, with the recorded ordinary UI and High test-binding delegates.
-Refreshed after bounded R1-01..R1-11 fixes and the independently checked login/E04/nav-fixture repairs against baseline `118ebced2898b96f4b3dfce86f2dec8b52dd8f72` plus current author working tree; current25post-comment byte hashes and historical pre-fix evidence are separate in author-checks.json; exact comment-only changes retain all test bodies and review-stop line numbers.
+Refreshed for qualified tested source `b57de61075646820ce9cb5feff7fd054fd2f8320` after bounded R1-01..R1-11 fixes and the independently checked login/E04/nav-fixture repairs against baseline `118ebced2898b96f4b3dfce86f2dec8b52dd8f72` plus current author working tree; current25post-comment byte hashes and historical pre-fix evidence are separate in author-checks.json; exact comment-only changes retain all test bodies and review-stop line numbers.
 
 ### Begin with current identity and the usable field landing
 
@@ -211,11 +229,15 @@ Complete four-digit Stockholm week destinations are validated before state chang
 
 ### Check the actual outer-surface assertions and evidence limits
 
-E04 checks real multi-date week then day-only output, dated all-day cards,44px targets and one main; its specific validator node avoids Next-announcer collisions without weakening either bound; E06 proves actual personal continuation past the shared center's cap. E09 binds real filing, changed-tenant RSC navigation and late prior-read rejection. These source assertions supplement the passed focused units; they still require Root's browser/DB execution.
+E04 checks real multi-date week then day-only output, dated all-day cards,44px targets and one main; its specific validator node avoids Next-announcer collisions without weakening either bound; E06 proves actual personal continuation past the shared center's cap. E09 binds real filing, changed-tenant RSC navigation and late prior-read rejection. These assertions now have actual current native evidence: all9MyDay browser cases and16MyDay SQL cases passed without skip; the complete public packet preserves their case-level results.
 
 - `tests/e2e/my-day.e2e.spec.ts:480` — `const dateError =`: checks the actual E04 validator role/text and both bounds.
 - `tests/e2e/my-day.e2e.spec.ts:527` — `15.6-E06`: covers AC5 actual category-filtered continuation.
 - `tests/e2e/my-day.e2e.spec.ts:629` — `15.6-E09`: covers AC6 actual context reset and old-response rejection.
 - `tests/integration/scheduling/my-day.int.test.ts:191` — `15.6-INT-09`: retains AC4 zero-job scans with a positive control.
 
-Evidence: author-checks.json records post-fix43focused passes, typecheck, affected lint, production build, containment and source parse, all native exits0. It retains pre-fix full Windows3479pass/one historical Linux-xattr skip separately. Limits: mocked unit transport is not RLS evidence. Root qualified the prior-head16newSQL passes and seven new browser passes alongside the two concrete failures described above; author did not execute runtime here. Fresh full required CI/E01/E04/smoke remain pending;52prior skips are not coverage; Next16 serializes actions/REFRESH, so E03 uses real queued callbacks and E09 uses real NAVIGATE preemption rather than fabricated parallel transport. Independent context-free High Round2 follow-up and the two distinct narrow actual-diff repair checks passed; exact-head canonical lint/full DB-RLS/direct recovery/essential production browser remain pending. Exhaustive visual/manual matrices remain tracked release deferrals; no development-complete or release-ready claim.
+Evidence: actual tested source `b57de61075646820ce9cb5feff7fd054fd2f8320`, run40192543175 and public `successor-normal-closeout/` projections qualify63new(38Node16SQL9browser)+95retained(30Node51DB14browser)=158unique required cases allpassed/0skip/pending/unexecuted. Required-unit-projection.json has69selected points including separate named Linux-xattr PASS; full Node3483passed/0failed/0skipped. Required-integration-projection.json has67required SQL/DB leaves passed and full2198=2146passed/0failed/52inherited skips,175files/551suites; H4passed. Browser-projection.json proves currentE01/E04 and all23core browser cases each passed exactly once/retry0; global65cases=63expected/0unexpected/2flaky/0skip/rooterrors0. Separate isolated-recovery-projection.json proves1physical-loader/overwrite assertion passed. Independent-native-qualification.json SHA256bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23 fully qualifies current evidence; object proof retains25raw/Gitblob bindings.
+
+Limits:37inherited15.2command+14inherited15.2RLS+1full-lane recovery skips are zero coverage; separate isolated recovery supplies the direct proof and inherited15.2flag/anchor TRUE stays untouched. The two outside-core15.4-E2E-002/16.1-E03 protocol failures retry0 then PASSretry1 remain flaky observations, not clean attempts or inferred application-write failures; QA/CI verification follow-up is explicit under existing release tracking. A demonstrated consequential functional defect must return to development remediation, never polish deferral. Native lifecycle records prove only current scoped key deletion/client closure/no retained custody; browserreadyfalse and bothlaunchAttemptedfalse/not-attempted are retained, without broad host/process/physicaldeletion claims. Acquisition digests are provenance, not raw-body replay. Historical failed-run E01 receivedURL remains UNKNOWN; currentE01/E04 passed. Independent implementation High review and narrow repair checks are retained without another broad round.
+
+Stage2: Root delivery_gate500022/native0 passed the unchanged record SHA2560b1f87e9aca54393bd8784d1592f68f02af469f7b08599b55f07319510d07ef8 with development_complete=true/approval_granted=false; authorized frontmatter/ARR/T7 now record HALTdone, development completion only. Source/test stops are unchanged. Five owned release deferrals/finalPhaseBcheckpoint and inherited15.2flag TRUE remain; release_ready=false, with no merge/deployment authorization.

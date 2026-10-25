@@ -1,65 +1,75 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Approved15.6 intent/sketch and AC1-7 preserved. Current October19 development gate applies: static/build, full executed DB/RLS, direct recovery integrity, focused tests, essential production browser and independentHigh review are required. Full visual/manual/exhaustive matrices remain deferred release validation with owners. No historical planning evidence relabelled; no functional/privacy/transaction requirement deferred.",
-  "evidence_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72 plus author working-tree source hashes below",
+  "contract_reconciliation": "Author DELIVERY_READY Stage1 only: approved15.6 intent/sketch/AC1-7 and source remain unchanged. Current October19 development contract requires static/build, full required DB/RLS execution, direct recovery integrity, focused changed-behavior coverage, independent review and essential production flow. These required facts are now supported for exact tested sourceb57de61075646820ce9cb5feff7fd054fd2f8320 by the public independent High native packet; no historical/local/planned check is relabelled as current execution. The focused MyDay file actually executed within configured full production smoke; no separate CLI command is invented. Global integration2198=2146passed/0failed/52skipped:37 inherited booking-series command,14 inherited booking-series RLS and1 full-lane recovery skip. Each skipped case gets zero coverage. RLS-path903=889passed/14inherited skips; H4 inventory/enrollment/negative control passed. Separate isolated recovery1passed supplies direct physical-loader immutability/overwrite proof; full-lane skipped recovery supplies none. Preserve separate inherited15.2skip/flag disposition and Root anchor TRUE; do not change another story or anchor. Browser65=63expected/0unexpected/2flaky/0skip/rooterrors0. Source25 proof distinguishes raw working SHA and Git-blob SHA/oid; metadata follow-up revisions are not claimed as tested source heads. Acquisition digests/timing/CRC are reported acquisition provenance, not author independent raw-body/ZIP replay. Under docs/process/development-completion-policy.md, a demonstrated consequential functional failure cannot be deferred as polish. The independent High native qualification identifies two outside-core response.text/Network.getResponseBody protocol flakes, each retry0 failed and retry1 passed; it identifies no application-write failure or new15.6 regression from them. All23 required core browser cases passed exactly once on retry0. We retain the two flaky observations without claiming clean first attempts or inferring the first attempt application outcome. They are verification-reliability follow-up, not hidden acceptance waivers or recategorized functional failures. QA/CI verification maintainer must investigate; any consequential product defect found returns to development remediation. Full visual/manual/exhaustive release validation stays deferred under five owned entries; release_ready=false and finalPhaseBcheckpoint pending. Spec remains in-review/P5OPEN; author has not run Root delivery_gate, changed status, HALTed done or finalized.",
+  "evidence_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
   "development_checks": [
     {
-      "name": "Round1 affected domain/read/auth units",
+      "name": "Exact source/checkpoint/native-run binding",
       "status": "passed",
-      "evidence": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/unit/server/authz/phase-a-surface.test.ts; native exit0; {\"passed\": 43, \"failed\": 0, \"skipped\": 0, \"new_feature_cases\": 38, \"retained_historical_auth_cases\": 5}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/manifest.json, run-metadata.json, jobs-metadata.json and tested-source-object-proof.json bind workflow run40192543175/attempt1, headb57de61075646820ce9cb5feff7fd054fd2f8320, checkpoint9226ceaa-1456-47de-80d0-5cff0083b6e9. Five required jobs succeeded; current25raw pins match immutable public object proof and author registry. Root operation d6b089c1-fa6a-4cc5-9b03-f9d1bf5ea066 is supplied orchestration identity; no author Git/network action."
     },
     {
-      "name": "Round1 final typecheck",
+      "name": "Canonical static, build and containment gates",
       "status": "passed",
-      "evidence": "pnpm typecheck; native exit0; {}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/jobs-metadata.json: verify job121166457943 completed success for lockfiles, dependency audit, source service-role containment, Typecheck, Lint, Build and built-bundle containment at exactb57de61075646820ce9cb5feff7fd054fd2f8320. These are current native job/step results, not reuse of the earlier local lint exclusion."
     },
     {
-      "name": "Round1 affected source/test lint",
+      "name": "Full current unit lane and named Linux-xattr integrity",
       "status": "passed",
-      "evidence": "pnpm exec eslint src/components/my-day src/features/my-day src/server/read-models/my-day.ts tests/unit/features/my-day/domain.test.ts tests/unit/server/read-models/my-day.test.ts tests/e2e/my-day.e2e.spec.ts; native exit0; {\"warnings\": 0, \"errors\": 0}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-unit-projection.json: full Node3483passed/0failed/0cancelled/0skipped/0todo,103suites.69selected native points=38new15.6+30retained calendar+separate exact Linux-xattr point1020, all passed. Suite points and overlapping selections do not inflate required-case totals."
     },
     {
-      "name": "Round1 production build",
+      "name": "Full required integration/RLS lane execution with explicit inherited-skip disposition",
       "status": "passed",
-      "evidence": "pnpm build; native exit0; {\"result\": \"Dynamic /my-day; current product code built before final browser-only test extensions\"}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-integration-projection.json and independent-native-qualification.json: full lane2198=2146passed/0failed/52inherited skips;175files/551suites passed, root errors empty. Current required67=16newMyDaySQL+51retained calendar DB/RLS passed with0skip/pending/unexecuted.903RLS-path leaves889passed/14inherited15.2skipped; H4live inventory/enrollment/negative control passed.52global skips are zero coverage;37command+14RLS keep separate inherited15.2 disposition/anchor TRUE and1full-lane recovery skip gives no direct recovery credit. Required-mode/full-lane completion is independently qualified in the public High record; author did not rerun or claim a separate command."
     },
     {
-      "name": "Round1 browser syntax",
+      "name": "Focused production Min dag journeys within configured full essential smoke",
       "status": "passed",
-      "evidence": "node --experimental-strip-types --check tests/e2e/my-day.e2e.spec.ts; native exit0; {\"cases\": 9, \"limit\": \"Source parse only; no browser/database execution\"}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json: actual E01..E09 all9expected, each exactly1passed retry0, including current repaired E01 landing/E04 date validator, actual queued read/context races, notices continuation and durable same-attempt time filing. They executed in e2e job121166980901 essential authentication smoke (production app/local Auth); no separate focused CLI invocation is invented."
     },
     {
-      "name": "Round1 source containment",
+      "name": "Configured full essential browser smoke with disclosed outside-core flakes",
       "status": "passed",
-      "evidence": "node scripts/verify/check-service-role-containment.mjs; native exit0; {}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json:65cases,63expected/0unexpected/2flaky/0skip/rooterrors0; required9new+14retained calendar browser cases all23clean retry0.15.4-E2E-002 and16.1-E03 separately failed retry0 response.text/Network.getResponseBody protocol errors then passed retry1; not relabelled clean. Under docs/process/development-completion-policy.md, a demonstrated consequential functional failure cannot be deferred as polish. The independent High native qualification identifies two outside-core response.text/Network.getResponseBody protocol flakes, each retry0 failed and retry1 passed; it identifies no application-write failure or new15.6 regression from them. All23 required core browser cases passed exactly once on retry0. We retain the two flaky observations without claiming clean first attempts or inferring the first attempt application outcome. They are verification-reliability follow-up, not hidden acceptance waivers or recategorized functional failures. QA/CI verification maintainer must investigate; any consequential product defect found returns to development remediation."
     },
     {
-      "name": "Round1 built bundle containment",
+      "name": "Required new and retained case-matrix completeness",
       "status": "passed",
-      "evidence": "node scripts/verify/check-bundle-containment.mjs; native exit0; {}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json and required unit/integration/browser projections match63new=38Node+16SQL+9browser and95retained=30Node+51DB_RLS+14browser,158unique required cases all passed/0failed/0skipped/0pending/0unexecuted. Separate named xattr/direct recovery and other global cases are not added to158."
     },
     {
-      "name": "Round1 final diff whitespace",
+      "name": "Direct isolated recovery-storage integrity",
       "status": "passed",
-      "evidence": "git -c core.longpaths=true diff --check; native exit0; {\"limit\": \"Existing autocrlf warnings only\"}"
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/isolated-recovery-projection.json: recovery-storage-loader job121166980883 separate physical-loader immutability and generic/quote-PDF overwrite rejection1passed/0failed/0skipped/pending, root errors empty. This proof is separate from the full integration recovery skip; no broad host deletion, custody transfer or backend rollback claim."
     },
     {
-      "name": "required exact-head clean-checkout lint/full DB-RLS/direct recovery/essential production browser",
-      "status": "pending",
-      "evidence": "Root-owned execution still pending; prior full Windows 3479pass/one Linux-xattr skip is pre-Round1 broad evidence, not current exact-head coverage for three added unit cases."
+      "name": "Scoped current DB/browser key deletion and client closure",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/db-lifecycle-projection.json and browser-lifecycle-projection.json: one exact current-mode record each, keyDeleted=true,keyOutcome=deleted-confirmed,dbClosed=true,custody_retained=false,0failures/diagnostics,0malformed candidates. Preserve DBready=true/browserready=false, bothlaunchAttempted=false/childLaunchState=not-attempted and child exits DB[0,0]/browser[0] as instrumentation. These fields prove only scoped current key deletion/client closure/no retained custody; neither no-child-launch nor whole-host shutdown/physical deletion/backend rollback follows."
+    },
+    {
+      "name": "Independent complete current-native evidence qualification",
+      "status": "passed",
+      "evidence": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json SHA256bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23: independent=true, explicit gpt-6.1-sol High, result COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE, blockers[]. Author read complete22188byte record and rehashed all15manifest-listed public file pins. Raw bodies/private corpus were not replayed or republished; qualification itself did no runtime/source execution."
+    },
+    {
+      "name": "Author Suggested Review Order reference integrity",
+      "status": "passed",
+      "evidence": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md; actual metadata-only native exit0, exactly1author section,16verified references,0errors. Frozen intent LF SHA03d1ad2fa13778c22f192dc2867deba8bdba5e926a36ad6031c251226e662fcd unchanged; spec remains in-review/P5OPEN. This does not run the Root delivery gate."
     }
   ],
   "independent_review": {
     "status": "passed",
-    "evidence": "{\"status\": \"passed\", \"round\": 2, \"reviewer\": \"/root/build15_6_high/round2_targeted\", \"model\": \"gpt-6.1-sol\", \"effort\": \"high\", \"independence\": \"Context-free explicit High targeted follow-up assigned by parent; author did not review its own work.\", \"fix_snapshot_bytes\": 63991, \"fix_snapshot_sha256\": \"aa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2\", \"source_hash_audit\": \"All23 current source byte hashes matched author and reviewer reports; unchanged SQL reused Round1 independent High security review.\", \"verdict\": \"PASS; no production-reachable regression or unresolved consequential R1 finding. SRO accurate.\", \"provenance\": \"Read parent-owned review-round-2-results.json after publication; actual PASS/fix snapshot/reviewer and all23current bytehashes verified.\", \"report\": \"_bmad-output/auto-bmad/preparation/story-15-6/review-round-2-results.json\", \"report_sha256\": \"19c3fb551f43f9b14b50f4fa4533185c121802ccd6c044d1c4228edb5ff4582a\"}"
+    "evidence": "Implementation review: independent context-free gpt-6.1-sol High Round2 reviewer /root/build15_6_high/round2_targeted PASS over63991byte fix delta SHAaa4b9a6ee778f7da711b576044cc18c3cd6b673b336940d0fb6f52c1c86d9ff2; see public preparation/story-15-6/review-round-2-results.json. Unchanged SQL retains Round1 High security provenance. Distinct retained High actual-diff narrow checks passed the added quote nav fixture and login/E04 repairs; comment-only hygiene retained every noncomment byte. Broad review counter2(onefull,onetargeted), plus documented two narrow checks, unchanged. Current25source binding is _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/tested-source-object-proof.json. Separate independent High current-native qualification is _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json (COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE,independent=true,blockers[]). Stage1 final metadata/provenance check and Root delivery gate remain next; this record is not an author completion/status claim."
   },
   "deferred_release_validation": [
     {
       "item": "Full Min dag role/device/browser matrix beyond nine essential journeys",
       "owner": "QA / release-validation coordinator",
       "status": "deferred",
-      "evidence": "Not executed in this implementation run; focused source/Windows checks only.",
-      "next_action": "Execute qualified release-head role/device/browser matrix and record results before release readiness."
+      "evidence": "Exhaustive release matrix remains unexecuted. Required current native core9new+14retained browser cases passed clean retry0 at b57de610/run40192543175; global smoke also records two outside-core protocol flakes:15.4-E2E-002 and16.1-E03 retry0failed/retry1passed. These are separately retained verification-reliability observations, not presentation polish or inferred application-write failures. See _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json.",
+      "next_action": "QA/release-validation coordinator executes the qualified release-head role/device/browser matrix. QA/CI verification maintainer separately investigates the two response-body protocol flakes using per-attempt native evidence, records disposition without hiding retries, and routes any demonstrated consequential functional defect back to development remediation; this is not an acceptance waiver."
     },
     {
       "item": "Canonical design screenshot comparison, measured contrast and presentation polish",

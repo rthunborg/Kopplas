@@ -1,0 +1,56 @@
+{
+  "native-full-integration": {
+    "id": 12599002143,
+    "name": "native-full-integration",
+    "size_in_bytes": 113569,
+    "expired": false,
+    "created_at": "2026-10-25T12:36:55Z",
+    "updated_at": "2026-10-25T12:36:55Z",
+    "expires_at": "2026-11-01T12:36:54Z",
+    "digest": "sha256:81260cf2aa9e80b9ada701fb9017858566f3a6ccfeb9aa94f74193c2921ff13b",
+    "workflow_run": {
+      "id": 40192543175,
+      "repository_id": 1269069679,
+      "head_repository_id": 1269069679,
+      "head_branch": "codex/epic-15-scheduling-time-calendar",
+      "head_sha": "b57de61075646820ce9cb5feff7fd054fd2f8320"
+    },
+    "member": "full-integration.json"
+  },
+  "native-isolated-storage-recovery": {
+    "id": 12598667438,
+    "name": "native-isolated-storage-recovery",
+    "size_in_bytes": 678,
+    "expired": false,
+    "created_at": "2026-10-25T12:25:12Z",
+    "updated_at": "2026-10-25T12:25:12Z",
+    "expires_at": "2026-11-01T12:25:11Z",
+    "digest": "sha256:54c74b49e5c26b7279bc64fb6684b97f30820efc3c4947d57dd027179820f741",
+    "workflow_run": {
+      "id": 40192543175,
+      "repository_id": 1269069679,
+      "head_repository_id": 1269069679,
+      "head_branch": "codex/epic-15-scheduling-time-calendar",
+      "head_sha": "b57de61075646820ce9cb5feff7fd054fd2f8320"
+    },
+    "member": "isolated-storage-recovery.json"
+  },
+  "native-general-browser": {
+    "id": 12599435236,
+    "name": "native-general-browser",
+    "size_in_bytes": 12012,
+    "expired": false,
+    "created_at": "2026-10-25T12:29:32Z",
+    "updated_at": "2026-10-25T12:29:32Z",
+    "expires_at": "2026-11-01T12:29:31Z",
+    "digest": "sha256:c7bf9b3da53438231a07bac5399776b8054772c09574d7a1b1d4924fdf6ea62e",
+    "workflow_run": {
+      "id": 40192543175,
+      "repository_id": 1269069679,
+      "head_repository_id": 1269069679,
+      "head_branch": "codex/epic-15-scheduling-time-calendar",
+      "head_sha": "b57de61075646820ce9cb5feff7fd054fd2f8320"
+    },
+    "member": "general-browser.json"
+  }
+}

@@ -511,7 +511,7 @@ existing AC, recorded so it is not re-triaged a third time.
 
 - source_spec: `spec-15-6-min-dag-the-field-landing.md`
   summary: Full Min dag role/device/browser matrix beyond nine essential journeys
-  evidence: Status: deferred. Owner: QA / release-validation coordinator. Not executed in this implementation run; focused source/Windows checks only. Next action: Execute qualified release-head role/device/browser matrix and record results before release readiness.
+  evidence: Status: deferred. Owner: QA / release-validation coordinator. Exhaustive release matrix remains unexecuted. Required current native core9new+14retained browser cases passed clean retry0 at b57de610/run40192543175; global smoke also records two outside-core protocol flakes:15.4-E2E-002 and16.1-E03 retry0failed/retry1passed. These are separately retained verification-reliability observations, not presentation polish or inferred application-write failures. See _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json. Next action: QA/release-validation coordinator executes the qualified release-head role/device/browser matrix. QA/CI verification maintainer separately investigates the two response-body protocol flakes using per-attempt native evidence, records disposition without hiding retries, and routes any demonstrated consequential functional defect back to development remediation; this is not an acceptance waiver.
   location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/0
 - source_spec: `spec-15-6-min-dag-the-field-landing.md`
   summary: Canonical design screenshot comparison, measured contrast and presentation polish

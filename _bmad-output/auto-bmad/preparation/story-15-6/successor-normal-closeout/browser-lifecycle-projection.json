@@ -1,0 +1,57 @@
+{
+  "operation_id": "28ec7655-c7c4-4781-8efc-fd5394701a8d",
+  "run_id": 40192543175,
+  "head": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "job_id": 121166980901,
+  "acquisition": {
+    "tool": "mcp__codex_apps__github_fetch_workflow_job_logs",
+    "args": {
+      "job_id": 121166980901,
+      "repo_full_name": "rthunborg/Kopplas"
+    },
+    "start_epoch_ms": 1792934996491,
+    "end_epoch_ms": 1792934997766,
+    "wall_elapsed_seconds": 1.275,
+    "promise_settled": true,
+    "promise_rejected": false,
+    "inflight_deadline_observed": false,
+    "native_exit": "NOT_APPLICABLE",
+    "transport_hardcap_claimed": false,
+    "safe_shape_file": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-6-preparation/shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d/e2e-safe-return-shape.json",
+    "monotonic_envelope_seconds": 1.5424020000027667,
+    "timing_basis": "Date.now connector wall interval plus local Python monotonic upper-bound envelope",
+    "decoded_utf8_bytes": 128859,
+    "decoded_text_sha256": "b2e2b5ac2976cffc3b8cd303c19c2d73616cf891581734744ce45588d1fcbb80",
+    "tool_isError": false,
+    "decoded_representation": "decoded string",
+    "body_path": "root.structuredContent.content"
+  },
+  "expected_mode": "browser",
+  "records": [
+    {
+      "event": "calendar_feed.ci_lifecycle",
+      "mode": "browser",
+      "source_timestamp": "2026-10-25T12:29:31.6246988Z",
+      "ready": false,
+      "keyDeleted": true,
+      "dbClosed": true,
+      "launchAttempted": false,
+      "keyOutcome": "deleted-confirmed",
+      "childLaunchState": "not-attempted",
+      "childExitCodes": [
+        0
+      ],
+      "custody_field": "present",
+      "custody_retained": false,
+      "custody_disposition": "NO_RETAINED_CUSTODY",
+      "failures_count": 0,
+      "diagnostics_count": 0,
+      "safe_diagnostics": []
+    }
+  ],
+  "matching_records": 1,
+  "malformed_candidate_count": 0,
+  "required_facts_complete": true,
+  "raw_custody_or_log_persisted": false
+}
+

@@ -1,0 +1,158 @@
+{
+  "tested_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "source_objects": [
+    {
+      "path": "package.json",
+      "working_raw_sha256": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+      "git_blob_oid": "756a7413549a8cc9dd7f962458a5214c917242ed",
+      "git_blob_sha256": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d"
+    },
+    {
+      "path": "src/app/(app)/my-day/layout.tsx",
+      "working_raw_sha256": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e",
+      "git_blob_oid": "161d8af618c0a9d6fc557308a25f87d230997f59",
+      "git_blob_sha256": "71a1f29870918ccb3f58b6dd52269a496e24ec6c13f2cc7fd26f665e65f81b5e"
+    },
+    {
+      "path": "src/app/(app)/my-day/page.tsx",
+      "working_raw_sha256": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747",
+      "git_blob_oid": "8c62c35d4024bcbd6948c6d8ff969c999ed8fbdc",
+      "git_blob_sha256": "08f4d62419a736130e0061a6159fc1383c64f1c2bfa0aa5edc4e28e7b6f61747"
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "working_raw_sha256": "8999b50f5610e2ef51aaa353d743ea38eaea7541d3dd879cb1806cc3ee2d2a97",
+      "git_blob_oid": "e1798b21b98600873f06c731e5c85f2ced44e8ed",
+      "git_blob_sha256": "e6e4ba3df8f562271364eb172280e636da85e12ddb30953806c8f75023150248"
+    },
+    {
+      "path": "src/components/app-shell/nav-items.ts",
+      "working_raw_sha256": "8494a72b564c5221aac077b580f6ad0f24c1d31a21aa57849a7f4eb9ac3e2b47",
+      "git_blob_oid": "c78eca586608b70afe6039f2e0f718b871b2878c",
+      "git_blob_sha256": "39c3e0db94de5369fe2f39097fd33386e199736cd20267667107d91beb3fcf6e"
+    },
+    {
+      "path": "src/components/my-day/MyDayBookingCard.tsx",
+      "working_raw_sha256": "609f46eb67dbafea5fd1fa14851038ad420d9f5f03ed353b3833e08024e3f770",
+      "git_blob_oid": "ac840c2c971de3ce4070d66ab1d677158026bd0c",
+      "git_blob_sha256": "609f46eb67dbafea5fd1fa14851038ad420d9f5f03ed353b3833e08024e3f770"
+    },
+    {
+      "path": "src/components/my-day/MyDayWorkspace.tsx",
+      "working_raw_sha256": "d470f32c941f3baee54cd8f729b6c1bb0c2d20d9e7583c1f73f5ee3ceefe8974",
+      "git_blob_oid": "f2f9b7f3f8d10787eb277de0a91c93475d27713e",
+      "git_blob_sha256": "cbac94ac99f217ab8b936f7836b8973cb48febc17191c6333197a47f5efb68a1"
+    },
+    {
+      "path": "src/features/my-day/actions.ts",
+      "working_raw_sha256": "67f2c1b6aa618360e04f8ad12dcbbe60dffa596886d0fb461227b748febb344e",
+      "git_blob_oid": "48d51ec4d8ee730a16327610024cd21e62c40b1c",
+      "git_blob_sha256": "c3d7a685fe69c8f48d1ce8ed98ad6b476b57accc166598148e3ccdf33dbfb896"
+    },
+    {
+      "path": "src/features/my-day/domain.ts",
+      "working_raw_sha256": "23a0efaf205a3183fda64018fe1ef8a43edf49e23d5d947f5079509167589699",
+      "git_blob_oid": "61bba1a85ce30c3d7c5f344631d7326b757d59bb",
+      "git_blob_sha256": "0ecfec122ce685567f64d4a175930814c583c11133f37b670da92e1de9fac572"
+    },
+    {
+      "path": "src/features/my-day/types.ts",
+      "working_raw_sha256": "831551df0821ecab7356663711f84b5db5d46e7bf0064a707db763e4a0620de0",
+      "git_blob_oid": "3b44a1d7d95c4095c0ea9047a6686207077b2dd8",
+      "git_blob_sha256": "d070db71b7fa75b7c9532e6b54942ee32ccaa28a25373dbfec40e47b493fda2d"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "working_raw_sha256": "5bd5f101ece667ac16f63c787392522c0f0268e967f8f9196254c25699402130",
+      "git_blob_oid": "a198edfcc4c2ad09ae276316ca5404974bad7326",
+      "git_blob_sha256": "43ebb65f502c340daa9425639932c7ac799d560e414b00f05fa05446a491da7a"
+    },
+    {
+      "path": "src/server/authz/phase-a-surface.ts",
+      "working_raw_sha256": "9f5096266d0c15ec64eb4b2ecf81f79b4e2212ef356796830df7a765a2602f22",
+      "git_blob_oid": "b91e8e207ee62b9c3080c0e4c23df30dbc69d930",
+      "git_blob_sha256": "bdefd27b4505893b80f3d5a1a37277e2616a4c952e82dbeeeb15bf9aafb7dd4f"
+    },
+    {
+      "path": "src/server/read-models/my-day.ts",
+      "working_raw_sha256": "1001616017459d8edc883e0ff3a5aa2d11bf2324a090b58de3eb57c7f4dc504c",
+      "git_blob_oid": "27a0081df114c6a1eb5d1b422b1da0d569e455ba",
+      "git_blob_sha256": "d1b99c80aa07347263f4ea64cf787652224f9781a27f5dd3cd1c5e70a0473250"
+    },
+    {
+      "path": "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql",
+      "working_raw_sha256": "548df5d9917c8e01fd0acacc8872430f96377200ef1841995144bcc00cefafe6",
+      "git_blob_oid": "cb0ac6c02bf6cd50eda0d6cdd074fa2a5d21ebf7",
+      "git_blob_sha256": "b671efd7b0d1118f2e0b2adaa4af9fc539e29621e299900194c758e95dd4020c"
+    },
+    {
+      "path": "tests/e2e/my-day.e2e.spec.ts",
+      "working_raw_sha256": "9a99c45b07dd5d8c4ce18cdfc8ee4f84c74363ee1ac241f09192fc0634499d7a",
+      "git_blob_oid": "e80eadacdf4bbcca58aa1c9b4f12cbe189d3a795",
+      "git_blob_sha256": "9a99c45b07dd5d8c4ce18cdfc8ee4f84c74363ee1ac241f09192fc0634499d7a"
+    },
+    {
+      "path": "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+      "working_raw_sha256": "88fb1877afa1c5d085fb38c3982276b4d346bc2d0d9cfc9d0a844045bf055997",
+      "git_blob_oid": "eaa338c3dd31c29eee1460f5ff58c400f29e750f",
+      "git_blob_sha256": "88aebedd0e32f25cbe32dcb90f52dc4a8c3d93215e53fe83d588ff2a03179e52"
+    },
+    {
+      "path": "tests/integration/scheduling/my-day.int.test.ts",
+      "working_raw_sha256": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615",
+      "git_blob_oid": "ff084227c52b7792ced897e08b708c094f7c7fc3",
+      "git_blob_sha256": "a6ce41e5c61102c7e667af61e828db1904dde767315440b0c609d4754d1e0615"
+    },
+    {
+      "path": "tests/unit/features/my-day/domain.test.ts",
+      "working_raw_sha256": "9f2e0037256dc95cceba2a293777930aac9959d1add380bfab725ac5374378a8",
+      "git_blob_oid": "39db6e47e98529e7f412fb1e4ad1af4e31c62214",
+      "git_blob_sha256": "e5c208d113ada4650fb6521bdf51e254ffa987cf67ceeb87c7380f0dc8afb713"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "working_raw_sha256": "9cfd49a9278d88fd9931ba0ec4d869d4b47b27fe92fb09a4690e7d24e7f9f047",
+      "git_blob_oid": "26048c896ce822e60f213fc52734447363bf374e",
+      "git_blob_sha256": "bf633d336548086b006dcc04ece5b476fbcea19e0d0e2cfa21b1413821bb9984"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "working_raw_sha256": "de30870d9191b9bb21597834159840923d12c18822cdd5d2467bfe252680116b",
+      "git_blob_oid": "bd40bbfb8ee9069923753450b5303945dfddfdb6",
+      "git_blob_sha256": "4687e6796282715897e5b9b38127202b7921df15fab946285dcd50a5940d4db2"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "working_raw_sha256": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+      "git_blob_oid": "3299987d56afaf8fc5ed2206e72a3d2b2783c7fa",
+      "git_blob_sha256": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "working_raw_sha256": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666",
+      "git_blob_oid": "d4ea520b2d94b72a6c7b463d9b7f5d81f0f199ef",
+      "git_blob_sha256": "e8fed0d821b969ac953b5e8b5c20771fda29b51108dd4e94d0607f5020bc5666"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "working_raw_sha256": "9b54697dc0401f712b568069ee7e154a0d571792e87c171edbe7241db80a4dd6",
+      "git_blob_oid": "e1e01a2f51b53e7a4ee58b8832c8ef9693ad4e8e",
+      "git_blob_sha256": "266d133f5dd56cc5c7cc625ed1045129cc3ce97d881ffda5778d140eda375d8d"
+    },
+    {
+      "path": "tests/unit/server/authz/phase-a-surface.test.ts",
+      "working_raw_sha256": "d8429f52e7b0a0ff5efdabb2afb606df42ecf3dc63a135897394ad8760725dff",
+      "git_blob_oid": "73468af8f68b65bd06d22a5ba40fdca1f3d297ee",
+      "git_blob_sha256": "f0ffaef19ba06b32f6fa674f4feb6f13af504a1b6d8c7a3c8a4bca3a191a5b13"
+    },
+    {
+      "path": "tests/unit/server/read-models/my-day.test.ts",
+      "working_raw_sha256": "d4cec83741b8d5926fc9908aefb90c5c4e6e394e3fc3e58109d5508e603634d7",
+      "git_blob_oid": "316d3e34f7d13649f3bb4bf31a501e33ab893e15",
+      "git_blob_sha256": "45a566d9e89ad789347482b07861b65aab05398d60800fa554d4a37fa7082553"
+    }
+  ],
+  "source_pin_count": 25,
+  "source_unchanged_after_test": true,
+  "metadata_followups_are_not_claimed_as_tested_heads": true
+}
