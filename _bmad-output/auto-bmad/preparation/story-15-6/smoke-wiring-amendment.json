@@ -1,0 +1,42 @@
+{
+  "Outcome": "Applied one minimal planning amendment: allocate package.json solely for test:smoke inclusion of tests/e2e/my-day.e2e.spec.ts; no actual package/source/test/runtime/Git changes.",
+  "Files changed (absolute)": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/plan-result.json",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/smoke-wiring-amendment.json"
+  ],
+  "Status": {
+    "HALTstatus": "ready-for-dev",
+    "specpath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "pre": {
+      "sha256": "2347eb64e6859246ce1a7e1ff45ab86038aad48a2981c70401766a98c77079a2",
+      "bytes": 20105
+    },
+    "post": {
+      "sha256": "580f559f618556d0a4f1bb9866fc0fe871a635154576e5b766d73998cb450c44",
+      "bytes": 20382
+    },
+    "exact_minimal_diff": [
+      {
+        "section": "Tasks & Acceptance / T6",
+        "before": "Existing manifest-derived guards should derive the new nav automatically; repair only demonstrated hard-coded fixture expectations. AC1–7.",
+        "after": "`package.json` — add `tests/e2e/my-day.e2e.spec.ts` solely to the existing explicit `test:smoke` script list so required essential-browser verification includes this flow; no dependency, lockfile, workflow or controller change. Existing manifest-derived guards should derive the new nav automatically; repair only demonstrated hard-coded fixture expectations. AC1–7."
+      },
+      {
+        "section": "Verification",
+        "before": "focused `pnpm test:e2e tests/e2e/my-day.e2e.spec.ts` and essential affected existing smoke through configured production server.",
+        "after": "focused `pnpm test:e2e tests/e2e/my-day.e2e.spec.ts` and `pnpm test:smoke` (whose explicit script list must include the new Min dag spec) through configured production server."
+      }
+    ],
+    "proposedexactpath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/package.json",
+    "allowed_edit": "test:smoke script list only",
+    "nestedroutes": "Sol Low amendment; no new sensitive decision or nested delegate. Root arranges targeted High confirmation.",
+    "preserved": "Intent contract and ACs unchanged; security/read contract unchanged; prior independent PASS remains historical."
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root obtains same High validator targeted changed-metadata confirmation.",
+    "Root claims package.json exact-script-only scope before implementation; implementation wires new smoke spec."
+  ],
+  "Blockers": []
+}

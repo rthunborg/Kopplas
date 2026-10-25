@@ -9,41 +9,43 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-25T08:33:08Z"
+updated_at: "2026-10-25T08:51:19Z"
 started_at: "2026-10-25T08:33:08Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1792917188
+active_seconds: 937
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: 15.6-build-plan
-selected_role: build delegate
-selected_profile: standard
+selected_phase: 15.6-spec-validation-smoke-amendment
+selected_role: independent specification validator
+selected_profile: critical
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows."
+escalation_reason: "Targeted confirmation of exact planning-only smoke wiring amendment; preserve previously PASS sensitive spec contracts, no broad code review."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-build-plan\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent validation of own-person RPC authorization, mixed-role landing, pending-jobs no-query privacy seam and migration/tenant boundaries before build.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-spec-validation\",\"profile\":\"critical\",\"role\":\"independent specification validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted confirmation of exact planning-only smoke wiring amendment; preserve previously PASS sensitive spec contracts, no broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-spec-validation-smoke-amendment\",\"profile\":\"critical\",\"role\":\"independent specification validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Read-only triage: schedule-change notices and time-ordered bookings trigger scheduling risk."
 epic_story_count: 6
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2]
-spec_path: null
-spec_approved: false
+completed_phases: [0, 1, 2, 3]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-6-min-dag-the-field-landing.md"
+spec_approved: true
 build:
-  status: null
+  status: ready-for-dev
   blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -54,7 +56,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [4cf343c8]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -106,3 +108,14 @@ constraints:
   - "Ordinary Sol6.1Low; sensitive auth/RBAC/RLS/transactional decisions explicitHigh."
   - "Preserve E14Oct8accepted-with-open-items, ContractD15.1, ownerUXB-A9 workrole decision, current approved Oct23designauthority."
   - "One epicPR; cap3; no deployment; conditionalmergecommit retainbranch."
+preparation:
+  status: INDEPENDENT_HIGH_VALIDATION_PASS
+  spec_raw_bytes: 20381
+  spec_raw_sha256: 6d7d4af77ea1a5dcc67680c4660bf3882fe181eb37c8dd4cfff1b4ca5dee499d
+  original_validation: "_bmad-output/auto-bmad/preparation/story-15-6/spec-validation.json"
+  amendment_validation: "_bmad-output/auto-bmad/preparation/story-15-6/spec-validation-smoke-amendment.json"
+  implementation: not_started
+  migration: "CLIgeneratedfilename pendingfreshinventory; all118existingSQLimmutable"
+  source_and_runtime_allocation: "pendingconcretefilename/sharedscriptclearance; no resourcesadopted"
+  formatting_only: "LFnormalizedbody equals independentlyvalidated Gitindex223cd99f preimage; only trailinglineendings changed, no semanticdelta"
+  formatting_report: "_bmad-output/auto-bmad/preparation/story-15-6/formatting-only-amendment.json"

@@ -9,24 +9,24 @@ spec_folder: null
 story_id: null
 branch: codex/epic-15-scheduling-time-calendar
 status: in-progress
-updated_at: "2026-10-25T08:33:08Z"
+updated_at: "2026-10-25T08:48:45Z"
 started_at: "2026-10-09T12:57:49Z"
 completed_at: null
-active_seconds: 279976
-timing_anchor: 1792917188
+active_seconds: 280913
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 git_mode: remote
 base_branch: main
-selected_phase: 15.6-build-plan
-selected_role: build delegate
-selected_profile: standard
+selected_phase: 15.6-spec-validation-smoke-amendment
+selected_role: independent specification validator
+selected_profile: critical
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows."
+escalation_reason: "Targeted confirmation of exact planning-only smoke wiring amendment; preserve previously PASS sensitive spec contracts, no broad code review."
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary epic test planning; sensitive implementation/review scope routed explicitly High\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary story test-risk classification\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_triage\",\"profile\":\"light\",\"role\":\"test-risk-triage\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
@@ -458,6 +458,8 @@ routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Actual15.5 publictoken/auth/RLS/transactional cleanup coverage assessment is sensitive; reusequalified95/sourceproof, assessrealgaps only. P5earnedandcommitted4d854f64.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"P6-testarch-automate\",\"profile\":\"tea_per_story\",\"role\":\"TEA test-automation delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary read-only test-risk classification; no sensitive implementation decisions.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-tea-triage\",\"profile\":\"light\",\"role\":\"TEA\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary specification preparation; sensitive contract decisions must receive explicit High nested delegation; independent High specification validation follows.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-build-plan\",\"profile\":\"standard\",\"role\":\"build delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Independent validation of own-person RPC authorization, mixed-role landing, pending-jobs no-query privacy seam and migration/tenant boundaries before build.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-spec-validation\",\"profile\":\"critical\",\"role\":\"independent specification validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted confirmation of exact planning-only smoke wiring amendment; preserve previously PASS sensitive spec contracts, no broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"15.6-spec-validation-smoke-amendment\",\"profile\":\"critical\",\"role\":\"independent specification validator\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: null
 tea_selected: []
 tea_rationale: null
