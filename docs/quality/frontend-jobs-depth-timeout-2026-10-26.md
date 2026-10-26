@@ -148,3 +148,58 @@ identify the operation that timed out in the historical run.
 - `tests/unit/support/jobs-depth-phase-diagnostics.test.ts:13` — `RLS phase evidence is fixed`: proves timeout snapshot immutability and privacy with a fixed clock.
 - `tests/unit/support/jobs-depth-phase-diagnostics.test.ts:76` — `actual helper keeps callback/cleanup order`: checks original rejection and cleanup semantics when diagnostics fail.
 - `tests/unit/support/jobs-depth-phase-diagnostics.test.ts:90` — `actual installed Vitest timeout and JsonReporter`: executes the isolated real runner; deliberate synthetic failures must remain failures.
+
+## Subsequent exact-head evidence — 9fa34f19
+
+The separately authorized evidence-bearing checkpoint
+`9fa34f198588bac64bdfda674b5aa3933d59b1ec`, sole parent
+`184053e4bc1ec130371ce7537c4a372384d2a4d3`, completed
+[normal PR CI 40384620314](https://github.com/rthunborg/Kopplas/actions/runs/40384620314)
+with a required DB failure. This is a later observation, not a replacement for
+the original 184 facts, baseline pass or synthetic mechanism proof above.
+
+Native integration artifact `12681802560` reports 2,198 assertions: 2,145 passed,
+one failed, 52 pending. Sole failure RLS001 lasted 30016.606847 ms under the
+unchanged 30000 ms limit. NUDGE004 passed in 5663.9 ms; no Auth-cleanup failure
+was identified. Native browser artifact `12679994383` reports 65 expected passes,
+zero flaky retries, skipped, unexpected or global errors. Isolated-storage
+artifact `12680053483` reports one pass. Pending assertions remain unexecuted
+coverage. **The PR remains blocked on full exact-head CI; no Ready status is
+claimed.**
+
+The actual native `assertion.meta.jobsDepthPhaseV1` receipt is valid and frozen
+at elapsed 30009 ms, `acceptanceCredit=0`. It records:
+
+- `import-helper`: returned once, 801 ms.
+- `assert-role-read`: all five returned, aggregate 17042 ms.
+- `assert-inactive-read`: two started, one returned, zero rejected, aggregate
+  4756 ms; this was the active phase at freeze.
+
+The source visits invited, disabled and orphan actors in that order. Thus the
+disabled-user `client.from("jobs").select("id")`, or its immediately following
+empty-result assertion inside the same phase, had not completed its marker.
+The 4756 ms includes the completed invited read and the active interval; it is
+not the disabled request's individual duration. Sign-in is a separate completed
+phase. This evidence cannot distinguish client/event-loop, HTTP, PostgREST,
+database/RLS or resource-contention latency. The baseline's 27656.08 ms total
+has no comparable phase receipt. No backend cause or concrete harness defect
+is established, and no timeout, retry, assertion, filter or concurrency change
+is justified from these observations alone.
+
+Read-only local inventory found retained legacy/user and unrelated stacks, not
+a proven owned CI-compatible stack; this checkout has no `.env.test`. No stack
+was adopted, queried, started or stopped. A practical local reproduction is
+therefore not currently qualified using already-owned resources without further
+ownership/configuration/schema admission. The hosted job has ended; no cleanup
+by name, blind CI rerun or speculative fix is authorized by this report.
+
+Resume condition: the test/DB infrastructure owner qualifies a guard-owned stack
+matching the relevant CI runtime/schema, then obtains a bounded targeted
+reproduction with the original assertions, timeout, ordering and concurrency
+configuration intact. Correlate request and database latency safely before
+attributing a cause or proposing a fix. A targeted pass alone does not qualify
+the full CI load. Any justified sensitive fix requires independent High review
+before another full exact-head CI. The separate functional screenshot batch
+still needs its one final evidence-bearing exact-head CI; if this same unresolved
+RLS failure remains, stop and report this blocker and resume condition rather
+than entering an indefinite retry loop.

@@ -6,4 +6,6 @@ export function evidenceDigest(value: unknown): string;
 export function isFrontend(path: string): boolean;
 export function isShared(path: string): boolean;
 export function inspectPng(bytes: Uint8Array): {width: number; height: number};
-export function evaluateFrontend(input: {headSha: string; files: string[]; comments?: unknown[]; permissions?: Record<string,string>; policy: unknown; loadBlob: (oid: string) => Promise<Buffer>; authorId?: number; authorIds?: number[]; authorsComplete?: boolean; labels?: string[]}): Promise<{status: string; mode?: string; reason?: string; headSha: string; evidenceDigest?: string}>;
+export function evaluateFrontend(input: {headSha: string; files: string[]; comments?: unknown[]; reviewComments?: unknown[]; feedback?: unknown[];
+  repo?: string; prNumber?: number; prBody?: string; loadPublication?: (request: import('./frontend-presentation.mjs').PublicationRequest) => Promise<import('./frontend-presentation.mjs').PublicationResult | undefined>;
+  permissions?: Record<string,string>; policy: unknown; loadBlob: (oid: string) => Promise<Buffer>; authorId?: number; authorIds?: number[]; authorsComplete?: boolean; labels?: string[]}): Promise<{status: string; mode?: string; reason?: string; headSha: string; evidenceDigest?: string}>;

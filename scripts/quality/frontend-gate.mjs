@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { inflateSync } from 'node:zlib';
 import { DEFAULT_ALLOWED_USER_IDS } from '../pr-feedback/policy.mjs';
+import { validatePresentation } from './frontend-presentation.mjs';
 
 export const EVIDENCE_MARKER = '<!-- kopplas-visual-evidence-v1 -->';
 export const CHECK_NAME = 'Frontend visual acceptance';
@@ -89,7 +90,7 @@ function command(comment, name, sha, digest) {
 
 /** All network-derived identities/permissions/files/images are passed by the
  * trusted controller, never read from an author's evidence JSON. */
-export async function evaluateFrontend({ headSha, files, comments = [], permissions = {}, policy, loadBlob, authorId, authorIds = [], authorsComplete = true, labels = [] }) {
+export async function evaluateFrontend({ headSha, files, comments = [], reviewComments = [], feedback = [], permissions = {}, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds = [], authorsComplete = true, labels = [] }) {
   need(SHA.test(headSha), 'Candidate must be a full Git revision.');
   need(Array.isArray(files) && files.length && files.length <= 3000 && files.every((p) => typeof p === 'string') && unique(files), 'Incomplete changed-path inventory.');
   const frontend = files.filter(isFrontend);
@@ -100,13 +101,13 @@ export async function evaluateFrontend({ headSha, files, comments = [], permissi
   // A bad unrelated package must not shadow an authenticated accepted package.
   const failures = [];
   for (const { evidence: e } of packages) {
-    try { return await validatePackage({ e, headSha, files, frontend, comments, permissions, policy, loadBlob, authorId, authorIds, authorsComplete, labels }); }
+    try { return await validatePackage({ e, headSha, files, frontend, comments, reviewComments, feedback, permissions, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds, authorsComplete, labels }); }
     catch (error) { failures.push(error.message); }
   }
   throw new Error(failures.join(' | ').slice(0, 1800));
 }
 
-async function validatePackage({ e, headSha, files, frontend, comments, permissions, policy, loadBlob, authorId, authorIds, authorsComplete, labels }) {
+async function validatePackage({ e, headSha, files, frontend, comments, reviewComments, feedback, permissions, policy, loadBlob, loadPublication, repo, prNumber, prBody, authorId, authorIds, authorsComplete, labels }) {
   const digest = evidenceDigest(e);
   const ownerControls = comments.filter((c) => human(c, permissions) && /^(?:\/visual-(?:accept|revoke|waive|opt-out|not-applicable)) /.test(c.body ?? '') && c.body.includes(`${headSha} ${digest}`));
   need(ownerControls.every((c) => Number.isFinite(commentTime(c))), 'Invalid authenticated acceptance/revocation ordering timestamp.');
@@ -168,6 +169,9 @@ async function validatePackage({ e, headSha, files, frontend, comments, permissi
     need(deviation.category === 'visual', 'Security, money, scope, integrity and accessibility defects cannot be waived.');
     need(comments.some((c) => human(c, permissions) && c.body?.startsWith(`/visual-waive ${headSha} ${digest} ${deviation.id}\n`) && text(c.body.split('\n').slice(1).join('\n'))), `Deviation ${deviation.id} needs named owner waiver.`);
   }
+  const presentation = await validatePresentation({ e, head: headSha, digest, repo, prNumber, prBody, feedback, comments, reviewComments, permissions,
+    authorIds: [authorId, ...authorIds], loadPublication, ownerWaiver: (id, rationale) => comments.some((c) => human(c, permissions)
+      && c.body === `/visual-waive ${headSha} ${digest} ${id}\n${rationale}`) });
   let vision;
   let providerOutcome = { status: 'unavailable', reason: 'No authenticated configured image-review receipt.' };
   const candidates = comments.filter((comment) => command(comment, 'visual-review', headSha, digest)
@@ -187,10 +191,10 @@ async function validatePackage({ e, headSha, files, frontend, comments, permissi
       }
     }
     const independent = authorsComplete && !new Set([authorId, ...authorIds]).has(trusted.userId);
-    if (independent && receipt?.status === 'passed' && receipt?.verdict === 'PASS' && receipt?.provider === trusted.provider && receipt?.model === trusted.model && receipt?.capability?.status === 'passed' && receipt.capability.tool === 'actual-image-input' && text(receipt.capability.observation) && same([...receipt.inputHashes ?? []].sort(), [...inputHashes].sort()) && Array.isArray(receipt.findings) && receipt.findings.every((f) => f.status === 'resolved' || f.status === 'waived' && e.deviations.some((d) => d.id === f.id))) {
+    if (independent && receipt?.status === 'passed' && receipt?.verdict === 'PASS' && receipt?.provider === trusted.provider && receipt?.model === trusted.model && receipt?.capability?.status === 'passed' && receipt.capability.tool === 'actual-image-input' && text(receipt.capability.observation) && same([...receipt.inputHashes ?? []].sort(), [...inputHashes].sort()) && (!feedback.length || receipt.feedbackScopeDigest === presentation.scopeDigest) && Array.isArray(receipt.findings) && receipt.findings.every((f) => f.status === 'resolved' || f.status === 'waived' && e.deviations.some((d) => d.id === f.id))) {
       vision = { commentId: latest.id, provider: receipt.provider, model: receipt.model, verdict: receipt.verdict, findings: receipt.findings, capability: receipt.capability };
     }
   }
   need(vision || manual.length, 'Independent vision review unavailable/failed/skipped; authenticated owner manual acceptance required.');
-  return { status: 'accepted', headSha, evidenceDigest: digest, mode: vision ? 'independent-vision' : 'owner-manual', evidenceSource: e.source, acceptanceCommentId: manual.at(-1)?.id, independentReview: vision ?? providerOutcome, coverage: e.surfaces.map(({ id, route, component }) => ({ id, route, component })) };
+  return { status: 'accepted', headSha, evidenceDigest: digest, mode: vision ? 'independent-vision' : 'owner-manual', evidenceSource: e.source, acceptanceCommentId: manual.at(-1)?.id, independentReview: vision ?? providerOutcome, presentation, coverage: e.surfaces.map(({ id, route, component }) => ({ id, route, component })) };
 }

@@ -23,6 +23,12 @@ successful pilot evidence after deliberate re-enablement. See [reuse setup](pr-f
 proposal](../quality/frontend-runtime-integration-2026-10-26.md). No merge,
 deployment, protection bypass or autonomous file-policy expansion follows.
 
+Frontend PRs also retain the [screenshot handoff](../quality/frontend-pr-screenshots.md):
+durable actual-application desktop/360px screenshots embedded in the PR, actual
+capture provenance, feedback replies and refreshed evidence after changes.
+Tooling-only work records its nonvisual reason; fabricated capture is not visual
+acceptance, and screenshots do not expand the fixer's eligibility or file policy.
+
 ## Decision and verified repository baseline
 
 Use ordinary GitHub Actions, OpenAI's official Codex action, and a narrowly
@@ -128,8 +134,9 @@ evidence has all four repository variables, App and both credentials established
 `PR_FIX_ENABLED=true`/`PR_FIX_PUBLISH=true`, and the workflow manually disabled.
 The later owner authorization above covers bounded paid/live/enable effects;
 remaining technical gates must pass without repeat approval for those effects.
-Normal merge decisions and concrete protection/App configuration decisions remain
-separate. Existing active branches must not be disrupted. No pilot success is
+Normal merge decisions and conditional protection application remain separate.
+The owner selected policy B and retained App grants unchanged; these choices are
+resolved. Existing active branches must not be disrupted. No pilot success is
 claimed. Read the numbered items with this dated disposition, not as instructions
 to recreate resources or reopen established authorization.
 
@@ -137,9 +144,15 @@ to recreate resources or reopen established authorization.
    its PR. Review and merge into `main` through the normal human process.
    Comment and schedule triggers only become available after default-branch
    bootstrap. Do not enable the new workflow from an untrusted feature branch.
-2. Protect `main` with required human review, relevant CI checks and no bypass
-   for the fixer App. Protect workflow/policy/instruction changes with owner
-   review. Existing settings do not enforce this today.
+2. After trusted bootstrap, apply the owner's selected policy B: PR-only updates,
+   zero native approving reviews, strict `checkpoint-admission`, `verify`, `db`,
+   `recovery-storage-loader`, `e2e` plus `Frontend visual acceptance`, resolved
+   conversations and no App/admin bypass. This expressly supersedes the historical
+   native human-approval requirement. Fresh-chat independent review, actual check
+   producer/trusted-controller/candidate-head validation and owner merge approval
+   remain process controls. Actual GitHub account authorship must be honest;
+   different agent sessions using one account are not independent native reviewers.
+   No setting has been applied; current producer/bootstrap proof is still required.
 3. Reuse `pr-feedback-secrets`, retaining its verified deployment branch **only
    `main`** (not all protected branches), and credentials exclusively there.
    Environment restrictions are essential: a same-repository feature branch
@@ -158,7 +171,12 @@ to recreate resources or reopen established authorization.
    configured model access, effective rate/spend controls and account state.
    Spending/activation authorization is established, not billing readiness.
    Authenticated read-only candidate-project inspection verified allowed model
-   and displayed rates; credential mapping and billing readiness remain unproven.
+   and displayed rates. The owner confirms Kopplas PR Fixer is intended and chooses
+   free tier until the provider requires billing; the owner will add it when notified.
+   Stored-key mapping/API acceptance remain unproven; no real inference occurred.
+   After bootstrap and pilot prerequisites, one bounded authorized pilot may prove
+   access or return quota/billing failure. Stop and report an actual provider
+   requirement without a retry loop; billing is an owner action only if required.
    Hard-spend enforcement was not established and must not be relied on as enforced.
    Keep production Supabase, deployment,
    backup and Google Drive credentials out of this environment and all fixer

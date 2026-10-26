@@ -16,6 +16,11 @@ Technical/bootstrap evidence is still required before re-enablement or a paid
 attempt. See the [runtime integration and concrete configuration proposal](../quality/frontend-runtime-integration-2026-10-26.md)
 and [dated activation evidence](../quality/frontend-activation-2026-10-26.md).
 
+Frontend PR publication also follows the [screenshot handoff](../quality/frontend-pr-screenshots.md):
+durable actual-application desktop and 360px captures embedded in the PR, genuine
+feedback replies and refreshed evidence after changes. Use an honest nonvisual
+reason for tooling-only work; never substitute fake capture or expand fixer eligibility.
+
 ## Existing resources — verified read-only 2026-10-26
 
 | Resource | Actual evidence | Next action |
@@ -39,7 +44,13 @@ that does not shrink the authority of the stored App private key. The exact
 historical grant-reduction proposal is superseded by the owner's 2026-10-26
 decision: **keep grants unchanged; reduction is not a prerequisite**. Preserve
 the five-permission minted-token contract and runtime/file/current-head safeguards.
-The sole-maintainer main-protection choice remains pending; none has been applied.
+The owner selected sole-maintainer policy B on 2026-10-26 and authorized exact
+reviewed application after trusted bootstrap: PR-only, zero native approvals,
+strict five ordinary jobs plus visual acceptance, resolved conversations and no
+App/admin bypass. Fresh-chat independent review and actual producer/controller/head
+checks remain process requirements, not GitHub workflow-identity enforcement.
+Authorship is the actual GitHub account; different agent sessions sharing it are
+not independent native reviewers. No protection has been applied.
 
 ## Existing API project: inspect controls without exposing credentials
 
@@ -48,8 +59,12 @@ established; billing readiness is not. Authenticated read-only inspection on
 2026-10-26 verified an existing candidate project, service-account membership,
 `gpt-6.1-sol` allowed-model status and displayed inherited model rate limits.
 The inspected account did not establish billing readiness. The stored credential's
-organization/project mapping remains unproven; the owner is identifying the
-intended organization/project by name only. No key-value page was visited.
+organization/project mapping remains unproven. The owner confirms the inspected
+Kopplas PR Fixer project is intended and chooses free tier until the provider
+actually requires billing; the owner will add billing when notified. No real
+inference has occurred. After bootstrap and pilot prerequisites, one bounded
+authorized pilot may prove access or return quota/billing failure; stop and report
+that concrete requirement without a retry loop. No key-value page was visited.
 If mapping cannot be safely proved from settings, prepare a read-only protected
 diagnostic on reviewed default main that emits only non-secret model-access/status
 evidence; do not run branch code with the credential or install an Admin key.
@@ -88,14 +103,16 @@ workflow/file/time/attempt limits, which are not dollar caps.
    The separately owned exact-main baseline `40367022378` now passed all five
    ordinary jobs, including NUDGE004, but neither explains the earlier cleanup
    error nor supplies a pass for the next #109 head.
-3. Resolve the concrete main-protection policy choice; apply only the exact
-   reviewed configuration explicitly approved by that choice, without asking
-   again for the same approved effects. The owner has already decided to retain
+3. Policy B is selected, with application authorized only after trusted bootstrap
+   and actual check-producer/head evidence. Apply only its independently reviewed
+   exact configuration at that checkpoint, without reopening the settled choice.
+   The owner has already decided to retain
    existing installed App grants unchanged; reduction is not a prerequisite.
    Do not give the fixer bypass. Preserve the exact main-only environment.
    Preserve the five-permission minted-token scope; the retained broader installed
-   grants are not minimum compliant. Protection application needs its actual A/B
-   choice and trusted check bootstrap evidence.
+   grants are not minimum compliant. Protection application needs trusted check
+   bootstrap evidence; zero native approvals does not waive fresh-chat independent
+   review, owner merge authorization or the production no-deployment checkpoint.
 4. After the qualified changes are on default main, verify controller revision,
    current grants, variables, environment and API project controls. Confirm no
    eligible unrelated PR can start work unexpectedly when re-enabling; retain

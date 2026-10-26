@@ -6,6 +6,7 @@ import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync
 import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { EVIDENCE_MARKER, evidenceDigest, evaluateFrontend, hash, inspectPng } from "../../../scripts/quality/frontend-gate.mjs";
+import { renderPrScreenshots, publicationPath, presentationFeedback, feedbackScopeDigest } from "../../../scripts/quality/frontend-presentation.mjs";
 import { assessPr, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
 import { guardedCompletion } from "../../../scripts/quality/completion-gate.mjs";
 import { selectFeedback } from "../../../scripts/pr-feedback/policy.mjs";
@@ -36,10 +37,11 @@ function fixture() {
   };
   const captures = [{ width: 360, height: 640 }, { width: 1280, height: 720 }].map((viewport, index) => ({ id: `finished-${index}`, surface: "widget", state: "finished", viewport, fullViewport: true, actual: image(viewport.width, viewport.height, 200), reference: image(viewport.width, viewport.height, 220) }));
   const policy = { schemaVersion: 1, source: { id: "DT-2026-10-23", version: "2026-10-26", hashes: { "DESIGN.md": "b".repeat(64) } }, references: {} as Record<string, Record<string, Record<string, string>>>, trustedVisionReviewers: [] as {userId: number; appId: number; provider: string; model: string}[], sharedConsumers: ["auth", "records", "scheduling"] };
-  const evidence = { schemaVersion: 1, candidateSha: head, kind: "frontend", changedPaths: [file], source: policy.source, runtime: { server: "next start", buildSha: head, synthetic: true, fixture: "Synthetic dashboard entity fixtures", command: "pnpm build followed by pnpm start", result: "Browser captured required states after server-confirmed setup" }, surfaces: [{ id: "widget", component: "WidgetCard", route: "/dashboard", files: [file], referenceId: "widget-v1", referenceSetting: true, notApplicable: { loading: "No loading branch in this standalone presentation", error: "No error branch in this standalone presentation", empty: "No empty branch in this standalone presentation" } }], captures, deviations: [] as {id: string; category: string; description: string}[] };
+  const evidence = { schemaVersion: 1, candidateSha: head, kind: "frontend", changedPaths: [file], source: policy.source, runtime: { server: "next start", buildSha: head, synthetic: true, fixture: "Synthetic dashboard entity fixtures", command: "pnpm build followed by pnpm start", result: "Browser captured required states after server-confirmed setup" }, surfaces: [{ id: "widget", component: "WidgetCard", route: "/dashboard", files: [file], referenceId: "widget-v1", referenceSetting: true, notApplicable: { loading: "No loading branch in this standalone presentation", error: "No error branch in this standalone presentation", empty: "No empty branch in this standalone presentation" } }], captures, presentation: { schemaVersion: 1, dataPolicy: "synthetic-no-pii", evidenceCommit: "d".repeat(40), evidenceRef: "codex/visual-evidence/pr-1", feedback: [] as {kind: string; id: number; rootId: number; sourceFingerprint: string; disposition: string; reason: string}[], exceptions: [] }, deviations: [] as {id: string; category: string; description: string}[] };
   const comment = { id: 1, user: owner, created_at: "2026-10-26T10:00:00Z", body: "" };
-  const input = { headSha: head, files: [file], labels: ["agent-fix"], comments: [comment], permissions: { owner: "admin" }, policy, authorId: 123, loadBlob: async (oid: string) => { const bytes = blobs.get(oid); if (!bytes) throw new Error("Blob unavailable"); return bytes; } };
+  const input = { headSha: head, repo: "o/r", prNumber: 1, prBody: "", loadPublication: async ({path}: {path: string}) => ({retained: true, gitBlob: captures.find(c => publicationPath(head, c) === path)!.actual.gitBlob}), files: [file], labels: ["agent-fix"], comments: [comment], permissions: { owner: "admin" }, policy, authorId: 123, loadBlob: async (oid: string) => { const bytes = blobs.get(oid); if (!bytes) throw new Error("Blob unavailable"); return bytes; } };
   function submit(manual = true) {
+    input.prBody = renderPrScreenshots(evidence, head, evidenceDigest(evidence));
     input.comments = [{ ...comment, user: { id: 123, login: "author", type: "User" }, body: `${EVIDENCE_MARKER}\n\`\`\`json\n${JSON.stringify(evidence)}\n\`\`\`` }];
     if (manual) input.comments.push({ ...comment, id: 2, body: `/visual-accept ${head} ${evidenceDigest(evidence)}` });
     return input;
@@ -251,12 +253,14 @@ test("trusted canonical source bytes must exist and match committed authority", 
 });
 function controllerApi(f: ReturnType<typeof fixture>, actors = [{author: {id: 777}, committer: {id: 888}}]) {
   return async (path: string) => {
-    if (path === "/repos/o/r/pulls/1") return {number: 1, state: "open", head: {sha: head}, changed_files: f.input.files.length, commits: actors.length, user: {id: 123}, labels: [{name: "agent-fix"}]};
+    if (path === "/repos/o/r/pulls/1") return {number: 1, state: "open", head: {sha: head}, changed_files: f.input.files.length, commits: actors.length, user: {id: 123}, body: f.input.prBody, labels: [{name: "agent-fix"}]};
     if (path.includes("/files?")) return f.input.files.map((filename) => ({filename}));
     if (path.includes("/commits?")) return actors;
     if (path.includes("/issues/1/comments?")) return f.input.comments;
-    if (path.includes("/reviews?")) return [];
+    if (path.includes("/reviews?") || path.includes("/pulls/1/comments?")) return [];
     if (path.endsWith("/permission")) return {permission: "admin"};
+    if (path.includes("/git/ref/heads/")) return {ref: "refs/heads/codex/visual-evidence/pr-1", object: {type: "commit", sha: f.evidence.presentation.evidenceCommit}};
+    if (path.includes("/contents/screenshots/")) { const filePath = path.split("/contents/")[1].split("?")[0], capture = f.evidence.captures.find(c => publicationPath(head, c) === filePath)!; return {type: "file", path: filePath, size: 100, sha: capture.actual.gitBlob}; }
     if (path.includes("/git/blobs/")) { const oid = path.split("/").at(-1)!; const bytes = f.blobs.get(oid)!; return {sha: oid, size: bytes.length, encoding: "base64", content: bytes.toString("base64")}; }
     throw new Error(`Unexpected path ${path}`);
   };
@@ -297,5 +301,34 @@ test("real completion subprocess refuses failing gate before helper can write", 
     assert.equal(dirname(resolve(root)), resolve(tmpdir()));
     assert.match(root.split(/[\\/]/).at(-1)!, /^frontend-completion-fixture-/);
     rmSync(root, {recursive: true, force: true});
+  }
+});
+
+
+test("unrelated feedback triage needs authenticated scope acceptance, never author assertion alone", async () => {
+  const f = fixture(); f.establish();
+  const remark = {id: 40, user: owner, created_at: "2026-10-26T10:00:00Z", body: "Coordination note: review will follow tomorrow."};
+  const feedback = presentationFeedback({comments: [remark], permissions: f.input.permissions});
+  f.evidence.presentation.feedback = feedback.map((item: {kind: string; id: number; rootId: number; sourceFingerprint: string}) => ({...item, disposition: "not-change-feedback", reason: "Coordination only; no implementation change was requested."}));
+  f.submit(false); f.input.comments.push(remark); f.independent();
+  await assert.rejects(evaluateFrontend({...f.input, feedback}), /Independent vision/);
+  const receipt = f.input.comments.at(-1)!;
+  receipt.body = receipt.body.replace('"findings":[]', `"feedbackScopeDigest":"${feedbackScopeDigest(f.evidence.presentation.feedback)}","findings":[]`);
+  assert.equal((await evaluateFrontend({...f.input, feedback})).mode, "independent-vision");
+  f.submit(); f.input.comments.push(remark);
+  assert.equal((await evaluateFrontend({...f.input, feedback})).mode, "owner-manual");
+});
+
+test("trusted checker rejects body removal or feedback edits during accepted assessment", async () => {
+  for (const mutation of ["body", "feedback"]) {
+    const f = fixture(), bytes = Buffer.from("approved source"); f.policy.source.hashes["DESIGN.md"] = hash(bytes); f.submit();
+    const base = controllerApi(f); let prReads = 0, feedbackReads = 0;
+    const api = async (path: string) => {
+      const value = await base(path);
+      if (path === "/repos/o/r/pulls/1" && ++prReads === 2 && mutation === "body") return {...value, body: "Screenshots removed"};
+      if (path.includes("/issues/1/comments?") && ++feedbackReads === 2 && mutation === "feedback") return [...value as typeof f.input.comments, {id: 99, user: owner, created_at: "2026-10-26T13:00:00Z", body: "Please revise the actual mobile layout."}];
+      return value;
+    };
+    await assert.rejects(assessPr({api, repo: "o/r", prNumber: 1, expectedHead: head, policy: f.policy, readSource: () => bytes}), /body or feedback\/replies changed/);
   }
 });

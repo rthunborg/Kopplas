@@ -4,7 +4,8 @@ import { resolve, dirname } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createApi } from '../pr-feedback/runtime.mjs';
 import { DEFAULT_ALLOWED_USER_IDS } from '../pr-feedback/policy.mjs';
-import { CHECK_NAME, evaluateFrontend, isFrontend, hash } from './frontend-gate.mjs';
+import { CHECK_NAME, EVIDENCE_MARKER, evaluateFrontend, isFrontend, hash } from './frontend-gate.mjs';
+import { presentationFeedback } from './frontend-presentation.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
 export const defaultPolicy = JSON.parse(readFileSync(new URL('./frontend-policy.json', import.meta.url), 'utf8'));
@@ -37,6 +38,31 @@ export async function all(api, path) {
   throw new Error('Visual gate pagination bound exceeded.');
 }
 
+/** Read-only Git storage proof. URLs are generated, never fetched from author input. */
+export function publishedImages(api, repo, prNumber) {
+  const retained = new Map();
+  async function verify(commit, ref) {
+    if (!SHA.test(commit ?? '') || ref !== `codex/visual-evidence/pr-${prNumber}`) throw new Error('Invalid retained screenshot publication identity.');
+    const branch = await api(`/repos/${repo}/git/ref/heads/${ref}`);
+    if (branch.ref !== `refs/heads/${ref}` || branch.object?.type !== 'commit' || !SHA.test(branch.object?.sha ?? '')) throw new Error('Durable screenshot evidence ref is unavailable.');
+    if (branch.object.sha !== commit) {
+      const comparison = await api(`/repos/${repo}/compare/${commit}...${branch.object.sha}`);
+      if (!['ahead', 'identical'].includes(comparison.status) || comparison.merge_base_commit?.sha !== commit) throw new Error('Screenshot commit is not retained by the evidence branch.');
+    }
+  }
+  return {
+    read: async ({ commit, ref, path }) => {
+      if (!/^screenshots\/[0-9a-f]{40}\/[A-Za-z0-9][A-Za-z0-9_.-]{0,79}\.png$/.test(path ?? '')) throw new Error('Invalid screenshot publication path.');
+      const identity = `${commit}:${ref}`;
+      if (!retained.has(identity)) { await verify(commit, ref); retained.set(identity, { commit, ref }); }
+      const content = await api(`/repos/${repo}/contents/${path}?ref=${commit}`);
+      if (content.type !== 'file' || content.path !== path || !SHA.test(content.sha ?? '') || !Number.isSafeInteger(content.size) || content.size < 1 || content.size > 8 * 1024 * 1024) throw new Error('Published PNG path is unavailable or oversized.');
+      return { retained: true, gitBlob: content.sha };
+    },
+    recheck: async () => { for (const { commit, ref } of retained.values()) await verify(commit, ref); },
+  };
+}
+
 /** Reads API data only; executes no candidate code or capture commands. */
 export async function assessPr({ api, repo, prNumber, expectedHead, policy = defaultPolicy, readSource }) {
   const pr = await api(`/repos/${repo}/pulls/${prNumber}`);
@@ -48,9 +74,11 @@ export async function assessPr({ api, repo, prNumber, expectedHead, policy = def
   ]);
   if (pr.changed_files !== changed.length) throw new Error('Truncated visual surface file inventory.');
   const evidence = [...comments, ...reviews.filter((r) => r.commit_id === pr.head.sha && r.state !== 'DISMISSED')];
+  const frontend = changed.some((f) => isFrontend(f.filename) || f.previous_filename && isFrontend(f.previous_filename));
+  const inline = frontend ? await all(api, `/repos/${repo}/pulls/${prNumber}/comments`) : [];
   const authorIds = new Set([pr.user?.id]);
   let authorsComplete = true;
-  if (changed.some((f) => isFrontend(f.filename) || f.previous_filename && isFrontend(f.previous_filename))) {
+  if (frontend) {
     const commits = await all(api, `/repos/${repo}/pulls/${prNumber}/commits`);
     if (!Number.isInteger(pr.commits) || pr.commits > 250 || commits.length !== pr.commits) throw new Error('Candidate commit author inventory incomplete.');
     for (const commit of commits) for (const actor of [commit.author, commit.committer]) {
@@ -59,10 +87,16 @@ export async function assessPr({ api, repo, prNumber, expectedHead, policy = def
     }
   }
   const permissions = {};
-  for (const login of new Set(evidence.filter((c) => c.user?.type === 'User' && DEFAULT_ALLOWED_USER_IDS.includes(c.user.id)).map((c) => c.user.login))) {
+  const permissionUsers = new Set([...comments, ...reviews, ...inline].filter((c) => c.user?.type === 'User'
+    && (DEFAULT_ALLOWED_USER_IDS.includes(c.user.id) || c.body?.startsWith(EVIDENCE_MARKER + '\n'))).map((c) => c.user.login));
+  if (permissionUsers.size > 120) throw new Error('Screenshot publisher permission inventory exceeds bounds.');
+  for (const login of permissionUsers) {
     permissions[login] = (await api(`/repos/${repo}/collaborators/${encodeURIComponent(login)}/permission`)).permission;
   }
-  const result = await evaluateFrontend({ headSha: pr.head.sha, files: changed.flatMap((f) => f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]), comments: evidence, permissions, policy, authorId: pr.user?.id, authorIds: [...authorIds], authorsComplete, labels: (pr.labels ?? []).map((l) => l.name), loadBlob: async (oid) => {
+  const feedback = frontend ? presentationFeedback({ comments, reviews, reviewComments: inline, permissions }) : [];
+  const publication = publishedImages(api, repo, prNumber);
+  const result = await evaluateFrontend({ headSha: pr.head.sha, repo, prNumber, prBody: pr.body, reviewComments: inline, feedback, loadPublication: publication.read,
+    files: changed.flatMap((f) => f.previous_filename ? [f.filename, f.previous_filename] : [f.filename]), comments: evidence, permissions, policy, authorId: pr.user?.id, authorIds: [...authorIds], authorsComplete, labels: (pr.labels ?? []).map((l) => l.name), loadBlob: async (oid) => {
     const blob = await api(`/repos/${repo}/git/blobs/${oid}`);
     if (blob.sha !== oid || blob.encoding !== 'base64' || !Number.isInteger(blob.size) || blob.size > 8 * 1024 * 1024 || typeof blob.content !== 'string' || blob.content.length > 12 * 1024 * 1024) throw new Error('Missing/oversized actual image input.');
     const bytes = Buffer.from(blob.content.replace(/\s/g, ''), 'base64');
@@ -72,6 +106,11 @@ export async function assessPr({ api, repo, prNumber, expectedHead, policy = def
   if (result.status === 'accepted') verifyTrustedSources(policy, readSource);
   const fresh = await api(`/repos/${repo}/pulls/${prNumber}`);
   if (fresh.head.sha !== pr.head.sha || fresh.state !== 'open') throw new Error('Visual candidate changed during assessment.');
+  if (result.status === 'accepted') {
+    const latest = await Promise.all([all(api, `/repos/${repo}/issues/${prNumber}/comments`), all(api, `/repos/${repo}/pulls/${prNumber}/reviews`), all(api, `/repos/${repo}/pulls/${prNumber}/comments`)]);
+    if (fresh.body !== pr.body || hash(Buffer.from(JSON.stringify(latest))) !== hash(Buffer.from(JSON.stringify([comments, reviews, inline])))) throw new Error('PR body or feedback/replies changed during screenshot assessment.');
+    await publication.recheck();
+  }
   return result;
 }
 
