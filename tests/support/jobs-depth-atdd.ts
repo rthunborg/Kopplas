@@ -1,3 +1,4 @@
+import type { JobsDepthDiagnosticPhase, JobsDepthPhaseObserver } from "./jobs-depth-phase-diagnostics";
 import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /** Story 16.1 actual command/RLS fixture helpers. Static bindings are runner-transformed; database work starts only inside invoked helpers.
  * Existing contracts: tenants factories, envelope createJob/acceptQuoteAndCreateJob,
@@ -98,49 +99,82 @@ export function configureJobsDepthFixtureProofs(): void {
     process.env[secretName] ??= localSecret;
   }
 }
-export async function createJobsDepthFixture() {
+/** Optional RLS001-only observer: synchronous, value-free, and unable to change results. */
+function phaseObserver(observer?: JobsDepthPhaseObserver) {
+  return (phase: JobsDepthDiagnosticPhase | null, state: "started" | "returned" | "rejected") => {
+    try { observer?.(phase, state); } catch { /* diagnostic only */ }
+  };
+}
+export async function createJobsDepthFixture(observer?: JobsDepthPhaseObserver) {
+  const phase = phaseObserver(observer);
   configureJobsDepthFixtureProofs();
+  phase("fixture-role", "started");
   const roleFixture = await t.createRoleAwarePhaseAFixture();
+  phase("fixture-role", "returned");
   try {
     const { base, users } = roleFixture;
     async function profile(tenantId: string, userId: string) {
+      phase("fixture-profiles", "started");
       const [m] = await adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, userId]);
       const [p] = await adminQuery<{ id: string }>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) returning id", [tenantId, m.id]);
+      phase("fixture-profiles", "returned");
       return { id: p.id, membershipId: m.id };
     }
     const adminProfile = await profile(base.tenantA.id, base.adminA.id);
     const ownProfile = await profile(base.tenantA.id, users.montor.id);
     const coworkerProfile = await profile(base.tenantA.id, users.projektledare.id);
     const foreignProfile = await profile(base.tenantB.id, base.adminB.id);
+    phase("fixture-clients", "started");
     const adminClient = await t.makeAuthedServerClient(base.adminA);
+    phase("fixture-clients", "returned");
+    phase("fixture-clients", "started");
     const plannerClient = await t.makeAuthedServerClient(users.projektledare);
+    phase("fixture-clients", "returned");
+    phase("fixture-clients", "started");
     const montorClient = await t.makeAuthedServerClient(users.montor);
+    phase("fixture-clients", "returned");
+    phase("fixture-clients", "started");
     const foreignClient = await t.makeAuthedServerClient(base.adminB);
+    phase("fixture-clients", "returned");
     const fx: BookingFixture = { ...roleFixture, adminProfile, ownProfile, coworkerProfile,
       foreignProfile, adminClient, plannerClient, montorClient, foreignClient,
       tenantIds: [base.tenantA.id, base.tenantB.id] };
+    phase("fixture-parents", "started");
     const parents = await seedBookingParents(base.tenantA.id);
+    phase("fixture-parents", "returned");
     async function basic(title: string, foreign = false): Promise<JobHandle> {
+      if (foreign) phase("fixture-foreign-customer", "started");
       const customer = foreign ? await t.adminInsertCustomer({ tenant_id: base.tenantB.id,
         customer_type: "company", display_name: "Foreign workshop" }) : parents.customerId;
+      if (foreign) phase("fixture-foreign-customer", "returned");
+      phase("fixture-job", "started");
       const result = await runCommand(createJob, { client: (foreign ? foreignClient : adminClient) as never,
         correlationId: crypto.randomUUID(), input: { customer_id: customer, title } });
       if (!result.ok) throw new Error(`Existing createJob fixture refused: ${result.code}`);
+      phase("fixture-job", "returned");
       return { id: result.data.targetId, title };
     }
     const jobs = { memberOrder: await basic("Member order"), assigneeProject: await basic("Assigned project"),
       both: await basic("Member and assigned"), unrelated: await basic("Unrelated order"),
       foreign: await basic("Foreign order", true), acceptedAssigned: await acceptedJob(),
       editable: await basic("Editable card"), prerequisite: await basic("Prerequisite") };
+    phase("fixture-job-type", "started");
     await adminQuery("update public.jobs set type='projekt' where id=$1", [jobs.assigneeProject.id]);
-    for (const job of [jobs.memberOrder, jobs.both, jobs.acceptedAssigned]) await adminQuery(
+    phase("fixture-job-type", "returned");
+    for (const job of [jobs.memberOrder, jobs.both, jobs.acceptedAssigned]) {
+      phase("fixture-member", "started");
+      await adminQuery(
       "insert into public.job_members(tenant_id,job_id,person_profile_id) values($1,$2,$3)",
       [base.tenantA.id, job.id, ownProfile.id]);
+      phase("fixture-member", "returned");
+    }
     for (const [i, job] of [jobs.assigneeProject, jobs.both].entries()) {
       const input = bookingInput([ownProfile.id], { jobId: job.id,
         startsAt: `2026-10-${12 + i}T06:00:00.000Z`, endsAt: `2026-10-${12 + i}T07:00:00.000Z` });
+      phase("fixture-booking", "started");
       const saved = await bookingCommand("create", adminClient, input);
       if (!saved.ok) throw new Error(`Existing booking fixture refused: ${saved.code}`);
+      phase("fixture-booking", "returned");
     }
     return { fx, jobs, identity: { customerId: parents.customerId, facilityId: parents.facilityId,
       contactId: parents.contactId }, roleId: parents.workRoleId, parents,
@@ -150,32 +184,63 @@ export async function createJobsDepthFixture() {
 
     async function acceptedJob(): Promise<JobHandle> {
       // Preserve actual original send/accept signatures and IDs; E16 only adds type/safe read discrimination.
+      phase("fixture-accepted-customer", "started");
       const customerId = await t.adminInsertCustomer({ tenant_id: base.tenantA.id,
         customer_type: "company", display_name: "Accepted source customer" });
+      phase("fixture-accepted-customer", "returned");
+      phase("fixture-accepted-email", "started");
       await adminQuery("update public.customers set email=$2 where id=$1", [customerId, `e16-${crypto.randomUUID()}@example.test`]);
+      phase("fixture-accepted-email", "returned");
+      phase("fixture-calculation", "started");
       const calculationId = await t.adminInsertCalculation({ tenant_id: base.tenantA.id, customer_id: customerId });
+      phase("fixture-calculation", "returned");
+      phase("fixture-quote", "started");
       const quoteId = await t.adminInsertQuote({ tenant_id: base.tenantA.id, customer_id: customerId });
+      phase("fixture-quote", "returned");
+      phase("fixture-version", "started");
       const versionId = await t.adminInsertQuoteVersion({ tenant_id: base.tenantA.id, quote_id: quoteId,
         calculation_id: calculationId, status: "draft", accepted_price_ore: 125000 });
+      phase("fixture-version", "returned");
+      phase("fixture-pdf", "started");
       await establishCurrentQuotePdf({ client: adminClient, tenantId: base.tenantA.id,
         quoteVersionId: versionId, actorUserId: base.adminA.id, occurredAt: new Date().toISOString() });
+      phase("fixture-pdf", "returned");
+      phase("fixture-send", "started");
       const sent = await runCommand(markQuoteVersionSent, { client: adminClient as never,
         correlationId: crypto.randomUUID(), input: { quote_version_id: versionId,
           recipient_source_type: "customer", recipient_source_id: customerId } });
       if (!sent.ok) throw new Error(`Existing send refused: ${sent.code}`);
+      phase("fixture-send", "returned");
+      phase("fixture-accept", "started");
       const accepted = await runCommand(acceptQuoteAndCreateJob, { client: adminClient as never,
         correlationId: crypto.randomUUID(), input: { quote_version_id: versionId,
           accepted_at: new Date().toISOString(), accepted_price_ore: 125000, channel: "verbal", title: "Accepted source customer" } });
       if (!accepted.ok) throw new Error(`Existing acceptance refused: ${accepted.code}`);
+      phase("fixture-accept", "returned");
+      phase("fixture-accepted-read", "started");
       const [job] = await adminQuery<{ id: string }>("select id from public.jobs where quote_acceptance_id=$1", [accepted.data.acceptanceId]);
+      phase("fixture-accepted-read", "returned");
       return { id: job.id, title: "Accepted source customer" };
     }
-  } catch (error) { await t.cleanupRoleAwarePhaseAFixture(roleFixture); throw error; }
+  } catch (error) {
+    phase(null, "rejected");
+    phase("fixture-cleanup", "started");
+    await t.cleanupRoleAwarePhaseAFixture(roleFixture);
+    phase("fixture-cleanup", "returned");
+    throw error;
+  }
 }
 export type JobsDepthFixture = Awaited<ReturnType<typeof createJobsDepthFixture>>;
-export async function withJobsDepthFixture(run: (f: JobsDepthFixture) => Promise<void>) {
-  const fixture = await createJobsDepthFixture();
-  try { await run(fixture); } finally { await fixture.dispose(); }
+export async function withJobsDepthFixture(run: (f: JobsDepthFixture) => Promise<void>, observer?: JobsDepthPhaseObserver) {
+  const phase = phaseObserver(observer);
+  const fixture = await createJobsDepthFixture(observer);
+  try { await run(fixture); }
+  catch (error) { phase(null, "rejected"); throw error; }
+  finally {
+    phase("fixture-cleanup", "started");
+    await fixture.dispose();
+    phase("fixture-cleanup", "returned");
+  }
 }
 export function cardInput(f: JobsDepthFixture, patch: Partial<JobCardInput> = {}): JobCardInput {
   return { commandId: crypto.randomUUID(), id: f.jobs.editable.id, type: "order", title: "Workshop rewiring",
