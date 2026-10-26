@@ -66,6 +66,11 @@ const causeProofInverse: readonly [string, string][] = [
   ]
 ];
 
+// Owner-authorized Auth cleanup observation only. Strip exactly this reviewed
+// fragment; every unrelated workflow byte still reaches the historical hash.
+const authCleanupEntry = "      - name: Capture bounded owned Auth cleanup failure facts\n        if: ${{ failure() && !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}\n        timeout-minutes: 1\n        env:\n          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}\n        run: node --experimental-strip-types scripts/ci/auth-cleanup-collector.mjs\n\n      - name: Upload bounded Auth cleanup failure facts\n        if: ${{ failure() && !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: native-auth-cleanup-facts\n          path: test-results/auth-cleanup-facts.json\n          retention-days: 7\n          if-no-files-found: error\n\n";
+const authCleanupCollectorSha256 = "0cc442d2dd373cbb6b9cacfc54da50ddc926a8f8d841ffe87ce0d7e2e660cbc9";
+
 function literalArgs(source: string, name: string, expected: string[]): string[] {
   const declarations = [...source.matchAll(new RegExp(`^export const ${name} = Object\\.freeze\\((\\[[^\\n]*\\])\\);$`, "gm"))];
   assert.equal(declarations.length, 1, `calendar feed CI ${name} declaration`);
@@ -87,6 +92,10 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
   let projected = workflow.replaceAll("\r\n", "\n");
+  assert.equal(projected.split(authCleanupEntry).length - 1, 1, "Auth cleanup exact diagnostic workflow fragment");
+  const collectorSource = readFileSync(new URL("../../scripts/ci/auth-cleanup-collector.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  assert.equal(createHash("sha256").update(collectorSource).digest("hex"), authCleanupCollectorSha256, "Auth cleanup reviewed collector source");
+  projected = projected.replace(authCleanupEntry, "");
   for (const [entry, replacement] of causeProofInverse) {
     assert.equal(projected.split(entry).length - 1, 1, "calendar feed exact diagnostic workflow fragment");
     projected = projected.replace(entry, replacement);

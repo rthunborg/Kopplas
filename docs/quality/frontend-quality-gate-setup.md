@@ -8,6 +8,15 @@ read, remote setting, acceptance comment, push/PR/merge/deployment by this autho
 This change's visual applicability is **N/A: tooling/process/docs only; no rendered
 product surface changes**. Synthetic fixtures prove protocol/capability only.
 
+Evidence scope: this is the original setup author record preserved through
+published candidate `568bcfd4e866b17bee2f787414b14841a96b5b21`. Its local test counts,
+working-byte review identities and limits below remain historical evidence for
+that setup, not verification of the combined continuation candidate. Later Auth
+observability/owned-CI collection is recorded in
+[the Auth continuation](frontend-auth-cleanup-2026-10-26.md); the separate runtime,
+bootstrap and bounded pilot integration belongs to
+[the runtime continuation](frontend-runtime-integration-2026-10-26.md).
+
 ## Routing and scope
 
 Recorded before dispatch: coordinator GPT-6.1 Sol Low; implementation GPT-6.1 Sol
@@ -159,7 +168,7 @@ while the trusted PR check closes readiness outside the post-terminal hook.
 ### Completion and remediation
 
 - `scripts/quality/completion-gate.mjs:7` — `guardedCompletion`: refuses before invoking original mutating helpers.
-- `scripts/pr-feedback/runtime.mjs:148` — `monitor`: waits for exact-head CI plus current acceptance before requesting review.
+- `scripts/pr-feedback/runtime.mjs:172` — `monitor`: waits for exact-head CI plus current acceptance before requesting review.
 - `tests/unit/scripts/frontend-quality-gate.test.ts:129` — `fixer readiness`: proves five CI jobs alone cannot publish readiness.
 - `tests/unit/scripts/frontend-quality-gate.test.ts:179` — `completion wrapper blocks`: proves a failed gate never invokes transition helpers.
 
@@ -213,3 +222,10 @@ the latest canonical inventory representation correction is a narrow reviewed
 provenance follow-up, not a new product change or source adoption. Required hosted
 bootstrap/protection, approved EXPERIENCE integration, initial app screenshots,
 reference owner acceptance and provider qualification remain explicitly unpassed.
+
+Author-trail reconciliation after the continuation pilot guard froze: the
+`monitor` declaration stop is refreshed to its actual current line 172; the other
+eight existing stops and literal anchors remain applicable. This evidence-only
+refresh preserves the original results and points to the continuation authors'
+records above. It adds no implementation, independent verdict, current-head CI
+result, product visual acceptance or release authority.

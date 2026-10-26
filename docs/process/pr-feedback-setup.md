@@ -1,110 +1,136 @@
-# PR fixer: owner setup
+# PR fixer: reuse and complete activation
 
-Publication was approved on 2026-10-13. Repository variables already have
-`PR_FIX_PUBLISH=true` and `PR_FIX_ENABLED=false`. The `pr-feedback-secrets`
-environment exists and permits only branch `main`. Paid execution remains off;
-there are no credentials or hosted pilot results yet.
+Current authorization update — 2026-10-26: the owner confirms that the existing
+GitHub App, both protected environment credentials and all four repository
+variables are established and must be reused. Bounded paid dry/live execution,
+eligible PR-branch remediation and deliberate workflow re-enablement **after
+reviewed prerequisites** are authorized. Do not ask for that authorization again,
+create replacement resources, request secrets in chat or treat account inspection
+as credential installation. Merge, deployment, protection bypass and expansion
+of the autonomous file policy remain outside this authorization.
 
-No `.env` file, Vercel setting or laptop Codex login is needed. Do not paste
-secrets into chat. Use GitHub's environment secret form or the CLI below.
+**Operational state remains disabled/unqualified.** The startup repair in
+[#103](https://github.com/rthunborg/Kopplas/pull/103) and visual gate in
+[#109](https://github.com/rthunborg/Kopplas/pull/109) are not on trusted main.
+Technical/bootstrap evidence is still required before re-enablement or a paid
+attempt. See the [runtime integration and concrete configuration proposal](../quality/frontend-runtime-integration-2026-10-26.md)
+and [dated activation evidence](../quality/frontend-activation-2026-10-26.md).
 
-## GitHub App
+## Existing resources — verified read-only 2026-10-26
 
-1. Open [GitHub App settings](https://github.com/settings/apps), then **New
-   GitHub App**. Choose a unique name, e.g. `rthunborg-kopplas-pr-fixer`.
-   Homepage: `https://github.com/rthunborg/Kopplas`. Leave callback blank,
-   disable user authorization/device flow, and uncheck webhook **Active**.
-   Installation availability: **Only on this account**.
-2. Repository permissions: **Contents**, **Issues**, **Pull requests** =
-   Read and write; **Actions**, **Variables** = Read-only; **Metadata** =
-   Read-only (automatic). Leave other permissions unset. Create the App.
-3. **Install App > Only select repositories > Kopplas**. No webhook server,
-   client secret, PAT or production credential is required.
-4. Copy numeric **App ID** to repository **Settings > Secrets and variables >
-   Actions > Variables**, named `PR_FIX_APP_ID`. This is neither Client ID
-   nor Installation ID.
-5. App **Credentials > Key pairs > New key** downloads the RSA PEM file.
-   In repository **Settings > Environments > pr-feedback-secrets > Add
-   environment secret**, enter the entire PEM (including BEGIN/END lines)
-   as `PR_FIX_APP_PRIVATE_KEY`. Keep its original in secure storage.
-   Alternatively, from trusted PowerShell, replacing the file path:
+| Resource | Actual evidence | Next action |
+| --- | --- | --- |
+| Repository `rthunborg/Kopplas`, default `main` | Main `d02fd8ac2dfe9a1afe447dfb6976cc3b12f2590f` | Requalify exact revision before bootstrap. |
+| GitHub App | `rthunborg-kopplas-pr-fixer`, App variable `5313829`, bot `342445965`; existing installation `171382116`, only selected repository Kopplas | Reuse. Installed grants exceed minimum; review the exact reduction proposal before any configuration write. |
+| Repository variables | `PR_FIX_APP_ID=5313829`, `PR_FIX_APP_USER_ID=342445965`, `PR_FIX_ENABLED=true`, `PR_FIX_PUBLISH=true` | Values may stay true; workflow remains disabled until prerequisites pass. |
+| Environment | `pr-feedback-secrets`, exactly selected branch `main`, no tag rule | Preserve this restriction. Do not execute protected credentials from a feature branch. |
+| Environment credentials | `PR_FIX_APP_PRIVATE_KEY` and `PR_FIX_OPENAI_API_KEY` names exist | Reuse through trusted runtime only. Values were not read. |
+| Workflow | `pr-feedback.yml`, ID `384363087`, manually disabled since 2026-10-19 | Deliberate re-enablement is authorized when the reviewed prerequisite checklist is met. |
 
-   ```powershell
-   Get-Content -Raw -LiteralPath 'C:\secure\your-app.private-key.pem' |
-     gh secret set PR_FIX_APP_PRIVATE_KEY --repo rthunborg/Kopplas --env pr-feedback-secrets
-   ```
+The four variable names also exist as environment secret names. Current workflow
+reads their values from repository `vars`; it does not need duplicate secrets.
+Do not remove/rotate them as housekeeping in this task.
 
-6. Obtain the bot user ID, replacing the example with your actual App slug:
+The installation UI confirms Kopplas-only selection, but its read/write grants
+include Actions, Checks, Workflows and other capabilities outside the required
+set. Do not claim minimum-permission compliance. The runtime narrows each minted
+token to Contents/Issues/Pull requests write and Actions/Actions variables read;
+that does not shrink the authority of the stored App private key. The exact
+proposed installed grant set and sole-maintainer main-protection choices are
+reviewable in the linked proposal; none has been applied.
 
-   ```powershell
-   gh api 'users/rthunborg-kopplas-pr-fixer[bot]' --jq .id
-   ```
+## Existing API project: inspect controls without exposing credentials
 
-   Store the returned number as repository variable `PR_FIX_APP_USER_ID`.
-   If it returns 404, finish installation and verify the App slug; do not
-   substitute another identity. Verify bot ownership in the hosted pilot.
+Funds/billing authorization and reuse of the existing credential are established.
+Actual API project identity, `gpt-6.1-sol` access, effective model rate limits and
+spend controls still need evidence. The existing Chrome session redirected the
+API project settings URL to login; owner sign-in is the remaining UI prerequisite,
+not a request for another key or spending approval. Never inspect/reveal API-key
+values. If mapping the stored credential to the project cannot be safely proved
+from settings, prepare a read-only protected diagnostic on reviewed default main
+that emits only non-secret model-access/status evidence; do not run branch code
+with the credential or install an organization Admin key.
 
-## OpenAI credential
+Current [official OpenAI spend guidance](https://developers.openai.com/api/docs/guides/spend-limits)
+supports organization/project hard monthly limits when **Enforce a hard limit**
+is enabled; alert-only budgets do not stop traffic. Enforcement can lag slightly.
+Record the actual project's amount, hard-enforcement flag and effective
+[model rate limits](https://developers.openai.com/api/docs/guides/rate-limits)
+after authorized read-only inspection; do not infer them from this capability.
+Dry runs are paid. Workflow attempt counts and job timeouts are not dollar caps.
 
-1. Sign in to [OpenAI Platform](https://platform.openai.com/), enable API
-   billing, and create a dedicated project `Kopplas PR Fixer` using the
-   project menu. API billing is separate from ChatGPT subscription billing.
-2. **Settings > your project > Members > + Service account**: create
-   `kopplas-pr-fixer`. Save its one-time displayed project API key directly
-   into GitHub's `pr-feedback-secrets` environment as
-   `PR_FIX_OPENAI_API_KEY`. Do not use an organization Admin API key or a
-   repository-wide secret. This dedicated project should hold no other data.
-3. Project **Limits**: verify model access for `gpt-6.1-sol`, set conservative
-   rate limits and spending controls. Budget alerts alone may not stop API
-   requests; verify any enforced spend limit actually available to the account
-   before relying on it. Dry runs invoke a paid model.
+<a id="bootstrap-and-activate"></a>
 
-## Bootstrap and activate
+## Finish trusted bootstrap, then execute the authorized bounded pilot
 
-1. Review and merge the setup PR through the normal owner process. Comment
-   triggers and schedules need this workflow on default branch `main`.
-2. Recheck **Environments > pr-feedback-secrets**: selected branches only,
-   exactly branch `main`, no tags. Keep credentials exclusively here.
-3. Review protection of trusted `main` workflows/policy and required CI with
-   the owner. Do not grant the fixer bypass. Existing main has no enforced
-   protection. A mandatory human review can block a sole author's own PR;
-   coordinate this decision with active work instead of silently changing it.
-4. Create the PR opt-in label `agent-fix` if missing. The initial policy only
-   accepts human `rthunborg` (numeric ID 53317458) with current write access;
-   all agent/bot comments are excluded. Adding people requires reviewed policy.
-5. Obtain approval for the designated synthetic pilot PR, test comments and
-   paid execution described in [the runbook](pr-feedback-remediation.md).
-   These were not included in the setup/publication approval. Then set
-   repository variable `PR_FIX_ENABLED=true` when ready for that execution.
-6. Label the approved pilot and run, substituting its exact PR number:
+1. Reconcile #103's confirmed four-file scope from an owned isolated checkout,
+   preserving its original worktree/PR. Qualify its exact-source credential-free
+   preflight and current-main runtime-input equivalence, retaining immutable home/config/schema checks,
+   exact CLI `0.162.1`, no model turn, no protected environment or credentials.
+   Reconcile #103/#109 without duplicating or absorbing another owner's PR.
+   This startup proof now passed at #103 head `989eac74` in run `40367858227`.
+   Its normal CI failed on old-ancestry dependency audit; full CI needs the
+   separately authorized main/base reconciliation checkpoint, not another blind
+   startup run or copied dependency fixes. No merge is authorized in this task.
+2. Obtain the normal merge decision only after actual-head independent review and
+   required CI. This task does not authorize either merge. #109's current full CI
+   is blocked by the separately owned E15 Auth-fixture cleanup failure. Do not
+   relax that gate or relabel skipped/pending tests as coverage. Main bootstrap
+   also requires a separately qualified no-deployment boundary: production Git is
+   enabled on main, and global Preview disable does not block production. App or
+   protection choices authorize no Vercel setting or deployment change.
+   The separately owned exact-main baseline `40367022378` now passed all five
+   ordinary jobs, including NUDGE004, but neither explains the earlier cleanup
+   error nor supplies a pass for the next #109 head.
+3. Resolve the concrete main-protection policy choice and overbroad App-grant
+   disposition; apply only the exact reviewed configuration explicitly approved
+   by that choice, without asking again for the same approved effects.
+   Do not give the fixer bypass. Preserve the exact main-only environment.
+   An explicitly approved in-place App reduction can qualify independently once
+   its dedicated-use answer, independent High scope review and fresh owned
+   App/installation read pass; it need not wait for main merge. Protection
+   application needs its actual A/B choice and trusted check bootstrap evidence.
+4. After the qualified changes are on default main, verify controller revision,
+   current grants, variables, environment and API project controls. Confirm no
+   eligible unrelated PR can start work unexpectedly when re-enabling; retain
+   history and freshness/attempt bounds. Vercel global Preview disable must still
+   be true; production Git remains enabled, so no default-branch push is allowed.
+5. Deliberately re-enable the existing workflow under the standing 2026-10-26
+   authorization, keeping `PR_FIX_ENABLED=true` and `PR_FIX_PUBLISH=true` if
+   unchanged. Bind one authorized pilot to its actual current PR/head and
+   eligible human finding. First execute `dry_run=true` from trusted main; inspect
+   artifacts and independent validation. No blind retry on failure or uncertainty.
+   The fresh finding must be genuine eligible human input; an agent must not post
+   as the human to make old #100 feedback appear current or reset its budget.
+   First stage the one owned `PR_FIX_PILOT_PR` admission control from the exact
+   [pilot sequence](../quality/frontend-runtime-integration-2026-10-26.md#exact-owned-pilot-staging-sequence).
+   The implemented guard isolates manual dry/live/monitor requests while the
+   existing four variables may remain true; a temporary owned PUBLISH=false hold
+   is an optional extra barrier during dry proof. Do not enable the old unguarded
+   main workflow or restore automatic processing before the prescribed proof.
+6. Execute the bounded authorized live pilot only when the dry run and technical
+   prerequisites pass. Verify exact-head App publication, state ownership,
+   complete fresh PR CI, visual acceptance where applicable, replies and re-review.
+   The current ordinary required CI jobs are `checkpoint-admission`, `verify`,
+   `db`, `recovery-storage-loader`, `e2e`; `dashboard-e2e` is a separate optional
+   release-validation job. Pilot scenario limits remain in the runbook.
+7. Record actual run IDs, revisions, attempts and outcomes before calling the
+   automatic eligible loop operational. The label is universal for frontend PRs
+   subject to explicit owner opt-outs; autonomous whole-PR eligibility remains
+   much narrower. No merge, deployment or file-policy expansion follows.
 
-   ```powershell
-   gh workflow run pr-feedback.yml --repo rthunborg/Kopplas --ref main -f pr_number=123 -f dry_run=true
-   ```
+Use the existing immediate stop controls on a real failure: repository kill
+switch/workflow disable or per-PR opt-out, under actual incident authorization.
+Recover a bad published fix with a reviewed revert; never force-push or delete
+attempt history. Do not change settings pre-emptively as part of this read-only
+preparation.
 
-   Dry run produces artifacts, with no pushes, PR comments or review requests.
-   For the approved live pilot, repeat with `dry_run=false`. Confirm the App
-   push starts fresh CI and all five required jobs pass on the new revision.
-7. After recording successful hosted evidence, keep `PR_FIX_ENABLED=true`
-   and `PR_FIX_PUBLISH=true` for automatic eligible human feedback. Plain PR
-   comments trigger collection; inline comments/submitted reviews are polled
-   twice hourly and grouped. `/agent-fix` is optional. Per-PR opt-in is required.
+## Historical baseline retained
 
-Inspect [Actions](https://github.com/rthunborg/Kopplas/actions) logs, summaries
-and artifacts. Disable immediately by setting `PR_FIX_ENABLED=false`; also
-disable the workflow for a complete stop. Remove `agent-fix` for one PR.
-Recover a bad fix with a reviewed revert commit, never force-push. The fixer
-cannot merge, approve or push to main. Existing Vercel integration may still
-create feature-branch previews; check its settings before the pilot.
-
-See the runbook for allowed paths, bounded retries, validation, costs,
-residual risks, current official references and recovery details. No complete
-loop is claimed until the hosted pilot verifies it.
-
-## Official setup references
-
-- [GitHub App registration](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app).
-- [GitHub App private keys](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/managing-private-keys-for-github-apps).
-- [GitHub environment restrictions](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments).
-- [OpenAI projects and service accounts](https://help.openai.com/en/articles/9186755-managing-projects-in-the-api-platform).
-- [Official Codex action](https://developers.openai.com/codex/github-action).
+The original 2026-10-13 setup was approved for publication with
+`PR_FIX_PUBLISH=true`, `PR_FIX_ENABLED=false`, an existing main-only environment,
+and no credentials/pilot results at that date. App creation, credential creation
+and paid pilot execution were then future owner actions. They are historical,
+not today's missing-resource instructions. The Oct 14 credentials/variables and
+failed Oct 14/16 pilots, Oct 19 disable, and Oct 26 reuse/execution authorization
+supersede that setup status without converting any failed pilot into success.

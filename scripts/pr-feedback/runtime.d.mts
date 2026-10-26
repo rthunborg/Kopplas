@@ -21,4 +21,4 @@ export interface MonitoredState {
   phase?: string;
   visualAcceptance?: {status: string; headSha?: string; reason?: string};
 }
-export function monitor(api: Api, ctx: {repo: string}, pr: {number: number; state: string; head: {sha: string}; user: {login: string}}, state: MonitoredState, write: boolean): Promise<MonitoredState>;
+export function monitor(api: Api, ctx: {repo: string}, pr: {number: number; state: string; head: {sha: string}; user: {login: string}}, state: MonitoredState, write: boolean, admitWrite?: () => Promise<boolean>): Promise<MonitoredState>;
