@@ -21,7 +21,7 @@ and [dated activation evidence](../quality/frontend-activation-2026-10-26.md).
 | Resource | Actual evidence | Next action |
 | --- | --- | --- |
 | Repository `rthunborg/Kopplas`, default `main` | Main `d02fd8ac2dfe9a1afe447dfb6976cc3b12f2590f` | Requalify exact revision before bootstrap. |
-| GitHub App | `rthunborg-kopplas-pr-fixer`, App variable `5313829`, bot `342445965`; existing installation `171382116`, only selected repository Kopplas | Reuse. Installed grants exceed minimum; review the exact reduction proposal before any configuration write. |
+| GitHub App | `rthunborg-kopplas-pr-fixer`, App variable `5313829`, bot `342445965`; existing installation `171382116`, only selected repository Kopplas | Reuse unchanged. Owner decision 2026-10-26 retains the broader installed grants and removes reduction as a prerequisite; this is not minimum-permission compliance. |
 | Repository variables | `PR_FIX_APP_ID=5313829`, `PR_FIX_APP_USER_ID=342445965`, `PR_FIX_ENABLED=true`, `PR_FIX_PUBLISH=true` | Values may stay true; workflow remains disabled until prerequisites pass. |
 | Environment | `pr-feedback-secrets`, exactly selected branch `main`, no tag rule | Preserve this restriction. Do not execute protected credentials from a feature branch. |
 | Environment credentials | `PR_FIX_APP_PRIVATE_KEY` and `PR_FIX_OPENAI_API_KEY` names exist | Reuse through trusted runtime only. Values were not read. |
@@ -36,28 +36,34 @@ include Actions, Checks, Workflows and other capabilities outside the required
 set. Do not claim minimum-permission compliance. The runtime narrows each minted
 token to Contents/Issues/Pull requests write and Actions/Actions variables read;
 that does not shrink the authority of the stored App private key. The exact
-proposed installed grant set and sole-maintainer main-protection choices are
-reviewable in the linked proposal; none has been applied.
+historical grant-reduction proposal is superseded by the owner's 2026-10-26
+decision: **keep grants unchanged; reduction is not a prerequisite**. Preserve
+the five-permission minted-token contract and runtime/file/current-head safeguards.
+The sole-maintainer main-protection choice remains pending; none has been applied.
 
 ## Existing API project: inspect controls without exposing credentials
 
-Funds/billing authorization and reuse of the existing credential are established.
-Actual API project identity, `gpt-6.1-sol` access, effective model rate limits and
-spend controls still need evidence. The existing Chrome session redirected the
-API project settings URL to login; owner sign-in is the remaining UI prerequisite,
-not a request for another key or spending approval. Never inspect/reveal API-key
-values. If mapping the stored credential to the project cannot be safely proved
-from settings, prepare a read-only protected diagnostic on reviewed default main
-that emits only non-secret model-access/status evidence; do not run branch code
-with the credential or install an organization Admin key.
+Spending/activation authorization and reuse of the existing credential are
+established; billing readiness is not. Authenticated read-only inspection on
+2026-10-26 verified an existing candidate project, service-account membership,
+`gpt-6.1-sol` allowed-model status and displayed inherited model rate limits.
+The inspected account did not establish billing readiness. The stored credential's
+organization/project mapping remains unproven; the owner is identifying the
+intended organization/project by name only. No key-value page was visited.
+If mapping cannot be safely proved from settings, prepare a read-only protected
+diagnostic on reviewed default main that emits only non-secret model-access/status
+evidence; do not run branch code with the credential or install an Admin key.
 
 Current [official OpenAI spend guidance](https://developers.openai.com/api/docs/guides/spend-limits)
 supports organization/project hard monthly limits when **Enforce a hard limit**
 is enabled; alert-only budgets do not stop traffic. Enforcement can lag slightly.
-Record the actual project's amount, hard-enforcement flag and effective
-[model rate limits](https://developers.openai.com/api/docs/guides/rate-limits)
-after authorized read-only inspection; do not infer them from this capability.
-Dry runs are paid. Workflow attempt counts and job timeouts are not dollar caps.
+The bounded project/organization limits and Billing overview inspection did not
+establish an enforced hard-spend limit or alert configuration. Do not rely on
+unverified dollar controls, or invent a new mandatory hard-cap/approval gate.
+Keep account figures, usage and organization/project identifiers private.
+[Model rate limits](https://developers.openai.com/api/docs/guides/rate-limits)
+are distinct from spend controls. Dry runs are paid; retain the established
+workflow/file/time/attempt limits, which are not dollar caps.
 
 <a id="bootstrap-and-activate"></a>
 
@@ -82,14 +88,14 @@ Dry runs are paid. Workflow attempt counts and job timeouts are not dollar caps.
    The separately owned exact-main baseline `40367022378` now passed all five
    ordinary jobs, including NUDGE004, but neither explains the earlier cleanup
    error nor supplies a pass for the next #109 head.
-3. Resolve the concrete main-protection policy choice and overbroad App-grant
-   disposition; apply only the exact reviewed configuration explicitly approved
-   by that choice, without asking again for the same approved effects.
+3. Resolve the concrete main-protection policy choice; apply only the exact
+   reviewed configuration explicitly approved by that choice, without asking
+   again for the same approved effects. The owner has already decided to retain
+   existing installed App grants unchanged; reduction is not a prerequisite.
    Do not give the fixer bypass. Preserve the exact main-only environment.
-   An explicitly approved in-place App reduction can qualify independently once
-   its dedicated-use answer, independent High scope review and fresh owned
-   App/installation read pass; it need not wait for main merge. Protection
-   application needs its actual A/B choice and trusted check bootstrap evidence.
+   Preserve the five-permission minted-token scope; the retained broader installed
+   grants are not minimum compliant. Protection application needs its actual A/B
+   choice and trusted check bootstrap evidence.
 4. After the qualified changes are on default main, verify controller revision,
    current grants, variables, environment and API project controls. Confirm no
    eligible unrelated PR can start work unexpectedly when re-enabling; retain

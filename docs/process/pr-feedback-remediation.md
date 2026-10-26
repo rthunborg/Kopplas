@@ -15,8 +15,10 @@ dry/live eligible PR-branch remediation and deliberate workflow re-enablement
 after reviewed prerequisites are already authorized; do not ask for the same
 permission again or create replacement resources. This is not activation proof.
 The workflow remains disabled until the reviewed prerequisites for the bounded
-pilot pass: trusted runtime/bootstrap, actual App/main-protection disposition,
-API-control and safe pilot admission. Operational qualification still requires
+pilot pass: trusted runtime/bootstrap, main-protection disposition, actual
+credential/model readiness and safe pilot admission. The owner decided on
+2026-10-26 to retain installed App grants unchanged; reduction is not a prerequisite
+or minimum-permission compliance. Operational qualification still requires
 successful pilot evidence after deliberate re-enablement. See [reuse setup](pr-feedback-setup.md) and the [concrete runtime/configuration
 proposal](../quality/frontend-runtime-integration-2026-10-26.md). No merge,
 deployment, protection bypass or autonomous file-policy expansion follows.
@@ -145,18 +147,22 @@ to recreate resources or reopen established authorization.
    Required environment reviewers would introduce a manual approval on every
    invocation; choose that for the pilot if desired, then review unattended
    access explicitly before removing it.
-4. Reuse the existing dedicated GitHub App/installation on **Kopplas only**.
-   No webhook server or new key is needed. The minimum grant target is Contents write, Issues write,
-   Pull requests write, Actions read, Variables read and Metadata read. Do not grant workflows
-   write, administration, deployment, environment or secret access. No PAT.
-   Its current installed grants are broader; review the exact in-place reduction
-   proposal before a configuration write. Reuse the stored private key, never
-   retrieve or paste it into chat.
+4. Reuse the existing GitHub App/installation selecting **Kopplas only**.
+   No webhook server, new key or PAT is needed. The owner decided on 2026-10-26
+   to keep the broader installed grants unchanged and remove reduction as a
+   prerequisite. Do not claim minimum-permission compliance or change App settings.
+   Keep minted tokens limited to Contents/Issues/Pull requests write and
+   Actions/Actions variables read, plus automatic Metadata read. Preserve all
+   runtime/file/current-head safeguards. Never retrieve or paste the stored key.
 5. Reuse the existing OpenAI API credential. Verify actual project identity,
-   configured model access, effective rate/spend controls and account state;
-   funds/billing authorization is already established. Keep production Supabase, deployment,
+   configured model access, effective rate/spend controls and account state.
+   Spending/activation authorization is established, not billing readiness.
+   Authenticated read-only candidate-project inspection verified allowed model
+   and displayed rates; credential mapping and billing readiness remain unproven.
+   Hard-spend enforcement was not established and must not be relied on as enforced.
+   Keep production Supabase, deployment,
    backup and Google Drive credentials out of this environment and all fixer
-   jobs. Set API project budgets/rate limits and account alerts.
+   jobs. Do not change billing, budgets, rates, alerts or credentials in this task.
 6. Retain the four established repository variables; enabled/publish may stay
    true while the workflow itself remains disabled until reviewed prerequisites
    pass. Verify the App's numeric state ownership. Deliberate re-enablement after
@@ -323,9 +329,12 @@ artifact storage, and any independently configured preview builds. Dry-run
 does not mean free. Job timeouts, attempt counts and artifact/file-size checks
 are hard workflow limits. They are not a dollar or token cap: inference may
 consume substantial tokens before a timeout, and API budget notifications are
-not necessarily hard spending stops. Use provider rate controls and verify the
-actual project's enforced limits. Account pricing and entitlements have not
-been inspected or assumed.
+not necessarily hard spending stops. Authenticated read-only inspection verified
+candidate-project allowed-model status and displayed rate limits, but did not
+prove stored-key mapping, billing readiness or hard-spend enforcement. Do not
+rely on unverified dollar controls or add a new mandatory hard-cap/spending
+approval gate. Keep account figures, usage and identifiers private; the existing
+paid authorization and workflow/file/time/attempt limits remain established.
 
 GitHub schedules can be delayed or dropped; polling recovers retained feedback
 on a later run but is not a real-time SLA or durable event queue. Human opt-in
