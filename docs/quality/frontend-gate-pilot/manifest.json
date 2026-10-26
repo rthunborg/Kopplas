@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "synthetic-image-input-capability-probe",
+  "scope": "Geometric fixture only. These are not application screenshots, approved design references, production-server evidence, or visual acceptance.",
+  "provider": "OpenAI via current Codex session image tool",
+  "model": "gpt-6.1-sol",
+  "externalPaidApiCalled": false,
+  "images": [
+    {
+      "path": "synthetic-reference.png",
+      "sha256": "ab79f81f4be7c639ad7c49e333fde6aa886fd8274d6be8f440fcbc85bb419341",
+      "viewport": {
+        "width": 360,
+        "height": 240
+      }
+    },
+    {
+      "path": "synthetic-actual.png",
+      "sha256": "14b6b8dda357bc54403f4fdbc999576e8b55ed787dcf4f512fa63fb18b21cf7c",
+      "viewport": {
+        "width": 360,
+        "height": 240
+      }
+    }
+  ],
+  "review": "Image-input capability demonstrated for this session only; see independent-image-probe.md. No product visual PASS or hosted provider qualification."
+}

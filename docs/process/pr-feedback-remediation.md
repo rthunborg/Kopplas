@@ -1,6 +1,11 @@
 # Cloud PR feedback remediation
 
-Status: local implementation; **not activated and no hosted pilot performed**.
+Historical implementation status (2026-10-13): local implementation; no hosted
+pilot had yet been performed at that date. See the dated
+[2026-10-26 hosted assessment](../quality/frontend-activation-2026-10-26.md)
+for current observed configuration and failed pilot history. This setup preserves
+the disabled workflow state. New readiness behavior is specified in the
+[frontend quality gate](../quality/frontend-quality-gate.md).
 Owner request: 2026-10-13. This is development automation, outside product AI
 features deferred to Phase C. It does not authorize merging or deploying.
 

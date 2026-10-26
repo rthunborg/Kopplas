@@ -94,7 +94,7 @@ function context() {
 }
 
 function stateBody(state) {
-  const text = { reserved: 'A bounded fix attempt is running.', published: 'Fix committed; waiting for CI on that revision.', 'ci-pending': 'Fix committed; CI is still pending.', 'ci-failed': 'Fix committed; CI failed. Human review is needed.', 'ci-passed': 'Fix committed; all expected CI jobs passed. Human review is ready.', 'no-change': 'No eligible change was produced. Human follow-up is needed.' }[state.phase] ?? 'Automation stopped; human follow-up is needed.';
+  const text = { reserved: 'A bounded fix attempt is running.', published: 'Fix committed; waiting for CI on that revision.', 'ci-pending': 'Fix committed; CI is still pending.', 'ci-failed': 'Fix committed; CI failed. Human review is needed.', 'ci-passed': 'Fix committed; exact-head CI and applicable visual acceptance passed. Human review is ready.', 'visual-pending': 'Fix committed; exact-head CI passed. Current visual acceptance is missing or blocked.', 'no-change': 'No eligible change was produced. Human follow-up is needed.' }[state.phase] ?? 'Automation stopped; human follow-up is needed.';
   const links = state.repo && state.published ? `\n\n[Commit](https://github.com/${state.repo}/commit/${state.published.headSha})${state.published.ciRunId ? ` · [CI](https://github.com/${state.repo}/actions/runs/${state.published.ciRunId})` : ''}` : '';
   const result = state.result ? `\n\nReported addressed: ${state.result.addressedIds.join(', ') || 'none'}. Remaining: ${state.result.unresolvedIds.join(', ') || 'none'}.\n\n${scrubText(state.result.summary ?? '')}` : '';
   const checks = state.verification ? `\n\nIndependent validation: ${state.verification.join(', ')}.` : '';
@@ -145,13 +145,15 @@ async function history(api, ctx, publicKey, dir) {
   return journals;
 }
 
-async function monitor(api, ctx, pr, state, write) {
-  if (!state.published || state.published.notified) return state;
+export async function monitor(api, ctx, pr, state, write) {
+  if (!state.published) return state;
   if (pr.head.sha !== state.published.headSha) {
     state.phase = 'superseded';
+    state.visualAcceptance = { status: 'invalidated', reason: 'PR head changed after publication/acceptance.' };
     state.published.notified = true;
     return write ? saveState(api, ctx.repo, state) : state;
   }
+  if (state.published.notified) return state;
   const runs = await all(api, `/repos/${ctx.repo}/actions/workflows/ci.yml/runs?event=pull_request&head_sha=${pr.head.sha}`, 'workflow_runs');
   for (const run of runs) {
     if (!run.pull_requests?.some((item) => item.number === pr.number && item.head?.sha === pr.head.sha)) continue;
@@ -162,6 +164,19 @@ async function monitor(api, ctx, pr, state, write) {
   // Recheck live head immediately before reporting a completed revision.
   const fresh = await api(`/repos/${ctx.repo}/pulls/${pr.number}`);
   if (fresh.head.sha !== pr.head.sha || fresh.state !== 'open') return state;
+  if (result.phase === 'ci-passed') {
+    try {
+      const { assessPr } = await import('../quality/frontend-controller.mjs');
+      state.visualAcceptance = await assessPr({ api, repo: ctx.repo, prNumber: pr.number, expectedHead: pr.head.sha });
+    } catch {
+      state.phase = 'visual-pending';
+      state.visualAcceptance = { status: 'blocked', headSha: pr.head.sha, reason: 'Current authenticated visual evidence is missing, stale, failed or unavailable.' };
+      state.published.ciRunId = result.runId;
+      // Keep notified=false: polling can accept later evidence without spending a
+      // coding attempt or asking reviewers to review an unaccepted revision.
+      return saveState(api, ctx.repo, state);
+    }
+  }
   state.phase = result.phase;
   state.published.notified = true;
   state.published.ciRunId = result.runId;
@@ -395,6 +410,7 @@ export async function publish({ trustedDir, proposalPath, planPath, attestationP
   if (mutation.errors?.length || !/^[0-9a-f]{40}$/.test(result?.commit?.oid ?? '') || result.commit.parents?.nodes?.length !== 1 || result.commit.parents.nodes[0].oid !== plan.headSha || result.ref?.id !== headRef.id || result.ref?.target?.oid !== result.commit.oid) throw new Error('Atomic commit publication failed or returned an invalid result; inspect the live PR before retrying.');
   const commit = { sha: result.commit.oid };
   state.phase = 'published';
+  state.visualAcceptance = { status: 'invalidated', reason: 'Remediation published a new candidate; previous acceptance never carries forward.' };
   state.published = { headSha: commit.sha, runId: ctx.runId, notified: false };
   state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), plan.fingerprint])];
   await saveState(api, ctx.repo, state);
