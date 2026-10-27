@@ -2,12 +2,14 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHash } from "node:crypto";
 import { deflateSync } from "node:zlib";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { EVIDENCE_MARKER, evidenceDigest, evaluateFrontend, hash, inspectPng } from "../../../scripts/quality/frontend-gate.mjs";
 import { renderPrScreenshots, publicationPath, presentationFeedback, feedbackScopeDigest } from "../../../scripts/quality/frontend-presentation.mjs";
-import { assessPr, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
+import { assessPr, reportPrAssessment, verifyTrustedSources } from "../../../scripts/quality/frontend-controller.mjs";
 import { guardedCompletion } from "../../../scripts/quality/completion-gate.mjs";
 import { selectFeedback } from "../../../scripts/pr-feedback/policy.mjs";
 import { monitor } from "../../../scripts/pr-feedback/runtime.mjs";
@@ -150,7 +152,119 @@ test("fixer readiness stays blocked after all five CI jobs until visual acceptan
 test("hosted checker never executes or checks out candidate code", () => {
   const workflow = readFileSync(new URL("../../../.github/workflows/frontend-quality-gate.yml", import.meta.url), "utf8");
   assert.match(workflow, /pull_request_target:/); assert.match(workflow, /ref: \$\{\{ github.sha \}\}/); assert.match(workflow, /checks: write/);
+  assert.match(workflow, /statuses: write/);
   assert.doesNotMatch(workflow, /npm install|pnpm install|secrets\.|pull_request.head.sha/);
+});
+
+function reporterFixture() {
+  const calls: { path: string; method: string; body?: Record<string, unknown> }[] = [];
+  const f = { calls, failAt: "", finalFailureUnavailable: false, reads: 0, assessments: 0, storedStatus: "old-success", checks: [{ id: 90, conclusion: "failure" }],
+    pr: { state: "open", base: { ref: "main" }, head: { sha: head }, body: "unchanged", labels: [{ name: "agent-fix" }] } };
+  const api: Parameters<typeof reportPrAssessment>[0]["api"] = async (path, options) => {
+    const body = options?.body as Record<string, unknown> | undefined;
+    calls.push({ path, method: options?.method ?? "GET", body });
+    if (!options?.method) { f.reads++; return structuredClone(f.pr); }
+    if (path.includes("/statuses/")) {
+      if (body!.state === "pending" && f.failAt === "pending-status") throw new Error("pending transport unknown");
+      if (body!.state === "success" && f.failAt === "success-status") throw new Error("terminal status transport unknown");
+      if (body!.state === "failure" && f.finalFailureUnavailable) throw new Error("failure report unavailable");
+      f.storedStatus = String(body!.state);
+      return { id: 12, context: f.failAt === "status-response" && body!.state === "pending" ? "wrong context" : body!.context, state: body!.state };
+    }
+    if (options.method === "POST") {
+      if (f.failAt === "check-create") throw new Error("CheckRun creation unknown");
+      f.checks.push({ id: 91, conclusion: "in_progress" });
+      return { id: 91, name: "Frontend visual acceptance", head_sha: head, app: { id: f.failAt === "check-source" ? 9 : 15368 } };
+    }
+    if (body!.conclusion === "success" && f.failAt === "check-complete") throw new Error("CheckRun completion unknown");
+    if (body!.conclusion === "failure" && f.finalFailureUnavailable) throw new Error("Check failure unavailable");
+    f.checks.at(-1)!.conclusion = String(body!.conclusion);
+    if (body!.conclusion === "success" && f.failAt === "head-after-check") f.pr.head.sha = "b".repeat(40);
+    return { id: 91, name: "Frontend visual acceptance", head_sha: head, app: { id: 15368 }, status: "completed", conclusion: f.failAt === "completion-response" && body!.conclusion === "success" ? "failure" : body!.conclusion };
+  };
+  const assess = async () => {
+    calls.push({ path: "ASSESS", method: "READ" }); f.assessments++;
+    if (f.failAt === "assessment") throw new Error("Missing current-head screenshot evidence");
+    if (f.failAt === "head-before-check") f.pr.head.sha = "b".repeat(40);
+    if (f.failAt === "body-before-check") f.pr.body = "changed evidence";
+    if (f.failAt === "labels-before-check") f.pr.labels = [];
+    return { status: f.failAt === "unknown-result" ? "unknown" : "not-applicable", headSha: head };
+  };
+  return { f, run: (override = assess) => reportPrAssessment({ api, repo: "o/r", prNumber: 1, runId: "123", assess: override }) };
+}
+
+test("one assessment drives ordered same-head CheckRun and commit status, retaining legacy history", async () => {
+  const { f, run } = reporterFixture(); await run();
+  assert.equal(f.assessments, 1); assert.equal(f.storedStatus, "success");
+  assert.deepEqual(f.checks, [{ id: 90, conclusion: "failure" }, { id: 91, conclusion: "success" }]);
+  const transitions = f.calls.filter(c => c.method !== "GET").map(c => c.path === "ASSESS" ? "assessment" : c.path.includes("/statuses/") ? `status:${c.body!.state}` : `check:${c.body!.conclusion ?? c.body!.status}`);
+  assert.deepEqual(transitions, ["status:pending", "check:in_progress", "assessment", "check:success", "status:success"]);
+  for (const c of f.calls.filter(c => c.path.includes("/statuses/"))) {
+    assert.equal(c.path, `/repos/o/r/statuses/${head}`); assert.equal(c.body!.context, "Frontend visual acceptance");
+    assert.equal(c.body!.target_url, "https://github.com/o/r/actions/runs/123");
+    assert.equal(Object.hasOwn(c.body!, "app_id"), false);
+  }
+});
+
+for (const phase of ["pending-status", "status-response", "check-create", "check-source", "assessment", "unknown-result", "head-before-check", "body-before-check", "labels-before-check", "check-complete", "completion-response", "head-after-check"]) test(`dual reporting ${phase} failure never sends terminal success status`, async () => {
+  const { f, run } = reporterFixture(); f.failAt = phase;
+  await assert.rejects(run());
+  assert.equal(f.calls.some(c => c.path.includes("/statuses/") && c.body?.state === "success"), false);
+  assert.equal(f.storedStatus, "failure");
+  if (phase === "check-source") assert.equal(f.calls.some(c => c.method === "PATCH"), false, "never patch an unexpected source's check");
+});
+
+test("unknown terminal status outcome fails and corrects both reporters without retrying success", async () => {
+  const { f, run } = reporterFixture(); f.failAt = "success-status";
+  await assert.rejects(run(), /transport unknown/);
+  assert.equal(f.calls.filter(c => c.path.includes("/statuses/") && c.body?.state === "success").length, 1);
+  assert.equal(f.storedStatus, "failure"); assert.equal(f.checks.at(-1)!.conclusion, "failure");
+});
+
+test("unavailable failure finalization leaves known pending status and rejects", async () => {
+  const { f, run } = reporterFixture(); f.failAt = "check-complete"; f.finalFailureUnavailable = true;
+  await assert.rejects(run(), /CheckRun completion unknown/);
+  assert.equal(f.storedStatus, "pending");
+  assert.equal(f.calls.some(c => c.path.includes("/statuses/") && c.body?.state === "success"), false);
+});
+
+for (const outcome of ["owner-manual", "independent-vision"]) test(`actual ${outcome} assessment drives both reporters`, async () => {
+  const real = fixture(); real.establish(); real.submit(outcome === "owner-manual");
+  if (outcome === "independent-vision") real.independent();
+  const { f, run } = reporterFixture();
+  const result = await run(async () => evaluateFrontend(real.input));
+  assert.equal(result.status, "accepted"); assert.equal(result.mode, outcome);
+  assert.equal(f.storedStatus, "success"); assert.equal(f.assessments, 0);
+});
+
+for (const reason of ["missing", "stale", "revoked", "provider-unavailable", "provider-failed"]) test(`genuine ${reason} visual evidence blocks both reporters`, async () => {
+  const real = fixture(); real.establish();
+  if (reason !== "missing") real.submit(false);
+  if (reason === "stale") real.input.headSha = "b".repeat(40);
+  if (reason === "revoked") { real.submit(); real.input.comments.push({ id: 8, user: owner, created_at: "2026-10-26T12:00:00Z", body: `/visual-revoke ${head} ${evidenceDigest(real.evidence)}` }); }
+  if (reason.startsWith("provider")) real.independent(reason === "provider-failed" ? "failed" : "unavailable");
+  const { f, run } = reporterFixture(); await assert.rejects(run(async () => evaluateFrontend(real.input)));
+  assert.equal(f.storedStatus, "failure"); assert.equal(f.checks.at(-1)!.conclusion, "failure");
+});
+
+const hostedCases = [
+  ...["pull_request_target", "issue_comment", "schedule", "workflow_dispatch"].flatMap(event => [true, false].map(valid => ({ event, valid, fault: "" }))),
+  ...["pending-status", "check-create", "check-complete", "status-success"].map(fault => ({ event: "workflow_dispatch", valid: true, fault })),
+];
+for (const { event, valid, fault } of hostedCases) test(`${event} local hosted-entry CLI with mocked API ${fault || (valid ? "N/A succeeds" : "missing evidence fails")} without candidate execution`, () => {
+  const root = mkdtempSync(join(tmpdir(), "kopplas-dual-report-"));
+  try {
+    const eventPath = join(root, "event.json"), callsPath = join(root, "calls.json"), hook = join(root, "mock.mjs");
+    const pr = { number: 1, state: "open", base: { ref: "main" }, head: { sha: head }, user: { id: 999 }, labels: [], body: "", commits: 1, changed_files: 1 };
+    writeFileSync(eventPath, JSON.stringify(event === "pull_request_target" ? { pull_request: { number: 1, base: { ref: "main" } } } : event === "issue_comment" ? { issue: { number: 1, pull_request: {} } } : event === "workflow_dispatch" ? { inputs: { pr_number: "1" } } : {}));
+    writeFileSync(hook, `import fs from 'node:fs';const calls=[];const pr=${JSON.stringify(pr)},fault=${JSON.stringify(fault)};globalThis.fetch=async(input,opt={})=>{const u=new URL(String(input));if(u.origin!=='https://api.github.com')throw Error('No external requests');const p=u.pathname,b=opt.body?JSON.parse(opt.body):undefined;calls.push({path:p,method:opt.method,body:b});fs.writeFileSync(${JSON.stringify(callsPath)},JSON.stringify(calls));if(fault==='pending-status'&&b?.state==='pending'||fault==='status-success'&&b?.state==='success'||fault==='check-create'&&opt.method==='POST'&&p.endsWith('/check-runs')||fault==='check-complete'&&b?.conclusion==='success')throw Error('Mock reporter transport unknown');let v;if(p==='/repos/o/r/pulls')v=[pr];else if(p==='/repos/o/r/pulls/1')v=pr;else if(p.endsWith('/files'))v=[{filename:${JSON.stringify(valid ? "docs/example.md" : file)}}];else if(p.endsWith('/commits'))v=[{author:{id:999},committer:{id:999}}];else if(p.endsWith('/comments')||p.endsWith('/reviews'))v=[];else if(p.includes('/statuses/'))v={id:12,...b};else if(p.endsWith('/check-runs'))v={id:91,name:b.name,head_sha:b.head_sha,app:{id:15368}};else if(p.endsWith('/check-runs/91'))v={id:91,head_sha:pr.head.sha,app:{id:15368},...b};else throw Error('Unexpected mock route '+p);return new Response(JSON.stringify(v),{status:200});};`);
+    const result = spawnSync(process.execPath, ["--import", pathToFileURL(hook).href, "scripts/quality/frontend-controller.mjs", "hosted"], { cwd: fileURLToPath(new URL("../../..", import.meta.url)), encoding: "utf8", timeout: 10000, env: { PATH: process.env.PATH, SystemRoot: process.env.SystemRoot, NODE_ENV: "test", GITHUB_TOKEN: "fixture-only", GITHUB_REPOSITORY: "o/r", GITHUB_SHA: "c".repeat(40), GITHUB_REF: "refs/heads/main", GITHUB_RUN_ID: "123", GITHUB_EVENT_NAME: event, GITHUB_EVENT_PATH: eventPath } });
+    assert.equal(result.status, valid && !fault ? 0 : 1, result.stderr);
+    const calls = JSON.parse(readFileSync(callsPath, "utf8")) as {path: string; body?: {state?: string; context?: string}}[];
+    const statuses = calls.filter(c => c.path.includes("/statuses/"));
+    assert.deepEqual(statuses.map(c => c.body!.state), fault === "status-success" ? ["pending", "success", "failure"] : ["pending", valid && !fault ? "success" : "failure"]);
+    assert.ok(statuses.every(c => c.path.endsWith(head) && c.body!.context === "Frontend visual acceptance"));
+  } finally { rmSync(root, { recursive: true, force: true }); }
 });
 
 test("visual protocol comments cannot spend remediation attempts", () => {
