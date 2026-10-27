@@ -1,12 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { generateKeyPairSync } from "node:crypto";
+import { createHash, generateKeyPairSync } from "node:crypto";
 import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { capture, collect, createApi, finalize, monitor, publish, validateProposal, validateResult } from "../../../scripts/pr-feedback/runtime.mjs";
-import { signJournal, STATE_MARKER, selectFeedback, fingerprintFeedback } from "../../../scripts/pr-feedback/policy.mjs";
+import { capture, collect, createApi, finalize, monitor, pilotRecoveryStage, publish, recoveryProof, validateProposal, validateResult } from "../../../scripts/pr-feedback/runtime.mjs";
+import { PILOT_RECOVERY, signJournal, verifyJournal, STATE_MARKER, selectFeedback, fingerprintFeedback } from "../../../scripts/pr-feedback/policy.mjs";
 
 // Local temporary repositories only. No remote writes, credentials or model calls.
 function fixture() {
@@ -28,6 +28,133 @@ function fixture() {
   return { root, trustedDir, workspaceDir, path, headSha, plan, planPath, proposalPath, resultPath: undefined };
 }
 
+function recoveryFixture(count = 2) {
+  const r = PILOT_RECOVERY;
+  const ctx = { repo: r.repo, runId: "9003", runAttempt: 1, controllerSha: "e".repeat(40) };
+  const feedbackIds = [{ kind: "review-comment", id: 4390637595 }];
+  const quota = { schemaVersion: 1, repo: r.repo, prNumber: 112, fingerprint: r.fingerprint, headSha: r.headSha, runId: r.quotaRunId, runAttempt: 1, controllerSha: r.quotaControllerSha, dryRun: true, feedbackIds };
+  const second = { ...quota, runId: "9002", controllerSha: ctx.controllerSha };
+  // The production caller obtains these only from signature/origin-checked history.
+  const { privateKey, publicKey } = generateKeyPairSync("rsa", { modulusLength: 2048 });
+  const journals = (count === 1 ? [quota] : [quota, second]).map(p => verifyJournal(signJournal(p, privateKey), publicKey));
+  const content = Buffer.from("test('mixed markup', () => {});\n");
+  const proposal = { schemaVersion: 1, plan: second, files: [{ path: "tests/unit/components/dashboard/widget-state.test.ts", beforeOid: "d".repeat(40), content: content.toString("base64"), sha256: createHash("sha256").update(content).digest("hex"), mode: "100644" }], result: { outcome: "changed", addressedIds: ["review-comment:4390637595"], unresolvedIds: [] } };
+  const proposalDigest = createHash("sha256").update(JSON.stringify(proposal)).digest("hex");
+  return { ctx, plan: { prNumber: 112, fingerprint: r.fingerprint, headSha: r.headSha, dryRun: count === 1 }, state: { batches: { [r.fingerprint]: count } }, journals, manual: true, pilot: 112 as number | undefined,
+    proof: { run: { id: 9002, run_attempt: 1, workflow_id: 384363087, event: "workflow_dispatch", head_branch: "main", head_sha: ctx.controllerSha, path: ".github/workflows/pr-feedback.yml", status: "completed", conclusion: "success" },
+      jobs: ["collect", "code", "validate", "publish"].map(name => ({ name, run_id: 9002, run_attempt: 1, status: "completed", conclusion: "success" })),
+      proposal, proposalDigest, beforeOid: "d".repeat(40), attestation: { schemaVersion: 1, digest: proposalDigest, headSha: r.headSha, runId: "9002" } } };
+}
+
+test("quota1 is counted: only dry2, then proven nonempty validated dry2 permits live3", () => {
+  const dry = recoveryFixture(1);
+  assert.doesNotThrow(() => pilotRecoveryStage(dry));
+  dry.plan.dryRun = false; assert.throws(() => pilotRecoveryStage(dry), /not proven/);
+  const live = recoveryFixture(); assert.doesNotThrow(() => pilotRecoveryStage(live));
+  live.plan.dryRun = true; assert.throws(() => pilotRecoveryStage(live), /not proven/);
+});
+
+for (const mismatch of ["latest-attempt", "failed-run", "artifact-missing", "artifact-duplicate", "artifact-expired", "artifact-size", "artifact-run", "artifact-controller", "artifact-branch", "artifact-time"]) test(`dry2 artifact reader fails closed on ${mismatch} without downloading unproven evidence`, async () => {
+  const f = recoveryFixture(); let downloads = 0;
+  const oldFetch = globalThis.fetch;
+  globalThis.fetch = async () => { downloads++; throw new Error("Unproven evidence must not be downloaded"); };
+  try {
+    const run = { ...f.proof.run, run_started_at: "2026-10-27T17:00:00Z", updated_at: "2026-10-27T17:05:00Z" };
+    const artifact = { id: 1, name: "pr-feedback-proposal", expired: false, size_in_bytes: 100, created_at: "2026-10-27T17:04:00Z", workflow_run: { id: 9002, head_sha: f.ctx.controllerSha, head_branch: "main" } };
+    if (mismatch === "latest-attempt") run.run_attempt = 2;
+    if (mismatch === "failed-run") run.conclusion = "failure";
+    if (mismatch === "artifact-expired") artifact.expired = true;
+    if (mismatch === "artifact-size") artifact.size_in_bytes = 262145;
+    if (mismatch === "artifact-run") artifact.workflow_run.id = 9001;
+    if (mismatch === "artifact-controller") artifact.workflow_run.head_sha = "f".repeat(40);
+    if (mismatch === "artifact-branch") artifact.workflow_run.head_branch = "codex/forged";
+    if (mismatch === "artifact-time") artifact.created_at = "2026-10-27T16:59:00Z";
+    const api = async (path: string) => {
+      if (path.endsWith("/attempts/1/jobs?per_page=100&page=1")) return { jobs: f.proof.jobs };
+      if (path.endsWith("/artifacts?per_page=100&page=1")) return { artifacts: mismatch === "artifact-missing" ? [] : mismatch === "artifact-duplicate" ? [artifact, artifact] : [artifact] };
+      if (path.endsWith("/actions/runs/9002")) return run;
+      throw new Error(`Unexpected proof route ${path}`);
+    };
+    await assert.rejects(recoveryProof(api, f.ctx, f.journals, "unused-fixture-path"));
+    assert.equal(downloads, 0);
+  } finally { globalThis.fetch = oldFetch; }
+});
+
+for (const mutation of ["zero", "fourth", "missing-quota", "wrong-quota-attempt", "duplicate", "automatic", "guard-absent", "other-guard", "moved-head", "rerun", "old-controller", "other-controller"] as const) test(`pilot recovery rejects ${mutation} before another attempt`, () => {
+  const f = recoveryFixture();
+  if (mutation === "zero") f.state.batches[PILOT_RECOVERY.fingerprint] = 0;
+  if (mutation === "fourth") f.state.batches[PILOT_RECOVERY.fingerprint] = 3;
+  if (mutation === "missing-quota") f.journals.shift();
+  if (mutation === "wrong-quota-attempt") f.journals[0].runAttempt = 2;
+  if (mutation === "duplicate") f.journals[1] = f.journals[0];
+  if (mutation === "automatic") f.manual = false;
+  if (mutation === "guard-absent") f.pilot = undefined;
+  if (mutation === "other-guard") f.pilot = 113;
+  if (mutation === "moved-head") f.plan.headSha = "f".repeat(40);
+  if (mutation === "rerun") f.ctx.runAttempt = 2;
+  if (mutation === "old-controller") f.ctx.controllerSha = PILOT_RECOVERY.quotaControllerSha;
+  if (mutation === "other-controller") f.ctx.controllerSha = "f".repeat(40);
+  assert.throws(() => pilotRecoveryStage(f), /not proven/);
+});
+
+test("a claimed changed dry proposal containing identical before-image bytes is a no-op", () => {
+  const f = recoveryFixture();
+  const bytes = Buffer.from(f.proof.proposal.files[0].content, "base64");
+  const beforeOid = createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex");
+  f.proof.beforeOid = beforeOid; f.proof.proposal.files[0].beforeOid = beforeOid;
+  assert.throws(() => pilotRecoveryStage(f), /not proven/);
+});
+
+for (const outcome of ["failure", "skipped", "cancelled", "pending", "unknown"]) test(`dry2 ${outcome} cannot fund live3`, () => {
+  const f = recoveryFixture(); f.proof.run.conclusion = outcome;
+  assert.throws(() => pilotRecoveryStage(f), /not proven/);
+});
+
+for (const name of ["collect", "code", "validate", "publish"]) test(`each exact dry2 job ${name} must pass at the signed attempt`, () => {
+  for (const field of ["failure", "skipped", "wrong-attempt", "wrong-run", "missing", "duplicate"]) {
+    const f = recoveryFixture(); const job = f.proof.jobs.find(j => j.name === name)!;
+    if (field === "failure" || field === "skipped") job.conclusion = field;
+    if (field === "wrong-attempt") job.run_attempt = 2;
+    if (field === "wrong-run") job.run_id = 9001;
+    if (field === "missing") f.proof.jobs = f.proof.jobs.filter(j => j !== job);
+    if (field === "duplicate") f.proof.jobs.push({ ...job });
+    assert.throws(() => pilotRecoveryStage(f), /not proven/);
+  }
+});
+
+for (const mutation of ["noop", "unaddressed", "plan-fingerprint", "plan-attempt", "plan-controller", "attestation-run", "attestation-head", "digest", "before-image", "other-file", "run-attempt", "run-workflow", "run-controller"] as const) test(`dry2 proof rejects ${mutation}`, () => {
+  const f = recoveryFixture();
+  if (mutation === "noop") f.proof.proposal.files = [];
+  if (mutation === "unaddressed") f.proof.proposal.result.addressedIds = [];
+  if (mutation === "plan-fingerprint") f.proof.proposal.plan = { ...f.proof.proposal.plan, fingerprint: "a".repeat(64) };
+  if (mutation === "plan-attempt") f.proof.proposal.plan = { ...f.proof.proposal.plan, runAttempt: 2 };
+  if (mutation === "plan-controller") f.proof.proposal.plan = { ...f.proof.proposal.plan, controllerSha: "f".repeat(40) };
+  if (mutation === "attestation-run") f.proof.attestation.runId = "9001";
+  if (mutation === "attestation-head") f.proof.attestation.headSha = "f".repeat(40);
+  if (mutation === "digest") f.proof.attestation.digest = "f".repeat(64);
+  if (mutation === "before-image") f.proof.beforeOid = "f".repeat(40);
+  if (mutation === "other-file") f.proof.proposal.files[0].path = "tests/unit/components/other.test.ts";
+  if (mutation === "run-attempt") f.proof.run.run_attempt = 2;
+  if (mutation === "run-workflow") f.proof.run.workflow_id = 9;
+  if (mutation === "run-controller") f.proof.run.head_sha = "f".repeat(40);
+  assert.throws(() => pilotRecoveryStage(f));
+});
+
+test("controller-only changes do not become protected seed deletions during capture and validation", () => {
+  const f = fixture();
+  try {
+    const git = (args: string[]) => execFileSync("git", args, { cwd: f.trustedDir, encoding: "utf8" });
+    mkdirSync(join(f.trustedDir, "scripts/pr-feedback"), { recursive: true });
+    writeFileSync(join(f.trustedDir, "scripts/pr-feedback/policy.mjs"), "// new controller only\n");
+    git(["add", "--", "scripts/pr-feedback/policy.mjs"]);
+    git(["-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null", "commit", "--quiet", "-m", "Controller update"]);
+    assert.notEqual(git(["rev-parse", "HEAD"]).trim(), f.headSha);
+    writeFileSync(join(f.workspaceDir, f.path), "export const label = 'Fixed';\n");
+    const captured = capture({ ...f, outputPath: f.proposalPath }); assert.equal(captured.changed, true);
+    const validated = validateProposal(f); assert.deepEqual(validated.proposal.files.map((x: { path: string }) => x.path), [f.path]);
+  } finally { rmSync(f.root, { recursive: true, force: true }); }
+});
+
 // Actual collector orchestration with synthetic GitHub responses. Counter assertions
 // distinguish an audit result from App minting, attempt history and reservation.
 async function collectionFixture(run: (f: {
@@ -36,6 +163,7 @@ async function collectionFixture(run: (f: {
   freshPilot: Array<string | undefined>; published: boolean;
   staleReservation: boolean;
   optedIn: boolean; protectedPath: boolean; permission: string; exhausted: boolean;
+  recoveryPilot: boolean;
 }) => Promise<void>, patch: Record<string, string | undefined> = {}) {
   const root = mkdtempSync(join(tmpdir(), "kopplas-pr-feedback-collection-"));
   const previousEnv = { ...process.env };
@@ -46,7 +174,7 @@ async function collectionFixture(run: (f: {
   const f = { root, out: join(root, "out"), counts: { requests: 0, tokens: 0, variables: 0, history: 0, reservations: 0, stateUpdates: 0 },
     freshPublish: ["false"], freshEnabled: ["true"], variablesFailure: false,
     freshPilot: [undefined] as Array<string | undefined>, published: false, staleReservation: false,
-    optedIn: true, protectedPath: false, permission: "admin", exhausted: false };
+    optedIn: true, protectedPath: false, permission: "admin", exhausted: false, recoveryPilot: false };
   let authoritativeBody: string | undefined;
   try {
     Object.assign(process.env, {
@@ -62,7 +190,7 @@ async function collectionFixture(run: (f: {
     }
     writeFileSync(process.env.GITHUB_EVENT_PATH!, JSON.stringify({ sender: actor, inputs: { pr_number: "101", dry_run: "true" }, issue: { number: 101, pull_request: {} } }));
     globalThis.fetch = async (input, options) => {
-      const url = new URL(String(input)), path = url.pathname;
+      const url = new URL(String(input)), path = f.recoveryPilot ? url.pathname.replace(/\/112(?=\/|$)/g, "/101") : url.pathname;
       assert.equal(url.origin, "https://api.github.com");
       f.counts.requests++;
       const response = (value: unknown, status = 200) => new Response(JSON.stringify(value), { status });
@@ -77,14 +205,15 @@ async function collectionFixture(run: (f: {
           ...(pilot === undefined ? [] : [{ name: "PR_FIX_PILOT_PR", value: pilot }])] });
       }
       if (path.includes("/collaborators/")) return response({ permission: f.permission });
-      const pr = { number: 101, state: "open", draft: false, created_at: new Date().toISOString(), title: "Synthetic label defect", body: "Synthetic fixture only",
-        user: actor, head: { sha: headSha, ref: "codex/pilot", repo: { full_name: "rthunborg/Kopplas" } },
+      const pr = { number: f.recoveryPilot ? 112 : 101, state: "open", draft: false, created_at: new Date().toISOString(), title: "Synthetic label defect", body: "Synthetic fixture only",
+        user: actor, head: { sha: f.recoveryPilot ? PILOT_RECOVERY.headSha : headSha, ref: "codex/pilot", repo: { full_name: "rthunborg/Kopplas" } },
         base: { ref: "main", repo: { full_name: "rthunborg/Kopplas" } }, labels: f.optedIn ? [{ name: "agent-fix" }] : [] };
       if (path === "/repos/rthunborg/Kopplas/pulls") return response([pr]);
       if (path === "/repos/rthunborg/Kopplas/pulls/101") return response(pr);
       if (path.endsWith("/actions/workflows/pr-feedback.yml")) { f.counts.history++; return response({ id: 77 }); }
       if (path.endsWith("/actions/artifacts")) return response({ artifacts: [] });
       if (path.endsWith("/issues/101/comments")) {
+        if (f.recoveryPilot) return response([]);
         if (options?.method === "POST") { f.counts.reservations++; authoritativeBody = JSON.parse(String(options.body)).body; return response({ id: 88 }, 201); }
         const feedback = { id: 10, body: "Restore the accessible field label.", user: actor, updated_at: new Date().toISOString() };
         const state = { schemaVersion: 1, prNumber: 101, lifetimeAttempts: f.exhausted ? 6 : 1, batches: {},
@@ -94,8 +223,9 @@ async function collectionFixture(run: (f: {
           body: authoritativeBody ?? `${STATE_MARKER}\n\`\`\`json\n${JSON.stringify(state)}\n\`\`\`` }] : [feedback]);
       }
       if (path.endsWith("/issues/comments/88")) { f.counts.stateUpdates++; return response({ id: 88 }); }
+      if (path.endsWith("/pulls/101/comments") && f.recoveryPilot) return response([{ id: 4390637595, body: "Restore plain()’s & decoding and add a regression in this test file covering mixed HTML, the entity and whitespace; <p> Plan &amp; <strong>klart</strong> </p> should produce Plan & klart.", user: actor, updated_at: "2026-10-27T15:33:29Z", commit_id: PILOT_RECOVERY.headSha, position: 5, path: "tests/unit/components/dashboard/widget-state.test.ts", pull_request_review_id: 5669780235 }]);
       if (path.endsWith("/pulls/101/reviews") || path.endsWith("/pulls/101/comments")) return response([]);
-      if (path === "/graphql") return response({ data: { repository: { pullRequest: { reviewThreads: { nodes: [], pageInfo: { hasNextPage: false } } } } } });
+      if (path === "/graphql") return response({ data: { repository: { pullRequest: { reviewThreads: { nodes: f.recoveryPilot ? [{ isResolved: false, isOutdated: false, comments: { pageInfo: { hasNextPage: false }, nodes: [{ databaseId: 4390637595 }] } }] : [], pageInfo: { hasNextPage: false } } } } } });
       if (path.endsWith("/pulls/101/files")) return response([{ filename: f.protectedPath ? "src/server/auth/guard.ts" : "src/components/crm/FormField.tsx", status: "modified", patch: "synthetic" }]);
       if (path.endsWith("/actions/workflows/ci.yml/runs")) return response({ workflow_runs: f.published ? [{ id: 900, event: "pull_request", head_sha: headSha,
         path: ".github/workflows/ci.yml", status: "completed", conclusion: "failure", pull_requests: [{ number: 101, head: { sha: headSha } }] }] : [] });
@@ -111,6 +241,20 @@ async function collectionFixture(run: (f: {
     rmSync(root, { recursive: true, force: true });
   }
 }
+
+test("real collector refuses recovery count0/missing signed quota before journal or reservation", async () => {
+  const previousNow = Date.now;
+  Date.now = () => Date.parse("2026-10-27T16:00:00Z");
+  try {
+    await collectionFixture(async f => {
+      f.recoveryPilot = true; f.freshPilot = ["112"]; f.freshPublish = ["true"];
+      writeFileSync(process.env.GITHUB_EVENT_PATH!, JSON.stringify({ sender: { id: 53317458, login: "rthunborg", type: "User" }, inputs: { pr_number: "112" } }));
+      await assert.rejects(collect(f.out), /recovery sequence is not proven/);
+      assert.equal(existsSync(join(f.out, "journal.json")), false);
+      assert.equal(f.counts.reservations, 0);
+    }, { PR_FIX_PILOT_PR: "112", PR_FIX_PUBLISH: "true" });
+  } finally { Date.now = previousNow; }
+});
 
 for (const event of ["schedule", "issue_comment"]) test(`publication hold audits ${event} before App/history/attempt side effects`, async () => {
   await collectionFixture(async f => {

@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash, generateKeyPairSync } from "node:crypto";
 import {
-  LIMITS, STATE_MARKER, isAllowedPath, validateChangedFiles,
+  LIMITS, PILOT_RECOVERY, batchLimit, STATE_MARKER, isAllowedPath, validateChangedFiles,
   fingerprintFeedback, parseStateComment, selectFeedback, planAttempt,
   classifyChecks, signJournal, verifyJournal,
 } from "../../../scripts/pr-feedback/policy.mjs";
@@ -26,6 +26,23 @@ const state = () => ({ schemaVersion: 1, prNumber: 101, lifetimeAttempts: 0, bat
 const file = (path = "src/components/crm/FormField.tsx", text = "export const label = 'Empty';\n") => ({
   path, mode: "100644", content: Buffer.from(text).toString("base64"),
   sha256: createHash("sha256").update(text).digest("hex"),
+});
+
+test("owner exception changes only one historical batch ceiling, never defaults or PR lifetime", () => {
+  const r = PILOT_RECOVERY;
+  assert.equal(LIMITS.perBatch, 2); assert.equal(LIMITS.perPr, 6);
+  assert.equal(batchLimit(r.repo, r.prNumber, r.fingerprint), 3);
+  for (const args of [[undefined, 112, r.fingerprint], ["other/repo", 112, r.fingerprint], [r.repo, 113, r.fingerprint], [r.repo, 112, "a".repeat(64)]] as const) assert.equal(batchLimit(args[0], args[1], args[2]), 2);
+  const identity = { appUserId: 500, appId: 600, prNumber: 112, repo: r.repo };
+  const owned = (batches: Record<string, number>, lifetimeAttempts = 3) => ({ id: 77, user: { id: 500 }, performed_via_github_app: { id: 600 }, body: `${STATE_MARKER}\n\`\`\`json\n${JSON.stringify({ ...state(), prNumber: 112, lifetimeAttempts, batches })}\n\`\`\`` });
+  const three = owned({ [r.fingerprint]: 3 });
+  // No current head/manual/pilot guard is needed to READ historical count3.
+  assert.equal(parseStateComment(three, identity)?.batches[r.fingerprint], 3);
+  assert.throws(() => parseStateComment(three, { ...identity, repo: undefined }));
+  assert.throws(() => parseStateComment(three, { ...identity, repo: "other/repo" }));
+  for (const count of [4, -1, 1.5]) assert.throws(() => parseStateComment(owned({ [r.fingerprint]: count }), identity));
+  assert.throws(() => parseStateComment(owned({ [r.fingerprint]: 2, ["b".repeat(64)]: 3 }), identity));
+  assert.throws(() => parseStateComment(owned({ [r.fingerprint]: 3 }, 7), identity));
 });
 
 test("feedback requires an allow-listed human with current write permission", () => {

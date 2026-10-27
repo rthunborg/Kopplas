@@ -4,6 +4,8 @@ export const LIMITS: Readonly<{ files: number; bytes: number; fileBytes: number;
 export const STATE_MARKER: string;
 export const OPT_IN_LABEL: string;
 export const DEFAULT_ALLOWED_USER_IDS: readonly number[];
+export const PILOT_RECOVERY: Readonly<{ repo: string; prNumber: number; fingerprint: string; headSha: string; quotaRunId: string; quotaControllerSha: string }>;
+export function batchLimit(repo: string | undefined, prNumber: number, fingerprint: string): number;
 export interface FeedbackInput { id: number; body?: string; user: { id: number; login: string; type?: string }; updated_at?: string; submitted_at?: string; created_at?: string; commit_id?: string; state?: string; position?: number | null; path?: string; in_reply_to_id?: number; pull_request_review_id?: number }
 export interface Feedback extends FeedbackInput { kind: string }
 export interface State { schemaVersion: number; prNumber: number; lifetimeAttempts: number; batches: Record<string, number>; commentId?: number; terminalBatches?: string[]; phase?: string; published?: { headSha: string; notified: boolean } }
@@ -13,7 +15,7 @@ export interface CheckRun { id: number; event: string; head_sha: string; path: s
 export function isAllowedPath(path: string): boolean;
 export function validateChangedFiles(files: ChangedFile[]): true;
 export function fingerprintFeedback(feedback: Feedback[]): string;
-export function parseStateComment(comment: { id: number; body: string; user: { id: number }; performed_via_github_app?: { id: number } }, identity: { appId: number; appUserId: number; prNumber: number }): State | null;
+export function parseStateComment(comment: { id: number; body: string; user: { id: number }; performed_via_github_app?: { id: number } }, identity: { appId: number; appUserId: number; prNumber: number; repo?: string }): State | null;
 export function selectFeedback(input: { comments?: FeedbackInput[]; reviews?: FeedbackInput[]; reviewComments?: FeedbackInput[]; allowedUserIds?: readonly number[]; permissions?: Record<string, string>; headSha: string; now?: number }): Feedback[];
 export function planAttempt(input: { pr: PullRequest | undefined; state?: State; feedback: Feedback[]; dryRun: boolean; now?: number }): { eligible: false; reason: string } | { eligible: true; fingerprint: string; dryRun: boolean; headSha: string; prNumber: number; headRef: string; feedback: Feedback[] };
 export function classifyChecks(input: { headSha: string; runs?: CheckRun[]; requiredJobs?: string[] }): { phase: 'ci-pending' | 'ci-passed' | 'ci-failed'; runId?: number };

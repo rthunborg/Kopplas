@@ -271,6 +271,66 @@ is `gpt-6.1-sol`, effort Low, pinned Codex CLI 0.162.1. Sensitive work is
 blocked for human handling; security implementation and independent review
 for this setup were routed to Sol High according to the repository policy.
 
+### Owner decision — 2026-10-27: one PR112 recovery slot
+
+The owner explicitly approved the independently reviewed bounded amendment
+(`54f108f94c472bc080100347b8b172a62cb24b6e9a20d9f380015946dd720389`,
+High addendum `b9c5a519` prefix). Only `rthunborg/Kopplas` PR112, seed head
+`324b6beb9c035b91b8fba27664664377ed1e97d0` and feedback fingerprint
+`a1d109e456640c9020446ae249aa89bada150b24e047a4cc0354ee25be4f8118`
+have a batch ceiling of **three**. Every other batch stays at two and every PR
+stays at six. Quota-failed dry run `40533600778:1` and signed journal artifact
+`12746314188` remain counted as attempt one; they are never excluded or reset.
+The owner reported adding a payment method and a $100 monthly limit, adjustable
+by the owner. This is not agent-verified API access or a runtime hard dollar cap;
+agents do not change billing, limits or keys. The earlier skills-directory
+permission warnings were not established as the terminal failure's cause.
+
+Only the exact manually guarded pilot can request dry attempt two. Live attempt
+three requires its genuine signed dry plan at the same newly qualified trusted
+controller/head/fingerprint, actual successful collection/coding/credential-free
+validation/dry finalization, and a nonempty changed proposal addressing inline
+finding `4390637595`, with matching artifact origin, before-image and validation
+attestation. The runtime rejects missing/failed/skipped/unknown/no-op evidence,
+attempt mixing, automatic events, changed guards/heads and attempt four before
+reserving another model call. Historical count three remains readable after the
+head or guard changes; that accounting exception grants no new admission.
+
+Sol High implements this sensitive policy and independently reviews its actual
+diff. The paired existing `policy.d.mts` and `runtime.d.mts` declarations are
+updated only to type the new exports and trusted repository context; the initial
+typecheck exposed this necessary dependency, making the candidate seven paths
+rather than the five behavioral/test/documentation paths. Before a further paid
+run, the amendment must be independently reviewed,
+qualified on its exact code-PR head, integrated into trusted main and receive a
+fresh credential-free runtime bootstrap. Recheck the actual PR112 file list;
+keep its seed head and genuine feedback unchanged. Capture and validation compare
+the proposal against that seed tree, separately from the newer controller tree.
+Old journals still bind their original controller and signing key. No protected
+overlay, seed rebase, fabricated feedback or replacement PR resets history.
+
+Each further paid dispatch needs independent High and coordinator review of
+current controls and evidence. Dry two must succeed and its actual patch and
+independent validation must be reviewed before the separate live-three dispatch;
+there is no automatic fallthrough. Any failure or unknown outcome stops. Live
+three is a fresh model attempt, not promotion of saved dry files. Its publication
+still requires fresh exact-head CI, applicable visual acceptance and independent
+review. No successful inference, pilot completion, merge or deployment is claimed
+by this amendment. PR100 remains historical and must not merge.
+
+#### Suggested Review Order
+
+1. `scripts/pr-feedback/policy.mjs`: `PILOT_RECOVERY`, `batchLimit` and
+   `parseStateComment` separate this exact historical ceiling from global defaults.
+2. `scripts/pr-feedback/runtime.mjs`: `pilotRecoveryStage`, `recoveryProof` and
+   the late collector call bind signed attempts, actual jobs/artifacts and current
+   manual admission before the journal/reservation boundary.
+3. `tests/unit/scripts/pr-feedback.test.ts` and
+   `tests/unit/scripts/pr-feedback-runtime.test.ts`: inspect ceiling isolation,
+   missing quota/count zero, exact-attempt failures, nonempty validated dry proof,
+   no fourth attempt and differing controller/seed before-images. These are
+   synthetic policy tests, with no provider, paid-model or live-pilot credit.
+
 Independent pre-publication checks run with Node 22 and pnpm 10.24.0:
 frozen install, lockfile guard, high-severity dependency audit, source service-role
 containment, typecheck, lint, the 180-second unit-test gate, build, and built-bundle

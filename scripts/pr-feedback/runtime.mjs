@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { appendFileSync, lstatSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, relative, resolve, isAbsolute } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { DEFAULT_ALLOWED_USER_IDS, LIMITS, OPT_IN_LABEL, STATE_MARKER, classifyChecks, fingerprintFeedback, parseStateComment, planAttempt, selectFeedback, signJournal, validateChangedFiles, verifyJournal } from './policy.mjs';
+import { DEFAULT_ALLOWED_USER_IDS, LIMITS, OPT_IN_LABEL, PILOT_RECOVERY, STATE_MARKER, batchLimit, classifyChecks, fingerprintFeedback, parseStateComment, planAttempt, selectFeedback, signJournal, validateChangedFiles, verifyJournal } from './policy.mjs';
 
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const blobId = (bytes) => createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
@@ -134,7 +134,7 @@ async function saveState(api, repo, state) {
 }
 
 async function getState(api, repo, prNumber, comments) {
-  const states = comments.map((comment) => parseStateComment(comment, { appId: number(process.env.PR_FIX_APP_ID), appUserId: number(process.env.PR_FIX_APP_USER_ID), prNumber })).filter(Boolean);
+  const states = comments.map((comment) => parseStateComment(comment, { appId: number(process.env.PR_FIX_APP_ID), appUserId: number(process.env.PR_FIX_APP_USER_ID), prNumber, repo })).filter(Boolean);
   if (states.length > 1) throw new Error('Multiple authoritative state comments.');
   return states[0] ?? { schemaVersion: 1, prNumber, lifetimeAttempts: 0, batches: {}, terminalBatches: [] };
 }
@@ -167,6 +167,73 @@ async function history(api, ctx, publicKey, dir) {
       journals.push(plan);
   }
   return journals;
+}
+
+// Only collect supplies signature/origin-verified journals. Durable count3 remains
+// readable without this admission: removing the pilot guard never grants slot4.
+export function pilotRecoveryStage({ ctx, plan, state, journals, manual, pilot, proof }) {
+  const r = PILOT_RECOVERY;
+  if (batchLimit(ctx.repo, plan.prNumber, plan.fingerprint) === LIMITS.perBatch) return;
+  const fail = () => { throw new Error('Pilot112 recovery sequence is not proven.'); };
+  const count = state.batches[plan.fingerprint] ?? 0;
+  if (!manual || pilot !== r.prNumber || ctx.runAttempt !== 1 || ctx.controllerSha === r.quotaControllerSha || plan.headSha !== r.headSha || ![1, 2].includes(count) || plan.dryRun !== (count === 1)) fail();
+  const batch = journals.filter((j) => j.prNumber === r.prNumber && j.fingerprint === r.fingerprint);
+  const keys = new Set(batch.map((j) => `${j.runId}:${j.runAttempt}`));
+  if (batch.length !== count || keys.size !== count || batch.some((j) => j.repo !== r.repo || j.headSha !== r.headSha || j.dryRun !== true)) fail();
+  const quota = batch.filter((j) => j.runId === r.quotaRunId && j.runAttempt === 1 && j.controllerSha === r.quotaControllerSha);
+  if (quota.length !== 1) fail();
+  if (count === 1) return;
+  const second = batch.find((j) => j.runId !== r.quotaRunId);
+  if (!second || second.runAttempt !== 1 || second.controllerSha !== ctx.controllerSha || second.runId === ctx.runId || !proof) fail();
+  const { run, jobs, proposal, proposalDigest, attestation, beforeOid } = proof;
+  if (String(run?.id) !== second.runId || run.run_attempt !== second.runAttempt || run.workflow_id !== 384363087 || run.event !== 'workflow_dispatch' || run.head_branch !== 'main' || run.head_sha !== second.controllerSha || run.path !== '.github/workflows/pr-feedback.yml' || run.status !== 'completed' || run.conclusion !== 'success') fail();
+  for (const name of ['collect', 'code', 'validate', 'publish']) {
+    const matches = jobs?.filter((j) => j.name === name) ?? [];
+    if (matches.length !== 1 || String(matches[0].run_id) !== second.runId || matches[0].run_attempt !== second.runAttempt || matches[0].status !== 'completed' || matches[0].conclusion !== 'success') fail();
+  }
+  if (proposal?.schemaVersion !== 1 || JSON.stringify(proposal.plan) !== JSON.stringify(second) || proposal.files?.length !== 1 || proposal.files[0].path !== 'tests/unit/components/dashboard/widget-state.test.ts' || !/^[0-9a-f]{40}$/.test(beforeOid ?? '') || proposal.files[0].beforeOid !== beforeOid || proposal.files[0].content === null || proposal.result?.outcome !== 'changed' || !proposal.result.addressedIds?.includes('review-comment:4390637595')) fail();
+  validateChangedFiles(proposal.files);
+  if (blobId(Buffer.from(proposal.files[0].content, 'base64')) === beforeOid) fail();
+  validateResult(proposal.result, second.feedbackIds);
+  if (attestation?.schemaVersion !== 1 || !/^[0-9a-f]{64}$/.test(proposalDigest ?? '') || attestation.digest !== proposalDigest || attestation.headSha !== second.headSha || attestation.runId !== second.runId) fail();
+}
+
+export async function recoveryProof(api, ctx, journals, dir) {
+  const r = PILOT_RECOVERY;
+  const batch = journals.filter((j) => j.prNumber === r.prNumber && j.fingerprint === r.fingerprint);
+  const second = batch.find((j) => j.runId !== r.quotaRunId);
+  if (batch.length !== 2 || !second || second.runAttempt !== 1 || second.controllerSha !== ctx.controllerSha) throw new Error('Pilot112 dry proof origin is not proven.');
+  // Latest-run attempt must still be1; never combine a rerun's artifacts/jobs
+  // with an earlier signed plan. Read that exact attempt's jobs as well.
+  const run = await api(`/repos/${ctx.repo}/actions/runs/${number(second.runId)}`);
+  if (String(run.id) !== second.runId || run.run_attempt !== second.runAttempt || run.workflow_id !== 384363087 || run.event !== 'workflow_dispatch' || run.head_branch !== 'main' || run.head_sha !== second.controllerSha || run.path !== '.github/workflows/pr-feedback.yml' || run.status !== 'completed' || run.conclusion !== 'success') throw new Error('Pilot112 dry run is not successful.');
+  const jobs = await all(api, `/repos/${ctx.repo}/actions/runs/${number(second.runId)}/attempts/1/jobs`, 'jobs');
+  for (const name of ['collect', 'code', 'validate', 'publish']) {
+    const matches = jobs.filter((j) => j.name === name);
+    if (matches.length !== 1 || String(matches[0].run_id) !== second.runId || matches[0].run_attempt !== 1 || matches[0].status !== 'completed' || matches[0].conclusion !== 'success') throw new Error('Pilot112 dry job is not successful.');
+  }
+  const artifacts = await all(api, `/repos/${ctx.repo}/actions/runs/${number(second.runId)}/artifacts`, 'artifacts');
+  const readArtifact = async (name, file, limit) => {
+    const matches = artifacts.filter((a) => a.name === name);
+    const a = matches[0];
+    if (matches.length !== 1 || a.expired || a.size_in_bytes > 262144 || String(a.workflow_run?.id) !== second.runId || a.workflow_run?.head_sha !== second.controllerSha || a.workflow_run?.head_branch !== 'main' || !(Date.parse(a.created_at) >= Date.parse(run.run_started_at) && Date.parse(a.created_at) <= Date.parse(run.updated_at))) throw new Error('Pilot112 dry artifact origin is not proven.');
+    const response = await fetch(`https://api.github.com/repos/${ctx.repo}/actions/artifacts/${number(a.id)}/zip`, { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, Accept: 'application/vnd.github+json' }, redirect: 'manual', signal: AbortSignal.timeout(30000) });
+    const location = response.headers.get('location');
+    if (response.status !== 302 || !location || new URL(location).protocol !== 'https:') throw new Error('Dry artifact redirect unavailable.');
+    const archive = await fetch(location, { signal: AbortSignal.timeout(30000) });
+    if (!archive.ok) throw new Error('Dry artifact download failed.');
+    const bytes = Buffer.from(await archive.arrayBuffer());
+    if (bytes.length > 262144) throw new Error('Dry artifact archive oversized.');
+    const zip = join(dir, `${name}.zip`);
+    writeFileSync(zip, bytes, { mode: 0o600 });
+    const raw = execFileSync('unzip', ['-p', zip, file], { env: minimalEnv(), maxBuffer: limit });
+    return { value: JSON.parse(raw.toString('utf8')), digest: digest(raw) };
+  };
+  const proposal = await readArtifact('pr-feedback-proposal', 'proposal.json', 524288);
+  const attestation = await readArtifact('pr-feedback-validation', 'validated.json', 16384);
+  const source = await api(`/repos/${ctx.repo}/contents/tests/unit/components/dashboard/widget-state.test.ts?ref=${r.headSha}`);
+  if (source.type !== 'file') throw new Error('Pilot112 dry before-image is not a file.');
+  return { run, jobs, proposal: proposal.value, proposalDigest: proposal.digest, attestation: attestation.value, beforeOid: source.sha };
 }
 
 export async function monitor(api, ctx, pr, state, write, admitWrite = async () => true) {
@@ -286,7 +353,7 @@ export async function collect(dir) {
       const previous = await read(`/repos/${ctx.repo}/actions/runs/${number(state.reservation.runId)}`);
       if (previous.status !== 'completed') continue;
       state.phase = previous.conclusion === 'cancelled' ? 'cancelled' : 'needs-human';
-      if (pr.head.sha !== state.reservation.headSha || (state.batches[state.reservation.fingerprint] ?? 0) >= LIMITS.perBatch) state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), state.reservation.fingerprint])];
+      if (pr.head.sha !== state.reservation.headSha || (state.batches[state.reservation.fingerprint] ?? 0) >= batchLimit(ctx.repo, pr.number, state.reservation.fingerprint)) state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), state.reservation.fingerprint])];
       if (!dryRun) {
         if (!await currentWriteAdmission()) return auditOnly('Audit only: current automation switches do not admit reservation reconciliation.');
         state = await saveState(api, ctx.repo, state);
@@ -298,7 +365,7 @@ export async function collect(dir) {
       state.lifetimeAttempts++;
       state.batches[item.fingerprint] = (state.batches[item.fingerprint] ?? 0) + 1;
     }
-    if (state.lifetimeAttempts > LIMITS.perPr || Object.values(state.batches).some((attempts) => attempts > LIMITS.perBatch)) throw new Error('Recorded attempt budget exceeded.');
+    if (state.lifetimeAttempts > LIMITS.perPr || Object.entries(state.batches).some(([fingerprint, attempts]) => attempts > batchLimit(ctx.repo, pr.number, fingerprint))) throw new Error('Recorded attempt budget exceeded.');
     const [reviews, rawReviewComments] = await Promise.all([all(read, `/repos/${ctx.repo}/pulls/${pr.number}/reviews`), all(read, `/repos/${ctx.repo}/pulls/${pr.number}/comments`)]);
     const unresolved = await unresolvedCommentIds(read, ctx.repo, pr.number);
     const reviewComments = rawReviewComments.filter((item) => unresolved.has(item.id));
@@ -313,6 +380,14 @@ export async function collect(dir) {
     // Recheck immediately before any new reservation/journal. A hold observed
     // during collection must not consume another automatic attempt.
     if (!await currentAdmission()) return auditOnly('Audit only: current automation switches do not admit this event.');
+    if (batchLimit(ctx.repo, pr.number, attempt.fingerprint) !== LIMITS.perBatch) {
+      const proof = (state.batches[attempt.fingerprint] ?? 0) === 2 ? await recoveryProof(read, ctx, journal, dir) : undefined;
+      const switches = await automationSwitches(api, ctx.repo);
+      if (!switches.enabled || !switches.publish && !explicitDryRun) return auditOnly('Audit only: recovery admission is held.');
+      pilotRecoveryStage({ ctx, plan: attempt, state, journals: journal, manual, pilot: switches.pilot, proof });
+      const fresh = await read(`/repos/${ctx.repo}/pulls/${pr.number}`);
+      if (fresh.head.sha !== attempt.headSha || fresh.head.ref !== attempt.headRef || fresh.state !== 'open' || fresh.draft || fresh.head.repo?.full_name !== ctx.repo || fresh.base.ref !== 'main' || !fresh.labels.some(({ name }) => name === OPT_IN_LABEL)) throw new Error('Pilot112 PR changed during recovery admission.');
+    }
     const plan = { schemaVersion: 1, ...ctx, ...attempt, workflowPath: '.github/workflows/pr-feedback.yml', stateCommentId: state.commentId ?? null, feedbackIds: feedback.map(({ kind, id }) => ({ kind, id })), reviewerLogins: [...new Set(reviews.filter((review) => allowIds.includes(review.user.id) && ['write', 'maintain', 'admin'].includes(permissions[review.user.login])).map((review) => review.user.login))] };
     if (!dryRun) {
       state.lifetimeAttempts++;
@@ -513,7 +588,7 @@ export async function finalize({ planPath, journalPath }) {
   const state = await getState(api, ctx.repo, plan.prNumber, comments);
   if (state.reservation?.runId !== ctx.runId || state.reservation?.runAttempt !== ctx.runAttempt || state.commentId !== plan.stateCommentId) throw new Error('Failure finalizer reservation mismatch.');
   state.phase = 'needs-human';
-  if ((state.batches[plan.fingerprint] ?? 0) >= LIMITS.perBatch) state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), plan.fingerprint])];
+  if ((state.batches[plan.fingerprint] ?? 0) >= batchLimit(ctx.repo, plan.prNumber, plan.fingerprint)) state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), plan.fingerprint])];
   await admitFinalization();
   await saveState(api, ctx.repo, state);
 }
