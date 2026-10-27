@@ -15,6 +15,19 @@ export function validateProposal(input: { trustedDir: string; proposalPath: stri
 export function publish(input: { trustedDir: string; proposalPath: string; planPath: string; attestationPath: string; journalPath?: string; api?: Api; unresolvedIds?: Set<number> }): Promise<{ phase: string; files?: number; headSha?: string }>;
 export function finalize(input: { planPath: string; journalPath: string }): Promise<void>;
 
+export interface RecoveryContext { repo: string; runId: string; runAttempt: number; controllerSha: string }
+export interface RecoveryJournal extends ArtifactPlan { repo: string; prNumber: number; fingerprint: string; headSha: string; runId: string; runAttempt: number; controllerSha: string; dryRun: boolean; feedbackIds: FeedbackId[] }
+export interface RecoveryProof {
+  run: { id: number; run_attempt: number; workflow_id: number; event: string; head_branch: string; head_sha: string; path: string; status: string; conclusion: string };
+  jobs: { name: string; run_id: number; run_attempt: number; status: string; conclusion: string }[];
+  proposal: Proposal & { plan: RecoveryJournal };
+  proposalDigest: string;
+  beforeOid: string;
+  attestation: { schemaVersion: number; digest: string; headSha: string; runId: string };
+}
+export function pilotRecoveryStage(input: { ctx: RecoveryContext; plan: { prNumber: number; fingerprint: string; headSha: string; dryRun: boolean }; state: { batches: Record<string, number> }; journals: RecoveryJournal[]; manual: boolean; pilot?: number; proof?: RecoveryProof }): void;
+export function recoveryProof(api: Api, ctx: RecoveryContext, journals: RecoveryJournal[], dir: string): Promise<RecoveryProof>;
+
 export interface MonitoredState {
   prNumber: number;
   published: {headSha: string; notified: boolean; ciRunId?: number};

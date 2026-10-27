@@ -4,6 +4,13 @@ export const LIMITS = Object.freeze({ files: 20, bytes: 262144, fileBytes: 65536
 export const STATE_MARKER = '<!-- kopplas-pr-feedback-state-v1 -->';
 export const OPT_IN_LABEL = 'agent-fix';
 export const DEFAULT_ALLOWED_USER_IDS = Object.freeze([53317458]);
+// Owner decision 2026-10-27: retain the quota failure, then one dry and one live.
+// This is a durable accounting ceiling, not permission to start those attempts.
+export const PILOT_RECOVERY = Object.freeze({ repo: 'rthunborg/Kopplas', prNumber: 112,
+  fingerprint: 'a1d109e456640c9020446ae249aa89bada150b24e047a4cc0354ee25be4f8118',
+  headSha: '324b6beb9c035b91b8fba27664664377ed1e97d0', quotaRunId: '40533600778',
+  quotaControllerSha: 'c07d0c83389e0de19935d453c05d6295187bbdf8' });
+export const batchLimit = (repo, prNumber, fingerprint) => repo === PILOT_RECOVERY.repo && prNumber === PILOT_RECOVERY.prNumber && fingerprint === PILOT_RECOVERY.fingerprint ? 3 : LIMITS.perBatch;
 const SHA = /^[0-9a-f]{40}$/;
 const SENSITIVE = /(^|[\/_.-])(auth|authorization|rbac|permissions?|tenan(ts?|cy)|provisioning|invitations?|operator|operator-console|onboarding|storage|files?|uploads?|secrets?|tokens?|money|tax|vat|quotes?|pricing|invoices?|payments?|billing|bookings?|resources|snapshots?|fortnox|suppliers?|ai|portal|acceptance|webhooks?|cron)([\/_.-]|$)/i;
 
@@ -36,13 +43,13 @@ export function fingerprintFeedback(feedback) {
   return createHash('sha256').update(JSON.stringify([...feedback].sort((a, b) => `${a.kind}:${a.id}`.localeCompare(`${b.kind}:${b.id}`)).map(({ kind, id, body, updated_at, user }) => ({ kind, id, body, updated_at, userId: user?.id })))).digest('hex');
 }
 
-export function parseStateComment(comment, { appId, appUserId, prNumber }) {
+export function parseStateComment(comment, { appId, appUserId, prNumber, repo }) {
   if (comment?.user?.id !== Number(appUserId) || comment?.performed_via_github_app?.id !== Number(appId) || !comment.body?.startsWith(STATE_MARKER + '\n')) return null;
   const start = comment.body.indexOf('```json\n');
   const end = comment.body.indexOf('\n```', start + 8);
   if (start < 0 || end < 0) throw new Error('Malformed authoritative state comment.');
   const state = JSON.parse(comment.body.slice(start + 8, end));
-  if (state.schemaVersion !== 1 || state.prNumber !== prNumber || !Number.isInteger(state.lifetimeAttempts) || state.lifetimeAttempts < 0 || state.lifetimeAttempts > LIMITS.perPr || !state.batches || Array.isArray(state.batches) || Object.entries(state.batches).some(([key, value]) => !/^[0-9a-f]{64}$/.test(key) || !Number.isInteger(value) || value < 0 || value > LIMITS.perBatch)) throw new Error('Invalid authoritative state.');
+  if (state.schemaVersion !== 1 || state.prNumber !== prNumber || !Number.isInteger(state.lifetimeAttempts) || state.lifetimeAttempts < 0 || state.lifetimeAttempts > LIMITS.perPr || !state.batches || Array.isArray(state.batches) || Object.entries(state.batches).some(([key, value]) => !/^[0-9a-f]{64}$/.test(key) || !Number.isInteger(value) || value < 0 || value > batchLimit(repo, prNumber, key))) throw new Error('Invalid authoritative state.');
   return { ...state, commentId: comment.id };
 }
 
@@ -67,7 +74,7 @@ export function planAttempt({ pr, state, feedback, dryRun, now = Date.now() }) {
   if (!feedback.length) return { eligible: false, reason: 'No current authorized feedback.' };
   if (!state?.commentId && Date.parse(pr.created_at) < now - LIMITS.journalDays * 86400000) return { eligible: false, reason: 'Lifetime attempt history cannot be proven after journal retention.' };
   const fingerprint = fingerprintFeedback(feedback);
-  if ((state?.lifetimeAttempts ?? 0) >= LIMITS.perPr || (state?.batches?.[fingerprint] ?? 0) >= LIMITS.perBatch || state?.terminalBatches?.includes(fingerprint)) return { eligible: false, reason: 'Attempt budget exhausted or batch terminal.' };
+  if ((state?.lifetimeAttempts ?? 0) >= LIMITS.perPr || (state?.batches?.[fingerprint] ?? 0) >= batchLimit(pr.base.repo.full_name, pr.number, fingerprint) || state?.terminalBatches?.includes(fingerprint)) return { eligible: false, reason: 'Attempt budget exhausted or batch terminal.' };
   if (state?.published && !state.published.notified) return { eligible: false, reason: 'Published revision awaits CI outcome.' };
   return { eligible: true, fingerprint, dryRun: Boolean(dryRun), headSha: pr.head.sha, prNumber: pr.number, headRef: pr.head.ref, feedback };
 }
