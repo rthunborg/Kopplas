@@ -1,0 +1,59 @@
+name: PR feedback runtime preflight
+
+on:
+  pull_request:
+    paths:
+      - '.github/codex/pr-feedback/**'
+      - '.github/workflows/pr-feedback*.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.github/codex/pr-feedback/**'
+      - '.github/workflows/pr-feedback*.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  initialize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    # No protected environment, App key, model API key, or paid coding journal.
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Install the exact coding CLI
+        run: npm install --global @openai/codex@0.162.1
+      - name: Prepare the immutable home used by the coding workflow
+        run: |
+          set -euo pipefail
+          sudo useradd --create-home --shell /bin/bash prfix-codex
+          sudo chown root:root /home/prfix-codex
+          sudo chmod 755 /home/prfix-codex
+          sudo install -d -o prfix-codex -g prfix-codex -m 700 /home/prfix-codex/workspace /home/prfix-codex/log /home/prfix-codex/sqlite
+          sudo install -d -o runner -g runner -m 755 /home/prfix-codex/.codex
+          cp .github/codex/pr-feedback/config.toml /home/prfix-codex/.codex/config.toml
+          cp .github/codex/pr-feedback/result.schema.json /home/prfix-codex/.codex/result.schema.json
+          chmod 644 /home/prfix-codex/.codex/config.toml /home/prfix-codex/.codex/result.schema.json
+          sudo install -d -o prfix-codex -g prfix-codex -m 700 /home/prfix-codex/.codex/sessions /home/prfix-codex/.codex/tmp
+          sudo -u prfix-codex test ! -w /home/prfix-codex
+          sudo -u prfix-codex test ! -w /home/prfix-codex/.codex
+          sudo -u prfix-codex test ! -w /home/prfix-codex/.codex/config.toml
+          sudo -u prfix-codex test ! -w /home/prfix-codex/.codex/result.schema.json
+      - name: Reproduce the original refusal without a model request
+        run: node .github/codex/pr-feedback/runtime-preflight.mjs --expect-denied
+      - name: Grant only the required non-secret runtime file
+        run: |
+          set -euo pipefail
+          sudo install -o prfix-codex -g prfix-codex -m 644 /dev/null /home/prfix-codex/.codex/installation_id
+          sudo -u prfix-codex test -w /home/prfix-codex/.codex/installation_id
+          sudo -u prfix-codex test ! -w /home/prfix-codex/.codex
+          sudo -u prfix-codex test ! -w /home/prfix-codex/.codex/config.toml
+      - name: Prove pinned initialization and clean shutdown without inference
+        run: node .github/codex/pr-feedback/runtime-preflight.mjs
