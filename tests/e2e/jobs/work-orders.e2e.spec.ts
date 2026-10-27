@@ -22,6 +22,7 @@
  */
 import { test, expect } from "../support/resource-cdp-attachment";
 import type { Locator, Page, Request, Response, Route } from "@playwright/test";
+import { completeWorkOrderSave, workOrderSaveView } from "./work-order-save-completion";
 import { createJobsDepthFixture } from "../../support/jobs-depth-atdd";
 import { memberCommand, memberInput, seedMember } from "../../support/job-members-atdd";
 import {
@@ -91,6 +92,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       await ready(panel);
       await panel.getByRole("button", { name: "Ny arbetsorder", exact: true }).click();
       const detail = page.getByTestId("work-order-pane");
+      const saveView = workOrderSaveView(detail, expect);
       const title = detail.getByLabel("Rubrik", { exact: true });
       await title.focus();
       await expect(title).toBeFocused();
@@ -99,7 +101,7 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       await detail.getByLabel("Planerat startdatum", { exact: true }).fill("2026-10-20");
       await detail.getByLabel("Planerat slutdatum", { exact: true }).fill("2026-10-21");
       const beforeCreate = await workOrdersSnapshot(f);
-      expect((await save(page, jobId, detail.getByRole("button", { name: "Skapa arbetsorder", exact: true }), titleIs("Montera central"))).ok()).toBe(true);
+      await completeWorkOrderSave(() => save(page, jobId, detail.getByRole("button", { name: "Skapa arbetsorder", exact: true }), titleIs("Montera central")), saveView);
       await expect(detail.getByTestId("work-order-save-status")).toHaveAttribute("role", "status");
       const created = (await readWorkOrders(f.fx.plannerClient, jobId)).rows;
       expect(created).toHaveLength(1);
@@ -114,14 +116,18 @@ test.describe("Story 16.3 essential work-order journeys", () => {
       expect(afterCreate.jobs).toEqual(beforeCreate.jobs); // Own dates do not mutate parent/provenance.
 
       await detail.getByRole("listbox", { name: "Tilldelade personer", exact: true }).selectOption(people);
-      expect((await save(page, jobId, detail.getByRole("button", { name: "Spara tilldelning", exact: true }),
-        (input) => input.workOrderId === id && JSON.stringify(input.personProfileIds?.slice().sort()) === JSON.stringify(people.slice().sort()))).ok()).toBe(true);
+      const assigneeLabels = await detail.getByRole("listbox", { name: "Tilldelade personer", exact: true }).locator("option:checked").allTextContents();
+      await completeWorkOrderSave(() => save(page, jobId, detail.getByRole("button", { name: "Spara tilldelning", exact: true }),
+        (input) => input.workOrderId === id && JSON.stringify(input.personProfileIds?.slice().sort()) === JSON.stringify(people.slice().sort())), saveView);
+      await expect(detail.getByRole("listbox", { name: "Tilldelade personer", exact: true })).toHaveValues(people.slice().sort());
+      for (const label of assigneeLabels) await expect(panel.getByTestId(`work-order-${id}`)).toContainText(label);
       expect((await workOrdersSnapshot(f)).audit.length - afterCreate.audit.length).toBe(1);
       await title.fill("Montera och prova central");
       await detail.getByLabel("Planerat slutdatum", { exact: true }).fill("");
       const beforeEdit = await workOrdersSnapshot(f);
-      expect((await save(page, jobId, detail.getByRole("button", { name: "Spara arbetsorder", exact: true }),
-        (input) => input.workOrderId === id && input.title === "Montera och prova central" && input.planned_end_date === null)).ok()).toBe(true);
+      await completeWorkOrderSave(() => save(page, jobId, detail.getByRole("button", { name: "Spara arbetsorder", exact: true }),
+        (input) => input.workOrderId === id && input.title === "Montera och prova central" && input.planned_end_date === null), saveView);
+      await expect(panel.getByTestId(`work-order-${id}`)).toContainText("Montera och prova central");
       const afterEdit = await workOrdersSnapshot(f);
       expect(afterEdit.audit.length - beforeEdit.audit.length).toBe(1);
       expect(afterEdit.jobs).toEqual(beforeCreate.jobs);

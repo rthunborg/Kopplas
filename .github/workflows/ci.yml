@@ -351,7 +351,7 @@ jobs:
           version: 2.115.0
 
       - name: Start local schema source
-        run: supabase start
+        run: supabase start --exclude mailpit
 
       - name: Reset local schema source
         run: supabase db reset
