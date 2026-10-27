@@ -70,7 +70,7 @@ async function widget(props: WidgetProps): Promise<string> {
   return renderToStaticMarkup(createElement(QuotePipelineWidget, props));
 }
 function plain(html: string): string {
-  return html.replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
 describe("19.1-UNIT-013 actual pipeline component states (SSR)", () => {
