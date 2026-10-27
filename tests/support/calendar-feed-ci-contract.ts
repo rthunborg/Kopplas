@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
+import { projectCiPerformanceChanges } from "./ci-performance-contract";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
 const wrapperSha256 = "adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7";
@@ -109,7 +110,9 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   const browser = literalArgs(source, "BROWSER_ARGS", browserArgs);
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
-  let projected = projectStorageSourceMailExclusion(workflow.replaceAll("\r\n", "\n"));
+  // Compose independently reviewed finite inverses before the historical
+  // calendar/fixed-browser projection. Preserve every unrelated workflow byte.
+  let projected = projectStorageSourceMailExclusion(projectCiPerformanceChanges(workflow));
   assert.equal(projected.split(authCleanupEntry).length - 1, 1, "Auth cleanup exact diagnostic workflow fragment");
   const collectorSource = readFileSync(new URL("../../scripts/ci/auth-cleanup-collector.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
   assert.equal(createHash("sha256").update(collectorSource).digest("hex"), authCleanupCollectorSha256, "Auth cleanup reviewed collector source");

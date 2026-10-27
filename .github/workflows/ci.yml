@@ -124,6 +124,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
+        id: node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -136,6 +137,15 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-verify-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-verify-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-
 
       - name: Verify lockfiles (single package manager)
         run: pnpm run verify:lockfiles
@@ -172,7 +182,7 @@ jobs:
         run: pnpm run test:auto-bmad-focused
 
       - name: Build
-        run: pnpm build
+        run: node scripts/ci/timed-build.mjs
 
       # Stage 10 (lightweight containment): the AUTHORITATIVE R-002 built-bundle
       # service-role grep (Story 2.4). MUST run AFTER `pnpm build` — it scans the
@@ -181,6 +191,15 @@ jobs:
       # uses NO service-role key (anon + RLS), so a clean build yields zero hits.
       - name: Verify built-bundle service-role containment (no leakage in .next)
         run: pnpm run verify:bundle-containment
+
+      - name: Upload production build timing
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build-timing-verify
+          path: ${{ runner.temp }}/build-timing-verify.json
+          retention-days: 7
+          if-no-files-found: ignore
 
   # ──────────────────────────────────────────────────────────────────────────
   # Story 2.2 activates architecture §19 stage 6 (migration reset) + stage 8
@@ -511,6 +530,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
+        id: node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -519,8 +539,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Playwright browser (chromium + OS deps)
-        run: pnpm exec playwright install --with-deps chromium
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
 
       - name: Install Supabase CLI
         uses: supabase/setup-cli@v1
@@ -591,6 +623,22 @@ jobs:
           retention-days: 7
           if-no-files-found: ignore
 
+      - name: Upload browser runtime identity and timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-runtime-${{ github.job }}
+          path: |
+            ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
+            ${{ runner.temp }}/build-timing-${{ github.job }}.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop
+
       - name: Stop local Supabase stack
         if: always()
         run: supabase stop
@@ -621,6 +669,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
+        id: node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -629,8 +678,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Playwright browser (chromium + OS deps)
-        run: pnpm exec playwright install --with-deps chromium
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-dashboard-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/e2e/dashboard/playwright.ci.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-dashboard-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/e2e/dashboard/playwright.ci.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
 
       - name: Install Supabase CLI
         uses: supabase/setup-cli@v1
@@ -692,6 +753,22 @@ jobs:
           path: playwright-report/dashboard/
           retention-days: 7
           if-no-files-found: ignore
+
+      - name: Upload browser runtime identity and timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-runtime-${{ github.job }}
+          path: |
+            ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
+            ${{ runner.temp }}/build-timing-${{ github.job }}.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop
 
       - name: Stop local Supabase stack
         if: always()
@@ -1515,3 +1592,100 @@ jobs:
         run: supabase stop
 
   # FIXED-APPLICATION-JOB-END
+
+  # Additive data-free entry UI feedback; required jobs below never consume its
+  # classifier. A green result is not auth, affected-component or release acceptance.
+  feedback-scope:
+    needs: [checkpoint-admission]
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      entry_ui: ${{ steps.classify.outputs.entry_ui }}
+    steps:
+      - name: Checkout immutable diff
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Classify additive feedback
+        id: classify
+        run: node scripts/ci/classify-feedback.mjs
+      - name: Upload conservative classification
+        uses: actions/upload-artifact@v4
+        with:
+          name: feedback-classification
+          path: test-results/feedback-classification.json
+          retention-days: 7
+          if-no-files-found: error
+
+  entry-ui-feedback:
+    needs: [checkpoint-admission, feedback-scope]
+    if: ${{ needs.feedback-scope.outputs.entry_ui == 'true' }}
+    runs-on: ubuntu-latest
+    # Five minutes is a measured objective, not an execution acceptance cutoff.
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node
+        id: node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - name: Install dependencies
+        timeout-minutes: 3
+        run: pnpm install --frozen-lockfile
+
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-entry-ui-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/feedback/playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-entry-ui-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/feedback/playwright.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
+
+      - name: Production entry UI feedback (two isolated data-free viewports)
+        timeout-minutes: 6
+        run: pnpm exec playwright test --config tests/feedback/playwright.config.ts
+
+      - name: Upload entry UI native results and screenshots
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: entry-ui-feedback
+          path: |
+            test-results/entry-ui.json
+            test-results/entry-ui/
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload browser runtime identity and timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-runtime-${{ github.job }}
+          path: |
+            ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
+            ${{ runner.temp }}/build-timing-${{ github.job }}.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop

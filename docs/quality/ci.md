@@ -254,3 +254,10 @@ code trusted or permit privileged secrets to be passed to it.
 - [definition-of-done.md](definition-of-done.md) — Phase A done criteria CI enforces.
 - [branching-and-pr-policy.md](../process/branching-and-pr-policy.md) — PR requirements and merge gates.
 - architecture.md §18 (Test Strategy + Test Infrastructure Decisions), §19 (CI And Quality Gates).
+
+## CI performance and focused feedback
+
+Use [Fast CI feedback and cold-start diagnosis](ci-performance.md) for focused
+check selection, safe cache/fixture reuse, the early production entry-screen
+lane, timing evidence and the PR #109 integration boundary. Early feedback does
+not replace native required checks or affected-surface visual acceptance.
