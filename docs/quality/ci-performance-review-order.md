@@ -3,7 +3,8 @@
 ## Suggested Review Order
 
 Author: CI implementation delegate (Sol High).
-Refreshed against the final CI performance working tree based on `d02fd8ac`.
+Refreshed against the uncommitted integration of `origin/main` at `78ff0c61`
+into PR #110's `6d16a876` working tree.
 
 ### Keep existing coverage independent of early feedback
 
@@ -12,10 +13,23 @@ shared, sensitive, transitive, configuration and unknown changes remain broad;
 there is currently no approved narrow acceptance mapping. Documentation-only
 selection suppresses only the additional entry-page job.
 
-- `.github/workflows/ci.yml:1582` — `feedback-scope`: classifies only additive feedback.
-- `.github/workflows/ci.yml:1607` — `entry-ui-feedback`: real production browser feedback with two isolated viewports.
+- `.github/workflows/ci.yml:1598` — `feedback-scope`: classifies only additive feedback.
+- `.github/workflows/ci.yml:1623` — `entry-ui-feedback`: real production browser feedback with two isolated viewports.
 - `scripts/ci/classify-feedback.mjs:7` — `classifyFeedback`: defaults missing or unknown changes to broad coverage.
-- `tests/unit/scripts/ci/ci-performance.test.ts:15` — required jobs preserve their original dependencies and gates.
+- `tests/unit/scripts/ci/ci-performance.test.ts:16` — required jobs preserve their original dependencies and gates.
+
+### Compose the merged base's independent provenance boundaries
+
+The integration retains PR #109's Storage-only Mailpit exclusion and pinned
+Auth-cleanup observer, then composes their finite inverses after the performance
+inverse. Exact presence/count assertions and the collector's original source
+hash remain enforced; unrelated changes still reach the historical workflow
+digest rather than being erased by conflict resolution.
+
+- `tests/support/calendar-feed-ci-contract.ts:115` — `projectStorageSourceMailExclusion(projectCiPerformanceChanges(workflow))`: composes both reviewed transformations.
+- `tests/support/calendar-feed-ci-contract.ts:118` — `authCleanupCollectorSha256`: retains the incoming collector source guard.
+- `tests/unit/scripts/ci/ci-performance.test.ts:62` — combined projection rejects independent drift and preserves the historical digest.
+- `tests/unit/scripts/ci/auth-cleanup-collector.test.ts:94` — incoming consumer retains strict collector-fragment and unrelated-drift checks.
 
 ### Replace browser installation while retaining the host topology
 
@@ -41,7 +55,7 @@ authenticated browser build/server/fixture setup remains aggregated.
 - `.github/workflows/ci.yml:143` — `Cache Next build intermediates`: restores no complete build or authentication state.
 - `tests/feedback/entry-ui.feedback.spec.ts:11` — `__reactFiber$`: proves client attachment before keyboard checks.
 - `tests/feedback/entry-ui.feedback.spec.ts:34` — `attach`: captures screenshots without claiming baseline comparison.
-- `tests/unit/scripts/ci/ci-performance.test.ts:53` — exact performance inverse preserves unrelated workflow drift.
+- `tests/unit/scripts/ci/ci-performance.test.ts:54` — exact performance inverse preserves unrelated workflow drift.
 
 Evidence: 33 focused tests passed without skips; full typecheck and focused lint
 passed. The production build passed in 31.091 seconds and source/bundle
@@ -55,6 +69,13 @@ the existing jobs; all 41 focused admission/performance cases then passed. The
 remaining two failures are the unchanged CRLF migration comparisons. Full lint
 passed with zero errors and 31 existing warnings. Hosted browser measurements
 are recorded separately when available.
+
+Integration evidence: 57 complete focused contract cases and five selected
+historical/Storage cases passed without failures or skips; typecheck passed.
+These include the calendar wrapper, fixed-browser and Auth-cleanup historical
+digest consumers. The incoming application/fixture/RLS changes are preserved.
+This source-contract integration does not resolve or replace the prior PR #110
+RLS failure on its older head; exact integrated-head hosted evidence is separate.
 
 Limits: no local browser service or database was launched. Hosted acquisition,
 remote browser execution, screenshots and elapsed-time targets still require

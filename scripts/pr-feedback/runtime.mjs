@@ -34,6 +34,30 @@ async function all(api, path, key) {
   throw new Error('Pagination safety bound reached; refusing incomplete history.');
 }
 
+function pilotNumber(value) {
+  if (value === undefined) return undefined;
+  if (typeof value !== 'string' || !/^[1-9][0-9]*$/.test(value)) throw new Error('Pilot admission configuration is invalid.');
+  return number(value);
+}
+
+function pilotAdmits(pilot, manual, prNumber) {
+  return pilot === undefined || manual && prNumber === pilot;
+}
+
+async function automationSwitches(api, repo) {
+  const switches = await all(api, `/repos/${repo}/actions/variables`, 'variables');
+  const values = {};
+  for (const name of ['PR_FIX_ENABLED', 'PR_FIX_PUBLISH']) {
+    const matches = switches.filter((variable) => variable.name === name);
+    if (matches.length !== 1 || !['true', 'false'].includes(matches[0].value)) throw new Error('Repository automation switches are unavailable or ambiguous.');
+    values[name] = matches[0].value;
+  }
+  const pilot = switches.filter((variable) => variable.name === 'PR_FIX_PILOT_PR');
+  if (pilot.length > 1) throw new Error('Pilot admission configuration is ambiguous.');
+  if (pilot.length === 1 && typeof pilot[0].value !== 'string') throw new Error('Pilot admission configuration is invalid.');
+  return { enabled: values.PR_FIX_ENABLED === 'true', publish: values.PR_FIX_PUBLISH === 'true', pilot: pilotNumber(pilot[0]?.value) };
+}
+
 export function validateResult(result, feedbackIds) {
   if (!result || !['changed', 'no-change', 'needs-human'].includes(result.outcome) || !Array.isArray(result.addressedIds) || !Array.isArray(result.unresolvedIds) || typeof result.summary !== 'string' && result.summary !== undefined) throw new Error('Invalid structured model result.');
   const allowed = new Set(feedbackIds.map(({ kind, id }) => `${kind}:${id}`));
@@ -94,7 +118,7 @@ function context() {
 }
 
 function stateBody(state) {
-  const text = { reserved: 'A bounded fix attempt is running.', published: 'Fix committed; waiting for CI on that revision.', 'ci-pending': 'Fix committed; CI is still pending.', 'ci-failed': 'Fix committed; CI failed. Human review is needed.', 'ci-passed': 'Fix committed; all expected CI jobs passed. Human review is ready.', 'no-change': 'No eligible change was produced. Human follow-up is needed.' }[state.phase] ?? 'Automation stopped; human follow-up is needed.';
+  const text = { reserved: 'A bounded fix attempt is running.', published: 'Fix committed; waiting for CI on that revision.', 'ci-pending': 'Fix committed; CI is still pending.', 'ci-failed': 'Fix committed; CI failed. Human review is needed.', 'ci-passed': 'Fix committed; exact-head CI and applicable visual acceptance passed. Human review is ready.', 'visual-pending': 'Fix committed; exact-head CI passed. Current visual acceptance is missing or blocked.', 'no-change': 'No eligible change was produced. Human follow-up is needed.' }[state.phase] ?? 'Automation stopped; human follow-up is needed.';
   const links = state.repo && state.published ? `\n\n[Commit](https://github.com/${state.repo}/commit/${state.published.headSha})${state.published.ciRunId ? ` · [CI](https://github.com/${state.repo}/actions/runs/${state.published.ciRunId})` : ''}` : '';
   const result = state.result ? `\n\nReported addressed: ${state.result.addressedIds.join(', ') || 'none'}. Remaining: ${state.result.unresolvedIds.join(', ') || 'none'}.\n\n${scrubText(state.result.summary ?? '')}` : '';
   const checks = state.verification ? `\n\nIndependent validation: ${state.verification.join(', ')}.` : '';
@@ -145,13 +169,15 @@ async function history(api, ctx, publicKey, dir) {
   return journals;
 }
 
-async function monitor(api, ctx, pr, state, write) {
-  if (!state.published || state.published.notified) return state;
+export async function monitor(api, ctx, pr, state, write, admitWrite = async () => true) {
+  if (!state.published) return state;
   if (pr.head.sha !== state.published.headSha) {
     state.phase = 'superseded';
+    state.visualAcceptance = { status: 'invalidated', reason: 'PR head changed after publication/acceptance.' };
     state.published.notified = true;
-    return write ? saveState(api, ctx.repo, state) : state;
+    return write && await admitWrite() ? saveState(api, ctx.repo, state) : state;
   }
+  if (state.published.notified) return state;
   const runs = await all(api, `/repos/${ctx.repo}/actions/workflows/ci.yml/runs?event=pull_request&head_sha=${pr.head.sha}`, 'workflow_runs');
   for (const run of runs) {
     if (!run.pull_requests?.some((item) => item.number === pr.number && item.head?.sha === pr.head.sha)) continue;
@@ -162,10 +188,26 @@ async function monitor(api, ctx, pr, state, write) {
   // Recheck live head immediately before reporting a completed revision.
   const fresh = await api(`/repos/${ctx.repo}/pulls/${pr.number}`);
   if (fresh.head.sha !== pr.head.sha || fresh.state !== 'open') return state;
+  if (result.phase === 'ci-passed') {
+    try {
+      const { assessPr } = await import('../quality/frontend-controller.mjs');
+      state.visualAcceptance = await assessPr({ api, repo: ctx.repo, prNumber: pr.number, expectedHead: pr.head.sha });
+    } catch {
+      state.phase = 'visual-pending';
+      state.visualAcceptance = { status: 'blocked', headSha: pr.head.sha, reason: 'Current authenticated visual evidence is missing, stale, failed or unavailable.' };
+      state.published.ciRunId = result.runId;
+      // Keep notified=false: polling can accept later evidence without spending a
+      // coding attempt or asking reviewers to review an unaccepted revision.
+      return await admitWrite() ? saveState(api, ctx.repo, state) : state;
+    }
+  }
+  // Intent and its one notification POST are one admitted operation. A denied
+  // operation remains resumable; once intent is durable, finish the pair rather
+  // than create known-not-sent work that a later poll can never distinguish.
+  if (!await admitWrite()) return state;
   state.phase = result.phase;
   state.published.notified = true;
   state.published.ciRunId = result.runId;
-  // Persist notification intent first; retries never spam reviewers after ambiguity.
   state = await saveState(api, ctx.repo, state);
   if (result.phase === 'ci-passed') {
     const reviewers = [...new Set((state.reviewerLogins ?? []).filter((login) => login !== fresh.user.login))];
@@ -177,10 +219,23 @@ async function monitor(api, ctx, pr, state, write) {
 export async function collect(dir) {
   const ctx = context();
   mkdirSync(dir, { recursive: true, mode: 0o700 });
+  const auditOnly = (reason) => {
+    writeFileSync(join(dir, 'report.json'), JSON.stringify({ ...ctx, eligible: false, dryRun: true, reason }, null, 2));
+    return { eligible: false, dryRun: true };
+  };
   const read = createApi(process.env.GITHUB_TOKEN);
   const event = readJson(process.env.GITHUB_EVENT_PATH);
   let targetPr;
-  const dryRun = process.env.PR_FIX_PUBLISH !== 'true' || process.env.GITHUB_EVENT_NAME === 'workflow_dispatch' && process.env.PR_FIX_DRY_RUN !== 'false';
+  const manual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+  const snapshotPilot = pilotNumber(process.env.PR_FIX_PILOT_PR || undefined);
+  if (snapshotPilot !== undefined && (!manual || number(event.inputs?.pr_number) !== snapshotPilot)) return auditOnly('Audit only: this event is outside the designated manual pilot.');
+  const snapshotPublish = process.env.PR_FIX_PUBLISH === 'true';
+  const explicitDryRun = manual && process.env.PR_FIX_DRY_RUN === 'true';
+  const monitorOnly = manual && process.env.PR_FIX_MONITOR_ONLY === 'true';
+  // A held publisher is a manual pilot lane, not automatic paid dry-run mode.
+  // Reject the trusted early snapshot before minting an App token or reading history.
+  if (!snapshotPublish && !explicitDryRun) return auditOnly('Audit only: publication is held; only an explicit manual dry run may proceed.');
+  const dryRun = !snapshotPublish || manual && process.env.PR_FIX_DRY_RUN !== 'false';
   const allowIds = DEFAULT_ALLOWED_USER_IDS;
   if (['workflow_dispatch', 'issue_comment'].includes(process.env.GITHUB_EVENT_NAME)) {
     if (process.env.GITHUB_EVENT_NAME === 'issue_comment' && !event.issue?.pull_request) throw new Error('Issue comments cannot initiate PR work.');
@@ -190,14 +245,34 @@ export async function collect(dir) {
   }
   const enabled = process.env.PR_FIX_ENABLED === 'true';
   if (!enabled || !process.env.PR_FIX_APP_PRIVATE_KEY || !process.env.PR_FIX_APP_ID || !process.env.PR_FIX_APP_USER_ID) {
-    writeFileSync(join(dir, 'report.json'), JSON.stringify({ ...ctx, eligible: false, dryRun: true, reason: 'Audit only: automation or protected credentials are not configured.' }, null, 2));
-    return { eligible: false, dryRun: true };
+    return auditOnly('Audit only: automation or protected credentials are not configured.');
   }
   const api = await appApi();
+  const currentAdmission = async () => {
+    const switches = await automationSwitches(api, ctx.repo);
+    return switches.enabled && (switches.publish || explicitDryRun) && pilotAdmits(switches.pilot, manual, targetPr);
+  };
+  const currentWriteAdmission = async () => {
+    const switches = await automationSwitches(api, ctx.repo);
+    return switches.enabled && switches.publish && pilotAdmits(switches.pilot, manual, targetPr);
+  };
+  // App read access supplies the current repository variables. A stale enabled
+  // snapshot cannot turn an automatic event into a paid attempt under a fresh hold.
+  if (!await currentAdmission()) return auditOnly('Audit only: current automation switches do not admit this event.');
   const open = await all(read, `/repos/${ctx.repo}/pulls?state=open&sort=created&direction=asc`);
   if (!open.some((pr) => (!targetPr || pr.number === targetPr) && pr.head.repo?.full_name === ctx.repo && pr.base.ref === 'main' && pr.labels.some(({ name }) => name === OPT_IN_LABEL))) {
     writeFileSync(join(dir, 'report.json'), JSON.stringify({ ...ctx, eligible: false, dryRun, reason: 'No opted-in open PRs.' }, null, 2));
     return { eligible: false, dryRun };
+  }
+  if (monitorOnly) {
+    if (dryRun || !await currentWriteAdmission()) return auditOnly('Audit only: monitor-only writes require enabled live publication.');
+    const pr = await read(`/repos/${ctx.repo}/pulls/${targetPr}`);
+    if (pr.state !== 'open' || pr.draft || pr.head.repo?.full_name !== ctx.repo || pr.base.ref !== 'main' || !pr.labels?.some(({ name }) => name === OPT_IN_LABEL)) throw new Error('Pilot monitoring PR is no longer eligible.');
+    validateChangedFiles(await all(read, `/repos/${ctx.repo}/pulls/${targetPr}/files`));
+    const state = await getState(read, ctx.repo, targetPr, await all(read, `/repos/${ctx.repo}/issues/${targetPr}/comments`));
+    await monitor(api, ctx, pr, state, true, currentWriteAdmission);
+    writeFileSync(join(dir, 'report.json'), JSON.stringify({ ...ctx, eligible: false, dryRun: false, reason: 'Monitor-only: existing publication inspected without a new model attempt.' }, null, 2));
+    return { eligible: false, dryRun: false };
   }
   const journal = await history(read, ctx, createPublicKey(createPrivateKey(process.env.PR_FIX_APP_PRIVATE_KEY)), dir);
   let selected;
@@ -212,9 +287,12 @@ export async function collect(dir) {
       if (previous.status !== 'completed') continue;
       state.phase = previous.conclusion === 'cancelled' ? 'cancelled' : 'needs-human';
       if (pr.head.sha !== state.reservation.headSha || (state.batches[state.reservation.fingerprint] ?? 0) >= LIMITS.perBatch) state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), state.reservation.fingerprint])];
-      if (!dryRun) state = await saveState(api, ctx.repo, state);
+      if (!dryRun) {
+        if (!await currentWriteAdmission()) return auditOnly('Audit only: current automation switches do not admit reservation reconciliation.');
+        state = await saveState(api, ctx.repo, state);
+      }
     }
-    state = await monitor(api, ctx, pr, state, !dryRun);
+    state = await monitor(api, ctx, pr, state, !dryRun, currentWriteAdmission);
     const relevant = journal.filter((item) => item.prNumber === pr.number && !state.accountedRuns?.includes(`${item.runId}:${item.runAttempt}`));
     for (const item of relevant) {
       state.lifetimeAttempts++;
@@ -232,6 +310,9 @@ export async function collect(dir) {
     if (!attempt.eligible || selected) continue;
     const files = await all(read, `/repos/${ctx.repo}/pulls/${pr.number}/files`);
     try { validateChangedFiles(files); } catch { continue; }
+    // Recheck immediately before any new reservation/journal. A hold observed
+    // during collection must not consume another automatic attempt.
+    if (!await currentAdmission()) return auditOnly('Audit only: current automation switches do not admit this event.');
     const plan = { schemaVersion: 1, ...ctx, ...attempt, workflowPath: '.github/workflows/pr-feedback.yml', stateCommentId: state.commentId ?? null, feedbackIds: feedback.map(({ kind, id }) => ({ kind, id })), reviewerLogins: [...new Set(reviews.filter((review) => allowIds.includes(review.user.id) && ['write', 'maintain', 'admin'].includes(permissions[review.user.login])).map((review) => review.user.login))] };
     if (!dryRun) {
       state.lifetimeAttempts++;
@@ -344,8 +425,12 @@ export async function publish({ trustedDir, proposalPath, planPath, attestationP
   if (JSON.stringify(signed) !== JSON.stringify(plan)) throw new Error('Collector plan signature mismatch.');
   validateResult(proposal.result, plan.feedbackIds);
   const api = injectedApi ?? await appApi();
-  const switches = await all(api, `/repos/${ctx.repo}/actions/variables`, 'variables');
-  if (!['PR_FIX_ENABLED', 'PR_FIX_PUBLISH'].every((name) => switches.some((variable) => variable.name === name && variable.value === 'true'))) throw new Error('Live automation switches have been disabled.');
+  const admitPublication = async () => {
+    const switches = await automationSwitches(api, ctx.repo);
+    if (!switches.enabled || !switches.publish) throw new Error('Live automation switches have been disabled.');
+    if (!pilotAdmits(switches.pilot, process.env.GITHUB_EVENT_NAME === 'workflow_dispatch', plan.prNumber)) throw new Error('Pilot admission does not admit this publication.');
+  };
+  await admitPublication();
   const pr = await api(`/repos/${ctx.repo}/pulls/${plan.prNumber}`);
   if (pr.state !== 'open' || pr.draft || pr.head.repo?.full_name !== ctx.repo || pr.head.sha !== plan.headSha || pr.head.ref !== plan.headRef || pr.base.ref !== 'main' || !pr.labels.some(({ name }) => name === OPT_IN_LABEL)) throw new Error('PR changed before publication.');
   const comments = await all(api, `/repos/${ctx.repo}/issues/${pr.number}/comments`);
@@ -365,6 +450,7 @@ export async function publish({ trustedDir, proposalPath, planPath, attestationP
   if (!proposal.files.length) {
     state.phase = proposal.result.outcome;
     state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), plan.fingerprint])];
+    await admitPublication();
     await saveState(api, ctx.repo, state);
     return { phase: 'no-change' };
   }
@@ -378,6 +464,9 @@ export async function publish({ trustedDir, proposalPath, planPath, attestationP
   const headRef = branchLookup.data?.repository?.pullRequest?.headRef;
   if (branchLookup.errors?.length || typeof headRef?.id !== 'string' || !headRef.id || headRef.name !== plan.headRef || headRef.repository?.nameWithOwner !== ctx.repo || headRef.target?.oid !== plan.headSha) throw new Error('PR branch identity changed before atomic publication.');
   // GitHub compares the exact expected head and appends the commit atomically.
+  // Recheck admission after the intervening reads, immediately before this
+  // operation's first mutation. Once committed, finish its durable accounting.
+  await admitPublication();
   // A forward push, forced rewind, or branch replacement cannot be overwritten.
   const mutation = await api('/graphql', { method: 'POST', body: {
     query: 'mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid parents(first:1){nodes{oid}}} ref{id target{oid}}}}',
@@ -395,6 +484,7 @@ export async function publish({ trustedDir, proposalPath, planPath, attestationP
   if (mutation.errors?.length || !/^[0-9a-f]{40}$/.test(result?.commit?.oid ?? '') || result.commit.parents?.nodes?.length !== 1 || result.commit.parents.nodes[0].oid !== plan.headSha || result.ref?.id !== headRef.id || result.ref?.target?.oid !== result.commit.oid) throw new Error('Atomic commit publication failed or returned an invalid result; inspect the live PR before retrying.');
   const commit = { sha: result.commit.oid };
   state.phase = 'published';
+  state.visualAcceptance = { status: 'invalidated', reason: 'Remediation published a new candidate; previous acceptance never carries forward.' };
   state.published = { headSha: commit.sha, runId: ctx.runId, notified: false };
   state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), plan.fingerprint])];
   await saveState(api, ctx.repo, state);
@@ -414,11 +504,17 @@ export async function finalize({ planPath, journalPath }) {
   const signed = verifyJournal(readJson(journalPath), createPublicKey(createPrivateKey(process.env.PR_FIX_APP_PRIVATE_KEY)));
   if (JSON.stringify(plan) !== JSON.stringify(signed) || plan.runId !== ctx.runId || plan.runAttempt !== ctx.runAttempt || plan.repo !== ctx.repo || plan.controllerSha !== ctx.controllerSha) throw new Error('Failure finalizer origin mismatch.');
   const api = await appApi();
+  const admitFinalization = async () => {
+    const switches = await automationSwitches(api, ctx.repo);
+    if (!switches.enabled || !switches.publish || !pilotAdmits(switches.pilot, process.env.GITHUB_EVENT_NAME === 'workflow_dispatch', plan.prNumber)) throw new Error('Current automation switches do not admit failure finalization.');
+  };
+  await admitFinalization();
   const comments = await all(api, `/repos/${ctx.repo}/issues/${plan.prNumber}/comments`);
   const state = await getState(api, ctx.repo, plan.prNumber, comments);
   if (state.reservation?.runId !== ctx.runId || state.reservation?.runAttempt !== ctx.runAttempt || state.commentId !== plan.stateCommentId) throw new Error('Failure finalizer reservation mismatch.');
   state.phase = 'needs-human';
   if ((state.batches[plan.fingerprint] ?? 0) >= LIMITS.perBatch) state.terminalBatches = [...new Set([...(state.terminalBatches ?? []), plan.fingerprint])];
+  await admitFinalization();
   await saveState(api, ctx.repo, state);
 }
 

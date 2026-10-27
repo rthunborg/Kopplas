@@ -101,3 +101,49 @@ Reviewed browser-runtime SHA256:
 `6e458a649d018c0dfff6ca7f536c94e58e6b936eba804e7df032e024b6156d28`.
 Approval covers publication/measurement only; hosted execution and final CI
 readiness remain pending. No merge or deployment approval is implied.
+
+## Base integration route — 2026-10-27
+
+Coordinator-authorized local integration of merged PR #109: source
+`origin/main` at `78ff0c6101105484eecd9e6bd8c8ba397602c229` into PR #110's
+`6d16a87656eefae51aa0636d17f3602deddb8994`. Implementation/conflict resolution
+uses gpt-6.1-sol High because composed CI provenance and source-custody assertions
+are sensitive. Preserve incoming product/fixture changes and both exact inverse
+contracts; retain the historical `48adc320` workflow digest. Leave the local
+merge uncommitted for independent Sol High targeted review. This author task
+does not authorize publication, merge to main, deployment or resources.
+
+Only `tests/support/calendar-feed-ci-contract.ts` conflicted. The resolution
+retains every incoming constant/source guard and composes performance projection
+then Storage-source projection, followed by exact Auth-cleanup fragment removal
+and the existing calendar/fixed-browser transformations. No historical digest
+or collector source pin was reset. An added combined test confirms both incoming
+fragments survive the performance projection, independently rejects drift in
+all three boundaries and retains unrelated-byte drift detection.
+
+Validation: 57 complete focused performance/Auth-cleanup/checkpoint/native-report
+cases passed; five selected wrapper/Storage/fixed-browser historical cases
+passed; zero failures or skips. Typecheck passed. Incoming product, tenant
+factory, work-order and RLS files remain untouched by conflict resolution.
+The prior PR #110 RLS failure belongs to its older head and is not evidence of
+this local merge conflict or a newly verified resolution. Database/browser
+execution for the integrated head remains a separate hosted check. The merge
+is deliberately left uncommitted for independent High review.
+
+Preservation audit: all 60 incoming files outside the workflow/conflicted helper
+match `origin/main` bytes (text compared after checkout newline normalization;
+binary files compared directly). Applying only the performance inverse to the
+combined workflow reproduces `origin/main` exactly. Targeted ESLint and staged/
+unstaged diff checks passed; no unresolved index entries remain. The refreshed
+author review trail validates 16 references. No managed resources were launched.
+
+Independent Sol High targeted follow-up (round 2 of 3) approved bounded final-head
+publication and CI with no actionable defects. Reviewer independently passed
+78 focused cases plus five historical/Storage/three-consumer cases, zero skips.
+Both-parent preservation and the exact inverse-to-main audit passed. LF-normalized
+SHA256 bindings: workflow `9c9e10a502092606f039a1dd96728f442290fc12cbdd35095c7180966ce23317`;
+resolved contract `d9e15af932855c7b8424a0986b3839a9ccc80e9269a6daa4a7d19de8fa29d740`;
+combined regression `242caf26528edc182207581b1bbe389e17bc83c7b3be50fb72ecf659673555f1`.
+No code changed after that review. Dedicated Vercel Preview disable was freshly
+verified true before publication. Exact integrated-head hosted evidence remains
+pending; neither this review nor publication authorizes merge or deployment.

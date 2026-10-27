@@ -268,7 +268,7 @@ export async function withNudgeRecipients(fx: TimeReportFixture, run: (recipient
     labels?.at((["cleanup-reports","cleanup-assignments","cleanup-bookings","cleanup-profiles"] as const)[index]);
     try { await remove(); } catch(error) { cleanupErrors.push(error);labels?.failure(); }
   }
-  labels?.at("cleanup-auth");const removed=await Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId)));
+  labels?.at("cleanup-auth");const removed=await Promise.allSettled(ownedUsers.map(userId=>deleteAuthUser(userId,"redacted")));
   for(const result of removed)if(result.status==="rejected"){cleanupErrors.push(result.reason);labels?.failure();}
   throwFixtureFailures(primary,cleanupErrors,"Nudge recipient callback and/or owned fixture cleanup failed");
 }

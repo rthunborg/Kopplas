@@ -19,3 +19,5 @@ export function planAttempt(input: { pr: PullRequest | undefined; state?: State;
 export function classifyChecks(input: { headSha: string; runs?: CheckRun[]; requiredJobs?: string[] }): { phase: 'ci-pending' | 'ci-passed' | 'ci-failed'; runId?: number };
 export function signJournal<T>(plan: T, privateKey: KeyLike): { plan: T; signature: string };
 export function verifyJournal<T>(journal: { plan: T; signature: string }, publicKey: KeyLike): T;
+
+export function isVisualControlComment(body: unknown): boolean;

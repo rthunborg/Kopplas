@@ -14,3 +14,11 @@ export function capture(input: { trustedDir: string; workspaceDir: string; planP
 export function validateProposal(input: { trustedDir: string; proposalPath: string; planPath: string; targetDir?: string }): { proposal: Proposal; digest: string };
 export function publish(input: { trustedDir: string; proposalPath: string; planPath: string; attestationPath: string; journalPath?: string; api?: Api; unresolvedIds?: Set<number> }): Promise<{ phase: string; files?: number; headSha?: string }>;
 export function finalize(input: { planPath: string; journalPath: string }): Promise<void>;
+
+export interface MonitoredState {
+  prNumber: number;
+  published: {headSha: string; notified: boolean; ciRunId?: number};
+  phase?: string;
+  visualAcceptance?: {status: string; headSha?: string; reason?: string};
+}
+export function monitor(api: Api, ctx: {repo: string}, pr: {number: number; state: string; head: {sha: string}; user: {login: string}}, state: MonitoredState, write: boolean, admitWrite?: () => Promise<boolean>): Promise<MonitoredState>;

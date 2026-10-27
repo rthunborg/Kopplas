@@ -314,6 +314,22 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
+      - name: Capture bounded owned Auth cleanup failure facts
+        if: ${{ failure() && !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+        timeout-minutes: 1
+        env:
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+        run: node --experimental-strip-types scripts/ci/auth-cleanup-collector.mjs
+
+      - name: Upload bounded Auth cleanup failure facts
+        if: ${{ failure() && !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-auth-cleanup-facts
+          path: test-results/auth-cleanup-facts.json
+          retention-days: 7
+          if-no-files-found: error
+
       - name: Stop local Supabase stack
         if: always()
         run: supabase stop
@@ -354,7 +370,7 @@ jobs:
           version: 2.115.0
 
       - name: Start local schema source
-        run: supabase start
+        run: supabase start --exclude mailpit
 
       - name: Reset local schema source
         run: supabase db reset

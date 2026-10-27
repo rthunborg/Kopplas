@@ -1,19 +1,30 @@
 import { describe, expect, test } from "vitest";
+import { registerJobsDepthPhaseDiagnostics } from "../../support/jobs-depth-phase-diagnostics";
 
 /** Executable: AC02/03/11. Normal JWT/anon calls exercise actual RLS; no hooks contact DB.
  * Complete policy/H4 inventory remains owned by the implementation/gate suite.
  */
 describe("16.1 job-depth direct boundaries", () => {
-  test("[P0] 16.1-RLS-001 real roles, UNION rows, inactive actors and own-job child scope agree", async () => {
+  test("[P0] 16.1-RLS-001 real roles, UNION rows, inactive actors and own-job child scope agree", async (context) => {
+    const phase = registerJobsDepthPhaseDiagnostics(context);
+    phase("import-helper", "started");
     const h = await import("../../support/jobs-depth-atdd");
+    phase("import-helper", "returned");
+    phase("import-tenants", "started");
     const t = await import("../../factories/tenants");
+    phase("import-tenants", "returned");
     await h.withJobsDepthFixture(async (f) => {
       const expected = [f.jobs.memberOrder.id, f.jobs.assigneeProject.id, f.jobs.both.id, f.jobs.acceptedAssigned.id].sort();
+      phase("assert-own-read", "started");
       const own = await f.fx.montorClient.from("jobs").select("id").order("id");
       expect(own.error).toBeNull();
       expect(own.data?.map((r) => r.id).sort()).toEqual(expected);
+      phase("assert-own-read", "returned");
       for (const [role, user] of Object.entries(f.fx.users)) {
-        const client = await t.makeAuthedServerClient(user);
+        phase("assert-role-signin", "started");
+        const client = await t.makeAuthedServerClient(user, phase.fetch);
+        phase("assert-role-signin", "returned");
+        phase("assert-role-read", "started");
         const rows = await client.from("jobs").select("id");
         expect(rows.error).toBeNull();
         const ids = rows.data?.map((r) => r.id).sort();
@@ -21,25 +32,45 @@ describe("16.1 job-depth direct boundaries", () => {
           expect(ids).toContain(f.jobs.unrelated.id);
           expect(ids).not.toContain(f.jobs.foreign.id);
         } else expect(ids).toEqual(role === "montor" ? expected : []);
+        phase("assert-role-read", "returned");
       }
       for (const user of [f.fx.invitedUser, f.fx.disabledUser, f.fx.base.orphanUser]) {
-        const client = await t.makeAuthedServerClient(user);
+        phase("assert-inactive-signin", "started");
+        const client = await t.makeAuthedServerClient(user, phase.fetch);
+        phase("assert-inactive-signin", "returned");
+        phase("assert-inactive-read", "started");
         const result = await client.from("jobs").select("id");
         expect(result.data ?? []).toEqual([]);
+        phase("assert-inactive-read", "returned");
       }
+      phase("assert-union-signin", "started");
       const union = await t.makeAuthedServerClient(f.fx.roleUnionUser);
+      phase("assert-union-signin", "returned");
+      phase("assert-union-read", "started");
       const all = await union.from("jobs").select("id");
       expect(all.data?.map((r) => r.id)).toContain(f.jobs.unrelated.id);
+      phase("assert-union-read", "returned");
       // A child exists on an unrelated job, so empty result discriminates parent RLS.
-      const saved = await h.invokeJobCard(f.fx.adminClient, "update", await h.loadCardInput(f, { id: f.jobs.unrelated.id }));
+      phase("assert-card-load", "started");
+      const card = await h.loadCardInput(f, { id: f.jobs.unrelated.id });
+      phase("assert-card-load", "returned");
+      phase("assert-card-update", "started");
+      const saved = await h.invokeJobCard(f.fx.adminClient, "update", card);
       expect(saved.ok).toBe(true);
+      phase("assert-card-update", "returned");
       for (const table of h.jobDepthTables.slice(1)) {
+        phase("assert-child-read", "started");
         const hidden = await f.fx.montorClient.from(table).select("*").eq("job_id", f.jobs.unrelated.id);
         expect(hidden.data ?? []).toEqual([]);
+        phase("assert-child-read", "returned");
       }
+      phase("assert-anon-client", "started");
       const anon = await t.makeAnonServerClient();
+      phase("assert-anon-client", "returned");
+      phase("assert-anon-read", "started");
       expect((await anon.from("jobs").select("id")).data ?? []).toEqual([]);
-    });
+      phase("assert-anon-read", "returned");
+    }, phase, phase.fetch);
   });
 
   test("[P0] 16.1-RLS-002 direct mutation/elevation, foreign child FKs and spoofed checked actor leave no state", async () => {

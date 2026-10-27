@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
 import { readFileSync } from "node:fs";
 import { projectCiPerformanceChanges } from "../../../support/ci-performance-contract";
@@ -56,6 +57,26 @@ test("performance inverse rejects edited reviewed fragments while preserving unr
   for (const [before, after] of [["timeout-minutes: 12", "timeout-minutes: 1"], ["run: node scripts/ci/browser-runtime.mjs start", "run: true"], ["path: .next/cache", "path: .next"]])
     assert.throws(() => projectCiPerformanceChanges(raw.replace(before, after)), /exact/);
   assert.ok(projectCiPerformanceChanges(`# unrelated\n${raw}`).startsWith("# unrelated\n"));
+});
+
+test("combined performance, Storage source and Auth cleanup projections retain the historical inverse and reject independent drift", () => {
+  const performanceOnly = projectCiPerformanceChanges(raw);
+  assert.match(performanceOnly, /run: supabase start --exclude mailpit/);
+  assert.match(performanceOnly, /run: node --experimental-strip-types scripts\/ci\/auth-cleanup-collector.mjs/);
+  const historicalDigest = (workflow: string) => createHash("sha256").update(projectCalendarFeedCiCommands(workflow)
+    .replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
+    .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "")).digest("hex");
+  const expected = "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0";
+  assert.equal(historicalDigest(raw), expected);
+  for (const [before, after, error] of [
+    ["path: .next/cache", "path: .next", /CI performance exact/],
+    ["run: supabase start --exclude mailpit", "run: supabase start", /Storage source exact/],
+    ["run: node --experimental-strip-types scripts/ci/auth-cleanup-collector.mjs", "run: node scripts/ci/auth-cleanup-collector.mjs", /Auth cleanup exact/],
+  ] as const) {
+    assert.ok(raw.includes(before));
+    assert.throws(() => projectCalendarFeedCiCommands(raw.replace(before, after)), error);
+  }
+  assert.notEqual(historicalDigest(`# unrelated combined drift\n${raw}`), expected);
 });
 
 test("build timings preserve failures and signals rather than converting failed builds into success", () => {

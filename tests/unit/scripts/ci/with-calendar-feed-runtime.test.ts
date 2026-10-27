@@ -75,6 +75,45 @@ test("CI command projection rejects entry and argv drift and cannot erase unrela
   assert.ok(unrelated.startsWith("# unrelated workflow drift\n"));
   assert.notEqual(inverseHash(unrelated), originalHash);
 });
+test("Storage schema source excludes only Mailpit in its exact job and step", () => {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const entry = "      - name: Start local schema source\n        run: supabase start --exclude mailpit\n";
+  const projected = projectCalendarFeedCiCommands(workflow);
+  assert.ok(projected.includes("      - name: Start local schema source\n        run: supabase start\n"));
+  for (const changed of [
+    entry.replace("--exclude mailpit", "--exclude mailpit,storage-api"),
+    entry.replace("--exclude mailpit", "--exclude mailpit --ignore-health-check"),
+    entry.replace("--exclude mailpit", "--exclude inbucket"),
+    entry.replace("Start local schema source", "Start another schema source"),
+    entry.replace("        run: supabase start --exclude mailpit", "        run: |\n          supabase start --exclude mailpit"),
+    "", entry + entry,
+  ]) {
+    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(entry, changed)), /Storage source exact/);
+  }
+  assert.throws(() => projectCalendarFeedCiCommands(workflow.replace("  recovery-storage-loader:\n", "  recovery-storage-loader:\n  recovery-storage-loader:\n")), /Storage source exact workflow job/);
+  const moved = workflow.replace(entry, "").replace("  e2e:\n", "  e2e:\n" + entry);
+  assert.throws(() => projectCalendarFeedCiCommands(moved), /Storage source exact/);
+});
+
+test("Storage source inverse preserves other jobs, reset, dump, physical proof and native artifact contracts", () => {
+  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const originalHash = "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0";
+  const inverseHash = (text: string) => createHash("sha256").update(projectCalendarFeedCiCommands(text)
+    .replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
+    .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "")).digest("hex");
+  assert.equal(inverseHash(workflow), originalHash);
+  for (const [before, after] of [
+    ["      - name: Start local Supabase stack\n        run: supabase start\n", "      - name: Start local Supabase stack\n        run: supabase start --exclude mailpit\n"],
+    ["      - name: Reset local schema source\n        run: supabase db reset\n", "      - name: Reset local schema source\n        run: supabase db reset --no-seed\n"],
+    ["--schema public,auth,storage,supabase_migrations,test_support", "--schema public,auth,storage,supabase_migrations"],
+    ["Prove physical Storage loader preserves protected rows", "Skip physical Storage loader proof"],
+    ["--outputFile=test-results/isolated-storage-recovery.json", "--outputFile=test-results/other-storage-recovery.json"],
+  ]) {
+    assert.ok(workflow.includes(before));
+    assert.notEqual(inverseHash(workflow.replace(before, after)), originalHash);
+  }
+});
+
 type Query = { sql: string; params?: unknown[] };
 function harness(options: {
   query?: (call: Query) => { rows: Record<string, unknown>[] } | undefined;

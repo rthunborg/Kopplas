@@ -47,7 +47,7 @@ test("hosted collector refuses missing scopes before requesting an installation 
     Object.assign(process.env, {
       GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_REF: "refs/heads/main", GITHUB_SHA: "a".repeat(40),
       GITHUB_RUN_ID: "123", GITHUB_RUN_ATTEMPT: "1", GITHUB_EVENT_NAME: "schedule", GITHUB_EVENT_PATH: eventPath,
-      GITHUB_TOKEN: sentinel, PR_FIX_ENABLED: "true", PR_FIX_PUBLISH: "false", PR_FIX_APP_ID: "600", PR_FIX_APP_USER_ID: "500",
+      GITHUB_TOKEN: sentinel, PR_FIX_ENABLED: "true", PR_FIX_PUBLISH: "true", PR_FIX_APP_ID: "600", PR_FIX_APP_USER_ID: "500",
       PR_FIX_APP_PRIVATE_KEY: privateKey.export({ format: "pem", type: "pkcs8" }).toString(),
     });
     globalThis.fetch = async (input) => {
@@ -78,7 +78,7 @@ test("representative installation permissions reach token mint using actions_var
     Object.assign(process.env, {
       GITHUB_REPOSITORY: "rthunborg/Kopplas", GITHUB_REF: "refs/heads/main", GITHUB_SHA: "a".repeat(40),
       GITHUB_RUN_ID: "123", GITHUB_RUN_ATTEMPT: "1", GITHUB_EVENT_NAME: "schedule", GITHUB_EVENT_PATH: eventPath,
-      GITHUB_TOKEN: "read-token-fixture", PR_FIX_ENABLED: "true", PR_FIX_PUBLISH: "false", PR_FIX_APP_ID: "600", PR_FIX_APP_USER_ID: "500",
+      GITHUB_TOKEN: "read-token-fixture", PR_FIX_ENABLED: "true", PR_FIX_PUBLISH: "true", PR_FIX_APP_ID: "600", PR_FIX_APP_USER_ID: "500",
       PR_FIX_APP_PRIVATE_KEY: privateKey.export({ format: "pem", type: "pkcs8" }).toString(),
     });
     globalThis.fetch = async (input, options) => {
@@ -96,11 +96,14 @@ test("representative installation permissions reach token mint using actions_var
         });
         return new Response(JSON.stringify({ token: "installation-token-fixture" }), { status: 201 });
       }
+      if (path === "/repos/rthunborg/Kopplas/actions/variables") {
+        return new Response(JSON.stringify({ variables: [{ name: "PR_FIX_ENABLED", value: "true" }, { name: "PR_FIX_PUBLISH", value: "true" }] }), { status: 200 });
+      }
       assert.equal(path, "/repos/rthunborg/Kopplas/pulls");
       return new Response("[]", { status: 200 });
     };
-    assert.deepEqual(await collect(join(root, "output")), { eligible: false, dryRun: true });
-    assert.deepEqual(calls, ["/repos/rthunborg/Kopplas/installation", "/app/installations/700/access_tokens", "/repos/rthunborg/Kopplas/pulls"]);
+    assert.deepEqual(await collect(join(root, "output")), { eligible: false, dryRun: false });
+    assert.deepEqual(calls, ["/repos/rthunborg/Kopplas/installation", "/app/installations/700/access_tokens", "/repos/rthunborg/Kopplas/actions/variables", "/repos/rthunborg/Kopplas/pulls"]);
   } finally {
     globalThis.fetch = originalFetch;
     for (const key of Object.keys(process.env)) if (!(key in previousEnv)) delete process.env[key];
