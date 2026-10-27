@@ -3,6 +3,7 @@ import { test } from "node:test";
 import type { Locator } from "@playwright/test";
 import { completeWorkOrderSave, workOrderSaveView, type WorkOrderSaveView } from "../../e2e/jobs/work-order-save-completion";
 import { createWorkOrderField, editWorkOrderField, receiveWorkOrderField } from "@/features/jobs/work-orders-domain";
+import { readJobWorkOrders } from "@/server/read-models/job-work-orders";
 
 function deferred<T>() {
   let resolve!: (value: T) => void;
@@ -10,98 +11,95 @@ function deferred<T>() {
   return { promise, resolve };
 }
 function view(overrides: Partial<WorkOrderSaveView> = {}): WorkOrderSaveView {
-  return { requireIdle: async () => {}, requireNoReceipt: async () => {},
-    requireNoError: async () => {}, requireReceipt: async () => {}, ...overrides };
+  return { requireIdle: async () => {}, requireNoError: async () => {}, ...overrides };
 }
-const reply = () => ({ ok: () => true, finished: async () => null });
+const reply = () => ({ ok: () => true });
+const rawProjection = (title: string) => ({
+  expectedState: "a".repeat(64), canEditWorkOrders: true, canReopenWorkOrders: false, canEditJobDependencies: false,
+  rows: [{ id: "order", jobId: "job", title, description: null, status: "created",
+    plannedStartDate: null, plannedEndDate: null, assignees: [{ id: "person", label: "Montör" }] }],
+  eligiblePeople: [], prerequisiteOptions: [], dependencies: [], dependencyWarnings: [],
+});
 
-test("E01 completion waits for the response body, settled pane and fresh receipt before returning", async () => {
-  const body = deferred<null>(), idle = deferred<void>(), receipt = deferred<void>();
-  const readingBody = deferred<void>(), settlingPane = deferred<void>(), readingReceipt = deferred<void>();
+test("E01 waits for fresh projection and settled pane without waiting for unfinished stream EOF", async () => {
+  const projected = deferred<void>(), idle = deferred<void>();
+  const readingProjection = deferred<void>(), settlingPane = deferred<void>();
+  const unfinishedStream = deferred<null>();
   const events: string[] = [];
-  let idleChecks = 0, completed = false;
+  let idleChecks = 0, completed = false, finishedCalls = 0;
   const completion = completeWorkOrderSave(async () => {
     events.push("trigger");
-    return { ok: () => true, finished: () => {
-      events.push("body"); readingBody.resolve(); return body.promise;
-    } };
+    return { ok: () => true, finished: () => { finishedCalls++; return unfinishedStream.promise; } };
   }, view({
     requireIdle: async () => {
       events.push("idle");
       if (++idleChecks === 2) { settlingPane.resolve(); await idle.promise; }
     },
-    requireNoReceipt: async () => { events.push("no-old-receipt"); },
     requireNoError: async () => { events.push("no-error"); },
-    requireReceipt: async () => { events.push("receipt"); readingReceipt.resolve(); await receipt.promise; },
-  })).then(() => { completed = true; });
-  await readingBody.promise;
-  assert.deepEqual(events, ["idle", "no-old-receipt", "trigger", "body"]);
+  }), async () => {
+    events.push("projection"); readingProjection.resolve(); await projected.promise;
+  }).then(() => { completed = true; });
+  await readingProjection.promise;
+  assert.deepEqual(events, ["idle", "trigger", "projection"]);
   assert.equal(completed, false);
-  body.resolve(null);
+  projected.resolve();
   await settlingPane.promise;
   assert.equal(completed, false);
-  assert.equal(events.includes("receipt"), false);
   idle.resolve();
-  await readingReceipt.promise;
-  assert.equal(completed, false);
-  receipt.resolve();
   await completion;
   assert.equal(completed, true);
-  assert.deepEqual(events, ["idle", "no-old-receipt", "trigger", "body", "idle", "no-error", "receipt", "no-error"]);
+  assert.equal(finishedCalls, 0);
+  assert.deepEqual(events, ["idle", "trigger", "projection", "idle", "no-error"]);
 });
 
-test("E01 refuses an old receipt before triggering another save", async () => {
-  let triggers = 0;
-  await assert.rejects(completeWorkOrderSave(async () => { triggers++; return reply(); }, view({
-    requireNoReceipt: async () => { throw new Error("old receipt still present"); },
-  })), /old receipt/);
-  assert.equal(triggers, 0);
+test("E01 refuses unsuccessful HTTP before observing a success projection", async () => {
+  let projections = 0;
+  await assert.rejects(completeWorkOrderSave(async () => ({ ok: () => false }), view(), async () => {
+    projections++;
+  }), /unsuccessful HTTP/);
+  assert.equal(projections, 0);
 });
 
-test("E01 refuses unsuccessful HTTP responses and unfinished transport", async () => {
-  let bodyReads = 0, receiptReads = 0;
-  const ui = view({ requireReceipt: async () => { receiptReads++; } });
-  await assert.rejects(completeWorkOrderSave(async () => ({ ok: () => false,
-    finished: async () => { bodyReads++; return null; } }), ui), /unsuccessful HTTP/);
-  assert.equal(bodyReads, 0);
-  await assert.rejects(completeWorkOrderSave(async () => ({ ok: () => true,
-    finished: async () => new Error("connection lost") }), ui), /did not finish/);
-  assert.equal(receiptReads, 0);
+test("E01 HTTP 200 with unchanged real read-model projection cannot confirm success", async () => {
+  const client = { rpc: async () => ({ data: rawProjection("Original title"), error: null }) };
+  await assert.rejects(completeWorkOrderSave(async () => reply(), view(), async () => {
+    const actual = await readJobWorkOrders(client, "job");
+    assert.equal(actual.rows[0].title, "Updated title", "false 200 left the server projection unchanged");
+  }), /false 200/);
 });
 
-test("E01 HTTP 200 with a settled business error never counts as confirmed success", async () => {
-  let receiptReads = 0;
+test("E01 accepts a changed real read-model projection without a generic receipt or response EOF", async () => {
+  const client = { rpc: async () => ({ data: rawProjection("Updated title"), error: null }) };
+  let observed = false;
+  await completeWorkOrderSave(async () => ({ ok: () => true,
+    finished: async () => { throw new Error("EOF must not be called"); } }), view(), async () => {
+    const actual = await readJobWorkOrders(client, "job");
+    assert.equal(actual.rows[0].title, "Updated title");
+    assert.deepEqual(actual.rows[0].assignees, [{ id: "person", label: "Montör" }]);
+    observed = true;
+  });
+  assert.equal(observed, true);
+});
+
+test("E01 rejects a visible business error after the projection and pane settle", async () => {
+  let projected = false;
   await assert.rejects(completeWorkOrderSave(async () => reply(), view({
-    requireNoError: async () => { throw new Error("PREVIEW_STALE visible alert"); },
-    requireReceipt: async () => { receiptReads++; },
-  })), /PREVIEW_STALE/);
-  assert.equal(receiptReads, 0);
+    requireNoError: async () => { assert.equal(projected, true); throw new Error("PREVIEW_STALE visible alert"); },
+  }), async () => { projected = true; }), /PREVIEW_STALE/);
 });
 
-test("E01 HTTP 200 and absent error still require a new receipt", async () => {
-  await assert.rejects(completeWorkOrderSave(async () => reply(), view({
-    requireReceipt: async () => { throw new Error("no confirmed receipt"); },
-  })), /no confirmed receipt/);
-});
-
-test("actual E01 locator adapter checks idle, absent old receipt, exact visible confirmation and no alert", async () => {
+test("actual E01 locator adapter checks settled pane and no work-order alert", async () => {
   const calls: unknown[][] = [];
   const detail = { id: "pane", getByTestId: (id: string) => ({ id }) };
   const expect = ((target: { id: string }) => ({
     toHaveAttribute: async (...args: string[]) => { calls.push([target.id, "attribute", ...args]); },
     toHaveCount: async (count: number) => { calls.push([target.id, "count", count]); },
-    toBeVisible: async () => { calls.push([target.id, "visible"]); },
-    toHaveText: async (text: string) => { calls.push([target.id, "text", text]); },
   })) as unknown as typeof import("@playwright/test").expect;
   const ui = workOrderSaveView(detail as unknown as Locator, expect);
-  await ui.requireIdle(); await ui.requireNoReceipt(); await ui.requireNoError(); await ui.requireReceipt();
+  await ui.requireIdle(); await ui.requireNoError();
   assert.deepEqual(calls, [
     ["pane", "attribute", "aria-busy", "false"],
-    ["work-order-save-status", "count", 0],
     ["work-order-error", "count", 0],
-    ["work-order-save-status", "visible"],
-    ["work-order-save-status", "attribute", "role", "status"],
-    ["work-order-save-status", "text", "Det skickade försöket är bekräftat sparat."],
   ]);
 });
 

@@ -105,7 +105,7 @@ function phaseObserver(observer?: JobsDepthPhaseObserver) {
     try { observer?.(phase, state); } catch { /* diagnostic only */ }
   };
 }
-export async function createJobsDepthFixture(observer?: JobsDepthPhaseObserver) {
+export async function createJobsDepthFixture(observer?: JobsDepthPhaseObserver, fetchOverride?: typeof globalThis.fetch) {
   const phase = phaseObserver(observer);
   configureJobsDepthFixtureProofs();
   phase("fixture-role", "started");
@@ -131,7 +131,7 @@ export async function createJobsDepthFixture(observer?: JobsDepthPhaseObserver) 
     const plannerClient = await t.makeAuthedServerClient(users.projektledare);
     phase("fixture-clients", "returned");
     phase("fixture-clients", "started");
-    const montorClient = await t.makeAuthedServerClient(users.montor);
+    const montorClient = await t.makeAuthedServerClient(users.montor, fetchOverride);
     phase("fixture-clients", "returned");
     phase("fixture-clients", "started");
     const foreignClient = await t.makeAuthedServerClient(base.adminB);
@@ -231,9 +231,10 @@ export async function createJobsDepthFixture(observer?: JobsDepthPhaseObserver) 
   }
 }
 export type JobsDepthFixture = Awaited<ReturnType<typeof createJobsDepthFixture>>;
-export async function withJobsDepthFixture(run: (f: JobsDepthFixture) => Promise<void>, observer?: JobsDepthPhaseObserver) {
+export async function withJobsDepthFixture(run: (f: JobsDepthFixture) => Promise<void>, observer?: JobsDepthPhaseObserver,
+  fetchOverride?: typeof globalThis.fetch) {
   const phase = phaseObserver(observer);
-  const fixture = await createJobsDepthFixture(observer);
+  const fixture = await createJobsDepthFixture(observer, fetchOverride);
   try { await run(fixture); }
   catch (error) { phase(null, "rejected"); throw error; }
   finally {

@@ -336,12 +336,17 @@ export async function cleanupRoleAwarePhaseAFixture(
  * authenticated session (the same anon key + RLS path the app runtime uses).
  * Signs in with the user's password so `getClaims()` re-validates a real JWT.
  */
+export function makeAuthedServerClient(user: FixtureUser): Promise<TestServerClient>;
+export function makeAuthedServerClient(user: FixtureUser, fetchOverride: typeof globalThis.fetch | undefined): Promise<TestServerClient>;
 export async function makeAuthedServerClient(
   user: FixtureUser,
+  fetchOverride?: typeof globalThis.fetch,
 ): Promise<TestServerClient> {
   assertLocalStack();
   const client = createClient(LOCAL_SUPABASE_URL, LOCAL_SUPABASE_ANON_KEY, {
     auth: { autoRefreshToken: false, persistSession: false },
+    // Array.map callers supply an index here; preserve that historically ignored argument.
+    ...(typeof fetchOverride === "function" ? { global: { fetch: fetchOverride } } : {}),
   });
   const { error } = await client.auth.signInWithPassword({
     email: user.email,

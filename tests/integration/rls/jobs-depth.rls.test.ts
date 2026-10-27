@@ -22,7 +22,7 @@ describe("16.1 job-depth direct boundaries", () => {
       phase("assert-own-read", "returned");
       for (const [role, user] of Object.entries(f.fx.users)) {
         phase("assert-role-signin", "started");
-        const client = await t.makeAuthedServerClient(user);
+        const client = await t.makeAuthedServerClient(user, phase.fetch);
         phase("assert-role-signin", "returned");
         phase("assert-role-read", "started");
         const rows = await client.from("jobs").select("id");
@@ -36,7 +36,7 @@ describe("16.1 job-depth direct boundaries", () => {
       }
       for (const user of [f.fx.invitedUser, f.fx.disabledUser, f.fx.base.orphanUser]) {
         phase("assert-inactive-signin", "started");
-        const client = await t.makeAuthedServerClient(user);
+        const client = await t.makeAuthedServerClient(user, phase.fetch);
         phase("assert-inactive-signin", "returned");
         phase("assert-inactive-read", "started");
         const result = await client.from("jobs").select("id");
@@ -70,7 +70,7 @@ describe("16.1 job-depth direct boundaries", () => {
       phase("assert-anon-read", "started");
       expect((await anon.from("jobs").select("id")).data ?? []).toEqual([]);
       phase("assert-anon-read", "returned");
-    }, phase);
+    }, phase, phase.fetch);
   });
 
   test("[P0] 16.1-RLS-002 direct mutation/elevation, foreign child FKs and spoofed checked actor leave no state", async () => {
