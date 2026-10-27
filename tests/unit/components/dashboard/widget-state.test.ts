@@ -70,8 +70,12 @@ async function widget(props: WidgetProps): Promise<string> {
   return renderToStaticMarkup(createElement(QuotePipelineWidget, props));
 }
 function plain(html: string): string {
-  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return html.replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 }
+
+test("plain decodes ampersands and normalizes whitespace in mixed HTML", () => {
+  assert.equal(plain("<p> Plan &amp; <strong>klart</strong> </p>"), "Plan & klart");
+});
 
 describe("19.1-UNIT-013 actual pipeline component states (SSR)", () => {
   test("[P1] loading announces progress without fabricated values or success time [AC9]", async () => {
