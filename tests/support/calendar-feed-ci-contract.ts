@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
+import { projectCiPerformanceChanges } from "./ci-performance-contract";
 
 const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
 const wrapperSha256 = "adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7";
@@ -86,7 +87,7 @@ export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = 
   const browser = literalArgs(source, "BROWSER_ARGS", browserArgs);
   assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
   literalArgs(source, "CAUSE_PROOF_ARGS", ["exec","vitest","run","tests/integration/commands/calendar-feed.int.test.ts","--maxWorkers=1","--no-file-parallelism","--testNamePattern=^15[.]5-DIAG001$","--reporter=default","--reporter=github-actions","--reporter=json","--outputFile=test-results/calendar-feed-cause-proof/native.json"]);
-  let projected = workflow.replaceAll("\r\n", "\n");
+  let projected = projectCiPerformanceChanges(workflow);
   for (const [entry, replacement] of causeProofInverse) {
     assert.equal(projected.split(entry).length - 1, 1, "calendar feed exact diagnostic workflow fragment");
     projected = projected.replace(entry, replacement);
