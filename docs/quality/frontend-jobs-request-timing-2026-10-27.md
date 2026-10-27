@@ -126,3 +126,79 @@ author's native synthetic receipt above (two deliberate failures, one pass,
 zero pending). The five TypeScript source identities remain frozen. This
 verdict qualifies the bounded diagnostic implementation, not a backend cause,
 successful integration, another CI run, publication, merge or deployment.
+
+## Separate bounded-read follow-up — 2026-10-27
+
+Author route: GPT-6.1 Sol High; independent High pre-edit review approved the
+four-path test-only algorithm. Base: `9d595fba812f6c72c68f4c2473c5a7eb2df110ad`.
+This follow-up is separate from PR103's four startup/tooling paths.
+
+PR103 checkpoint `64067e52b11015acd3e463702fdc471d688bc8ae` ran normal CI
+`40505154705` once. Its required DB job failed: native integration reports
+2145 passed, one failed and 52 pending of 2198 cases. Pending cases receive no
+coverage credit. The sole failure is the original jobs-depth **16.1-RLS-001**,
+at 30020.765 ms. Its frozen metadata is diagnostic-only, not acceptance.
+
+The first seven direct `jobs.select("id")` reads returned headers in
+2789–3559 ms; Kong reported proxy latency 0–1 ms and upstream latency
+2787–3557 ms. The eighth request began at 26643 ms and was still pending when
+the snapshot froze at 30014 ms in `assert-inactive-read`. Those callers are:
+the fixture Montör UNION read; tenant-admin, projektledare, fresh Montör,
+säljare and ekonomi reads; then invited and disabled membership reads. They
+are explicit role-boundary assertions, not polling. The fresh Montör repeats
+the UNION expectation through a separately authenticated client; it is retained.
+The orphan, combined-role, child-scope and anonymous tail was not completed.
+
+The RLS test, fixture, authenticated factory, recorder, CI wrapper, Vitest
+configuration and entire migration tree have identical Git objects at qualified
+PR109 head `45434139c567e268f54bf0c6fa71f4530b7f043e`, this main base and the
+failed PR103 checkpoint. No SQL plan was collected. These timings locate time
+before upstream headers; they do not establish a SQL operator, missing index,
+contention or the cause of older failures.
+
+The follow-up keeps the fixture and ordered own read awaited. Five distinct
+role clients are created in a fully drained batch, followed by their independent
+read batch. Invited, disabled and orphan clients/read results use the same
+pattern. The finite test utility permits at most three operations at once,
+retains case-to-result order, invokes every queued operation exactly once and
+settles all operations before returning or throwing the first original error
+in input order. Assertions run only after complete read settlement. No read
+batch overlaps later mutation or fixture cleanup. All role assertions,
+combined-role UNION, actual card save, four child-table denials and anonymous
+read remain. No checks are deleted; the 30-second limit, retries, runner
+parallelism, product SQL and factories are unchanged.
+
+The existing recorder remains single-subject and unchanged. Only the initial
+own read uses its fetch seam. Batched clients use the default authenticated
+fetch; their per-subject header timings are **UNAVAILABLE**, not zero and not
+represented by the old sequential ordinals. The role/inactive phase counters
+now describe one aggregate group each. A failure's request list can contain
+only the initial own-read record; absence of other records is not evidence
+that a batched context was omitted. No collector or new diagnostic framework
+is added.
+
+Focused units must prove the cap, all five role and three inactive contexts,
+result mapping, complete settlement on synchronous/asynchronous failure,
+original error identity and client-creation/read ordering. Existing recorder
+units and scoped statics remain required. These units do not prove actual RLS
+or a speed improvement. Executed in `C:/DEV/Kopplas-r001`: the new batch units
+plus existing recorder units passed 16/16, zero failed/skipped; TypeScript
+`--noEmit`, scoped ESLint and `git diff --check` passed. An AST comparison retains
+all 11 original acceptance expressions; the combined-role/card/child/anonymous
+tail is byte-identical to the base. Real DB execution of this follow-up is
+**UNEXECUTED**.
+The existing workflow has no focused RLS selector: its calendar cause-proof is
+a different surface and release-validation adds browser coverage. The shortest
+existing hosted qualification route is one independently reviewed exact-head
+normal CI cycle; no workflow or local bootstrap is added. No new run is
+authorized by this report alone, and PR103 remains unqualified on its failed
+required check. Its startup preflight passed initialization/EOF without inference;
+essential browser passed 65 cases (zero flaky/skipped), entry UI two and isolated
+Storage one. Dashboard and opt-in diagnostics were skipped, not covered.
+
+### Suggested Review Order for this follow-up
+
+- `tests/integration/rls/jobs-depth.rls.test.ts` — verify exact role/context mapping, every assertion and unchanged mutation/cleanup tail.
+- `tests/support/jobs-depth-read-batch.ts` — inspect the fixed cap and full drain before original failure propagation.
+- `tests/unit/support/jobs-depth-read-batch.test.ts` — inspect scheduling, mapping and failure/cleanup proofs against the actual utility.
+- This follow-up section — distinguish retained failed CI evidence, unavailable batch timings and unexecuted real DB proof.
