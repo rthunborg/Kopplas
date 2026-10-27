@@ -1,5 +1,29 @@
 # Development completion and release validation
 
+## Frontend acceptance amendment — 2026-10-26
+
+For newly authorized frontend work and remediation, the owner now requires
+[revision-bound frontend visual acceptance](../quality/frontend-quality-gate.md)
+before development-complete/review-ready claims. Actual production-server UI at
+desktop and connected 360×640, relevant finished/loading/error/empty states,
+representative shared-style consumers and independent image review (or explicit
+authenticated owner manual acceptance) are required. Initial foundations,
+screens and reference changes additionally need owner acceptance. Missing,
+stale, skipped or failed visual evidence blocks this gate. Documentation/backend
+work records an explicit applicability reason. This narrow amendment supersedes
+the October 19 deferral of these frontend checks; exhaustive release/device
+validation and separate release approval remain tracked release work. Historical
+records and paused runs are unchanged until explicitly authorized resume.
+
+Use `scripts/quality/completion-gate.mjs` as the pre-transition wrapper for the
+existing delivery/status/finalization helpers, with their unchanged arguments
+and the actual full recorded baseline. Supported project customization facts and
+handoffs require the same gate before an implementation returns complete. BMAD's
+post-terminal `on_complete` hook cannot atomically prevent installed status
+writes; it reports a missed gate without changing historical result schemas.
+The trusted PR controller separately enforces readiness. Its required-check
+protection/bootstrap remains an owner checkpoint, never inferred from this doc.
+
 Owner decision — 2026-10-19. This policy supersedes older instructions that make exhaustive browser, screenshot, visual or manual review a routine development completion gate. Preserve historical evidence without relabelling it.
 
 ## Development gate

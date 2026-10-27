@@ -1,0 +1,1 @@
+export function guardedCompletion(input: {baseline: string; entry: string; args?: string[]; root?: string; run?: (command: string, args: string[], options: unknown) => {status: number | null; error?: Error; signal?: string | null}}): number;
