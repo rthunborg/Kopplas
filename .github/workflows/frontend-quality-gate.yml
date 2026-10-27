@@ -19,6 +19,7 @@ permissions:
   pull-requests: read
   issues: read
   checks: write
+  statuses: write
 concurrency:
   group: frontend-visual-${{ github.event.pull_request.number || github.event.issue.number || 'monitor' }}
   cancel-in-progress: false
