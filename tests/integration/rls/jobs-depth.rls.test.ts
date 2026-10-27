@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { registerJobsDepthPhaseDiagnostics } from "../../support/jobs-depth-phase-diagnostics";
+import { runJobsDepthReadBatch } from "../../support/jobs-depth-read-batch";
 
 /** Executable: AC02/03/11. Normal JWT/anon calls exercise actual RLS; no hooks contact DB.
  * Complete policy/H4 inventory remains owned by the implementation/gate suite.
@@ -20,29 +21,36 @@ describe("16.1 job-depth direct boundaries", () => {
       expect(own.error).toBeNull();
       expect(own.data?.map((r) => r.id).sort()).toEqual(expected);
       phase("assert-own-read", "returned");
-      for (const [role, user] of Object.entries(f.fx.users)) {
-        phase("assert-role-signin", "started");
-        const client = await t.makeAuthedServerClient(user, phase.fetch);
-        phase("assert-role-signin", "returned");
-        phase("assert-role-read", "started");
-        const rows = await client.from("jobs").select("id");
+      const roles = Object.entries(f.fx.users);
+      // These clients keep the default fetch. The single-subject recorder only
+      // captures the ordered own read; per-subject batch headers are UNAVAILABLE.
+      // Batch phases measure the whole group, never the old sequential ordinals.
+      phase("assert-role-signin", "started");
+      const roleClients = await runJobsDepthReadBatch(roles.map(([, user]) => () => t.makeAuthedServerClient(user)));
+      phase("assert-role-signin", "returned");
+      phase("assert-role-read", "started");
+      const roleRows = await runJobsDepthReadBatch(roleClients.map(client => () => client.from("jobs").select("id")));
+      for (const [index, [role]] of roles.entries()) {
+        const rows = roleRows[index];
         expect(rows.error).toBeNull();
         const ids = rows.data?.map((r) => r.id).sort();
         if (["tenant_admin", "projektledare"].includes(role)) {
           expect(ids).toContain(f.jobs.unrelated.id);
           expect(ids).not.toContain(f.jobs.foreign.id);
         } else expect(ids).toEqual(role === "montor" ? expected : []);
-        phase("assert-role-read", "returned");
       }
-      for (const user of [f.fx.invitedUser, f.fx.disabledUser, f.fx.base.orphanUser]) {
-        phase("assert-inactive-signin", "started");
-        const client = await t.makeAuthedServerClient(user, phase.fetch);
-        phase("assert-inactive-signin", "returned");
-        phase("assert-inactive-read", "started");
-        const result = await client.from("jobs").select("id");
+      phase("assert-role-read", "returned");
+      phase("assert-inactive-signin", "started");
+      const inactiveClients = await runJobsDepthReadBatch(
+        [f.fx.invitedUser, f.fx.disabledUser, f.fx.base.orphanUser].map(user => () => t.makeAuthedServerClient(user)),
+      );
+      phase("assert-inactive-signin", "returned");
+      phase("assert-inactive-read", "started");
+      const inactiveRows = await runJobsDepthReadBatch(inactiveClients.map(client => () => client.from("jobs").select("id")));
+      for (const result of inactiveRows) {
         expect(result.data ?? []).toEqual([]);
-        phase("assert-inactive-read", "returned");
       }
+      phase("assert-inactive-read", "returned");
       phase("assert-union-signin", "started");
       const union = await t.makeAuthedServerClient(f.fx.roleUnionUser);
       phase("assert-union-signin", "returned");
