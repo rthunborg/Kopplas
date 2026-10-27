@@ -114,6 +114,49 @@ export async function assessPr({ api, repo, prNumber, expectedHead, policy = def
   return result;
 }
 
+/** Both reporters describe one assessment; no reporter failure can grant success. */
+export async function reportPrAssessment({ api, repo, prNumber, runId, assess = assessPr }) {
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo ?? '') || !Number.isSafeInteger(prNumber) || prNumber < 1 || !/^[1-9][0-9]*$/.test(runId ?? '')) throw new Error('Invalid visual reporting identity.');
+  const pr = await api(`/repos/${repo}/pulls/${prNumber}`);
+  if (pr.state !== 'open' || pr.base?.ref !== 'main' || !SHA.test(pr.head?.sha ?? '')) throw new Error('Visual reporting requires a current open main-target PR.');
+  const head = pr.head.sha;
+  const target = `https://github.com/${repo}/actions/runs/${runId}`;
+  const status = async (state) => {
+    const response = await api(`/repos/${repo}/statuses/${head}`, { method: 'POST', body: { context: CHECK_NAME, state, target_url: target, description: state === 'pending' ? 'Verifying current visual evidence.' : state === 'success' ? 'Current visual evidence accepted or not applicable.' : 'Visual assessment or reporting failed.' } });
+    if (!Number.isSafeInteger(response?.id) || response.id < 1 || response.context !== CHECK_NAME || response.state !== state) throw new Error('Commit status response did not confirm the requested result.');
+  };
+  const current = async () => {
+    const fresh = await api(`/repos/${repo}/pulls/${prNumber}`);
+    const labels = (value) => JSON.stringify((value ?? []).map((l) => l.name).sort());
+    if (fresh.state !== 'open' || fresh.head?.sha !== head || fresh.base?.ref !== 'main' || fresh.body !== pr.body || labels(fresh.labels) !== labels(pr.labels)) throw new Error('Visual candidate metadata changed before reporting.');
+  };
+  let check;
+  try {
+    // A failing/unknown CheckRun operation must never leave a newly green status.
+    await status('pending');
+    const created = await api(`/repos/${repo}/check-runs`, { method: 'POST', body: { name: CHECK_NAME, head_sha: head, status: 'in_progress', external_id: `visual-v1:${runId}:${prNumber}:${head}` } });
+    // Policy B pins this reporter to the actual GitHub Actions App, not a body field.
+    if (!Number.isSafeInteger(created?.id) || created.id < 1 || created.name !== CHECK_NAME || created.head_sha !== head || created.app?.id !== 15368) throw new Error('Visual CheckRun source or identity mismatch.');
+    check = created;
+    const result = await assess({ api, repo, prNumber, expectedHead: head });
+    if (!['accepted', 'not-applicable'].includes(result?.status) || result.headSha !== head) throw new Error('Visual assessment did not return current accepted/N/A evidence.');
+    await current();
+    const reported = await api(`/repos/${repo}/check-runs/${check.id}`, { method: 'PATCH', body: { status: 'completed', conclusion: 'success', output: { title: result.status === 'accepted' ? 'Visual acceptance recorded' : 'Visual evidence not applicable', summary: JSON.stringify(result, null, 2).slice(0, 60000) } } });
+    if (reported?.id !== check.id || reported.head_sha !== head || reported.app?.id !== 15368 || reported.status !== 'completed' || reported.conclusion !== 'success') throw new Error('Visual CheckRun completion was not confirmed.');
+    await current();
+    await status('success');
+    return result;
+  } catch (error) {
+    // These are terminal failure reports, never retries of an uncertain success.
+    // If GitHub is unavailable, keep the known pending status and fail the job.
+    if (Number.isSafeInteger(check?.id) && check.id > 0) {
+      try { await api(`/repos/${repo}/check-runs/${check.id}`, { method: 'PATCH', body: { status: 'completed', conclusion: 'failure', output: { title: 'Visual acceptance blocked', summary: `BLOCKED: ${error.message}`.slice(0, 60000) } } }); } catch { /* The native failure remains authoritative about this operation. */ }
+    }
+    try { await status('failure'); } catch { /* No success is returned after an uncertain reporter operation. */ }
+    throw error;
+  }
+}
+
 async function hosted() {
   const repo = process.env.GITHUB_REPOSITORY;
   const eventName = process.env.GITHUB_EVENT_NAME;
@@ -130,13 +173,10 @@ async function hosted() {
   for (const item of prs) {
     const pr = await api(`/repos/${repo}/pulls/${item.number}`);
     if (pr.base.ref !== 'main' || pr.state !== 'open') continue;
-    // Check is always attached to the actual current PR head, never merge/base.
-    const check = await api(`/repos/${repo}/check-runs`, { method: 'POST', body: { name: CHECK_NAME, head_sha: pr.head.sha, status: 'in_progress', external_id: `visual-v1:${process.env.GITHUB_RUN_ID}:${item.number}:${pr.head.sha}` } });
     let result, failure;
-    try { result = await assessPr({ api, repo, prNumber: item.number, expectedHead: pr.head.sha }); }
+    try { result = await reportPrAssessment({ api, repo, prNumber: item.number, runId: process.env.GITHUB_RUN_ID }); }
     catch (error) { failure = error.message; failed = true; }
     const summary = result ? JSON.stringify(result, null, 2) : `BLOCKED: ${failure}`;
-    await api(`/repos/${repo}/check-runs/${check.id}`, { method: 'PATCH', body: { status: 'completed', conclusion: failure ? 'failure' : 'success', output: { title: failure ? 'Visual acceptance blocked' : result.status === 'accepted' ? 'Visual acceptance recorded' : 'Visual evidence not applicable', summary: summary.slice(0, 60000) } } });
     if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `PR #${item.number}, ${pr.head.sha}: ${summary}\n`);
   }
   if (failed) process.exitCode = 1;

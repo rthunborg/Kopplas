@@ -35,12 +35,82 @@ SHA-256, PNG chunks/CRC/pixel stream and viewport dimensions before any verdict.
 A changed head, package digest, source hash, coverage or reference invalidates the
 acceptance. Do not copy evidence from a prior remediation candidate.
 
-The controller's `Frontend visual acceptance` check attaches to the actual PR
-head, runs default/base-branch code with read-only content/PR/issues access and
-`checks:write`, and never checks out, installs, executes or renders candidate
-code. It uses no model/App credential. Required-check protection and trusted-main
+The controller's `Frontend visual acceptance` CheckRun and companion commit
+status attach to the actual PR
+head, run default/base-branch code with read-only content/PR/issues access and
+`checks:write` plus `statuses:write`, and never checks out, installs, executes or renders candidate
+code. They use no model API key or dedicated App private key. Required-check protection and trusted-main
 bootstrap are separate owner checkpoints. Without them, repository administrators
 can bypass the check; local files cannot establish remote enforcement.
+
+### Reporting compatibility repair — 2026-10-27
+
+PR113 at `57398f4c1fbb61056e3b7725ff00e6ee380ba627` had successful exact-head
+CI, fresh independent review and successful custom visual CheckRuns under Actions
+App15368, yet required-rule evaluations `4752694576` and `4752764162` recognized
+only the five native CI jobs and reported the visual context expected. The
+candidate and test-merge commit had no commit statuses. This is evidence of a
+reporting/enforcement compatibility failure, not a missing provider acceptance or
+pending job. The custom checks attached an older suite; GitHub's internal reason
+for omitting them from enforcement was not established.
+
+The bounded repair adds commit-status reporting alongside the existing rich
+CheckRun. Both use the same actual candidate SHA, exact `Frontend visual
+acceptance` context and one `assessPr` result. A pending commit status is written
+first, then the CheckRun starts, assessment verifies current evidence, and current
+head/body/labels are rechecked. Only a confirmed successful CheckRun completion
+may be followed by a successful status, for accepted or justified N/A evidence.
+Failures and unknown reporter outcomes fail the native job and make bounded
+best-effort failure reports; an unavailable final report can leave the known
+pending status blocking. Initial invalidation may itself be unavailable, so a
+failed reporter is never presented as a newly verified remote gate outcome.
+No historical failure is deleted, and a status is not synthesized from old green
+UI. A fresh valid assessment can refresh the rich check after an older failure.
+
+This preserves comment, schedule and manual reevaluation: their native job can
+run on main while both reports still target the candidate. Requiring only that
+native job would not preserve later candidate acceptance/revocation behavior.
+GitHub requires both a check and status to pass when they share a required name.
+The App identity comes from the real token; the status payload has no `app_id`.
+The sole token-permission addition is `statuses:write` in this workflow, with no
+App, secret, environment, deployment or paid-model change. Existing immutable
+source/image/PNG checks, provider/manual roles, new-head invalidation, N/A reasons
+and candidate-code isolation remain in `assessPr` and `evaluateFrontend`.
+
+Source preparation was routed to Sol High with independent High review. Mocked
+API and local hosted-entry CLI tests with mocked APIs cover positive/manual/provider/N/A outcomes,
+missing/stale/revoked/unavailable evidence, ordering, metadata changes and each
+reporter failure. They perform no real status writes, provider calls or hosted
+enforcement proof. Actual App15368 status provenance and original-rule positive
+recognition plus genuine negative blocking remain separate hosted checkpoints.
+
+The current trusted publisher cannot install this fix by itself. A proposed
+bootstrap would replace only the sixth required context with native `assess`,
+keeping App15368, the other five checks, strictness and every protection clause.
+That requires a **new explicit owner bridge decision** and independently reviewed
+exact before/restore payloads. The main-target ruleset is not PR-specific: all
+other merges, including PR113, frontend work and paid pilot activity must be
+frozen by the Coordinator throughout any approved bridge. No freeze, rule change,
+merge or probe has occurred through this source preparation. Only a separately
+qualified frozen tooling-only fix PR could cross that bridge. New trusted-main
+publisher proof must precede an owned conditional restoration; effective original
+gate proof cannot be claimed while the substitute is active. Stop on failure or
+unknown state. Restore and verify original protection before PR113 integration
+and eventual new-main credential-free bootstrap/DRY2. No bypass, App-pin removal,
+fabricated success, protected source overlay or repeated merge attempt is a fix.
+
+#### Suggested Review Order
+
+1. `.github/workflows/frontend-quality-gate.yml`: only `statuses:write` is added;
+   trusted checkout, existing checks access, events and budgets remain.
+2. `scripts/quality/frontend-controller.mjs`: `reportPrAssessment` orders both
+   reporters, checks current candidate metadata and rejects unknown responses;
+   `hosted` propagates failure to its native job. Its paired declaration describes
+   the new testable export without changing the gate result contract.
+3. `tests/unit/scripts/frontend-quality-gate.test.ts`: inspect the reporter-order,
+   reporter-failure, real evidence and local all-event CLI cases alongside the
+   existing image/source/manual/provider and fixer-readiness boundaries. Local
+   synthetic execution does not qualify the hosted rule binding or a paid pilot.
 
 ## Capture and coverage contract
 
