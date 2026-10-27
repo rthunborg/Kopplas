@@ -1,0 +1,42 @@
+{
+  "schema": "ROOT_DEFAULT_VOLATILITY_NORMAL_ACTUAL_CLOSEOUT_V1",
+  "recorded_at_utc": "2026-10-23T12:53:41.667167+00:00",
+  "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+  "source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+  "run_id": 39950998114,
+  "checkpoint_id": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+  "run_status": "terminal_failure",
+  "polling": "ROOT_STOPPED;resolver1/poll8;originalclock/countersretained;allunusedslotsclosed",
+  "required95": {
+    "passed": 73,
+    "failed": 1,
+    "zero_passing_coverage": 21,
+    "Node_distinct_passed": 30,
+    "DB_passed": 29,
+    "DB_failed": "INT014",
+    "DB_pending": "INT015",
+    "API_absent": 20,
+    "browser_retry0_passed": 14
+  },
+  "INT009": "PASSED_CURRENT_RUN",
+  "recovery_separate": "1P0F",
+  "DB_custody": "retained;keyDeletedfalse;deletionunverified;backendsettlementUNKNOWN",
+  "cause": "INT014scenario-assertion boundary only;exactassertion/value/nativefirstthrowUNKNOWN;readonlysourceassessment/independentminimumplancheck underway",
+  "cap_discrepancies": [
+    "Publisherremote-before/readbackconfigured20s versusgranted15s;actualelapsed0.599305/0.596385native0;historicaldriftpreserved;separatequalifiedremainingreadonlycontinuationclosed.",
+    "Acquisitiongenericprojection32KiBgrantwording versusunchangedsourceenforcedsource-label-onlycap;source-label1691B,integration61132B,archive48553B;noeveryfilecomplianceorretroactivenarrowingclaim."
+  ],
+  "qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-terminal-actual-native-qualification.json",
+    "bytes": 21077,
+    "sha256": "59474427cc70223c2547d75915dd62b602ffb04ea5f5373d33a1d06489ae92d7"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/manifest.json",
+    "bytes": 25565,
+    "sha256": "675117385c372c478c74313ba10f707044af79310cf2ff5b5306fe4f584dfcd6"
+  },
+  "P5": "OPEN;completedphases0..4unchanged;noacceptance/done/releaseclaim",
+  "next": "CompleteindependentminimalINT014sourceplancheck;prospectivesurgicalfixturecorrectionandfocusedcontrols;independentactualpatchreview;freshauthorizedfullNORMALevidencebeforecompletion.",
+  "boundaries": "NofurtherGET/retry/push/POST/provider/resources/merge/deployfromthiscloseout;all118appliedSQLimmutable;15.6unstarted."
+}

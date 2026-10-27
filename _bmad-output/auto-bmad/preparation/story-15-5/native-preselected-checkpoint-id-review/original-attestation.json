@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_EXACT_COMMITTED_PRESELECTED_CHECKPOINT_ID_REVIEW",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "fresh_context": true,
+    "independent_of_author": true,
+    "author_task": "/root/build15_5_high",
+    "route_phase": "review-actual-preselected-checkpoint-id-interface-delta",
+    "route_recording": "Parent reports phase persisted in both canonical states before dispatch; reviewer did not modify state."
+  },
+  "scope": {
+    "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "base": "2524306ca9edd6079c23d205cf01268797288d89",
+    "paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "tests/unit/scripts/ci/checkpoint-dispatch.test.ts"
+    ],
+    "insertions": 100,
+    "deletions": 3,
+    "completed_prior_broad_reviews": 3,
+    "fourth_broad_review": false,
+    "adjacent_context": [
+      "Dispatcher validation/durable-intent/ownership/discovery/cancel control flow",
+      "Unchanged workflow checkpoint input/title/admission/concurrency",
+      "Current author SRO new three stops and unchanged intent-contract"
+    ]
+  },
+  "immutable_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "bytes": 67694,
+      "sha256": "173b5caf9ee43fc9024694b8232c4d6e768be4159cc0330c37efa965021070f5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+      "bytes": 13507,
+      "sha256": "7757ceb9971e96b2b595cf54b5fd51759f312ae39fb28f5140a12715191db63b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/input-binding.json",
+      "bytes": 51725,
+      "sha256": "f30c6e0db86a4625bd406951c40f03ec7a5cc634dcb60275819cb96a2bdd791c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/local-checks.json",
+      "bytes": 1624,
+      "sha256": "babf73ed10ab45398f5555eed2eb05d2a89a61421dce7630c8651f9c9812df5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/route-context.json",
+      "bytes": 2938,
+      "sha256": "9f7545987813e38e76ba4f3932e1f9d1c650bf22076f636ae5a83a65e9892d22"
+    }
+  ],
+  "actual_source_bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 135154,
+        "sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41"
+      },
+      "actual_git_clean_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+      "committed": {
+        "oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+        "bytes": 135154,
+        "sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41"
+      },
+      "baseline": {
+        "oid": "046d41efbe28e31d8fdf4a1f9f03fa27b400b7f5",
+        "bytes": 131245,
+        "sha256": "d6c5ea5c0248e86f2d69a20210dcacdff76d5f7476ad6fdbafba0f11794a02da"
+      },
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw": {
+        "bytes": 19782,
+        "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a"
+      },
+      "actual_git_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "committed": {
+        "oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "bytes": 19492,
+        "sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f"
+      },
+      "baseline": {
+        "oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d",
+        "bytes": 18962,
+        "sha256": "2d5c32540eddb578dd24118445c3b708c26bfaede1f631632c46af8e9be73ec1"
+      },
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw": {
+        "bytes": 29955,
+        "sha256": "bc93e6e13b735ba1fa45ce35b68aa3481af0f5325ff147304d401f2c1c2ed656"
+      },
+      "actual_git_clean_oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+      "committed": {
+        "oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+        "bytes": 29711,
+        "sha256": "99bb62d37e65e539089f638f43a13312c4650a04bfea4a364aaa22beceb089bf"
+      },
+      "baseline": {
+        "oid": "fb0f9d9b427c513b0cd890087a8c7aa23b1213bd",
+        "bytes": 25201,
+        "sha256": "7785f56fa8e7a0ec6ee6e2366ac6ebb2969e93f87ce14e5c79c60a51a4e92865"
+      },
+      "raw_equals_committed_blob": false
+    }
+  ],
+  "checked_reference_integrity": {
+    "occurrences": 16,
+    "unique_paths": 11,
+    "all_bytes_and_sha256_match": true,
+    "native_diff_bytes_equal": true,
+    "all_current_and_base_blobs_checked": true,
+    "current_and_af5_actual_oid_pairs": 70,
+    "unchanged_pairs": 67,
+    "af5": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+    "owned_source_worktree_compare_exit": 0,
+    "owned_source_index_compare_exit": 0,
+    "global_clean_claim": false
+  },
+  "root_admissions": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-review-input-admission.json",
+      "bytes": 1388,
+      "sha256": "4c44edffe1087d78e6c420edae29091bbcf317d969bfbb32429174eaf98ca797"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json",
+      "bytes": 38696,
+      "sha256": "9979b077d41f0bce0345425a1c9d67a2195cb7e5e04df8e407a6d91ff9880281"
+    }
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-preselected-checkpoint-id-allocation.json",
+    "bytes": 2858,
+    "sha256": "73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398"
+  },
+  "independent_controls": {
+    "total": 80,
+    "pass": 80,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "method": "Committed source evaluated in Node VM after import/export declaration and CLI entrypoint removal; memory-only filesystem/API fakes, real UUID generator; no saved test script/state or real provider.",
+    "groups": {
+      "durable_supplied_generated_modes": 6,
+      "programmatic_refusals": 59,
+      "cli_refusals": 12,
+      "cli_selection": 1,
+      "uncertainty_and_foreign_title": 1,
+      "read_once": 1
+    },
+    "additional_direct_module_parser_probe": "LF, CR, CRLF, Unicode line/paragraph separators and space suffixes all refused; no checkpoint/API call.",
+    "observations": [
+      "Same selected ID in fsynced/closed memory intent before fake POST, payload, result, title and subsequent ownership.",
+      "Omission retains generated UUID; old state refuses before API.",
+      "Nonstring/case/version/variant/malformed and status/cancel supplied identity all refuse before API and filesystem state.",
+      "Uncertain POST retains original ID; status does not redispatch; different-title run not adopted; dispatch from same record refuses."
+    ],
+    "limitations": [
+      "In-memory control-flow observations do not prove real OS durability or provider semantics.",
+      "Actual CLI process and author 35-case suite not rerun.",
+      "No broad/full build, DB, browser, native CI or helper execution."
+    ]
+  },
+  "attributed_author_checks": {
+    "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "base": "2524306ca9edd6079c23d205cf01268797288d89",
+    "actual_dispatcher_execution": {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "total": 35,
+      "pass": 35,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "exit": 0,
+      "first_run": true,
+      "initial_failures": 0,
+      "retains_prior31": true,
+      "proof": "Actual checkpoint dispatcher with existing injected API seam inspects durable record at POST across supplied/generated normal/diagnostic/release selection; all invalid/status/cancel refusals before API. No real provider POST."
+    },
+    "whole_typecheck": {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit": 0
+    },
+    "affected_lint": {
+      "command": "pnpm exec eslint scripts/ci/checkpoint-dispatch.mjs tests/unit/scripts/ci/checkpoint-dispatch.test.ts --max-warnings 0",
+      "exit": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    "native_git_checks": {
+      "working_diffcheck": 0,
+      "staged_diffcheck": 0,
+      "exact_staged_paths": 3,
+      "post_commit_source_and_index_clean": true
+    },
+    "no_app_build_rerun": true,
+    "no_full_or_combined117_375_or374_execution_claim": true,
+    "no_native_or_private_helper_execution": true,
+    "no_preparation_semantic_test_rerun": true,
+    "native_credit": 0,
+    "author_trail": {
+      "SRO": 92,
+      "kernel_bytes": 5760,
+      "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "status": "in-review",
+      "ARR_historical_warning_preserved": true
+    }
+  },
+  "author_trail_check": {
+    "section_count": 1,
+    "new_stops_checked": [
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 178,
+        "anchor": "const suppliedId = \"checkpoint_id\" in options"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 207,
+        "anchor": "checkpoint_id: suppliedId ? selectedId : randomUUID()"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 326,
+        "anchor": "preselected and legacy generated checkpoint identity"
+      }
+    ],
+    "intent_contract_unchanged_from_base": true,
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "frontmatter_status": "in-review",
+    "review_loop_iteration": 3,
+    "historical_ARR_warning_retained": true
+  },
+  "action_limits": {
+    "created_only": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/original-report.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/original-attestation.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/result.json"
+    ],
+    "source_spec_git_index_state_bookkeeping_mutations": 0,
+    "network_provider_db_ci_resource_actions": 0,
+    "private_helper_mutations_or_executions": 0,
+    "native_credit": 0,
+    "acceptance_credit": 0,
+    "dispatch_authorization": false,
+    "run_qualification": false
+  },
+  "retained_gates": [
+    "Fresh UUID required; never reuse after uncertainty; correlation is not GitHub idempotency.",
+    "Root new source freeze/checkpoint push and NEW private preparation bound to actual newly pushed full SHA/fresh UUID.",
+    "Rebound helper/test independent High review and existing pre-POST admission gates.",
+    "P252 immutable/unexecuted; 11 failed native histories/43 DB causes/14 browser failures remain open; no DONE/delivery/release claim."
+  ],
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/original-report.md",
+    "bytes": 6336,
+    "sha256": "39fd8ea5ba6b6c87fea5e5a1d01322e4dbca9c808922ba6204bad5855be57212"
+  },
+  "result": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/result.json",
+    "bytes": 956,
+    "sha256": "223c299fdebafd2cbedc2555f68c9a16a1f840f14711ebbdb1a9d1b142d4d017"
+  }
+}

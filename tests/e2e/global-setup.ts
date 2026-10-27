@@ -17,6 +17,7 @@
  * the detail sub-sections are populated.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
+import * as ownedAuthFs from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import {
@@ -55,6 +56,179 @@ export const FIXTURE_FILE = path.join(
   "fixture.json",
 );
 
+// OWNED-AUTH-FD-BEGIN
+// This closure is an ownership capability, not a pathname/env-based reconstruction.
+// Normal lifetime: two owned FDs, plus one iterator; three enumerations total,
+// at most six iterator reads and five total close attempts. Blocking syscalls
+// and forced process termination do not have a cleanup-completion guarantee.
+type AuthStat = ownedAuthFs.Stats;
+type AuthIO = Pick<typeof ownedAuthFs, "constants" | "lstatSync" | "openSync" | "fstatSync" | "statSync" | "opendirSync" | "writeSync" | "readSync" | "ftruncateSync" | "closeSync" | "realpathSync"> & {
+  cwd: string; uid: number; gid: number; platform: string; now: () => number;
+  publish: (summary: string) => unknown;
+};
+type AuthResult = Readonly<{ schemaVersion: 1; erasure: "verified-original-zero" | "unknown"; retained: boolean; closed: boolean; database: "completed" | "unknown" }>;
+const AUTH_UNKNOWN: AuthResult = Object.freeze({ schemaVersion: 1, erasure: "unknown", retained: false, closed: false, database: "unknown" });
+function sameAuthInode(a: AuthStat, b: AuthStat) { return a.dev === b.dev && a.ino === b.ino; }
+function authFact(value: unknown): asserts value { if (!value) throw new Error("owned auth unavailable"); }
+function frozenAuthIdentity(text: string): unknown {
+  const value: unknown = JSON.parse(text); let nodes = 0;
+  function freeze(item: unknown, depth: number) {
+    authFact(++nodes <= 32768 && depth <= 16);
+    if (item !== null && typeof item === "object") {
+      for (const child of Object.values(item)) freeze(child, depth + 1);
+      Object.freeze(item);
+    }
+  }
+  freeze(value, 0); return value;
+}
+function createOwnedAuthFixture(io: AuthIO, text: string, cleanup: (original: unknown) => Promise<void>) {
+  const payload = Buffer.from(text, "utf8");
+  authFact(payload.length > 0 && payload.length <= 1048576);
+  const original = frozenAuthIdentity(text), digest = createHash("sha256").update(payload).digest("hex");
+  let directory: number | null = null, file: number | null = null;
+  let directoryIdentity: AuthStat | null = null, fileIdentity: AuthStat | null = null;
+  let consumed = false, revoked = false, outcome: AuthResult = AUTH_UNKNOWN;
+  let started = io.now(), calls = 0, iterators = 0, iteratorReads = 0, closes = 0;
+  const check = () => authFact(++calls <= 128 && io.now() - started < 1000);
+  const dirPath = () => { authFact(directory !== null); return `/proc/self/fd/${directory}`; };
+  const slotPath = () => `${dirPath()}/fixture.json`;
+  const metadata = (fd: number): AuthStat => { check(); return io.fstatSync(fd); };
+  const validDirectory = (value: AuthStat) => value.isDirectory() && Number.isSafeInteger(value.ino) && value.ino > 0
+    && Number.isSafeInteger(value.dev) && value.dev >= 0 && value.uid === io.uid && value.gid === io.gid && (value.mode & 0o777) === 0o755;
+  const validFile = (value: AuthStat) => value.isFile() && Number.isSafeInteger(value.ino) && value.ino > 0
+    && Number.isSafeInteger(value.dev) && value.dev >= 0 && value.uid === io.uid && value.gid === io.gid && (value.mode & 0o777) === 0o600 && value.nlink === 1;
+  function directoryBound() {
+    authFact(directory !== null && directoryIdentity !== null);
+    const descriptor = metadata(directory);
+    authFact(validDirectory(descriptor) && sameAuthInode(descriptor, directoryIdentity));
+    check(); const namespace = io.lstatSync(`${io.cwd}/tests/e2e/.auth`);
+    authFact(validDirectory(namespace) && sameAuthInode(namespace, directoryIdentity));
+    check(); const proc = io.statSync(dirPath());
+    authFact(validDirectory(proc) && sameAuthInode(proc, directoryIdentity));
+  }
+  function fileBound() {
+    directoryBound(); authFact(file !== null && fileIdentity !== null);
+    const actual = metadata(file); authFact(validFile(actual) && sameAuthInode(actual, fileIdentity));
+    check(); const named = io.lstatSync(slotPath());
+    authFact(validFile(named) && sameAuthInode(named, fileIdentity));
+    return actual;
+  }
+  function enumerate(empty: boolean) {
+    directoryBound(); authFact(++iterators <= 3); check();
+    const iterator = io.opendirSync(dirPath(), { bufferSize: 1, recursive: false });
+    try {
+      check(); authFact(++iteratorReads <= 6); const first = iterator.readSync();
+      if (empty) authFact(first === null);
+      else {
+        authFact(first?.name === "fixture.json" && first.isFile());
+        check(); authFact(++iteratorReads <= 6); authFact(iterator.readSync() === null);
+      }
+    } finally { ++closes; iterator.closeSync(); }
+  }
+  function closeOwned() {
+    let confirmed = true;
+    for (const kind of ["file", "directory"] as const) {
+      const fd = kind === "file" ? file : directory;
+      const identity = kind === "file" ? fileIdentity : directoryIdentity;
+      // Consume/invalidate before close. An uncertain/reused descriptor is never acted on.
+      if (kind === "file") file = null; else directory = null;
+      if (fd === null) continue;
+      try {
+        authFact(identity !== null && sameAuthInode(io.fstatSync(fd), identity));
+        ++closes; io.closeSync(fd);
+      } catch { confirmed = false; }
+    }
+    return confirmed;
+  }
+  function publish() {
+    try {
+      const row = JSON.stringify(outcome); authFact(Buffer.byteLength(row) <= 512);
+      // Never await/retry a best-effort diagnostic sink, including rejected promises.
+      void Promise.resolve(io.publish(row)).catch(() => {});
+    } catch { /* delivery UNKNOWN; no raw fallback */ }
+  }
+  try {
+    authFact(io.constants.O_DIRECTORY === 65536 && io.constants.O_NOFOLLOW === 131072
+      && io.constants.O_EXCL === 128 && io.constants.O_CREAT === 64 && io.constants.O_RDWR === 2);
+    authFact(io.platform === "linux" && Number.isSafeInteger(io.uid) && Number.isSafeInteger(io.gid) && io.uid > 0 && io.gid > 0
+      && /^\/var\/tmp\/kopplas-owned-[a-f0-9]{32}\/workload$/.test(io.cwd));
+    const root = io.cwd.slice(0, -9);
+    const chain = ["/", "/var", "/var/tmp", root, io.cwd, `${io.cwd}/tests`, `${io.cwd}/tests/e2e`];
+    for (const [index, name] of chain.entries()) {
+      check(); const value = io.lstatSync(name);
+      authFact(value.isDirectory() && Number.isSafeInteger(value.ino) && value.ino > 0
+        && Number.isSafeInteger(value.dev) && value.dev >= 0 && value.uid === 0 && (value.mode & 0o111) === 0o111
+        && (index === 2 ? (value.mode & 0o1000) !== 0 : (value.mode & 0o022) === 0));
+    }
+    check(); const named = io.lstatSync(`${io.cwd}/tests/e2e/.auth`); authFact(validDirectory(named));
+    check(); directory = io.openSync(`${io.cwd}/tests/e2e/.auth`, io.constants.O_RDONLY | io.constants.O_DIRECTORY | io.constants.O_NOFOLLOW);
+    directoryIdentity = metadata(directory); authFact(validDirectory(directoryIdentity) && sameAuthInode(directoryIdentity, named));
+    check(); authFact(io.realpathSync(dirPath()) === `${io.cwd}/tests/e2e/.auth`);
+    enumerate(true);
+    check(); file = io.openSync(slotPath(), io.constants.O_RDWR | io.constants.O_CREAT | io.constants.O_EXCL | io.constants.O_NOFOLLOW, 0o600);
+    fileIdentity = metadata(file); authFact(validFile(fileIdentity)); fileBound();
+    let offset = 0;
+    for (let index = 0; offset < payload.length && index < 32; ++index) {
+      fileBound(); check(); const written = io.writeSync(file, payload, offset, Math.min(65536, payload.length - offset), offset);
+      authFact(Number.isInteger(written) && written > 0 && written <= Math.min(65536, payload.length - offset)); offset += written;
+    }
+    authFact(offset === payload.length); fileBound();
+  } catch (error) {
+    // Finalize only the authentic creation FD, even on partial-write failure.
+    if (file !== null && fileIdentity !== null) {
+      try { fileBound(); io.ftruncateSync(file, 0); } catch { /* residual UNKNOWN */ }
+    }
+    closeOwned(); publish(); throw error;
+  }
+  return Object.freeze({
+    result: () => outcome,
+    consume: async (): Promise<AuthResult> => {
+      if (consumed) { if (!outcome.closed) revoked = true; return outcome; }
+      consumed = true; started = io.now(); calls = 0; let zero = false, retained = false, database: AuthResult["database"] = "unknown";
+      try {
+        enumerate(false); const current = fileBound(); authFact(current.size === payload.length);
+        const read = Buffer.alloc(payload.length); let offset = 0;
+        for (let index = 0; offset < read.length && index < 32; ++index) {
+          fileBound(); check(); const count = io.readSync(file!, read, offset, Math.min(65536, read.length - offset), offset);
+          authFact(Number.isInteger(count) && count > 0 && count <= Math.min(65536, read.length - offset)); offset += count;
+        }
+        authFact(offset === read.length && createHash("sha256").update(read).digest("hex") === digest);
+        // DB identities come from the immutable creation snapshot, never a replacement path.
+        try { await cleanup(original); database = "completed"; } catch { /* preserve best-effort DB scope, typed residual */ }
+        authFact(!revoked); started = io.now(); fileBound(); check(); io.ftruncateSync(file!, 0);
+        authFact(fileBound().size === 0); enumerate(false); retained = true; zero = true;
+      } catch { /* fail closed, original test/native failure remains authoritative */ }
+      finally {
+        const closed = closeOwned();
+        const timely = Number.isFinite(io.now()) && io.now() - started < 1000;
+        outcome = Object.freeze({ schemaVersion: 1, erasure: zero && closed && !revoked && timely ? "verified-original-zero" : "unknown", retained: retained && closed && !revoked && timely, closed, database });
+        publish();
+      }
+      return outcome;
+    },
+  });
+}
+let ownedAuthCreationClosed = false;
+let ownedAuthRouteEntered = false;
+let ownedAuthHolder: ReturnType<typeof createOwnedAuthFixture> | null = null;
+export function hasOwnedAuthRoute() { return ownedAuthRouteEntered; }
+export async function finishOwnedAuthCleanup(): Promise<AuthResult> {
+  ownedAuthCreationClosed = true;
+  return ownedAuthHolder ? ownedAuthHolder.consume() : AUTH_UNKNOWN;
+}
+async function installOwnedAuthFixture(text: string, loadCleanup: () => Promise<(original: unknown) => Promise<void>>, io: AuthIO) {
+  authFact(ownedAuthRouteEntered && !ownedAuthCreationClosed && ownedAuthHolder === null);
+  const cleanup = await loadCleanup();
+  authFact(!ownedAuthCreationClosed && ownedAuthHolder === null);
+  ownedAuthHolder = createOwnedAuthFixture(io, text, cleanup);
+  return async () => {
+    const result = await finishOwnedAuthCleanup();
+    if (result.erasure !== "verified-original-zero" || !result.retained || !result.closed)
+      throw new Error("e2e owned auth cleanup unverified");
+  };
+}
+// OWNED-AUTH-FD-END
+
 /** A unique, recognizable token so specs can search/assert without ambiguity. */
 function token(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -82,6 +256,8 @@ function noDeductionTaxInput(
 }
 
 export default async function globalSetup() {
+  const ownedApplication = process.env.KOPPLAS_FIXED_CHROMIUM_APPLICATION_MODE === "verify-application";
+  if (ownedApplication) { authFact(!ownedAuthRouteEntered && !ownedAuthCreationClosed); ownedAuthRouteEntered = true; }
   const base = await createTwoTenantFixture();
   const { operatorConsole } = await seedEpic12BrowserFixtures({ base, token });
   // Story 11.2 ATDD runs the real app as two non-admin members of the same
@@ -1097,6 +1273,16 @@ export default async function globalSetup() {
     },
   };
 
+  if (ownedApplication) {
+    return installOwnedAuthFixture(JSON.stringify(fixture, null, 2), async () => {
+      const { cleanupOriginalFixture } = await import("./global-teardown");
+      return async original => { await cleanupOriginalFixture(original as Parameters<typeof cleanupOriginalFixture>[0]); };
+    }, {
+      ...ownedAuthFs, cwd: process.cwd(), uid: process.getuid?.() ?? -1, gid: process.getgid?.() ?? -1,
+      platform: process.platform, now: () => performance.now(),
+      publish: summary => { console.warn(`e2e owned auth: ${summary}`); },
+    });
+  }
   mkdirSync(path.dirname(FIXTURE_FILE), { recursive: true });
   writeFileSync(FIXTURE_FILE, JSON.stringify(fixture, null, 2), "utf8");
 }

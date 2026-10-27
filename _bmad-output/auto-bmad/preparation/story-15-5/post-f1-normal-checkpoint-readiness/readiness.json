@@ -1,0 +1,281 @@
+{
+  "schema": "POST_F1_EXACT_SOURCE_NORMAL_READINESS_v1",
+  "policy_version": "2026-10-19",
+  "role": "Independent gpt-6.1-sol High readiness/effect qualifier; not source reviewer/operator",
+  "status": "READY_FOR_EXACT_NORMAL_ALLOCATION",
+  "source_commit": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "current_metadata_HEAD": "75ee454577842a952dbf11ee13819493d8072933",
+  "previous_metadata_HEAD": "a329f572f6abeca0864092f3b93b74562785321f",
+  "future_pushed_head": null,
+  "future_checkpoint_uuid": null,
+  "future_run_id": null,
+  "future_attempt": 1,
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "normal_acceptance_credit": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "source_qualification": {
+    "current": "73 raw hashes/bytes independently matched source-author census;73 actual clean Git objects match BOTH sourceb1 and currentmetadata75ee; actual blob bytes/sha256 checked;45 CRLF normalization differences, no other transformation. Source-bindings.json is current source proof, not a new giant capsule or native PASS.",
+    "review": "Composite prior cumulative f000\u219222508 non-F1 scope plus exact3 latest b1 F1 closure PASS_CODE_ONLY_F1_CLOSED. Original NOTPASS and partial histories remain frozen. No fourth broad review; this task does not reopen source correctness review.",
+    "author_checks": "131 fresh Node controls, TS/lint/diff/reader0 are separately source-bound assertions. Prior125/partition5/nine-child and reviewer9 are reused nonadditively. They are not native95 evidence.",
+    "SQL": "All111 migrations unchanged. Applied110/111 are immutable;111 body32551/SHA73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567 is historically successfully applied. No forward SQL change is proposed. Future exact runtime must actually start/reset/restore all111 and qualify ledger again."
+  },
+  "current_enrollment": {
+    "file": "enrollment.json",
+    "method": "Static exact titles + explicit finite vector expansion, current raw and Git bindings; no app/test module execution here.",
+    "Node": 30,
+    "ordinary_Vitest": 51,
+    "DB_breakdown": {
+      "INT": 15,
+      "RLS": 12,
+      "COMP": 4,
+      "API": 20
+    },
+    "essential_browser": 14,
+    "total": 95,
+    "direct_recovery_separate": 1,
+    "normal_diagnostic_cases": 0,
+    "no_required_skip_or_only_found_in_current_story_declarations": true,
+    "Node_expansion": "Six source files byte-identical to prior exact30 inventory; includes21 UNIT IDs with UNIT002 spring/autumn plus unnumbered R1-05/06/07 regressions. Do not use broad R1 matcher32 lines as30 unique cases.",
+    "browser_expansion": "Nine literal case declarations plus002A/B/C three-way and010 rotate/revoke two-way =14. Other17 smoke cases were historical; future other-smoke count must be observed, not assumed.",
+    "native_execution_current": 0
+  },
+  "partition_and_fail_closed": {
+    "files": 165,
+    "parallel": 159,
+    "serial": [
+      "tests/integration/jobs/job-runs.int.test.ts",
+      "tests/integration/commands/conflict-resolver.int.test.ts",
+      "tests/integration/commands/time-reports.int.test.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts"
+    ],
+    "serial_count": 6,
+    "enrollment": "Same six included only in integration-audit-ddl and excluded only from parallel. No duplicated/missing files; same successful95 requirement.",
+    "config": "Every selected project runs full supported predicate before globalSetup/test import. Exact2 names/isolate/parallelism/group0+1; serial maxWorkers1+bail1; parallel project configured maxWorkers!=1. CPU/CLI-derived1 alone is not refused.",
+    "caller": "Current finite34 unswallowed direct imported fixture awaits and inverse guard are mandatory; fixture final custody throw remains outside scenario. Expected-negative assertions with verified settlement are successful tests, not fail-fast triggers.",
+    "failure": "Failure/timeout/cancellation can stop remaining serial cases before import/hook/fixture. Missing/cancelled cases and incomplete JSON are UNEXECUTED, never coverage; report count0pending is not proof of full enrollment. No next shared seam or destructive canonical/row/Auth cleanup after uncertainty.",
+    "native_order": "Future installed partition controls + actual report intervals once/nonoverlap/after all parallel report completion. Passing scheduler controls support teardown ordering; never invent physical teardown timestamps."
+  },
+  "normal_invocation_after_finite_gates": {
+    "push_owner": "Root only after actual completed normal operation allocation; independently reviewed exact source preserved through metadata commit/push; recheck all73 raw/clean/target blobs plus vercel.json/workflow/package context, exact branch and ownership. This record grants no push.",
+    "argv_template": [
+      "node",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "dispatch",
+      "--repo",
+      "rthunborg/Kopplas",
+      "--ref",
+      "codex/epic-15-scheduling-time-calendar",
+      "--sha",
+      "<actual reviewed pushed full SHA>",
+      "--checkpoint-id",
+      "<fresh lowercase UUIDv4>",
+      "--release-validation",
+      "false",
+      "--cause-proof",
+      "false",
+      "--state",
+      "<new exclusive ignored operation receipt>"
+    ],
+    "title": "checkpoint:<freshUUID>:<exactfullSHA>",
+    "preconditions": "Coordinator actual completed normal operation/effect ownership allocation; fresh unique UUID/absent state+lock, actual remote branch SHA==target, authenticated actor has write/maintain/admin, active workflow ci.yml path/id, attempt1. Supplied UUID correlation is not idempotency.",
+    "actual_dispatcher_request_inventory": [
+      "GET user",
+      "GET repos/rthunborg/Kopplas/collaborators/<actualactor>/permission",
+      "GET repos/rthunborg/Kopplas/branches/<encoded exact branch>",
+      "GET repos/rthunborg/Kopplas/actions/workflows/ci.yml",
+      "POST repos/rthunborg/Kopplas/actions/workflows/<actualid>/dispatches exactly once after exclusive fsynced intent"
+    ],
+    "availability_limit": "Normal dispatcher checks active registration/path and exact selected ref; candidate checked-in input schema is bound. It does not fetch default workflow source. Prior default registration/source observation is historical, not fresh hosted proof; absence of release_validation on old default alone is not a proven branch dispatch blocker. Actual sole POST/admission outcome determines hosted normal compatibility; uncertainty consumes the operation, no redispatch.",
+    "polling": "Root sole status/run/job owner, one discovered exact actor/workflow/title/ref/SHA/attempt1. No adoption/cancellation of E16 or other sessions; ambiguity stops, no opaque retry. Status requests need their separately bounded operation ownership.",
+    "repository_variables_required": [],
+    "repository_variable_mutation_necessary": false,
+    "optional_only_variables": [
+      "FIXED_CHROMIUM_HOSTED_ADMISSION",
+      "FIXED_CHROMIUM_HOSTED_ADMISSION_SHA"
+    ],
+    "variable_rule": "Normal false optional inputs suppress the only variable-referencing job. No read/set/restore needed here. If future genuinely required owned temporary variables differ, first allocate exact names/prior/current checks and restore only while equal to this operation temporary value; no wildcard changes."
+  },
+  "required_jobs": [
+    "checkpoint-admission",
+    "verify",
+    "db",
+    "recovery-storage-loader",
+    "e2e"
+  ],
+  "optional_jobs_uncredited": [
+    "dashboard-e2e",
+    "native-stream-probe",
+    "fixed-chromium-paired-probe",
+    "fixed-chromium-application-verification"
+  ],
+  "future_effect_inventory_TO_ALLOCATE": {
+    "target": "GitHub-hosted disposable uniquely owned jobs only; local/CI stacks, loopback application/Auth/DB/Storage/mail and synthetic data. Never demo/provider-production/local machine resources.",
+    "verify": "Frozen install/lockfiles, blocking high/critical audit, source service-role containment, type/lint/full Node, focused Python, production build and built-bundle containment. Fresh all actual totals/versions/severity counts if retained; no local count inference.",
+    "db_runtime": "Reviewed wrapper qualifies fresh source container/publication/workspace/ledger/feed owner/function catalog; original/current setup-admin authority7 and privacy4 before entropy/key/children. Creates one dedicated job-local Vault key, builds/starts own production child, readiness, full integration/RLS SUPABASE_TEST_REQUIRED1 then existing pilot; actual SQL/HTTP/assertion reach required.",
+    "test_fixture_and_shared_seams": "Existing normal Auth/tenant/booking fixtures and source-bound clock/subject/fetch seams. Exact target/owner/body/metadata/effective+raw ACL preflight; transactional grant CREATE public to calendar_feed_owner, SET LOCAL ROLE that owner, exact owned definition replacement/read, RESET ROLE/revoke CREATE, catalog recheck and commit. Capture/restore canonical exact body+metadata+ACL only with proven ordinary work settlement. These hosted test SQL/role/temporary-grant effects must be explicitly in normal allocation; no production ACL relaxation or new public capability.",
+    "C1_F1_custody": "Same existing query-only adminRetiredSession pool/public lifecycle, no private pg fields/new pool/principal/backend kill. HTTP dispatch/body/nonserver or status0 uncertainty and finite same-call rpc outcome latch custody before public503 erasure. Completed HTTP/RPC503 alone is NOT transport loss. No restoration/destructive row/Auth/key cleanup on UNKNOWN; frontend done/end does not prove backend rollback/canonical state.",
+    "RLS010_and_INT015": "RLS010 ordinary twoUUIDroles/private schema/function uncommitted regression before row fixture, same+fresh absence, no new case; actual owner public CREATE=false and individual effective/raw helper/entry ACL oracles required. INT015 separate native PG17 restricted original/reset/fresh/replay/unsafe membership/SET/ownership/UUIDabsence guards; fixture restrictions do not prove real source principal context.",
+    "recovery": "Fresh source111 reset, schema/platform ledger restore into separate DB/Storage Compose volume with generated synthetic credentials; pinned loader writes version-addressed physical bytes; one actual proof checks same-restored-target effectivepublicCREATEfalse before bytes, logical rows and generic+quotePDF overwrite denials, cleanup. Separate1, not story coverage.",
+    "browser": "Existing essential test:smoke uses production Playwright webServer, local Auth, actual subscription/lifecycle/feed/refresh/privacy journeys. Trace/screenshot/video feed flags are static privacy controls, not artifact-body proof. Page/request/lifecycle/body/poll promises must actually settle before fixture/SQL rollback/restoration cleanup.",
+    "cleanup": "Successful normal DB integration0 plus owned child identity/group/done/output and HTTP/poll/query/retirement facts, exact key UUID+name deletion readback/dbClosed/custody null. Current wrapper unsuccessful committed DB runtime/build/launch/readiness/nonzero/signal/timeout/cancel/forced/unknown stop conservatively retains keyOutcomeunverified/custody and skips key DELETE/readback. Browser failures may retain custody. Job stop/disposal, db.end and acquisition-reader EOF are not backend rollback/canonical restoration proof. Hosted workflow always-stop/remove behavior is the existing isolated CI boundary, not permission for local guard-bypassing teardown.",
+    "unchanged_boundaries": "No migration/application/secret/provider/env/workflow/dependency change requested; no diagnostic JIT lane or private v1/v2 consumer, optional release run, local managed launch, deployment or main merge."
+  },
+  "future_evidence_SEPARATE_ALLOCATION": {
+    "reuse": "Audited prior inline operator26061B/SHA71468c52fab40bea00219a00fe85b796f117d611612357a2917170f8d8862be6 provides bounded protocol, not current identities or fresh acceptance. No new persistent collector/channel/operator scaffold requested. Prior five GETs/native0 consumed; OS206 was proven pre-process/effect0, not a transport retry.",
+    "finite_pre_execution_binding_delta": [
+      "Fresh packet/once-intent/activation and terminal facts exact new head/source/UUID/run/attempt/mode; no old operation/receipt overwrite.",
+      "Source census must bind current73, including added tests/factories/admin-sql.ts versus old72; old vector has9 changed existing paths. Update fixed identity/count/receipt bindings mechanically; no stale72-source admission.",
+      "Bound current wrapper+pin/helper/factory/config+partitionunit/E2E/PW/schema/package-lock inputs; installed report formats remain Vitest4.1.9/Playwright1.61.1 locally, but native install/version identity must be observed.",
+      "Before allocation/use, exact retained operator/source comparison must confirm failed/bailed partial reports are preserved, missing cases unexecuted, current fixed tuple/receipt enums handled or UNKNOWN, and exact30 Node unique identities deduplicated. If old executable makes a full165/case-set assertion during acquisition or cannot bind these schemas, expose that finite compatibility stop; no silent consumer upgrade/alternate implementation."
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/<exact-terminal-run>/logs",
+        "maximum": 1,
+        "seconds": 15,
+        "compressed_cap": 33554432,
+        "declared_and_actual_selected_inflate_cap": 134217728,
+        "selected_jobs": [
+          "verify",
+          "db",
+          "e2e",
+          "recovery-storage-loader"
+        ]
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/<exact-terminal-run>/artifacts?per_page=100",
+        "maximum": 1,
+        "seconds": 15,
+        "cap": 4194304,
+        "no_pagination": true
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/<exact-qualified-ID>/zip",
+        "maximum": 3,
+        "each_artifact_maximum": 1,
+        "seconds": 15,
+        "compressed_cap": 33554432,
+        "inflate_cap": 134217728,
+        "JSON_cap": 16777216
+      }
+    ],
+    "fixed_reports": [
+      {
+        "name": "native-full-integration",
+        "member": "full-integration.json",
+        "schema": "Installed Vitest JSON"
+      },
+      {
+        "name": "native-general-browser",
+        "member": "general-browser.json",
+        "schema": "Installed Playwright JSON"
+      },
+      {
+        "name": "native-isolated-storage-recovery",
+        "member": "isolated-storage-recovery.json",
+        "schema": "Installed Vitest JSON"
+      }
+    ],
+    "admission": "Terminal Root grant and actual all9 job metadata; exact owned run/head/attempt/name/nonexpiry/ID/digest/size, valid nullable API metadata including expires_at; no artifact ID wildcard or unrelated download. Per-request exclusive durable intent/count before effect; uncertainty consumed UNKNOWN. No retry/alternate endpoint/per-job logs/pagination/refetch.",
+    "transport_and_privacy": "Streaming deadline/caps during stdout/stderr, actual exit/count+digest/EOF/read error/readers joined/owned process settlement; partial output measurement never complete-capture proof. ZIP paths/traversal/symlink/duplicate/encryption/ratio/CRC/declared+actual inflate checks before selected reading. All raw archive/log/JSON/error/credentials/URL/SQL/custody identifiers RAM-only; persist closed approved counts/case IDs/enums/typed predicates/digests. Unmatched failure leaves UNKNOWN.",
+    "required_qualification": "Actual all95 unique cases0requiredskip +recovery1/fullDB/RLS/service-required proof and5required jobs. Native full Node/suites/P/F/skip/cancel/todo/Python batches/audit/lint/type/build/containment; API019 all reached privacy predicates; each native ordinal/oracle only if assertion reach established. FullDB global skipped subsets/RLS nonadditive; browser attempts/retries/flaky distinct, no clean-pass label for retry-dependent outcomes. Required functional failures block development, never visual defer.",
+    "unavailable_body": "Unacquired artifact/attachment bodies NULL/UNQUALIFIED. Path-only refs prove neither leak nor privacy compliance. Source flags/metadata absence/job success/fixture absence alone do not prove no child/key/work/cleanup."
+  },
+  "Root_next_actions": [
+    "Mechanically admit this packet and fresh Vercel receipt; preserve all historical failures and review originals.",
+    "Preserve/verify this limited ordinary Git-push contract against the actual push target and unchanged current vercel.json/workflow/package bindings; no generic future-cancellation gate, no manual deployment.",
+    "Coordinator actual completed exact normal CI/source-effects ownership allocation; confirm no E16 shared variable/resource/branch overlap. No repo variable change is necessary from this source.",
+    "Root bookkeeping commit if needed; reverify73source/currentreview plus Vercel config/trigger context unchanged, immutable111 and exact branch; then normal checkpoint push only after completed allocation. No manualdeploy/main merge.",
+    "Fresh fixed UUID/exclusive intent, exact remote SHA and active workflow; one normal causefalse releasefalse dispatch. Root sole unique run/attempt polling; stop uncertainty, no redispatch.",
+    "Separate terminal evidence allocation/admission with exact current source/operator finite binding compatibility; acquire at most1archive+1list+3eligibleZIPs once; independently audit closed packet.",
+    "Only actual native qualification plus source/review truth/delivery gate may support development-complete; release validation/deployment/merge remain separate deferred approvals."
+  ],
+  "actual_effects_this_task": {
+    "source_or_existing_packet_writes": 0,
+    "Git_mutations": 0,
+    "application_test_SQL_connection_resource_CI_dispatch_push": 0,
+    "provider_mutations": 0,
+    "provider_logical_GET_invocations": 1,
+    "provider_internal_HTTP_or_descendant_count": "not independently established",
+    "local_CLI_help": 1,
+    "local_source_mechanical_Git_reads": true,
+    "outputs": "Owned readiness directory plus one explicitly allocated private Vercel receipt only.",
+    "public_primary_docs_reads": 2
+  },
+  "named_blockers": [],
+  "no_new_source_fix_identified": true,
+  "ordinary_git_push_publication_contract": {
+    "status": "QUALIFIED_LIMITED_ORDINARY_GIT_PUSH_CONTRACT",
+    "exact_current_project_read_ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-vercel-readonly-qualification.json",
+      "bytes": 4298,
+      "sha256": "45dfbb5ffb561f3b1a1d805ebfab9d8151e41b75c87fa601a278af33771e124f"
+    },
+    "actual_fields": {
+      "id": "prj_QYRxEeUBlCStlPL0YZd72y8245rg",
+      "accountId": "team_jvgtCLGEU7h6atn0TyGLNncd",
+      "commandForIgnoringBuildStep": "exit 0",
+      "previewDeploymentsDisabled": true,
+      "gitProviderOptions.createDeployments": "enabled"
+    },
+    "primary_contract": [
+      {
+        "url": "https://vercel.com/kb/guide/how-do-i-use-the-ignored-build-step-field-on-vercel",
+        "retrieved_utc": "2026-10-21T19:35:37.608443+00:00",
+        "source": "Independent web open of this exact official primary page in current task",
+        "relevant_excerpt": "If the command returns \"0\", the build will be skipped.",
+        "excerpt_utf8_sha256": "937b3cc48d506e2191a103f8ed5ec812196fb8e499a447bd0fd0456cb50f649f",
+        "raw_body_sha256": null,
+        "raw_body_limit": "Web parsed-page tool; no raw HTTP body/digest claim."
+      },
+      {
+        "url": "https://vercel.com/docs/builds",
+        "retrieved_utc": "2026-10-21T19:35:37.608443+00:00",
+        "source": "Independent web open of this exact official primary page in current task",
+        "relevant_excerpt": "Ignored build step: You can also write a script that cancels the build for a project if no relevant changes are detected.",
+        "excerpt_utf8_sha256": "05f747dc455dc9b4d156fdda3ad9d63731a482332303eef7579da27e6ba69514",
+        "raw_body_sha256": null,
+        "raw_body_limit": "Web parsed-page tool; no raw HTTP body/digest claim."
+      }
+    ],
+    "current_candidate_source": {
+      "vercel_json_bytes": 472,
+      "vercel_json_sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129",
+      "ignoreCommand_present": false,
+      "git_deploymentEnabled_exact_branch": false,
+      "tracked_vercel_configs": [
+        "vercel.json"
+      ],
+      "vercel_ts_files": [],
+      "normal_package_and8_workflows_no_deploy_promote_redeploy_reference": true,
+      "bindings": "Current actual Git object/clean/raw rows for10 scan inputs in bindings.json."
+    },
+    "qualification": "Observed unconditional ignored-build command exit0 plus documented skip/cancel semantics and no candidate override qualify ordinary Git-triggered build/publication cancellation at the reviewed exact project/branch. Existing exact-branch deploymentEnabledfalse is additional source-bound exclusion, not a claim that hosted gitProviderOptions.createDeployments is disabled. No source-side deploy/promote path was identified in the package/checked workflows.",
+    "records_and_limits": "Git creation remains enabled at project level; a canceled deployment record may exist. This is not blanket CLI/redeploy/promote/deploy-hook disable, not observed future cancellation, not alias-state observation and not deployment authorization. Those routes remain unauthorized. Future canceled-record/alias observations may be separately allocated; they are not a circular prerequisite to this source/current-setting contract.",
+    "conditions": "Root preserves current config/source bindings and sole ordinary Git push to this branch under actual effect allocation. Any config/provider change or manual deployment route needs separate qualification; no default/main merge.",
+    "historical": "Older project guard receipt supplies identity/history only; current read+official contract+current overrides establish this limited boundary. Coordinator-reported earlier raw projection was not used as actual proof."
+  },
+  "remaining_finite_gates": [
+    "Coordinator actual completed exact normal CI/push/effects allocation and current ownership; this readiness is not that authorization.",
+    "Fresh actual pushedhead/UUID/intent/run/attempt binding after Root preserves73source plus trigger config context.",
+    "Later separately authorized operator current73/partial-bail/schema binding admission before terminal evidence acquisition.",
+    "Actual full native development gates/delivery and independent truth audit before completion; no present native PASS."
+  ],
+  "pre_final_draft_history": {
+    "draft_not_admitted_or_final": {
+      "readiness_bytes": 21168,
+      "readiness_sha256": "dc2667b1d1cbd9fe1fa8574f883a7b764d19d0fb32143f6fa84383c40c19db63",
+      "manifest_bytes": 1166,
+      "manifest_sha256": "4974669d6aaccb9c540497d99a4e27594cabf3ba2e400b1f17e7f9c09501538b"
+    },
+    "reason": "Root late bounded scope amendment supplied official ignored-build contract and authorized exact2 public docs/current override check. Corrected unnecessary future-event prerequisite before final handoff; no second provider GET and no historical frozen packet rewrite."
+  }
+}

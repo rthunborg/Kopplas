@@ -1,0 +1,241 @@
+{
+  "schema": "INDEPENDENT_INT014_NORMAL_ACTUAL_TERMINAL_READER_REBIND_REVIEW_V1",
+  "status": "PASS_INT014_NORMAL_TERMINAL_REBIND_ONLY",
+  "outcome": "PASS_INT014_NORMAL_TERMINAL_REBIND_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "scope": "Targeted actual terminal/source/data enrollment/privacy review. Qualified algorithms,source75/catalog/parser/transport proofs reused with exact conservation; no fourth broad story review or actual acquisition.",
+  "execution_authorized": false,
+  "effect_authority": false,
+  "packet_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+      "bytes": 50733,
+      "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/source-rows.json",
+      "bytes": 32340,
+      "sha256": "a2a020b26877f3f7de8b2b23cec96748806f07228308cfc70c25b6a879240182"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26268,
+      "sha256": "fc448cc4141e98d6400fbd8345feb15053c17f33befc334b02c161e2ab74fdfa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/proposal.json",
+      "bytes": 189647,
+      "sha256": "ecc395e1056588f7ab338eb7028a8ff127b4a974af3d5cfa619f0851259c6028"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/manifest.json",
+      "bytes": 1200,
+      "sha256": "812e5200899edfe5c1d6f50e431b37a477576ebe38fad333c48e410cda2543fe"
+    }
+  ],
+  "actual_closed_evidence": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "f5a889fe8309208ce94ab6e4063e88a7279d9698b9e12b35ac85a2d2570970e9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/operation.json",
+      "bytes": 860,
+      "sha256": "2a6eac9ccee0451298a7d88358a6df1c0d6f012ef0b1e4a7665e0ee49e123c6e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-actual-root-ownership.json",
+      "bytes": 40335,
+      "sha256": "bae889178b1d7f60cd50baf443e0d49def96843ca5712775d772db69322ad420"
+    }
+  ],
+  "actual_tuple": {
+    "run_id": 39962445963,
+    "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+    "source": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+    "checkpoint_id": "127ec671-bb41-4c77-9f30-64b8c386f3fe",
+    "attempt": 1,
+    "workflow": 296219797,
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "event": "workflow_dispatch",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false
+  },
+  "closed_controller": {
+    "all9terminal": true,
+    "conclusion": "failure",
+    "phase": "ROOT_STOPPED",
+    "resolver": 1,
+    "poll_pairs": 11,
+    "unused_pairs_closed": 79,
+    "unneeded_resolver_slots_closed": 5,
+    "controller_native_captures": 27,
+    "all_native0_fullEOF_joined_closed_settled": true,
+    "underlying_GitHub_requests": 28,
+    "attribution": "FourcanonicalmetadataGET+onePOST sourcebound inside one settledNode capture;1resolver+22run/jobs requests. ThreeGit nativecalls and1separateproviderGET. Do not claim28individualGHnativecaptures.",
+    "DB": {
+      "id": 120444856564,
+      "failed_step": 11,
+      "full_JSON_upload12": "success",
+      "stack_stop13": "success"
+    },
+    "case_counts_failure_identity_cause_backend_key_custody": "UNKNOWN until actual acquisition; stackstop/job/clientcapture alone proves no backend settlement/key deletion."
+  },
+  "checks": [
+    {
+      "name": "Actual closed ownership",
+      "result": "PASS",
+      "evidence": "1e9ffa/d9ae14/23ba3d native0:exactterminal/op/ownershippins;all27controllerreceipts and14outerrefs rehashed; native0/categoryNULL/physicalEOF/readersdone+joined/handlesclosed/directsettled/nooverflow; exact9jobs/DB11F12P13P."
+    },
+    {
+      "name": "Exact full source inverse",
+      "result": "PASS",
+      "evidence": "4349f4/native0:four literal substitutions restore qualified predecessor50757/7ab93cea641319bc1c18580d1235db7d901c0e75dc9cbc2273f36f37131cfae8 byteforbyte.35functions;34unchanged, onlyvalidate_admission tuple/output literaldata changed. Actual get/acquire/ZIP/parsers/custody/label/full95 handling unchanged."
+    },
+    {
+      "name": "Derived envelope",
+      "result": "PASS",
+      "evidence": "4349f4:ordered9jobs/allstepfields exactly equal rawterminal and actualclosedownership/proposal. Runfields exact mapped. repo and legacyoriginal_e2e001:false expresslysourceguard-qualified constants from reviewedfixedrepo/currentNORMAL/defaults; not newAPIfields or renamedraworiginal_int009 observation."
+    },
+    {
+      "name": "Conserved source/catalog data",
+      "result": "PASS_REUSED",
+      "evidence": "4349f4:same75paths,72rowdataidentical,3helper/unit/SROrows equal reviewedRootcommitraw/LF/Gitpins. Actualunitcatalogdata exactly equal prior independently qualified436static/19excluded/wrapper187, same20paths/old184hashes+3. No sourcecatalog/SQLrawscan/ASTextractor/test/module rerun."
+    },
+    {
+      "name": "Actual execution interfaces",
+      "result": "PASS",
+      "evidence": "4349f4+finalization:exact23activationfields/defaultfalse-null refuses; currentreaderargv/currentrunarchive/listendpoints/proposalBINDINGS/outputpath aligned. Currentmanifest+inputrefs bytepins independently checked. Rootactualproof/grant/reviewrefs remain future, not fabricated."
+    }
+  ],
+  "Root_interfaces": {
+    "future_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "activation_path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-evidence-activation.json",
+    "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent",
+    "operator_source": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+      "bytes": 50733,
+      "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+    },
+    "operator_bindings_MUST_EQUAL": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/proposal.json",
+      "bytes": 189647,
+      "sha256": "ecc395e1056588f7ab338eb7028a8ff127b4a974af3d5cfa619f0851259c6028"
+    },
+    "actual_terminal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26268,
+      "sha256": "fc448cc4141e98d6400fbd8345feb15053c17f33befc334b02c161e2ab74fdfa"
+    },
+    "exact_activation_fields": [
+      "actual_jobs",
+      "actual_run_id",
+      "actual_terminal",
+      "allocation",
+      "attempt",
+      "cause_proof",
+      "checkpoint_id",
+      "current_review_readiness",
+      "execution_authorized",
+      "head",
+      "maximum_logical_requests",
+      "mode",
+      "no_retry",
+      "normal_acceptance_credit",
+      "operator_bindings",
+      "operator_review",
+      "operator_source",
+      "output_packet",
+      "pushed_source_head",
+      "pushed_source_objects_equal",
+      "release_validation",
+      "source_Git_proof",
+      "source_head"
+    ],
+    "operator_review_shape": {
+      "status": "PASS",
+      "independent": true,
+      "evidence": "Actual completed independent review byte/SHAref list; this report status/outcome is the enum above."
+    },
+    "future_allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-terminal-effects-allocation.json",
+    "future_source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-fresh-source-proof.json",
+    "outer_receipt": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-execution-receipt.json",
+    "before_any_GET": [
+      "NEW actual completed Coordinator finite max5GET grant bound exact current tuple/reader/envelope/caps/command. Existing operational/provider/push/POST/observer slots CLOSED; none authorize artifacts.",
+      "Root fresh current204source+pushed/currentGit/75rawLF/118SQLGitconservation/historicalrawvectors/10triggers/currentinstalledproof plus exactownedtree status; exclusive Rootactivation/oncejournal and proofage<=300s per existing Rootadmission. No blind historicalproofcopy.",
+      "Fill all23actualfields, source/proposalselfpins/currentjobs/readiness/review/grant; sourceGitproof also in current_review_readiness. Originalproposal runtimeBINDINGS is this currentproposal; no stale baseline/v2path/oldrun input.",
+      "Native sole ONE invocation and exclusive output/per-request fsyncedconsumedintents. Actualnativeexit/fullEOFjoinedclosedsettled/outertoolattribution required. No overwrite, repeat, refetch/fallback/pagination/status/perjoblogs/otherrequestfamily.",
+      "Outside execution receipt binds immutable packet inventory/actual requestcounts/captureclosures. Later distinctHigh actualevidencequalification reconciles95dedup,executed-vs-missing/pending,recovery and custody beforeacceptance or cause-backedrepair."
+    ]
+  },
+  "actual_source_caps": {
+    "logical_GET_max": 5,
+    "loop_timeout_seconds_each": 15,
+    "timeout_cleanup": "Samechild wait(timeout=2),then2joins(timeout=1 each); additionalboundedcleanup, not hard15s totalinvocation wall. Unsettled/nonzero/overflow/unknownSTOP, unusedslotsclose/no retry.",
+    "stdout_archive_or_each_report_ZIP_bytes": 33554432,
+    "stdout_listing_bytes": 4194304,
+    "stderr_each_bytes": 65536,
+    "selected_member_bytes": 16777216,
+    "declared_actual_inflate_bytes": 134217728,
+    "listing_count_max": 100,
+    "SOURCE_LABEL_ONLY_projection_bytes": 32768,
+    "generic_projection_cap": "No generic32768 guard; closed fullreport/archive projections may exceed32KiB under unchanged schemas/inputcaps. Historical generic-cap attribution discrepancy preserved, futuregrant must use source-label-only wording.",
+    "requests": [
+      {
+        "count": 1,
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/39962445963/logs"
+      },
+      {
+        "count": 1,
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/39962445963/artifacts?per_page=100"
+      }
+    ],
+    "report_ZIPs": [
+      {
+        "artifact": "native-full-integration",
+        "member": "full-integration.json"
+      },
+      {
+        "artifact": "native-general-browser",
+        "member": "general-browser.json"
+      },
+      {
+        "artifact": "native-isolated-storage-recovery",
+        "member": "isolated-storage-recovery.json"
+      }
+    ],
+    "strict_privacy": "Unique eligible positiveownedheadnonexpiredSHAartifact, exactbytes/digest, strictZIP/soleexpectedmember/fullcounts/schema/nonskippedpositiveleaf identity. RawRAMonly, closedlabels/digests/counts/projections; no rawmessage/source/SQL/token/body persistence, no fallbackcollector."
+  },
+  "limits": [
+    "Actualcurrentcase/count/cause/cardinality/custody/reportavailability remainUNKNOWN. DBstep11failure/upload12success is not a failedcase identity.",
+    "Prior qualified source5e0 run39950998114 remains historical73P1F21zero with custodyretained/keyDeletedfalse/unverified and projectioncapscopeexception. New2c8e/a948 runtime95 not qualified before actual acquisition.",
+    "Currentnormalprojection still omits diagnostic setupnamespace; missingmetadata does not provebodyreach/nativefirstthrow/settlement. Browserattachment reference metadata is not acquiredcontent qualification.",
+    "Allskipped/pending/missing/dynamic/nonleaf/unexecuted provide0passingcoverage. Required95 plus separate directrecovery/mainDBcustody stillrequired; P5OPEN/developmentnotcomplete/releasenotready.",
+    "CurrentremoteGit20configuredmatchesgrant; historical20vs15 and genericprojectiondiscrepancies remainimmutable. No merge/deployment/reconnect or settingsauthority."
+  ],
+  "bindings_checked_without_runtime": 22,
+  "reviewer_effects": {
+    "API_GET": 0,
+    "network_or_Git_remote_mutation": 0,
+    "tests_config_or_moduleexecution": 0,
+    "resources": 0,
+    "source_spec_state_edits": 0
+  },
+  "files_changed": "This new private review only."
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "INT014_NORMAL_INERT_OPERATIONAL_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/provider-readonly.py",
+      "bytes": 20259,
+      "sha256": "d514e9734be731d52fa0ec632f098d94fc93ed24cb14fdbb202a7cbada0a6a7e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/root-driver.py",
+      "bytes": 20704,
+      "sha256": "ecdd53035cf5ea58753ce33786640b4683bf31b8401d137f762a44f9007dba77"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/proposal.json",
+      "bytes": 211933,
+      "sha256": "234185e82ff1b78f500c177f48204a51aaefd79f3f8aedf69babdaf1a953096c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/pure-controls.json",
+      "bytes": 12131,
+      "sha256": "83df3fd03ef2a316211f812aabbce31d31d32d52d9bd3f514e17e571523c24be"
+    }
+  ]
+}

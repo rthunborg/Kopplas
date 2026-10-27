@@ -1,0 +1,40 @@
+{
+  "label": "API019-changed-paths",
+  "argv": [
+    "git",
+    "diff",
+    "--name-only"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 0.085245,
+  "reason": null,
+  "caps": {
+    "seconds": 30,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 186,
+      "sha256": "ea9655141b92030f9e6e49972edad6e7ea73ec934ddc15aaab904472b2af8455",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 185,
+      "sha256": "74076327878d82fea524753d9c135452462086bb2ce040d0c2639931abc78b7e",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

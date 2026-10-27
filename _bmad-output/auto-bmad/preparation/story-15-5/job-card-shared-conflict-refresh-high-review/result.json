@@ -1,0 +1,31 @@
+{
+  "Outcome": "PASS_TARGETED_JOB_CARD_SHARED_REFRESH_SOURCE_ONLY",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "source": "d65b6666c5883a7445b3732b6ae5938c08f4a91f",
+    "parent": "9384d4f360943f33896094ff503a66ca17929716",
+    "source_bindings": 4,
+    "refs": 12,
+    "effective_E16_preimage_bytes": 8101,
+    "refresh_seam_bytes": 807,
+    "LF_CRLF_inverse": true,
+    "old117_raw_unchanged": true,
+    "total_SQL": 118,
+    "REAL011_full_inverse": true,
+    "prior42_prefix_preserved": true,
+    "independent_focused": "3P0F0skip0cancel",
+    "author45": "separate nonadditive evidence",
+    "effects": 0,
+    "findings": 0,
+    "normal_acceptance": 0,
+    "review_counter": 3
+  },
+  "Open questions": "Native original first throws, new PostgreSQL compilation/catalog/ACL/rollback behavior and browser/backend custody remain UNKNOWN or UNEXECUTED.",
+  "Deferred work": "Required exact-head functional/PostgreSQL evidence and existing browser lifetime prerequisite; no new effect authority.",
+  "Blockers": "None in the targeted source correction; prior failed DB/browser gates,35missing required cases and custody UNKNOWN still block acceptance."
+}

@@ -1,0 +1,273 @@
+{
+  "schema": "PRIVACY_ORIGIN_TERMINAL_EXECUTION_RECEIPT_V1",
+  "invocations": 1,
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-evidence-activation.json",
+    "bytes": 4204,
+    "sha256": "86ccbb9bfb035a125b380e9615dccebbf1f89a32e4a0df1f3691771773d5d8ef"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-terminal-effects-allocation.json",
+    "bytes": 6024,
+    "sha256": "eeff9b51d0fe9e13702ef147ceeea665d0576ed85d08551c062d7a45427fe969"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-fresh-source-proof.json",
+    "bytes": 59892,
+    "sha256": "d09d1978b585127656947bc600439665778ae7aec86b45a9d02cc13b199a8168"
+  },
+  "preinvoke_proof_age_seconds": 50.299081,
+  "operator": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/reader.py",
+    "bytes": 52638,
+    "sha256": "8a1985592420ab2271e484ee52d238286f6ef92a081d0998f67acdd5a277eb68"
+  },
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/reader.py",
+    "--execute-once-after-terminal-grant"
+  ],
+  "outer_native_capture": {
+    "native_exit": 0,
+    "category": null,
+    "elapsed_seconds": 5.498821,
+    "timeout_seconds": 120,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 602,
+        "sha256": "13b463b2ce9ba8b3141519f98e5a0c15346aa025bf9945fd2e2032016faf97a2",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "stdout_closed_projection": null,
+  "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent",
+  "inventory": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/acquisition-summary.json",
+      "bytes": 1823,
+      "sha256": "4616f6259025bdae6bc30fa7ca730c9132495db671afabbe0f4963e8dc6d5a6b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/artifact-list-projection.json",
+      "bytes": 922,
+      "sha256": "165f06f24c9263212b601f5dfb0ec5d3df58237d357d8d235d83347bd578b8c5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/native-general-browser-projection.json",
+      "bytes": 13358,
+      "sha256": "f7f962d9f5d0be4f7c14176c7a86c6d746d0b7512fe86acfd192d4c7088399e5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "5b13e6ae321b07811d221fa51e54a1acaec8c7a589a64dbf0e1ea73842157eff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/operator-intent.json",
+      "bytes": 7946,
+      "sha256": "ab0a34dc57180b39401ac93f31f029c2f97bbf0f5782fb6f07c76bb37373acc0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "bdd334fac0252c494914083ba8d0262f23d497da636aa1434ee93f5a061d8e2e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-01-result.json",
+      "bytes": 1134,
+      "sha256": "1d8e0724ea9e9501b509a669231dd1c9e24e21cd8b60608059f9817076057383"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "b4c69c6fc9fa8d8cef9eeeac04d0e9664f9426575c7de4936e86908a72e904d6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "5e5d13fdc7c7d88c4b324c8caee19259a5ff098c29ba548fa147a18b0a189be1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-03-intent.json",
+      "bytes": 421,
+      "sha256": "3a51a11b3ef9bce72a886a69ec6b8d55ccf265ceae5c5eddf276b2dcd2fbafa9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-03-result.json",
+      "bytes": 1140,
+      "sha256": "1a8388bd86594a007dcd70c6088fa2c019ad0026dcb54f758252fb99bf125202"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-04-intent.json",
+      "bytes": 431,
+      "sha256": "7ee2397f22fd9636c024c0d96c08a8061c4e851a9ca62a6664f8e3b896f95f48"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-04-result.json",
+      "bytes": 1149,
+      "sha256": "77edbc36eee55086f760f239a81e31c63453fc461b25a4f72c5f619a1d79279e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/run-archive-projection.json",
+      "bytes": 45517,
+      "sha256": "96d6816ec904a387b5225f431968ff6125bc46835f228870fe47b759e2585e7b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/source-label-projection.json",
+      "bytes": 1692,
+      "sha256": "20cb37bcfdcf199cf8e01eadc1908ce97f2462f844b3f0af3879f77eef6e0025"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/source-provenance.json",
+      "bytes": 7212,
+      "sha256": "f2272d5067f716f4198d01fae2d794867257abca4ea80b26ea3fb278116bdfc5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "cad6a99926c37b8f1d0d075f0cb2262a5c294662f6813231aa44c0fb6b610e2d"
+    }
+  ],
+  "manifest": null,
+  "summary": {
+    "actual_logical_requests": 4,
+    "attempt": 1,
+    "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+    "no_retry": true,
+    "normal_acceptance": 0,
+    "raw_persisted": false,
+    "reports": [
+      {
+        "case_summary": {
+          "duration": 288094.217,
+          "expected": 56,
+          "flaky": 0,
+          "skipped": 0,
+          "unexpected": 0
+        },
+        "member_bytes": 91947,
+        "name": "native-general-browser",
+        "report": "native-general-browser-projection.json",
+        "sha256": "ad088775929ec21bcf1d405b54adccd272802f9236c1731bdeb1ce39b0654319"
+      },
+      {
+        "case_summary": {
+          "numFailedTestSuites": 0,
+          "numFailedTests": 0,
+          "numPassedTestSuites": 2,
+          "numPassedTests": 1,
+          "numPendingTestSuites": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0,
+          "numTotalTestSuites": 2,
+          "numTotalTests": 1,
+          "success": true
+        },
+        "member_bytes": 1154,
+        "name": "native-isolated-storage-recovery",
+        "report": "native-isolated-storage-recovery-projection.json",
+        "sha256": "485748d89aec5e1a56176d7ad6461c219747af0a019cd8fb952cd638ffd490ed"
+      }
+    ],
+    "requests": [
+      {
+        "category": null,
+        "label": "normal-run-archive",
+        "native_exit": 0,
+        "sequence": 1,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "normal-artifact-list",
+        "native_exit": 0,
+        "sequence": 2,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-general-browser",
+        "native_exit": 0,
+        "sequence": 3,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-isolated-storage-recovery",
+        "native_exit": 0,
+        "sequence": 4,
+        "settled": true
+      }
+    ],
+    "run": 39990057474,
+    "status": "BOUNDED_ACQUISITIONS_COMPLETE"
+  },
+  "stop": null,
+  "retry": false,
+  "all_unused_slots_closed": true,
+  "raw_persisted": false,
+  "normal_acceptance": 0,
+  "actual_tool_provenance": {
+    "chunk_id": "17f02f",
+    "outer_native_exit": 0,
+    "outer_wall_seconds": 5.7516578,
+    "session_id": null,
+    "wait_calls": 0
+  },
+  "configured_limits": {
+    "outer_loop_seconds": 120,
+    "outer_same_child_wait_seconds": 2,
+    "outer_reader_joins": 2,
+    "outer_seconds_each_join": 1,
+    "GET_loop_seconds": 15,
+    "GET_same_child_wait_seconds": 2,
+    "GET_reader_joins": 2,
+    "GET_seconds_each_join": 1,
+    "ZIP_bytes": 33554432,
+    "listing_bytes": 4194304,
+    "listing_count": 100,
+    "selected_JSON_bytes": 16777216,
+    "inflated_bytes": 134217728,
+    "stderr_bytes": 65536,
+    "source_label_only_bytes": 32768,
+    "generic_projection_32KiB_claim": false,
+    "strict_hardwall_claim": false
+  },
+  "logical_slots": {
+    "allocated_maximum": 5,
+    "consumed": 4,
+    "unused_closed": 1,
+    "all_closed": true
+  },
+  "local_projection_limitation": "Outer stdout JSON projection null; no correction/refetch. Existing immutable closed packet acquisition summary is authoritative for recorded acquisition metadata. Producer emitted no packet-manifest; exact packet inventory bound outside only.",
+  "qualification_limits": "No independent case/count/cause/custody acceptance. No full-integration report selected/produced; do not infer API019 or any DB execution.",
+  "inventory_ASCII_canonical_sha256": "98d568dfc78a7aa14881bc9abf67de67b02ed97ae6b096841b463612cbb2adce",
+  "packet_member_count": 17,
+  "actual_request_capture_complete": true,
+  "actual_request_elapsed_seconds": [
+    2.715,
+    0.444,
+    1.116,
+    0.975
+  ]
+}

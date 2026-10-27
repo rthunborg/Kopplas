@@ -1,0 +1,36 @@
+{
+  "story": "15-1-the-five-scheduling-views",
+  "canonical_old_spec": "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views.md",
+  "captured_at": "2026-10-13",
+  "baseline_revision": "3a655a5df8c2bd5e2c19839237f06f9e549bc264",
+  "snapshots": [
+    {
+      "file": "original-ready.md",
+      "source_revision": "b9d61a33c90ac24c173f0aac1e400f99ed65d93c",
+      "source": "git blob",
+      "raw_sha256": "6a10a0a44de17e39bf0767262560ff8550d45bf2199b8718c22ffd5093a9f312",
+      "lf_sha256": "6a10a0a44de17e39bf0767262560ff8550d45bf2199b8718c22ffd5093a9f312"
+    },
+    {
+      "file": "blocked-git.md",
+      "source_revision": "4d7911ac9b8b5a6f795e6fb21fd20bdceac254ac",
+      "source": "git blob",
+      "raw_sha256": "60b9823b687e32d049a388b7a803548fd933cdf4a1d95896c8be76516fd6436a",
+      "lf_sha256": "60b9823b687e32d049a388b7a803548fd933cdf4a1d95896c8be76516fd6436a"
+    },
+    {
+      "file": "blocked-working-copy.md",
+      "source_revision": "3a655a5df8c2bd5e2c19839237f06f9e549bc264",
+      "source": "unchanged working-copy raw bytes",
+      "raw_sha256": "533ebcf72dbe19f7b81fdc125166fb1ad12247e7da727f55578c21c414d1f0b6",
+      "lf_sha256": "60b9823b687e32d049a388b7a803548fd933cdf4a1d95896c8be76516fd6436a"
+    }
+  ],
+  "archived_canonical_old_spec": {
+    "original_path": "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views.md",
+    "archival_path": "_bmad-output/auto-bmad/preparation/story-15-1/spec-history/superseded-blocked-spec-15-1-the-five-scheduling-views.md",
+    "operation": "byte-preserving rename after independent ready-for-dev validation; no content/status/kernel change",
+    "raw_sha256": "533ebcf72dbe19f7b81fdc125166fb1ad12247e7da727f55578c21c414d1f0b6",
+    "lf_sha256": "60b9823b687e32d049a388b7a803548fd933cdf4a1d95896c8be76516fd6436a"
+  }
+}

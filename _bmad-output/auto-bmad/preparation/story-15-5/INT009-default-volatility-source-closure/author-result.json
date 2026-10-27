@@ -1,0 +1,296 @@
+{
+  "schema": "INT009_DEFAULT_VOLATILITY_RESTORE_SOURCE_AUTHOR_RESULT_V1",
+  "policy_version": "2026-10-19",
+  "role": "gpt-6.1-sol High implementationauthor; no selfreview/nativeacceptance",
+  "Outcome": "MINIMUM_DEFAULT_VOLATILITY_RESTORE_CORRECTION_READY_FOR_TARGETED_REVIEW",
+  "Files changed": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "Status": "Source-faithful fixture onoldhelper1F\u2192corrected focused6P/fullaffected184P0F0skip;TS/scopedlint/diff0. Overlappingcountsnonadditive.",
+  "Open questions": "Exacthostedheader/nativefirstthrow/bodyreach/backendcustody remainUNKNOWN; required95historical68P1F26zero unchanged.",
+  "Deferred work": "DistinctHightargetedactualpatchreview; RootGitcommit; separatelyreviewed/admittedfullNORMAL95+recovery, no newdiagnostic.",
+  "Blockers": "No publication/CI/runtime/effectauthority; P5OPEN/acceptance0/deliverynotcomplete.",
+  "current_HEAD": "ca240693766ae9141fb2b768569629e39231d042",
+  "source_before": {
+    "tests/support/calendar-feed-atdd.ts": {
+      "raw_bytes": 139473,
+      "raw_sha256": "e155639d17a0b5a6528ee0385ba044c5bd5cad436aabd9c9f418076035ae74c8",
+      "LF_bytes": 138084,
+      "LF_sha256": "4d31d7b408d0ad65d4c2f0f478fe5582e632be22983b73eceaabb96521ba819f"
+    },
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts": {
+      "raw_bytes": 317395,
+      "raw_sha256": "84edc9711ebf6e61d23b8cbcf1050a24475c5243fe316f16177a5c7d9ca754c0",
+      "LF_bytes": 314474,
+      "LF_sha256": "41f8af777904b8e1309a273f930187b94898ef8ee7eb9ddb96936b4be2ead3e6"
+    },
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md": {
+      "raw_bytes": 255365,
+      "raw_sha256": "e8501488121a75a9c4ab2461f28b649f3390d0de150c536330e870d1e891e178",
+      "LF_bytes": 252287,
+      "LF_sha256": "90b0d5f4ba44c46a4de8228b4fae210cffaa4ad58a3d5858d5213b99438051f2"
+    }
+  },
+  "source_after": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 256899,
+      "raw_sha256": "6ed06e2f84b12d412374a156016c6fadc8bf09291cf124c9a59070062ec859c3",
+      "LF_bytes": 253814,
+      "LF_sha256": "1ecb3642f1d2f2eb6149482477026ae9bd22d0f84e5492f54c1dfc4b5f2d5c9c",
+      "computed_LF_Gitblob": "0da70dca08c5946e8fd316643e8e3010d3dfbccd"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 139867,
+      "raw_sha256": "d50d45e73f2a3a7c649188658ed9271a832ce41277314d8dd723b3c2a06f2234",
+      "LF_bytes": 138474,
+      "LF_sha256": "22c0b6da90b43e19a13534acbd5c1e11d9cc5de909b732f821c58141b689e3ca",
+      "computed_LF_Gitblob": "082364547fbea8143898e5fc5eae3f3da97eff6e"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 320520,
+      "raw_sha256": "c9bff97184e76b5f27372091be6f043efdc7184314fc76418e35f8d8488a72ed",
+      "LF_bytes": 317555,
+      "LF_sha256": "08087e70ad4abf5fe7eddd988a5ffd946190c7e03423712503c1b7c59fe3627c",
+      "computed_LF_Gitblob": "e08a9eaa4374c4b5884326fa47f7be4a08a4f663"
+    }
+  ],
+  "source_inverse_proofs": {
+    "helper": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/helper-and-test-delta.json",
+      "bytes": 4098,
+      "sha256": "46d22a02ffb4c83f369db6f2ed6c075c45df58d2603ff85b51ab2800b641ddae"
+    },
+    "unit_fixture": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/pre-edit-and-fixture-delta.json",
+      "bytes": 2266,
+      "sha256": "09d53134090af32852a988822f838784506e939b38110e4d1eb0d783befc7469"
+    },
+    "Spec_SRO_only": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/SRO-only-delta.json",
+      "bytes": 1862,
+      "sha256": "449629a52ffdf69e30ecf2df3e22c6860e6bad9483af959e4cddf592342d4664"
+    },
+    "complete_rawpreimages_reconstructed": true
+  },
+  "guard_conservation": {
+    "ownerFacts_LF_trailingLF_bytes": 3563,
+    "ownerFacts_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+    "ownerFacts_byteidentical": true,
+    "other_helper_changes": "None beyondsubject-restorationheaderreconstruction; fullinverseverified",
+    "role_schema_OID_ACL_auth_SQLqueries_timeout_retirement_custody": "Unchanged",
+    "canonical_postrestore_oid_metadata_definition_equality": "Unchanged; actualrestorepathassertions preserve strictfullrowequality",
+    "SQL118": "Noauthorwrites; gitdiffSQLempty; prior118vectors reused/no rawscan",
+    "Spec_kernel_status_AutoRunResult_outsideSRO": "ExactcommittedprefixbeforeSRO byteidentical",
+    "no_dependencies_or_workflow_changes": true
+  },
+  "implementation": "Catalogqualified plpgsql/provolatile-v subject restore accepts omitteddefaultoroneexplicitVOLATILE, rejects conflicting/duplicatevolatility/language, thenemitsSQL/STABLEtarget; bodycardinality/splice remains. Fixture derivesdefinitionfromparsedbody/language/volatility and modelsdefaultomission ratherthanretainingDDLverbatim; doesnotforcecanonicalrow.",
+  "new_tests": 3,
+  "gates": {
+    "restore-default-RED": {
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-RED-native.json",
+        "bytes": 1313,
+        "sha256": "ace9f637aba95366773ad2c1b86f818901e57161d22432f58b7b89300b6a7953"
+      },
+      "native_exit": 1,
+      "elapsed_seconds": 0.331612,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-name-pattern",
+        "^actual owner operation commits private read or qualified replacement before ordinary callback and restores full original metadata$",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "full_EOF_joined_closed_settled": true,
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-RED-summary.json",
+        "bytes": 594,
+        "sha256": "dfce1a1f13e6cc2973f0c5f5c2a3516edceff20b21f01bddef46ea95d6d97266"
+      }
+    },
+    "restore-default-focused-GREEN": {
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-focused-GREEN-native.json",
+        "bytes": 1249,
+        "sha256": "9f390a0d4c7467a6c220e5e6d9a8a6bcb541332cb05952f30986d7c23346f9c6"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 0.573956,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-name-pattern",
+        "^actual (owner (operation|preflight|SQL)|subject restore)",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "full_EOF_joined_closed_settled": true,
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-focused-GREEN-summary.json",
+        "bytes": 227,
+        "sha256": "d4e9a305febe387647ac4c66108b84122fc2aa7546f241bb63ff0a835c7be17c"
+      }
+    },
+    "restore-default-full-affected-unit": {
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-full-affected-unit-native.json",
+        "bytes": 1162,
+        "sha256": "5eb3bb05b4224a2c3b4ac59be3522096abb86f1548c61ff4023635b65ac70338"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 12.888414,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "full_EOF_joined_closed_settled": true,
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-full-affected-unit-summary.json",
+        "bytes": 258,
+        "sha256": "f6bfdc40c3bca58e5d6a3885605e5905950f96bd23be40dbf1fda04b063398b5"
+      }
+    },
+    "restore-default-typecheck": {
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-typecheck-native.json",
+        "bytes": 1223,
+        "sha256": "4c1e6924e1b0b68015c5ea9e003ff95c736f4cc7152f9a9630708c1abf11f7cd"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 8.663954,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "typecheck"
+      ],
+      "full_EOF_joined_closed_settled": true,
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-typecheck-summary.json",
+        "bytes": 136,
+        "sha256": "3c6e07d53b1f28c2d0b80f253b0ef689d3480817e5d10e076e729040a14273c3"
+      }
+    },
+    "restore-default-scoped-lint": {
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-scoped-lint-native.json",
+        "bytes": 1329,
+        "sha256": "1ecbd103265bf9d7cef2cfa2d2b25c05fb61ba6d96f2392c74137e3b7ffdb068"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 3.078998,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "exec",
+        "eslint",
+        "tests/support/calendar-feed-atdd.ts",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "full_EOF_joined_closed_settled": true,
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-scoped-lint-summary.json",
+        "bytes": 138,
+        "sha256": "586fc39d822e6d5e48c4991dc13c290297b525140961a77fac87fc493785ac71"
+      }
+    }
+  },
+  "actual_outer_tools": {
+    "RED": {
+      "chunk": "e69c15",
+      "exit": 0,
+      "wall_seconds": 0.4617152,
+      "session": null,
+      "waits": [],
+      "nested_native": 1
+    },
+    "focused_GREEN": {
+      "chunk": "fe7108",
+      "exit": 0,
+      "wall_seconds": 0.708913,
+      "session": null,
+      "waits": [],
+      "nested_native": 0
+    },
+    "affected_TS_lint": {
+      "start_chunk": "a00891",
+      "session": 10086,
+      "start_wall_seconds": 10.0084079,
+      "waits": [
+        {
+          "chunk": "5f0288",
+          "wall_seconds": 5.0102005,
+          "running": true
+        },
+        {
+          "chunk": "62ae73",
+          "wall_seconds": 5.9e-06,
+          "exit": 0
+        }
+      ],
+      "nested_natives": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "meaningful_checks": {
+    "existingactualpublish_restore_RED": {
+      "executed": 1,
+      "P": 0,
+      "F": 1,
+      "skip": 0,
+      "helper_unchanged": true
+    },
+    "focused_GREEN": {
+      "executed": 6,
+      "P": 6,
+      "F": 0,
+      "skip": 0,
+      "omitted_explicit_volatile_recovery": true,
+      "nonvolatilecatalog_refusal": true,
+      "conflicting_header_body_refusal_beforeDDL": true,
+      "failed_restore_custody_retained": true
+    },
+    "fullaffected": {
+      "executed": 184,
+      "P": 184,
+      "F": 0,
+      "skip": 0
+    },
+    "TS": 0,
+    "scoped_lint": 0,
+    "diff": 0,
+    "raw_streams_persisted": false,
+    "real_DB_queries_or_resources": 0
+  },
+  "review_order": "SpecSuggestedReviewOrder subsection only; sourcebackedrationale/verifiedstops/nonadditivechecks/causeandcoverageunknowns updated.",
+  "plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-restore-definition-minimum-plan-review.json",
+    "bytes": 9737,
+    "sha256": "bc4908e9e8247f528d0df83e2d8647a5bb2baa0fcf5568e332d8712a7a51a052"
+  },
+  "normal_acceptance": 0,
+  "review_counter": 3,
+  "source_PASS_claim": false,
+  "development_complete": false,
+  "release_ready": false,
+  "Git_mutations": 0,
+  "DEBUG_writes_or_replay": 0,
+  "next": "Freeze all3sources/privateauthorrecord now; sendexactpins/results toRoot+independentreviewer; no furtherwritesorchecks absentactualfinding."
+}

@@ -1,0 +1,102 @@
+{
+  "schema": "root-safe-native-closeout-v1",
+  "tested_revision": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "run_id": 40192543175,
+  "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/40192543175",
+  "native_required_complete": true,
+  "P5_transition": "PENDING author delivery and Root delivery gate",
+  "release_ready": false,
+  "no_deployment": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+      "bytes": 22188,
+      "sha256": "bcbf01977bcf4d2bce5d972536409e6ee60b868c2d0707fefa613d4a6b50ff23",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-terminal-actual-native-qualification.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/partial-native-qualification.json",
+      "bytes": 8356,
+      "sha256": "a59c4d46420c5fd0dc5a707565674701a2e544a8dde1c5513a67c44e6bc6befb",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-partial-native-qualification.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/run-metadata.json",
+      "bytes": 1054,
+      "sha256": "88d8310074b78e65fe9a3ad41b32e119a5b25b0c3064750a8814a932bb74a94a",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/run-metadata.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/jobs-metadata.json",
+      "bytes": 23615,
+      "sha256": "745eaf1a9282735ac7110bc696b997b3a38000444cb0b11f51dfe9a3804383aa",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/jobs-metadata.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/artifact-metadata.json",
+      "bytes": 1917,
+      "sha256": "434685f3f3b538bcda9639979ee0b74e02e1aeb3d20b6d6ac9df0244e0772b0a",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/artifact-metadata.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/selected-artifacts.json",
+      "bytes": 1988,
+      "sha256": "69cd94e06af4732796e4550df694759016adf943d115a2346510947ff6c69d29",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/selected-artifacts.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/native-read-closed-receipt.json",
+      "bytes": 5130,
+      "sha256": "5c0abb2b69ec1d282a30b286a380e10332747936960456712b0fbabecc60b02c",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/read-activation.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/connector-read-closed-receipt.json",
+      "bytes": 5773,
+      "sha256": "23a562d104c1560b3116b99dafee010626d9489146a21c585ec792161d9b30a5",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d/read-activation.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/db-lifecycle-projection.json",
+      "bytes": 2034,
+      "sha256": "7690b735f3077bd62779124641940ef34c203a0c2e71924c5a5fa1274feaf40b",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d/db-safe-log-projection.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-lifecycle-projection.json",
+      "bytes": 2037,
+      "sha256": "0087ade8d0bf204a0d9ec1baba2430499236398185283f1dcf97ee78d937a82b",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d/e2e-safe-log-projection.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/isolated-recovery-projection.json",
+      "bytes": 2220,
+      "sha256": "a4e101cfb97f2e2fc2e7ddc7f3677cff35ec9cf5b285720b960cbd33c3cfa4fd",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/native-isolated-storage-recovery-projection.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json",
+      "bytes": 49152,
+      "sha256": "700e4a8750c43dbc36c1c2eaf9663f2fcc8b1a6c3e70634d4d96fa7582766b4f",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/native-general-browser-projection.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-unit-projection.json",
+      "bytes": 18769,
+      "sha256": "b826fe2c42bbc16cbb32f1d855c47bfa88e2f410dfb8ca49f84d85d01c663e08",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d/verify-safe-log-projection.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/required-integration-projection.json",
+      "bytes": 122691,
+      "sha256": "481c2d953a53c224845ae40a9fa113a1a4f59b59b0f7fec38349894641d13621",
+      "source": ".env.epic15.mail-runtime/story-15-6-preparation/successor-native-read-0d860414-873f-4b55-a578-05cf743c9cf0/native-full-integration-projection.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/tested-source-object-proof.json",
+      "bytes": 8313,
+      "sha256": "0927294004deb98fbeab456ca489fbae9cd3ad63ed19bde3222ba32033f98ece",
+      "source": null
+    }
+  ]
+}

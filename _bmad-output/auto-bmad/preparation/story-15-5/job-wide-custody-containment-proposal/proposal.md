@@ -1,0 +1,13 @@
+# C4 job-wide custody containment candidate
+
+Use the existing serial project failure boundary: add `bail:1` to `integration-audit-ddl`, retaining all six files, isolation and success enrollment. Current fixture code rethrows custody outside its callback; a pure TypeScript AST check finds all34 shared serial fixture calls directly awaited without an outer catch. An outer catch of the entire fixture remains unsafe and must be prohibited by the finite caller contract.
+
+Installed Vitest4.1.9 pure probes show parallel teardown before serial import, healthy/expected-negative completion (4P), and no next-file module import after uncaught or inner-caught uncertainty (each1P/1F, native1). The deliberate whole-fixture outer-catch counterexample passes and admits the next file (3P); it is not safety credit. Initial limited probes remain recorded separately. Their synthetic parallel maxWorkers1 hit Vitest's group0 fallback; corrected maxWorkers2 matches the existing partition control. Actual future native ordering remains mandatory.
+
+Runner cancellation cannot prove backend rollback. Current wrapper still deletes the Vault key after a nonzero DB child if frontend stop succeeds (unit1219 expects this). Select the conservative existing DB runtime boundary too: unsuccessful or uncertain committed runtime retains key custody and performs no key DELETE/readback; successful child0 plus owned settlement keeps current exact cleanup. Bounded child stop/own DB close remain allowed and are not restoration proof.
+
+Exact proposed paths: `vitest.config.ts`; partition unit; runtime wrapper; wrapper unit; wrapper SHA pin contract; author-owned `Spec`. Full names and finite hunks are in proposal.json. No helper/factory/product/migration/workflow/dependency change or global/env/file custody channel is proposed. All111 applied migrations remain immutable. Source allocation and independent challenge are still required.
+
+A successful final run must execute all95 unique story cases (30Node/51DB/14browser), fullDB/RLS and separate recovery1 with zero required skips. Failed fail-fast runs may leave cases unexecuted and partial reports; preserve exit1, exact reached counts and UNKNOWN custody rather than claim coverage. Existing native failures remain open. Current partial helper/factory cumulative code review is still pending; these scheduler probes do not certify SQL settlement or canonical restoration.
+
+Now: read-only analysis and bounded pure probes only. Next: distinct narrow High challenge of caller propagation, actual queue cancellation and conservative wrapper custody; exact source allocation; targeted/cumulative review; separately authorized exact-head native gates. Normal acceptance0; development/release completion false.

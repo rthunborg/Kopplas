@@ -1,0 +1,38 @@
+{
+  "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-4-time-reporting-filing-timesheet-review.md",
+  "exists": true,
+  "artifact_format": "bmad-build-auto",
+  "legacy_story_status": null,
+  "frontmatter": {
+    "title": "15.4 \u2014 Time Reporting \u2014 Filing, Timesheet, Review",
+    "type": "feature",
+    "created": "2026-10-20",
+    "status": "ready-for-dev",
+    "review_loop_iteration": 0,
+    "followup_review_recommended": false,
+    "baseline_revision": "5040f683cf9446d39de8512cdca82242c55fca3e",
+    "context": [
+      "docs/process/review-order.md",
+      "docs/process/development-completion-policy.md",
+      "docs/process/agent-model-routing.md",
+      "docs/process/local-setup.md",
+      "_bmad-output/test-artifacts/test-design-epic-15.md",
+      "_bmad-output/auto-bmad/preparation/story-15-4/implementation-ownership-handoff.md",
+      "_bmad-output/auto-bmad/preparation/story-15-4/current-contracts-and-design.md"
+    ],
+    "warnings": [
+      "oversized"
+    ],
+    "deferred": [],
+    "deferred_count": 0
+  },
+  "auto_run_result": {
+    "present": true,
+    "status": "ready-for-dev",
+    "blocking_condition": "none for planning."
+  },
+  "last_review_pass": null,
+  "status": "ready-for-dev",
+  "parse_warnings": [],
+  "error": null
+}

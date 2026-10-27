@@ -1,0 +1,338 @@
+{
+  "schema": "INT009_DEBUG_WINDOW_CORRECTIVE_INDEPENDENT_OPERATIONAL_SOURCE_REVIEW_V1",
+  "status": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority": false,
+  "normal_acceptance": 0,
+  "scope": "Independent explicit gpt-6.1-sol High corrective operational source/control/privacy review: OP01 closure and the remaining declared bounded two-head publication/direct original-INT009 dispatch/metadata observation gates. No fourth broad story review; no application changes or effects. Future source/ownership/proof/allocation/activation obligations are not claimed completed.",
+  "routing": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-corrective-independent-operational-review-route.json",
+    "bytes": 665,
+    "sha256": "464690b0e2aa8866ff9264b4b85858cc0c23954cb23f8d1f516a67d045990b61"
+  },
+  "candidate_files": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/provider-readonly.py",
+      "bytes": 15811,
+      "sha256": "e5632f646204da80f76313b11ed23838e8eec19315b5c303ff920102cbb64739"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/root-driver.py",
+      "bytes": 18699,
+      "sha256": "8ac63abd76567b8ab21dcbe16d258cc9c7e573563f8eb041d02e9dda4b530c2d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/main-docs-publish.py",
+      "bytes": 3637,
+      "sha256": "6fde9ff66ad9c85c6afd2904673a7469fe036a19939fb2c19e4b17886f66f9f6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/proposal.json",
+      "bytes": 190076,
+      "sha256": "e36adaa3ecf4dfea10944d126023f4ce984984bf85364d22331bd389d8486a5f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/pure-controls.json",
+      "bytes": 2112,
+      "sha256": "86872d5a16282c82a00f2ac5789c049194edc662e12377f621b576a4c13a5328"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/manifest.json",
+      "bytes": 1540,
+      "sha256": "26d189d04a41385552dc44212d7139105ec37b5f05ed3cfaf19debd474fea3b7"
+    }
+  ],
+  "initial_review_immutable": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-independent-operational-source-review.json",
+    "bytes": 9995,
+    "sha256": "3c9768d3eae847b8e02067c85598f1eade98c18e814642637dbcd5abf0c3feae"
+  },
+  "initial_controls_immutable": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-independent-operational-controls.json",
+    "bytes": 3110,
+    "sha256": "8a07b276f960d00202ad8f25e9b3a3d22c89a2cc46c32663bbc4559b6f7fcfd2"
+  },
+  "finding_closure": [
+    {
+      "id": "INT009-DEBUG-OP-01",
+      "status": "CLOSED_IN_REVIEWED_SUCCESSOR_SOURCE",
+      "original": "Exact pinned reader binding report outcome was compared against its different status enum, causing deterministic PRE_REQUEST_REFUSED before GET.",
+      "repair": "Provider now requires actual outcome PASS_INT009_DEBUG_INERT_READER_PRODUCER_REBIND_ONLY, exact status PASS_INERT_CORRECTIVE_PRODUCER_BINDING_ONLY, and independent is True, retaining the exact 14343-byte report pin.",
+      "actual_report": {
+        "bytes": 14343,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-inert-reader-producer-rebind-independent-check.json",
+        "sha256": "836a7f821a3a41407184aa07aed31b91450023a5f40532a6c629f706ae6e4a28"
+      },
+      "independent_validation": "Actual AST branch admitted the exact frozen report and refused old status spelling as outcome, missing outcome, wrong status, and nonindependent report. Complete inverse verified only this branch and proposal path changed in provider; root PREP and docs dependency hash changed only."
+    }
+  ],
+  "findings": [],
+  "binding_and_conservation": {
+    "identity": {
+      "actor": "rthunborg",
+      "actual_run_id": null,
+      "attempt": 1,
+      "cause_proof": false,
+      "checkpoint_id": "24c5a047-e039-4d85-8fa3-20d96f79accb",
+      "event": "workflow_dispatch",
+      "expected_remote_preimage": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+      "head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "mode": "original-int009",
+      "original_int009": true,
+      "ref": "codex/epic-15-int009-debug",
+      "release_validation": false,
+      "repo": "rthunborg/Kopplas",
+      "source": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+      "triggering_actor": "rthunborg",
+      "workflow_id": 296219797
+    },
+    "MAIN_docs": {
+      "branch": "codex/epic-15-scheduling-time-calendar",
+      "head": "30951e7a5ac39eb65f68493d26db80e281f05602",
+      "source": "0ed3710929ea09afae49ef7b8d3266975331e827"
+    },
+    "MAIN_expected_remote_preimage": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "actual_read_input_refs_count": 28,
+    "all_input_ref_bytes_SHA_verified": true,
+    "input_ref_inventory_authority": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrected-operational-preparation/proposal.json",
+      "bytes": 190076,
+      "sha256": "e36adaa3ecf4dfea10944d126023f4ce984984bf85364d22331bd389d8486a5f"
+    },
+    "manifest_members": 5,
+    "manifest_self_excluded": true,
+    "all_six_actual_bytes_SHA_match_frozen": true,
+    "complete_successor_inverse_to_initial3": true,
+    "complete_provider_and_driver_inverse_to_qualified_NORMAL_baselines": true,
+    "provider_baseline": {
+      "bytes": 18529,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/provider-readonly.py",
+      "sha256": "e4527c1808a33120c1424aa47b608ed896fd889c0827d784fc6b355df94ec3dd"
+    },
+    "driver_baseline": {
+      "bytes": 18938,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/root-driver.py",
+      "sha256": "dd97a8d5b3e087826b15909eeea896448c49fc23d57de88377e6cc27aad05d7b"
+    },
+    "provider_5_byteequal_helpers": [
+      "ref",
+      "exclusive",
+      "fresh",
+      "load_pin",
+      "readstream"
+    ],
+    "driver_12_byteequal_helpers": [
+      "binding",
+      "checkref",
+      "fresh",
+      "git",
+      "mutation_fresh",
+      "native",
+      "now",
+      "ownedrun",
+      "read",
+      "required",
+      "save",
+      "write"
+    ],
+    "source_data": "MAIN 203 metadata rows; DEBUG 85 nonSQL plus same 118 SQL objects. Prior qualified data/proofs reused, including DEBUG 10 semantic changes/193 reuse and 36 CRLF-only differences, 10 provider triggers, 85 nonSQL raw/LF rows in each tree. No independent raw SQL rescan or source catalogue re-extraction.",
+    "source_current_Git_status": "Fresh actual heads, clean statuses, ancestry, remote preimages, Git objects and all 170 nonSQL raw/LF source bindings remain Root pre-activation requirements; this source review ran no Git command and claims no newly observed remote state.",
+    "SQL_count": 118,
+    "DEBUG_SQL_RAW_vector_sha256": "8e94aadad6e2cc6037b2b5138d21a454318e00027df82f75bae95c48f35e4ff6",
+    "MAIN_SQL_RAW_vector_sha256": "a6381d9d17d296fb5b20587ccf06c65f4c4d58fe45bf0e6711b4d61a584ef82e",
+    "shared_SQL_LF_vector_sha256": "44affd4128ee22262017d27d461784a63ded12075c5196b5c7a1316cb356476b",
+    "source_reviews": {
+      "current_SOURCE_PASS": true,
+      "effect_authority": false,
+      "inert_reader_corrective_rebind": {
+        "bytes": 14343,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-inert-reader-producer-rebind-independent-check.json",
+        "sha256": "836a7f821a3a41407184aa07aed31b91450023a5f40532a6c629f706ae6e4a28"
+      },
+      "producer_admission": {
+        "bytes": 6423,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-INT009-DEBUG-capture-window-source-admission.json",
+        "sha256": "68d72f8aac704ed67d16984e0d2ea8b4cfddecaec24fd3ce042b178a5df6e336"
+      },
+      "producer_current": {
+        "bytes": 14058,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-window-phase01-independent-closure.json",
+        "sha256": "b3cc6a3ea8eccd4f09fa0e84f472cc342fe221f4347145a328d7177f035d02fb"
+      }
+    }
+  },
+  "operational_source_checks": [
+    {
+      "gate": "Default inert, exact authorization and pins",
+      "actual_source": "Provider line49 refuses import/nonexact argv before activation reads/native. Provider admit_activation enforces closed typed schema, both exact owned identities, UUIDv4 distinct from checkpoint, one GET, <=300s UTC stamp, exact paths and reference shapes; actual byte/hash loads precede its GET. Root admits only publish/resolve/poll/observe and exact closed activation/selfpin/proposal paths, both operational PASS fields + independenttrue, completed actual turn/tool, and all28 input pins. Companion exact argv and self/driver dependency hashes precede effects. No current template grants execution."
+    },
+    {
+      "gate": "Provider predicate and privacy",
+      "actual_source": "One old qualified fixed project/team GET command with CLI entry pin, caps15s/4MiB stdout/256KiB stderr; exclusive fsynced intent, OUT/INTENT once fence. Exact capture/predicate and five helpers conserved. Full physical EOF/readersjoined/handlesclosed/directsettled/native0 required. Raw streams RAM-only; persist only finite validated provider values or closed drift keys and booleans. Project/team/name/GitHub repo exact; previewDisabledtrue and ignored-build exit0 enforced. Contract is point-in-time ordinary Git push containment for these two branches, not blanket manual/CLI/production deployment disablement."
+    },
+    {
+      "gate": "Two-head source preflight",
+      "actual_source": "Provider checks actual170 nonSQL raw/LF/blob bindings, exact branch deployment map conditions, no ignoreCommand override and lock SHA. Root localproof consumes actual203 MAIN and85 DEBUG nonSQL plus118 shared SQL Git objects, exact HEAD/branch/trackedclean, raw/LF nonSQL, no migration diff against each expected preimage and fast-forward ancestry. Root must additionally preserve complete owned untracked/index cleanliness and actual source/proof/trigger/SQL vector evidence; no SQL rawscan introduced."
+    },
+    {
+      "gate": "Docs-first finite publication",
+      "actual_source": "Companion uses exact hash-pinned controller definitions; d.admit/selfpin, qualified provider capture, both-clean proof, localproof then exclusive DOCS dir/journal. MAIN repo URL and exact fd930 preimage, fsynced push intent, immediate mutation_fresh, nonforce309 push, complete receipt and exact309 readback required. Only success writes ROOT_STOPPED+remote_readback_exact. Failure while PUBLISHING writes UNKNOWN_STOP; invalid default argv does not rewrite a closed docs operation. DEBUG controller requires same operation ID/exact MAIN309/ROOT_STOPPED/readbacktrue before allocating its own operation directory; docs UNKNOWN blocks DEBUG."
+    },
+    {
+      "gate": "DEBUG publication, actor/workflow and direct fixed mode",
+      "actual_source": "Exclusive OWN/journal precedes DEBUG effects; exact repo and3bb preimage, fsynced intent, immediate freshness, nonforce3e6 push and exact readback. Exactly four prePOST GETs validate current loginrthunborg, collaborator write/maintain/admin, exact debug branch head3e6, workflow296219797/pathci.yml/active. Body is exclusive fsynced265B with reviewed hash, ref/expectedsha/UUID and releasefalse/causefalse/originaltrue. Exact actual-mode intent and DISPATCH_CONSUMED_BEFORE_POST saved before solePOST. No unsupported canonical normal option or invented normal verification state. Permission/identity failure stops before POST."
+    },
+    {
+      "gate": "Freshness and uncertain effects",
+      "actual_source": "mutation_fresh reads pinned activation/sourceproof/provider and checks each age0..300 immediately before EACH push and via api immediately before POST native. Additional provider<=180 just before direct20s POST. Production helper tested healthy and expired activation/proof/provider branches. Native partial/nonzero/timeout/unsettled capture fails closed; POST requires complete native0 and empty response. Exclusive intents consume slots before native; top-level operation catch marks UNKNOWN_STOP+all_remaining_slots_closed, no retry loop, blind push/POST or fallback."
+    },
+    {
+      "gate": "Resolution, observation and terminal custody",
+      "actual_source": "Observe chooses resolver OR poll, unregistered poll and early cooldown WAIT make0GET. Resolver increments/saves before request, <=6 one-page20 lookups/min5s, exact SHA/title plus ownedrun repository/ref/event/workflow/attempt/actor tuple; ambiguity refuses, sixth empty closes slots. Poll increments/saves before run/jobs GET pair, <=90pairs/min30s/original5400s wall, exact run ID/tuple and <=9 unique owned job IDs/names/head/run, closed projection only. Exact9 completed jobs plus completed run write exclusive terminal and ROOT_STOPPED/allslotsclosed; no postterminalGET. Incomplete, uncertain or exhausted observation stays UNKNOWN_STOP rather than inventing status. Artifact/log reads absent."
+    }
+  ],
+  "direct_dispatch": {
+    "method": "POST",
+    "endpoint": "repos/rthunborg/Kopplas/actions/workflows/296219797/dispatches",
+    "body_bytes": 265,
+    "body_sha256": "9d9944330a82483eb41c8eb2a070035b2265f9cdba978170b27f9493a65f855a",
+    "body": {
+      "inputs": {
+        "calendar_feed_cause_proof": "false",
+        "calendar_feed_original_int009": "true",
+        "checkpoint_id": "24c5a047-e039-4d85-8fa3-20d96f79accb",
+        "expected_sha": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+        "release_validation": "false"
+      },
+      "ref": "codex/epic-15-int009-debug"
+    },
+    "seam_decision": {
+      "bytes": 1498,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-existing-diagnostic-dispatch-seam-decision.json",
+      "sha256": "002e7a7852a8d5b0119e7abe687035a7b5d5e0f0f8c5fd0fe870c60dfe7b105e"
+    },
+    "normal_acceptance": 0
+  },
+  "finite_future_caps": {
+    "DEBUG_nonforce_FFpush": 1,
+    "DEBUG_remote_before": 1,
+    "DEBUG_remote_readback": 1,
+    "MAIN_nonforce_FFpush": 1,
+    "MAIN_remote_before": 1,
+    "MAIN_remote_readback": 1,
+    "artifact_log_GETs_now": 0,
+    "direct_workflow_POST": 1,
+    "force_merge_deploy": 0,
+    "joblist_per_page": 100,
+    "local_resources": 0,
+    "owned_joblist_GETs_max": 90,
+    "owned_run_GETs_max": 90,
+    "pagination": 0,
+    "poll_min_seconds": 30,
+    "prePOST_GETs": 4,
+    "provider_GET": 1,
+    "provider_mutations": 0,
+    "resolver_GETs_max": 6,
+    "resolver_min_seconds": 5,
+    "resolver_per_page": 20,
+    "retries": 0,
+    "status_before_registered": 0,
+    "variables": 0,
+    "wall_seconds": 5400
+  },
+  "controls": {
+    "independent_focused": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrective-independent-operational-controls.json",
+      "bytes": 3050,
+      "sha256": "8c12d205af7935d72707c35a455dc066a1b6a017724e61692100acb31338ddc8"
+    },
+    "passed": 30,
+    "failed": 0,
+    "attribution": "Independent exact AST branch/function extraction and RAM-only native/API/path mocks; actual byte/hash/inverse/reference checks. Production main function executed only against mocks, not imported module/main or real processes. OP01 positive+4negative, two complete NORMAL and three successor inverses, all28 pins, four GET failures before POST, fixed body cardinality, docsUNKNOWN, zeroGET WAIT, resolver unique/lastempty/ambiguity, exact9terminal, postterminal/earlypoll and three freshness stamps healthy/expiry.",
+    "initial_fixture_failure_retained": {
+      "tool": "5ded12",
+      "native_exit": 1,
+      "reason": "Harness omitted computed TITLE fixture; stopped before writing controls. Corrected fixture derives the exact source TITLE; production unchanged."
+    },
+    "qualified_proofs_reused": "Author prior16 groups retained nonadditively and not rerun. Corrective author6 actual-report/default controls separately recorded; independent30 count is its own scope, not native test acceptance. Five provider and twelve controller helper bodies bytecompared, no transport matrix rerun.",
+    "actual_tool_receipts": [
+      {
+        "tool": "9eb528",
+        "native_exit": 0,
+        "purpose": "six pins and bounded source metadata"
+      },
+      {
+        "tool": "a202c6",
+        "native_exit": 0,
+        "purpose": "actual three-file delta, controller and companion read, proposal interfaces"
+      },
+      {
+        "tool": "7f832a",
+        "native_exit": 0,
+        "purpose": "complete provider and remaining observer source"
+      },
+      {
+        "tool": "15ef68",
+        "native_exit": 0,
+        "elapsed_seconds": 0.1907744,
+        "purpose": "30 focused controls, zero failures"
+      },
+      {
+        "tool": "da75cb",
+        "native_exit": 0,
+        "purpose": "5/12 actual helper equality, fixed gates, identity/body/copy/route/prior immutability pins"
+      }
+    ]
+  },
+  "Root_interfaces": {
+    "required_review_status": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+    "required_review_outcome": "PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY",
+    "independent": true,
+    "fixed_path_copy_admission": {
+      "copy_authority_now": false,
+      "corrective_source_review_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-corrective-operational-source-review.json",
+      "decision": {
+        "bytes": 1360,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-operational-review-fixed-path-admission-decision.json",
+        "sha256": "147190a6c296d8dc426575de7c58ef80775da9710c7cd6f9e894337f61327b6a"
+      },
+      "fixed_expected_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-operational-review.json",
+      "required": "Root independently reads finalcorrectivePASS (both status/outcome PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY and independenttrue), then xb byteexactcopy only AFTER PASS; source/copy bytes+SHA equality recorded by Root and bothpins retained in freshsourceproof/admission beforeactivation. No NOTPASS/placeholder copy; no codepath guard relaxation."
+    },
+    "copy_condition": "This completed PASS is ONLY the source report. Root must independently read its actual bytes/fullpins, exclusively xb-copy exact bytes to enforced INT009-DEBUG-window-operational-review.json only after PASS, verify source/copy byte/SHA equality, retain both pins in fresh proof/admission before activation. Reviewer did not copy or authorize copy/effects. No overwrite, placeholder, NOTPASS copy or path guard relaxation.",
+    "future_grant": "NEW actual completed Coordinator turn/tool must explicitly admit providerGET1, MAIN+DEBUG nonforce FFpush1each plus before/readback2each, prePOST GET4, fixedPOST1 and bounded resolver/poller. Historical slots/grants are not replayable. SourcePASS alone authorizes none.",
+    "fresh_proof_and_exclusive_activations": "Root sole operator verifies current two-head actual source/Git/fullclean/remote/ancestry/sourcevectors/triggers; pins corrected six files, final review+copy, grant and actual provider outer receipt. Exclusive fresh provider activation then actual qualified provider success, then exclusive root effects activation bound same operationID and exact current pins; <=300s checks before each mutation and <=180 provider beforePOST. No source HEAD churn or second poller; any uncertainty stops, no renewed GET to repair TTL.",
+    "outer_custody": "Root must capture actual tool/native/elapsed/fullEOF/join/handles/directsettled and preserve journals/proof. Child source review cannot assert future outer receipt.",
+    "terminal_reader": "Run is NULL now. No artifact/log GET. Only after actual owned9 terminal may actualtuple/DBjob/source reader enrollment receive separate narrow binding review, completed two-read grant and fresh exclusive Rootactivation. No inferred cause/custody/counts."
+  },
+  "continuity": {
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "story_feed_browser_retry0_passed": 14,
+    "failure_cause": "UNKNOWN",
+    "DB_custody": "retained/unverified",
+    "P5": "OPEN",
+    "targeted_diagnostic": "one attempt1 INT009 with14 skipped cases = zero credit; no normal95 acceptance"
+  },
+  "nonexecution_limits": [
+    "No actual API/provider/network/Git/remote/push/dispatch/run/jobs/artifact/log request",
+    "No Popen/process native workload, DB/service/browser/config load/application test suite/resource/dependency/runtime",
+    "No source/Spec/tracked/state/earlier report/input write; only new private focused controls and this report",
+    "No merge/deployment/provider settings/variables/cleanup or approval waiver"
+  ],
+  "open_questions": [],
+  "blockers": [],
+  "deferred_work": [
+    "NEW independent High actualcorrective6 source/privacy/effect review, completing remaining originalscope, bothstatus/outcome PASS_INT009_DEBUG_WINDOW_OPERATIONAL_SOURCE_ONLY independenttrue; Root fixedpathcopy decision thenpinsource+copy.",
+    "NEW actualcompletedCoordinator finitegrant explicitlycovers2pushes/provider1/prePOST4+POST1/resolver/poller limits; no currentauthority.",
+    "Root finalbothsource/currentcandidate/remote/clean proof and exclusive freshprovideractivation; actualproviderPASS then exclusive effectsactivation with actualouterreceipt.",
+    "RootONLY ordered MAINdocs publication then DEBUGpublication+directfixedPOST, soleboundedmetadata observation.",
+    "After actualterminal fresh inertreaderactualtupleenrollment and narrowbindingreview, separate2GETallocation/Rootactivation, then distinctactualqualification; no speculativecausefix/normalacceptance."
+  ]
+}

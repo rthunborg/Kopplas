@@ -1,0 +1,29 @@
+{
+  "Outcome": "PASS_PLAN_ONLY — conditional ordinary-grantor source defect validated; strict guards remain valid; hosted cause unproven.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-report.md",
+      "bytes": 5643,
+      "sha256": "1b7e27b3c3ce40f3094159894400d6c8235a7c67a3a32196c65dbf1554ae0d78"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-attestation.json",
+      "bytes": 12844,
+      "sha256": "967809fe02ac1c42f2e576fb1c381703567c1256bdcaed961cea53f3f50f83ac"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/result.json",
+      "identity": "Final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": "Five proposed paths are proportional. All8 transferred functions require proof-before-mutation and owner-context ACL reconciliation; no implementation/effect authority granted.",
+  "Open questions": [
+    "Actual hosted grant identities/cause and complete111 adoption/application remain unproven. Exact accepted legacy ACL/grantor/option shape must be made explicit by author."
+  ],
+  "Deferred work": [
+    "Meaningful ordinary non-superuser native regression, all8 ACL coverage, targeted committed review and required full DB/RLS/normal95/recovery after separately allocated implementation."
+  ],
+  "Blockers": [
+    "Concrete Root/Coordinator111 application clearance and exact author preflight/legacy-shape/test-placement refinement are mandatory before assignment. Any successful111 adoption/application requires freeze and separately coordinated forward route."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "story_key": "15-2-recurring-bookings-series-materialized-occurrences-exceptions",
+  "impl_dir": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts",
+  "candidates": [
+    {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "status": "ready-for-dev",
+      "artifact_format": "bmad-build-auto",
+      "legacy_story_status": null,
+      "mtime": 1792435995.5151923
+    }
+  ],
+  "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+  "status": "ready-for-dev",
+  "artifact_format": "bmad-build-auto",
+  "legacy_story_status": null,
+  "found": true,
+  "ambiguous": false,
+  "siblings": [],
+  "hard_stop": false,
+  "hard_stop_reason": null,
+  "warnings": [],
+  "error": null
+}

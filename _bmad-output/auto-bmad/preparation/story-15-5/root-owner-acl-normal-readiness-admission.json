@@ -1,0 +1,31 @@
+{
+  "schema": "root-owner-acl-normal-readiness-admission-v1",
+  "readiness": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-readiness.json",
+    "bytes": 34051,
+    "sha256": "f5a61e8d45e704e821357a479594ff496b9a3b6e5ab1d388039ae687be0bdaaa"
+  },
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "actual_source_raw_and_head_bindings_verified": 71,
+  "actual_readiness_context_raw_bindings_verified": 28,
+  "actual_input_refs_verified": 6,
+  "supplementary_playwright": {
+    "path": "playwright.config.ts",
+    "bytes": 4872,
+    "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+    "source_head_blob": "9457ea35425d200d0449fe96308ef9346b18a9a5"
+  },
+  "source_code_review": "PASS_CURRENT_EXACT5",
+  "checkpoint_id": "b34acf03-1116-4411-9ce4-7dbe04d48745",
+  "current_enrollment": {
+    "node": 30,
+    "vitest": 51,
+    "essential_browser": 14,
+    "distinct_total": 95,
+    "direct_recovery_separate": 1,
+    "ordinary_grantor": "Inside existing RLS010, not new case."
+  },
+  "runtime_effects_authorized": false,
+  "normal_acceptance_credit": 0,
+  "remaining": "Metadata checkpoint, exact pushed identity preservation and separately allocated normal CI/evidence acquisitions."
+}

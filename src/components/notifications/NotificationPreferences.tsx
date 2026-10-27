@@ -50,8 +50,8 @@ export function NotificationPreferences() {
     <section>
       <h1 className="text-2xl font-semibold">Notisinställningar</h1>
       <p>E-postinställningar är tillgängliga när leverans är aktiverad på servern.</p>
-      <fieldset className="mt-4" aria-label="Offerter">
-        <legend className="font-semibold">Offerter</legend>
+      <fieldset className="mt-4" aria-label="Notiskategorier">
+        <legend className="font-semibold">Notiskategorier</legend>
         <table>
           <thead>
             <tr>
@@ -62,7 +62,7 @@ export function NotificationPreferences() {
           </thead>
           <tbody>
             {ACTIVE_CATEGORIES.map((category) => {
-              const label = "Viktig uppföljning av offert";
+              const label = category.label;
               const value = enabled[`${category.category}:in_app`] ?? category.defaultEnabled;
               const emailValue = enabled[`${category.category}:email`] ?? category.defaultEnabled;
 
@@ -105,7 +105,7 @@ export function NotificationPreferences() {
                     </label>
                   </td>
                   <td>
-                    <input
+                    {(category.channels as readonly string[]).includes("email") ? <input
                       role="switch"
                       aria-label={`${label} e-post`}
                       type="checkbox"
@@ -127,7 +127,7 @@ export function NotificationPreferences() {
                           setError("Kunde inte spara inställningen. Försök igen.");
                         } finally { setSavingCategory(null); }
                       }}
-                    />
+                    /> : <span>Ej tillgängligt</span>}
                   </td>
                 </tr>
               );

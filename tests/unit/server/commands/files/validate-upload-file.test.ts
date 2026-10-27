@@ -115,6 +115,7 @@ test("[8.2-UNIT-03f][P1] the CORRECT owner_type↔purpose pairs ACCEPT (active o
     { owner_type: "calculation", purpose: "calculation_attachment" },
     { owner_type: "quote_acceptance", purpose: "acceptance_evidence" },
     { owner_type: "job", purpose: "job_evidence" },
+    { owner_type: "work_order", purpose: "job_evidence" },
   ];
   for (const p of pairs) {
     const result = validateUploadFile(
@@ -140,5 +141,11 @@ test("[8.2-UNIT-03g][P0/R-803] a client tenant_id/object_path/bucket_id is NOT r
     assert.ok(!keys.includes("tenant_id"), "tenant_id must be stripped");
     assert.ok(!keys.includes("object_path"), "object_path must be stripped");
     assert.ok(!keys.includes("bucket_id"), "bucket_id must be stripped");
+  }
+});
+
+test("[16.3][AC05] work-order uploads reuse job evidence and reject every other purpose", () => {
+  for (const purpose of ["crm_document", "calculation_attachment", "acceptance_evidence", "quote_pdf", "quote_attachment_snapshot"]) {
+    assert.equal(validateUploadFile(validRaw({ owner_type: "work_order", purpose })).ok, false);
   }
 });

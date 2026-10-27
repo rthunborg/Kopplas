@@ -1,0 +1,345 @@
+{
+  "schema": "INDEPENDENT_INT009_CURRENT_CAPTURE_WINDOW_PLAN_REVIEW_V1",
+  "outcome": "PASS_INT009_CURRENT_CAPTURE_WINDOW_PLAN_ONLY",
+  "status": "PASS",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "source_write_authority_granted": false,
+  "effect_authority_granted": false,
+  "normal_acceptance": 0,
+  "reviewer": "/root/validate15_4_high; distinct explicit gpt-6.1-sol High independent of assessment author and Root operator",
+  "route": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-capture-window-plan-review-route.json",
+    "bytes": 566,
+    "sha256": "6888329588c856c367dc5f7a045d595dd1faf13c7b6654c0cf37d510839e500a"
+  },
+  "assessment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-normal-capture-publication-source-assessment.json",
+    "bytes": 20090,
+    "sha256": "f046b31a0e6b2c2802fee548c33129318d0f794d392ff22eeb475291ad40cc5b"
+  },
+  "scope": "Plan-only source/privacy validation of the minimum existing original-INT009 DEBUG capture-window extension before allocation or implementation. No fourth broad review, functional correction, new query/transport/workflow/collector family or runtime recommendation.",
+  "findings": [],
+  "finding_count": 0,
+  "required_plan_repairs": [],
+  "actual_read_bindings": {
+    "MAIN_source_bindings": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "raw_bytes": 36989,
+        "raw_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+        "LF_bytes": 36989,
+        "LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+        "HEAD_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd",
+        "native_clean_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 139473,
+        "raw_sha256": "e155639d17a0b5a6528ee0385ba044c5bd5cad436aabd9c9f418076035ae74c8",
+        "LF_bytes": 138084,
+        "LF_sha256": "4d31d7b408d0ad65d4c2f0f478fe5582e632be22983b73eceaabb96521ba819f",
+        "HEAD_blob": "e4b057ae2d5c3add5653c77b93f28e006c470a37",
+        "native_clean_blob": "e4b057ae2d5c3add5653c77b93f28e006c470a37"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "raw_bytes": 48616,
+        "raw_sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "LF_bytes": 47931,
+        "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+        "HEAD_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+        "native_clean_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "raw_bytes": 19782,
+        "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+        "LF_bytes": 19492,
+        "LF_sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+        "HEAD_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "native_clean_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "raw_bytes": 75930,
+        "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "LF_bytes": 75930,
+        "LF_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "HEAD_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "native_clean_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+      },
+      {
+        "path": "vitest.config.ts",
+        "raw_bytes": 4805,
+        "raw_sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+        "LF_bytes": 4725,
+        "LF_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd",
+        "HEAD_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+        "native_clean_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+      },
+      {
+        "path": "tests/factories/admin-sql.ts",
+        "raw_bytes": 12007,
+        "raw_sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77",
+        "LF_bytes": 11802,
+        "LF_sha256": "3ffbb092b6fc3f03785c6359aae47a8e686a0d0878ad3baf8c8ef70319aec4fd",
+        "HEAD_blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38",
+        "native_clean_blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38"
+      }
+    ],
+    "all7_MAIN_raw_LF_size_SHA256_clean_blob_match": true,
+    "frozen_DEBUG_seven_bindings": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "raw_bytes": 78497,
+        "raw_sha256": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d",
+        "LF_bytes": 78497,
+        "LF_sha256": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d",
+        "HEAD_blob": "6b9f2897a89695fe7a5f63c2cef9d90e6b160dc7",
+        "native_clean_blob": "6b9f2897a89695fe7a5f63c2cef9d90e6b160dc7"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "raw_bytes": 49972,
+        "raw_sha256": "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0",
+        "LF_bytes": 49972,
+        "LF_sha256": "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0",
+        "HEAD_blob": "eab9f7a1b170b600209edbe5dc7bf050a3cf66d4",
+        "native_clean_blob": "eab9f7a1b170b600209edbe5dc7bf050a3cf66d4"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "raw_bytes": 13782,
+        "raw_sha256": "99fb81590ad3bf232c7cbf73f12c69a9441d6430c6fd813b199ae41bf7b8f652",
+        "LF_bytes": 13782,
+        "LF_sha256": "99fb81590ad3bf232c7cbf73f12c69a9441d6430c6fd813b199ae41bf7b8f652",
+        "HEAD_blob": "1f8c961bd4a3b5db4610523144dcaa8d1a35242d",
+        "native_clean_blob": "1f8c961bd4a3b5db4610523144dcaa8d1a35242d"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "raw_bytes": 32905,
+        "raw_sha256": "5e5b1fdc0b5f0e1501c4097aa25bb939f6034ed8fc8996ab8fceb62d886efd2f",
+        "LF_bytes": 32533,
+        "LF_sha256": "15bda73ff015b881b4a9c0b3152d2fbf6a49f280331d9260125b1f49ff04fc75",
+        "HEAD_blob": "151bd0668a2830cd7433efc1f985db3115185f56",
+        "native_clean_blob": "151bd0668a2830cd7433efc1f985db3115185f56"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 319180,
+        "raw_sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+        "LF_bytes": 319180,
+        "LF_sha256": "89a8dc719b064ec9d240beedea68549da761ebd2d635755e32aed5edff328eec",
+        "HEAD_blob": "c725a1c77b4d84f4ee6c924c94a50a4fe79de2a7",
+        "native_clean_blob": "c725a1c77b4d84f4ee6c924c94a50a4fe79de2a7"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "raw_bytes": 4602,
+        "raw_sha256": "4bced2920f386a254d5b335442c5bbc41d2b7fbc09664c0e864999c9355dab78",
+        "LF_bytes": 4602,
+        "LF_sha256": "4bced2920f386a254d5b335442c5bbc41d2b7fbc09664c0e864999c9355dab78",
+        "HEAD_blob": "c690a9d2c244d1788745e194b2ddf41f48e0949e",
+        "native_clean_blob": "c690a9d2c244d1788745e194b2ddf41f48e0949e"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "raw_bytes": 3416,
+        "raw_sha256": "a29cd53e57b34152ecaec11b34a94db636f39eda79a931a542ecc8fffc9b9fbf",
+        "LF_bytes": 3416,
+        "LF_sha256": "a29cd53e57b34152ecaec11b34a94db636f39eda79a931a542ecc8fffc9b9fbf",
+        "HEAD_blob": "46d079e57492d220e85658fc0df4005f7c3a6eab",
+        "native_clean_blob": "46d079e57492d220e85658fc0df4005f7c3a6eab"
+      }
+    ],
+    "all7_DEBUG_raw_size_SHA256_match": true,
+    "MAIN_DEBUG_scenario_LF_equal": true,
+    "MAIN_helper_minus_exact34byte_addition_equals_DEBUG_raw_helper": true,
+    "installed_primary_reporter": {
+      "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+      "bytes": 151531,
+      "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+    },
+    "reporter_actual_hash_match": true,
+    "qualified_observation_refs": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-actual-native-qualification.json",
+        "bytes": 39154,
+        "sha256": "5d3a51aaa3752578e9f49e454af87660fbd7f0e47d3211d7fff40f282323f5fa"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-normal-existing-artifact-capture-actual-qualification.json",
+        "bytes": 22295,
+        "sha256": "a86f597c1475e1c3e3f9b79028ebfc80ca8d9916a25a11e5a660c210a2a05ba9"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/manifest.json",
+        "bytes": 884,
+        "sha256": "010baeac1af90e5ced5fd730bcf354a5142eeb3cf7eb26f58262ed01225dec6e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture/native-projection.json",
+        "bytes": 2523,
+        "sha256": "ee32f80a08c9c90177745f791ed5a1556355b873f049987902e45ff282789324"
+      }
+    ],
+    "all4_qualification_projection_manifest_refs_match": true,
+    "SQL_raw_rescan": false,
+    "Git_commands": 0,
+    "tracked_or_input_edits": 0
+  },
+  "current_facts": {
+    "MAIN_metadata_HEAD_Root_owned": "1a287085407b4f75dfb2df0eabb5ee42f92d1cfc",
+    "tested_Normal_head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "current_source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "DEBUG_frozen_HEAD_Root_owned": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+    "current_Normal_run": 39816833651,
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "zero_coverage": 26
+    },
+    "current_story_browser_retry0_passed": 14,
+    "capture": "MISSING_OR_UNAVAILABLE; selected INT009 executed failure, records/primary absent",
+    "cause_and_current_guard": "UNKNOWN",
+    "DB_custody": "retained/unverified",
+    "normal_mode_disables_capture": false,
+    "setup_success_proven_from_missing_namespace": false,
+    "canonicalization_success_or_failure_proven_from_missing_namespace": false
+  },
+  "plan_assessment": [
+    {
+      "area": "Actual missing-window diagnosis",
+      "status": "PASS",
+      "reason": "INT009170..189 unconditionally creates owned capture and passes it to fixture. Producer185..227 is not Normal-mode gated, and installed reporter transports task.meta. Authority subject barrier950 closes capture after setup succeeds, before scenario177..187 and reached fixture finalization339..356. Once closed, publish216 cannot reopen it. Missing namespace has multiple source-supported alternatives and proves none of them; a34-byte canonical transplant alone is not a useful current-failure attribution attempt."
+    },
+    {
+      "area": "Bounded proposed source and comparable target",
+      "status": "PASS",
+      "reason": "Plan limits prospective DEBUG edits to existing helper, original INT009 test and existing wrapper unit controls. Canonical34-byte proargtypes::text projection addition is the already-reviewed MAIN delta; exact inverse to DEBUG verified. It is the sole deliberate query-text change allowed by this plan; all other query text/receiver/arguments/awaited operations/role-change-before-release/assertion/cleanup/custody behavior must be conserved. Strict four-argument comparator stays intact. No product/SQL migration/role privilege or speculative functional patch is proposed; all118 applied SQL and approved kernel/review cap remain unchanged."
+    },
+    {
+      "area": "Full reached window and phase honesty",
+      "status": "PASS",
+      "reason": "Plan expressly extends opted-in capture through postsetup scenario, finally, reached owner restoration/work-scope and fixture finalizers/cleanup, with publication only after reached cleanup. Finite phases cover setup, dispatch/wait/authority/release/result/assertions, finally and fixture finalization. Source branch alone must not turn an enclosing catch into a subclaim about an unseen assertion/query/native first throw. The implementation obligations below make concrete the existing plan requirement; none grants new behavior or data collection."
+    },
+    {
+      "area": "First observation, cleanup and throw identity",
+      "status": "PASS",
+      "reason": "First PRIMARY remains immutable and later cleanup stays secondary with fixed omission budget. Scenario failure must be recorded before finally can replace the propagated throw; a later finally error may still override exactly as existing JS semantics require. Added pass-through catches rethrow the exact caught object. Existing catches that intentionally redact/replace/aggregate must retain their existing replacement/aggregation behavior; same-error wording does not authorize exposing a raw native error where baseline masks it. Diagnostic first PRIMARY is not required to equal final propagated error and must not be claimed as native cause."
+    },
+    {
+      "area": "Privacy, healthy silence and bounded reader compatibility",
+      "status": "PASS",
+      "reason": "Existing descriptor-only nonproxy capture, six fixed primitive fields, firstPRIMARY+<=3CLEANUP/OMITTED,4096 ASCII namespace and silent/no-primary/foreign occupied sink behavior remain mandatory. Only explicitly enumerated boundary literals may be added; no arbitrary class/message/stack/property/SQL value or inferred predicate subclaims. Corresponding existing private reader finite allowlist successor must be separately frozen, bound and independently reviewed; historical readers/evidence stay immutable. Invalid/missing sink/namespace remains UNKNOWN and STOP."
+    },
+    {
+      "area": "Verification and effect boundaries",
+      "status": "PASS",
+      "reason": "Plan requires meaningful actual instrumented-source controls for setup, postsetup assertions/barrier wait/restore/fixture cleanup, finally override, callback-never-entered, caught errors, UNKNOWN native facts, sink/proxy/readonly refusal, healthy silence/foreign namespace, budget and operation conservation. Exact new source/reader review and separate fresh finite original-INT009 execution/acquisition grant remain prerequisites. One attempted INT009 with14 skipped declarations yields targeted evidence only; it cannot satisfy full95, clear global custody or waive P5."
+    }
+  ],
+  "source_bound_implementation_obligations": [
+    {
+      "id": "WINDOW-01",
+      "caller": "INT009 callback and authority barrier setup",
+      "source": "tests/integration/commands/calendar-feed.int.test.ts:170; tests/support/calendar-feed-atdd.ts:919",
+      "obligation": "Remove successful setup close as the lifetime terminator only for opted-in capture. A SUBJECT_SETUP failure before barrier assignment/inside holder-ready/setup path must be observable without executing finally cleanup that baseline never reached. Keep existing awaits, release scheduling and role loss ordering exactly."
+    },
+    {
+      "id": "WINDOW-02",
+      "caller": "INT009 try/finally body",
+      "source": "tests/integration/commands/calendar-feed.int.test.ts:176",
+      "obligation": "Record first body failure before finally starts; mark each fixed reached boundary before existing operation. Re-throw caught body object unchanged. Catch/record finally error without changing actual override/skip behavior: if first release throws, later allSettled/cleanup remain unexecuted as today. No new await, observer, recovery or suppression."
+    },
+    {
+      "id": "WINDOW-03",
+      "caller": "Fixture finalizers after calendarWorkScope returns",
+      "source": "tests/support/calendar-feed-atdd.ts:335; tests/support/calendar-feed-atdd.ts:339; tests/support/calendar-feed-atdd.ts:720",
+      "obligation": "Finalizers339..342 execute outside the calendarWorkContext.run dynamic scope. Keeping capture open alone cannot make calendarInt009Subject find it there. Retain the same opted-in capture through direct fixture parameter/owned closure or equivalent proportional local plumbing; do not widen AsyncLocalStorage lifetime/open-work admission or use global mutable capture. Observe inner restore errors before their existing masking when reached; otherwise report only the enclosing finalize boundary."
+    },
+    {
+      "id": "WINDOW-04",
+      "caller": "Cleanup-only error and fixture terminal publication",
+      "source": "tests/support/calendar-feed-atdd.ts:201; tests/support/calendar-feed-atdd.ts:215; tests/support/calendar-feed-atdd.ts:336",
+      "obligation": "cleanup() alone never establishes primary and publish returns if primary absent. First reached fixture/cleanup/custody refusal with no earlier primary must establish a bounded PRIMARY at its true observed boundary; later reached cleanup errors become CLEANUP. Preserve first primary across owner restoration, pending settlement, finalizer, destructive cleanup gating, absence checks and final fixture aggregate. Publish/close once only after all cleanup baseline actually reached; healthy run remains silent."
+    },
+    {
+      "id": "WINDOW-05",
+      "caller": "Serial unknown-window setup/restore and fixture-step redaction",
+      "source": "tests/support/calendar-feed-atdd.ts:299; tests/support/calendar-feed-atdd.ts:652; tests/support/calendar-feed-atdd.ts:714",
+      "obligation": "These wrappers are reached before/after the test callback and may mask a failure before outer catches. Ensure the opted-in record is captured before existing erasure where required, or label only the actual enclosing observed boundary with UNKNOWN native facts. Reset/assign appropriate finite finalization marker; do not leave a stale TOKEN_ASSERTION/BARRIER_CLEANUP label on serial restore/settlement failure. No claim which nested restore query/subpredicate failed without a direct existing boundary observation."
+    },
+    {
+      "id": "WINDOW-06",
+      "caller": "calendarRestore and existing redacting/aggregating catches",
+      "source": "tests/support/calendar-feed-atdd.ts:835; tests/support/calendar-feed-atdd.ts:932; tests/support/calendar-feed-atdd.ts:939",
+      "obligation": "Instrumentation may name a caught error solely to snapshot approved primitive descriptors before existing replacement. Retain the existing safe calendarOwnerRefused/redactFailure/AggregateError output, custody assignments, reached actions, cleanup precedence and error order. Do not replace old redaction with throw-native or make an intentionally handled rejection change test behavior."
+    }
+  ],
+  "required_implementation_evidence_before_runtime": [
+    {
+      "control": "Actual-source late-failure coverage",
+      "evidence": "Exercise instrumented original callback/setup path plus real fixture/work-scope/finalizer composition with bounded inert fakes. Show each postsetup assertion, barrier wait, restore/finalizer and callback-never-entered path yields useful bounded first-observed boundary. An inverse restoring early close must lose a late capture and fail the control."
+    },
+    {
+      "control": "Scenario error followed by failed finally",
+      "evidence": "Actual scenario source with controlled body E1 and finally E2 must keep E1 primary, E2 cleanup where reached, while propagated identity/precedence remains baseline E2; conserve skipped later finally actions. Cleanup-only failure must produce one PRIMARY, healthy/handled-success path no namespace."
+    },
+    {
+      "control": "Scope and redaction",
+      "evidence": "Show finalizer capture outside ambient AsyncLocalStorage still uses only this INT009 capture; unrelated fixture/subject paths remain unaffected. Assert raw native error never escapes an existing masking boundary and same-object rethrow remains at newly added pass-through catches."
+    },
+    {
+      "control": "Operation and privacy conservation",
+      "evidence": "Source-bound calls/receivers/arguments/query text except exact34-byte approved canonical projection/await counts and order/assertions/role loss before release/custody are unchanged. Existing producer sink/proxy/foreign/UNKNOWN/omission tests retained; actual JsonReporter output remains bounded. No secret/native error text or SQL value retention."
+    },
+    {
+      "control": "Reader and exact source binding",
+      "evidence": "Freeze/review only finite existing reader enum updates and new DEBUG source/head proof; same original testNamePattern/serial admission/lane/attempt1, no new workflow/driver/query/collector. No runtime until independent source PASS and fresh finite completed allocation."
+    }
+  ],
+  "prospective_ownership_only": {
+    "DEBUG_source_paths": [
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "private_reader": "Corresponding bounded existing-reader enum successor, separately allocated/frozen/reviewed before acquisition; no current write granted.",
+    "MAIN_product_Spec_SQL": "No change authorized/proposed by this plan validation.",
+    "existing_temporary7": "Preserve frozen capability/admission transport files except owned existing unit control addition; no unnecessary wrapper SHA/config/workflow expansion.",
+    "owner_for_next_step": "Root/Coordinator allocate concrete source ownership and implementation controls to actual author; Root remains sole later effect operator."
+  },
+  "review_verification": {
+    "actual_source_reads": [
+      "MAIN INT009145..205",
+      "MAIN capture185..227",
+      "MAIN fixture323..357",
+      "MAIN serial window652..672",
+      "MAIN work scope706..721",
+      "MAIN owner restore835..839",
+      "MAIN barrier919..954"
+    ],
+    "bounded_binding_command": "PowerShell Set-Location MAIN; python -X utf8 - stdin hash/raw-LF/blob/read-only exact34-byte inverse checks",
+    "actual_binding_tool": "e14f14",
+    "native_exit": 0,
+    "wall_seconds": 0.9412844,
+    "result": "Assessment/route, MAIN7 source bindings, DEBUG7 temporary bindings,4 qualified evidence refs and installed reporter match. MAIN helper minus exact34 bytes equals DEBUG raw; scenario LF equal. No118 SQL file rescan.",
+    "reused_proofs": "Previous namespace/privacy/producer/reporter and source/reader reviews retained source-bound. No application tests, config load, VM/source harness execution, capture extraction, API, Git command, runtime or managed resource."
+  },
+  "remaining_unknowns": [
+    "Actual reached current failure boundary/canonicalization outcome and native cause.",
+    "Actual implementation correctness and scope/throw/custody conservation until new source/control/review evidence.",
+    "Global DB/backend/key custody and full required95 gates."
+  ],
+  "deferred_work": [
+    "Root/Coordinator exact prospective source/reader allocation; author implementation with required meaningful controls.",
+    "Distinct High actual delta source/privacy review, then separate fresh finite execution/acquisition grant if admitted."
+  ],
+  "open_questions": [],
+  "blockers": [],
+  "conservation": "This single new private plan review only; assessment and all inputs/source/tracked/state/Git frozen records preserved. This PASS validates plan scope/requirements, not code, implementation completion or any source/effect allocation."
+}

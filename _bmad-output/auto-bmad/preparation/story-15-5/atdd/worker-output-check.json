@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "worker": "api-worker.json",
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "exact_content": true
+    },
+    {
+      "worker": "api-worker.json",
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "exact_content": true
+    },
+    {
+      "worker": "api-worker.json",
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "exact_content": true
+    },
+    {
+      "worker": "api-worker.json",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "exact_content": true
+    },
+    {
+      "worker": "e2e-worker.json",
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "exact_content": true
+    },
+    {
+      "worker": "e2e-worker.json",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "exact_content": true
+    }
+  ],
+  "checked": 6,
+  "passed": true,
+  "runtime_acceptance": 0
+}

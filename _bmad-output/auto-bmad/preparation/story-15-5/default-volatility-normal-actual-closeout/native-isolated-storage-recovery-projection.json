@@ -1,0 +1,67 @@
+{
+  "API_digest_verified": true,
+  "advertised_size_equal": true,
+  "archive_bytes": 679,
+  "archive_sha256": "1b1475c46458eb1773bda0779b15d573d0f38fff6d94e1f4c1db96e7b33730c1",
+  "artifact": {
+    "advertised_bytes": 679,
+    "digest": "sha256:1b1475c46458eb1773bda0779b15d573d0f38fff6d94e1f4c1db96e7b33730c1",
+    "expired": false,
+    "expires_at_null": false,
+    "expires_at_present": true,
+    "id": 12500528021,
+    "name": "native-isolated-storage-recovery",
+    "qualified_for_single_download": true,
+    "run_head_bound": true
+  },
+  "declared_total_bytes": 1161,
+  "member": "isolated-storage-recovery.json",
+  "member_bytes": 1161,
+  "member_sha256": "2ed493efd6d6327ecee4a0e2eb1deb4299f2d80a7212721199751ee4446d2b32",
+  "projection": {
+    "actual_case_execution_only": "passed/failed are attempted; pending/skipped/todo are not coverage",
+    "assertion_status_counts": {
+      "passed": 1
+    },
+    "files": [
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792757700791.0793,
+        "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "startTime": 1792757699940,
+        "status": "passed",
+        "story_cases": []
+      }
+    ],
+    "kind": "VITEST_NORMAL_REPORT",
+    "nonstory_failed_cases": [],
+    "report_counts_consistent": true,
+    "story_cases": [],
+    "story_reconciliation": {
+      "attempted_story_pass_or_fail": 0,
+      "duplicate_story_ids": [],
+      "expected_count": 0,
+      "missing_expected_ids": [],
+      "noncoverage_story_count": 0,
+      "normal_acceptance": 0,
+      "reported_unique_count": 0,
+      "unexpected_source_ids": []
+    },
+    "summary": {
+      "numFailedTestSuites": 0,
+      "numFailedTests": 0,
+      "numPassedTestSuites": 2,
+      "numPassedTests": 1,
+      "numPendingTestSuites": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "numTotalTestSuites": 2,
+      "numTotalTests": 1,
+      "success": true
+    }
+  },
+  "raw_persisted": false,
+  "zip_entries": 1
+}

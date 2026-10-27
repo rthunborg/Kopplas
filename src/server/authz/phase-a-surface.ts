@@ -8,7 +8,7 @@ import { normalizeRoles, type TenantRole } from "./roles";
  * presentational navigation data. The browser receives only the already filtered
  * labels/icons/routes; it never receives roles or the permission matrix.
  */
-export function resolvePhaseANavigation(roles: readonly unknown[] | undefined): NavItem[] {
+export function resolvePhaseANavigation(roles: readonly unknown[] | undefined, hasCurrentJobLead = false): NavItem[] {
   const roleSet = normalizeRoles(roles);
   const capabilityByRoute = new Map(
     SCOPE_MANIFEST.modules
@@ -20,6 +20,8 @@ export function resolvePhaseANavigation(roles: readonly unknown[] | undefined): 
 
   return navItems.filter((item) => {
     const requirement = capabilityByRoute.get(item.href);
+    // Trusted server relationship fact; never applied to another route or landing choice.
+    if (item.href === "/jobs" && requirement?.module === "jobs" && hasCurrentJobLead) return true;
     return Boolean(
       requirement?.capability &&
         resolveCapability({ roles: roleSet, module: requirement.module, capability: requirement.capability }).granted,
@@ -27,15 +29,18 @@ export function resolvePhaseANavigation(roles: readonly unknown[] | undefined): 
   });
 }
 
-/** E15 replaces the current Montör dashboard fallback with `/my-day`. */
+/** Pure Montör prefers the checked field landing; mixed roles keep office priority. */
 export function resolveLandingRoute(roles: readonly unknown[] | undefined): string | null {
   const visible = resolvePhaseANavigation(roles);
+  const normalized = normalizeRoles(roles);
+  if (normalized.length === 1 && normalized[0] === "montor" && visible.some(item => item.href === "/my-day")) return "/my-day";
   return visible.some((item) => item.href === "/dashboard") ? "/dashboard" : visible[0]?.href ?? null;
 }
 
 export function canAccessPhaseARoute(
   roles: readonly TenantRole[] | undefined,
   route: string,
+  hasCurrentJobLead = false,
 ): boolean {
-  return resolvePhaseANavigation(roles).some((item) => route === item.href || route.startsWith(`${item.href}/`));
+  return resolvePhaseANavigation(roles, hasCurrentJobLead).some((item) => route === item.href || route.startsWith(`${item.href}/`));
 }

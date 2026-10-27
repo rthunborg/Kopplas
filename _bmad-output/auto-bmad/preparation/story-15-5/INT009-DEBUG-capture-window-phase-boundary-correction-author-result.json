@@ -1,0 +1,370 @@
+{
+  "schema": "INT009_DEBUG_CAPTURE_WINDOW_PHASE_BOUNDARY_CORRECTION_AUTHOR_RESULT_V1",
+  "Outcome": "NARROW_SOURCE_CORRECTION_FROZEN_PENDING_SAME_INDEPENDENT_FINDING_CLOSURE",
+  "Files changed": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 141605,
+      "raw_sha256": "6d364caee385ceb3f3237e35c7ff9ffbeae2227426e4cef14fc4a06c6103d9c6",
+      "LF_bytes": 140212,
+      "LF_sha256": "d0584efb59c2cb133657da8795e5d139ff04ba4a59e8884e3c41e851b8e4ecb4",
+      "base_blob": "12a13e543e337ca1825d6fe5011ab2b883f883d4",
+      "clean_blob": "bdc71d11ec86cb2d3687e5c1e3e05fd6635cbe87"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 335126,
+      "raw_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+      "LF_bytes": 335126,
+      "LF_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+      "base_blob": "24f387c363a47cd4047b159e7719bd7750ff0f4c",
+      "clean_blob": "c5a66318f5ee8b1f653cd8b1a7e77004e4fa9b8f"
+    }
+  ],
+  "Status": "Existing FINALLY/BARRIER_CLEANUP reset immediately before the postrestore existing absence query/check; no new enum/query/await/observer. Native cause/custody UNKNOWN; acceptance0/P5 OPEN.",
+  "Open questions": [
+    "Current native first cause and backend settlement remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Root mechanical admission/commit; same distinct High INT009-WINDOW-PHASE-01 and latest-fix regression closure; Native existing-reader source identity rebinding after corrective PASS; separate future effect allocation."
+  ],
+  "Blockers": [
+    "No runtime/GET/POST/CI or other effect authority; no broad review4."
+  ],
+  "route": {
+    "parent": "/root/build15_5_high",
+    "nested_author": "/root/build15_5_high/implementation_author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_before_dispatch": true,
+    "ownership": "DEBUG helper+existing unit only; parent sole MAIN ignored receipt writer; Root all Git"
+  },
+  "base": {
+    "DEBUG_HEAD": "8d2bf3086d4d12a0809a05a37a6801ad75539e3e",
+    "MAIN_metadata_HEAD_sampled": "1a287085407b4f75dfb2df0eabb5ee42f92d1cfc",
+    "original_receipt_and_NOTPASS_immutable": true,
+    "references": [
+      {
+        "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-current-capture-window-author-result.json",
+        "bytes": 21805,
+        "sha256": "52c05c2d060de7e86367faeaf468c0ea5e6097880e0d9d34397b63f5cc538594"
+      },
+      {
+        "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-current-capture-window-actual-source-review.json",
+        "bytes": 19246,
+        "sha256": "06cab049092252cc95a224a0b8c7172a506015edaafdd49ab4ec6a6c38c3534b"
+      },
+      {
+        "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-phase-boundary-correction-route.json",
+        "bytes": 621,
+        "sha256": "5a2b031275eceb9724c34319bbdb140d243ea161f37afb615c4e32d5f1f3a64d"
+      },
+      {
+        "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-capture-window-phase-boundary-correction-controls.json",
+        "bytes": 3677,
+        "sha256": "de2a0b5b299708bc1fa835cf92333b50c7a8850aa1c4d253e41de87e8ed716cc"
+      },
+      {
+        "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-capture-window-phase-boundary-correction.diff",
+        "bytes": 6659,
+        "sha256": "24b737a5d9c4874d506b6829ba0237e2ac00ceba7a2205792ab44456e98f838a"
+      }
+    ]
+  },
+  "bounded_correction": {
+    "addition": "trace?.phase(\"FINALLY\",\"BARRIER_CLEANUP\");",
+    "bytes": 42,
+    "immediately_before_existing_postrestore_absence_query": true,
+    "exact_full_helper_inverse_to_base": true,
+    "inverse_LF_sha256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346",
+    "no_query_await_enum_operation_change": true
+  },
+  "actual_source_evidence": {
+    "author_controls": {
+      "bytes": 3677,
+      "sha256": "de2a0b5b299708bc1fa835cf92333b50c7a8850aa1c4d253e41de87e8ed716cc",
+      "data": {
+        "schema": "INT009_DEBUG_PHASE_BOUNDARY_AUTHOR_CONTROLS_V1",
+        "status": "SOURCE_FROZEN_PENDING_ROOT_COMMIT_AND_INDEPENDENT_CLOSURE",
+        "base_HEAD": "8d2bf3086d4d12a0809a05a37a6801ad75539e3e",
+        "bindings": [
+          {
+            "path": "tests/support/calendar-feed-atdd.ts",
+            "raw_bytes": 141605,
+            "raw_sha256": "6d364caee385ceb3f3237e35c7ff9ffbeae2227426e4cef14fc4a06c6103d9c6",
+            "LF_bytes": 140212,
+            "LF_sha256": "d0584efb59c2cb133657da8795e5d139ff04ba4a59e8884e3c41e851b8e4ecb4",
+            "base_blob": "12a13e543e337ca1825d6fe5011ab2b883f883d4",
+            "base_LF_sha256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346",
+            "prospective_clean_blob": "bdc71d11ec86cb2d3687e5c1e3e05fd6635cbe87"
+          },
+          {
+            "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+            "raw_bytes": 335126,
+            "raw_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+            "LF_bytes": 335126,
+            "LF_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+            "base_blob": "24f387c363a47cd4047b159e7719bd7750ff0f4c",
+            "base_LF_sha256": "748ac5c553209bc8d76ee3666651b6a7f6790b57d1d6b76d297cabdc7d2be58f",
+            "prospective_clean_blob": "c5a66318f5ee8b1f653cd8b1a7e77004e4fa9b8f"
+          }
+        ],
+        "helper_patch": {
+          "addition": "trace?.phase(\"FINALLY\",\"BARRIER_CLEANUP\");",
+          "bytes": 42,
+          "immediately_before_existing_postrestore_absence_query": true,
+          "exact_full_helper_inverse_to_base": true,
+          "inverse_LF_sha256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346",
+          "no_query_await_enum_operation_change": true
+        },
+        "enums_unchanged": true,
+        "enum_counts": {
+          "publications": 15,
+          "operations": 40,
+          "guards": 13,
+          "fields": 22
+        },
+        "INT009_unchanged": {
+          "path": "tests/integration/commands/calendar-feed.int.test.ts",
+          "raw_bytes": 38097,
+          "raw_sha256": "37ec258c29f514c23c450a3e70ef19cebd685330fec7017c4c3f0cd6ea2d4679",
+          "base_blob": "2f2950a9ee4cf1a590dc6eee58eef19531ac6524",
+          "LF_matches_base": true
+        },
+        "checks": [
+          {
+            "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"INT009 window\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+            "exit": 0,
+            "tests": 8,
+            "pass": 8,
+            "fail": 0,
+            "skip": 0,
+            "cancel": 0,
+            "todo": 0,
+            "duration_ms": 1104.2617,
+            "tool": "1a1c5d"
+          },
+          {
+            "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+            "exit": 0
+          },
+          {
+            "command": "node node_modules/eslint/bin/eslint.js tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+            "exit": 0,
+            "tool": "2da922"
+          },
+          {
+            "command": "git diff --check",
+            "exit": 0,
+            "tool": "8db516"
+          }
+        ],
+        "initial_failures": [],
+        "evidence": "Actual calendarRestore and barrier source execute with inert ports; restore removes owner state and returns canonical metadata before the existing query rejects or returns leftovers. Both report PRIMARY FINALLY/BARRIER_CLEANUP. Removing exactly the new reset reproduces stale OWNER_RESTORE/WRAPPER_OUTCOME_UNKNOWN and fails the corrected oracle. Existing source operation/callback/query/await conservation and original error/cleanup controls pass. Earlier24P remains historical nonadditive, not a fresh full run.",
+        "limitations": "Pure offline source sequencing only; no native cause/custody/SQL/browser/CI or independent approval claim. Parent compares frozen118raw vector and companion bytes; no SQL path edited. No MAIN writes/Git mutation."
+      }
+    },
+    "parent_unique_full_helper_inverse": {
+      "native_exit": 0,
+      "tool": "0e4819",
+      "removed_bytes": 42,
+      "unique_matching_byte_position_in_LF": 97124,
+      "inverse_exact_actual_HEAD_blob": true,
+      "base_LF_SHA256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346"
+    },
+    "patch": {
+      "bytes": 6659,
+      "sha256": "24b737a5d9c4874d506b6829ba0237e2ac00ceba7a2205792ab44456e98f838a",
+      "actual_git_diff_equal": true
+    },
+    "semantics": "Restore success followed by failed absence query or leftover row is PRIMARY FINALLY/BARRIER_CLEANUP. The missing-reset inverse reproduces stale OWNER_RESTORE/WRAPPER_OUTCOME_UNKNOWN. Existing query/condition/await/redaction/aggregate/custody/order remain unchanged. This is pure source-sequencing evidence, not the native cause."
+  },
+  "checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"INT009 window\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "todo": 0,
+      "duration_ms": 1104.2617,
+      "tool": "1a1c5d"
+    },
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+      "exit": 0
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "exit": 0,
+      "tool": "2da922"
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0,
+      "tool": "8db516"
+    }
+  ],
+  "history_nonadditive": {
+    "corrective_author_initial_failures": [],
+    "fresh_corrective_focused": "8P0F0skip0cancel; separate from prior24P, not an aggregate32.",
+    "prior_author24": "Reused only for unchanged previously tested behavior and baseline operation/callback/query/await contracts.",
+    "parent_metadata_reader_stops": [
+      {
+        "native_command_exit": 0,
+        "decoder_status": "STOP_BEFORE_RECEIPT",
+        "reason": "Git LF-to-CRLF warning prefix preceded JSON; decoder initially expected JSON at offset0. Corrected bounded metadata reader separates known stderr/closed JSON; no source change."
+      },
+      {
+        "native_command_exit": 0,
+        "comparison_status": "STOP_BEFORE_RECEIPT",
+        "reason": "Broad historical merge-base path list now included the already committed helper/test as well as old temporary files. Comparison wrongly treated those as old companions; corrected in-memory validation selects the exact six original named frozen companions from prewrite vector, with no command retry or source change."
+      }
+    ],
+    "final_parent_validation": "PASS mechanical exact2/head/index/118 native tree/exact six companions/INT009/MAIN source after the two metadata-only stops; no semantic self-review."
+  },
+  "conservation": {
+    "DEBUG_HEAD_unchanged": "8d2bf3086d4d12a0809a05a37a6801ad75539e3e",
+    "index_empty": true,
+    "tracked_delta_exact_two": true,
+    "INT009_unchanged": {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 38097,
+      "raw_sha256": "37ec258c29f514c23c450a3e70ef19cebd685330fec7017c4c3f0cd6ea2d4679",
+      "LF_bytes": 37576,
+      "LF_sha256": "46cf991e70d2804ee6fe49ba218813c9d76231b2113f6e05edea26c232163f62",
+      "base_blob": "2f2950a9ee4cf1a590dc6eee58eef19531ac6524",
+      "clean_blob": "2f2950a9ee4cf1a590dc6eee58eef19531ac6524"
+    },
+    "producer_enums_unchanged": true,
+    "producer_enum_counts": {
+      "publications": 15,
+      "operations": 40,
+      "guards": 13,
+      "fields": 22
+    },
+    "namespace_bounds": "Existing1PRIMARY+<=3CLEANUP/OMITTED;4096ASCII unchanged.",
+    "SQL118": {
+      "native_tree_count": 118,
+      "native_tree_bytes": 14742,
+      "native_tree_sha256": "4015cd8e2fd99764c46b8b66e36cb1a2a01e694f485244a0a455fbcfd0647eca",
+      "all_native_entries_equal_original_prewrite_vector": true,
+      "raw_and_LF_vectors": "Reuse actual prewrite and first author parent actual118 raw/LF vector comparison, hash-ref first receipt. No redundant raw scan or new raw-resampling claim. No SQL write admitted/performed; current changed path set is exact2."
+    },
+    "old_temporary_companions_resampled_unchanged": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "raw_bytes": 78497,
+        "raw_sha256": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d",
+        "LF_bytes": 78497,
+        "LF_sha256": "46597b470ed4997d29a67780b109997031e6dc20e5b8f544f36331dc5363815d",
+        "base_blob": "6b9f2897a89695fe7a5f63c2cef9d90e6b160dc7",
+        "clean_blob": "6b9f2897a89695fe7a5f63c2cef9d90e6b160dc7"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "raw_bytes": 49972,
+        "raw_sha256": "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0",
+        "LF_bytes": 49972,
+        "LF_sha256": "ae8aa986c3d49161ed3bccbcbb3d746a4c1fd8abd259f0e4c16c6c864e944cc0",
+        "base_blob": "eab9f7a1b170b600209edbe5dc7bf050a3cf66d4",
+        "clean_blob": "eab9f7a1b170b600209edbe5dc7bf050a3cf66d4"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "raw_bytes": 13782,
+        "raw_sha256": "99fb81590ad3bf232c7cbf73f12c69a9441d6430c6fd813b199ae41bf7b8f652",
+        "LF_bytes": 13782,
+        "LF_sha256": "99fb81590ad3bf232c7cbf73f12c69a9441d6430c6fd813b199ae41bf7b8f652",
+        "base_blob": "1f8c961bd4a3b5db4610523144dcaa8d1a35242d",
+        "clean_blob": "1f8c961bd4a3b5db4610523144dcaa8d1a35242d"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "raw_bytes": 32905,
+        "raw_sha256": "5e5b1fdc0b5f0e1501c4097aa25bb939f6034ed8fc8996ab8fceb62d886efd2f",
+        "LF_bytes": 32533,
+        "LF_sha256": "15bda73ff015b881b4a9c0b3152d2fbf6a49f280331d9260125b1f49ff04fc75",
+        "base_blob": "151bd0668a2830cd7433efc1f985db3115185f56",
+        "clean_blob": "151bd0668a2830cd7433efc1f985db3115185f56"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "raw_bytes": 4602,
+        "raw_sha256": "4bced2920f386a254d5b335442c5bbc41d2b7fbc09664c0e864999c9355dab78",
+        "LF_bytes": 4602,
+        "LF_sha256": "4bced2920f386a254d5b335442c5bbc41d2b7fbc09664c0e864999c9355dab78",
+        "base_blob": "c690a9d2c244d1788745e194b2ddf41f48e0949e",
+        "clean_blob": "c690a9d2c244d1788745e194b2ddf41f48e0949e"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "raw_bytes": 3416,
+        "raw_sha256": "a29cd53e57b34152ecaec11b34a94db636f39eda79a931a542ecc8fffc9b9fbf",
+        "LF_bytes": 3416,
+        "LF_sha256": "a29cd53e57b34152ecaec11b34a94db636f39eda79a931a542ecc8fffc9b9fbf",
+        "base_blob": "46d079e57492d220e85658fc0df4005f7c3a6eab",
+        "clean_blob": "46d079e57492d220e85658fc0df4005f7c3a6eab"
+      }
+    ],
+    "MAIN_source_and_Spec_resampled_unchanged": [
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 139473,
+        "raw_sha256": "e155639d17a0b5a6528ee0385ba044c5bd5cad436aabd9c9f418076035ae74c8",
+        "LF_bytes": 138084,
+        "LF_sha256": "4d31d7b408d0ad65d4c2f0f478fe5582e632be22983b73eceaabb96521ba819f",
+        "base_blob": "e4b057ae2d5c3add5653c77b93f28e006c470a37",
+        "clean_blob": "e4b057ae2d5c3add5653c77b93f28e006c470a37"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "raw_bytes": 36989,
+        "raw_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+        "LF_bytes": 36989,
+        "LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+        "base_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd",
+        "clean_blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 317395,
+        "raw_sha256": "84edc9711ebf6e61d23b8cbcf1050a24475c5243fe316f16177a5c7d9ca754c0",
+        "LF_bytes": 314474,
+        "LF_sha256": "41f8af777904b8e1309a273f930187b94898ef8ee7eb9ddb96936b4be2ead3e6",
+        "base_blob": "5c9c267c08de115649dbb7589b1005212a3d6a43",
+        "clean_blob": "5c9c267c08de115649dbb7589b1005212a3d6a43"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "raw_bytes": 255365,
+        "raw_sha256": "e8501488121a75a9c4ab2461f28b649f3390d0de150c536330e870d1e891e178",
+        "LF_bytes": 252287,
+        "LF_sha256": "90b0d5f4ba44c46a4de8228b4fae210cffaa4ad58a3d5858d5213b99438051f2",
+        "base_blob": "f12ec516d3745cbfc79195a8dad20bcd75a75a91",
+        "clean_blob": "f12ec516d3745cbfc79195a8dad20bcd75a75a91"
+      }
+    ],
+    "MAIN_kernel": "MAIN Spec unchanged; approved5760 SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977/counter3/in-review retained by source conservation. No new story reader or Spec write."
+  },
+  "effects": {
+    "DEBUG_source_changed": 2,
+    "MAIN_source_or_Spec_changed": 0,
+    "Git_mutations": 0,
+    "API_network_DB_browser_CI_resource_provider_effects": 0,
+    "native_acceptance": 0
+  },
+  "freeze": {
+    "source_frozen": true,
+    "old_receipt_review_and_controls_untouched": true,
+    "independent_CODE_review": "PENDING; no author approval claim",
+    "reader_enum_expansion": false
+  }
+}

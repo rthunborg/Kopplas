@@ -1,0 +1,24 @@
+{
+  "schema": "story-15-5.corrective-proposal.manifest.v1",
+  "source": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/proposal.md",
+      "bytes": 12514,
+      "sha256": "7898802e407adeaf2979ca7c5cbe3852c973a8a69d8f64b3d5a106bbf37c62af"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/bindings-and-effects.json",
+      "bytes": 9151,
+      "sha256": "9dcbf4b4231cace92eb142e30e8d6b1371e870d3c78924722b05ae7015812cf5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-proposal/result.json",
+      "bytes": 1332,
+      "sha256": "62bc11bfe1336d0f02d3bdce4bd88a19bcc801a06cba1e067eea0bad50e07f68"
+    }
+  ],
+  "source_unchanged": true,
+  "native_credit": 0,
+  "only_new_directory_written": true
+}

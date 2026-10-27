@@ -1,0 +1,117 @@
+{
+  "schema": "ROOT_ZOD_TWO_PATH_FROZEN_PIN_PROOF_V1",
+  "base": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+  "source_pins": [
+    {
+      "path": "pnpm-workspace.yaml",
+      "bytes": 480,
+      "sha256": "e1b873361cb21813a8b487c4111fb08be29a486fcfa1f3a4f7021797997342f8",
+      "LF_bytes": 462,
+      "LF_sha256": "6464c218bc0c2e87d8ad7bac5c641491a3d056b6247ef643aef2376f3e07f66d",
+      "git_normalized_blob": "f80dd43c8bf6dcbf80d4701449ba011a25daa017"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162204,
+      "sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95",
+      "LF_bytes": 162204,
+      "LF_sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95",
+      "git_normalized_blob": "3c0ae6b01c1853d5478b9d0727bc64dba3eb8a12"
+    }
+  ],
+  "author_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/result.json",
+      "bytes": 7713,
+      "sha256": "10ab388ff3e984a1635a77e4ae4bf05dc2840543ddcb6e0b4fd4bd2f7a8b5e85"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/checks.json",
+      "bytes": 36991,
+      "sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/source-proofs.json",
+      "bytes": 6760,
+      "sha256": "4bf24b374f29dbeb3b2e2bc27a7c0b707ae8f5e1210ef6510b1ff046e87d2143"
+    }
+  ],
+  "Git_metadata_receipts": [
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "rev-parse",
+        "HEAD"
+      ],
+      "native_exit": 0,
+      "stdout": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+      "stderr_bytes": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "branch",
+        "--show-current"
+      ],
+      "native_exit": 0,
+      "stdout": "codex/epic-15-scheduling-time-calendar",
+      "stderr_bytes": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "diff",
+        "--name-only",
+        "HEAD"
+      ],
+      "native_exit": 0,
+      "stdout": "pnpm-lock.yaml\npnpm-workspace.yaml",
+      "stderr_bytes": 107
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "diff",
+        "--check"
+      ],
+      "native_exit": 0,
+      "stdout": "",
+      "stderr_bytes": 107
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "hash-object",
+        "--path=pnpm-workspace.yaml",
+        "pnpm-workspace.yaml"
+      ],
+      "native_exit": 0,
+      "stdout": "f80dd43c8bf6dcbf80d4701449ba011a25daa017",
+      "stderr_bytes": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.longpaths=true",
+        "hash-object",
+        "--path=pnpm-lock.yaml",
+        "pnpm-lock.yaml"
+      ],
+      "native_exit": 0,
+      "stdout": "3c0ae6b01c1853d5478b9d0727bc64dba3eb8a12",
+      "stderr_bytes": 0
+    }
+  ],
+  "scope": "Exact2trackedpaths only; unchangedtracked source/migrations/workflow/package/patch byGitdelta, not a freshrawSQL/source204scan. No storycode/specread. No developmentdone/source-review or runtimecoverage claim."
+}

@@ -1,0 +1,164 @@
+{
+  "schema": "ROOT_ACCEPTED_FINITE_ALLOCATION_V1",
+  "recorded_at_utc": "2026-10-23T17:48:13.656737+00:00",
+  "authority": "Standing human authorization; completed finite Coordinator allocation, not a proposal.",
+  "actual_turn": "01a169df-6020-78c0-921d-86c6a9ef72b7",
+  "turn_status": "completed",
+  "actual_tool": "exec-fb1391f3-caec-43ee-9db1-db7c081c43d4",
+  "tool_status": "completed",
+  "actual_verification_tool": "exec-842e39f2-c96e-4cfc-839e-c8eefbe5f6f5",
+  "verification_native_exit": 0,
+  "actual_read": "Root read_thread(turnLimit1,includeOutputs=true) actually observed idle/completed turn, grant tool completed, verification command completed/native0; truncated review output not relied upon for current source pins.",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "identity": {
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "expected_remote_preimage": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+    "checkpoint_id": "06c4e602-246c-465d-b858-802be78c9ba1",
+    "operation_id": "d891e444-e6d5-401f-bd00-0a4b85b701e9",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "mode": "NORMAL",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false
+  },
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/provider.py",
+      "bytes": 20581,
+      "sha256": "a85dd331e162fc4e66cc89f603715dbb31f0bdb0d235744c99a862abd8aeefec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/root-driver.py",
+      "bytes": 21106,
+      "sha256": "3aa7b7ccdd65790b32164b17953a776f2b0a0d6e556e8598bc11d8dd28831dff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/proposal.json",
+      "bytes": 234985,
+      "sha256": "4b5ad16b3de1fc42d46b7f204f73faba0eefa215b09b2b5cf015c3cec020763b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/pure-controls.json",
+      "bytes": 3988,
+      "sha256": "f4d14bd0093f44b6eced55370501ff0b9bc5d4cabb682b8daaa17e40edbb43de"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/manifest.json",
+      "bytes": 1139,
+      "sha256": "7501eb90b7213d15a5772d6d2037f43b80c8e5c9edf5db8f7b370ffc687325eb"
+    }
+  ],
+  "independent_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-operational-review.json",
+    "bytes": 20082,
+    "sha256": "27f151f595930947a9b667c1d665df548b0b45256c67cd021911e88ebd50ae53"
+  },
+  "effects": {
+    "provider_project_GETs": 1,
+    "remote_before": 1,
+    "nonforce_FFpush": 1,
+    "remote_readback": 1,
+    "canonical_pre_GETs": 4,
+    "canonical_POSTs": 1,
+    "resolvers_max": 6,
+    "resolver_page": 20,
+    "resolver_min_interval_seconds": 5,
+    "poll_pairs_max": 90,
+    "latest_jobs_page": 100,
+    "poll_min_interval_seconds": 30,
+    "immutable_original_elapsed_max_seconds": 5400,
+    "artifact_or_log_GETs": 0,
+    "Root_sole_operator_poller": true,
+    "unique_actual_owned_tuple_before_poll": true,
+    "all9_terminal_STOP_closes_unused": true
+  },
+  "caps": {
+    "provider": {
+      "LOOP_seconds": 15,
+      "same_child_wait_seconds": 2,
+      "reader_joins": 2,
+      "each_join_seconds": 2,
+      "stdout_bytes": 4194304,
+      "stderr_bytes": 262144
+    },
+    "controller": {
+      "remote_Git_LOOP_seconds": 20,
+      "push_LOOP_seconds": 60,
+      "canonical_LOOP_seconds": 90,
+      "resolver_poll_LOOP_seconds": 20,
+      "same_child_wait_seconds": 2,
+      "reader_joins": 2,
+      "each_join_seconds": 1,
+      "Git_Node_stdout_bytes": 524288,
+      "Git_Node_stderr_bytes": 65536,
+      "metadata_stdout_bytes": 2097152,
+      "metadata_stderr_bytes": 65536
+    },
+    "canonical_API": {
+      "timeout_seconds": 15,
+      "stdout_bytes": 4194304,
+      "stderr_bytes": 65536
+    },
+    "interpretation": "Cooperative LOOP plus explicit cleanup tails; no strict total-wall claim.",
+    "provider_outer": {
+      "LOOP_seconds": 60,
+      "same_child_wait_seconds": 2,
+      "reader_joins": 2,
+      "each_join_seconds": 1,
+      "stdout_bytes": 524288,
+      "stderr_bytes": 65536,
+      "distinct_from_provider_GET_child": true
+    }
+  },
+  "required_before_execution": [
+    "Same independent operational report includes exact current Root helper7164/908d727eef92b5a872977bf7e67cb9dc82801271461149959da4098d3091973a.",
+    "After completed allocation: exclusive exact329B inert candidate SHA7049f5387780cbb7db550c5ddf05d39e055a4de66cfe3d07190f6afa8b0e848c.",
+    "Fresh clean/current204Git/86nonSQLrawLF/118Git-only historicalvectors/10triggers/install proof and activation<=300s at mutation.",
+    "Provider<=180s before canonical invocation and<=300s atPOST, actual native0/fullEOF joined closed settled and outsideRootreceipt beforepublish activation.",
+    "Exclusive fsynced consumed invocation/intents; real outerchunk/exit/wall/session/waits attributed."
+  ],
+  "stop_rules": "Unknown/refused/partial/expiry STOP closes all unused; no blind retry/replay/reset/extension/adoption. Original clock/counters retained. SECOND consecutive DBstartup7 failure STOP/no third sameNORMAL; any other failure no automaticrepeat.",
+  "excluded_effects": [
+    "admission variable mutations",
+    "provider writes",
+    "new workflows",
+    "other CI",
+    "local managed resources",
+    "main merge",
+    "deployment",
+    "demo access",
+    "database push"
+  ],
+  "all_old_slots": "CLOSED",
+  "later_terminal": "Actual terminal only, then separately enrolled reader, independentHigh review and separate finite acquisition grant; artifact/log GET0 now.",
+  "scope_limit": "Limited ordinary owned branch Git containment only; no production/main containment, hosted cause, functional repair, native95 acceptance or release/development-complete claim.",
+  "same_review_Root_helper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-root-proof-admission.py",
+    "bytes": 7164,
+    "sha256": "908d727eef92b5a872977bf7e67cb9dc82801271461149959da4098d3091973a"
+  },
+  "single_observation_contract": {
+    "minimum_plan": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-minimum-plan-independent-review.json",
+      "bytes": 8035,
+      "sha256": "e689f0af2b2bdbc230c7dab2e8d4ee98acef85dc1f3ff937b7df41aea744f8c7"
+    },
+    "maximum_new_NORMAL_observations": 1,
+    "previous_owned_operation_closed": true,
+    "uncertainty": "STOP closeunused/no automaticrepeat",
+    "second_consecutive_startup7_failure": "STOP; no third sameNORMAL approach. Root must choose separately reviewed materially different safe startup-evidence route or retain named prerequisite.",
+    "other_failure": "No automatic repeat/fix; qualify observed failure first.",
+    "cause_claim": "None; unknown external startup mechanism.",
+    "acceptance": 0,
+    "P5": "OPEN",
+    "cap": 3
+  },
+  "current_actual_required95": "44P0F51unexecuted; no current API019 or mainDB custody proof"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "ROOT_AUDIT_JOB_EVIDENCE_ACTIVATION_V1",
+  "execution_authorized": true,
+  "audit_operation_id": "760ebc9b-d32a-4b1c-8e39-49f3242f644d",
+  "issued_at_utc": "2026-10-24T14:30:33.030786+00:00",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "run": 40097034333,
+    "job": 120881358292,
+    "step": 8,
+    "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "checkpoint_id": "96ad8e91-7244-4cf1-acab-162e260914a1",
+    "publication_operation_id": "3da861fc-5ea1-4443-ae76-2de3ac5bf0c2",
+    "step_started": "2026-10-24T13:11:21Z",
+    "step_completed": "2026-10-24T13:11:22Z",
+    "endpoint": "repos/rthunborg/Kopplas/actions/jobs/120881358292/logs"
+  },
+  "reader_sha256": "388e6e703bd6d266f0028e7d0eddcf356915dccea39219d1f5c393a1f88cc8fb",
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-preparation-v2/proposal.json",
+    "bytes": 39554,
+    "sha256": "2c2a834176f03a63882594832945ed87f04f15c7bf041390df3b80444af69a08"
+  },
+  "grant": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-integration-IP-audit-job-evidence-effects-allocation.json",
+    "bytes": 2507,
+    "sha256": "abdefe0e5988e542c41f800c2e43f3311768ecf2f281b6a36ba9d747f3043f14"
+  },
+  "operational_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-operational-review-v2.json",
+    "bytes": 8758,
+    "sha256": "34a0522c6fa3b494b5127ac84112534ec9ebe1720026879c2b5480d7a370027c"
+  },
+  "current_source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-audit-job-evidence-current-source-proof.json",
+    "bytes": 6365,
+    "sha256": "096da4e42f8ec79a86c0a0c853506eeef0746d857da5b6511d1628be94508e35"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "phase": "RED-valid-corrected",
+  "native_exit": 1,
+  "signal": null,
+  "spawn_error": false,
+  "elapsed_ms": 491,
+  "counts": {
+    "tests": 4,
+    "suites": 0,
+    "pass": 0,
+    "fail": 4,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failed_static_control_names": [
+    "API019 provenance installed formatter actual reader observer helper publisher four fixed leaves",
+    "API019 provenance exact ANSI shape forged header and raw privacy precedence remain refusal",
+    "API019 provenance complete split overflow continuation EOF recovery conserve original reader",
+    "API019 provenance exact legacy2 closed4 all original pairs and malformed generic refusal"
+  ],
+  "closed_source_diagnostics": [],
+  "stdout_bytes": 2316223,
+  "stderr_bytes": 0,
+  "raw_persisted": false,
+  "direct_process_settled": true,
+  "full_EOF": true
+}

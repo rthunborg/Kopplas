@@ -1,0 +1,102 @@
+{
+  "schema": "ROOT_TERMINAL_RELATIVE_CALLER_NEW_ATTEMPT_INTENT_V1",
+  "authority_id": "coordinator-terminal-relative-caller-441472-20261024",
+  "new_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-terminal-relative-caller-new-allocation.json",
+    "bytes": 10159,
+    "sha256": "ca6630c55e7cf985ed719ef0322eb18b1ab19e0f7aff9815201b9dcc606e8085"
+  },
+  "actual_completed_turn": "01a16f8d-a836-7673-9fbb-a7ed4ab35201",
+  "actual_completed_tool": "exec-2d765ee4-6a18-4607-a7b6-950a5b241b6f",
+  "old_original_slots_closed": true,
+  "original_envelope_data_only": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+    "bytes": 9579,
+    "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+  },
+  "data_capture": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json",
+    "bytes": 1118,
+    "sha256": "298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6"
+  },
+  "reviewed_refs": [
+    {
+      "bytes": 52895,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/reader.py",
+      "sha256": "ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09"
+    },
+    {
+      "bytes": 220347,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+      "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+    },
+    {
+      "bytes": 3420,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/pure-controls.json",
+      "sha256": "5274c3ed4ac7eda33b51a5a1a5d2a8ee3794573758159e3eae9e737e70c63c25"
+    },
+    {
+      "bytes": 1519,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/manifest.json",
+      "sha256": "bc92bca530975e08a45acf5ccf00e624d7bf3dffc9dc4c25779e4cce8830161a"
+    },
+    {
+      "bytes": 24546,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/source-delta.json",
+      "sha256": "4243ae9f07dd7557c0ab0452430c529e88efe25e3808305c1c98031b664f7c5f"
+    },
+    {
+      "bytes": 7281,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+      "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+    },
+    {
+      "bytes": 7495,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+      "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/result.json",
+      "bytes": 16791,
+      "sha256": "3346b4ef685826a833c65f45d6cb610acf7bd9d4c81d3c6d27fce99821859147"
+    }
+  ],
+  "source_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+    "bytes": 17301,
+    "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+  },
+  "assessment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/terminal-admission-caller-path-minimum-assessment.json",
+    "bytes": 17108,
+    "sha256": "42af0101226d42d66fc34c423747b53cfa8ff3d820dfbd24f9568e30ca19a3d2"
+  },
+  "caller_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/terminal-admission-caller-path-independent-review.json",
+    "bytes": 14934,
+    "sha256": "dbae4247fe257faf5b69cc24dc6e8f90ac7cec40bc2774218a55b52228f8a502"
+  },
+  "known_zero_effect_refusal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-INT015-terminal-admission-path-refusal.json",
+    "bytes": 1936,
+    "sha256": "fae2f20b9503e945644a5c28911a0d6a3a00e72eba648864cf95c940d956aff5"
+  },
+  "caller_snippet_bytes": 463,
+  "caller_snippet_sha256": "a2a836c52bf79b7580d58af3a1da901ac72359dae58074aa4f10d3ddc0518d73",
+  "rechecked_future_absences": {
+    "post-INT015-normal-v2-terminal-fresh-source-proof.json": true,
+    "post-INT015-normal-v2-terminal-evidence-activation.json": true,
+    "post-INT015-normal-v2-terminal-actual-envelope.json": true,
+    "post-INT015-normal-v2-terminal-source75-envelope.json": true,
+    "post-INT015-normal-v2-terminal-evidence-root-once-journal.json": true,
+    "post-INT015-normal-v2-terminal-evidence-root-invocation-consumed.json": true,
+    "post-INT015-normal-v2-terminal-evidence-root-native-outer-receipt.json": true,
+    "checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent": true
+  },
+  "created_at": "2026-10-24T20:16:38.201832+00:00",
+  "no_retry": true,
+  "maximum_new_helper_invocations": 1,
+  "maximum_new_reader_invocations": 1,
+  "maximum_new_GETs": 5,
+  "normal_acceptance": 0
+}

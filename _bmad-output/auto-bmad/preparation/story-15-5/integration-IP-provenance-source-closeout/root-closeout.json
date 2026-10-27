@@ -1,0 +1,30 @@
+{
+  "status": "INDEPENDENT_SOURCE_ONLY_PASS_NO_API019_REPAIR",
+  "source_commit": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+  "base_HEAD": "fe1826587c225736893ca000fa4c6453ff051f2e",
+  "paths": 5,
+  "review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/integration-IP-provenance-actual-diff-independent-review.json",
+    "bytes": 17457,
+    "sha256": "40a01b1258a49a30f40fd92815f74b896bf3d2ac12e81b68e53d14595b959546"
+  },
+  "controls": "Meaningful corrected RAM-preimage0P4F; frozen4P0F; affected199P0F0skip; TS/scopedlint native0; SRO225refs0errors. Focused counts overlap199. Earlier invalid harness/loader attempts not credited.",
+  "privacy": "Rawpredicate/precedence/firstfreeze/boolean/count/refusal unchanged. Newstream/formclosedenums are forgeable shape only, no rawvalue/title/taskID/IP/hash/path/URL retained.",
+  "private_consumer": "4constants only; everyotherbyte/all41functions unchanged; inert nullglobals and unsatisfiable admission retained. Finite actualpureparser/downstream synthetic controls0fail, zero normalacceptance.",
+  "current_required95": "CLOSED39998246278/headedf/source48a:93P API019F API020UNEXECUTED; no new runtime evidence.",
+  "custody": "mainDBretained/keydeletionUNVERIFIED/backendsettlementUNKNOWN; browser ownkeydeleted only",
+  "P5": "OPEN",
+  "review_counter": 3,
+  "story15_6": "UNSTARTED",
+  "development_complete": false,
+  "release_ready": false,
+  "new_runtime_authority": false,
+  "no_deployment": true,
+  "next": "Prepare one precise first-refusal pipe/rendered-form observation; fresh finite reviewed execution and acquisition bindings required. No old slot replay or automatic retry.",
+  "design_authority": "DT2026-10-23 DESIGN/EXPERIENCE and incorporated PhaseBUXannex apply at future15.6 preparation; no early storybuild.",
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/integration-IP-provenance-source-closeout/root-fold-manifest.json",
+    "bytes": 12449,
+    "sha256": "8a4acd2343d37c893783a0c1f9537084e92fa3c958858239eb498ae3848464bc"
+  }
+}

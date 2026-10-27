@@ -1,0 +1,147 @@
+{
+  "schema": "kopplas.resumed-main-completion-fence-scope-validation.v1",
+  "verdict": "PASS_SERVICE_WORKER_PREREQUISITE_WITH_MINIMAL_SCOPE_DISTINCTION",
+  "status": "SOURCE_SCOPE_VALIDATION_ONLY",
+  "review": {
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "Only three context-construction paths, pinned SDK route/default behavior and the necessary fence companion capability. All backend proof and PLAN-A1..A5 are reused unchanged; no fourth broad review."
+  },
+  "author_hold": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-completion-contract-author-result.json",
+    "bytes": 11961,
+    "sha256": "ed12db710dd3d2227ef57a9c09950c5f797c8e43358c522561797508d795af3d",
+    "source_writes": 0,
+    "outcome": "The Service Worker prerequisite gap is real; author correctly stopped before implementation."
+  },
+  "source_revision": {
+    "main": "27678f986c983ade494b1ed8ca58a3a61feb30f3",
+    "diagnostic": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1",
+    "source_unchanged": true
+  },
+  "confirmed_contract": {
+    "route_limit": "Pinned Playwright1.61.1 Page.route and BrowserContext.route exclude requests intercepted by a Service Worker. A route-based unconditional admission fence therefore needs an enforced worker-blocking prerequisite in every relevant context.",
+    "default": "The installed stock serviceWorkers option resolves contextOptions.serviceWorkers ?? 'allow' and forwards it into combined context options. Direct Browser.newContext also defaults to allow.",
+    "three_actual_paths": [
+      {
+        "path": "playwright.config.ts:47-53 + tests/e2e/support/resource-cdp-attachment.ts:36-40",
+        "current": "Normal resourcePage delegates the stock page/context. Neither project config nor calendar test.use blocks Service Workers; no downstream enforced block was identified."
+      },
+      {
+        "path": "tests/e2e/support/resource-cdp-attachment.ts:43-47",
+        "current": "Attached path explicitly calls browser.newContext with optional baseURL only. It does not inherit stock test.use context options and requires an explicit block option."
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts:306-317",
+        "current": "E2E007 explicitly calls newContext on the same owned browser with baseURL/viewport/touch options only. It requires its own explicit block option."
+      }
+    ],
+    "limits": "Fresh context, empty serviceWorkers() inventory or no current registration source is not permanent denial of later registration. No active worker or worker-caused observed abort is alleged."
+  },
+  "minimal_capability_and_hunks": {
+    "recommended_narrow_variant": {
+      "total_paths": 5,
+      "additional_paths": [
+        "tests/e2e/support/resource-cdp-attachment.ts",
+        "tests/e2e/calendar-feed.e2e.spec.ts"
+      ],
+      "stock_context": "Add serviceWorkers:'block' to the existing calendar test.use({trace:'off',screenshot:'off',video:'off'}) at calendar-feed.e2e.spec.ts:31. The installed test-option fixture then supplies the block to the stock calendar context, without changing unrelated E2E defaults.",
+      "attached_context": "Add serviceWorkers:'block' to the existing attached browser.newContext options, preserving both optional-baseURL branches and all context/page/browser identities and lifecycle/error/close order.",
+      "phone_context": "Add serviceWorkers:'block' to the existing E2E007 browser.newContext options alongside unchanged baseURL,360x640 viewport and hasTouch; preserve all assertions, callback/context identity and close order."
+    },
+    "proposed_global_variant": {
+      "total_paths": 6,
+      "additional_path": "playwright.config.ts",
+      "judgment": "Adding the same block to existing global use is a bounded valid way to cover the stock path if Coordinator intentionally allocates that shared test-policy change. It is not strictly necessary or uniquely minimal: the existing calendar test.use provides the narrower option site in a path already needed for the explicit phone context. The global option affects unrelated stock E2E contexts and should be described honestly.",
+      "hunk_limit": "Only serviceWorkers:'block' at existing use; preserve all commands, reporters, projects, timeouts, environment, contexts, selectors and assertions."
+    },
+    "unchanged_existing_three_paths": [
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "authority": "Root/Coordinator chooses and actually allocates the exact five- or six-path scope before source implementation. This validation itself authorizes no edit, test, browser or resource."
+  },
+  "fence_requirements_still_mandatory": {
+    "PLAN_A1_A5": "All existing per-Request ledger/admission, exact commit certificate, frontend/backend separation, continuation ownership, other-work/custody and integrity-test conditions remain mandatory. Worker blocking supplies routing coverage only; it does not implement or prove the fence.",
+    "context_coverage": "Use a context-wide fence for the owned multi-page flow; page-only routing does not cover competing pages/popups.",
+    "fault_routing": "Current helper armFault uses page.route and direct route.continue/route.fetch. Page routes take precedence over context routes, and continue sends immediately without lower matching handlers. These existing dispatch paths must consult and update the SAME ledger/fence before every backend dispatch; no route path may bypass admission because a context route exists. Preserve fault semantics, body/disposal ownership and all preexisting guards.",
+    "controls": "Use the already owned wrapper-unit actual-source seams to verify option propagation/construction and missing-or-allow inverses on all relevant context paths, plus existing PLAN-A1 late-dispatch controls. No new test file, generic matrix, standalone collector or runtime is required for this scope validation.",
+    "stop": "If another concrete creation/dispatch bypass is discovered outside allocated paths, stop with that exact bypass before editing. Do not substitute a worker snapshot, silently widen the scope or relax custody."
+  },
+  "independent_evidence": {
+    "primary_source_bindings": [
+      {
+        "path": "node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/types/types.d.ts",
+        "checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-original-failure-debug/Kopplas",
+        "bytes": 1003279,
+        "sha256": "60200590d8ecf247a6e9c769c6b79bd8e688c3af14ef208072d0c6954b25f125",
+        "lines": "4011-4015,9326-9332,10528-10531,15957-15960,4056-4058,20712-20715"
+      },
+      {
+        "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/index.js",
+        "checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-original-failure-debug/Kopplas",
+        "bytes": 34528,
+        "sha256": "033484bd04076585fa11954261323575a2f8ec12ca113f0c288dac67009fbf9f",
+        "lines": "266,334-340"
+      }
+    ],
+    "commands": [
+      {
+        "chunk": "9c7467",
+        "native_exit": 0,
+        "wall_seconds": 0.1616776,
+        "scope": "Hash-bound actual companion sites and exact SDK defaults/route contract reads."
+      },
+      {
+        "chunk": "585fb0",
+        "native_exit": 0,
+        "wall_seconds": 0.204116,
+        "scope": "Existing helper fault routes and exact SDK routing priority/continue contract only."
+      }
+    ],
+    "source_or_Spec_writes": 0,
+    "tests": 0,
+    "imports": 0,
+    "API_calls": 0,
+    "Git_commands": 0,
+    "runtime_or_resources": 0
+  },
+  "conclusion": "The actual prerequisite is serviceWorkers:block in all three relevant context creation paths. The proposed six-path solution is valid if explicitly allocated; a narrower five-path solution achieves the same prerequisite without a global config edit. No implementation or unconditional fence PASS is granted.",
+  "remaining": {
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "broad_review_counter": 3,
+    "required_missing_cases": 35,
+    "abort_initiator": "UNKNOWN",
+    "backend_cleanup_and_key_deletion": "UNKNOWN"
+  },
+  "companion_source_bindings": [
+    {
+      "path": "playwright.config.ts",
+      "bytes": 4872,
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+      "LF_bytes": 4780,
+      "LF_sha256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31",
+      "HEAD_blob": "9457ea35425d200d0449fe96308ef9346b18a9a5"
+    },
+    {
+      "path": "tests/e2e/support/resource-cdp-attachment.ts",
+      "bytes": 2829,
+      "sha256": "f124612595a3ef0d1e10ac3d7e7b17ede9abadb9fc8e75734bc3af2f96d282bf",
+      "LF_bytes": 2762,
+      "LF_sha256": "2307b6b52fef2c3d4e0dd9e3558cddd31d47f1a6bda83f322254622b74fd3ab6",
+      "HEAD_blob": "49e8517bf1fb42d17c2cae3e517d335c6d5355b1"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 28770,
+      "sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb",
+      "LF_bytes": 28770,
+      "LF_sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb",
+      "HEAD_blob": "a45830d01fb4aee221f7df6a327138a1b0a6539a"
+    }
+  ]
+}

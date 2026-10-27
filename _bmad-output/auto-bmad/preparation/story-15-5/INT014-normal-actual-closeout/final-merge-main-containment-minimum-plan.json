@@ -1,0 +1,144 @@
+{
+  "schema": "INDEPENDENT_HIGH_MINIMUM_MAIN_GIT_CONTAINMENT_PLAN_V1",
+  "outcome": "DOCUMENTED_MINIMUM_OPTIONS_QUALIFIED_PLAN_ONLY_CURRENT_CONTAINMENT_UNKNOWN",
+  "route": "17f60b explicit gpt-6.1-sol High",
+  "scope": "Public official Vercel documentation/API-reference research plus previously bound local configuration and retained qualification. No hosted queries, source edits or operational effects; current NORMAL work is independent and must not wait for this future merge plan.",
+  "skill": {
+    "name": "vercel:deployments-cicd",
+    "path": "C:/Users/Rasmus/.codex/plugins/cache/openai-curated-remote/vercel/0.54.1/skills/deployments-cicd/SKILL.md"
+  },
+  "existing_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/final-merge-no-deployment-readiness-assessment.json",
+      "bytes": 12281,
+      "sha256": "276e4bcd75e06f9dae8ac9bc0985715943e27d6913d7883bc7e3cc5c9e6fb50a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-vercel-readonly-qualification.json",
+      "bytes": 30470,
+      "sha256": "cbd44cf150d0ac1dc734a5d2cb4a0001a896c2137b4730743f963f4b09e171cd"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 472,
+      "sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129"
+    }
+  ],
+  "primary_sources": [
+    {
+      "id": "git-config",
+      "url": "https://vercel.com/docs/project-configuration/git-configuration#gitdeploymentenabled",
+      "meaning": "Supports a branch-to-boolean map or one boolean. Unspecified branches default true; any matching true rule wins. A false branch rule suppresses automatic deployments on that branch; boolean false turns them off for every branch.",
+      "first_event_limit": "The documentation does not explicitly identify which configuration revision is evaluated for the first commit/merge introducing the rule, nor provide a same-event atomic activation guarantee. The documented intended behavior is suppression, not an ignored-build command; internal first-event timing remains unproved here."
+    },
+    {
+      "id": "tag-release-guide",
+      "url": "https://vercel.com/kb/guide/can-you-deploy-based-on-tags-releases-on-vercel",
+      "meaning": "Official guidance uses git.deploymentEnabled=false to prevent commit auto-deployments while allowing a separately configured CLI deployment workflow. This supports the Git-only boundary, not a blanket prohibition on all deployment methods."
+    },
+    {
+      "id": "ignored-build",
+      "url": "https://vercel.com/docs/project-configuration/project-settings#ignored-build-step",
+      "meaning": "The ignored-build command runs after BUILDING begins; exit0 aborts the build and leaves a CANCELED deployment. It is therefore insufficient for a zero-deployment-creation requirement."
+    },
+    {
+      "id": "project-update-reference",
+      "url": "https://vercel.com/docs/rest-api/projects/update-an-existing-project",
+      "meaning": "The API reference exposes gitProviderOptions.createDeployments with disabled/enabled values. The retrieved reference does not establish that disabling it stops Vercel automatic Git deployment creation. No unsupported PATCH body or endpoint is proposed."
+    },
+    {
+      "id": "github-status",
+      "url": "https://vercel.com/docs/git/vercel-for-github#silence-deployment-notifications-on-pull-requests",
+      "meaning": "Vercel's GitHub documentation distinguishes deployment_status notifications from Vercel deployment behavior."
+    },
+    {
+      "id": "activity-setting",
+      "url": "https://vercel.com/docs/activity-log#events-logged",
+      "meaning": "project-git-create-deployments-toggled is described as the GitHub deployments setting. Together with the GitHub guide, this is insufficient evidence for using createDeployments=disabled as the Vercel kill switch; reject that proposed containment interpretation."
+    },
+    {
+      "id": "git-disconnect",
+      "url": "https://vercel.com/docs/project-configuration/git-settings#disconnect-your-git-repository",
+      "meaning": "Documented project-scoped Dashboard action: Settings > Git > Connected Git Repository > Disconnect."
+    },
+    {
+      "id": "connection-required",
+      "url": "https://vercel.com/docs/errors/error-list#lost-git-repository-access",
+      "meaning": "Vercel documents that a project must be connected to a repository to deploy commits from it. A verified disconnected project is an independent pre-event Git boundary; this conclusion is an inference from that required connection, not a fresh hosted observation."
+    },
+    {
+      "id": "project-readback",
+      "url": "https://vercel.com/docs/rest-api/projects/find-a-project-by-id-or-name",
+      "meaning": "Supported read-only project lookup for identity and Git-link readback. Use the existing exact project/team endpoint through the already-reviewed capture lane when separately allocated; never persist raw project/environment/credential payloads."
+    }
+  ],
+  "option_A_minimum_persistent_repository_change": {
+    "protected_path": "vercel.json",
+    "exact_minimal_hunk": {
+      "git": {
+        "deploymentEnabled": {
+          "main": false
+        }
+      }
+    },
+    "composition": "Append main:false to the existing map, retaining every existing false feature-branch entry, schema and cron configuration. Do not replace the whole file with this fragment. Confirm actual production branch is main and no other matching true rule exists.",
+    "alternative": {
+      "git": {
+        "deploymentEnabled": false
+      }
+    },
+    "alternative_tradeoff": "Boolean false is the simplest unambiguous all-branch Git stop and aligns with keeping all automatic previews disabled, but it replaces the map and suppresses automatic Git deployments for every branch. It is broader than adding the single main entry; preserve the old map as the restoration preimage and never restore an enabling state automatically.",
+    "readback_proof": "After independent source review and authorized publication, bind the exact new vercel.json raw/LF/Git blob at the approved PR head and prospective merge tree. Verify unchanged preview-disabled state and project identity/root-directory/config selection with a fresh qualified project read. Local JSON/schema validation is appropriate; no build or deployment activation is required to validate the intended option.",
+    "first_merge_assurance": "Repository bytes alone do not independently prove first-event enforcement while main presently lacks the rule. Do not claim a first merge is an atomic activation proof. If strict zero creation must be assured without relying on undocumented bootstrap timing, use option B before that merge or obtain authoritative first-event confirmation without deploying.",
+    "effects": "One claimed/reviewed configuration path plus later separately allocated branch publication/merge. No app/runtime/SQL/workflow/dependency change is needed."
+  },
+  "option_B_minimum_independent_pre_event_boundary": {
+    "preference": "Use only if an existing production/main Git suppression control cannot already be qualified and first-merge uncertainty must be eliminated. This is one exact project Git-link mutation, not account/app uninstallation or project pausing.",
+    "supported_action": "On the exact owned Vercel project, Dashboard Settings > Git > Connected Git Repository > Disconnect. Do not invent PATCH link:null or substitute gitProviderOptions.createDeployments=disabled.",
+    "why": "The Git link is removed before the main merge event, so this boundary does not depend on the new repository configuration activating on that event.",
+    "preimage": "Fresh exact project/team/repository/link/production-branch identity and the unchanged preview-disabled and shared ignored-build settings; retain only the small closed identity/settings projection and its receipt/hash. Record the existing link sufficiently to identify it later without secrets.",
+    "readback": "Require a fresh successful exact-project read showing the Git connection absent/null (or the documented disconnected state), with project/team identity intact and preview-disable unchanged, before merge. A response still linking any repository, an absent ambiguous field, wrong project, transport uncertainty or concurrent drift is STOP. If the REST response omits the necessary distinction, use the same exact project's documented Dashboard disconnected state as evidence; do not infer absence from a parsing omission.",
+    "limits": "Not a cancellation of already-running deployments, not a stop of current production service, and not a manual CLI/API/deploy-hook prohibition. Any known in-flight Git work must be accounted for before claiming a future-event boundary; this plan authorizes no cancellation or extra diagnostic inventory.",
+    "reversibility": "Disconnect is reversible in principle, but reconnect is a later distinct operation and may trigger Git deployment processing. Leave disconnected after merge unless the owner-authorized release course explicitly includes reconnection with its own qualified no-deployment conditions. Do not automatically restore a link merely because merge completed.",
+    "effects": "A shared project Git connection change is broader than a repository line and was not part of previous feature-branch containment reads. Bind it into a concrete independently reviewed Coordinator effects allocation before action. The user's existing NO-deploy/needed-containment intent supplies the objective; no repeat human permission question is needed."
+  },
+  "recommended_finite_sequence": [
+    "Keep current NORMAL work and active source ownership unchanged. This plan does not trigger an immediate provider read or config edit.",
+    "At final merge readiness, freeze actual PR head/target main and obtain one fresh bounded exact-project settings read through the existing qualified lane. If a sufficient main/production Git stop already exists, prove and retain it; avoid unnecessary mutation.",
+    "Prepare and independently review option A's one-path main:false hunk, or choose boolean false if the bounded all-branch Git stop is the intended maintained policy. No diagnostic or trial deployment.",
+    "If the first-event rule remains unqualified under a strict zero-creation requirement, coordinate option B's exact pre-event disconnect and successful readback before merge. Preserve preview-disable, shared ignore state, production aliases and all unrelated project settings.",
+    "Only after final reviews/checks, production containment proof and actual finite merge allocation, merge with a merge commit and retain branches. No db push, deployment, promotion or reconnect follows automatically."
+  ],
+  "concurrency_and_STOP": {
+    "repository": "Use exact approved old vercel.json hash and current expected branch/PR head as preimages; the merge operation is pinned to final target/main and PR identities. Drift means stop/review, not overwrite or force-push. No other actor's source is touched.",
+    "provider": "Serialize through Root as sole mutation owner and coordinate the shared project. Read/check identity and the expected Git link immediately before the action; record intent once, then perform one action and one bounded readback. The reviewed public API reference does not document an If-Match/CAS contract for this action; do not claim compare-before-write is server-atomic.",
+    "uncertainty": "Lost acknowledgment or failed readback leaves containment UNKNOWN and merge blocked. No blind repeat, reconnect, settings restoration, trial push or deployment to resolve uncertainty.",
+    "restoration": "Any later restoration must require the operation's recorded postimage still matches; drift stops it. Never re-enable previews or Git deployment automatically, and never apply another actor's preimage."
+  },
+  "authorization_and_limits": {
+    "current_task": "Only public official docs/API-reference browsing and new private plan artifact are authorized now; all operational/source effects remain unperformed.",
+    "within_no_deploy_intent": "A reviewed Git suppression configuration or a bounded exact-project disconnection prevents deployment rather than authorizing it. Convert the chosen concrete scope into the existing independent review/Coordinator finite allocation, without asking the human to repeat authorization.",
+    "expanded_effects": "Changing production branches/domains/environment/secrets, pausing service, uninstalling the whole GitHub app, deleting hooks/resources, trial deployment, promotion, rollback, reconnect, or treating manual deployment as validation is outside this minimum plan.",
+    "manual_paths": "git.deploymentEnabled and project Git disconnection only address automatic Git integration. Manual CLI/API/dashboard/hook deployment remains separately prohibited; no blanket platform disable is claimed.",
+    "existing_proof": "The retained feature-branch qualification remains historical and limited. Current production/main containment is UNKNOWN.",
+    "acceptance": 0,
+    "merge_ready": false,
+    "development_complete": false,
+    "effect_authority_granted": false,
+    "old_merge_main_false_override": "Unchanged; reconcile explicitly in the actual conditional merge course.",
+    "external_review": "Coordinator's fresh Codex-chat PR review of actual final head remains required."
+  },
+  "effects": {
+    "official_public_docs_browsing": true,
+    "native_provider_GET": 0,
+    "authenticated_API": 0,
+    "CLI_auth": 0,
+    "network_Git": 0,
+    "provider_writes": 0,
+    "source_writes": 0,
+    "Git_mutations": 0,
+    "runtime_tests": 0,
+    "deployments": 0,
+    "own_private_plan_files": 1
+  }
+}

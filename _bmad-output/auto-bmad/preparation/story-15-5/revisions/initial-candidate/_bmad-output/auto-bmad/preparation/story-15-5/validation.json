@@ -1,0 +1,48 @@
+{
+  "outcome": "planning-complete",
+  "halt_status": "ready-for-dev",
+  "blocking_condition": null,
+  "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+  "baseline_revision": "159557e114f18123e73282c39c90830917de9948",
+  "phase": "planning-only",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "tasks": 10,
+  "acceptance_criteria": 9,
+  "source_ac_sketches_preserved_verbatim": 1,
+  "story_file_audit_checks_passed": 7,
+  "kernel_sha256": "e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8",
+  "kernel_hash_definition": "UTF-8 LF exact text including both intent-contract tags, no appended newline",
+  "raw_sha256": "0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88",
+  "raw_bytes": 26156,
+  "approved_kernel": null,
+  "approval_status": "pending-root-distinct-independent-High-validation-and-freeze",
+  "reader_passed": true,
+  "discovery_passed": true,
+  "preservation_passed": true,
+  "cached_epic_context": "valid-reused-byte-unchanged",
+  "runtime_tests_executed": 0,
+  "resources_started": 0,
+  "code_review_rounds": 0,
+  "discovery_delegates_completed": 1,
+  "independent_spec_review": "pending-root",
+  "release_ready": false,
+  "proposed_migration": {
+    "logical_basename": "personal_calendar_feed",
+    "timestamp_reserved": false,
+    "requires": "fresh combined E15/E16 chronology before CLI creation",
+    "sql_write_grant": false
+  },
+  "proposed_tenant_table": "calendar_feed_tokens",
+  "proposed_global_infrastructure_table": "calendar_feed_ip_windows",
+  "proposed_public_surface": "calendar_feed",
+  "prepared_handoff": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\implementation-ownership-handoff.md",
+  "build_prerequisites": [
+    "Root distinct independent High validation/freeze/phase3 admission",
+    "Coordinator exact shared deltas/migration/serial DDL/isolated fixtures and test key/runtime allocation"
+  ],
+  "hosted_enablement_prerequisites": [
+    "separate release authorization",
+    "release operator dedicated feed-key/Vault/runtime and deployment-verified trusted-IP evidence"
+  ]
+}

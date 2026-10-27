@@ -1,0 +1,260 @@
+{
+  "kind": "STATIC_TYPESCRIPT_AST_ONLY",
+  "actual_source_modules_executed": 0,
+  "outer_catch_not_present_in_current_34_serial_fixture_call_sites": true,
+  "files": [
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "calls": [
+        {
+          "line": 30,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT001"
+        },
+        {
+          "line": 53,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT002"
+        },
+        {
+          "line": 72,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT003"
+        },
+        {
+          "line": 86,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT004"
+        },
+        {
+          "line": 103,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT005"
+        },
+        {
+          "line": 126,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT006"
+        },
+        {
+          "line": 141,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT007"
+        },
+        {
+          "line": 156,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT008"
+        },
+        {
+          "line": 171,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT009"
+        },
+        {
+          "line": 192,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT010"
+        },
+        {
+          "line": 214,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT011"
+        },
+        {
+          "line": 235,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT012"
+        },
+        {
+          "line": 256,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT013"
+        },
+        {
+          "line": 273,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-INT014"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "calls": [
+        {
+          "line": 20,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API001"
+        },
+        {
+          "line": 60,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API002"
+        },
+        {
+          "line": 84,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API003"
+        },
+        {
+          "line": 100,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API004"
+        },
+        {
+          "line": 118,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API005"
+        },
+        {
+          "line": 131,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API006"
+        },
+        {
+          "line": 146,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API007"
+        },
+        {
+          "line": 168,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API008"
+        },
+        {
+          "line": 194,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API009"
+        },
+        {
+          "line": 209,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API010"
+        },
+        {
+          "line": 234,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API011"
+        },
+        {
+          "line": 248,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API012"
+        },
+        {
+          "line": 266,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API013"
+        },
+        {
+          "line": 285,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API014"
+        },
+        {
+          "line": 308,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API015"
+        },
+        {
+          "line": 324,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API016"
+        },
+        {
+          "line": 345,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API017"
+        },
+        {
+          "line": 365,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API018"
+        },
+        {
+          "line": 390,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API019"
+        },
+        {
+          "line": 407,
+          "awaited": true,
+          "outer_catches_before_test_callback": 0,
+          "callback_depth": 1,
+          "test_id": "15.5-API020"
+        }
+      ]
+    }
+  ],
+  "limitation": "No general proof against future helper replacement, monkeypatch, outer test wrapper, or catch added later. Preserve direct-await/unswallowed caller contract with a targeted control."
+}

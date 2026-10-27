@@ -1,0 +1,14 @@
+{
+  "schema": "root-manual02-qualification-admission-v1",
+  "qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-qualification.json",
+    "bytes": 20729,
+    "sha256": "10c768007bdbe4aff43401a2bad0fa2964a8d394a9cbf9b06ec65583f5d4d7c1"
+  },
+  "actual_bound_raw_refs_verified": 38,
+  "actual_current_source_checkpoint_git_reads": 18,
+  "observation_qualified": true,
+  "causal_claim": "UNPROVEN",
+  "normal_acceptance_credit": 0,
+  "next": "Bounded source-only ACL assessment; no further remote effects or source edits admitted."
+}

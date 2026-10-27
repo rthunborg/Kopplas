@@ -1,0 +1,61 @@
+{
+  "schema": "ROOT_QUALIFIED_REVIEWED_CORRECTIONS_FAILED_NORMAL_ADMISSION_v1",
+  "run": 39703778989,
+  "URL": "https://github.com/rthunborg/Kopplas/actions/runs/39703778989",
+  "attempt": 1,
+  "pushed_head": "64dc6908e58c323cb63453c4abb904ec29474a32",
+  "source": "dec30783a23dcac35d6ba57f649420221d741ecd",
+  "checkpoint_id": "bf7e5fd4-76e5-43ce-86a9-3af87f2446ad",
+  "qualification": "QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "independent_audit": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/reviewed-corrections-normal-native-provenance-audit/manifest.json",
+    "bytes": 919,
+    "sha256": "05df73c83fb15161fb80d54d1e536b7acfa1b241ffc6fc695af608ad8081b444"
+  },
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal.json",
+    "bytes": 23446,
+    "sha256": "7d04d195be3af9194c426a0894b3832852df048997d5c8a9283b75e5ea5d8a4c"
+  },
+  "packet_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-64dc6908-reviewed-corrections-normal-ci-independent/manifest.json",
+    "bytes": 6255,
+    "sha256": "a356c8267fecc1968e4af725843135168bdf9ef00a866e4dbca39c1db9b62b5d"
+  },
+  "execution_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-64dc6908-reviewed-corrections-normal-ci-independent/actual-execution-receipt.json",
+    "bytes": 8286,
+    "sha256": "1b711a9905cf611f5630c58c34e5e4476b294b9f0bcbfe58fe3ec321ba40bad9"
+  },
+  "native_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-64dc6908-reviewed-corrections-normal-ci-independent/native-qualification.json",
+    "bytes": 15828,
+    "sha256": "02ed8e6f99aca19942bf4e607684cacd8939a25f80d0eed36fb1edbec1eb82be"
+  },
+  "Root_hash_checks": {
+    "closed_packet_members": 23,
+    "member_hashes": 22,
+    "audit_files": 4,
+    "all_passed": true
+  },
+  "native_lifecycle_attribution": "Native-reported actual713f30 outer/native0,6.6386552s,no session/waits; five GETs native0,EOF/readersjoined/handlesclosed/settled. Root/auditor did not directly observe acquisition internals.",
+  "qualified_counts": {
+    "Node": "3398 passed/0 failed/0 skipped,103 suites;30 distinct story IDs; duplicates nonadditive",
+    "Python": "43 separate, nonadditive",
+    "DB": "2058 passed/2 failed/9 pending/52 skipped,total2121; story16 passed/35 required unexecuted (API20/INT15)",
+    "browser": "56 unique:51 expected/4 flaky/1 unexpected;story14:9 expected/4 flaky/1 unexpected007;19 attempts:13 passed/6 failed;other42 expected",
+    "recovery": "1 passed, separate"
+  },
+  "observations": "18 strict v2 rows qualified; completion/phase/snapshot enums are observations only, no original-exception or causal inference. NUDGE labels missing/NULL; omitted/dynamic/partial data remains UNKNOWN.",
+  "live_blockers": [
+    "DB and essential-browser gates failed",
+    "35 mandatory database cases unexecuted",
+    "Keys retained/unverified; canonical backend settlement and custody UNKNOWN"
+  ],
+  "migration117": "Specific runtime application marker/finer predicates unproven. Preserve all117 migration files unchanged; any further correction uses new forward migration after coordination.",
+  "effects_closed": "All five acquisition slots closed; Root status poller stopped; no further GET/retry/source effect authority.",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "review_counter": 3,
+  "next": "Finite source-bound read-only assessment of the two retained DB title hashes and browser response-completion path; choose smallest consequential correction only after evidence."
+}

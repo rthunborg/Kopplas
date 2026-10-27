@@ -1,0 +1,36 @@
+{
+  "schema": "ROOT_MECHANICAL_AUDIT_ADMISSION_v1",
+  "at": "2026-10-21T17:27:05.618736+00:00",
+  "verdict": "PASS_PROVENANCE_QUALIFIED_FAILED_NORMAL_GATES",
+  "reviewer": "/root/review15_5_private_diagnostic_high",
+  "target": {
+    "run_id": 39637925040,
+    "attempt": 1,
+    "checkpoint": "b34acf03-1116-4411-9ce4-7dbe04d48745",
+    "head": "b459af22d490eadc90113fd713a73b65aff89471",
+    "source": "589652335657df7153d7578b1a421b020fa2ce8c",
+    "mode": "normal"
+  },
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-report.md",
+      "bytes": 6639,
+      "sha256": "5b2689aa3cc872f31a2d84dec6529f05589a4f2ee7cdef2da31816967d5c644e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-attestation.json",
+      "bytes": 13713,
+      "sha256": "ca77d3173dfff1ee08702a46a37e386a56f575bea73dea714eb0e564c24008cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/result.json",
+      "bytes": 1181,
+      "sha256": "8a1889c6bc1090cf4b32c25433e1d97742d528591c0cc800af3be5d5c07a6121"
+    }
+  ],
+  "bound_references_checked": 14,
+  "normal_acceptance_credit": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "next": "Separately routed bounded source-only failure localization; no new runtime, requests, fixes or migration edits allocated. Migration111 frozen."
+}

@@ -1,0 +1,411 @@
+{
+  "schema": "ROOT_INT009_DEFAULT_VOLATILITY_NORMAL_ACTUAL_TERMINAL_OWNERSHIP_V1",
+  "status": "ACTUAL_TERMINAL_NORMAL_DBFAIL_ALL_SLOTS_CLOSED",
+  "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+  "source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "checkpoint_id": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+  "run_id": 39950998114,
+  "attempt": 1,
+  "mode": "NORMAL",
+  "cause_proof": false,
+  "release_validation": false,
+  "original_int009": false,
+  "operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/operation.json",
+    "bytes": 871,
+    "sha256": "071457c09b5587152a1f20b0cb640da77d635b379c8182f673f5ca5bb63d4452"
+  },
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/terminal.json",
+    "bytes": 24085,
+    "sha256": "c6753fd270588112c73d9d512a2a599b655a60ba257162328085aa31765bbe81"
+  },
+  "Root_actual_terminal_read": "87e0a5/native0/fullJSONparsed/closedDBstep+all9projection",
+  "Root_terminal_poll": "d3a882/native0/1.4460087s",
+  "references": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-initial-outer-provenance.json",
+      "bytes": 4580,
+      "sha256": "80f330fda11f2c405468907dddf1b0c3d69f15f7267b2a1b40dd4080995157d9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-poll-outer-provenance.json",
+      "bytes": 7990,
+      "sha256": "ada4ebf81d6112031299616e81821bf99c386af7f1dd5981ff2420ed2893dc6d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-provider-execution-receipt.json",
+      "bytes": 3643,
+      "sha256": "5527c0c297be5e44543ad1d33411dff9ebc339754d9e4c2dd84b27b692bdd105"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-vercel-readonly-qualification.json",
+      "bytes": 30470,
+      "sha256": "cbd44cf150d0ac1dc734a5d2cb4a0001a896c2137b4730743f963f4b09e171cd"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-effects-allocation.json",
+      "bytes": 3523,
+      "sha256": "0895a06d1bd346e22cb56cb098cd4b809e035ab1d7422707d0866c1876c79550"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-read-only-continuation.json",
+      "bytes": 1967,
+      "sha256": "075a0f7eb28aef63d4fb3841c987d80f5e496d4dd9fd472986418f4b6a5c6271"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-remote-cap-provenance-qualification.json",
+      "bytes": 7664,
+      "sha256": "d6c9e90aa8e03236ea2daa7b0caead453192729014ecc5743e4278a2732cb165"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-readonly-continuation-root-admission.json",
+      "bytes": 1354,
+      "sha256": "1cdae6ae53e5d64e7bb1b06ee80171ced09b406efe1b867156984286ca1deb04"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-current-source-proof.json",
+      "bytes": 39456,
+      "sha256": "defb2fe2ade5cc7feeaf360640d35f180068dfebf477af744399f3a03f41b69e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-provider-readonly-activation.json",
+      "bytes": 2520,
+      "sha256": "7f85138195be549b02adce2278c26dad45e99de96ca9415f927f60163be26e0e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-effects-activation.json",
+      "bytes": 1806,
+      "sha256": "d8f7f0f6061aa9f7e00d328df5bf4e11f58cb0f3f2441126d4a8a14fb31f4f70"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-review.json",
+      "bytes": 16657,
+      "sha256": "2747bf71ba3f7b24748cb8f0e13cfc0d9b63791d819db4149af7305179c89d59"
+    }
+  ],
+  "native": [
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/dispatch-receipt.json",
+        "bytes": 842,
+        "sha256": "132f64e23c79662f01c5a84a18cf11ef3bf1bfb2ff9236dbcda23b71f5a9e972"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 90,
+      "elapsed_seconds": 3.796483,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-1-receipt.json",
+        "bytes": 698,
+        "sha256": "c9bdf57d7d61da800bdc68f8c44a3377a555f4d72844c5890beaa2e28bc56236"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.59771,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-2-receipt.json",
+        "bytes": 699,
+        "sha256": "71022b846dc3f9c51cfdfbb15a73782ef2a7ab5678f0d6f6a86777a09b625006"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.649594,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-3-receipt.json",
+        "bytes": 698,
+        "sha256": "4d89812b1f71acdf2a5cd68c43574503305d1ab9d3327fbb6346f91460e94634"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.7615,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-4-receipt.json",
+        "bytes": 700,
+        "sha256": "93fc1aed3b0fdf53850be8a7e5244c1ab4061e67d425ab0c39f0a7e4a35e431a"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.701659,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-5-receipt.json",
+        "bytes": 700,
+        "sha256": "8e6c88e77f1d0302b14ae231e31f1a96da573e3b344f98decb40a8d0b559b809"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.700142,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-6-receipt.json",
+        "bytes": 700,
+        "sha256": "99568c75c89618f9dd0e885be4e5d2f93fc0529665d5022780b692bf14de0fc7"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 1.313216,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-7-receipt.json",
+        "bytes": 700,
+        "sha256": "bf2f15fcc17db7a75e00c63ebb5e829a0ad21f37c7b23792a2e9c99a5734e672"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.721582,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/jobs-8-receipt.json",
+        "bytes": 700,
+        "sha256": "1ea971140cae6b5fd951ad12b78d790e4f8d5b03daf89e37e9e7a3781b2836c3"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.690511,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "c04353335bc054b2113f403d0fadcdd523de01d2c37ae777afc3120616d50b85"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 60,
+      "elapsed_seconds": 3.211003,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "c616abdacba6aa002d46d20c9595018756ae81919d40607c926330fdff328f08"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.599305,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "07da828db44836a7114aa39a94528bbb8a8ba8ad8206e7afa88577ad4e1f831c"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.596385,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/resolve-1-receipt.json",
+        "bytes": 701,
+        "sha256": "7ccf7499b46064dbd54d9140242d2b08124e0cbaae8f59f8e0a83487a4f1d1f9"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 1.129962,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-1-receipt.json",
+        "bytes": 700,
+        "sha256": "088a4b984d725b642fe980f1a15bd09511df0ce976d1dae1de1872d34087d5a6"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.561906,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-2-receipt.json",
+        "bytes": 700,
+        "sha256": "9016b50d5abcad9a2f5ae0d2c2486aa03d6a8dba62afcae3a1bfccc00efc4298"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.475522,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-3-receipt.json",
+        "bytes": 699,
+        "sha256": "75162c340f60a8ad47ab93b96980c44bdbdde2dd2a7504990f96d28eb5a62750"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.55919,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-4-receipt.json",
+        "bytes": 700,
+        "sha256": "311398c4e57ba5b51b7462ae345d35cce67899fb72499b5507b3bd75d6801333"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.538363,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-5-receipt.json",
+        "bytes": 699,
+        "sha256": "5aadf99c1a298227fc7fbd2c953e96f1a1971e05b74cb12ba03c8ddbf36805f8"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.54851,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-6-receipt.json",
+        "bytes": 700,
+        "sha256": "a0f3475593ede698c4ba4bdd2a7ea07c1491b02e4899451ce14b7262c2a7e3dd"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.478249,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-7-receipt.json",
+        "bytes": 700,
+        "sha256": "108c1c9bfbb4a91b712e8be4d03bcc01e375ddbf9deb9f0f60ad2715cc0b8e3f"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.485913,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/run-8-receipt.json",
+        "bytes": 700,
+        "sha256": "45f68677ab0c7cb83695cce038f158102bea60a7ffdd9a5686e3edfd00b9f54a"
+      },
+      "native_exit": 0,
+      "timeout_seconds": 20,
+      "elapsed_seconds": 0.466004,
+      "full_EOF_joined_closed_settled": true
+    }
+  ],
+  "effects": {
+    "provider_GET": 1,
+    "remote_Git": 3,
+    "push": 1,
+    "canonical_dispatcher_invocations": 1,
+    "canonical_metadata_GET": 4,
+    "canonical_POST": 1,
+    "resolver_GET": 1,
+    "poll_pairs": 8,
+    "artifact_logs_GET": 0
+  },
+  "native_receipt_attribution": "21Rootcontrollerchildren=3Git+1Nodecanonicaldispatcher+1resolver+16pollAPI. Nested4metadataGET/POST source-bound by unchangedqualifiedadapter/successfulstate, not falselyclaimedindividualghreceipts. Provider1separateNativeHighactualreceipt.",
+  "all_slots_closed": true,
+  "Root_sole_poller": "STOPPED",
+  "closure": "Immutableterminal9+operationROOT_STOPPED; existingobserverreturnsWAIT0GETafterclosedphase. operationdoesnotcarryseparateall_remaining_slots_closedboolean; do not invent one insideit.",
+  "original_start": "2026-10-23T12:07:29.339308+00:00",
+  "consumed_after_continuation": {
+    "initial_poll_pairs": 2,
+    "additional_poll_pairs": 6,
+    "unused_continuation_pairs_closed": 82,
+    "clock_counter_reset": false
+  },
+  "configured_cap_discrepancy": "Pastremote-before/readbackconfigured20/granted15 retained;actualelapsed<1s. IndependentHighqualifiedactualtuple/capture andcompletedCoordinatorread-onlyremainder atoriginalclock/counters; no retroactivepass or replay.",
+  "jobs": [
+    {
+      "id": 120405140381,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120405185494,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120406476324,
+      "name": "e2e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120406476395,
+      "name": "recovery-storage-loader",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120406476503,
+      "name": "db",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 120406478391,
+      "name": "dashboard-e2e",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120409948390,
+      "name": "fixed-chromium-paired-probe",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120409948646,
+      "name": "fixed-chromium-application-verification",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120409949103,
+      "name": "native-stream-probe",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "DB_job_id": 120406476503,
+  "DB_failed_step": 11,
+  "DB_native_JSON_upload_step12": "success",
+  "actual_case_cardinality_and_cause": "UNKNOWN_PENDING_EXISTING_TERMINAL_READER",
+  "DB_custody": "UNKNOWN_PENDING_NATIVE_EVIDENCE",
+  "required95": "Historical68P1F26unexecuted unchanged untilcurrentactualartifactqualification",
+  "normal_acceptance": 0,
+  "P5": "OPEN",
+  "development_complete": false,
+  "deployment": false,
+  "UTC": "2026-10-23T12:28:44.691828+00:00"
+}

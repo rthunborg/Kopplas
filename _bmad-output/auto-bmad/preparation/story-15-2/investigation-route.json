@@ -1,0 +1,12 @@
+{
+  "phase": "planning-investigation",
+  "role": "code-explorer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "host": "codex",
+  "tier": "subagents",
+  "route": "subagent",
+  "profile": "standard",
+  "escalation_reason": "Authorization and transactional integrity of recurrence integration; planning only",
+  "scope": "Read-only booking commands, DB invariants, editor and tests; no implementation"
+}

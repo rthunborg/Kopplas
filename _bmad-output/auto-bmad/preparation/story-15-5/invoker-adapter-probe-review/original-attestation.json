@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_HIGH_INVOKER_PAYLOAD_AND_ADJACENT_ROOT_TRANSPORT_REVIEW",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_SQL_author": true,
+    "Root_transport_independently_reviewed": true,
+    "existing_reviewer_reused": true,
+    "fresh_context_free": false,
+    "broad_story_review": false,
+    "route": "P5_invoker_probe"
+  },
+  "scope": {
+    "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "head": "ec129064400f559aae8c08edb091fbb0772248e0",
+    "only_new_private_payload_and_adjacent_Root_transport": true,
+    "app_rescan": false
+  },
+  "author_inputs": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/probe.sql",
+      "bytes": 12741,
+      "sha256": "e61418559ffbc37c92dc8bfe626f9bf56aff8d819ad2d99809541fd942ffb79e"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/verify-cleanup.sql",
+      "bytes": 1104,
+      "sha256": "749d84ff15f2ae68a1d96d9842268065554bcfb736478420a406c4721bba7caa"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/proposal.json",
+      "bytes": 7181,
+      "sha256": "8b828dffef4827144f8615b3faa16836feebe8f514298377fe986e0515bc1d73"
+    }
+  ],
+  "current_Root_transport": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-runner.py",
+    "bytes": 9204,
+    "sha256": "90f0cb9215a2609e807b2c2515494960c3be8998421cd6b2b61b2dd4ef7ce76a"
+  },
+  "prior_readonly_context": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-local-grantor-query-result-01.json",
+    "bytes": 1193,
+    "sha256": "ca2760a0aa6cb3599ae0758140274dc10637292e2261e9a65bb424f17481949b"
+  },
+  "pre_review_transport_draft": {
+    "bytes": 9055,
+    "sha256": "bb8dc7839f2b11cd7277dca3de05cabf07261fdd02cb86609ea705b7cbf67693",
+    "superseded_unexecuted_by_Root_before_final_review": true
+  },
+  "checks": {
+    "author3_hashes_match": true,
+    "current_transport_hash_matches": true,
+    "read_only_HEAD_verified": true,
+    "prior_source_comparability": "UNQUALIFIED",
+    "balanced_psql_if_blocks": 18,
+    "top_BEGIN": 1,
+    "unconditional_ROLLBACK": 1,
+    "new_DDL_objects": 3,
+    "new_object_GRANT_REVOKE_statements": 4,
+    "only_42501_exception_subtransactions": 2,
+    "no_COMMIT_existing_Auth_grant_or_privileged_repair": true,
+    "actual_postgres_creator_restricted_first_call_and_canonical_dependency_checks_present": true,
+    "closed_result_key_counts": [
+      11,
+      7
+    ],
+    "source_fingerprint_and_same_fresh_cleanup_contract_present": true
+  },
+  "transport_checks": {
+    "activation_payload_guard_exact_container_gates_source_reviewed": true,
+    "exclusive_marker_prelaunch": true,
+    "stdout_buffer_cap": 4096,
+    "stderr_buffer_cap": 65536,
+    "process_deadline_seconds": 30,
+    "bounded_settlement_tail": true,
+    "EOF_digest_and_unique_typed_JSON_checks": true,
+    "fresh_cleanup_gate": "PSQL_EXIT_REPORTED requires full transport and native0or3",
+    "uncertain_killed_timeout_overflow_io_native2": "UNPROVEN; no fresh child",
+    "native3_probe_qualified": false,
+    "no_raw_output_persistence": true,
+    "no_retry_or_role_schema_cleanup": true
+  },
+  "independent_mock_controls": {
+    "total": 15,
+    "pass": 15,
+    "fail": 0,
+    "cases": [
+      "Closed typed probe success",
+      "Native3 permits fresh verification only",
+      "Native2 remains UNPROVEN",
+      "Wrong ledger",
+      "Boolean not integer",
+      "Extra field",
+      "Missing field",
+      "Duplicate JSON key",
+      "Two JSON objects",
+      "Stdout live overflow",
+      "Stderr live overflow",
+      "Timeout killed client",
+      "Reader error",
+      "Writer error",
+      "Invalid UTF8"
+    ],
+    "method": "Python -B import-safe runpy and actual capture with mocked Popen/memory pipes; no real subprocess.",
+    "real_subprocess_Docker_SQL_calls": 0,
+    "main_calls": 0,
+    "sentinels_absent_from_metadata": true
+  },
+  "reader_history": [
+    "Initial lexical END assertion matched PLpgSQL dollar-body END; corrected offline reader excluded those bodies.",
+    "Existing empty output directory stopped first write assertion before writes; original3 created exclusively without replacing other files."
+  ],
+  "limits": {
+    "SQL_syntax_or_engine_execution": 0,
+    "feasibility": "UNPROVEN",
+    "external_primary_sources_not_fetched": true,
+    "actual_main_guard_process_or_cleanup_execution": 0,
+    "effects_allocation": "UNALLOCATED",
+    "native_acceptance_credit": 0,
+    "normal_acceptance_credit": 0,
+    "historical_DB43_browser14_unresolved": true
+  },
+  "retained_gates": [
+    "Exact Root/Coordinator native-effect allocation and current guard-owned target before SQL.",
+    "Settled original/independent fresh cleanup qualification; UNPROVEN retains custody without retry/auto-cleanup.",
+    "Independent native proof qualification before source-fix allocation."
+  ],
+  "actions": {
+    "owned_new_writes_only": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-report.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-attestation.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/result.json"
+    ],
+    "SQL_DB_Docker_API_CI_resource_effects": 0,
+    "main_activation_calls": 0,
+    "author_files_source_Spec_Git_state_mutations": 0,
+    "activation_consumed_result_absent": true
+  },
+  "report": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-report.md",
+    "bytes": 5330,
+    "sha256": "1756792af12612805d082898674e7f4c6249a3c9f8fa813d6a77aa7d92c144ea"
+  },
+  "result": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/result.json",
+    "bytes": 800,
+    "sha256": "731bc1508a67c6667e5ee2e20734307f3504190111d7e7acaf8c4abc38d29472"
+  }
+}

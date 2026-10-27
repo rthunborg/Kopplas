@@ -1,0 +1,353 @@
+{
+  "schema": "TARGETED_F1_TRANSPORT_CUSTODY_CLOSURE_REVIEW_v1",
+  "reviewed_at_utc": "2026-10-21T19:26:27.046105+00:00",
+  "verdict": "PASS_CODE_ONLY_F1_CLOSED",
+  "findings": [],
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "route": "gpt-6.1-sol High",
+    "independence": "Same independent cumulative reviewer; not BuildHigh/implementation child or NativeHigh plan author. Prior packet-audit and original F1 reviewer roles disclosed."
+  },
+  "scope": {
+    "prior_reviewed_source": "22508ef2773bb872d6c880328390812dbc358559",
+    "reviewed_source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "cumulative_base": "f0000e7c107f10371543148280e555971e753342",
+    "latest_source_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "kind": "Only F1 closure and latest-fix consequential regressions; reuse unchanged non-F1 cumulative review. No fourth broad round/counter increment/general replan.",
+    "later_metadata_only_HEAD": "a329f572f6abeca0864092f3b93b74562785321f"
+  },
+  "original_cumulative_records_preserved": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/original-report.md",
+      "bytes": 7022,
+      "sha256": "05ad62bfda05c24fad022fe37c1b4facf7ad5a62f72804d3921fd5760c8c9d34"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/original-attestation.json",
+      "bytes": 20373,
+      "sha256": "eb17e11d4866a6561bf33527c08b13482cdb458bae3360b55d4b9b9db1aa6b76"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/result.json",
+      "bytes": 1187,
+      "sha256": "c90955c11f9f53178b76fda37c65f2662d6cbfaebe76ea04e7c7cc87479237cd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/manifest.json",
+      "bytes": 919,
+      "sha256": "e99c142c84f76c1f69f7f7a175ebde897e8d54758f2f1743b2ed9be8a19f6f00"
+    }
+  ],
+  "composite_coverage": "Original f0000e7c..22508ef bounded cumulative source review, with its original F1 NOTPASS preserved; latest22508ef..b1b476de resolves F1 only. Unchanged non-F1 findings/coverage reused, no retrospective historical PASS.",
+  "policy": {
+    "path": "docs/process/development-completion-policy.md",
+    "bytes": 8460,
+    "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+  },
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-f1-three-path-corrective-source-allocation.json",
+    "bytes": 1736,
+    "sha256": "1de1b7b6a98fe39a38ee5b6ec76788d64b585d688a430714b18a5641b6f2070f"
+  },
+  "scope_clarification_basis": "Trusted Root review instruction explicitly allowed the closed fetch_calendar_feed-only view of the existing anon.rpc dependency; permission is not source correctness proof. Actual hunk and identity/count controls independently reviewed.",
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/f1-transport-custody-author-result.json",
+    "bytes": 66777,
+    "sha256": "ae850d24d5c59dd9fbd690e9afaf6bf595bb94ce32ca84b1d0d9e977fb08939a"
+  },
+  "root_bindings": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f1-transport-custody-precommit-admission.json",
+      "bytes": 2433,
+      "sha256": "1079bff8e11012f3aeb8abe9bbf01ca5cac19631a0f302ccd0828483fd90c273"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f1-transport-custody-postcommit-binding.json",
+      "bytes": 855,
+      "sha256": "ba0c748a32e975903d3ae0254a5f1edd139089f1d1fea247c1707892a0e51492"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-source-checkpoint.json",
+      "bytes": 2931,
+      "sha256": "329d9b7b8db9dcbe2066e3f2e053f7eeb95825b15f06c2632defc00c59cb37c5"
+    }
+  ],
+  "frozen_ref_rows_verified": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-f1-three-path-corrective-source-allocation.json",
+      "bytes": 1736,
+      "sha256": "1de1b7b6a98fe39a38ee5b6ec76788d64b585d688a430714b18a5641b6f2070f",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/original-report.md",
+      "bytes": 7022,
+      "sha256": "05ad62bfda05c24fad022fe37c1b4facf7ad5a62f72804d3921fd5760c8c9d34",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/cumulative-custody-source-review/original-attestation.json",
+      "bytes": 20373,
+      "sha256": "eb17e11d4866a6561bf33527c08b13482cdb458bae3360b55d4b9b9db1aa6b76",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-wide-c4-source-author-result.json",
+      "bytes": 80085,
+      "sha256": "d6b74e6bc20d13f2e3ae26d41136e7a9c8b25511b118e24083dac7e6b06a2071",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 12007,
+      "sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "bytes": 22030,
+      "sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "bytes": 4421,
+      "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "bytes": 22537,
+      "sha256": "b8ed2cc0aa91ac6a30ea370a5321f8d69e9b592f1a5d36c37a54c8b4e2012a17",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+      "scope": "read-only dependency or immutable historical proof; not an author write"
+    }
+  ],
+  "actual_source_proof": {
+    "inventory_ref": "author_receipt.cumulative_source_inventory",
+    "rows": 73,
+    "current_raw_sha_and_bytes_all_equal": true,
+    "actual_Git_blob_objects_checked": 219,
+    "revisions": [
+      "f0000e7c107f10371543148280e555971e753342",
+      "22508ef2773bb872d6c880328390812dbc358559",
+      "b1b476dee7c936eb4797ce3221bc07b8196a1a4a"
+    ],
+    "latest_changed": 3,
+    "latest_unchanged": 70,
+    "canonical_verified_vector_sha256": "dfb39b4083ced53e632e0ce66973eef46544818f52d49cbeb6f3dffbe0c6c6f0",
+    "canonical_vector_format": "Author row order; JSON sort_keys=true compact separators, per row path/raw_bytes/raw_sha256/cumulative_base_blob/prior_reviewed_blob/reviewed_blob/changed_latest. Actual blob SHA1 and normalized raw LF equality checked.",
+    "latest_rows": [
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "raw_bytes": 193028,
+        "raw_sha256": "68aa8a537fb771a0cd028f560124bc660dd8247522d7c5591dd54b27e77e0a0e",
+        "prior_reviewed_blob": "29c1db3a3269e1143b579d00de82777a77d2beb9",
+        "reviewed_blob": "12df0ae9303a1e519408428063443708b2d39560",
+        "cumulative_base_blob": "d6bbdf298314db597de50ec7999a994c7196e1e0"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 132791,
+        "raw_sha256": "20b5d616fe3e861b60fc3250e224c3a27c6bf21e90b5962036d09b6010b6a859",
+        "prior_reviewed_blob": "ce8196d51c27251dcfd793c1d3af6259ddb78b4d",
+        "reviewed_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+        "cumulative_base_blob": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 231674,
+        "raw_sha256": "3db48e3e5f3f5da61b863e1cc16da97aac6e8be354250cc9043743a93ecc471b",
+        "prior_reviewed_blob": "83eef5d228ccfa8c36d6ffb6acd7658565a7b3ed",
+        "reviewed_blob": "8a773ffa57b1e5e1649a83bdfcdb917b6431449c",
+        "cumulative_base_blob": "d4eab9b65caa73233bb8b3ecb632d157adf96530"
+      }
+    ],
+    "all_applied_migrations_unchanged": true
+  },
+  "F1_closure_proof": {
+    "original_caller": "API008 ordinary HTTP inside withDatabaseTime; adjacent trustedFetch RPC status0 erased by public503.",
+    "HTTP": "calendarOrdinaryResponse catches request/body completion failures and validates non-server status; latches first custody before fixed transport origin. No rejection payload read/logging.",
+    "RPC_view": "Existing anon.rpc receiver/argument identity and one actual invocation/await; only fetch_calendar_feed admitted. Own data status descriptor examined; identity-preserving result/rejection forwarding. No client mutation, new principal/query/RPC, generic observer or extra subscription.",
+    "status0_before_erasure": "Installed PostgrestClient with injected fetch, actual publicCalendarFeed and actual trustedFetch/finite port preserve the public503 while retaining fixture uncertainty before restore.",
+    "removed_pending_and_inner_catch": "Known transport uncertainty survives caught rejection/pending0; calendarSettle throws on existing custody. Original clock state retained; no restoration/later publication.",
+    "downstream": "Existing same-module custody checks guard owner restore, unknown-window rewrite, fault/barrier owned-reference cleanup, canonical/Auth/absence cleanup and later fixture operations. Prior ownership/client retirement and C4 bail/key fences unchanged.",
+    "positive_paths": "Completed HTTP503 and completed RPC400/403/500/503 preserve response mapping and canonical restoration; completed expected errors are not wholesale treated as transport failures.",
+    "limit": "No native backend, physical rollback, canonical catalog restoration or cleanup success inferred from JavaScript settlement; current runtime remains unexecuted."
+  },
+  "reviewer_executed_checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"^(live owned HTTP catch|actual clock scope retains|actual body abort|closed fetch port invokes|installed Postgrest status zero|completed RPC denial|closed fetch status validation|actual composition cleans|actual withDatabaseTime)\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 379.8867,
+      "actual_API_SQL_network_requests": 0,
+      "runner_children": 0,
+      "native_credit": 0
+    }
+  ],
+  "reused_evidence": {
+    "current_author_checks": [
+      {
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit_code": 0,
+        "tests": 131,
+        "pass": 131,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "duration_ms": 11858.79,
+        "source_bindings": [
+          {
+            "path": "tests/support/calendar-feed-atdd.ts",
+            "sha256": "20b5d616fe3e861b60fc3250e224c3a27c6bf21e90b5962036d09b6010b6a859"
+          },
+          {
+            "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+            "sha256": "3db48e3e5f3f5da61b863e1cc16da97aac6e8be354250cc9043743a93ecc471b"
+          }
+        ],
+        "native_acceptance": 0
+      },
+      {
+        "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+        "exit_code": 0,
+        "source": "final two TS bytes; subsequent Spec-only trail changes"
+      },
+      {
+        "command": "node node_modules/eslint/bin/eslint.js tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit_code": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "command": "git diff --check",
+        "exit_code": 0,
+        "scope": "current exact3; raw LF-to-CRLF Git notices are not lint failures"
+      },
+      {
+        "command": "python .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "exit_code": 0,
+        "parse_warnings": [],
+        "status": "in-review"
+      },
+      {
+        "command": "author in-memory SRO exact literal/line and kernel verification",
+        "exit_code": 0,
+        "stops": 153,
+        "headings": 1
+      }
+    ],
+    "author_initial_history": {
+      "initial_full": {
+        "tests": 131,
+        "pass": 127,
+        "fail": 4,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "causes": [
+        "Three exact-source extraction controls used a whitespace-mismatched tracker declaration anchor.",
+        "Hostile proxy rejected JavaScript Promise assimilation then access before the finite status view. Only then is now permitted; arbitrary payload getters remain hostile."
+      ],
+      "intermediate_selected": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "first_and_final_tsc": {
+        "exit_codes": [
+          0,
+          0
+        ]
+      },
+      "first_and_final_focused_lint": {
+        "exit_codes": [
+          0,
+          0
+        ]
+      },
+      "failed_read_only_lookup": "A guessed review-order template path under _bmad-output/custom was absent; corrected to existing _bmad/custom path, no mutation/effect."
+    },
+    "unchanged_prior": "Prior125 runtime/partition5 plus9 bounded synthetic children and original reviewer17 focused+3 pure C4 controls reused only for unchanged scope/dependencies. No new aggregate or rerun is claimed.",
+    "author_vs_reviewer": "Author131P/TypeScript/lint/reader/SRO are bound assertions; reviewer independently ran the focused9 and verified source/bindings. Prior synthetic failures remain expected/historical controls."
+  },
+  "spec_contract": {
+    "approved_kernel_bytes": 5760,
+    "approved_kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "unchanged": true,
+    "status": "in-review",
+    "review_counter": 3,
+    "Suggested_Review_Order_sections": 1,
+    "SRO_stops_author_verified": 153,
+    "pertinent_stops_checked": true
+  },
+  "remaining_native_gates": {
+    "historical_normal_run": 39637925040,
+    "historical_head": "b459af22d490eadc90113fd713a73b65aff89471",
+    "status": "FAILED_HISTORY_UNCHANGED",
+    "all95_current_head": "UNPROVEN;30Node/51DB/14browser mandatory, retries/subproofs nonadditive",
+    "full_DB_historical": {
+      "total": 2039,
+      "passed": 1975,
+      "failed": 12,
+      "pending_skipped": 52
+    },
+    "story_DB_historical": {
+      "total": 51,
+      "passed": 39,
+      "failed": 12,
+      "skipped": 0
+    },
+    "API019_privacy": "FAILED_REQUIRED_GATE; exact predicate/backend cause not inferred",
+    "browser_historical": {
+      "essential": 14,
+      "expected": 8,
+      "flaky": 4,
+      "unexpected": 2
+    },
+    "browser_child_key_custody": "UNVERIFIED_RETAINED",
+    "recovery": "Separate historical direct1P; fresh exact-head recovery proof pending",
+    "normal_acceptance_credit": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "effects_by_reviewer": {
+    "read_only_Git_source_and_binding_checks": true,
+    "Git_mutations": 0,
+    "source_Spec_config_runner_state_oldartifact_writes": 0,
+    "SQL_connections_queries": 0,
+    "network_API_GET": 0,
+    "app_setup_environment_resources_CI_native": 0,
+    "writes": "Only four new owned closure-review metadata files"
+  },
+  "execution_authorized": false,
+  "no_new_capability_needed_for_this_narrow_closure": true,
+  "all_applied_SQL_immutable": true
+}

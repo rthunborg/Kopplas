@@ -1,0 +1,43 @@
+{
+  "label": "API019-affected",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "--experimental-strip-types",
+    "--import",
+    "./tests/support/register.mjs",
+    "--test",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 13.47861,
+  "reason": null,
+  "caps": {
+    "seconds": 60,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 54991,
+      "sha256": "a06d418c45be469f9db5d34c370e9d2e73865ce9ad78ab64e20da60e905aaea8",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

@@ -1,0 +1,75 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "The root-approved Story 16.2 -2 intent/owner grant and AC01-AC08/TR03-TR05 remain intact. The authorized 2026-10-19 resume applies docs/process/development-completion-policy.md: static/build/full required DB integration/RLS/direct recovery integrity/focused authorization, tenancy, transaction and retry tests/independent review/essential usable-flow browser smoke are development requirements. Exact-head executed evidence below supplies those requirements, including all original acceptance assertions, nine independently budgeted INT006 cases and E01-E05. Older exhaustive browser matrices, screenshots, visual inspection and manual polish are the three owned deferred release items below; no essential functional, security, transaction, tenant-isolation or storage check is waived. The one ordinary-run pending physical-loader proof is separately executed 1/1 at the same head, explicitly preserving both dispositions. Historical planning HALT, prior failed CI and local Windows skip remain historical. This metadata-only record does not change the frozen intent, source/tests/SQL/helpers or evidence revision. Source review is passed; root delivery_gate, independent final provenance reconciliation and explicit closure authorization are still pending, so the spec remains in-progress. Release readiness and merge/deployment approval are not granted.",
+  "evidence_revision": "65e9111fa4303f87924e84e5e96d220f777f3cfc",
+  "development_checks": [
+    {
+      "name": "Static checks, complete unit suite and focused process checks",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-verify.log SHA256 935d0b11614e66a0b4255c8b1b25d73cdeb53d50bfe85cd0ebcf5482149ed9e4: typecheck and lint passed; native full units 2627 passed, 0 failed/cancelled/skipped/todo, 100 suites. Focused Python groups 2+26+10+5 = 43 passed. Linux CI executes the xattr unit that was historically skipped on Windows."
+    },
+    {
+      "name": "Production build and source/bundle containment",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-verify.log SHA256 935d0b11614e66a0b4255c8b1b25d73cdeb53d50bfe85cd0ebcf5482149ed9e4: production build and source plus bundle-containment gates passed at the exact source revision. No deployment or local server launch is claimed."
+    },
+    {
+      "name": "Dependency audit and lockfile integrity",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-verify.log SHA256 935d0b11614e66a0b4255c8b1b25d73cdeb53d50bfe85cd0ebcf5482149ed9e4: the required dependency audit and lock checks passed; no dependency/environment/secret change is introduced by this record."
+    },
+    {
+      "name": "Migration startup and empty-database replay",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-db.log SHA256 03163bf8088a4e52806368e10aabc3470506c4805a98c60d85b02693a8245875: hosted CI applied 20261019191746_e16_16_2_job_members.sql at startup and on empty-database reset; reset attempt 1 succeeded. Terminal DB job success is in the root-owned receipt. This is hosted isolated CI evidence, not a local native Supabase execution claim."
+    },
+    {
+      "name": "Full required integration/RLS and job authority/transaction acceptance",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-integration-native/full-integration.json SHA256 f045b3720882912009c2ebfeeac970fc571a35aba8c50c7cdcf3e292696d5bd8, with required DB lane recorded in C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-db.log: SUPABASE_TEST_REQUIRED=1; 1773 total, 1772 passed, 0 failed, 1 pending, 0 todo. Runner files: 148 passed/1 skipped of 149. Job-members command tests 15 passed/0 skipped including eight individually named INT006 races, audit rollback/retry and INT007 profileless manager; job-members RLS 3 passed, Phase A surface 7 passed, role harness 10 test bodies passed (no expanded assertion count claim). The sole pending physical-storage loader proof in tests/integration/ops/recovery-storage-immutability.int.test.ts is separately executed 1/1 at this same head by the recovery check below; this is no general skip waiver. INT006 races now passed in 2.32-3.20 seconds each and audit in 2.58 seconds. Prior run 39314732375 at 5d5186 remains failed: 1763 passed/1 failed/1 pending, explicit aggregate 30000ms timeout, exact interrupted iteration unknown; no retrospective pass is assigned."
+    },
+    {
+      "name": "Essential production-server browser flow",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-browser-native/general-browser.json SHA256 24bd2ee70b8777ab7d43d34c9520c738e322f9cca49f63f222ca23637d9525f2: 16 expected, 0 unexpected/skipped/flaky, top-level errors 0; duration 95302.69ms. Actual E01-E05 each passed in exactly one attempt with retry 0, alongside both authentication and existing jobs-depth journeys; terminal E2E success. Exhaustive release matrices/visual/manual work remain explicitly deferred."
+    },
+    {
+      "name": "Direct physical recovery-storage integrity",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-recovery-native/isolated-storage-recovery.json SHA256 f258cd1e17d914460356574ba64bbe42c3bc234f456115444b9cdb09756d9472: 1 total, 1 passed, 0 failed/pending at the same exact source head; terminal recovery success. This directly executes the physical-loader proof that is pending in the ordinary integration run; it does not relabel that ordinary-run skip as passed."
+    },
+    {
+      "name": "Applicable pilot performance baseline",
+      "status": "passed",
+      "evidence": "Exact source 65e9111fa4303f87924e84e5e96d220f777f3cfc; owned CI 39317194836, terminal success, checkpoint ef94062e-ea29-4e3a-ba6f-03f9ccee5f5e; root receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-ci-65e9111f-cc5758aa-eabd-47a8-99c2-933c31eed812.json. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39317194836-db.log SHA256 03163bf8088a4e52806368e10aabc3470506c4805a98c60d85b02693a8245875: pilot performance passed with 5 warmup and 25 measured samples, read p95 11.469548ms and synthetic bulk-effective-permissions p95 4.134991ms. These are the recorded pilot/synthetic measurements, not a production-scale throughput claim."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Independent source-review union: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/review-provenance.json records the six actually executed configured layers (five independent context-free Sol 6.1 High agents plus configured external Codex High, native exit 0); original agent reports remain in collaboration history and private agent files are explicit summaries, external receipt is native output. Five-fix qualified PASS: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/focused-pass.receipt.txt SHA256 52859c2a3be4e8cc44f6c08bb4f4e665f217c58d26c966fc1f27555a3e6f42b2. Bounded timeout-harness qualified PASS by the same independent High reviewer s162_blind: C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/timeout-fix-pass.receipt.txt SHA256 18b7ee2c4ddf8c326b02cf4009a91024aab81339ab1a24cfd18ff15474179df2. Current reviewed candidate inventory C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-16-2-review-afc41771-8a4c-4cb0-8a39-6349e08cfca9/inventory-timeout-fixed.json raw SHA256 57e138b9cbad60d624121192fdddd06c64f1af056445791853ee52d82753db0f. Initial consequential findings were repaired and focused checks found no remaining consequential defects. These receipts cover the source union tested at 65e9111fa4303f87924e84e5e96d220f777f3cfc; this post-green spec/delivery metadata still awaits root gate and independent provenance reconciliation before explicit closure."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive browser, role and viewport matrices beyond the essential E01-E05 and existing smoke journeys",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "CI 39317194836 executed the 16 essential browser tests, including all five E01-E05 first attempt/retry 0. It did not execute the exhaustive release matrix; optional dashboard/release validation was skipped with release_validation=false and is not coverage.",
+      "next_action": "Before release readiness, the coordinator enumerates and executes the remaining role/viewport/job-kind combinations on a qualified protected runtime, records results and resolves consequential failures in the root-owned release ledger."
+    },
+    {
+      "item": "Screenshot comparisons and visual inspection of the job-members, designation and dates surfaces",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and essential functional browser passes are development evidence, not visual-release evidence.",
+      "next_action": "Before release readiness, capture and inspect the approved responsive states for both job kinds, record comparison evidence and disposition in the release ledger, and obtain any separately required runtime/deployment authorization."
+    },
+    {
+      "item": "Manual walkthroughs and presentation/usability polish beyond the verified essential connected flow",
+      "owner": "Kopplas release-validation coordinator; root owns deferred-ledger integration",
+      "status": "deferred",
+      "evidence": "Manual release walkthroughs and polish were not executed in this author run. The actual automated persistence/retry/authorization journeys passed; no functional, security, transaction or storage obligation is deferred here.",
+      "next_action": "Before release readiness, perform the recorded manual keyboard/phone/desktop walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger."
+    }
+  ],
+  "release_ready": false
+}

@@ -1,0 +1,44 @@
+{
+  "kind": "calendar_feed.status_origin_discriminator_plan_local_checks",
+  "status": "PASS_METADATA_IDENTITY_ONLY",
+  "normal_acceptance_credit": 0,
+  "plan": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/plan.md",
+    "bytes": 12982,
+    "sha256": "8529b93439ae1d52675cd483326ff9383f36126753f8ec67a7a1161f2ca1308d"
+  },
+  "input_binding": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/input-binding.json",
+    "bytes": 9016,
+    "sha256": "4c1a9ed35d8027b516bcf6e699f02ca03d7655d4e96a8d8151604bc44747d81b"
+  },
+  "checks": {
+    "source_context_native_hash_object_equals_actual_HEAD_blob": 10,
+    "installed_readonly_files_hashed": 3,
+    "frozen_reference_files_hashed": 6,
+    "binding_full_reference_occurrences": 20,
+    "binding_unique_paths": 20,
+    "permission_predicates_declared": 18,
+    "routine_literals_declared": 3,
+    "plan_author_outputs": 3,
+    "source_changes": 0,
+    "tests_executed": 0,
+    "queries_or_connections": 0,
+    "native_or_API_or_provider_effects": 0,
+    "metadata_recheck_all_refs": 20,
+    "metadata_recheck_predicates": 18
+  },
+  "actual_readers": {
+    "primary_documentation_retrieved_memory_only": true,
+    "supabase_changelog": "UNAVAILABLE_TOOL_UNSUPPORTED_MARKDOWN_CONTENT_TYPE",
+    "semantic_driver_mapping": "Installed parser assignment/client/query forwarding read; no error frame execution or native routine credited",
+    "metadata_generation_native_exit": 0,
+    "metadata_recheck_native_exit": 0
+  },
+  "planned_controls_executed": false,
+  "initial_failures": [
+    "Draft-only cap assumption (16KiB/128KiB) disproved by actual sources before freeze; corrected to producer1000000/consumer65536; no source/old-artifact edits."
+  ],
+  "source_implementation_admitted": false,
+  "runtime_activation_admitted": false
+}

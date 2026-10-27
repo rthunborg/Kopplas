@@ -56,6 +56,12 @@ export async function readDocumentContext(ref: unknown, deps: DocumentContextDep
       if (source.status === "archived") return unavailable();
       ownerLabel = label(source.title, "Kalkyl"); contextReturnHref = `/calculations/${source.id}`;
     }
+    if (ref.ownerType === "work_order") {
+      const parent = await get("jobs", source.job_id);
+      if (!live(parent) || parent.id !== source.job_id) return unavailable();
+      ownerLabel = label(source.title, "Arbetsorder");
+      contextReturnHref = `/jobs/${parent.id}?workOrder=${source.id}`;
+    }
     if (ref.ownerType === "job") { ownerLabel = label(source.title, "Jobb"); contextReturnHref = `/jobs/${source.id}`; }
     if (ref.ownerType === "quote_version" || ref.ownerType === "quote_acceptance") {
       const version = ref.ownerType === "quote_version" ? source : await get("quote_versions", source.quote_version_id);

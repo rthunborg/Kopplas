@@ -1,0 +1,156 @@
+{
+  "Outcome": "PASS_INT015_STATIC_CATALOG_V4_ACTUAL_PUBLICATION_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/INT015-static-catalog-v4-actual-publication-qualification.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "route": "Root788393/native0 explicit independent Sol6.1 High actual-publication metadata qualification",
+    "scope": "Closed v4 allocation/native receipt/published JSON and frozen metadata comparison only. No AST rerun, source evaluation/traversal, unit census, tests or acquisition.",
+    "usable_catalog": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/unit-source-catalog.json",
+      "bytes": 76870,
+      "sha256": "2bc70be7214ba27e843a195fbf594033861c75a7b886e12ae4088d06fd0d8602",
+      "schema": "STATIC_UNIT_SOURCE_CATALOG_REFRESH_ONLY_V1",
+      "catalog_pointer": "/catalog",
+      "source_pointer": "/source",
+      "source_path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "source_bytes": 363561,
+      "source_sha256": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147",
+      "use": "Qualified declaration/location metadata for later precisely allocated operator preparation. Retain the actual published artifact/ref; consume catalog data and exact source binding, not the historical_aggregate as current and not the refresh script as a live executor. New operator/grant/source bindings require separate review; no automatic alias replacement or historical-proposal edit."
+    },
+    "actual_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/result.json",
+      "bytes": 2935,
+      "sha256": "542e6549d62024a6fae21287732334588c5fea93c78aa42e16783986dfe95e72",
+      "native_exit": 0,
+      "subprocess_run_returned": true,
+      "communicate_returned": true,
+      "timeout_expired": false,
+      "settled": true,
+      "elapsed_ms": 368.892,
+      "stdout_bytes": 688,
+      "stdout_sha256": "96067bcc0deddbf87c32a0399c3125fd22fe9e306f33d37b3aa7edf35369e0fd",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parsed_status": "PASS_STATIC_ONLY",
+      "inner_summary_elapsed_ms": 117.26950000000002,
+      "TypeScript": "5.9.3",
+      "closure_basis": "Closed author native receipt records subprocess.run and communicate returned with native0, settledtrue and no timeout; Root9865e0/native0 independently read/pin-verified the actual receipt and catalog per trusted handoff. This is distinct from script parsed_summary.closedtrue, which alone is not closure proof. No invented reader-thread/join/host-wall fields; outer368.892ms and script117.2695ms have different scopes.",
+      "fingerprint_limit": "Raw stdout/stderr were not reread or reconstructed. Stream lengths/fingerprints are recorded native-capture metadata, not independently recalculated from unretained bodies. Parsed stdout/source/counts agree with actual catalog and reviewed source behavior."
+    },
+    "allocation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-INT015-final-static-catalog-single-refresh-allocation-v4.json",
+      "bytes": 9012,
+      "sha256": "d7a31948f65386d9433d13ca4fa187dded2566eaefcdf2d6647f42c688c3f92d",
+      "status": "ALLOCATED_V4_REVIEWED_FINITE_PUBLICATION_ONCE",
+      "owner": "/root/design_authority_delivery_low",
+      "caller": "Explicit MAIN cwd and absolute Node22.23.2/script,15s timeout, one fresh invocation; no old-slot reuse. Actual execution/source/script pins match this allocation and prior independent source PASS.",
+      "source_commit": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe, allocated/trusted Root metadata; no new Git verification by this reviewer",
+      "budget": "v4 Node1/AST1 consumed; remaining Node0/CLOSED. Cumulative final-source refresh lane Node3/AST2 including closed v2 pre-AST failure and v3 completed AST/publication failure. No ONE cumulative claim, no retry/replay authority."
+    },
+    "catalog_qualification": {
+      "schema": "Exact expected STATIC_UNIT_SOURCE_CATALOG_REFRESH_ONLY_V1/refreshes1;20 catalog paths exactly equal frozen embedding path set. Wrapper3346 lines and TypeScript5.9.3; no path discovery or unexpected inventory entry.",
+      "wrapper": "201 rows/201 distinct title hashes, all199 frozen prior title hashes present, exactly2 new rows. All201 current wrapper rows have hash64/valid positive line within3346/nonnegative line length/null fourth-field shape. Preservation claim is old199 title membership; no producer full-row/old-line equality guard is invented.",
+      "new_records": [
+        [
+          "1fdfe5ccaae0444aef20363373a9927d9b9c99059dd7f5b53fd626d484d05866",
+          3304,
+          116,
+          null
+        ],
+        [
+          "c07a225e45bb899f2a41a68cd07bc05166005a6ed246c633a6b0adc5395bc2b7",
+          3332,
+          119,
+          null
+        ]
+      ],
+      "new_record_basis": "Independently hashed the two reviewed static titles and matched both actual new rows and receipt summary. Locations/lengths are actual published metadata, not reconstructed AST output. No missing/extra old/new hash membership.",
+      "other19": "Every other19 catalog object is value-equal to the frozen embedding object, preserving existing row shapes/optional UNIT-ID metadata. Exactly19 unique hash-check paths match the non-wrapper set; each raw/LF byte/hash and recorded blob value equals its exact frozen unique203 vector row; git_blob_verifiedfalse in every record. v4 native0 through reviewed guard qualifies actual hash checks at execution. Reviewer did not reread/hash these19 source files or re-extract them.",
+      "source": "Published /source, receipt parsed summary/source_after and allocation source agree363561/7ad2...; reviewer current hash-only check matches. Script after/ref remains5409/f92b... and is the exact independently reviewed implementation. Seven input/ref pins independently matched actual files. No source/Git/execution claim is derived from a timestamp or stdout flag."
+    },
+    "current_aggregate_metadata": {
+      "static_declaration_rows": 450,
+      "catalog_paths": 20,
+      "fresh_wrapper_static_rows": 201,
+      "reused_other19_static_rows": 249,
+      "basis": "Independently summed actual static_tests array lengths from all20 published catalog entries, rather than adding2 to historical448. This qualifies the current published metadata aggregate with mixed fresh-wrapper/reused-other19 provenance, not450 fresh AST discoveries or450 executed/distinct global cases.",
+      "dynamic_excluded_metadata": 19,
+      "dynamic_exclusion_provenance": "Reused pinned embedding current_dynamic_excluded19/baseline_excluded19/new_dynamic_exclusions0. v4 extracts static declarations only; no new dynamic census or re-extraction of those exclusions.19 is retained metadata under frozen-source reuse, not19 executed skips or fresh dynamic discovery.",
+      "historical_aggregate": "Artifact historical_aggregate448/19/199 and qualified_as_current_aggregatefalse remain truthful history. Current static450 and wrapper201 are separately qualified here from actual publication; do not label the whole artifact historical or rewrite old artifacts.",
+      "runtime_coverage_credit": 0
+    },
+    "bound_input_refs": [
+      {
+        "role": "source_review",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-annotation-CRLF-targeted-followup-review.json",
+        "bytes": 9373,
+        "sha256": "e46f51b28f65bea738f3062a7a72b04d073cac41d309ec59a88b655569c2b81e"
+      },
+      {
+        "role": "historical_catalog",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/unit-source-catalog.json",
+        "bytes": 29592,
+        "sha256": "dd33b59e1ee9ed11bb84139c707f1b4a71b387886fcfdab47413066de98e24ed"
+      },
+      {
+        "role": "prior_embedding",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/proposal.json",
+        "bytes": 287968,
+        "sha256": "b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3"
+      },
+      {
+        "role": "reviewed_existing_extractor",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/refresh-static-catalog.mjs",
+        "bytes": 2011,
+        "sha256": "576c27ec02e060dd28d6d168b6cc66606c2612c0b69d8ba21f8d906a17dbeebc"
+      },
+      {
+        "role": "script",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/refresh-static-catalog.mjs",
+        "bytes": 5409,
+        "sha256": "f92b370cbb620bb84f5a26c3cfa0388e79482f9919170cd1c89bf5c033658471"
+      },
+      {
+        "role": "independent_v4_review",
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-static-catalog-v4-independent-source-review.json",
+        "bytes": 12571,
+        "sha256": "aa4bff3793af97295a4ca2bbf0bece57d7e9c069036e368dee8f4195e0d0a73b"
+      }
+    ],
+    "honest_limits": [
+      "This qualification credits the catalog publication and its static metadata only. Final affected201 unit passes are separate earlier execution evidence; this refresh supplies0 native-case/runtime/skip coverage.",
+      "Current required95 remains93P/API019F/API020unexecuted. No API019 repair, first-emitter/cause/benignity or native acceptance follows from the catalog.",
+      "Recorded Git blob strings remain historical/unverified; this reviewer did not invoke Git or claim current blob equality. Raw/LF source hash checks are separate from Git verification.",
+      "Old199 membership is established as title hashes only; other19 object equality is independently checked as metadata reuse, not fresh AST extraction.",
+      "Source privacy/custody/current/historical backend facts and job-ended operational-disposition distinctions remain unchanged."
+    ],
+    "reviewer_metadata_harness_history": "An initial generic row check assumed every reused fourth field was null and printed apparent invalid rows. Inspecting the exact frozen embedding established preserved UNIT-ID strings are valid existing metadata; wrapper-only null schema and exact other19 object equality were then checked correctly. Likewise an initial PowerShell collection.Count print enumerated per-property ones; actual array-wrapped path count is20. Neither read-only diagnostic is a producer defect, altered evidence or publication failure.",
+    "boundary": {
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "current_native_acceptance": 0,
+      "new_effect_authority": false,
+      "remaining_v4_budget": 0,
+      "all_old_slots": "CLOSED",
+      "no_merge_or_deployment": true
+    },
+    "reviewer_activity": "Only closed JSON evidence and exact input/source/script byte/hash metadata read; catalog-object equality/title-set/count/shape reconciliation and static title hashes computed. No AST/source traversal/evaluation, Node/native/workload/test/Git/network/install/resource/SQL/DB/browser/DEBUG call or acquisition; no in-flight design-doc read. Sole write is this new report."
+  },
+  "Open questions": [
+    "Future operator integration/source bindings and any changed-source native result remain separately unqualified.",
+    "Current95 failure/cause and scoped DB/key/backend unknowns remain as previously qualified."
+  ],
+  "Deferred work": [
+    "Root may reference the exact76870/2bc70... artifact and /catalog mapping in separately owned/reviewed future operator preparation, carrying450 current static rows/201 wrapper and19 reused exclusion provenance accurately.",
+    "Any new runtime/acquisition/custody operation requires a separate finite allocation; this qualification grants none.",
+    "Preserve v2/v3 failures and final cumulative counters; do not rerun the exhausted v4 publication."
+  ],
+  "Blockers": [
+    "No catalog-publication discrepancy found; actual v4 static publication is qualified.",
+    "Current failed/incomplete95 independently blocks P5/development/delivery acceptance. This static publication does not clear runtime/custody or deployment gates."
+  ]
+}

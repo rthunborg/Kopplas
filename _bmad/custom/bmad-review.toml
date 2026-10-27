@@ -2,3 +2,8 @@
 review_guidance = [
   "For implementation story/code reviews, read {project-root}/docs/process/review-order.md. Verify the author trail against the final change and its AC/invariant-to-test evidence; report consequential mismatches and coverage limitations. Do not invent rationale, edit an author's trail during read-only review, or require backfilling historical stories. Refer any applied fixes back to their author for a trail refresh.",
 ]
+
+on_complete = '''
+
+Apply {project-root}/docs/quality/frontend-quality-gate.md to this exact candidate and final diff. A frontend completion/review claim requires the executable authenticated gate; never interpret provider error/unavailable/skipped as PASS. The implementation handoff must run `node scripts/quality/frontend-controller.mjs local --base <recorded-full-baseline>` before returning completed work. For Auto-BMAD completion/status/finalization mutations use the project pre-transition wrapper `node scripts/quality/completion-gate.mjs <recorded-full-baseline> <original-helper-name.py> <unchanged-original-arguments>` in place of direct delivery_gate.py/state_update.py/state_plan.py/story_plan.py execution; do not add config or result keys. The existing helper still enforces its original record. This post-terminal hook itself cannot undo an installed done/result: if the gate was missed, report visual acceptance blocked through existing summary/residual-risk fields and keep PR readiness blocked; do not fabricate a pass or rewrite historical state. Recheck affected evidence after every fix/new head. Read-only reviews report missing acceptance without authoring it.
+'''

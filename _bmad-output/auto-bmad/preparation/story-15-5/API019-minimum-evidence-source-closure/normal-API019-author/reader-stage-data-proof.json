@@ -1,0 +1,28 @@
+{
+  "baseline": {
+    "path": ".env.epic15.mail-runtime\\story-15-5-preparation\\normal-INT014-NORMAL-terminal-actual-preparation\\reader.py",
+    "bytes": 50733,
+    "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+  },
+  "successor": {
+    "path": ".env.epic15.mail-runtime\\story-15-5-preparation\\normal-API019-author\\reader-stage-data-successor.py",
+    "bytes": 50846,
+    "sha256": "b7a34c43b1b1cd1e088685c31f29787c908f201354468b71f6929a2d788e5d9c"
+  },
+  "delta": {
+    "old": "'scenario-http-transport','scenario-rls001-own'",
+    "new": "'scenario-http-transport','scenario-telemetry-observation-timeout','scenario-telemetry-privacy-refused','scenario-telemetry-parse-refused','scenario-rls001-own'"
+  },
+  "all_function_source_segments_byte_equal": true,
+  "function_segments_including_nested": 41,
+  "full_inverse_equal": true,
+  "controls": {
+    "groups_passed": 4,
+    "actual_origin_and_diagnostic_to_production_failure_facts": 3,
+    "forged_native_message_stays_scenario": true,
+    "unknown_and_raw_injection_refused": true,
+    "unchanged_shape_and_caps": true
+  },
+  "execution_authority": false,
+  "identity": "Historical consumed tuple/path refs retained byte-identical; not new runtime enrollment. Never invoke without a later separately reviewed actual binding, new grant/Root activation. No speculation about future tuple."
+}

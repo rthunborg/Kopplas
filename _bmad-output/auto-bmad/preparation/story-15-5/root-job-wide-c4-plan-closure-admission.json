@@ -1,0 +1,25 @@
+{
+  "kind": "ROOT_MECHANICAL_C4_PLAN_CLOSURE_ADMISSION",
+  "head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+  "verdict": "PASS_PLAN_ONLY_C4_GAPS_CLOSED",
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction-review/original-attestation.json",
+    "bytes": 16395,
+    "sha256": "0995ad18eec8846b45491fb7d94fb44938782e7f329107945d2c76810c1e3535"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction-review/original-report.md",
+    "bytes": 3733,
+    "sha256": "63e55e6f6f2f491835d9102f1890f707878ec67e2d8f956365c85aaa0fe41a67"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction-review/manifest.json",
+    "bytes": 723,
+    "sha256": "fd716e558fb41f4a6d189d995e54547bbe22affd6f017a86fa8c15a0d920f266"
+  },
+  "verified_file_ref_occurrences": 32,
+  "source_edit_authorized": false,
+  "native_effects_authorized": false,
+  "normal_acceptance_credit": 0,
+  "next": "Coordinator exactsixsource/offlineallocation; High sourceimplementation then distinctHigh cumulative committeddelta review."
+}

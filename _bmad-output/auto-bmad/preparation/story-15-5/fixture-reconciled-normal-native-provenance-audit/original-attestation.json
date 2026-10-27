@@ -1,0 +1,291 @@
+{
+  "schema": "FIXTURE_RECONCILED_FAILED_NORMAL_NATIVE_AUDIT_ATTESTATION_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent": true,
+  "verdict": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "scope": "one frozen native evidence/provenance/truth audit; unchanged source qualification reused",
+  "proof": {
+    "verdict": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+    "packet_members": 23,
+    "hash_bound_members_excluding_self": 22,
+    "packet_manifest_sha256": "cb2e4f7a6c9ef21463d2b261c0963192c12084b333c5caa6bb4477cddb959c61",
+    "requests": [
+      {
+        "sequence": 1,
+        "label": "normal-run-archive",
+        "stdout_bytes": 824839,
+        "settled_native0_EOF_joined_closed": true
+      },
+      {
+        "sequence": 2,
+        "label": "normal-artifact-list",
+        "stdout_bytes": 2195,
+        "settled_native0_EOF_joined_closed": true
+      },
+      {
+        "sequence": 3,
+        "label": "native-full-integration",
+        "stdout_bytes": 110359,
+        "settled_native0_EOF_joined_closed": true
+      },
+      {
+        "sequence": 4,
+        "label": "native-general-browser",
+        "stdout_bytes": 13243,
+        "settled_native0_EOF_joined_closed": true
+      },
+      {
+        "sequence": 5,
+        "label": "native-isolated-storage-recovery",
+        "stdout_bytes": 676,
+        "settled_native0_EOF_joined_closed": true
+      }
+    ],
+    "logical_requests_consumed": 5,
+    "reports": 3,
+    "slots_closed": true,
+    "Node": {
+      "cancelled": 0,
+      "fail": 0,
+      "pass": 3390,
+      "skipped": 0,
+      "suites": 103,
+      "tests": 3390,
+      "todo": 0
+    },
+    "Python_separate_batches": [
+      [
+        2
+      ],
+      [
+        26,
+        10,
+        5
+      ]
+    ],
+    "DB_assertion_status_counts": {
+      "failed": 28,
+      "pending": 16,
+      "passed": 2025,
+      "skipped": 52
+    },
+    "DB_summary_numPendingTests": 52,
+    "DB_failure_identity_records": 28,
+    "DB_unique_file_title_hash_pairs": 28,
+    "DB_failure_file_counts": {
+      "tests/integration/commands/conflict-resolver.int.test.ts": 1,
+      "tests/integration/commands/booking-series.int.test.ts": 23,
+      "tests/integration/rls/booking-series.rls.test.ts": 4
+    },
+    "DB_failure_identity_limit": "File plus full-title SHA256 retained for all28; plaintext title/line/original exception not retained. Suitable for local source-title hash matching, not causal proof.",
+    "DB_SERVER_ERROR_safe_facts_records": 28,
+    "DB_owned_SQLSTATE_leaf_tuples": 0,
+    "story_DB_passed": 16,
+    "story_DB_missing_unexecuted": 35,
+    "API019": "UNEXECUTED",
+    "serial6": "Five empty zero-duration placeholders; conflict-resolver1failed16pending; no invented hooks/teardown/coverage.",
+    "browser_case_statuses": {
+      "unexpected": 2,
+      "expected": 11,
+      "flaky": 1
+    },
+    "other_smoke_case_statuses": {
+      "expected": 41,
+      "unexpected": 1
+    },
+    "unexpected_story": [
+      "E2E-001",
+      "E2E-010-revoke"
+    ],
+    "flaky_story": [
+      "E2E-007"
+    ],
+    "other_unexpected_source_identity": "UNAVAILABLE",
+    "recovery_cases_passed": 1,
+    "nudge_label_count": null,
+    "E2E001_label_records_per_retry": [
+      6,
+      6
+    ],
+    "E2E001_label_unique_actions_per_retry": [
+      3,
+      3
+    ],
+    "label_repeat_and_state_interpretation": "UNKNOWN; not action-count, event-order, original-cause or backend-settlement proof.",
+    "runtime_custody": "Both keyDeletedfalse/custody retained/unverified, projecteddbClosedtrue; default no-launch fields cannot override report-proven child execution.",
+    "source75_SQL116_trigger10_supplemental3_unchanged": true,
+    "native_child_provenance": "Native-reported retained receipt; no independent direct child-tool observation by Root/auditor",
+    "original_cause": "UNKNOWN",
+    "normal_acceptance": 0,
+    "auditor_GETs": 0,
+    "operator_execution": 0,
+    "new_algorithm_controls": 0
+  },
+  "proof_script": "import pathlib,json,hashlib,collections,re,ast\nbase=pathlib.Path.cwd();prep=base/'.env.epic15.mail-runtime/story-15-5-preparation';p=prep/'checkpoint-72651ada-fixture-reconciled-normal-ci-independent'\ndef sha(b):return hashlib.sha256(b).hexdigest()\ndef load(n):return json.loads((p/n).read_bytes())\ndef bound(r):\n raw=(base/r['path']).read_bytes();assert len(raw)==r['bytes'] and sha(raw)==r['sha256'],r['path'];return raw\nm=load('manifest.json');assert sha((p/'manifest.json').read_bytes())=='cb2e4f7a6c9ef21463d2b261c0963192c12084b333c5caa6bb4477cddb959c61'\nassert len(list(p.iterdir()))==23 and len(m['files'])==22\nassert {x.name for x in p.iterdir()}=={'manifest.json'}|{pathlib.Path(x['path']).name for x in m['files']}\nfor r in m['files']:bound(r)\nq=load('native-qualification.json');er=load('execution-receipt.json');intent=load('operator-intent.json');sp=load('source-provenance.json');summary=load('acquisition-summary.json');a=load('run-archive-projection.json');listing=load('artifact-list-projection.json');labels=load('source-label-projection.json');tb=load('terminal-bindings.json')\nfor ref in q['references']+intent['inputs']+sp['input_refs']:bound(ref)\nactivation=json.loads(bound(intent['activation']));assert sha(bound(intent['activation']))=='9344cd813cbdab621d437787bcda2600c83f07a8fe66bbdeadcd4be748655350' and len(activation)==23 and activation['execution_authorized']is True\nterm=json.loads(bound(activation['actual_terminal']));allocation=json.loads(bound(activation['allocation']));proof=json.loads(bound(activation['source_Git_proof']))\nassert allocation['tool_status']=='completed' and allocation['tool_id']=='exec-9469696d-8751-4489-b4f6-5c9bed270f74' and allocation['turn_id']=='01a160e5-ed62-7153-8715-4397f58f67a7'\nassert activation['operator_review']['status']=='PASS' and activation['operator_review']['independent']is True\nfor ref in activation['operator_review']['evidence']+activation['current_review_readiness']:bound(ref)\nop=bound(activation['operator_source']);assert sha(op)==intent['operator_sha256']==er['operator']['sha256']=='5c16681bf8d701a9ce5b2f16da9ec803dc18147a0b8108cf28e0186982876990'\nrun=39694409020;head='72651ada5392ff5b194fd674e07b300cef60e64b';source='7864550818ce130fbd5d1fd1bb530f0f4c2b19f4';cp='6d5e27c3-74f8-4d87-b269-1627a7e45818'\nfor d in [q,m,intent,labels]:assert d['run']==run and d['head']==head and d['source']==source and d['normal_acceptance']==0\nassert q['checkpoint']==labels['checkpoint']==intent['checkpoint']==activation['checkpoint_id']==cp and q['attempt']==activation['attempt']==1\nassert q['mode']==activation['mode']=='normal' and q['cause_proof']is activation['cause_proof']is False and q['release_validation']is activation['release_validation']is False\nassert term['run']['id']==run and term['run']['head_sha']==head and term['run']['run_attempt']==1 and term['run']['status']=='completed' and term['run']['conclusion']=='failure'\nassert tb['ownership']==term['ownership'] and len(tb['jobs'])==9\nassert {j['name']:j['conclusion']for j in tb['jobs']}==q['jobs']==activation['actual_jobs']\nassert activation['source_Git_proof']in activation['current_review_readiness'] and proof['source']==source and proof['head']==proof['pushed']==proof['current']==head\nreports={}\nfor name in ['native-full-integration','native-general-browser','native-isolated-storage-recovery']:\n reports[name]=load(name+'-projection.json')\nexpected_members={'native-full-integration':'full-integration.json','native-general-browser':'general-browser.json','native-isolated-storage-recovery':'isolated-storage-recovery.json'}\nassert listing['total_count']==len(listing['artifacts'])==3\nfor meta in listing['artifacts']:\n report=reports[meta['name']]\n assert report['artifact']==meta and meta['qualified_for_single_download']is True and meta['run_head_bound']is True and meta['expired']is False\n assert report['API_digest_verified']is True and report['advertised_size_equal']is True and report['archive_sha256']==meta['digest'].split(':')[1] and report['archive_bytes']==meta['advertised_bytes']\n assert report['member']==expected_members[meta['name']] and report['zip_entries']==1 and report['member_bytes']==report['declared_total_bytes']<=16777216 and report['declared_total_bytes']<=134217728\n assert report['raw_persisted']is False\ndetails=[]\nlabels_order=['normal-run-archive','normal-artifact-list']+list(expected_members)\nsizes=[824839,2195,110359,13243,676]\nfor i,label in enumerate(labels_order,1):\n ri=load(f'request-{i:02}-intent.json');rr=load(f'request-{i:02}-result.json')\n if i==1:endpoint=f'repos/rthunborg/Kopplas/actions/runs/{run}/logs';cap=33554432;digest=a['archive_sha256']\n elif i==2:endpoint=f'repos/rthunborg/Kopplas/actions/runs/{run}/artifacts?per_page=100';cap=4194304;digest=listing['listing_sha256']\n else:meta=reports[label]['artifact'];endpoint=f\"repos/rthunborg/Kopplas/actions/artifacts/{meta['id']}/zip\";cap=33554432;digest=reports[label]['archive_sha256']\n for d in [ri,rr]:\n  assert d['argv']==['gh','api','--method','GET',endpoint] and d['sequence']==i and d['label']==label and d['inline_source_sha256']==sha(op)\n  assert d['intent_persisted_before_spawn']is True and d['raw_persisted']is False and d['stdout_cap']==cap and d['stderr_cap']==65536 and d['timeout_seconds']==15\n assert rr['native_exit']==0 and rr['category']is None and all(rr[k]is True for k in ['capture_complete','handles_closed','settled']) and 0<=rr['elapsed_seconds']<=15\n assert len(rr['streams'])==2 and rr['streams'][0]['observed_bytes']==sizes[i-1] and rr['streams'][0]['sha256']==digest\n for st in rr['streams']:assert all(st[k]is True for k in ['joined','physical_EOF','reader_done']) and st['overflow']is st['reader_error']is False\n assert rr['streams'][1]['observed_bytes']==0 and rr['streams'][1]['sha256']==sha(b'')\n assert er['closed_stdout_records'][i-1]=={'category':None,'label':label,'native_exit':0,'request':i,'settled':True,'stdout_bytes':sizes[i-1]}\n details.append({'sequence':i,'label':label,'stdout_bytes':sizes[i-1],'settled_native0_EOF_joined_closed':True})\nassert summary['actual_logical_requests']==er['logical_GETs']==5 and len(summary['reports'])==3\nassert a['archive_bytes']==824839 and a['declared_total_bytes']==4474354<=134217728 and a['selected_inflated_bytes']==2232224<=a['declared_total_bytes']\nassert sum(row['bytes']for rows in a['jobs'].values()for row in rows)==a['selected_inflated_bytes']\nfor job,rows in a['jobs'].items():\n allowed={f\"{s['number']}_{s['name']}.txt\":s for j in term['jobs']if j['name']==job for s in j['steps']}\n for row in rows:\n  assert row['member'].startswith(job+'/')and row['member'][len(job)+1:]in allowed and row['bytes']<=16777216\n  assert row['step_conclusion']==allowed[row['member'][len(job)+1:]]['conclusion']\nunit=next(r for r in a['jobs']['verify']if r['member']=='verify/12_Unit tests (pure logic, node --test).txt')\nnode={'cancelled':0,'fail':0,'pass':3390,'skipped':0,'suites':103,'tests':3390,'todo':0};assert unit['Node_totals']==[node]==[q['verify']['Node']]\nmarkers=collections.Counter(unit['story_Node_pass_lines']);assert sum(markers.values())==32 and len(markers)==30 and {k:v for k,v in markers.items()if v>1}=={'R1-06':2,'R1-07':2}\npy=[{'OK_markers':x['python_OK_markers'],'batches':x['python_batches'],'member':x['member'],'step_conclusion':x['step_conclusion']}for x in a['jobs']['verify']if x['python_batches']]\nassert py==q['verify']['Python_batches_by_step'] and [x['batches']for x in py]==[[2],[26,10,5]]\ndb=reports['native-full-integration']['projection'];dbcounts=collections.Counter()\nfor f in db['files']:dbcounts.update(f['counts'])\nassert dict(dbcounts)==db['assertion_status_counts']==q['fullDB']['assertion_status_counts']=={'failed':28,'passed':2025,'pending':16,'skipped':52}\nassert sum(dbcounts.values())==2121 and db['summary']==q['fullDB']['summary_as_reported'] and db['summary']['numPendingTests']==52\nnonstory=db['nonstory_failed_cases'];assert len(nonstory)==28 and len({(x['file'],x['title_sha256'])for x in nonstory})==28\nfailed_files=collections.Counter(x['file']for x in nonstory);assert dict(failed_files)==q['fullDB']['nonstory_failure_files']\nfor c in nonstory:\n assert c['id']is None and re.fullmatch('[0-9a-f]{64}',c['title_sha256'])\n assert set(c)=={'file','id','title_sha256','failure'} and c['failure']['raw_failure_details']=='NOT_PERSISTED'\n assert c['failure']['owned_leaf_tuple_count']==0 and c['failure']['owned_leaf_tuples']==[]\n assert c['failure']['fixed_category_counts'].get('SERVER_ERROR',0)>0\nassert len(db['story_cases'])==16 and all(x['status']=='passed'for x in db['story_cases'])\nassert db['story_reconciliation']['expected_count']==51 and len(db['story_reconciliation']['missing_expected_ids'])==35 and 'API019'in db['story_reconciliation']['missing_expected_ids']\nserial=q['fullDB']['serial6'];assert all(v==1 for v in serial['reported_file_occurrences'].values()) and len(serial['rows'])==6\nfor sr in serial['rows']:\n assert next(f for f in db['files']if f['file']==sr['file'])==sr\n if sr['file'].endswith('/conflict-resolver.int.test.ts'):assert sr['counts']=={'failed':1,'pending':16}\n else:assert sr['counts']=={} and sr['startTime']==sr['endTime'] and sr['story_cases']==[]\nassert serial['actual_teardown_timestamp']is None\nbr=reports['native-general-browser']['projection'];bs=collections.Counter(x['status']for x in br['story_cases']);bo=collections.Counter(x['status']for x in br['other_smoke_cases'])\nassert bs=={'expected':11,'flaky':1,'unexpected':2} and bo=={'expected':41,'unexpected':1}\nassert len(br['story_cases'])==14 and len(br['other_smoke_cases'])==42 and br['stats']==q['browser']['native_stats']\nassert {x['id']for x in br['story_cases']if x['status']=='unexpected'}=={'E2E-001','E2E-010-revoke'}\nassert [x['id']for x in br['story_cases']if x['status']=='flaky']==['E2E-007']\nassert all(x['id']is None for x in br['other_smoke_cases'])\nassert collections.Counter(t['status']for x in br['story_cases']for t in x['attempts'])=={'failed':5,'passed':12}\nassert collections.Counter(t['status']for x in br['other_smoke_cases']for t in x['attempts'])=={'failed':2,'passed':41}\nassert br['attachments']==q['browser']['attachment_metadata'] and br['attachments']['references']==br['attachments']['path_only']==8 and br['attachments']['inline']==0 and br['attachments']['available_content_qualification']is None\nrec=reports['native-isolated-storage-recovery']['projection'];assert rec['assertion_status_counts']=={'passed':1}and rec['summary']==q['recovery']['report_summary']\nassert labels['nudge']==q['fixed_labels']['NUDGE004']and labels['nudge']['record_count']is None and labels['nudge']['availability']=='UNKNOWN_MISSING'\nassert labels['browser']==q['fixed_labels']['E2E001'] and len(labels['browser']['attempts'])==2\nconst={}\nfor n in ast.parse(op.decode()).body:\n if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Name)and n.targets[0].id in ['BROWSER_SITES','REGISTRATION','WAITER','WORK','OBSERVATION']:const[n.targets[0].id]=ast.literal_eval(n.value)\nfor retry,attempt in enumerate(labels['browser']['attempts']):\n assert attempt['retry']==retry and attempt['record_count']==len(attempt['records'])==6 and attempt['interpretation']=='UNKNOWN'\n counts=collections.Counter()\n for line in attempt['records']:\n  assert line.isascii() and len(line.encode())<=512 and line.startswith('calendar-source-label-v1 ')\n  parts=line.split()[1:];assert all(x.count('=')==1 for x in parts);d=dict(x.split('=')for x in parts)\n  assert list(d)==['case','site','action','ordinal','registration','request','response','readback','completion','observation'] and len(d)==len(parts)\n  assert d['case']=='E2E001'and d['site']in const['BROWSER_SITES']and(d['action'],d['ordinal'])in [('create','1'),('rotate','2'),('revoke','3')]\n  assert d['registration']in const['REGISTRATION']and all(d[k]in const['WAITER']for k in ['request','response'])and all(d[k]in const['WORK']for k in ['readback','completion'])and d['observation']in const['OBSERVATION']\n  counts[(d['action'],d['ordinal'])]+=1\n assert counts=={('create','1'):2,('rotate','2'):2,('revoke','3'):2}\nassert labels['cause']==labels['settlement']==labels['slot_completeness']=='UNKNOWN' and len((p/'source-label-projection.json').read_bytes())==3770<=32768\nlife={}\nfor job in ['db','e2e']:\n life[job]=[l for row in a['jobs'][job]for l in row.get('lifecycle',[])]\n assert life[job]==q['lifecycle']['projected_native_receipts'][job] and len(life[job])==1\n l=life[job][0];assert l['keyDeleted']is False and l['custody_retained']is True and l['dbClosed']is True and l['keyOutcome']=='unverified'\n assert l['launchAttempted']is False and l['childLaunchState']=='not-attempted'and l['childExitCodes']\n assert len(l['privacy_controls'])==4 and all(x['matchesRequired']is True and x['canSet']is True for x in l['privacy_controls'])and len(l['setupAuthority'])==7 and all(l['setupAuthority'].values())\nmeta=er['actual_returned_tools_exec_command_metadata'];assert meta['chunk_id']=='6e12bd'and meta['exit_code']==0 and meta['wall_time_seconds']==6.5102445 and meta['session_id']is None and meta['waits']==[]\nassert er['Root_independent_native_lifecycle_observation']is False and er['additional_invocations_or_network']==0\nb=json.loads(bound(activation['operator_bindings']));data=json.loads(bound(b['source75_and_SQL116_ref']))\nfor row in data['rows']+data['migrations']+data['provider_trigger_context10']:\n raw=(base/row['path']).read_bytes();assert len(raw)==row['raw_bytes'] and sha(raw)==row['raw_sha256'] and sha(raw.replace(b'\\r\\n',b'\\n'))==row['clean_sha256']\nfor row in b['supplemental3']:bound(row)\nprint(json.dumps({'verdict':'PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE','packet_members':23,'hash_bound_members_excluding_self':22,'packet_manifest_sha256':sha((p/'manifest.json').read_bytes()),'requests':details,'logical_requests_consumed':5,'reports':3,'slots_closed':True,'Node':node,'Python_separate_batches':[[2],[26,10,5]],'DB_assertion_status_counts':dict(dbcounts),'DB_summary_numPendingTests':52,'DB_failure_identity_records':28,'DB_unique_file_title_hash_pairs':28,'DB_failure_file_counts':dict(failed_files),'DB_failure_identity_limit':'File plus full-title SHA256 retained for all28; plaintext title/line/original exception not retained. Suitable for local source-title hash matching, not causal proof.','DB_SERVER_ERROR_safe_facts_records':28,'DB_owned_SQLSTATE_leaf_tuples':0,'story_DB_passed':16,'story_DB_missing_unexecuted':35,'API019':'UNEXECUTED','serial6':'Five empty zero-duration placeholders; conflict-resolver1failed16pending; no invented hooks/teardown/coverage.','browser_case_statuses':dict(bs),'other_smoke_case_statuses':dict(bo),'unexpected_story':['E2E-001','E2E-010-revoke'],'flaky_story':['E2E-007'],'other_unexpected_source_identity':'UNAVAILABLE','recovery_cases_passed':1,'nudge_label_count':None,'E2E001_label_records_per_retry':[6,6],'E2E001_label_unique_actions_per_retry':[3,3],'label_repeat_and_state_interpretation':'UNKNOWN; not action-count, event-order, original-cause or backend-settlement proof.','runtime_custody':'Both keyDeletedfalse/custody retained/unverified, projecteddbClosedtrue; default no-launch fields cannot override report-proven child execution.','source75_SQL116_trigger10_supplemental3_unchanged':True,'native_child_provenance':'Native-reported retained receipt; no independent direct child-tool observation by Root/auditor','original_cause':'UNKNOWN','normal_acceptance':0,'auditor_GETs':0,'operator_execution':0,'new_algorithm_controls':0},indent=2))\n",
+  "proof_script_sha256": "a76c4ce58432dc4e06224617279628faefab0c1ec0529f5d294f0032f083213f",
+  "proof_exit": 0,
+  "proof_wall_seconds": 0.187939,
+  "packet_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/manifest.json",
+    "bytes": 6368,
+    "sha256": "cb2e4f7a6c9ef21463d2b261c0963192c12084b333c5caa6bb4477cddb959c61"
+  },
+  "packet_members": [
+    {
+      "bytes": 2554,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/acquisition-summary.json",
+      "sha256": "0b745fc990499071376dcd8d88d78ca1d5e3ebaceb4c2ed405930b81042ef658"
+    },
+    {
+      "bytes": 1291,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/artifact-list-projection.json",
+      "sha256": "f70cdb736f24ec2daf4db6811fe3ab10b8e901ed664136f37b288998934f1791"
+    },
+    {
+      "bytes": 2242,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/execution-receipt.json",
+      "sha256": "e8c083bc0050daa4220b42a9363eb1c99cc2496fe3692b5011bc2ba554c712b6"
+    },
+    {
+      "bytes": 72379,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/native-full-integration-projection.json",
+      "sha256": "1929f712dc77e6e17fee71b3dcf05fc6c4fe81eaffebce41b9a7926bda9c5f39"
+    },
+    {
+      "bytes": 16526,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/native-general-browser-projection.json",
+      "sha256": "9dc916945f5812eac4bbc93c8d91d05503791137cc0220b8fb700211c68b0130"
+    },
+    {
+      "bytes": 2007,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/native-isolated-storage-recovery-projection.json",
+      "sha256": "8530160b3ea11c3a23944178dac8856e738549ce2266c0a5d49bdc7e6f90fa06"
+    },
+    {
+      "bytes": 22493,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/native-qualification.json",
+      "sha256": "4b2bd1828bb68373f4d9c8a4ad1b1456accf2e6913325a27e0fb6d14cee891fe"
+    },
+    {
+      "bytes": 7980,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/operator-intent.json",
+      "sha256": "3a9d1073955fcf1748377868ba2609e328bfb9d7e6d656a09e5f207334cbb9ae"
+    },
+    {
+      "bytes": 413,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-01-intent.json",
+      "sha256": "2d15f3bf9e29c458f4cce5099219eab412292d290cbcddf71cdcc5b24b4637b8"
+    },
+    {
+      "bytes": 1134,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-01-result.json",
+      "sha256": "a3e55448b0b057cd71648f2c541ff82a838b86c903b373cc4735c2663b457a55"
+    },
+    {
+      "bytes": 432,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-02-intent.json",
+      "sha256": "50d0cabaaa321cbb2780d3e22c8797938be447f1f60b0db3c97d1f90a0b8cd10"
+    },
+    {
+      "bytes": 1151,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-02-result.json",
+      "sha256": "46c117aaf9e65a5d35a1958c91180f4740f5f88a98bdc56c8527ab0908b6df72"
+    },
+    {
+      "bytes": 422,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-03-intent.json",
+      "sha256": "c8818af21714e0ac5c7758a5844b448f775f7f4d4460a991bc9603e7cda5a8d4"
+    },
+    {
+      "bytes": 1141,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-03-result.json",
+      "sha256": "aadbc746d9cc7262e78053b700e90a326551e773ff83f51d9126a50ff96598f6"
+    },
+    {
+      "bytes": 421,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-04-intent.json",
+      "sha256": "fb751d6ad2a955347bf1e9070c395b5528c27fd801e6c35cfd39d47d37238547"
+    },
+    {
+      "bytes": 1141,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-04-result.json",
+      "sha256": "5c790866b1bad6511879f58b27e1f375bb67b9564717d275851e635b166c1644"
+    },
+    {
+      "bytes": 431,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-05-intent.json",
+      "sha256": "48c8d7a9af0178efd367053a35d081fcb44418d6a1a01baa529ad77d819a6205"
+    },
+    {
+      "bytes": 1149,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/request-05-result.json",
+      "sha256": "9d91bac8841adfdcb0aa8191038f45f9639785eb4bc91ae8ded2eabe27a9eac7"
+    },
+    {
+      "bytes": 47897,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/run-archive-projection.json",
+      "sha256": "96081cdfb90c910dfd925ccf0c26eac35eaebbd42531f27eb0f4dec08f7f985e"
+    },
+    {
+      "bytes": 3770,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/source-label-projection.json",
+      "sha256": "d296edd830332ac9dc8cf618f26a619c787ab53b03727db21bb07852229b352e"
+    },
+    {
+      "bytes": 7332,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/source-provenance.json",
+      "sha256": "d6267f336224076c3de51b35d8d1c404fe5a3df1e823767a011c7d35fe4a23dc"
+    },
+    {
+      "bytes": 14236,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/terminal-bindings.json",
+      "sha256": "8e70f51de1232c42053c9c4f173db0977d2b1407080de89489e9c31aa9e5fc33"
+    }
+  ],
+  "native_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/native-qualification.json",
+    "bytes": 22493,
+    "sha256": "4b2bd1828bb68373f4d9c8a4ad1b1456accf2e6913325a27e0fb6d14cee891fe"
+  },
+  "execution_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-72651ada-fixture-reconciled-normal-ci-independent/execution-receipt.json",
+    "bytes": 2242,
+    "sha256": "e8c083bc0050daa4220b42a9363eb1c99cc2496fe3692b5011bc2ba554c712b6"
+  },
+  "provenance_limits": [
+    "Underlying child-tool lifecycle is Native-reported retained receipt, not Root/auditor direct observation.",
+    "RAM-only raw bodies unavailable for independent offline reparse; retained API/stream/member hashes and bound source are checked.",
+    "Source file/full-title hashes qualify28 DB identities for local matching, not original exception/backend cause.",
+    "Noncalendar unexpected browser source identity unavailable.",
+    "Pending/skipped/empty serial placeholders and default no-launch fields are not coverage/absence proof.",
+    "Local label state/repetition is not action count, event order or settlement/cause proof."
+  ],
+  "reader_history_nonadditive": [
+    "Initial recovery sample reader stopped on empty story_cases; no data/effect change.",
+    "Initial files-only DB identity summary corrected on existing nonstory_failed_cases:28 unique file/title hashes retained.",
+    "Initial proof expected prior allocation record shape; updated to actual tool_status/tool_id/turn_id before final successful proof."
+  ],
+  "source_binding_review_preserved": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/fixture-reconciled-normal-terminal-evidence-binding-review/manifest.json",
+    "bytes": 1060,
+    "sha256": "5026081c6657929a0b20c75935187389756f9eb91225f6922744420cd666959f"
+  },
+  "required95_unchanged": true,
+  "review_counter": 3,
+  "broad_review_increment": 0,
+  "normal_acceptance": 0,
+  "cause": "UNKNOWN",
+  "canonical_backend_custody": "UNKNOWN",
+  "projected_runtime_custody": "retained/unverified",
+  "auditor_effects": {
+    "GETs": 0,
+    "operator_execution": 0,
+    "algorithm_controls": 0,
+    "Git_commands_mutations": 0,
+    "source_Spec_state_writes": 0,
+    "provider_resources_services": 0
+  },
+  "execution_authority": false,
+  "development_complete": false
+}

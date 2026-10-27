@@ -1,0 +1,49 @@
+{
+  "kind": "EXACT_ONESHOT_LOCAL_ROLLBACK_PROBE_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15df1-74bd-7bb0-b24c-13663cf67aa4",
+  "grant_tool": "exec-96435999-4c97-4b75-a59d-29c04d285bfa",
+  "final_message": "msg_0954b60b44796db1016ad890185484819198b0fa053c349eaf",
+  "review_manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/manifest.json",
+    "bytes": 2099,
+    "sha256": "313ba5426fdd95fae6719f689f1b7c86122adf4d5e8268a47be37b04a7fea576"
+  },
+  "bound_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/probe.sql",
+      "bytes": 12741,
+      "sha256": "e61418559ffbc37c92dc8bfe626f9bf56aff8d819ad2d99809541fd942ffb79e",
+      "kind": "HighSQL"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/verify-cleanup.sql",
+      "bytes": 1104,
+      "sha256": "749d84ff15f2ae68a1d96d9842268065554bcfb736478420a406c4721bba7caa",
+      "kind": "HighSQL"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/proposal.json",
+      "bytes": 7181,
+      "sha256": "8b828dffef4827144f8615b3faa16836feebe8f514298377fe986e0515bc1d73",
+      "kind": "Highproposal"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-runner.py",
+      "bytes": 9204,
+      "sha256": "90f0cb9215a2609e807b2c2515494960c3be8998421cd6b2b61b2dd4ef7ce76a",
+      "kind": "Roottransport"
+    }
+  ],
+  "expected_project": "rg-b03bb4a5a5c01b6c748bde6d72d8bcbfc9b2d1bf",
+  "expected_container": "b841e76229b56fe9959b358a2df0c937d1b34d23a58800a57452a14674ea950c",
+  "requestId": "c8dbe3c7-15b5-44ff-9bae-af57cd48efd2",
+  "resourceId": "00292597-909e-4714-b733-fe0b8f72fa7a",
+  "effect_scope": "Oneguardreuse; exactHighrollbackfixtureprobeonce+freshreadonlycleanupafterreportedPSQLendonly; Stopownref. No existingACL/data/source/migrationchange.",
+  "fixture_uuid": "543ede32-df6d-402d-b9a3-c97b6ecc9b77",
+  "source_changes": 0,
+  "SQL_connections_before": 0,
+  "allocation_condition": "ExactfourtuplePASS + Rootexplicitonceintent fulfilled; guardreadiness/platform/prefix/principal/absence gates still required.",
+  "no_blind_retry": true,
+  "normal_acceptance_credit": 0
+}

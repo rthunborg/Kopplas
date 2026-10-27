@@ -1,0 +1,135 @@
+{
+  "kind": "actual-postmaterialization-check-results",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "baseline": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "commands": [
+    {
+      "command": "pnpm install --lockfile-only --ignore-scripts",
+      "exit_code": 0,
+      "pnpm": "10.24.0",
+      "receipt": "cc0a53"
+    },
+    {
+      "command": "manifest equality except Vite pin / actual required lock semantic closure",
+      "exit_code": 0,
+      "receipts": [
+        "f7980e",
+        "1640b1"
+      ],
+      "current_semantic_metadata": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/dependency-graph.json",
+        "bytes": 41018,
+        "sha256": "77f462af3f72a4a9cc313a144e98dce96323eb86a36ed68e04db52aa92c2faad"
+      }
+    },
+    {
+      "command": "pnpm install --frozen-lockfile --ignore-scripts",
+      "exit_code": 0,
+      "receipt": "237c21",
+      "limit": "Frozen local materialization with scripts disabled; normal clean-CI install policy remains required."
+    },
+    {
+      "command": "pnpm audit --audit-level=high",
+      "exit_code": 0,
+      "high": 0,
+      "moderate": 2,
+      "receipt": "63eb97",
+      "ignore_or_threshold_change": false,
+      "retry": false
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipts": [
+        "d1aaf4",
+        "72f57e"
+      ]
+    },
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=tap tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 67,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipts": [
+        "c1c99f",
+        "a0dca1",
+        "03da0e"
+      ],
+      "output": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/dependency-repair-unit.tap",
+        "bytes": 19017,
+        "sha256": "75bbc60288675545f7773a9cd0b0f1f42bf9befd4223e2f1de51656157f584fe"
+      },
+      "native_credit": 0
+    },
+    {
+      "command": "pnpm run verify:lockfiles",
+      "exit_code": 0,
+      "receipt": "02a938"
+    },
+    {
+      "command": "pnpm run build",
+      "exit_code": 0,
+      "receipts": [
+        "7f622b",
+        "10a7a5",
+        "bb86af"
+      ],
+      "mode": "Next16.3.8 production build, no web server"
+    },
+    {
+      "command": "pnpm run verify:bundle-containment",
+      "exit_code": 0,
+      "receipt": "ac63fc"
+    },
+    {
+      "command": "pnpm run lint",
+      "status": "INCOMPLETE_TERMINATED_NOT_PASS",
+      "exit_code": 1,
+      "captured_session": 73611,
+      "receipts": [
+        "767210",
+        "f7916f",
+        "bf3009",
+        "b5186f",
+        "47d063"
+      ],
+      "reason": "Canonical local scan traversed ignored retained historical Playwright report assets. Stopped ONLY captured own command viaCtrl-C. No source/config/ignore/evidence deletion; clean-checkout CI canonical lint still mandatory."
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/integration/rls/calendar-feed.rls.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "e8dae0",
+      "limit": "Focused existing source only; not a substitute PASS for canonical lint."
+    },
+    {
+      "command": "intent kernel / single SRO literal check",
+      "kernel_bytes": 5760,
+      "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "sections": 1,
+      "stops": 61,
+      "receipts": [
+        "55ff68",
+        "fed98c"
+      ]
+    },
+    {
+      "command": "native diffcheck/staged diffcheck/exact3 staged paths/append-only commit/source index clean",
+      "exit_code": 0,
+      "receipts": [
+        "236ab0",
+        "9caa0f",
+        "8aad7c",
+        "b1be58",
+        "1f339e"
+      ]
+    }
+  ],
+  "initial_failures": "No dependency resolution/frozen installation/type/unit/build/containment/focused-lint failure. Full canonical lint was terminated and remains incomplete, not passed. Two moderate advisories remain; their identities are not inferred from high-threshold summary.",
+  "dependency_reuse": "No source/Spec changes after commit.67existing controls retained; no new version-mirror tests. Current dependencies invalidate old whole-installed-byte runtime evidence; prior native43DB/14browser failures remain unresolved. No local services, Vitest collection/globalSetup, nativeDB/browser, CI rerun or blind retry.",
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "native_credit": 0
+}

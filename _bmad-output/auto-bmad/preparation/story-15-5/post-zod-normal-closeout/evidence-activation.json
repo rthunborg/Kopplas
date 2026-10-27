@@ -1,0 +1,112 @@
+{
+  "actual_jobs": {
+    "checkpoint-admission": "success",
+    "dashboard-e2e": "skipped",
+    "db": "failure",
+    "e2e": "success",
+    "fixed-chromium-application-verification": "skipped",
+    "fixed-chromium-paired-probe": "skipped",
+    "native-stream-probe": "skipped",
+    "recovery-storage-loader": "success",
+    "verify": "success"
+  },
+  "actual_run_id": 40109869919,
+  "actual_terminal": {
+    "bytes": 25757,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-actual-envelope.json",
+    "sha256": "7d78244ea20ed5abcf5ac643f10d2c861e0d11b6ac0208a0c1ff963725aabd09"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-terminal-evidence-allocation.json",
+    "bytes": 7097,
+    "sha256": "b5c2efcd4eea71df7cab61904604f85a8befc8c67b35d5739c997887223e755d"
+  },
+  "attempt": 1,
+  "cause_proof": false,
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "current_review_readiness": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-fresh-source-proof.json",
+      "bytes": 15618,
+      "sha256": "f80232423fca824574b2747e03c1461b02bada54424cbd6e04b79d9164c117c9"
+    },
+    {
+      "bytes": 60788,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-current-source-proof.json",
+      "sha256": "1a7abac1b423d2efeed053722fb606235de93744ce6ce2b049806a4ae908a3ab"
+    },
+    {
+      "bytes": 17457,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-actual-diff-independent-review.json",
+      "sha256": "40a01b1258a49a30f40fd92815f74b896bf3d2ac12e81b68e53d14595b959546"
+    },
+    {
+      "bytes": 9994,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-independent-review.json",
+      "sha256": "8e123e580ad88cf7dcca5eac8eafe63cdfd47d8e8c81b558b4325c41c9057129"
+    },
+    {
+      "bytes": 10225,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json",
+      "sha256": "148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212"
+    },
+    {
+      "bytes": 11961,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-terminal-metadata-qualification.json",
+      "sha256": "8142fd8d19932fef2a04509dcaa7275d484b36fedcde2f0a02bda6bd7e83c4cc"
+    },
+    {
+      "bytes": 26289,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-reader-independent-source-review.json",
+      "sha256": "f4f3afc32af11364036d16df234850aae72257bd1383888367caed81afe921c2"
+    },
+    {
+      "bytes": 15744,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-reader-operational-review.json",
+      "sha256": "db86efc22e40b29dbcd94a06a5e1bbaee8a09cf17aaf9ed605fee15489fff987"
+    },
+    {
+      "bytes": 13171,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+      "sha256": "3ab0bc9c4ed85bc189b11790ea476f103334b1e183e3ebcbb935771d0502e483"
+    }
+  ],
+  "execution_authorized": true,
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "maximum_logical_requests": 5,
+  "mode": "normal",
+  "no_retry": true,
+  "normal_acceptance_credit": 0,
+  "operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/proposal.json",
+    "bytes": 206884,
+    "sha256": "028813ea6e24b9a19f48242d616b6258aa51430afafe490eae5688870fa1c83e"
+  },
+  "operator_review": {
+    "status": "PASS",
+    "independent": true,
+    "evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-operational-review.json",
+        "bytes": 14294,
+        "sha256": "8487ee0f010d9650d53b7f2bea5f523d5bfe8fb2153634260dc13ec6554ee5ce"
+      }
+    ]
+  },
+  "operator_source": {
+    "bytes": 52883,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/reader.py",
+    "sha256": "b4a6ed837ba773b574d589bd6023d8fc105a47ec8bf143600ead9637ef85f45c"
+  },
+  "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-eadd1436-post-zod-normal-terminal-ci-independent",
+  "pushed_source_head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "pushed_source_objects_equal": true,
+  "release_validation": false,
+  "source_Git_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-fresh-source-proof.json",
+    "bytes": 15618,
+    "sha256": "f80232423fca824574b2747e03c1461b02bada54424cbd6e04b79d9164c117c9"
+  },
+  "source_head": "81d208105ab43162a8bd13662984b0d8f9ff5e56"
+}

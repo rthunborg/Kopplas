@@ -1,0 +1,322 @@
+{
+  "schema": "kopplas.INT009.generated-frame.actual-qualification.v1",
+  "verdict": "QUALIFIED_GENERATED_BARRIER_SETUP_CATCH_ORIGINAL_CAUSE_UNKNOWN",
+  "status": "The actual pinned read and surviving generated setup-catch locations are qualified. Source correlation narrows the reached failure path to subject barrier setup before the INT009 management/role-loss assertions. Original refusing predicate/native exception and custody remain UNKNOWN; no patch or new execution is justified yet.",
+  "review": {
+    "route": "resumed_main_INT009_generated_frame_actual_qualification",
+    "model_effort": "explicit gpt-6.1-sol High",
+    "independent_of_reader_author_executor": true,
+    "owned_checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "scope": "Existing closed five-file packet plus minimal bound source correlation; no new broad review/control family, API or runtime",
+    "metadata_HEAD_Root_reported": "6414d9498a2ab763e0298d56593b366f48e12e7c"
+  },
+  "identity": {
+    "run": 39772086777,
+    "attempt": 1,
+    "head": "a857417162fd73e3dc6ce4b0e1e82b19256ac944",
+    "source": "b638e09d29759eeb17ad48cb8391d1e30a3a427e",
+    "checkpoint": "29bd3cd1-f8f8-43b2-b8fd-befc09d1f9a7",
+    "operation_id": "673864c1-aedb-4336-ac52-62167947f687",
+    "case": "INT009",
+    "case_file": "tests/integration/commands/calendar-feed.int.test.ts",
+    "mode": "NORMAL source run, separate one-artifact generated-frame acquisition"
+  },
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-execution-receipt.json",
+      "bytes": 6900,
+      "sha256": "9dbd8c8f96ea49dbd3930192b85f6d7e49d35b88da22aef62cc8a4b8c8cc6994"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-root-mechanical-proof.json",
+      "bytes": 947,
+      "sha256": "330e318b76ca3b78375047a4467b204ab8c083c6679fe3cb76b0c2fe47c92ab7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-activation.json",
+      "bytes": 2495,
+      "sha256": "cf508102db288d20c05b79caae2944ec855f839ce4edd4d8c5299b86a3ae872a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-main-INT009-generated-frame-one-read-allocation.json",
+      "bytes": 3299,
+      "sha256": "11064e4e22b550e5658a15e7d3311172ad95cc540d1d266c39fb8ecac4fc8c91"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-current-source-proof.json",
+      "bytes": 3216,
+      "sha256": "0abee1a321db56de91bfec2fea4ee9488a0261e967041b1e0a80c5433e38a97a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-reader-review.json",
+      "bytes": 18841,
+      "sha256": "4e7dc59cf99968a444c38d9a35557594c136fc40348d76be79c0a5b7a7cbb99e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-preparation/read-generated-frames.py",
+      "bytes": 15850,
+      "sha256": "ad067b7e60bbb402c64bd9592b012caf248c2245b9c848621ea570d9b196e6ff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-preparation/proposal.json",
+      "bytes": 19577,
+      "sha256": "e21705f8f4b940b3aa68ed8676ff02fd42e3e0c0a1546105e0595c4854bbf8f0"
+    }
+  ],
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-acquisition",
+    "exact_members": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-acquisition/acquisition-summary.json",
+        "bytes": 275,
+        "sha256": "43cf7ea16de745c2dd7ec4d1dafa7387f89c0d6e60d77694c37eaad5abeccb3c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-acquisition/generated-frame-projection.json",
+        "bytes": 4280,
+        "sha256": "d3a88ebf8960c4f0bd2a3f5a5a09c57c053d5d96d5d0f24fbc56120f54f4f202"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-acquisition/operator-intent.json",
+        "bytes": 2453,
+        "sha256": "550ce98523a376a78ef00d410dfcce7e9b4a95f07db6d4704c7ff06f1066c865"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-acquisition/request-01-intent.json",
+        "bytes": 429,
+        "sha256": "c864743d54a2ae05a23b481bb946bfa9c1d41e39997dbff2512fcec9857b86e7"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-acquisition/request-01-result.json",
+        "bytes": 1150,
+        "sha256": "cdd187b1f144b6a65170e206843c28bf6049b1164156204c7cb005851492bcbd"
+      }
+    ],
+    "canonical_inventory_sha256": "b296d103891d17d369c8cfea41c9c7454ddc927449eb7501fef752a37d80812e",
+    "inventory_encoding": "UTF8 compact sorted-key JSON of the ordered members array",
+    "all5_hashes_and_exact_member_set_independently_checked": true,
+    "all_input_and_operator_intent_input_refs_bound": true,
+    "manifest_absence": "Reviewed reader emits five files without an internal manifest. Outside receipt inventories exact unchanged packet; reviewer added no packet file."
+  },
+  "native_provenance": {
+    "owning_actor_actual_tool": {
+      "tool": "tools.exec_command",
+      "chunk_id": "3f414b",
+      "outer_native_exit": 0,
+      "wall_time_seconds": 1.4679803,
+      "session_id": null,
+      "waits": [],
+      "reader_invocations": 1,
+      "authority": "Actual returned native tool result plus operator-owned capture; not independently observed by Root."
+    },
+    "Root_independently_observed_child_lifecycle": false,
+    "reviewer_independently_observed_child_lifecycle": false,
+    "qualification_basis": "Independent byte/hash/intent/result/admission/source/closed-schema correlation. Actual process/stream lifecycle is attributed to distinct Native owning-actor receipt and reviewed capture code, not a reviewer rerun.",
+    "completed_grant": {
+      "actual_turn": "01a163a0-7de9-74a2-b8e4-a0556b1f65f3",
+      "actual_tool": "exec-ed06d6f5-b27a-4796-bb69-50797154c3de",
+      "turn_status": "completed",
+      "tool_status": "completed",
+      "Root_observation": "Root-reported actual completed tool/read; reviewer checks its frozen exact record"
+    },
+    "activation": {
+      "bytes": 2495,
+      "sha256": "cf508102db288d20c05b79caae2944ec855f839ce4edd4d8c5299b86a3ae872a",
+      "mode": "INT009_PINNED_GENERATED_FRAME_READ",
+      "maximum_logical_requests": 1,
+      "no_retry": true,
+      "normal_acceptance_credit": 0,
+      "fresh_operation_distinct_from_checkpoint": true
+    },
+    "request": {
+      "fixed_endpoint": "repos/rthunborg/Kopplas/actions/artifacts/12423313719/zip",
+      "native_exit": 0,
+      "stdout_bytes": 111437,
+      "stdout_sha256": "249d6ce9ab5eacda64132a1c022db0f64f0ad95a8a2f5317c44d126816afe4bc",
+      "stderr_bytes": 0,
+      "elapsed_seconds": 1.283,
+      "timeout_seconds": 15,
+      "intent_persisted_before_spawn_reported": true,
+      "full_physical_EOF_reader_done_no_error_joined_closed_settled": true
+    },
+    "archive_member": "The actual native stream digest/length matches the prior pinned archive. The reviewed reader execution path additionally checks exact sole full-integration.json member1029554/SHA4af8183a2d326a9c94e79b428a7d32468b6cac0a9662e913f7e0c1bc07accab3 with ZIP/CRC/inflate guards before projection. Raw member is not persisted and was not independently rehashed by reviewer.",
+    "logical_requests": 1,
+    "all_slots_closed": true,
+    "retry_fallback_additional_reads": 0
+  },
+  "projection_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-generated-frame-acquisition/generated-frame-projection.json",
+    "bytes": 4280,
+    "sha256": "d3a88ebf8960c4f0bd2a3f5a5a09c57c053d5d96d5d0f24fbc56120f54f4f202",
+    "same_compact_ASCII_admitted_published_bytes": true,
+    "records": 10,
+    "report_failure_count": 10,
+    "record_cap": 16,
+    "ASCII_byte_cap": 8192,
+    "omission_UNKNOWN": false,
+    "phase_counts": {
+      "BARRIER_SETUP_CATCH": 3,
+      "FIXTURE_STEP_CATCH": 1,
+      "UNKNOWN": 6
+    },
+    "records0_2": {
+      "generated_class": "GENERATED_ERROR",
+      "fixed_group": "SANITIZED_FIXTURE_LEAF",
+      "leaf_frame": {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 211,
+        "column": 18
+      },
+      "generated_catch_frame": {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 875,
+        "column": 35
+      }
+    },
+    "record3": {
+      "generated_phase": "FIXTURE_STEP_CATCH",
+      "generated_catch_frame": {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 254,
+        "column": 25
+      }
+    },
+    "records4_9": "Sanitized generated leaf frame211:18 only; phase UNKNOWN. Unretained frames remain UNKNOWN.",
+    "privacy": "All records contain only reviewed fixed enum labels, relative source path/line/column, fixed identities/hashes and ordinal report indexes. No native text, raw message/stack, matcher payload, SQL parameters, URL/token/body or arbitrary function name is retained.",
+    "meaning": "Ten surviving report records are not ten native failures or three setup invocations. No omitted report record is claimed, but only max2 selected bound frames per record were retained. Report ordering is not native first-throw ordering."
+  },
+  "source_correlation": {
+    "source_bindings": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "raw_bytes": 36884,
+        "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+        "LF_bytes": 36884,
+        "LF_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+        "current_head_blob": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "pushed_a857_blob": "35863f8eeb563f21e9c0ff741115f018ee545134"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 132791,
+        "raw_sha256": "20b5d616fe3e861b60fc3250e224c3a27c6bf21e90b5962036d09b6010b6a859",
+        "LF_bytes": 131461,
+        "LF_sha256": "66b90539dc01d04102305e3cd9cf26187dd8685e384ff622252197335f574956",
+        "current_head_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+        "pushed_a857_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6"
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+        "raw_bytes": 151531,
+        "raw_sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798",
+        "LF_bytes": 151531,
+        "LF_sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "raw_bytes": 48616,
+        "raw_sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "LF_bytes": 47931,
+        "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+        "current_head_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+        "pushed_a857_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "raw_bytes": 75930,
+        "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "LF_bytes": 75930,
+        "LF_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "current_head_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "pushed_a857_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+      }
+    ],
+    "current_source_hashes_independently_matched": true,
+    "source_Git_equality": "Root current-source proof and recorded source/pushed object identities reused; no reviewer Git command.",
+    "exact_anchor": "Helper875 column35 begins redactFailure(error) inside calendarBarrier setup catch874-877. Generated safe leaf is created at211. WeakMap preservation/reporter stack behavior already source-qualified; no native stack is reconstructed.",
+    "caller_and_branch": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 173,
+        "fact": "Awaited fx.serial.barrier uses fixed management-before-authority stage before pending initialization/try175/manage176."
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 866,
+        "fact": "Fixed stage selects authority=true."
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 869,
+        "fact": "Authority setup invokes calendarPublish(subject, barrier-body transform, subjectFault=true). No audit trigger branch is selected for this case."
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 875,
+        "fact": "The original setup error is sanitized in this generated catch, then holder/setup cleanup is attempted."
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 877,
+        "fact": "This setup failure path unconditionally throws an aggregate instead of returning a barrier."
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 771,
+        "fact": "Subject publication may refuse existing custody/state, read canonical source, capture current owner facts, construct/install subject fault body, or requalify the replacement. The actual internal operation/guard remains unobserved."
+      }
+    ],
+    "qualified_inference": "For the identified setup-failure path, deterministic caller flow places failure before this INT009 callback can queue manage, commit the saljare role change or evaluate denied/zero-token/zero-audit assertions. This is source-correlated control-flow inference, not separately captured native operation counters. It does not prove a production authorization failure or justify weakening that oracle.",
+    "finally_limit": "The INT009 local try/finally175-187 is downstream of successful barrier construction on this path. Outer fixture/owner cleanup may still add or replace errors, and the original native error/order remains unavailable. No claim is made that every retained leaf is a primary error or that no other fixture work ran."
+  },
+  "minimum_consequential_next_action": {
+    "decision": "Narrow source-only assessment of calendarBarrier subject setup -> calendarPublish -> canonical source/owner capture-and-replace/preflight and setup cleanup. Do not patch role-loss expectations or management authorization, and do not run another NORMAL merely to rediscover this setup boundary.",
+    "what_this_now_resolves": "The next assessment can focus on subject owner publication/setup instead of all eleven INT009 scenario phases or browser/native completion.",
+    "still_missing_fact": "Which exact subject publication phase/refusing predicate or original own SQLSTATE failed, and whether its rollback/requalification/retirement cleanup was verified. Generated875 alone cannot choose between capture, replacement, body/metadata/ACL guard, prior-custody guard or other setup failure.",
+    "conditional_Stage2_scope": "Only if source-only assessment cannot establish a direct causal mismatch, a separately allocated plan may capture the first actual owner-publication operation/refusal-site/allowlisted own code before existing redaction and distinguish secondary cleanup. Reuse existing catches/context without new queries, transactions, observers, timers, principals or assertion changes; preserve same error identity/precedence and failclosed custody. This is a recommendation for a separately scoped proposal, not implementation/reproduction authority.",
+    "STOP": "Stage2 source/capture/reproduction remains unallocated. Current oneGET and historical fiveGET slots are closed; no refetch, new listing/log/status/API, new generic diagnostic family, automatic source fix or automatic CI rerun."
+  },
+  "unknowns": {
+    "original_native_exception_class": "UNKNOWN",
+    "original_first_throw_frame": "UNKNOWN",
+    "original_SQLSTATE": "UNKNOWN",
+    "refusing_owner_guard": "UNKNOWN",
+    "primary_vs_cleanup_native_order": "UNKNOWN",
+    "expected_received_values": "NOT_CAPTURED",
+    "backend_rollback_canonical_body_ACL_restoration": "UNKNOWN",
+    "retained_DB_key_disposition": "RETAINED_UNVERIFIED",
+    "backend_settlement_global_key_cleanup": "UNKNOWN"
+  },
+  "prior_functional_truth_reused": {
+    "qualification_path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-normal-actual-native-qualification.json",
+    "bytes": 32596,
+    "sha256": "b93dca962b80e7b6c729b6723655522528b15f8491fde46687daf81599ec294b",
+    "required95": "68 passed,INT009 failed,26 zero coverage; browser14 retry0 passes and recovery1 separate remain qualified. Stage1 adds no functional coverage.",
+    "all118_SQL": "Immutable qualified input, not new native body/ACL proof",
+    "normal_acceptance": 0,
+    "P5": "open",
+    "15.6": "unstarted",
+    "broad_review_counter": 3,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "independent_checks": {
+    "offline_command_chunks": [
+      "f25009",
+      "f6ad54",
+      "d3fd46",
+      "35be45"
+    ],
+    "method": "Receipt and packet hash/membership binding before evaluation; all input refs and intent/result agreement; exact pin and source/case/operation tuple; cap/cardinality/compact-byte reconciliation; actual source line/UTF16-column mapping and minimal caller/branch correlation. Frozen packet/input/source hashes rechecked after this one artifact write.",
+    "API": 0,
+    "Git_commands_or_mutations": 0,
+    "operator_import_or_execution": 0,
+    "tests_suites_runtime_resources": 0,
+    "source_Spec_SQL_packet_or_other_session_edits": 0
+  },
+  "findings": [],
+  "open_questions": [
+    "Exact subject-publication internal failure/guard and cleanup qualification remain unknown."
+  ],
+  "blockers": "Actual DB gate/case failure,26 missing mandatory cases and retained/unverified DB custody still block acceptance. Generated setup attribution enables only a narrower next assessment; no correction/effect authority is created."
+}

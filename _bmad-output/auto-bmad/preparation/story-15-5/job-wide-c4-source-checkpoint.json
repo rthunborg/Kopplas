@@ -1,0 +1,58 @@
+{
+  "kind": "C4_SOURCE_OFFLINE_CHECKPOINT_NOT_NATIVE_ACCEPTANCE",
+  "source_head": "22508ef2773bb872d6c880328390812dbc358559",
+  "source_parent": "5b83ad1046e4142ad50df34fcea03ddd29be7672",
+  "partial_six_head": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+  "cumulative_base": "f0000e7c107f10371543148280e555971e753342",
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-wide-c4-source-author-result.json",
+    "bytes": 80085,
+    "sha256": "d6b74e6bc20d13f2e3ae26d41136e7a9c8b25511b118e24083dac7e6b06a2071"
+  },
+  "precommit_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-job-wide-c4-precommit-admission.json",
+    "bytes": 5000,
+    "sha256": "ba6bb10ae26dd05736147db45490314a851c251432a323dfad3933882f21b7ad"
+  },
+  "postcommit_binding": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-job-wide-c4-postcommit-binding.json",
+    "bytes": 962,
+    "sha256": "d1de76f484eaf6e5a49e20c57625f7f18c9400ac1f8b45710f9bfef2b8c05be2"
+  },
+  "mechanical_verified_source_objects": 73,
+  "latest_changed_paths": 6,
+  "cumulative_changed_paths": 10,
+  "actual_author_reported_fresh_checks": {
+    "wrapper_node": {
+      "passed": 125,
+      "failed": 0
+    },
+    "partition_node": {
+      "passed": 5,
+      "failed": 0
+    },
+    "synthetic_child_runs_separate": 9,
+    "TypeScript_exit": 0,
+    "lint_exit": 0,
+    "diff_exit": 0,
+    "reader_parse_warnings": []
+  },
+  "prior_attempts": "Initial wrapper124P1F rawCRLF expectation corrected; final125P separate. Initial lint reserved-name error corrected. Historical partial124intermediate and final2affected+122reused remain nonadditive.",
+  "kernel_author_assertion": {
+    "bytes": 5760,
+    "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "unchanged": true
+  },
+  "Spec_status": "in-review",
+  "ARR_status": "in-review",
+  "review_counter": 3,
+  "SRO_stops_author_reported": 146,
+  "reviewer": "/root/review15_5_private_diagnostic_high",
+  "review_scope": "Targeted cumulative latest10-path committed fixes, no fourth broad review.",
+  "independent_code_review": "ACTIVE_NOT_YET_PASSED",
+  "normal_acceptance_credit": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "next": "Distinct High cumulative code review; then exact-source native readiness/effects allocation and all95/fullDBRLS/recovery.",
+  "no_push_since": "b459af22d490eadc90113fd713a73b65aff89471"
+}

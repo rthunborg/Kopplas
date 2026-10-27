@@ -1,0 +1,206 @@
+{
+  "schema": "kopplas.targeted-privacy-origin-normal-operational-source-review.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T16:41:38.980628+00:00",
+  "status": "PASS_API019_PRIVACY_ORIGIN_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_API019_PRIVACY_ORIGIN_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "route": "Roota22054; explicit gpt-6.1-sol High",
+  "scope": "Literal/current-source-data rebind only. Reuses qualified NORMAL algorithms; not fourth broad review, source fix or effect authority.",
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+      "bytes": 20591,
+      "sha256": "0b33181f9cbbfdc1b36a463d3a66fc5d1b33db8e9a170ccc1379822ca7c2fdcc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/root-driver.py",
+      "bytes": 21115,
+      "sha256": "ecb4a35f94fee0090d2952c53feaa3251c1bcaa3e416ecb634ebb2eabddb0797"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+      "bytes": 237192,
+      "sha256": "8defb9f6a1bfc753bd4d857a392ecf44a3c2fda37caa9157a43684017dcfabfe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "bytes": 12906,
+      "sha256": "0b10bff10b6576fc1e8ee2a06c5d18e6ede0ddd3e3c0cf096403aad22f0ba329"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/manifest.json",
+      "bytes": 1163,
+      "sha256": "4ff07b35b147969ab05c0fe09d3f348d9b479a4fdb145d887189de71cb259158"
+    }
+  ],
+  "descriptive_correction": {
+    "receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/descriptive-evidence-correction-receipt.json",
+      "bytes": 3022,
+      "sha256": "72a5340a5b0b593ddce7ef4e53f19e92236472e45d8d090bf3cf32565a7d3290"
+    },
+    "single_proposal_field": "future_outputs.later_evidence",
+    "exact_inverse_to_historical_proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+      "bytes": 236942,
+      "sha256": "c35b754ca89a039496e4636be6560d898104daad976a5b6d7b5e28a6dab79afe"
+    },
+    "current": "52622-byte28fixedstage counterpart;444static/19excluded/195wrapper; actualterminal+separate enrollment/review/newgrant/freshproof/activation;max5GET;artifact0now.",
+    "controls_reuse": "Unchanged controls were executed against historical236942/c35b proposal. Exact one-field byte inverse reconstructed that binding; this descriptive field is not consumed by preGET/admit/localproof. No false claim controls ran against corrected237192; no rerun needed."
+  },
+  "identity": {
+    "schema": "ROOT_INT009_CANONICAL_CATALOG_NORMAL_INERT_CANDIDATE_V1",
+    "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+    "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+    "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "expected_remote_preimage": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "mode": "NORMAL",
+    "release_validation": false,
+    "cause_proof": false,
+    "original_int009": false,
+    "source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/normal-API019-privacy-first-origin-actual-patch-independent-review.json",
+      "bytes": 14394,
+      "sha256": "53747652a4d270646964277c6b45c09dca2df7fb97fbd6bffae00bc47aa276c2"
+    },
+    "effects_authorized": false,
+    "all_old_slots_closed": true,
+    "normal_acceptance": 0,
+    "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207"
+  },
+  "independent_conservation": {
+    "raw_complete_file_inverses": [
+      {
+        "file": "provider.py",
+        "baseline": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/provider-readonly.py",
+          "bytes": 20460,
+          "sha256": "3dbaf1cf1bd9b969d73a66ba1132f8d38bfdb193bf94f095e58776cb357225ec"
+        },
+        "raw_inverse": true,
+        "definitions": 7,
+        "changed_definitions": []
+      },
+      {
+        "file": "root-driver.py",
+        "baseline": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/root-driver.py",
+          "bytes": 20990,
+          "sha256": "cb7c0415f6265c8ffa1f2465a776fb8584b3f7f76e239d76397e7c1ce322a4d8"
+        },
+        "raw_inverse": true,
+        "definitions": 18,
+        "changed_definitions": [
+          "admit"
+        ]
+      }
+    ],
+    "provider7defs_exact": true,
+    "driver17of18_plus_canonicalADAPTER_exact": "Only admit namespace/current review literal data differs. Localproof/publisher/capture/bytepins/strictJSON/adapter/freshness/resolver/poller/STOP body source equal.",
+    "canonical_adapter": {
+      "bytes": 1762,
+      "sha256": "4aa63a58e373ebb1dd2d7d34188f1d5175144b1ec332a2ae001f3a34a966ca8e"
+    },
+    "actual_REF_PATHS_matches_proposal_templates": true,
+    "review_path_alias_needed": false,
+    "canonical201B_POST_sha256": "26d6bc5ef583d5b6ab9d5b312666746ad7dd8d9346b66583cd438fd4246a2a60",
+    "falseflags": "NORMAL,causefalse/releasefalse,original inputabsent/defaultfalse; canonical export/body serializer unchanged, no overlay.",
+    "current5_source_rows": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "204paths": "203samepaths+unchanged1image supplement;5currentraw/LF/blob pins independently matched;199unchanged.",
+    "75rows": "Same75paths/5updated70equal; metadata equality checked without extractor/rescan.",
+    "catalog": "444static/19excluded/wrapper195;4newactualtitlehashes,191oldhashes/other19catalogs/same20paths conserved; declaration metadata not runtimecoverage.",
+    "SQL118": "Exact row metadata conserved; historical raw/LF vectors+Git-only proof reuse; no rawSQLscan.",
+    "408Git_objects": "Author local-metadata qualification binds source+HEAD objects204x2; Root must perform fresh actual proof later. Reviewer did not rerun source catalog/Git inventory.",
+    "future_argv_candidate_and_templates": "Current scriptpaths/proposal/self source-review bindings and329-byte candidate match actual constants; false/null/future refs remain inert.",
+    "current_unallocated_files_absent": {
+      "provider_activation": true,
+      "root_activation": true,
+      "source_proof": true,
+      "allocation": true,
+      "provider_qualification": true,
+      "provider_intent": true,
+      "state": true,
+      "root_operation": true,
+      "provider_invocation_journal": true,
+      "root_invocation_journal": true
+    }
+  },
+  "author_offline_controls": {
+    "ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "bytes": 12906,
+      "sha256": "0b10bff10b6576fc1e8ee2a06c5d18e6ede0ddd3e3c0cf096403aad22f0ba329"
+    },
+    "actual_groups": 7,
+    "fail": 0,
+    "source_guards": 86,
+    "transport_API_Git_test_modulemain": 0,
+    "attribution": "Actual provider preGET/admit/localproof/default-refusal with virtual futurecaps/time/Gitanswers, real transports harddisabled. Prior unchanged matrix reused. No new reviewer harness/execution.",
+    "initial3678b9": "Raw CRLF inverse assertion failed under text newline normalization after preGET/admit/localproof; source views corrected to readbytes.decode, no operational code/guard change. History retained, counts nonadditive."
+  },
+  "source_configured_caps": {
+    "provider": "ONE readonlyGET;15s processloop,stdout4MiB/stderr256KiB; then wait<=2s and2readerjoins<=2s each. Not strict15s totalwall.",
+    "remote_Git": "Before1/readback1 configured20s each;ONE nonforceFFpush60s. Rootnative tail wait<=2s+twojoins<=1s each;stdout512KiB/stderr64KiB. Expectededce preimage\u2192exact7d8 readback.",
+    "canonical": "ONE bounded90s Node invocation; same4prePOST metadataGET+1POST under existing githubApi15s/4MiBstdout/64KiBstderr each; Nodeouterstdout512KiB/stderr64KiB, same nativecleanup tail. Adapter checks exact returnedrthunborg/workflow296219797/path beforePOST, no duplicateGET.",
+    "freshness": "Activation/proof/provider<=300s immediately beforepush+dispatcher; provider<=180s beforebounded90s invocation, immutableproviderstamp<=300s directlybeforePOST. No refresh/retry afterexpiry.",
+    "observer": "MetadataAPI20s/2MiBstdout/64KiBstderr plusnativecleanup;\u22646resolver(min5s,onepage20),\u226490run/jobpairs(min30s,jobspage100),5400s from originalimmutable started_at includingpublish/dispatch. No reset/adoption/secondpoller/leaseextension; all9terminalSTOP closes unused.",
+    "postterminal": "Artifact/logGET0here. Separate actualterminal/enrollment/finalreview/newmax5GETgrant/freshproof/activation later; SOURCE-LABEL-only32768 bytes, never genericprojection claim."
+  },
+  "Root_admission_obligations": [
+    "Read exact completed report at enforced normal-API019-privacy-origin-operational-review.json; both status/outcome enum above and independenttrue, pin bytes/SHA. No alias/copy or guard relaxation.",
+    "Obtain NEW actual completed finite Coordinator allocation with exact tuple/op5e17/caps+cleanup tails/once budgets; source review itself allocates nothing. Materialize exact329-byte candidate2b19a3a5769c7b74dc125b47d2e0c557672285f8e4d2ad189d28b33ed0659640.",
+    "FreshRoot proof currentclean7d8/source48a7,204sourceGitobjects/86nonSQLrawLF+118Git-only/historicalvectors/10triggers/install; actual proof/activation UTC<=300s. Use current corrected237192/8def proposal and final1163/4ff manifest; no oldsamepath pins.",
+    "Exclusive Root invocation journals precede provider/publish. One fresh provider qualification must have fullnativeEOF/joined/handlesclosed/directsettled/nooverflow plus actual outside hostreceipt before Root effects activation. Limited ordinary ownedbranch Gitpush containment only, no main/manual/API deployment proof; createDeployments isstatusmetadata/ignoreexit0 not zero-deployment proof.",
+    "Rootsolepublish: exactactualedce remote-before, nonforceFF7d8 push,exactreadback,one canonicalNORMAL dispatch; actualnative0/captureclosure required. Uncertain/refused/partial outcome consumes invocation, UNKNOWN_STOP/no blindretry/replay.",
+    "Resolve uniqueactual ownedtuple and observe within cumulativecaps/originalclock; early/unregistered/closed WAIT0GET; all9terminalSTOP. Raw responses remainRAM-only; reviewed closedreceipts/projections persist. No vars/newworkflow/providerwrite/mainmerge/deploy/demo/resource effect."
+  ],
+  "limits": {
+    "source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-first-origin-source-closure/normal-API019-privacy-first-origin-actual-patch-independent-review.json",
+      "bytes": 14394,
+      "sha256": "53747652a4d270646964277c6b45c09dca2df7fb97fbd6bffae00bc47aa276c2"
+    },
+    "new_run": null,
+    "new_native_first_predicate_child": "UNKNOWN",
+    "source_seam_not_functional_fix": true,
+    "last_required95": "93P1F(API019)1zero(API020pending); separate recovery1P/browser14retry0P",
+    "main_DB": "Retainedkey/backendUNKNOWN",
+    "P5": "OPEN",
+    "counter": 3,
+    "normal_acceptance": 0,
+    "effect_authority": false,
+    "development_complete": false,
+    "release_ready": false,
+    "main_production_containment": "SeparateUNKNOWN/held;merge_mainfalse unchanged."
+  },
+  "reviewer_controls": {
+    "reads": [
+      "58a103/native0",
+      "5b7553/native0",
+      "255c3a/native0"
+    ],
+    "final": "Bounded rawhash/inverse/PythonAST/literal/source-row/catalogmetadata/fourtitle checks only. No controls rerun, sourcecatalog extractor, rawSQLscan, module/config/test/reader/provider/API/network/Git/resource/foreigncheckout action.",
+    "source_edits": 0,
+    "tests": 0,
+    "API": 0,
+    "Git": 0,
+    "resources": 0
+  },
+  "blockers_to_source_review": []
+}

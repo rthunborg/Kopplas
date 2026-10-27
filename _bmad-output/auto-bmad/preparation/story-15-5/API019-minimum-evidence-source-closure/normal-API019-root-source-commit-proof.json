@@ -1,0 +1,53 @@
+{
+  "schema": "ROOT_API019_MINIMUM_EVIDENCE_SOURCE_COMMIT_PROOF_V1",
+  "head": "e52568795789034c556f64b0721318f75aa13691",
+  "parent": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+  "functional_preimage": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 140182,
+      "sha256": "31238ec8852e5636d1d0dab3391a7224da50c2349f39cd28711ca85dba81968a",
+      "LF_bytes": 138786,
+      "LF_sha256": "571b4cb4d939e66e850303873f577f2256a11084330863ea5f303f7d2cb470e3",
+      "prospective_LF_git_blob": "579c0f4afa82358ec85643870d508c4d2a8b7b40",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 331036,
+      "sha256": "e6ce95880d24c7908f5f708dedb3671c554ff087d8e652a6aa135bbd21c0dfba",
+      "LF_bytes": 327960,
+      "LF_sha256": "aa80e7440037b0ae0b8c68a0e416ceba4f10a611695a251653f8dc1b9a536278",
+      "prospective_LF_git_blob": "4d557609a88f195956219cdd525d74433f869043",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 260470,
+      "sha256": "d8236c69d18030002cc97384787103dd50604df0dd13760bcb1eb5ae935e9332",
+      "LF_bytes": 257379,
+      "LF_sha256": "49d1fac6483c13c74ad959440016b60009e3b6b766120303fff9c67d8145f917",
+      "prospective_LF_git_blob": "1390e95937236980c89cb7ecb64955e4778d868b",
+      "raw_inverse_equal": true,
+      "unchanged": false
+    }
+  ],
+  "independent_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-actual-patch-independent-review.json",
+    "bytes": 11149,
+    "sha256": "a620f3dbeb328619fa02f9dfcbf52590373114ac9d4fcf58146456605365f808"
+  },
+  "tracked_clean": true,
+  "exact_tracked_paths": 3,
+  "SQL_changed": 0,
+  "normal_acceptance": 0,
+  "phase5": "OPEN",
+  "source_eligibility_only": true,
+  "API019_cause": "UNKNOWN",
+  "review_order_actual_refs": 216,
+  "author_claim_217_discrepancy_preserved": true,
+  "network_effects": 0
+}

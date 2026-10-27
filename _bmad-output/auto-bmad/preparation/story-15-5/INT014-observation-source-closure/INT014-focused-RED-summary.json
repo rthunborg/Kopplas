@@ -1,0 +1,20 @@
+{
+  "label": "INT014-focused-RED",
+  "counts": {
+    "tests": 3,
+    "suites": 0,
+    "pass": 0,
+    "fail": 3,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "failed_owned_tests": [
+    "actual fixture status observation normalizes equivalent timestamps after both RPCs without mutating the raw DTO",
+    "actual fixture status observation preserves different admitted instants and exact usage counts",
+    "actual fixture status observation refuses raw privacy schema and mapper failures before normalization"
+  ],
+  "observed_ERR_ASSERTION": true,
+  "raw_persisted": false,
+  "nonmatching_skips_zero_coverage": true,
+  "purpose": "RED on unchanged helper; no production runtime executed"
+}

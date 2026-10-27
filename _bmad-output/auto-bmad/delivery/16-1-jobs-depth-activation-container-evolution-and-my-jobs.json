@@ -1,0 +1,68 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Explicit owner-authorized 2026-10-19 resume adopts docs/process/development-completion-policy.md over older routine exhaustive browser/screenshot/visual/manual gates. Approved refined16.1 intent, all11ACs and TR01-TR16 are preserved; original intent including delimiters has canonical LF UTF-8 SHA256 de0db4343df0ea830fd12dd42bd7fffc420f52f9af2d390082c0da397733b88d and unchanged4131-byte CRLF SHA25678a32abe8467a24baaf3b128c6a3129b91f6b74e70e97292518430493979034b. Applicable static/build/fullDB-RLS/migration replay/recovery integrity/units/consequential tests/independent review/essential browser requirements have actual positive evidence below. The fullDB lane's single skipped isolated Storage assertion is not passing coverage there; the same physical-loader/overwrite invariant actually passed in its dedicated same-head recovery lane. Exhaustive role/device/browser matrices and screenshot/visual/manual polish are deferred release validation, never passed or waived. Prior failed CI39271273236,39272905198,39276486099,39279073402,39283865613 remain historical failures with their original scope; no relabelling. Transferred membership mutations/responsible-Arbetsledare/operational elevation, work orders, project/card consumers and workspace-shell obligations remain owned by16.2-16.5/TR destination evidence, not claimed complete by16.1. No deployment, merge, release readiness or whole-epic completion is authorized. Spec remains in-progress pending root delivery_gate.py success, same High record-provenance review and explicit root authorization of supported Phase5 terminal closure; configured Phase6 automation and Phase7 tail still follow Phase5 orderly. No claim that those later procedural phases ran. Overall GitHub run/job status metadata was stale; evidence below uses immutable same-head native reports, completed command logs and cleanup, not a fabricated overall-CI terminal status.",
+  "evidence_revision": "d605295a46634e2c20013638e01c5e2a37ad0779",
+  "development_checks": [
+    {
+      "name": "Exact-head static checks, frozen dependencies, production build and containment",
+      "status": "passed",
+      "evidence": "https://github.com/rthunborg/Kopplas/actions/runs/39286112780 exact d605295a46634e2c20013638e01c5e2a37ad0779; verify job118172608534. pnpm install --frozen-lockfile and verify:lockfiles passed; pnpm audit --audit-level=high completed with2moderate findings and no high gate failure; pnpm typecheck passed; pnpm lint:0errors/14warnings; pnpm build compiled successfully in9.7s and generated12/12static pages; verify:service-role-containment and verify:bundle-containment passed. Log reaches post-job cleanup, no failure marker. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-verify.log (raw SHA256 47c1ab093987f5be22553b40a04829fc81e3df8e151912a00ea628a014f692d8). Warnings/moderate findings remain disclosed; no exhaustive visual/manual claim."
+    },
+    {
+      "name": "Full Node unit suite",
+      "status": "passed",
+      "evidence": "d605295a46634e2c20013638e01c5e2a37ad0779; pnpm run test:unit:2612tests across100suites,2612passed/0failed/0cancelled/0skipped/0todo,38863.597806ms. The earlier Windows-local2611pass/1skip is historical and not this Linux CI result. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-verify.log (raw SHA256 47c1ab093987f5be22553b40a04829fc81e3df8e151912a00ea628a014f692d8)."
+    },
+    {
+      "name": "Focused BMAD and Auto-BMAD process checks",
+      "status": "passed",
+      "evidence": "d605295a46634e2c20013638e01c5e2a37ad0779; pnpm run test:bmad-focused (test_memlog.py):2passed; pnpm run test:auto-bmad-focused:26routing-migration+10Windows-PID+5delivery-gate tests passed,41total;43focused process checks combined. All reported OK. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-verify.log (raw SHA256 47c1ab093987f5be22553b40a04829fc81e3df8e151912a00ea628a014f692d8)."
+    },
+    {
+      "name": "Full database integration, RLS and empty-history schema replay",
+      "status": "passed",
+      "evidence": "d605295a46634e2c20013638e01c5e2a37ad0779; standardCI owned disposable stack schema/reset completed before SUPABASE_TEST_REQUIRED=1 pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json.146testfiles passed/1separate-lane recovery skipped;1752total assertions/1751passed/0failed/1skipped/0todo,success=true,244.38s. Actual E16 groups:job-booking-facts6+jobs-depth commands4+jobs-depthRLS3+MyJobs3=16passed;H4cross-tenant205passed;PhaseA role surface7passed. The sole skipped assertion is recovery-storage-immutability.int.test.ts: physical-loader byte-serving/logical-immutability/generic+quotePDFoverwrite proof; its separate same-head executed PASS is below, not inferred from this skip. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-integration-native/full-integration.json (raw SHA256 4bd24ddab78ccd80c05652eabff3764ec1612cb412a6adfffcb8ebd124a58ea1); C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-db.log (raw SHA256 3abca2cc8358806d151da6ce4511c4c662feec5d81699786ba291d2339401798)."
+    },
+    {
+      "name": "Epic11 pilot performance command",
+      "status": "passed",
+      "evidence": "d605295a46634e2c20013638e01c5e2a37ad0779; pnpm run test:pilot-performance executed scripts/nfr/epic-11-r1108-baseline.ts after full integration and reached artifact upload/cleanup without failure. Synthetic dataset120tenantA/24tenantB active memberships;5warmups/25measured;readp95=8.939796ms,synthetic bulk effective-permissionsp95=2.769070ms;50RLSrequests(2periteration),2760grants. These are actual pilot measurements, not a new production SLA. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-db.log (raw SHA256 3abca2cc8358806d151da6ce4511c4c662feec5d81699786ba291d2339401798)."
+    },
+    {
+      "name": "Dedicated isolated recovery Storage integrity",
+      "status": "passed",
+      "evidence": "d605295a46634e2c20013638e01c5e2a37ad0779; dedicated recovery job118173984026 native report:1total/1passed/0failed/0pending/0todo,success=true. The physical-loader byte-serving/logical-row immutability and generic/quotePDFoverwrite assertion actually executed here, covering the intentionally separated fullDB skip. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-recovery-native/isolated-storage-recovery.json (raw SHA256 1a0067ab026a062ea6a32c5d19a9c75226a11d2c8079be11620eb75e225adc89)."
+    },
+    {
+      "name": "Essential real authentication and Jobs browser journeys",
+      "status": "passed",
+      "evidence": "d605295a46634e2c20013638e01c5e2a37ad0779; pnpm run test:smoke executed the retained2authfiles plus jobs-depth.e2e.spec.ts in production Chromium:11expected/0unexpected/0skipped/0flaky,44549.942ms. All11passed on firstattempt/retry0:7auth cases and all4Jobs. E01(2825ms)member/assignee union+mobile navigation/direct denial/money-safe detail;E02(3382ms)360x640 progressive card failure/retry exact-body identity,two successive durable saves/fresh new-edit identity,reload;E03(3661ms)actual job-bound preview/save,current-fact stale rejection and durable booking/conflicts;E04(4275ms)dependency unknown/violation/durable correction. C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-browser-native/general-browser.json (raw SHA256 a72d7d4b7a6bd7ebfb961bfb59cba858b08735cc221b21e02f973ad371ad427a); C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-e2e.log (raw SHA256 e9cc70d35dd1d7df72ed7fdb1d18e2519df384246ffcc4d9326a55d6d9f4d242). Optional dashboard/release-only suites skipped by release_validation=false are NOT coverage."
+    },
+    {
+      "name": "Owned immutable CI admission and required-command completion",
+      "status": "passed",
+      "evidence": "https://github.com/rthunborg/Kopplas/actions/runs/39286112780 exact d605295a46634e2c20013638e01c5e2a37ad0779; root-owned dispatch/admission; C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-ci39286112780-admission.log (raw SHA256 3371e75a624f965063e4ce8b74ffd12b023f30c4e93cfe674e5d46ed5ad1ea02) contains exacthead and completes through cleanup without error/nonzero-process marker. Verify/DB/recovery job metadata reported success; e2e rawlog contains exacthead,11passed and fullcleanup; native artifacts independently confirm results. Overall run/job API metadata lag is retained as a qualification; no overall terminal-success observation is fabricated."
+    }
+  ],
+  "independent_review": {
+    "status": "passed",
+    "evidence": "Owner-policy provenance union, reused only where source/dependencies remain unchanged: original independent Sol High whole-source review and same High narrow source/SQL/fixture fix passes; six configured Sol High layers on 23263e2aeb866904b6a6c5a1eae3f18fb93d507f -> 07db8b6ca32e07e9c4f7e521a9d2e5e9704dbe37, receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-formal-review-f192da90-de3b-4ddb-9ac2-fdb5c2c6a819/six-layer-review-receipt.json raw SHA256 87cd2024233ee1084786e763d9b9a95c8733630726eef14442fc5f08276b51d7, recorded 2026-10-19T15:44:27.902041+00:00, all triage counts0; six layers on 07db8b6ca32e07e9c4f7e521a9d2e5e9704dbe37 -> 8185b07e2d56a93a4143d4a54e0182360e56ef13, receipt C:/Users/Rasmus/AppData/Local/Temp/kopplas-e16-formal-env-review-0a0643ce-d137-4ab6-b6fb-890963258211/six-layer-review-receipt.json raw SHA256 d6c97487cbbe929d2d90b345414671ae5bad0ef941ca6aae624ed9f5a6dee9fc, recorded 2026-10-19T16:20:11.901551+00:00, intent_gap0/bad_spec0/patch0/defer0/reject1(low optional persistent-harness suggestion), score0/followupfalse. Both external Codex review stages exited0 and wrote actual No findings receipts (SHA2562557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5); each original CMD TYPE wrapper exited1 during display, recovered without model rerun or false overall-native0 claim. Root recorded SAME High reviewer PASS of latest 8185b07e2d56a93a4143d4a54e0182360e56ef13 -> d605295a46634e2c20013638e01c5e2a37ad0779 two-file E01/E02 repair, bound inventory429d5645381525c67df1cd5b333aad637c4171164780e4ff46c3c02ee639bab3 (51files/9new), all107assertions and byte-identical E03/E04 tail fb4497f7a3f8276222b913f22d042b651bb27f7e9fc926eca84a71290eb39683. Six configured layers were NOT rerun on that latest E2E delta. Final record provenance itself awaits same High review after root delivery-gate validation; this source-review PASS does not claim that later record review already occurred."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "Exhaustive role/device/browser matrices beyond the four essential Jobs journeys",
+      "owner": "E16 UI/release-validation owner",
+      "status": "deferred",
+      "evidence": "Exact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke11/11 including4Jobs passed. Broader matrices and optional dashboard/release_validation lanes did not execute; their skips confer no coverage. Current policy classifies that breadth as release validation, preserving the actual functional requirements.",
+      "next_action": "At release stabilization, the E16 UI/release-validation owner runs the deliberate release_validation=true lane and the tracked full role/device/browser matrix on the qualified final epic candidate, retaining actual results before any release-ready claim."
+    },
+    {
+      "item": "Screenshot comparison, visual inspection, representative manual walkthrough and polish",
+      "owner": "E16 UI/release-validation owner",
+      "status": "deferred",
+      "evidence": "No E16 screenshot-comparison or manual/visual pass is claimed. Existing historical evidence stays historical. Current owner policy defers this work; essential connected360x640 failure/retry/persistence behavior has actual browser coverage above.",
+      "next_action": "Before release readiness, the E16 UI/release-validation owner records screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, resolves consequential defects and retains their evidence separately from the development smoke."
+    }
+  ],
+  "release_ready": false
+}

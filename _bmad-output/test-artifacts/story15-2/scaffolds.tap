@@ -1,0 +1,315 @@
+TAP version 13
+# (node:15232) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/resources/booking-series-state.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 15.2 latest preview and explicit attempt recovery — AC2/AC3/AC8
+    # Subtest: [P0] TEA15.2-STATE-001 idle preview cannot save
+    ok 1 - [P0] TEA15.2-STATE-001 idle preview cannot save # SKIP
+      ---
+      duration_ms: 0.9395
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 pending preview cannot save
+    ok 2 - [P0] TEA15.2-STATE-001 pending preview cannot save # SKIP
+      ---
+      duration_ms: 0.183
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 failed preview cannot save
+    ok 3 - [P0] TEA15.2-STATE-001 failed preview cannot save # SKIP
+      ---
+      duration_ms: 0.1051
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 late preview cannot replace latest candidate or authorize save
+    ok 4 - [P0] TEA15.2-STATE-001 late preview cannot replace latest candidate or authorize save # SKIP
+      ---
+      duration_ms: 0.1159
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing rule discards receipt selection and reason
+    ok 5 - [P0] TEA15.2-STATE-001 changing rule discards receipt selection and reason # SKIP
+      ---
+      duration_ms: 0.8077
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing seriesVersion discards receipt selection and reason
+    ok 6 - [P0] TEA15.2-STATE-001 changing seriesVersion discards receipt selection and reason # SKIP
+      ---
+      duration_ms: 0.1328
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing factRevision discards receipt selection and reason
+    ok 7 - [P0] TEA15.2-STATE-001 changing factRevision discards receipt selection and reason # SKIP
+      ---
+      duration_ms: 0.1406
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing pivotOccurrenceId discards receipt selection and reason
+    ok 8 - [P0] TEA15.2-STATE-001 changing pivotOccurrenceId discards receipt selection and reason # SKIP
+      ---
+      duration_ms: 0.1701
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing proposedIds discards receipt selection and reason
+    ok 9 - [P0] TEA15.2-STATE-001 changing proposedIds discards receipt selection and reason # SKIP
+      ---
+      duration_ms: 0.2833
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 complete warning set includes eleventh warning before save admission
+    ok 10 - [P0] TEA15.2-STATE-001 complete warning set includes eleventh warning before save admission # SKIP
+      ---
+      duration_ms: 0.3222
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-STATE-002 lost response retains exact immutable attempt for explicit retry
+    ok 11 - [P0] TEA15.2-STATE-002 lost response retains exact immutable attempt for explicit retry # SKIP
+      ---
+      duration_ms: 0.048
+      type: 'test'
+      ...
+    # Subtest: [P1] TEA15.2-STATE-002 failed response keeps labelled unsent data until server-confirmed result
+    ok 12 - [P1] TEA15.2-STATE-002 failed response keeps labelled unsent data until server-confirmed result # SKIP
+      ---
+      duration_ms: 0.0337
+      type: 'test'
+      ...
+    1..12
+ok 1 - 15.2 latest preview and explicit attempt recovery — AC2/AC3/AC8
+  ---
+  duration_ms: 4.8107
+  type: 'suite'
+  ...
+# (node:58012) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/scheduling/recurrence.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 15.2 pure bounded calendar recurrence — AC1
+    # Subtest: [P0] TEA15.2-UNIT-001 daily-leap-day
+    ok 1 - [P0] TEA15.2-UNIT-001 daily-leap-day # SKIP
+      ---
+      duration_ms: 1.4773
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 monthly-skips-absent-day-without-clamping
+    ok 2 - [P0] TEA15.2-UNIT-001 monthly-skips-absent-day-without-clamping # SKIP
+      ---
+      duration_ms: 0.1046
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 weekly-selected-iso-weekdays-inclusive-end
+    ok 3 - [P0] TEA15.2-UNIT-001 weekly-selected-iso-weekdays-inclusive-end # SKIP
+      ---
+      duration_ms: 0.0778
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 biweekly-iso-monday-anchor-counts-emitted
+    ok 4 - [P0] TEA15.2-UNIT-001 biweekly-iso-monday-anchor-counts-emitted # SKIP
+      ---
+      duration_ms: 0.0432
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 weekly-spring-wall-clock-retained
+    ok 5 - [P0] TEA15.2-UNIT-001 weekly-spring-wall-clock-retained # SKIP
+      ---
+      duration_ms: 0.0885
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 weekly-autumn-wall-clock-retained
+    ok 6 - [P0] TEA15.2-UNIT-001 weekly-autumn-wall-clock-retained # SKIP
+      ---
+      duration_ms: 0.1248
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 spring-gap-first-valid-instant
+    ok 7 - [P0] TEA15.2-UNIT-001 spring-gap-first-valid-instant # SKIP
+      ---
+      duration_ms: 0.0603
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 autumn-fold-earlier-instant
+    ok 8 - [P0] TEA15.2-UNIT-001 autumn-fold-earlier-instant # SKIP
+      ---
+      duration_ms: 0.0871
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 all-day-spring-local-midnights
+    ok 9 - [P0] TEA15.2-UNIT-001 all-day-spring-local-midnights # SKIP
+      ---
+      duration_ms: 0.1245
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 overnight-spring-converts-both-endpoints
+    ok 10 - [P0] TEA15.2-UNIT-001 overnight-spring-converts-both-endpoints # SKIP
+      ---
+      duration_ms: 0.3459
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 microseconds-retained
+    ok 11 - [P0] TEA15.2-UNIT-001 microseconds-retained # SKIP
+      ---
+      duration_ms: 0.0807
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects unbounded without partial occurrences
+    ok 12 - [P0] TEA15.2-UNIT-001 rejects unbounded without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0606
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects both-end-conditions without partial occurrences
+    ok 13 - [P0] TEA15.2-UNIT-001 rejects both-end-conditions without partial occurrences # SKIP
+      ---
+      duration_ms: 0.051
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects zero-count without partial occurrences
+    ok 14 - [P0] TEA15.2-UNIT-001 rejects zero-count without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0503
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects negative-count without partial occurrences
+    ok 15 - [P0] TEA15.2-UNIT-001 rejects negative-count without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0532
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects fractional-count without partial occurrences
+    ok 16 - [P0] TEA15.2-UNIT-001 rejects fractional-count without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0562
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects nonfinite-count without partial occurrences
+    ok 17 - [P0] TEA15.2-UNIT-001 rejects nonfinite-count without partial occurrences # SKIP
+      ---
+      duration_ms: 0.065
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects nan-count without partial occurrences
+    ok 18 - [P0] TEA15.2-UNIT-001 rejects nan-count without partial occurrences # SKIP
+      ---
+      duration_ms: 0.052
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects unsafe-count without partial occurrences
+    ok 19 - [P0] TEA15.2-UNIT-001 rejects unsafe-count without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0467
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects empty-weekdays without partial occurrences
+    ok 20 - [P0] TEA15.2-UNIT-001 rejects empty-weekdays without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0566
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects invalid-iso-weekday without partial occurrences
+    ok 21 - [P0] TEA15.2-UNIT-001 rejects invalid-iso-weekday without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0745
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects invalid-until-date without partial occurrences
+    ok 22 - [P0] TEA15.2-UNIT-001 rejects invalid-until-date without partial occurrences # SKIP
+      ---
+      duration_ms: 0.063
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects end-before-start without partial occurrences
+    ok 23 - [P0] TEA15.2-UNIT-001 rejects end-before-start without partial occurrences # SKIP
+      ---
+      duration_ms: 0.5721
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects unsupported-preset without partial occurrences
+    ok 24 - [P0] TEA15.2-UNIT-001 rejects unsupported-preset without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0363
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects invalid-local-date without partial occurrences
+    ok 25 - [P0] TEA15.2-UNIT-001 rejects invalid-local-date without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0227
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects nonpositive-interval without partial occurrences
+    ok 26 - [P0] TEA15.2-UNIT-001 rejects nonpositive-interval without partial occurrences # SKIP
+      ---
+      duration_ms: 0.0201
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 gap-converted nonpositive endpoint rejects entire series with local date
+    ok 27 - [P0] TEA15.2-UNIT-002 gap-converted nonpositive endpoint rejects entire series with local date # SKIP
+      ---
+      duration_ms: 0.0192
+      type: 'test'
+      ...
+    # Subtest: [P1] TEA15.2-UNIT-001 previews ten while materializing all twelve without truncation
+    ok 28 - [P1] TEA15.2-UNIT-001 previews ten while materializing all twelve without truncation # SKIP
+      ---
+      duration_ms: 0.0194
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 admits shared bound and rejects bound plus one with no partial rows
+    ok 29 - [P0] TEA15.2-UNIT-001 admits shared bound and rejects bound plus one with no partial rows # SKIP
+      ---
+      duration_ms: 0.0534
+      type: 'test'
+      ...
+    1..29
+ok 2 - 15.2 pure bounded calendar recurrence — AC1
+  ---
+  duration_ms: 6.1731
+  type: 'suite'
+  ...
+# Subtest: 15.2 immutable nominal identity reconciliation — AC4/AC5
+    # Subtest: [P0] TEA15.2-UNIT-002 rule omission retains exceptional slot outside generated dates
+    ok 1 - [P0] TEA15.2-UNIT-002 rule omission retains exceptional slot outside generated dates # SKIP
+      ---
+      duration_ms: 0.0571
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 retains exception omitted by new rule and suppresses same nominal replacement
+    ok 2 - [P0] TEA15.2-UNIT-002 retains exception omitted by new rule and suppresses same nominal replacement # SKIP
+      ---
+      duration_ms: 0.023
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 cancelled slot tombstone never regenerates
+    ok 3 - [P0] TEA15.2-UNIT-002 cancelled slot tombstone never regenerates # SKIP
+      ---
+      duration_ms: 0.0211
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 removed generated slot becomes cancelled exceptional tombstone
+    ok 4 - [P0] TEA15.2-UNIT-002 removed generated slot becomes cancelled exceptional tombstone # SKIP
+      ---
+      duration_ms: 0.0263
+      type: 'test'
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 split pivot uses nominal date despite exception actual start moving into prefix
+    ok 5 - [P0] TEA15.2-UNIT-002 split pivot uses nominal date despite exception actual start moving into prefix # SKIP
+      ---
+      duration_ms: 0.0212
+      type: 'test'
+      ...
+    1..5
+ok 3 - 15.2 immutable nominal identity reconciliation — AC4/AC5
+  ---
+  duration_ms: 0.2349
+  type: 'suite'
+  ...
+1..3
+# tests 46
+# suites 3
+# pass 0
+# fail 0
+# cancelled 0
+# skipped 46
+# todo 0
+# duration_ms 238.8288

@@ -1,0 +1,93 @@
+{
+  "activation": {
+    "bytes": 2816,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-activation.json",
+    "sha256": "00623b0ab44ed82e4a7cb445ee2e5a775df46027fcdcd4503782149934aad8e4"
+  },
+  "attempt": 1,
+  "checkpoint_id": "430dbc33-7e01-440e-aa3c-dcd1f528908a",
+  "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+  "input_refs": [
+    {
+      "bytes": 17493,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-source-bound-reader-preparation/reader.py",
+      "sha256": "0f1f7600c68246acaa07a3919b754e0d62cd07e06c2bcd55c48c56708527761d"
+    },
+    {
+      "bytes": 33281,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-source-bound-reader-preparation/proposal.json",
+      "sha256": "5531659815dd766c8deaac689da5eeac027b63c6c1bf4de8fa4ff026038a9b65"
+    },
+    {
+      "bytes": 50745,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/normal-evidence-operator.py",
+      "sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76"
+    },
+    {
+      "bytes": 14868,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/terminal.json",
+      "sha256": "1a79febc202375e5cbc586fd584601361fbc49cf9d9161bc47551d5ae1f07a0e"
+    },
+    {
+      "bytes": 15458,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-actual-root-ownership.json",
+      "sha256": "727c2d5a28f5a7f3e7c8cb5f710f464a6fa2057faa3d1655543ef8c9f63b98fc"
+    },
+    {
+      "bytes": 545,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-inert-binding.json",
+      "sha256": "33c8a54fbf841732a204662d3f0a1c104f87b815ad1fb9c3af89cb1875fcf821"
+    },
+    {
+      "bytes": 13795,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/Next16-4-1-final-four-source-independent-patch-review.json",
+      "sha256": "49b5b590fc42a54e5b87461a2d066fe00e12d16b0ba33db5327741941905dc86"
+    },
+    {
+      "bytes": 8480,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-root-four-source-debug-replay-alignment-proof.json",
+      "sha256": "4a2bfa69f8a6c1113795bf315280f95fa805369bd9aa77af3d0f45efc5ec63c3"
+    },
+    {
+      "bytes": 6232,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-actual-root-ownership.json",
+      "sha256": "6fa0a7099de047de88d06dd68ee046f4ffccf5b8d7c2d279dc65e436015ab7be"
+    },
+    {
+      "bytes": 14343,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-inert-reader-producer-rebind-independent-check.json",
+      "sha256": "836a7f821a3a41407184aa07aed31b91450023a5f40532a6c629f706ae6e4a28"
+    },
+    {
+      "bytes": 2686,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-Next16-4-1-original-INT009-terminal-two-read-allocation.json",
+      "sha256": "1e1dce253921e7c9d6ad6ddd1b7cb424226780cab5247b2cc377ff4707436354"
+    },
+    {
+      "bytes": 8559,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-current-source-proof.json",
+      "sha256": "8af45a804e5396d6cd787e885b93a19dc3e0e205c2f8d32e8ff423bbc3733610"
+    },
+    {
+      "bytes": 14868,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/terminal.json",
+      "sha256": "1a79febc202375e5cbc586fd584601361fbc49cf9d9161bc47551d5ae1f07a0e"
+    },
+    {
+      "bytes": 15458,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-actual-root-ownership.json",
+      "sha256": "727c2d5a28f5a7f3e7c8cb5f710f464a6fa2057faa3d1655543ef8c9f63b98fc"
+    },
+    {
+      "bytes": 12740,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-operational-review.json",
+      "sha256": "45d1e0119153e3b8e429168bca25690e0634b0c2ba2824c6117e136fcafb0b45"
+    }
+  ],
+  "maximum_GETs": 2,
+  "no_retry": true,
+  "normal_acceptance": 0,
+  "operation_id": "54e1c058-3a96-4dfa-991f-bfa28456b5ad",
+  "raw_persisted": false,
+  "run": 39943446009
+}

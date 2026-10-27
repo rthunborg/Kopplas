@@ -12,9 +12,9 @@ import type { DocumentCandidate } from "@/server/read-models/document-sources";
 const uid = (n: number) => "00000000-0000-4000-8000-" + n.toString().padStart(12, "0");
 const TENANT = uid(1), USER = uid(2), CLIENT = { marker: "request-anon-key" };
 const ids = { customer: uid(10), facility: uid(11), contact: uid(12), calculation: uid(13),
-  quote: uid(14), quote_version: uid(15), quote_acceptance: uid(16), job: uid(17) };
+  quote: uid(14), quote_version: uid(15), quote_acceptance: uid(16), job: uid(17), work_order: uid(18) };
 const sourceModules = { customer: "crm", facility: "crm", contact: "crm", calculation: "calculations",
-  quote_version: "quotes", quote_acceptance: "quotes", job: "jobs" } as const;
+  quote_version: "quotes", quote_acceptance: "quotes", job: "jobs", work_order: "jobs" } as const;
 type Owner = keyof typeof sourceModules;
 type Ref = { module: string; ownerType: string; ownerId: string };
 type Row = Record<string, unknown>;
@@ -42,6 +42,7 @@ function graph(): Map<string, Row> {
       quote_number_display: "Q-SYNTHETIC", status: "sent" })],
     ["quote_acceptances:" + ids.quote_acceptance, live(ids.quote_acceptance, { quote_id: ids.quote, quote_version_id: ids.quote_version })],
     ["jobs:" + ids.job, live(ids.job, { title: "Authorized synthetic job" })],
+    ["work_orders:" + ids.work_order, live(ids.work_order, { job_id: ids.job, title: "Authorized synthetic work order" })],
   ]);
 }
 function loader(rows: Map<string, Row>, calls: string[] = []) {
@@ -67,7 +68,7 @@ function absent(result: Entry, state: "unavailable" | "error" = "unavailable") {
 }
 function row(owner: Owner = "customer", linkId = uid(100), fileId = uid(200)): DocumentCandidate {
   return { id: linkId, tenant_id: TENANT, file_id: fileId, owner_type: owner, owner_id: ids[owner],
-    purpose: owner === "calculation" ? "calculation_attachment" : owner === "job" ? "job_evidence" :
+    purpose: owner === "calculation" ? "calculation_attachment" : (owner === "job" || owner === "work_order") ? "job_evidence" :
       owner === "quote_acceptance" ? "acceptance_evidence" : owner === "quote_version" ? "quote_attachment_snapshot" : "crm_document",
     archived_at: null, created_at: "2030-01-01T00:00:00Z", is_locked: false, locked_at: null,
     file: { id: fileId, tenant_id: TENANT, lifecycle_state: "linked", archived_at: null, artifact_kind: null,
@@ -97,7 +98,8 @@ for (const owner of Object.keys(sourceModules) as Owner[]) {
     assert.equal(entry.state, "available"); assert.equal(entry.entitlements.canOpenDocuments, true);
     assert.deepEqual(entry.data?.ref, ref(owner));
     const returnHref = owner === "facility" || owner === "contact" || owner === "customer" ? "/customers/" + ids.customer :
-      owner === "calculation" ? "/calculations/" + ids.calculation : owner === "job" ? "/jobs/" + ids.job :
+      owner === "calculation" ? "/calculations/" + ids.calculation :
+      owner === "work_order" ? "/jobs/" + ids.job + "?workOrder=" + ids.work_order : owner === "job" ? "/jobs/" + ids.job :
       "/quotes/" + ids.quote + "/versions/" + ids.quote_version;
     assert.equal(entry.data?.contextReturnHref, returnHref);
     assert.ok(calls.length > 0, "zero files never skips current source authorization");
@@ -230,4 +232,24 @@ test("[P0][AC3] complete ALL-link lifecycle authority precedes context filtering
   assert.deepEqual(checked, [target.id, hidden.id]); assert.deepEqual(result.data.rows.map(r => r.linkId), [target.id]);
   assert.equal(result.data.rows[0].canArchive, false); assert.equal(result.data.rows[0].canRestore, false);
   assert.doesNotMatch(JSON.stringify(result), new RegExp(hidden.id + "|" + hidden.owner_id));
+});
+
+for (const fault of ["missing", "archived", "foreign", "wrong-id"]) {
+  test("[16.3][AC05] work-order context requires a current coherent readable parent: " + fault, async () => {
+    const rows = graph(), key = "jobs:" + ids.job;
+    if (fault === "missing") rows.delete(key);
+    if (fault === "archived") rows.get(key)!.archived_at = "2030-01-01T00:00:00Z";
+    if (fault === "foreign") rows.get(key)!.tenant_id = uid(999);
+    if (fault === "wrong-id") rows.get(key)!.id = uid(999);
+    absent(await (await contextReader()).readDocumentContext(ref("work_order"), deps(rows)));
+  });
+}
+test("[16.3][AC05] work-order context parent fault is retryable and never exposes a return URL", async () => {
+  const options = deps();
+  absent(await (await contextReader()).readDocumentContext(ref("work_order"), {
+    ...options, loadRow: async (...args: Parameters<ReturnType<typeof loader>>) => {
+      if (args[0] === "jobs") throw new Error("SQL detail private parent");
+      return options.loadRow(...args);
+    },
+  }), "error");
 });

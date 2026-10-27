@@ -1,0 +1,249 @@
+{
+  "schema": "PRIVACY_ORIGIN_NORMAL_INERT_OPERATIONAL_DESCRIPTOR_V1",
+  "execution_authorized": false,
+  "all_execution_slots": "UNALLOCATED",
+  "identity": {
+    "schema": "ROOT_FUTURE_INERT_IDENTITIES_V1",
+    "head": null,
+    "source": null,
+    "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+    "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "base_local_head": "104976f7fc88844394abd48d02f1a8392c25ad8b",
+    "last_published_head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+    "mode": "NORMAL",
+    "cause_proof": false,
+    "release_validation": false,
+    "all_execution_slots": "UNALLOCATED",
+    "effects_authorized": false,
+    "reader": "existing qualified lineage only; updated fixed-stage constants are data only"
+  },
+  "source_overlay": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-operational-preparation/source-catalog-overlay.json",
+    "bytes": 36296,
+    "sha256": "0f380478361b0c94e685df8fd151690d1a409b12b7ccbf4c2919bff4ddfdd600"
+  },
+  "baseline_files": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/provider-readonly.py",
+      "bytes": 20460,
+      "sha256": "3dbaf1cf1bd9b969d73a66ba1132f8d38bfdb193bf94f095e58776cb357225ec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/root-driver.py",
+      "bytes": 20990,
+      "sha256": "cb7c0415f6265c8ffa1f2465a776fb8584b3f7f76e239d76397e7c1ce322a4d8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/proposal.json",
+      "bytes": 217350,
+      "sha256": "e79f5dc5cfc399d3c84cb75425c92b2e360c92ddbe717d9bb5cc1114f10a382e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/pure-controls.json",
+      "bytes": 12123,
+      "sha256": "55b7fa5692846d1ea18472d089c03bfbb528be6189f563c4f73fdaf784236d2d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/manifest.json",
+      "bytes": 1148,
+      "sha256": "7208774925d2bc38ebf594ef5135afdf107c9047a2c8dc4c20fdce3d7081d322"
+    }
+  ],
+  "function_preservation": {
+    "provider-readonly.py": {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/provider-readonly.py",
+        "bytes": 20460,
+        "sha256": "3dbaf1cf1bd9b969d73a66ba1132f8d38bfdb193bf94f095e58776cb357225ec"
+      },
+      "definition_count": 7,
+      "definition_hashes": {
+        "ref": "6d51c0a3f077a84d55d415d5882acb6bc25feee9da1b53a21318fee321ffd098",
+        "exclusive": "7255f502e85f994bc0c1d8c0be6605a586f978f9bfb79f1ff44b6cf093872313",
+        "fresh": "25b057c853b80117d347cb83da9cb78050d07e30104c7320e28c1ee4f823157a",
+        "admit_activation": "23a1b104f029c37fc35de74face1133b416e83ab49da704359bdcbf55a6dbad6",
+        "verify_pin": "9b81acaaa51a102d21b527f357542cceeff38f0222ac509f88ebfbca730dfc7f",
+        "load_pin": "cab0f47be5d7ee8481c65288912384559e3bd31bb07311dea3fca632ad0dde61",
+        "readstream": "7218d9694e3321ce1cc2e15680722986b56f7a7e21e71d9952fa6e811d10e4e8"
+      },
+      "current_copy": "Not materialized; exact prior source is referenced unchanged until final reviewed target/source enrollment."
+    },
+    "root-driver.py": {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/root-driver.py",
+        "bytes": 20990,
+        "sha256": "cb7c0415f6265c8ffa1f2465a776fb8584b3f7f76e239d76397e7c1ce322a4d8"
+      },
+      "definition_count": 18,
+      "definition_hashes": {
+        "now": "d4c9401fe48508973b09b76508527136e24c7d1f6eff9a2293f9c7a869817213",
+        "binding": "5d5c9a9d50134b4f7f43cb37036aec154cb016335d0942fc1f4e6ff885bd5bc1",
+        "write": "e85b98cf34b4866a526e1637ad9018d6f3c3617e393a82be9d1f5e07dc9c2c5c",
+        "native": "11bcfb38ecc17c0040261f58c29f04170c89877fb675165bc7fbc62d1cb3d3e7",
+        "required": "ffd6bee9fe0e0f397f13c5b89790584dc53c8b94203f6ad1da466745a8b13172",
+        "git": "56e25f9323c67ea94ea8dbf51bcd351aeb90804221a6acbfb95c8e34b55535e4",
+        "read": "cee8b3d627409401b699e5299e123f788440d83f9c0c8ea3f049ae1d7783b9d8",
+        "verify_pin": "bc868cc6525b25c5691537102cf14bcc59e428630f210230e6a6b20be1af3ea6",
+        "checkref": "0535a0c02863a3ee80aecefd7ece4d57551ba312de800a39ff720a87c3a8b9c2",
+        "fresh": "3e747bf8d7cc8b27106cb81a8eef53f7844dec2ecaf017d2a3402896a6732f76",
+        "save": "881b4d1c31c581da4b9f03dd61bd0c45955cd00cde137881afc1e8544ef7b0b2",
+        "mutation_fresh": "47b67040a88ecac6277eaf81f239bdf4a849374fbcdfb427de576a93f10bed83",
+        "ownedrun": "08eb2d6b4af0d4bd2b635e0110b4afe399573c0c34ac9749731f4337d053a62d",
+        "localproof": "38cc9c3ed7460b794bce780b453d7edffe2d4fd600c4312b26447dc5e5f67953",
+        "admit": "ba1ef08cbafd29b4215a1cce3058bb0ead18b0f1a80802985a269fbacce72cca",
+        "api": "a30792d40d2490f1cbb183a1a13e47ce02a2c92c45aadd06608ddfed1548c7a0",
+        "wait_result": "c2081c48becbc84fa2dba7a1c66b824f19d29e2891e3e4c42498308a1c4c01af",
+        "main": "08c75ab98fb2e79804a2546f26f309424b49304f5cce9a0d80f1f3c1423ff5c7"
+      },
+      "current_copy": "Not materialized; exact prior source is referenced unchanged until final reviewed target/source enrollment."
+    }
+  },
+  "control_reuse": {
+    "ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/pure-controls.json",
+      "bytes": 12123,
+      "sha256": "55b7fa5692846d1ea18472d089c03bfbb528be6189f563c4f73fdaf784236d2d"
+    },
+    "current_controls_rerun": false,
+    "reason": "No executable algorithm/admission binding materialized yet. Prior qualified functions/control evidence retained nonadditively; final exact executable binding/inverses/offline admission require later narrow review."
+  },
+  "reader_stage_only": {
+    "source": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/reader-stage-data-successor.py",
+      "bytes": 52622,
+      "sha256": "f6d39f15c21a643850909790d7cd9b90b42a5ceb5457a2b6d6fdeb926daedb31"
+    },
+    "proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-author/reader-and-type-compatibility-proof.json",
+      "bytes": 5146,
+      "sha256": "2cb109940242c94b76dfd2c0839a9f8ae31193080b5755aff0bed7b9d2dbdf1e"
+    },
+    "finite_constants_added": 28,
+    "functions_byteequal": 41,
+    "full_inverse": true,
+    "future_run": null,
+    "terminal": null,
+    "jobs": null,
+    "endpoint": null,
+    "authority": false
+  },
+  "future_effect_data_UNALLOCATED": {
+    "provider_GET": {
+      "max": 1,
+      "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd",
+      "caps": {
+        "seconds": 15,
+        "stdout": 4194304,
+        "stderr": 262144
+      },
+      "mutations": 0,
+      "limited_contract": "Point-in-time ordinary owned branch Git-push containment with branch-specific git.deploymentEnabled=false and fresh qualified project identity/settings. Previewdisabled/unconditionalignoredexit0 do not establish blanket manual/production disable. createDeployments=enabled is raw GitHub deployment-status metadata only."
+    },
+    "remote_before": {
+      "max": 1,
+      "required_sha": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "ref": "refs/heads/codex/epic-15-scheduling-time-calendar",
+      "timeout_seconds": 20
+    },
+    "FFpush": {
+      "max": 1,
+      "force": false,
+      "head": null,
+      "timeout_seconds": 60
+    },
+    "remote_readback": {
+      "max": 1,
+      "required_sha": null,
+      "timeout_seconds": 20
+    },
+    "canonical_dispatch": {
+      "invocations_max": 1,
+      "prePOST_GETs_max": 4,
+      "POSTs_max": 1,
+      "outer_seconds": 90,
+      "per_API_seconds": 15,
+      "per_API_stdout_cap": 4194304,
+      "outer_stdout": 524288,
+      "stderr": 65536
+    },
+    "resolve": {
+      "GET_max": 6,
+      "per_page": 20,
+      "minimum_cooldown_seconds": 5,
+      "no_pagination": true,
+      "unique_owned_only": true,
+      "API_seconds": 20
+    },
+    "poll": {
+      "run_GET_max": 90,
+      "jobs_GET_max": 90,
+      "minimum_cooldown_seconds": 30,
+      "max_wall_seconds": 5400,
+      "jobs_per_page": 100,
+      "no_pagination": true,
+      "stop_all9terminal": true,
+      "API_seconds": 20,
+      "API_stdout": 2097152,
+      "stderr": 65536
+    },
+    "provider_writes": 0,
+    "repository_variables": 0,
+    "artifact_logs_GET_now": 0,
+    "diagnostic_runs": 0,
+    "main_merge_deploy_demo_db_push": 0,
+    "local_managed_resources": 0,
+    "postterminal_acquisition_scope": "No artifact/log GET now. Separate actual-terminal enrollment/review/new finite max5GET grant later. 32KiB applies SOURCE-LABEL projection only, not every generic projection; preserve historical generic/source-label cap discrepancy."
+  },
+  "actual_caps": {
+    "provider_loop_seconds": 15,
+    "remote_Git_each_loop_seconds": 20,
+    "push_loop_seconds": 60,
+    "canonical_Node_loop_seconds": 90,
+    "canonical_per_API_seconds": 15,
+    "resolver_poll_API_loop_seconds": 20,
+    "driver_cleanup": "direct child wait up to2s; two reader joins up to1s each; preserve source-specific provider cleanup unchanged",
+    "hardwall_claim": false,
+    "correction": "Root explicitly corrected assignment shorthand60canonical/90resolvepoll before effects; actual source callsites authoritative."
+  },
+  "final_enrollment_requirements": [
+    "Independent actual five-path source review PASS, then Root exact source commit and docs/current candidate head; preserve source files frozen.",
+    "Replace null head/source only with actual Root proof, retain fresh checkpoint, exact candidate/ref/current expected remote; no implicit target resolution.",
+    "Materialize exact provider/rootdriver/proposal/control/manifest fivebundle from pinned baseline; tuple/path/admit-data only, provider7defs and driver17nonadmitdefs/canonicaladapter/transport/resolver/pollSTOP unchanged; narrow literal inverse for admit and all namespace data.",
+    "Refresh source204/75 mapped rows, current444/19/195 catalog, current source reviews and exact current REF_PATHS; byte verify heterogeneous refs, strict JSON only at actual JSON consumers.",
+    "Fresh independent operational review at exact enforced path; actual completed finite Coordinator grant; fresh Root source204/75/SQL118 Git-only proof/install/10trigger identities <=300s and exclusive once activations/journals.",
+    "Fresh provider qualification, Root sole bounded nonforce publish/canonicalNORMALdispatch/unique resolve/poll under original clock and current finite budgets; unknown closes remaining, no retries.",
+    "Actual terminal separate enrollment/review/new finite artifact grant; source-label cap32768 only, no generic projection cap."
+  ],
+  "interfaces_NOT_READY": {
+    "future_argv": null,
+    "provider_activation": null,
+    "root_activation": null,
+    "candidate": null,
+    "allocation": null,
+    "operational_review": null,
+    "output_namespace": null,
+    "reason": "Final exact executable binding must be materialized after Root source/head signal; this descriptor cannot authorize or execute any operation."
+  },
+  "limits": {
+    "P5": "OPEN",
+    "review_round_cap": 3,
+    "last_required95": "93P1F(API019)1zero(API020)",
+    "cause": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "acceptance": 0,
+    "no_functional_repair_claim": true,
+    "production_manual_containment": "UNKNOWN; provider limited ordinary owned-branch Git push only",
+    "createDeployments": "GitHub status metadata, not creation kill switch"
+  },
+  "six_fields": {
+    "Outcome": "INERT_REUSE_DATA_READY_AWAIT_ROOT_SOURCE_HEAD",
+    "Files changed": [
+      "Private descriptor/source overlay/manifest only"
+    ],
+    "Status": "444static/19excluded/195wrapper verified with retained narrow extractor; actual source5 rows pinned. No executable copy or effect admission.",
+    "Open questions": "Final source commit/head/review and exact runtime interface enrollment pending; native cause/custody unknown.",
+    "Deferred work": "Root commit/docs bridge then materialize exact narrow executable fivebundle and independent operational review/grant/activation.",
+    "Blockers": "No local draft blocker; null head/source and unallocated slots deliberately prevent execution."
+  }
+}

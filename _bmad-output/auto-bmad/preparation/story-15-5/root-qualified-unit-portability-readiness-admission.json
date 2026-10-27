@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-10-21T22:36:30.954775+00:00",
+  "outcome": "PORTABILITY_SOURCE_READY_E16_COMPOSITION_INPUT_REQUIRED",
+  "delegate": "/root/native15_5_high",
+  "delegate_model": "gpt-6.1-sol",
+  "delegate_effort": "high",
+  "local_head": "53273c2fcdfe57fde710867054b234fdb3bc35d8",
+  "application_source": "4cd5e944ae19785f4d7abfbcca4f1d471cc7491e",
+  "manifest": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/manifest.json",
+  "manifest_bytes": 882,
+  "manifest_sha256": "c680f4bad2dcfabdc9d329a322a717cf075a40578709ff3eec61376903b60f48",
+  "root_mechanical_membership_check": "PASS_EXACT4_HASHES",
+  "semantic_assessment": "delegated High; current75 source bindings;2 changed73same; SQL111 conserved; exact E16 commit unavailable locally",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "next": "Coordinate exact99104d0ffa0360cf7d4ce4de174789c4a4605224 object intake and read-only High integration plan before composed-source native validation. No new effects authorized by this admission."
+}

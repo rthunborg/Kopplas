@@ -1,0 +1,28 @@
+{
+  "schema": "INT009_PROVIDER_READ_CONSUMED_v1",
+  "at": "2026-10-23T15:02:06.761106+00:00",
+  "operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914",
+  "request": {
+    "method": "GET",
+    "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-provider-readonly-activation.json",
+    "bytes": 2460,
+    "sha256": "a6956ba367b4dbe364d7e4feee1057ff13c81fef8979c8d2bc27ee884825cae3"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-effects-allocation.json",
+    "bytes": 4081,
+    "sha256": "255bd6aaf021c8cf52b59bae83eee228041344b592fb5c294bc60de97bc8c2e3"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-current-source-proof.json",
+    "bytes": 59054,
+    "sha256": "91f63f404e2da4b44e4934b34d89bbcbe6d40de231c56aeace1a1ce1b75fb041"
+  },
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+  "allowed_invocations": 1,
+  "retry": false
+}

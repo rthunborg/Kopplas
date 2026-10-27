@@ -1,0 +1,186 @@
+{
+  "schema": "SERIES_PROTOCOL_01_TARGETED_HIGH_CLOSURE_ATTESTATION_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent": true,
+  "proof": {
+    "verdict": "PASS_TARGETED_SERIES_PROTOCOL_01_CLOSURE_SOURCE_ONLY",
+    "commit": "490f910fedfc1ec4ebbc5f0b8ecf980698fb1678",
+    "parent": "08b2b41c604f58962af6aa33779c3d6e15d6f8a6",
+    "reviewed_SQL_source": "cb65b06b8884938f2054821166e9fd7e4d5e4aa9",
+    "closed_finding": "SERIES-PROTOCOL-01",
+    "line": 802,
+    "actual_protocol": [
+      "booking-conflicts-v4",
+      "stockholm-capacity-v2"
+    ],
+    "current_test_complete_inverse_to_prior_NOTPASS_bytes": true,
+    "inverse_bytes": 99451,
+    "inverse_sha256": "ee049ffda79af15a1ebbbe522a1324e042c9d4a4ea6d1297bf0366f66d182c5d",
+    "all_other_integration_assertions_operations_skips_bytes_preserved": true,
+    "unchanged_migration_and_pure_unit": [
+      {
+        "path": "supabase/migrations/20261022002335_booking_series_current_conflict_protocol.sql",
+        "bytes": 20044,
+        "sha256": "4c358e704c90f4db24a36c37e507c36870540a116b9186cc67068ce74d859cc8",
+        "actual_clean_oid": "67897c861f4517c1a72ced20de823ced2b14000a",
+        "raw_equals_reviewed_cb65_author_binding": true
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "bytes": 35671,
+        "sha256": "defcc1a19b50be244cb959f0c051011acc85f80e62f0af9ce0e80a51f336c532",
+        "actual_clean_oid": "c48bb85173c1bca45b6dc8ffaa59f082c660b1e8",
+        "raw_equals_reviewed_cb65_author_binding": true
+      }
+    ],
+    "new_source_bindings": [
+      {
+        "path": "tests/integration/commands/booking-series.int.test.ts",
+        "bytes": 99461,
+        "sha256": "cfbf9ab2fd978f682841a13135276b16d3473a7a95a0ab674591ac84c4a2e00b",
+        "clean_bytes": 99461,
+        "clean_sha256": "cfbf9ab2fd978f682841a13135276b16d3473a7a95a0ab674591ac84c4a2e00b",
+        "prospective_clean_oid": "e89834e5639526a8072005bc9d3101fc6aa3c594",
+        "baseline_blob": "69199f1249fb23afb5c246c71b54855e2b2bbdf4",
+        "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 221644,
+        "sha256": "f59fd979c0096344a2bed6fb4a603edc04b5863f30d0ffabc1470e2700bb13fe",
+        "clean_bytes": 221644,
+        "clean_sha256": "f59fd979c0096344a2bed6fb4a603edc04b5863f30d0ffabc1470e2700bb13fe",
+        "prospective_clean_oid": "c6100dc9860ee188ef2a29d44aaa5fb075f2810d",
+        "baseline_blob": "f577e23d037f204a0b8c929ce5d548c5aa01c992",
+        "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+      }
+    ],
+    "Root_precommit_binding": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-series-active-assertion-precommit-admission.json",
+      "bytes": 1569,
+      "sha256": "473e28ba569d0b2ac49e224ae74c5d9a8f7cf073143f9aac3337f4d730624e99",
+      "record": {
+        "schema": "ROOT_SERIES_ACTIVE_ASSERTION_PRECOMMIT_ADMISSION_v1",
+        "parent": "08b2b41c604f58962af6aa33779c3d6e15d6f8a6",
+        "source_bindings": [
+          {
+            "path": "tests/integration/commands/booking-series.int.test.ts",
+            "bytes": 99461,
+            "sha256": "cfbf9ab2fd978f682841a13135276b16d3473a7a95a0ab674591ac84c4a2e00b",
+            "clean_bytes": 99461,
+            "clean_sha256": "cfbf9ab2fd978f682841a13135276b16d3473a7a95a0ab674591ac84c4a2e00b",
+            "prospective_clean_oid": "e89834e5639526a8072005bc9d3101fc6aa3c594",
+            "baseline_blob": "69199f1249fb23afb5c246c71b54855e2b2bbdf4",
+            "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+          },
+          {
+            "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+            "bytes": 221644,
+            "sha256": "f59fd979c0096344a2bed6fb4a603edc04b5863f30d0ffabc1470e2700bb13fe",
+            "clean_bytes": 221644,
+            "clean_sha256": "f59fd979c0096344a2bed6fb4a603edc04b5863f30d0ffabc1470e2700bb13fe",
+            "prospective_clean_oid": "c6100dc9860ee188ef2a29d44aaa5fb075f2810d",
+            "baseline_blob": "f577e23d037f204a0b8c929ce5d548c5aa01c992",
+            "kind": "WORKING_PROSPECTIVE_NOT_HEAD"
+          }
+        ],
+        "exact2_raw_native_baseline": "PASS",
+        "frozen_SQL_unit_and_historical116": "PASS",
+        "total117_SQL_unchanged": true,
+        "staged_tree": "fc3b218457a803d1355f0c52503f0c8c58cf45ec",
+        "finding": "SERIES-PROTOCOL-01",
+        "private_manifest_sha256": "1a4e37ee88fc2320833df2433d36e136ba6ea4e39180677946f2dc446f53d8c4",
+        "independent_targeted_closure": "PENDING",
+        "normal_acceptance": 0
+      }
+    },
+    "original_NOTPASS_manifest_unchanged": true,
+    "original_NOTPASS_members_unchanged": 3,
+    "facts_digest_assertions_retained_after_line": true,
+    "new_tests_run": 0,
+    "prior42_pure_effective_inverse_LFCRLF_historical116": "reused/nonadditive; not rerun or resampled",
+    "SQLruntime": 0,
+    "normal_acceptance": 0,
+    "review_counter": 3
+  },
+  "new_consequential_findings": [],
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/series-protocol-active-assertion-correction/receipt.json",
+    "bytes": 6922,
+    "sha256": "4fafdc6dc9e163cd8d571b1c6d8df4e716564fb0cc62bed7d52a99a44b229a4f"
+  },
+  "author_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/series-protocol-active-assertion-correction/manifest.json",
+    "bytes": 634,
+    "sha256": "1a4e37ee88fc2320833df2433d36e136ba6ea4e39180677946f2dc446f53d8c4"
+  },
+  "author_checks_reused": [
+    {
+      "name": "bounded actual literal/current-constant and full-file inverse control",
+      "exit": 0,
+      "meaning": "Current active REAL011 uses actual imported current constants; inverse exactly restores baseline. No native Vitest/integration execution."
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js tests/integration/commands/booking-series.int.test.ts",
+      "exit": 0,
+      "warnings": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0,
+      "warning": "Git LF-to-CRLF checkout notices only"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "exit": 0,
+      "stops": 179,
+      "errors": []
+    },
+    {
+      "command": "python .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "exit": 0,
+      "parse_warnings": []
+    }
+  ],
+  "kernel_and_SRO_attribution": {
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+    },
+    "SRO": {
+      "headings": 1,
+      "stops": 179,
+      "sha256": "2af0a679400128e71d3d9ba3a82708f14841409fd23b9a19f97ff4c9146ca0cd"
+    },
+    "story": {
+      "status": "in-review",
+      "ARR_status": "in-review",
+      "review_loop_iteration": 3,
+      "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+      "parse_warnings": [],
+      "historical_warnings": [
+        "oversized"
+      ]
+    }
+  },
+  "identity_attribution": "Root exact2 commit/body/native/baseline binding; reviewer independent current-byte hashes/inverse/computed Git blob; no Git commands.",
+  "actual_runtime_claim": "No integration or PostgreSQL execution; line-level contradiction removed only.",
+  "original_NOTPASS": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-current-conflict-protocol-high-review/manifest.json",
+    "bytes": 990,
+    "sha256": "7f3522c620a00a54b779a825590b8bb5f61afc61d285b50917df4926b53c5114"
+  },
+  "effects": {
+    "new_tests": 0,
+    "SQLruntime": 0,
+    "network": 0,
+    "Git_commands_mutations": 0,
+    "source_SQL_Spec_state_writes": 0,
+    "provider_resources": 0
+  },
+  "hosted_first_throw": "UNKNOWN",
+  "custody": "UNKNOWN",
+  "execution_authority": false,
+  "development_complete": false
+}

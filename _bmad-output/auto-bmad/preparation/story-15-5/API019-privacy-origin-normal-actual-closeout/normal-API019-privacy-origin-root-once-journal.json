@@ -1,0 +1,31 @@
+{
+  "schema": "ROOT_NORMAL_PUBLISH_ONCE_JOURNAL_V1",
+  "phase": "ROOT_PUBLISH_ONCE_ALLOCATED",
+  "created_at_utc": "2026-10-23T16:49:44.542586+00:00",
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-effects-allocation.json",
+    "bytes": 5952,
+    "sha256": "6403123ad4873d4d4b1c2d7363b89c7d23baab021c8fdc6d7455f204fbd9b34d"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-current-source-proof.json",
+    "bytes": 59108,
+    "sha256": "eb6abe2600d8414bf74611b60e5757c553778f06149773ada9c4670f682b0c30"
+  },
+  "provider_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-vercel-readonly-qualification.json",
+    "bytes": 30499,
+    "sha256": "62b47063fd172caa3d1b0c7753cacb5c15b4ec08e65ed8061653136716e86057"
+  },
+  "provider_actual_outside_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-provider-execution-receipt.json",
+    "bytes": 3755,
+    "sha256": "a4503f92a8652e23bc9dd0ad4f1872ca57a2bc5da842bc4074b05d737ca7bf7d"
+  },
+  "no_retry": true,
+  "normal_acceptance": 0
+}

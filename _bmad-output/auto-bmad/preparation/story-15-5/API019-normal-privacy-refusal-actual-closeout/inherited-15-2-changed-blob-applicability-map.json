@@ -1,0 +1,497 @@
+{
+  "schema": "INDEPENDENT_HIGH_15_2_CHANGED_BLOB_APPLICABILITY_MAP_V1",
+  "route": "216b6a explicitgpt-6.1-solHigh",
+  "outcome": "24_EXACT_OR_NAMED_REVIEW_BRIDGES_ONE_NARROW_SCOPE_CONFIRMATION_NO_NEW_REVIEW",
+  "scope": "Only the25 changed original15.2 nonBMAD paths at pinnedc4; Git objects/metadata only, no current source-semantic review or fourth broad pass.",
+  "source_snapshot": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+  "previous_audit": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-review-provenance-audit.json",
+    "bytes": 28277,
+    "sha256": "8c3546636780a0aa5ce8ab1ca064f8adc1be8fcf8f6fcfe4512ea66ce7ff2b8d"
+  },
+  "review_cap": {
+    "broad_completed": 3,
+    "cap": 3,
+    "recommendation": true,
+    "review_unverified": true,
+    "old_final_settling_override": "Historical completed instruction, not an unused round",
+    "unresolved_serious_in_final15_2_reports": []
+  },
+  "families": {
+    "15.3-final": {
+      "source": "6d9836044f643a5ab6df8a1dd430e2801d8a7cdc",
+      "status": "Historical independent review+qualified delivery bridge; no open final findings in saved review summary",
+      "refs": [
+        ".env.epic15.mail-runtime/story-15-3-build-review-round-1/summary.json",
+        ".env.epic15.mail-runtime/story-15-3-build-review-round-2/summary.json",
+        ".env.epic15.mail-runtime/story-15-3-build-review-round-3/summary.json",
+        ".env.epic15.mail-runtime/story-15-3-preparation/final-delivery-independent/report.json"
+      ]
+    },
+    "15.4-chain": {
+      "source": "73169cc0c75d88fbb16dc999ef99cbd9028ff361",
+      "status": "Initial independent internal full-input scope plus subsequent targeted correction/closure chain. Initial external wrapper failure is retained, not converted to a successful external run. Later Round3 reports zero remaining findings in its bounded scope.",
+      "refs": [
+        "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-1/input-binding.json",
+        "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-1/triage.json",
+        "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-2/targeted-original-review-attestation.json",
+        "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-2/triage.json",
+        "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-3/original-review-attestation.json"
+      ]
+    },
+    "15.5-scope": {
+      "source": "ae020f63a88089966b9323c55a36b6554f7e3900",
+      "status": "Original independent input scope for manifest guards; later fixes concern other paths. These three scope-test bytes remain the reviewed source bytes. No whole15.5 PASS inferred.",
+      "refs": [
+        "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/input-binding.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/security-original-attestation.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/triage.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-review-attestation.json"
+      ]
+    },
+    "E16-composition-closure": {
+      "source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+      "semantic_source": "aa1a16adf2980355f0228badf889c95a4f230248",
+      "status": "Original semantic composition review found only introduced encoding damage; immutable original NOTPASS plus exact targeted encoding closure form the composite source chain. No runtime inference.",
+      "refs": [
+        "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-attestation.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/manifest.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/original-attestation.json"
+      ]
+    },
+    "fixture-closure": {
+      "source": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+      "status": "Independent targeted three-fixture reconciliation PASS; actual module loader and all original series test bodies conserved.",
+      "refs": [
+        "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/manifest.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/original-attestation.json"
+      ]
+    },
+    "series-refresh": {
+      "source": "d65b6666c5883a7445b3732b6ae5938c08f4a91f",
+      "status": "Independent exact shared-refresh source/test review PASS; earlier active protocol assertion closure retained. Latest exact two test blobs remain unchanged.",
+      "refs": [
+        "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/manifest.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/original-attestation.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/manifest.json",
+        "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/original-attestation.json"
+      ]
+    }
+  },
+  "path_count": 25,
+  "classifications": {
+    "EXACT_REVIEW_CHAIN_BLOB_MATCH": 20,
+    "NAMED_COMPOSITION_DEPENDENCY_BRIDGE": 4,
+    "EXACT_BLOB_WITH_NARROW_SCOPE_CONFIRMATION_REMAINING": 1
+  },
+  "paths": [
+    {
+      "path": "src/components/resources/BookingEditor.tsx",
+      "current_blob_at_c4": "70cd66329c8bc0230a4ad9fb5ec4f50c66112f00",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "src/components/resources/BookingEntry.tsx",
+      "current_blob_at_c4": "c250ce2f73e5eac6d0e56cf6c0e5dd71efc99b79",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "src/components/scheduling/BookingBlock.tsx",
+      "current_blob_at_c4": "49c8329543efc9497e8d5326bf23d13e68efa26a",
+      "review_family": "15.4-chain",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "src/features/resources/booking-action-state.ts",
+      "current_blob_at_c4": "6704851d7795c63da659c623741898a06c4047a9",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "NAMED_COMPOSITION_DEPENDENCY_BRIDGE"
+    },
+    {
+      "path": "src/features/resources/bookings-read.ts",
+      "current_blob_at_c4": "b52adfadac17e706167de55118f85292c94fd396",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "current_blob_at_c4": "d7db4a3602eea7ab52fec2e7baa3ac4eb236d84a",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "NAMED_COMPOSITION_DEPENDENCY_BRIDGE"
+    },
+    {
+      "path": "src/server/bookings/series-conflicts.ts",
+      "current_blob_at_c4": "21294a4d14dfcabb3ee34d9a69f6eb2d3001d39a",
+      "review_family": "15.3-final",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "current_blob_at_c4": "61cd95ccf52a65e78c914ce0665b96c02662eaa3",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "NAMED_COMPOSITION_DEPENDENCY_BRIDGE"
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "current_blob_at_c4": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "review_family": "15.3-final",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/integration/commands/booking-editor.int.test.ts",
+      "current_blob_at_c4": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": "E16 clean-merge test seam at aa1a16ad/1de4722; scope-documentation confirmation only, not a detected code defect.",
+      "classification": "EXACT_BLOB_WITH_NARROW_SCOPE_CONFIRMATION_REMAINING",
+      "next_step": "E8 reviewer confirms the saved composition input/report scope actually covered this named booking-editor-test seam, or performs only the unchanged E16 clean-intake test-contract delta assessment. No broad review or test rerun is indicated."
+    },
+    {
+      "path": "tests/integration/commands/booking-series.int.test.ts",
+      "current_blob_at_c4": "e07f666ca9e7ad51fdc69bb30f9234413af49014",
+      "review_family": "series-refresh",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "current_blob_at_c4": "231dea63eb2d60cbd0d8b77070cc62c8b0971057",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "current_blob_at_c4": "5c6a563a1e1be59f4cece8dec2ab207a8d6a46e4",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "current_blob_at_c4": "7e4d03387b9ec5809ec0a50e8e382c2e1f53c930",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "current_blob_at_c4": "d242773f4b126b66f64acad65036b9c87190aee4",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "current_blob_at_c4": "8682e09a5eb21d0d556cdfcc3649854050237bf8",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "NAMED_COMPOSITION_DEPENDENCY_BRIDGE"
+    },
+    {
+      "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+      "current_blob_at_c4": "7523ffba81d55bd8824c9191f0717c48d7719729",
+      "review_family": "fixture-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/features/resources/bookings-read.test.ts",
+      "current_blob_at_c4": "0aa910d138f5014981d703979ce58c699f5aa969",
+      "review_family": "15.3-final",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/features/scheduling/calendar-components.test.ts",
+      "current_blob_at_c4": "29d4d8a141cb399154b199c579067cf8a2a4df80",
+      "review_family": "15.4-chain",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "current_blob_at_c4": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+      "review_family": "15.5-scope",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "current_blob_at_c4": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+      "review_family": "15.5-scope",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "current_blob_at_c4": "02a6845c81d4bbae8cb7c3f499c11ce3635948bd",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "current_blob_at_c4": "132a02849637c12cbedab4e012619f7cbadccf40",
+      "review_family": "E16-composition-closure",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "current_blob_at_c4": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+      "review_family": "15.5-scope",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    },
+    {
+      "path": "tests/unit/server/bookings/series-plan.test.ts",
+      "current_blob_at_c4": "dfb805ad6b3c2cdb047303e8d609ce941a88fb61",
+      "review_family": "series-refresh",
+      "current_equal": true,
+      "uncovered_changed_interval": null,
+      "classification": "EXACT_REVIEW_CHAIN_BLOB_MATCH"
+    }
+  ],
+  "manifest_checks": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/manifest.json",
+      "sha256": "cc1f43a4267a11120f14ab6567a2704bb1a583730fd36168af81a06af045580a",
+      "members_verified": 3
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/manifest.json",
+      "sha256": "d18040bd747bd5c72951c27f335fff3489ce8c40c0e60d9c6217d5e44c98b357",
+      "members_verified": 3
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/manifest.json",
+      "sha256": "5e3260b79d97e92f739187d0856887d5a620ba40f230c3c23cbc7fcfd8a6ee1e",
+      "members_verified": 3
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/manifest.json",
+      "sha256": "47198c09dd3cbaf8d6d21a1ffc4b2d48ed616b69cfd7f38c9cfbd2144cdacbbb",
+      "members_verified": 3
+    }
+  ],
+  "integration_evidence_bridge": {
+    "run": 39816833651,
+    "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "all25_current_blobs_equal_qualified_run_source": true,
+    "qualification_ref": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-actual-native-qualification.json",
+    "limits": "Historical normal remains68P1F26zero and nonstory flaky caveat. This equality is a source/test-integration provenance bridge, not all95 coverage, a new runtime pass, or proof every path body executed. Other subsequent dependencies including Next update differ; final current-head required gates remain necessary."
+  },
+  "active_work_check": {
+    "observed_HEAD": "e52568795789034c556f64b0721318f75aa13691",
+    "working_and_index_changed_path_names_only": [],
+    "overlap_with25": [],
+    "active_source_bytes_read": false,
+    "note": "Native15.5 helper/unit/SRO work is outside this recurrence path set when intersectionempty. This snapshot is not retargeted to an advancing HEAD."
+  },
+  "remaining_named_item": {
+    "path": "tests/integration/commands/booking-editor.int.test.ts",
+    "kind": "Provenance scope confirmation, not a concrete source finding",
+    "current_blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+    "owner": "Root E8 independentHigh provenance/integration reviewer",
+    "minimum": "Use existing actual composition input/report to confirm the named clean booking-editor-test seam was covered. Only if that cannot be established, assess that exact unchanged E16 test-contract delta and dependencies. No new broad review, test matrix or latest15.5 source read."
+  },
+  "E8_disposition": {
+    "owner": "Root canonical metadata; distinctHigh bounded provenance/integration reviewer",
+    "flag_clear": false,
+    "next": "Compose this map with actual finalhead/delivery/CI and later qualified reviews. Resolve only the named documentary boundary or an actual uncovered consequential latest-fix interval; do not manufacture a serious finding or clear recommendation because25blobs match snapshots.",
+    "whole_current_source_PASS": false,
+    "story_loop_or15_6_advanced": false,
+    "acceptance": 0
+  },
+  "artifact_pins": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-build-review-round-1/summary.json",
+      "bytes": 1519,
+      "sha256": "83907c21a45ebe6b8f315a7bb909d89e08f2df79a29622fc8f35348f872f46a8",
+      "artifact_blob_at_c4": null
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-build-review-round-2/summary.json",
+      "bytes": 683,
+      "sha256": "974b7cce407e1b0ac088de596cb2b0067ef67613a530a85cf6d65d6f31c9956d",
+      "artifact_blob_at_c4": null
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-build-review-round-3/summary.json",
+      "bytes": 681,
+      "sha256": "641cafc9003c1d6ccc856bce14f2393a98c1f765b6cb6c94983c970b678dfe36",
+      "artifact_blob_at_c4": null
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-3-preparation/final-delivery-independent/report.json",
+      "bytes": 34972,
+      "sha256": "0938fb50eed56e7c401a09c05bea18d89d3092d8963bbcfedcd55e04444e1dfc",
+      "artifact_blob_at_c4": null
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-1/input-binding.json",
+      "bytes": 31574,
+      "sha256": "7b65e8868798cec523c34946ef03a8d3aa50a0453dd1a342fbba11e133128653",
+      "artifact_blob_at_c4": "04a2036de8622483e522995fab76810170841fee"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-1/triage.json",
+      "bytes": 6224,
+      "sha256": "e89800cbec03d5e3d8649599d0c596452766f44c9de8692de14c5fdb8e1e4e22",
+      "artifact_blob_at_c4": "67d72866e687ec6677757c5670faaa9e5bc98c9d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-2/targeted-original-review-attestation.json",
+      "bytes": 1943,
+      "sha256": "b11c9976eb832e2bb1b68072c6d159fd9c28d95dffb21f01788a742367c39386",
+      "artifact_blob_at_c4": "0a4fa026437c52c761f9d43a0f9753b9eef04690"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-2/triage.json",
+      "bytes": 2853,
+      "sha256": "fd70e1790dff71988205b89ca27804983e02d5964734c0011114fddcd2f98a60",
+      "artifact_blob_at_c4": "b1f1b2b9fbcf7d899fbebb489d52ac556a9240d9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/code-review-round-3/original-review-attestation.json",
+      "bytes": 2578,
+      "sha256": "01cee7aeb25b582962cf02530a23efd024e77c0147a562f5d89b8d61baae8874",
+      "artifact_blob_at_c4": "1cd3857b9997db056b766b9985e110912e072e0c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/input-binding.json",
+      "bytes": 26600,
+      "sha256": "9dd0840bb41469a040ee79dbecfe04af180b2df42e458075aa546c9c1113cc05",
+      "artifact_blob_at_c4": "21dfdc29126505eda9713a86776cabdefdc0c779"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/security-original-attestation.json",
+      "bytes": 1515,
+      "sha256": "07b75bd7b5df68d41340210ae451cb686d5c37aeaf82e0bebe0e9e19e1dd012f",
+      "artifact_blob_at_c4": "83f90eefbce476a941420f2bac6d3b4f8db595b8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/triage.json",
+      "bytes": 9550,
+      "sha256": "ca281ac5bd9ec76451c9e9ee5044b794f5a3aed0c009056e2dda24be401f15c9",
+      "artifact_blob_at_c4": "bbcb6a5534c47cab9a18a477f7bdb292b521ce4a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-review-attestation.json",
+      "bytes": 965,
+      "sha256": "3bbeb7eb8f3ed97a69be309febad408a22a7b29ac3d9a1039b066337d58bdf9c",
+      "artifact_blob_at_c4": "f42dd98e7ed7e0e98a685c7bcd16f5b149ebf0ae"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/original-attestation.json",
+      "bytes": 24281,
+      "sha256": "239f27449f64d022ef917501ab024985f3fe24dcd7449c924ee15499723ad209",
+      "artifact_blob_at_c4": "2a77f7653114068d8133bf0757cf8621785dfbff"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/manifest.json",
+      "bytes": 1043,
+      "sha256": "cc1f43a4267a11120f14ab6567a2704bb1a583730fd36168af81a06af045580a",
+      "artifact_blob_at_c4": "82bc78d348e4f7f6f602fe3deda3d051d5e110b6"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/original-attestation.json",
+      "bytes": 12205,
+      "sha256": "ce63ab1942bdedab89ed6b1892a2b26a308894c7100083ca28554bf31e040e70",
+      "artifact_blob_at_c4": "7898d860e92881ea6e2cfa69a26c44a512ae1f3d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/manifest.json",
+      "bytes": 1020,
+      "sha256": "d18040bd747bd5c72951c27f335fff3489ce8c40c0e60d9c6217d5e44c98b357",
+      "artifact_blob_at_c4": "2ce1712ff96c1c5218b2829d3e1ed6c763e2302c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/original-attestation.json",
+      "bytes": 15558,
+      "sha256": "f93293628135a75ab92ad8a65c54087a54fbb45969c8efc50b38d8b714dfca40",
+      "artifact_blob_at_c4": "db7dacd01b3af456552b8b3bb1b1a442a0dae0a0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/manifest.json",
+      "bytes": 989,
+      "sha256": "5e3260b79d97e92f739187d0856887d5a620ba40f230c3c23cbc7fcfd8a6ee1e",
+      "artifact_blob_at_c4": "b662ebba9cb4f7ba478ee80e58d413bbe28e4067"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/original-attestation.json",
+      "bytes": 8050,
+      "sha256": "96bcd462c7be1272192bcf3c7da93a2424b88b171a34363fc60a97a4d3bdf553",
+      "artifact_blob_at_c4": "47ceaefafa913d392922025ee225a7d73ee24a8c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/manifest.json",
+      "bytes": 1005,
+      "sha256": "47198c09dd3cbaf8d6d21a1ffc4b2d48ed616b69cfd7f38c9cfbd2144cdacbbb",
+      "artifact_blob_at_c4": "3453a089aca3bda998db6b60d917a33d7e4c8bfa"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/original-attestation.json",
+      "bytes": 6989,
+      "sha256": "dbc7a861a1fdf1c4be0908a90cb9e4953a5f7c3d1709acc9ed6bc8cbb902ddae",
+      "artifact_blob_at_c4": "7cde6e9b3c0bcb9313467cdb6783721e7dbd6026"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-integration-plan/plan.json",
+      "bytes": 26693,
+      "sha256": "3b3f4a23c15cfc90f5cbf687edc45da6da71f6798e8f08a7152477c6f4bb0d07",
+      "artifact_blob_at_c4": null
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-actual-native-qualification.json",
+      "bytes": 39154,
+      "sha256": "5d3a51aaa3752578e9f49e454af87660fbd7f0e47d3211d7fff40f282323f5fa",
+      "artifact_blob_at_c4": "c51fe59462d3ebaa9a2522214402d92dac9bebc9"
+    }
+  ],
+  "effects": {
+    "API": 0,
+    "runtime_or_tests": 0,
+    "new_code_reviews": 0,
+    "source_Spec_state_writes": 0,
+    "Git_mutations": 0,
+    "other_checkouts": 0,
+    "own_private_map_files": 1
+  },
+  "row_reference_rule": "Each row resolves its source snapshot/review refs through review_family. current_equal is the actual Git blob comparison; normal398168 equality was asserted independently for every row. Named composition bridges retain the original scope limits."
+}

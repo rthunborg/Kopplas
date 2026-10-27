@@ -1,0 +1,488 @@
+{
+  "schema": "INDEPENDENT_INT009_CANONICAL_CATALOG_NORMAL_TERMINAL_READER_SOURCE_REVIEW_V1",
+  "status": "PASS",
+  "verdict": "PASS",
+  "outcome": "PASS_INT009_CANONICAL_CATALOG_NORMAL_TERMINAL_READER_SOURCE_ONLY",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority_granted": false,
+  "normal_acceptance": 0,
+  "reviewer": "/root/validate15_4_high; explicit gpt-6.1-sol High independent of NativeHigh author and Root operator",
+  "route": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-independent-source-review-route.json",
+    "bytes": 621,
+    "sha256": "10b03ab53aea3e1554cb950c5fabec5b5c4a0ba6a364d28b452fd295cdc05e25"
+  },
+  "scope": "One targeted data-only qualified NORMAL reader successor source/privacy review. Initial source/catalog review completed while run nonterminal; final verdict held until actual terminal and new exact4 enrollment froze. Final follow-up checked only terminal/data/path/ref/interface deltas; no broad story round or parser redesign.",
+  "findings": [],
+  "finding_count": 0,
+  "required_repairs": [],
+  "actual_bindings": {
+    "final_actual4": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/reader.py",
+        "bytes": 50755,
+        "sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/proposal.json",
+        "bytes": 120353,
+        "sha256": "1589645c9f286fbc84c89e188042a01fe30d2a1ea23c66369a0cf7f2b20a7c93"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/source-rows.json",
+        "bytes": 31634,
+        "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/manifest.json",
+        "bytes": 995,
+        "sha256": "6f43996c82407c023a73631111ac3208319fbcdbf4f8113bb66dfaf257f8a9e4"
+      }
+    ],
+    "initial_inert4": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/reader.py",
+        "bytes": 50755,
+        "sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/proposal.json",
+        "bytes": 89114,
+        "sha256": "c15d46e4cde094b386271bd7f9d279b4a463d38c27210a702e2939b5214e2a9f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/source-rows.json",
+        "bytes": 31634,
+        "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-preparation/manifest.json",
+        "bytes": 978,
+        "sha256": "94b441b831cb6276ebeeaf90dd198188c960977596c0d9201d5b106a84b76b2a"
+      }
+    ],
+    "qualified_predecessor": {
+      "bindings": {
+        "bytes": 127358,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/bindings.json",
+        "sha256": "5fd56b336760121c211877d0c94f650b5330e5e2d854ac8f4bfd024355c2ac1e"
+      },
+      "native_qualification": {
+        "bytes": 32596,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-normal-actual-native-qualification.json",
+        "sha256": "b93dca962b80e7b6c729b6723655522528b15f8491fde46687daf81599ec294b"
+      },
+      "reader": {
+        "bytes": 50745,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/normal-evidence-operator.py",
+        "sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76"
+      },
+      "source_proposal": {
+        "bytes": 47978,
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/proposal.json",
+        "sha256": "5a3ff23bbeb3fc4f1af5bad18c6db354d963272ec0a953c35253a9487a4fbba9"
+      }
+    },
+    "controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-independent-controls.json",
+      "bytes": 9201,
+      "sha256": "98c68057aa6d63e3ac4b2bae7e84a85ba51d3ed2a67922db4959ab5ada725fc9"
+    },
+    "source_review": {
+      "bytes": 19693,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+      "sha256": "b741b45dde5b535862a9af5c96d9496a63e116c222afa3df6ea8dfd73d6960d1"
+    },
+    "current203": {
+      "bytes": 129335,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-operational-preparation/proposal.json",
+      "sha256": "0085c22b70b84d0041fba8fdda5600f4a43fa15903d2394f9ecbd750b107acc1"
+    },
+    "actual_original_projection": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "33da582caff461fc376234c27e11797d4616416306dc223986e997f26455975b"
+    },
+    "actual_envelope": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-actual-terminal-envelope.json",
+      "bytes": 23827,
+      "sha256": "f31671e0456ae9fef5a7f66fd81affac8d53ddd654e7240b9a178a505f2871fa"
+    },
+    "actual_ownership": {
+      "bytes": 3387,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-ownership.json",
+      "sha256": "8ecd810e854e5fa445e35bc691c0de5e57e8c1c12b65c387f647e0d1c7a106bf"
+    },
+    "all9_enrollment_input_refs_actual_hash_match": true,
+    "proof7_refs_actual_hash_match": true,
+    "actual_native_run_and_jobs_receipts": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/run-9-receipt.json",
+        "bytes": 699,
+        "sha256": "e33ae004beae111ce0cf91215ba3c1d01a9dd934b02c96c7991707a09f03da9b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/jobs-9-receipt.json",
+        "bytes": 700,
+        "sha256": "83c291a6d2f6ba39a93dbfb602b05ee8a3603bb0aa962117e53c86bffd7b6aec"
+      }
+    ],
+    "canonical_dispatch_state": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-dispatch-state.json",
+      "bytes": 485,
+      "sha256": "097685dff552933bccd451e5f5419a73b2b3d530db0b3ce10a27e1520d6f5a5a"
+    },
+    "Root_controller": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/operation.json",
+      "bytes": 870,
+      "sha256": "de6c11abb28700e3749a09b6016c82dee4cdfae2e5b3d20cc7b1f2966822359a"
+    },
+    "publication_host": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-host-attribution.json",
+      "bytes": 2681,
+      "sha256": "4790c2406eefcdf4e7ccfa0ed4c5c87c6b06d6c6b7fdfe16b8f75ed450dcb72a"
+    }
+  },
+  "source_and_data_checks": {
+    "complete_inverse": {
+      "new_reader_bytes": 50755,
+      "new_reader_sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb",
+      "old_reader_bytes": 50745,
+      "old_reader_sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76",
+      "actual_full_source_inverse_equal": true,
+      "literal_substitutions": 7,
+      "definitions": 36,
+      "only_changed_definition": "validate_admission identity run/head/checkpoint/output literals",
+      "other35_definitions_byte_identical": true,
+      "all16_qualified_helpers_unchanged": true,
+      "actual_tool": "9d4715/native0"
+    },
+    "final_enrollment": {
+      "reader_and_source_rows_byte_identical_to_inert4": true,
+      "reader_functions_or_literals_changed_after_initial_review": 0,
+      "catalog_or_parser_reextraction_rerun": 0,
+      "actual_tool": "f98e20/native0",
+      "new_actual4_paths_and_manifest_pins": true,
+      "source_bindings_source_rows75_ref_operator_future_argv_same_new_owned_namespace": true,
+      "actual_terminal_run_ownership_jobs_steps_equal_frozen_envelope": true,
+      "all9_jobs_completed_exact_map_IDs": true,
+      "activation_and_output_absent_at_final_check": true
+    },
+    "source75": {
+      "distinct_source_rows_JSON_required_by_existing_validate_admission": true,
+      "top_level_source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+      "count": 75,
+      "actual75_rows_exactly_match_qualified_current203_metadata": true,
+      "changed_paths_from_predecessor": [
+        "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "tests/integration/commands/calendar-feed.int.test.ts",
+        "tests/support/calendar-feed-atdd.ts",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "unchanged_SQL118_vectors": "44affd4128ee22262017d27d461784a63ded12075c5196b5c7a1316cb356476b",
+      "SQL_raw_rescan": false,
+      "self_hash_or_ref_cycle_workaround": false
+    },
+    "catalog": {
+      "same_source_paths": 20,
+      "static_declarations": 430,
+      "excluded_dynamic": 19,
+      "only_changed_catalog": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "wrapper_before": 169,
+      "wrapper_after": 181,
+      "other19_catalogs_byte_equal_as_data": true,
+      "actual_wrapper181_line_and_UTF16_column_bounds_checked": true,
+      "installed_TS5_9_3_static_refresh_reused": {
+        "actual_static_tool": {
+          "chunk_id": "13ac28",
+          "native_exit": 0,
+          "session": null,
+          "waits": [],
+          "wall_seconds": 0.3915035
+        },
+        "changed_file": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "current_file_static": 181,
+        "current_static": 430,
+        "dynamic_excluded": 19,
+        "initial_static_scratch": "431 included describe; corrected before freeze to430 and exact19unchanged. No test execution.",
+        "new_application_tests_or_config_loads": 0,
+        "old_file_static": 169,
+        "old_static": 418,
+        "other19_catalogs_exact_equal": true,
+        "same20paths": true,
+        "semantics": "Installed TS5.9.3 AST only, directly imported node:test test/it literal or no-substitution titles; declarations are not native leaf execution.",
+        "static_extractor_source_sha256": "2902f5fb7e9da3fc9e3a18691b36a1b9fe067f0d039f2aafc1b89cfe8a270032"
+      },
+      "runtime_tests_or_application_imports_by_reviewer": 0,
+      "limits": "Static literal/no-substitution test/it declarations, including declarations which may be nonleaf/inherited/unexecuted, are location/title candidates only. Dynamic titles remain excluded.430 is neither runtime leaf count nor pass count; source matching does not establish first native cause or authenticity of deliberately matching stdout."
+    }
+  },
+  "actual_terminal": {
+    "identity": {
+      "actor": "rthunborg",
+      "attempt": 1,
+      "cause_proof": false,
+      "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+      "event": "workflow_dispatch",
+      "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "mode": "normal",
+      "original_e2e001": false,
+      "ref": "codex/epic-15-scheduling-time-calendar",
+      "release_validation": false,
+      "repo": "rthunborg/Kopplas",
+      "run_id": 39816833651,
+      "triggering_actor": "rthunborg",
+      "workflow_id": 296219797
+    },
+    "run": {
+      "conclusion": "failure",
+      "display_title": "checkpoint:ec23cc94-24db-4b37-827b-3cba5246222b:fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "event": "workflow_dispatch",
+      "head_branch": "codex/epic-15-scheduling-time-calendar",
+      "head_sha": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "html_url": "https://github.com/rthunborg/Kopplas/actions/runs/39816833651",
+      "id": 39816833651,
+      "run_attempt": 1,
+      "status": "completed",
+      "workflow_id": 296219797
+    },
+    "jobs": [
+      {
+        "name": "checkpoint-admission",
+        "id": 119957418350,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify",
+        "id": 119957470703,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "e2e",
+        "id": 119959269059,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "recovery-storage-loader",
+        "id": 119959269131,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "db",
+        "id": 119959269301,
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "name": "dashboard-e2e",
+        "id": 119959271194,
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "fixed-chromium-application-verification",
+        "id": 119963595404,
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "native-stream-probe",
+        "id": 119963595471,
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "fixed-chromium-paired-probe",
+        "id": 119963595999,
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ],
+    "critical_steps": {
+      "verify_unit": {
+        "number": 12,
+        "name": "Unit tests (pure logic, node --test)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "DB_integration": {
+        "number": 11,
+        "name": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      "DB_report_upload": {
+        "number": 12,
+        "name": "Upload native full integration JSON",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "essential_browser": {
+        "number": 10,
+        "name": "Essential authentication smoke (production app and local Auth)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "recovery": {
+        "number": 14,
+        "name": "Prove physical Storage loader preserves protected rows",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    "Root_poller": "STOPPED after3resolverGETs/9pollpairs; remaining old slots closed",
+    "native_metadata_receipts": "Actual run9/jobs9 receipts native0, category null, complete capture, EOF, reader joined/done, handles closed and direct process settled; checked complete local JSON. No new metadata GET.",
+    "projection_to_envelope_derivation": "Run fields mapped exactly. All9 original job records preserve every inherited job/step field; only redundant job run_id/head_sha omitted after separately checking each against owned tuple. Original projection24085/33da582... remains immutable and pinned.",
+    "original_e2e001_false": "Source-backed ordinary input-mode fact, not an observed artifact field. Actual canonical dispatched state verification_mode=normal/cause_proof=false/release_validation=false and reviewed ordinary201-byte POST/defaults support false. Raw controller original_int009=false remains separately preserved; no field falsely relabeled as API-observed.",
+    "html_url": "Deterministic URL from validated repository/run ID, expressly derived rather than separately observed.",
+    "case_counts": "UNKNOWN_PENDING_NATIVE_EVIDENCE",
+    "cause": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "normal_acceptance": 0
+  },
+  "privacy_and_integrity_assessments": [
+    {
+      "area": "Admission and dependency compatibility",
+      "status": "PASS",
+      "reason": "Actual new proposal is BINDINGS via unchanged filename literal; distinct source-rows.json provides expected top-level source/count75/source_rows/input_refs. Self/operator/proposal/terminal/current readiness/source proof/allocation/review/75-source/compiler references are checked before exclusive output or requests. Actual terminal envelope matches existing typed ownership/run/jobs schema exactly, with actual9 conclusions and optional4 skipped. Missing/false/null template is not executable admission. Root must supply completed grant, fresh pushed/current/source proof and exact independent evidence refs in actual activation; source review itself is not a grant."
+    },
+    {
+      "area": "Fixed finite GET surface and once boundaries",
+      "status": "PASS",
+      "reason": "Unchanged acquire_normal has one fixed owned run archive, one owned-run artifact listing, and at most one uniquely eligible ZIP for each of three fixed reports. Duplicate expected artifact, missing run/head/digest/nonexpired eligibility, wrong member/digest/size or structure refuses/no fallback. Maximum5 logical GETs; no per-job logs, status, pagination, retry/refetch or optional playwright-report acquisition. Exclusive output directory and exclusive fsynced operator/per-request intents precede transport; Root one-invocation journal closes unused slots even before request/refusal/uncertainty."
+    },
+    {
+      "area": "Transport and ZIP custody",
+      "status": "PASS",
+      "reason": "Exact unchanged qualified get/ZIP/inflate/raw-name/load helpers retain15s request bound,32MiB archive/ZIP,4MiB listing,64KiB stderr,16MiB selected JSON and128MiB total inflate/ratio/member constraints. Full EOF/read completion/join/handles/native settlement required before usable bytes return; any timeout/partial/nonzero/overflow gets closed receipt and Halt, never raw fallback. No new transport family or harness rerun. No filesystem extraction. Archive metadata names are selected only from enrolled actual job/step numbers and names."
+    },
+    {
+      "area": "Closed projection and labels",
+      "status": "PASS",
+      "reason": "Existing run/report parsers and fixed failure-category/SQLstate/path/case/label vocabularies are byte-identical. Raw listing/log ZIP/report JSON/message/stack/SQL values stay RAM only; persisted hashes/counts/fixed metadata/closed labels omit raw bodies. Existing label assembler budget27213<=32768, global44 records<=48 and512-byte row constraints remain qualified unchanged. INT009 capture namespace is intentionally not added to unchanged normal parser; absent cause remains UNKNOWN rather than gaining an unreviewed parser."
+    },
+    {
+      "area": "Positive-only coverage, C4/key custody and recovery",
+      "status": "PASS",
+      "reason": "Unchanged positive TAP recognizes successful records and excludes SKIP/TODO; source-bound failing test candidate parser retains leaf/location/type limits and unknown omissions. DB/RLS expected51 distinct IDs, Node30 and essential browser14 must be reconciled from actual native records and retries; summary/job success or static count never substitutes for leaf executions. Missing/pending/skipped/flaky/unavailable are zero passing coverage. Closed lifecycle projection retains C4 key deletion/backend/canonical uncertainty; child close, stack stop or job end is not backend settlement. Separate native recovery report and direct physical Storage loader evidence remain required. Native actual independent qualification remains necessary after acquisition."
+    }
+  ],
+  "controls": {
+    "evidence": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-independent-controls.json",
+      "bytes": 9201,
+      "sha256": "98c68057aa6d63e3ac4b2bae7e84a85ba51d3ed2a67922db4959ab5ada725fc9"
+    },
+    "qualified_checks": 8,
+    "failed": 0,
+    "nonadditive": "Six initial source/data/default checks preserved and reused; two final terminal/enrollment data checks added. No algorithm/helper matrix or application suite rerun.",
+    "actual_tools": {
+      "initial_source_inverse_catalog": "9d4715/native0/0.2080332s",
+      "initial_source_data_default": "0d7980/native0/0.1488952s",
+      "terminal_data": "22f0fe/native0/0.1394727s",
+      "final_packet_data": "f98e20/native0/0.1529493s"
+    },
+    "control_history": "Reviewer initial line-count check used splitlines, omitting final empty line; corrected fixture to normalized split(newline). Reviewer initial whole-job equality did not account for inherited omission of redundant run/head; metadata localization proved all refs matched, then explicit retained-field/rawtuple comparison passed. Both histories retained in controls. Native author analogous initial2ada81 comparison stop and OS206 preparation transport failures are retained in immutable proposal; no input/source repair was required.",
+    "module_main_or_actual_imports": 0,
+    "real_API_Popen_Git_runtime_resources": 0
+  },
+  "required_Root_interfaces": {
+    "future_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "activation_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-evidence-activation.json",
+    "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent",
+    "operator_source": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/reader.py",
+      "bytes": 50755,
+      "sha256": "6b1532b12316f24e441d7be3f8993c018f98ca7e7bf9537465a984711ca306cb"
+    },
+    "operator_bindings": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/proposal.json",
+      "bytes": 120353,
+      "sha256": "1589645c9f286fbc84c89e188042a01fe30d2a1ea23c66369a0cf7f2b20a7c93"
+    },
+    "source75_ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-preparation/source-rows.json",
+      "bytes": 31634,
+      "sha256": "d4b63fef797796b75a38f3a0d1137afbde9b0644fc7be5d60036620e68a42c64"
+    },
+    "actual_terminal": {
+      "bytes": 23827,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-actual-terminal-envelope.json",
+      "sha256": "f31671e0456ae9fef5a7f66fd81affac8d53ddd654e7240b9a178a505f2871fa"
+    },
+    "actual_jobs": {
+      "checkpoint-admission": "success",
+      "dashboard-e2e": "skipped",
+      "db": "failure",
+      "e2e": "success",
+      "fixed-chromium-application-verification": "skipped",
+      "fixed-chromium-paired-probe": "skipped",
+      "native-stream-probe": "skipped",
+      "recovery-storage-loader": "success",
+      "verify": "success"
+    },
+    "actual_run_id": 39816833651,
+    "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "source_head": "0ed3710929ea09afae49ef7b8d3266975331e827",
+    "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+    "attempt": 1,
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "maximum_logical_requests": 5,
+    "no_retry": true,
+    "normal_acceptance_credit": 0,
+    "operator_review": {
+      "status": "PASS",
+      "independent": true,
+      "evidence": "Root inserts exact actual completed review path/bytes/SHA externally, including this report; no self-hash cycle or placeholder as evidence."
+    },
+    "allocation": "NEW actual completed max5GET finite Coordinator grant, semantically qualified by Root and bound by exact path/bytes/SHA; prior slots/grants closed.",
+    "source_Git_proof": "Fresh exact source0ed/current+pushedfd930 object/clean source75+203/unchanged118 proof ref; pushed_source_objects_equal true; proof also in current_review_readiness.",
+    "current_review_readiness": "Hash refs to actual review/readiness/proof evidence, no template assertions as execution evidence.",
+    "execution_authorized": "Root alone creates exclusive actual activation with true only after actual grant/proofs/independent review admission. Review created no activation and grants no GET."
+  },
+  "remaining_conditions_before_GET": [
+    "Distinct High final data-enrollment/source/privacy PASS with exact final4 hashes.",
+    "NEW actual completed max5GET allocation, oldslots closed.",
+    "Root fresh current/source/pushed proof and exclusive activation with finalreader/proposal/source/ref hashes; absent output.",
+    "ONE invocation exactfutureargv, no retry/refetch/fallback/perjob/status/pagination; unknown consumes.",
+    "Separate distinct High actual evidence qualification before coverage/cause/custody conclusions."
+  ],
+  "continuity": {
+    "historical_prior95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "historical_feed_browser_retry0_passed": 14,
+    "current_run_job_result": "completed/failure; DB failed, admission/verify/e2e/recovery succeeded, optional4 skipped",
+    "current_native95_counts": null,
+    "current_cause": "UNKNOWN",
+    "current_custody": "UNKNOWN",
+    "artifact_IDs_digests_availability": "UNKNOWN; no acquisition performed",
+    "normal_acceptance_added": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "open_questions": [],
+  "deferred_work": [
+    "Root completed max5GET grant, fresh source proof and exclusive activation; one finite acquisition only if admitted.",
+    "Distinct independent actual native evidence qualification for counts, source correlation, failure/cause, C4/backend/key custody and recovery."
+  ],
+  "blockers": [],
+  "conservation": "Initial inert4 preserved. Final actual4 rehashed against Root frozen pins immediately before this report. Only owned private controls and this report written; no inputs/tracked/state/Git/source/dependency/config/runtime/API effects. This PASS qualifies reader source and terminal data enrollment only."
+}

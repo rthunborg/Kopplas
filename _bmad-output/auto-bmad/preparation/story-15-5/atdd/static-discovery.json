@@ -1,0 +1,319 @@
+{
+  "mode": "STATIC glob and AST only; no globalSetup/runtime evidence",
+  "partitions": [
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "project": "integration-parallel"
+    },
+    {
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "project": "integration-parallel"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "project": "integration-parallel"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "project": "integration-parallel"
+    }
+  ],
+  "modules": [
+    {
+      "type": "module",
+      "children": [
+        {
+          "name": "15.5 public capability HTTP, projection and independent abuse budgets RED",
+          "type": "suite",
+          "children": [
+            {
+              "name": "[P0] 15.5-API001 AC3 AC4 AC9 own minimal projection rejects tenant subject and date overrides",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API002 AC4 AC7 revoked rotated unknown and malformed have equal-history generic HTTP404",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API003 AC5 sixty per token across independent IPs then61 is limited",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API004 AC5 one IP across multiple tokens reaches120 independently of token budgets",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API005 AC5 token boundary under65 concurrent requests admits exactly60 without lost increments",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API006 AC5 IP boundary under125 concurrent cross-token requests admits exactly120",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API007 AC5 DB clock owns fixed window and rollover restores both independent budgets",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API008 AC4 AC5 unknown malformed rotated and revoked consume common IP budget and limited failures persist",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API009 AC4 AC5 AC7 arbitrary forwarded headers cannot escape shared unknown-IP enforcement",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API010 AC4 AC5 raw RPC proof forgery cannot choose hash IP domain key or time; replay is counted",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API011 AC1 AC4 raw lifecycle proof binds every authority action revision attempt and new hash",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API012 AC4 AC8 missing or mismatched dedicated key never borrows another Vault secret",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API013 AC3 AC7 AC8 complete materialized feed exceeds PostgREST row cap with no arbitrary horizon",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API014 AC3 AC8 independent parser sees escaped labels and no injected properties or UTF8 splits",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P1] 15.5-API015 AC3 AC8 Stockholm DST all-day exclusive dates and overnight UTC instants are independent",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API016 AC3 AC9 live edit exception cancel and series split preserve surviving booking UIDs",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API017 AC7 hostile cookies auth headers validators never authenticate cache or redirect public feed",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API018 AC5 AC8 projection and counter failures return503 before any partial or false empty feed",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API019 AC1 AC4 AC5 AC9 logs audit and public errors disclose no raw token hash proof key or IP",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-API020 AC3 AC9 feed reads preserve existing booking series resolver reports and job facts",
+              "type": "test",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "module",
+      "children": [
+        {
+          "name": "15.5 accessible calendar subscription presentation (SSR only)",
+          "type": "suite",
+          "children": [
+            {
+              "name": "[P1] 15.5-COMP-001 AC1 AC6 warning, never used and copy fallback are explicit",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-COMP-002 AC2 AC6 pending and uncertain cannot announce confirmed success or recover raw URL",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P1] 15.5-COMP-003 AC2 AC6 failure offers explicit retry and revisit requires new rotation",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-COMP-004 AC5 AC6 separate nonAdmin presentation contains no abuse data",
+              "type": "test",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "module",
+      "children": [
+        {
+          "name": "15.5 authenticated lifecycle, atomic audit and commit-order RED",
+          "type": "suite",
+          "children": [
+            {
+              "name": "[P0] 15.5-INT001 AC1 AC6 own issuance stores only SHA256 and publishes a fresh URL once",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT002 AC1 AC2 rotate revokes old generation and revoke is audited once",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT003 AC2 concurrent CAS rotations cannot overwrite or create two active generations",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT004 AC2 exact attempt replay is sanitized and old attempt cannot accept a different new hash",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT005 AC2 lost committed response reconciles metadata and needs a separate explicit rotation",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT006 AC1 AC2 create audit fault proves intended stage then rolls back generation",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT007 AC2 failed rotation audit leaves old usable and installs no new generation",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT008 AC2 failed revoke audit leaves token usable with no false revocation",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT009 AC2 AC4 AC9 current role loss committed before authority blocks queued management",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT010 AC2 AC9 admitted fetch may finish before revoke while later fetch is denied",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT011 AC2 AC9 revoke commits before a waiting fetch and prevents its disclosure",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT012 AC1 AC2 AC9 committed rotation rejects waiting old fetch and preserves new token",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-INT013 AC2 simultaneous initial create and later revoke/rotate never resurrect stale intent",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P1] 15.5-INT014 AC6 last-used is database admitted fetch time and lifecycle alone never increments usage",
+              "type": "test",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "module",
+      "children": [
+        {
+          "name": "15.5 exact self authority, raw SQL boundary and least privilege RED",
+          "type": "suite",
+          "children": [
+            {
+              "name": "[P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS002 AC1 AC4 AC9 admin manager peer foreign and platform cannot act on behalf of a subject",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS003 AC4 AC9 legacy NULL and non-ready provisioning state preserve active membership access",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS004 AC4 AC9 current role removal and inactive invited missing exact membership fail despite an old JWT",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS005 AC1 AC4 AC9 membership replacement invalidates an active old capability",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS006 AC3 AC9 manager feed contains only exact assigned planned bookings once",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS007 AC3 AC4 AC9 no profile and archived profile yield a valid empty calendar without team fallback",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS008 AC1 AC4 AC9 direct token DML and sensitive column reads are denied to all JWT roles",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS009 AC4 AC5 AC9 global IP table has RLS and no effective JWT SELECT DML or subject linkage",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS010 AC4 AC9 dedicated owner and filtered Vault helper retain strict effective inherited ACLs",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS011 AC4 AC5 AC6 Admin monitoring is sanitized tenant-only and ordinary roles cannot read it",
+              "type": "test",
+              "children": []
+            },
+            {
+              "name": "[P0] 15.5-RLS012 AC4 AC9 missing own tenant invalidates an issued capability through SQL authority and constraints",
+              "type": "test",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "serialEnrollment": "DEFERRED P5; current config still puts both new serial-intended files in parallel; all new tests remain skipped"
+}

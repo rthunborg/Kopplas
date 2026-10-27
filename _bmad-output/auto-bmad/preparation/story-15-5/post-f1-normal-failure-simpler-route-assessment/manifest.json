@@ -1,0 +1,18 @@
+{
+  "schema": "POST_F1_SIMPLER_ROUTE_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/report.md",
+      "bytes": 5879,
+      "sha256": "179c1b2e6ca8d0a45e95b2bd63188bc6fd5297fee298ac2cf125d76d389d298f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/attestation.json",
+      "bytes": 14700,
+      "sha256": "697d1079c7b4df84721f1e9ab979f0dee1ac734df73badd261d3ba435918217c"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 3,
+  "normal_acceptance": 0
+}

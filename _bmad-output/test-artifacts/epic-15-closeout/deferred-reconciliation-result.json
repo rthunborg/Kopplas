@@ -1,0 +1,53 @@
+{
+  "resolved_count": 0,
+  "marked_bullets": [],
+  "assessed_owned_entries": [
+    {
+      "id": 171,
+      "summary": "Optional privileged diagnostic broker can miss a final pipe write before reaping/empty fence",
+      "disposition": "KEEP_OPEN",
+      "reason": "Optional diagnostic/controller qualification or release/manual/performance/checkpoint work remains unambiguously unexecuted; no full resolution evidence."
+    },
+    {
+      "id": 172,
+      "summary": "Upstream PR-feedback mutable-workspace gate attestation candidate",
+      "disposition": "KEEP_OPEN",
+      "reason": "Optional diagnostic/controller qualification or release/manual/performance/checkpoint work remains unambiguously unexecuted; no full resolution evidence."
+    },
+    {
+      "id": 187,
+      "summary": "Full Min dag role/device/browser matrix beyond nine essential journeys",
+      "disposition": "KEEP_OPEN",
+      "reason": "Optional diagnostic/controller qualification or release/manual/performance/checkpoint work remains unambiguously unexecuted; no full resolution evidence."
+    },
+    {
+      "id": 188,
+      "summary": "Canonical design screenshot comparison, measured contrast and presentation polish",
+      "disposition": "KEEP_OPEN",
+      "reason": "Optional diagnostic/controller qualification or release/manual/performance/checkpoint work remains unambiguously unexecuted; no full resolution evidence."
+    },
+    {
+      "id": 189,
+      "summary": "Manual accessibility, keyboard, daylight and exploratory walkthrough",
+      "disposition": "KEEP_OPEN",
+      "reason": "Optional diagnostic/controller qualification or release/manual/performance/checkpoint work remains unambiguously unexecuted; no full resolution evidence."
+    },
+    {
+      "id": 190,
+      "summary": "E14 advisory triage and approved performance volumes/targets",
+      "disposition": "KEEP_OPEN",
+      "reason": "Optional diagnostic/controller qualification or release/manual/performance/checkpoint work remains unambiguously unexecuted; no full resolution evidence."
+    },
+    {
+      "id": 191,
+      "summary": "Final Phase B release validation and stabilization checkpoint",
+      "disposition": "KEEP_OPEN",
+      "reason": "Optional diagnostic/controller qualification or release/manual/performance/checkpoint work remains unambiguously unexecuted; no full resolution evidence."
+    }
+  ],
+  "ledger_sha256_before": "c7b5f49918a3ac7dad0ba3f895dca7db82aac16e414b50a51c1a1b8edd313c87",
+  "ledger_sha256_after": "c7b5f49918a3ac7dad0ba3f895dca7db82aac16e414b50a51c1a1b8edd313c87",
+  "ledger_changed": false,
+  "other_entries_headings_nesting": "byte-identical; no ledgerwrite",
+  "archive": "Root owns later mechanical archive; no entries falsely markedresolved"
+}

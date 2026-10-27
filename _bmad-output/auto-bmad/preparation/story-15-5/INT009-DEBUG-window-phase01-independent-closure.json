@@ -1,0 +1,252 @@
+{
+  "schema": "INDEPENDENT_INT009_DEBUG_WINDOW_PHASE01_SOURCE_CLOSURE_V1",
+  "outcome": "PASS_INT009_WINDOW_PHASE01_CLOSURE_SOURCE_ONLY",
+  "status": "PASS",
+  "independent": true,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "role": "Same distinct independent source reviewer as original NOTPASS; not correction author",
+    "route": {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-phase01-independent-closure-route.json",
+      "bytes": 577,
+      "sha256": "2919e4462725765270011bf836ed7b5969ebfbd5d2d0c7eb5c43e67342a6daaf"
+    },
+    "scope": "Sole INT009-WINDOW-PHASE-01 closure and consequential latest two-path regressions only; other WINDOW/privacy/namespace review reused, no fourth broad pass"
+  },
+  "source": {
+    "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+    "commit": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+    "parent": "8d2bf3086d4d12a0809a05a37a6801ad75539e3e",
+    "bindings": [
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 141605,
+        "raw_sha256": "6d364caee385ceb3f3237e35c7ff9ffbeae2227426e4cef14fc4a06c6103d9c6",
+        "LF_bytes": 140212,
+        "LF_sha256": "d0584efb59c2cb133657da8795e5d139ff04ba4a59e8884e3c41e851b8e4ecb4",
+        "base_blob": "12a13e543e337ca1825d6fe5011ab2b883f883d4",
+        "clean_blob": "bdc71d11ec86cb2d3687e5c1e3e05fd6635cbe87"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 335126,
+        "raw_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+        "LF_bytes": 335126,
+        "LF_sha256": "81c52949b06f93dcff1f0409d1ee216f50d2379a441be342b8ecbb83af257a2f",
+        "base_blob": "24f387c363a47cd4047b159e7719bd7750ff0f4c",
+        "clean_blob": "c5a66318f5ee8b1f653cd8b1a7e77004e4fa9b8f"
+      }
+    ],
+    "Root_commit_proof": "064ef0/native0; exact current raw/LF/computed clean blobs independently matched without reviewer Git commands."
+  },
+  "input_refs": [
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-phase01-independent-closure-route.json",
+      "bytes": 577,
+      "sha256": "2919e4462725765270011bf836ed7b5969ebfbd5d2d0c7eb5c43e67342a6daaf"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-phase-boundary-correction-author-result.json",
+      "bytes": 18170,
+      "sha256": "ccd0656a07a6405fbdf9bfd1d791071bb4d89da204d39481ccb4b020e3e3d677"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-phase-boundary-correction-root-commit-proof.json",
+      "bytes": 1533,
+      "sha256": "534dae1b359f95f7a3fb8595bccc687f0745dbeca1ea555ac19f96dda8a1fd6d"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-current-capture-window-author-result.json",
+      "bytes": 21805,
+      "sha256": "52c05c2d060de7e86367faeaf468c0ea5e6097880e0d9d34397b63f5cc538594"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-current-capture-window-actual-source-review.json",
+      "bytes": 19246,
+      "sha256": "06cab049092252cc95a224a0b8c7172a506015edaafdd49ab4ec6a6c38c3534b"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-phase-boundary-correction-route.json",
+      "bytes": 621,
+      "sha256": "5a2b031275eceb9724c34319bbdb140d243ea161f37afb615c4e32d5f1f3a64d"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-capture-window-phase-boundary-correction-controls.json",
+      "bytes": 3677,
+      "sha256": "de2a0b5b299708bc1fa835cf92333b50c7a8850aa1c4d253e41de87e8ed716cc"
+    },
+    {
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-int009-debug\\Kopplas",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-capture-window-phase-boundary-correction.diff",
+      "bytes": 6659,
+      "sha256": "24b737a5d9c4874d506b6829ba0237e2ac00ceba7a2205792ab44456e98f838a"
+    }
+  ],
+  "original_review_preserved": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-current-capture-window-actual-source-review.json",
+    "bytes": 19246,
+    "sha256": "06cab049092252cc95a224a0b8c7172a506015edaafdd49ab4ec6a6c38c3534b",
+    "status": "HistoricalNOTPASS immutable; not rewritten or erased."
+  },
+  "finding_closure": {
+    "id": "INT009-WINDOW-PHASE-01",
+    "status": "CLOSED_FOR_3e6bd_SOURCE",
+    "path": "tests/support/calendar-feed-atdd.ts",
+    "line": 948,
+    "original_defect": "Nested successful owner restoration left OWNER_RESTORE/WRAPPER_OUTCOME_UNKNOWN on the shared local capture, so subsequent barrier absence-query rejection/leftover row misattributed its firstPRIMARY.",
+    "actual_correction": "Adds only42-byte trace.phase(FINALLY,BARRIER_CLEANUP) immediately after nested restore/drop path returns and immediately before the existing absence query and leftover-row check. Both throw paths now observe the actual reached barrier cleanup boundary. A restore failure still records its existing restore boundary and skips this later reset/query exactly as before.",
+    "actual_semantics": "No query, await, condition, observer, enum, assertion, action, cleanup scheduling, error redaction/AggregateError, custody mutation or returned value changes. Existing firstPRIMARY remains immutable; a new boundary cannot overwrite an earlier observed primary.",
+    "source_only": true
+  },
+  "independent_proofs": {
+    "complete_committed_patch_inverses": [
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "hunks": 1,
+        "base_blob": "12a13e543e337ca1825d6fe5011ab2b883f883d4",
+        "recovered_LF_bytes": 140170,
+        "recovered_LF_sha256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "hunks": 1,
+        "base_blob": "24f387c363a47cd4047b159e7719bd7750ff0f4c",
+        "recovered_LF_bytes": 333066,
+        "recovered_LF_sha256": "748ac5c553209bc8d76ee3666651b6a7f6790b57d1d6b76d297cabdc7d2be58f"
+      }
+    ],
+    "entire_helper_inverse": {
+      "exact_removal_bytes": 42,
+      "unique_postrestore_marker": true,
+      "base_raw_sha256": "846d081aa8bbf3f59d2a69d374c88f6cb2b5943eac12bdb25b56de87672d373d",
+      "base_LF_sha256": "280fd31e6a13ad1e3de4728dd36ad6a81de2577e837434907e0a04b8e628b346",
+      "base_blob": "12a13e543e337ca1825d6fe5011ab2b883f883d4",
+      "all_match": true
+    },
+    "INT009_callback_unchanged": {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 38097,
+      "raw_sha256": "37ec258c29f514c23c450a3e70ef19cebd685330fec7017c4c3f0cd6ea2d4679",
+      "LF_bytes": 37576,
+      "LF_sha256": "46cf991e70d2804ee6fe49ba218813c9d76231b2113f6e05edea26c232163f62",
+      "base_blob": "2f2950a9ee4cf1a590dc6eee58eef19531ac6524",
+      "clean_blob": "2f2950a9ee4cf1a590dc6eee58eef19531ac6524"
+    },
+    "new_controls_source_inspected": true,
+    "reviewer_test_reruns": 0,
+    "reviewer_API_runtime_resources_Git_actions": 0,
+    "read_only_tools": [
+      "c84844",
+      "198f87"
+    ],
+    "all_input_source_pins_rechecked_before_output": true
+  },
+  "regression_controls_assessment": {
+    "status": "MEANINGFUL_ACTUAL_SOURCE_CONTROLS",
+    "test": "INT009 window postrestore absence failure resets exact boundary and missing-reset inverse fails",
+    "coverage": "Actual barrier and owner-restore source execute through the existing int009Control/inert-port seam. Before absence rejection/leftover return the control requires owner state empty and canonical row fully restored. Reject and leftover modes both require PRIMARY FINALLY/BARRIER_CLEANUP. Removing exactly the new reset must fail that oracle and reproduce OWNER_RESTORE/WRAPPER_OUTCOME_UNKNOWN. It retains AggregateError/redacted outcome, exact key/SQLSTATE handling and registered finalizer/custody behavior.",
+    "positive_negative_not_tautological": "Uses actual compiled source and an inverse which reproduces this reviewer original defect; fixtures do not implement a parallel phase collector. Native own SQLSTATE is captured before masking, while the final safe error is not replaced by that native object.",
+    "limits": "Controlled synthetic ports/source sequencing only; not SQL parsing, real PostgreSQL/transport failure, actual current INT009 cause or cleanup evidence."
+  },
+  "author_checks_attributed_nonadditively": {
+    "checks": [
+      {
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern=\"INT009 window\" tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit": 0,
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "skip": 0,
+        "cancel": 0,
+        "todo": 0,
+        "duration_ms": 1104.2617,
+        "tool": "1a1c5d"
+      },
+      {
+        "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+        "exit": 0
+      },
+      {
+        "command": "node node_modules/eslint/bin/eslint.js tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit": 0,
+        "tool": "2da922"
+      },
+      {
+        "command": "git diff --check",
+        "exit": 0,
+        "tool": "8db516"
+      }
+    ],
+    "fresh_focused": "8P0F0skip0cancel,1a1c5d,1104.2617ms",
+    "prior24": "Reused only as historical unchanged producer/window and operation/callback/query/await conservation evidence; not an aggregate32 or a newly rerun full suite.",
+    "no_corrective_test_failures": true,
+    "metadata_stops_preserved": [
+      {
+        "native_command_exit": 0,
+        "decoder_status": "STOP_BEFORE_RECEIPT",
+        "reason": "Git LF-to-CRLF warning prefix preceded JSON; decoder initially expected JSON at offset0. Corrected bounded metadata reader separates known stderr/closed JSON; no source change."
+      },
+      {
+        "native_command_exit": 0,
+        "comparison_status": "STOP_BEFORE_RECEIPT",
+        "reason": "Broad historical merge-base path list now included the already committed helper/test as well as old temporary files. Comparison wrongly treated those as old companions; corrected in-memory validation selects the exact six original named frozen companions from prewrite vector, with no command retry or source change."
+      }
+    ],
+    "metadata_history_limit": "These are parent mechanical decoder/comparison stops before receipt, not semantic/code failures or evidence of a native run."
+  },
+  "remaining_WINDOW_and_privacy_reuse": {
+    "WINDOW01_02_03_04_06": "Prior actual3-path review reused with exact same helper body except this reset and unchanged INT009 callback. Local capture/no global or ALS-lifetime widening, pre-finally/error-override and safe error/custody/order behavior unchanged.",
+    "WINDOW05": "Previously open stale-phase issue now closed at the actual reached absence-query boundary.",
+    "namespace": "Same six fixed primitive fields;1PRIMARY immutable,<=3CLEANUP/OMITTED,4096ASCII; same15publication/40operation/13guard/22field allowlists. No new enum or schema. Proxy/inherited/accessor/readonly/foreign-sink/healthy-success behavior unchanged by exact helper inverse."
+  },
+  "protected_conservation": {
+    "six_other_temporary_companions": true,
+    "MAIN4_source_Spec": true,
+    "SQL_Git_tree": true,
+    "SQL_count": 118,
+    "SQL_raw_LF_basis": "Root prior actual118 raw/LF proof and unchanged SQL Git tree reused; no redundant rescan.",
+    "MAIN_kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "status": "Unchanged MAIN Spec/kernel/in-review/counter3 by Root preservation proof."
+    },
+    "no_diagnostic_capability_in_MAIN": true
+  },
+  "producer_source_eligibility": {
+    "commit": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+    "SOURCE_PASS": true,
+    "eligible_for_future_separately_admitted_fixed_diagnostic": true,
+    "scope": "Source eligibility only, after closure plus unchanged prior WINDOW review. Matching existing private reader source/enum bindings and independent reader review, fresh exact-head source proof and actual completed finite operational grant remain separate requirements.",
+    "execution_authorized": false,
+    "effect_authority_granted": false,
+    "no_push_CI_API_or_cleanup_authority": true
+  },
+  "findings": [],
+  "open_questions": [
+    "Actual current INT009 first cause/body reach/canonicalization outcome and backend/custody remain UNKNOWN. This source-only phase correction does not explain the prior native failure."
+  ],
+  "deferred_work": "Matching private reader enrollment/review and any separately allocated exact-head diagnostic/evidence qualification. No automatic rerun, new diagnostic family or broad review.",
+  "blockers": {
+    "targeted_source_closure": [],
+    "functional": "Full95 remains68P/1F/26zero, DB custody retained/unverified. P5OPEN/acceptance0/developmentfalse."
+  },
+  "continuity": {
+    "required95": "68P/1F/26zero",
+    "P5": "OPEN",
+    "review_counter": 3,
+    "fourth_broad_review": false,
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "only_write": "This new MAIN closure JSON"
+  }
+}

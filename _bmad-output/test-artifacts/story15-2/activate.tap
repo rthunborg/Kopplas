@@ -1,0 +1,1017 @@
+TAP version 13
+# (node:53688) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/test-artifacts/story15-2/red-activation/booking-series-state.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 15.2 latest preview and explicit attempt recovery — AC2/AC3/AC8
+    # Subtest: [P0] TEA15.2-STATE-001 idle preview cannot save
+    not ok 1 - [P0] TEA15.2-STATE-001 idle preview cannot save
+      ---
+      duration_ms: 4.9278
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:8:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 pending preview cannot save
+    not ok 2 - [P0] TEA15.2-STATE-001 pending preview cannot save
+      ---
+      duration_ms: 1.5164
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:8:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 failed preview cannot save
+    not ok 3 - [P0] TEA15.2-STATE-001 failed preview cannot save
+      ---
+      duration_ms: 1.4084
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:8:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 late preview cannot replace latest candidate or authorize save
+    not ok 4 - [P0] TEA15.2-STATE-001 late preview cannot replace latest candidate or authorize save
+      ---
+      duration_ms: 2.3136
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:13:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing rule discards receipt selection and reason
+    not ok 5 - [P0] TEA15.2-STATE-001 changing rule discards receipt selection and reason
+      ---
+      duration_ms: 1.1773
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:21:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing seriesVersion discards receipt selection and reason
+    not ok 6 - [P0] TEA15.2-STATE-001 changing seriesVersion discards receipt selection and reason
+      ---
+      duration_ms: 1.1487
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:21:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing factRevision discards receipt selection and reason
+    not ok 7 - [P0] TEA15.2-STATE-001 changing factRevision discards receipt selection and reason
+      ---
+      duration_ms: 1.2718
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:21:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing pivotOccurrenceId discards receipt selection and reason
+    not ok 8 - [P0] TEA15.2-STATE-001 changing pivotOccurrenceId discards receipt selection and reason
+      ---
+      duration_ms: 1.2675
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:21:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 changing proposedIds discards receipt selection and reason
+    not ok 9 - [P0] TEA15.2-STATE-001 changing proposedIds discards receipt selection and reason
+      ---
+      duration_ms: 1.2457
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:21:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-001 complete warning set includes eleventh warning before save admission
+    not ok 10 - [P0] TEA15.2-STATE-001 complete warning set includes eleventh warning before save admission
+      ---
+      duration_ms: 1.2158
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:31:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-STATE-002 lost response retains exact immutable attempt for explicit retry
+    not ok 11 - [P0] TEA15.2-STATE-002 lost response retains exact immutable attempt for explicit retry
+      ---
+      duration_ms: 0.77
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:41:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P1] TEA15.2-STATE-002 failed response keeps labelled unsent data until server-confirmed result
+    not ok 12 - [P1] TEA15.2-STATE-002 failed response keeps labelled unsent data until server-confirmed result
+      ---
+      duration_ms: 0.8222
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:51:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\resources\\booking-series-state.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    1..12
+not ok 1 - 15.2 latest preview and explicit attempt recovery — AC2/AC3/AC8
+  ---
+  duration_ms: 20.7922
+  type: 'suite'
+  location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts:6:1'
+  failureType: 'subtestsFailed'
+  error: '12 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# (node:51392) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/test-artifacts/story15-2/red-activation/recurrence.test.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 15.2 pure bounded calendar recurrence — AC1
+    # Subtest: [P0] TEA15.2-UNIT-001 daily-leap-day
+    not ok 1 - [P0] TEA15.2-UNIT-001 daily-leap-day
+      ---
+      duration_ms: 5.1339
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 monthly-skips-absent-day-without-clamping
+    not ok 2 - [P0] TEA15.2-UNIT-001 monthly-skips-absent-day-without-clamping
+      ---
+      duration_ms: 1.741
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 weekly-selected-iso-weekdays-inclusive-end
+    not ok 3 - [P0] TEA15.2-UNIT-001 weekly-selected-iso-weekdays-inclusive-end
+      ---
+      duration_ms: 1.2144
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 biweekly-iso-monday-anchor-counts-emitted
+    not ok 4 - [P0] TEA15.2-UNIT-001 biweekly-iso-monday-anchor-counts-emitted
+      ---
+      duration_ms: 2.2529
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 weekly-spring-wall-clock-retained
+    not ok 5 - [P0] TEA15.2-UNIT-001 weekly-spring-wall-clock-retained
+      ---
+      duration_ms: 1.2221
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 weekly-autumn-wall-clock-retained
+    not ok 6 - [P0] TEA15.2-UNIT-001 weekly-autumn-wall-clock-retained
+      ---
+      duration_ms: 0.9911
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 spring-gap-first-valid-instant
+    not ok 7 - [P0] TEA15.2-UNIT-001 spring-gap-first-valid-instant
+      ---
+      duration_ms: 1.3198
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 autumn-fold-earlier-instant
+    not ok 8 - [P0] TEA15.2-UNIT-001 autumn-fold-earlier-instant
+      ---
+      duration_ms: 0.4946
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 all-day-spring-local-midnights
+    not ok 9 - [P0] TEA15.2-UNIT-001 all-day-spring-local-midnights
+      ---
+      duration_ms: 0.9181
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 overnight-spring-converts-both-endpoints
+    not ok 10 - [P0] TEA15.2-UNIT-001 overnight-spring-converts-both-endpoints
+      ---
+      duration_ms: 0.9748
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 microseconds-retained
+    not ok 11 - [P0] TEA15.2-UNIT-001 microseconds-retained
+      ---
+      duration_ms: 0.917
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:13:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects unbounded without partial occurrences
+    not ok 12 - [P0] TEA15.2-UNIT-001 rejects unbounded without partial occurrences
+      ---
+      duration_ms: 4.4699
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects both-end-conditions without partial occurrences
+    not ok 13 - [P0] TEA15.2-UNIT-001 rejects both-end-conditions without partial occurrences
+      ---
+      duration_ms: 0.687
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects zero-count without partial occurrences
+    not ok 14 - [P0] TEA15.2-UNIT-001 rejects zero-count without partial occurrences
+      ---
+      duration_ms: 2.6012
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects negative-count without partial occurrences
+    not ok 15 - [P0] TEA15.2-UNIT-001 rejects negative-count without partial occurrences
+      ---
+      duration_ms: 0.7067
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects fractional-count without partial occurrences
+    not ok 16 - [P0] TEA15.2-UNIT-001 rejects fractional-count without partial occurrences
+      ---
+      duration_ms: 0.5736
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects nonfinite-count without partial occurrences
+    not ok 17 - [P0] TEA15.2-UNIT-001 rejects nonfinite-count without partial occurrences
+      ---
+      duration_ms: 1.0167
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects nan-count without partial occurrences
+    not ok 18 - [P0] TEA15.2-UNIT-001 rejects nan-count without partial occurrences
+      ---
+      duration_ms: 3.7053
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects unsafe-count without partial occurrences
+    not ok 19 - [P0] TEA15.2-UNIT-001 rejects unsafe-count without partial occurrences
+      ---
+      duration_ms: 1.0778
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects empty-weekdays without partial occurrences
+    not ok 20 - [P0] TEA15.2-UNIT-001 rejects empty-weekdays without partial occurrences
+      ---
+      duration_ms: 0.5933
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects invalid-iso-weekday without partial occurrences
+    not ok 21 - [P0] TEA15.2-UNIT-001 rejects invalid-iso-weekday without partial occurrences
+      ---
+      duration_ms: 0.719
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects invalid-until-date without partial occurrences
+    not ok 22 - [P0] TEA15.2-UNIT-001 rejects invalid-until-date without partial occurrences
+      ---
+      duration_ms: 1.6365
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects end-before-start without partial occurrences
+    not ok 23 - [P0] TEA15.2-UNIT-001 rejects end-before-start without partial occurrences
+      ---
+      duration_ms: 0.7463
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects unsupported-preset without partial occurrences
+    not ok 24 - [P0] TEA15.2-UNIT-001 rejects unsupported-preset without partial occurrences
+      ---
+      duration_ms: 2.5439
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects invalid-local-date without partial occurrences
+    not ok 25 - [P0] TEA15.2-UNIT-001 rejects invalid-local-date without partial occurrences
+      ---
+      duration_ms: 0.6128
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 rejects nonpositive-interval without partial occurrences
+    not ok 26 - [P0] TEA15.2-UNIT-001 rejects nonpositive-interval without partial occurrences
+      ---
+      duration_ms: 0.8158
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:41:5'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 gap-converted nonpositive endpoint rejects entire series with local date
+    not ok 27 - [P0] TEA15.2-UNIT-002 gap-converted nonpositive endpoint rejects entire series with local date
+      ---
+      duration_ms: 0.6833
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:49:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P1] TEA15.2-UNIT-001 previews ten while materializing all twelve without truncation
+    not ok 28 - [P1] TEA15.2-UNIT-001 previews ten while materializing all twelve without truncation
+      ---
+      duration_ms: 0.4653
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:58:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-001 admits shared bound and rejects bound plus one with no partial rows
+    not ok 29 - [P0] TEA15.2-UNIT-001 admits shared bound and rejects bound plus one with no partial rows
+      ---
+      duration_ms: 0.5944
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:68:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    1..29
+not ok 2 - 15.2 pure bounded calendar recurrence — AC1
+  ---
+  duration_ms: 43.7682
+  type: 'suite'
+  location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:11:1'
+  failureType: 'subtestsFailed'
+  error: '29 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: 15.2 immutable nominal identity reconciliation — AC4/AC5
+    # Subtest: [P0] TEA15.2-UNIT-002 rule omission retains exceptional slot outside generated dates
+    not ok 1 - [P0] TEA15.2-UNIT-002 rule omission retains exceptional slot outside generated dates
+      ---
+      duration_ms: 1.9944
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:84:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 retains exception omitted by new rule and suppresses same nominal replacement
+    not ok 2 - [P0] TEA15.2-UNIT-002 retains exception omitted by new rule and suppresses same nominal replacement
+      ---
+      duration_ms: 1.3511
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:93:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 cancelled slot tombstone never regenerates
+    not ok 3 - [P0] TEA15.2-UNIT-002 cancelled slot tombstone never regenerates
+      ---
+      duration_ms: 5.0432
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:102:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        handleMessage (node:internal/modules/esm/worker:199:24)
+        checkForMessages (node:internal/modules/esm/worker:141:28)
+        process.<anonymous> (node:internal/modules/esm/worker:160:5)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 removed generated slot becomes cancelled exceptional tombstone
+    not ok 4 - [P0] TEA15.2-UNIT-002 removed generated slot becomes cancelled exceptional tombstone
+      ---
+      duration_ms: 0.6696
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:109:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    # Subtest: [P0] TEA15.2-UNIT-002 split pivot uses nominal date despite exception actual start moving into prefix
+    not ok 5 - [P0] TEA15.2-UNIT-002 split pivot uses nominal date despite exception actual start moving into prefix
+      ---
+      duration_ms: 0.6544
+      type: 'test'
+      location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:114:3'
+      failureType: 'testCodeFailure'
+      error: "Cannot find module 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\src\\features\\scheduling\\recurrence.ts' imported from C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\tests\\support\\booking-series-unit-atdd.ts"
+      code: 'ERR_MODULE_NOT_FOUND'
+      stack: |-
+        finalizeResolution (node:internal/modules/esm/resolve:275:11)
+        moduleResolve (node:internal/modules/esm/resolve:861:10)
+        defaultResolve (node:internal/modules/esm/resolve:985:11)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        resolve (file:///C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/alias-hook.mjs:87:10)
+        nextResolve (node:internal/modules/esm/hooks:748:28)
+        Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+        MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+        [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+        MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+      ...
+    1..5
+not ok 3 - 15.2 immutable nominal identity reconciliation — AC4/AC5
+  ---
+  duration_ms: 10.1746
+  type: 'suite'
+  location: 'C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts:83:1'
+  failureType: 'subtestsFailed'
+  error: '5 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..3
+# tests 46
+# suites 3
+# pass 0
+# fail 46
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 269.1228

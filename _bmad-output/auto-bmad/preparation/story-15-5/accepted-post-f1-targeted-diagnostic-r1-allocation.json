@@ -1,0 +1,16 @@
+{
+  "kind": "ROOT_INDEPENDENTLY_OBSERVED_COMPLETED_COORDINATOR_R1_TWO_REPORT_ALLOCATION",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "turn_id": "01a16034-579e-7223-9a76-46d6e1394f94",
+  "completed_tool_id": "exec-f7c5b29b-83e0-4019-b3b0-866a9823ab6e",
+  "completed_status": "completed",
+  "observed_turn_status": "inProgress",
+  "run_id": 39664130401,
+  "attempt": 1,
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "maximum_logical_GETs": 2,
+  "no_retry": true,
+  "allocation_text": "EXPLICITFRESHone-shotR1MAX2READallocation GRANTED afteractualindependentHighPASS7317b7245de3b69520fc6f055cbfdf3b191168c69b647d63415b4ba61ec61520/att38646c1f19ebccc51323d58ec52dafdcff0d6659ef4bd980f0671d90c3580501/Root35b2a2669b71969af73933871f9d5c443f74dbd552a0991ef00b5c9b5ba94fc5. ThisisNEWconcreterepairedR1operationNOTretry/reuseoldCONSUMED2GET/outputcapstop. ExactR1operator29866SHAc06fc230aa63feecc1fa076596e4e819e9ed32c96c9c8b81c08310f034377732/preparationa8e135e86fb6d6a71af2ae5b4a4c20b74a2c5c21e20ce91b5d1a47b18323a29a/manifest6e2697886267ca13db8c3755ac1cb7c9f4e04728401e7a9b823c4e03da0aad9c only. RootfreshLOCAL74pinnedsource/222Git+existingfrozen9jobterminalproof+NEWexclusivefsyncedR1activation/consumedintent BEFOREeffects. BindNORMAL39664130401/attempt1/UUID9565c54d-1bbe-4a32-b647-949c02e6c404/headce1943e01b773671e0c2e583ea6b21e56d40e81b/sourceb1b476de. EXACT2fixedZIPGETs ONLY artifacts12376717919/full-integration.json/digestcf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a and12375309772/general-browser.json/digest38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba. PreservepreviousqualifiedID/runhead/name/nonexpiryunderreviewedfreshness; ineligible/changed/expiredSTOPnometadatafallback. NEWSTRICTERcaps15s/4MiBcompressed/8MiBdeclared+selectedinflateperZIP+DURINGread/parse/EOF/join/settlement/nativeexit. AlltenunchangedtransportZIPvalidation/pathrawname/symlinkduplicatesCRCratio/schema/RAMONLYraw. ClosedcaseNUDGE004/browser001007010revoke009flaky/74staticlocationallowlistonly; NOarbitrarymessages/stack/DOM/URL/payload. OutputpreGETproductionbudgetguardMUSTPASS/currentmaxenvelope<=32768; actualadmittedandpublishedcompactbytesIDENTICAL; bounded16errors64locations64tuples11containers/4distincttuplespererror/actualretry1max2unique0or1, omissionsUNKNOWN/locationsNOTcauses. No list/log/status/perjob/pagination/alternate/retry/CI; uncertaintyconsumesR1/UNKNOWNtruthful. Oldactivation/output/stopauditIMMUTABLE. DISTINCTHighOFFLINEprojectiontruthauditbeforefix/causalclaims; sourcegates95/fullDB/browser/custodyremainfailed-unexecutedUNKNOWN/0acceptance. No app/Spec/SQL/push/CI/variables/provider/localresources/foreignwrites/E16mainadoption/merge/deployeffects. ProceedoncewithactualfreshR1bindings/no newgenericapproval.",
+  "normal_acceptance_credit": 0
+}

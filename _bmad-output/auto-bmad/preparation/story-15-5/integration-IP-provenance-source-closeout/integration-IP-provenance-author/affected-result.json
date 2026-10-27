@@ -1,0 +1,23 @@
+{
+  "phase": "affected",
+  "native_exit": 0,
+  "signal": null,
+  "spawn_error": false,
+  "elapsed_ms": 14301,
+  "counts": {
+    "tests": 199,
+    "suites": 0,
+    "pass": 199,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failed_static_control_names": [],
+  "closed_source_diagnostics": [],
+  "stdout_bytes": 57252,
+  "stderr_bytes": 0,
+  "raw_persisted": false,
+  "direct_process_settled": true,
+  "full_EOF": true
+}

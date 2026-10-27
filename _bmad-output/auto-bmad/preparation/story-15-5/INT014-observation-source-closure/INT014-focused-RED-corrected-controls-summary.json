@@ -1,0 +1,19 @@
+{
+  "label": "INT014-focused-RED-corrected-controls",
+  "counts": {
+    "tests": 3,
+    "suites": 0,
+    "pass": 1,
+    "fail": 2,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "failed_owned_tests": [
+    "actual fixture status observation normalizes equivalent timestamps after both RPCs without mutating the raw DTO",
+    "actual fixture status observation preserves different admitted instants and exact usage counts"
+  ],
+  "observed_ERR_ASSERTION": true,
+  "raw_persisted": false,
+  "nonmatching_skips_zero_coverage": true,
+  "purpose": "RED on unchanged helper; no production runtime executed"
+}

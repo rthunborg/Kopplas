@@ -1,0 +1,18 @@
+{
+  "Outcome": "NOTPASS",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-corrective-review/result.json"
+  ],
+  "Status": "F2 CLOSED; F1 false-EOF/custody subpart corrected, but buffered candidate can still release Root continuation after a known reader error. Latest32-test suite passes.",
+  "Open questions": [],
+  "Deferred work": [
+    "Narrow F1 admission fix, exact refreeze and independent targeted confirmation before composite closure.",
+    "Actual Root once-admission/execution and offline High exact-three publication remain separately gated.",
+    "43 DB and14 browser causes unresolved; normal/native acceptance credit remains zero."
+  ],
+  "Blockers": [
+    "F1 P2: Lines.line skips reader-error checking for buffered newline records, allowing final terminal mutation and ack after known capture failure."
+  ]
+}

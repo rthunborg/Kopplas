@@ -1,0 +1,16 @@
+{
+  "label": "INT014-focused-GREEN",
+  "counts": {
+    "tests": 3,
+    "suites": 0,
+    "pass": 3,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "failed_owned_tests": [],
+  "observed_ERR_ASSERTION": false,
+  "raw_persisted": false,
+  "nonmatching_skips_zero_coverage": true,
+  "purpose": "GREEN after single return-only normalization; no production runtime executed"
+}

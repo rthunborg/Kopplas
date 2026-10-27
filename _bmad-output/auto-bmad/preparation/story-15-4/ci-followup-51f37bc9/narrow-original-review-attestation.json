@@ -1,0 +1,50 @@
+{
+  "kind": "original-reviewer-authored-narrow-CI-repair-attestation",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent_from_author": true,
+  "source_head": "71f061b83de04d8f888aaa18f98c4e1960d9d9f4",
+  "before": "51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7",
+  "completed_counted_rounds": 3,
+  "counted_round_cap": 3,
+  "counted_round_breakdown": {
+    "broad": 1,
+    "limited": 2
+  },
+  "current_check": "separate additional narrow latest-fix CI follow-up; not a fourth broad or counted automatic review",
+  "rederivation_iteration": 0,
+  "input_bytes": 172930,
+  "input_lines": 1492,
+  "input_raw_sha256": "5b557495c2866a81ac62c432f0d9db9bae72cc8dce69d230ddc74f961eaa762b",
+  "input_binding_bytes": 3287,
+  "input_binding_raw_sha256": "60c2a06d77f3c78e14daacabf93a9dc1425c9089319fbe944b76c14e7b2accdf",
+  "all_input_read": true,
+  "accounting_header_correction_reread": true,
+  "source_bindings_verified": 6,
+  "source_head_verified": true,
+  "changed_paths_exactly_allocated": 6,
+  "report_bytes": 9619,
+  "report_raw_sha256": "440fdd06d559898c6da1cafe98f5a07fa4f8e828f67cb9c5dd8a315c2de1ac99",
+  "report_path": "_bmad-output/auto-bmad/preparation/story-15-4/ci-followup-51f37bc9/narrow-original-review-report.md",
+  "report_authorship": "Original reviewer-authored bytes",
+  "verdict": "passed-narrow-source-review",
+  "findings_count": 0,
+  "findings": [],
+  "historical_NUDGE004_callback": "UNKNOWN; no business-tail execution inferred",
+  "failed_native_receipt_sha256": "d0534b6c0a80ee7aecd5ffc74e71998f2e3b7a150fc53997b1fe2abbdc215b21",
+  "failed_native_report_sha256": "2cfe992f0c86d72e94123b02f66fb9dc60583c9f5d6debbabee67ef7ba907295",
+  "limits": [
+    "Only bounded source/Git/hash inspection executed; zero tests/build/DB/Auth/browser/runtime reruns.",
+    "Author local24checks+17pure and four helper VM probes are inspected reported evidence; substituted ports do not prove SQL/FK/Auth/JWT.",
+    "Failed nativeCI remains1979=1915P12F52S and browser17cases15expected2unexpected; prior unknown/unreached tails remain.",
+    "No native trace/error-context/HTML bytes inspected.",
+    "Successor exact-head CI required for nudge and essential-browser tails plus required gates; no development-complete or release-ready claim.",
+    "No SQL/policy/prodservice/env/config/CI/source/spec/state changes by reviewer; only two designated report files written."
+  ],
+  "root_dirty_state_untouched": true,
+  "nested_delegates": 0,
+  "allowed_writes": [
+    "narrow-original-review-report.md",
+    "narrow-original-review-attestation.json"
+  ]
+}

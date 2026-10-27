@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "kind": "UNALLOCATED_PROPOSAL_INTEGRITY",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "checkpoint": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "native_credit": 0,
+  "implementation_admitted": false,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/prepare-proposal.mjs",
+      "bytes": 37994,
+      "sha256": "6cb83c9d18939c9a7cc6fb7963a8769ac95eb2ad1d402421959b27cdb3e7982d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/proposal.md",
+      "bytes": 18554,
+      "sha256": "07a13c39692e9a86b850fcd5be55550fe319c98fe52887f6f0b751b3d838d759"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/proof-map.json",
+      "bytes": 36110,
+      "sha256": "08c0d71b21f00f1a8efe2cdc8a3d523592c03e8d1acaf2c445c3f1e856057d58"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/source-bindings.json",
+      "bytes": 22866,
+      "sha256": "c863f1c14f0794a1b3100a5fe3cc3383fddaa53220f89005c5d27c6b672f919b"
+    }
+  ],
+  "self_excluded_from_file_hashes": true,
+  "current_source_not_modified": true,
+  "root_metadata_not_modified": true,
+  "targeted_producer_lint": {
+    "command": "pnpm exec eslint _bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal/prepare-proposal.mjs --max-warnings 0",
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "semantic_or_native_credit": 0
+  },
+  "freeze_status": "FROZEN_PROPOSAL_AWAITING_INDEPENDENT_HIGH_CHALLENGE_NOT_ALLOCATION"
+}

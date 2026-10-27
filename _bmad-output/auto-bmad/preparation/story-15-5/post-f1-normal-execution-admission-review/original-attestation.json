@@ -1,0 +1,455 @@
+{
+  "schema": "story-15-5-finite-normal-execution-admission-review-v1",
+  "verdict": "PASS_NORMAL_EXECUTION_ALLOCATION_WITH_FINITE_CONDITIONS",
+  "reviewer": {
+    "identity": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "BuildHigh/source author",
+      "PrivateDiagnosticHigh source reviewer",
+      "Root"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_claim": false,
+    "nested_work": []
+  },
+  "scope": {
+    "source_commit": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "frozen_readiness_metadata_HEAD": "75ee454577842a952dbf11ee13819493d8072933",
+    "observed_later_metadata_HEAD": "ab9b8e620f336401aa2b973061b576bd3e2d3245",
+    "reason_for_metadata_difference": "Root metadata-only readiness/admission/state/report checkpoint; source unchanged independently verified.",
+    "kind": "Finite normal execution/allocation readiness only; code composite review reused",
+    "broad_review_rounds_retained": 3,
+    "policy_version": "2026-10-19",
+    "normal_acceptance_credit": 0
+  },
+  "frozen_actual_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/readiness.json",
+      "bytes": 23746,
+      "sha256": "ef65f04c0e232fa198d1dcdf4231057d55f2fac51314bbd452cc3d448867243c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/bindings.json",
+      "bytes": 10171,
+      "sha256": "6b12690bb46de73f1754d69372699f41d5b7fc29b30860f121f60634f6d69e4b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/manifest.json",
+      "bytes": 1217,
+      "sha256": "a540ed7193c2f8dc3019f3e32cb2541b3c83249448c7b088b03b3c7b8a1d5048"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "bytes": 36163,
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/enrollment.json",
+      "bytes": 7230,
+      "sha256": "e6b3b6c72132039a10bbedd933cef50b80bc16c72f6803464806ca4063fa9f06"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-f1-normal-readiness-admission.json",
+      "bytes": 1289,
+      "sha256": "b82b1928e84252dc0a08c8b04d2a5bbfcfee2beab61fa9d56c10f2e6fecad5bc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-future-normal-identity.json",
+      "bytes": 398,
+      "sha256": "2036f6c7d75fa6bf942ff8702738e436d7817a8cf70d2d5cdb91f00728ad9fe9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-vercel-readonly-qualification.json",
+      "bytes": 4298,
+      "sha256": "45dfbb5ffb561f3b1a1d805ebfab9d8151e41b75c87fa601a278af33771e124f"
+    }
+  ],
+  "readiness_input_refs_rehashed": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": "docs/process/local-setup.md",
+      "bytes": 19824,
+      "sha256": "c533f25c64c176b01d21c0a06141aa4287752922cd586e3f23fb4b15a784bfe7"
+    },
+    {
+      "path": "docs/process/agent-workflow.md",
+      "bytes": 8534,
+      "sha256": "f98f17dbe51f7ca7b77657e616b624ee7241f33ff17be94db1bb70ad361e81e1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/f1-transport-custody-author-result.json",
+      "bytes": 66777,
+      "sha256": "ae850d24d5c59dd9fbd690e9afaf6bf595bb94ce32ca84b1d0d9e977fb08939a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-f1-transport-custody-closure-admission.json",
+      "bytes": 1423,
+      "sha256": "b6b0aaca7dce9ae737b53329212882fff5733b346fb5bc46e897086eabaf16a5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-report.md",
+      "bytes": 5217,
+      "sha256": "917b33ccef9969486b28ff7795407976a963a85dd47825ec0001742394c35d33"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-attestation.json",
+      "bytes": 16971,
+      "sha256": "2c9cbb50ea9ab8b15bfadfcb73a2dd86d3f93b0d6e7550bce70506cf46ac12d8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-readiness.json",
+      "bytes": 34051,
+      "sha256": "f5a61e8d45e704e821357a479594ff496b9a3b6e5ab1d388039ae687be0bdaaa"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-evidence-audit-admission.json",
+      "bytes": 1507,
+      "sha256": "81b538512e8e6ad23337437d9eca730f1d357a25e9624aa77ba17cc8beac44eb"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-report.md",
+      "bytes": 6639,
+      "sha256": "5b2689aa3cc872f31a2d84dec6529f05589a4f2ee7cdef2da31816967d5c644e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/manifest.json",
+      "bytes": 4947,
+      "sha256": "a964912b04fff6fc7f93a29f63ef84fa2aa5788e357e9f57a24a07eb95f46a81"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/operator-intent.json",
+      "bytes": 2533,
+      "sha256": "39606cf940960e530aae20e3806c47edc0416897e0c58f3199b49d350004f83c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-vercel-readonly-qualification.json",
+      "bytes": 4298,
+      "sha256": "45dfbb5ffb561f3b1a1d805ebfab9d8151e41b75c87fa601a278af33771e124f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/epic15-contained-provider-read-91a2b3f9-2b97-4ffa-8acb-553b0ea81c81/project-execution-df37ef35-a27c-430c-bb7c-61ee816a96c0.capsule.json",
+      "bytes": 12678,
+      "sha256": "ff516498b565571361609a09806bb7c8d7a21765cecb71ea635079b7085466e4"
+    }
+  ],
+  "additional_contexts_rehashed": [
+    {
+      "path": "scripts/run-tests.mjs",
+      "bytes": 2455,
+      "sha256": "81ed5c6ce39ebeae66e23aa8095580d6ec91c93c3a59a7bb07b9556b98297a50",
+      "metadata_HEAD_blob": "60f5cd5f6fb9b5e60ffc3caaeb632a5fb6f9f389",
+      "clean_oid_equal": true
+    },
+    {
+      "path": "tests/e2e/ci-duration-budget-reporter.ts",
+      "bytes": 1347,
+      "sha256": "81a8ab0ee20a43fa16f90e82af71476ffbd4217a1ecb4e12570e5532d41086de",
+      "metadata_HEAD_blob": "f480584ed81b4da715cb69b9344f2ad7f46404b2",
+      "clean_oid_equal": true
+    }
+  ],
+  "installed_metadata_rehashed": [
+    {
+      "path": "node_modules/vitest/package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9",
+      "version": "4.1.9"
+    },
+    {
+      "path": "node_modules/@playwright/test/package.json",
+      "bytes": 754,
+      "sha256": "9d8556509e073169efec663b7f71c13f17d7002b307d00d48bf88ee91c387f3e",
+      "version": "1.61.1"
+    },
+    {
+      "path": "node_modules/@supabase/supabase-js/package.json",
+      "bytes": 5380,
+      "sha256": "93c607cc70c670e02ffdae1c39c9f92584f699339a39d4686d06ea664342443a",
+      "version": "2.108.2"
+    }
+  ],
+  "trigger_override_rows_rehashed": [
+    {
+      "path": "vercel.json",
+      "bytes": 472,
+      "sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129",
+      "metadata_HEAD_blob": "e9e72baa26445c9aee75e47a85946a54dd146acb",
+      "current_clean_equal": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 2352,
+      "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "metadata_HEAD_blob": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/auto-bmad-parallel.yml",
+      "bytes": 2068,
+      "sha256": "126d339ac627f0fc455ef7049d3b12bf3ea53411b8a61c8c0e65bb48193ffa65",
+      "metadata_HEAD_blob": "70ec909ee72324b65ce270eee3201e106cedeb70",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "metadata_HEAD_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/cloudflare-monitor-verify.yml",
+      "bytes": 1435,
+      "sha256": "18965e82fb30ebfc8b06346f95369b7dcd1f81345f47fcfcabf3b10232eca553",
+      "metadata_HEAD_blob": "0619e28d79a603178b787189883683b61cc92f14",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/fixed-chromium-capsule-mock-proof.yml",
+      "bytes": 8443,
+      "sha256": "4aa549f5df3ac1e51a0e475826dde0f99d70e1143f83878454efa90780986b86",
+      "metadata_HEAD_blob": "bdfe9dc0849c327f53aaf8fda768e025e794a869",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/pilot-availability.yml",
+      "bytes": 7000,
+      "sha256": "a8a6ecfce478cc86529583535ec24a7a7358e250ce0d6833091e0f8663e5e721",
+      "metadata_HEAD_blob": "8e34762aa940ecf8f391fdfbc5cc3010ab31f0c4",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/pilot-backup.yml",
+      "bytes": 6920,
+      "sha256": "b63f6bb2dadc687bc0ca21f5657175be5f7b374287b84adfaa2194df5294a547",
+      "metadata_HEAD_blob": "bf43be8a559eb38d67cea3097162e29fa2a3fb02",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/pilot-isolated-recovery-rehearsal.yml",
+      "bytes": 13238,
+      "sha256": "a62307f2ff235d2137175bf3ae6102342cf11310d2c8d9b721e6f2a2c05592ec",
+      "metadata_HEAD_blob": "cbf524c97a3d282eb3edc2da80fa499a1ac201bd",
+      "current_clean_equal": true
+    },
+    {
+      "path": ".github/workflows/pr-feedback.yml",
+      "bytes": 13698,
+      "sha256": "6b5a72c5459fbb54991b511d0d583bdb44cd7232d7363129ecb3b8cf93638cea",
+      "metadata_HEAD_blob": "4e8fbf4d495dc7230048cfa6a18025e348ed9649",
+      "current_clean_equal": true
+    }
+  ],
+  "source_binding_verification": {
+    "vector_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "bytes": 36163,
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    "count": 73,
+    "current_raw_size_SHA_and_LF_clean_size_SHA_verified": true,
+    "Git_blob_SHA1_from_clean_bytes_verified": true,
+    "actual_ls_tree_source_b1_and_current_HEAD_objects_match": true,
+    "CRLF_normalizations": 45,
+    "no_other_normalization": true,
+    "semantic_re_review": false
+  },
+  "source_review_dependency": {
+    "verdict": "PASS_CODE_ONLY_F1_CLOSED",
+    "closure_ref": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-report.md",
+    "composite_scope": "Prior cumulative f000->22508 non-F1 plus exact3 b1 F1 closure; original NOTPASS histories retained.",
+    "not_promoted": "No current native95 evidence or new code review result."
+  },
+  "fixed_future_identity": {
+    "kind": "FROZEN_FUTURE_NORMAL_IDENTITY_NOT_ALLOCATED",
+    "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "future_pushed_head": null,
+    "run_id": null,
+    "attempt": 1,
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "pushes": 0,
+    "dispatches": 0,
+    "terminal_artifact_GETs": 0
+  },
+  "identity_stage_note": "Frozen readiness UUID/null was an earlier unassigned field; exact separate398-byte identity now fixes UUID only. Future H/runID remain unassigned until actual metadata freeze/dispatch; no invented future proof.",
+  "dispatcher_workflow_observations": {
+    "actual_source_ranges": [
+      "checkpoint-dispatch.mjs:176-228 and265-288",
+      "ci.yml:20-78 and81-107",
+      "ci.yml:193-207/277-306/471-480/544-580"
+    ],
+    "request_inventory": [
+      "GET user",
+      "GET repos/rthunborg/Kopplas/collaborators/<actualactor>/permission",
+      "GET repos/rthunborg/Kopplas/branches/<encoded exact branch>",
+      "GET repos/rthunborg/Kopplas/actions/workflows/ci.yml",
+      "POST repos/rthunborg/Kopplas/actions/workflows/<actualid>/dispatches exactly once after exclusive fsynced intent"
+    ],
+    "normal_args_supported": true,
+    "durable_exclusive_prePOST": true,
+    "uncertainty_no_redispatch": true,
+    "required_jobs": [
+      "checkpoint-admission",
+      "verify",
+      "db",
+      "recovery-storage-loader",
+      "e2e"
+    ],
+    "optional_uncredited_jobs": [
+      "dashboard-e2e",
+      "native-stream-probe",
+      "fixed-chromium-paired-probe",
+      "fixed-chromium-application-verification"
+    ],
+    "variables_needed": [],
+    "registration_limit": "Normal active path/id/ref checks and bound candidate schema; no new hosted default source proof claimed. Actual sole POST/admission outcome determines compatibility."
+  },
+  "limited_publication_qualification": {
+    "qualified_scope": "Ordinary exact owned branch Git push only, unchanged current setting/config/workflow context.",
+    "current_project_read_ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-vercel-readonly-qualification.json",
+      "bytes": 4298,
+      "sha256": "45dfbb5ffb561f3b1a1d805ebfab9d8151e41b75c87fa601a278af33771e124f"
+    },
+    "exact_fields": {
+      "id": "prj_QYRxEeUBlCStlPL0YZd72y8245rg",
+      "accountId": "team_jvgtCLGEU7h6atn0TyGLNncd",
+      "commandForIgnoringBuildStep": "exit 0",
+      "previewDeploymentsDisabled": true,
+      "gitProviderOptions.createDeployments": "enabled"
+    },
+    "official_contract_reuse": [
+      {
+        "url": "https://vercel.com/kb/guide/how-do-i-use-the-ignored-build-step-field-on-vercel",
+        "retrieved_utc": "2026-10-21T19:35:37.608443+00:00",
+        "source": "Independent web open of this exact official primary page in current task",
+        "relevant_excerpt": "If the command returns \"0\", the build will be skipped.",
+        "excerpt_utf8_sha256": "937b3cc48d506e2191a103f8ed5ec812196fb8e499a447bd0fd0456cb50f649f",
+        "raw_body_sha256": null,
+        "raw_body_limit": "Web parsed-page tool; no raw HTTP body/digest claim."
+      },
+      {
+        "url": "https://vercel.com/docs/builds",
+        "retrieved_utc": "2026-10-21T19:35:37.608443+00:00",
+        "source": "Independent web open of this exact official primary page in current task",
+        "relevant_excerpt": "Ignored build step: You can also write a script that cancels the build for a project if no relevant changes are detected.",
+        "excerpt_utf8_sha256": "05f747dc455dc9b4d156fdda3ad9d63731a482332303eef7579da27e6ba69514",
+        "raw_body_sha256": null,
+        "raw_body_limit": "Web parsed-page tool; no raw HTTP body/digest claim."
+      }
+    ],
+    "current_override_scan_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/bindings.json",
+      "bytes": 10171,
+      "sha256": "6b12690bb46de73f1754d69372699f41d5b7fc29b30860f121f60634f6d69e4b"
+    },
+    "new_provider_or_docs_reads": 0,
+    "limits": "Git creation enabled; canceled records may exist. No manual/CLI/redeploy/promote/deploy-hook/alias-state disable or observed future cancellation. No deployment authorization."
+  },
+  "static_success_inventory": {
+    "enrollment_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/enrollment.json",
+      "bytes": 7230,
+      "sha256": "e6b3b6c72132039a10bbedd933cef50b80bc16c72f6803464806ca4063fa9f06"
+    },
+    "Node": 30,
+    "DB": 51,
+    "essential_browser": 14,
+    "total": 95,
+    "recovery_separate": 1,
+    "partition_files": 165,
+    "parallel": 159,
+    "serial": 6,
+    "current_native_credit": 0,
+    "limits": "Partial bail/omissions/missing artifacts/retry outcomes need actual qualification; count0pending does not prove enrollment."
+  },
+  "executable_finite_conditions": [
+    {
+      "id": "E1",
+      "stage": "Before any push/dispatch effect",
+      "condition": "Actual completed Coordinator allocation must cover Root sole one checkpoint push and one normal dispatch to rthunborg/Kopplas codex/epic-15-scheduling-time-calendar, uniquely owned hosted jobs and bounded Root status/job polling; explicitly include the source-bound normal setup-admin/key/Auth/tenant/booking, transient CREATE/SET owner fault seams, ordinary-grantor UUID proof, full DB/RLS/browser/recovery volume/Storage effects. Confirm no cross-owner branch/resource/admission-variable conflict. No repository variable mutation is needed."
+    },
+    {
+      "id": "E2",
+      "stage": "After final allocation metadata freeze and immediately before push",
+      "condition": "Derive actual full pushed SHA H then rebind all73 current raw/clean/source Git objects to b1 reviewed source at H; verify clean owned source paths and immutable111/predecessors. Preserve current vercel.json, package/eight workflows and exact owned branch trigger context. Metadata-only commits may change H without changing reviewed source; no requirement to invent future H before that freeze. Ordinary Git push only, no manual deploy/promote/redeploy/main merge."
+    },
+    {
+      "id": "E3",
+      "stage": "Exactly one dispatch",
+      "condition": "Use fixed fresh canonical UUID9565c54d-1bbe-4a32-b647-949c02e6c404, attempt1, cause-proof=false/release-validation=false and new absent exclusive ignored state+lock. Actual authenticated actor/write permission, remote branch SHA==H, active exact ci.yml path/workflow ID and fsynced prePOST intent must pass. Existing dispatcher sends its four identity GETs then one POST. UUID correlates, not GitHub idempotency. Failure/uncertainty consumes the operation; no redispatch or reuse after uncertainty."
+    },
+    {
+      "id": "E4",
+      "stage": "Owned execution and observation",
+      "condition": "Root alone binds unique actor/workflow/title/ref/SHA/attempt1 normal run and observes it within the allocated request/ownership bound. Ambiguity stops without adopting another run or creating a replacement. Five required jobs checkpoint-admission/verify/db/recovery-storage-loader/e2e must be assessed; optional diagnostics/release/fixed-Chromium remain excluded/uncredited. Current workflow registration support is bounded: candidate input schema is bound, actual dispatcher verifies active registration/ref, and the sole POST/admission outcome establishes hosted compatibility. No new default-workflow fetch or variable operation is required here."
+    },
+    {
+      "id": "E5",
+      "stage": "Later native qualification, never inferred from readiness",
+      "condition": "Require actual all95 unique30Node+51DB+14essential browser with zero required failed/skipped/unexecuted; full DB/RLS SUPABASE_TEST_REQUIRED1 with executed counts, successful6serial once after parallel, separate recovery1 and actual privacy/settlement/key custody. Retry-dependent flaky cases are not clean passes. Bail/partial reports and absent artifacts leave omitted cases unexecuted. Child/process/client close is not backend rollback/canonical restoration proof; retain reviewed unsuccessful DB/browser custody fences and safe owned stop/close behavior."
+    },
+    {
+      "id": "G1",
+      "stage": "Separate allocation AFTER exact terminal run identity; BEFORE any terminal GET",
+      "condition": "No archive/list/ZIP acquisition is included in this execution readiness. Fresh exact H/source73/UUID/run/attempt/mode/terminal9-job facts and exclusive packet/intent/activation must be admitted separately. Rebind the exact actual operator body/input/receipt/schema to current73 (old72 vector has9 changed paths), current report enums and partial-bail semantics, exact30 Node deduplication and installed native versions before any GET. If the reused executable requires full165/case sets during acquisition or cannot preserve partial/schema UNKNOWN, stop for that exact compatibility prerequisite before GET; do not silently upgrade consumer, retry or build a new collector."
+    },
+    {
+      "id": "G2",
+      "stage": "Only under that later evidence allocation",
+      "condition": "At most1 exact terminal run archive GET +1 artifact list GET +3 distinct eligible ZIP GETs, each once within existing streaming deadline/caps/EOF/join/ZIP/privacy contract. All prior39637925040/b459 budgets remain consumed/failed history. Unacquired attachment/report bodies stay NULL/UNQUALIFIED; no job success/path absence or acquisition-reader settlement substitutes for privacy or backend cleanup evidence."
+    }
+  ],
+  "evidence_stage_separation": {
+    "CI_execution_allocation": "Eligible after E1-E4 actual finite gates; future terminal runID/archive content not required before dispatch.",
+    "terminal_GET_allocation": "Separate after terminal identity and G1 exact current operator/body/source73/schema/partial-bail compatibility. No acquisition grant in this verdict.",
+    "original_operator": {
+      "bytes": 26061,
+      "sha256": "71468c52fab40bea00219a00fe85b796f117d611612357a2917170f8d8862be6",
+      "provenance": "Distinct prior audit verified exact retained executed inline command; no broad transcript/raw provider dump or new persistent collector here."
+    },
+    "potential_pre_GET_stop": "Any old executable full165/case-set acquisition assertion, stale72 binding, omitted current receipt enum or nonpartial parser must be exposed/admitted before first GET. Not a present CI execution blocker; no hidden consumer upgrade.",
+    "budgets_later_only": "1archive+1list+up to3 qualified ZIPs once; streaming/ZIP/privacy/EOF/settlement existing contract.",
+    "historical": "Old normal39637925040/b459 failed; all5 GETs consumed; no new acceptance or transport retry."
+  },
+  "effects_observed_here": {
+    "metadata_and_source_reads": true,
+    "test_or_application_runner": 0,
+    "SQL_connections_network_CI_provider_resources": 0,
+    "provider_docs_GETs": 0,
+    "source_Spec_state_oldpacket_Git_mutation": 0,
+    "push_dispatch_variable_mutation": 0,
+    "allowed_writes": "Only these four new review metadata files"
+  },
+  "findings": [],
+  "open_native_gates": [
+    "Actual API019/privacy assertion reach and body qualification; no inference of leak or compliance.",
+    "Essential browser failures/flakies and job/key custody remain unresolved.",
+    "Exact normal95/full DB/RLS/services/recovery and actual owner/protocol/backend/canonical settlement must be observed.",
+    "Development delivery truth gate and merge/release/deployment approvals remain separate."
+  ],
+  "report": {
+    "path": "original-report.md",
+    "bytes": 5125,
+    "sha256": "ea743653dcea3bc693b0a949987d4ff6bf3e38e91d72f9d86590e3ffe0ab990b"
+  }
+}

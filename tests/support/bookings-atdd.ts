@@ -1,6 +1,12 @@
 /** Story 14.2 real envelope/checked-RPC adapters and privileged durable fixtures. */
 import type { Command } from "@/server/commands/envelope";
 import { runCommand } from "@/server/commands/envelope";
+import { createBooking } from "@/server/commands/bookings/create-booking";
+import { updateBooking } from "@/server/commands/bookings/update-booking";
+import { validateCreateBooking, validateUpdateBooking } from "@/server/commands/bookings/validation";
+import { createJob } from "@/server/commands/jobs";
+import { BOOKING_CONFLICT_ENGINE_VERSION } from "@/server/bookings/conflict-attestation";
+import { reviewedFixtureInput } from "./booking-editor-production";
 import { adminQuery } from "../factories/admin-sql";
 import {
   adminInsertContact, adminInsertCustomer, adminInsertFacility,
@@ -34,7 +40,6 @@ export async function bookingRpcDiagnostic(name: string, args: Record<string, un
     // Readback after the failed RPC, not the original rejection snapshot.
     // Only non-secret booleans/time deltas leave this private fixture path.
     try {
-      const { BOOKING_CONFLICT_ENGINE_VERSION } = await import("@/server/bookings/conflict-attestation");
       const nodeBefore = Date.now();
       const [row] = await adminQuery<Record<string, unknown>>(`select
         $1::jsonb->>'tenantId'=$4::uuid::text as tenant_matches,
@@ -81,9 +86,7 @@ function diagnosticSqlCode(error: unknown): string {
 /** Imports and executes the actual production command. */
 export async function bookingCommand(operation: "create" | "update", client: TestServerClient,
   input: BookingInput, correlationId = crypto.randomUUID()) {
-  const command = operation === "create"
-    ? (await import("@/server/commands/bookings/create-booking")).createBooking
-    : (await import("@/server/commands/bookings/update-booking")).updateBooking;
+  const command = operation === "create" ? createBooking : updateBooking;
   const diagnostic = process.env.STORY143_DIAGNOSTIC === "1";
   const rpcErrors: Awaited<ReturnType<typeof bookingRpcDiagnostic>>[] = [];
   let fixtureReviewError: { code: string; reason: "pre-review-rejected" } | undefined;
@@ -131,11 +134,10 @@ export async function bookingCommand(operation: "create" | "update", client: Tes
   }) : client;
   // Earlier stories deliberately exercise the current reviewed command protocol.
   // Story 14.4's adapter invokes runCommand directly when asserting absent review.
-  const { validateCreateBooking, validateUpdateBooking } = await import("@/server/commands/bookings/validation");
   const valid = operation === "create" ? validateCreateBooking(input) : validateUpdateBooking(input);
   let reviewed = input;
   if (valid.ok && !input.editorReview) {
-    try { reviewed = await (await import("./booking-editor-production")).reviewedFixtureInput(client, operation, input); }
+    try { reviewed = await reviewedFixtureInput(client, operation, input); }
     catch (error) {
       if (diagnostic) fixtureReviewError = { code: diagnosticSqlCode(error), reason: "pre-review-rejected" };
       /* Run the real envelope to preserve current authority/validation errors. */
@@ -220,7 +222,6 @@ export async function seedBookingParents(tenantId: string) {
   const [role] = await adminQuery<{ id: string }>(
     "insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'Electrician',20000,40000) returning id", [tenantId]);
   // Existing Phase A createJob command produces the real basic-job record.
-  const { createJob } = await import("@/server/commands/jobs");
   return { customerId, otherCustomerId, facilityId, contactId, wrongFacilityId, wrongContactId, workRoleId: role.id, createJob };
 }
 

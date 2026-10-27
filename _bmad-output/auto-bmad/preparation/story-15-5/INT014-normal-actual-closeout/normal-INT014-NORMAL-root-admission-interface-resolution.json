@@ -1,0 +1,53 @@
+{
+  "schema": "ROOT_INT014_NORMAL_EXPLICIT_ADMISSION_INTERFACE_RESOLUTION_V1",
+  "independent_completed_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-independent-review.json",
+    "bytes": 15855,
+    "sha256": "7ffb7e0074993f6902ffe8a51067f69ca04b2b8c88e45aa74a510cc065b524c8"
+  },
+  "enforced_review_alias": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-review.json",
+    "bytes": 15855,
+    "sha256": "7ffb7e0074993f6902ffe8a51067f69ca04b2b8c88e45aa74a510cc065b524c8"
+  },
+  "copy_disposition": "Root exclusively copied completed review bytes; same digest and bytes. This is a Root mechanical alias, not a second independent review.",
+  "provider_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/provider-readonly.py",
+    "bytes": 20259,
+    "sha256": "d514e9734be731d52fa0ec632f098d94fc93ed24cb14fdbb202a7cbada0a6a7e"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/proposal.json",
+    "bytes": 211933,
+    "sha256": "234185e82ff1b78f500c177f48204a51aaefd79f3f8aedf69babdaf1a953096c"
+  },
+  "superseded_descriptive_field": "proposal.provider.REF_PATHS",
+  "historical_descriptive_value": {
+    "allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-effects-allocation.json",
+    "current_source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-current-source-proof.json",
+    "operational_review": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-review.json",
+    "source_review": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+    "capture_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+    "browser_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+    "candidate": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-NORMAL-inert-binding.json",
+    "proposal": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-preparation/proposal.json"
+  },
+  "effective_actual_enforced_REF_PATHS": {
+    "allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-effects-allocation.json",
+    "current_source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-current-source-proof.json",
+    "operational_review": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-review.json",
+    "source_review": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+    "capture_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+    "browser_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+    "candidate": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-inert-binding.json",
+    "proposal": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/proposal.json"
+  },
+  "execution_basis": "Use the reviewed strict provider constants and current activation templates. The stale descriptive dictionary is preserved historically and is not used for execution. No guard is relaxed.",
+  "candidate": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-inert-binding.json",
+    "bytes": 329,
+    "sha256": "d17acb009dbe757259098598cd449d16099bc9c836b48af7a064a2be1acd5958"
+  },
+  "execution_authority": false,
+  "effects": 0
+}

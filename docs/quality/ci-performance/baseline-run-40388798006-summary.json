@@ -1,0 +1,133 @@
+{
+  "run": "40388798006",
+  "sha": "220d68fae67075ae0e95d8844be203d1f8f46fe7",
+  "totalSeconds": 1207,
+  "jobs": [
+    {
+      "name": "verify",
+      "conclusion": "success",
+      "totalSeconds": 152,
+      "steps": [
+        {
+          "name": "Install pnpm",
+          "conclusion": "success",
+          "seconds": 1
+        },
+        {
+          "name": "Install dependencies",
+          "conclusion": "success",
+          "seconds": 2
+        },
+        {
+          "name": "Build",
+          "conclusion": "success",
+          "seconds": 30
+        },
+        {
+          "name": "Post Install pnpm",
+          "conclusion": "success",
+          "seconds": 1
+        }
+      ]
+    },
+    {
+      "name": "db",
+      "conclusion": "failure",
+      "totalSeconds": 1041,
+      "steps": [
+        {
+          "name": "Install pnpm",
+          "conclusion": "success",
+          "seconds": 1
+        },
+        {
+          "name": "Install dependencies",
+          "conclusion": "success",
+          "seconds": 2
+        },
+        {
+          "name": "Install Supabase CLI",
+          "conclusion": "success",
+          "seconds": 3
+        },
+        {
+          "name": "Start local Supabase stack",
+          "conclusion": "success",
+          "seconds": 94
+        },
+        {
+          "name": "Migration reset (empty DB \u00e2\u2020\u2019 migrate \u00e2\u2020\u2019 seed)",
+          "conclusion": "success",
+          "seconds": 33
+        },
+        {
+          "name": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+          "conclusion": "failure",
+          "seconds": 864
+        },
+        {
+          "name": "Stop local Supabase stack",
+          "conclusion": "success",
+          "seconds": 22
+        },
+        {
+          "name": "Post Install pnpm",
+          "conclusion": "success",
+          "seconds": 0
+        }
+      ]
+    },
+    {
+      "name": "e2e",
+      "conclusion": "success",
+      "totalSeconds": 465,
+      "steps": [
+        {
+          "name": "Install pnpm",
+          "conclusion": "success",
+          "seconds": 1
+        },
+        {
+          "name": "Install dependencies",
+          "conclusion": "success",
+          "seconds": 2
+        },
+        {
+          "name": "Install Playwright browser (chromium + OS deps)",
+          "conclusion": "success",
+          "seconds": 28
+        },
+        {
+          "name": "Install Supabase CLI",
+          "conclusion": "success",
+          "seconds": 2
+        },
+        {
+          "name": "Start local Supabase stack",
+          "conclusion": "success",
+          "seconds": 108
+        },
+        {
+          "name": "Migration reset (empty DB \u00e2\u2020\u2019 migrate \u00e2\u2020\u2019 seed)",
+          "conclusion": "success",
+          "seconds": 31
+        },
+        {
+          "name": "Essential authentication smoke (production app and local Auth)",
+          "conclusion": "success",
+          "seconds": 256
+        },
+        {
+          "name": "Stop local Supabase stack",
+          "conclusion": "success",
+          "seconds": 20
+        },
+        {
+          "name": "Post Install pnpm",
+          "conclusion": "success",
+          "seconds": 1
+        }
+      ]
+    }
+  ]
+}

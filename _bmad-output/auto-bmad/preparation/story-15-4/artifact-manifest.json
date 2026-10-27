@@ -1,0 +1,18 @@
+{
+  "baseline_revision": "5040f683cf9446d39de8512cdca82242c55fca3e",
+  "sha256": {
+    "_bmad-output/auto-bmad/preparation/story-15-4/candidate-intent-contract.txt": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb",
+    "_bmad-output/auto-bmad/preparation/story-15-4/current-contracts-and-design.md": "3fee10561a6c63360422e2a459f810fe61f90cdc07d11a9a3c5feeb6a8b542aa",
+    "_bmad-output/auto-bmad/preparation/story-15-4/implementation-ownership-handoff.md": "05e5a0fc52bf60d83298d871aef7d95772e6a4d1006972b336ab198e68613eba",
+    "_bmad-output/auto-bmad/preparation/story-15-4/planning-routes.md": "b443db94f21eb9755edce4afb68055b058b14d3077ae1e73aa8b3c867352a3a3",
+    "_bmad-output/auto-bmad/preparation/story-15-4/source-preservation-after.json": "04069ec2a6f684ccc2448068af298485cbb404cb47893fad3e52167664dcde4f",
+    "_bmad-output/auto-bmad/preparation/story-15-4/source-preservation-before.json": "3706fce576690683a24e49a1bd6f400ef1b543f052ff910a1a139c7102a8291b",
+    "_bmad-output/auto-bmad/preparation/story-15-4/spec-discovery.json": "41ed6bbdf044eab846f3498fb97139f7119aa63ebfbd40d69f2482f5af0464b5",
+    "_bmad-output/auto-bmad/preparation/story-15-4/spec-reader.json": "853ee3d0de5bdef85359cbd91337d988d61ea8fb674bcc241083af48f691d6de",
+    "_bmad-output/auto-bmad/preparation/story-15-4/spec-self-validation.md": "80006f535c6ee398ef8c597b410bd0ef1e6335bf688d5eff46e3bfa1b4c22cf7",
+    "_bmad-output/auto-bmad/preparation/story-15-4/story-file-audit.md": "f0c5de140b480a9be92f17563463a895f7a1a54813c91bc1b1a1c22e765afa61",
+    "_bmad-output/auto-bmad/preparation/story-15-4/validate-planning.py": "0b36f3bdd4ff67319ff9640dd05ee30da3d66357e08e219ea995f1ddbfa6754e",
+    "_bmad-output/auto-bmad/preparation/story-15-4/validation.json": "355c205b9ee776ef9877beec174195c1c68e24310bd9c2d9d53789c707fa7322",
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md": "7933d020fba0986d283294cb94f85859a58d1fdc83f884a4d29e8b69751c89bb"
+  }
+}

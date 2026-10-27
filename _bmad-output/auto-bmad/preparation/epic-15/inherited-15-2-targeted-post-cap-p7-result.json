@@ -1,0 +1,75 @@
+{
+  "schema": "E15_15_2_TARGETED_POST_CAP_P7_V1",
+  "date": "2026-10-25",
+  "invocation": "/bmad-build-auto C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reviewer": "/root/combined_epic15_closeout_high",
+    "independent_of_prior_author": true,
+    "reason": "authorization/RLS, privacy and transactional-integrity closeout"
+  },
+  "entrypoint": {
+    "render": "uv run --no-cache <project>/_bmad/scripts/render_skill.py --project-root <project> --skill C:/DEV/Kopplas/.agents/skills/bmad-build-auto",
+    "exit": 0,
+    "generic_roster": "Not executed: generic step04 full-diff six-layer rerun conflicts with higher-priority post-cap scope. Actual explicitly allocated targeted P7/reuse lane executed under AGENTS Code Review Rules and Oct19 policy."
+  },
+  "verdict": "PASS_TARGETED_POST_CAP_CLOSURE_AND_REUSE",
+  "HALT": "done",
+  "triage": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 0,
+    "defer": 0,
+    "reject": 0,
+    "addressed_findings": [],
+    "patched_high": 0,
+    "patched_medium": 0,
+    "patched_low": 0,
+    "score": 0,
+    "followup_review_recommended": false
+  },
+  "counters": {
+    "broad_rounds_completed": 3,
+    "broad_round_cap": 3,
+    "prior_followup_passes": 2,
+    "actual_new_targeted_followup_passes": 1,
+    "followup_passes_after_Root_bookkeeping": 3,
+    "framework_review_loop_iteration": 0,
+    "historical_round3_score": 6,
+    "historical_round3_recommendation": true,
+    "state_mutated": false
+  },
+  "review_reuse": {
+    "original_owners": "Completed independent six-layer R1/R2/R3 reports and original targeted High reviewers retained under inherited-15-2-review-provenance-audit.json; no author assertion substituted for those reports. R3 correction7fbb279a and implemented9d22c98c read; all author bounded pins verified.",
+    "R3_01": "Effective local suffix/DST date remains corrected. Current45 exact named focused native cases plus REAL015 retain effective preview/save guard proof.",
+    "R3_02": "Template-use versus protected historical-row predicate remains closed by implemented High9d22 plus current actual45 named cases, REAL023 and RLS-REAL005; historical role identity/new inactive assignment denials preserved.",
+    "later_review_bridge": "Reuse completed25changed/28unchanged map43cb0de1, original E16 composition/15.3/15.4/15.5 later review families, and sole booking-editor-test seam closure23886158. Source-only receipts remain source-only.",
+    "tested_source": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+    "metadata_head": "4ed86264ae59a46d71f03917da354b5a619d8029",
+    "source_dependency_bridge": ".env.epic15.mail-runtime/story-15-6-preparation/root-tested-b57-to-closeout-source-dependency-bridge.json",
+    "source_dependency_bridge_sha256": "abe1f144f56291132a962cc339dc17663c65f0904cc676b846c6672b5de78cbf",
+    "head_execution_claim": false
+  },
+  "essential_browser_reuse": {
+    "decision": "SUPPORTED_BOUNDED_EFFECTIVE_FLOW_REUSE",
+    "historical": "Prior genuine series create/materialization, occurrence edit/cancel, lost-series-response exact retry and phone scopes, plus GLK007/0082P then0091P remain historical actual executions qualified in the preserved delivery/author receipts. No15.2-E2E001..009 current execution claim.",
+    "identified_dependency_interval": "a00dd595d96a73c398328ed1778bac334aca9de6 -> b57de61075646820ce9cb5feff7fd054fd2f8320: BookingEditor/BookingEntry/booking-action-state composed editor dependency only; read exact delta and effective branches rather than a whole-diff roster.",
+    "effective_path_assessment": [
+      "BookingEditor defaultInterval returns empty for bookingId,seriesId,recurrence.enabled,commonSeries,pending,unresolved,attempted or allDay. Added semantics auto-default block excludes existing/series/recurrence and explicit-end paths. Series preview branch returns before standalone semantics block; recurrence controls/candidate/read/refresh and exact attempted save payload remain unchanged.",
+      "Optional resolverAdapter defaults to original preview/save/previewSeries/saveSeries actions; BookingEntry and ordinary scheduling calls provide no adapter. commonSeries-only disabled fields do not affect normal historical create/occurrence paths. Current15.3-E2E002 actually exercises the adapter/common-series boundary with protected exception/tombstone and following split.",
+      "BookingEntry adds options.canManage gating and time-report sibling action; current authorized options preserve manager entry, data identity/draft mapping remains intact. New-draft hint derivation is an approved E16 dependency with its own High review and current job-browser execution; it does not replace subsequent series preview/receipt/transaction authority.",
+      "Added display hints are advisory; current production build/essential editor smoke plus exact Node/RPC/RLS leaves support composition across dependency changes, including Next updates. No assertion that every a00 dependency is byte-identical. Current15.3-E2E003 phone/keyboard retry is standalone and is not claimed as series retry."
+    ],
+    "runtime_support": "Current exactb57/run40192543175:45named focusedP;23REAL seriescommandsP;5REALseriesRLSP;7SSRP;15.3-E2E002 and003 retry0P.51old series scaffolds0credit. Current native qualificationbcbf0197 supplies actual runtime provenance; this pass ran no runtime.",
+    "uncovered_consequential_flow": null,
+    "remaining_release_scope": "Exhaustive combinations/screenshots/manual/performance remain deferred."
+  },
+  "limitations": [
+    "No new tests/runtime/API/network/acquisition/resources or fourth broad review.",
+    "Two outside-core protocol flakes remain retry0failed/retry1passed. Historical custody unknown remains unknown.",
+    "New frozen record Root structural gate/admission and final fresh-chat PR review/current-head CI are future separate gates; no merge/deployment/release approval."
+  ],
+  "release_ready": false,
+  "blockers": []
+}

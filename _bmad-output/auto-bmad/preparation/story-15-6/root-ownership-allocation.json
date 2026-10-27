@@ -1,0 +1,74 @@
+{
+  "schema": "epic15-root-owned-file-allocation-v1",
+  "phase": "15.6 implementation and ATDD file ownership only",
+  "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "base_revision": "aa4e3f9b5a4f1d6aef5897fdcdbb48348b352a1d",
+  "origin_main_integrated": "0ae48a243fce47cb42e0998aae319f00c796dc85",
+  "Coordinator_confirmation": {
+    "thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "turn": "01a17244-89c3-7320-bb3e-2d969162c146",
+    "actual_Root_read": "wait_threads cursor50f2fce8-face-444a-8253-bf346b934eb8:4",
+    "result": "Concrete forwardmigration plus previouslylisted15.6paths and test:smokeonly confirmed; no newoverlapknown; independentHighreview required"
+  },
+  "approved_spec": {
+    "path": "_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "raw_sha256": "6d7d4af77ea1a5dcc67680c4660bf3882fe181eb37c8dd4cfff1b4ca5dee499d",
+    "semantic_validation": "spec-validation.json plus spec-validation-smoke-amendment.json; EOF-only formatting equivalence independently hashchecked byRoot against stagedLFnormalized preimage"
+  },
+  "paths": {
+    "production": [
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/features/my-day/types.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/features/my-day/domain.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/features/my-day/actions.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/server/read-models/my-day.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/app/(app)/my-day/layout.tsx",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/app/(app)/my-day/page.tsx",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/my-day/MyDayWorkspace.tsx",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/my-day/MyDayBookingCard.tsx"
+    ],
+    "shared": [
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/scope/manifest.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/app-shell/nav-items.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/server/authz/phase-a-surface.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/package.json"
+    ],
+    "schema": {
+      "directory": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/supabase/migrations/",
+      "logical_stem": "story_15_6_my_day_projection",
+      "concrete_path": "Not generated during planning. Root coordinates CLI filename-generation-only after independent validation, fresh combined migration inventory and ownership clearance, then allocates concrete generated path before SQL authoring.",
+      "historical_migrations": "Read-only; never edit applied migrations including 118."
+    },
+    "tests": [
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/my-day/domain.test.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/read-models/my-day.test.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/authz/phase-a-surface.test.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/scheduling/my-day.int.test.ts",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/e2e/my-day.e2e.spec.ts"
+    ],
+    "delivery": [
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/deferred-work.md",
+      "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md"
+    ]
+  },
+  "concrete_migration": "supabase/migrations/20261025085310_story_15_6_my_day_projection.sql",
+  "existing_migrations_immutable": 118,
+  "package_json_scope": "Only append tests/e2e/my-day.e2e.spec.ts once to existing scripts.test:smoke; no dependency or lockfile changes",
+  "file_generation_only_complete": {
+    "cli": "2.115.0",
+    "native_exit": 0,
+    "empty_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "applied": false
+  },
+  "ownership_boundaries": [
+    "Own checkout only; no foreign reads/writes/adoption; DEBUGstrictHOLD.",
+    "No sharedfactory edits or additional paths without scope/ownership reconciliation.",
+    "Root owns Git/state/reports/sprint; buildauto authors own implementation commits per skill.",
+    "OrdinarySol6.1Low; sensitiveSol6.1High incl all nestedhandoffs.",
+    "IndependentHighimplementationreview/cap3, authorSuggestedReviewOrder, actualdevelopmentgates before done."
+  ],
+  "runtime_allocation": "NONE: no managedresources/browser/DB/CI/provider/network effects allocated by this record",
+  "publication": "One finalepicPR; checkpoint effects separately reviewed; no deployment; conditionalmergecommit retainbranches after gates."
+}

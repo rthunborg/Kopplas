@@ -1,0 +1,469 @@
+{
+  "schema": "INT014_RETURN_ONLY_SOURCE_AUTHOR_RESULT_V1",
+  "created_at_utc": "2026-10-23T13:07:28.605448+00:00",
+  "policy_version": "2026-10-19",
+  "Outcome": "Implemented the approved reachable test-observation timestamp normalization correction; actual source/SRO writes frozen for independent targeted patch review. Not a certified hosted root cause or runtime acceptance.",
+  "Files changed": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "Status": "FOCUSED_AND_AFFECTED_CHECKS_PASSED_SOURCE_REVIEW_PENDING",
+  "Open questions": [
+    "Exact hosted INT014 matcher/value/native first throw remains UNKNOWN.",
+    "Required exact-head full NORMAL95 and separate recovery/custody remain pending; current independently qualified73P1F21zero retains the explicit projection-cap scope exception."
+  ],
+  "Deferred work": [
+    "Distinct actual3path patch/SRO review; Root sole commit/publication owner.",
+    "Reuse existing reviewed NORMAL lane after reviewed Root commit, with new exact bindings/grant/proof/activation. No new diagnostic or collector proposed."
+  ],
+  "Blockers": [
+    "P5OPEN/normalacceptance0/developmentnotcomplete; source correction does not qualify native95 or release readiness."
+  ],
+  "baseline": {
+    "HEAD_as_Root_owned": "bd4121e55489bf8f5a35fdd80d3f9ffd68fb98ea",
+    "functional_source": "5e0b63639dfd8636faab4ab5c798ca81bf1b4e41",
+    "run": 39950998114
+  },
+  "change": {
+    "helper": "Only return {...status,publicDto:data} becomes return {...status,lastUsedAt:iso(status.lastUsedAt),publicDto:data}. Existing iso reused after raw RPC field/privacy checks and actual mapper validation.",
+    "unit": "Added one real-source status adapter extraction plus3 regression tests within existing wrapper unit file; actual method, production mapper and existing iso are executed under inert controlled clients.",
+    "SRO": "Only a new INT014 subsection within existing SuggestedReviewOrder; outside-SRO bytes, approved kernel/status/counter3 unchanged.",
+    "timestamp_precision": "Existing JS millisecond observation boundary, matching physical(); no claim to preserve arbitrary PostgreSQL submillisecond precision. Raw publicDto original object/spelling remains intact.",
+    "production_mapper_SQL_authority_changed": false
+  },
+  "source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 139901,
+      "sha256": "74721f43ece77fac70414592317ce06556b5cfc0718d9d6014afbec32bdf2c25",
+      "LF_bytes": 138508,
+      "LF_sha256": "d3d7a13919233a6bbd75646449a4de80257c015aa718a16616c513c6c5e8cef5",
+      "prospective_git_blob": "f97ac4c551d0e42fd47b46995ec6148ec64f82b7"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 325812,
+      "sha256": "8594bcc0bfb6fcd9c721868c93ee39a8b0744bca3d8df673f6ea050b2e0941b7",
+      "LF_bytes": 322787,
+      "LF_sha256": "fa217e6880476974af32babd14ad9991cff3d9877d4e37cdc99f53975f233e63",
+      "prospective_git_blob": "71970ab77e69ad475e5e900d25ffb4e2ef70dff6"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 258842,
+      "sha256": "59da7f5ba3731d56fe50a52409717ee527a920a728cc942ed66f4e30a6d25a16",
+      "LF_bytes": 255757,
+      "LF_sha256": "318c8ecd123d052eb29ab388538a313cc55f3048d7f63eadeeab105f07eccb8a",
+      "prospective_git_blob": "d5aca299a5cb0d15e45bb13601720acbe19f5f8b"
+    }
+  ],
+  "inverse_proof": {
+    "helper": "Replace the exact new return expression once with the original expression; complete raw baseline SHA equality verified.",
+    "unit": {
+      "remove_single_segment_from": "// Execute the real fixture status method, real mapper and existing iso observation.",
+      "remove_until_exclusive": "test(\"actual status mapper distinguishes existing RPC",
+      "complete_raw_baseline_SHA_equality": true
+    },
+    "SRO": "Remove the exact inserted subsection bound in SRO-only-delta.json; complete raw baseline and outside-SRO equality verified.",
+    "ownerFacts": {
+      "bytes_LF_with_trailingLF": 3563,
+      "sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085"
+    },
+    "all_nonreturn_helper_bytes_unchanged": true,
+    "all_preexisting_unit_bytes_unchanged": true
+  },
+  "controls": {
+    "initial_focused": "3F0P before helper change:2 expected normalization failures plus1 newly authored control-order error; preserved immutable receipt67c383.",
+    "test_control_correction": "Privacy refusal necessarily occurs after the existing physical hash query. New test now explicitly expects rpc then physical-privacy for that one case; no production guard/source changed. Equivalent-offset case moved first to establish semantic RED before an iso-order assertion.",
+    "corrected_semantic_RED": {
+      "tests": 3,
+      "passed": 1,
+      "failed": 2,
+      "skipped": 0,
+      "cancelled": 0,
+      "helper_baseline_sha": "d50d45e73f2a3a7c649188658ed9271a832ce41277314d8dd723b3c2a06f2234",
+      "tool": "87dad8"
+    },
+    "GREEN": {
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "tool": "75108d"
+    },
+    "full_affected_wrapper_file": {
+      "tests": 187,
+      "passed": 187,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "initial_tool": "8a6e43",
+      "session_id": 14183,
+      "wait_tool": "7df40b"
+    },
+    "whole_TypeScript": {
+      "native_exit": 0,
+      "tool": "1337d2"
+    },
+    "scoped_ESLint": {
+      "native_exit": 0,
+      "tool": "693a72"
+    },
+    "scoped_git_diff_check": {
+      "native_exit": 0,
+      "tool": "1fdadb",
+      "stderr_nonempty": true,
+      "interpretation": "Native0/no stdout; stderr raw not retained and no warning cause claimed."
+    },
+    "nonadditive": true,
+    "raw_streams_not_persisted": true,
+    "covered_semantics": [
+      "Null and canonical timestamp remain exact.",
+      "Equivalent offset/no-millisecond and fractional spellings canonicalize; genuine different millisecond instant remains different.",
+      "Exact usage counts retained, including0 and safe upper bound; wrong count not silently repaired.",
+      "Raw publicDto same frozen object and original spelling unchanged.",
+      "Exactly2 ordinary status RPC calls with original arguments/order; physical privacy query before real mapper and iso.",
+      "Extra raw field, token sentinel, raw RPC error refuse; invalid/nonfinite timestamp, negative count and mapper42501 refuse before iso."
+    ]
+  },
+  "localization_history": {
+    "selected_run": "4a04b2 selected the new rejection control only; failed1, no semantic pass claimed; closed parser did not retain failure fields.",
+    "first_direct_extraction": "57c9cd diagnostic extraction included test declarations without a test binding and returned closed ReferenceError; diagnostic harness mistake, not source failure.",
+    "bounded_function_only": "543f2c real adapter extraction succeeded; no test assertions executed.",
+    "exact_new_rejection_control": "6bf8c1 identified actual closed order [rpc,physical-privacy] versus newly expected[rpc]; corrected only new control.",
+    "no_failures_relabelled_PASS": true
+  },
+  "native_capture": {
+    "source": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/capture.py",
+      "bytes": 2914,
+      "sha256": "25716f40e9658d442eb5d7ee840fc769e18f09913c8bf1e6a2ae60f8b65aeec3"
+    },
+    "reuse": "Same qualified capture() source; only in-memory evidence destination B set to this author folder. Raw stdout/stderr remain callerRAM; physicalEOF/readersjoined/handlesclosed/directsettled reported in each native receipt.",
+    "node_path": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "node_version_provenance": "Existing qualified22.23.2 binary/path reused; no new version probe or install.",
+    "native_receipts": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-diff-check-native.json",
+        "bytes": 1175,
+        "sha256": "ade2f1a2e7b8ad0c368558c565a9367f8827677d69b181980b57a79f4ebfe2f6",
+        "label": "INT014-diff-check",
+        "native_exit": 0,
+        "elapsed_seconds": 0.065871,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-GREEN-native.json",
+        "bytes": 1217,
+        "sha256": "6a323a4c89ecdfb3c8ff9e5d78226c51a179a3084e1e7789555c884467894304",
+        "label": "INT014-focused-GREEN",
+        "native_exit": 0,
+        "elapsed_seconds": 0.310578,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-corrected-controls-native.json",
+        "bytes": 1233,
+        "sha256": "c0c88ef6ae359843a6b29f50c2812478a6c03dd0b68d42d7cfdba075b0a02441",
+        "label": "INT014-focused-RED-corrected-controls",
+        "native_exit": 1,
+        "elapsed_seconds": 0.33009,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-localization-native.json",
+        "bytes": 1236,
+        "sha256": "f101d7b9ef61b560911dcf0b4f6b7bf3bbeacdf416c6de5a6e127db0acbdbfec",
+        "label": "INT014-focused-RED-localization",
+        "native_exit": 1,
+        "elapsed_seconds": 0.271156,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-native.json",
+        "bytes": 1214,
+        "sha256": "6ce1237ab56d8a261d7f98522a6789bb8935c564b7ed3098245453f6bf3562b5",
+        "label": "INT014-focused-RED",
+        "native_exit": 1,
+        "elapsed_seconds": 0.32915,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-full-affected-unit-native.json",
+        "bytes": 1153,
+        "sha256": "0ab620e309cf7a86ebf2ff138ed82a9b731478d3aaf8b704f2e86a24f13ee346",
+        "label": "INT014-full-affected-unit",
+        "native_exit": 0,
+        "elapsed_seconds": 12.397508,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-rejection-assertion-localization-native.json",
+        "bytes": 2397,
+        "sha256": "dbb84d8d120e7ecfe5c369c9c13c6c8d27899e9894aa3e4494619daeba964e00",
+        "label": "INT014-rejection-assertion-localization",
+        "native_exit": 0,
+        "elapsed_seconds": 0.088229,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-scoped-lint-native.json",
+        "bytes": 1304,
+        "sha256": "bd4f7a6c82bb0b34af3fc01f5ba0449b5f643d34110d4a17f32744cff1efe4f0",
+        "label": "INT014-scoped-lint",
+        "native_exit": 0,
+        "elapsed_seconds": 3.110545,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-SQL-dirty-paths-native.json",
+        "bytes": 1000,
+        "sha256": "44fb8525006011b0f0dd0241de77bc9356e1923918d9968b6c4b0c7943cdb338",
+        "label": "INT014-SQL-dirty-paths",
+        "native_exit": 0,
+        "elapsed_seconds": 0.044539,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-boundary-native.json",
+        "bytes": 2488,
+        "sha256": "37a8b3e2c47994541c04170e98757162de1199eb4dbfe1a02d147d730f54bdd8",
+        "label": "INT014-test-extraction-boundary",
+        "native_exit": 0,
+        "elapsed_seconds": 0.089053,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-localization-native.json",
+        "bytes": 2242,
+        "sha256": "bdece182ae8f785e9865357b41e9df76b26f455e7a277dc164e0ed97a88d5829",
+        "label": "INT014-test-extraction-localization",
+        "native_exit": 0,
+        "elapsed_seconds": 0.088371,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-typecheck-native.json",
+        "bytes": 1198,
+        "sha256": "e3b89cacfb85386bf493b35b705410ccbe46f195362af68f19997f4b0d7fe931",
+        "label": "INT014-typecheck",
+        "native_exit": 0,
+        "elapsed_seconds": 3.883076,
+        "direct_process_settled": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "both_EOF": true,
+        "reader_errors": false,
+        "overflow": false
+      }
+    ],
+    "summaries": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/final-conservation-summary.json",
+        "bytes": 2632,
+        "sha256": "c070392defa2483278211ad305ad001de3098d381d63748183559ca17bd30737"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-GREEN-summary.json",
+        "bytes": 382,
+        "sha256": "9e8b0934aa6dc561bc7d379bbef47c25a4effbcdce996ba140028ebbe23043fb"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-corrected-controls-summary.json",
+        "bytes": 600,
+        "sha256": "d90611dbf667a019233f136fa0657e685d9f59c4c563d82b9ca73b02f946591c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-localization-summary.json",
+        "bytes": 535,
+        "sha256": "cc4cd031eb8d31872d9c6ae96bb09996dd2e94469860cf26de897537c1fc35d9"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-focused-RED-summary.json",
+        "bytes": 690,
+        "sha256": "ba67096746cd968ea39018d1a1adf35d9b39610c370ba23ee8f6412726f79d66"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-full-affected-unit-summary.json",
+        "bytes": 287,
+        "sha256": "ad472380df58fedca448969715386b2cf4e3d32379fe81f90ad9b95eed947a57"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-rejection-assertion-localization-summary.json",
+        "bytes": 219,
+        "sha256": "06aeac6c3475d49799df954a31058c2a1c698230aa9f0a710fee2e048b3df4d1"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-scoped-lint-summary.json",
+        "bytes": 173,
+        "sha256": "0e7bf3715cc5b4ce339b7541438e3e733120665788924d1886c40fc4004a4bf8"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-boundary-summary.json",
+        "bytes": 17,
+        "sha256": "12b34da73b0c67a0319e6eddbd3582af66e3b558b4d44e4a6860e0cec20d726f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-test-extraction-localization-summary.json",
+        "bytes": 121,
+        "sha256": "824f2ff0d7513cad89d7a69879decf0c061847fab42bd5dbb32bda33fb2b805a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-author/INT014-typecheck-summary.json",
+        "bytes": 171,
+        "sha256": "bf7b06b854cb641b8c348da388ac9846572ee379968ee7f07e92d453c076f244"
+      }
+    ],
+    "outer_tool_attribution": {
+      "initial_RED": {
+        "chunk": "67c383",
+        "outer_exit": 0,
+        "outer_wall_seconds": 0.46554,
+        "session": null,
+        "waits": []
+      },
+      "corrected_RED": {
+        "chunk": "87dad8",
+        "outer_exit": 0,
+        "outer_wall_seconds": 0.4551047,
+        "session": null,
+        "waits": []
+      },
+      "GREEN": {
+        "chunk": "75108d",
+        "outer_exit": 0,
+        "outer_wall_seconds": 0.4326804,
+        "session": null,
+        "waits": []
+      },
+      "full_affected": {
+        "initial_chunk": "8a6e43",
+        "initial_wall_seconds": 10.0158998,
+        "session": 14183,
+        "completion_chunk": "7df40b",
+        "outer_exit": 0,
+        "wait_calls": 1,
+        "native_elapsed_seconds": 12.397508
+      },
+      "typecheck": {
+        "chunk": "1337d2",
+        "outer_exit": 0,
+        "outer_wall_seconds": 4.0129396,
+        "session": null,
+        "waits": []
+      },
+      "lint": {
+        "chunk": "693a72",
+        "outer_exit": 0,
+        "outer_wall_seconds": 3.2378907,
+        "session": null,
+        "waits": []
+      },
+      "diff_conservation": {
+        "chunk": "1fdadb",
+        "outer_exit": 0,
+        "outer_wall_seconds": 0.2371137,
+        "session": null,
+        "waits": []
+      }
+    }
+  },
+  "preserved": {
+    "both_RPC_calls_order_arguments": true,
+    "raw_publicDto_identity_and_spelling": true,
+    "ordinary_JWT_RLS_auth_token_privacy_and_usage": true,
+    "INT014_integration_assertions_and_production_mapper": true,
+    "transactions_rollback_owner_restore_retirement_custody": true,
+    "SQL118": "No migration changes in current Git diff; historical qualified118 vectors reused, no rawSQL rescan.",
+    "unrelated_source": "6 pre-edit bound paths equal including integration, mapper, wrapper,config,package,lock; see final-conservation-summary.json.",
+    "kernel_and_outside_SRO": true,
+    "review_counter": 3,
+    "fourth_broad_review": false
+  },
+  "evidence_refs": {
+    "normal-INT014-first-failure-source-assessment.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-first-failure-source-assessment.json",
+      "bytes": 12594,
+      "sha256": "a73f339fd60af9033b6e2f3e2a2343e380a603fa6dc5bf0287e0f31ee5a24d20"
+    },
+    "normal-INT014-minimum-plan-independent-review.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-minimum-plan-independent-review.json",
+      "bytes": 11286,
+      "sha256": "0d72ca477ba474a16d716924453f0da57c8f0575220f9a0e263de1f22eb4ecb6"
+    },
+    "INT009-default-volatility-normal-terminal-actual-native-qualification.json": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-native-qualification.json",
+      "bytes": 21077,
+      "sha256": "59474427cc70223c2547d75915dd62b602ffb04ea5f5373d33a1d06489ae92d7"
+    }
+  },
+  "effects": {
+    "Git_mutations": 0,
+    "API_network": 0,
+    "DB_browser_services_resources": 0,
+    "CI_provider_publication": 0,
+    "dependencies_or_config_changes": 0,
+    "other_checkouts": 0
+  },
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "source_writes_stopped": true
+}

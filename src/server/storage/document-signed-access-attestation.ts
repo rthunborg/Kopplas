@@ -305,7 +305,7 @@ function isDocumentSourcePair(ownerType: string, purpose: string): boolean {
     case "calculation": return purpose === "calculation_attachment";
     case "quote_version": return purpose === "quote_attachment_snapshot" || purpose === "quote_pdf";
     case "quote_acceptance": return purpose === "acceptance_evidence";
-    case "job": return purpose === "job_evidence";
+    case "job": case "work_order": return purpose === "job_evidence";
     default: return false;
   }
 }

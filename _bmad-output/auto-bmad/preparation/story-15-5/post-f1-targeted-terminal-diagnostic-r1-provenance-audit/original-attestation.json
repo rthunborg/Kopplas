@@ -1,0 +1,574 @@
+{
+  "schema": "R1_TARGETED_DIAGNOSTIC_PARTIAL_PROVENANCE_AUDIT_v1",
+  "reviewed_at_utc": "2026-10-21T20:48:37.904803+00:00",
+  "verdict": "PASS_QUALIFIED_PARTIAL_DIAGNOSTIC",
+  "operation_outcome": "PUBLISHED_BOUNDED_DIAGNOSTIC_STOP_UNKNOWN",
+  "findings": [],
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "route": "gpt-6.1-sol High",
+    "independence": "Distinct from NativeHigh operator/source authors; prior failed-run and stop audits disclosed, unchanged coverage reused."
+  },
+  "scope": "Actual R1 retained projection/provenance/truth/privacy only before source-only cause assessment. No product-cause/sourcefix review, fourth broad round or counter change.",
+  "policy": {
+    "path": "docs/process/development-completion-policy.md",
+    "bytes": 8460,
+    "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+  },
+  "identity": {
+    "actor": "rthunborg",
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "event": "workflow_dispatch",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "release_validation": false,
+    "repo": "rthunborg/Kopplas",
+    "run_id": 39664130401,
+    "triggering_actor": "rthunborg",
+    "workflow_id": 296219797
+  },
+  "packet": {
+    "directory": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1",
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/manifest.json",
+      "bytes": 2298,
+      "sha256": "c42a24acbe014a59e23bfcff362c2bfd6663e56af3b2778d4aeda1da78c78f78"
+    },
+    "qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/qualification.json",
+      "bytes": 9457,
+      "sha256": "3fbb2bf7041f3b61e1a9af726b2ae43f370165510ac900a61f13ea0708709cbd"
+    },
+    "diagnostic": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/targeted-diagnostic.json",
+      "bytes": 16204,
+      "sha256": "3563e20690f73e44d06ed018428868482216e7a5ef6cb74bf629e43fab8b8d27"
+    },
+    "exact_members": 9,
+    "nonself_hashes_verified": 8,
+    "compact_ASCII_sorted_JSON_LF_same_bytes": true,
+    "actual_bytes": 16204,
+    "cap": 32768,
+    "projection_truncated": true,
+    "unknown_reason": "REDACTED_UPSTREAM"
+  },
+  "input_refs_verified": [
+    {
+      "bytes": 3284,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-r1-activation.json",
+      "sha256": "cfc0fdb6ed1945cc74f4df46b4d49e13e02c8780e71fac76a3e80c4eecf04c59"
+    },
+    {
+      "bytes": 1367,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/manifest.json",
+      "sha256": "6e2697886267ca13db8c3755ac1cb7c9f4e04728401e7a9b823c4e03da0aad9c"
+    },
+    {
+      "bytes": 29866,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/targeted-diagnostic-r1-operator.py",
+      "sha256": "c06fc230aa63feecc1fa076596e4e819e9ed32c96c9c8b81c08310f034377732"
+    },
+    {
+      "bytes": 11028,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/compact-proof.json",
+      "sha256": "035392efac01097760c0bc1bcd7dd9edcf46f4d7e6e1c6bb82d92b56e456b2b2"
+    },
+    {
+      "bytes": 2900,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-post-f1-targeted-diagnostic-r1-allocation.json",
+      "sha256": "f6652a9b53650f5110bbcf3dd9a82ab28c6df43c4848b4472ec793396f455929"
+    },
+    {
+      "bytes": 1087,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-r1-current-source-proof.json",
+      "sha256": "36acd20463a9bd4be713627fb5e24a5a610bbbac17d5f8752efa4b3057fbb118"
+    },
+    {
+      "bytes": 15819,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-terminal.json",
+      "sha256": "b8c92f76022db4149bcefcc38add55526de0f01cb2936e113a1f6af8329f1f5e"
+    },
+    {
+      "bytes": 11126,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-attestation.json",
+      "sha256": "38646c1f19ebccc51323d58ec52dafdcff0d6659ef4bd980f0671d90c3580501"
+    },
+    {
+      "bytes": 3259,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/manifest.json",
+      "sha256": "c21b508737349905d7274dec6a118c90e947645bda037007c1c10f98650366a4"
+    },
+    {
+      "bytes": 1169,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-f1-targeted-diagnostic-r1-source-audit-admission.json",
+      "sha256": "35b2a2669b71969af73933871f9d5c443f74dbd552a0991ef00b5c9b5ba94fc5"
+    }
+  ],
+  "bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/bindings.json",
+    "bytes": 41758,
+    "sha256": "f7333652de4238ee8ce984df97d6e7afc5bfc2c2bc30f8e65c7e4b9024c51741"
+  },
+  "prepared_input_refs_verified_count": 14,
+  "source_proof": {
+    "current_raw_LF_computed_blob_rows": 74,
+    "every_candidate_path_pinned": true,
+    "every_candidate_line_bound_checked": true,
+    "UTF16_column_bound_checked": true,
+    "Root_fresh74_222proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-r1-current-source-proof.json",
+      "bytes": 1087,
+      "sha256": "36acd20463a9bd4be713627fb5e24a5a610bbbac17d5f8752efa4b3057fbb118"
+    },
+    "reviewer_Git_commands": 0,
+    "limit": "Actual source/pushed/current Git-object checks remain Root-bound provenance; current raw/LF/computed identities independently reverified without Git."
+  },
+  "old_manifests_preserved": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/manifest.json",
+      "bytes": 1590,
+      "sha256": "fe8c36df94f39e4e48905390bec4791b148d4c14659bd971fbb0ec1e1e279b98"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+      "bytes": 5474,
+      "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/manifest.json",
+      "bytes": 2254,
+      "sha256": "b502e54a26d4d599ca308c4915420ad0f9dee9decbd29456fda36ea8e3831c0a"
+    }
+  ],
+  "old_member_sets_and_hashes": {
+    "original_preparation": 6,
+    "normal_packet": 22,
+    "stop_packet": 9,
+    "all_nonself_hashes_reverified": true,
+    "no_old_NULL_facts_backfilled": true
+  },
+  "operator": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/targeted-diagnostic-r1-operator.py",
+    "bytes": 29866,
+    "sha256": "c06fc230aa63feecc1fa076596e4e819e9ed32c96c9c8b81c08310f034377732"
+  },
+  "preGET_source_envelope_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-attestation.json",
+    "bytes": 11126,
+    "sha256": "38646c1f19ebccc51323d58ec52dafdcff0d6659ef4bd980f0671d90c3580501"
+  },
+  "execution_lineage": {
+    "completion": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic-r1/execution-completion.json",
+      "bytes": 1036,
+      "sha256": "fecefa50484cd4b5bcfdaa7155e700268b10d32e3966a96cc4b733fa88300a32"
+    },
+    "chunk_id": "741a11",
+    "native_exit": 1,
+    "wall_seconds": 2.4923647,
+    "session_id": null,
+    "subsequent_waits": 0,
+    "original_raw_tool_output_independently_read": false,
+    "attribution": "Native retained actual exec_command return projected into completion; corroboration, not independent external receipt.",
+    "exact_toolcall_UUID": null
+  },
+  "requests_checked": [
+    {
+      "sequence": 1,
+      "label": "native-full-integration",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12376717919/zip"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 1.278,
+      "capture_complete": true,
+      "settled": true,
+      "handles_closed": true,
+      "stdout_bytes": 103147,
+      "stdout_sha256": "cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+      "stderr_bytes": 0,
+      "physical_EOF_done_joined": true,
+      "overflow_or_reader_error": false
+    },
+    {
+      "sequence": 2,
+      "label": "native-general-browser",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12375309772/zip"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 0.989,
+      "capture_complete": true,
+      "settled": true,
+      "handles_closed": true,
+      "stdout_bytes": 8316,
+      "stdout_sha256": "38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+      "stderr_bytes": 0,
+      "physical_EOF_done_joined": true,
+      "overflow_or_reader_error": false
+    }
+  ],
+  "mapping_proof": {
+    "DB": "Single selected failed nudge file/titleSHA equals original nonstory failure; two EMPTY entries match prior zero-assertion files.",
+    "browser": "Four selected cases/case statuses/reported attempts/seven failed retry-status pairs exactly match prior14-case18-attempt closed report. No rerun/new test count;009 successful retry not selected but remains flaky old fact.",
+    "archive_member": "Both pinned archive IDs/bytes/SHA and selected member bytes/SHA equal original admitted projections."
+  },
+  "counts": {
+    "retained_error_shaped_nodes": 16,
+    "location_occurrences": 54,
+    "location_kind_occurrences": {
+      "STACK_CANDIDATE": 41,
+      "STRUCTURED_ERROR": 13
+    },
+    "distinct_kind_path_line_column_records": 13,
+    "declaration_records_separate": 1,
+    "closed_tuple_occurrences": 5,
+    "tuple_occurrence_classes": {
+      "browser:cleanup-lifecycle:timeout": 3,
+      "browser:custody-retained:unverified": 2
+    },
+    "tuple_tail_omission_flags": 0,
+    "not_distinct_original_failures": true,
+    "not_total_errors_or_first_order": true
+  },
+  "case_coverage": [
+    {
+      "case_id": "EMPTY_PUBLIC",
+      "retained_nodes": 1,
+      "bounded_selected_input_error_count": 1,
+      "failed_attempts": []
+    },
+    {
+      "case_id": "EMPTY_COMMANDS",
+      "retained_nodes": 1,
+      "bounded_selected_input_error_count": 1,
+      "failed_attempts": []
+    },
+    {
+      "case_id": "15.4-NUDGE-004",
+      "retained_nodes": 1,
+      "bounded_selected_input_error_count": 1,
+      "failed_attempts": []
+    },
+    {
+      "case_id": "E2E-001",
+      "retained_nodes": 10,
+      "bounded_selected_input_error_count": null,
+      "failed_attempts": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "bounded_selected_input_error_count": 5,
+          "retained_nodes": 5,
+          "zero_retained_is_absence": false
+        },
+        {
+          "retry": 1,
+          "status": "failed",
+          "bounded_selected_input_error_count": 5,
+          "retained_nodes": 5,
+          "zero_retained_is_absence": false
+        }
+      ]
+    },
+    {
+      "case_id": "E2E-009",
+      "retained_nodes": 3,
+      "bounded_selected_input_error_count": null,
+      "failed_attempts": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "bounded_selected_input_error_count": 5,
+          "retained_nodes": 3,
+          "zero_retained_is_absence": false
+        }
+      ]
+    },
+    {
+      "case_id": "E2E-010-revoke",
+      "retained_nodes": 0,
+      "bounded_selected_input_error_count": null,
+      "failed_attempts": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "bounded_selected_input_error_count": 5,
+          "retained_nodes": 0,
+          "zero_retained_is_absence": false
+        },
+        {
+          "retry": 1,
+          "status": "failed",
+          "bounded_selected_input_error_count": 6,
+          "retained_nodes": 0,
+          "zero_retained_is_absence": false
+        }
+      ]
+    },
+    {
+      "case_id": "E2E-007",
+      "retained_nodes": 0,
+      "bounded_selected_input_error_count": null,
+      "failed_attempts": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "bounded_selected_input_error_count": 5,
+          "retained_nodes": 0,
+          "zero_retained_is_absence": false
+        },
+        {
+          "retry": 1,
+          "status": "failed",
+          "bounded_selected_input_error_count": 5,
+          "retained_nodes": 0,
+          "zero_retained_is_absence": false
+        }
+      ]
+    }
+  ],
+  "unique_error_location_records": [
+    {
+      "column": 16,
+      "line": 33,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 16,
+      "line": 33,
+      "location_kind": "STRUCTURED_ERROR",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 16,
+      "line": 37,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 16,
+      "line": 37,
+      "location_kind": "STRUCTURED_ERROR",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 33,
+      "line": 715,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 34,
+      "line": 666,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 34,
+      "line": 699,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 42,
+      "line": 670,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    },
+    {
+      "column": 47,
+      "line": 157,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts"
+    },
+    {
+      "column": 5,
+      "line": 157,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts"
+    },
+    {
+      "column": 5,
+      "line": 363,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts"
+    },
+    {
+      "column": 5,
+      "line": 74,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts"
+    },
+    {
+      "column": 96,
+      "line": 164,
+      "location_kind": "STACK_CANDIDATE",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts"
+    }
+  ],
+  "declarations_separate": [
+    {
+      "column": null,
+      "line": 156,
+      "location_kind": "DECLARATION",
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts"
+    }
+  ],
+  "usable_case_path_lines": [
+    {
+      "case_id": "EMPTY_PUBLIC",
+      "unique_path_lines": []
+    },
+    {
+      "case_id": "EMPTY_COMMANDS",
+      "unique_path_lines": []
+    },
+    {
+      "case_id": "15.4-NUDGE-004",
+      "unique_path_lines": [
+        {
+          "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+          "line": 157
+        }
+      ]
+    },
+    {
+      "case_id": "E2E-001",
+      "unique_path_lines": [
+        {
+          "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+          "line": 74
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 33
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 37
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 164
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 666
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 670
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 699
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 715
+        }
+      ]
+    },
+    {
+      "case_id": "E2E-009",
+      "unique_path_lines": [
+        {
+          "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+          "line": 363
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 33
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 37
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 164
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 666
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 699
+        },
+        {
+          "path": "tests/e2e/support/calendar-feed-atdd.ts",
+          "line": 715
+        }
+      ]
+    },
+    {
+      "case_id": "E2E-010-revoke",
+      "unique_path_lines": []
+    },
+    {
+      "case_id": "E2E-007",
+      "unique_path_lines": []
+    }
+  ],
+  "omission_semantics": {
+    "node_budget_shared": 16,
+    "projection_truncated": true,
+    "unknown_reason": "REDACTED_UPSTREAM",
+    "later_zero_retained_cases": [
+      "E2E-010-revoke",
+      "E2E-007"
+    ],
+    "zero_retained": "Known retained count0, underlying errors/locations UNKNOWN_NOT_ABSENCE; bounded selected input counts remain numeric, case aggregate unknown slots remain NULL.",
+    "EMPTY_cases": "Unrecognized selected report-field containers, not executed failed tests; no location/hook/admission absence proof.",
+    "other_bounds": "At most4locations/error/64total plus depth/string/selected-input bounds; no exhaustiveness inferred.",
+    "selected_inputs_may_duplicate_reporters": true
+  },
+  "privacy_limits": {
+    "closed_fields_only": true,
+    "raw_report_archive_message_stack_DOM_URL_attachment_body_persistence": false,
+    "source_candidates_are_original_throw_sites": false,
+    "declaration_is_throw_location": false,
+    "original_throw_or_first_error_order": "UNPROVEN",
+    "SQLSTATE_NONE_OR_UNKNOWN": "Unknown, not proof no database failure",
+    "runtime_failure_causes": "UNKNOWN_NO_ASSESSMENT_PERFORMED",
+    "backend_runtime_key_custody": "UNKNOWN_UNCHANGED"
+  },
+  "executed_vs_reused": {
+    "reviewer_actual": "Only bounded offline hashing, exact-byte/JSON/attempt/count/path/UTF16-bound checks and focused extractor selection/publication source inspection. No operator import/execution, pure suite or runtime acquisition.",
+    "reused": "Independent R1 source/envelope review26puretests169controls and prior unchanged transport/source qualifications are bound evidence, not reviewer reruns or new native credit.",
+    "application_source_assessed_for_cause": false
+  },
+  "remaining_gates": [
+    "Normal run39664130401 remains failed/partial;35API/INT unexecuted includingAPI019privacy/INT015",
+    "Essential browser failures/flake, fullDB/RLS/all95 mandatory evidence unmet; recovery separate",
+    "Backend/runtime key custodyUNKNOWN; no R1 cleanup/rollback/restoration proof"
+  ],
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "operation_consumed": true,
+  "no_retry": true,
+  "next_scope": "Separately routed source-only assessment may use only retained candidates/closed labels with these explicit limits. No new extractor/version/read/acquisition/fix proposed or authorized by this audit.",
+  "effects_by_reviewer": {
+    "network_API_refetch": 0,
+    "SQL_runtime_resources_CI": 0,
+    "Git_commands": 0,
+    "source_Spec_oldfiles_changes": 0,
+    "writes": "Only4newownedR1auditmetadatafiles"
+  },
+  "execution_or_fix_authorized": false
+}

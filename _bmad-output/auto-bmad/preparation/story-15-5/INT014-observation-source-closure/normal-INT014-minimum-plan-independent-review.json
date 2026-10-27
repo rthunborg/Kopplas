@@ -1,0 +1,173 @@
+{
+  "schema": "INDEPENDENT_INT014_MINIMUM_SOURCE_PLAN_REVIEW_V1",
+  "status": "PASS_MINIMUM_PLAN_ONLY",
+  "outcome": "PASS_MINIMUM_PLAN_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "scope": "Targeted readonly minimum-plan qualification; not actual patch review or fourth broad story review. No source/test/runtime/effect authority created.",
+  "author_assessment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-first-failure-source-assessment.json",
+    "bytes": 12594,
+    "sha256": "a73f339fd60af9033b6e2f3e2a2343e380a603fa6dc5bf0287e0f31ee5a24d20"
+  },
+  "actual_evidence_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-native-qualification.json",
+    "bytes": 21077,
+    "sha256": "59474427cc70223c2547d75915dd62b602ffb04ea5f5373d33a1d06489ae92d7",
+    "current95": "73P1F21zero; qualified with explicit projection-cap scope exception; no acceptance."
+  },
+  "source_determination": {
+    "reachable_defect": "Test observation representation mismatch. A valid finite Date.parse timestamp may represent the fixed admitted instant while retaining an offset/noncanonical UTC spelling. The real mapper returns it unchanged; physical observation canonicalizes with existing iso. Strict canonical JS ISO/equality assertions can therefore fail without a different stored instant. No downstream guard requires canonical spelling, so this is reachable through an allowed value.",
+    "caller_actor": "INT014 ordinary own JWT fixture status adapter; existing direct raw RPC privacy inspection and actual readCalendarFeedStatus mapper remain authoritative before normalization. No permission/RLS or production mapper change.",
+    "actual_sites": [
+      "helper365 iso",
+      "helper406-416 rawallowlist/privacy then actualmapper and rawpublicDto",
+      "helper533 physicaliso",
+      "mapper12 finiteDate.parse guard and15 unchangedtimestamp return",
+      "INT014273-285 exact canonical-time/count/fetch/privacy assertions"
+    ],
+    "exact_hosted_matcher_value_native_firstthrow": "UNKNOWN",
+    "production_semantic_defect_proven": false,
+    "precision_scope": "Normalization uses the existing JavaScript millisecond observation boundary already used by physical(). It is not a claim to prove arbitrary PostgreSQL submillisecond precision; raw publicDto remains unaltered."
+  },
+  "minimum_prospective_scope": {
+    "implementation_paths": [
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "helper_change": "Only fixture status return adds lastUsedAt:iso(status.lastUsedAt) after actual mapper validation; preserve spread fields and publicDto:data identity. Reuse existing iso; no helper/framework/schema expansion.",
+    "author_documentation_path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "documentation_change": "Refresh only existing Suggested Review Order rationale/verified stops/evidence. Preserve outside-SRO bytes, approved kernel, statusinreview/reviewcounter3 and historical exceptions; future author must distinguish executed evidence from plan.",
+    "explicitly_preserved": [
+      "Both existing ordinary JWT status RPC calls, arguments, awaiting and order; raw allowlist/privacy inspection occurs before mapper and normalization.",
+      "Real mapper finite-string/null/count/revision/attempt validation; no accepting invalid timestamp, raw field, secret or privilege bypass.",
+      "Raw publicDto exact data/value identity; no mutation or canonicalization of raw payload, production mapper or database value.",
+      "INT014 exact assertions unchanged: unusednull/count0,fetch200,canonicalfixedtime/count1,physical/status equality,token/hash DTO exclusion.",
+      "Usage count/DB admitted clock, auth/RLS/tenant boundaries, ownerFacts, transactions/rollback/retirement/custody, cryptographic proofs, failclosed/capture/privacy controls unchanged.",
+      "118 SQL migrations, app files, Vitest selection/bail/workflow, kernel/SRO-external scope and reviewcap unchanged."
+    ]
+  },
+  "required_author_regressions": [
+    "Demonstrate real fixture status/actual mapper path RED on current helper for a valid noncanonical equivalent timestamp, then GREEN with only return normalization. Do not copy mapper logic into an independent model.",
+    "Real path checks for null, canonical UTC, equivalent offset/fraction spelling; genuinely different millisecond instant remains different and exact usage counts retained.",
+    "Malformed/nonfinite timestamp still refused by actual mapper before normalization; retain existing raw RPC extra-field/privacy/error refusal controls.",
+    "Assert raw publicDto data and spelling unchanged, no object mutation, and RPC call arguments/order/count unchanged. Exercise offsets without changing the fixed DB admitted-time integration oracle.",
+    "Run focused meaningful new/affected controls, full existing wrapper unit file once where consequential, whole TypeScript and scoped lint/diff after authorized implementation; record actual commands/counts/RED and GREEN separately.",
+    "No new DB/browser/CI/GET or dependency/config change for this local fix. Distinct actual patch/SRO review remains required before Root commit/full NORMAL readiness; later exact-head NORMAL95 plus recovery/custody evidence remains required."
+  ],
+  "fail_fast_assessment": {
+    "result": "Source-supported consistency only; no separate missing API lane defect demonstrated.",
+    "evidence": "vitest.config58/66 both command/API files excluded from parallel and included in serial integration-audit-ddl;67fileParallelismfalse/68bail1/groupOrder1. Installed index183-189 failure reaches onCancel/testRunner.cancel;cli-api3412-3414 blocks queued tasks and3698 cancelFiles during cancellation.",
+    "limits": "INT015pending/API20absent remain0coverage. Do not claim observed scheduler order or that exact cancellation produced every absence; do not relax bail or add a lane on this evidence."
+  },
+  "bindings": {
+    "actual11_nonSQL_raw_LF_verified": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36989,
+        "sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+        "LF_bytes": 36989,
+        "LF_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 139867,
+        "sha256": "d50d45e73f2a3a7c649188658ed9271a832ce41277314d8dd723b3c2a06f2234",
+        "LF_bytes": 138474,
+        "LF_sha256": "22c0b6da90b43e19a13534acbd5c1e11d9cc5de909b732f821c58141b689e3ca"
+      },
+      {
+        "path": "src/server/read-models/calendar-feed.ts",
+        "bytes": 3472,
+        "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+        "LF_bytes": 3472,
+        "LF_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35"
+      },
+      {
+        "path": "src/features/calendar-feed/types.ts",
+        "bytes": 959,
+        "sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+        "LF_bytes": 959,
+        "LF_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 320520,
+        "sha256": "c9bff97184e76b5f27372091be6f043efdc7184314fc76418e35f8d8488a72ed",
+        "LF_bytes": 317555,
+        "LF_sha256": "08087e70ad4abf5fe7eddd988a5ffd946190c7e03423712503c1b7c59fe3627c"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+        "LF_bytes": 26504,
+        "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 4805,
+        "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+        "LF_bytes": 4725,
+        "LF_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 48616,
+        "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+        "LF_bytes": 47931,
+        "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+      },
+      {
+        "path": "package.json",
+        "bytes": 2509,
+        "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+        "LF_bytes": 2509,
+        "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/index.DXx9Dtk7.js",
+        "bytes": 7330,
+        "sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac",
+        "LF_bytes": 7330,
+        "LF_sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac"
+      },
+      {
+        "path": "node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js",
+        "bytes": 495252,
+        "sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d",
+        "LF_bytes": 495252,
+        "LF_sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d"
+      }
+    ],
+    "spec_baseline": {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 256899,
+      "sha256": "6ed06e2f84b12d412374a156016c6fadc8bf09291cf124c9a59070062ec859c3"
+    },
+    "SQL": "Source assessment single migration ref reused under already qualified current118Git conservation; no new raw SQL scan or SQL change."
+  },
+  "controls": {
+    "763756": "Actual frozen12594assessment read/hash; plan/provenance reviewed.",
+    "0aaca3": "Bounded rg current source/cancel search; output truncated, no reliance on unseen output.",
+    "d0cd5a": "Exact focused fixture/iso/physical/config/installedcancel line slices read without execution.",
+    "finalization": "Actual11nonSQL source raw/LF pin equality plus exact single prospective return site/SROheading; no module import or runtime."
+  },
+  "risks_and_limits": [
+    "Exact hosted timestamp spelling/matcher/cause remainsUNKNOWN; this plan repairs a demonstrated allowed representation mismatch, not a proven hosted root cause.",
+    "Normalization cannot repair or justify any different stored time, count, access/privacy error; those must continue failing.",
+    "Current95 incomplete, custody retained/backendsettlementUNKNOWN, generic projection32KiB sourcecap discrepancy preserved; P5OPEN/developmentnotcomplete.",
+    "Plan PASS is not sourcewrite, test, publication, GET, deployment or runtime acceptance authority. Root directs author within existing allocation; actual patch independently reviewed later."
+  ],
+  "reviewer_effects": {
+    "source_spec_edits": 0,
+    "tests": 0,
+    "API_GET": 0,
+    "Git_mutations": 0,
+    "network": 0,
+    "dependency_or_runtime_mutation": 0,
+    "resources": 0
+  },
+  "files_changed": "This new private plan review only."
+}

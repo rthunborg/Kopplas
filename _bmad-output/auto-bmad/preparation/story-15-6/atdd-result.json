@@ -1,0 +1,43 @@
+{
+  "Outcome": "completed — ATDD Create preparation only",
+  "Files changed absolute": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/my-day/domain.test.ts",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/read-models/my-day.test.ts",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/authz/phase-a-surface.test.ts",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/scheduling/my-day.int.test.ts",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/e2e/my-day.e2e.spec.ts",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/test-artifacts/atdd-checklist-spec-15-6-min-dag-the-field-landing.md",
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/atdd-result.json"
+  ],
+  "Status": {
+    "scaffolds": "59 new skipped scenarios: domain 14, read-model 18, authz 3, SQL 16, browser 8; P0=50, P1=9. SQL/browser counts are source inventory, not execution.",
+    "syntax": "Five owned test files parsed: all native exits 0; amended E03 parsed again with exit 0. Not typecheck/build.",
+    "focused_node": "Exit 0: 40 discovered, 5 unchanged historical auth tests passed, 0 failed, 35 new skipped. New-feature passing coverage: 0.",
+    "activated_red": "D01/R01 only: exit 1, 32 discovered, 2 failed ERR_MODULE_NOT_FOUND, 0 passed, 30 skipped; behavior assertions not reached; both files restored byte-exact.",
+    "ac_map": {
+      "AC1": "A01-A03/R01-R02/INT01-INT04/E01,E07,E08: normalized landing and current authority",
+      "AC2": "D01-D05/R01,R12/INT04-INT08,INT15/E01,E04,E08: Stockholm/DST/overlap/order/current own completeness",
+      "AC3": "D06/R03-R06/INT09,INT12,INT13/E01,E02,E04: safe maps, minimal labels/address, exact inline prefill",
+      "AC4": "R07/INT09-INT11,INT14-INT15/E05: pending/default false and direct true own active jobs",
+      "AC5": "R08-R09/E06: own unread generic notices, category before pagination",
+      "AC6": "D07-D10/R10-R12/INT05/E03: stale/failure clearing, current retry and real pull transition",
+      "AC7": "R03/INT04,INT09,INT10,INT13/E01-E03,E08: privacy, 360x640/desktop and persisted same-attempt filing"
+    },
+    "nested_routes": [
+      "/root/atdd15_6_high/api_red — explicit gpt-6.1-sol High; completed 51; synchronously received",
+      "/root/atdd15_6_high/e2e_red — explicit gpt-6.1-sol High; completed 8 plus bounded E03 amendment; synchronously received"
+    ],
+    "assumptions": "Author binds proposed helper/DTO/UI/read-action/gesture seams without weakening invariants. SQL false nested-zero-jobs-query and true authorization conjunction proof remains required. Simulated ReportOwn withholding and map vendor default are explicit.",
+    "capabilities": "Existing project patterns reused. Playwright-utils package absent: two-gate mandate not bound. Pact irrelevant/tools absent. No dependency/shared fixture changes.",
+    "runtime": "No DB/RLS/recovery/browser/build/CI/provider/server/Docker/WSL/network/Git effects or runtime coverage claimed; no implementation or code-review round consumed.",
+    "release_ready": false,
+    "checklist_single_final_lineending": true
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Implementation author/Root: bind and activate cases; implement; obtain static/build/full DB-RLS/direct recovery and essential production-browser evidence, zero-jobs-query proof, smoke wiring and independent High review.",
+    "QA/UX: tracked full role/device/browser matrices, screenshot/design comparison, manual accessibility/daylight/exploration and polish.",
+    "Coordinator/QA/Product/Architect: E14 advisories/performance carry-forward and final Phase B release checkpoint; release_ready=false."
+  ],
+  "Blockers": []
+}

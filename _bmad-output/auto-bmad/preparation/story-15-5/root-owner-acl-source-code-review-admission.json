@@ -1,0 +1,32 @@
+{
+  "schema": "root-owner-acl-source-code-review-admission-v1",
+  "verdict": "PASS",
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "head_before": "00cf6d4331944b38c09b2b3a9c446128b1862fde",
+  "review_artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-source-code-review/original-report.md",
+      "bytes": 4632,
+      "sha256": "e4b08c44661538c625c8352674f5c30a9f4f097b4081c99f440dd41307c2f69c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-source-code-review/original-attestation.json",
+      "bytes": 15523,
+      "sha256": "adc177622dd241a14573aff55ca45fc6e207be631bcb066f1678a49050964f3f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-source-code-review/result.json",
+      "bytes": 1927,
+      "sha256": "d64661b870c2ac9664a72f35d53f3784aafad090526b9343a872426d815138c8"
+    }
+  ],
+  "actual_changed_inputs_verified": 5,
+  "actual_necessary_unchanged_context_bindings_verified": 8,
+  "actual_authority_evidence_refs_verified": 6,
+  "focused_independent_passed": 110,
+  "normal_acceptance_credit": 0,
+  "native_executed": 0,
+  "runtime_effects_authorized": false,
+  "scope": "Targeted committed five-file ACL source delta; no fourth broad story review.",
+  "remaining": "Current-source normal/native readiness, separately allocated exact-head normal run and bounded evidence acquisition; fullDB/RLS/ordinary-role regression/essentialbrowser/recovery."
+}

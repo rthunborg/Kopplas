@@ -1,8 +1,33 @@
 # Cloud PR feedback remediation
 
-Status: local implementation; **not activated and no hosted pilot performed**.
+Historical implementation status (2026-10-13): local implementation; no hosted
+pilot had yet been performed at that date. See the dated
+[2026-10-26 hosted assessment](../quality/frontend-activation-2026-10-26.md)
+for current observed configuration and failed pilot history. This setup preserves
+the disabled workflow state. New readiness behavior is specified in the
+[frontend quality gate](../quality/frontend-quality-gate.md).
 Owner request: 2026-10-13. This is development automation, outside product AI
 features deferred to Phase C. It does not authorize merging or deploying.
+
+**Authorization clarification — 2026-10-26:** reuse the existing GitHub App,
+both environment credentials and four repository variables. Bounded paid
+dry/live eligible PR-branch remediation and deliberate workflow re-enablement
+after reviewed prerequisites are already authorized; do not ask for the same
+permission again or create replacement resources. This is not activation proof.
+The workflow remains disabled until the reviewed prerequisites for the bounded
+pilot pass: trusted runtime/bootstrap, main-protection disposition, actual
+credential/model readiness and safe pilot admission. The owner decided on
+2026-10-26 to retain installed App grants unchanged; reduction is not a prerequisite
+or minimum-permission compliance. Operational qualification still requires
+successful pilot evidence after deliberate re-enablement. See [reuse setup](pr-feedback-setup.md) and the [concrete runtime/configuration
+proposal](../quality/frontend-runtime-integration-2026-10-26.md). No merge,
+deployment, protection bypass or autonomous file-policy expansion follows.
+
+Frontend PRs also retain the [screenshot handoff](../quality/frontend-pr-screenshots.md):
+durable actual-application desktop/360px screenshots embedded in the PR, actual
+capture provenance, feedback replies and refreshed evidence after changes.
+Tooling-only work records its nonvisual reason; fabricated capture is not visual
+acceptance, and screenshots do not expand the fixer's eligibility or file policy.
 
 ## Decision and verified repository baseline
 
@@ -103,45 +128,70 @@ signatures and requires an explicit history/recovery review.
 
 ## Approval and activation checklist
 
-The owner approved publishing the setup branch/opening its PR and enabling
-publication on 2026-10-13. `PR_FIX_PUBLISH=true` permits publication, while
-`PR_FIX_ENABLED=false` keeps paid execution off until credentials and the
-separately approved hosted pilot are ready. No pilot success is claimed.
-Merge, account credential creation and paid pilot execution still require the
-owner's involvement. Existing active branches must not be disrupted.
+Historical 2026-10-13 publication approval used `PR_FIX_PUBLISH=true` and
+`PR_FIX_ENABLED=false`, before credentials and pilots existed. Current Oct 26
+evidence has all four repository variables, App and both credentials established,
+`PR_FIX_ENABLED=true`/`PR_FIX_PUBLISH=true`, and the workflow manually disabled.
+The later owner authorization above covers bounded paid/live/enable effects;
+remaining technical gates must pass without repeat approval for those effects.
+Normal merge decisions and conditional protection application remain separate.
+The owner selected policy B and retained App grants unchanged; these choices are
+resolved. Existing active branches must not be disrupted. No pilot success is
+claimed. Read the numbered items with this dated disposition, not as instructions
+to recreate resources or reopen established authorization.
 
 1. Approve pushing these setup files on a separate setup branch and opening
    its PR. Review and merge into `main` through the normal human process.
    Comment and schedule triggers only become available after default-branch
    bootstrap. Do not enable the new workflow from an untrusted feature branch.
-2. Protect `main` with required human review, relevant CI checks and no bypass
-   for the fixer App. Protect workflow/policy/instruction changes with owner
-   review. Existing settings do not enforce this today.
-3. Create `pr-feedback-secrets`, restrict deployment branches to **only `main`**
-   (not all protected branches), and store credentials exclusively there.
+2. After trusted bootstrap, apply the owner's selected policy B: PR-only updates,
+   zero native approving reviews, strict `checkpoint-admission`, `verify`, `db`,
+   `recovery-storage-loader`, `e2e` plus `Frontend visual acceptance`, resolved
+   conversations and no App/admin bypass. This expressly supersedes the historical
+   native human-approval requirement. Fresh-chat independent review, actual check
+   producer/trusted-controller/candidate-head validation and owner merge approval
+   remain process controls. Actual GitHub account authorship must be honest;
+   different agent sessions using one account are not independent native reviewers.
+   No setting has been applied; current producer/bootstrap proof is still required.
+3. Reuse `pr-feedback-secrets`, retaining its verified deployment branch **only
+   `main`** (not all protected branches), and credentials exclusively there.
    Environment restrictions are essential: a same-repository feature branch
    can otherwise introduce its own workflow to request repository secrets.
    Required environment reviewers would introduce a manual approval on every
    invocation; choose that for the pilot if desired, then review unattended
    access explicitly before removing it.
-4. Create a dedicated GitHub App and install it on **Kopplas only**. No webhook
-   server is necessary. Grant repository Contents write, Issues write,
-   Pull requests write, Actions read, Variables read and Metadata read. Do not grant workflows
-   write, administration, deployment, environment or secret access. No PAT.
-   Enter its private key using GitHub's environment secret form or `gh secret
-   set --env pr-feedback-secrets` from a file; never paste it into chat.
-5. Create a dedicated OpenAI API project/service credential with model access
-   verified for the configured model and billing enabled. Enter it through
-   GitHub's environment secret form. Keep production Supabase, deployment,
+4. Reuse the existing GitHub App/installation selecting **Kopplas only**.
+   No webhook server, new key or PAT is needed. The owner decided on 2026-10-26
+   to keep the broader installed grants unchanged and remove reduction as a
+   prerequisite. Do not claim minimum-permission compliance or change App settings.
+   Keep minted tokens limited to Contents/Issues/Pull requests write and
+   Actions/Actions variables read, plus automatic Metadata read. Preserve all
+   runtime/file/current-head safeguards. Never retrieve or paste the stored key.
+5. Reuse the existing OpenAI API credential. Verify actual project identity,
+   configured model access, effective rate/spend controls and account state.
+   Spending/activation authorization is established, not billing readiness.
+   Authenticated read-only candidate-project inspection verified allowed model
+   and displayed rates. The owner confirms Kopplas PR Fixer is intended and chooses
+   free tier until the provider requires billing; the owner will add it when notified.
+   Stored-key mapping/API acceptance remain unproven; no real inference occurred.
+   After bootstrap and pilot prerequisites, one bounded authorized pilot may prove
+   access or return quota/billing failure. Stop and report an actual provider
+   requirement without a retry loop; billing is an owner action only if required.
+   Hard-spend enforcement was not established and must not be relied on as enforced.
+   Keep production Supabase, deployment,
    backup and Google Drive credentials out of this environment and all fixer
-   jobs. Set API project budgets/rate limits and account alerts.
-6. Configure the variables and label described below, retaining the master
-   switch disabled until ready. Verify the App's numeric identity used for state ownership.
-7. Approve a designated same-repository test PR with a small non-sensitive bug,
-   synthetic data and opt-in. Approve posting human test feedback and one paid
-   manual dry run. Inspect authorization, grouped feedback, model outcome,
+   jobs. Do not change billing, budgets, rates, alerts or credentials in this task.
+6. Retain the four established repository variables; enabled/publish may stay
+   true while the workflow itself remains disabled until reviewed prerequisites
+   pass. Verify the App's numeric state ownership. Deliberate re-enablement after
+   those prerequisites is already authorized.
+7. Bind the authorized bounded pilot to a designated same-repository current PR/head,
+   a small non-sensitive bug, synthetic data and eligible opt-in/human feedback.
+   Do not impersonate human feedback or reset history. Execute the authorized paid
+   manual dry run when technical gates pass. Inspect authorization, grouped feedback, model outcome,
    patch and independent validation artifacts.
-8. Approve one live pilot. Verify its App push starts fresh CI, that every
+8. Execute the authorized bounded live pilot only after its dry-run proof and
+   technical prerequisites. Verify its App push starts fresh CI, that every
    required job passes against the new PR revision, then verify thread replies
    and re-review. Exercise opt-out, concurrent push, malicious path and failure
    scenarios without production access. Enable automatic publication only
@@ -156,7 +206,7 @@ switches are repository Actions variables):
 | `PR_FIX_APP_PRIVATE_KEY` | Environment secret | Dedicated App RSA private key; controller/publisher and journal signatures only |
 | `PR_FIX_APP_ID` | Repository variable | Numeric App ID |
 | `PR_FIX_APP_USER_ID` | Repository variable | Numeric GitHub account ID of the installed App's `[bot]` user |
-| `PR_FIX_ENABLED` | Repository variable | `false`; repository kill switch, `true` permits paid eligible work |
+| `PR_FIX_ENABLED` | Repository variable | Current `true`; repository kill switch, permits paid eligible work only when the workflow is also enabled |
 | `PR_FIX_PUBLISH` | Repository variable | `true`, owner-approved; permits bounded writes only while the master switch is also enabled |
 
 Keep the OpenAI key out of repository-wide secrets and job-wide environment
@@ -173,7 +223,7 @@ The default opt-in label is `agent-fix`. Its trusted configuration is
 reviewed setup change. Add/remove that label for per-PR opt-in/opt-out. Forks,
 drafts, closed PRs and PRs targeting anything except `main` are excluded.
 
-After owner-approved setup, an allow-listed human can request a dry run for
+After reviewed technical setup, an allow-listed human can request a dry run for
 one exact PR through the Actions **Run workflow** form (`pr_number`,
 `dry_run=true`) or the equivalent command:
 
@@ -181,11 +231,27 @@ one exact PR through the Actions **Run workflow** form (`pr_number`,
 gh workflow run pr-feedback.yml --ref main -f pr_number=123 -f dry_run=true
 ```
 
-Replace `123` with the approved pilot PR. `PR_FIX_ENABLED=true` and the
+Replace `123` with the designated eligible pilot PR. `PR_FIX_ENABLED=true` and the
 protected credentials are required for inference. With publishing disabled,
-automatic eligible runs also remain dry runs. Publication permission
+automatic events are audit-only and reserve no model attempt; only an explicit
+authorized manual dry run may proceed through all normal gates. Publication permission
 `PR_FIX_PUBLISH=true` is already owner-approved; a manual live run
 additionally supplies `dry_run=false`.
+
+For the bounded pilot, the one temporary non-secret repository admission variable
+`PR_FIX_PILOT_PR` restricts collection/publication/monitoring to that exact manual
+PR; automatic/mismatched events cannot reserve attempts or admit inference.
+Absent variable preserves normal eligible operation. Malformed/ambiguous values
+fail closed. Existing App/credentials/four variables are reused, not recreated.
+The [owned staging sequence](../quality/frontend-runtime-integration-2026-10-26.md#exact-owned-pilot-staging-sequence)
+keeps this restriction through dry, live and monitor-only proof before conditional
+restoration. No value or workflow state has been changed in this preparation.
+
+To monitor the pilot's existing publication without another coding attempt, use
+the supported `monitor_only=true` input with `dry_run=false` and the same exact
+manual PR. It uses the existing full exact-head CI/visual/re-review path, current
+switches/actor/opt-in/whole-PR checks and App-owned state; it creates no journal or
+model-admission output. It is not a shortcut around missing visual acceptance.
 
 For an immediate comment request, an authorized human can start a top-level
 PR comment with `/agent-fix` and describe the finding. A command is optional:
@@ -210,15 +276,21 @@ frozen install, lockfile guard, high-severity dependency audit, source service-r
 containment, typecheck, lint, the 180-second unit-test gate, build, and built-bundle
 containment. The full existing database/recovery/browser CI is still required
 after publication. Readiness requires successful `verify`, `db`,
-`recovery-storage-loader`, `e2e` and `dashboard-e2e` jobs in a `ci.yml` PR run
+`recovery-storage-loader`, `e2e` and `checkpoint-admission` jobs in a `ci.yml` PR run
 associated with the new head; missing, skipped, neutral or cancelled jobs block
-readiness. Those PR runs use GitHub's test-merge checkout; the monitor binds the
-run to the new PR head rather than reusing a previous merge SHA's green checks.
+readiness for those required jobs. `dashboard-e2e` is optional release validation
+under current CI, not an unconditional ordinary requirement. The five names match
+current `classifyChecks`; the proposed trusted visual check is separate and must
+also pass where required. Current CI explicitly checks out the PR head; historical
+test-merge observations remain historical. The monitor binds the run to the new
+PR head rather than reusing a previous revision's green checks.
 
 ## Controlled pilot specification
 
-Proposed test PR: branch `codex/pr-feedback-pilot`, base `main`, opt-in label
-`agent-fix`. Do not create it until approved. Use only synthetic data and one
+Original proposed test PR: branch `codex/pr-feedback-pilot`, base `main`, opt-in label
+`agent-fix`; #100 now exists with failed dry-run history. Requalify its current
+head, freshness and attempt history rather than creating a duplicate or treating
+the old finding as fresh. Use only synthetic data and one
 listed presentation component, such as `src/components/crm/FormField.tsx`.
 A suitable intentional defect is omitting `aria-invalid` when `TextField` has
 an error. Human feedback should identify that exact defect and ask for a focused
@@ -232,12 +304,13 @@ fresh complete CI, correct pending/ready notifications and re-review only after
 CI. Also exercise opt-out and concurrent head update before publication, failed
 validation, and no-change/ambiguous feedback without falsely claiming success.
 The pilot's exact PR number, run IDs, commit and results must be recorded after
-approval. This specification is not hosted evidence.
+execution. The bounded paid/live effects are already authorized; this specification
+does not itself prove their prerequisites or success.
 
-The Vercel integration is evidenced by historical bot comments. Fixer pushes
-may cause existing Vercel preview builds and incur their costs, even though the
-fixer has no Vercel credential. Verify that integration's branch/deployment
-settings before the pilot. Production cannot be reached through a permitted
+The Vercel integration is evidenced by historical bot comments. Oct 26 read-only
+hosted inspection verified global automatic Preview disable; recheck it before
+any later publication/pilot, because this remains a required boundary. Production
+Git integration is enabled. Production cannot be reached through a permitted
 default-branch push because this fixer does not perform one. Repository
 Actions found during inspection do not deploy on ordinary feature-branch
 pushes; scheduled backup/availability workflows remain separately configured.
@@ -274,9 +347,12 @@ artifact storage, and any independently configured preview builds. Dry-run
 does not mean free. Job timeouts, attempt counts and artifact/file-size checks
 are hard workflow limits. They are not a dollar or token cap: inference may
 consume substantial tokens before a timeout, and API budget notifications are
-not necessarily hard spending stops. Use provider rate controls and verify the
-actual project's enforced limits. Account pricing and entitlements have not
-been inspected or assumed.
+not necessarily hard spending stops. Authenticated read-only inspection verified
+candidate-project allowed-model status and displayed rate limits, but did not
+prove stored-key mapping, billing readiness or hard-spend enforcement. Do not
+rely on unverified dollar controls or add a new mandatory hard-cap/spending
+approval gate. Keep account figures, usage and identifiers private; the existing
+paid authorization and workflow/file/time/attempt limits remain established.
 
 GitHub schedules can be delayed or dropped; polling recovers retained feedback
 on a later run but is not a real-time SLA or durable event queue. Human opt-in
@@ -322,7 +398,11 @@ and `initialize`/`initialized` followed by EOF shutdown. It sends no model turn,
 uses no App or OpenAI credentials, and does not create attempt journals.
 Its hosted result proves startup only; it does not replace the paid pilot.
 
-Hosted verification remains blocked on the owner-approved setup and paid pilot.
+Hosted verification remains blocked on technical/default-main bootstrap and
+successful execution evidence for the already-authorized bounded paid pilot.
+The Oct 26 exact-main baseline and fresh credential-free #103 preflight are
+recorded in the dated runtime integration assessment. They establish their
+bounded CI/startup results, not paid-loop success or the failed #109 cleanup cause.
 Local deterministic fixtures use mocked GitHub data and cannot establish real
 App permissions, environment isolation, action sandboxing, billing, downstream
 CI behavior or notification delivery. Record those separately after the pilot.

@@ -1,0 +1,128 @@
+{
+  "schema": "ROOT_ACCEPTED_FINITE_TERMINAL_ALLOCATION_V1",
+  "recorded_at_utc": "2026-10-23T18:19:09.218002+00:00",
+  "authority": "Standing human authority and actual completed Coordinator finite terminal-acquisition allocation.",
+  "actual_turn": "01a169fb-b416-7973-bcba-0da4884007f2",
+  "turn_status": "completed",
+  "actual_tool": "exec-f22a60ff-9f28-4c0a-bc34-8318d9aaf0b7",
+  "tool_status": "completed",
+  "actual_verification_tool": "exec-ffb20765-8177-41ab-b507-1f80781487e5",
+  "verification_native_exit": 0,
+  "actual_read": "Root read_thread observed idle/completed turn, actual completed granttool and native0 completed verification command; full returned metadata retained in functionsstore StartupConfirmationTerminalGrantActualRead.",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "run_id": 39998246278,
+  "attempt": 1,
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "checkpoint_id": "06c4e602-246c-465d-b858-802be78c9ba1",
+  "operation_id": "d891e444-e6d5-401f-bd00-0a4b85b701e9",
+  "repo": "rthunborg/Kopplas",
+  "workflow_id": 296219797,
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/reader.py",
+      "bytes": 52636,
+      "sha256": "a17536afc1210860ab0dc30eb81192eb73649f36ad5926ee8fb739834deb3350"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26118,
+      "sha256": "4413a9d5c3b18bd78e93c59597a4dc191339893c8b7053c12046772e8033a104"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/proposal.json",
+      "bytes": 114155,
+      "sha256": "776efa41a4cf89059f20fac7f54d783fc2dc1b38c2ca82c45ad17249c9783ca4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/manifest.json",
+      "bytes": 1177,
+      "sha256": "77608d38874c01f6b68b4c8a4dcd6133c13ebf3a83d500f6e1499d12c8d8d743"
+    }
+  ],
+  "independent_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-reader-operational-review.json",
+    "bytes": 16956,
+    "sha256": "69a532d8903b71153b5c8138bb98a6be336614b6f6e8ffc5124f6666320be905"
+  },
+  "root_closed_ownership": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-actual-root-ownership.json",
+    "bytes": 79518,
+    "sha256": "7baf9adcead6efd03f2795982bd36f71bcf4fbf8f7ccc748315464c85368ac24"
+  },
+  "effects": {
+    "invocations": 1,
+    "logical_GETs_max": 5,
+    "owned_archive": 1,
+    "artifact_listing": 1,
+    "artifact_list_page": 100,
+    "eligible_native_ZIPs_max": 3,
+    "each_unique_report_max": 1,
+    "eligibility": "Exact owned run/head, unexpired, positiveID,digest-qualified; missing/ineligible DBreport staysABSENT/zero coverage; no fallback/download.",
+    "native_report_names": [
+      "native-full-integration/full-integration.json",
+      "native-general-browser/general-browser.json",
+      "native-isolated-storage-recovery/isolated-storage-recovery.json"
+    ]
+  },
+  "caps": {
+    "per_GET_LOOP_seconds": 15,
+    "per_GET_same_child_wait_seconds": 2,
+    "per_GET_reader_joins": 2,
+    "per_GET_each_join_seconds": 1,
+    "ZIP_bytes": 33554432,
+    "list_bytes": 4194304,
+    "list_entries": 100,
+    "selected_entry_bytes": 16777216,
+    "declared_and_actual_inflate_bytes": 134217728,
+    "stderr_bytes": 65536,
+    "SOURCE_LABEL_channel_ONLY_bytes": 32768,
+    "generic_projection_cap": null,
+    "outer_reader_capture_LOOP_seconds": 120,
+    "outer_same_child_wait_seconds": 2,
+    "outer_reader_joins": 2,
+    "outer_each_join_seconds": 1,
+    "interpretation": "Cooperative LOOP with explicit cleanup tails, not strict totalwall. Outer observation never changes perGET caps or request budget."
+  },
+  "preconditions": [
+    "Combined current review includes helper-v2 exactpin; v2 requires exact currentreportref==completedgrant.independent_review before proof/activation writes. Obsolete v1 unexecuted.",
+    "Fresh clean204Git/86nonSQLrawLF/118Git-only historicalvectors/75source/10triggers/install/Gitproof<=300s.",
+    "Exclusive fsynced23fieldactivation and oncejournal.",
+    "All former operational/terminal grants remain closed; output scope must not exist."
+  ],
+  "handling": "RawZIP/log/secret values RAM-only; existing closedprojections only. Capture actual outsidechunk/session/waits/wall/nativeexit/fullEOFjoinedclosedsettled and exactinventory. Refusal/partial/unknown/nonzero/cap/digest/structurefailure STOP consumes and closes unused, no retry/refetch/pagination/perjob/status/otherGET.",
+  "excluded_effects": [
+    "provider GET or write",
+    "Gitnetwork or mutation",
+    "push",
+    "POST",
+    "admissionvariables",
+    "local resources",
+    "otherCI",
+    "merge",
+    "deployment",
+    "demo",
+    "dbpush"
+  ],
+  "output_scope": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edf966cc-normal-startup-confirmation-ci-independent",
+  "normal_acceptance": 0,
+  "source_cause_counts_custody": "UNKNOWN until distinct actual qualification. CurrentDBstartup7P/reset8P/integration11F/upload12P/stop13P confer no case/cause/privacyorigin/key/backendsettlement evidence.",
+  "P5": "OPEN",
+  "review_counter": 3,
+  "same_review_Root_helper_v2": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-root-admission-v2.py",
+    "bytes": 6871,
+    "sha256": "3317237c7cfbf15646cde3d3dbd7e9cf7bbd5aa9bb8a3babdb0353a2abcae9f5"
+  },
+  "no_next_NORMAL_authority": true
+}

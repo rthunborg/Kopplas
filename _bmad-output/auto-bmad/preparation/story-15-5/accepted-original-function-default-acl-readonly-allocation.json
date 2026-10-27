@@ -1,0 +1,34 @@
+{
+  "schema": "accepted-original-function-default-acl-readonly-allocation-v1",
+  "status": "ALLOCATED_EXACT_REVIEWED_ONE_SHOT",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_turn": "01a15e4e-52d2-7650-b018-13dc5bfd19b4",
+  "grant_tool": "exec-f8c38219-831f-4757-aa78-d1545c2dd487",
+  "final_message": "msg_0954b60b44796db1016ad8a7ad27548191a0262844d9997681",
+  "inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-default-acl-readonly-01/probe.sql",
+      "bytes": 5409,
+      "sha256": "58060efbeb6284316cbd225ea8107d0ada08fde1a272b38afb5be1b2fea3a79b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-default-acl-readonly-01/proposal.json",
+      "bytes": 6450,
+      "sha256": "4f5c2971f618a9773df66386f561512ad5831475f59d27256620fee29ce743fa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-default-acl-readonly-01-runner.py",
+      "bytes": 10192,
+      "sha256": "9d6bf741bc2ceaa7b063326a2d61d11e19c5c839a35622c0409a63570745a739"
+    }
+  ],
+  "review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-default-acl-readonly-review-admission.json",
+    "bytes": 1155,
+    "sha256": "b6cbb6a139c63b4f30986d895148f57cb03eb5f00d46e93a7b0cef688349174b"
+  },
+  "effects": "One fresh guarded usage of same owned b03/compose/image/loopback61521+22/nativePG17.6/full102prefix, qualified ordinary postgres read-only one fixed SELECT, exact time/stream caps/closed facts. New once marker and activation; no retry, alternate principal/target or extra cleanup query. Stop own usage, preserve data.",
+  "preserve": "No roles, session elevation, ACL/default/DDL, function invocation, fixture, business/Auth/token data, source/migrations/replay/reset/CI/provider/main/deploy/foreign effects. Monitoring paused.",
+  "meaning": "Local ACL direct facts only, no hosted cause/source fix/CI retry authority.",
+  "normal_acceptance_credit": 0
+}

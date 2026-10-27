@@ -1,0 +1,226 @@
+{
+  "status": "CLOSED_EVIDENCE_ONLY_NO_EXECUTION_AUTHORITY",
+  "copies": [
+    {
+      "source_path": "C:/DEV/Kopplas/_bmad-output/planning-artifacts/design-transition-2026-10-23/approval-and-application.json",
+      "source_pin": {
+        "bytes": 7471,
+        "sha256": "feec72a6a5be193fa26058b49b6010dd121b86e2aec682563225ad2e9129d959",
+        "LF_bytes": 7330,
+        "LF_sha256": "912eb36f2dda51935d989fe307d4e57dcf076d7f5254408353833403a9475f1d",
+        "LF_Git_blob_SHA1": "12c9c109a899bdb23a1e5141c0627a26059f5a8d"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/epic-15/design-authority-delivery/approved-primary-register-historical.json",
+      "tracked_pin": {
+        "bytes": 7470,
+        "sha256": "02c409c03d076ab46436ca12a0f6acc22e5fa51ebce2ca4cda1a1192764c9afb",
+        "LF_bytes": 7330,
+        "LF_sha256": "912eb36f2dda51935d989fe307d4e57dcf076d7f5254408353833403a9475f1d",
+        "LF_Git_blob_SHA1": "12c9c109a899bdb23a1e5141c0627a26059f5a8d"
+      },
+      "transfer": "JSON-equivalent EOF blank-line normalization only",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-annex-critical-conflict-assessment-high.json",
+      "source_pin": {
+        "bytes": 16962,
+        "sha256": "176c0f6a6ffeb7cf5e6d557b87cb9903314910f1471bef2d8a9eecb9101b4832",
+        "LF_bytes": 16781,
+        "LF_sha256": "0f002f71b31ee022e2fe18662f65d0bddde7263078f0004fabe1553a0edfa2f3",
+        "LF_Git_blob_SHA1": "0ac7d6fe3e0eae87f21ead8e835a8e9fef9f78d1"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/epic-15/design-authority-delivery/critical-conflict-plan.json",
+      "tracked_pin": {
+        "bytes": 16962,
+        "sha256": "176c0f6a6ffeb7cf5e6d557b87cb9903314910f1471bef2d8a9eecb9101b4832",
+        "LF_bytes": 16781,
+        "LF_sha256": "0f002f71b31ee022e2fe18662f65d0bddde7263078f0004fabe1553a0edfa2f3",
+        "LF_Git_blob_SHA1": "0ac7d6fe3e0eae87f21ead8e835a8e9fef9f78d1"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-four-path-delivery-author/result.json",
+      "source_pin": {
+        "bytes": 9283,
+        "sha256": "fb531a17b48a6773cf84b82fda3cb6444e0b50d3e72f9991b88b03713a9858fa",
+        "LF_bytes": 9283,
+        "LF_sha256": "fb531a17b48a6773cf84b82fda3cb6444e0b50d3e72f9991b88b03713a9858fa",
+        "LF_Git_blob_SHA1": "9dad57910eadbadbc5b8831032efe6fea0556e7c"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/epic-15/design-authority-delivery/four-path-author-result.json",
+      "tracked_pin": {
+        "bytes": 9283,
+        "sha256": "fb531a17b48a6773cf84b82fda3cb6444e0b50d3e72f9991b88b03713a9858fa",
+        "LF_bytes": 9283,
+        "LF_sha256": "fb531a17b48a6773cf84b82fda3cb6444e0b50d3e72f9991b88b03713a9858fa",
+        "LF_Git_blob_SHA1": "9dad57910eadbadbc5b8831032efe6fea0556e7c"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-seven-reference-delivery-author/result.json",
+      "source_pin": {
+        "bytes": 3771,
+        "sha256": "78e82e6aea234ca50ae89e245a6432221359d64a0d09047595a51c78c04e75d3",
+        "LF_bytes": 3771,
+        "LF_sha256": "78e82e6aea234ca50ae89e245a6432221359d64a0d09047595a51c78c04e75d3",
+        "LF_Git_blob_SHA1": "44a07e0234455b5ff5449684a5c2404ad695f658"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/epic-15/design-authority-delivery/seven-reference-author-result.json",
+      "tracked_pin": {
+        "bytes": 3771,
+        "sha256": "78e82e6aea234ca50ae89e245a6432221359d64a0d09047595a51c78c04e75d3",
+        "LF_bytes": 3771,
+        "LF_sha256": "78e82e6aea234ca50ae89e245a6432221359d64a0d09047595a51c78c04e75d3",
+        "LF_Git_blob_SHA1": "44a07e0234455b5ff5449684a5c2404ad695f658"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-eleven-path-independent-review.json",
+      "source_pin": {
+        "bytes": 19211,
+        "sha256": "ce29b4423df77c8c820c9444c8c4591ff46c7aa8aa9df916a458e30354688402",
+        "LF_bytes": 18930,
+        "LF_sha256": "723aba38818bc94d7f7a20c61bc5a4c8be4a5ef3a747f4e936fae1889b49cd88",
+        "LF_Git_blob_SHA1": "fcdaaf806be0dd3c88ce31b3026d939cb6243844"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/epic-15/design-authority-delivery/eleven-path-preservation-review.json",
+      "tracked_pin": {
+        "bytes": 19211,
+        "sha256": "ce29b4423df77c8c820c9444c8c4591ff46c7aa8aa9df916a458e30354688402",
+        "LF_bytes": 18930,
+        "LF_sha256": "723aba38818bc94d7f7a20c61bc5a4c8be4a5ef3a747f4e936fae1889b49cd88",
+        "LF_Git_blob_SHA1": "fcdaaf806be0dd3c88ce31b3026d939cb6243844"
+      },
+      "transfer": "byte-exact closed JSON",
+      "omitted_capture_paths": []
+    },
+    {
+      "source_path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-EOF-only-independent-followup.json",
+      "source_pin": {
+        "bytes": 13747,
+        "sha256": "ca181266259c206b66ade7485f10e79d06c5073195e17efcda3b7ae74d778802",
+        "LF_bytes": 13747,
+        "LF_sha256": "ca181266259c206b66ade7485f10e79d06c5073195e17efcda3b7ae74d778802",
+        "LF_Git_blob_SHA1": "018283b31082ec2a30b1dd3e1d50c2715cf5a477"
+      },
+      "tracked_path": "_bmad-output/auto-bmad/preparation/epic-15/design-authority-delivery/eof-followup-closed-metadata.json",
+      "tracked_pin": {
+        "bytes": 11751,
+        "sha256": "fe2266b0df98ae5ede34ee21e619b32772c2f0bf5960c267828806e9ba169433",
+        "LF_bytes": 11751,
+        "LF_sha256": "fe2266b0df98ae5ede34ee21e619b32772c2f0bf5960c267828806e9ba169433",
+        "LF_Git_blob_SHA1": "68ba25bd75d49b34988da5bc0c2c33aac323d7ab"
+      },
+      "transfer": "Closed metadata projection: omit bounded Git capture bodies only; retain verdict, native statuses, interpretation, pins and conservation",
+      "omitted_capture_paths": [
+        "/Status/whitespace_checks/0/stdout",
+        "/Status/whitespace_checks/0/stderr",
+        "/Status/whitespace_checks/1/stdout",
+        "/Status/whitespace_checks/1/stderr",
+        "/Status/whitespace_checks/2/stdout",
+        "/Status/whitespace_checks/2/stderr",
+        "/Status/whitespace_checks/3/stdout",
+        "/Status/whitespace_checks/3/stderr",
+        "/Status/whitespace_checks/4/stdout",
+        "/Status/whitespace_checks/4/stderr",
+        "/Status/whitespace_checks/5/stdout",
+        "/Status/whitespace_checks/5/stderr",
+        "/Status/whitespace_checks/6/stdout",
+        "/Status/whitespace_checks/6/stderr",
+        "/Status/whitespace_checks/7/stdout",
+        "/Status/whitespace_checks/7/stderr",
+        "/Status/whitespace_checks/8/stdout",
+        "/Status/whitespace_checks/8/stderr",
+        "/Status/whitespace_checks/9/stdout",
+        "/Status/whitespace_checks/9/stderr",
+        "/Status/whitespace_checks/10/stdout",
+        "/Status/whitespace_checks/10/stderr",
+        "/Status/whitespace_checks/11/stdout",
+        "/Status/whitespace_checks/11/stderr"
+      ]
+    }
+  ],
+  "facts": {
+    "status": "INDEPENDENT_PRESERVATION_AND_EOF_METADATA_PASS_NO_STORY_READINESS",
+    "source_commit": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+    "High_review": "_bmad-output\\auto-bmad\\preparation\\epic-15\\design-authority-delivery\\eleven-path-preservation-review.json",
+    "Low_EOF_followup": "_bmad-output\\auto-bmad\\preparation\\epic-15\\design-authority-delivery\\eof-followup-closed-metadata.json",
+    "Root_actual_reads": [
+      "87dbdf/native0",
+      "e0176e/native0"
+    ],
+    "classification": "7rawexactcopies/3EOF-onlynormalizedapprovedcopies/1three-area-derivedannex",
+    "derived_annex_raw_sha256": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+    "source_register": "historical PRIMARY approved after-image; not a claim derived local annex matches source after_sha256",
+    "preserved": "E15Team/UXB-A9/ContractD/full4.5-4.7 obligations, DT current authority/headless amendments, Oct15 no legacy observation",
+    "missing_markdown_targets": [
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-10-23-design-transition.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/review-rubric.md"
+    ],
+    "link_limit": "Inherited2targets/3occurrences limit wholepackage/proposal/raw-review completeness; present canonical/E15 authority usable within assessed limits; obtain missing detail separately only if future work depends on it.",
+    "whole_package_complete": false,
+    "story15_6": "UNSTARTED; waits15.5 landing and own approved/validated spec",
+    "implementation_readiness": false,
+    "foreign_writes": 0,
+    "deployment": false
+  },
+  "private_retained_refs_not_copied": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-design-authority-four-path-reconciled-delivery-allocation.json",
+      "bytes": 6038,
+      "sha256": "80de09fe24629019646657526e80e1ff7f934b4edcc86976492f736a7194f5ab",
+      "LF_bytes": 5922,
+      "LF_sha256": "cc6de1358e4bc5ce5584bd850480e3467dcb5b644265de8aa7cd2ea4ca0025fb",
+      "LF_Git_blob_SHA1": "db3f778bf20da061f518291e7c1e58936c3bd47d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-design-authority-seven-reference-delivery-allocation.json",
+      "bytes": 4736,
+      "sha256": "693c3b199cfe47e705c41e4288751b53245ec9ad852dcb47fb6627332662f082",
+      "LF_bytes": 4652,
+      "LF_sha256": "e8c00387919e508c9b92614f7744dfd5b554c2a6a13fa37a8e489457dfbb3859",
+      "LF_Git_blob_SHA1": "e65b51d6aa103183038e62349ba84a2716118cfb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-design-authority-three-doc-eof-formatting-allocation.json",
+      "bytes": 7929,
+      "sha256": "f2d20dbb71af7e3da46bf56d5b3a1782fa64c3de40bbb2bc28c92e313db87514",
+      "LF_bytes": 7777,
+      "LF_sha256": "c286417decf1c188046be499eb303dfcc12189aff133332838dc03d29da0678d",
+      "LF_Git_blob_SHA1": "5a1162749f797576e97a0795b79acad47d269a49"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-four-path-delivery-author/preservation.json",
+      "bytes": 28885,
+      "sha256": "678d0f239c10dcd9a8551aabdc6e4ed69acce706e92f1d258a481d12d34d1384",
+      "LF_bytes": 28885,
+      "LF_sha256": "678d0f239c10dcd9a8551aabdc6e4ed69acce706e92f1d258a481d12d34d1384",
+      "LF_Git_blob_SHA1": "03501991bca745710f0171628096f0336475c577"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-seven-reference-delivery-author/preservation.json",
+      "bytes": 45770,
+      "sha256": "a1c08274498555aa5ae92ee8370ea1b30e5bbea42896a20ee8f5a7a9971a28e5",
+      "LF_bytes": 45770,
+      "LF_sha256": "a1c08274498555aa5ae92ee8370ea1b30e5bbea42896a20ee8f5a7a9971a28e5",
+      "LF_Git_blob_SHA1": "0dd50999237b12c368bf79f681f104341abca572"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-three-doc-eof-normalization.json",
+      "bytes": 11756,
+      "sha256": "1c1dde758c9029a35e1ea3299fbfd103ad78d5f56eddecc72a21602d534e8123",
+      "LF_bytes": 11756,
+      "LF_sha256": "1c1dde758c9029a35e1ea3299fbfd103ad78d5f56eddecc72a21602d534e8123",
+      "LF_Git_blob_SHA1": "ae4445c2eaa1d32ed6175a660c45ab94feb949e8"
+    }
+  ],
+  "normalization": "Raw/LF/Git-blob pins are distinct; no raw equality across Git newline normalization. EOF-only changes/projection explicit per copy.",
+  "no_live_capabilities": "No executable operator/helper/refresh script, raw provider/ZIP/runtime log/SQL/capability or raw Git capture body copied. Historic allocations are evidence, not replay authority."
+}

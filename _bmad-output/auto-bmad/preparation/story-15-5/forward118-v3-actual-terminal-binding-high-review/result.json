@@ -1,0 +1,32 @@
+{
+  "Outcome": "PASS_PRE_EFFECT_FORWARD118_V3_TERMINAL_BINDING_SOURCE_ONLY",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "run": 39710514719,
+    "head": "193361acf6cc6b0d8275bff41470f647e2404b34",
+    "UUID": "fc6f206d-b3ac-4393-884e-49d98b922a30",
+    "attempt": 1,
+    "substitutions": 5,
+    "inverse_bytes": 50719,
+    "inverse_sha256": "bdd99f4e7db387175d68c82b1a6122a3c000a8c54401f58966b70507bc6dbfe5",
+    "unchanged_definitions": 35,
+    "helpers": 16,
+    "terminal_jobs": 9,
+    "source206_catalog410_dynamic19": "unchanged reused",
+    "budget27213": "reused",
+    "Root_fresh_proof523": "bound cda74728;Root206/618/118",
+    "activation_output": "absent",
+    "controls_API_Git": 0,
+    "findings": 0,
+    "acceptance": 0,
+    "counter": 3
+  },
+  "Open questions": "Actual acquisition counts/discriminator/causes/custody remain UNKNOWN.",
+  "Deferred work": "Separate completed acquisition allocation and exclusive Root activation; subsequent evidence qualification.",
+  "Blockers": "None in this finite source-binding audit. Current DB/E2E failure remains; PASS grants no acquisition authority."
+}

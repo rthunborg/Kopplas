@@ -1,0 +1,22 @@
+{
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_grant_turn": "01a15f1a-4f9f-7362-9f07-b8baa3b9c38a",
+  "human_message": "01a15f19-b0c7-74c3-bb36-654971a55868",
+  "human_turn": "01a15f19-acd9-7261-80ac-8660a2d5abb3",
+  "human_text": "You are authorized and approved for all of those things",
+  "coordinator_independent_human_verification_tools": [
+    "exec-6fc6b17e-62da-4c21-96f1-042aed138d0b",
+    "exec-5729bbd5-7131-47e2-b81b-47cbf90422ff"
+  ],
+  "checkpoint_head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+  "source_head": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "checkpoint_id": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+  "prior_rejection_preserved": true,
+  "normal_acceptance_credit": 0,
+  "schema": "accepted-direct-matrix-ci-operation-allocation-v1",
+  "status": "GRANTED_EXACT_ONCE",
+  "grant_tool": "exec-fc1cc7a4-48d9-4466-9c23-8bd828f64da8",
+  "effects": "Checked-in seven fixed preflight GETs, exclusive fsynced receipt and sole POST causeprooftrue/releasefalse/allotherdiagnosticsfalse, Root sole bounded status poller. Admission/verify/db only. Every expected/unexpected-success hosted disposable startup/reset-seed/Auth fixture/Vault/ordinary JWT owned writes/conditional unmodified restricted SQL baseline/rollback/same-fresh checks/scoped owned-ID replication-role cleanup/canonical Auth absence/key deletion or retained custody/v2 privacy validation upload/owned stack-stop effect from independently reviewed readiness addendum explicitly admitted.",
+  "readiness_addendum_sha256": "482b9816c05e5a8ff02694d998a05ccade4e0a87e2f7b20509cb6401408a1519",
+  "exclusions": "No retry/variables/persistent secrets/provider/demo/production/defaultbranch/mainmerge/deploy/foreign resource/monitor resume. Freeze111 on actual successful application; forward-only thereafter."
+}

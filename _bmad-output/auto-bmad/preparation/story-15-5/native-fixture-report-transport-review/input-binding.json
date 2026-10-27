@@ -1,0 +1,212 @@
+{
+  "kind": "exact-committed-pure-sanitized-error-report-transport-latest-fix-only",
+  "before": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+  "source_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "source_state": "EXACT_COMMITTED_APPEND_ONLY_THREE_PATH_NO_POSTCOMMIT_SPEC_DELTA",
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "input_bytes": 142458,
+  "input_sha256": "038ef738b106fadb8eeeb25eb2b1c143ff3693196356792e982cf5c025b270e7",
+  "diff_bytes": 40229,
+  "diff_sha256": "408138ac637c719229eef7b025eb030c46efedfba9fc432514631a71de22aae7",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 101920,
+      "raw_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a",
+      "actual_git_clean_oid": "d8768abae03342de2f424a9a24b4f43e416bda6d",
+      "normalized_bytes": 101920,
+      "normalized_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a",
+      "head_blob_oid": "d8768abae03342de2f424a9a24b4f43e416bda6d",
+      "head_blob_bytes": 101920,
+      "head_blob_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "e3a0be84e71e742b2350c8fa3759194009bdef9d",
+      "baseline_bytes": 97007,
+      "baseline_sha256": "29b26c72b18bacb3e7ed193f6cf7fb32486dd8c208cc574586df0733c9f1cf02"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 66919,
+      "raw_sha256": "c04a8041429361b1cb1cbfa21394bc8f12032c7a58d752e269851c0a10e05349",
+      "actual_git_clean_oid": "d712a086a457a7e71ab8c8028e4803674658838c",
+      "normalized_bytes": 66195,
+      "normalized_sha256": "adc846f77f7213fc8153ba325d72585d448930e9f3c21a85d17854ab180cfd7b",
+      "head_blob_oid": "d712a086a457a7e71ab8c8028e4803674658838c",
+      "head_blob_bytes": 66195,
+      "head_blob_sha256": "adc846f77f7213fc8153ba325d72585d448930e9f3c21a85d17854ab180cfd7b",
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "169091c23c13c115f83fef4a817bb3712afdbbb1",
+      "baseline_bytes": 65871,
+      "baseline_sha256": "a9daefd6205276f2ca45a7860ca25ff6ed8b6b482084bd463bb52e06fd427b44"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 88963,
+      "raw_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+      "actual_git_clean_oid": "6bd5ce61427c7e77203b64bf35e1765be2de3877",
+      "normalized_bytes": 88963,
+      "normalized_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+      "head_blob_oid": "6bd5ce61427c7e77203b64bf35e1765be2de3877",
+      "head_blob_bytes": 88963,
+      "head_blob_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "678a980c2eb9d64ebc4071b0757dac304b497a68",
+      "baseline_bytes": 81852,
+      "baseline_sha256": "4e1ca1def4f81e8047a352133553aec91bff4e4835230a463d257a1c4eb99921"
+    }
+  ],
+  "helper_context": {
+    "path": "tests/support/calendar-feed-atdd.ts",
+    "complete": true,
+    "bytes": 66195,
+    "sha256": "adc846f77f7213fc8153ba325d72585d448930e9f3c21a85d17854ab180cfd7b"
+  },
+  "unit_context": {
+    "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "full_blob_bytes": 88963,
+    "full_blob_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+    "included_lines": [
+      576,
+      772
+    ],
+    "included_bytes": 15337,
+    "included_sha256": "724a7c74fcc6574f0273e28932eabe07b869f5658a84832041f234aa08072226"
+  },
+  "installed": [
+    {
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/dist/chunk-artifact.js",
+      "bytes": 119048,
+      "sha256": "c10a7a80fca65fb42e27eabf7655c5ce5ecf36e8aaeb1811499efd063df62556",
+      "included_lines": [
+        3055,
+        3074
+      ],
+      "included_lf_bytes": 573,
+      "included_lf_sha256": "1e8dc3f597228659522eff70627f3464affb0de1aba158ece17278cb61eb0aa9"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/error.js",
+      "bytes": 1473,
+      "sha256": "2ce5a75a4a775415c4c8642e9c608d6c9334271d0eb4e586ac6a853d47c24c97",
+      "included_lines": [
+        1,
+        44
+      ],
+      "included_lf_bytes": 1473,
+      "included_lf_sha256": "2ce5a75a4a775415c4c8642e9c608d6c9334271d0eb4e586ac6a853d47c24c97"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/serialize.js",
+      "bytes": 3677,
+      "sha256": "abed14f12f71519d897c9626bc18f71f2e69bea3fb552d0d907f1ca882455b29",
+      "included_lines": [
+        1,
+        118
+      ],
+      "included_lf_bytes": 3677,
+      "included_lf_sha256": "abed14f12f71519d897c9626bc18f71f2e69bea3fb552d0d907f1ca882455b29"
+    },
+    {
+      "path": "node_modules/.pnpm/vitest@4.1.9_@types+node@20_dd0c506e006b7a7a7c5015e13867d163/node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+      "bytes": 151531,
+      "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798",
+      "included_lines": [
+        3522,
+        3629
+      ],
+      "included_lf_bytes": 4334,
+      "included_lf_sha256": "eb040f89819da9036a0f5f120bb349e06f0db4bb5fb7e33f762d23870270830d"
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/local-checks.json",
+      "bytes": 2569,
+      "sha256": "6d3bb42e7469c5503af9e14963d41e17812132232bcf5a6e33e3e6030e5304cc",
+      "included_lf_bytes": 2569,
+      "included_lf_sha256": "6d3bb42e7469c5503af9e14963d41e17812132232bcf5a6e33e3e6030e5304cc"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/author-route.json",
+      "bytes": 1420,
+      "sha256": "279c7753fac346a121689cfc2c5c3054aa1ea41c46e6e9a3b30b7d1ad418a3a1",
+      "included_lf_bytes": 1420,
+      "included_lf_sha256": "279c7753fac346a121689cfc2c5c3054aa1ea41c46e6e9a3b30b7d1ad418a3a1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-fixture-report-transport-repair.json",
+      "bytes": 3075,
+      "sha256": "0df4bb27eecb06d59f970cd11de7bda8c2f78498039cf87f47bd678d6328e23e",
+      "included_lf_bytes": 3036,
+      "included_lf_sha256": "2eb43afbc4913bdaa9f4515dbef4b512e9336d12ff1c73f970c065d3a54a7d80"
+    }
+  ],
+  "root_route": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "mutable_raw_bytes_unverified_uncredited": 86698,
+    "mutable_raw_sha256_unverified_uncredited": "9750efe826a019e063d230fb8d395f64399f136c18fc0e91b1136da951871211",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 642,
+    "included_lf_sha256": "642f743d0380940754152cecb79d80b96db8d9ec8e96ea10252cbfa32fe12462",
+    "source_commit_excluded": true
+  },
+  "eighth_native_failure": {
+    "run": 39492715549,
+    "head": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+    "conclusion": "FAILURE",
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3e7b6131-ci-independent/manifest.json",
+      "bytes": 5092,
+      "sha256": "0c391a7aba536b6d6b9ba4de76573ae8c15430575b3211ef72d9a82cbd3d431f"
+    },
+    "Root_integrity_only_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-3e7b6131-packet-admission.json",
+      "bytes": 1227,
+      "sha256": "56cea3c9e905095589afab9fa30c68b9a228699ef9bbfd75acffffe896be5ad4"
+    },
+    "failure_leaf_availability": "NOT_SERIALIZED",
+    "actual43causes": "UNKNOWN_NOT_OBSERVABLE_IN_REPORT",
+    "current_native": "PENDING_ROOT_EXACT_HEAD_CI",
+    "no_raw_native_output_included": true
+  },
+  "prior_capsule_immutable": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-feature-five-path-repair.json",
+    "bytes": 547268,
+    "sha256": "496ecf7db6c475f26d4afbace6af8912d640c04e2043cf6840099920e95e9f78"
+  },
+  "review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_context_free": true,
+    "latest_serious_fix_only": true,
+    "no_fourth_broad": true
+  },
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "kernel_bytes": 5760,
+  "suggested_review_order_body_lf_sha256": "fad6cabeec4e2a41d9ff3d5072db7be27b58fd28e11f780fe34105a5b3a8f4a6",
+  "literal_stops": 52,
+  "actual_separate_node_cases": 61,
+  "native_credit_for_controls": 0,
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/local-checks.json",
+    "bytes": 2569,
+    "sha256": "6d3bb42e7469c5503af9e14963d41e17812132232bcf5a6e33e3e6030e5304cc"
+  },
+  "preparation_generator": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-fixture-report-transport-review/prepare-input.mjs",
+    "bytes": 13614,
+    "sha256": "5e769b533c5b777622d01a218b697cf8a2facb282b9e2cddc93ccbb7dc3fa52b"
+  },
+  "normalization": "Actual raw and --path clean/OID/native HEAD blobs separately bound; no assumed CRLF equality.",
+  "source_edits_after_freeze_allowed": false
+}

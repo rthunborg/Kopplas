@@ -1,0 +1,23 @@
+{
+  "schema": "POST_F1_LOCATION_PLAN_REVALIDATION_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/report.md",
+      "bytes": 2500,
+      "sha256": "abc499acc6551c51c50cdfd5e07f34a7025be635f4dfc4401b85b236ef769fca"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/attestation.json",
+      "bytes": 7223,
+      "sha256": "8b588fad598c4afd2603fc9b3166367e98a95ea5fca91c2d5a611feb31ec94e4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/result.json",
+      "bytes": 1167,
+      "sha256": "46ee9912a0eafe6b7cdbfdb5bfb1eafff1a1d3cf9b0a14a98a5bb9c132515479"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 4,
+  "normal_acceptance": 0
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "ROOT_CANONICAL_STAGE1_DELIVERY_GATE_ACTUAL_V1",
+  "canonical_record": "_bmad-output/auto-bmad/delivery/15-5-personal-calendar-feed-adr-b004-surface-1.json",
+  "record_bytes": 10984,
+  "record_sha256": "e02e2ffebdac2f93e5ff58871cc6273730793cfeb50cf1d474c9837460a83d44",
+  "actual_tool": "970749",
+  "native_exit": 0,
+  "actual_result": {
+    "ok": true,
+    "development_complete": true,
+    "errors": [],
+    "approval_granted": false
+  },
+  "canonical_helper": "Ownedworktree .agents/skills/auto-bmad/scripts/delivery_gate.py existingruninstallation",
+  "discovery_note": "PrimaryCDEVhelperpath absent7e1725; boundedhelp/filename-discovery only, no gate credit. Currentrunownedhelperfound/used withoutsetup orupgrade.",
+  "targeted_truth_provenance_review_pending": true,
+  "P6_P7_pending": true,
+  "stage2_not_yet_allocated": true,
+  "no_release_or_deployment_approval": true,
+  "at": "2026-10-25T07:47:22.128721+00:00"
+}

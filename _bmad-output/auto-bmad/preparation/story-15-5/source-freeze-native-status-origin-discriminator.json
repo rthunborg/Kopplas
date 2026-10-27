@@ -1,0 +1,3021 @@
+{
+  "schema_version": 14,
+  "kind": "AUTHOR_COMPACT_STATUS_ORIGIN_SOURCE_FREEZE",
+  "prepared_at_utc": "2026-10-21T07:50:42.829993+00:00",
+  "status": "IN_REVIEW_STATUS_ORIGIN_NATIVE_UNEXECUTED",
+  "not_delivery_record": true,
+  "development_complete": false,
+  "release_ready": false,
+  "author_scope": "Exactly one allocated JSON; no producer/verifier/log/source/Spec/Git/native/private-consumer writes or effects.",
+  "git": {
+    "canonical_base": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+    "source_head": "8efb90e5038874c672df120651041176a70b1f2f",
+    "source_is_author_commit_not_pushed_checkpoint": true,
+    "base_before": "93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf",
+    "latest_pushed_checkpoint": "93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf",
+    "source_tree_oid": "8180d2e94f8ebc2654a2d24ad63e4be507e4dbda",
+    "source_paths": [
+      ".github/workflows/ci.yml",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "docs/security/calendar-feed-operations.md",
+      "middleware.ts",
+      "ops/recovery/bootstrap-roles.sql",
+      "package.json",
+      "pnpm-lock.yaml",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "scripts/verify/check-service-role-containment.mjs",
+      "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "src/app/(public)/calendar/feed/[token]/route.ts",
+      "src/app/(public)/layout.tsx",
+      "src/components/app-shell/AppShell.tsx",
+      "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "src/components/calendar-feed/CalendarSubscription.tsx",
+      "src/components/scheduling/PersonalCalendarView.tsx",
+      "src/features/calendar-feed/action-state.ts",
+      "src/features/calendar-feed/actions.ts",
+      "src/features/calendar-feed/icalendar.ts",
+      "src/features/calendar-feed/types.ts",
+      "src/features/calendar-feed/validation.ts",
+      "src/scope/manifest.ts",
+      "src/server/calendar-feed/attestation.ts",
+      "src/server/calendar-feed/policy.ts",
+      "src/server/calendar-feed/public-feed.ts",
+      "src/server/calendar-feed/trusted-ip.ts",
+      "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "src/server/commands/envelope.ts",
+      "src/server/db/supabase-public-client.ts",
+      "src/server/read-models/calendar-feed.ts",
+      "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/components/calendar-feed.test.ts",
+      "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "tests/integration/rls/migration-reset.int.test.ts",
+      "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "tests/integration/rls/tenant-table-inventory.ts",
+      "tests/support/authz/role-harness.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "tests/unit/features/calendar-feed/action-state.test.ts",
+      "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "tests/unit/features/calendar-feed/validation.test.ts",
+      "tests/unit/ops/pilot-operations.test.ts",
+      "tests/unit/scope/booking-editor-scope.test.ts",
+      "tests/unit/scope/manifest-coherence.test.ts",
+      "tests/unit/scope/manifest-derivations.test.ts",
+      "tests/unit/scope/manifest-shape.test.ts",
+      "tests/unit/scope/resources-activation.atdd.test.ts",
+      "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "tests/unit/server/calendar-feed/attestation.test.ts",
+      "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "vitest.config.ts"
+    ],
+    "source_path_count": 70,
+    "bindings": [
+      {
+        "path": ".github/workflows/ci.yml",
+        "raw_worktree": {
+          "bytes": 75930,
+          "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 75930,
+          "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+          "blob_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "base93_blob_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "f304_blob_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "raw_worktree": {
+          "bytes": 139916,
+          "sha256": "d3c25f266c2490d7c287d886b384dbd015f9a040a032c5a2a737ccb41f5f92e9",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 139916,
+          "sha256": "d3c25f266c2490d7c287d886b384dbd015f9a040a032c5a2a737ccb41f5f92e9",
+          "blob_oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+        "base93_blob_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+        "f304_blob_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+        "unchanged_from_f304": false
+      },
+      {
+        "path": "docs/security/calendar-feed-operations.md",
+        "raw_worktree": {
+          "bytes": 4251,
+          "sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 4251,
+          "sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+          "blob_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+        "base93_blob_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+        "f304_blob_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "middleware.ts",
+        "raw_worktree": {
+          "bytes": 4842,
+          "sha256": "228c1aee2ea3952788fe231f73e852ea020ca81fa812d5248e52f5564155fcad",
+          "crlf_count": 90
+        },
+        "actual_git_clean": {
+          "bytes": 4752,
+          "sha256": "fa43d6c746d11d1ab8d854cef9128bb69023f8a8865e3e3b250dd2ebee383fe5",
+          "blob_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+        "base93_blob_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+        "f304_blob_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "ops/recovery/bootstrap-roles.sql",
+        "raw_worktree": {
+          "bytes": 4085,
+          "sha256": "c578eb8fc33273221491badd93fc00a44d7c0c32d72e9d902a5076fee550c83e",
+          "crlf_count": 93
+        },
+        "actual_git_clean": {
+          "bytes": 3992,
+          "sha256": "6a80547c1fbbd7dd2d7e4bf4a0f73671f7d83e5fcd5e84dac9ba555403c52529",
+          "blob_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+        "base93_blob_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+        "f304_blob_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "package.json",
+        "raw_worktree": {
+          "bytes": 2352,
+          "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+          "crlf_count": 53
+        },
+        "actual_git_clean": {
+          "bytes": 2299,
+          "sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+          "blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "base93_blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "f304_blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "raw_worktree": {
+          "bytes": 162159,
+          "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 162159,
+          "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+          "blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "base93_blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "f304_blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "raw_worktree": {
+          "bytes": 19782,
+          "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+          "crlf_count": 290
+        },
+        "actual_git_clean": {
+          "bytes": 19492,
+          "sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+          "blob_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "base93_blob_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "f304_blob_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "raw_worktree": {
+          "bytes": 47148,
+          "sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 47148,
+          "sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+          "blob_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+        "base93_blob_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+        "f304_blob_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+        "unchanged_from_f304": false
+      },
+      {
+        "path": "scripts/verify/check-service-role-containment.mjs",
+        "raw_worktree": {
+          "bytes": 15806,
+          "sha256": "6eaec1f8ee90dd5375625b3c0d54c545c12074f0c1b6d5499a0bd5fc940ebde5",
+          "crlf_count": 319
+        },
+        "actual_git_clean": {
+          "bytes": 15487,
+          "sha256": "cae0878c509fecfb9d2bab4ccf60eb6fa8edd7f5cf5bf96da430409cfed39273",
+          "blob_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+        "base93_blob_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+        "f304_blob_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+        "raw_worktree": {
+          "bytes": 352,
+          "sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 352,
+          "sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+          "blob_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+        "base93_blob_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+        "f304_blob_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+        "raw_worktree": {
+          "bytes": 513,
+          "sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 513,
+          "sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+          "blob_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+        "base93_blob_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+        "f304_blob_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/app/(public)/calendar/feed/[token]/route.ts",
+        "raw_worktree": {
+          "bytes": 319,
+          "sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 319,
+          "sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+          "blob_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+        "base93_blob_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+        "f304_blob_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/app/(public)/layout.tsx",
+        "raw_worktree": {
+          "bytes": 112,
+          "sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 112,
+          "sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+          "blob_oid": "fe46e33866a3181a720082ae699faa0eb68665a6",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "fe46e33866a3181a720082ae699faa0eb68665a6",
+        "base93_blob_oid": "fe46e33866a3181a720082ae699faa0eb68665a6",
+        "f304_blob_oid": "fe46e33866a3181a720082ae699faa0eb68665a6",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/components/app-shell/AppShell.tsx",
+        "raw_worktree": {
+          "bytes": 17127,
+          "sha256": "ccc09d93ee141abaeeaab6904c0539f6918d5b9c1b83b239c3950a3ac5d9d0e3",
+          "crlf_count": 370
+        },
+        "actual_git_clean": {
+          "bytes": 16757,
+          "sha256": "f71f45a2f76c7a740e5274f591ce57e65f89aba7fc16c079e0a88113e8dac27a",
+          "blob_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+        "base93_blob_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+        "f304_blob_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+        "raw_worktree": {
+          "bytes": 810,
+          "sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 810,
+          "sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+          "blob_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+        "base93_blob_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+        "f304_blob_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "raw_worktree": {
+          "bytes": 8674,
+          "sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 8674,
+          "sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504",
+          "blob_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+        "base93_blob_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+        "f304_blob_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/components/scheduling/PersonalCalendarView.tsx",
+        "raw_worktree": {
+          "bytes": 905,
+          "sha256": "f70bf49b2d6fac7a9c194d1f2c5bb09d76abd997956095771d6a705029e14202",
+          "crlf_count": 1
+        },
+        "actual_git_clean": {
+          "bytes": 904,
+          "sha256": "d426154fb3888241ed6b36e98c3b25756f40f85c059dca9bf0785b88bc6eade1",
+          "blob_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+        "base93_blob_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+        "f304_blob_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/features/calendar-feed/action-state.ts",
+        "raw_worktree": {
+          "bytes": 1861,
+          "sha256": "d3ec31672a8b5a2e160864c0919dbbe1070ea726770c735ce4ac9bbea2cfb439",
+          "crlf_count": 16
+        },
+        "actual_git_clean": {
+          "bytes": 1845,
+          "sha256": "b1c2a6b92000519f9b1eaffde9b96737b7207c286adcc47df78482898d91a454",
+          "blob_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+        "base93_blob_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+        "f304_blob_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/features/calendar-feed/actions.ts",
+        "raw_worktree": {
+          "bytes": 801,
+          "sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 801,
+          "sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+          "blob_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+        "base93_blob_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+        "f304_blob_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/features/calendar-feed/icalendar.ts",
+        "raw_worktree": {
+          "bytes": 3469,
+          "sha256": "e83ccfbe7d81db4320b987c0bf2c42e77b473b6a267092d4e3f879d0e2260bbe",
+          "crlf_count": 57
+        },
+        "actual_git_clean": {
+          "bytes": 3412,
+          "sha256": "266b5067c4007e493590c2c44bad4d5406389b5e306354b0f2c4bacacb20fa1f",
+          "blob_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+        "base93_blob_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+        "f304_blob_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/features/calendar-feed/types.ts",
+        "raw_worktree": {
+          "bytes": 959,
+          "sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 959,
+          "sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+          "blob_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+        "base93_blob_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+        "f304_blob_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/features/calendar-feed/validation.ts",
+        "raw_worktree": {
+          "bytes": 1123,
+          "sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 1123,
+          "sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+          "blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+        "base93_blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+        "f304_blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/scope/manifest.ts",
+        "raw_worktree": {
+          "bytes": 18310,
+          "sha256": "df7b4d9d21e701548eb54cffaa1841eced560a3a69f3aab808b8c9d820a8d765",
+          "crlf_count": 474
+        },
+        "actual_git_clean": {
+          "bytes": 17836,
+          "sha256": "5a0154fa1fdfdce452b6d5a44719cab6e6f5c2b481f0ee9e867db27552f7a969",
+          "blob_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+        "base93_blob_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+        "f304_blob_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/calendar-feed/attestation.ts",
+        "raw_worktree": {
+          "bytes": 3543,
+          "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 3543,
+          "sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+          "blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+        "base93_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+        "f304_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/calendar-feed/policy.ts",
+        "raw_worktree": {
+          "bytes": 143,
+          "sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 143,
+          "sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+          "blob_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+        "base93_blob_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+        "f304_blob_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/calendar-feed/public-feed.ts",
+        "raw_worktree": {
+          "bytes": 4421,
+          "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 4421,
+          "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+          "blob_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+        "base93_blob_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+        "f304_blob_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/calendar-feed/trusted-ip.ts",
+        "raw_worktree": {
+          "bytes": 1196,
+          "sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 1196,
+          "sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+          "blob_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+        "base93_blob_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+        "f304_blob_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+        "raw_worktree": {
+          "bytes": 4729,
+          "sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 4729,
+          "sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+          "blob_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+        "base93_blob_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+        "f304_blob_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "raw_worktree": {
+          "bytes": 4856,
+          "sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 4856,
+          "sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+          "blob_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+        "base93_blob_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+        "f304_blob_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/commands/envelope.ts",
+        "raw_worktree": {
+          "bytes": 17101,
+          "sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a",
+          "crlf_count": 337
+        },
+        "actual_git_clean": {
+          "bytes": 16764,
+          "sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02",
+          "blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+        "base93_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+        "f304_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/db/supabase-public-client.ts",
+        "raw_worktree": {
+          "bytes": 505,
+          "sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 505,
+          "sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+          "blob_oid": "a6f550ed29147b310f6753417da02cfedb415403",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "a6f550ed29147b310f6753417da02cfedb415403",
+        "base93_blob_oid": "a6f550ed29147b310f6753417da02cfedb415403",
+        "f304_blob_oid": "a6f550ed29147b310f6753417da02cfedb415403",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "src/server/read-models/calendar-feed.ts",
+        "raw_worktree": {
+          "bytes": 3472,
+          "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 3472,
+          "sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+          "blob_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+        "base93_blob_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+        "f304_blob_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "raw_worktree": {
+          "bytes": 24435,
+          "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 24435,
+          "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+          "blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "base93_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "f304_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "raw_worktree": {
+          "bytes": 27768,
+          "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 27768,
+          "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+          "blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+        "base93_blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+        "f304_blob_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "raw_worktree": {
+          "bytes": 55454,
+          "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+          "crlf_count": 716
+        },
+        "actual_git_clean": {
+          "bytes": 54738,
+          "sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3",
+          "blob_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+        "base93_blob_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+        "f304_blob_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "raw_worktree": {
+          "bytes": 26921,
+          "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+          "crlf_count": 417
+        },
+        "actual_git_clean": {
+          "bytes": 26504,
+          "sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+          "blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "base93_blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "f304_blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "raw_worktree": {
+          "bytes": 36884,
+          "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 36884,
+          "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+          "blob_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "base93_blob_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "f304_blob_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/components/calendar-feed.test.ts",
+        "raw_worktree": {
+          "bytes": 3534,
+          "sha256": "6ac7a41a4dca5bccf4aae4300be8ccf38689b3ae19ceb4daa9c8c22d7282db42",
+          "crlf_count": 48
+        },
+        "actual_git_clean": {
+          "bytes": 3486,
+          "sha256": "70775d21c58ae45841ee07384472fbb2ed30729f56b579314fa2952135af5ec9",
+          "blob_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+        "base93_blob_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+        "f304_blob_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "raw_worktree": {
+          "bytes": 7563,
+          "sha256": "40186690034643019fb770250bc545627444abd29f73699b184b7f7714941279",
+          "crlf_count": 146
+        },
+        "actual_git_clean": {
+          "bytes": 7417,
+          "sha256": "24984ffb2a5e1d7dc28fe8d0f10db22e84a667db0c4a01b02f9d981c77cfbce0",
+          "blob_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+        "base93_blob_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+        "f304_blob_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+        "raw_worktree": {
+          "bytes": 14845,
+          "sha256": "8b991461ba76072d230a3c5a989e96c87ec15b5af208cace238083449dbb6b89",
+          "crlf_count": 264
+        },
+        "actual_git_clean": {
+          "bytes": 14581,
+          "sha256": "f3b5d81c863157396fa6496e55675fa6ba4128508ea43f2782645b6c9c218e67",
+          "blob_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+        "base93_blob_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+        "f304_blob_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "raw_worktree": {
+          "bytes": 14914,
+          "sha256": "4579e0f2aadd7957766145679930fc49de06c876ffcc01b3e8b7c761f6d8d552",
+          "crlf_count": 229
+        },
+        "actual_git_clean": {
+          "bytes": 14685,
+          "sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+          "blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+        "base93_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+        "f304_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+        "raw_worktree": {
+          "bytes": 40640,
+          "sha256": "44fd6b6777c3c3c1c99ee6ac576240561f0a19b66c7088440cf414faf5f9c101",
+          "crlf_count": 777
+        },
+        "actual_git_clean": {
+          "bytes": 39863,
+          "sha256": "791e8cc320a02cacf2b52701c24d1cdf81964afe9ea0451a7f716d410709c1e2",
+          "blob_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+        "base93_blob_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+        "f304_blob_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/rls/migration-reset.int.test.ts",
+        "raw_worktree": {
+          "bytes": 36735,
+          "sha256": "291971b7e06d66a14988174ba378cd61814b3d3c9fbd0bf708ca59b919edad97",
+          "crlf_count": 720
+        },
+        "actual_git_clean": {
+          "bytes": 36015,
+          "sha256": "75d29ccdb208850009c1f76556f242ffe81807ec077a5edf533e964906845206",
+          "blob_oid": "263e6d650190fe012997aaf2f128767fd3c96399",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "263e6d650190fe012997aaf2f128767fd3c96399",
+        "base93_blob_oid": "263e6d650190fe012997aaf2f128767fd3c96399",
+        "f304_blob_oid": "263e6d650190fe012997aaf2f128767fd3c96399",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+        "raw_worktree": {
+          "bytes": 28367,
+          "sha256": "42e10db1a915f26cb0d732dfd56301d062dc046129e006e88da1b5e493b1f522",
+          "crlf_count": 291
+        },
+        "actual_git_clean": {
+          "bytes": 28076,
+          "sha256": "e20c0e31cf595e82b38c48100bd68fe82a237acf652f284af5547bc543c29aa5",
+          "blob_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+        "base93_blob_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+        "f304_blob_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/integration/rls/tenant-table-inventory.ts",
+        "raw_worktree": {
+          "bytes": 103434,
+          "sha256": "531dcd3ab659b67ba41035691aad65d77310f1ab367a3c94ef0006843dd32309",
+          "crlf_count": 2131
+        },
+        "actual_git_clean": {
+          "bytes": 101303,
+          "sha256": "7b855ba58c3ae1f36c56fba65311bd50951f86145e551bb25f56a4541a9ec7ce",
+          "blob_oid": "925764138215e4fdb6db039568540439d6036449",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "925764138215e4fdb6db039568540439d6036449",
+        "base93_blob_oid": "925764138215e4fdb6db039568540439d6036449",
+        "f304_blob_oid": "925764138215e4fdb6db039568540439d6036449",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/support/authz/role-harness.ts",
+        "raw_worktree": {
+          "bytes": 15759,
+          "sha256": "3d3e518c0f70bd44a934275d25088e715a3acbc2e16ed3a8e3346f2bfec358c0",
+          "crlf_count": 269
+        },
+        "actual_git_clean": {
+          "bytes": 15490,
+          "sha256": "73e3372433ae8e720e1ebf0955419fec5242f5e6257fec77552bd87c122754c1",
+          "blob_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+        "base93_blob_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+        "f304_blob_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_worktree": {
+          "bytes": 87490,
+          "sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 87490,
+          "sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+          "blob_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+        "base93_blob_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+        "f304_blob_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+        "unchanged_from_f304": false
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "raw_worktree": {
+          "bytes": 8024,
+          "sha256": "2297a50851ecb4de0d54a2b56a76d9e87044b52808b776a44f44cb602962ca6a",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 8024,
+          "sha256": "2297a50851ecb4de0d54a2b56a76d9e87044b52808b776a44f44cb602962ca6a",
+          "blob_oid": "fa50588f5bcec2ebf794cbbe8496c1fd0534a80f",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "fa50588f5bcec2ebf794cbbe8496c1fd0534a80f",
+        "base93_blob_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+        "f304_blob_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+        "unchanged_from_f304": false
+      },
+      {
+        "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+        "raw_worktree": {
+          "bytes": 59069,
+          "sha256": "ef07bc2abf9e9a8ef9bcd0f1ad82fc53f65c6d178de88dd7530358869d0716bf",
+          "crlf_count": 1003
+        },
+        "actual_git_clean": {
+          "bytes": 58066,
+          "sha256": "5c6044fcd3ffd0f9e9084eb9b04ae0e674a524ea8b35e7aacc1b14d5ece47db0",
+          "blob_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+        "base93_blob_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+        "f304_blob_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+        "raw_worktree": {
+          "bytes": 4086,
+          "sha256": "2536d7a63ff437cd21cd22982d505dd60fc98cbb8ffa908abe044bd393f4db9b",
+          "crlf_count": 52
+        },
+        "actual_git_clean": {
+          "bytes": 4034,
+          "sha256": "2f747082d163552fea743823dcc6e8fb9b1c7eb877ce1cddd47af3f65e2552a4",
+          "blob_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+        "base93_blob_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+        "f304_blob_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+        "raw_worktree": {
+          "bytes": 6651,
+          "sha256": "862aa51c0c100f993949e60b96d035a25eef5a976f4edac6e4c76681258729a9",
+          "crlf_count": 91
+        },
+        "actual_git_clean": {
+          "bytes": 6560,
+          "sha256": "5854b2764427f839c9a7b7b6b41c69d3ab7352f7a4c685013114b30d037250b8",
+          "blob_oid": "834025e861c0c2947e85374a90d3443ef8b923d2",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "834025e861c0c2947e85374a90d3443ef8b923d2",
+        "base93_blob_oid": "834025e861c0c2947e85374a90d3443ef8b923d2",
+        "f304_blob_oid": "834025e861c0c2947e85374a90d3443ef8b923d2",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/validation.test.ts",
+        "raw_worktree": {
+          "bytes": 2581,
+          "sha256": "1f1f2fda1a02070d5d02298d53d21ff258fe5276976bd441da3c017db538647f",
+          "crlf_count": 36
+        },
+        "actual_git_clean": {
+          "bytes": 2545,
+          "sha256": "953a906010ad8bcf5912872db48a881b194599a9e793f1d7ce37fcdabf947a76",
+          "blob_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+        "base93_blob_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+        "f304_blob_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/ops/pilot-operations.test.ts",
+        "raw_worktree": {
+          "bytes": 35108,
+          "sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 35108,
+          "sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+          "blob_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+        "base93_blob_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+        "f304_blob_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scope/booking-editor-scope.test.ts",
+        "raw_worktree": {
+          "bytes": 2143,
+          "sha256": "643f862ff30ff826c3c3a2447b294931d2aad36cb55931e31789dec794986ede",
+          "crlf_count": 27
+        },
+        "actual_git_clean": {
+          "bytes": 2116,
+          "sha256": "5550cbc4a1175ca745fae9ab780b48a3dd5a78861882bb9c66c7c15ef65f5acb",
+          "blob_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+        "base93_blob_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+        "f304_blob_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scope/manifest-coherence.test.ts",
+        "raw_worktree": {
+          "bytes": 16009,
+          "sha256": "7f00ff1a27cb0a260a32b690046a0175f3b7090bb9893f664f31353be6109486",
+          "crlf_count": 328
+        },
+        "actual_git_clean": {
+          "bytes": 15681,
+          "sha256": "1f334cd9cd69f290ec12197e229f4e85bebecab831bf43fe384b40a88fa51722",
+          "blob_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+        "base93_blob_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+        "f304_blob_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scope/manifest-derivations.test.ts",
+        "raw_worktree": {
+          "bytes": 9000,
+          "sha256": "29b4a2647de1ea4ebe1857f5f300494a039e4c986df0bd68e9a2c70d5ca170d6",
+          "crlf_count": 192
+        },
+        "actual_git_clean": {
+          "bytes": 8808,
+          "sha256": "d908da7ef3b71684cec08a13153d2c69c109276850f7969b2806421ab52bc8f2",
+          "blob_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+        "base93_blob_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+        "f304_blob_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scope/manifest-shape.test.ts",
+        "raw_worktree": {
+          "bytes": 10648,
+          "sha256": "3092592321b5e9a2a923a95fccc1f8ec1a19b1cdf36ee2b06f8cac02b2ed1b40",
+          "crlf_count": 224
+        },
+        "actual_git_clean": {
+          "bytes": 10424,
+          "sha256": "6227e6220d184a18418083c10ae8c3909179e965da8477a5c8909da8aad30a50",
+          "blob_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+        "base93_blob_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+        "f304_blob_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+        "raw_worktree": {
+          "bytes": 1680,
+          "sha256": "4bc8bf9fb08c33cd446b1e2c9e0d8b5addea89a46add567188889aa39d99c068",
+          "crlf_count": 28
+        },
+        "actual_git_clean": {
+          "bytes": 1652,
+          "sha256": "8e2619a9feff891bad02cd3bd806984b1158e5eaf8428bd190442f94ed73fcb2",
+          "blob_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+        "base93_blob_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+        "f304_blob_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "raw_worktree": {
+          "bytes": 29955,
+          "sha256": "bc93e6e13b735ba1fa45ce35b68aa3481af0f5325ff147304d401f2c1c2ed656",
+          "crlf_count": 244
+        },
+        "actual_git_clean": {
+          "bytes": 29711,
+          "sha256": "99bb62d37e65e539089f638f43a13312c4650a04bfea4a364aaa22beceb089bf",
+          "blob_oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+        "base93_blob_oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+        "f304_blob_oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_worktree": {
+          "bytes": 138869,
+          "sha256": "4162cf707d7ae3c64d5007b16a143684abff5d309afadd82cd84293d1e0d1155",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 138869,
+          "sha256": "4162cf707d7ae3c64d5007b16a143684abff5d309afadd82cd84293d1e0d1155",
+          "blob_oid": "0dca2a72bbc24c6aadaa97f0cd1d18e17a3f6127",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "0dca2a72bbc24c6aadaa97f0cd1d18e17a3f6127",
+        "base93_blob_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+        "f304_blob_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+        "unchanged_from_f304": false
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "raw_worktree": {
+          "bytes": 3984,
+          "sha256": "3e1b31e0f8c47eb7d83e6c07cab2af3d0efa09d436f908af691fd5c24691332b",
+          "crlf_count": 38
+        },
+        "actual_git_clean": {
+          "bytes": 3946,
+          "sha256": "a3e666701c2b1eb6b0b8f81e7fdbf6411b5c0f1093bd2afbf02d5b8a162938d6",
+          "blob_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+        "base93_blob_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+        "f304_blob_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+        "raw_worktree": {
+          "bytes": 3062,
+          "sha256": "61290cccfc72bb2407a945344b4c00b2d950a81119977a305b9f4fa42a0bb87d",
+          "crlf_count": 42
+        },
+        "actual_git_clean": {
+          "bytes": 3020,
+          "sha256": "a29c884f12042477979797b304b3026376f3a47336542111e62a7825bffcdb4a",
+          "blob_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+        "base93_blob_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+        "f304_blob_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "raw_worktree": {
+          "bytes": 3424,
+          "sha256": "b27e0d9c28d5b6602f0c6684b2d0f43c4feb29ddd0e1535a08ba3b0876cb29a1",
+          "crlf_count": 50
+        },
+        "actual_git_clean": {
+          "bytes": 3374,
+          "sha256": "53c722f11869cdf4492722e996ddda57c64206a837f45320adb40fc7b5e1ffc1",
+          "blob_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+        "base93_blob_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+        "f304_blob_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+        "raw_worktree": {
+          "bytes": 140788,
+          "sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+          "crlf_count": 0
+        },
+        "actual_git_clean": {
+          "bytes": 140788,
+          "sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+          "blob_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+        "base93_blob_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+        "f304_blob_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "raw_worktree": {
+          "bytes": 8628,
+          "sha256": "0556b02982fcf2b66d4ecf3f2c06828ea83f13a4a310555e9a6cd7c96c4c555e",
+          "crlf_count": 141
+        },
+        "actual_git_clean": {
+          "bytes": 8487,
+          "sha256": "79817b8418557df79669167c2c42d8b0063415da5fba2e43b61cd4516b6fb76f",
+          "blob_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+        "base93_blob_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+        "f304_blob_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+        "raw_worktree": {
+          "bytes": 4728,
+          "sha256": "b7e33cfbe5f4ef1e2352d65117ba63fcb2601eb771027bad9ca359b2029b8003",
+          "crlf_count": 65
+        },
+        "actual_git_clean": {
+          "bytes": 4663,
+          "sha256": "9468d5d3c61cabc7c1eca67b14d65ae72e5d3a498cc4eeebbc8254a6e2dd6f0c",
+          "blob_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+        "base93_blob_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+        "f304_blob_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+        "raw_worktree": {
+          "bytes": 4458,
+          "sha256": "f02a1015ba35b08d9c6cc2926f1b8f8c5cb8c736feba3e260b9c51a1ccd33386",
+          "crlf_count": 62
+        },
+        "actual_git_clean": {
+          "bytes": 4396,
+          "sha256": "335a1d26a1e845085c804d85160f91fa605a3ef95df9779ba2f924d44e2a0994",
+          "blob_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+        "base93_blob_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+        "f304_blob_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+        "raw_worktree": {
+          "bytes": 2416,
+          "sha256": "e9afe40327412798a22f2af0100b8df9c1911c42338cf452c241272a648420e0",
+          "crlf_count": 34
+        },
+        "actual_git_clean": {
+          "bytes": 2382,
+          "sha256": "e9b700099017309ec77c8c9cb53e4c2e769df0e18fb446d28b8e70c1153e554f",
+          "blob_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+        "base93_blob_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+        "f304_blob_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+        "unchanged_from_f304": true
+      },
+      {
+        "path": "vitest.config.ts",
+        "raw_worktree": {
+          "bytes": 3602,
+          "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+          "crlf_count": 66
+        },
+        "actual_git_clean": {
+          "bytes": 3536,
+          "sha256": "5f2cb605e2109c38a5606c035ab71fbba935e5f32713257f2a75cb66fb87c123",
+          "blob_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+          "matches_HEAD": true
+        },
+        "head_blob_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "base93_blob_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "f304_blob_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "unchanged_from_f304": true
+      }
+    ],
+    "exact_latest5_bindings": [
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "raw_bytes": 87490,
+        "raw_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+        "actual_git_clean_blob_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+        "head_blob_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+        "head_blob_bytes": 87490,
+        "head_blob_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+        "base_blob_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+        "base_blob_bytes": 82088,
+        "base_blob_sha256": "5b043237d761afdca1b5f549aecd14ee6eb7b263cb4f3f1376f009def78a4fe3",
+        "base_matches_f304_story_source": true
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "raw_bytes": 47148,
+        "raw_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+        "actual_git_clean_blob_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+        "head_blob_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+        "head_blob_bytes": 47148,
+        "head_blob_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+        "base_blob_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+        "base_blob_bytes": 45083,
+        "base_blob_sha256": "ef6ca99e711d4d44f709261afd865e055514a08fbbc0f533e6fb811612ccee91",
+        "base_matches_f304_story_source": true
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 138869,
+        "raw_sha256": "4162cf707d7ae3c64d5007b16a143684abff5d309afadd82cd84293d1e0d1155",
+        "actual_git_clean_blob_oid": "0dca2a72bbc24c6aadaa97f0cd1d18e17a3f6127",
+        "head_blob_oid": "0dca2a72bbc24c6aadaa97f0cd1d18e17a3f6127",
+        "head_blob_bytes": 138869,
+        "head_blob_sha256": "4162cf707d7ae3c64d5007b16a143684abff5d309afadd82cd84293d1e0d1155",
+        "base_blob_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+        "base_blob_bytes": 128425,
+        "base_blob_sha256": "c3289fe335b83bd546b8d41ad13533019edea57b1cea7b2149d881265515aad2",
+        "base_matches_f304_story_source": true
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "raw_bytes": 8024,
+        "raw_sha256": "2297a50851ecb4de0d54a2b56a76d9e87044b52808b776a44f44cb602962ca6a",
+        "actual_git_clean_blob_oid": "fa50588f5bcec2ebf794cbbe8496c1fd0534a80f",
+        "head_blob_oid": "fa50588f5bcec2ebf794cbbe8496c1fd0534a80f",
+        "head_blob_bytes": 8024,
+        "head_blob_sha256": "2297a50851ecb4de0d54a2b56a76d9e87044b52808b776a44f44cb602962ca6a",
+        "base_blob_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+        "base_blob_bytes": 8024,
+        "base_blob_sha256": "1500cdb0fca5076840fe9107da927e8604d5887a8a1bedde5a3faf251b08b7c1",
+        "base_matches_f304_story_source": true
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "raw_bytes": 139916,
+        "raw_sha256": "d3c25f266c2490d7c287d886b384dbd015f9a040a032c5a2a737ccb41f5f92e9",
+        "actual_git_clean_blob_oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+        "head_blob_oid": "3b25d23140b17d55ba201480580e5da9a7b4a27b",
+        "head_blob_bytes": 139916,
+        "head_blob_sha256": "d3c25f266c2490d7c287d886b384dbd015f9a040a032c5a2a737ccb41f5f92e9",
+        "base_blob_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+        "base_blob_bytes": 135154,
+        "base_blob_sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41",
+        "base_matches_f304_story_source": true
+      }
+    ],
+    "changed_paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "unchanged_from_f304_paths": [
+      ".github/workflows/ci.yml",
+      "docs/security/calendar-feed-operations.md",
+      "middleware.ts",
+      "ops/recovery/bootstrap-roles.sql",
+      "package.json",
+      "pnpm-lock.yaml",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "scripts/verify/check-service-role-containment.mjs",
+      "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "src/app/(public)/calendar/feed/[token]/route.ts",
+      "src/app/(public)/layout.tsx",
+      "src/components/app-shell/AppShell.tsx",
+      "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "src/components/calendar-feed/CalendarSubscription.tsx",
+      "src/components/scheduling/PersonalCalendarView.tsx",
+      "src/features/calendar-feed/action-state.ts",
+      "src/features/calendar-feed/actions.ts",
+      "src/features/calendar-feed/icalendar.ts",
+      "src/features/calendar-feed/types.ts",
+      "src/features/calendar-feed/validation.ts",
+      "src/scope/manifest.ts",
+      "src/server/calendar-feed/attestation.ts",
+      "src/server/calendar-feed/policy.ts",
+      "src/server/calendar-feed/public-feed.ts",
+      "src/server/calendar-feed/trusted-ip.ts",
+      "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "src/server/commands/envelope.ts",
+      "src/server/db/supabase-public-client.ts",
+      "src/server/read-models/calendar-feed.ts",
+      "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/components/calendar-feed.test.ts",
+      "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "tests/integration/rls/migration-reset.int.test.ts",
+      "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "tests/integration/rls/tenant-table-inventory.ts",
+      "tests/support/authz/role-harness.ts",
+      "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "tests/unit/features/calendar-feed/action-state.test.ts",
+      "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "tests/unit/features/calendar-feed/validation.test.ts",
+      "tests/unit/ops/pilot-operations.test.ts",
+      "tests/unit/scope/booking-editor-scope.test.ts",
+      "tests/unit/scope/manifest-coherence.test.ts",
+      "tests/unit/scope/manifest-derivations.test.ts",
+      "tests/unit/scope/manifest-shape.test.ts",
+      "tests/unit/scope/resources-activation.atdd.test.ts",
+      "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "tests/unit/server/calendar-feed/attestation.test.ts",
+      "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "vitest.config.ts"
+    ],
+    "raw_normalized_difference_paths": [
+      "middleware.ts",
+      "ops/recovery/bootstrap-roles.sql",
+      "package.json",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "scripts/verify/check-service-role-containment.mjs",
+      "src/components/app-shell/AppShell.tsx",
+      "src/components/scheduling/PersonalCalendarView.tsx",
+      "src/features/calendar-feed/action-state.ts",
+      "src/features/calendar-feed/icalendar.ts",
+      "src/scope/manifest.ts",
+      "src/server/commands/envelope.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "tests/integration/components/calendar-feed.test.ts",
+      "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "tests/integration/rls/migration-reset.int.test.ts",
+      "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "tests/integration/rls/tenant-table-inventory.ts",
+      "tests/support/authz/role-harness.ts",
+      "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "tests/unit/features/calendar-feed/action-state.test.ts",
+      "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "tests/unit/features/calendar-feed/validation.test.ts",
+      "tests/unit/scope/booking-editor-scope.test.ts",
+      "tests/unit/scope/manifest-coherence.test.ts",
+      "tests/unit/scope/manifest-derivations.test.ts",
+      "tests/unit/scope/manifest-shape.test.ts",
+      "tests/unit/scope/resources-activation.atdd.test.ts",
+      "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "tests/unit/server/calendar-feed/attestation.test.ts",
+      "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "vitest.config.ts"
+    ],
+    "source_commits": [
+      "ae020f63a88089966b9323c55a36b6554f7e3900",
+      "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+      "aa5733116f20015cc3d14e1441d0eab232ecc9fd",
+      "360fe850c18552f23a2bf74d8eda865431f0af38",
+      "611c86295540161d31169110bf2139cf1d85d708",
+      "2674b3f7fa5e7853314923a0ceed52d84fcf0677",
+      "a76fc492a5273da776ba807559b2eb81d41bfe10",
+      "3383a1eb4607ddea035e79fb8433dc89a5137530",
+      "e472741a91f58c5ef9e623720e2bba0d1164c360",
+      "4562cfd0031b32b6921f668cd953384b64116973",
+      "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+      "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+      "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+      "906f80f301d8034f8efe510018137195f3e4c4eb",
+      "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "55db468eef3106ca1b02dc846ba12967a28dc238",
+      "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+      "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+      "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+      "f304ea548faa05f037cd3aa44c65888d96d543df",
+      "8efb90e5038874c672df120651041176a70b1f2f"
+    ],
+    "root_bookkeeping_commits_excluded": [
+      "9487c0d9dc6f622b472780587e20e834abf98595",
+      "c57580580217e34a0b933a23f7c36737306333b7",
+      "1cea5c4caa4996566ca95f5b872c6623da22f807",
+      "e91b366b8b362f8ffbd867940dfe1cd2d817e72b",
+      "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+      "fae644b5349744a531008e2224ca3a08d596836e",
+      "cba60486b5e695b9796ef39d4492bc7f569d517b",
+      "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+      "6dad688ec6a51143bfee902618bb88647a81c940",
+      "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+      "56324120f8e08de995e8cc7432ab27f2d0c98635",
+      "2524306ca9edd6079c23d205cf01268797288d89",
+      "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+      "7cdee0c52b6de5d416208971d6eaec6b86caa034",
+      "93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf"
+    ],
+    "ancestry_count": 36,
+    "author_commit_count": 21,
+    "root_commit_count": 15,
+    "source_worktree_and_index_clean": true,
+    "global_tracked_worktree_clean": false,
+    "root_metadata_snapshot": {
+      "schema": "observations-not-frozen-raw-artifacts",
+      "owner": "Root bookkeeping; excluded from author commits",
+      "historical_fourth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "observed_raw_bytes_uncredited": 34433,
+          "observed_raw_sha256_uncredited": "6ad77aa14d3d4340456c26be207e4b2ae2ec5f9dd087bfe1e89b86e64fea65e2",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "historical_baseline_head": "3383a1eb4607ddea035e79fb8433dc89a5137530",
+          "baseline_blob_oid_verified": "a170fed9f1a635e7a5b667ba049f56252112075b",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "observed_raw_bytes_uncredited": 212316,
+          "observed_raw_sha256_uncredited": "702da5cf101e52468de8e8d2f4fc1ec773799a55c78ff593038482f727a7d392",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "historical_baseline_head": "3383a1eb4607ddea035e79fb8433dc89a5137530",
+          "baseline_blob_oid_verified": "596e45eb291ebef24bb661473cdeff6389a72d7f",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/preparation/story-15-5/author-native-setup-diagnostic-route.json",
+          "observed_raw_bytes_uncredited": 2201,
+          "observed_raw_sha256_uncredited": "b1b8bf5626e05c2129c0b180f4c5ed7521251615f7dc411300120fdf5a30f37b",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "historical_baseline_head": "3383a1eb4607ddea035e79fb8433dc89a5137530",
+          "baseline_blob_oid_verified": null,
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "limit": "Mutable working Root bytes are observations only, not artifact integrity claims. Frozen current authorization excerpts/receipts have separate artifact refs. No global clean-tree claim.",
+      "historical_fifth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "observed_raw_bytes_uncredited": 39992,
+          "observed_raw_sha256_uncredited": "eb542d611ed883345251707bad45da4d8c2205526befcb5d96148db893160849",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+          "baseline_blob_oid_verified": "32eab52d48da972b4a9010013d8adb0e70ee131b",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "observed_raw_bytes_uncredited": 218237,
+          "observed_raw_sha256_uncredited": "c7852006d6d0cde573283c87f6ddbea9d6258648e4805228fe57b0c12a695c50",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+          "baseline_blob_oid_verified": "d24387878af30e1f4b03c74777e09f5e0f7b849b",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "observed_raw_bytes_uncredited": 128053,
+          "observed_raw_sha256_uncredited": "31fc2cdfb8e1a1523582b7452b4092dcbda6da8a230ad54c7399f9ec7afabe91",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+          "baseline_blob_oid_verified": "c1eae2e043983e149dd77a428c4ebc8f75d6fad4",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_sixth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "observed_raw_bytes_uncredited": 45602,
+          "observed_raw_sha256_uncredited": "faa93ea712b3392e8d4f91152399ca25a1c9d47e7e991dcfade2edaa52678292",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "4562cfd0031b32b6921f668cd953384b64116973",
+          "baseline_blob_oid_verified": "d58c09748aa5729637d55352a91a6581ba956cd6",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "observed_raw_bytes_uncredited": 223847,
+          "observed_raw_sha256_uncredited": "8b2405dac6b1cc623cff5a39a60ae69c9c7a7cf2214f02a5f6844e0097c128c5",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "4562cfd0031b32b6921f668cd953384b64116973",
+          "baseline_blob_oid_verified": "ca14c7e3a7e54aa09592884ac8f85d98e6ed4d83",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "observed_raw_bytes_uncredited": 133639,
+          "observed_raw_sha256_uncredited": "2415895d0bc6f46a94b491e6e503b739718c6a90e4aa7bc323d9b638c3ab50a1",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "4562cfd0031b32b6921f668cd953384b64116973",
+          "baseline_blob_oid_verified": "8ad948ae5dbdd868495956e52d88fe4e5fddb7e8",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_seventh_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "observed_raw_bytes_uncredited": 61770,
+          "observed_raw_sha256_uncredited": "42e25fed60616ebeaf080139651a3a9dd4f75366ecd32a3836b7643a1c9fc693",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+          "baseline_blob_oid_verified": "c88721532c1e7a47cb736014a25bef63fb460296",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "observed_raw_bytes_uncredited": 240015,
+          "observed_raw_sha256_uncredited": "e4195a6072cefdfad3752e6fb4ba1243690398d9b074de947618fce95855ab69",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+          "baseline_blob_oid_verified": "e2b3175fd1f0a7728565925cef9f3130d30d2760",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "observed_raw_bytes_uncredited": 138187,
+          "observed_raw_sha256_uncredited": "357e5acc89a3ec1a17104cea4cee4fe643d02266e8b71bdae8cdc1d9088b1bee",
+          "status": "UNVERIFIED_UNCREDITED_HISTORICAL_MUTABLE_RAW_OBSERVATION",
+          "baseline_head": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+          "baseline_blob_oid_verified": "eae6f015d3b22d2d166f625622809a01b48458cf",
+          "baseline_blob_only_credited": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_eighth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "baseline_head": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+          "baseline_blob_oid_verified": "a686b6a9f7d8746e784b4ef0b541a5d4581781f8",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "baseline_head": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+          "baseline_blob_oid_verified": "d186361701e02d2f896fa7b8e9c546cb142de271",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "baseline_head": "e74cae6cbb8ce21a5f65e74d21f3c60fbfb09314",
+          "baseline_blob_oid_verified": "741d8c4fbcda028367e7d47080de923f863f29bd",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_ninth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "baseline_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+          "baseline_blob_oid_verified": "adc4ee6ea95456d14be0827ce171532fbfabec6e",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "baseline_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+          "baseline_blob_oid_verified": "a37a146f1dc951a80d02f6e2f5c513c4ff4904c9",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "baseline_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+          "baseline_blob_oid_verified": "20740f72d7908c3de8ffd291b2459994bbeb749c",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_tenth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "baseline_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+          "baseline_blob_oid_verified": "daa02d801e909e84c9c97c0e7912a2d8a2c030bc",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "baseline_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+          "baseline_blob_oid_verified": "1e5ce324366fd2719ba65c8301a43ec832aefb7c",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "baseline_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+          "baseline_blob_oid_verified": "8806dd429b81df1d8254e92522db93e0cd5cb3f6",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_eleventh_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "baseline_head": "55db468eef3106ca1b02dc846ba12967a28dc238",
+          "baseline_blob_oid_verified": "07cc1e6e636b5b4ce19da9c8385457f15978a18b",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "baseline_head": "55db468eef3106ca1b02dc846ba12967a28dc238",
+          "baseline_blob_oid_verified": "a308ea3548db5f8ae99e23e7f4a29f2e5eb87c81",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "baseline_head": "55db468eef3106ca1b02dc846ba12967a28dc238",
+          "baseline_blob_oid_verified": "65200438549064bc6e98a73ca68f7b16c2bb7f97",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_twelfth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "baseline_head": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+          "baseline_blob_oid_verified": "809137bbe9b416eac01ca2db5cf42e87ac2186fa",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "baseline_head": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+          "baseline_blob_oid_verified": "fef8f5e37a62a2403c94d9260d57ee0ad371c1be",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "baseline_head": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+          "baseline_blob_oid_verified": "4a4a86cf2c042ccee611b26f23569dcd77a5cbe0",
+          "status": "HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "historical_thirteenth_capsule": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "baseline_head": "f304ea548faa05f037cd3aa44c65888d96d543df",
+          "baseline_blob_oid_verified": "1dff14c5e6a6c338ff79a8ed6af78a7f0181a868",
+          "status": "BASELINE_OBJECT_ONLY_NO_CURRENT_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "baseline_head": "f304ea548faa05f037cd3aa44c65888d96d543df",
+          "baseline_blob_oid_verified": "1a46a0941cf383d2c60511afce30e3772ad413fa",
+          "status": "BASELINE_OBJECT_ONLY_NO_CURRENT_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "baseline_head": "f304ea548faa05f037cd3aa44c65888d96d543df",
+          "baseline_blob_oid_verified": "cc51ac0ccd70c45103cdb649bd5a60198e8a43ea",
+          "status": "BASELINE_OBJECT_ONLY_NO_CURRENT_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        }
+      ],
+      "current": [
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+          "baseline_head": "8efb90e5038874c672df120651041176a70b1f2f",
+          "baseline_blob_oid_verified": "b98c83cde006b260b399dc71db56bd7f5a10bc10",
+          "status": "BASELINE_OBJECT_ONLY_NO_CURRENT_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+          "baseline_head": "8efb90e5038874c672df120651041176a70b1f2f",
+          "baseline_blob_oid_verified": "d4373c8d387caa336800c5bb1fcf9eb6e9a95711",
+          "status": "BASELINE_OBJECT_ONLY_NO_CURRENT_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        },
+        {
+          "metadata_path": "_bmad-output/auto-bmad/reports/epic-15.md",
+          "baseline_head": "8efb90e5038874c672df120651041176a70b1f2f",
+          "baseline_blob_oid_verified": "a1d3dd628b01b88deabbbc21687ad4bf28ed6309",
+          "status": "BASELINE_OBJECT_ONLY_NO_CURRENT_RAW_OBSERVATION",
+          "baseline_blob_only_credited": true,
+          "current_raw_not_resampled": true,
+          "raw_bytes_durably_captured": false
+        }
+      ]
+    },
+    "raw_mutable_root_resampled": false,
+    "binding_method": "Actual raw bytes + hash-object --path --stdin without -w + cat-file batch native current/base93/f304 blobs. Snapshot baseline OIDs checked separately; raw equality/normalization never assumed."
+  },
+  "immutable_predecessors": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze.json",
+      "bytes": 287745,
+      "sha256": "2d1e982a10701831a71b8da9cf13ac03234b41499ad525bb8d84464910094e03"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-ci-repair.json",
+      "bytes": 213056,
+      "sha256": "8c6a67b9d4ba912311d888a2a63b1e7e628803395b791367e0b68c31d25072a7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-sql-repair.json",
+      "bytes": 247377,
+      "sha256": "3a4391820a34d7b9feca705d329e19eb2d7a5060f29edcfe53d5a7294c7a4c65"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-setup-diagnostic.json",
+      "bytes": 293202,
+      "sha256": "0665da8a44b228583e2dfbd81be3266d6d7cfcd465b6558b7295c1ebfaeb7ee5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-privacy-preflight.json",
+      "bytes": 336058,
+      "sha256": "2ffc1ee4b9bebb6e1531467bc919a7c779a58befc1c1333cdba656179b1db68e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-authority-transport.json",
+      "bytes": 385160,
+      "sha256": "53868286b715fe0dc076db934d75a280b0b5d2c82d3b4aabab6505237504474c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-settlement-browser.json",
+      "bytes": 459426,
+      "sha256": "7c4a768acd75f470b9f101f5a8af96b37f19efcf058b293ef9dcf79065e57d7d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-feature-five-path-repair.json",
+      "bytes": 547268,
+      "sha256": "496ecf7db6c475f26d4afbace6af8912d640c04e2043cf6840099920e95e9f78"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-fixture-report-transport.json",
+      "bytes": 604468,
+      "sha256": "019864c1fa982730868a3bf25c14b5b6d6464c64659c5e4b963319cc56e3c198"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-owned-origin.json",
+      "bytes": 662207,
+      "sha256": "9e962d4d40d5962370ce461c282f93927f6e779cbde6af514bbfdeef892d9c3e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json",
+      "bytes": 720807,
+      "sha256": "fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-denial-cause-proof.json",
+      "bytes": 852019,
+      "sha256": "23b1751be315acab911ae84bc864a0d9005513a4b9419332c50b3f2465b4fac9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+      "bytes": 884427,
+      "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+    }
+  ],
+  "inherited_proof": {
+    "capsule": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+      "bytes": 884427,
+      "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+    },
+    "scope": "Complete prior13 capsule chain,11FAILED NORMAL packets,734historical source equalities,69old preparation proofs/exact accepted exceptions, complete temporal review chain including3383Spec inversion/e472/4562/e3/33b and originala84local retention/nonancestry inherited by immutable hash/native object dependencies. No repeated semantic/native execution or stale current-byte promotion.",
+    "historical_review_current_files_not_used": true,
+    "original_a84_pointer": "/git/original_pre_review_commit_provenance",
+    "historical_preparation_pointer": "/ownership/historical_tracked_preparation_blobs_unchanged"
+  },
+  "ownership": {
+    "historical_SQL": 109,
+    "protected_consumers": 37,
+    "actual_current_protected_OID_checks": 146,
+    "protected_vectors_dependency": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+      "bytes": 884427,
+      "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+    },
+    "old_preparation_blobs": 69,
+    "old_preparation_proof_inherited": true,
+    "source_union_expansion": false,
+    "receipt": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-status-origin-discriminator-source-allocation.json",
+      "bytes": 3505,
+      "sha256": "e64d0f906325c904921caec9aec3c0c324244a1a07ed1871f40e5f3825f18b3d"
+    }
+  },
+  "approved_intent": {
+    "spec": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "kernel_bytes": 5760,
+    "definition": "UTF-8 LF; exact intent-contract start/end tags included, no appended newline",
+    "matches_canonical_base_kernel": true,
+    "approval_reference": "_bmad-output/auto-bmad/preparation/story-15-5/approval.json",
+    "contract_unchanged": true,
+    "current_kernel_verified": true
+  },
+  "inventory": {
+    "normal_feature_cases": 95,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "normal_declarations_unchanged_by_delta": true,
+    "whole_feature_blobs_unchanged": false,
+    "declaration_proof_dependency": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+      "bytes": 884427,
+      "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+    },
+    "author_current_Node_controls": 93,
+    "review_memory_controls_separate": 120,
+    "not_additive": true,
+    "normal_acceptance_credit": 0
+  },
+  "independent_review": {
+    "completed_broad_rounds": 3,
+    "cap": 3,
+    "fourth_broad_round": false,
+    "latest_source": "8efb90e5038874c672df120651041176a70b1f2f",
+    "base": "93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf",
+    "verdict": "PASS_COMMITTED_LATEST5_ONLY",
+    "actual_reviewer": "Reused existing independent checkpoint-ID High reviewer, independent from author; NOT fresh context-free",
+    "immutable_author_input_future_fresh_wording": "Intended future DATA superseded here by actual reused-review provenance; immutable input unchanged.",
+    "manifest": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/manifest.json",
+      "bytes": 1672,
+      "sha256": "d064f7ce22b6475087b0e726ca439b01922cc8b4c3b840a28e3c76d6dfa2ff7b"
+    },
+    "files": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/input-binding.json",
+        "bytes": 10256,
+        "sha256": "de9debad5029c8bde493d72d4323630da706c88fdaa9e05be37d5a1ea64304d1"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/local-checks.json",
+        "bytes": 4296,
+        "sha256": "796c2c6d897f02b972d56a18724e6ab00067317abe592ffe1b29e3bdc049b1d1"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/original-attestation.json",
+        "bytes": 20950,
+        "sha256": "ff90fd7299108bc34a1a9032f559ecd2fb14d293c02ad74f2cdb7fe51e35d56e"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/original-report.md",
+        "bytes": 9419,
+        "sha256": "73dd64d8bd238b4f41e8ed944313253424116752d546f8adca15c2772e7a8810"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/result.json",
+        "bytes": 1061,
+        "sha256": "f0b2c66e9c302aa9a162470a08820575f5d82e27785a1956bcac76f89133cfe7"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/review-input.md",
+        "bytes": 83063,
+        "sha256": "9851914b0c79d12a10ef255ac2d199896fc33e3b5f0965afb942141e0f3577f9"
+      }
+    ],
+    "memory_controls": {
+      "passed": 120,
+      "native_credit": 0,
+      "not_added_to_author93": true
+    },
+    "historical_review_chain_dependency": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+      "bytes": 884427,
+      "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+    },
+    "historical_chain_limit": "Actual historical objects only; unchanged-path conclusion reuse is not whole-current exact-byte/native PASS."
+  },
+  "actual_verification": {
+    "local_checks": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/local-checks.json",
+      "bytes": 4296,
+      "sha256": "796c2c6d897f02b972d56a18724e6ab00067317abe592ffe1b29e3bdc049b1d1"
+    },
+    "author_final": {
+      "tests": 93,
+      "pass": 93,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "whole_tsc_exit": 0,
+      "focused_lint_exit": 0,
+      "native_working_staged_diffcheck_exit": 0
+    },
+    "initial_failures_and_intermediate_runs": "Preserved exactly in local-checks; initial91P1F/92 and separate intermediate92 passes are not additive. Draft comma/package exports/UTF8 trail reader stops preserved.",
+    "current_metadata_checks": "Bounded identity/hash/baselineOID/kernel/SRO only; not semantic/native reruns.",
+    "independent_parent_verifier": "PENDING_AFTER_RETURN; author does not assert independent PASS.",
+    "app_build": "NOT_RERUN_UNCHANGED_APP",
+    "private_interpretation_controls": "UNEXECUTED"
+  },
+  "author_trail": {
+    "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "exactly_one_section": true,
+    "verified_stops": 98,
+    "stops": [
+      {
+        "path": "src/components/app-shell/AppShell.tsx",
+        "line": 279,
+        "literal_anchor": "navigation.some"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 34,
+        "literal_anchor": "const current = await refresh();"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 69,
+        "literal_anchor": "state?.status === \"error\""
+      },
+      {
+        "path": "tests/integration/components/calendar-feed.test.ts",
+        "line": 36,
+        "literal_anchor": "15.5-COMP-003"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 380,
+        "literal_anchor": "15.5-E2E-010-"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 447,
+        "literal_anchor": "15.5-E2E-011"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 10,
+        "literal_anchor": "function calendarFeedConfig"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 38,
+        "literal_anchor": "command: \"calendar_feed.create\""
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 162,
+        "literal_anchor": "create function public.manage_calendar_feed"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 122,
+        "literal_anchor": "is distinct from (case"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 354,
+        "literal_anchor": "const allowed = [\"membershipId\""
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 129,
+        "literal_anchor": "15.5-RLS008"
+      },
+      {
+        "path": "middleware.ts",
+        "line": 40,
+        "literal_anchor": "request.nextUrl.pathname"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 236,
+        "literal_anchor": "'updatedAt',greatest"
+      },
+      {
+        "path": "src/features/calendar-feed/icalendar.ts",
+        "line": 40,
+        "literal_anchor": "export function encodeCalendarFeed"
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+        "line": 76,
+        "literal_anchor": "R1-05 positive"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 247,
+        "literal_anchor": "exception when sqlstate '57014'"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "line": 364,
+        "literal_anchor": "15.5-API018"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 27,
+        "literal_anchor": "pg_has_role(current_user,feed_owner.oid,'SET')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 445,
+        "literal_anchor": "memberships.every(row => row.inherit_option === false)"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 556,
+        "literal_anchor": "has_schema_privilege(oid,'public','CREATE')"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 171,
+        "literal_anchor": "publicSchemaCreate: false"
+      },
+      {
+        "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "line": 131,
+        "literal_anchor": "has_schema_privilege('calendar_feed_owner','public','CREATE')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 486,
+        "literal_anchor": "// FULL rollback comes first"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 343,
+        "literal_anchor": "export function createOwnedGroupStopper"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 264,
+        "literal_anchor": "export function createTelemetryObserver"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1282,
+        "literal_anchor": "nonzero/null-signal nested browser loss"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "line": 83,
+        "literal_anchor": "projectCalendarFeedCiCommands"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 39,
+        "literal_anchor": "CI command projection rejects"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 115,
+        "literal_anchor": "function safeDiagnostic"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 320,
+        "literal_anchor": "COMMIT uncertainty is not cleared"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 568,
+        "literal_anchor": "receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 216,
+        "literal_anchor": "privacy preflight rejects incomplete"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 182,
+        "literal_anchor": "export function createCalendarFeedDatabaseClient"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 169,
+        "literal_anchor": "export async function readCalendarFeedSetupAuthority"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 508,
+        "literal_anchor": "await fresh.connect(); await setupQualified(fresh); await absent(fresh);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 154,
+        "literal_anchor": "setup construction refuses missing"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 83,
+        "literal_anchor": "export function createCalendarLifecycleObservations"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 25,
+        "literal_anchor": "export function calendarBrowserDiagnostic"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 705,
+        "literal_anchor": "if (base && cleanupAllowed)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 496,
+        "literal_anchor": "missing leaders with persistent groups"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1048,
+        "literal_anchor": "actual browser bounded cancellation"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 93,
+        "literal_anchor": "trackReadback<T>"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1128,
+        "literal_anchor": "installed polling deadline cannot credit"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 202,
+        "literal_anchor": "export function calendarFixtureDiagnostic"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 272,
+        "literal_anchor": "phase = \"additional-users\""
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 601,
+        "literal_anchor": "actual fixture diagnostics preserve only"
+      },
+      {
+        "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+        "line": 212,
+        "literal_anchor": "approved role-specific policies"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 930,
+        "literal_anchor": "the actual allocated policy case rejects"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 234,
+        "literal_anchor": "calendarFixtureSafeFailures.get(child)?.children"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 877,
+        "literal_anchor": "installed failure transport reproduces lost"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 889,
+        "literal_anchor": "actual repaired fixture diagnostics reach"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 190,
+        "literal_anchor": "export function calendarFixtureOrigin"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 195,
+        "literal_anchor": "export function calendarFixtureAssertionAt"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 734,
+        "literal_anchor": "const outcome = result.outcome"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 23,
+        "literal_anchor": "calendarFixtureAssertionAt(allowedSites[subject]"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 798,
+        "literal_anchor": "actual first INT001 and API001 callbacks stop"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 830,
+        "literal_anchor": "actual first callbacks retain precise safe assertion frames"
+      },
+      {
+        "path": "package.json",
+        "line": 50,
+        "literal_anchor": "\"vite\": \"8.1.6\""
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2297,
+        "literal_anchor": "vite@8.1.6:"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2059,
+        "literal_anchor": "rolldown@1.1.5:"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+        "line": 25,
+        "literal_anchor": "export async function captureCalendarFeedTrace"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 48,
+        "literal_anchor": "const code = result.code"
+      },
+      {
+        "path": "src/server/read-models/calendar-feed.ts",
+        "line": 10,
+        "literal_anchor": "if (error?.code === \"42501\")"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 744,
+        "literal_anchor": "export function calendarCauseProofSelection"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 750,
+        "literal_anchor": "export async function calendarCauseProofIdle"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 797,
+        "literal_anchor": "export async function runCalendarFeedCauseProof"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 21,
+        "literal_anchor": "test(\"15.5-DIAG001\""
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 83,
+        "literal_anchor": "function diagnosticAvailability"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 15,
+        "literal_anchor": "function verificationMode"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 14,
+        "literal_anchor": "export const CAUSE_PROOF_ARGS"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 65,
+        "literal_anchor": "export async function finishCauseProof"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "line": 262,
+        "literal_anchor": "- name: Calendar feed cause proof (diagnostic only; no pilot or acceptance)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1358,
+        "literal_anchor": "actual per-invocation trace preserves once-call value"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1379,
+        "literal_anchor": "actual baseline decision chooses one observed boundary"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1404,
+        "literal_anchor": "actual installed failed native report and closed observation"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 245,
+        "literal_anchor": "diagnostic selection is durable before the only POST"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "line": 41,
+        "literal_anchor": "cause-proof capture is distinct mode-bound"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "line": 53,
+        "literal_anchor": "diagnostic dispatch excludes pilot"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 915,
+        "literal_anchor": "(select r.rolsuper or r.rolbypassrls"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 921,
+        "literal_anchor": "if (!Array.isArray(rows)"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 403,
+        "literal_anchor": "child.once(\"spawn\","
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 517,
+        "literal_anchor": "const refreshLaunch"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 84,
+        "literal_anchor": "if (![\"not-attempted\", \"not-created-confirmed\"].includes(receipt.childLaunchState))"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 26,
+        "literal_anchor": "export function assertDefaultDispatchWorkflow"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1495,
+        "literal_anchor": "actual diagnostic caller requires same-statement"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 286,
+        "literal_anchor": "default recognizer refuses comments"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 64,
+        "literal_anchor": "|| /:\\s|:$/.test(value)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 309,
+        "literal_anchor": "F3 actual default plain-scalar syntax refusal"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 178,
+        "literal_anchor": "const suppliedId = \"checkpoint_id\" in options"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 207,
+        "literal_anchor": "checkpoint_id: suppliedId ? selectedId : randomUUID()"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 326,
+        "literal_anchor": "preselected and legacy generated checkpoint identity"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 759,
+        "literal_anchor": "export function calendarStatusErrorOrigin"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 766,
+        "literal_anchor": "export async function calendarCauseProofRestricted"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 870,
+        "literal_anchor": "Object.assign(report, await calendarCauseProofBaseline"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 48,
+        "literal_anchor": "if (value.statusDiscriminator === null"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1555,
+        "literal_anchor": "status discriminator classifies actual installed pg-protocol frames"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1594,
+        "literal_anchor": "status strict wire schema preserves false TABLE_ACL_ONLY"
+      }
+    ],
+    "section_hash_definition": "LF after heading plus newline through EOF; heading excluded; no trim",
+    "suggested_review_order_sha256": "ea53e23f4035276f288e49a5a4b44cc3ba3455cbb11489c438de0422a04923fb",
+    "reviewed_spec_no_drift": true
+  },
+  "failed_normal_histories": [
+    {
+      "head": "9487c0d9dc6f622b472780587e20e834abf98595",
+      "run_id": 39451957379,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 60,
+      "details_json_pointer": "/failed_checkpoint_histories/0",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "c57580580217e34a0b933a23f7c36737306333b7",
+      "run_id": 39457178499,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 66,
+      "details_json_pointer": "/failed_checkpoint_histories/1",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "1cea5c4caa4996566ca95f5b872c6623da22f807",
+      "run_id": 39460389509,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 67,
+      "details_json_pointer": "/failed_checkpoint_histories/2",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "e91b366b8b362f8ffbd867940dfe1cd2d817e72b",
+      "run_id": 39464940677,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 67,
+      "details_json_pointer": "/failed_checkpoint_histories/3",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+      "run_id": 39468849461,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 67,
+      "details_json_pointer": "/failed_checkpoint_histories/4",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "fae644b5349744a531008e2224ca3a08d596836e",
+      "run_id": 39474891873,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 67,
+      "details_json_pointer": "/failed_checkpoint_histories/5",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "cba60486b5e695b9796ef39d4492bc7f569d517b",
+      "run_id": 39483572143,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 67,
+      "details_json_pointer": "/failed_checkpoint_histories/6",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "3e7b6131a00e6c7b4d25c49373d8ba1c1eefe42f",
+      "run_id": 39492715549,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 68,
+      "details_json_pointer": "/failed_checkpoint_histories/7",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "6dad688ec6a51143bfee902618bb88647a81c940",
+      "run_id": 39498246931,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 68,
+      "details_json_pointer": "/failed_checkpoint_histories/8",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+      "run_id": 39503939856,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 68,
+      "details_json_pointer": "/failed_checkpoint_histories/9",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    },
+    {
+      "head": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+      "run_id": 39507120872,
+      "attempt": 1,
+      "conclusion": "FAILURE",
+      "historical_source_equalities": 69,
+      "details_json_pointer": "/failed_checkpoint_histories/10",
+      "dependency": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+        "bytes": 884427,
+        "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+      },
+      "whole_current_scope_reuse": false
+    }
+  ],
+  "successful_diagnostic_producer_separate": {
+    "target": {
+      "attempt": 1,
+      "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+      "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+      "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+      "producer_verification_mode": "calendar-feed-cause-proof",
+      "ref": "codex/epic-15-scheduling-time-calendar",
+      "repo": "rthunborg/Kopplas",
+      "run_id": 39551805476
+    },
+    "diagnostic_cases": {
+      "declared": 1,
+      "executed": 1,
+      "failed": 0,
+      "passed": 1,
+      "skipped": 0
+    },
+    "normal_acceptance_credit": 0,
+    "original_collection": "STOP_UNKNOWN preserved; no retroactive success",
+    "recovery": "Separately admitted1listing1ZIP settled/acquired/EOF/capture complete; diagnostic1P, not normalPASS or12thfailed history.",
+    "closed_acquisition": {
+      "fixed_listing_GETs": 1,
+      "exact_Root_admitted_ZIP_GETs": 1,
+      "reader_EOF": true,
+      "reader_joined": true,
+      "reader_capture_complete": true
+    },
+    "observation": "Controlled status42501 AMBIGUOUS_SQL42501; actual underlying cause UNPROVEN.",
+    "exact7packet": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/manifest.json",
+        "bytes": 2992,
+        "sha256": "a994a0046d10b5c939581b8a8aa6936e07740fd18da3b2b09d829a4aa2374f5e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+        "bytes": 33788,
+        "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/diagnostic-evidence.json",
+        "bytes": 4502,
+        "sha256": "b098af1a8f0d11bc0caad47703abbea6c833d397575adab7028de82136a162a4"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/diagnostic-qualification.json",
+        "bytes": 11223,
+        "sha256": "f24ca135b6e4ce2bc42fdffd6782981351f5fe5ac03faadb665ddf94b5d019f4"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/expected-recovery-admission.json",
+        "bytes": 6822,
+        "sha256": "0c520a531ba40641901cf2e2c672a8b3a687c4ccdab97d8a6eb78694dd762a44"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/terminal-recovery-facts.json",
+        "bytes": 3093,
+        "sha256": "959c3b6ac77294b249e7d2fca2e6612a4b0d7cc3f5a1e5bb4d2a6b500bab81ac"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+        "bytes": 29787,
+        "sha256": "3b1824fbad1d86d3231c085bf4dc56bdf4ba26d50179dada15fd05f103add613"
+      }
+    ],
+    "root_closed_result": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-result.json",
+      "bytes": 8036,
+      "sha256": "ecd676f7aef1728f5fe5c7c61e2646779e9bb874a50e20d29959141d38477645"
+    },
+    "helpers": "P33/current recovery helpers historical DATA only, not executed/rebound by author."
+  },
+  "pending": {
+    "new_status_origin_runs": 0,
+    "future_run_id": null,
+    "private_consumer": "RESERVED_ONLY_NOT_IMPLEMENTED_NOT_ACTIVATED",
+    "normal43DB14browser_causes": "UNRESOLVED",
+    "functional_fix": "NOT_JUSTIFIED",
+    "origin_limit": "External reporting routine only, never underlying cause/exact guard; caught inner error may be re-raised.",
+    "TABLE_ACL_ONLY": "owner_tokens_select false is excluded from17necessary candidates; effective columns/RLS unmeasured.",
+    "interpretation": "Future separately allocated qualifier must implement/test actual17candidate UNKNOWN decision; unexecuted.",
+    "activation": "Future Root prePOSTintent/UUID/qualified pushed checkpoint/private consumer exact binding/review/admission/separate activation required; posthoc known terminal collection is not future execution authorization."
+  },
+  "current_frozen_artifact_references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/manifest.json",
+      "bytes": 1672,
+      "sha256": "d064f7ce22b6475087b0e726ca439b01922cc8b4c3b840a28e3c76d6dfa2ff7b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/input-binding.json",
+      "bytes": 10256,
+      "sha256": "de9debad5029c8bde493d72d4323630da706c88fdaa9e05be37d5a1ea64304d1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/local-checks.json",
+      "bytes": 4296,
+      "sha256": "796c2c6d897f02b972d56a18724e6ab00067317abe592ffe1b29e3bdc049b1d1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/original-attestation.json",
+      "bytes": 20950,
+      "sha256": "ff90fd7299108bc34a1a9032f559ecd2fb14d293c02ad74f2cdb7fe51e35d56e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/original-report.md",
+      "bytes": 9419,
+      "sha256": "73dd64d8bd238b4f41e8ed944313253424116752d546f8adca15c2772e7a8810"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/result.json",
+      "bytes": 1061,
+      "sha256": "f0b2c66e9c302aa9a162470a08820575f5d82e27785a1956bcac76f89133cfe7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/review-input.md",
+      "bytes": 83063,
+      "sha256": "9851914b0c79d12a10ef255ac2d199896fc33e3b5f0965afb942141e0f3577f9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/plan.md",
+      "bytes": 12982,
+      "sha256": "8529b93439ae1d52675cd483326ff9383f36126753f8ec67a7a1161f2ca1308d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/input-binding.json",
+      "bytes": 9016,
+      "sha256": "4c1a9ed35d8027b516bcf6e699f02ca03d7655d4e96a8d8151604bc44747d81b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/local-checks.json",
+      "bytes": 1885,
+      "sha256": "dc094a25ff8bb0f7de42e58417bd199af164473bc7049673826de35594b1be98"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/manifest.json",
+      "bytes": 1305,
+      "sha256": "e01f8d71ef12eee60d2ba93b6a89bacc4b675fb506cba1adcd490cc456c11a79"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/original-report.md",
+      "bytes": 7500,
+      "sha256": "6aecbb5c7425f96e54d8372189a50821f6d3393b40f0d1c481a5d3a455487a1d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/original-attestation.json",
+      "bytes": 13345,
+      "sha256": "56ce1b993c91b00d6a68bd9b611bb558c767092f5a7d736d2e9cd7a6575392f8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan/result.json",
+      "bytes": 974,
+      "sha256": "0540f9ed1e3cd862f613d963e58081cb4fd9f48ca275337a778636dcb4b8f025"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/plan.md",
+      "bytes": 6409,
+      "sha256": "b375f14d29c899a0288d15b8bf5386bde5d27a3e00e4a0c9d8c97d03010e4350"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/input-binding.json",
+      "bytes": 10024,
+      "sha256": "63633bc5d3b9c3749d9f13674cc0f5f14104f1c27fe1ef893f66eae781483421"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/local-checks.json",
+      "bytes": 1592,
+      "sha256": "6d63b3cb7c7b0ceccef816d419c34f6fc82533c50dfe4eac55e71b0805adf9f0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/manifest.json",
+      "bytes": 1328,
+      "sha256": "9f980c5f0c16f4efa073631e68312dee6750a68b371849d8d52c87abbb6dab0c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/original-report.md",
+      "bytes": 5718,
+      "sha256": "e3739f9cea0556ee8bfeb42a90d31781bccfd2dbd50be2679e9ecd05251fb408"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/original-attestation.json",
+      "bytes": 13823,
+      "sha256": "fa0df161c4bde8d971da67f83e442dfa26daeed89503dcc973da4a197f9bd0e3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/result.json",
+      "bytes": 900,
+      "sha256": "246ebbb5cbd0cd3a4268ceab63405a295bb440117c2702a3f7cddec7144daeac"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-status-origin-discriminator-source-allocation.json",
+      "bytes": 3505,
+      "sha256": "e64d0f906325c904921caec9aec3c0c324244a1a07ed1871f40e5f3825f18b3d"
+    }
+  ],
+  "metadata_reader_history": [
+    {
+      "attempt": 1,
+      "result": "UNLABELLED_ASSERTION_STOP_BEFORE_WRITE"
+    },
+    {
+      "attempt": 2,
+      "result": "NAMED_SNAPSHOT_CATEGORIES_STOP_BEFORE_WRITE",
+      "cause": "Reader omitted HISTORICAL_BASELINE_OBJECT_ONLY_NO_RAW_OBSERVATION15 rows; existing semantics retained, classification reader corrected only."
+    }
+  ],
+  "schema_changes": [
+    "Compact immutable historical proof reuse, no giant repeated raw copies or oldartifact rewrite.",
+    "Actual reused independent High reviewer, not fresh-contextfree, explicit.",
+    "11FAILED NORMAL histories plus1successful diagnostic producer; currentstatus0.",
+    "Current3Root baseline-only rows; old raw observations remain uncredited/undurable."
+  ],
+  "preparation_integrity": {
+    "full_recursive_reference_occurrences": 67,
+    "unique_physical_reference_paths": 43,
+    "only_reference_walk_exclusion": "git.root_metadata_snapshot",
+    "source_paths": 70,
+    "raw_normalized_difference_paths": 40,
+    "ancestry": 36,
+    "author_commits": 21,
+    "root_commits": 15,
+    "prior_capsules": 13,
+    "failed_normal_histories": 11,
+    "inherited_source_equalities": 734,
+    "successful_diagnostic_producers": 1,
+    "current_status_native_runs": 0,
+    "snapshot_rows": 33,
+    "historical_raw_uncredited_rows": 12,
+    "baseline_only_rows": 21,
+    "current_raw_resampled": false,
+    "protected_SQL": 109,
+    "protected_consumers": 37,
+    "old_preparation_blobs": 69,
+    "review_input_raw_single_0x20_context_lines": 9,
+    "author_metadata_checks": "Completed; parent independent verification pending",
+    "initial_attempts": "Two stops before emission, retained; no false initialPASS"
+  },
+  "artifact_self_description": {
+    "path_only_no_circular_hash": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-status-origin-discriminator.json",
+    "allocated_files": 1,
+    "new_producer_or_verifier": false
+  }
+}

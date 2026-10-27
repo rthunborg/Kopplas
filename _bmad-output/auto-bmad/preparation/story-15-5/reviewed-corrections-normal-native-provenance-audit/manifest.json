@@ -1,0 +1,23 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "verdict": "QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "run": 39703778989,
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/reviewed-corrections-normal-native-provenance-audit/original-report.md",
+      "bytes": 5078,
+      "sha256": "944cd5bd8563704bd17620ab0ff0d2a526330998cde996ee88dcdfef5a0a329e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/reviewed-corrections-normal-native-provenance-audit/original-attestation.json",
+      "bytes": 8091,
+      "sha256": "6190c17e9045f73fec63b25ce625d3d368a44d1133263664485a735fd4b7e632"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/reviewed-corrections-normal-native-provenance-audit/result.json",
+      "bytes": 1201,
+      "sha256": "60c36ff3a05598b7d5ee448873d087db69cd22c9437d896df4f2894c6c1b7d32"
+    }
+  ]
+}

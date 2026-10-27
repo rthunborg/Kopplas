@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "repo": "rthunborg/Kopplas",
+  "ref": "codex/epic-15-scheduling-time-calendar",
+  "sha": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "actor": "rthunborg",
+  "workflow_id": 296219797,
+  "checkpoint_id": "127ec671-bb41-4c77-9f30-64b8c386f3fe",
+  "release_validation": false,
+  "cause_proof": false,
+  "verification_mode": "normal",
+  "created_at": "2026-10-23T13:35:12.296Z",
+  "deadline_at": "2026-10-23T14:35:12.296Z",
+  "phase": "dispatched",
+  "run_id": null
+}

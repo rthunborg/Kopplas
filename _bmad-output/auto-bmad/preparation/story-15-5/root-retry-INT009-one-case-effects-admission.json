@@ -1,0 +1,51 @@
+{
+  "schema": "ROOT_CORRECTED_INT009_FINITE_EFFECTS_ADMISSION_v1",
+  "status": "ADMITTED_PENDING_FRESH_PROVIDER_ACTIVATION",
+  "head": "3bbf67b48d6f9f1f3e564774b1cf3b1b8794b07e",
+  "remote_before": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+  "branch": "codex/epic-15-int009-debug",
+  "checkpoint_id": "a6d7e90f-4486-4093-a407-b5b3c495d88a",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-one-case-effects-allocation.json",
+    "bytes": 3523,
+    "sha256": "e5c32d77eb2f20aaebbb464c339c9739fe1b1b321582172fe63c432b3a6ab14b"
+  },
+  "actual_turn": "01a16431-9569-7cc3-a926-2ac8ffc270b5",
+  "actual_tool": "exec-72e0ebd6-cfc6-49bb-ba5f-fc9961ee0bf6",
+  "Root_actual_completed_read": "1e1d44/native0",
+  "operational_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-one-case-operational-review.json",
+    "bytes": 11556,
+    "sha256": "38aab01ca883b37468706001ffb9fdfa08010caad5cd354a4f7925613def3b7b"
+  },
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-operational-packet.json",
+    "bytes": 2916,
+    "sha256": "db4dd29457661975a7ed14a2f704ff28c1b0658a77868fa48d093fa97d31a864"
+  },
+  "driver": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-root-driver.py",
+    "bytes": 15113,
+    "sha256": "a4d977837d3fa49f85f840271787e9407190a5422259b375d52e9886b568d1f5"
+  },
+  "slots": {
+    "providerGET": 1,
+    "userGET": 1,
+    "workflowGET": 1,
+    "remote_before": 1,
+    "nonforceFFpush": 1,
+    "remote_readback": 1,
+    "fixedPOST": 1,
+    "resolverGETmax": 6,
+    "sole_runGETmax": 90,
+    "sole_jobsGETmax": 90,
+    "artifact_or_log_GET": 0
+  },
+  "TTL": "300s/sourceproof/provider/activation, recheck beforepush/POST",
+  "unknown": "Consumes/noautomaticretry/renewal or cleanup",
+  "no_deployment": true,
+  "actual_effects": 0,
+  "normal_acceptance": 0,
+  "full95": "68P1F26unexecuted unchanged",
+  "next": "Fresh bothownedclean/source14+immutable118proof, exclusiveprovideractivation, NativeHighoneGET/outerattribution thenRooteffectsactivation/nonforceFFpush/exactPOST/soleboundedpoll; newterminal separateartifactallocation."
+}

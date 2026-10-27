@@ -1,0 +1,15 @@
+{
+  "round": 3,
+  "layer": "blind",
+  "task": "/root/build15_5_high/round3_blind",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source_head": "360fe850c18552f23a2bf74d8eda865431f0af38",
+  "before": "672099e9dc6569f4ac1cb9a967037e0d91df689c",
+  "input_sha256": "18c68c9e6a2cdf51439d2c496025ad6cac1adaf846f43a060b6d9a84eac0f164",
+  "report_sha256": "2557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5",
+  "original_native_final_completed_before_later_persistence": true,
+  "persistence_only": true,
+  "new_review_performed": false,
+  "statement": "The original native final report was completed before this later persistence request. This operation only persists that report verbatim and performs no new review or source inspection."
+}

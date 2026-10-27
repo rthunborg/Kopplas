@@ -1,0 +1,40 @@
+{
+  "schema": "ROOT_SOURCE_LABEL_EXACT6_PRECOMMIT_ADMISSION_v1",
+  "status": "PASS_MECHANICAL_ONLY_PENDING_INDEPENDENT_HIGH_REVIEW",
+  "baseline_head": "166cad1c21f423b96c815a3f5b34d2fb81bc28bf",
+  "receipt": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-author-result.json",
+  "receipt_bytes": 68249,
+  "receipt_sha256": "e9df41e6038ba5b0fe27e23c771f1873be086f234970ee2dbee2c9cbcbdda4d0",
+  "changed_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/support/time-reports-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "source_rows": 75,
+  "changed_rows": 6,
+  "unchanged_rows": 69,
+  "native_clean_checks": 75,
+  "baseline_source_pushed_Git_objects": 225,
+  "frozen_refs": 22,
+  "kernel_assertion": {
+    "bytes": 5760,
+    "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "unchanged": true
+  },
+  "story_parser_required_next": true,
+  "native_acceptance": 0,
+  "runtime_effects": 0,
+  "source_commit": "5d5ea4e65cdeb793c759d865e25eb516f7ba2f3f",
+  "committed_paths": 6,
+  "parser": {
+    "native_exit": 0,
+    "status": "in-review",
+    "review_loop_iteration": 3,
+    "warnings": []
+  },
+  "independent_review": "PENDING",
+  "normal_acceptance": 0
+}

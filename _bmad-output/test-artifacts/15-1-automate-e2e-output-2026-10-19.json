@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "execution": "sequential-local-assessment-no-dispatch",
+  "analysis_revision": "09c853b9eb4b54967233669a1904bfbccb39409d",
+  "evidence_revision": "95d5e6bce35fe67adc178b1f3da762ea3b75e3a0",
+  "tests": [],
+  "fixture_needs": [],
+  "test_count": 0,
+  "priority_coverage": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "playwright_utils_deviations": [],
+  "pactjs_utils_deviations": [],
+  "subagent": "e2e-tests",
+  "knowledge_fragments_used": [
+    "test-levels",
+    "test-priorities",
+    "playwright-utils-mandate",
+    "selective-testing",
+    "evidence-integrity"
+  ],
+  "summary": "Existing authored scenarios retained. Qualified11 distinct passes reused with full five-command11PASS/4FAIL/7SKIP history. Remaining authored combinations/visual/manual checks retain owned release deferrals. No new browser or fixture launched; new0/executed0."
+}

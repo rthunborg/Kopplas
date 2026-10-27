@@ -3,6 +3,8 @@ import { createHash } from "node:crypto";
 import { CommandError } from "@/server/commands/command-errors";
 import { previewBookingAction, saveBookingAction } from "@/features/resources/booking-actions";
 import { openBookingConflictCounts, readBookingEditorDefault, readBookingEditorOptions, readBookingHost } from "@/features/resources/bookings-read";
+import {DEFAULT_SCHEDULING_RULES} from "@/features/scheduling/types";
+import {formatUtcInstant,parseUtcInstant} from "@/features/scheduling/time-zone";
 
 const harness = vi.hoisted(() => ({ client: {} as unknown, resolve: vi.fn(), preview: vi.fn(), command: vi.fn(), revalidate: vi.fn() }));
 vi.mock("@/server/db/supabase-server-client", () => ({ createSupabaseServerClient: async () => harness.client }));
@@ -24,7 +26,16 @@ type Row = Record<string, unknown>;
 let reads: { table: string; columns: string; filters: [string, unknown][] }[];
 let rpc: ReturnType<typeof vi.fn>;
 function fakeClient(data: Record<string, Row[]> = {}, errorTable?: string) {
-  rpc = vi.fn(async () => ({ data: [{ id: PERSON, default_work_role_id: ID }], error: null }));
+  rpc = vi.fn(async (name:string,args:Record<string,unknown>) => {
+    if(name==="booking_editor_people")return { data: [{ id: PERSON, default_work_role_id: ID }], error: null };
+    if(name!=="booking_conflict_resolver_snapshot")throw new Error("Unexpected mocked transport RPC");
+    // SQL-shaped read facts from the same fixture rows; actual parser/detector run.
+    const tenant=args.p_tenant_id,owned=(data.bookings??[]).filter(b=>b.tenant_id===tenant),instant=(v:unknown)=>formatUtcInstant(parseUtcInstant(String(v)));
+    const bookings=owned.map(b=>({id:b.id,seriesId:b.series_id??null,nominalDate:b.nominal_date??null,isException:b.is_exception===true,payload:{startsAt:instant(b.starts_at),endsAt:instant(b.ends_at),allDay:b.all_day,workRoleId:b.work_role_id??null,jobId:b.job_id??null,customerId:b.customer_id??null,facilityId:b.facility_id??null,contactId:b.contact_id??null,description:b.description,status:b.status,seriesId:null,occurrenceIndex:null,isException:false,assigneeIds:(b.booking_assignees as {person_profile_id:string}[]).map(a=>a.person_profile_id).sort()}}));
+    const people=[...new Set([PERSON,...bookings.flatMap(b=>b.payload.assigneeIds)])];
+    const facts={series:[],occurrences:[],bookings,workflow:(data.booking_conflicts??[]).filter(c=>c.tenant_id===tenant),detection:{bookings:bookings.map(b=>({id:b.id,...b.payload})),profiles:people.map(id=>({id,membershipId:id,defaultWorkRoleId:id===PERSON?ID:null,employmentPercentage:100,archivedAt:null})),memberships:people.map(id=>({id,userId:id,status:"active",role:"tenant_admin",roles:["tenant_admin"]})),hours:(data.person_work_hours??[]).filter(h=>h.tenant_id===tenant).map(h=>({id:h.id,personProfileId:h.person_profile_id,entryKind:h.entry_kind,weekday:h.weekday,localDate:h.local_date,exceptionKind:h.exception_kind,startsAt:h.starts_at,endsAt:h.ends_at})),calendarDays:(data.tenant_calendar_days??[]).filter(d=>d.tenant_id===tenant).map(d=>({date:d.local_date,variant:d.variant,reductionPercent:d.reduction_percent??null})),workRoles:(data.work_roles??[]).filter(r=>r.tenant_id===tenant).map(r=>({id:r.id,isActive:r.is_active===true||r.is_active==="true"})),jobInputs:[],rules:DEFAULT_SCHEDULING_RULES}};
+    return {data:{kind:"snapshot",canonicalFacts:JSON.stringify(facts),checkedAt:"2026-10-12T08:00:00.000000Z",claims:null},error:null};
+  });
   return { rpc, from(table: string) {
     const request = { table, columns: "", filters: [] as [string, unknown][] };
     reads.push(request);

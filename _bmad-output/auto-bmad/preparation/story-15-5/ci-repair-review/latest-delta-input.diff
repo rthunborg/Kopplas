@@ -1,0 +1,534 @@
+POST-CAP LATEST CI REPAIR DELTA REVIEW ONLY, NOT FOURTH BROAD REVIEW. All prior18 original review layers and latest assertion fix PASS reused unchanged. Source 9487c0d9dc6f622b472780587e20e834abf98595 -> 2674b3f7fa5e7853314923a0ceed52d84fcf0677; actual failed run39451957379 attempt1 unit3094/3086pass/8fail/0skip; admissionPASS, required DB/recovery/browser skipped/unexecuted. New local focused302/302pass0skip; feature95 unchanged, injected bootstrap23 separate. Preserve original611freeze/948failure. Native successor stillpending.
+
+ACTUAL COMMITTED NINE-PATH REPAIR DELTA:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 420fda1f..41841f90 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -424,12 +424,70 @@ restricted PG17 execution, required full native lanes, public-schema source/reco
+ qualification and final truth assessment remain pending Root's exact-head lane.
+ Status remains in-review; no delivery/development-complete/release-ready claim.
+ 
++## Checkpoint CI repair verification — 2026-10-20
++
++The first checkpoint at `9487c0d9dc6f622b472780587e20e834abf98595`
++(source equal to reviewed `611c86295540161d31169110bf2139cf1d85d708`)
++failed run `39451957379`, attempt 1: **3094 unit tests, 3086 passed, eight
++failed, zero skipped**. That failed native result and the original source-freeze
++capsule remain immutable history. Root reports all 30 feed Node and 22 separate
++bootstrap cases reached and passed there; the other 65 feature native bodies
++were not executed, and no API execution artifact exists.
++
++Seven failures came from shared tests assuming that delegated integration/smoke
++commands remained literal workflow commands. The eighth exposed the command
++enrollment scanner's intentional literal-declaration contract. The source now
++declares each of create/rotate/revoke literally and shares their unchanged
++execution configuration; request authority, proof and plaintext handling remain
++inside execution. No enrollment checker was weakened.
++
++Root/Coordinator admitted exactly the new `tests/support/calendar-feed-ci-contract.ts`
++and five named shared test consumers after E16/Documents ownership confirmation
++(`accepted-ci-contract-repair-allocation.json`, SHA256
++`f0c35067c1691c7df20e5ebc25ca5fec89e718f2d98a01d6d62bf2902c153cf7`).
++The test-only helper reads, never evaluates/imports, the reviewed LF-normalized
++wrapper source pinned to `cca0ccc6c0221f70a63f05a9fda715e8551de3fb58c3c99559772fbe137af0a6`.
++It validates both actual literal argv arrays and inverts only the two complete
++admitted workflow entries, including line boundaries. All other workflow bytes
++survive. This choice lets existing checks follow real delegated commands while
++preserving their job/authority/optional/required-red/native-success/upload and
++seeded honesty fences. The original fixed-Chromium inverse hash
++`48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0` is unchanged.
++Unrelated wrapper drift fails the pin; unrelated workflow drift survives and
++fails that original inverse. The wrapper's existing injected tests independently
++assert exact actually launched argv against literals, not its own constants.
++No workflow, runtime wrapper, key/provider or resource effect changed.
++
++Actual bounded working-tree verification before the repair commit:
++`node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=dot tests/unit/docs/acceptance-gate-report-validators.test.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts tests/unit/scripts/verify/ci-native-test-reports.test.ts tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts tests/unit/server/authz/command-enrollment.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts`
++passed **302/302, zero failures/skips**. The new projection regression case brings
++the separate bootstrap suite to **23**; feature inventory stays **95 = 30 Node +
++51 Vitest + 14 browser**, preserving all original 83 prepared expanded cases.
++During this repair an initial negative caught prefix matching of appended argv;
++complete line boundaries fixed it before the final full focused pass. Initial
++`.ts` imports failed typecheck and were corrected to the repository's registered
++extensionless convention. Full `pnpm exec tsc --noEmit --incremental false` then
++passed. Focused eight-file ESLint exited zero with two unused-helper
++warnings in the fixed-Chromium test; those unrelated functions were preserved.
++Fresh `pnpm run build` passed after the application declaration correction
++(compile 3.5s, TypeScript 6.0s, static 12/12). Subsequent changes are test/spec-only,
++so that build is reused for the unchanged application dependency set.
++
++Root-owned dirty state and allocation/route metadata are excluded from author
++source commits. This is not a globally clean-tree or successful-checkpoint claim.
++The distinct High latest-fix review at source611 passed; it does not review this
++new CI repair. A distinct High latest-delta review and a successor source binding
++must precede Root's next exact-head checkpoint. Native DB/RLS/component/HTTP,
++browser, recovery and installed-collection evidence remains unexecuted. No local
++runtime/qualification command or resource was launched. Three broad rounds are
++complete; no fourth broad review, delivery JSON, done or release-ready claim.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+-Round 3 latest-fix inheritance assertions and recorded static checks. Stops below resolve
+-to final source literals before the fix commit.
++Round 3 latest-fix inheritance assertions and the bounded checkpoint CI repair.
++Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+ 
+@@ -448,7 +506,8 @@ Ordinary JWT commands derive self authority; SQL rechecks current exact membersh
+ and role union under the scheduling tenant lock. Dedicated proofs bind privileged
+ inputs, and CAS/history/audit commit together without plaintext recovery.
+ 
+-- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedCommand`: exposes plaintext only after confirmed fresh SQL success.
++- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
++- `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+ - `tests/support/calendar-feed-atdd.ts:270` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+ - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 raw status/hash and direct-DML assertions; execution pending.
+@@ -487,16 +546,20 @@ privacy detection measures raw output in memory before sanitized records persist
+ - `tests/integration/commands/calendar-feed.int.test.ts:461` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:166` — `export function createOwnedGroupStopper`: memoizes settlement and verifies identity before signaling.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:88` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:264` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+-
+-Evidence: Round 1 fix verification above records 63 executed Node cases with zero
+-failures/skips, focused static checks, production build and guard results. These
+-are current working-tree checks before the fix commit. Bootstrap dependencies are
+-synthetic; operations recovery assertions are static, not restore evidence.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:308` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
++- `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:18` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
++
++Evidence: the checkpoint repair records 302 executed focused Node cases with zero
++failures/skips, final typecheck/focused lint and the fresh application build.
++The previous checkpoint failed eight unit tests; it remains failed historical
++evidence, despite its 30 feed Node/22 bootstrap passes. Current separate bootstrap
++inventory is 23. Its dependencies are synthetic; recovery assertions are static,
++not restore evidence. Earlier passing checks retain their recorded dependencies.
+ All 51 native Vitest and 14 browser bodies remain pending locally; API001 covers
+ live label revisions, API018 cancellation/counters, RLS008 raw status privacy,
+ and E2E-001 the essential actual production lifecycle. Existing ACL/RLS010,
+-serial cleanup and full regressions also require exact-head CI. All three rounds completed; latest-fix-only High regression review, restricted-executor
++serial cleanup and full regressions also require exact-head CI. All three rounds completed; CI-repair latest-delta High regression review, restricted-executor
+ PG17 execution, live lifecycle/recovery and final truth qualification
+ are outstanding. No provider/device/visual/performance or release-ready claim;
+ the unallocated exhaustive branch remains explicitly release-blocking deferred.
+diff --git a/src/server/commands/calendar-feed/manage-calendar-feed.ts b/src/server/commands/calendar-feed/manage-calendar-feed.ts
+index 88ee66a7..e83ca8ab 100644
+--- a/src/server/commands/calendar-feed/manage-calendar-feed.ts
++++ b/src/server/commands/calendar-feed/manage-calendar-feed.ts
+@@ -3,13 +3,13 @@ import { validateCalendarFeedIntent } from "@/features/calendar-feed/validation"
+ import { feedKeyFromEnv, FEED_SCHEMA, MANAGE_DOMAIN, issueCalendarFeedToken, signFeedProof } from "@/server/calendar-feed/attestation";
+ import { readCalendarFeedStatus } from "@/server/read-models/calendar-feed";
+ import type { createSupabaseServerClient } from "@/server/db/supabase-server-client";
+-import { defineCommand, runCommand, type CommandDbClient } from "../envelope";
++import { defineCommand, runCommand, type CommandDbClient, type CommandConfig } from "../envelope";
+ import { executeCalendarFeed } from "./calendar-feed-db";
+ 
+-/** Plaintext exists only in this invocation and its confirmed fresh response. */
+-export function calendarFeedCommand(action: CalendarFeedAction) {
+-  return defineCommand<CalendarFeedIntent, CalendarFeedResult>({
+-    command: `calendar_feed.${action}`, auditable: false, eventType: `calendar_feed_${action}`, targetType: "calendar_feed",
++/** Plaintext exists only in execute and its confirmed fresh response. */
++function calendarFeedConfig(action: CalendarFeedAction): Omit<CommandConfig<CalendarFeedIntent, CalendarFeedResult>, "command"> {
++  return {
++    auditable: false, eventType: `calendar_feed_${action}`, targetType: "calendar_feed",
+     validateInput: raw => { const result = validateCalendarFeedIntent(raw); return result.ok && result.data.action !== action ? { ok: false, code: "VALIDATION_FAILED" } : result; },
+     execute: async ctx => {
+       const key = feedKeyFromEnv();
+@@ -25,8 +25,15 @@ export function calendarFeedCommand(action: CalendarFeedAction) {
+         p_correlation_id: ctx.correlationId, p_claims: claims, p_signature: signFeedProof(claims, key.secret) });
+       return { ...result, issuedPath: result.outcome === "committed" && issued ? `/calendar/feed/${issued.raw}` : null };
+     },
+-  });
++  };
+ }
++// Each mutation has one literal declaration for independent enrollment discovery.
++const commands = {
++  create: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.create", ...calendarFeedConfig("create") }),
++  rotate: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.rotate", ...calendarFeedConfig("rotate") }),
++  revoke: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.revoke", ...calendarFeedConfig("revoke") }),
++};
++export function calendarFeedCommand(action: CalendarFeedAction) { return commands[action]; }
+ export async function manageCalendarFeed(client: CommandDbClient, input: unknown, correlationId?: string): Promise<CalendarFeedResult> {
+   const validated = validateCalendarFeedIntent(input);
+   if (!validated.ok) return { outcome: "denied", revision: null, issuedPath: null };
+diff --git a/tests/support/calendar-feed-ci-contract.ts b/tests/support/calendar-feed-ci-contract.ts
+new file mode 100644
+index 00000000..f53a5e73
+--- /dev/null
++++ b/tests/support/calendar-feed-ci-contract.ts
+@@ -0,0 +1,66 @@
++import assert from "node:assert/strict";
++import { createHash } from "node:crypto";
++import { readFileSync } from "node:fs";
++
++const wrapperPath = new URL("../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url);
++const wrapperSha256 = "cca0ccc6c0221f70a63f05a9fda715e8551de3fb58c3c99559772fbe137af0a6";
++const integrationArgs = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
++const browserArgs = ["run", "test:smoke"];
++const stackBinding = "          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}";
++const dbEntry = [
++  "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)",
++  "        env:",
++  "          # This opt-in alone is insufficient: the wrapper also proves this",
++  "          # hosted job's fresh Docker identities, publications and current ledger.",
++  stackBinding,
++  "        run: |",
++  "          node scripts/ci/with-calendar-feed-runtime.mjs db",
++  "          pnpm run test:pilot-performance",
++].join("\n") + "\n";
++const browserEntry = [
++  "      - name: Essential authentication smoke (production app and local Auth)",
++  "        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}",
++  "        env:",
++  "          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json",
++  stackBinding,
++  "        run: node scripts/ci/with-calendar-feed-runtime.mjs browser",
++].join("\n") + "\n";
++
++function literalArgs(source: string, name: string, expected: string[]): string[] {
++  const declarations = [...source.matchAll(new RegExp(`^export const ${name} = Object\\.freeze\\((\\[[^\\n]*\\])\\);$`, "gm"))];
++  assert.equal(declarations.length, 1, `calendar feed CI ${name} declaration`);
++  const args: unknown = JSON.parse(declarations[0][1]);
++  assert.deepEqual(args, expected, `calendar feed CI ${name} argv`);
++  return args as string[];
++}
++
++/**
++ * Expose the real delegated commands to existing CI contract checks. Only the
++ * two reviewed wrapper entries are inverted; every other workflow byte survives.
++ * Reading pinned source (never importing/evaluating it) also rejects unrelated
++ * wrapper edits instead of granting them the historical workflow inverse.
++ */
++export function projectCalendarFeedCiCommands(workflow: string, wrapperSource = readFileSync(wrapperPath, "utf8")): string {
++  const source = wrapperSource.replaceAll("\r\n", "\n");
++  const integration = literalArgs(source, "INTEGRATION_ARGS", integrationArgs);
++  const browser = literalArgs(source, "BROWSER_ARGS", browserArgs);
++  assert.equal(createHash("sha256").update(source).digest("hex"), wrapperSha256, "calendar feed CI reviewed wrapper source");
++  let projected = workflow.replaceAll("\r\n", "\n");
++  for (const [entry, replacement] of [
++    [dbEntry, [
++      "      - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)",
++      "        run: |", `          pnpm ${integration.join(" ")}`, "          pnpm run test:pilot-performance",
++    ].join("\n") + "\n"],
++    [browserEntry, [
++      "      - name: Essential authentication smoke (production app and local Auth)",
++      "        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}",
++      "        env:", "          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json",
++      `        run: pnpm ${browser.join(" ")}`,
++    ].join("\n") + "\n"],
++  ]) {
++    assert.equal(projected.split(entry).length - 1, 1, "calendar feed CI exact workflow entry");
++    projected = projected.replace(entry, replacement);
++  }
++  assert.ok(!projected.includes("scripts/ci/with-calendar-feed-runtime.mjs"), "calendar feed CI unexpected wrapper entry");
++  return projected;
++}
+diff --git a/tests/unit/docs/acceptance-gate-report-validators.test.ts b/tests/unit/docs/acceptance-gate-report-validators.test.ts
+index 3c5446a1..ca28c3fa 100644
+--- a/tests/unit/docs/acceptance-gate-report-validators.test.ts
++++ b/tests/unit/docs/acceptance-gate-report-validators.test.ts
+@@ -60,6 +60,7 @@ import assert from "node:assert/strict";
+ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
+ import path from "node:path";
+ import { pathToFileURL } from "node:url";
++import { projectCalendarFeedCiCommands } from "../../support/calendar-feed-ci-contract";
+ 
+ const REPO = process.cwd();
+ const MIGRATION_DOCS_DIR = path.join(REPO, "docs", "migration");
+@@ -115,7 +116,7 @@ function realMandatoryGateKeys(): string[] {
+   const pkg = JSON.parse(readFileSync(PACKAGE_JSON, "utf8")) as {
+     scripts: Record<string, string>;
+   };
+-  const ci = readFileSync(CI_YML, "utf8");
++  const ci = projectCalendarFeedCiCommands(readFileSync(CI_YML, "utf8"));
+   const keys = new Set<string>();
+ 
+   // (a) The `verify:*` + `test:*` scripts that CI runs (read from package.json, cross-checked in ci.yml).
+diff --git a/tests/unit/scripts/ci/checkpoint-dispatch.test.ts b/tests/unit/scripts/ci/checkpoint-dispatch.test.ts
+index 6e760d75..21c88025 100644
+--- a/tests/unit/scripts/ci/checkpoint-dispatch.test.ts
++++ b/tests/unit/scripts/ci/checkpoint-dispatch.test.ts
+@@ -4,6 +4,7 @@ import { test } from "node:test";
+ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+ import { tmpdir } from "node:os";
+ import { join } from "node:path";
++import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+ import { checkpoint, checkpointTitle, parseArgs, validateRequest } from "../../../../scripts/ci/checkpoint-dispatch.mjs";
+ 
+ const sha = "a".repeat(40);
+@@ -150,7 +151,7 @@ test("argument validation excludes arbitrary cancellation IDs, malformed refs an
+ });
+ 
+ test("workflow binds admission and preserves consequential gates with broad UI diagnostics optional", () => {
+-  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
++  const workflow = projectCalendarFeedCiCommands(readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8"));
+   const ordinaryJobs = ["checkpoint-admission", "verify", "db", "recovery-storage-loader", "e2e", "dashboard-e2e"];
+   const separateDiagnostics = ["native-stream-probe", "fixed-chromium-paired-probe", "fixed-chromium-application-verification"];
+   const jobsStart = workflow.indexOf("\njobs:\n");
+diff --git a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+index 32c90a6e..b18dafb0 100644
+--- a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
++++ b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+@@ -1,5 +1,8 @@
+ import assert from "node:assert/strict";
+ import { test } from "node:test";
++import { createHash } from "node:crypto";
++import { readFileSync } from "node:fs";
++import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+ import { INTEGRATION_ARGS, BROWSER_ARGS, FEED_FUNCTIONS, validateAdmission, validateStackIdentity, createTelemetryObserver, hasSensitiveOutput, createOwnedGroupStopper, ownsListenerRecord, waitForOwnedHttp, runCalendarFeedRuntime } from "../../../../scripts/ci/with-calendar-feed-runtime.mjs";
+ 
+ const env = {
+@@ -11,6 +14,44 @@ const keyId = "f8c9b152-1e88-471a-82fa-d45a80394e40";
+ const keyUuid = "905a0de8-b110-4f89-9096-010db4c6ef12";
+ const status = { API_URL: "http://127.0.0.1:54321", DB_URL: "postgresql://postgres:postgres@127.0.0.1:54322/postgres", ANON_KEY: "test-anon", SERVICE_ROLE_KEY: "test-service" };
+ const migrations = [{ version: "20261020220000", name: "personal_calendar_feed" }];
++
++test("CI command projection rejects entry and argv drift and cannot erase unrelated workflow or wrapper changes", () => {
++  const workflow = readFileSync(new URL("../../../../.github/workflows/ci.yml", import.meta.url), "utf8").replaceAll("\r\n", "\n");
++  const wrapper = readFileSync(new URL("../../../../scripts/ci/with-calendar-feed-runtime.mjs", import.meta.url), "utf8").replaceAll("\r\n", "\n");
++  const projected = projectCalendarFeedCiCommands(workflow, wrapper);
++  assert.ok(projected.includes("pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json"));
++  assert.ok(projected.includes("run: pnpm run test:smoke"));
++  for (const [before, after] of [
++    ["node scripts/ci/with-calendar-feed-runtime.mjs db", "pnpm run test:int"],
++    ["node scripts/ci/with-calendar-feed-runtime.mjs db", "node scripts/ci/with-calendar-feed-runtime.mjs browser"],
++    ["node scripts/ci/with-calendar-feed-runtime.mjs browser", "pnpm run test:smoke"],
++    ["node scripts/ci/with-calendar-feed-runtime.mjs browser", "node scripts/ci/with-calendar-feed-runtime.mjs browser --grep feed"],
++    ["      - name: Essential authentication smoke (production app and local Auth)", "      - name: Changed smoke gate"],
++  ]) {
++    assert.ok(workflow.includes(before));
++    assert.throws(() => projectCalendarFeedCiCommands(workflow.replace(before, after), wrapper), /exact workflow entry/);
++  }
++  assert.throws(() => projectCalendarFeedCiCommands(`${workflow}\nnode scripts/ci/with-calendar-feed-runtime.mjs db\n`, wrapper), /unexpected wrapper entry/);
++  for (const [before, after] of [
++    ['"run", "test:int"', '"run", "test:int:pilot"'],
++    ['"--reporter=default", ', ""], ['"--reporter=github-actions", ', ""], ['"--reporter=json", ', ""],
++    ['"--outputFile=test-results/full-integration.json"', '"--outputFile=test-results/foreign.json"'],
++    ['"run", "test:smoke"', '"run", "test:e2e"'],
++    ["export const BROWSER_ARGS", "const BROWSER_ARGS"],
++  ]) {
++    assert.ok(wrapper.includes(before));
++    assert.throws(() => projectCalendarFeedCiCommands(workflow, wrapper.replace(before, after)), /declaration|argv/);
++  }
++  assert.throws(() => projectCalendarFeedCiCommands(workflow, `${wrapper}\n// unrelated source drift\n`), /reviewed wrapper source/);
++  const inverseHash = (text: string) => createHash("sha256").update(text
++    .replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
++    .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "")).digest("hex");
++  const originalHash = "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0";
++  assert.equal(inverseHash(projected), originalHash);
++  const unrelated = projectCalendarFeedCiCommands(`# unrelated workflow drift\n${workflow}`, wrapper);
++  assert.ok(unrelated.startsWith("# unrelated workflow drift\n"));
++  assert.notEqual(inverseHash(unrelated), originalHash);
++});
+ type Query = { sql: string; params?: unknown[] };
+ function harness(options: {
+   query?: (call: Query) => { rows: Record<string, unknown>[] } | undefined;
+@@ -146,7 +187,9 @@ test("current full ledger and feed function ownership are checked before mutatio
+ test("DB mode fixes full argv, builds with the child's public config and settles every owned group before exact-key deletion", async () => {
+   const result = await runFixture("db");
+   assert.equal(result.exitCode, 0); assert.equal(result.receipt.keyDeleted, true); assert.equal(result.receipt.dbClosed, true);
+-  assert.deepEqual(result.launches.map(launch => launch.args), [["node_modules/next/dist/bin/next", "build"], ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], [...INTEGRATION_ARGS]]);
++  const required = ["run", "test:int", "--reporter=default", "--reporter=github-actions", "--reporter=json", "--outputFile=test-results/full-integration.json"];
++  assert.deepEqual([...INTEGRATION_ARGS], required);
++  assert.deepEqual(result.launches.map(launch => launch.args), [["node_modules/next/dist/bin/next", "build"], ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3195"], required]);
+   assert.equal(result.launches[2].command, "pnpm");
+   assert.ok(result.launches.every(launch => launch.childEnv.SUPABASE_TEST_REQUIRED === "1" && launch.childEnv.CALENDAR_FEED_TEST_BASE_URL === "http://127.0.0.1:3195"));
+   assert.ok(result.launches.every(launch => launch.childEnv.NEXT_PUBLIC_SUPABASE_URL === status.API_URL && launch.childEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY === status.ANON_KEY));
+@@ -196,7 +239,8 @@ test("a reused leader before initial or escalation signal grants no foreign sign
+ test("browser mode runs only existing smoke and awaits its server group before key deletion", async () => {
+   const result = await runFixture("browser");
+   assert.equal(result.exitCode, 0); assert.equal(result.launches.length, 1);
+-  assert.deepEqual(result.launches[0].args, [...BROWSER_ARGS]);
++  assert.deepEqual([...BROWSER_ARGS], ["run", "test:smoke"]);
++  assert.deepEqual(result.launches[0].args, ["run", "test:smoke"]);
+   assert.equal(result.launches[0].childEnv.CALENDAR_FEED_TEST_BASE_URL, "http://127.0.0.1:3100");
+   assert.ok(result.events.indexOf("commit") < result.events.indexOf("launch:0"));
+   assert.ok(result.events.lastIndexOf("settled:0") < result.events.indexOf("delete"));
+diff --git a/tests/unit/scripts/verify/ci-native-test-reports.test.ts b/tests/unit/scripts/verify/ci-native-test-reports.test.ts
+index 3a8bff8f..f580168c 100644
+--- a/tests/unit/scripts/verify/ci-native-test-reports.test.ts
++++ b/tests/unit/scripts/verify/ci-native-test-reports.test.ts
+@@ -2,9 +2,10 @@ import assert from "node:assert/strict";
+ import { readFileSync } from "node:fs";
+ import { join } from "node:path";
+ import { test } from "node:test";
++import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+ 
+ const read = (path: string): string => readFileSync(join(process.cwd(), path), "utf8").replaceAll("\r\n", "\n");
+-const ci = read(".github/workflows/ci.yml");
++const ci = projectCalendarFeedCiCommands(read(".github/workflows/ci.yml"));
+ 
+ test("both Vitest CI invocations retain console and annotation reporters while emitting distinct native JSON", () => {
+   const reporters = "--reporter=default --reporter=github-actions --reporter=json";
+diff --git a/tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts b/tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts
+index 4780b4f1..02ddcdc5 100644
+--- a/tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts
++++ b/tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts
+@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
+ import { readFileSync } from "node:fs";
+ import { join } from "node:path";
+ import { test } from "node:test";
++import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+ 
+-const ci = readFileSync(join(process.cwd(), ".github", "workflows", "ci.yml"), "utf8").replaceAll("\r\n", "\n");
++const ci = projectCalendarFeedCiCommands(readFileSync(join(process.cwd(), ".github", "workflows", "ci.yml"), "utf8"));
+ 
+ test("DB integrity and pilot probe remain required without an extra test execution stopwatch", () => {
+   assert.match(ci, /run: \|\s+pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results\/full-integration\.json\s+pnpm run test:pilot-performance/);
+diff --git a/tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts b/tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts
+index 2c8114aa..6964ff6b 100644
+--- a/tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts
++++ b/tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts
+@@ -5,6 +5,7 @@ import { EventEmitter } from "node:events";
+ import vm from "node:vm";
+ import ts from "typescript";
+ import { test } from "node:test";
++import { projectCalendarFeedCiCommands } from "../../../support/calendar-feed-ci-contract";
+ import { bounded, checkApplicationArguments, checkPinnedCandidate, inspectReport, runApplication, runCompatibility,
+   runOwnedChild, sealEnvironment, validateProvenance, createHostedOwner, SOURCES, VISUALS } from "../../../diagnostics/fixed-chromium-application-runner.mjs";
+ import { FIXED, validateReceipt } from "../../../diagnostics/no-store-stream-probe.mjs";
+@@ -170,12 +171,12 @@ test("actual export-only inverse recovers full independently reviewed probe", ()
+   assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "e4ff29811169cff384d9d75ad992730e5726a34f8659287763be24ddef7bfd67");
+ });
+ test("actual workflow inverse preserves every original job/input/gate/authority byte", () => {
+-  const after = source(".github/workflows/ci.yml");
++  const after = projectCalendarFeedCiCommands(source(".github/workflows/ci.yml"));
+   const inverse = after.replace(/      # FIXED-APPLICATION-INPUT-BEGIN\n[\s\S]*?      # FIXED-APPLICATION-INPUT-END\n/, "")
+     .replace(/\n  # FIXED-APPLICATION-JOB-BEGIN\n[\s\S]*?  # FIXED-APPLICATION-JOB-END\n$/, "");
+   assert.equal(sha(inverse.replaceAll("\r\n", "\n")), "48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0");
+ });
+-const ci = source(".github/workflows/ci.yml"), optional = ci.slice(ci.indexOf("  # FIXED-APPLICATION-JOB-BEGIN"));
++const ci = projectCalendarFeedCiCommands(source(".github/workflows/ci.yml")), optional = ci.slice(ci.indexOf("  # FIXED-APPLICATION-JOB-BEGIN"));
+ const expression = optional.match(/    if: \$\{\{ ([^\n]+) \}\}/)?.[1];
+ function eligible(event: string, verify: string, general: string, opt: boolean, cancelled = false) {
+   assert.ok(expression);
+
+READ-ONLY ALLOCATION/FAILED-EVIDENCE CONTEXT: _bmad-output\auto-bmad\preparation\story-15-5\accepted-ci-contract-repair-allocation.json
+{
+  "kind": "accepted-bounded-ci-contract-repair-ownership-allocation",
+  "story": "15.5",
+  "root_head_before_shared_edits": "9487c0d9dc6f622b472780587e20e834abf98595",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "coordinator_turn": "01a15a0f-3ed5-7460-8f79-f1546e348bf0",
+  "verified_delivery_tool": "exec-57c22b2e-a74d-452c-bf76-76fd50848f31",
+  "delivery_status": "completed",
+  "coordinator_independent_e16_reads": [
+    "exec-d6ddcc91-8ac7-4306-93c0-63c0071ae9cd",
+    "exec-10811c6d-ac72-4abc-82a5-9761784cf502"
+  ],
+  "e16_observation": "Coordinator read actual E16 response: no active Story16.5 claims or dirty/untracked changes among all six paths; Coordinator own status inspection agreed. Root verified this Coordinator record, not foreign source contents.",
+  "protected_e16_head": "bbfa9265cd9732ddd8355f256a4fd90a6111c0b5",
+  "documents_observation": "Coordinator reports no active Documents claim known; six CI test/helper paths outside retained Documents implementation scope.",
+  "allocated_paths": [
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"
+  ],
+  "root_before_edit_check": {
+    "all_six_status_clean": true,
+    "new_helper_absent": true,
+    "existing_path_bindings": [
+      {
+        "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+        "before_bytes": 58948,
+        "before_sha256": "8d87a7abf59b1907299e6a8612b715fedef6240cda61937e857f376e27f15310",
+        "head_blob_oid": "3c5446a150f8f27c88aabb613cbccefd3eccaf25"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "before_bytes": 14850,
+        "before_sha256": "76ed2b8d0b1e05cd310de2d2684e900be2a0a90a4e27c6ca617023c7616507c2",
+        "head_blob_oid": "6e760d7527b00d8402e47b9ba5a4b5b0e47d633d"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "before_bytes": 2559,
+        "before_sha256": "cab22ac6a0b4d4e5fd8bf2fe034b5193ef98376469d387880c42358a08320f91",
+        "head_blob_oid": "3a8bff8f219fb1177310b8e57ed53fa107ceab62"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "before_bytes": 2407,
+        "before_sha256": "2566d313277d51c1f7e446d4bac4dbf6bd08a6c1868412c4ad26e4b58544aeeb",
+        "head_blob_oid": "4780b4f1ff8f7d2f6bf8dc2e92e979b6273a9932"
+      },
+      {
+        "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+        "before_bytes": 140634,
+        "before_sha256": "5bccef9b63b8f8191c63f2db1b7673325c5352156f2c366e280a04114782bc28",
+        "head_blob_oid": "2c8114aa9612330580002ecad2fc41725e4d902b"
+      }
+    ]
+  },
+  "constraints": [
+    "Only own Epic15 checkout; no foreign checkout edits.",
+    "Pin reviewed wrapper LF-normalized SHA; parse literal fixed argv without eval or import execution.",
+    "Verify exact DB/browser workflow entries and actual exported argv.",
+    "Inverse only two admitted workflow fragments; preserve every other byte and original pre-feed fixed-Chromium hash.",
+    "Preserve required/optional/job/authority/native-success/upload/honesty/pilot/negative fences.",
+    "Existing allocated wrapper unit file may add specified mutations and actual launched-argv assertions.",
+    "No new workflow/runtime/Vault/key/provider effect.",
+    "Distinct latest-fix High review only; three broad rounds remain cap.",
+    "Preserve sourcefreeze611 and failed checkpoint9487 evidence; no acceptance inferred.",
+    "No further ownership acknowledgement inside exact bounds; monitoring remains paused."
+  ]
+}
+
+READ-ONLY ALLOCATION/FAILED-EVIDENCE CONTEXT: _bmad-output\auto-bmad\preparation\story-15-5\ci-repair-route.json
+{
+  "failed_head":"9487c0d9dc6f622b472780587e20e834abf98595",
+  "failed_run":"39451957379",
+  "attempt":1,
+  "actual_unit_counts":{"total":3094,"passed":3086,"failed":8,"skipped":0},
+  "route_before_dispatch":{"author":"implementation_author","model":"gpt-6.1-sol","effort":"high","reason":"Sensitive fixed CI runtime/required evidence contracts and literal command authorization enrollment"},
+  "known_failures":[
+    "tests/unit/docs/acceptance-gate-report-validators.test.ts:415,449",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts:152",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts:9",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts:8",
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts:172,191",
+    "tests/unit/server/authz/command-enrollment.test.ts:13 -> src/server/commands/calendar-feed/manage-calendar-feed.ts:12"
+  ],
+  "authorization":"Diagnose actual failures read-only under existing High author route. Existing owned manage-calendar-feed source correction allowed when diagnosed. Existing wrapper/test/workflow three-path allocation remains narrow. Any new shared checker/test path write requires exact Root/Coordinator ownership admission before mutation.",
+  "constraints":"Maintain actual required checks and negative/inverse/failure fences; no blanket weakening or comment-only literal appeasement. No local native runtime/resource/qualification. Root dirty state excluded from any author commit. Original 611/9487 source freezes and failed native run retained historically; successor capsule required after repair.",
+  "shared_allocation_after_diagnosis":{
+    "status":"GRANTED before any six-path write",
+    "receipt":"accepted-ci-contract-repair-allocation.json",
+    "receipt_sha256":"f0c35067c1691c7df20e5ebc25ca5fec89e718f2d98a01d6d62bf2902c153cf7",
+    "coordinator_turn":"01a15a0f-3ed5-7460-8f79-f1546e348bf0",
+    "successful_tool":"exec-57c22b2e-a74d-452c-bf76-76fd50848f31",
+    "e16_protected_head":"bbfa9265cd9732ddd8355f256a4fd90a6111c0b5",
+    "paths":["tests/support/calendar-feed-ci-contract.ts","tests/unit/docs/acceptance-gate-report-validators.test.ts","tests/unit/scripts/ci/checkpoint-dispatch.test.ts","tests/unit/scripts/verify/ci-native-test-reports.test.ts","tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts","tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"],
+    "conditions":"Pinned LF-normalized wrapper source SHA, no eval/import side effects; reverse only two exact admitted workflow fragments and preserve all other bytes; original fixed-Chromium hash unchanged; preserve existing canonical checks and all negative/authority/job/optional/required-red/native-success/upload fences. Real negatives for wrong/missing entries/argv/reporters/native JSON and unrelated workflow/wrapper drift; independent actual launch argv assertions. No workflow/runtime/key/provider expansion. Root state and allocation receipt excluded author source commits."
+  },
+  "post_cap":"Three broad rounds completed. New sensitive CI repair receives distinct High review of only latest delta and consequential regressions; no fourth broad roster."
+}
+
+READ-ONLY ALLOCATION/FAILED-EVIDENCE CONTEXT: .env.epic15.mail-runtime/story-15-5-preparation/checkpoint-9487c0d9-ci-independent/native-qualification.md
+# Story15.5 immutable checkpoint native qualification
+
+Status: **FAILED_NATIVE_GATE_PENDING_REPAIR**. Development complete: false. Release ready: false.
+
+Source `611c86295540161d31169110bf2139cf1d85d708`; checkpoint `9487c0d9dc6f622b472780587e20e834abf98595`; native run39451957379 attempt1, checkpoint0bf2cc02-bfc8-4956-8617-d5931a6da1df, release_validation=false. This is evidence qualification, not a fourth broad code review.
+
+The completed run failed at the Node unit step: **3094 tests,3086 passed,8 failed,0 cancelled,0 skipped**. All30 story Node cases passed; the separate22 injected wrapper cases passed. They do not establish native runtime behavior.
+
+Admission, install, lockfiles, audit, source containment, typecheck and lint passed. Build, bundle containment and focused process checks were skipped. Required db, recovery-storage-loader and e2e jobs were skipped; all4optional release jobs were skipped/uncredited. The native artifacts API returned total_count0.
+
+Eight failures are preserved in native-unit-failure-extract.json: two acceptance gate parser/honesty checks, checkpoint dispatch smoke preservation, native report invocation, pilot DB gate, two immutable workflow/fence checks, and command registry enrollment. Root and implementation author received the concrete sanitized findings.
+
+All60 frozen source raw/clean/blob bindings and507 reused dependency bindings(499 unique paths) match source/checkpoint. Current source snapshot evidence is in source-path-bindings.json; future repairs invalidate that checkout snapshot and need new bindings. Root's65artifact/146history-protected/69historical-preparation/5commit admissions are explicitly attributed reuse.
+
+All51 feature Vitest bodies and14 browser bodies remain unexecuted. Installed collection/serial ordering, full DB/RLS/ACL, actual PG17 restricted identity/bootstrap/SET/transfer/cleanup, real source/recovery public-schema lifecycle, physical Storage, native wrapper telemetry/privacy/custody and prior smoke remain unqualified. Unknown runner skip counts are null, not claimed zero. Historical52DB skips and RLS14 subset receive no current acceptance credit.
+
+Root owns a bounded repair, independent changed-regression review, refreshed freeze and next exact-head CI. No delivery JSON or status flip is authorized by this packet. Hosted enablement and deferred release validation remain separate.
+
+The packet retains sanitized extraction only; its SHA binds the raw log inspected in memory. Extracted JSON is qualifier-authored, not a native reporter artifact. manifest.json enumerates all packet files except itself; its digest is returned to Root.

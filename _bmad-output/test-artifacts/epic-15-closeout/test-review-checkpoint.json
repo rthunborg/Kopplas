@@ -1,0 +1,28 @@
+{
+  "workflowType": "testarch-test-review",
+  "stepsCompleted": [
+    "step-01-load-context",
+    "step-02-discover-tests",
+    "step-03-quality-evaluation",
+    "step-03a-subagent-determinism",
+    "step-03b-subagent-isolation",
+    "step-03c-subagent-maintainability",
+    "step-03e-subagent-performance",
+    "step-03f-aggregate-scores",
+    "step-04-generate-report"
+  ],
+  "lastStep": "step-04-generate-report",
+  "lastSaved": "2026-10-25",
+  "inputDocuments": [
+    "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md",
+    "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+    "_bmad-output/implementation-artifacts/spec-15-3-conflict-resolver.md",
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md"
+  ],
+  "headless": true,
+  "generate_inline_comments": false,
+  "context_basis": "pr_diff",
+  "output_file_override": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\epic-15-closeout\\test-review.md"
+}

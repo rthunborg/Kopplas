@@ -95,6 +95,23 @@ export const TENANT_ROOT_TABLE = "tenants" as const;
  * Ordering by domain (foundation, CRM, settings, pricing, calc, files, quotes, acceptance/job) —
  * union member order is irrelevant; the runtime `TENANT_TABLES` order follows the manifest.
  */
+export type JobDepthTableName = "job_members" | "job_required_work_roles" | "job_access_windows" | "job_dependencies" | "work_orders" | "work_order_assignees" | "work_order_dependencies";
+function isJobDepthTable(table: TenantTableName): table is JobDepthTableName {
+  return ["job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "work_orders", "work_order_assignees", "work_order_dependencies"].includes(table);
+}
+function jobChildRow(table: JobDepthTableName, tenantId: string, jobId: string): Record<string, unknown> {
+  const base = { id: crypto.randomUUID(), tenant_id: tenantId, job_id: jobId };
+  switch (table) {
+    case "work_orders": return {...base, title: "Work order spoof"};
+    case "work_order_assignees": return {...base, work_order_id: crypto.randomUUID(), person_profile_id: crypto.randomUUID()};
+    case "work_order_dependencies": return {id: base.id, tenant_id: tenantId, dependent_job_id: jobId, dependent_work_order_id: crypto.randomUUID(), prerequisite_job_id: crypto.randomUUID()};
+    case "job_members": return {...base, person_profile_id: crypto.randomUUID()};
+    case "job_required_work_roles": return {...base, work_role_id: crypto.randomUUID()};
+    case "job_access_windows": return {...base, starts_at: "2026-10-12T06:00:00Z", ends_at: "2026-10-12T07:00:00Z"};
+    case "job_dependencies": return {...base, prerequisite_job_id: crypto.randomUUID()};
+  }
+}
+
 export type TenantTableName =
   // foundation
   | "tenants"
@@ -147,6 +164,7 @@ export type TenantTableName =
   | "quote_acceptances"
   | "jobs"
   | "job_events"
+  | JobDepthTableName
   // Story 10.2 Förlorad/Avböjd reason table (INSERT-ONLY: no UPDATE grant/policy → cross-tenant
   // AND own-tenant UPDATE are denied at the privilege layer, 42501; no money/öre column).
   | "quote_lost_reasons"
@@ -158,6 +176,10 @@ export type TenantTableName =
   | "person_work_hours"
   | "tenant_calendar_days"
   | "bookings"
+  | "booking_conflict_resolutions"
+  | "calendar_feed_tokens"
+  | "time_reports"
+  | "booking_series"
   | "booking_assignees"
   | "booking_conflicts";
 
@@ -320,6 +342,11 @@ export type MutationDenialKind = "privilege" | "rls-invisible";
  * branch of the cross-tenant suite.
  */
 export function updateDenialKind(table: TenantTableName): MutationDenialKind {
+  if (table === "calendar_feed_tokens") return "privilege";
+  if (table === "time_reports") return "privilege";
+  if (table === "booking_conflict_resolutions") return "privilege";
+  if (table === "booking_series") return "privilege";
+  if (isJobDepthTable(table)) return "privilege";
   switch (table) {
     case "tenants":
     case "membership_admin_operations":
@@ -453,6 +480,11 @@ export function spoofedRowFor(
   ctx: InventoryContext,
 ): Record<string, unknown> {
   const { fixture } = ctx;
+  if (table === "calendar_feed_tokens") return { id:crypto.randomUUID(),tenant_id:fixture.tenantB.id,membership_id:crypto.randomUUID(),token_hash:"a".repeat(64),revision:1,attempt_id:crypto.randomUUID(),action:"create",expected_revision:0 };
+  if (table === "time_reports") return { id: crypto.randomUUID(), tenant_id: fixture.tenantB.id, user_id: fixture.adminA.id, report_date: "2026-10-12", duration_minutes: 1, status: "submitted", filing_attempt_id: crypto.randomUUID(), filing_digest: "a".repeat(64) };
+  if (table === "booking_conflict_resolutions") return { id: crypto.randomUUID(), tenant_id: fixture.tenantB.id, actor_id: fixture.adminA.id, command_id:crypto.randomUUID(), booking_id:crypto.randomUUID(), request_digest:"a".repeat(64), action:"accept",outcome:"accepted",target_keys:[],affected_booking_ids:[],result:{} };
+  if (table === "booking_series") return { id: crypto.randomUUID(), tenant_id: fixture.tenantB.id, rule: {}, defaults: {} };
+  if (isJobDepthTable(table)) return jobChildRow(table, ctx.fixture.tenantB.id, requireCrmId(ctx.tenantBJobId, "tenantBJobId", table));
   switch (table) {
     case "tenants":
       // A NEW tenant root with a FRESH id (review fix 2026-06-26). Reusing Tenant B's
@@ -925,6 +957,11 @@ export function tenantBFilter(
   table: TenantTableName,
   ctx: InventoryContext,
 ): { column: string; value: string } {
+  if (isJobDepthTable(table)) return {column: table === "work_order_dependencies" ? "dependent_job_id" : "job_id", value: requireCrmId(ctx.tenantBJobId, "tenantBJobId", table)};
+  if (table === "calendar_feed_tokens") return {column:"tenant_id",value:ctx.fixture.tenantB.id};
+  if (table === "time_reports") return { column:"tenant_id",value:ctx.fixture.tenantB.id };
+  if (table === "booking_conflict_resolutions") return { column:"tenant_id",value:ctx.fixture.tenantB.id };
+  if (table === "booking_series") return { column: "tenant_id", value: ctx.fixture.tenantB.id };
   switch (table) {
     case "tenants":
       return { column: "id", value: ctx.fixture.tenantB.id };
@@ -1171,6 +1208,11 @@ export function tenantBFilter(
 export function hijackMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (table === "calendar_feed_tokens") return {revoked_at:"2026-10-20T12:00:00Z"};
+  if (table === "time_reports") return { duration_minutes: 999 };
+  if (table === "booking_conflict_resolutions") return {outcome:"remaining"};
+  if (table === "booking_series") return { version: 999 };
+  if (isJobDepthTable(table)) return {[table === "work_order_dependencies" ? "dependent_job_id" : "job_id"]: crypto.randomUUID()};
   switch (table) {
     case "tenants":
       return { name: "hijacked-by-tenant-a" };
@@ -1286,6 +1328,11 @@ export function hijackMutationFor(
  * Settings tables added in Story 3.3; CRM tables in Story 3.1.
  */
 export function rlsInvisibleLabelColumn(table: TenantTableName): string {
+  if (table === "calendar_feed_tokens") return "id";
+  if (table === "time_reports") return "id";
+  if (table === "booking_conflict_resolutions") return "id";
+  if (table === "booking_series") return "id";
+  if (isJobDepthTable(table)) return table === "work_order_dependencies" ? "dependent_job_id" : "job_id";
   switch (table) {
     case "customers":
       return "display_name";
@@ -1409,6 +1456,11 @@ export function anonRowFor(
   ctx: InventoryContext,
 ): Record<string, unknown> {
   const { fixture } = ctx;
+  if (table === "calendar_feed_tokens") return {id:crypto.randomUUID(),tenant_id:fixture.tenantA.id,membership_id:crypto.randomUUID(),token_hash:"a".repeat(64),revision:1,attempt_id:crypto.randomUUID(),action:"create",expected_revision:0};
+  if (table === "time_reports") return { id:crypto.randomUUID(),tenant_id:fixture.tenantA.id,user_id:fixture.adminA.id,report_date:"2026-10-12",duration_minutes:1,status:"submitted",filing_attempt_id:crypto.randomUUID(),filing_digest:"a".repeat(64) };
+  if (table === "booking_conflict_resolutions") return { id:crypto.randomUUID(),tenant_id:fixture.tenantA.id };
+  if (table === "booking_series") return { id: crypto.randomUUID(), tenant_id: fixture.tenantA.id, rule: {}, defaults: {} };
+  if (isJobDepthTable(table)) return jobChildRow(table, ctx.fixture.tenantA.id, crypto.randomUUID());
   switch (table) {
     case "tenants":
       return { id: crypto.randomUUID(), name: "anon-spoof" };
@@ -1718,6 +1770,11 @@ export function anonFilterFor(
   table: TenantTableName,
   ctx: InventoryContext,
 ): { column: string; value: string } {
+  if (isJobDepthTable(table)) return {column: "tenant_id", value: ctx.fixture.tenantA.id};
+  if (table === "calendar_feed_tokens") return {column:"tenant_id",value:ctx.fixture.tenantA.id};
+  if (table === "time_reports") return {column:"tenant_id",value:ctx.fixture.tenantA.id};
+  if (table === "booking_conflict_resolutions") return {column:"tenant_id",value:ctx.fixture.tenantA.id};
+  if (table === "booking_series") return { column: "tenant_id", value: ctx.fixture.tenantA.id };
   switch (table) {
     case "tenants":
       return { column: "id", value: ctx.fixture.tenantA.id };
@@ -1780,6 +1837,11 @@ export function anonFilterFor(
 export function anonMutationFor(
   table: TenantTableName,
 ): Record<string, unknown> {
+  if (table === "calendar_feed_tokens") return {revoked_at:"2026-10-20T12:00:00Z"};
+  if (table === "time_reports") return { duration_minutes: 999 };
+  if (table === "booking_conflict_resolutions") return {outcome:"remaining"};
+  if (table === "booking_series") return { version: 999 };
+  if (isJobDepthTable(table)) return {[table === "work_order_dependencies" ? "dependent_job_id" : "job_id"]: crypto.randomUUID()};
   switch (table) {
     case "tenants":
       return { name: "anon-hijack" };

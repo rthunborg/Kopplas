@@ -1,0 +1,204 @@
+{
+  "actual_executed": {
+    "before_after_binding_checks": true,
+    "current_raw_clean_computed_blob_checks": 222,
+    "current_source_paths": 74,
+    "errors": 0,
+    "failures": 0,
+    "helpers_compared": 10,
+    "native_exit": 0,
+    "negative": 74,
+    "passed": 26,
+    "positive": 95,
+    "proof_refs": [
+      {
+        "bytes": 2111,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/bindings-before.json",
+        "sha256": "22de598082f2d218d8a79c09f46686f9bcc885676b339b83a3e69955006ec767"
+      },
+      {
+        "bytes": 2110,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/bindings-after.json",
+        "sha256": "539d8b61c67643ced1a2fea5117126685c67f6a21c71811c3dfc98332dc6993b"
+      },
+      {
+        "bytes": 122,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/pure-tests.stdout.txt",
+        "sha256": "239dd82d292fa237887b24bf19915e36745486492e8685a6855b8b9aa46ebbe8"
+      },
+      {
+        "bytes": 125,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/pure-tests.stderr.txt",
+        "sha256": "d14f61b35fa69ba7d763f1395959cb9a29dd0a31af5b66ab8aeb9b0ab193946b"
+      },
+      {
+        "bytes": 5,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/pure-tests.exit",
+        "sha256": "60a33e6cf5151f2d52eddae9685cfa270426aa89d8dbc7dfb854606f1d1a40fe"
+      },
+      {
+        "bytes": 1569,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/independent-envelope.json",
+        "sha256": "2b1067c81d2e24d95a342358d26761432f31344a57912be27764184b61e317a2"
+      }
+    ],
+    "tests": 26
+  },
+  "blockers": [],
+  "concrete_findings": [],
+  "deferred_work": [
+    "Fresh Coordinator R1 two-GET allocation; Root immediate current74/222 and actual terminal qualification; exclusive fsynced R1 activation.",
+    "Separate qualification of any future R1 diagnostic result."
+  ],
+  "effects": {
+    "API_GETs": 0,
+    "Git_commands_or_mutations": 0,
+    "R1_activation_absent": true,
+    "R1_output_absent": true,
+    "acceptance": 0,
+    "development_complete": false,
+    "execution_authorized": false,
+    "live_process_or_network_sentinel_calls": 0,
+    "native_acquisition": 0,
+    "old_inputs_changed": false,
+    "release_ready": false,
+    "source_Spec_config_SQL_CI_provider_resource_browser_effects": 0
+  },
+  "open_questions": [
+    "Actual discarded candidate/error/tuple/cause counts remain NULL/UNAVAILABLE.",
+    "NUDGE assertion/cause and browser failures/flake remain UNKNOWN.",
+    "35 unexecuted cases including API019/INT015 and backend/key custody remain unresolved."
+  ],
+  "outcome": "PASS_R1_PREGET_SOURCE_WITH_FRESH_ALLOCATION_ACTIVATION_CONDITIONS",
+  "preexecution_conditions": [
+    "Root must obtain and independently validate a completed fresh Coordinator allocation for exactly two GETs under the R1 operation, not reuse either consumed prior grant. Fixed endpoints are the ZIPs for artifacts12376717919 and12375309772; no metadata/list/log/status/jobs/pagination/retry/alternate/fallback request is included.",
+    "Immediately before authorization, Root must freshly verify all74 current raw/clean files and222 source/pushed/current Git objects; historical proof is immutable provenance only. Bind the exact R1 operator, manifest, compact proof and this independent admission. Preserve the exact original run39664130401/attempt1/headce1943e01b773671e0c2e583ea6b21e56d40e81b/checkpoint9565c54d-1bbe-4a32-b647-949c02e6c404/sourceb1b476dee7c936eb4797ce3221bc07b8196a1a4a.",
+    "Root remains the trusted semantic capability/terminal producer. It must validate the actual owned completed failed NORMAL tuple, actors/repo/workflow/event/ref/title, normal/causefalse/releasefalse and all nine actual jobs. Admission/verify/recovery succeeded, db/e2e failed, four optionals skipped; no foreign run or input adoption.",
+    "Only after completed allocation, exact source admission and fresh bindings/terminal validation may Root exclusively create/fsync post-f1-targeted-terminal-diagnostic-r1-activation.json with R1 schema, authorization true, no_retry true, integer maximum2 and acceptance0, exact jobs string-map and nonempty PASS independent review refs. Preparation false template is not authority. An existing old grant/reference alone cannot authorize R1.",
+    "The new R1 output directory must be absent. Production budget_admission must pass before output reservation or GET. After exclusive/fsynced reservation, any uncertainty consumes this R1 operation; no relaunch or fallback. The old consumed packet and original preparation remain immutable.",
+    "Keep the same fixed archive/member identities,4MiB compressed each,8MiB total inflation,15-second request budget, source74 allowlist and32768-byte diagnostic cap. Raw ZIP/report/message/stack/expected/actual/URL/header/key/IP/body data stays RAM-only. Diagnostic bytes admitted by the final check are the identical compact ASCII JSON+LF object fsync-written.",
+    "Tuple-tail/error/depth/text/location omissions retain truncation and UNKNOWN. Retained tuples are first four distinct in encounter order, not a complete inventory. Source frames are candidates, not failing assertion/backend-cause proof. Attempts/retries/flaky outcomes are nonadditive, unavailable/skipped/unexecuted cases supply zero coverage, and backend/key custody stays UNKNOWN."
+  ],
+  "prepared": [
+    {
+      "bytes": 1367,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/manifest.json",
+      "sha256": "6e2697886267ca13db8c3755ac1cb7c9f4e04728401e7a9b823c4e03da0aad9c"
+    },
+    {
+      "bytes": 29866,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/targeted-diagnostic-r1-operator.py",
+      "sha256": "c06fc230aa63feecc1fa076596e4e819e9ed32c96c9c8b81c08310f034377732"
+    },
+    {
+      "bytes": 23398,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/test_targeted_diagnostic_r1.py",
+      "sha256": "d36598e9cc285f851b3e38181a02cab984e5948050c2d07a803f790c7df4530b"
+    },
+    {
+      "bytes": 11028,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/compact-proof.json",
+      "sha256": "035392efac01097760c0bc1bcd7dd9edcf46f4d7e6e1c6bb82d92b56e456b2b2"
+    },
+    {
+      "bytes": 8342,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/preparation.json",
+      "sha256": "a8e135e86fb6d6a71af2ae5b4a4c20b74a2c5c21e20ce91b5d1a47b18323a29a"
+    }
+  ],
+  "production_envelope": {
+    "API_GETs": 0,
+    "all_accepted_shape_argument": "Every variable-length array is bounded by production selectors and one shared budget. All11 containers persist. The single16-error list maximizes separator overhead; maximum-width per-error fields, four tuples, four locations, all finite scalar domains, longest escaped pinned path and signed32 counters overapproximate every production projection. Fixed identities/hash lengths/header/member metadata remain production literals.",
+    "containers": 11,
+    "errors": 16,
+    "live_effect_sentinel_calls": [],
+    "locations": 64,
+    "native_acquisition": 0,
+    "production_preflight": {
+      "bytes": 30983,
+      "cap": 32768,
+      "closed_tuples": 64,
+      "errors": 16,
+      "integer_bound": 2147483647,
+      "locations": 64,
+      "margin": 1785,
+      "maximum_path_escaped_bytes": 92,
+      "schema": "PRODUCTION_ASSEMBLER_BUDGET_v1",
+      "selected_error_containers": 11,
+      "sha256": "7e1008b85969eabf5ef14f03913ce4fa7accfc099036daf5d10f644cdc5aa7ba",
+      "source_paths": 74
+    },
+    "scalar_domain_checks": {
+      "attempt_status": true,
+      "booleans": true,
+      "browser_status": true,
+      "category": true,
+      "code": true,
+      "error_kind": true,
+      "error_reason": true,
+      "global_reason": true,
+      "location_kind": true,
+      "nullable_int": true,
+      "paths": true,
+      "signed32_nonnegative_width": true,
+      "sqlstate": true,
+      "stage": true,
+      "vocabulary": true
+    },
+    "serialization_same_exact_ASCII_LF": true,
+    "status": "PASS_INDEPENDENT_ENVELOPE",
+    "tuples": 64
+  },
+  "report": {
+    "bytes": 5714,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-report.md",
+    "sha256": "7317b7245de3b69520fc6f055cbfdf3b191168c69b647d63415b4ba61ec61520"
+  },
+  "reused_not_reexecuted": {
+    "author_intermediate_tests": "Retained nonadditive preparation history; only final26 tests independently executed.",
+    "budget_assessment_refs": [
+      {
+        "bytes": 5957,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-diagnostic-output-budget-assessment/report.md",
+        "sha256": "40c8f8a7941ec0b30353526fa06f741e57bf390fc52f80cf121dc07959822e37"
+      },
+      {
+        "bytes": 8883,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-diagnostic-output-budget-assessment/attestation.json",
+        "sha256": "0ec5643a3090aa5e0cf825c43f29d0562e9915fefee69b801087891aca3e1314"
+      },
+      {
+        "bytes": 661,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-diagnostic-output-budget-assessment/manifest.json",
+        "sha256": "a121ebc4b535cc626494e28777882866af6ccbb9620692e2bb9cd376f328c484"
+      }
+    ],
+    "historical_Git_objects": "Bound222 source/pushed/then-current proof; Root fresh qualification required. No new Git command.",
+    "original_stop_audit": [
+      {
+        "bytes": 880,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-stop-audit/manifest.json",
+        "sha256": "00d27de79f4c0be2cfc6ca347c8b409ccb972398c1f3d593b0a6500a5ee9ab13"
+      },
+      {
+        "bytes": 3414,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-stop-audit/original-report.md",
+        "sha256": "b823ad0ad84ca76388aaeab141192037701461c64e1ef96deb99d98ce5e12711"
+      },
+      {
+        "bytes": 15290,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-stop-audit/original-attestation.json",
+        "sha256": "7e3c7446fe15a65f3dc24f93519bd9fe3163913d881afc93128a350f903b60de"
+      }
+    ],
+    "unchanged_transport_ZIP_privacy_helpers": "Ten exact spans, original source review and all manifest members rebound; no live transport rerun."
+  },
+  "reviewer": {
+    "broad_review": false,
+    "effort": "high",
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "round_increment": 0
+  },
+  "schema": "TARGETED_DIAGNOSTIC_R1_SOURCE_REVIEW_v1"
+}

@@ -1,0 +1,33 @@
+# Independent offline evidence audit
+
+Verdict: **PASS for provenance and qualification of failed normal gates. Development remains BLOCKED; normal acceptance credit is 0.** This is the targeted audit of the acquired packet, not another broad story review, a source-fix review, or execution authorization.
+
+The qualified observations are sufficient for bounded, read-only localization in the bound current source. They do not establish backend causes or authorize a fix, retry, cleanup, or new acquisition.
+
+## Identity and acquisition proof
+
+Reviewed run **39637925040**, attempt **1**, checkpoint **b34acf03-1116-4411-9ce4-7dbe04d48745**, pushed head **b459af22d490eadc90113fd713a73b65aff89471**, source **589652335657df7153d7578b1a421b020fa2ce8c**, normal mode, cause proof false, release validation false. The exact 24-member packet has 23 independently rehashed members and one self-excluded manifest. All 72 bound current raw source files and eight input references matched their recorded bytes and SHA256. Root's recorded Git-object checks are an identified dependency; this reviewer performed no Git operation or remote-head verification.
+
+The authorized NativeHigh transcript session identity and command chain were checked. Pure in-memory reconstruction of its recorded string transforms recovered the actual 26,061-byte UTF-8 operator, SHA256 **71468c52fab40bea00219a00fe85b796f117d611612357a2917170f8d8862be6**. The successful wrapper asserts that hash before execution. Its completed result is chunk **1937be**, native exit 0, 7.748 seconds, with the same five closed request receipts. The earlier OS206 completed output proves process-creation refusal. The separate compile stop remains operator-reported; its completed failure was not independently captured within the authorized transcript scope. Neither historical detail adds execution credit.
+
+The actual operator writes and fsyncs exclusive operation intent and each request intent before the corresponding child. Its fixed call graph allows one run archive, one artifact listing and at most the three distinct admitted artifact ZIPs, without retry. All five actual GETs completed natively with physical EOF, joined readers, closed handles, bounded byte counts and deadlines; all five budgets are consumed. The three selected ZIP digests and sizes match the listing and stream receipts. Archive path, duplicate, symlink, encryption, compression, entry, ratio and inflation limits precede selected interpretation; only permitted logs and report members are read. Current artifact expiry values are non-null; the reviewed parser also handles nullable expires_at. Raw provider/archive/report bodies remain RAM-only; retained projections use closed facts and digests. This establishes the observed acquisition, not authority for another one.
+
+## Independently reconciled results
+
+- Verify: **3,196 Node passes, 103 suite containers, zero failures/skips/cancellations/todos**. Python batches 2+26+10+5 = **43**, separate from Node and feature counts. Exact audit vulnerability counts were not retained and remain unknown.
+- Ordinary DB/RLS: **2,039 = 1,975 passed + 12 failed + 52 pending/skipped**. The 165 unique files match the current enrollment. The six configured serial files have nonoverlapping report intervals after all 159 parallel files' report completion. Physical parallel teardown timestamps were not retained; source groupOrder and passing scheduler controls support the additional ordering contract.
+- Story DB: **51 distinct = 39 passed + 12 failed, zero skipped**. Failed IDs are **API003-008, API010, API018, API019, INT009, INT014 and RLS002**. Only API010/API018 expose the permitted scenario / insufficient-privilege / 42501 leaf. That class does not prove which authorization check failed or a historical/backend cause. Other captured failure leaves remain UNKNOWN.
+- Browser: **31 distinct = 25 expected + 4 flaky + 2 unexpected**, zero skipped. Story: **14 = 8 expected + 4 flaky + 2 unexpected**; final failures **E2E-001 and E2E-002C**; flaky **E2E-005, E2E-006, E2E-010-rotate and E2E-010-revoke**. Retry attempts are not additional cases. The other 17 smoke cases passed. Eight path-only attachment references have no retained bodies; their contents and any covered-body privacy interpretation remain unqualified.
+- Feature accounting: **95 distinct = 30 Node + 51 DB + 14 browser**; 77 clean passes, four retry-dependent passes and 14 final failures. The Node label projection has 32 matched lines but only 30 source-enrolled unique cases; R1-06/R1-07 are overinclusive matchers. Recovery's one direct pass, global suite totals, Python and scheduler controls are separate and nonadditive.
+
+RLS010 passed with the ordinary grantor regression awaited inside it; this is not an extra case. INT015's bound native restrictive-engine and cleanup assertions passed. The separate recovery case passed its restored effective-CREATE denial and integrity gates. None of these covers the 52 skipped full-suite cases.
+
+## Consequential limits and next action
+
+**API019 remains a failed privacy development gate.** Its exact failing predicate is not established by the closed leaf data, and the browser attachment references prove neither a leak nor privacy compliance. The 12 DB failures and two essential browser failures block development completion under the 2026-10-19 policy; flaky cases need assessment and are not clean passes.
+
+The DB wrapper's reached source cleanup gates plus receipt qualify exact-key deletion, dbClosed and released custody. Browser receipt records key deletion unverified and custody retained despite dbClosed. Acquisition-reader settlement, successful stop steps, and diagnostic-only launch bookkeeping do not prove browser child/key cleanup. Preserve that custody; the exact teardown failure remains unknown.
+
+Migration **111**, 32,551 bytes / SHA256 **73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567**, is successfully applied and frozen. Actual successful start/reset markers, source ledger gates and reached native assertions support this status. Never edit it or a predecessor; any necessary SQL correction would require a future forward-only migration under separate ownership.
+
+Proceed only to separately routed, bounded read-only localization of these observed case IDs and the cleanup source paths. Preserve unknown causes, compare the current callers and test seams, and do not infer a grant relaxation or other functional fix from 42501. No additional GET, runtime, SQL, resource, CI, merge or deployment authority follows from this audit. Development complete and release ready both remain false.

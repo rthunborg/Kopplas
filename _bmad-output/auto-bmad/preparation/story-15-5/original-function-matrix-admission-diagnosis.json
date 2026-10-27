@@ -1,0 +1,190 @@
+{
+  "schema": "original-function-matrix-admission-diagnosis-v1",
+  "policy_version": "2026-10-19",
+  "status": "PROVEN_PRE_REQUEST_INPUT_CONFLICT",
+  "normal_acceptance_credit": 0,
+  "operation": {
+    "run_id": 39627344465,
+    "attempt": 1,
+    "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+    "source": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+    "checkpoint": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+    "mode": "cause-proof"
+  },
+  "inputs": {
+    "extractor": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/extract.py",
+      "bytes": 22147,
+      "sha256": "b2819bf337454a1f1960e9661ac72ff0a9be27801ac80e89f222457d2bba9ff0"
+    },
+    "controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/test_extract.py",
+      "bytes": 17772,
+      "sha256": "e3d1f0a4b32c3a7b879e62c6a636080a188b6c2138092bc63d8ff5530c3f9970"
+    },
+    "proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/proposal.json",
+      "bytes": 19751,
+      "sha256": "017a1c5af250d04927b0afe60c46c5e7a8e0b954d5c1caf4c4d4a99882ea88f0"
+    },
+    "activation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-activation.json",
+      "bytes": 2097,
+      "sha256": "27b0430f9da28f10e6637018161d794ea74d27cd1a695a0db28152bfced54fcd"
+    },
+    "terminal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json",
+      "bytes": 895,
+      "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+    },
+    "invocation_stop": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-invocation-stop.json",
+      "bytes": 820,
+      "sha256": "08185ce64b5bc0a523993f4ddf9fbe5bb488bf8ee369ac1a7d7122e77a794188"
+    },
+    "root_terminal_job_facts": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-c97f9ac5-terminal-job-facts.json",
+      "bytes": 8313,
+      "sha256": "0da10d845a11f68c3007920101d79b9686509d1bf4222b3163e174babfc7e076"
+    },
+    "workflow": {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+    },
+    "policy": {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    "activation_references_verified": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/extract.py",
+        "bytes": 22147,
+        "sha256": "b2819bf337454a1f1960e9661ac72ff0a9be27801ac80e89f222457d2bba9ff0"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/test_extract.py",
+        "bytes": 17772,
+        "sha256": "e3d1f0a4b32c3a7b879e62c6a636080a188b6c2138092bc63d8ff5530c3f9970"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/proposal.json",
+        "bytes": 19751,
+        "sha256": "017a1c5af250d04927b0afe60c46c5e7a8e0b954d5c1caf4c4d4a99882ea88f0"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-review-admission.json",
+        "bytes": 1228,
+        "sha256": "af9d30a1bd64dd2ba1495c6fcd6aecefd6d6716de25ba164a844abd5ddea991c"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-direct-matrix-manual-archive-allocation.json",
+        "bytes": 2048,
+        "sha256": "c87965edba3449a326a0df48fecba556caa7029ddbd057379610e94d94514e34"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-187a4c6f-source-admission.json",
+        "bytes": 27103,
+        "sha256": "6455b8e03f53f95ed682e645d0cbb46535215260743a23846166d7840e4fcc68"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-terminal-facts.json",
+        "bytes": 895,
+        "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+      }
+    ]
+  },
+  "actual_closed_stop": {
+    "native_exit": 1,
+    "category": "PRE_REQUEST_OR_PUBLICATION_STOP",
+    "consumed_marker_exists": false,
+    "result_exists": false,
+    "original_stop_receipt_unmodified": true,
+    "runtime_inner_exception_category": "NOT_EMITTED"
+  },
+  "first_deterministic_invalid_predicate": {
+    "function": "validate",
+    "lines": [
+      400,
+      401
+    ],
+    "closed_category": "TERMINAL_STEP_CONFLICT",
+    "condition": "Startup failure AND any of cause-proof execution/upload not skipped.",
+    "actual_steps": {
+      "Start local Supabase stack": "failure",
+      "Calendar feed cause proof (diagnostic only; no pilot or acceptance)": "skipped",
+      "Upload native calendar feed cause proof JSON": "failure",
+      "Stop local Supabase stack": "success"
+    },
+    "violating_operand": "Upload native calendar feed cause proof JSON",
+    "actual_value": "failure",
+    "incorrect_required_value": "skipped",
+    "earlier_static_validation_checks": "All activation/terminal schema, identity, strict types, admission/verify/job suppression and step enums before line400 pass for the frozen bytes. CLI raw-SHA argument itself is not recorded by the stop receipt; supplied reviewed CLI is Root-reported. No extractor execution/import used to establish this comparison.",
+    "runtime_precision_limit": "Generic emitted stop does not itself identify the inner exception; static comparison proves these actual input bytes necessarily hit the named guard if reached and cannot reach marker/GET."
+  },
+  "workflow_explanation": {
+    "source_lines": [
+      269,
+      270,
+      276
+    ],
+    "upload_condition": "!cancelled() && workflow_dispatch && calendar_feed_cause_proof",
+    "effect": "Upload can execute after failed startup; if-no-files-found:error can make it fail despite skipped diagnostic execution. Actual Root job metadata records this failure.",
+    "no_body_inference": "No uploaded report/archive/log/error body acquired. Failed upload does not prove a caught migration predicate, key absence or other resource cleanup."
+  },
+  "zero_effect_proof": {
+    "validation_call_line": 424,
+    "marker_exclusive_fsync_lines": [
+      449,
+      450
+    ],
+    "sole_capture_call_lines": [
+      457,
+      458
+    ],
+    "ordering": "Every path to the sole capture/gh invocation must first successfully create the consumed marker. Actual marker absent; invalid terminal is rejected earlier. Frozen imports/top-level constants do not launch subprocess/network.",
+    "logical_archive_acquisitions_by_this_invocation": 0,
+    "API_or_resource_effects_from_this_diagnosis": 0,
+    "marker_absence_checked_offline": true,
+    "result_absence_checked_offline": true,
+    "scope_limit": "This proves no archive request by this extractor invocation; it does not undo the already executed producer CI or make claims about other actors."
+  },
+  "minimal_proposed_correction": {
+    "status": "PLANNING_ONLY_NO_WRITES",
+    "source_or_workflow_changes": 0,
+    "payload_change": "In validate(), keep startup-failure => diagnostic execution skipped. Allow the actually observed failed conditional upload instead of requiring its skip. Preserve strict step enum and exact metadata binding. Do not rewrite truthful terminal upload failure.",
+    "parser_scope": "archive_projection already selects only startup member while START!=success; retain this unchanged.",
+    "necessary_controls": [
+      "Actual frozen terminal tuple startup failure / execution skipped / upload failure is admitted by corrected pure validator.",
+      "Execution non-skipped after failed startup remains refused.",
+      "Selected member set remains startup-only even if upload attempted/failed.",
+      "No marker or GET from bad identity/schema, and all prior once/caps/privacy/EOF controls remain unchanged."
+    ],
+    "binding_consequences": "Changed payload/control hashes invalidate current review/activation input pins; refresh only the bounded successor preparation/proposal identities and current independent targeted admission. Preserve original3, activation, terminal and stop byte identities."
+  },
+  "readmission": {
+    "permitted_automatically": false,
+    "one_GET_budget_consumed": false,
+    "plan_interpretation": "The proposal makes the fsynced marker the consumption boundary and prohibits retries after uncertainty. This rejection is proven before that boundary, so a specifically reviewed and explicitly Root-admitted corrected successor can retain the single intended archive acquisition. It is not authorization to blindly invoke unchanged code again.",
+    "allocation_limit": "Current grant binds original payload hashes and says no retry. Correction plus successor invocation must be explicitly re-admitted by Root within actual ownership/effect authority; this diagnosis grants none. No new producer run or source push is required to correct this private validation mismatch.",
+    "named_resume_condition": "Root preserves originals, explicitly authorizes bounded successor preparation, independent High admits exact validator/control/proposal delta, Root binds actual unchanged terminal truth and new review/code pins in successor activation, confirms absent consumed/result and remaining one-GET allocation, then separately authorizes exactly one invocation. Any uncertainty returns STOP, no opaque retry."
+  },
+  "offline_checks": {
+    "extractor_imported": false,
+    "extractor_invoked": false,
+    "pure_data_predicate_comparison": true,
+    "AST_sole_capture_order_checked": true,
+    "activation_reference_raw_hashes_verified": 7,
+    "source_binding_raw_hashes_verified": 18,
+    "current71_source_proof": "Root-reported/activation source_admission hash bound; not recounted as a broad review here.",
+    "root_terminal_steps_match": 4,
+    "files_changed": "Only this new diagnosis JSON",
+    "network_queries": 0,
+    "source_or_old_artifact_writes": 0
+  },
+  "unresolved": [
+    "Hosted startup cause/matrix UNKNOWN until authorized acquisition.",
+    "All normal43DB/14browser failures remain uncredited; diagnostic-only operation cannot satisfy normal95/development completion."
+  ]
+}

@@ -241,6 +241,25 @@ test('recovery Compose sources leave per-drill values in ignored static private 
   assert.match(roles, /ALTER USER supabase_auth_admin WITH PASSWORD/);
   assert.match(roles, /ALTER USER supabase_storage_admin WITH PASSWORD/);
   assert.doesNotMatch(roles, /ALTER USER pgbouncer|ALTER USER supabase_functions_admin/);
+  const feedBlock = roles.slice(roles.indexOf('-- Logical feed function owners'), roles.indexOf('-- ALTER ROLE is repeatable'));
+  assert.match(feedBlock, /if not exists\(select 1 from pg_roles where rolname='calendar_feed_owner'\) then\s+create role calendar_feed_owner/i);
+  for (const attribute of ['rolcanlogin', 'rolinherit', 'rolsuper', 'rolcreatedb', 'rolcreaterole', 'rolreplication', 'rolbypassrls']) assert.match(feedBlock, new RegExp(`feed_owner\\.${attribute}`));
+  assert.match(feedBlock, /m\.member=feed_owner\.oid/);
+  assert.match(feedBlock, /m\.roleid=feed_owner\.oid[\s\S]*rolname='supabase_admin'[\s\S]*m\.admin_option/);
+  assert.match(feedBlock, /raise exception 'calendar_feed_owner has unexpected membership'/);
+  assert.deepEqual([...feedBlock.matchAll(/grant calendar_feed_owner to (\w+) with admin false/gi)].map(match => match[1]), ['supabase_admin']);
+  assert.doesNotMatch(feedBlock, /alter role|grant.*(?:authenticator|anon|authenticated|service_role)|grant.*(?:create on|superuser|bypassrls)/i);
+  const feedMigration = await readFile(new URL('../../../supabase/migrations/20261020220000_personal_calendar_feed.sql', import.meta.url), 'utf8');
+  const migrationGuard = feedMigration.slice(0, feedMigration.indexOf('grant usage,create on schema public'));
+  assert.match(migrationGuard, /if not exists\(select 1 from pg_roles where rolname='calendar_feed_owner'\) then/i);
+  for (const attribute of ['rolcanlogin', 'rolinherit', 'rolsuper', 'rolcreatedb', 'rolcreaterole', 'rolreplication', 'rolbypassrls']) assert.match(migrationGuard, new RegExp(`feed_owner\\.${attribute}`));
+  assert.match(migrationGuard, /rolname='postgres'/);
+  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with set true/);
+  assert.match(migrationGuard, /grant calendar_feed_owner to postgres with inherit false/);
+  assert.match(migrationGuard, /pg_has_role\(current_user,feed_owner\.oid,'SET'\)/);
+  assert.match(migrationGuard, /m\.member=feed_owner\.oid/);
+  assert.doesNotMatch(migrationGuard, /m\.admin_option|with admin false/);
+  assert.doesNotMatch(migrationGuard, /alter role|to supabase_admin/i);
   for (const restoreEntryPoint of [rehearsalWorkflow, runbook]) {
     assert.match(restoreEntryPoint, /-U supabase_admin -d postgres/);
     assert.doesNotMatch(restoreEntryPoint, /-U postgres -d postgres/);

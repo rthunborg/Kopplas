@@ -1,0 +1,573 @@
+{
+  "schema": "root-closed-actual-fold-v1",
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "closed_operation": true,
+  "items": [
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-effects-allocation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/accepted-normal-API019-privacy-origin-effects-allocation.json",
+      "bytes": 5952,
+      "sha256": "6403123ad4873d4d4b1c2d7363b89c7d23baab021c8fdc6d7455f204fbd9b34d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-terminal-effects-allocation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/accepted-normal-API019-privacy-origin-terminal-effects-allocation.json",
+      "bytes": 6024,
+      "sha256": "eeff9b51d0fe9e13702ef147ceeea665d0576ed85d08551c062d7a45427fe969"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/acquisition-summary.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/acquisition-summary.json",
+      "bytes": 1823,
+      "sha256": "4616f6259025bdae6bc30fa7ca730c9132495db671afabbe0f4963e8dc6d5a6b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/artifact-list-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/artifact-list-projection.json",
+      "bytes": 922,
+      "sha256": "165f06f24c9263212b601f5dfb0ec5d3df58237d357d8d235d83347bd578b8c5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/native-general-browser-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/native-general-browser-projection.json",
+      "bytes": 13358,
+      "sha256": "f7f962d9f5d0be4f7c14176c7a86c6d746d0b7512fe86acfd192d4c7088399e5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/native-isolated-storage-recovery-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "5b13e6ae321b07811d221fa51e54a1acaec8c7a589a64dbf0e1ea73842157eff"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/operator-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/operator-intent.json",
+      "bytes": 7946,
+      "sha256": "ab0a34dc57180b39401ac93f31f029c2f97bbf0f5782fb6f07c76bb37373acc0"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-01-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "bdd334fac0252c494914083ba8d0262f23d497da636aa1434ee93f5a061d8e2e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-01-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-01-result.json",
+      "bytes": 1134,
+      "sha256": "1d8e0724ea9e9501b509a669231dd1c9e24e21cd8b60608059f9817076057383"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-02-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "b4c69c6fc9fa8d8cef9eeeac04d0e9664f9426575c7de4936e86908a72e904d6"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-02-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "5e5d13fdc7c7d88c4b324c8caee19259a5ff098c29ba548fa147a18b0a189be1"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-03-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-03-intent.json",
+      "bytes": 421,
+      "sha256": "3a51a11b3ef9bce72a886a69ec6b8d55ccf265ceae5c5eddf276b2dcd2fbafa9"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-03-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-03-result.json",
+      "bytes": 1140,
+      "sha256": "1a8388bd86594a007dcd70c6088fa2c019ad0026dcb54f758252fb99bf125202"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-04-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-04-intent.json",
+      "bytes": 431,
+      "sha256": "7ee2397f22fd9636c024c0d96c08a8061c4e851a9ca62a6664f8e3b896f95f48"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-04-result.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/request-04-result.json",
+      "bytes": 1149,
+      "sha256": "77edbc36eee55086f760f239a81e31c63453fc461b25a4f72c5f619a1d79279e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/run-archive-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/run-archive-projection.json",
+      "bytes": 45517,
+      "sha256": "96d6816ec904a387b5225f431968ff6125bc46835f228870fe47b759e2585e7b"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/source-label-projection.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/source-label-projection.json",
+      "bytes": 1692,
+      "sha256": "20cb37bcfdcf199cf8e01eadc1908ce97f2462f844b3f0af3879f77eef6e0025"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/source-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/source-provenance.json",
+      "bytes": 7212,
+      "sha256": "f2272d5067f716f4198d01fae2d794867257abca4ea80b26ea3fb278116bdfc5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/terminal-bindings.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "cad6a99926c37b8f1d0d075f0cb2262a5c294662f6813231aa44c0fb6b610e2d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-source-assessment.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/current-stack-start-failure-source-assessment.json",
+      "bytes": 14305,
+      "sha256": "c21531f7bb70329288587085b571cd699d7f1229517bee4bf96aa15c9a8b4247"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-final-metadata-contract-readiness.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/inherited-15-2-final-metadata-contract-readiness.json",
+      "bytes": 16913,
+      "sha256": "be0bbc03ab509d390e7344d434761ebc0589095351ca8f66d805540b8c792dee"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-initial-outer-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-actual-initial-outer-provenance.json",
+      "bytes": 907,
+      "sha256": "8c1e417e0907d719489cf48127de0dac912fc436e2352ce428aff9fc1dbfe93e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-poll-outer-provenance.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-actual-poll-outer-provenance.json",
+      "bytes": 1361,
+      "sha256": "9776a90d6ecf0f68e339f79ac4a09910184602a6287b93dd2b339149c6868f60"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-publication-resolver-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-actual-publication-resolver-proof.json",
+      "bytes": 5116,
+      "sha256": "4e5007597fa18334c5ab8226079dae987f7c5520675a9eee5fd6c9a66cf318d1"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-root-ownership.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-actual-root-ownership.json",
+      "bytes": 34524,
+      "sha256": "5626dc096d8dbdcb406c1d77b555c1539ce6b4299a98bd8299d829cad22368ed"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-current-source-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-current-source-proof.json",
+      "bytes": 59108,
+      "sha256": "eb6abe2600d8414bf74611b60e5757c553778f06149773ada9c4670f682b0c30"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-dispatch-state.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-dispatch-state.json",
+      "bytes": 485,
+      "sha256": "c1d9e2b169524b21c273a3d60db05871cd9d252486c86cc2e69c1af5221c63b0"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/descriptive-evidence-correction-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-execution-preparation/descriptive-evidence-correction-receipt.json",
+      "bytes": 3022,
+      "sha256": "72a5340a5b0b593ddce7ef4e53f19e92236472e45d8d090bf3cf32565a7d3290"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/manifest.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-execution-preparation/manifest.json",
+      "bytes": 1163,
+      "sha256": "4ff07b35b147969ab05c0fe09d3f348d9b479a4fdb145d887189de71cb259158"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-execution-preparation/proposal.json",
+      "bytes": 237192,
+      "sha256": "8defb9f6a1bfc753bd4d857a392ecf44a3c2fda37caa9157a43684017dcfabfe"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "bytes": 12906,
+      "sha256": "0b10bff10b6576fc1e8ee2a06c5d18e6ede0ddd3e3c0cf096403aad22f0ba329"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-future-inert-identities.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-future-inert-identities.json",
+      "bytes": 627,
+      "sha256": "d436d666bbada47b558558a0d1cebe419a87a82c0b350b71056402a9f40dbfe7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-inert-binding.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-inert-binding.json",
+      "bytes": 329,
+      "sha256": "2b19a3a5769c7b74dc125b47d2e0c557672285f8e4d2ad189d28b33ed0659640"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-operational-review.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-operational-review.json",
+      "bytes": 12655,
+      "sha256": "43010f3139f0a864bd5130cb2f581027eceaae0caf4d1bf6278766066a0aacac"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-provider-execution-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-provider-execution-receipt.json",
+      "bytes": 3755,
+      "sha256": "a4503f92a8652e23bc9dd0ad4f1872ca57a2bc5da842bc4074b05d737ca7bf7d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-provider-readonly-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-provider-readonly-activation.json",
+      "bytes": 2498,
+      "sha256": "4a2f41d113412428b737c5403836cfadff50de4aff996efb0e00aa027adbf847"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-provider-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-provider-root-once-journal.json",
+      "bytes": 1442,
+      "sha256": "b2223e83745865ceb7aca133946ee5d818278da2e413570bc0a906ef1fadeedc"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-admission-interface-check.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-admission-interface-check.json",
+      "bytes": 5388,
+      "sha256": "9c0e38718e688ded124c6e094e579bf7c7ff94ed021b38750fa4bba284ba1313"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-docs-fold-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-docs-fold-proof.json",
+      "bytes": 240,
+      "sha256": "e790575fca462e3cf3e1a0b57d8e4aef517f3f7b734e702031493c0befd7f842"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-effects-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-effects-activation.json",
+      "bytes": 1784,
+      "sha256": "c56effd39503db82799d4ca84be90a0b7e8e475753da09d330894dc8452a9723"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-once-journal.json",
+      "bytes": 1448,
+      "sha256": "78f16aac849e21d38c9c1ef934ec99f5413c17198614e75fba6d75efe07e6dfa"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/dispatch-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/dispatch-intent.json",
+      "bytes": 471,
+      "sha256": "9c3486ab33094a8f7bf2a5639ea3fab090c0f1d7883d355185c1144aaab623c2"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/dispatch-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/dispatch-receipt.json",
+      "bytes": 842,
+      "sha256": "ac691564e3ebe33b1d0aac2d0e9e504a4a39ad799b736e9721e200f3a6e73526"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-1-intent.json",
+      "bytes": 276,
+      "sha256": "2bc571ca0b0ccca9f935897a4ac431b437eae5da75ef4e05da0aac334639579e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-1-receipt.json",
+      "bytes": 699,
+      "sha256": "78d991ac02d867fd048784075a336179049983b5109d2d33330cc6d1caad90bb"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-2-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-2-intent.json",
+      "bytes": 276,
+      "sha256": "d7c24a21c9bc5e5bdddc5de180d8e0ffd01ee58cd632dfdcf63a6fa0a82a29df"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-2-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-2-receipt.json",
+      "bytes": 699,
+      "sha256": "12a52443f095773eba0ec364bcb62a80c12cd7dc6b5f4ce1acdb5d0e56594e4c"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-3-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-3-intent.json",
+      "bytes": 276,
+      "sha256": "315058083a619d2a222a23887755dda060579a0efba981ac7693cbfc5467ca83"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-3-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-3-receipt.json",
+      "bytes": 700,
+      "sha256": "01d1dfbccf68615c6479709f8b19eca895f52487acf8a433e4378406d23a11f0"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-4-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-4-intent.json",
+      "bytes": 276,
+      "sha256": "4018ed2d9fc2d781301e829307c939b142b35feb01ff63aef04357cef13beb85"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-4-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-4-receipt.json",
+      "bytes": 700,
+      "sha256": "6d88599f229eb0990d0d8f3ddb790c3b281ac510a99cf96902e06af6194a3d61"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-5-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-5-intent.json",
+      "bytes": 276,
+      "sha256": "b9ac639d1d790bc64248f2e107bc33ec18122b88fd73b8a1587ace1ab21dfb41"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/jobs-5-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/jobs-5-receipt.json",
+      "bytes": 700,
+      "sha256": "66bf65b9e02d51223a624633d4956dbdf22295288295598953f32109e1abd954"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/observation-1.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/observation-1.json",
+      "bytes": 6936,
+      "sha256": "d3100d32a0bf7758749b53eb8f7d0ece325651cdcd8b6390f4db18bf30ecfda7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/observation-2.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/observation-2.json",
+      "bytes": 7065,
+      "sha256": "67b65c8bae0c677da1ab26cc9aad50a5470d649cca29724381e09971e3137425"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/observation-3.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/observation-3.json",
+      "bytes": 20901,
+      "sha256": "3b285d876bf901c7bb1ee25ef8e62e89053e4ce1ef1b833916ab7fc5b1beb07d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/observation-4.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/observation-4.json",
+      "bytes": 22462,
+      "sha256": "d94b477bf0b6841b10647ec0449d043bd69e54b480e3c20efdb354901403195a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/observation-5.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/observation-5.json",
+      "bytes": 24085,
+      "sha256": "1a8cd8c017e2a09933f05c8debb2fafcb837385a775eb1aa8cbd7d7a3d7d7d2e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/operation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/operation.json",
+      "bytes": 867,
+      "sha256": "07dd7b52257acc02bb65f865f38b2e95e7bed2774313917dddf8d6e658dbd1b9"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/push-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/push-intent.json",
+      "bytes": 201,
+      "sha256": "12a40eab986b1019a5b9b50f629670298400dc7033a65917717688eb787bbf58"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/push-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/push-receipt.json",
+      "bytes": 698,
+      "sha256": "3bb690839f7ac3ae3a4c54b4123c19c312ebc976939c119e87fcc57144ae279d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/remote-before-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/remote-before-receipt.json",
+      "bytes": 697,
+      "sha256": "c8933269b2171ff160c6e754c0bd5377436f30e57a05ec08d87b59f5cdfba003"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/remote-readback-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/remote-readback-receipt.json",
+      "bytes": 697,
+      "sha256": "01e4a6035b1717553c999e8d899542eb3cd842dd0e0f222fcc582c1d1254c315"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/resolve-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/resolve-1-intent.json",
+      "bytes": 334,
+      "sha256": "a5266c55afb2ee3fa298a3b87923b1f6118b389b77c58bef81ed74f582f8b727"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/resolve-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/resolve-1-receipt.json",
+      "bytes": 701,
+      "sha256": "05ea76e0eb13a9b426623a1c1c2abea1fe3891d977389fe4c43f76042fba0293"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-1-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-1-intent.json",
+      "bytes": 244,
+      "sha256": "a9b989892c9a7029a4c8c54d332a28e2265260152584b5eca0e9ab59999cc635"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-1-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-1-receipt.json",
+      "bytes": 700,
+      "sha256": "404b5c237994fb8d3fd8f7e46bb90a4e3e76b81504fa2503dbad5633a51678cb"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-2-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-2-intent.json",
+      "bytes": 244,
+      "sha256": "6c257a0ee4c9fc7f03bae34ec3c93a682d869fb4afea80f7a4cac522e82a7e35"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-2-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-2-receipt.json",
+      "bytes": 700,
+      "sha256": "0f7b4f2ac1e6b08b0f97b383a3d4ae9a5bd4e8b873ce4f0009b8a84fbfbc19cd"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-3-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-3-intent.json",
+      "bytes": 244,
+      "sha256": "4b315ebe13759e5298667ca80454ef01a9d2677a907ce1e5e901cc9195631106"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-3-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-3-receipt.json",
+      "bytes": 699,
+      "sha256": "56f279f2db858272dc54d207a29fc9617c495c61e6f6269ab32db791c2fd0912"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-4-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-4-intent.json",
+      "bytes": 244,
+      "sha256": "727fb0e5568138fcd685011712911578a1041bcefbf98ed63a705d573f66e987"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-4-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-4-receipt.json",
+      "bytes": 700,
+      "sha256": "0d1b5841bb6014ae0ed1130193787a0180e655774f3e895cd118f44de6447743"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-5-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-5-intent.json",
+      "bytes": 244,
+      "sha256": "e221cf3131c7c5844bcd982d424eea340c62b0afb0ea81d8546477b21c68cc58"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/run-5-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/run-5-receipt.json",
+      "bytes": 700,
+      "sha256": "e6718546e3082bd79b1536b7d142ea8aa25409567d704b30ffe008d659b03ac4"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/terminal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "1a8cd8c017e2a09933f05c8debb2fafcb837385a775eb1aa8cbd7d7a3d7d7d2e"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-source-commit-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-root-source-commit-proof.json",
+      "bytes": 1129,
+      "sha256": "e25f335ac96bde4d5718fcf3050ce0f8e9d92caadac8e97f5c08bc10eab26d00"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-native-qualification.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-actual-native-qualification.json",
+      "bytes": 25597,
+      "sha256": "f7f4d85f1c3bc5e3af0ec5d785a7f333e8ed90989b6c722f99fc0a84dfccde4d"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/actual-terminal-envelope.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26294,
+      "sha256": "5abc36d28f1f7e36a004a7aa510150d1f7f9e53bcb9ddb141d1efbecb989b811"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/manifest.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-actual-preparation/manifest.json",
+      "bytes": 1182,
+      "sha256": "85968d82cad505e37e78ea043055bf85cf9a7daf921bb7b1f059f62084fdbfae"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/proposal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-actual-preparation/proposal.json",
+      "bytes": 113205,
+      "sha256": "bdf29463f744fa29faf03208867370be895c70fdd9420af43103e3c6179fe550"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/source-rows.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-evidence-activation.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-evidence-activation.json",
+      "bytes": 4204,
+      "sha256": "86ccbb9bfb035a125b380e9615dccebbf1f89a32e4a0df1f3691771773d5d8ef"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-execution-receipt.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-execution-receipt.json",
+      "bytes": 10745,
+      "sha256": "86515ceebcba4b730da4a7f2500fd85ddc3810f2bda4349f879cc3afc2c582f5"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-fresh-source-proof.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-fresh-source-proof.json",
+      "bytes": 59892,
+      "sha256": "d09d1978b585127656947bc600439665778ae7aec86b45a9d02cc13b199a8168"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/manifest.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-inert-preparation/manifest.json",
+      "bytes": 901,
+      "sha256": "575991b7222a8224b91d1d2793cc3cd435edb06a8e91f2275398257b270d31e7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/proposal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-inert-preparation/proposal.json",
+      "bytes": 78340,
+      "sha256": "3aa3e629fd0ff3aa49fb80313a16f50d562e01bb1415d2f0642ebacaebc57da7"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/source-rows.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-inert-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+      "bytes": 13171,
+      "sha256": "3ab0bc9c4ed85bc189b11790ea476f103334b1e183e3ebcbb935771d0502e483"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-root-admission-interface-check.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-root-admission-interface-check.json",
+      "bytes": 6169,
+      "sha256": "d9d7119045f55da9ec357137d2bc1da4c304f6f8678b60fdbd4ed5b789f96486"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-root-once-journal.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-terminal-root-once-journal.json",
+      "bytes": 1355,
+      "sha256": "60abfbf7aa51155ea56dbfea269f4f0b21a2cc1d7d1e566aef1ea564db73b45a"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-vercel-readonly-consumed-intent.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-vercel-readonly-consumed-intent.json",
+      "bytes": 1195,
+      "sha256": "f864f62f496af081983a7c505d4105cb7343bab07cae657dfe9506393337d45f"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-vercel-readonly-qualification.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/normal-API019-privacy-origin-vercel-readonly-qualification.json",
+      "bytes": 30499,
+      "sha256": "62b47063fd172caa3d1b0c7753cacb5c15b4ec08e65ed8061653136716e86057"
+    },
+    {
+      "source": ".env.epic15.mail-runtime/story-15-5-preparation/current-stack-start-failure-minimum-plan-independent-review.json",
+      "destination": "_bmad-output/auto-bmad/preparation/story-15-5/API019-privacy-origin-normal-actual-closeout/current-stack-start-failure-minimum-plan-independent-review.json",
+      "bytes": 8035,
+      "sha256": "e689f0af2b2bdbc230c7dab2e8d4ee98acef85dc1f3ff937b7df41aea744f8c7"
+    }
+  ],
+  "limits": "Closed JSON/projections only; no raw logs, ZIPs, native raw reports, SQL text, provider raw bodies or executable operators copied. Historical source records retain their original scope."
+}

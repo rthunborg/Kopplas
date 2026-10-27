@@ -1,0 +1,222 @@
+{
+  "schema": "API019_PRIVACY_REFUSAL_MINIMUM_SOURCE_ASSESSMENT_V1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T15:51:33.535391+00:00",
+  "route": "Root20588a;gpt-6.1-sol High",
+  "Outcome": "Privacy refusal localized; actual response-emitter/observer in-memory contract passes. No source-proven functional repair or certified hosted cause.",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-refusal-source-assessment.json"
+  ],
+  "Status": "NAMED_MISSING_SAFE_FACT; independent minimum-plan check before patch",
+  "Open questions": [
+    "First observer increment predicate and emitting owned child UNKNOWN.",
+    "Actual secret disclosure vs unexpected-response schema vs recognizer false positive UNKNOWN.",
+    "Final distinct95/recovery/custody qualification remains separate."
+  ],
+  "Deferred work": [
+    "Root scoped direction/independent plan qualification before edit or any runtime.",
+    "Required95/separate recovery/custody/delivery remain pending; no fourthbroadreview."
+  ],
+  "Blockers": [
+    "Missing firstincrement predicate/child; no blindNORMALrepeat, timeout/reset/exemption or rawlog retrieval."
+  ],
+  "identity": {
+    "run": 39975009683,
+    "attempt": 1,
+    "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+    "source": "e52568795789034c556f64b0721318f75aa13691",
+    "checkpoint": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a"
+  },
+  "actual": {
+    "projection": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-edce7b87-normal-API019-NORMAL-ci-independent/native-full-integration-projection.json",
+      "bytes": 67030,
+      "sha256": "03c1fbfdeb41f5253b90cc4e56ba260b8d7204e6dc295eadfdcd21b07cbc4d03"
+    },
+    "outer_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-execution-receipt.json",
+      "bytes": 11982,
+      "sha256": "d85a7cde19e7d45518782d960465cd44564608563d3e1b4024d2eb5b9d2a6ca9"
+    },
+    "API019": {
+      "status": "failed",
+      "duration_ms": 3021.937936999995,
+      "failure": {
+        "fixed_category_counts": {},
+        "invalid_owned_tuple_headers": 0,
+        "owned_leaf_tuple_count": 1,
+        "owned_leaf_tuples": [
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario-telemetry-privacy-refused"
+          }
+        ],
+        "raw_failure_details": "NOT_PERSISTED",
+        "typed_assertion_pairs": [],
+        "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+      }
+    },
+    "selection": "Canonical projection.story_cases has one API019. Recursive traversal also encountered file-level representation; these are not additional cases/attempts. Initial localmetadata assertions3454a3/f6a9ca stopped before filecreation; direct schema selection removes ambiguity.",
+    "limit": "Only safe projection facts; exactnativeerror/matchedvalue/flagvalues/firstthrow UNKNOWN; no self95/custodyqualification."
+  },
+  "source_findings": [
+    {
+      "site": "helper549-564",
+      "fact": "Privacy origin only after successful JSON parse + response marker + latest observation Number(responseCount)>0; exactrefusal is sensitiveOutputDetected!==false OR sensitiveOutputCount!==0. Actualflag/count not projected.3s/20ms unchanged;~3022ms test duration does not turn observedprivacybranch into timeout."
+    },
+    {
+      "site": "wrapper247-258",
+      "fact": "Boolean detector combines knowncredential substring, feedpath/securityfield marker,64hex,canonical32byteencoding,non-infrastructure IP. Patternmatch alone is not proof of an actualsecret. Predicate identity lost."
+    },
+    {
+      "site": "wrapper264-282",
+      "fact": "Count increments for hasSensitiveOutput(rawline) OR unexpectedResponse (calendar_feed.response with nonexact event/status keys or disallowed status). Both collapse to same monotonecount/flag; rawscan precedes filtering. Only closedresponse/observation records persist."
+    },
+    {
+      "site": "wrapper587-622",
+      "fact": "ONEobserver/JSONL reused across Nextbuild,productionserver,wholeintegration runner; counter lifetime-scoped, not API019/server-only. No sourceproof whichchild/operation incremented it; reset or phasefilter would weaken currentguard."
+    },
+    {
+      "site": "wrapper399-420,481",
+      "fact": "Both stdout/stderr observed, per-child queues/outputsettlement retained; firstpredicate/child not persisted. Existing JSONL not uploaded nativeartifact."
+    },
+    {
+      "site": "public-feed15-17,46-49; API019389-403",
+      "fact": "Public handler logs exactevent/status only. API019 checks HTTP200 then telemetry before remaining absence assertions. Refusal prevents theircompletion; neither app/audit leak nor remainingassertionPASS follows."
+    },
+    {
+      "site": "wrapper633-670;helper577-584",
+      "fact": "Failure has no downstreamsuccessbypass; uncertaintyretains DBkey/sharedstatecustody. Child/jobstop not rollback/keydeletion/backendproof."
+    },
+    {
+      "site": "package.json17;wrapper11",
+      "fact": "test:int=vitest run, not separate fullNode run-tests.mjs. No attribution to pureNodeunit output."
+    }
+  ],
+  "actual_source_contract_control": {
+    "tool": "f7af02",
+    "native_exit": 0,
+    "wall_seconds": 0.1459141,
+    "command": "Node22.23.2 --input-type=module -; bounded in-memory actualsource extraction only",
+    "implementation": "Compile exact wrapper isSafeInfrastructureAddress/hasSensitiveOutput/createTelemetryObserver region (remove export modifier only). Compile actual public-feed securityHeaders/reply region with existing TSstripper. Inject in-memoryconsole/persist; no importmain/server/testframework/request.",
+    "actual_reply_statuses": [
+      200,
+      404,
+      429,
+      503
+    ],
+    "clean_observation": {
+      "responseCount": 4,
+      "sensitiveOutputCount": 0,
+      "sensitiveOutputDetected": false
+    },
+    "benign_vectors_checked": 3,
+    "benign_vectors": "Next banner;Next.js16.4.1 banner;exactowned127.0.0.1:3195startupformat",
+    "guard_positive_checks": "Separate syntheticknownsecret and unexpectedresponseextraitem both increment:count2/flagtrue. No synthetic/hostedrawvalues persisted.",
+    "conclusion": "No deterministic emitter/schema mismatch or falsepositive demonstrated in these exactsource-bound vectors. Not exhaustive/no hostedfirstincrement proof.",
+    "API": 0,
+    "resources": 0,
+    "testsuites": 0
+  },
+  "causal_verdict": {
+    "source_proven_bug": false,
+    "hosted_cause": "UNKNOWN",
+    "blocked_vs_leak": "Observed privacyguard refusal is enforcement, not proof external disclosure occurred. Unexpected schema alone can trigger it; equally no basis to dismiss it as falsepositive.",
+    "not_repairs": [
+      "No deadline increase",
+      "No countreset/phaseexclusion/filter away suspiciousoutput",
+      "No permissiveallowlist/threshold/assertion/95change",
+      "No app/SQL/RLS/auth/custody mutation",
+      "No refetch/rawlog/opaqueNORMALrepeat"
+    ]
+  },
+  "minimum_safe_fact_plan": {
+    "missing": "FIRST increment predicate + ownedchildkind only; never rawline/matchedsubstring/URL/token/IP/hash/error/stack.",
+    "exact_seam": "Existing createTelemetryObserver increment273-275 and existing ownedlaunch phases617-622. Nativefixed source-label path can carry validated fixedclassification; no newcollector/reportfamily.",
+    "prospective_dimensions": {
+      "child": [
+        "build",
+        "production-server",
+        "integration",
+        "unknown"
+      ],
+      "predicate": [
+        "known-credential",
+        "feed-path-or-security-field",
+        "hex64",
+        "canonical32",
+        "ip-literal",
+        "unexpected-response-shape",
+        "unknown"
+      ]
+    },
+    "scope_if_separately_admitted": "Small firstincrement bookkeeping in existingobserver/launch seam +existingunit; existing exactwrapperpin contract/rawconsumercompanions must remainenforced and be explicitlyenumerated beforeedit. Existinghelper/nativefixedlabelconsumer only finitevalidatedlabels; no arbitraryfallback. No source/effect authority fromassessment.",
+    "invariants": "Firstonlyimmutable; keep originalboolean/counter/refusal/rawprivacy-first detection/order/promise/error/caps/settlement/3s20ms; unknowncontext staysUNKNOWN. No extra waits/listeners/requests/reset/exemptions.",
+    "meaningful_checks": [
+      "Actualobserver eachpositivepredicate +realemitter/benignvectors;beforeafterboolean/count parity.",
+      "Firstincrement not overwritten by later detections/childphases;no rawretention/newthrow/order/promiseidentitychange.",
+      "Existingtelemetry success/privacy/parse/IO tests retained;validatedfixednative/source-label projection refusesunknown/injectedvalues."
+    ],
+    "why_not_existing_artifact": "Predicate/child were never persisted. Rawlinesdiscardedbefore reporter;5GETslotsclosed. Re-fetch cannotreconstruct discardedfact.",
+    "native_nextstep": "No runtimecommand authorized. Independently review minimal source seam first; only later exactreviewedfiniteattempt ifneeded, not opaque wholeNORMAL repeat; UNKNOWN/nonreproductionSTOP."
+  },
+  "source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 140182,
+      "sha256": "31238ec8852e5636d1d0dab3391a7224da50c2349f39cd28711ca85dba81968a",
+      "LF_bytes": 138786,
+      "LF_sha256": "571b4cb4d939e66e850303873f577f2256a11084330863ea5f303f7d2cb470e3"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "LF_bytes": 47931,
+      "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "LF_bytes": 26504,
+      "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "bytes": 4421,
+      "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "LF_bytes": 4421,
+      "LF_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 331036,
+      "sha256": "e6ce95880d24c7908f5f708dedb3671c554ff087d8e652a6aa135bbd21c0dfba",
+      "LF_bytes": 327960,
+      "LF_sha256": "aa80e7440037b0ae0b8c68a0e416ceba4f10a611695a251653f8dc1b9a536278"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+    }
+  ],
+  "effects": {
+    "source_edits": 0,
+    "test_suites": 0,
+    "pure_inmemory_control": 1,
+    "API": 0,
+    "Git": 0,
+    "SQL_changes": 0,
+    "resources": 0,
+    "oldslots": "CLOSED"
+  },
+  "P5": "OPEN",
+  "review_counter": 3,
+  "normal_acceptance": 0,
+  "release_ready": false
+}

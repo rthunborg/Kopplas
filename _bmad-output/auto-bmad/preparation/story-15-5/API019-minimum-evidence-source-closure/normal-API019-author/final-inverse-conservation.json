@@ -1,0 +1,91 @@
+{
+  "source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 140182,
+      "sha256": "31238ec8852e5636d1d0dab3391a7224da50c2349f39cd28711ca85dba81968a",
+      "LF_bytes": 138786,
+      "LF_sha256": "571b4cb4d939e66e850303873f577f2256a11084330863ea5f303f7d2cb470e3",
+      "prospective_LF_git_blob": "579c0f4afa82358ec85643870d508c4d2a8b7b40",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 331036,
+      "sha256": "e6ce95880d24c7908f5f708dedb3671c554ff087d8e652a6aa135bbd21c0dfba",
+      "LF_bytes": 327960,
+      "LF_sha256": "aa80e7440037b0ae0b8c68a0e416ceba4f10a611695a251653f8dc1b9a536278",
+      "prospective_LF_git_blob": "4d557609a88f195956219cdd525d74433f869043",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 260469,
+      "sha256": "fe8698f437a9d6ea1a011137db1cbdb768ef8c2b592aca642a45dc001cda65bf",
+      "LF_bytes": 257378,
+      "LF_sha256": "363c47170e3e4a97173fe10ae2e74c8f6091d8358ec890c7c7919a00a6904aef",
+      "prospective_LF_git_blob": "b0a66b9e3738d4985f509b6387e82de9451c16a2",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": false
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "LF_bytes": 47931,
+      "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+      "prospective_LF_git_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "LF_bytes": 26504,
+      "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+      "prospective_LF_git_blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": true
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+      "LF_bytes": 8024,
+      "LF_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677",
+      "prospective_LF_git_blob": "1c5e3b5f646d23d098257f209da533e05452a6d4",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "prospective_LF_git_blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "LF_bytes": 162159,
+      "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "prospective_LF_git_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a",
+      "baseline_raw_inverse_matched": true,
+      "unchanged": true
+    }
+  ],
+  "helper_inverse": "Reverse exact4 replacements in helper-delta.json, original raw byte hash exact",
+  "unit_inverse": "Remove exactly bytes from function actualApi019Telemetry( through before test(\"telemetry persists actual allowlisted markers. No other unit changes.",
+  "spec_inverse": "Remove exactly API019 telemetry origin subsection through before INT014 last-used subsection. OutsideSRO byte hash unchanged.",
+  "ownerFacts_sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+  "kernel_and_outsideSRO_unchanged": true,
+  "all_other_direct_bound_files_unchanged": true,
+  "SQL118": "No SQL source edits; no raw SQL rescan. Changed-path metadata check follows."
+}

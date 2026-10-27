@@ -1,0 +1,166 @@
+{
+  "schema": "POST_F1_LOCATION_ALLOWLIST_REFINEMENT_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "role": "finite-read-only-plan-refinement-author",
+  "identity": {
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "release_validation": false,
+    "run": 39664130401,
+    "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "current_metadata_HEAD": "9e9b6b6fe7deae5094884eb04de4a69f7144f31b"
+  },
+  "current_metadata_HEAD": "9e9b6b6fe7deae5094884eb04de4a69f7144f31b",
+  "immutable_originals": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/report.md",
+      "bytes": 5879,
+      "sha256": "179c1b2e6ca8d0a45e95b2bd63188bc6fd5297fee298ac2cf125d76d389d298f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/attestation.json",
+      "bytes": 14700,
+      "sha256": "697d1079c7b4df84721f1e9ab979f0dee1ac734df73badd261d3ba435918217c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/manifest.json",
+      "bytes": 641,
+      "sha256": "903fbbe9062abd03321583ee56f37d0ca2d0e16d5d07e9bf722b9ad8ce80c50b"
+    }
+  ],
+  "delta": "Replace current73-only location allowlist with current73 PLUS exactly one already-bound NUDGE004 test source path; no other diagnostic semantic change.",
+  "location_rule": {
+    "base_allowlist": {
+      "ref": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+        "bytes": 36163,
+        "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+      },
+      "json_pointer": "/source_rows/*/path",
+      "count": 73
+    },
+    "extra_allowlist": [
+      {
+        "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+        "bytes": 40586,
+        "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+        "current_metadata_HEAD": "9e9b6b6fe7deae5094884eb04de4a69f7144f31b",
+        "current_HEAD_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "source_commit": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+        "source_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "pushed_checkpoint": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+        "pushed_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "current_native_clean_oid": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "valid_lines": {
+          "minimum": 1,
+          "maximum": 497
+        },
+        "column_rule": "Null if absent; otherwise integer1..UTF16 code-unit length of that pinned decoded source line+1. Out-of-range=>SOURCE_MAPPING_REJECTED."
+      }
+    ],
+    "effective_unique_path_count": 74,
+    "additions_exactly": 1,
+    "excluded_nudge_context_paths": [
+      "tests/support/time-reports-atdd.ts",
+      "src/server/notifications/time-report-nudge-producer.ts",
+      "src/app/api/jobs/run/route.ts"
+    ],
+    "no_automatic_stack_discovery": true,
+    "path_rule": "Only exact relative allowlist paths. An absolute source frame may strip ONLY the fixed CI prefix /home/runner/work/Kopplas/Kopplas/ or exact owned checkout prefix C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/. Normalize separators; reject traversal,NUL,drive/URL remnants or ambiguous prefix. Reject every other path; no source reads/discovery outside the74 entries.",
+    "bounds_rule": "Validate positive line against pinned source splitlines count and optional column by UTF16 source-line bounds. Missing column staysnull. Recheck rawbytes/SHA/nativeclean/source+pushed+current HEAD binding before use; mismatch STOP_UNKNOWN.",
+    "semantics": "Location candidate only, classified DECLARATION/STRUCTURED_ERROR/STACK_CANDIDATE; not assertion/throw/cause proof. Unbound frames increment a fixed rejected count only; no raw path/message retained.",
+    "limits_unchanged": "Pererror4/total64 locations,16errors/depth4/result32KiB. Insufficient target-only locations=>namedUNKNOWN/no automatic expansion."
+  },
+  "final_diagnostic_contract": {
+    "inherit_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/attestation.json",
+      "bytes": 14700,
+      "sha256": "697d1079c7b4df84721f1e9ab979f0dee1ac734df73badd261d3ba435918217c"
+    },
+    "json_pointer": "/proposed_read",
+    "replace_only": "/location_rule",
+    "replacement_ref": "this document /location_rule",
+    "requests": 2,
+    "fixed_endpoints": [
+      "repos/rthunborg/Kopplas/actions/artifacts/12376717919/zip",
+      "repos/rthunborg/Kopplas/actions/artifacts/12375309772/zip"
+    ],
+    "artifacts": [
+      {
+        "artifact": {
+          "advertised_bytes": 103147,
+          "digest": "sha256:cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12376717919,
+          "name": "native-full-integration",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 103147,
+        "archive_sha256": "cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+        "member": "full-integration.json",
+        "member_bytes": 949869,
+        "member_sha256": "db0a5dbdebf252e9c23e409db65509ff47bdaefb1c81cb33bcbba2e099cc9844"
+      },
+      {
+        "artifact": {
+          "advertised_bytes": 8316,
+          "digest": "sha256:38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12375309772,
+          "name": "native-general-browser",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 8316,
+        "archive_sha256": "38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+        "member": "general-browser.json",
+        "member_bytes": 109956,
+        "member_sha256": "e63d3e2c10169a20bacd29c738805682ac93b11de3b651867ac0f95e030ac96f"
+      }
+    ],
+    "all_other_fields_unchanged": true,
+    "old_location_rule_not_authoritative_after_this_refinement": true
+  },
+  "checks": {
+    "original_artifact_hashes_rechecked": 3,
+    "target_current_raw_matches_original_binding": true,
+    "target_source_pushed_current_HEAD_native_clean_equal": true,
+    "base_census73_target_absent": true,
+    "extra_paths": 1,
+    "effective_paths": 74,
+    "target_lines": 497,
+    "source_tests_or_native_execution": 0
+  },
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "operation_status": "PLAN_ONLY_NOT_ALLOCATED_NOT_EXECUTED",
+  "no_effects": {
+    "source_Spec_edits": 0,
+    "Git_mutations": 0,
+    "SQL_connections": 0,
+    "API_GETs": 0,
+    "CI": 0,
+    "resources": 0
+  },
+  "next_step": "Distinct targeted independent High revalidation of this one-path correction, then exact privatepath/read-effect allocation before preparation/execution.",
+  "remaining_unknowns": [
+    "NUDGE004 failing assertion/cause",
+    "browser001/007/010-revoke failures and009 flake",
+    "API019/INT015/unexecuted35 gate",
+    "backend/key custody"
+  ],
+  "review_rounds": {
+    "broad_completed": 3,
+    "new_broad": false
+  }
+}

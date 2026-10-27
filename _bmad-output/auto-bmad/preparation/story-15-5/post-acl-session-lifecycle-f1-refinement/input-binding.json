@@ -1,0 +1,106 @@
+{
+  "kind": "F1-only-refinement-bindings",
+  "metadata_head": "1e2e05c802933326868b7353fc4de4a56b343bfa",
+  "source_candidates": [
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "clean_git_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "actual_head_git_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 110189,
+      "sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde",
+      "clean_git_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "actual_head_git_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 189039,
+      "sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580",
+      "clean_git_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "actual_head_git_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 16017,
+      "sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950",
+      "clean_git_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "actual_head_git_oid": "643eda6f18612322aa73b39f5c784d256de4c77e"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27768,
+      "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "clean_git_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "actual_head_git_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 170000,
+      "sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d",
+      "clean_git_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "actual_head_git_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0"
+    }
+  ],
+  "source_candidate_count": 6,
+  "prior_immutable_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/proposal.json",
+      "bytes": 17991,
+      "sha256": "99c216566c6ef6460687101ee4cb66cb3694fafd607f76bd85fc9a20efd38a8a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/input-binding.json",
+      "bytes": 6121,
+      "sha256": "2e80faff24d979f95832df307202c60076ce26d8231671231b88594fa9ce1955"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement/manifest.json",
+      "bytes": 650,
+      "sha256": "a3a54f042bcecea1fc0fd09786be621907ac2c1b2f0c0e90651db1cd9cac0cf9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-report.md",
+      "bytes": 5166,
+      "sha256": "218d095266c898492582bd03840d8c9ed69fb74f1567ea343e289b83af6cbe5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/original-attestation.json",
+      "bytes": 13511,
+      "sha256": "fc95a9677ed4d69d093384c7c854af7e520a80d2aaafd93d10085b157dd48f62"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-refinement-review/result.json",
+      "bytes": 2084,
+      "sha256": "a392b6c9095276a01be6c2073d7a90ead929a2083e74a5b80ff419b19fa07655"
+    }
+  ],
+  "installed_relevant_refs": [
+    {
+      "path": "node_modules/.pnpm/pg-pool@3.14.0_pg@8.22.0/node_modules/pg-pool/index.js",
+      "bytes": 14460,
+      "sha256": "6f304776edaabde2954cbf8c4366fa6d9512bfba0e408e78cc56b3c46c69d058"
+    },
+    {
+      "path": "node_modules/.pnpm/pg-pool@3.14.0_pg@8.22.0/node_modules/pg-pool/package.json",
+      "bytes": 1083,
+      "sha256": "0a9924def9e06f791b09a44eaefb227f323a39199887f6ce17b44cb5a9193134"
+    },
+    {
+      "path": "node_modules/.pnpm/pg@8.22.0/node_modules/pg/lib/client.js",
+      "bytes": 22776,
+      "sha256": "86cda0e1fda47e03d27dde65f10c7b9d597f7411f77ed853c8d27d5f150978a2"
+    },
+    {
+      "path": "node_modules/.pnpm/pg@8.22.0/node_modules/pg/lib/connection.js",
+      "bytes": 5861,
+      "sha256": "5c17c585f307518f8369d6162d138c58eef1309128ad2fae2d6b315c8000234e"
+    }
+  ],
+  "unchanged_remaining_dependency_and_C1_C7_refs": "Reused by exact prior input-binding.json hash; no broad history duplication",
+  "source_changes": 0,
+  "native_effects": 0
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "ROOT_POST_ZOD_TERMINAL_EVIDENCE_ONCE_JOURNAL_V1",
+  "phase": "ONE_READER_INVOCATION_ALLOCATED",
+  "created_at_utc": "2026-10-24T20:16:38.638928+00:00",
+  "operation_id": "f27670b7-0d69-42b7-8035-e3325e060ce0",
+  "head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+  "run_id": 40125241153,
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-fresh-source-proof.json",
+    "bytes": 15649,
+    "sha256": "2efdca6202f89ff59e624e91c6a1d87b1a54240cb197326be602afcf7af1cef4"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+    "bytes": 9579,
+    "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+  },
+  "operator_source": {
+    "bytes": 52895,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/reader.py",
+    "sha256": "ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09"
+  },
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+    "bytes": 220347,
+    "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+  },
+  "outer_capture_contract": {
+    "bytes": 1118,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json",
+    "sha256": "298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6"
+  },
+  "no_retry": true,
+  "normal_acceptance": 0
+}

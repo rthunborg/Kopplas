@@ -1,5 +1,40 @@
 import type { BookingFacts } from "./booking-types";
-import { stockholmLocalToUtc } from "@/features/scheduling/time-zone";
+import { stockholmLocalToUtc, parseUtcInstant, formatUtcInstant } from "@/features/scheduling/time-zone";
+import type { RecurrenceRule } from "@/features/scheduling/recurrence-types";
+
+/** Local endpoints become a finite rule before UTC expansion. */
+export function recurrenceRuleFromEditor(input: { preset: string; endMode: string; count: number; untilDate?: string; weekdays: readonly number[];
+  start: string; end: string; allDay: boolean }): RecurrenceRule {
+  const date = (value: string) => value.slice(0, 10);
+  const time = (value: string) => input.allDay ? "00:00:00" : value.length === 16 ? `${value.slice(11)}:00` : value.slice(11);
+  return { preset: input.preset as RecurrenceRule["preset"], startDate: date(input.start), startTime: time(input.start), endTime: time(input.end),
+    endDayOffset: (Date.parse(`${date(input.end)}T00:00:00Z`) - Date.parse(`${date(input.start)}T00:00:00Z`)) / 86400000,
+    allDay: input.allDay, timeZone: "Europe/Stockholm", ...(input.preset === "weekly" || input.preset === "biweekly" ? { weekdays: input.weekdays } : {}),
+    ...(input.endMode === "count" ? { count: input.count } : { untilDate: input.untilDate ?? "" }) };
+}
+
+/** Following edits retain the stored local clock, including fractional seconds. */
+export function recurrenceEditorEndpoints(rule: RecurrenceRule, nominalDate: string): { start: string; end: string } {
+  const endDate = new Date(Date.parse(`${nominalDate}T00:00:00Z`) + rule.endDayOffset * 86400000).toISOString().slice(0, 10);
+  return { start: `${nominalDate}T${rule.startTime}`, end: `${endDate}T${rule.endTime}` };
+}
+/** Presentation proposal only; never authority or persisted occurrence linkage. */
+export type BookingEditProposal = Partial<Pick<BookingFacts, "startsAt" | "endsAt" | "assigneeIds">>;
+/** Stored defaults exclude exception overrides; only explicit gestures override them. */
+export function followingBookingDraft(template: BookingFacts, rule: RecurrenceRule, nominalDate: string, proposal: BookingEditProposal = {}) {
+  const endpoints = recurrenceEditorEndpoints(rule, nominalDate);
+  const local = (value: string) => {
+    const parts = Object.fromEntries(new Intl.DateTimeFormat("en-GB", {timeZone:"Europe/Stockholm",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"}).formatToParts(new Date(value)).map(p=>[p.type,p.value]));
+    const fraction = formatUtcInstant(parseUtcInstant(value)).slice(20,26);
+    return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}${fraction === "000000" ? "" : `.${fraction}`}`;
+  };
+  return {facts:{...template,...proposal},start:proposal.startsAt ? local(proposal.startsAt) : endpoints.start,
+    end:proposal.endsAt ? local(proposal.endsAt) : endpoints.end};
+}
+/** Minute controls keep full stored clocks until that endpoint is edited. */
+export function recurrenceEndpointWithClock(display: string, retainedClock: string | null): string {
+  return retainedClock && display.includes("T") ? `${display.slice(0, 10)}T${retainedClock}` : display;
+}
 
 /** Human business decision only; receipt/signature are separate transport. */
 export type BookingDecision = { readonly acknowledged: boolean; readonly reviewedLogicalIds: readonly string[];

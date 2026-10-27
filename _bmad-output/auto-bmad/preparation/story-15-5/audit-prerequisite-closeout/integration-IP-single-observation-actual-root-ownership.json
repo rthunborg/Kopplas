@@ -1,0 +1,658 @@
+{
+  "schema": "ROOT_CLOSED_ACTUAL_OPERATION_OWNERSHIP_V1",
+  "operation": {
+    "operation_id": "3da861fc-5ea1-4443-ae76-2de3ac5bf0c2",
+    "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "checkpoint_id": "96ad8e91-7244-4cf1-acab-162e260914a1",
+    "phase": "ROOT_STOPPED",
+    "started_at": "2026-10-24T13:10:54.278136+00:00",
+    "resolution_count": 1,
+    "poll_count": 1,
+    "run_id": 40097034333,
+    "normal_acceptance": 0,
+    "dispatch_accepted_at": "2026-10-24T13:11:02.385101+00:00",
+    "canonical_state": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-dispatch-state.json",
+      "bytes": 485,
+      "sha256": "87fdbc49eaaeb1bc76c7caba25d3174574f47907eca15501857184a12c1ddf85"
+    },
+    "last_resolution": "2026-10-24T13:11:08.960073+00:00",
+    "last_poll": "2026-10-24T13:11:56.725403+00:00",
+    "stopped_at": "2026-10-24T13:11:57.845682+00:00"
+  },
+  "terminal_ref": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/terminal.json",
+    "bytes": 9907,
+    "sha256": "5716f7aa228dd4bd5dfb84ae7940635b2eb03ada4f7cab2b29e587f5406afff8"
+  },
+  "terminal": {
+    "run_id": 40097034333,
+    "head": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "title": "checkpoint:96ad8e91-7244-4cf1-acab-162e260914a1:d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+    "checkpoint_id": "96ad8e91-7244-4cf1-acab-162e260914a1",
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "workflow_id": 296219797,
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": false,
+    "status": "completed",
+    "conclusion": "failure",
+    "observed_at": "2026-10-24T13:11:57.833968+00:00",
+    "jobs": [
+      {
+        "id": 120881342159,
+        "name": "checkpoint-admission",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-10-24T13:11:05Z",
+        "completed_at": "2026-10-24T13:11:07Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:05Z",
+            "completed_at": "2026-10-24T13:11:05Z"
+          },
+          {
+            "number": 2,
+            "name": "Bind dispatch to its immutable source revision",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:05Z",
+            "completed_at": "2026-10-24T13:11:05Z"
+          },
+          {
+            "number": 3,
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:05Z",
+            "completed_at": "2026-10-24T13:11:06Z"
+          }
+        ]
+      },
+      {
+        "id": 120881358292,
+        "name": "verify",
+        "status": "completed",
+        "conclusion": "failure",
+        "started_at": "2026-10-24T13:11:09Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:10Z",
+            "completed_at": "2026-10-24T13:11:11Z"
+          },
+          {
+            "number": 2,
+            "name": "Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:11Z",
+            "completed_at": "2026-10-24T13:11:15Z"
+          },
+          {
+            "number": 3,
+            "name": "Install pnpm",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:15Z",
+            "completed_at": "2026-10-24T13:11:16Z"
+          },
+          {
+            "number": 4,
+            "name": "Setup Node",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:16Z",
+            "completed_at": "2026-10-24T13:11:19Z"
+          },
+          {
+            "number": 5,
+            "name": "Setup Python for focused Auto-BMAD contracts",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:19Z",
+            "completed_at": "2026-10-24T13:11:19Z"
+          },
+          {
+            "number": 6,
+            "name": "Install dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:19Z",
+            "completed_at": "2026-10-24T13:11:21Z"
+          },
+          {
+            "number": 7,
+            "name": "Verify lockfiles (single package manager)",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:21Z",
+            "completed_at": "2026-10-24T13:11:21Z"
+          },
+          {
+            "number": 8,
+            "name": "Audit dependencies (blocking, high severity)",
+            "status": "completed",
+            "conclusion": "failure",
+            "started_at": "2026-10-24T13:11:21Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 9,
+            "name": "Verify service-role containment (no client-path leakage)",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 10,
+            "name": "Typecheck",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 11,
+            "name": "Lint",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 12,
+            "name": "Unit tests (pure logic, node --test)",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 13,
+            "name": "BMAD focused concurrent memlog contracts",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 14,
+            "name": "Auto-BMAD focused routing and process-API contracts",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 15,
+            "name": "Build",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 16,
+            "name": "Verify built-bundle service-role containment (no leakage in .next)",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 29,
+            "name": "Post Setup Python for focused Auto-BMAD contracts",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 30,
+            "name": "Post Setup Node",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 31,
+            "name": "Post Install pnpm",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 32,
+            "name": "Post Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          },
+          {
+            "number": 33,
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-10-24T13:11:22Z",
+            "completed_at": "2026-10-24T13:11:22Z"
+          }
+        ]
+      },
+      {
+        "id": 120881419234,
+        "name": "db",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-24T13:11:25Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": []
+      },
+      {
+        "id": 120881419365,
+        "name": "e2e",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-24T13:11:25Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": []
+      },
+      {
+        "id": 120881419720,
+        "name": "recovery-storage-loader",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-24T13:11:25Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": []
+      },
+      {
+        "id": 120881419750,
+        "name": "dashboard-e2e",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-24T13:11:25Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": []
+      },
+      {
+        "id": 120881419849,
+        "name": "native-stream-probe",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-24T13:11:25Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": []
+      },
+      {
+        "id": 120881419908,
+        "name": "fixed-chromium-paired-probe",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-24T13:11:25Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": []
+      },
+      {
+        "id": 120881419945,
+        "name": "fixed-chromium-application-verification",
+        "status": "completed",
+        "conclusion": "skipped",
+        "started_at": "2026-10-24T13:11:25Z",
+        "completed_at": "2026-10-24T13:11:24Z",
+        "run_id": 40097034333,
+        "head_sha": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+        "steps": []
+      }
+    ]
+  },
+  "controller_receipts": [
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/dispatch-receipt.json",
+        "bytes": 842,
+        "sha256": "7fe10988434dbe076665b88dd2ae0717111c8c333296cc71e9c84ef09d36237d"
+      },
+      "body": {
+        "transport": {
+          "native_exit": 0,
+          "category": null,
+          "elapsed_seconds": 3.786456,
+          "timeout_seconds": 90,
+          "capture_complete": true,
+          "readers_joined": true,
+          "handles_closed": true,
+          "direct_process_settled": true,
+          "streams": [
+            {
+              "observed_bytes": 296,
+              "sha256": "361e6fd7f35fe5163dd01416dc109119204fbbf745b9e6262e3eef14cfbc219e",
+              "physical_EOF": true,
+              "reader_done": true,
+              "reader_error": false,
+              "overflow": false
+            },
+            {
+              "observed_bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "physical_EOF": true,
+              "reader_done": true,
+              "reader_error": false,
+              "overflow": false
+            }
+          ]
+        },
+        "state_present": true,
+        "raw_persisted": false,
+        "no_retry": true
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/jobs-1-receipt.json",
+        "bytes": 700,
+        "sha256": "b61dc15060ea7a6a6fbbedf64fc7ed393cbd41980d20fbe4180a81f125d56122"
+      },
+      "body": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.612171,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12765,
+            "sha256": "358bb0f49bc90f12c31f90b878ebb6d26ec7fa11038cf30aaffeda9f06f7a585",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "86c2a7dcdbf7f9609053e3c3685e3170caf9cebb29487fb5c51b0583614992d4"
+      },
+      "body": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 3.049211,
+        "timeout_seconds": 60,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 150,
+            "sha256": "fa32aea69a3aa598da5e8d88ddd34d71c72b73c7d5767becd18910b6e0aae839",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "c450b36c67f44552c6803fc96aa248b0c3674d3b9e0b11bfa0283d8afb45a75e"
+      },
+      "body": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.617519,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 91,
+            "sha256": "607e40782cdb66ab444e39d49967ccc86aa8e6311484524daf8e9dea27bff932",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "4cf7ccebdfa794777be5103acf57591bf66ff6bf123c4ebec007c36ea6bd0848"
+      },
+      "body": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.547987,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 91,
+            "sha256": "40db80a37367f9361e3bf1460f5b7d7fe8f82499862dea0d227a0e902f393a55",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/resolve-1-receipt.json",
+        "bytes": 701,
+        "sha256": "ec09e86b3ee4451f6499f865a7f6b8dd3363d52db73f01deefc0e3305ec2ff91"
+      },
+      "body": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 1.653788,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 246712,
+            "sha256": "98a04904b644fa6a647ed08e46df127fbab47fe16c0cfe59506d300480d97d6f",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "ref": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-single-observation-root-operation/run-1-receipt.json",
+        "bytes": 699,
+        "sha256": "45c2be2c234b4fa6cd787731ea1a51880a45d80cbd9e38b3d0c5401c53f694fe"
+      },
+      "body": {
+        "native_exit": 0,
+        "category": null,
+        "elapsed_seconds": 0.45707,
+        "timeout_seconds": 20,
+        "capture_complete": true,
+        "readers_joined": true,
+        "handles_closed": true,
+        "direct_process_settled": true,
+        "streams": [
+          {
+            "observed_bytes": 12465,
+            "sha256": "a833b785e9fb5d6345bf07c7699429659b55fed9926960f8cba52ca142429699",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          },
+          {
+            "observed_bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "physical_EOF": true,
+            "reader_done": true,
+            "reader_error": false,
+            "overflow": false
+          }
+        ]
+      }
+    }
+  ],
+  "actual_Root_outer_returns": {
+    "publication": [
+      {
+        "chunk_id": "e24d2c",
+        "exit_code": null,
+        "session_id": 39544,
+        "wall_time_seconds": 10.0023211,
+        "output": ""
+      },
+      {
+        "chunk_id": "6ac976",
+        "exit_code": 0,
+        "session_id": null,
+        "wall_time_seconds": 2.4533222,
+        "output": "{\"phase\": \"DISPATCH_ACCEPTED\", \"head\": \"d647c81d93634ecdb85df66d8d3e8e7e4d51d841\", \"normal_acceptance\": 0}\r\n"
+      }
+    ],
+    "resolver": {
+      "chunk_id": "567adb",
+      "wall_time_seconds": 1.7970296000000001,
+      "exit_code": 0,
+      "original_token_count": 24,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 40097034333, \"resolution_count\": 1, \"normal_acceptance\": 0}\r\n"
+    },
+    "polls": [
+      {
+        "chunk_id": "dd4c18",
+        "wall_time_seconds": 1.253188,
+        "exit_code": 0,
+        "original_token_count": 215,
+        "output": "{\"phase\": \"ROOT_STOPPED\", \"run_id\": 40097034333, \"status\": \"completed\", \"conclusion\": \"failure\", \"poll_count\": 1, \"jobs\": [{\"name\": \"checkpoint-admission\", \"status\": \"completed\", \"conclusion\": \"success\"}, {\"name\": \"verify\", \"status\": \"completed\", \"conclusion\": \"failure\"}, {\"name\": \"db\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"recovery-storage-loader\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"dashboard-e2e\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"native-stream-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-paired-probe\", \"status\": \"completed\", \"conclusion\": \"skipped\"}, {\"name\": \"fixed-chromium-application-verification\", \"status\": \"completed\", \"conclusion\": \"skipped\"}], \"normal_acceptance\": 0}\r\n"
+      }
+    ]
+  },
+  "actual_counts": {
+    "controller_native_receipts": 7,
+    "Root_publication_returns": 2,
+    "initial_running": 1,
+    "publication_same_session_waits": 1,
+    "resolver_returns": 1,
+    "poll_returns": 1,
+    "resolution_GETs": 1,
+    "poll_pairs": 1,
+    "source_qualified_canonical_preGETs": 4,
+    "canonical_POSTs": 1,
+    "remote_Git_reads": 2,
+    "FFpushes": 1,
+    "provider_logicalCLI_GET_separate": 1,
+    "provider_outer_returns_separate": 2,
+    "provider_same_session_waits": 1,
+    "artifact_or_log_GETs": 0
+  },
+  "unused_slots": "5resolvers and89pollpairs CLOSED; no clockreset/retry/extension/adoption",
+  "current_failure": "verify job120881358292 step8 Audit dependencies (blocking, high severity) failed; precise cause UNKNOWN pending source/evidence assessment",
+  "current_required95": "No CI unit/DB/browser cases reached:0P0F95unexecuted; not an API019 rerun result",
+  "historical_required95": "Separate prior39998246278/headedf/source48a93P/API019F/API020unexecuted; not current-head coverage",
+  "custody": "Current DB/e2e/recovery skipped; no current custody proof. Historical mainDBretained/keydeletionUNVERIFIED/backendsettlementUNKNOWN remains scoped to prior operation.",
+  "first_IP_question": "UNOBSERVED because audit prerequisite failed",
+  "no_deployment": true,
+  "P5": "OPEN",
+  "broad_review_counter": 3,
+  "story15_6": "UNSTARTED",
+  "normal_acceptance": 0
+}

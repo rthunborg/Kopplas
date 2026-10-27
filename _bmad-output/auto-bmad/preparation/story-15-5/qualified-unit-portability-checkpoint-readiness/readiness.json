@@ -1,0 +1,239 @@
+{
+  "E16_composition_gate": {
+    "actual_input_limit": {
+      "actual_local_commit_object_available": false,
+      "actual_read_commands": [
+        {
+          "command": "git cat-file -e 99104d0ffa0360cf7d4ce4de174789c4a4605224^{commit}",
+          "native_exit": 1
+        },
+        {
+          "command": "git merge-base 53273c2fcdfe57fde710867054b234fdb3bc35d8 99104d0ffa0360cf7d4ce4de174789c4a4605224",
+          "native_exit": 1
+        }
+      ],
+      "completed_tool_chunk": "e1463c",
+      "current_known_path": "src/components/resources/BookingEditor.tsx",
+      "incoming_exact_paths_blobs_conflict_fit": "UNQUALIFIED: requested incoming commit unavailable locally; no source inspection or resolution inferred.",
+      "incoming_named_protected_scope_from_Root": [
+        "BookingEditor.tsx",
+        "job-semantics.ts",
+        "job-scheduling-consumers.ts",
+        "read_job_cards hunk",
+        "migration20261021102151"
+      ],
+      "owner_reported_completed_main": "99104d0ffa0360cf7d4ce4de174789c4a4605224",
+      "remote_read_fetch_merge": 0
+    },
+    "authorization_limit": "Planning only; no E16/17 assignment, fetch, merge or conflict resolution authorized/executed here. Root must coordinate exact protected-hunk/migration ownership and High conflict resolution under actual allocation. Do not adopt unrelated main commits.",
+    "effect_on_existing_consumer_reuse": "No current algorithm gap from the unit+Spec correction. Incoming E16 content is unavailable, so postintegration enrollment/schema/capability compatibility must be qualified before data-only reuse is affirmed; no new algorithm is assumed necessary.",
+    "minimum_resume_condition": [
+      "Root obtains exact owner-qualified incoming99104 objects/hunks via separately admitted bounded Git read/integration operation.",
+      "Independent High qualifies exact shared-path/read_job_cards/migration composition and resolves any real conflicts without weakening current15.5 guards or changing frozen appliedSQL.",
+      "After actual reviewed integration, refresh final source/schema/dependency/enrollment and trigger-context conservation only where changed; do not relabel this current75 proof as integrated proof.",
+      "Choose one exact composed normal checkpoint under existing one-run ownership protocol. If Root deliberately chooses an earlier current-source-only comparison, label it preintegration proof with its limited purpose; it cannot satisfy final integrated readiness."
+    ],
+    "recommendation": "Coordinate and integrate the intended owner-qualified E16 boundary NOW before another full native comparison, then qualify and run the actual composed source. The local152P already addresses demonstrated portability; a preintegration run would not validate the intended shared-source/migration composition needed before15.6."
+  },
+  "changed_information": {
+    "causal_limit": "Controlled portability failure is demonstrated. The original hosted exceptions were not acquired and remainUNKNOWN; this does not prove either hosted failure had that cause or fix functional NUDGE/browser behavior.",
+    "correction": "Actual reviewed166cad fingerprints/current-source comparators and ten mutation inverses preserve intended baseline invariants without runtime history lookup.",
+    "demonstrated_portability_gap": "Pre-edit exact2 Windows2P versus controlled Linux2F before source comparisons; undeclared runtime Git-history prerequisite removed.",
+    "local_evidence_reused": {
+      "TS_lint_diff_reader": "Author receipts0; not rerun by readiness qualifier.",
+      "entire_affected_Linux": {
+        "author_receipt": {
+          "bytes": 48716,
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/qualified-normal-unit-regression-author-result.json",
+          "sha256": "681820f0c11d981631bfd165168cdf1d000f5f5d98f03125197d361468543f18"
+        },
+        "cancel": 0,
+        "fail": 0,
+        "pass": 152,
+        "skip": 0,
+        "tests": 152
+      },
+      "independent_controls": "Reviewer independently derived historical3blobs/vector7/8/6/5/14/2/assertionAST260/268;2controls passed, source only."
+    },
+    "why_one_fresh_checkpoint": "Reviewed changed-information correction removes a proven ordinary unit environment dependency and has full affected Linux controls; one separately admitted exact-head comparison is evidence-led, not an unchanged blind retry."
+  },
+  "conserved": {
+    "NORMAL_enrollment": {
+      "Node_story": 30,
+      "Vitest_story": 51,
+      "direct_recovery_separate": 1,
+      "essential_browser_story": 14,
+      "global_Node_total": "Must be observed from future native run; local152 and prior3243 are not inferred future totals.",
+      "native_execution_this_source": 0,
+      "unique_story_total": 95
+    },
+    "all111_SQL": "Unchanged actual Git tree diff; immutable. No native SQL executed.",
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged": true
+    },
+    "label_transport": "NUDGE004 public task.meta and E2E001 per-attempt stderr schemas/producers unchanged froma459; prior independent source transport proof reusable, native publication stillUNKNOWN.",
+    "provider_trigger_context10": "All10 raw identities unchanged from reviewed context; live hosted settings are NOT requalified by static equality.",
+    "six_serial": "Existing6 once after parallel, resolved config/bail predicates and partial-run zero-coverage rules unchanged.",
+    "source_rows": {
+      "changed": 2,
+      "unchanged": 73
+    },
+    "unchanged_relevant_paths": [
+      ".github/workflows/ci.yml",
+      "scripts/ci/checkpoint-dispatch.mjs",
+      "scripts/ci/with-calendar-feed-runtime.mjs",
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/support/calendar-feed-atdd.ts",
+      "tests/support/calendar-feed-ci-contract.ts",
+      "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "vitest.config.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/support/time-reports-atdd.ts"
+    ]
+  },
+  "development_complete": false,
+  "draft_history": {
+    "initial_four_file_candidate_before_Root_E16_steering": [
+      {
+        "bytes": 59219,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/source-bindings.json",
+        "sha256": "cf39201e7cbf4cbf56edfe1ffacb2ed33b3b2f10f0fdb55510ff8fe19d727eec"
+      },
+      {
+        "bytes": 10782,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/readiness.json",
+        "sha256": "18506370d517aeec05fe463546f6e2aded428d22b78d56ee1a30519d40d9372a"
+      },
+      {
+        "bytes": 1183,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/result.json",
+        "sha256": "784519c4e39c188fd876abf632df95fc2a2aeb9f0ada825e6377145463481bbe"
+      },
+      {
+        "bytes": 882,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/manifest.json",
+        "sha256": "5efbff17fafae42c3340de5cda6e87730fcbfb30992c5dfbed5cffbd93971404"
+      }
+    ],
+    "reason": "Root added integration-timing assessment before final handoff; amended only these owned new readiness metadata files. Original source and all prior artifacts unchanged."
+  },
+  "effects_this_task": {
+    "CI_SQL_resources_provider": 0,
+    "Git_mutations": 0,
+    "network": 0,
+    "new_operator_or_tests": 0,
+    "only_new_metadata_files": 4
+  },
+  "future_checkpoint_UUID": null,
+  "future_checkpoint_head": null,
+  "future_operational_envelope": {
+    "dispatch": {
+      "Root_sole_poller": true,
+      "attempt": 1,
+      "command_template": "node scripts/ci/checkpoint-dispatch.mjs dispatch --repo rthunborg/Kopplas --ref codex/epic-15-scheduling-time-calendar --sha <actual final reviewed pushed SHA> --checkpoint-id <fresh UUIDv4> --release-validation false --cause-proof false --state <new ignored absent statefile>",
+      "fresh_exclusive_intent": true,
+      "maximum": 1,
+      "repo_admission_variables_required": [],
+      "runner": {
+        "actual_Git_blobs": {
+          "metadata532": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "pushed3a385": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "source4cd": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+        },
+        "changed_since_pushed": false,
+        "clean_bytes": 19492,
+        "clean_sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+        "native_clean_Git_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "normalization_raw_vs_clean": true,
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "raw_bytes": 19782,
+        "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a"
+      },
+      "uncertainty": "Consumed; no redispatch. Source/remote/workflow/actor/exact title/attempt ownership checked by actual operation.",
+      "variable_mutations": 0
+    },
+    "future_acquisition": "Separate completed terminal acquisition allocation+exclusive activation only after actual new terminal tuple and data-only binding refresh/audit; at most archive1/list1/eligibleZIP3, no perjob/status/pagination/fallback/refetch.",
+    "grant_required": true,
+    "provider": "At most1 exact fresh readonly Vercel project GET for retained project/team, unless an actual fresh owner-qualified receipt is admitted. Prior7211-byte receipt is context only. Same limited ordinary Git-push ignoreexit0/previewstrue/branch-disabled contract, no provider writes/deployments/aliases reads.",
+    "push": "Root only after the E16 composition gate/explicit limited preintegration disposition, one FF push from verified remote3a385 to actual final reviewed composed metadata head; current75 and any admitted integration deltas must be bound before push."
+  },
+  "future_run": null,
+  "last_pushed_head": "3a385df516088811e6af526beed457292c6d8b1f",
+  "metadata_HEAD": "53273c2fcdfe57fde710867054b234fdb3bc35d8",
+  "minimal_future_collector_rebind": {
+    "algorithm": "Reuse exact reviewed47831 acquisition, strict positive TAP/source-bound failure projector, fixed labels and global56 slots/28194-byte conservative assembler; no algorithm change needed from the two-path unit/Spec correction.",
+    "current_operator_is_consumed_historical": "Do not execute/overwrite it or its activation/output/old grants.",
+    "data_only_required_after_actual_future_terminal": [
+      "New immutable materialization/owned path preserving BASE relative-depth contract or explicit reviewed path literal.",
+      "SOURCE literal4cd; actual final pushed/head/run/attempt1/fresh UUID fixed assertions, new activation filename and absent output packet; never reuse3a385 identities.",
+      "Current75 raw/clean/native/source/pushed/current object vector and refreshed unit+Spec two changed rows; bind actual sourceproof, terminal, allocation and independent review refs.",
+      "Re-extract ONLY changed unit-file static title/declaration catalog using the same installed TypeScript AST routine; reuse other19 unchanged unit catalog rows by hash. Do not reuse old lines merely because titles look unchanged. Dynamic/unbound/conflicting identities stayUNKNOWN.",
+      "Refresh helper/test/self/binding hashes and exact terminal-step member selection. Recheck longest-path/integer/cap data; unchanged20-file pathset and fixed6digit limits do not require a new assembler algorithm.",
+      "Targeted independent High data-binding/delta audit with relevant original algorithm reviews reused, not another full unchanged review/control matrix."
+    ],
+    "no_operator_materialized_now": true,
+    "source_proof_gap": null
+  },
+  "normal_acceptance": 0,
+  "policy_version": "2026-10-19",
+  "previous_native_run": {
+    "DB51_browser14_recovery1": "UNEXECUTED_JOB_SKIPPED",
+    "Node": {
+      "cancel": 0,
+      "fail": 2,
+      "pass": 3241,
+      "skip": 0,
+      "suites": 103,
+      "tests": 3243
+    },
+    "Python_build_bundle": "UNEXECUTED_SKIPPED",
+    "acquisition": "2GET consumed;0 artifacts; no further reads authorized. Historical labels/custody gaps unchanged.",
+    "head": "3a385df516088811e6af526beed457292c6d8b1f",
+    "original_exception": "UNKNOWN",
+    "packet": {
+      "bytes": 3535,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/manifest.json",
+      "sha256": "9ea62ca05d4b750872fe85f853b7b1fda7c8f1d31c8a87da73a3ce8db84cec5e"
+    },
+    "run": 39683227657,
+    "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+    "status": "FAILED_VERIFY"
+  },
+  "release_ready": false,
+  "remaining_conditions": [
+    "Resolve the finite E16 exact-input/composition gate before treating the next full normal comparison as final integrated validation; no fetch/merge is authorized by this readiness.",
+    "Actual completed Coordinator fresh normal effect allocation/ownership.",
+    "Fresh hosted no-deploy qualification as above and Root fresh source/remote checks before FF push.",
+    "Root exact final checkpoint/fresh UUID/absent statefile and oneNORMAL dispatch; no optional causeproof/release validation.",
+    "Fresh terminal tuple/data-only collector binding audit/separate once-acquisition allocation; old grants consumed.",
+    "Independent exact native evidence truth audit and actual development gates; no current acceptance claim."
+  ],
+  "required_native_success": "Actual full unit/static/build/bundle/Python, fullDB/RLS SUPABASE_TEST_REQUIRED1 with executed/skip counts, all95 story cases, separate direct recovery1, functional essential browser/privacy/API019 and actual authority/settlement/canonical ACL/keycleanup/custody evidence; skipped/missing/bailed0coverage.",
+  "schema": "QUALIFIED_UNIT_PORTABILITY_NORMAL_CHECKPOINT_READINESS_v1",
+  "source": "4cd5e944ae19785f4d7abfbcca4f1d471cc7491e",
+  "source_bindings": {
+    "bytes": 60231,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-checkpoint-readiness/source-bindings.json",
+    "sha256": "f21a53b14283b1dfcf639c46eb17fb2ccebc83eead85428aefc421523caff54d"
+  },
+  "source_review": {
+    "Root_closure_admission": {
+      "bytes": 1478,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-qualified-unit-portability-source-closure-admission.json",
+      "sha256": "b32ad23e42f104dac648fca93f1d81f697acaf7812698a0bde789ed464711b96"
+    },
+    "manifest": {
+      "bytes": 982,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-high-review/manifest.json",
+      "sha256": "201a7051cec9bcdf5f951dd0ab0b0aaec563fef8f0e6e75519ad06e68a429e47"
+    },
+    "scope": "Exact unit+Spec two-path correction; no new broad review.",
+    "status": "PASS_TARGETED_CODE_ONLY_QUALIFIED_UNIT_PORTABILITY_CORRECTION"
+  },
+  "status": "CURRENT_SOURCE_PORTABILITY_READY_HOLD_FOR_E16_COMPOSITION_GATE",
+  "utc": "2026-10-21T22:33:24.549389+00:00"
+}

@@ -54,6 +54,10 @@ running primary session was reconfigured when only a delegate was changed.
 See [the routing policy](docs/process/agent-model-routing.md) for settings,
 phase defaults, task-specific overrides and session reload limits.
 
+## Development completion policy
+
+**Owner decision — 2026-10-19:** Follow [development completion and release validation](docs/process/development-completion-policy.md). Ordinary completion requires applicable static/build checks, focused unit/integration integrity evidence, independent review and essential browser smoke. Track exhaustive browser matrices, screenshots, visual/manual checks and polish as deferred release validation; never mark unexecuted work passed. Distinguish development complete from release ready. After two failed attempts choose a simpler safe route or record blocker owner, evidence, next action and resume condition. Reuse unchanged independent review with verified provenance. Keep heartbeats compact. Deliver one final epic PR; concrete narrow prerequisites are allowed, while split publication needs owner approval before publication. Existing paused chats stay paused until explicitly resumed. Preserve resource guard, sensitive review, scope and merge/deployment approval boundaries.
+
 ## Parallel development ownership
 
 Ordinary Auto-BMAD epic runs remain sequential. Concurrent story implementation
@@ -63,6 +67,10 @@ shared claims and separate worktrees. A copied epic anchor is not a new assignme
 Keep existing legacy sessions excluded by their actual write scope. Only the
 coordinator updates aggregate progress and integrates verified worker results.
 Do not hot-upgrade a running loop or use heartbeat age alone to take its work.
+
+## Preview deployments and production merges
+
+**Owner decision — 2026-10-25:** [Earned merge-triggered production deployments are authorized](docs/process/production-merge-deployment-policy-2026-10-25.md) after the existing required CI, independent review and merge requirements. Automatic Previews remain disabled under October16; do not run post-merge automatic retry/redeployment loops. Manual deployment, provider/configuration changes and database pushes retain separate authorization. Earlier no-deployment records remain historical; E15 target-backend schema compatibility was not newly verified and `release_ready=false` remains.
 
 ## Code Review Rules
 

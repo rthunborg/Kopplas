@@ -1,0 +1,31 @@
+{
+  "schema": "ROOT_NORMAL_READONLY_REMAINDER_ADMISSION_V1",
+  "status": "ADMITTED_REMAINING88_POLL_PAIRS_ONLY",
+  "continuation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-read-only-continuation.json",
+    "bytes": 1967,
+    "sha256": "075a0f7eb28aef63d4fb3841c987d80f5e496d4dd9fd472986418f4b6a5c6271"
+  },
+  "independent_judgment": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-remote-cap-provenance-qualification.json",
+    "bytes": 7664,
+    "sha256": "d6c9e90aa8e03236ea2daa7b0caead453192729014ecc5743e4278a2732cb165"
+  },
+  "held_operation_snapshot": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/operation.json",
+    "bytes": 818,
+    "sha256": "e8895b4803debfa0a3cca1ca4a98530c3db9f8255d00bda79721bceb773726f9"
+  },
+  "run_id": 39950998114,
+  "head": "215078e7dd74d9c4b4511581682b4c0be1a21c8d",
+  "checkpoint_id": "c2fade03-6ac5-44ae-abfd-898e1a3dd602",
+  "started_at": "2026-10-23T12:07:29.339308+00:00",
+  "consumed_resolution": 1,
+  "consumed_pairs": 2,
+  "cumulative_pair_max": 90,
+  "remaining_pairs_max": 88,
+  "wall_seconds_original": 5400,
+  "no_resolver_mutation_or_extension": true,
+  "configured_cap_discrepancy_preserved": true,
+  "normal_acceptance": 0
+}

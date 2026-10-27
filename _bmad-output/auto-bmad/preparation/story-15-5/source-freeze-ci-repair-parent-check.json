@@ -1,0 +1,36 @@
+{
+  "kind": "independent-build-parent-successor-binding-check",
+  "status": "PASS",
+  "source_head": "2674b3f7fa5e7853314923a0ceed52d84fcf0677",
+  "successor_sha256": "8c6a67b9d4ba912311d888a2a63b1e7e628803395b791367e0b68c31d25072a7",
+  "successor_bytes": 213056,
+  "original_freeze_unchanged": true,
+  "source_bindings": 66,
+  "raw_normalized_differences": 39,
+  "author_commits": 6,
+  "root_checkpoint_excluded": "9487c0d9dc6f622b472780587e20e834abf98595",
+  "historical_migrations": 109,
+  "protected_consumers": 37,
+  "historical_preparation_blobs": 69,
+  "artifact_hash_bindings": 85,
+  "failed_checkpoint_source_equalities": 60,
+  "review_cap": 3,
+  "latest_delta_high_review": "PASS; not fourth broad",
+  "inventory": {
+    "feature": 95,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "bootstrap_separate": 23
+  },
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "source_clean": true,
+  "global_clean_not_claimed": true,
+  "prior_verifier_attempt": {
+    "native_exit": 1,
+    "credited": false,
+    "reason": "Verifier initially treated root_bookkeeping_commits_excluded array as an object; schema observation corrected verifier only, capsule/source unchanged."
+  },
+  "limits": "Mechanical source/artifact/provenance/accounting check only; semantics reuse original reviews and targeted High PASS. Local302pass is not native CI acceptance; failed948 remains failed and all65 runtime feature cases unexecuted. New exact-head CI mandatory.",
+  "errors": []
+}

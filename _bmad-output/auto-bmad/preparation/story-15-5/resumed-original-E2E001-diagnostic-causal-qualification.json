@@ -1,0 +1,191 @@
+{
+  "schema": "kopplas.resumed-original-E2E001-diagnostic-causal-qualification.v1",
+  "verdict": "QUALIFIED_ACTUAL_DIAGNOSTIC_FAILURE_ABORT_OBSERVED_CAUSE_UNRESOLVED",
+  "evidence_qualification": "PASS_CLOSED_PACKET_AND_BOUNDED_OBSERVATIONS_ONLY",
+  "review": {
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "Existing frozen actual evidence plus relevant already-bound request/observation/drain source only; no new source review family, fourth broad round or effects."
+  },
+  "binding": {
+    "run": 39754927821,
+    "attempt": 1,
+    "head": "584e97329ea516d49b49dec242e8e097594adf95",
+    "ref": "codex/epic-15-original-failure-debug",
+    "checkpoint_id": "84abad63-9898-452d-9995-81b1d35d79ea",
+    "mode": "original-e2e001",
+    "repo": "rthunborg/Kopplas",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "workflow_id": 296219797,
+    "cause_proof": false,
+    "release_validation": false,
+    "normal_acceptance": 0
+  },
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-E2E001-diagnostic-acquisition",
+    "members": 10,
+    "listed_files": 9,
+    "self_excluded_manifest": {
+      "bytes": 1715,
+      "sha256": "c1d24452652b0683cf65fec84979c2621c39339dcddd4ca3689e0bf7b55c7736"
+    },
+    "execution_receipt": {
+      "bytes": 2614,
+      "sha256": "f8eea54de183a26076c0603bdb2b9905be6bafe035987be85d59109e43011254"
+    },
+    "projection": {
+      "bytes": 2567,
+      "sha256": "3b10662f919264a2054f717673d5d13d76cc7b4811bccec777829e6b57d578d1"
+    },
+    "all_nine_hashes_and_exact_membership_independently_verified": true
+  },
+  "provenance": {
+    "qualification_command": {
+      "chunk": "d582dc",
+      "native_exit": 0,
+      "wall_seconds": 0.2203675,
+      "kind": "Pure read/hash/closed-schema and source-binding correlation; no tests/imports/operator execution."
+    },
+    "actual_execution": "Native-reported one invocation, tool chunk 3cf91b, outer/native exit 0, wall1.7185469s, no session or waits. The reviewer independently verified frozen receipt consistency; gh child lifecycle facts are operator-observed, not directly observed by this reviewer.",
+    "intent_and_authority": "The exclusive activation hash matches operator intent. Completed allocation, Root source proof, actual terminal, source/proposal and independent source PASS references are hash-bound. Exact operation/run/head/attempt/checkpoint and nine terminal job conclusions agree.",
+    "transport": "Exactly two matching intent/result pairs: fixed run list746B and its admitted ZIP3871B. Both report native0, captured stdout, zero stderr, EOF, joined readers, closed handles and settled children within retained caps. Intent-before-spawn is retained and enforced by the reviewed source; no retry or unused slot remains.",
+    "archive": {
+      "ZIP_sha256": "437acfc0d1b7abde1e360d7a51f55f6469086fb50926c12b16f0e60ced6ebc37",
+      "member": "general-browser.json",
+      "member_bytes": 18579,
+      "member_sha256": "2ad8db7d38c024a57e24748d5bd04a25c8238f62e12930aa80f50fbe34941963",
+      "limit": "Raw ZIP/member were RAM-only. API admission, transport digest and published member metadata are mutually consistent through the exact reviewed reader; no raw body was reread or independently re-extracted."
+    }
+  },
+  "actual_facts": {
+    "case": "E2E-001",
+    "source_path": "tests/e2e/calendar-feed.e2e.spec.ts",
+    "full_title_sha256": "5db4c005e8da5c01cc18a14ead4228bc9bbd3f6358641a7c6e4b139c7fd61918",
+    "identity_bound": true,
+    "report_cases": 1,
+    "selected_cases": 1,
+    "single_case_scope_qualified": true,
+    "framework_status": "unexpected",
+    "actual_attempt_count": 1,
+    "retry": 0,
+    "attempt_status": "failed",
+    "report_counts": {
+      "expected": 0,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0
+    },
+    "original_rotate_annotation": {
+      "availability": "AVAILABLE_TYPED_RECORD",
+      "code": "net::ERR_ABORTED",
+      "recorded_sources": [
+        "RESULT",
+        "TEST"
+      ],
+      "interpretation": "Agreeing copies of the same safe annotation, not two attempts or independent causal witnesses."
+    },
+    "ordered_error_records": 4,
+    "projected_exception_classes": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "projected_static_frames": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "error_omission_UNKNOWN": false,
+    "error_availability_limit": "All projected classes/frames are unavailable. Null does not mean no original exception/frame existed; none is invented.",
+    "closed_fixture_tuples": [
+      {
+        "stage": "cleanup-lifecycle",
+        "category": "timeout",
+        "sqlState": null
+      },
+      {
+        "stage": "custody-retained",
+        "category": "unverified",
+        "sqlState": null
+      }
+    ]
+  },
+  "source_correlation": {
+    "bound_helper": {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "canonical_LF_sha256": "6319a38678a350774c9167a3dc6d073e8d3947b457dffb03f3da0916a91afefa"
+    },
+    "bound_case": {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "canonical_LF_sha256": "1dbc33c3f74ebd873d91316235eef14743d161c4cee358ad945409eb6b1b8cbb"
+    },
+    "facts": [
+      {
+        "location": "tests/e2e/support/calendar-feed-atdd.ts:193-245",
+        "fact": "observeLifecycle returns the observation/readback promise; matched native completion is separately owned in the pending set. Successful readback therefore is not native response completion."
+      },
+      {
+        "location": "tests/e2e/support/calendar-feed-atdd.ts:247-259",
+        "fact": "cancelAndSettle joins all active observation/completion entries plus actual readbacks. Its timeout does not identify which owned promise failed to settle."
+      },
+      {
+        "location": "tests/e2e/support/calendar-feed-atdd.ts:642-661",
+        "fact": "The rotate capture binds the existing matched Request. Its completion adapter awaits that Request's response and response.finished; no code in this adapter records the initiator of a native failure."
+      },
+      {
+        "location": "tests/e2e/support/calendar-feed-atdd.ts:775-779",
+        "fact": "The allowlisted failure code is sampled after the drain and before fault disposal. This bounds sampling order but does not timestamp when ERR_ABORTED arose or attribute the timeout to rotate."
+      },
+      {
+        "location": "tests/e2e/calendar-feed.e2e.spec.ts:95,104-107,127",
+        "fact": "The first reload is awaited before rotate begins. A later reload is authored after rotate/revoke scenario work. The packet does not establish that the later reload executed or initiated this abort."
+      }
+    ],
+    "invariants": "The existing harness requires settlement of all owned work and retains custody when that cannot be verified. Native failure text and readback alone do not authorize treating backend work as settled."
+  },
+  "causal_judgment": {
+    "bounded_harness_defect_proved": false,
+    "conclusion": "The qualified net::ERR_ABORTED observation does not prove a harness settlement defect. The timeout could concern rotate native completion, another owned completion, an observation or an actual readback. The sampled code does not identify cancellation initiator or time. The source permits scenario/readback progression before separately owned native completion, but this alone is not an invariant bypass or proof that a reload caused the failed run.",
+    "not_proved": [
+      "Which owned promise caused the drain timeout.",
+      "Whether the later reload ran or aborted this Request.",
+      "Whether browser/application/navigation/test teardown initiated cancellation.",
+      "Original primary exception location, response-body linkage or backend settlement."
+    ],
+    "minimum_additional_fact": "Identify the exact owned promise and awaited stage still pending at the drain deadline, bound to its existing action/Request. If it is rotate completion, a source-bound ordering/initiator fact linking that same Request failure to an existing navigation/teardown operation is then needed before calling that operation the cause.",
+    "shortest_next_action": "A narrowly allocated author assessment should focus only on the existing completion/drain ownership contract and the installed SDK failure-settlement behavior. Do not change completion, cleanup or reload semantics merely because ERR_ABORTED was observed. If static assessment cannot prove a consequential defect, obtain only the missing per-promise/operation fact in one separately authorized isolated reproduction; no full NORMAL, automatic retry or generic observability framework is justified by this packet.",
+    "authority": "No correction, new capture, reproduction, API read or retry is authorized by this qualification."
+  },
+  "custody": {
+    "wrapper_lifecycle_receipt": null,
+    "key_deleted": null,
+    "backend_settlement": "UNKNOWN",
+    "terminal_stop_stack": "success",
+    "disposition": "ENDED_JOB_OPERATOR_HANDOFF_ONLY",
+    "limits": "Successful Stop-stack and terminal owned job do not prove exact key deletion, canonical restoration or backend rollback. No custody identifiers, foreign adoption or cleanup authority are emitted."
+  },
+  "privacy_and_effects": {
+    "raw_errors_stacks_messages_titles_URLs_bodies_tokens_persisted": false,
+    "new_GETs": 0,
+    "operator_invocations": 0,
+    "tests_or_controls": 0,
+    "Git_commands": 0,
+    "resource_actions": 0,
+    "source_or_Spec_writes": 0,
+    "only_write": "This qualification JSON."
+  },
+  "remaining": {
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "prior_full_NORMAL_failure_retained": true,
+    "required_missing_cases": 35,
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "broad_review_counter": 3
+  }
+}

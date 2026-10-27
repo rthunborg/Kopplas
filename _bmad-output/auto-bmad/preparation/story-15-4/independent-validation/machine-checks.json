@@ -1,0 +1,199 @@
+{
+  "kind": "independent-specification-validation-machine-checks",
+  "baseline_revision": "5040f683cf9446d39de8512cdca82242c55fca3e",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "candidate_raw_sha256": "7933d020fba0986d283294cb94f85859a58d1fdc83f884a4d29e8b69751c89bb",
+  "candidate_kernel_sha256": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb",
+  "author_artifact_manifest_sha256": "e3dde1b45cc3fb9e4d8aeadde4d8f5e607678ab5c4c134c1e90c3ad49f0f958f",
+  "author_preparation_artifacts": 13,
+  "author_manifest_bindings": 13,
+  "tasks": 10,
+  "acceptance_criteria": 9,
+  "checks_passed": 26,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "baseline-head",
+      "passed": true,
+      "detail": "5040f683cf9446d39de8512cdca82242c55fca3e"
+    },
+    {
+      "name": "owned-branch",
+      "passed": true,
+      "detail": "codex/epic-15-scheduling-time-calendar"
+    },
+    {
+      "name": "only-expected-root-state-tracked-delta",
+      "passed": true,
+      "detail": [
+        "_bmad-output/auto-bmad/state/15-4-time-reporting-filing-timesheet-review.yaml"
+      ]
+    },
+    {
+      "name": "author-manifest-baseline",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "author-manifest-13-bindings",
+      "passed": true,
+      "detail": {
+        "bindings": 13,
+        "errors": []
+      }
+    },
+    {
+      "name": "all-13-author-preparation-artifacts",
+      "passed": true,
+      "detail": 13
+    },
+    {
+      "name": "candidate-raw-hash",
+      "passed": true,
+      "detail": "7933d020fba0986d283294cb94f85859a58d1fdc83f884a4d29e8b69751c89bb"
+    },
+    {
+      "name": "candidate-kernel-hash",
+      "passed": true,
+      "detail": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb"
+    },
+    {
+      "name": "candidate-kernel-file-equality",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one-verbatim-original-ac-sketch",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "ten-ordered-path-bound-tasks",
+      "passed": true,
+      "detail": 10
+    },
+    {
+      "name": "nine-gwt-acceptance-criteria",
+      "passed": true,
+      "detail": 9
+    },
+    {
+      "name": "no-template-placeholders",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "single-kernel-pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no-premature-final-review-trail",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "frontmatter-context-paths-exist",
+      "passed": true,
+      "detail": 7
+    },
+    {
+      "name": "cached-context-byte-conservation",
+      "passed": true,
+      "detail": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a"
+    },
+    {
+      "name": "cached-context-current-mtime",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "coordinator-snapshot-digest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "author-validator-inspected-and-parses",
+      "passed": true,
+      "detail": "Not executed: writes author-owned receipts and requires clean tracked status; independent equivalents used."
+    },
+    {
+      "name": "actual-authoritative-reader",
+      "passed": true,
+      "detail": {
+        "status": "ready-for-dev",
+        "parse_warnings": [],
+        "warnings": [
+          "oversized"
+        ]
+      }
+    },
+    {
+      "name": "actual-unique-discovery",
+      "passed": true,
+      "detail": {
+        "found": true,
+        "ambiguous": false,
+        "hard_stop": false,
+        "warnings": []
+      }
+    },
+    {
+      "name": "git-diff-check",
+      "passed": true,
+      "detail": {
+        "exit_code": 0,
+        "output": ""
+      }
+    },
+    {
+      "name": "no-time-report-implementation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "latest-migration-108-preserved",
+      "passed": true,
+      "detail": {
+        "count": 108,
+        "latest": "20261020180000_conflict_resolver.sql"
+      }
+    },
+    {
+      "name": "tracked-source-and-root-state-conserved-during-checks",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "actual_reader_commands": [
+    {
+      "mode": "reader",
+      "command": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.agents\\skills\\auto-bmad\\scripts\\story_plan.py",
+        "--spec",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-4-time-reporting-filing-timesheet-review.md"
+      ],
+      "exit_code": 0
+    },
+    {
+      "mode": "discovery",
+      "command": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.agents\\skills\\auto-bmad\\scripts\\story_plan.py",
+        "--find-spec",
+        "--impl-dir",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts",
+        "--story-key",
+        "15-4-time-reporting-filing-timesheet-review"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "tracked_status": "M _bmad-output/auto-bmad/state/15-4-time-reporting-filing-timesheet-review.yaml",
+  "root_state_sha256_observed_only": "9d31ef0aeb1ad39544fc306727ab35eec46d35cb930e46c4cb0a693ef62702a0",
+  "runtime_tests_executed": 0,
+  "resources_started": 0,
+  "author_validator_executed": false,
+  "approved_binding_claimed": false
+}

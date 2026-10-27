@@ -1,0 +1,152 @@
+{
+  "E16_gate": {
+    "SQL": "Current116 canonical bodies exactly preserve111 plus5 incoming; all applied SQL immutable; future fresh/reset stack engine execution still unqualified.",
+    "closure": {
+      "bytes": 1220,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-exact-e16-composition-closure-admission.json",
+      "sha256": "b0608e1f3336d66e6f7950c96215266476b15f90f8bb5accd8919058b20444f5"
+    },
+    "closure_scope": "Targeted six-file encoding correction PASS_SOURCE_ONLY; original semantic/C4 proof reused, no fourth broad review.",
+    "composition": "13 source conflicts, two bridges and same-principal companion admitted; independent original NOTPASS retained.",
+    "incoming416_scope": "Explicitly coordinated by Root; literal ancestry preserved. No latest-main/E17 intake proposed.",
+    "incoming_exact": "99104d0ffa0360cf7d4ce4de174789c4a4605224",
+    "merge": "aa1a16adf2980355f0228badf889c95a4f230248",
+    "parents": [
+      "8b77f94c191ea31bb2b216215f834619c793100b",
+      "99104d0ffa0360cf7d4ce4de174789c4a4605224"
+    ],
+    "resolved": true
+  },
+  "broad_review_increment": 0,
+  "changed_information": {
+    "integration": "Reviewed exact E16 composition and encoding closure now precede the next full native comparison, resolving the historical readiness integration hold.",
+    "local_reused_nonadditive": "81P and173P are separate;173 includes wrapper152. Encoding14P separate. TS/lint/lock/scoped16 checks0; whole cached warnings outside16 retained. No rerun or fresh aggregate credited here.",
+    "unit_portability": "Prior source4cd corrected demonstrated Git-history dependency; Linux152 local source controls were not hosted cause proof. The integrated source conserves that correction."
+  },
+  "development_complete": false,
+  "effects_now": {
+    "Git_mutations": 0,
+    "metadata_files_only": 4,
+    "network_provider_CI_SQL_resources": 0,
+    "new_operator_tests": 0
+  },
+  "enrollment": {
+    "DB_breakdown": {
+      "API": 20,
+      "COMP": 4,
+      "INT": 15,
+      "RLS": 12
+    },
+    "DB_story": 51,
+    "basis": "All11 case-bearing source files are raw-byte-identical to frozen qualified4cd readiness; static case enumeration reused with dependency equality, not execution proof. DIAG001 excluded.",
+    "direct_recovery_separate": 1,
+    "e15_story_unique": 95,
+    "essential_browser_story": 14,
+    "full_global_counts": "Observe future Node/Python/build/fullDB/RLS/other browser counts; neither prior3243 nor local81/173/14 is a future total.",
+    "native_this_source": 0,
+    "node_story": 30,
+    "ordering": "Existing parallel group0 then6 serial group1 once/fileParallelism false/maxWorkers1/bail1; each selected project enforces full resolved-project predicate. Unsupported configuration refuses. Expected negative tests that pass remain supported; bailed/skipped/cancelled/missing cases have zero coverage.",
+    "serial6": [
+      "tests/integration/jobs/job-runs.int.test.ts",
+      "tests/integration/commands/conflict-resolver.int.test.ts",
+      "tests/integration/commands/time-reports.int.test.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts"
+    ],
+    "smoke_union11": "All11 unique files; E16 cases are additional required smoke, never aggregate old17 other cases or infer actual totals.",
+    "source_case_files_unchanged": [
+      "tests/unit/features/calendar-feed/action-state.test.ts",
+      "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "tests/unit/features/calendar-feed/validation.test.ts",
+      "tests/unit/server/calendar-feed/attestation.test.ts",
+      "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "tests/integration/commands/calendar-feed.int.test.ts",
+      "tests/integration/rls/calendar-feed.rls.test.ts",
+      "tests/integration/components/calendar-feed.test.ts",
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "tests/e2e/calendar-feed.e2e.spec.ts"
+    ]
+  },
+  "future_attempt": 1,
+  "future_checkpoint_UUID": null,
+  "future_effects_only_after_actual_allocation": {
+    "dispatch": {
+      "attempt": 1,
+      "cause_proof": false,
+      "command": "node scripts/ci/checkpoint-dispatch.mjs dispatch --repo rthunborg/Kopplas --ref codex/epic-15-scheduling-time-calendar --sha <actual reviewed pushed SHA> --checkpoint-id <fresh UUIDv4> --release-validation false --cause-proof false --state <new ignored absent statefile>",
+      "maximum": 1,
+      "mode": "normal",
+      "ownership": "Root sole poller; exact actor/workflow/ref/head/title/UUID/attempt1; exclusive intent, uncertainty consumes/no redispatch. No current effects grant.",
+      "release_validation": false,
+      "repo_admission_variables_required": [],
+      "variable_mutations": 0
+    },
+    "provider": {
+      "condition": "Fresh exact project/team/repo/ignore exit0/preview-disabled qualification, or an actual fresh owner-qualified receipt admitted before push. Historical7211 receipt is context only.",
+      "limits": "Bounded existing authenticated CLI, RAM-only raw,15s/caps/nativeexit/EOF; no retry/discovery/providerwrites. Git deployment record may exist; ignored build skip is limited ordinary Git-push contract, no manual/prod deployment approval.",
+      "maximum_GETs": 1,
+      "request": "GET /v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd"
+    },
+    "push": {
+      "actor": "Root",
+      "kind": "FF from freshly verified remote3a385 to actual final reviewed metadata head; no latest-main adoption",
+      "maximum": 1,
+      "preconditions": "Current75/source116/10 trigger bindings plus review refs conserved, source clean/index reviewed, remote exact identity and no-deployment boundary qualified. Root may commit this metadata before assigning targetSHA/freshUUID."
+    },
+    "terminal_acquisition": {
+      "bounds": "Existing15s each,32MiB compressed,128MiB declared+actual inflate,16MiB selectedJSON,list4MiB/100,stderr64KiB; RAM-only raw/CRC/path/symlink/duplicate/ratio/digests/nativeexit/EOF/readerjoined/settlement. No perjob/status/fallback/retry/refetch/alternate endpoint. Existing grants consumed.",
+      "inventory": [
+        "one actual run logs archive",
+        "one artifacts list per_page100/no pagination",
+        "at most one ZIP each native-full-integration/full-integration.json, native-general-browser/general-browser.json, native-isolated-storage-recovery/isolated-storage-recovery.json when exactID/run/head/nonexpired/digest/size eligible"
+      ],
+      "maximum_requests": 5,
+      "separate_allocation_and_exclusive_activation_required": true
+    }
+  },
+  "future_pushed_head": null,
+  "future_run": null,
+  "last_pushed_head": "3a385df516088811e6af526beed457292c6d8b1f",
+  "metadata_HEAD": "af3186f80df3186b99523839f136bd0c5cbde84a",
+  "minimal_future_data_rebinding": {
+    "algorithm": {
+      "bytes": 47860,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement/normal-evidence-operator.py",
+      "sha256": "47831dbcd0f063c6abe38c2e62470ce5b1c2303b05cac123d56184de50699fb8"
+    },
+    "algorithm_change_required_by_observed_source": false,
+    "current_materialization": "Consumed historical fixed3a385/run39683227657; do not execute, overwrite or reuse activation/output. No new operator materialized now.",
+    "data_required_before_first_future_GET": [
+      "Actual final pushedSHA/source1de/UUID/run/attempt1/normal and exact9 terminal job+step ownership from Root, new exclusive paths/activation and actual completed allocation/review refs.",
+      "Refresh current75 vector and116 immutableSQL object proof at source/pushed/current metadata, relevant contexts; bind unchanged11 core enrollment files and changed package smoke11.",
+      "Re-extract only actually changed unit-catalog sources relative frozen47831 operator, including corrected wrapper unit and composed manifest-derivations/manifest-shape; retain other catalog entries only by exact dependency equality. No old line-number reuse.",
+      "Refresh producer/static-catalog/ref/self hashes and exact terminal archive member selection. Use same production budget admission with updated bound data/paths; if it rejects, stop before GET and name concrete prerequisite rather than silently changing algorithms/caps.",
+      "Targeted independent High binding/compatibility audit reusing unchanged reviewed algorithm spans and actual source composition closure; no broad unchanged review or control matrix."
+    ],
+    "limit": "No future report acquired: expanded global totals/schema availability/actual labels/custody remain UNKNOWN. Any actual incompatible source/schema requires finite pre-effect amendment, never opaque fallback.",
+    "unchanged_algorithms": "Retain reviewed acquisition/report projections, strictTAP/staticfailure candidates, fixed label projection and global56-slot/28194 conservative output envelope<=32768. Existing browser projector reports additional E16 smoke separately; no old17-other-case assumption."
+  },
+  "normal_acceptance": 0,
+  "policy_version": "2026-10-19",
+  "preserved_transport": {
+    "dependency_lock": "No dependency upgrade/regeneration; package differs only test:smoke from4cd, union11.",
+    "label_producers": "NUDGE004 public assertionResults.meta.calendarSourceLabelsV1 and E2E001 per-attempt strict stderr schemas/producers unchanged. Actual native publication is UNKNOWN. No raw console/error/stack/DOM/payload forwarding.",
+    "provider_triggers": "All8 workflows andvercel.json raw unchanged, package smoke changed; no deploy/promote/redeploy/db-push command found in bounded10 inputs. Static facts do not requalify hosted settings.",
+    "wrapper_and_config": "Reviewed C4/F1 boundaries unchanged; unsuccessful runtime retains key/custodyUNKNOWN. Child close/client closure is not canonical backend settlement."
+  },
+  "previous_native_limits": "Run39683227657/3a385 failed Node3241P2F; later Python/build/runtime unexecuted. Earlier NUDGE/browser/custody and hosted exception causes remain UNKNOWN. Source review/encoding closure clears no native failure. Existing packets/grants remain immutable/consumed.",
+  "release_ready": false,
+  "required_actual_success": "Five required jobs checkpoint-admission,verify,db,recovery-storage-loader,e2e; four optional release jobs uncreditedSKIP. Fresh static/audit/Node/Python/type/lint/build/bundle, fullDB+RLS SUPABASE_TEST_REQUIRED=1 with executed/skipped counts, all95 mandatory0requiredskip,6serialonce/order afterparallel, additional E16 full smoke, separate recovery1 physicalStorage/protectedrow/overwrite-denial proof and116 migration application. Actual privacyAPI019, ordinaryRLS010/INT015/native identities/clock/body/canonicalACL/child+query settlement/keycleanup and truthful custody mandatory. Failed functional gates cannot defer as visual polish.",
+  "schema": "EXACT_E16_INTEGRATED_CHECKPOINT_READINESS_v1",
+  "scope": "Source-only readiness for one justified integrated NORMAL checkpoint; no execution or acceptance authority.",
+  "source": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "source_bindings": {
+    "bytes": 132024,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-checkpoint-readiness/source-bindings.json",
+    "sha256": "4b679b724227eb6e1714c6c452538759201de13e4d9531d30074c588a2d80997"
+  },
+  "status": "READY_FOR_EXACT_NORMAL_ALLOCATION",
+  "utc": "2026-10-21T23:05:35.044542+00:00"
+}

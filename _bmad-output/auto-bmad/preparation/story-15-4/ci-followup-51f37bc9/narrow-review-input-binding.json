@@ -1,0 +1,65 @@
+{
+  "kind": "post-cap-narrow-CI-repair-regressions-only",
+  "not_a_fourth_broad_review": true,
+  "before": "51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7",
+  "source_head": "71f061b83de04d8f888aaa18f98c4e1960d9d9f4",
+  "input_bytes": 172930,
+  "input_lines": 1492,
+  "input_sha256": "5b557495c2866a81ac62c432f0d9db9bae72cc8dce69d230ddc74f961eaa762b",
+  "route": {
+    "reviewer": "r3_detachment_high retained distinct reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from_author": true,
+    "reason": "service client injection/test cleanup integrity and consequential native-browser failure fixes"
+  },
+  "scope": "Only six-path latest repair and unresolved consequential actual CI failures: helper localclient, owned child cleanup/errorretention, Person/Jobb accessible names, exact visible ownbooking selection/fullacceptance tails, quote approvednav pin and authorSRO; no broad unchanged audit.",
+  "source_binding": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+      "raw_sha256": "a51db3dbc4810e82f5a5318c04816139471b505aa71f4b1fb51633477549add1",
+      "git_blob": "8eb573b4065ae5fd8355cc3a3b8d529762eb4cb8"
+    },
+    {
+      "path": "src/components/time-reports/TimeReportWorkspace.tsx",
+      "raw_sha256": "e2802c79eef34884a63f5270aa45e6a1a3019c8f14c44bf4f61acc7498be360a",
+      "git_blob": "9450c1f340371ba586460603834e57020c1afb8f"
+    },
+    {
+      "path": "tests/e2e/time-reports.e2e.spec.ts",
+      "raw_sha256": "5736744d8f19b665bac17ef9103ae366d8ff7dc577a4fd1fd7cf01e80ea2d48a",
+      "git_blob": "19e70b2043d6a938abb9783ac423ddcac642c711"
+    },
+    {
+      "path": "tests/integration/components/time-reports.test.ts",
+      "raw_sha256": "8625bc3b1de595297428ba454b86d40d22fd34e02ea597c60372542e3c751e28",
+      "git_blob": "5a57c92a5c83675c3149b74b347aea5b14d14a66"
+    },
+    {
+      "path": "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+      "raw_sha256": "76e4f6f5d4ee3f6771786d0ebe3e1eaa723e82c6ec6c4911afb3f87a80a59c67",
+      "git_blob": "6572dceb74bc7bceb2c607b5823dbf135f4a63c2"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "raw_sha256": "fae7ad38abb947dfe148d6ab1b8f37ec9ebc50d80350929ebfb285fa31ee065d",
+      "git_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569"
+    }
+  ],
+  "native_failed_packet": {
+    "root_receipt": ".env.epic15.mail-runtime/story-15-4-preparation/root-checkpoint-51f37bc9-qualified-failure.json",
+    "run": 39408197808,
+    "head": "51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7",
+    "status": "qualified FAILURE",
+    "prior_unknown": "NUDGE004 earlier callback remains unknown; helper exception previously masked it.",
+    "no_trace_bytes": "Runner references only, no native trace/HTML inspected."
+  },
+  "runtime": "No local DB/Auth/browser execution; new actual successorCI required.",
+  "completed_counted_rounds": 3,
+  "counted_round_cap": 3,
+  "counted_round_breakdown": {
+    "broad": 1,
+    "limited": 2
+  },
+  "accounting_clarification": "Header/metadata only corrected to actual1broad+2limited; original author commit body preserved. Current narrowCIcheck separate additional latest-fix followup."
+}

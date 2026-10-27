@@ -1,0 +1,580 @@
+{
+  "frozenBindings": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/approval.json",
+      "expected": "7e8f6a00d0536622764f478f0baff919c22abc0c7f1e29a1c0da9a049759e771",
+      "actual": "7e8f6a00d0536622764f478f0baff919c22abc0c7f1e29a1c0da9a049759e771",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/candidate-intent-contract.txt",
+      "expected": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "actual": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/current-contracts-and-design.md",
+      "expected": "3a064755bc380f386214ca9b296c575dfa3b8e5995d4a136ee06aa6f428c4647",
+      "actual": "3a064755bc380f386214ca9b296c575dfa3b8e5995d4a136ee06aa6f428c4647",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md",
+      "expected": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f",
+      "actual": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json",
+      "expected": "bcaf54e0f8914e777acc281413de5652902734e6ba8c7c99218f1893bde419e5",
+      "actual": "bcaf54e0f8914e777acc281413de5652902734e6ba8c7c99218f1893bde419e5",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/candidate-intent-contract.txt",
+      "expected": "e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8",
+      "actual": "e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/current-contracts-and-design.md",
+      "expected": "cd8c6ee5b803162789c006fcd8d87ef9d45a8e5ccacfe101f749faaedcd4faa3",
+      "actual": "cd8c6ee5b803162789c006fcd8d87ef9d45a8e5ccacfe101f749faaedcd4faa3",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md",
+      "expected": "784c25c39ba97732a4f5af8a11dccdfd100e5090679a0a1091195cab045410b7",
+      "actual": "784c25c39ba97732a4f5af8a11dccdfd100e5090679a0a1091195cab045410b7",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/routes.json",
+      "expected": "429a75e1a5fed758625f7854c1e943f229c59444ca19e56ef4b813eb12e4fdfb",
+      "actual": "429a75e1a5fed758625f7854c1e943f229c59444ca19e56ef4b813eb12e4fdfb",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/source-discovery.md",
+      "expected": "d186642b9d01b2ef9637fd4161ddddb962852897d0a84070c0dfd77d0484c935",
+      "actual": "d186642b9d01b2ef9637fd4161ddddb962852897d0a84070c0dfd77d0484c935",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-after.json",
+      "expected": "928d6c01912f46198cbd9f64be6e4ac75fd8e6257478ab54e4f99e7a80fdd07c",
+      "actual": "928d6c01912f46198cbd9f64be6e4ac75fd8e6257478ab54e4f99e7a80fdd07c",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-before.json",
+      "expected": "e7d1bdefc1e0dec8e8569bd3c58bb6cf980359490f6c4821abdecff6f11d514d",
+      "actual": "e7d1bdefc1e0dec8e8569bd3c58bb6cf980359490f6c4821abdecff6f11d514d",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/spec-discovery.json",
+      "expected": "c631c068d139cdc4645bc1ec5983efac32f15137c52852bd1e6203b2f2e516c7",
+      "actual": "c631c068d139cdc4645bc1ec5983efac32f15137c52852bd1e6203b2f2e516c7",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/spec-reader.json",
+      "expected": "2a14cbb66ea27f51d8efc44c959fd4649b6a16e161d6ad9397220f7b1c10987a",
+      "actual": "2a14cbb66ea27f51d8efc44c959fd4649b6a16e161d6ad9397220f7b1c10987a",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/spec-self-validation.md",
+      "expected": "24425ac3ba6c819709ce3564cb9e217ac1a62041bc8a476591152bfa035dce90",
+      "actual": "24425ac3ba6c819709ce3564cb9e217ac1a62041bc8a476591152bfa035dce90",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/story-file-audit.md",
+      "expected": "192eaa53f9d33bff1a9cdc358f1244ae24ee3cc78ce6edf8c07bf88a57be6399",
+      "actual": "192eaa53f9d33bff1a9cdc358f1244ae24ee3cc78ce6edf8c07bf88a57be6399",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/validate-planning.py",
+      "expected": "348fcdfe4f61ce45002edc56ec79077438625168f316048ae497513f6a2ae9f0",
+      "actual": "348fcdfe4f61ce45002edc56ec79077438625168f316048ae497513f6a2ae9f0",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/validation.json",
+      "expected": "a4e466326b6ae80cc3ce93a40a7d67a3dd1f3f011cd017ec379269b02fb32802",
+      "actual": "a4e466326b6ae80cc3ce93a40a7d67a3dd1f3f011cd017ec379269b02fb32802",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "expected": "0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88",
+      "actual": "0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/history-manifest.json",
+      "expected": "3e333d3a5248def87b32b29f556a1f60f9158f9d4b6eef1c32a497c2091b86e1",
+      "actual": "3e333d3a5248def87b32b29f556a1f60f9158f9d4b6eef1c32a497c2091b86e1",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/validated-candidate/_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json",
+      "expected": "879e0e5ce51aab56a18a22d1b2aea6ea658f1ca31cc638e723c5ad6b36741e72",
+      "actual": "879e0e5ce51aab56a18a22d1b2aea6ea658f1ca31cc638e723c5ad6b36741e72",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/validated-candidate/_bmad-output/auto-bmad/preparation/story-15-5/candidate-intent-contract.txt",
+      "expected": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "actual": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/validated-candidate/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "expected": "e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02",
+      "actual": "e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/revisions/validated-candidate/history-manifest.json",
+      "expected": "8eb5df2c0e941ea947a9fa44168008bc6253adf7a430e1386ffa3645e22d24e9",
+      "actual": "8eb5df2c0e941ea947a9fa44168008bc6253adf7a430e1386ffa3645e22d24e9",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/routes.json",
+      "expected": "e2693d0223bcbea606913fc4a7c45e87b40d9544eb6ce55ef78f3adaed41e41f",
+      "actual": "e2693d0223bcbea606913fc4a7c45e87b40d9544eb6ce55ef78f3adaed41e41f",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-discovery.md",
+      "expected": "7f512cbe665ad90507c78f14b0dcc8a63b91d1e3e79e039b68061a5e98ce5c0d",
+      "actual": "7f512cbe665ad90507c78f14b0dcc8a63b91d1e3e79e039b68061a5e98ce5c0d",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-after.json",
+      "expected": "31e06df0254549cd16e7ff3872c24bc8ea15c8afc7e57015535876a5437dfbd6",
+      "actual": "31e06df0254549cd16e7ff3872c24bc8ea15c8afc7e57015535876a5437dfbd6",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-before.json",
+      "expected": "e7d1bdefc1e0dec8e8569bd3c58bb6cf980359490f6c4821abdecff6f11d514d",
+      "actual": "e7d1bdefc1e0dec8e8569bd3c58bb6cf980359490f6c4821abdecff6f11d514d",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/spec-discovery.json",
+      "expected": "28415bd2a068c347b916642a2f8660b58bf798b6518ad2f5a920bf0b0c46f3d3",
+      "actual": "28415bd2a068c347b916642a2f8660b58bf798b6518ad2f5a920bf0b0c46f3d3",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/spec-reader.json",
+      "expected": "2a14cbb66ea27f51d8efc44c959fd4649b6a16e161d6ad9397220f7b1c10987a",
+      "actual": "2a14cbb66ea27f51d8efc44c959fd4649b6a16e161d6ad9397220f7b1c10987a",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/spec-self-validation.md",
+      "expected": "4d9f536a04fe0309eaa77690f6626af9ee8f95006fbc9e4fa275307e6429198d",
+      "actual": "4d9f536a04fe0309eaa77690f6626af9ee8f95006fbc9e4fa275307e6429198d",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/story-file-audit.md",
+      "expected": "22214c73c76eaf2614bdf81661ac74e28a924a07ac8a2b9d667c81f1a6deb789",
+      "actual": "22214c73c76eaf2614bdf81661ac74e28a924a07ac8a2b9d667c81f1a6deb789",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/validate-planning.py",
+      "expected": "b050fb25e8d7121c0fbe21aba598cf9774ef3ee12bca433379a549bc265cf956",
+      "actual": "b050fb25e8d7121c0fbe21aba598cf9774ef3ee12bca433379a549bc265cf956",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/validation.json",
+      "expected": "33430a236271e36de3d36a1c59e31e5906fd80c3e41a008cea9335d0b5747a88",
+      "actual": "33430a236271e36de3d36a1c59e31e5906fd80c3e41a008cea9335d0b5747a88",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "expected": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144",
+      "actual": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144",
+      "unchanged": true
+    }
+  ],
+  "independentFiles": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/artifact-manifest.json",
+      "expected": "b731aece483dba4365f22446aa6cce489aff79af52b6f42e64e9af07d5f05cc8",
+      "actual": "b731aece483dba4365f22446aa6cce489aff79af52b6f42e64e9af07d5f05cc8",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/revalidation-1/artifact-manifest.json",
+      "expected": "8ee6152af26e88df68cb64092c62a90cde64fcb0704f884ce4e025ac0ec4f7a8",
+      "actual": "8ee6152af26e88df68cb64092c62a90cde64fcb0704f884ce4e025ac0ec4f7a8",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/revalidation-1/validate-independent.py",
+      "expected": "e2004280f70cc81398c72bcc6a6f89a6b27a6c743e1299d00b324a7b6f9a7dee",
+      "actual": "e2004280f70cc81398c72bcc6a6f89a6b27a6c743e1299d00b324a7b6f9a7dee",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/revalidation-1/validation-report.json",
+      "expected": "452cddf59ca6b91b0af64e78cff3f920c5e84341a27ce13bb99f9aa3dec0a344",
+      "actual": "452cddf59ca6b91b0af64e78cff3f920c5e84341a27ce13bb99f9aa3dec0a344",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/revalidation-1/validation-report.md",
+      "expected": "719e5446464d1bda58580d778dd9ba12159ac190f0805937720f8e24431a4294",
+      "actual": "719e5446464d1bda58580d778dd9ba12159ac190f0805937720f8e24431a4294",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validate-independent.py",
+      "expected": "a639081ddf1eeaf2c40741254a6c139da608712522fb698bcf9e4ae7e60fa2dd",
+      "actual": "a639081ddf1eeaf2c40741254a6c139da608712522fb698bcf9e4ae7e60fa2dd",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validation-report.json",
+      "expected": "06cd1977c389e1b7b7e476fe5b54dc19a258987f6fda6723c3d93c15b92eb39a",
+      "actual": "06cd1977c389e1b7b7e476fe5b54dc19a258987f6fda6723c3d93c15b92eb39a",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validation-report.md",
+      "expected": "8508ff2615633a5236770a098cff5f5fea91db6de0b7823bb3ffd0940f1af638",
+      "actual": "8508ff2615633a5236770a098cff5f5fea91db6de0b7823bb3ffd0940f1af638",
+      "unchanged": true
+    }
+  ],
+  "originalSources": [
+    {
+      "path": "AGENTS.md",
+      "expected": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823",
+      "actual": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823",
+      "unchanged": true
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "expected": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893",
+      "actual": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893",
+      "unchanged": true
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "expected": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891",
+      "actual": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891",
+      "unchanged": true
+    },
+    {
+      "path": "docs/process/local-setup.md",
+      "expected": "c533f25c64c176b01d21c0a06141aa4287752922cd586e3f23fb4b15a784bfe7",
+      "actual": "c533f25c64c176b01d21c0a06141aa4287752922cd586e3f23fb4b15a784bfe7",
+      "unchanged": true
+    },
+    {
+      "path": "docs/process/review-order.md",
+      "expected": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115",
+      "actual": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/project-context.md",
+      "expected": "f5bf5333ab8147b5dccd0a88e12848b17b6a29967b1175cea352d7aaec51f973",
+      "actual": "f5bf5333ab8147b5dccd0a88e12848b17b6a29967b1175cea352d7aaec51f973",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/epics-phase-b.md",
+      "expected": "72983bf3d3154cebb52891a244a40434af19aacddf699bd45c5f7561cbe18387",
+      "actual": "72983bf3d3154cebb52891a244a40434af19aacddf699bd45c5f7561cbe18387",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/prd-phase-b.md",
+      "expected": "55ea67f8fd08b0abd9fec611751891a5362f3b25e52cda84deca266075f46d4e",
+      "actual": "55ea67f8fd08b0abd9fec611751891a5362f3b25e52cda84deca266075f46d4e",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/architecture-phase-b.md",
+      "expected": "a96ff60740a87ff35ad6bdd53a1319565475aba6c5b960633e25f5e646f0fa94",
+      "actual": "a96ff60740a87ff35ad6bdd53a1319565475aba6c5b960633e25f5e646f0fa94",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+      "expected": "97a7bec5874622b508c6f2da3a794d9a1b2c204b2dc3f464dae253809f5977b1",
+      "actual": "97a7bec5874622b508c6f2da3a794d9a1b2c204b2dc3f464dae253809f5977b1",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/test-artifacts/test-design-epic-15.md",
+      "expected": "ebd67ef139d180a47af03fa885b0b50fb52905b335d81fe07fc9169b49bff955",
+      "actual": "ebd67ef139d180a47af03fa885b0b50fb52905b335d81fe07fc9169b49bff955",
+      "unchanged": true
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "expected": "61d54f63c309470038426fa69fa64dd40fd5fb9b402fdc727eeb748f9129527b",
+      "actual": "61d54f63c309470038426fa69fa64dd40fd5fb9b402fdc727eeb748f9129527b",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context.ts",
+      "expected": "1d46e1504583d08d0a0d805dc7e3df7ac3f502fc2ab89e976d5a86c439280cf2",
+      "actual": "1d46e1504583d08d0a0d805dc7e3df7ac3f502fc2ab89e976d5a86c439280cf2",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context-core.ts",
+      "expected": "014279223fffb62e5bace20c9920a4fe8e89186768e7354cb075f26b99d37153",
+      "actual": "014279223fffb62e5bace20c9920a4fe8e89186768e7354cb075f26b99d37153",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "expected": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc",
+      "actual": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "expected": "ce5fa6b75e5950256e891a2bc39c53cdb81df2c03393c74d0c425767291dd6eb",
+      "actual": "ce5fa6b75e5950256e891a2bc39c53cdb81df2c03393c74d0c425767291dd6eb",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "expected": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "actual": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/db/supabase-server-client.ts",
+      "expected": "492cb7b5bd242d4b6b731a8c84cc77bd5159579fb3338ed0251d0065bacea99e",
+      "actual": "492cb7b5bd242d4b6b731a8c84cc77bd5159579fb3338ed0251d0065bacea99e",
+      "unchanged": true
+    },
+    {
+      "path": "middleware.ts",
+      "expected": "df31ff3a6227edb70aa10e29bea11c61bb12735b02a6795a2a3a48f1d1e39340",
+      "actual": "df31ff3a6227edb70aa10e29bea11c61bb12735b02a6795a2a3a48f1d1e39340",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "expected": "194eb7f66f7e20763e0633531e42cd620ffd10ff18abfc3387b94eb6ae797ef2",
+      "actual": "194eb7f66f7e20763e0633531e42cd620ffd10ff18abfc3387b94eb6ae797ef2",
+      "unchanged": true
+    },
+    {
+      "path": "src/app/(public)/unsubscribe/[token]/route.ts",
+      "expected": "7ad7203b96d266661f4019417974848f44842a2a8f9daa03755a831f301d0e75",
+      "actual": "7ad7203b96d266661f4019417974848f44842a2a8f9daa03755a831f301d0e75",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/email/unsubscribe.ts",
+      "expected": "30c504ba0cf26bce8da51655ea1fd396b68ad98adb39ff21643e9f597020db73",
+      "actual": "30c504ba0cf26bce8da51655ea1fd396b68ad98adb39ff21643e9f597020db73",
+      "unchanged": true
+    },
+    {
+      "path": "src/server/bookings/conflict-attestation.ts",
+      "expected": "34f0d813ce2624a2afa6c082dc1e608ab9775d517b36323f7cb81b744157f6f1",
+      "actual": "34f0d813ce2624a2afa6c082dc1e608ab9775d517b36323f7cb81b744157f6f1",
+      "unchanged": true
+    },
+    {
+      "path": "src/components/app-shell/AppShell.tsx",
+      "expected": "1ecfaf9e0447c9c2f0a8c22de6367cee2f9910bf4043ab6c7db0a3b427dec661",
+      "actual": "1ecfaf9e0447c9c2f0a8c22de6367cee2f9910bf4043ab6c7db0a3b427dec661",
+      "unchanged": true
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "expected": "2ae1e210dc770f69db8929bf4515c611c1d6aefa31fa34e5ba88b9cb92219e4b",
+      "actual": "2ae1e210dc770f69db8929bf4515c611c1d6aefa31fa34e5ba88b9cb92219e4b",
+      "unchanged": true
+    },
+    {
+      "path": "src/components/scheduling/SchedulingWorkspace.tsx",
+      "expected": "1ee89cbf2c1680bbe78b07e93bb290fb28c02731a7211888a3bd5540f79c2701",
+      "actual": "1ee89cbf2c1680bbe78b07e93bb290fb28c02731a7211888a3bd5540f79c2701",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20260625122433_tenant_foundation.sql",
+      "expected": "884f8205e1e271883ee116ee122b8a55788c30b9c4e5902c8ee8078ee959f627",
+      "actual": "884f8205e1e271883ee116ee122b8a55788c30b9c4e5902c8ee8078ee959f627",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20260904120000_role_storage_and_permission_matrix.sql",
+      "expected": "8e04f52e2366b28b7d806b76516d70333aab352f9a4d6a5119bd232b86b05641",
+      "actual": "8e04f52e2366b28b7d806b76516d70333aab352f9a4d6a5119bd232b86b05641",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20260919090000_tenant_provisioning.sql",
+      "expected": "7e0c801d75b5fabadcf29bca10ebb125e8344ff25b5cce7b9354dc3869121c3c",
+      "actual": "7e0c801d75b5fabadcf29bca10ebb125e8344ff25b5cce7b9354dc3869121c3c",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20260919120000_provisioning_decision_8a_authority.sql",
+      "expected": "471cb1b1b06c87de28c6cadd74123043a5d7fadd3fe51d957520d12c4a7412f7",
+      "actual": "471cb1b1b06c87de28c6cadd74123043a5d7fadd3fe51d957520d12c4a7412f7",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20260919121000_provisioning_vault_reader_owner.sql",
+      "expected": "946ed18da8df2790de25d60c7f1a04b6efc9e48321badfe97bd7567b646cabfc",
+      "actual": "946ed18da8df2790de25d60c7f1a04b6efc9e48321badfe97bd7567b646cabfc",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20260924120000_email_delivery_followup_fixes.sql",
+      "expected": "b4e31b67ecb248791ffd1a975521ef3d04d4fea58d51bee4aa453dd50b76a436",
+      "actual": "b4e31b67ecb248791ffd1a975521ef3d04d4fea58d51bee4aa453dd50b76a436",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20260929120000_resource_person_profiles_and_work_hours.sql",
+      "expected": "6051d94fe8527656086d43d86aa4b2ea2a36fd8517bfd6abf828e67d1208d67c",
+      "actual": "6051d94fe8527656086d43d86aa4b2ea2a36fd8517bfd6abf828e67d1208d67c",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20261006101609_bookings_and_assignees.sql",
+      "expected": "c3af5bdeb49b5edf56c9bafb8a7b1c5ec6220bddb513015eea6ecdd4939f371d",
+      "actual": "c3af5bdeb49b5edf56c9bafb8a7b1c5ec6220bddb513015eea6ecdd4939f371d",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20261006104143_booking_invariant_corrections.sql",
+      "expected": "e5dd4285979feae93f364283f8ae553c9d6aad1c8e6ba2c5fa7f296b6b969aac",
+      "actual": "e5dd4285979feae93f364283f8ae553c9d6aad1c8e6ba2c5fa7f296b6b969aac",
+      "unchanged": true
+    },
+    {
+      "path": "supabase/migrations/20261020190000_time_reports.sql",
+      "expected": "90e685665d0f05722d59850c4a195df3fbeef8a39a719d426ce1f443e07ee139",
+      "actual": "90e685665d0f05722d59850c4a195df3fbeef8a39a719d426ce1f443e07ee139",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/verify/check-service-role-containment.mjs",
+      "expected": "64e8020399dbf77b85082910863b49d44f6456457d5c688b871502eb4f9b6012",
+      "actual": "64e8020399dbf77b85082910863b49d44f6456457d5c688b871502eb4f9b6012",
+      "unchanged": true
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "expected": "271110c92a6b4215126ef745741da688e58ca2617ddd0d924070ea985f59b3bd",
+      "actual": "271110c92a6b4215126ef745741da688e58ca2617ddd0d924070ea985f59b3bd",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad/custom/bmad-build-auto.toml",
+      "expected": "fa32e3f797d556e116fa60acdaaf1b274b071d72e6ae42863b24e14384477970",
+      "actual": "fa32e3f797d556e116fa60acdaaf1b274b071d72e6ae42863b24e14384477970",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/auto-bmad/scripts/story_plan.py",
+      "expected": "13cf46aceda340152fd10cb0bc57991c498c36e28628a98bfb4e60e1fd99d5ae",
+      "actual": "13cf46aceda340152fd10cb0bc57991c498c36e28628a98bfb4e60e1fd99d5ae",
+      "unchanged": true
+    }
+  ],
+  "boundedCompanions": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "expected": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144",
+      "actual": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-ownership-allocation.json",
+      "expected": "a00bd6d75e7d3c56e0e5985dce9f6c26e43776be6c3670ae319159bdbe1ac0ed",
+      "actual": "a00bd6d75e7d3c56e0e5985dce9f6c26e43776be6c3670ae319159bdbe1ac0ed",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md",
+      "expected": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f",
+      "actual": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ownership-inventory-successor.md",
+      "expected": "a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419",
+      "actual": "a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/approval.json",
+      "expected": "7e8f6a00d0536622764f478f0baff919c22abc0c7f1e29a1c0da9a049759e771",
+      "actual": "7e8f6a00d0536622764f478f0baff919c22abc0c7f1e29a1c0da9a049759e771",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "expected": "ce3edc035ee55dba8df4b8595ff3d220cd9b5bae7fb372af943d9638dfbf955d",
+      "actual": "ce3edc035ee55dba8df4b8595ff3d220cd9b5bae7fb372af943d9638dfbf955d",
+      "unchanged": true
+    },
+    {
+      "path": "vitest.config.ts",
+      "expected": "8cd410556ef614c306f54496c595e110ee214f4804d81468e95f350fabd2704c",
+      "actual": "8cd410556ef614c306f54496c595e110ee214f4804d81468e95f350fabd2704c",
+      "unchanged": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "expected": "265fd3aeab80a82fd6903e2c556b97df04b0c614620ae594fd4543fe57e8b935",
+      "actual": "265fd3aeab80a82fd6903e2c556b97df04b0c614620ae594fd4543fe57e8b935",
+      "unchanged": true
+    }
+  ],
+  "allocationHashes": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json",
+      "expected": "c5c764796b218a7e0903bbb258fb0b2eafc15d28476cae86679d2ba2d4fa13b2",
+      "actual": "c5c764796b218a7e0903bbb258fb0b2eafc15d28476cae86679d2ba2d4fa13b2",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-ownership-allocation.json",
+      "expected": "a00bd6d75e7d3c56e0e5985dce9f6c26e43776be6c3670ae319159bdbe1ac0ed",
+      "actual": "a00bd6d75e7d3c56e0e5985dce9f6c26e43776be6c3670ae319159bdbe1ac0ed",
+      "unchanged": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/ownership-inventory-successor.md",
+      "expected": "a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419",
+      "actual": "a3a9d8b76f58ca8d66d4250ccc7fa0f98a925af19826cbcd337c912b2f4d1419",
+      "unchanged": true
+    }
+  ],
+  "kernel": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "approvedKernel": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "notes": "Only historical source paths are checked here. Newly authorized P4 test sources are additions and zero acceptance coverage; this is not a claim tests/ is unchanged.",
+  "passed": true
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "TARGETED_CUMULATIVE_REVIEW_SELF_EXCLUDED_MANIFEST_v1",
+  "verdict": "NOTPASS",
+  "reviewed_source_commit": "22508ef2773bb872d6c880328390812dbc358559",
+  "base": "f0000e7c107f10371543148280e555971e753342",
+  "members": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "original-report.md",
+      "bytes": 7022,
+      "sha256": "05ad62bfda05c24fad022fe37c1b4facf7ad5a62f72804d3921fd5760c8c9d34"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 20373,
+      "sha256": "eb17e11d4866a6561bf33527c08b13482cdb458bae3360b55d4b9b9db1aa6b76"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1187,
+      "sha256": "c90955c11f9f53178b76fda37c65f2662d6cbfaebe76ea04e7c7cc87479237cd"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance_credit": 0,
+  "activation_authorized": false
+}

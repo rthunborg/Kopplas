@@ -1,0 +1,43 @@
+{
+  "label": "restore-default-scoped-lint",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+    "exec",
+    "eslint",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 3.078998,
+  "reason": null,
+  "caps": {
+    "seconds": 60,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

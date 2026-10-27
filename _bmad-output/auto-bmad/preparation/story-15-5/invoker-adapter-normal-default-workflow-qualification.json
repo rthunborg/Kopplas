@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "NORMAL_DEFAULT_WORKFLOW_AVAILABILITY_QUALIFICATION",
+  "observed_at_utc": "2026-10-21T10:49:35.687Z",
+  "repo": "rthunborg/Kopplas",
+  "source_commit": "571f5014efc5edad9649b947c26d391a804afe66",
+  "status": "QUALIFIED_CURRENT_DEFAULT_REGISTRATION_AND_CANDIDATE_NORMAL_SOURCE_CONTRACT",
+  "normal_compatible": null,
+  "requests_attempted": 3,
+  "requests_completed": 3,
+  "request_limit": 3,
+  "timeout_ms_each": 15000,
+  "max_response_bytes_each": 4194304,
+  "retries": 0,
+  "raw_responses_or_workflow_persisted": false,
+  "normal_acceptance_credit": 0,
+  "API_mutations": 0,
+  "dispatches": 0,
+  "observations": [
+    {
+      "endpoint": "repos/rthunborg/Kopplas",
+      "raw_response_bytes": 5815,
+      "raw_response_sha256": "5a37593ae50fda7802ec86b9dad356c9be451d10c2f4bfb4f826c2477b7a093a"
+    },
+    {
+      "endpoint": "repos/rthunborg/Kopplas/actions/workflows/ci.yml",
+      "raw_response_bytes": 442,
+      "raw_response_sha256": "17a8415330938b660f55fb9edf9efd6e86bdb6f7e980420becefaa4ce4f212b7"
+    },
+    {
+      "endpoint": "repos/rthunborg/Kopplas/contents/.github/workflows/ci.yml?ref=main",
+      "raw_response_bytes": 44569,
+      "raw_response_sha256": "b5c53fec1aec0c768b9d3d9498169c3f9b42e1db8cf02a4e374dd8ab8ca38370"
+    }
+  ],
+  "repository_id": 1269069679,
+  "default_branch": "main",
+  "workflow": {
+    "id": 296219797,
+    "path": ".github/workflows/ci.yml",
+    "state": "active"
+  },
+  "default_workflow_source": {
+    "git_blob_oid": "b20614822aa5201587f0779e0bbcca9b5d9cbbc9",
+    "bytes": 31731,
+    "sha256": "150211c35affc4cbaa3204b4fa036d97844eb044b93267892196d7cf3956dd39",
+    "canonical_base64": true,
+    "strict_UTF8": true,
+    "actual_git_blob_identity": true
+  },
+  "uncertainty": "Availability is a point-in-time observation; actual server-side selected-ref input admission remains unexecuted, not a proven blocker.",
+  "finished_at_utc": "2026-10-21T10:49:37.410Z",
+  "frozen_readiness": {
+    "bytes": 20730,
+    "sha256": "4d617ffabc7050c8e2d5255c8a123a3df766ab0692e600801cdc0bcb1d3a370c",
+    "unchanged": true
+  },
+  "default_workflow_dispatch_available": true,
+  "default_input_contract": {
+    "expected_sha": {
+      "type": "string",
+      "required": true
+    },
+    "checkpoint_id": {
+      "type": "string",
+      "required": true
+    },
+    "release_validation": {
+      "present": false
+    },
+    "optional_diagnostic_inputs": {
+      "present": false
+    },
+    "additional_required_inputs": 0
+  },
+  "selected_ref_source": {
+    "path": ".github/workflows/ci.yml",
+    "bytes": 75930,
+    "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+    "normal_inputs_expected_sha_checkpoint_id_release_validation_supported": true,
+    "release_validation_optional_default_false": true,
+    "optional_diagnostic_inputs_default_false": true
+  },
+  "offline_exact_object_recovery": {
+    "method": "git cat-file blob of exact currently-observed remote Git blob; read-only local object, bytes/SHA match fetched source.",
+    "API_requests_added": 0,
+    "bytes": 31731,
+    "sha256": "150211c35affc4cbaa3204b4fa036d97844eb044b93267892196d7cf3956dd39",
+    "initial_reader_stop": "Reader required release_validation on default source; exact offline parse proves it is absent, not a transport or malformed-source failure.",
+    "initial_receipt_bytes": 2092,
+    "initial_receipt_sha256": "af16669145a46c3f054a7fd16ee9bcd2654f54c93e91a4b53d9051790f57935d"
+  },
+  "qualification_limits": [
+    "Current default active workflow and actual workflow_dispatch registration are proven by this observation.",
+    "Default main itself declares only expected_sha/checkpoint_id. It does not advertise release_validation or optional diagnostic inputs; no false default-input compatibility claim.",
+    "Candidate selected-ref workflow supports exact normal input set and all optional defaults false, as source-readiness qualified. Actual server-side selected-ref input admission was not exercised by these GETs.",
+    "Absence on default alone is not proof a selected-ref dispatch will fail. No extra GET/POST, probe run, variable mutation or default-branch merge is authorized or performed by this qualification.",
+    "No normal tests, migration execution, current hosted roles, provider configuration or secrets were qualified."
+  ],
+  "minimal_remaining_root_action": "Use actual default workflow_dispatch registration plus the independently reviewed candidate normal input schema for the sole fresh exact-head dispatch; qualify its actual server admission and run outcome afterward. No default update, variable mutation, probe run or extra metadata read is required by this qualification.",
+  "normal_dispatch_source_preconditions_qualified": true,
+  "server_side_selected_ref_input_admission_exercised": false,
+  "Root_contract_reconciliation": "Root explicitly accepts default registration and candidate input schema as distinct preconditions; absence of release_validation on main is neither claimed presence nor a demonstrated hosted blocker. No additional effect requested."
+}

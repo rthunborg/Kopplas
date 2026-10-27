@@ -1,0 +1,362 @@
+{
+  "schema": "POST_F1_SIMPLER_ROUTE_ASSESSMENT_v1",
+  "role": "sensitive-read-only-source-assessment",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "identity": {
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "release_validation": false,
+    "run": 39664130401,
+    "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "current_metadata_HEAD": "9e9b6b6fe7deae5094884eb04de4a69f7144f31b"
+  },
+  "outcome": "STOP_NORMAL_RETRY_PENDING_MINIMAL_TERMINAL_REPORT_LOCATION_EVIDENCE",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "source_bindings": [
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40586,
+      "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+      "HEAD_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "source_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "pushed_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+      "current_clean_oid": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 17518,
+      "sha256": "fae7ad38abb947dfe148d6ab1b8f37ec9ebc50d80350929ebfb285fa31ee065d",
+      "HEAD_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "source_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "pushed_blob": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569",
+      "current_clean_oid": "7cb3857d9e14627acd5a9bd2f87ecc2c71f84569"
+    },
+    {
+      "path": "src/server/notifications/time-report-nudge-producer.ts",
+      "bytes": 1956,
+      "sha256": "b5d6c8bd2e7dffff6787b687e704fae93620dbf49426d518211b237d193c0ca3",
+      "HEAD_blob": "e138e600cb9a3cfeec20c03835fbf8e977dba550",
+      "source_blob": "e138e600cb9a3cfeec20c03835fbf8e977dba550",
+      "pushed_blob": "e138e600cb9a3cfeec20c03835fbf8e977dba550",
+      "current_clean_oid": "e138e600cb9a3cfeec20c03835fbf8e977dba550"
+    },
+    {
+      "path": "src/app/api/jobs/run/route.ts",
+      "bytes": 7246,
+      "sha256": "ca0e3315a52baaa5f186132e7338b4451d0d4e27dee72268ce0c63a0d1cff6f9",
+      "HEAD_blob": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c",
+      "source_blob": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c",
+      "pushed_blob": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c",
+      "current_clean_oid": "d2f103cff274ab39eb82acf12f6ed8cd6dc59f7c"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27968,
+      "sha256": "aab71cb6e1f3bcbeaf1e0dcfeb3e4fcab3cbda667d9575c6080aa98f50006096",
+      "HEAD_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "source_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "pushed_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd",
+      "current_clean_oid": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 55454,
+      "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "HEAD_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "source_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "pushed_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "current_clean_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 132791,
+      "sha256": "20b5d616fe3e861b60fc3250e224c3a27c6bf21e90b5962036d09b6010b6a859",
+      "HEAD_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "source_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "pushed_blob": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "current_clean_oid": "46d78f836b41899fcfe87932ebb2e14abf35a4d6"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "HEAD_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "source_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "pushed_blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "current_clean_oid": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "HEAD_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "source_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "pushed_blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "current_clean_oid": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 32551,
+      "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "HEAD_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+      "source_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+      "pushed_blob": "da1270c7238db113f0cd2485581a635a66981a65",
+      "current_clean_oid": "da1270c7238db113f0cd2485581a635a66981a65"
+    }
+  ],
+  "immutable_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+      "bytes": 5474,
+      "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-qualification.json",
+      "bytes": 42219,
+      "sha256": "8c1a52067b2a6cd7031727a9f46039343c4e1b4d5dcc7df370cb3618640c674b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-full-integration-projection.json",
+      "bytes": 53755,
+      "sha256": "16958feaeefdb92b2bbbd088902371e27ea9ce0eacab424103c5c77cc4754773"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/native-general-browser-projection.json",
+      "bytes": 11213,
+      "sha256": "6cb245e3c78fb15d07584585f9e82eeb862c7e1936aaf24ba11a12d2b25ed5ee"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/source-provenance.json",
+      "bytes": 3876,
+      "sha256": "4e96cb39c7fead517a021001a1469aee42e3f0edca3cbaa4d39bbcda474ea870"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/original-report.md",
+      "bytes": 7517,
+      "sha256": "9369f5e42286761f72977ab6f7fb293210e469c6df765534fedce0ba216b0a07"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/original-attestation.json",
+      "bytes": 18912,
+      "sha256": "8e79be9484918c26a1f4aba2bc68fb5b7b8186884c717ed231e412ef50a378e9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-evidence-audit/manifest.json",
+      "bytes": 950,
+      "sha256": "4c1ed6f72322617d39cadda2b2218fff8673794666f18b7efdc78fb0d43b4f2a"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "bytes": 36163,
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 31222,
+      "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+    }
+  ],
+  "checks": {
+    "source_current_HEAD_source_pushed_native_clean_equality": {
+      "files": 10,
+      "result": "PASS"
+    },
+    "title_digest_mapping": {
+      "case": "15.4-NUDGE-004",
+      "declaration_line": 156,
+      "sha256": "f3e6aa7fd5bdd26f5e4df438b539854a10aead5e8bce81cc24cfe57a810cccaf",
+      "separator": "single space",
+      "result": "PASS_CASE_LOCATION_ONLY"
+    },
+    "projection_prefix_difference": "OBSERVED_SOURCE_ONLY; original browser tuple availabilityUNKNOWN",
+    "initial_reader_stop": "First metadata builder assumed > fullName separator; assertion stopped before directory/files emission. Corrected reader to actual space-separated digest. No source change/no native credit.",
+    "historical_proofs": "Unchanged73 vector and packet audit reused by hash; no new full-suite/native execution."
+  },
+  "proposed_read": {
+    "status": "PLAN_ONLY_NO_EXECUTION_AUTHORITY",
+    "logical_GETs": 2,
+    "endpoints": [
+      "repos/rthunborg/Kopplas/actions/artifacts/12376717919/zip",
+      "repos/rthunborg/Kopplas/actions/artifacts/12375309772/zip"
+    ],
+    "artifacts": [
+      {
+        "artifact": {
+          "advertised_bytes": 103147,
+          "digest": "sha256:cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12376717919,
+          "name": "native-full-integration",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 103147,
+        "archive_sha256": "cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a",
+        "member": "full-integration.json",
+        "member_bytes": 949869,
+        "member_sha256": "db0a5dbdebf252e9c23e409db65509ff47bdaefb1c81cb33bcbba2e099cc9844"
+      },
+      {
+        "artifact": {
+          "advertised_bytes": 8316,
+          "digest": "sha256:38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+          "expired": false,
+          "expires_at_null": false,
+          "expires_at_present": true,
+          "id": 12375309772,
+          "name": "native-general-browser",
+          "qualified_for_single_download": true,
+          "run_head_bound": true
+        },
+        "archive_bytes": 8316,
+        "archive_sha256": "38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba",
+        "member": "general-browser.json",
+        "member_bytes": 109956,
+        "member_sha256": "e63d3e2c10169a20bacd29c738805682ac93b11de3b651867ac0f95e030ac96f"
+      }
+    ],
+    "caps": {
+      "seconds_each": 15,
+      "compressed_bytes_each": 4194304,
+      "inflate_total_bytes": 8388608,
+      "errors": 16,
+      "depth": 4,
+      "locations_each": 4,
+      "locations_total": 64,
+      "result_bytes": 32768
+    },
+    "selection": {
+      "DB_case_fullName_sha256": "f3e6aa7fd5bdd26f5e4df438b539854a10aead5e8bce81cc24cfe57a810cccaf",
+      "empty_file_diagnostics": [
+        "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "tests/integration/commands/calendar-feed.int.test.ts"
+      ],
+      "browser_failed_attempts": [
+        "E2E-001",
+        "E2E-007",
+        "E2E-009",
+        "E2E-010-revoke"
+      ]
+    },
+    "closed_output_keys": [
+      "schema",
+      "run",
+      "attempt",
+      "head",
+      "source",
+      "request_receipts",
+      "transport_complete",
+      "artifact_digest_verified",
+      "report_member_verified",
+      "case_id",
+      "title_sha256",
+      "field_presence",
+      "error_count",
+      "error_kind",
+      "sqlstate",
+      "transport_code",
+      "closed_tuples",
+      "source_location_candidates",
+      "location_kind",
+      "unknown_reason",
+      "custody",
+      "normal_acceptance"
+    ],
+    "error_kind": [
+      "ASSERTION",
+      "TIMEOUT",
+      "DATABASE",
+      "TRANSPORT",
+      "CANCELLED",
+      "AGGREGATE",
+      "UNKNOWN"
+    ],
+    "location_kind": [
+      "DECLARATION",
+      "STRUCTURED_ERROR",
+      "STACK_CANDIDATE"
+    ],
+    "unknown_reason": [
+      "NO_SOURCE_LOCATION",
+      "REDACTED_UPSTREAM",
+      "UNRECOGNIZED_ERROR",
+      "MALFORMED_REPORT",
+      "SOURCE_MAPPING_REJECTED",
+      "ACQUISITION_INCOMPLETE",
+      "ARTIFACT_IDENTITY_MISMATCH",
+      "OUTPUT_CAP"
+    ],
+    "SQLSTATE": [
+      "23502",
+      "23503",
+      "23505",
+      "23514",
+      "22P02",
+      "42501",
+      "42P01",
+      "42703",
+      "42883",
+      "40001",
+      "40P01",
+      "53300",
+      "57014",
+      "XX000",
+      "CF409",
+      "25P02",
+      "08006",
+      "P0001",
+      "NONE_OR_UNKNOWN"
+    ],
+    "transport_code": [
+      "ECONNREFUSED",
+      "ECONNRESET",
+      "ETIMEDOUT",
+      "NONE_OR_UNKNOWN"
+    ],
+    "tuple_vocabulary": "Exact enums from bound tests/support/calendar-feed-atdd.ts AND tests/e2e/support/calendar-feed-atdd.ts; no wildcard acceptance.",
+    "location_rule": "Fixed source paths in pinned73 vector only; positive in-range line/column. Unknown/unbound frames discarded with count, never original stack retained. Candidate is not cause proof.",
+    "privacy": "No arbitrary message/actual/expected/DOM/URL/token/key/proof/SQL/params/stack or attachment content; transport partial impliesUNKNOWN, no absence/completeness inference.",
+    "once_safety": "Exclusive durable reservation BEFORE first GET; once each; no retry/alternate/list/status/log. Preserve actual EOF/join/closed handle facts. Any uncertainty consumedSTOP_UNKNOWN.",
+    "required_before_effect": "Coordinator exact new private code/result/manifest paths and two GET scope, independent targeted High source review of finite projection delta/controls, Root one-shot activation."
+  },
+  "source_claims": {
+    "now": [],
+    "nudge_domains_if_causally_located": [
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "tests/support/time-reports-atdd.ts",
+      "src/server/notifications/time-report-nudge-producer.ts",
+      "src/app/api/jobs/run/route.ts"
+    ],
+    "browser_domains_if_causally_located": [
+      "tests/e2e/calendar-feed.e2e.spec.ts",
+      "tests/e2e/support/calendar-feed-atdd.ts"
+    ],
+    "additional_production_path": "Name only after reached evidence and enforced downstream validation prove defect.",
+    "migration": "No proposal;110/111 immutable; any necessary correction forward-only."
+  },
+  "stop_rule": "Ambiguous result => namedcaseUNKNOWN, exact missing assertion/effect, owner/nextaction/resumecondition; no automatic further CI or observer expansion.",
+  "no_effects": {
+    "source_Spec_writes": 0,
+    "SQL_connections": 0,
+    "network_GETs": 0,
+    "CI_dispatches": 0,
+    "Git_mutations": 0,
+    "runtime_resources": 0
+  },
+  "broad_review_rounds_completed": 3,
+  "new_broad_review": false,
+  "next_prerequisite": "Root/Coordinator exact evidence allocation plus distinct targeted High plan/projection review; no current source fix authorized."
+}

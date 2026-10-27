@@ -1,0 +1,717 @@
+{
+  "run_id": 39990057474,
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "title": "checkpoint:8b61639c-1015-45a7-835f-b9a88ccd9e92:7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "attempt": 1,
+  "event": "workflow_dispatch",
+  "workflow_id": 296219797,
+  "actor": "rthunborg",
+  "triggering_actor": "rthunborg",
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "original_int009": false,
+  "status": "in_progress",
+  "conclusion": null,
+  "observed_at": "2026-10-23T16:58:42.240377+00:00",
+  "jobs": [
+    {
+      "id": 120539215915,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T16:50:13Z",
+      "completed_at": "2026-10-23T16:50:15Z",
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:14Z",
+          "completed_at": "2026-10-23T16:50:14Z"
+        },
+        {
+          "number": 2,
+          "name": "Bind dispatch to its immutable source revision",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:14Z",
+          "completed_at": "2026-10-23T16:50:14Z"
+        },
+        {
+          "number": 3,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:14Z",
+          "completed_at": "2026-10-23T16:50:14Z"
+        }
+      ]
+    },
+    {
+      "id": 120539262547,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T16:50:19Z",
+      "completed_at": "2026-10-23T16:53:27Z",
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:20Z",
+          "completed_at": "2026-10-23T16:50:21Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:21Z",
+          "completed_at": "2026-10-23T16:50:26Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:26Z",
+          "completed_at": "2026-10-23T16:50:27Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:27Z",
+          "completed_at": "2026-10-23T16:50:33Z"
+        },
+        {
+          "number": 5,
+          "name": "Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:33Z",
+          "completed_at": "2026-10-23T16:50:33Z"
+        },
+        {
+          "number": 6,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:33Z",
+          "completed_at": "2026-10-23T16:50:34Z"
+        },
+        {
+          "number": 7,
+          "name": "Verify lockfiles (single package manager)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:34Z",
+          "completed_at": "2026-10-23T16:50:35Z"
+        },
+        {
+          "number": 8,
+          "name": "Audit dependencies (blocking, high severity)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:35Z",
+          "completed_at": "2026-10-23T16:50:36Z"
+        },
+        {
+          "number": 9,
+          "name": "Verify service-role containment (no client-path leakage)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:36Z",
+          "completed_at": "2026-10-23T16:50:36Z"
+        },
+        {
+          "number": 10,
+          "name": "Typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:50:36Z",
+          "completed_at": "2026-10-23T16:51:00Z"
+        },
+        {
+          "number": 11,
+          "name": "Lint",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:51:00Z",
+          "completed_at": "2026-10-23T16:51:34Z"
+        },
+        {
+          "number": 12,
+          "name": "Unit tests (pure logic, node --test)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:51:34Z",
+          "completed_at": "2026-10-23T16:52:41Z"
+        },
+        {
+          "number": 13,
+          "name": "BMAD focused concurrent memlog contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:52:41Z",
+          "completed_at": "2026-10-23T16:52:43Z"
+        },
+        {
+          "number": 14,
+          "name": "Auto-BMAD focused routing and process-API contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:52:43Z",
+          "completed_at": "2026-10-23T16:52:45Z"
+        },
+        {
+          "number": 15,
+          "name": "Build",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:52:45Z",
+          "completed_at": "2026-10-23T16:53:21Z"
+        },
+        {
+          "number": 16,
+          "name": "Verify built-bundle service-role containment (no leakage in .next)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:21Z",
+          "completed_at": "2026-10-23T16:53:22Z"
+        },
+        {
+          "number": 29,
+          "name": "Post Setup Python for focused Auto-BMAD contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:22Z",
+          "completed_at": "2026-10-23T16:53:22Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:22Z",
+          "completed_at": "2026-10-23T16:53:22Z"
+        },
+        {
+          "number": 31,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:22Z",
+          "completed_at": "2026-10-23T16:53:23Z"
+        },
+        {
+          "number": 32,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:23Z",
+          "completed_at": "2026-10-23T16:53:23Z"
+        },
+        {
+          "number": 33,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:23Z",
+          "completed_at": "2026-10-23T16:53:23Z"
+        }
+      ]
+    },
+    {
+      "id": 120540771874,
+      "name": "db",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-23T16:53:31Z",
+      "completed_at": "2026-10-23T16:55:33Z",
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:31Z",
+          "completed_at": "2026-10-23T16:53:33Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:33Z",
+          "completed_at": "2026-10-23T16:53:37Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:37Z",
+          "completed_at": "2026-10-23T16:53:39Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:39Z",
+          "completed_at": "2026-10-23T16:53:45Z"
+        },
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:45Z",
+          "completed_at": "2026-10-23T16:53:47Z"
+        },
+        {
+          "number": 6,
+          "name": "Install Supabase CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:47Z",
+          "completed_at": "2026-10-23T16:53:49Z"
+        },
+        {
+          "number": 7,
+          "name": "Start local Supabase stack",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-10-23T16:53:49Z",
+          "completed_at": "2026-10-23T16:55:30Z"
+        },
+        {
+          "number": 8,
+          "name": "Migration reset (empty DB \u2192 migrate \u2192 seed)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T16:55:30Z",
+          "completed_at": "2026-10-23T16:55:30Z"
+        },
+        {
+          "number": 9,
+          "name": "Calendar feed cause proof (diagnostic only; no pilot or acceptance)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T16:55:30Z",
+          "completed_at": "2026-10-23T16:55:30Z"
+        },
+        {
+          "number": 10,
+          "name": "Upload native calendar feed cause proof JSON",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T16:55:30Z",
+          "completed_at": "2026-10-23T16:55:30Z"
+        },
+        {
+          "number": 11,
+          "name": "Integration, RLS, and Epic 11 pilot performance gates (local stack)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T16:55:30Z",
+          "completed_at": "2026-10-23T16:55:30Z"
+        },
+        {
+          "number": 12,
+          "name": "Upload native full integration JSON",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-10-23T16:55:30Z",
+          "completed_at": "2026-10-23T16:55:30Z"
+        },
+        {
+          "number": 13,
+          "name": "Stop local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:55:30Z",
+          "completed_at": "2026-10-23T16:55:31Z"
+        },
+        {
+          "number": 24,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-10-23T16:55:31Z",
+          "completed_at": "2026-10-23T16:55:31Z"
+        },
+        {
+          "number": 25,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:55:31Z",
+          "completed_at": "2026-10-23T16:55:31Z"
+        },
+        {
+          "number": 26,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:55:31Z",
+          "completed_at": "2026-10-23T16:55:31Z"
+        },
+        {
+          "number": 27,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:55:31Z",
+          "completed_at": "2026-10-23T16:55:31Z"
+        }
+      ]
+    },
+    {
+      "id": 120540771903,
+      "name": "e2e",
+      "status": "in_progress",
+      "conclusion": null,
+      "started_at": "2026-10-23T16:53:31Z",
+      "completed_at": null,
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:32Z",
+          "completed_at": "2026-10-23T16:53:34Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:34Z",
+          "completed_at": "2026-10-23T16:53:39Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:39Z",
+          "completed_at": "2026-10-23T16:53:40Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:40Z",
+          "completed_at": "2026-10-23T16:53:46Z"
+        },
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:46Z",
+          "completed_at": "2026-10-23T16:53:47Z"
+        },
+        {
+          "number": 6,
+          "name": "Install Playwright browser (chromium + OS deps)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:47Z",
+          "completed_at": "2026-10-23T16:54:10Z"
+        },
+        {
+          "number": 7,
+          "name": "Install Supabase CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:54:10Z",
+          "completed_at": "2026-10-23T16:54:12Z"
+        },
+        {
+          "number": 8,
+          "name": "Start local Supabase stack",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:54:12Z",
+          "completed_at": "2026-10-23T16:55:50Z"
+        },
+        {
+          "number": 9,
+          "name": "Migration reset (empty DB \u2192 migrate \u2192 seed)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:55:50Z",
+          "completed_at": "2026-10-23T16:56:24Z"
+        },
+        {
+          "number": 10,
+          "name": "Essential authentication smoke (production app and local Auth)",
+          "status": "in_progress",
+          "conclusion": null,
+          "started_at": "2026-10-23T16:56:24Z",
+          "completed_at": null
+        },
+        {
+          "number": 11,
+          "name": "Exhaustive browser validation (explicit opt-in)",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 12,
+          "name": "Upload native general browser JSON",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 13,
+          "name": "Upload Playwright report",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 14,
+          "name": "Stop local Supabase stack",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 26,
+          "name": "Post Setup Node",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 27,
+          "name": "Post Install pnpm",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "number": 28,
+          "name": "Post Checkout",
+          "status": "pending",
+          "conclusion": null,
+          "started_at": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "id": 120540772020,
+      "name": "recovery-storage-loader",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-23T16:53:31Z",
+      "completed_at": "2026-10-23T16:57:56Z",
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:32Z",
+          "completed_at": "2026-10-23T16:53:34Z"
+        },
+        {
+          "number": 2,
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:34Z",
+          "completed_at": "2026-10-23T16:53:38Z"
+        },
+        {
+          "number": 3,
+          "name": "Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:38Z",
+          "completed_at": "2026-10-23T16:53:39Z"
+        },
+        {
+          "number": 4,
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:39Z",
+          "completed_at": "2026-10-23T16:53:44Z"
+        },
+        {
+          "number": 5,
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:44Z",
+          "completed_at": "2026-10-23T16:53:45Z"
+        },
+        {
+          "number": 6,
+          "name": "Install Supabase CLI",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:45Z",
+          "completed_at": "2026-10-23T16:53:48Z"
+        },
+        {
+          "number": 7,
+          "name": "Start local schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:53:48Z",
+          "completed_at": "2026-10-23T16:55:30Z"
+        },
+        {
+          "number": 8,
+          "name": "Reset local schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:55:30Z",
+          "completed_at": "2026-10-23T16:56:03Z"
+        },
+        {
+          "number": 9,
+          "name": "Dump synthetic recovery schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:56:03Z",
+          "completed_at": "2026-10-23T16:56:08Z"
+        },
+        {
+          "number": 10,
+          "name": "Create isolated recovery runtime configuration",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:56:08Z",
+          "completed_at": "2026-10-23T16:56:08Z"
+        },
+        {
+          "number": 11,
+          "name": "Start database-only isolated recovery target",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:56:08Z",
+          "completed_at": "2026-10-23T16:56:32Z"
+        },
+        {
+          "number": 12,
+          "name": "Restore synthetic schema source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:56:32Z",
+          "completed_at": "2026-10-23T16:56:34Z"
+        },
+        {
+          "number": 13,
+          "name": "Start pinned isolated Storage loader and runtime",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:56:34Z",
+          "completed_at": "2026-10-23T16:57:17Z"
+        },
+        {
+          "number": 14,
+          "name": "Prove physical Storage loader preserves protected rows",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:57:17Z",
+          "completed_at": "2026-10-23T16:57:20Z"
+        },
+        {
+          "number": 15,
+          "name": "Upload native isolated recovery JSON",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:57:20Z",
+          "completed_at": "2026-10-23T16:57:21Z"
+        },
+        {
+          "number": 16,
+          "name": "Remove synthetic recovery resources",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:57:21Z",
+          "completed_at": "2026-10-23T16:57:54Z"
+        },
+        {
+          "number": 30,
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:57:54Z",
+          "completed_at": "2026-10-23T16:57:54Z"
+        },
+        {
+          "number": 31,
+          "name": "Post Install pnpm",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:57:54Z",
+          "completed_at": "2026-10-23T16:57:54Z"
+        },
+        {
+          "number": 32,
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:57:54Z",
+          "completed_at": "2026-10-23T16:57:54Z"
+        },
+        {
+          "number": 33,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-23T16:57:54Z",
+          "completed_at": "2026-10-23T16:57:54Z"
+        }
+      ]
+    },
+    {
+      "id": 120540773301,
+      "name": "dashboard-e2e",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-23T16:53:28Z",
+      "completed_at": "2026-10-23T16:53:28Z",
+      "run_id": 39990057474,
+      "head_sha": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+      "steps": []
+    }
+  ]
+}

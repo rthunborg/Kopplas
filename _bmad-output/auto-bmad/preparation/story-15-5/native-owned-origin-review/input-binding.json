@@ -1,0 +1,321 @@
+{
+  "kind": "exact-committed-owned-origin-four-path-latest-fix-only",
+  "source_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "baseline": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "source_state": "EXACT_COMMITTED_APPEND_ONLY_FOUR_PATH_NO_SPEC_DRIFT",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 108024,
+      "raw_sha256": "2eafca41b10338575a2dad114a333d999564254829b2e3bffbee96003dc6c065",
+      "actual_git_clean_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "normalized_bytes": 106886,
+      "normalized_sha256": "50838c6116e14f5909b2580e10b4a10423b18f1b6b4766b211e1c0dfee79576d",
+      "head_blob_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "head_blob_bytes": 106886,
+      "head_blob_sha256": "50838c6116e14f5909b2580e10b4a10423b18f1b6b4766b211e1c0dfee79576d",
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "d8768abae03342de2f424a9a24b4f43e416bda6d",
+      "baseline_bytes": 101920,
+      "baseline_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_bytes": 14914,
+      "raw_sha256": "4579e0f2aadd7957766145679930fc49de06c876ffcc01b3e8b7c761f6d8d552",
+      "actual_git_clean_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "normalized_bytes": 14685,
+      "normalized_sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+      "head_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "head_blob_bytes": 14685,
+      "head_blob_sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "1ccff56bc5ceac55835dbbc31f3d5135fc0b0fbe",
+      "baseline_bytes": 14433,
+      "baseline_sha256": "277a558e7aa94560aff25476b60fc26b335523b2a37ad503403e7e10ce38fc15"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 68474,
+      "raw_sha256": "c6afda12230f3aea89693afba24be6b457ddfe0df0e3b0fc2c9d5d995824ab78",
+      "actual_git_clean_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "normalized_bytes": 67735,
+      "normalized_sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478",
+      "head_blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "head_blob_bytes": 67735,
+      "head_blob_sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478",
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "d712a086a457a7e71ab8c8028e4803674658838c",
+      "baseline_bytes": 66195,
+      "baseline_sha256": "adc846f77f7213fc8153ba325d72585d448930e9f3c21a85d17854ab180cfd7b"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 101722,
+      "raw_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "actual_git_clean_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "normalized_bytes": 101722,
+      "normalized_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "head_blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "head_blob_bytes": 101722,
+      "head_blob_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "6bd5ce61427c7e77203b64bf35e1765be2de3877",
+      "baseline_bytes": 88963,
+      "baseline_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e"
+    }
+  ],
+  "input_bytes": 192805,
+  "input_sha256": "fcfa587e3989de855708ccbf2ccfea3a5ddab850cd1616f3979e9930ce278f78",
+  "diff_bytes": 57646,
+  "diff_sha256": "97627d5ede9e114c134038adb7a4b09533085c92374816021640ea75590542f8",
+  "contexts": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "full_blob_bytes": 67735,
+      "full_blob_sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478",
+      "included_lines": [
+        1,
+        740
+      ],
+      "included_lf_bytes": 67736,
+      "included_lf_sha256": "7d5ed8be4a7831f0c5f08e8131b7072baf988fe9ed77a5bca6d51cc980ac6e19"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "full_blob_bytes": 101722,
+      "full_blob_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "included_lines": [
+        576,
+        923
+      ],
+      "included_lf_bytes": 28096,
+      "included_lf_sha256": "679a94355ad4bfa2d1ba20f7b83d7945aee288395814598ccdc50ead8599bd5f"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "full_blob_bytes": 36136,
+      "full_blob_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "included_lines": [
+        1,
+        39
+      ],
+      "included_lf_bytes": 2711,
+      "included_lf_sha256": "d4172a23a094df84d7d99a3d52caf229acc42343ae95c64d3045f57b43ecdc02"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "full_blob_bytes": 26504,
+      "full_blob_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+      "included_lines": [
+        1,
+        57
+      ],
+      "included_lf_bytes": 3876,
+      "included_lf_sha256": "258febc6a26d231685a7941391f78d4959d04a7c8d0b95f6c644a9ac87440760"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "full_blob_bytes": 14685,
+      "full_blob_sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+      "included_lines": [
+        1,
+        36
+      ],
+      "included_lf_bytes": 2480,
+      "included_lf_sha256": "64ffd1fc52c632f7e15e70a3770924fac756289b368436e74eb038a83dd9b4e5"
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "full_blob_bytes": 21725,
+      "full_blob_sha256": "44753b239d6618bb1ade96f05b18723ab086c68499a0b42fa6ccaa3f045beb52",
+      "included_lines": [
+        187,
+        211
+      ],
+      "included_lf_bytes": 1661,
+      "included_lf_sha256": "6dfa9cab3d1b14b71f20bca4e9b9298eb7d561b7cd860b9f5cdecbf314a77fc1"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "full_blob_bytes": 1054,
+      "full_blob_sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+      "included_lines": [
+        1,
+        14
+      ],
+      "included_lf_bytes": 1055,
+      "included_lf_sha256": "dfb5d8efcdf82b9e8d1edd0a22f9d7a08ff8b2c70199f22daf20f627bd6fc55e"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "commit": "380c3e720d5caaa1dc2181d70737b9320337f451",
+      "blob_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "full_blob_bytes": 3964,
+      "full_blob_sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+      "included_lines": [
+        1,
+        44
+      ],
+      "included_lf_bytes": 3965,
+      "included_lf_sha256": "3e41c63d44d3812ee96a88eca7b1b8a1d251772e93c194eb37efbbeeafbec01e"
+    }
+  ],
+  "installed": [
+    {
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/dist/chunk-artifact.js",
+      "bytes": 119048,
+      "sha256": "c10a7a80fca65fb42e27eabf7655c5ce5ecf36e8aaeb1811499efd063df62556",
+      "included_lines": [
+        3055,
+        3074
+      ],
+      "included_lf_bytes": 573,
+      "included_lf_sha256": "1e8dc3f597228659522eff70627f3464affb0de1aba158ece17278cb61eb0aa9"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/error.js",
+      "bytes": 1473,
+      "sha256": "2ce5a75a4a775415c4c8642e9c608d6c9334271d0eb4e586ac6a853d47c24c97",
+      "included_lines": [
+        1,
+        44
+      ],
+      "included_lf_bytes": 1473,
+      "included_lf_sha256": "2ce5a75a4a775415c4c8642e9c608d6c9334271d0eb4e586ac6a853d47c24c97"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/serialize.js",
+      "bytes": 3677,
+      "sha256": "abed14f12f71519d897c9626bc18f71f2e69bea3fb552d0d907f1ca882455b29",
+      "included_lines": [
+        1,
+        118
+      ],
+      "included_lf_bytes": 3677,
+      "included_lf_sha256": "abed14f12f71519d897c9626bc18f71f2e69bea3fb552d0d907f1ca882455b29"
+    },
+    {
+      "path": "node_modules/.pnpm/vitest@4.1.9_@types+node@20_dd0c506e006b7a7a7c5015e13867d163/node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+      "bytes": 151531,
+      "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798",
+      "included_lines": [
+        3522,
+        3629
+      ],
+      "included_lf_bytes": 4334,
+      "included_lf_sha256": "eb040f89819da9036a0f5f120bb349e06f0db4bb5fb7e33f762d23870270830d"
+    }
+  ],
+  "bound_metadata": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/local-checks.json",
+      "bytes": 3010,
+      "sha256": "ffdbdbefd085fef78f7019ae582de1f7f2a4363e15a598131aa6640e4dc0bc55",
+      "included_lf_bytes": 3010,
+      "included_lf_sha256": "ffdbdbefd085fef78f7019ae582de1f7f2a4363e15a598131aa6640e4dc0bc55"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/author-route.json",
+      "bytes": 1811,
+      "sha256": "66038d63a1fbd04d16ee3029c2da7ef909daab15a51ace1b43a10f1f83caac14",
+      "included_lf_bytes": 1811,
+      "included_lf_sha256": "66038d63a1fbd04d16ee3029c2da7ef909daab15a51ace1b43a10f1f83caac14"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-owned-origin-diagnostic-repair.json",
+      "bytes": 4462,
+      "sha256": "76a6c87a3e87fac2b36b3b231b4de09461a691ae5ad2ca480e3f090d47a09d0a",
+      "included_lf_bytes": 4408,
+      "included_lf_sha256": "024b27d39e5272468faf5ca961a534486774f429cf640675c0e1fda9bb49da3f"
+    }
+  ],
+  "root_route": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "mutable_raw_bytes_unverified_uncredited": 100783,
+    "mutable_raw_sha256_unverified_uncredited": "6389364d3c1949897f233d92195fa25ede03a4dc2eb15c23f6cb56aefe25a50a",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 605,
+    "included_lf_sha256": "a759e162cb10b54a5193aad4fc162e3e2df5ded5709f7f00338ed9cd996f07f9",
+    "source_commit_excluded": true
+  },
+  "ninth_failure": {
+    "run": 39498246931,
+    "attempt": 1,
+    "checkpoint": "6dad688ec6a51143bfee902618bb88647a81c940",
+    "conclusion": "FAILURE",
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-6dad688e-ci-independent/manifest.json",
+      "bytes": 5415,
+      "sha256": "50188e3faffbd79f2c7797c2e02a19d13e170eac3b6eaf694368c0c36263d3a5"
+    },
+    "Root_integrity_only_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-6dad688e-packet-admission.json",
+      "bytes": 1227,
+      "sha256": "1e15decb78fc9060562b7b0c2a0862c407440ec7224ca54896e54845dee02fb3"
+    },
+    "actual43causes": "UNKNOWN",
+    "valid_leaves": 44,
+    "actual_leaf_stage": "scenario",
+    "actual_leaf_category": "unknown",
+    "actual_leaf_sqlstate": null,
+    "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+    "no_raw_native_output_included": true
+  },
+  "prior_capsule_immutable": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-fixture-report-transport.json",
+    "bytes": 604468,
+    "sha256": "019864c1fa982730868a3bf25c14b5b6d6464c64659c5e4b963319cc56e3c198"
+  },
+  "review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_context_free": true,
+    "completed_broad_rounds": 3,
+    "cap": 3,
+    "latest_serious_fix_only": true,
+    "fourth_broad_review": false
+  },
+  "kernel_bytes": 5760,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "59db9827c6e8645256132efa53142bc8e75dc557bc847754d5b8c7df309c524c",
+  "literal_stops": 58,
+  "actual_separate_node_cases": 67,
+  "native_credit_for_controls": 0,
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/local-checks.json",
+    "bytes": 3010,
+    "sha256": "ffdbdbefd085fef78f7019ae582de1f7f2a4363e15a598131aa6640e4dc0bc55"
+  },
+  "preparation_generator": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/prepare-input.mjs",
+    "bytes": 15584,
+    "sha256": "a9f87711aedb683d89ffbbb793e12dabcf39121928d4cc054ecf93241cf17d69"
+  },
+  "normalization": "Actual raw bytes, native Git --path clean OID, actual normalized/HEAD blob bytes separately checked; no assumed CRLF equality.",
+  "raw_input_single_0x20_context_lines": 30,
+  "source_edits_after_freeze_allowed": false
+}

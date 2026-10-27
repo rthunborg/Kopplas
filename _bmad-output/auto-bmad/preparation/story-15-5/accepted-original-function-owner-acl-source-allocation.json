@@ -1,0 +1,38 @@
+{
+  "schema": "root-accepted-owner-acl-source-allocation-v1",
+  "status": "GRANTED_EXACT_FIVE_SOURCE_ONLY",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_turn": "01a15f3d-40af-7902-85ff-31dcfed66254",
+  "actual_completed_grant_tool": "exec-0160bbf2-7f93-4004-8351-7f3184b2be49",
+  "root_independently_read_completed_tool": true,
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-proposal.json",
+    "bytes": 26010,
+    "sha256": "ec7e512c7689ca17ef48ae661f01ef36b6069980233bdfc2672a8c79e0de5b79"
+  },
+  "independent_validation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-validation.json",
+    "bytes": 11082,
+    "sha256": "bc5dedbbd6c1509ac7355c3e4312d779a4129e27082641ce4a2ba2759d1ec3bd"
+  },
+  "validation_admission": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-owner-acl-reconciliation-validation-admission.json",
+    "bytes": 1066,
+    "sha256": "e97a5c28741453a02ff1b8e61bf6c731d82637d581af76496330b5ef5f6da9e9"
+  },
+  "exact_paths": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "migration111_clearance": "Conditional known-owner clearance sufficient: owned runs failed before DDL, no local application, fresh E16 Root/delegates no application/adoption/claims, Documents completed no known adoption. Global others UNKNOWN. Any actual successful application/adoption freezes111 and requires forward coordination.",
+  "immutable_predecessor": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+  "guard_boundary": "All8 canonical body/shape/owner/finite source-comparable ACL+owner-only grantor+no-options preflight before mutation; unknown shape STOP SOURCE_ACL_NOT_COMPARABLE. Existing authorized owner SET context only; atomic exact ACL reconciliation and original executor restoration; stable all8 metadata; full original3 guards and later adapter invariants unchanged.",
+  "allowed_effects": "Exact5 source edits, offline focused unit/TypeScript/lint/process checks, author SRO and unchanged kernel/review counter. Ordinary non-superuser helper/RLS010 regression SOURCE ONLY, UNEXECUTED.",
+  "runtime_effects_authorized": false,
+  "required_later": "Distinct committed-delta High review and separately allocated normal/fullDB/RLS/recovery/native evidence.",
+  "protected": "E16 migration20261021102151 and PR105 read callers; all foreign owned checkouts; no new migration number/dependency/provider/main merge/deployment.",
+  "normal_acceptance_credit": 0
+}

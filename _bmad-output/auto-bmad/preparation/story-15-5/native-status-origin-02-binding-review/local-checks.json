@@ -1,0 +1,44 @@
+{
+  "kind": "FRESH_P2_TARGETED_BINDING_ONLY_OFFLINE_CHECKS",
+  "status": "passed",
+  "focused_methods": 12,
+  "failures": 0,
+  "errors": 0,
+  "positive_checks": 9,
+  "negative_checks": 52,
+  "owned_python_children": 0,
+  "API_requests": 0,
+  "normal_acceptance_credit": 0,
+  "selected_test_numbers": [
+    "01",
+    "02",
+    "03",
+    "11",
+    "19",
+    "25",
+    "40",
+    "41",
+    "42",
+    "44",
+    "45",
+    "46"
+  ],
+  "function_AST_equality": {
+    "helper_all_functions_and_classes": 37,
+    "driver_all_functions_and_classes": 10
+  },
+  "driver_exact_literal_replacements_only": true,
+  "producer11_raw_schema_and_delta_equality": true,
+  "changed_source_rows_raw_verified": 2,
+  "old_P1_code_unchanged": true,
+  "historical_45_tests_93positive_253negative_20children": "UNCHANGED_RELEVANT_PROTOCOL_PROOF_REUSED_NOT_RERUN_NONADDITIVE",
+  "native_run_id": null,
+  "Root_inputs_result_final3_unborn": true,
+  "CLI_help_processes": 0,
+  "actual_same_binary_hash_checked": true,
+  "limits": [
+    "Pure injected archive/GET callables are not native acquisition.",
+    "No full unchanged suite or broad review rerun.",
+    "Backend cause and current runtime grants remain unproven."
+  ]
+}

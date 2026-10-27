@@ -1,0 +1,87 @@
+{
+  "kind": "TARGETED_NEW_AUTHOR_PRODUCER_LINT",
+  "command": "pnpm exec eslint _bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/prepare-freeze.mjs --max-warnings 0",
+  "exit_code": 0,
+  "errors": 0,
+  "warnings": 0,
+  "attempts": 5,
+  "producers": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/prepare-freeze.mjs",
+      "bytes": 34278,
+      "sha256": "7497885903bbd6e58580b9f22c36037465966ad6ec2333626667a8142370b8c1"
+    }
+  ],
+  "scope": "Only new author metadata producer; parent independent verifier remains parent-owned and unborn.",
+  "prior_successful_lint_before_reader_schema_correction": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "producers": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/prepare-freeze.mjs",
+        "bytes": 30899,
+        "sha256": "57ae1963af0ae9ea445be8a4b36c282b648cb65bd7db32e20b844a1bca1add1c"
+      }
+    ]
+  },
+  "initial_generator_reader_stop": {
+    "native_exit": 1,
+    "label": "Review identity/verdict",
+    "correction": "Original cb8 attestation head vs newer source field; exact expected source/verdict comparison retained."
+  },
+  "prior_successful_lints_before_current_reader_correction": [
+    {
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "producers": [
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/prepare-freeze.mjs",
+          "bytes": 30899,
+          "sha256": "57ae1963af0ae9ea445be8a4b36c282b648cb65bd7db32e20b844a1bca1add1c"
+        }
+      ]
+    },
+    {
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "producers": [
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/prepare-freeze.mjs",
+          "bytes": 31486,
+          "sha256": "186fc689dcb83e21fe365524a35e865795fc7129c41ae95a29c001f346e137f4"
+        }
+      ]
+    },
+    {
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "producers": [
+        {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/prepare-freeze.mjs",
+          "bytes": 32638,
+          "sha256": "a611485c9176611b0ddfab9d8910d0262c1e74a9a446b14fd0383553d1832e45"
+        }
+      ]
+    }
+  ],
+  "second_generator_reader_stop": {
+    "native_exit": 1,
+    "label": "ENOENT isolated-storage-recovery.json",
+    "correction": "Only exact admitted manifest-member relative refs are rebased in new capsule memory; originals untouched."
+  },
+  "extra_successful_lint_before_member_field_name_clarification": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "intermediate_source_hash_captured": false
+  },
+  "third_generator_reader_stop": {
+    "native_exit": 1,
+    "label": "Repeated ENOENT isolated-storage-recovery.json",
+    "correction": "Exact qualified archive-member descriptor with member_name/bytes/sha256 and manifest-bound extraction+qualification refs; no loose-file credit."
+  }
+}

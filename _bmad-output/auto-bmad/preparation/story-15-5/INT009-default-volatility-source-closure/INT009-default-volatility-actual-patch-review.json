@@ -1,0 +1,212 @@
+{
+  "schema": "INT009_DEFAULT_VOLATILITY_TARGETED_INDEPENDENT_ACTUAL_PATCH_REVIEW_V1",
+  "status": "PASS_DEFAULT_VOLATILITY_PATCH_SOURCE_ELIGIBLE",
+  "outcome": "PASS_DEFAULT_VOLATILITY_PATCH_SOURCE_ELIGIBLE",
+  "verdict": "PASS",
+  "independent": true,
+  "route": "Root2014f6 private route; explicit gpt-6.1-sol High, targeted fix follow-up; no fourth broad story review/counter3 unchanged.",
+  "reviewed_base_HEAD": "ca240693766ae9141fb2b768569629e39231d042",
+  "author_receipt": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/author-result.json",
+    "bytes": 12913,
+    "sha256": "13dcbf68e835a57fbf457b29acdf2eabbb35b4ba98d717319ae8fc61cdccf734"
+  },
+  "approved_plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-restore-definition-minimum-plan-review.json",
+    "bytes": 9737,
+    "sha256": "bc4908e9e8247f528d0df83e2d8647a5bb2baa0fcf5568e332d8712a7a51a052"
+  },
+  "reviewed_sources": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 256899,
+      "raw_sha256": "6ed06e2f84b12d412374a156016c6fadc8bf09291cf124c9a59070062ec859c3",
+      "LF_bytes": 253814,
+      "LF_sha256": "1ecb3642f1d2f2eb6149482477026ae9bd22d0f84e5492f54c1dfc4b5f2d5c9c",
+      "computed_LF_Gitblob": "0da70dca08c5946e8fd316643e8e3010d3dfbccd"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 139867,
+      "raw_sha256": "d50d45e73f2a3a7c649188658ed9271a832ce41277314d8dd723b3c2a06f2234",
+      "LF_bytes": 138474,
+      "LF_sha256": "22c0b6da90b43e19a13534acbd5c1e11d9cc5de909b732f821c58141b689e3ca",
+      "computed_LF_Gitblob": "082364547fbea8143898e5fc5eae3f3da97eff6e"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 320520,
+      "raw_sha256": "c9bff97184e76b5f27372091be6f043efdc7184314fc76418e35f8d8488a72ed",
+      "LF_bytes": 317555,
+      "LF_sha256": "08087e70ad4abf5fe7eddd988a5ffd946190c7e03423712503c1b7c59fe3627c",
+      "computed_LF_Gitblob": "e08a9eaa4374c4b5884326fa47f7be4a08a4f663"
+    }
+  ],
+  "findings": [],
+  "actual_review_checks": {
+    "actual_diff": "dcd91c/native0: inspected complete three-path diff.",
+    "receipt_and_delta_reads": "2f74e9/native0;c673d1/native0: actual frozen author/delta/native/summary inputs read and verified.",
+    "raw_inverses": "aa0b63/native0: exact old raw bytes reconstructed independently for helper, fixture/test and SRO; each raw SHA matches author preimage and normalized bytes equal committed HEAD. No unrelated change hidden in formatting.",
+    "helper_functions": "45e8f6/native0: calendarOwnerDefinition is the only changed top-level helper function;54 other function bodies unchanged.",
+    "ownerFacts": {
+      "normalized_LF_plus_one_trailingLF_bytes": 3563,
+      "sha256": "3cd5094c031027b20f5c61cb0ddceba589ac05fd6fe61872eae3defa7df87085",
+      "unchanged": true
+    },
+    "conservation": "Exactly these3 dirty paths/index empty. No dependency/workflow/schema/SRO-outside-section/kernel/SQL changes.118SQL vectors reused without raw scan."
+  },
+  "correctness_assessment": {
+    "deparser_compatibility": "Subject restoration accepts either absent default volatility text or exactly one explicit VOLATILE line after qualified plpgsql/provolatile-v state, changes exactly one language line and emits one STABLE target. Conflicting or duplicate volatility/language representations still refuse; original body cardinality/splice and subject-fault installation branch remain unchanged. This resolves the source-proven PostgreSQL default-omission incompatibility.",
+    "actual_privilege_caller": "calendarRestore -> calendarOwnerAtomic retains enforced catalog metadata/language/volatility, OID/body/defaults, identity/owner/SETnotINHERIT/schema/ACL and role-switch checks before privileged replacement. Added direct metadata.provolatile-v guard does not replace those checks. No privilege or transaction authority is added.",
+    "canonical_integrity": "No changes to grant/revoke/query order/arguments/timeouts/commit/rollback/reset/requalification/retirement or shared-custody logic. Exact canonical OID/fullmetadata/definition postcondition and owned-state deletion only after verified restoration remain intact.",
+    "fixture_integrity": "Existing actualCalendarOwner now returns a reconstructed server-style definition from parsed submitted body/language/volatility, omitting default VOLATILE. It does not force canonical state or bypass replacement processing. Explicit source-form option retains compatibility coverage. Ordinary clock/fetch behavior remains covered by the existing publish/restore path."
+  },
+  "test_quality": {
+    "RED": "Existing actual publish->restore test failed1/1 with the source-faithful fixture and old helper; this demonstrates the prior representation gap on the real helper control path, not the hosted exact cause.",
+    "GREEN": "New actual subject restore tests exercise both omitted/explicit forms with exact full canonical row equality, cleared owned state and no custody only after success. Nonvolatile catalog s/i refusal asserts no additional replacement and retained state/custody. Conflicting language/stable/immutable/duplicate clauses/body cardinality also refuse before replacement and retain custody.",
+    "unchanged_integrity_controls": "Existing preflight identity/SET/schema/ACL/OID/getter checks and SQL commit/rollback/reset/restoration/retirement/custody failure controls remain unchanged and included in full affected unit file.",
+    "counts": {
+      "focused": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "full_affected": {
+        "passed": 184,
+        "failed": 0,
+        "skipped": 0
+      },
+      "overlap": "Focused6 are included in affected184, not additive."
+    },
+    "reviewer_test_reruns": 0
+  },
+  "executed_gate_provenance": [
+    {
+      "name": "restore-default-RED",
+      "native_exit": 1,
+      "seconds": 0.331612,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-RED-native.json",
+        "bytes": 1313,
+        "sha256": "ace9f637aba95366773ad2c1b86f818901e57161d22432f58b7b89300b6a7953"
+      },
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-RED-summary.json",
+        "bytes": 594,
+        "sha256": "dfce1a1f13e6cc2973f0c5f5c2a3516edceff20b21f01bddef46ea95d6d97266"
+      },
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "name": "restore-default-focused-GREEN",
+      "native_exit": 0,
+      "seconds": 0.573956,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-focused-GREEN-native.json",
+        "bytes": 1249,
+        "sha256": "9f390a0d4c7467a6c220e5e6d9a8a6bcb541332cb05952f30986d7c23346f9c6"
+      },
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-focused-GREEN-summary.json",
+        "bytes": 227,
+        "sha256": "d4e9a305febe387647ac4c66108b84122fc2aa7546f241bb63ff0a835c7be17c"
+      },
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "name": "restore-default-full-affected-unit",
+      "native_exit": 0,
+      "seconds": 12.888414,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-full-affected-unit-native.json",
+        "bytes": 1162,
+        "sha256": "5eb3bb05b4224a2c3b4ac59be3522096abb86f1548c61ff4023635b65ac70338"
+      },
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-full-affected-unit-summary.json",
+        "bytes": 258,
+        "sha256": "f6bfdc40c3bca58e5d6a3885605e5905950f96bd23be40dbf1fda04b063398b5"
+      },
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "name": "restore-default-typecheck",
+      "native_exit": 0,
+      "seconds": 8.663954,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-typecheck-native.json",
+        "bytes": 1223,
+        "sha256": "4c1e6924e1b0b68015c5ea9e003ff95c736f4cc7152f9a9630708c1abf11f7cd"
+      },
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-typecheck-summary.json",
+        "bytes": 136,
+        "sha256": "3c6e07d53b1f28c2d0b80f253b0ef689d3480817e5d10e076e729040a14273c3"
+      },
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "name": "restore-default-scoped-lint",
+      "native_exit": 0,
+      "seconds": 3.078998,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-scoped-lint-native.json",
+        "bytes": 1329,
+        "sha256": "1ecbd103265bf9d7cef2cfa2d2b25c05fb61ba6d96f2392c74137e3b7ffdb068"
+      },
+      "summary": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-author/restore-default-scoped-lint-summary.json",
+        "bytes": 138,
+        "sha256": "586fc39d822e6d5e48c4991dc13c290297b525140961a77fac87fc493785ac71"
+      },
+      "full_EOF_joined_closed_settled": true
+    }
+  ],
+  "SRO_assessment": {
+    "change": "One author-written default-volatility correction subsection inside existing Suggested Review Order only. All text outside inserted subsection reconstructs exact raw baseline.",
+    "truthfulness": "Rationale directs reviewers to unchanged authority/canonical guards before reconstruction, names fixture normalization, states overlapping6/184 checks, no DB/runtime execution, UNKNOWN hosted facts and required full NORMAL95/recovery. No unsupported acceptance/deployment claim.",
+    "kernel_status": "Kernel5760/status in-review/AutoRunResult/review counter3 unchanged through byte conservation.",
+    "Root_parser_reused": "Root4e33b7 authoritative parser: iteration3/followupfalse/deferred0/parse_warnings[]. No redundant parser or broad review run."
+  },
+  "source_eligibility": {
+    "Root_exact_three_path_commit": true,
+    "full_NORMAL_readiness_preparation": true,
+    "conditions": "Use only reviewed raw/LF/Git blobs. Root owns Git/replay/checkpoint operations and any separately assigned source-binding updates; exact-head operational admission and finite allocation precede remote effects.",
+    "new_remote_runtime_effect_authority": false,
+    "implementation_acceptance": false
+  },
+  "limitations": {
+    "hosted_exact_header": "UNKNOWN",
+    "hosted_native_firstthrow": "UNKNOWN",
+    "body_assertions_reached": "UNKNOWN",
+    "backend_wrapper_custody_keydeletion": "UNKNOWN",
+    "actual_cause_proven_by_this_patch_review": false,
+    "unit_evidence": "Pure source/fixture controls; not DB settlement proof.",
+    "required95": "Historical68P1F26unexecuted unchanged; exact-new-head full NORMAL95 plus separate recovery still required.",
+    "P5": "OPEN",
+    "development_complete": false,
+    "release_ready": false,
+    "normal_acceptance": 0,
+    "deployment_authorized": false
+  },
+  "reviewer_nonexecution": {
+    "source_spec_state_Git_mutations": 0,
+    "tests_install_DB_browser_resources": 0,
+    "API_provider_artifact_GET_network": 0,
+    "DEBUG_activity": 0,
+    "SQL_raw_scan_or_broad_unchanged_review": 0
+  },
+  "open_questions": [
+    "Hosted exact header/error/first throw, body reach and backend custody remain UNKNOWN."
+  ],
+  "deferred_work": [
+    "Root exact reviewed commit and full NORMAL/recovery readiness; any publication/CI uses separately reviewed finite effects.",
+    "Author delivery and actual exact-head completion evidence; no development-complete claim now."
+  ],
+  "blockers": {
+    "source_eligibility": [],
+    "story_acceptance": [
+      "Required exact-head full NORMAL95/recovery evidence and unresolved custody/functional acceptance remain outstanding."
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "status": "PASS-artifact-format-qualification-only",
+  "source_head": "a76fc492a5273da776ba807559b2eb81d41bfe10",
+  "unrestricted_check": {
+    "exit_code": 2,
+    "status": "FAILED-retained",
+    "stdout_sha256": "2c7db295831af5bf4593f69862deeedeb7239244342e99c6d13ad4cf50afc0db",
+    "stderr_bytes": 0
+  },
+  "qualified_context_lines": 7,
+  "violations": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+      "line": 11,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+      "line": 70,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+      "line": 77,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+      "line": 86,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+      "line": 94,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+      "line": 96,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+      "line": 99,
+      "exact_content_hex": "20"
+    }
+  ],
+  "frozen_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff",
+    "bytes": 26657,
+    "sha256": "9d56d85a52a2fe9e804c6b55ccae357746879de509f2efc49eaf3325cd2924cd"
+  },
+  "all_other_staged_paths_native_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)_bmad-output/auto-bmad/preparation/story-15-5/native-sql-repair-review/latest-delta-input.diff"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0
+  },
+  "capsule_sha256": "3a4391820a34d7b9feca705d329e19eb2d7a5060f29edcfe53d5a7294c7a4c65",
+  "assessment": "High build parent accepted exact sixth-input format qualification under these mechanically proven conditions. Required unified-diff syntax preserved; no source/input/capsule/config/checker/hook changes or bypass. Not code review or runtime acceptance."
+}

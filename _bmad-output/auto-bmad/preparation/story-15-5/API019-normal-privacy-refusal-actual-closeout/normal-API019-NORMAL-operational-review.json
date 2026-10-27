@@ -1,0 +1,281 @@
+{
+  "schema": "kopplas.targeted-independent-operational-rebind-review.v1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T14:57:45.071998+00:00",
+  "status": "PASS_API019_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_API019_NORMAL_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "findings": [],
+  "scope": "Literal/current-source-data rebind of qualified NORMAL lineage only; evidence-seam source is not a functional fix. Not fourth broad review or effect authority.",
+  "route": "Root50a635; explicit gpt-6.1-sol High",
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/provider-readonly.py",
+      "bytes": 20460,
+      "sha256": "3dbaf1cf1bd9b969d73a66ba1132f8d38bfdb193bf94f095e58776cb357225ec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/root-driver.py",
+      "bytes": 20990,
+      "sha256": "cb7c0415f6265c8ffa1f2465a776fb8584b3f7f76e239d76397e7c1ce322a4d8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/proposal.json",
+      "bytes": 217350,
+      "sha256": "e79f5dc5cfc399d3c84cb75425c92b2e360c92ddbe717d9bb5cc1114f10a382e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/pure-controls.json",
+      "bytes": 12123,
+      "sha256": "55b7fa5692846d1ea18472d089c03bfbb528be6189f563c4f73fdaf784236d2d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/manifest.json",
+      "bytes": 1148,
+      "sha256": "7208774925d2bc38ebf594ef5135afdf107c9047a2c8dc4c20fdce3d7081d322"
+    }
+  ],
+  "identity": {
+    "schema": "ROOT_INT009_CANONICAL_CATALOG_NORMAL_INERT_CANDIDATE_V1",
+    "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+    "source": "e52568795789034c556f64b0721318f75aa13691",
+    "checkpoint_id": "7718bd09-e9b0-4f0b-956b-3cece4d8a28a",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "expected_remote_preimage": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "attempt": 1,
+    "mode": "NORMAL",
+    "release_validation": false,
+    "cause_proof": false,
+    "original_int009": false,
+    "source_review": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-actual-patch-independent-review.json",
+      "bytes": 11149,
+      "sha256": "a620f3dbeb328619fa02f9dfcbf52590373114ac9d4fcf58146456605365f808"
+    },
+    "effects_authorized": false,
+    "all_old_slots_closed": true,
+    "normal_acceptance": 0
+  },
+  "planned_Root_operation_id": "e7f012f0-db8c-427c-9d5c-52b20fcb4914 (Root-issued plan; activation currently absent, source accepts exact valid fresh operation under future allocation)",
+  "independent_checks": {
+    "manifest_and_all27_input_refs_bytes_SHA_matched": 27,
+    "whole_file_inverses": [
+      {
+        "file": "provider-readonly.py",
+        "baseline": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/provider-readonly.py",
+          "bytes": 20259,
+          "sha256": "d514e9734be731d52fa0ec632f098d94fc93ed24cb14fdbb202a7cbada0a6a7e"
+        },
+        "complete_inverse_equal": true,
+        "definitions": 7,
+        "changed_definitions": []
+      },
+      {
+        "file": "root-driver.py",
+        "baseline": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-operational-preparation/root-driver.py",
+          "bytes": 20704,
+          "sha256": "ecdd53035cf5ea58753ce33786640b4683bf31b8401d137f762a44f9007dba77"
+        },
+        "complete_inverse_equal": true,
+        "definitions": 18,
+        "changed_definitions": [
+          "admit"
+        ]
+      }
+    ],
+    "provider7_definitions_unchanged": true,
+    "driver17_of18_definitions_unchanged": "Only admit current path/latest patch review literals differ. All main/publisher/API/native/localproof/mutation-freshness/resolve/poll/STOP algorithms equal predecessor.",
+    "canonical_ADAPTER": {
+      "bytes": 1762,
+      "sha256": "4aa63a58e373ebb1dd2d7d34188f1d5175144b1ec332a2ae001f3a34a966ca8e",
+      "byte_equal": true
+    },
+    "strict_JSON_vs_heterogeneous_byte_verifiers": "Conserved byte-identical; real JSON consumers stay strict; no restored Python-as-JSON mistake.",
+    "current_source_delta": {
+      "catalog203_paths_same": true,
+      "only3_changed_rows": [
+        "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "tests/support/calendar-feed-atdd.ts",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+      ],
+      "raw_LF_blob_pins_matched": true,
+      "other200_rows_and_image_supplement_equal": true,
+      "total_unique": 204,
+      "nonSQL": 86,
+      "SQL": 118,
+      "SQL_evidence": "Exact row metadata conserved; previously qualified raw/LF vectors reused. No SQL raw rescan/new catalog. Root fresh source/Git proof still required."
+    },
+    "unit_catalog": {
+      "static": 440,
+      "dynamic_excluded": 19,
+      "wrapper": 191,
+      "baseline187_hashes_preserved": true,
+      "new4_title_hashes_verified_against_actual_added_tests": true,
+      "other19_catalogs_and_same20_paths_equal": true,
+      "method": "Data comparison plus four new literal-title hashes only; no new extractor/config/app/test module load. Static declarations are not runtime leaf coverage."
+    },
+    "actual_REF_PATHS_equals_descriptive_proposal": true,
+    "actual_enforced_REF_PATHS": {
+      "allocation": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-effects-allocation.json",
+      "current_source_proof": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-current-source-proof.json",
+      "operational_review": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-review.json",
+      "source_review": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-actual-source-review.json",
+      "capture_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-INT009-capture-actual-source-review.json",
+      "browser_review": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-main-fenced-completion-actual-source-review.json",
+      "candidate": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-inert-binding.json",
+      "proposal": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/proposal.json"
+    },
+    "review_alias_copy_required": false,
+    "current_future_argv_and_candidate_bytes_matched": true,
+    "canonical_POST": {
+      "ordinary_inputs_only": true,
+      "bytes": 201,
+      "sha256": "04fe6b2eeeaa0265f1b851b0f9ee0a1acf61544cb5486e578b77ca1c8eac1fde",
+      "head_and_CP_current": true,
+      "original_int009_and_causeproof": "Absent/defaultfalse; no diagnostic field/body overlay"
+    },
+    "current_HEAD_and_tracked_clean": true,
+    "future_authority_files_and_operation_absent": {
+      "provider_activation": true,
+      "root_activation": true,
+      "source_proof": true,
+      "allocation": true,
+      "provider_qualification": true,
+      "provider_intent": true,
+      "state": true,
+      "root_operation": true
+    }
+  },
+  "author_offline_controls": {
+    "ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-operational-preparation/pure-controls.json",
+      "bytes": 12123,
+      "sha256": "55b7fa5692846d1ea18472d089c03bfbb528be6189f563c4f73fdaf784236d2d"
+    },
+    "groups_passed": 7,
+    "fail": 0,
+    "attribution": "Native author actual provider preGET/admit/localproof/default refusal; future candidate/grant/review/proof/providerqualification/time and local Git answers explicitly virtual, real transport hard-disabled. Source/JSON read attribution and inline source hash inspected. Not actual effect admission.",
+    "source_guards": 86,
+    "virtual_Git_answers": 209,
+    "independent_reexecution": "Not rerun; unchanged algorithms and prior qualified control families reused after full inverses and narrow static binding checks. No duplicate204-source/SQL read or catalog extraction."
+  },
+  "future_effect_limits": {
+    "provider_GET": {
+      "max": 1,
+      "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd",
+      "caps": {
+        "seconds": 15,
+        "stdout": 4194304,
+        "stderr": 262144
+      },
+      "mutations": 0,
+      "limited_contract": "Point-in-time ordinary owned branch Git-push containment with branch-specific git.deploymentEnabled=false and fresh qualified project identity/settings. Previewdisabled/unconditionalignoredexit0 do not establish blanket manual/production disable. createDeployments=enabled is raw GitHub deployment-status metadata only."
+    },
+    "remote_before": {
+      "max": 1,
+      "required_sha": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+      "ref": "refs/heads/codex/epic-15-scheduling-time-calendar",
+      "timeout_seconds": 20
+    },
+    "FFpush": {
+      "max": 1,
+      "force": false,
+      "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "timeout_seconds": 60
+    },
+    "remote_readback": {
+      "max": 1,
+      "required_sha": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+      "timeout_seconds": 20
+    },
+    "canonical_dispatch": {
+      "invocations_max": 1,
+      "prePOST_GETs_max": 4,
+      "POSTs_max": 1,
+      "outer_seconds": 90,
+      "per_API_seconds": 15,
+      "per_API_stdout_cap": 4194304,
+      "outer_stdout": 524288,
+      "stderr": 65536
+    },
+    "resolve": {
+      "GET_max": 6,
+      "per_page": 20,
+      "minimum_cooldown_seconds": 5,
+      "no_pagination": true,
+      "unique_owned_only": true,
+      "API_seconds": 20
+    },
+    "poll": {
+      "run_GET_max": 90,
+      "jobs_GET_max": 90,
+      "minimum_cooldown_seconds": 30,
+      "max_wall_seconds": 5400,
+      "jobs_per_page": 100,
+      "no_pagination": true,
+      "stop_all9terminal": true,
+      "API_seconds": 20,
+      "API_stdout": 2097152,
+      "stderr": 65536
+    },
+    "provider_writes": 0,
+    "repository_variables": 0,
+    "artifact_logs_GET_now": 0,
+    "diagnostic_runs": 0,
+    "main_merge_deploy_demo_db_push": 0,
+    "local_managed_resources": 0,
+    "postterminal_acquisition_scope": "No artifact/log GET now. Separate actual-terminal enrollment/review/new finite max5GET grant later. 32KiB applies SOURCE-LABEL projection only, not every generic projection; preserve historical generic/source-label cap discrepancy."
+  },
+  "source_configured_timeout_detail": {
+    "provider": "15s process capture loop;4MiBstdout/256KiBstderr; then wait<=2s and two reader joins<=2s each plus close/overhead.15s is not a strict total wall bound; require full EOF/joined/closed/direct-settled/nooverflow and actual outer provenance.",
+    "controller_native": "Configured timeout20s remote-before/readback and metadata GETs;60s nonforce push;90s canonical Node invocation. Each native capture has additional wait<=2s and two joins<=1s each plus close/overhead. stdout default512KiB for Git/outer canonical, metadata2MiB,stderr64KiB. Require actual native0/full capture; no elapsed-under-cap relabeling if configured cap differs from allocation.",
+    "canonical_underlying": "Four strict metadata GETs then one canonical POST; each existing githubApi15s/4MiBstdout/64KiBstderr source contract conserved. Exact user rthunborg/workflow296219797/path checked on already returned data before POST, no duplicate GET.",
+    "freshness": "Activation/sourceproof/provider<=300s immediately before push and dispatcher; provider<=180s before90s outer invocation, embedded immutable stamp<=300s directly before POST. No refresh/retry to recover expiry.",
+    "observer": "Root sole observer; resolver<=6/min5s, poll<=90pairs/min30s,5400s from original immutable operation.started_at (includes publication/dispatch), no clock/counter reset/second poller/adoption. Early/unregistered/closed returns WAIT0GET; all9terminal STOP closes unused slots.",
+    "lease": "No local managed resources/lease launched or extended. Finite remote observation grant is required; no autonomous extension."
+  },
+  "Root_execution_obligations": [
+    "Full-read this completed report at the exact enforced path; pin its bytes/SHA with both status/outcome PASS and independenttrue. No alias/copy workaround required; current actual source and proposal maps agree.",
+    "Obtain NEW actual completed finite Coordinator allocation before any effect, explicitly stating configured caps and bounded cleanup tails above, exact tuple/operation and once limits. Current source review grants zero effects.",
+    "Materialize exact329-byte candidate c4990b393fae877972657f272a2a210fabdc826e3253ded0ba08e549a6eac208; fresh Root proof verifies current clean head/source204Git/86nonSQLrawLF/118Git-only conservation/historical vectors/10triggers/Next16.4.1/modules. Pin source/admission/report/allocation/self/current proposal; never synthesize successful future facts.",
+    "Exclusive new provider activation and Root invocation intent precede ONE fresh readonly provider request. Qualify actual provider transport plus outside tool receipt before Root effects activation. Current point-in-time ordinary ownedbranch Git containment only; no manual/API/main production deployment proof, createDeployments is statusmetadata, ignoreexit0 is not zero-deployment proof.",
+    "Root sole exclusive publish invocation: actual remote-before must equal2c8e preimage; one nonforce FF push toedce; exact readback; one NORMAL canonical dispatch with all diagnostic/release flags false. Any refusal/partial/timeouts/capture ambiguity consumes invocation, UNKNOWN_STOP/no blind retry, no old operation/grant reuse.",
+    "Resolve/poll only exact owned actual tuple within counters/original clock, bounded cumulative caps and all9terminal STOP. Raw provider/HTTP/stdout remain RAM-only; persist only reviewed receipts/closed projection. No sourceproof or freshness refetch after uncertainty.",
+    "Artifact/log GET0 in this operation. Actual terminal enrollment, stage-reader successor/current75-source data and newly completed max5GET grant/fresh proof/exclusive activation need separate review later; SOURCE-LABEL-only32KiB projection cap, never generic all-file wording."
+  ],
+  "remaining_limits": {
+    "required95": "Historical current93P1F(API019)1zero(API020pending); new run unknown",
+    "actual_failure_cause": "UNKNOWN; telemetry tags discriminate only future reached failures",
+    "DB_custody": "Retained/unverified; backend settlement UNKNOWN",
+    "P5": "OPEN",
+    "development_complete": false,
+    "release_ready": false,
+    "normal_acceptance": 0,
+    "effect_authority": false,
+    "final_main_merge_deployment_containment": "Separate UNKNOWN/held, merge_mainfalse not cleared."
+  },
+  "reviewer_execution": {
+    "source_reads": [
+      "126e04/native0",
+      "f7e411/native0",
+      "9aeb6f/native0",
+      "5d0c26/native0"
+    ],
+    "final": "Bounded Python AST/literal/inverse/metadata/hash checks and two local readonly Git metadata commands; no author control execution, source catalog extractor, source/module import, testsuite, API/Gitremote/provider/runtime/resource action.",
+    "Git_mutations": 0,
+    "API": 0,
+    "GET": 0,
+    "tests": 0,
+    "source_edits": 0,
+    "foreign_checkout_reads": 0
+  },
+  "blockers_to_source_review": []
+}

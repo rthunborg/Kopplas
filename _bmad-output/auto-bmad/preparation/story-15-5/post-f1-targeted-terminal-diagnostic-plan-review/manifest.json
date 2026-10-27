@@ -1,0 +1,23 @@
+{
+  "schema": "POST_F1_TARGETED_TERMINAL_DIAGNOSTIC_PLAN_REVIEW_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/original-report.md",
+      "bytes": 4242,
+      "sha256": "3c55a9b5e23f4b05025571f29c15acb99c6a18501aefc9bdf46d08af995a5584"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/original-attestation.json",
+      "bytes": 15816,
+      "sha256": "c203260af3148172480486b84239c59d90e832cab12563f01dd8ea533812a464"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/result.json",
+      "bytes": 1618,
+      "sha256": "3e326ceabc95297d8934faf814988d18092d6a78aec067746479373dfcc0a934"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 4,
+  "normal_acceptance": 0
+}

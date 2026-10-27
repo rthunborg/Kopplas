@@ -1,0 +1,43 @@
+{
+  "schema": "ROOT_ACTUAL_INITIAL_OUTER_PROVENANCE_V1",
+  "initial_outers": [
+    {
+      "key": "StartupConfirmationPublishOuter",
+      "chunk_id": "af573f",
+      "wall_time_seconds": 10.0093589,
+      "session_id": 24079,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "key": "StartupConfirmationPublishWait1",
+      "chunk_id": "68a495",
+      "wall_time_seconds": 5.0026394,
+      "session_id": 24079,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "key": "StartupConfirmationPublishWait2",
+      "chunk_id": "fedbdb",
+      "wall_time_seconds": 6.3e-06,
+      "exit_code": 0,
+      "original_token_count": 27,
+      "output": "{\"phase\": \"DISPATCH_ACCEPTED\", \"head\": \"edf966cc9294448d0b057514d85e361c4f11ddd7\", \"normal_acceptance\": 0}\r\n"
+    },
+    {
+      "key": "StartupConfirmationResolverOuter",
+      "chunk_id": "e56551",
+      "wall_time_seconds": 1.4466998,
+      "exit_code": 0,
+      "original_token_count": 24,
+      "output": "{\"phase\": \"ROOT_ACTIVE\", \"run_id\": 39998246278, \"resolution_count\": 1, \"normal_acceptance\": 0}\r\n"
+    }
+  ],
+  "actual_outer_returns": 4,
+  "completed_outer_native0": 2,
+  "initial_running_returns": 2,
+  "publication_invocations": 1,
+  "resolver_invocations": 1,
+  "no_replay": true
+}

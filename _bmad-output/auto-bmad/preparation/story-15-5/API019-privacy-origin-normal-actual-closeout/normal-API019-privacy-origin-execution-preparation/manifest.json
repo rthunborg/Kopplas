@@ -1,0 +1,27 @@
+{
+  "schema": "API019_NORMAL_INERT_OPERATIONAL_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/provider.py",
+      "bytes": 20591,
+      "sha256": "0b33181f9cbbfdc1b36a463d3a66fc5d1b33db8e9a170ccc1379822ca7c2fdcc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/root-driver.py",
+      "bytes": 21115,
+      "sha256": "ecb4a35f94fee0090d2952c53feaa3251c1bcaa3e416ecb634ebb2eabddb0797"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/proposal.json",
+      "bytes": 237192,
+      "sha256": "8defb9f6a1bfc753bd4d857a392ecf44a3c2fda37caa9157a43684017dcfabfe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-execution-preparation/pure-controls.json",
+      "bytes": 12906,
+      "sha256": "0b10bff10b6576fc1e8ee2a06c5d18e6ede0ddd3e3c0cf096403aad22f0ba329"
+    }
+  ]
+}

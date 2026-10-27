@@ -1,0 +1,17 @@
+{
+  "schema": "ROOT_POST_ZOD_TERMINAL_BINDING_DATA_DISPOSITION_V1",
+  "at": "2026-10-24T16:25:59.613796+00:00",
+  "scope": "Inert author proposal data only; no current materialization/execution/acquisition authority",
+  "author_owned4": "post-zod-normal-terminal-evidence-preparation/reader.py,proposal.json,pure-controls.json,manifest.json",
+  "decision": "Preserve exact consumer accessor/algorithm. Proposal may contain exact future Root-owned terminal envelope and source75 input templates and their computed byte/hash refs, derived only in RAM from pinned owned actual terminal/ownership/current proof and original full proposal/catalog known75 vectors. Root will exclusively materialize those exact data artifacts only after independent actual-source review and completed finite allocation. No author fifth file. No invented fresh source scan or old hash alias.",
+  "future_Root_owned_data_paths": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-actual-envelope.json",
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-source75-envelope.json"
+  ],
+  "current_Zod_overlay": "Current workspace+lock and functional17457/Zod9994/opreview10225 pins must remain explicit; if historical75 includes a changed path, record exact reviewed known-current row substitution and provenance, without raw corpus read. Any unsupported requirement blocks freezing rather than changing accessors or fabricating evidence.",
+  "effects": 0,
+  "normal_acceptance": 0,
+  "broad_review_counter": 3,
+  "P5": "OPEN",
+  "no_deployment": true
+}

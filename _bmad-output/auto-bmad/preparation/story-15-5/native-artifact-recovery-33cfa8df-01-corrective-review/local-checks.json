@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "phase": "CORRECTIVE_AUTHOR_FROZEN_PENDING_TARGETED_HIGH_REVIEW",
+  "created_at_utc": "2026-10-21T06:46:03.196932+00:00",
+  "code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 33788,
+      "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+      "bytes": 25975,
+      "sha256": "b8d19bafd48ed14f51588b5ec5ecc2b1d91c3640e3dee14f8e74b9a6a5db7df0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 12150,
+      "sha256": "3296d05e6086af0bf104076bad5e31ac66c9015d62b949a754a257f279139b37"
+    }
+  ],
+  "original_suite": "Original 26P is immutable historical; composite reviewer NOTPASS F1/F2 is not overwritten. New runs below are separate and nonadditive.",
+  "corrective_runs": [
+    {
+      "methods": 31,
+      "excluded_method": "test25 actual-driver byte match while awaiting Root replacement",
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 34,
+      "negative_checks": 107,
+      "owned_python_children": 19
+    },
+    {
+      "methods": 32,
+      "failures": 0,
+      "errors": 0,
+      "positive_checks": 35,
+      "negative_checks": 107,
+      "owned_python_children": 19,
+      "status": "LATEST_SUITE_PASS_WITH_ACTUAL_ROOT_DRIVER"
+    }
+  ],
+  "targeted_findings": [
+    "F1 actual driver-main read exception: physicalEOFfalse, readerdone/joinedtrue, capturefalse, custodyUNKNOWN, no candidate/facts/continuation/raw error.",
+    "F1 actual driver-main output cap: observed100/hash correct, physicalEOFfalse, OUTPUT_CAP, custodyUNKNOWN.",
+    "F2 actual listing cap+1 primary observation and bounded drain: exact total/count/digests, unchanged payload refusal, closed Root failure handoff.",
+    "F2 actual seven-byte partial timeout: observed count/hash retained through settled cleanup and closed Root failure handoff.",
+    "F2 helper read error followed by drain: observed bytes/hash retained with completenessfalse/settledfalse/UNKNOWN custody.",
+    "Measurement-only schema accepts cap+1; invalid counter/digest/completeness fields refuse."
+  ],
+  "actual_helper_startup": [
+    {
+      "argument": "--template",
+      "status": "EXPECTED_TEMPLATE_ONLY",
+      "stdout_bytes": 5699,
+      "stdout_sha256": "4ecda77bd46110ab1c85217d35e33d6dfd497bc06c571e3a66df977c05c25272",
+      "transport": {
+        "spawned": true,
+        "settled": true,
+        "exit_code": 0,
+        "stdout_eof": true,
+        "stdout_bytes": 5699,
+        "stdout_sha256": "4ecda77bd46110ab1c85217d35e33d6dfd497bc06c571e3a66df977c05c25272",
+        "primary_stdout_bytes": 5699,
+        "primary_stdout_sha256": "4ecda77bd46110ab1c85217d35e33d6dfd497bc06c571e3a66df977c05c25272",
+        "drain_stdout_bytes": 0,
+        "drain_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary_complete": true,
+        "stdout_complete": true,
+        "reader_error": false
+      }
+    },
+    {
+      "argument": "--refuse-unallocated-flag",
+      "status": "EXPECTED_EXIT1_REFUSAL",
+      "transport": {
+        "spawned": true,
+        "settled": true,
+        "exit_code": 1,
+        "stdout_eof": true,
+        "stdout_bytes": 254,
+        "stdout_sha256": "366123226827431a4eaa3f9b1702b61ffc3b0d1eeaf008d33a674b94ba5bee35",
+        "primary_stdout_bytes": 254,
+        "primary_stdout_sha256": "366123226827431a4eaa3f9b1702b61ffc3b0d1eeaf008d33a674b94ba5bee35",
+        "drain_stdout_bytes": 0,
+        "drain_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary_complete": true,
+        "stdout_complete": true,
+        "reader_error": false
+      }
+    }
+  ],
+  "syntax": {
+    "files": 3,
+    "passed": true
+  },
+  "local_cli_capability": {
+    "meaning": "Historical original single permitted help observation reused; no new help invocation. Binary/argv flags unaffected by corrective change.",
+    "original_observation": {
+      "status": "PASSED",
+      "proof": {
+        "gh_binary_sha256": "a1701e3c806a805981554ace7df04812772c6449bdcfd1a77675013d97786401",
+        "gh_binary_bytes": 42166072,
+        "help_stdout_sha256": "c6136b139e05d1b4e9271a1edf08473b6f57df6ff01dc6da64b7079f53852e82",
+        "help_stdout_bytes": 7770,
+        "method": true,
+        "header": true,
+        "escape": true
+      },
+      "actual_help_process_max": 1,
+      "network_requests": 0
+    }
+  },
+  "actual_current_producer_raw_bindings": 11,
+  "root_facts_unborn": true,
+  "root_result_unborn": true,
+  "network_requests": 0,
+  "CI_dispatches": 0,
+  "native_cases_executed": 0,
+  "normal_acceptance_credit": 0
+}

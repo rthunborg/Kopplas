@@ -1,0 +1,31 @@
+{
+  "phase": "SOLE_NATIVE_READER_ONCE_ALLOCATED_NO_RETRY",
+  "created_at_utc": "2026-10-23T15:39:42.588363+00:00",
+  "run": 39975009683,
+  "head": "edce7b8725ad379224bfa9fea517ad097f3906cb",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-NORMAL-terminal-effects-allocation.json",
+    "bytes": 3914,
+    "sha256": "15e291469cdcb3626af5a0b679b021720b001f76a97e4dbd554b0b840c015e80"
+  },
+  "proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-fresh-source-proof.json",
+    "bytes": 59815,
+    "sha256": "539f9f4903a31c2c9a2efa1863fd286d607dd5599f94a0b7546a6a3dd7028b27"
+  },
+  "reader": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/reader.py",
+    "bytes": 50846,
+    "sha256": "a8beb9a4e7a62c699080ee6152674d0a8571528504307be96ef78f109e6e03c5"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-actual-preparation/proposal.json",
+    "bytes": 194113,
+    "sha256": "27e5d11896725d7b0f3cd87aaecd7bb620f62412c25187d698112f825a8427e8"
+  },
+  "maximum_GETs": 5,
+  "all_old_slots_closed": true,
+  "no_retry": true,
+  "normal_acceptance": 0
+}

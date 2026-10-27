@@ -1,0 +1,110 @@
+{
+  "status": "PASS_POST_ZOD_INT015_ANNOTATION_REMEDIATION_PLAN_VALIDATION_ONLY",
+  "outcome": "PASS_POST_ZOD_INT015_ANNOTATION_REMEDIATION_PLAN_VALIDATION_ONLY",
+  "independent": true,
+  "findings": [],
+  "result": {
+    "Outcome": "PASS_POST_ZOD_INT015_ANNOTATION_REMEDIATION_PLAN_VALIDATION_ONLY",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-INT015-annotation-remediation-plan-validation.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [],
+      "route": "Root explicit Sol6.1 High422142/native0 before dispatch",
+      "scope": "Independent prebuild validation of one concrete INT015 reporting-side-effect remediation and its meaningful controls. Not actual implementation/diff approval, fourth story broad review or runtime-cause qualification.",
+      "basis": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-current-failed-case-source-assessment.json",
+          "bytes": 25590,
+          "sha256": "93b98dc737ce55205ccbe0d199a8b319ad53e9f5bc08655368c27117dbf7521b"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-actual-native-qualification.json",
+          "bytes": 18772,
+          "sha256": "899bef863a818e2833f28e34abd2ad5506f0038e39c9d1de5fc32822ce4d89fc"
+        }
+      ],
+      "owned_tracked_plan": [
+        {
+          "baseline": {
+            "path": "tests/integration/commands/calendar-feed.int.test.ts",
+            "bytes": 36989,
+            "sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7"
+          },
+          "allowed": "INT015 only: remove callback context parameter, annotation-only nativeVersion declaration/assignment and two awaited context.annotate calls (five replacement spans). No other source statement/query/assertion/cleanup or timeout change."
+        },
+        {
+          "baseline": {
+            "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+            "bytes": 352713,
+            "sha256": "630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc"
+          },
+          "allowed": "Meaningful source-driven installed GithubActionsReporter→actual unchanged launchOwned/raw observer→actual helper/publisher RED/GREEN/safety controls, plus retained-statement/inverse conservation. Existing test harness seams reused, no new collector/parser family or host cleanup."
+        },
+        {
+          "baseline": {
+            "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+            "bytes": 264061,
+            "sha256": "74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb"
+          },
+          "allowed": "Author-owned current evidence/Suggested Review Order/rationale amendment only. Preserve383–384 as truthful historical reporting record and append a current supersession of annotation mechanism; no kernel/OwnerFacts/status/AutoRunResult/counter/AC rewrite."
+        }
+      ],
+      "source_pin_check": "All19 cited current source and installed formatter references match exact bytes/hash. No runtime controls or module imports were executed by this reviewer.",
+      "reachable_installed_chain": {
+        "configuration": "Actual integration argv in unchanged wrapper/ci-contract selects default+github-actions+json reporters. Package test:int=vitest run; installed Vitest4.1.9. Both command/public-feed files are in serial integration-audit-ddl project, groupOrder1/bail1. No project annotation-display override.",
+        "annotation_origin": "INT015 lines415 and515–516 use custom calendar-feed-pg17-observed/qualified types and await context.annotate. Runner creates internal:annotation and, when a test-file stack is located, derives annotation.location; worker bridge/RPC routes it to reporter onTestCaseAnnotate.",
+        "emission_conditions": "Installed GithubActionsReporter default displayAnnotations=true. onTestCaseAnnotate returns for missing location or displayAnnotations===false; otherwise unknown/custom type maps to notice, formatter emits ::notice properties::message and ctx.logger.log. Actual Logger defaults outputStream=process.stdout/Console.log. Thus this is a concrete conditional stdout tool-output path, not an onUserConsoleLog header assumption.",
+        "predicate_collision": "Raw unchanged predicate sees output before filters. Notice delimiter starts with bare:: followed by nonhex n; IPv6 candidate expression can select the valid unspecified-address token:: and classify ip-literal. Existing safe-infrastructure exception is only exact Next startup127.0.0.1 URL lines, so it does not exempt notices. Proposed actual installed-reporter/raw-observer witness must establish this behavior; no behavioral execution occurred here.",
+        "attribution_limit": "Qualified actual record was integration/IP/STDOUT/OTHER_OR_UNKNOWN at API019. INT015 passed earlier, but source reachability and ordering do not identify the actual lifetime-first raw line. Annotation location/actual rendered record were not retained. Current first emitter/cause remains UNKNOWN."
+      },
+      "dispensability_and_preservation": {
+        "assessment": "Two annotation calls publish informational observed/qualified version/proof metadata. They contribute no PG17 predicate, SQL mutation/check, authority grant, row absence assertion or cleanup behavior. nativeVersion and context have no remaining purpose after those calls are removed. Removing this owned reporting side effect is proportionate without weakening raw privacy detection or suppressing an unknown captured record.",
+        "PG17": "Keep original server_version/server_version_num identity query and exact original session/current superuser/major17 guard at404–407. No invented version result; full version-string annotation retention is historical reporting mechanism, not an identified approved-kernel acceptance requirement.",
+        "security_contract": "Keep immediately checked restricted session authority, baseline creator ADMIN/SET/INHERIT behavior, exact source bootstrap/replay, role SET/object ownership positives, unsafe attribute/membership negatives and every original assertion/query. No RLS/tenancy/public-token contract change.15.1 ContractD already credited remains untouched; this is approved15.5 test/process scope with no new manifest live surface.",
+        "cleanup": "Keep full rollback before reset, pending query settlement, original identity/privacy checks, same and fresh committed-catalog absence, every connection close/transport flag, redaction and AggregateError retention exactly. Preserve original80s primary deadline and180s test timeout.",
+        "proof_strength": "105expect/46await-sql/2query counts are supporting geometry, not sufficient behavioral evidence alone. Exact five-span inverse plus retained AST/source statement comparison must prove query/assertion/authority/cleanup byte conservation. Removing logging awaits does not authorize another test or SQL rewrite."
+      },
+      "mandatory_control_criteria": [
+        "RED must use the exact installed GithubActionsReporter onTestCaseAnnotate path, location present/default display enabled and fixed harmless synthetic version data derived from actual INT015 annotation expressions/call sites. Capture emitted text only in RAM, then feed actual unchanged launchOwned framing/raw observer and actual helper/publisher; expect integration/ip-literal/STDOUT/OTHER fixed refusal. No invented raw address is required for delimiter witness. Any logger/RPC/context mocks must be disclosed; this is not hosted first-emitter proof.",
+        "GREEN must be source-driven old/candidate emission comparison for those two INT015 publishers: original call sites emit via the actual reporter, exact candidate removes only those calls/dead bookkeeping and no longer invokes this annotation output. A string search or mock assertion that a handwritten candidate has no annotate call is not a sufficient regression witness. Pair with exact inverse/retained-statement conservation, rather than a broad fake-PG proof that mirrors all SQL.",
+        "Retain the installed-reporter collision as a safety witness after remediation: the unchanged raw guard must still refuse that emitted notice and actual synthetic IP/credential/security-field controls. GREEN proves removal of this owned emission only; it does not establish no other emitter, benignity, an API019 repair or future95PASS.",
+        "Preserve existing raw-before-filter, precedence, first-lifetime synchronous freeze, full-line/overflow continuation/EOF behavior, both streams, forged-header/legacy/malformed metadata,3s/20ms helper and80-byte publisher tests/assertions. No reporter flag, Vitest config, wrapper/helper/contract SHA or privacy timeout change.",
+        "Use the existing controlled actual-launch seam with mock owned streams/identity. Stub every process-group existence/probe/signal/kill dependency used by the fixture; a fake PID must never reach host cleanup. No real child/process group/resources/DB/network needed for these controls.",
+        "After final source: focused meaningful RED/GREEN and one affected existing unit suite, applicable TypeScript/scoped lint and author SRO reference validation. Do not require another runtime merely to authorize prebuild. Eventual changed-source native/DB/browser/delivery evidence remains required before acceptance."
+      ],
+      "catalog_and_evidence": "If final unit declarations change, Root separately allocates one actual static-catalog refresh after declarations settle.448/19/199 remains historical/source-qualified until that refresh; do not fabricate new counts or treat declarations as runtime coverage. No automatic consumer/reader/catalog rewrite or new runtime grant is part of these three paths.",
+      "ownership_and_authorization": {
+        "base": "Root reports docs-only checkpoint603ef74a2afa150638979805c3ed98f07928a5ce(parent eadd),61metadata/report/state paths, clean/unpushed; app/spec/test bytes checked here match assessment. Reviewer ran no Git and makes no independent current-HEAD assertion.",
+        "before_build": "Root must reconcile clean current base and coordinate exact three semantic file claims with Coordinator/current15.5 owner before author implementation. The approved High source author owns integration source, shared wrapper-unit regression slice and current spec/SRO amendment. Root never authors story code/spec.",
+        "no_expansion": "No application/wrapper/helper/contract/reporter flags/Vitest config/package/lock/workflow/RLS/migration edits. No implementation authority follows from source assessment or this plan report; a distinct coordinated allocation is required.",
+        "later_review": "Independent High actual latest-diff/controls/consequential-regression review before Root commit; preserve three-round cap and reuse unchanged reviews. Fresh finite changed-source NORMAL can be proposed only afterward under separate precise authority; it may still fail. All old slots remain closed."
+      },
+      "discarded_completeness_bit": "Standalone full-CI one-bit completeness plan is appropriately abandoned as not decision-useful. No new metadata classifier/formatter exception/one-bit observation chain is authorized.",
+      "normal_acceptance": 0,
+      "current95": "93P/API019failed/API020unexecuted",
+      "current_IP": "STDOUT/OTHER_OR_UNKNOWN; cause/emitter/native-first-throw/request linkage UNKNOWN",
+      "current_DB_custody": "RETAINED/key deletion unverified/dbClosedtrue is not backend settlement",
+      "historical399982_custody": "UNRESOLVED; no clearance from current browser or recovery",
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "implementation_authority": false,
+      "execution_or_deployment_authority": false,
+      "reviewer_activity": "Static scoped source/installed-text and byte/hash reads only; no functions/Node/native/Git/tests/network/resources/SQL/DEBUG or acquisition. Sole write is this report."
+    },
+    "Open questions": [
+      "Actual first captured emitter/cause remains UNKNOWN; a new changed-source NORMAL may still fail API019.",
+      "Exact future unit declaration/catalog delta is unknown until implementation settles; ownership/allocation and source review remain outstanding."
+    ],
+    "Deferred work": [
+      "Root coordinates exact3 claims and issues separate bounded High implementation allocation with these controls/preservation criteria.",
+      "After actual correction/control review, Root may prepare a separately reviewed finite changed-source runtime proposal; no retry/repair/cleanup authority exists here."
+    ],
+    "Blockers": [
+      "No plan-safety or decision-usefulness blocker in the exact bounded remediation. Missing implementation allocation/ownership and actual diff/control evidence still block building under this report alone.",
+      "P5/required95 and current/historical DB custody remain incomplete; no development/release/merge/deployment claim."
+    ]
+  }
+}

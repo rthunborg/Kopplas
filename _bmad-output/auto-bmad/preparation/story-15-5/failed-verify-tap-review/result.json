@@ -1,0 +1,16 @@
+{
+  "Outcome": "NOTPASS",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/result.json"
+  ],
+  "Status": "One blocking F1: malformed/incomplete TAP can be accepted and promoted to tap_complete=true/LOCATED_FAILURES. Main and network unexecuted; operational result unborn.",
+  "Open questions": [],
+  "Deferred work": [
+    "Author may use the proportional always-UNKNOWN/tap_complete=false direction with validated unqualified location candidates and no summary/inventory/absence claims, followed by bounded independent review. This is not a replacement PASS or execution authority."
+  ],
+  "Blockers": [
+    "F1 must be resolved in a separately reviewed extractor revision before Root activation."
+  ]
+}

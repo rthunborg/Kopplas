@@ -1,0 +1,218 @@
+{
+  "actual_executed": {
+    "current_source_rows": 74,
+    "errors": 0,
+    "failures": 0,
+    "input_refs_rehashed": 14,
+    "native_exit": 0,
+    "negative_controls": 55,
+    "old_packet_members_rehashed": 22,
+    "passed": 19,
+    "positive_controls": 53,
+    "proofs": [
+      {
+        "bytes": 4120,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/bindings-before.json",
+        "sha256": "c1cd2845e4b498ce5dc7c1ad9c026d19f9685d22c9ee42ad2b0ca67d7709499f"
+      },
+      {
+        "bytes": 4119,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/bindings-after.json",
+        "sha256": "dcfce1440834e2dd1ab452cc8c0b3ffe9324c7cac976efb5d745904da6e9bd8a"
+      },
+      {
+        "bytes": 475,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/selector-compatibility.json",
+        "sha256": "ce3c7d141f853702e5947754513b8948e837a868ef80b227deb1fd1e51670584"
+      },
+      {
+        "bytes": 123,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/pure-tests.stdout.txt",
+        "sha256": "2182be66999b06cca481756a2fbc30f6cc925435594342a1ca6a2ded7811a28d"
+      },
+      {
+        "bytes": 123,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/pure-tests.stderr.txt",
+        "sha256": "9a33de03c217f9a15f72aba40e255c8246a2a7b78cb838428b60e85a7fa76aa8"
+      },
+      {
+        "bytes": 1,
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/pure-tests.exit",
+        "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+      }
+    ],
+    "pure_suite_tests": 19,
+    "raw_clean_computed_blob_checks": 222,
+    "reused_spans_independently_compared": 10,
+    "unchanged_prior_rows": 73
+  },
+  "attempt": 1,
+  "blockers": [],
+  "checkpoint": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+  "concrete_findings": [],
+  "deferred_work": [
+    "Root mechanical source admission, completed Coordinator fresh2GET allocation, immediate fresh bindings/owned terminal validation and exclusive fsynced activation before any acquisition.",
+    "Separate qualification of actual diagnostic results; no source fix inferred now."
+  ],
+  "effects": {
+    "API_GETs": 0,
+    "CI_or_provider_actions": 0,
+    "Git_commands_or_mutations": 0,
+    "activation_absent": true,
+    "application_imports": 0,
+    "development_complete": false,
+    "execution_authorized": false,
+    "future_output_absent": true,
+    "live_gh_children": 0,
+    "native_acquisition": 0,
+    "normal_acceptance": 0,
+    "operator_execute_flag_live": 0,
+    "release_ready": false,
+    "resources_SQL_browser": 0
+  },
+  "input_refs": [
+    {
+      "bytes": 31222,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+      "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+    },
+    {
+      "bytes": 36163,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    {
+      "bytes": 1290,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/artifact-list-projection.json",
+      "sha256": "5986b981a999c5aa939568d30789ce678095f9052af279548eec5d3ccc4fc348"
+    },
+    {
+      "bytes": 5474,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+      "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+    },
+    {
+      "bytes": 15819,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-terminal.json",
+      "sha256": "b8c92f76022db4149bcefcc38add55526de0f01cb2936e113a1f6af8329f1f5e"
+    },
+    {
+      "bytes": 5879,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/report.md",
+      "sha256": "179c1b2e6ca8d0a45e95b2bd63188bc6fd5297fee298ac2cf125d76d389d298f"
+    },
+    {
+      "bytes": 14700,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/attestation.json",
+      "sha256": "697d1079c7b4df84721f1e9ab979f0dee1ac734df73badd261d3ba435918217c"
+    },
+    {
+      "bytes": 641,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/manifest.json",
+      "sha256": "903fbbe9062abd03321583ee56f37d0ca2d0e16d5d07e9bf722b9ad8ce80c50b"
+    },
+    {
+      "bytes": 2163,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/report.md",
+      "sha256": "7531416935bcfe6c6556002fe19b8ff2c190e02527b5ca3808be44c4ebdd80c5"
+    },
+    {
+      "bytes": 7544,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/attestation.json",
+      "sha256": "cfafed92855e2642ad99f641b837c5b449fd5dbf25f65cf379d6020e476f6cab"
+    },
+    {
+      "bytes": 686,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/manifest.json",
+      "sha256": "da5b54c7dd48724fd30eb63c9c5d545f96861afb045b5214ac4760a86f6541a0"
+    },
+    {
+      "bytes": 2500,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/report.md",
+      "sha256": "abc499acc6551c51c50cdfd5e07f34a7025be635f4dfc4401b85b236ef769fca"
+    },
+    {
+      "bytes": 7223,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/attestation.json",
+      "sha256": "8b588fad598c4afd2603fc9b3166367e98a95ea5fca91c2d5a611feb31ec94e4"
+    },
+    {
+      "bytes": 977,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/manifest.json",
+      "sha256": "eaa5287c32f42f828a35c534174143bc60910cfd6b519efbb508d99e1d36c5d2"
+    }
+  ],
+  "open_questions": [
+    "Actual failure assertion/backend cause for NUDGE004 and browser001/007/010-revoke/009flake remain unknown.",
+    "35 unexecuted API/INT cases including API019/INT015 remain0coverage.",
+    "Backend/key custody remains UNKNOWN."
+  ],
+  "outcome": "PASS_PREGET_SOURCE_WITH_FRESH_ALLOCATION_ACTIVATION_CONDITIONS",
+  "preexecution_conditions": [
+    "Coordinator must first complete a fresh allocation for exactly two logical artifact ZIP GETs for run39664130401, attempt1, headce1943e01b773671e0c2e583ea6b21e56d40e81b, checkpoint9565c54d-1bbe-4a32-b647-949c02e6c404. No logs/list/run/jobs/status/pagination/alternate/retry/fallback is included.",
+    "Root is the trusted capability producer. Immediately before activation Root independently validates the completed allocation, this actual independent source admission and frozen operator/bindings hashes, actual current74 raw/clean/source+pushed+current objects, and the owned completed failed NORMAL terminal tuple and nine jobs. Root must not treat hash-bound reference existence or the preparation template as a grant.",
+    "Root must preserve repo/actor/triggering_actor/workflow/event/ref/run/head/titleUUID/attempt1/mode normal/causefalse/releasefalse, with admission/verify/recovery success, db/e2e failure and four optional jobs skipped. Unexpected identity/attempt/source stops; no retargeting.",
+    "Only after those checks may Root exclusively create and fsync the fixed activation with execution_authorized=true, no_retry=true, maximum_logical_requests integer2, normal_acceptance_credit integer0, exact jobs string-map, PASS independent review and bounded owned input references. No shell/source execution is authorized from reference content.",
+    "The fixed output packet must remain absent until the once-only operator reserves it. Exclusive fsynced operation intent precedes any child; each request intent precedes its child. Failure or uncertain transport consumes the operation and cannot authorize a relaunch.",
+    "Only IDs12376717919 and12375309772 and their frozen exact archive/member sizes and SHA256s are admitted. The raw reports/ZIPs stay RAM-only; no extraction/attachments/raw error/message/stack/body/expected/actual/URL/header/key/IP persistence. Output is the closed <=32768-byte diagnostic or sanitized stop/receipts.",
+    "Locations require the exact74 allowlist, one of two canonical roots or owned-relative paths, valid line/UTF16 column. The sole added NUDGE test has497 lines and declaration156; the other three context paths stay excluded. Source frames are candidates, never assertion/backend-cause proof.",
+    "Normal/development/release acceptance remains0. Unavailable/skipped/cancelled/unexecuted cases add0 coverage; retries/flaky attempts are nonadditive. Missing source mapping/truncation/uncertainty remains UNKNOWN. Backend/key custody is UNKNOWN, regardless of local child/client closure."
+  ],
+  "prepared": [
+    {
+      "bytes": 1590,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/manifest.json",
+      "sha256": "fe8c36df94f39e4e48905390bec4791b148d4c14659bd971fbb0ec1e1e279b98"
+    },
+    {
+      "bytes": 24060,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/targeted-diagnostic-operator.py",
+      "sha256": "560b3accc66323a853b36a57d09fc12c1cc4dbc97059b705c15b79da59b4c559"
+    },
+    {
+      "bytes": 14937,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/test_targeted_diagnostic.py",
+      "sha256": "8c7bd578b913adbdcf12b3e7462623d831966373ad906c606473240cab9534b0"
+    },
+    {
+      "bytes": 11742,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/preparation.json",
+      "sha256": "c93f6894b7350bc132efc2912e96f1417c687702960c4e6f143d58018da43021"
+    },
+    {
+      "bytes": 41758,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/bindings.json",
+      "sha256": "f7333652de4238ee8ce984df97d6e7afc5bfc2c2bc30f8e65c7e4b9024c51741"
+    },
+    {
+      "bytes": 3463,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/delta-proof.json",
+      "sha256": "1a9b5134cbc7aac9f852f95f1d91c1a39a508dd07041f2c788b149ff7fc3d471"
+    }
+  ],
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "report": {
+    "bytes": 4781,
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/original-report.md",
+    "sha256": "97b0f5e1d6a6ae15e8208bbbfc2d921a4a1d5348962c1983fe15c8a45a64e750"
+  },
+  "reused_not_reexecuted": {
+    "author_initial_fixture_failures": "Retained in preparation history; nonadditive, not counted as reviewer runs.",
+    "prior_transport_ZIP_privacy_lifecycle": "Exact10 spans; prior own manifest1842/1fbb88ac7b8b6d58faf89322c396fa9f6247eac1de8fdd4d719def65abd07e23 verified with all8 members. No native transport replay.",
+    "source_pushed_current_Git_objects": {
+      "entries": 222,
+      "native_exit": 0,
+      "stdout_sha256": "fa47db4a5a9f9233280734344458aa05d6fbed5f8ba20e3df5639dc352aae3ab"
+    }
+  },
+  "reviewer": {
+    "broad_story_review": false,
+    "effort": "high",
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "review_round_increment": 0
+  },
+  "run": 39664130401,
+  "schema": "TARGETED_DIAGNOSTIC_SOURCE_REVIEW_v1",
+  "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a"
+}

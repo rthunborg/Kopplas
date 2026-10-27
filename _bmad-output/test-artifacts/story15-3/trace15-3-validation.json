@@ -1,0 +1,406 @@
+{
+  "status": "passed",
+  "scope": "Bounded artifact/source conservation only; no new runtime/CI/review, no native-packet re-audit",
+  "head": "51bbf0667f5055368e799e24b2f6ed7a20bc9665",
+  "source_conservation": [
+    {
+      "path": "package.json",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/app/(app)/scheduling/conflicts/page.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/app/api/notifications/preferences/route.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/app/api/scheduling/conflicts/route.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/notifications/NotificationPreferences.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/resources/BookingConflictChip.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/resources/BookingEditor.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/resources/BookingEntry.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/scheduling/BookingBlock.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/scheduling/ConflictDetail.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/scheduling/ConflictQueue.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/scheduling/ConflictResolver.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/components/scheduling/SchedulingToolbar.tsx",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/features/resources/booking-conflict-actions.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/features/resources/bookings-read.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-resolver-state.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-resolver-types.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-resolver.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/features/scheduling/conflict-suggestions.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/bookings/conflict-resolution-attestation.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/bookings/conflict-resolution.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/bookings/series-conflicts.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/commands/bookings/conflict-resolution-validation.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/commands/bookings/resolve-booking-conflict.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/notifications/registry.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/read-models/booking-conflicts.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "supabase/migrations/20261020180000_conflict_resolver.sql",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/commands/conflict-resolver.int.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/components/conflict-resolver.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/features/booking-read-actions.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/read-models/booking-conflicts.int.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/rls/conflict-resolver.rls.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/integration/scheduling/scheduling-read.atdd.int.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/features/resources/bookings-read.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/calendar-components.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/conflict-resolver-state.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/conflict-resolver.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/features/scheduling/conflict-suggestions.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/server/bookings/conflict-resolution-attestation.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "tests/unit/server/notifications/registry.test.ts",
+      "matches_current_and_ci": true
+    },
+    {
+      "path": "vitest.config.ts",
+      "matches_current_and_ci": true
+    }
+  ],
+  "p6_validation": {
+    "passed_checks": 22,
+    "failed_checks": 0
+  },
+  "p6_pins": [
+    {
+      "path": "automation15-3-api-assessment.json",
+      "sha256": "19dc305f1abcbd44bd482da38ee7f242b8edba3f12f37a35711806ceb9ddc712",
+      "matches": true
+    },
+    {
+      "path": "automation15-3-e2e-assessment.json",
+      "sha256": "24f1f96620991242f6e253e508072c69ebb1d5a36516db71e4397cfbe9089d9c",
+      "matches": true
+    },
+    {
+      "path": "automation15-3-generation-summary.json",
+      "sha256": "73f74d5da5776754ead2d6d1856ec677de755970d20ad40f34c1195fad22ab3a",
+      "matches": true
+    },
+    {
+      "path": "automation15-3-provenance.json",
+      "sha256": "35f7ae70be82eb7c60b9e457094c70aaf319b62ed98fff40fab36e7afc599743",
+      "matches": true
+    },
+    {
+      "path": "automation15-3-routing.json",
+      "sha256": "cd2fc8cb359c847f74df2455fa9abb9e335cbd8e4e5f5759eb50c991fb8ba1e4",
+      "matches": true
+    },
+    {
+      "path": "automation15-3-summary.md",
+      "sha256": "6b28d8b309af0a27bdd802c951d45a567eaa543c7ce5014a0210971fa816e08a",
+      "matches": true
+    }
+  ],
+  "stats": {
+    "total_requirements": 8,
+    "fully_covered": 8,
+    "partially_covered": 0,
+    "uncovered": 0,
+    "overall_coverage_percentage": 100,
+    "priority_breakdown": {
+      "P0": {
+        "total": 5,
+        "covered": 5,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 3,
+        "covered": 3,
+        "percentage": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      }
+    }
+  },
+  "inventory": {
+    "files": 9,
+    "cases": 44,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0,
+    "by_level": {
+      "e2e": {
+        "tests": 3,
+        "criteria_covered": 7
+      },
+      "api": {
+        "tests": 23,
+        "criteria_covered": 8
+      },
+      "component": {
+        "tests": 2,
+        "criteria_covered": 3
+      },
+      "unit": {
+        "tests": 16,
+        "criteria_covered": 7
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    }
+  },
+  "runtime_executed": 0,
+  "new_tests": 0,
+  "review_rounds_consumed": 0,
+  "release_ready": false,
+  "phase1_consumed_exact_persisted_path": true,
+  "actual_skill_gate": "NOT_EVALUATED",
+  "allow_gate": false,
+  "gate_decision_file_written": false,
+  "advisory": {
+    "verdict": "PASS",
+    "kind": "non-gating coverage-only advice",
+    "p0": 100,
+    "p1": 100,
+    "overall": 100,
+    "covered_acs": [
+      "AC1",
+      "AC2",
+      "AC3",
+      "AC4",
+      "AC5",
+      "AC6",
+      "AC7",
+      "AC8"
+    ],
+    "uncovered_acs": [],
+    "rules": "P0<100 or overall<80 or P1<80 FAIL; P1>=90 PASS; otherwise CONCERNS; noP1 effective100"
+  },
+  "browser_native_reference": "P6 exact native-general-browser/general-browser.json; not inferred attachment path",
+  "source_inventory_files": 9,
+  "artifact_checks": [
+    "Eight frozen ACs/44unique native bodies in9files",
+    "Distinct SSR bodies and both actual DST cases retained",
+    "P0/P1/overall independently recalculated from FULL counts",
+    "Phase1 exact persisted matrix consumed",
+    "No gate_status or gate_criteria emitted while allow_gate=false",
+    "No new test/runtime/review/CI",
+    "P6 six pinned artifact hashes unchanged",
+    "57Git source blobs match current and tested revisions"
+  ],
+  "final_artifact_checks": {
+    "story_only": true,
+    "test_inventory": true,
+    "exact_rollup": true,
+    "gate_suppressed": true,
+    "advisory": true,
+    "final_step_saved": true,
+    "release_false": true,
+    "explicit_limits": true,
+    "source_locators": true,
+    "native_paths_exist": true,
+    "no_runtime": true,
+    "no_new_trailing_whitespace": true
+  },
+  "passed_final_checks": 12,
+  "failed_final_checks": 0,
+  "completion_hook": "Resolved empty; no hook executed",
+  "artifacts": [
+    {
+      "path": "trace15-3-matrix.md",
+      "bytes": 24947,
+      "sha256": "1057806dc35685e143414c4dbe268cc094df763398ceeece77b14d5531cd47ad"
+    },
+    {
+      "path": "trace15-3-coverage-matrix.json",
+      "bytes": 229593,
+      "sha256": "cd24b160b736a278a48b8cbb5df53003f738886ab3efc2c1013d6934b9a6d0e4"
+    },
+    {
+      "path": "trace15-3-e2e-trace-summary.json",
+      "bytes": 5396,
+      "sha256": "cd26abfae5fd973ab919fe190eca68aedf987ed3f66b566622ee21f5ca7a6a25"
+    }
+  ]
+}

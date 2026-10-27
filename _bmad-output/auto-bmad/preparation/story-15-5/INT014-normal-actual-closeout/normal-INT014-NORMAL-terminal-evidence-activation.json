@@ -1,0 +1,96 @@
+{
+  "actual_jobs": {
+    "checkpoint-admission": "success",
+    "verify": "success",
+    "e2e": "success",
+    "db": "failure",
+    "recovery-storage-loader": "success",
+    "dashboard-e2e": "skipped",
+    "fixed-chromium-paired-probe": "skipped",
+    "native-stream-probe": "skipped",
+    "fixed-chromium-application-verification": "skipped"
+  },
+  "actual_run_id": 39962445963,
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+    "bytes": 26268,
+    "sha256": "fc448cc4141e98d6400fbd8345feb15053c17f33befc334b02c161e2ab74fdfa"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-terminal-effects-allocation.json",
+    "bytes": 3508,
+    "sha256": "0f8e9ce6d6a59e55aca083ce7cf60b175f99c35b53193dd79b11a3a6676d1819"
+  },
+  "attempt": 1,
+  "cause_proof": false,
+  "checkpoint_id": "127ec671-bb41-4c77-9f30-64b8c386f3fe",
+  "current_review_readiness": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-fresh-source-proof.json",
+      "bytes": 59734,
+      "sha256": "0556efc89a1238b97bff8d75bd394491a9219075fc6d964de33dc0de0201681c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-reader-operational-review.json",
+      "bytes": 12861,
+      "sha256": "5bb18d5f2f4ebf78907a3981685486011935c2e1155016363ec5f9f9234f5b0f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/manifest.json",
+      "bytes": 1200,
+      "sha256": "812e5200899edfe5c1d6f50e431b37a477576ebe38fad333c48e410cda2543fe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/source-rows.json",
+      "bytes": 32340,
+      "sha256": "a2a020b26877f3f7de8b2b23cec96748806f07228308cfc70c25b6a879240182"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "f5a889fe8309208ce94ab6e4063e88a7279d9698b9e12b35ac85a2d2570970e9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-actual-root-ownership.json",
+      "bytes": 40335,
+      "sha256": "bae889178b1d7f60cd50baf443e0d49def96843ca5712775d772db69322ad420"
+    }
+  ],
+  "execution_authorized": true,
+  "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "maximum_logical_requests": 5,
+  "mode": "normal",
+  "no_retry": true,
+  "normal_acceptance_credit": 0,
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/proposal.json",
+    "bytes": 189647,
+    "sha256": "ecc395e1056588f7ab338eb7028a8ff127b4a974af3d5cfa619f0851259c6028"
+  },
+  "operator_review": {
+    "status": "PASS",
+    "independent": true,
+    "evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-reader-operational-review.json",
+        "bytes": 12861,
+        "sha256": "5bb18d5f2f4ebf78907a3981685486011935c2e1155016363ec5f9f9234f5b0f"
+      }
+    ]
+  },
+  "operator_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+    "bytes": 50733,
+    "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+  },
+  "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent",
+  "pushed_source_head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "pushed_source_objects_equal": true,
+  "release_validation": false,
+  "source_Git_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-fresh-source-proof.json",
+    "bytes": 59734,
+    "sha256": "0556efc89a1238b97bff8d75bd394491a9219075fc6d964de33dc0de0201681c"
+  },
+  "source_head": "a9489663addf99aa7da62c9c7ec4089a77f523d7"
+}

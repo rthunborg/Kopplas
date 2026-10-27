@@ -1,0 +1,20 @@
+{
+  "kind": "PRIVATE_LINUX_NODE_TOOLING_ALLOCATION",
+  "source_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15da9-bea1-7081-b329-f61e2f128949",
+  "grant_tool": "exec-d64999f0-8b3c-4b42-bf15-c6e0ecc32900",
+  "final_message": "msg_0954b60b44796db1016ad87d78a5e08191a877ba8de13c83ab",
+  "owned_directory": ".env.epic15.mail-runtime\\story-15-5-preparation\\linux-node-v22.23.2",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "actor": "/root/linux_unit_runtime_low",
+  "fixed_official_urls": [
+    "https://nodejs.org/dist/v22.23.2/SHASUMS256.txt",
+    "https://nodejs.org/dist/v22.23.2/node-v22.23.2-linux-x64.tar.xz"
+  ],
+  "before_execute": "ActualarchiveSHA mustmatchofficialmanifest; validateentries/containment/nooverwrite",
+  "execution": "AlreadyRUNNINGUbuntu24.04 only, boundedforegroundpureunit, existingcheckout/deps, uniqueLinuxTMPDIR, no globalsetup/deps/background/DB/browser/Docker",
+  "qualification": "Runtime/dependencycomparabilityUNPROVENuntilactualchecks; no hostedfailureinference",
+  "no_known_test_collision": true,
+  "normal_acceptance_credit": 0
+}

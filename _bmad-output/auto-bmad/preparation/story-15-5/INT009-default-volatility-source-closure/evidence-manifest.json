@@ -1,0 +1,87 @@
+{
+  "schema": "ROOT_INT009_DEFAULT_VOLATILITY_EVIDENCE_MEMBERSHIP_V1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/author-result.json",
+      "bytes": 12913,
+      "sha256": "13dcbf68e835a57fbf457b29acdf2eabbb35b4ba98d717319ae8fc61cdccf734"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/Next16-4-1-original-INT009-restore-definition-minimum-plan-review.json",
+      "bytes": 9737,
+      "sha256": "bc4908e9e8247f528d0df83e2d8647a5bb2baa0fcf5568e332d8712a7a51a052"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/INT009-default-volatility-actual-patch-review.json",
+      "bytes": 12229,
+      "sha256": "36edb72452d3e14543137d9381b4e7ffe5d5909d355a878e8816f62b8d5f09de"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/INT009-default-volatility-root-source-commit-proof.json",
+      "bytes": 2181,
+      "sha256": "3c20957745be14c7ecfe856c8cb498426da4fdbba3a9287a274ecab12c4c19af"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-RED-native.json",
+      "bytes": 1313,
+      "sha256": "ace9f637aba95366773ad2c1b86f818901e57161d22432f58b7b89300b6a7953"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-RED-summary.json",
+      "bytes": 594,
+      "sha256": "dfce1a1f13e6cc2973f0c5f5c2a3516edceff20b21f01bddef46ea95d6d97266"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-focused-GREEN-native.json",
+      "bytes": 1249,
+      "sha256": "9f390a0d4c7467a6c220e5e6d9a8a6bcb541332cb05952f30986d7c23346f9c6"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-focused-GREEN-summary.json",
+      "bytes": 227,
+      "sha256": "d4e9a305febe387647ac4c66108b84122fc2aa7546f241bb63ff0a835c7be17c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-full-affected-unit-native.json",
+      "bytes": 1162,
+      "sha256": "5eb3bb05b4224a2c3b4ac59be3522096abb86f1548c61ff4023635b65ac70338"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-full-affected-unit-summary.json",
+      "bytes": 258,
+      "sha256": "f6bfdc40c3bca58e5d6a3885605e5905950f96bd23be40dbf1fda04b063398b5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-typecheck-native.json",
+      "bytes": 1223,
+      "sha256": "4c1e6924e1b0b68015c5ea9e003ff95c736f4cc7152f9a9630708c1abf11f7cd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-typecheck-summary.json",
+      "bytes": 136,
+      "sha256": "3c6e07d53b1f28c2d0b80f253b0ef689d3480817e5d10e076e729040a14273c3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-scoped-lint-native.json",
+      "bytes": 1329,
+      "sha256": "1ecbd103265bf9d7cef2cfa2d2b25c05fb61ba6d96f2392c74137e3b7ffdb068"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/restore-default-scoped-lint-summary.json",
+      "bytes": 138,
+      "sha256": "586fc39d822e6d5e48c4991dc13c290297b525140961a77fac87fc493785ac71"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/final-diff-check-native.json",
+      "bytes": 948,
+      "sha256": "82047cbe09d38e75112575e7e4ea2aea4e534f14a22f06e4f657f642e1a76042"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-default-volatility-source-closure/root-closeout.json",
+      "bytes": 2107,
+      "sha256": "3aac248ed4d2d2b7649c00ed6fbe77698f4e3fd184c3e9ac4e1db8fcf12cdaf0"
+    }
+  ],
+  "self_excluded": true,
+  "acceptance": 0
+}

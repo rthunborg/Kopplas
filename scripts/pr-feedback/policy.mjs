@@ -46,9 +46,13 @@ export function parseStateComment(comment, { appId, appUserId, prNumber }) {
   return { ...state, commentId: comment.id };
 }
 
+export function isVisualControlComment(body) {
+  return typeof body === 'string' && (body.startsWith('<!-- kopplas-visual-evidence-v1 -->\n') || /^\/visual-(accept|revoke|waive|review|opt-out|not-applicable) [0-9a-f]{40} [0-9a-f]{64}(?:$|[ \n])/.test(body));
+}
+
 export function selectFeedback({ comments = [], reviews = [], reviewComments = [], allowedUserIds = DEFAULT_ALLOWED_USER_IDS, permissions = {}, headSha, now = Date.now() }) {
   const cutoff = now - LIMITS.freshnessDays * 86400000;
-  const trusted = (item) => item?.user?.type === 'User' && allowedUserIds.includes(item.user.id) && ['write', 'maintain', 'admin'].includes(permissions[item.user.login]) && Date.parse(item.updated_at ?? item.submitted_at ?? item.created_at) >= cutoff;
+  const trusted = (item) => !isVisualControlComment(item?.body) && item?.user?.type === 'User' && allowedUserIds.includes(item.user.id) && ['write', 'maintain', 'admin'].includes(permissions[item.user.login]) && Date.parse(item.updated_at ?? item.submitted_at ?? item.created_at) >= cutoff;
   const result = [
     ...comments.filter((item) => trusted(item) && item.body?.trim()).map((item) => ({ ...item, kind: 'issue-comment' })),
     ...reviews.filter((item) => trusted(item) && item.commit_id === headSha && ['CHANGES_REQUESTED', 'COMMENTED'].includes(item.state) && item.body?.trim()).map((item) => ({ ...item, kind: 'review' })),
@@ -68,7 +72,7 @@ export function planAttempt({ pr, state, feedback, dryRun, now = Date.now() }) {
   return { eligible: true, fingerprint, dryRun: Boolean(dryRun), headSha: pr.head.sha, prNumber: pr.number, headRef: pr.head.ref, feedback };
 }
 
-export function classifyChecks({ headSha, runs = [], requiredJobs = ['verify', 'db', 'recovery-storage-loader', 'e2e', 'dashboard-e2e'] }) {
+export function classifyChecks({ headSha, runs = [], requiredJobs = ['checkpoint-admission', 'verify', 'db', 'recovery-storage-loader', 'e2e'] }) {
   const candidates = runs.filter((run) => run.event === 'pull_request' && run.head_sha === headSha && run.path === '.github/workflows/ci.yml');
   const latest = candidates.sort((a, b) => b.id - a.id)[0];
   if (!latest || latest.status !== 'completed') return { phase: 'ci-pending' };

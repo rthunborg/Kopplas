@@ -1,0 +1,29 @@
+{
+  "local_merge_commit": "aa1a16adf2980355f0228badf889c95a4f230248",
+  "parents": [
+    "8b77f94c191ea31bb2b216215f834619c793100b",
+    "99104d0ffa0360cf7d4ce4de174789c4a4605224"
+  ],
+  "tree": "e0737d547e62c4cac8ae5780ffc4ba1be7ef00c6",
+  "High_author": "/root/build15_5_high/implementation_author",
+  "independent_High_reviewer": "/root/acquisition15_observability_source_review_high",
+  "original_targeted_verdict": "NOTPASS_TARGETED_COMPOSITION_ENCODING_REGRESSION",
+  "original_manifest": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-high-review/manifest.json",
+  "original_manifest_sha256": "31abc73b57b6ad20c76936a922fe2feb9b079257b92c26dc03d009fcbea03be2",
+  "finding": "P1 E16-COMPOSE-ENCODING-01: introduced UTF8 text/essential login-selector corruption; bothparents clean",
+  "corrective_author_scope6": [
+    "src/components/resources/BookingEditor.tsx",
+    "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "src/components/jobs/JobWorkspaceSchedule.tsx",
+    "src/server/read-models/job-workspace.ts"
+  ],
+  "root_mechanics": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-root-precommit-mechanics.json",
+  "migration116_native_clean": "PASS;111existing+5exactincoming",
+  "checks": "Author TypeScript/lint/lock0; separateNode81P/173Pnonadditive; authored16diffcheck0, wholecached2 on33outside16formatpaths",
+  "source_admitted": false,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "next": "Narrow six-file encoding correction preserving semantic resolutions, then targeted independent regression closure and fresh native readiness."
+}

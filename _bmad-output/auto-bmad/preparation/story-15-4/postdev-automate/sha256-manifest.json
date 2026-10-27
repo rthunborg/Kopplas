@@ -1,0 +1,48 @@
+{
+  "kind": "story-15-4-postdev-automate-output-bindings",
+  "source_head": "92dbbef351b694ea58138bee73091c4e9c4cdcaf",
+  "qualified_ci_head": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+  "status": "PASS",
+  "checks_passed": 52,
+  "checks_failed": 0,
+  "new_product_tests": 0,
+  "runtime_runs": 0,
+  "release_ready": false,
+  "files": [
+    {
+      "path": "_bmad-output/test-artifacts/automation-summary-story-15-4-postdev.md",
+      "bytes": 26055,
+      "sha256": "64c11437a4918ff033f556e67b623e8f919dfad56359f3b923e45b0cdc5cf010"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/postdev-automate/coverage-inventory.json",
+      "bytes": 32737,
+      "sha256": "dcc6cfbe4a7bd2a03aa22801e0ae29806613f17801ebb920ec2dbc8ca4d83a7e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/postdev-automate/tea-automate-api-tests-2026-10-20T12-08-37-492Z.json",
+      "bytes": 22365,
+      "sha256": "48dacf02d15ab9253616f47d76e3a56e9b4051360a9fa853fac67839329012a3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/postdev-automate/tea-automate-e2e-tests-2026-10-20T12-08-37-492Z.json",
+      "bytes": 27791,
+      "sha256": "b0065c39348bf30b41176cded08de0f468a1afb96aa51df321abae46c4c9d60c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/postdev-automate/tea-automate-summary-2026-10-20T12-08-37-492Z.json",
+      "bytes": 2357,
+      "sha256": "54328b6226a4f5ccb8ff5da5bceea06f92b6f5436c7436300948d0b7eee9565d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/postdev-automate/validate-postdev.py",
+      "bytes": 12471,
+      "sha256": "0324cff591ab2eb334e614f8dfaabd79bbc7cbdac9d2b28e79af7d76557e167a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-4/postdev-automate/validation-result.json",
+      "bytes": 10240,
+      "sha256": "dcdf60b49c8d7375048d6fd365ea9abf3d13c0dd47fd4711362f93e2fb8ae71c"
+    }
+  ]
+}

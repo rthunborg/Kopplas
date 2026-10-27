@@ -1,0 +1,41 @@
+{
+  "label": "INT014-rejection-assertion-localization",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\";import assert from \"node:assert/strict\";import * as nodeModule from \"node:module\";import {pathToFileURL} from \"node:url\";\nconst file=\"C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts\";const s=fs.readFileSync(file,\"utf8\").replaceAll(\"\\r\\n\",\"\\n\"),readFileSync=fs.readFileSync,CommandError=Error,url=JSON.stringify(pathToFileURL(file).href),cases=[],test=(name,run)=>cases.push({name,run});const start=s.indexOf(\"function actualFeedRegion(\"),end=s.indexOf('test(\"actual status mapper distinguishes',start);eval(nodeModule.stripTypeScriptTypes(s.slice(start,end).replaceAll(\"import.meta.url\",url)));const t=cases.find(t=>t.name.includes(\"refuses\"));try{await t.run();console.log(JSON.stringify({passed:true}));}catch(e){const allowed=new Set([\"rpc\",\"physical-privacy\",\"status-valid\",\"status-schema-invalid\",\"status-rpc42501\",\"iso\"]);const close=v=>typeof v===\"number\"?v:Array.isArray(v)&&v.every(x=>allowed.has(x))?v:null;console.log(JSON.stringify({passed:false,name:e.name===\"AssertionError\"?e.name:\"UNKNOWN\",code:e.code===\"ERR_ASSERTION\"?e.code:null,actual:close(e.actual),expected:close(e.expected),evalFrameLines:[...String(e.stack).matchAll(/<anonymous>:(\\d+):(\\d+)/g)].map(m=>[Number(m[1]),Number(m[2])])}));}"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 0.088229,
+  "reason": null,
+  "caps": {
+    "seconds": 30,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 146,
+      "sha256": "9f6ee9b6815cf9268c804f1f144f57a2d9fd47864bf6ee4f02760b046edd192e",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 183,
+      "sha256": "f0c15d5107326943e6d6f12358453f1f5c321c119bb5ce0029b73510f270d882",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

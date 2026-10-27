@@ -1,0 +1,19 @@
+{
+  "schema": "ROOT_SOURCE_LABEL_TRANSPORT_PREREQUISITE_ADMISSION_v1",
+  "status": "TRANSPORT_PREREQUISITE_REQUIRED",
+  "source": "b72c3af782adde452d47bdedfddec0fbefbfeb49",
+  "metadata_HEAD": "e8555339a0fe2683513e569b5774081549b901fd",
+  "readiness_manifest_sha256": "6f486cba89b559e523ab833e963194a45eedeb486cf5ff0dfb93a5487222caf6",
+  "mechanical_rows": 75,
+  "native_clean_checks": 75,
+  "actual_Git_objects": 225,
+  "source_scope": [
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "ownership": "Subset of existing exact-six source allocation; no new shared path, migration or test resource effect.",
+  "native_acceptance": 0,
+  "effects": 0,
+  "next": "High author validates supported per-test metadata sink and implements exact3; installed JsonReporter proof plus targeted committed review before any comparison."
+}

@@ -1,0 +1,18 @@
+{
+  "consumer_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-actual-preparation/reader.py",
+    "bytes": 52636,
+    "sha256": "a17536afc1210860ab0dc30eb81192eb73649f36ad5926ee8fb739834deb3350"
+  },
+  "four_labels": [
+    "scenario-telemetry-privacy-refused-integration-ip-stdout-header",
+    "scenario-telemetry-privacy-refused-integration-ip-stdout-other",
+    "scenario-telemetry-privacy-refused-integration-ip-stderr-header",
+    "scenario-telemetry-privacy-refused-integration-ip-stderr-other"
+  ],
+  "current_recognized_new_labels": 0,
+  "current_behavior": "Existing failure_facts rejects the four new labels as invalid owned tuple headers; no runtime reader was invoked.",
+  "exact_later_need": "Separately allocate/review adding only these four constants to the existing stages set, retaining all parser logic, caps, schemas, rejection, source and admission bindings. A new operation must rebind the final source and independently qualify compatibility.",
+  "private_edits": 0,
+  "network_or_reader_invocations": 0
+}

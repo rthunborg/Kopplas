@@ -1,0 +1,358 @@
+{
+  "schema": "TARGETED_TERMINAL_DIAGNOSTIC_STOP_AUDIT_v1",
+  "reviewed_at_utc": "2026-10-21T20:31:24.101851+00:00",
+  "verdict": "PASS_QUALIFIED_STOP",
+  "operation_outcome": "STOP_UNKNOWN_OUTPUT_CAP",
+  "findings": [],
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "route": "gpt-6.1-sol High",
+    "independence": "Distinct from NativeHigh operator and source authors; prior offline run/source audits disclosed and reused only where unchanged."
+  },
+  "scope": "Finite consumed-stop provenance/privacy/truth only, no application-cause/sourcefix/output-budget review, fourth broad review or counter change.",
+  "policy": {
+    "path": "docs/process/development-completion-policy.md",
+    "bytes": 8460,
+    "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+  },
+  "identity": {
+    "actor": "rthunborg",
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "event": "workflow_dispatch",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "release_validation": false,
+    "repo": "rthunborg/Kopplas",
+    "run_id": 39664130401,
+    "triggering_actor": "rthunborg",
+    "workflow_id": 296219797
+  },
+  "packet": {
+    "directory": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic",
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/manifest.json",
+      "bytes": 2254,
+      "sha256": "b502e54a26d4d599ca308c4915420ad0f9dee9decbd29456fda36ea8e3831c0a"
+    },
+    "members": 9,
+    "nonself_hashes_verified": 8,
+    "exact_set_verified": true,
+    "diagnostic_file_absent": true
+  },
+  "qualification_inputs_verified": [
+    {
+      "bytes": 3275,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-activation.json",
+      "sha256": "ba6a58eb47f51f0242cd885ab5e6ef0dfbf77707dfeeb51d9b815a9587d8ca46"
+    },
+    {
+      "bytes": 1590,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/manifest.json",
+      "sha256": "fe8c36df94f39e4e48905390bec4791b148d4c14659bd971fbb0ec1e1e279b98"
+    },
+    {
+      "bytes": 24060,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/targeted-diagnostic-operator.py",
+      "sha256": "560b3accc66323a853b36a57d09fc12c1cc4dbc97059b705c15b79da59b4c559"
+    },
+    {
+      "bytes": 11742,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/preparation.json",
+      "sha256": "c93f6894b7350bc132efc2912e96f1417c687702960c4e6f143d58018da43021"
+    },
+    {
+      "bytes": 2988,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-post-f1-targeted-diagnostic-allocation.json",
+      "sha256": "bcb71ba6c46ccb89fa5cd2c3f5022131e82d2d55c8a77d85a349abe58f2bd35d"
+    },
+    {
+      "bytes": 1084,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-current-source-proof.json",
+      "sha256": "1790919cbc13847b62cba58e8566116014f236236bf29587127cfc096f3dbd2d"
+    },
+    {
+      "bytes": 15819,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-terminal.json",
+      "sha256": "b8c92f76022db4149bcefcc38add55526de0f01cb2936e113a1f6af8329f1f5e"
+    },
+    {
+      "bytes": 12067,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/original-attestation.json",
+      "sha256": "c5b03cd4e5838a0734b8781ea14d4c267410a7f6547fc5107045d5a5881b3890"
+    },
+    {
+      "bytes": 3865,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/manifest.json",
+      "sha256": "76176fdf2a31b465f3c0237b130f108c50bc2503c0ab863542d5fe9e195d90e9"
+    },
+    {
+      "bytes": 1181,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-f1-targeted-diagnostic-source-audit-admission.json",
+      "sha256": "76b1a1787bd0789d27f898e1eb72f95ff9e08d0562d558f857644ac9301025eb"
+    }
+  ],
+  "preparation_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/bindings.json",
+    "bytes": 41758,
+    "sha256": "f7333652de4238ee8ce984df97d6e7afc5bfc2c2bc30f8e65c7e4b9024c51741"
+  },
+  "preparation_input_refs_verified": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 31222,
+      "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+      "bytes": 36163,
+      "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "5986b981a999c5aa939568d30789ce678095f9052af279548eec5d3ccc4fc348"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+      "bytes": 5474,
+      "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-terminal.json",
+      "bytes": 15819,
+      "sha256": "b8c92f76022db4149bcefcc38add55526de0f01cb2936e113a1f6af8329f1f5e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/report.md",
+      "bytes": 5879,
+      "sha256": "179c1b2e6ca8d0a45e95b2bd63188bc6fd5297fee298ac2cf125d76d389d298f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/attestation.json",
+      "bytes": 14700,
+      "sha256": "697d1079c7b4df84721f1e9ab979f0dee1ac734df73badd261d3ba435918217c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/manifest.json",
+      "bytes": 641,
+      "sha256": "903fbbe9062abd03321583ee56f37d0ca2d0e16d5d07e9bf722b9ad8ce80c50b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/report.md",
+      "bytes": 2163,
+      "sha256": "7531416935bcfe6c6556002fe19b8ff2c190e02527b5ca3808be44c4ebdd80c5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/attestation.json",
+      "bytes": 7544,
+      "sha256": "cfafed92855e2642ad99f641b837c5b449fd5dbf25f65cf379d6020e476f6cab"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/manifest.json",
+      "bytes": 686,
+      "sha256": "da5b54c7dd48724fd30eb63c9c5d545f96861afb045b5214ac4760a86f6541a0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/report.md",
+      "bytes": 2500,
+      "sha256": "abc499acc6551c51c50cdfd5e07f34a7025be635f4dfc4401b85b236ef769fca"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/attestation.json",
+      "bytes": 7223,
+      "sha256": "8b588fad598c4afd2603fc9b3166367e98a95ea5fca91c2d5a611feb31ec94e4"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/manifest.json",
+      "bytes": 977,
+      "sha256": "eaa5287c32f42f828a35c534174143bc60910cfd6b519efbb508d99e1d36c5d2"
+    }
+  ],
+  "source_proof": {
+    "raw_LF_computed_blob_rows_verified": 74,
+    "Root_fresh_proof": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-current-source-proof.json",
+      "bytes": 1084,
+      "sha256": "1790919cbc13847b62cba58e8566116014f236236bf29587127cfc096f3dbd2d"
+    },
+    "Root_checked_Git_objects": 222,
+    "reviewer_Git_commands": 0,
+    "limit": "Root source/pushed/current object equality reused as bound provenance, not independently queried now."
+  },
+  "old_packet_preserved": {
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-ci-independent/manifest.json",
+      "bytes": 5474,
+      "sha256": "e77658bd7621b51e73e1e83314af86aaa9497ec49d37618832eb6ab2d1ed0bf0"
+    },
+    "members": 22,
+    "nonself_hashes_reverified": 21,
+    "no_historical_result_reclassified": true
+  },
+  "authority": {
+    "allocation": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-post-f1-targeted-diagnostic-allocation.json",
+      "bytes": 2988,
+      "sha256": "bcb71ba6c46ccb89fa5cd2c3f5022131e82d2d55c8a77d85a349abe58f2bd35d"
+    },
+    "completed_allocation_tool": "exec-f2a6702a-be43-4018-928b-05ee3901e3c3",
+    "activation": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-activation.json",
+      "bytes": 3275,
+      "sha256": "ba6a58eb47f51f0242cd885ab5e6ef0dfbf77707dfeeb51d9b815a9587d8ca46"
+    },
+    "consumed": true,
+    "no_retry": true,
+    "actual_terminal_identity_jobs_checked": true,
+    "operator_intent": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/operator-intent.json",
+      "bytes": 870,
+      "sha256": "4f12b964d57702db2c71d5f4cc64cf450344110897ed3cd2fd136fa581b2873a"
+    }
+  },
+  "actual_closed_requests": [
+    {
+      "sequence": 1,
+      "label": "native-full-integration",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12376717919/zip"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 1.295,
+      "capture_complete": true,
+      "settled": true,
+      "handles_closed": true,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 103147,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "cf58b118510d1abd850b671e0e27adc6ef295ba2e7dde07fef78a5967609438a"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "label": "native-general-browser",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/rthunborg/Kopplas/actions/artifacts/12375309772/zip"
+      ],
+      "native_exit": 0,
+      "elapsed_seconds": 1.035,
+      "capture_complete": true,
+      "settled": true,
+      "handles_closed": true,
+      "streams": [
+        {
+          "joined": true,
+          "observed_bytes": 8316,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "38adbf04a30432c4f1022f01d6dc169331c8d3260a324a022610a8859dc7cbba"
+        },
+        {
+          "joined": true,
+          "observed_bytes": 0,
+          "overflow": false,
+          "physical_EOF": true,
+          "reader_done": true,
+          "reader_error": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "request_interpretation": "Two pinned downloads independently match original admitted IDs/digests/sizes. Structured closed receipts show native0/EOF/readersjoined/settlement within caps. This is distinct from operator exit1 and does not qualify backend cleanup.",
+  "completion_lineage": {
+    "binding": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-ce1943e0-targeted-diagnostic/execution-completion.json",
+      "bytes": 1403,
+      "sha256": "b815843e81214c4f13ea8d88b01afc36feb33bb1ea99487573b759e6ba69ccdf"
+    },
+    "chunk_id": "b0af71",
+    "native_exit": 1,
+    "wall_seconds": 2.5665109,
+    "session_id": null,
+    "subsequent_waits": 0,
+    "attribution": "Native operator retained actual exec_command return, relayed by Root; closed execution-completion projection corroborates paired receipts/stop.",
+    "original_tool_output_independently_read": false,
+    "exact_toolcall_UUID": null,
+    "no_external_receipt_claim": true
+  },
+  "stop_branch": {
+    "operator": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/targeted-diagnostic-operator.py",
+      "bytes": 24060,
+      "sha256": "560b3accc66323a853b36a57d09fc12c1cc4dbc97059b705c15b79da59b4c559"
+    },
+    "inspected_lines": "294-308 acquire;310-332 main, especially326 size check before327 write and331 closed stop",
+    "output_cap": 32768,
+    "stage": "OUTPUT_CAP",
+    "transport_native_exits": [
+      0,
+      0
+    ],
+    "operator_exit": 1,
+    "targeted_diagnostic_published": false,
+    "discarded_projection_reconstructed": false,
+    "actual_result_size_bytes": null,
+    "selected_case_error_counts": null,
+    "closed_error_taxonomy": null,
+    "source_location_candidate_count": null,
+    "source_location_candidates": null,
+    "availability": "UNAVAILABLE_NOT_ZERO"
+  },
+  "privacy_custody": {
+    "raw_archives_reports_messages_stacks_attachment_bodies_persisted": false,
+    "no_projection_reconstruction": true,
+    "GET_children_streams": "OWN_GH_CHILD_AND_OUTPUT_SETTLED per bound receipts",
+    "backend_runtime_key_cleanup": "UNKNOWN_UNCHANGED",
+    "no_application_cause_or_no_location_or_zero_error_inference": true
+  },
+  "executed_vs_reused": {
+    "reviewer_actual": "Bounded offline JSON/hash/identity/current74/old22/IO accounting checks and stop-branch AST/source inspection only. No operator import/execution, test suite or runtime.",
+    "reused": "Conditional independent pre-GET source review and unchanged prior transport/ZIP/privacy and failed-normal/source qualification; no broad repeat.",
+    "scope_limit": "No diagnosis of local output-budget implementation or application failure; Root separately routes that assessment."
+  },
+  "remaining_gates": [
+    "Failed/partial normal39664130401 remains unchanged; fullDB/RLS and all95 mandatory cases unmet",
+    "35API/INT unexecuted including requiredAPI019privacy andINT015",
+    "Three essential browser failures/one flaky case; backend/runtime key custodyUNKNOWN"
+  ],
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "effects_by_reviewer": {
+    "API_network_refetch_retry": 0,
+    "SQL_runtime_CI_resources": 0,
+    "Git_commands": 0,
+    "source_Spec_state_oldfiles_changes": 0,
+    "writes": "Only4newownedstopauditmetadatafiles"
+  },
+  "execution_or_fix_authorized": false
+}

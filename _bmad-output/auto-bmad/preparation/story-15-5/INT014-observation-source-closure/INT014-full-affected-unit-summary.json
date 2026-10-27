@@ -1,0 +1,16 @@
+{
+  "label": "INT014-full-affected-unit",
+  "native_exit": 0,
+  "counts": {
+    "tests": 187,
+    "suites": 0,
+    "pass": 187,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "raw_persisted": false,
+  "TS_diagnostics": [],
+  "stderr_nonempty": false,
+  "nonadditive": true
+}

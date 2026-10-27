@@ -1,0 +1,99 @@
+{
+  "schema": "C4_JOB01_FINITE_REFINEMENT_v1",
+  "status": "READY_FOR_DISTINCT_HIGH_RECHALLENGE_NOT_SOURCE_AUTHORITY",
+  "policy_version": "2026-10-19",
+  "current_metadata_head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+  "source": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+  "normal_acceptance_credit": 0,
+  "original_verdict": "NOTPASS_PLAN_REFINEMENT_REQUIRED; C4-JOB-01 finally-return bypass preserved, not rewritten",
+  "delta": [
+    "Replace old awaited/no-catch ancestor heuristic with a finite exact caller/import/enrollment shape. No existing test rewrite is needed: current34 calls satisfy it.",
+    "Add a pre-test resolved-project supported-config gate inside existing vitest.config.ts using the installed configureVitest plugin hook; do not reorder groups or reject an unrelated CPU/CLI-effective worker budget."
+  ],
+  "caller_contract": {
+    "binding": "Direct named non-type imports test from vitest and withCalendarFeedFixture from ../../support/calendar-feed-atdd; intended local names unchanged. Reject alias/wrong binding, shadow declaration, assignment or non-callee fixture use; property-name test in regex.test is not an imported-binding use.",
+    "statement": "The fixture call is exactly the expression inside await, exactly the expression of an ExpressionStatement immediately in the Block body of the async ArrowFunction that is argument1 of the direct imported test call. Its declaration ID is one of exact INT001..014/API001..020, each once. No enclosing block/try/catch/finally/conditional/wrapper, return/void/then-catch or unawaited form.",
+    "limits": "Finite current caller contract, not a general arbitrary-JavaScript malicious-monkeypatch proof. Keep helper final outside-callback latch rejection and targeted independent source review; if call shape legitimately changes, stop for explicit requalification rather than weakening this guard."
+  },
+  "supported_config_contract": {
+    "implementation_location": "vitest.config.ts plugins[] configureVitest hook; all other six-path hunk ownership unchanged",
+    "timing": "Installed cli-api calls configureVitest after resolving all projects and before test execution/globalSetup initialization; hook throws a fixed C4_UNSUPPORTED_PROJECT_CONFIG on any mismatch. Hook remains independent of CLI-selected reporters.",
+    "predicate": {
+      "projects": "Exactly integration-parallel and integration-audit-ddl selected; no missing/extra project silently loses required files.",
+      "parallel": "resolved isolate===true, fileParallelism===true, groupOrder===0, configured/resolved project.config.maxWorkers!==1. Undefined is supported; do not substitute CPU-derived concurrency for this property.",
+      "serial": "resolved isolate===true, fileParallelism===false, maxWorkers===1, groupOrder===1, bail===1."
+    },
+    "unsafe_predicate": "Installed groupSpecs places isolate===true && groupOrder===0 && project.config.maxWorkers===1 into an appended final sequential bucket. Refuse exactly that unsafe configuration before global setup/test import, instead of pretending the group0 order applies.",
+    "CLI_limit": "In these installed pure controls --maxWorkers=1 did NOT change project.config.maxWorkers into1. It therefore did not trigger the unsafe predicate; no blanket CLI1/CPU1 refusal is proposed. Actual future runtime must validate resolved projects and parallel teardown before serial admission.",
+    "failure_semantics": "Fixed startup error/native1, no tests treated as covered; no scheduling mutation/fallback/skip. Correct unsupported input before any authorized future run; no opaque retry."
+  },
+  "controls": {
+    "AST_final": {
+      "file": "caller-contract-results.json",
+      "native_exit": 0,
+      "positive": 3,
+      "negative": 24,
+      "current_calls": 34,
+      "actual_finally_return_suppression_reproduced": true,
+      "negative_types": [
+        "whole catch",
+        "finally return",
+        "void",
+        "not awaited",
+        "wrapper",
+        "return",
+        "conditional",
+        "then catch",
+        "wrong import",
+        "fixture alias",
+        "fixture reassignment",
+        "test shadow"
+      ]
+    },
+    "installed_config_final": {
+      "file": "supported-config-results.json",
+      "supported": "3P native0 including ordinary expected denial",
+      "unsupported": "three native1 fixed config stops: actual project maxWorkers1, parallel fileParallelismfalse, serial bail0; no test report emitted",
+      "each_process_cap_seconds": 25
+    },
+    "prior_capability_evidence": "Original ordered four-run evidence remains unchanged: healthy4P; uncaught/caught-inner each1P1F with no next-file import; whole-fixture catch3P admits next and is unsafe, not safety credit. This refinement does not rerun or relabel that evidence."
+  },
+  "assembly_history_nonadditive": [
+    "AST assembly initially rejected a nonbinding regex .test property name; distinguished property names from binding references. A wrong-import inverse initially changed an earlier helper import instead of the fixture import; inverse now changes all exact helper module strings. Three native1 assembly stops preceded final3positive/24negative native0; no app/source effects.",
+    "Two config harness attempts used --maxWorkers=1 as an unsafe inverse; native0 disproved that assumption. First had explicit project2, second undefined projectmax; neither established the exact unsafe predicate. No failed/unsafe native scenario is claimed. Final inverses modify only own synthetic resolved project configuration and produce the fixed startup stop."
+  ],
+  "exact_candidate_paths": [
+    {
+      "path": "vitest.config.ts",
+      "hunk": "Serial bail1 plus finite configureVitest resolved-project rejection hook above; preserve exact6 enrollment, group0/1 and default isolation. No new runner file."
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "hunk": "Retain exact partition/order checks; add actual resolved supported-condition positive/inverse controls and corrected finite AST/direct-binding34 caller check, including biting finally-return/catch/void/wrapper/binding inverses. Use installed runner pure isolated controls only."
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "hunk": "UNCHANGED reviewed direction: unsuccessful/uncertain committed DB runtime including build/integration nonzero/signal, timeout/cancellation/readiness/launch/stop/forced/unverified/post-run cancellation retains key custody; no key DELETE/readback. Bounded exact child stop/own DB close not rollback proof; successful settled runtime retains current exact UUID+name cleanup."
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "hunk": "UNCHANGED conservative runtime-failure custody/no-delete controls and success/expected-negative cleanup. Preserve setup rollback/collision/browser/diagnostic guarantees."
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "hunk": "Only reviewed final wrapper SHA pin refresh."
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "hunk": "Author C4 contract/evidence/SRO/review-order update; kernel/counter3 and all111 migrations unchanged."
+    }
+  ],
+  "success_and_failure": "Success must retain all95 unique story cases30Node+51DB+14browser with zero required skips, exact6serial once after159parallel, fullDB/RLS SUPABASE_TEST_REQUIRED1 and recovery1 separate. Expected-negative assertions completed successfully do not trigger bail. Failed/bailed runs leave partial/unexecuted cases, not coverage; frontend closure never backend/canonical settlement proof.",
+  "effects_split": {
+    "actual": "Only new owned metadata/pure .mjs source controls and bounded installed Vitest processes; no Git command, app imports, env loading, network, SQL, connections, managed resource, CI or existing file edit.",
+    "later_source_only": "Unchanged exact6 paths need separate Coordinator ownership/allocation and targeted independent source closure; pending cumulative partial-helper review remains.",
+    "future_native": "Separately authorized reviewed exact-head normal CI; no execution authority here. No new query/channel/privilege/fixture/global/env/file custody protocol."
+  },
+  "independent_challenge_question": "Does the exact finite imported test-callback statement shape reject the reproduced finally-return and all suppression/binding inverses while accepting current34, and does the installed configureVitest gate reject precisely unsafe resolved projects before any setup/test import without rejecting CPU/CLI1 unnecessarily? Preserve the reviewed conservative wrapper custody correction and unchanged95 success enrollment.",
+  "blocker": "C4 not implemented/qualified natively; no development completion. If this finite shape/gate cannot be implemented within the six paths, report the exact missing capability before source scope expansion."
+}

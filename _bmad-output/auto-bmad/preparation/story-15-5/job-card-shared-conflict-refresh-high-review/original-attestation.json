@@ -1,0 +1,184 @@
+{
+  "schema": "job-card-shared-refresh-targeted-high-review/v1",
+  "verdict": "PASS_TARGETED_JOB_CARD_SHARED_REFRESH_SOURCE_ONLY",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true
+  },
+  "scope": {
+    "commit": "d65b6666c5883a7445b3732b6ae5938c08f4a91f",
+    "parent": "9384d4f360943f33896094ff503a66ca17929716",
+    "commit_identity_attribution": "Root-provided exact committed scope; no Git command run by reviewer",
+    "source_bindings": [
+      {
+        "path": "supabase/migrations/20261022014027_job_card_shared_conflict_refresh.sql",
+        "bytes": 14195,
+        "sha256": "d1a9e195dcec19038a0667e823d14dbb59df30fabc8b3171c051b62a38995fc5"
+      },
+      {
+        "path": "tests/integration/commands/booking-series.int.test.ts",
+        "bytes": 100040,
+        "sha256": "86bd08370eb0ffae251665d0fc44ba37a066ef66630af6d5e12c0e8ca1f48871"
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "bytes": 43328,
+        "sha256": "b82ba58531b579abc8bab720118a1bbc67cc25be0d3326768c132303dc9651f4"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 231430,
+        "sha256": "2db7fed8327ae5c9e59c82b72e97aa3f3f2c0b91db6b31fe6fe4866f2f2db23b"
+      }
+    ],
+    "paths": 4,
+    "broad_review": false,
+    "counter": 3
+  },
+  "private_handoff": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-card-shared-conflict-refresh-correction/manifest.json",
+      "bytes": 862,
+      "sha256": "22f0fb80e7ed719edc388148a3841dd910a60d04ba5009f903754afccef9da82"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-card-shared-conflict-refresh-correction/receipt.json",
+      "bytes": 11303,
+      "sha256": "4b56b620b37efab9d73326714c4e1cd0a7bb3cf5f2430077982fc572b99f6709"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-card-shared-conflict-refresh-correction/bindings.json",
+      "bytes": 5049,
+      "sha256": "2ed30d2bad8d3f672016331acf2a00d2576abb54f6519ff5f2bea4dba73c301c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-card-shared-conflict-refresh-correction/result.json",
+      "bytes": 1355,
+      "sha256": "00931f7981d134e897be24dbb93904ab169b9b9ba61cfe75ff1b2fb69a2a56b2"
+    }
+  ],
+  "allocation": {
+    "tool": "exec-ce91802f-4bea-4caf-89fc-3ad566dbad53",
+    "turn": "01a16141-d99c-7591-83ba-f57c0c642381",
+    "ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-job-card-shared-conflict-refresh-source-allocation.json",
+      "bytes": 3231,
+      "sha256": "577aa2fb8f7591d1feb1a63021a334f693c91eece4f2cb9c4f92eb4873f05fd6"
+    }
+  },
+  "independent_reads": {
+    "source4_refs12_bound": true,
+    "actual_migration_full_read": true,
+    "effective_E16_and_later_revision_helper_read": true,
+    "REAL011_full_fixture_assertion_region_read": true,
+    "resolver_INT001_reused_unchanged": true,
+    "author_SRO_new_stops_checked": true
+  },
+  "independent_source_proof": {
+    "tool_chunk": "37c93f",
+    "exit": 0,
+    "effective_preimage_bytes": 8101,
+    "effective_preimage_sha256": "4abac05b664633f4100953964e7d5131a78f23a7130e5b886cccc96b99b4c06f",
+    "old_refresh_bytes": 807,
+    "old_refresh_sha256": "5a3e74977a19639356a2c20071735b165476fdb907ad9c2a903813693771d507",
+    "seam_count": 1,
+    "LF_CRLF_inverse": true,
+    "other_body_bytes_identical": true,
+    "integration_inverse_sha256": "cfbf9ab2fd978f682841a13135276b16d3473a7a95a0ab674591ac84c4a2e00b",
+    "strict_objects": 3,
+    "old42_unit_prefix_bytes": 35671,
+    "old42_unit_prefix_sha256": "defcc1a19b50be244cb959f0c051011acc85f80e62f0af9ce0e80a51f336c532"
+  },
+  "independent_focused_run": {
+    "chunk": "59a0e1",
+    "exit": 0,
+    "wall_seconds": 0.7441751,
+    "proof": {
+      "verdict": "TARGETED_SOURCE_CONTROLS_PASS",
+      "argv": [
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-name-pattern=Forward job card migration|Actual forward job card block|REAL011 retains",
+        "tests/unit/server/bookings/series-plan.test.ts"
+      ],
+      "exit": 0,
+      "summary": {
+        "tests": 3,
+        "suites": 0,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_bytes": 1639,
+      "stdout_sha256": "ef13af1a236d55d995794a39dc0edb30edf7804b91ea4be4441d70ce8dcb712e",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "old117_raw_unchanged": true,
+      "migration_total": 118,
+      "effective_finalizer_body_source": "supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql",
+      "SQL_runtime": 0,
+      "network_GETs": 0,
+      "resources": 0
+    },
+    "pure_source_tests_not_SQL_execution": true
+  },
+  "metadata_control_assessment": {
+    "target_body_exact_preflight": true,
+    "helper_body_exact_preflight": true,
+    "only_dynamic_DDL_statement": 1,
+    "target_post_source_exact": true,
+    "target_nonbody_pg_proc_full_comparison": true,
+    "helper_pg_proc_full_comparison": true,
+    "OID_signatures_checked": true,
+    "unknown_shapes_refuse": true,
+    "new_authority": false,
+    "Postgres_compile_execution_catalog_ACL_atomicity_proof": false
+  },
+  "reused_author_checks": {
+    "affected_unit_pass": 45,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "whole_TS_exit": 0,
+    "affected2TS_lint_exit": 0,
+    "diff_reader_exit": 0,
+    "rerun_whole45": false,
+    "prior42_prefix_preserved": true,
+    "nonadditive": true,
+    "kernel5760": "Root/author retained SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "SRO189": "author reader evidence bound; new stops inspected",
+    "status": "in-review"
+  },
+  "skills": {
+    "local_sources": [
+      "C:/Users/Rasmus/.agents/skills/supabase/SKILL.md",
+      "C:/Users/Rasmus/.agents/skills/supabase-postgres-best-practices/SKILL.md"
+    ],
+    "application": "Least privilege, unchanged security-definer boundary/search path and transactional integrity considered. Explicit task prohibits network/SQL effects; no implementation/query/advisor workflow invoked."
+  },
+  "findings": [],
+  "limits": {
+    "historical_native_first_throw": "UNKNOWN",
+    "new_SQL_compilation_application": "UNEXECUTED",
+    "metadata_ACL_rollback": "UNEXECUTED",
+    "browser_settlement_fix": "NONE",
+    "prior_native_gates": "DB/browser FAIL;35requiredcases missing",
+    "custody_backend_settlement": "UNKNOWN",
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "effect_authority": false
+  },
+  "effects": {
+    "Git": 0,
+    "GET_network": 0,
+    "SQL_DB_browser_build_CI_provider_resources": 0,
+    "source_Spec_state_changes": 0
+  },
+  "policy": "development-completion-policy2026-10-19"
+}

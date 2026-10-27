@@ -1,0 +1,66 @@
+{
+  "operation_id": "0d860414-873f-4b55-a578-05cf743c9cf0",
+  "run_id": 40192543175,
+  "head": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "report": "native-isolated-storage-recovery",
+  "acquisition": {
+    "ordinal": 5,
+    "label": "native-isolated-storage-recovery",
+    "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/12598667438/zip",
+    "status": "COMPLETE_VERIFIED_ZIP",
+    "intent_utc": "2026-10-25T12:47:38.360444+00:00",
+    "native_exit": 0,
+    "elapsed_seconds": 0.9551826999995683,
+    "stdout_bytes": 678,
+    "stderr_bytes": 0,
+    "full_EOF": true,
+    "faults": [],
+    "body_sha256": "54c74b49e5c26b7279bc64fb6684b97f30820efc3c4947d57dd027179820f741",
+    "selected_JSON_bytes": 1152,
+    "selected_JSON_sha256": "b62a8f5cc69cf99665aa7dfb422efbb118d5a6630d199682a803a149a5a8a38e",
+    "ZIP_CRC_caps": "PASS",
+    "redirect_count": "UNOBSERVED standard gh HTTPS transport; no URLs retained"
+  },
+  "native_header": {
+    "success": true,
+    "numTotalTests": 1,
+    "numPassedTests": 1,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "numTotalTestSuites": 2,
+    "numPassedTestSuites": 2,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0
+  },
+  "files": [
+    {
+      "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "status": "passed",
+      "assertion_count": 1,
+      "leaf_status_counts": {
+        "passed": 1
+      },
+      "message_field": "empty",
+      "result_errors": {}
+    }
+  ],
+  "leaves": [
+    {
+      "status": "passed",
+      "duration": 694.58786,
+      "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "title": "serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+      "fullName": "isolated recovery Storage physical-loader proof serves loader-materialized bytes without mutating logical rows and rejects generic plus quote-PDF overwrite attempts",
+      "ancestorTitles": [
+        "isolated recovery Storage physical-loader proof"
+      ],
+      "source_labels": {
+        "state": "UNKNOWN",
+        "field": "absent"
+      }
+    }
+  ],
+  "root_errors": {},
+  "raw_corpus_persisted": false
+}

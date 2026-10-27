@@ -1,0 +1,231 @@
+{
+  "schema": "POST_F1_READINESS_INPUT_REFS_v1",
+  "source_bindings_file": "source-bindings.json",
+  "refs": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": "docs/process/local-setup.md",
+      "bytes": 19824,
+      "sha256": "c533f25c64c176b01d21c0a06141aa4287752922cd586e3f23fb4b15a784bfe7"
+    },
+    {
+      "path": "docs/process/agent-workflow.md",
+      "bytes": 8534,
+      "sha256": "f98f17dbe51f7ca7b77657e616b624ee7241f33ff17be94db1bb70ad361e81e1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/f1-transport-custody-author-result.json",
+      "bytes": 66777,
+      "sha256": "ae850d24d5c59dd9fbd690e9afaf6bf595bb94ce32ca84b1d0d9e977fb08939a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-f1-transport-custody-closure-admission.json",
+      "bytes": 1423,
+      "sha256": "b6b0aaca7dce9ae737b53329212882fff5733b346fb5bc46e897086eabaf16a5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-report.md",
+      "bytes": 5217,
+      "sha256": "917b33ccef9969486b28ff7795407976a963a85dd47825ec0001742394c35d33"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/f1-transport-custody-closure-review/original-attestation.json",
+      "bytes": 16971,
+      "sha256": "2c9cbb50ea9ab8b15bfadfcb73a2dd86d3f93b0d6e7550bce70506cf46ac12d8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-readiness.json",
+      "bytes": 34051,
+      "sha256": "f5a61e8d45e704e821357a479594ff496b9a3b6e5ab1d388039ae687be0bdaaa"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-evidence-audit-admission.json",
+      "bytes": 1507,
+      "sha256": "81b538512e8e6ad23337437d9eca730f1d357a25e9624aa77ba17cc8beac44eb"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-report.md",
+      "bytes": 6639,
+      "sha256": "5b2689aa3cc872f31a2d84dec6529f05589a4f2ee7cdef2da31816967d5c644e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/manifest.json",
+      "bytes": 4947,
+      "sha256": "a964912b04fff6fc7f93a29f63ef84fa2aa5788e357e9f57a24a07eb95f46a81"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/operator-intent.json",
+      "bytes": 2533,
+      "sha256": "39606cf940960e530aae20e3806c47edc0416897e0c58f3199b49d350004f83c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-vercel-readonly-qualification.json",
+      "bytes": 4298,
+      "sha256": "45dfbb5ffb561f3b1a1d805ebfab9d8151e41b75c87fa601a278af33771e124f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/epic15-contained-provider-read-91a2b3f9-2b97-4ffa-8acb-553b0ea81c81/project-execution-df37ef35-a27c-430c-bb7c-61ee816a96c0.capsule.json",
+      "bytes": 12678,
+      "sha256": "ff516498b565571361609a09806bb7c8d7a21765cecb71ea635079b7085466e4"
+    }
+  ],
+  "additional_contexts": [
+    {
+      "path": "scripts/run-tests.mjs",
+      "bytes": 2455,
+      "sha256": "81ed5c6ce39ebeae66e23aa8095580d6ec91c93c3a59a7bb07b9556b98297a50",
+      "metadata_HEAD_blob": "60f5cd5f6fb9b5e60ffc3caaeb632a5fb6f9f389",
+      "clean_oid_equal": true
+    },
+    {
+      "path": "tests/e2e/ci-duration-budget-reporter.ts",
+      "bytes": 1347,
+      "sha256": "81a8ab0ee20a43fa16f90e82af71476ffbd4217a1ecb4e12570e5532d41086de",
+      "metadata_HEAD_blob": "f480584ed81b4da715cb69b9344f2ad7f46404b2",
+      "clean_oid_equal": true
+    }
+  ],
+  "local_installed_metadata": [
+    {
+      "path": "node_modules/vitest/package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9",
+      "version": "4.1.9"
+    },
+    {
+      "path": "node_modules/@playwright/test/package.json",
+      "bytes": 754,
+      "sha256": "9d8556509e073169efec663b7f71c13f17d7002b307d00d48bf88ee91c387f3e",
+      "version": "1.61.1"
+    },
+    {
+      "path": "node_modules/@supabase/supabase-js/package.json",
+      "bytes": 5380,
+      "sha256": "93c607cc70c670e02ffdae1c39c9f92584f699339a39d4686d06ea664342443a",
+      "version": "2.108.2"
+    }
+  ],
+  "reuse_scope": "Reviewed cumulative non-F1 plus targeted latest F1 closure; no fourth broad review, no execution reuse as fresh native PASS. Current future run/checkpoint unassigned.",
+  "operator_original": {
+    "bytes": 26061,
+    "sha256": "71468c52fab40bea00219a00fe85b796f117d611612357a2917170f8d8862be6",
+    "provenance": "Distinct prior audit verified exact retained executed inline command; no broad transcript/raw provider dump or new persistent collector here."
+  },
+  "ordinary_git_push_override_scan": {
+    "tracked_vercel_configs": [
+      "vercel.json"
+    ],
+    "vercel_json_ignoreCommand_present": false,
+    "tracked_vercel_ts_files": [],
+    "workflow_package_vercel_deploy_promote_redeploy_references": 0,
+    "rows": [
+      {
+        "path": "vercel.json",
+        "bytes": 472,
+        "sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129",
+        "metadata_HEAD_blob": "e9e72baa26445c9aee75e47a85946a54dd146acb",
+        "current_clean_equal": true
+      },
+      {
+        "path": "package.json",
+        "bytes": 2352,
+        "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+        "metadata_HEAD_blob": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/auto-bmad-parallel.yml",
+        "bytes": 2068,
+        "sha256": "126d339ac627f0fc455ef7049d3b12bf3ea53411b8a61c8c0e65bb48193ffa65",
+        "metadata_HEAD_blob": "70ec909ee72324b65ce270eee3201e106cedeb70",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "metadata_HEAD_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/cloudflare-monitor-verify.yml",
+        "bytes": 1435,
+        "sha256": "18965e82fb30ebfc8b06346f95369b7dcd1f81345f47fcfcabf3b10232eca553",
+        "metadata_HEAD_blob": "0619e28d79a603178b787189883683b61cc92f14",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/fixed-chromium-capsule-mock-proof.yml",
+        "bytes": 8443,
+        "sha256": "4aa549f5df3ac1e51a0e475826dde0f99d70e1143f83878454efa90780986b86",
+        "metadata_HEAD_blob": "bdfe9dc0849c327f53aaf8fda768e025e794a869",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/pilot-availability.yml",
+        "bytes": 7000,
+        "sha256": "a8a6ecfce478cc86529583535ec24a7a7358e250ce0d6833091e0f8663e5e721",
+        "metadata_HEAD_blob": "8e34762aa940ecf8f391fdfbc5cc3010ab31f0c4",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/pilot-backup.yml",
+        "bytes": 6920,
+        "sha256": "b63f6bb2dadc687bc0ca21f5657175be5f7b374287b84adfaa2194df5294a547",
+        "metadata_HEAD_blob": "bf43be8a559eb38d67cea3097162e29fa2a3fb02",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/pilot-isolated-recovery-rehearsal.yml",
+        "bytes": 13238,
+        "sha256": "a62307f2ff235d2137175bf3ae6102342cf11310d2c8d9b721e6f2a2c05592ec",
+        "metadata_HEAD_blob": "cbf524c97a3d282eb3edc2da80fa499a1ac201bd",
+        "current_clean_equal": true
+      },
+      {
+        "path": ".github/workflows/pr-feedback.yml",
+        "bytes": 13698,
+        "sha256": "6b5a72c5459fbb54991b511d0d583bdb44cd7232d7363129ecb3b8cf93638cea",
+        "metadata_HEAD_blob": "4e8fbf4d495dc7230048cfa6a18025e348ed9649",
+        "current_clean_equal": true
+      }
+    ],
+    "scope": "Current tracked Vercel configurations, package lifecycle/scripts and all current checked-in workflow files; no env/provider secret read, no deploy/promote invocation.",
+    "exact_branch_git_deploymentEnabled": false
+  },
+  "public_primary_docs": [
+    {
+      "url": "https://vercel.com/kb/guide/how-do-i-use-the-ignored-build-step-field-on-vercel",
+      "retrieved_utc": "2026-10-21T19:35:37.608443+00:00",
+      "source": "Independent web open of this exact official primary page in current task",
+      "relevant_excerpt": "If the command returns \"0\", the build will be skipped.",
+      "excerpt_utf8_sha256": "937b3cc48d506e2191a103f8ed5ec812196fb8e499a447bd0fd0456cb50f649f",
+      "raw_body_sha256": null,
+      "raw_body_limit": "Web parsed-page tool; no raw HTTP body/digest claim."
+    },
+    {
+      "url": "https://vercel.com/docs/builds",
+      "retrieved_utc": "2026-10-21T19:35:37.608443+00:00",
+      "source": "Independent web open of this exact official primary page in current task",
+      "relevant_excerpt": "Ignored build step: You can also write a script that cancels the build for a project if no relevant changes are detected.",
+      "excerpt_utf8_sha256": "05f747dc455dc9b4d156fdda3ad9d63731a482332303eef7579da27e6ba69514",
+      "raw_body_sha256": null,
+      "raw_body_limit": "Web parsed-page tool; no raw HTTP body/digest claim."
+    }
+  ],
+  "scope_amendment": "Root separately allocated exact single Vercel GET and exact2 public primary docs; no API repeat or effects expansion."
+}

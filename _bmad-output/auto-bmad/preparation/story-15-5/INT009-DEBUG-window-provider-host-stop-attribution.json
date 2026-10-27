@@ -1,0 +1,28 @@
+{
+  "schema": "ROOT_DEBUG_WINDOW_PROVIDER_HOST_STOP_ATTRIBUTION_V1",
+  "at": "2026-10-22T18:51:41.662398+00:00",
+  "operation_id": "e492b7df-961d-49da-adf2-a00183a1aa94",
+  "actual_outer_tool": {
+    "chunk_id": "4014fe",
+    "exit_code": 1,
+    "wall_time_seconds": 0.1969639,
+    "session_id": null,
+    "wait_calls": []
+  },
+  "capture_ref": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-window-provider-outer-capture.json",
+    "bytes": 1591,
+    "sha256": "33d29a41ccc5adb7a7eeccfb40b278034d8b72d0c71ff9f5c0e9c94381473431"
+  },
+  "provider_child_native_exit": 2,
+  "capture_complete": true,
+  "all_remaining_effect_slots_closed": true,
+  "provider_retries": 0,
+  "MAIN_push": 0,
+  "DEBUG_push": 0,
+  "POST": 0,
+  "metadata_GETs": 0,
+  "artifact_GETs": 0,
+  "normal_acceptance": 0,
+  "status": "STOP_BEFORE_QUALIFICATION_NO_RETRY_LOCAL_AUDIT_ONLY"
+}

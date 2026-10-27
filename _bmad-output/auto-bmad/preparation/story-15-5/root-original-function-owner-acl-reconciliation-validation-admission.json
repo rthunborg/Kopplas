@@ -1,0 +1,22 @@
+{
+  "schema": "root-owner-acl-reconciliation-validation-admission-v1",
+  "validation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-owner-acl-reconciliation-validation.json",
+    "bytes": 11082,
+    "sha256": "bc5dedbbd6c1509ac7355c3e4312d779a4129e27082641ce4a2ba2759d1ec3bd"
+  },
+  "verdict": "PASS_PLAN_ONLY",
+  "actual_proposal_and_six_source_bindings_verified": true,
+  "actual_prior_review_adoption_refs_verified": 4,
+  "exact_candidate_paths": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_edit_authorized": false,
+  "runtime_effects_authorized": false,
+  "next": "Concrete111 known-application clearance and five-path source allocation. Native/CI effects remain separate.",
+  "normal_acceptance_credit": 0
+}

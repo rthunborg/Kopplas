@@ -1,0 +1,92 @@
+{
+  "schema": "SOURCE_LABEL_NORMAL_COMPARISON_ACTUAL_CLOSEOUT_v1",
+  "status": "VERIFY_FAILED_QUALIFIED_EVIDENCE_NO_RETRY",
+  "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+  "pushed_head": "3a385df516088811e6af526beed457292c6d8b1f",
+  "run_id": 39683227657,
+  "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39683227657",
+  "checkpoint_id": "7d80da58-1a19-4dd2-bdf7-a8fa0331aa2c",
+  "attempt": 1,
+  "provider_GETs": 1,
+  "provider_qualification": "PASS_LIMITED_ORDINARY_GIT_PUSH_CONTAINMENT; no observed future cancellation/alias or blanket deployment-disable claim",
+  "FF_pushes": 1,
+  "normal_dispatches": 1,
+  "admission_variable_mutations": 0,
+  "artifact_log_GETs": 2,
+  "artifact_count": 0,
+  "ZIP_GETs": 0,
+  "native_audit_admission": "_bmad-output/auto-bmad/preparation/story-15-5/root-source-label-normal-native-audit-admission.json",
+  "current_actual_results": {
+    "tests": 3243,
+    "pass": 3241,
+    "fail": 2,
+    "suites": 103,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "runtime_and_build": {
+    "DB51": "UNEXECUTED",
+    "browser14": "UNEXECUTED",
+    "recovery1": "UNEXECUTED",
+    "Python": "UNEXECUTED",
+    "production_build": "UNEXECUTED"
+  },
+  "source_fix_history": {
+    "5d5ea4e6": "Source labels; original SOURCE-LABEL-01 NOTPASS preserved",
+    "b72c3af7": "Independent source-only SOURCE-LABEL-01 closure",
+    "a4595068": "Independent source-only Vitest metadata transport PASS"
+  },
+  "collector_history": {
+    "original_fcbdec10": "Independent source-only PASS, no original-failure identity; unanchored TAP limitation retained historically",
+    "refinement_47831dbc": "Independent High finite verify failure projection/TAP correction PASS;36 pure controls/28194 envelope; original16 helper spans unchanged"
+  },
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-source-label-normal-checkpoint-effect-allocation.json",
+      "bytes": 1726,
+      "sha256": "4d79e438cb831633af744ec3fe950ccc3d5cedd38c0214017069c6c62fa54367"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-vercel-readonly-qualification.json",
+      "bytes": 7211,
+      "sha256": "962339ae3c1c9aa1d84917b5f034e102876c2b372c829c3be8c3f0cbd44bd72f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-checkpoint-pre-effect-source-proof.json",
+      "bytes": 834,
+      "sha256": "653054e912216fc3671e65de8142ea85384134e5750b9f389102f062512d4f71"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-terminal.json",
+      "bytes": 9443,
+      "sha256": "0b8e587b6c615008b197b16605c31923f7dfd979d66dcf11b758f77d8b0c3e8c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-source-label-normal-terminal-acquisition-allocation.json",
+      "bytes": 4099,
+      "sha256": "3d5ddb2bf2130b6f417f86a9f5c359f6433b96c834cc2bdcd5d94b1e6fc5173d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-terminal-evidence-activation.json",
+      "bytes": 4188,
+      "sha256": "ce8ad6c5c5f21b7782b257a42d3126928b8e1ff4a51f12c3f5bab6272ff6bc32"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-terminal-current-source-proof.json",
+      "bytes": 1389,
+      "sha256": "e14f4b2788ee8116522648488097053baed420a49365dfa9919ac80511faf6b8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-source-label-verify-unit-refinement-source-audit-admission.json",
+      "bytes": 954,
+      "sha256": "8e257ad8d4ce8350a6e241c2160e947a80f161545e9657700603bb60b36f74d6"
+    }
+  ],
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "no_main_adoption_merge_or_deployment_action": true,
+  "branch_retained": true,
+  "next": "High author localizes and reproduces only qualified two unit declaration candidates; fix only if evidence supports a bounded change within allocated six paths. Preserve assertions/guards and independent review."
+}

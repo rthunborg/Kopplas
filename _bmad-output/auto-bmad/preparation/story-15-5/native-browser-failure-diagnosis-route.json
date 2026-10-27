@@ -1,0 +1,15 @@
+{
+  "kind": "read-only-same-story-browser-failure-diagnosis",
+  "source_head": "4562cfd0031b32b6921f668cd953384b64116973",
+  "checkpoint": "fae644b5349744a531008e2224ca3a08d596836e",
+  "run_id": 39474891873,
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Public capability privacy, real browser failure reach, error-context controls and credential-safe diagnostics",
+  "delegate": "browser_test_binding",
+  "ownership": "Read-only investigation of existing tests/e2e/calendar-feed.e2e.spec.ts and tests/e2e/support/calendar-feed-atdd.ts plus installed recorder context; no source writes",
+  "actual_native_reach": "31 tests:17 passed,14 unexpected failed,0 skipped; all14 story cases ran with one retry each; DB51 feature cases unexecuted",
+  "privacy_limit": "Error-context attachment metadata exists; absence/privacy gate unqualified pending exact sanitized evidence",
+  "scope": "Latest actual native failure diagnosis only, not a fourth broad review",
+  "prohibited": "No source/test edits, real browser/DB/process/resource/probe, assertions removed, speculative cause or runtime acceptance claim"
+}

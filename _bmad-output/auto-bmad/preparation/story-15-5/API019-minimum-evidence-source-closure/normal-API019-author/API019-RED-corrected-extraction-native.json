@@ -1,0 +1,44 @@
+{
+  "label": "API019-RED-corrected-extraction",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "--experimental-strip-types",
+    "--import",
+    "./tests/support/register.mjs",
+    "--test",
+    "--test-name-pattern=^API019 actual telemetry",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 1,
+  "elapsed_seconds": 0.393029,
+  "reason": null,
+  "caps": {
+    "seconds": 60,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 4427,
+      "sha256": "f67b9eb64f957a135de7e9bf1a0216e32bff5fb315f616d3374edba4eae8ad1b",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

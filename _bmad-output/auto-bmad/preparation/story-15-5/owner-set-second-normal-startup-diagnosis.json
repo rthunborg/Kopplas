@@ -1,0 +1,109 @@
+{
+  "schema": "story-15-5-owner-set-second-normal-startup-diagnosis-v1",
+  "outcome": "DIFFERENT_ORIGINAL_FUNCTION_GUARD_REFUSAL_OBSERVED_NO_SUBPREDICATE_CAUSE_PROVEN",
+  "head": "92ea25dee3c378a6de1772b6599cb3860a1b7c05",
+  "source_commit": "131a8ce9c05b780f3cbe9969a0c36ea3b6540d74",
+  "run": 39591492500,
+  "attempt": 1,
+  "acquisition": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/owner-set-second-normal-startup-acquisition-01.json",
+    "bytes": 2143,
+    "sha256": "abf39b0815ac6364b91ea151160701ea417888e29e2e677a1e449cf88939441a",
+    "get_attempts": 1,
+    "native_exit": 0,
+    "settled": true,
+    "archive_bytes": 714408,
+    "archive_sha256": "b923fe02618706784c11c9c453a4a7b3328ded8c841177844f3fabc44e402e00",
+    "entries": 72,
+    "inflated_bytes": 3784942,
+    "redacted_tool_context_bytes": 299,
+    "raw_persisted": false
+  },
+  "observation": {
+    "jobs": [
+      "db",
+      "e2e",
+      "recovery-storage-loader"
+    ],
+    "diagnostic": "ERROR: calendar actor original function refused (SQLSTATE P0001)",
+    "statement_index": 0,
+    "source_location": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:103",
+    "reach": "The preceding executor, owner/SET and adapter-absence guards passed. At least one original-function predicate failed for one of the three target functions. Adapter creation, transient CREATE grant and function replacements occur later and were not reached.",
+    "limit": "No failed function index, catalog values or individual predicate is reported. No current fullverify numerical counts qualified by this acquisition."
+  },
+  "source_assessment": {
+    "guard_lines": "91-103",
+    "checks": [
+      "owner is dedicated calendar_feed_owner",
+      "SECURITY DEFINER",
+      "VOLATILE",
+      "PL/pgSQL",
+      "exact empty search_path proconfig",
+      "authenticated effective EXECUTE true",
+      "anon effective EXECUTE false",
+      "service_role effective EXECUTE false",
+      "no extra ACL grantee or grantable non-owner privilege",
+      "exact original prosrc",
+      "exact canonical auth.uid occurrence counts 3/2/3"
+    ],
+    "pure_source_results": {
+      "three_embedded_bodies_exactly_equal_predecessor": true,
+      "auth_uid_counts": [
+        3,
+        2,
+        3
+      ],
+      "all_three_headers_plpgsql_volatile_definer_empty_path": true,
+      "sql_executions": 0
+    },
+    "unresolved": "Stored catalog representation/body and effective ACLs are unobserved. Source cross-comparison does not prove live proconfig, owner, language, volatility, ACL/effective EXECUTE or prosrc equality. No guard term removal or production fix is justified."
+  },
+  "minimal_next_proof": {
+    "purpose": "Distinguish exact original-function catalog refusal before any further source edit or normal CI retry.",
+    "preferred_existing_state": "If Root can qualify an already owned PG17 pre-adapter source with predecessor migration applied and new migration absent, execute one fixed read-only catalog SELECT on its ordinary postgres migration session. Return only target ordinal and booleans corresponding one-for-one to all eleven existing predicates; include row count exactly3, executor identity/version booleans and adapter absent. Compare prosrc to the existing source-bound expected strings inside SQL; do not emit bodies, ACL arrays, role OIDs or arbitrary catalog text. No data/Auth/token queries, grants, function replacements or role changes.",
+    "if_no_comparable_state": "Use one separately reviewed rollback-only UUID schema/NOLOGIN role fixture to reproduce the predecessor's exact function header, ownership-transfer and revoke/grant sequence, then evaluate every metadata/ACL predicate individually with closed booleans. Use a source-bound fixture body and exact body equality/count checks. This qualifies engine/catalog/ACL assumptions only; it does not prove hosted function rows. If it does not expose a concrete invariant mismatch, STOP UNKNOWN with pre-adapter live-catalog comparability as the named prerequisite; do not trigger another normal run for a finer coarse label.",
+    "effects_requiring_new_allocation": [
+      "Preferred path: one bounded read-only connection/SELECT only after exact owned resource and pre-adapter source qualification; no launch/query authorized now.",
+      "Fallback fixture: one transaction creating only fixed UUID schema/NOLOGIN role/three fixture functions, ACLs only on those new objects, controlled role switching only if actual authority qualified; no existing grants/roles/memberships/Auth/schema/data changes; unconditional rollback and fresh read-only exact absence check. Requires explicit effect allocation and targeted High payload review before execution."
+    ],
+    "source_scope_if_later_justified": [
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql only the demonstrated incorrect original-function invariant",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts actual-source/native-catalog regression for demonstrated condition",
+      "own15.5Spec rationale/evidence/SRO only"
+    ],
+    "preservation": "No weaker owner/ACL/guard baseline, no adapter/public EXEC or authority expansion, no function replacement before qualification, unchanged kernel/counter3. Discovery of a successful application freezes this migration and requires coordinated forward migration."
+  },
+  "bindings": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11947,
+      "sha256": "f788d507414dc32ecc45b37dcfa44a45ce01cc36da0417063f4e9da1549a3b91",
+      "head_blob": "2b767ae71fda30f5aec0d79537d74bdbe878d757"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 153160,
+      "sha256": "95396c27bd511c5df8cf7ffb5acebac520a1247fea92bae7c0a5962f547f4285",
+      "head_blob": "cba57251555d860ab8ba24bd578eed7715e7b7aa"
+    }
+  ],
+  "limits": {
+    "source_edits": 0,
+    "sql_executions": 0,
+    "resource_operations": 0,
+    "git_mutations": 0,
+    "ci_retries": 0,
+    "further_acquisitions": 0,
+    "broad_review_rounds": 3,
+    "normal_acceptance": 0,
+    "runtime_tests_executed": 0,
+    "verify_numerical_counts": "UNQUALIFIED",
+    "old_43_db_14_browser_causes": "UNRESOLVED"
+  }
+}

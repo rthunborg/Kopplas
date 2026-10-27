@@ -100,6 +100,9 @@ export function ownerTableFor(ownerType: ActiveOwnerType): string {
       // Story 7.3 activation: the job-evidence owner side resolves the job under own-tenant RLS
       // (a foreign job owner id ⇒ zero rows ⇒ TENANT_ACCESS_DENIED; R-802 both-side check).
       return "jobs";
+    case "work_order":
+      // Caller RLS requires the current, coherent parent job as well as Files authority.
+      return "work_orders";
     default:
       // Exhaustiveness guard (mirrors the codebase-standard assertNever discipline):
       // adding a 5th ACTIVE_OWNER_TYPES member without a branch here is a COMPILE
@@ -127,9 +130,13 @@ export async function ownerRecordVisible(
   ownerTable: string,
   ownerId: string,
 ): Promise<boolean> {
+  // An independently entitled manager may still read an archived parent. A new
+  // work-order attachment needs a live coherent source before any bytes are
+  // written; the checked SQL wrapper repeats this under locks at persistence.
+  const workOrder = ownerTable === "work_orders";
   const { data, error } = await db
     .from(ownerTable)
-    .select("id")
+    .select(workOrder ? "id,tenant_id,job_id,archived_at" : "id")
     .eq("id", ownerId)
     .limit(1);
   if (error) {
@@ -137,7 +144,17 @@ export async function ownerRecordVisible(
       `ownerRecordVisible failed: ${(error as { code?: string }).code ?? "?"}`,
     );
   }
-  return Array.isArray(data) && data.length > 0;
+  if (!Array.isArray(data) || data.length === 0) return false;
+  if (!workOrder) return true;
+  const child = data[0] as Record<string, unknown>;
+  if (!child || child.id !== ownerId || child.archived_at !== null ||
+    typeof child.tenant_id !== "string" || typeof child.job_id !== "string") return false;
+  const parent = await db.from("jobs").select("id,tenant_id,archived_at").eq("id", child.job_id).limit(1);
+  if (parent.error) {
+    throw new Error(`ownerRecordVisible failed: ${(parent.error as { code?: string }).code ?? "?"}`);
+  }
+  const row = Array.isArray(parent.data) ? parent.data[0] as Record<string, unknown> | undefined : undefined;
+  return !!row && row.id === child.job_id && row.tenant_id === child.tenant_id && row.archived_at === null;
 }
 
 /**

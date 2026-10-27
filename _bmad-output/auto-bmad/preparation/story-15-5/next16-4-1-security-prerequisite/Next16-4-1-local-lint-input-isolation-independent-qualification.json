@@ -1,0 +1,183 @@
+{
+  "schema": "NEXT1641_LOCAL_LINT_INPUT_ISOLATION_INDEPENDENT_QUALIFICATION_V1",
+  "status": "PASS_LOCAL_INPUT_ISOLATION_PLAN_ONLY",
+  "outcome": "PASS_LOCAL_INPUT_ISOLATION_PLAN_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority": false,
+  "normal_acceptance": 0,
+  "scope": "Targeted local argv-only input isolation qualification; no fourth broad review or actual four-path patch verdict.",
+  "inputs": {
+    "proposal": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/runtime-input-isolation-proposal.json",
+      "bytes": 6281,
+      "sha256": "5d20e9a92fdd67ee6529fb82f8573d6ac1a49bb1ac9f498d658e71db0346795a"
+    },
+    "metadata_proof": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/runtime-input-classification-proof.json",
+      "bytes": 6724,
+      "sha256": "45f1365e3e37d6089b4757ba96645747c9c99594f762502d2d843504bfe74989"
+    }
+  },
+  "binding_verification": {
+    "all_four_candidate_raw_pins_unchanged": true,
+    "all_reused_formatter_qualification_controls_capture_pnpm_entry_and_failed_result_pins_verified": true,
+    "reference": "Exact rows in bound proposal; no duplicate catalog."
+  },
+  "findings": [],
+  "scope_conclusion": {
+    "pattern": ".env.epic15.mail-runtime/**",
+    "required_cwd": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "tracked_paths_excluded": 0,
+    "parent_ignored": ".gitignore:11:.env.*",
+    "parent_nonsymlink_inside_MAIN": true,
+    "no_tracked_source_rule_or_config_waiver": true,
+    "other_untracked_targets_remain": true,
+    "explicit_formatter_loading_unchanged": true
+  },
+  "independent_metadata": [
+    {
+      "command": "git ls-files -z -- .env.epic15.mail-runtime",
+      "receipt": "a6856d",
+      "native_exit": 0,
+      "stdout_bytes": 0
+    },
+    {
+      "command": "git check-ignore -v -- .env.epic15.mail-runtime/",
+      "receipt": "abbfb0",
+      "native_exit": 0,
+      "result": ".gitignore:11:.env.* matches exact runtime parent"
+    },
+    {
+      "control": "lstat/realpath of runtime parent",
+      "receipt": "e033a9",
+      "result": "nonsymlink, inside owned MAIN; no artifact contents read"
+    }
+  ],
+  "installed_matching": {
+    "config_loader": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/node_modules/eslint/lib/config/config-loader.js",
+      "bytes": 27997,
+      "sha256": "eb9f81deb9ed9e2c7a4ce4dc228648fbd065988d18749378ff5770c013970fca"
+    },
+    "config_array": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/node_modules/.pnpm/@eslint+config-array@0.23.5/node_modules/@eslint/config-array/dist/cjs/index.cjs",
+      "bytes": 44061,
+      "sha256": "615889758115b8254f0c5ae4761ab659a98c4b4cc16da0f06215b9107ba49675"
+    },
+    "minimatch": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/node_modules/.pnpm/minimatch@10.2.5/node_modules/minimatch/dist/commonjs/index.js",
+      "bytes": 45140,
+      "sha256": "d224f71f20d7c206fcc5b7e9f747324c7698345a0b2c28d717dd9cf698306783"
+    },
+    "source_reads": [
+      "f9ef6f",
+      "35ff63"
+    ],
+    "mechanism": "ESLint appends CLI ignorePatterns as {basePath:cwd,ignores:ignorePatterns}; actual config-array doMatch uses installed Minimatch with dot:true and no matchBase, against relative paths. Exact root prefix does not match a sibling or nested src prefix.",
+    "doMatch_extracted_sha256": "4000be0972ef36b0acfac2cb9ac1d09395c11bfaedf846e3ac54e41ef26e44ea"
+  },
+  "focused_controls": {
+    "receipt": "e033a9",
+    "native_exit": 0,
+    "elapsed_seconds": 0.1059416,
+    "passed": 9,
+    "failed": 0,
+    "method": "Actual extracted doMatch in bounded Node VM with actual installed minimatch; no ESLint/application main/config load.",
+    "positive_cases": [
+      "actual observed R-phase runtime finding",
+      "nested private hidden runtime file"
+    ],
+    "negative_cases": [
+      "all four frozen candidate paths",
+      "similarly named runtime sibling",
+      "src nested runtime prefix",
+      ".env.example"
+    ],
+    "prior_13_formatter_groups": "reused qualified evidence, not rerun"
+  },
+  "forwarding_and_gate": {
+    "prior_caller_qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-lint-presentation-independent-qualification.json",
+      "bytes": 13635,
+      "sha256": "6170645efc8a3ae54e6525f600a28fb513c478c2f87c44bc437904e088a70cfb"
+    },
+    "reused_unchanged": true,
+    "sole_argv_delta": [
+      "--ignore-pattern",
+      ".env.epic15.mail-runtime/**"
+    ],
+    "future_argv": [
+      "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+      "run",
+      "lint",
+      "--format",
+      "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\lint-presentation-preparation\\closed-lint-formatter.cjs",
+      "--ignore-pattern",
+      ".env.epic15.mail-runtime/**"
+    ],
+    "no_extra_separator": true,
+    "rules_config_maxwarnings_scripts_unchanged": true,
+    "native_exit_authoritative": true,
+    "nonzero_or_unknown": "STOP; no autofix or automatic retry",
+    "safe_projection": "Same reviewed closed formatter and bounded capture; no raw messages/source/fixes/stacks/streams persisted."
+  },
+  "finite_future_conditions": {
+    "new_completed_Coordinator_grant_required": true,
+    "new_exclusive_consumed_intent_and_pin_recheck_required": true,
+    "max_lint_invocations": 1,
+    "retries": 0,
+    "timeout_seconds": 300,
+    "stdout_cap_bytes": 2097152,
+    "stderr_cap_bytes": 262144,
+    "previous_slots_closed": true,
+    "API_Gitmutation_DEBUG": 0,
+    "no_delete_move_rename": true
+  },
+  "evidence_limits": {
+    "actual_failed_lint": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/lint-bounded-formatter-result.json",
+      "bytes": 5892,
+      "sha256": "1806d403fd897da86c29382fb15aa4a20454964e9a6cdb81ff7cec2fedae4476"
+    },
+    "observed_global": {
+      "files": 2275,
+      "errors": 4257,
+      "warnings": 46063,
+      "fatal_errors": 6
+    },
+    "omitted_details_unknown": 50312,
+    "other_MAIN_is_not_tracked_source_proof": true,
+    "all_findings_temporary_claim": false,
+    "future_pass_claim": false,
+    "canonical_unmodified_clean_CI_lint_still_required": true,
+    "actual_four_path_patch_review_still_required": true,
+    "remaining_gates": [
+      "verify:lockfiles",
+      "productionbuild",
+      "canonicalfullNode"
+    ],
+    "required95": "68 passed / 1 failed / 26 unexecuted; unchanged",
+    "INT009_cause": "UNKNOWN",
+    "P5": "OPEN"
+  },
+  "nonexecution": {
+    "real_lint": 0,
+    "ESLint_config_loads": 0,
+    "source_config_dependency_edits": 0,
+    "network_API_Gitmutation": 0,
+    "DEBUG_activity": 0,
+    "installs_audit_writer_TS_image_reruns": 0,
+    "formatter_control_reruns": 0
+  },
+  "open_questions": [
+    "Distribution of the 50312 omitted details remains UNKNOWN until separately authorized evidence."
+  ],
+  "deferred_work": [
+    "Root actual read, then fresh finite Coordinator grant before one local isolated-input lint invocation.",
+    "Remaining required gates and separate final actual four-path patch review."
+  ],
+  "blockers": []
+}

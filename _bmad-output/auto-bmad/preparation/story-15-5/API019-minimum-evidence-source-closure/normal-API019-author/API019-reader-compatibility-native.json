@@ -1,0 +1,41 @@
+{
+  "label": "API019-reader-compatibility",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "--input-type=module",
+    "-e",
+    "import fs from 'node:fs';import{stripTypeScriptTypes}from'node:module';\nconst s=fs.readFileSync('tests/support/calendar-feed-atdd.ts','utf8'),a=s.indexOf('// Pure fixture diagnostics:'),b=s.indexOf('// End pure fixture diagnostics.');const api=await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(s.slice(a,b))).toString('base64'));\nconst tags=['scenario-telemetry-observation-timeout','scenario-telemetry-privacy-refused','scenario-telemetry-parse-refused'];const values=tags.map(tag=>{const e=api.calendarFixtureOrigin(tag);if(api.calendarFixtureDiagnostic('scenario',e)!==e)throw Error('owned identity');return e.message;});\nvalues.push(api.calendarFixtureDiagnostic('scenario',{message:'PRIVATE Calendar fixture failure [stage=scenario-telemetry-privacy-refused;category=unknown;sqlstate=unavailable]',stack:'PRIVATE'}).message);\nconsole.log(JSON.stringify(values));"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 0.089325,
+  "reason": null,
+  "caps": {
+    "seconds": 30,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 410,
+      "sha256": "8f7ab882770c49a2878933016c6091304474dd74d22ed529d2f34ba0c84acf27",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 182,
+      "sha256": "6e2e4d5c3aae6c98e2359f7fa4f3ba67f1b60ee6f91ef07675b2133797cffa60",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

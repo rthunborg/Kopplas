@@ -1,0 +1,18 @@
+{
+  "Outcome": "NOTPASS",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/original-report.md",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/original-attestation.json",
+    "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-private-consumer-review/result.json"
+  ],
+  "Status": "Independent bounded offline first review completed; one P2 artifact-admission bypass blocks private consumer adoption. Frozen helper/test unchanged.",
+  "Open questions": [],
+  "Deferred work": [
+    "Author corrects only the null artifact-ID wildcard and adds a refusal-before-second-GET control; changed hashes require refreeze and distinct bounded corrective review.",
+    "Root actual facts/availability/admission and explicit terminal collection authorization remain separate; no execution authorized.",
+    "43 DB and14 browser failures remain unresolved; all normal acceptance gates retain zero credit."
+  ],
+  "Blockers": [
+    "F1 P2: collector line210 accepts Root artifact_id=null for a matching nonempty listing and performs an unadmitted archive GET."
+  ]
+}

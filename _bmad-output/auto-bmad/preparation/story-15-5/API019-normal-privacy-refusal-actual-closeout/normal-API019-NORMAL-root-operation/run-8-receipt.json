@@ -1,0 +1,28 @@
+{
+  "native_exit": 0,
+  "category": null,
+  "elapsed_seconds": 0.5788,
+  "timeout_seconds": 20,
+  "capture_complete": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "direct_process_settled": true,
+  "streams": [
+    {
+      "observed_bytes": 12168,
+      "sha256": "98f2b299d010e627b7928755bd1a6508ba91cf7bbed66da176ed9ad3a374ebb9",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "observed_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ]
+}

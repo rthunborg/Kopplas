@@ -1,0 +1,133 @@
+{
+  "status": "QUALIFIED_EXACT9_IMMUTABLE_REVIEW_INPUT_FORMAT_UNRESTRICTED_EXIT2_RETAINED",
+  "timestamp": "2026-10-21T05:36:23.154182+00:00",
+  "head": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "unrestricted_cached_check_exit": 2,
+  "not_unrestricted_pass": true,
+  "actual_warning_count": 9,
+  "single_space_native_diff_context_count": 6,
+  "numbered_empty_source_quote_count": 3,
+  "bindings": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+      "bytes": 13507,
+      "sha256": "7757ceb9971e96b2b595cf54b5fd51759f312ae39fb28f5140a12715191db63b",
+      "index_raw_equal": true,
+      "actual_native_lines": [
+        8,
+        53,
+        112
+      ]
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "bytes": 67694,
+      "sha256": "173b5caf9ee43fc9024694b8232c4d6e768be4159cc0330c37efa965021070f5",
+      "index_raw_equal": true,
+      "actual_native_lines": [
+        69,
+        114,
+        173,
+        317,
+        331,
+        346
+      ]
+    }
+  ],
+  "actual_findings": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+      "line": 8,
+      "category": "single_space_diff_context",
+      "native_context_bytes_hex": "2b20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+      "line": 53,
+      "category": "single_space_diff_context",
+      "native_context_bytes_hex": "2b20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+      "line": 112,
+      "category": "single_space_diff_context",
+      "native_context_bytes_hex": "2b20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "line": 69,
+      "category": "single_space_diff_context",
+      "native_context_bytes_hex": "2b20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "line": 114,
+      "category": "single_space_diff_context",
+      "native_context_bytes_hex": "2b20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "line": 173,
+      "category": "single_space_diff_context",
+      "native_context_bytes_hex": "2b20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "line": 317,
+      "category": "numbered_empty_source_quote",
+      "native_context_bytes_hex": "2b3237373a20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "line": 331,
+      "category": "numbered_empty_source_quote",
+      "native_context_bytes_hex": "2b3239313a20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "line": 346,
+      "category": "numbered_empty_source_quote",
+      "native_context_bytes_hex": "2b31303a20"
+    }
+  ],
+  "all_other24_staged_native_exit": 0,
+  "Root_initial_observation": {
+    "path": ".env.epic15.mail-runtime\\story-15-5-preparation\\root-preselected-id-staged-format-initial-observation.json",
+    "bytes": 6359,
+    "sha256": "98fae29c47d7ee1b465cdbac0becca4299bb1b14666e601598fafb060f0628cd"
+  },
+  "high_ack": {
+    "actor": "/root/build15_5_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "actual_raw_equal_index": true,
+    "exact_native_committed_diff_equal": true,
+    "source_quote_mappings_checked": [
+      {
+        "artifact_line": 317,
+        "source_path": "scripts/ci/checkpoint-dispatch.mjs",
+        "source_line": 277
+      },
+      {
+        "artifact_line": 331,
+        "source_path": "scripts/ci/checkpoint-dispatch.mjs",
+        "source_line": 291
+      },
+      {
+        "artifact_line": 346,
+        "source_path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "source_line": 10
+      }
+    ],
+    "proof_digest": "d1004538de2fa0a5d26b91ce468bab9aee9c7c2de53d2b99dacd59d6549a310a",
+    "reader_stop": "Initialthirdquotemappedtodispatcher insteadunitpath; stoppedwithoutPASS; correctedonlyexactheadingreader; no artifacts changed",
+    "final_bounded_classifier_native_exit": 0,
+    "duration_seconds": 0.589
+  },
+  "Root_source_quote_empty_blob_check": true,
+  "Root_reader_stop": "PostACKemptyrowcheckfirststoppedbeforeALLwrites: splitlinesomitsfinalLFemptyrow291; explicitLFsplitcorrectedonlyreader, all3actualGitrowsverifiedempty includingEOFrow; no source/artifact rewrite",
+  "source_artifacts_config_hooks_checker_changed": false,
+  "native_execution_admitted": false,
+  "normal_acceptance_credit": 0,
+  "final_required": "Actual9unchanged; allother25includingthisreceipt native0 before normal commit/PUSH"
+}

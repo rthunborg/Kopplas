@@ -1,0 +1,14 @@
+{
+  "label": "restore-default-full-affected-unit",
+  "native_exit": 0,
+  "seconds": 12.888414,
+  "summary": {
+    "tests": 184,
+    "pass": 184,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "raw_persisted": false
+}

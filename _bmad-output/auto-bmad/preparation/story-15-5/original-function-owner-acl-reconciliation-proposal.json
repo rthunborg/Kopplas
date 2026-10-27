@@ -1,0 +1,407 @@
+{
+  "schema": "original-function-owner-acl-reconciliation-proposal-v1",
+  "status": "PLAN_REFINEMENT_ONLY_NO_ASSIGNMENT_OR_RUNTIME",
+  "head": "8d7b5c13a6673a55c3f3c858838de4bd54ab6d95",
+  "source_commit": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+  "validated_prior_review": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-report.md",
+      "bytes": 5643,
+      "sha256": "1b7e27b3c3ce40f3094159894400d6c8235a7c67a3a32196c65dbf1554ae0d78"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/original-attestation.json",
+      "bytes": 12844,
+      "sha256": "967809fe02ac1c42f2e576fb1c381703567c1256bdcaed961cea53f3f50f83ac"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-source-assessment-review/result.json",
+      "bytes": 1747,
+      "sha256": "f696b058461e257babccf2c00eb608a26641b8b98f77c9643a2417eede287695"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-acl-known-adoption-check.json",
+      "bytes": 1571,
+      "sha256": "c994f4f7b47dd97ff41f53d951e41ed23b24bcd1449098969f44e03d82e6f728"
+    }
+  ],
+  "exact_candidate_paths": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_bindings": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "head_blob": "93b55ab54ec63a775894e92db9d83219add909dd",
+      "clean_oid": "93b55ab54ec63a775894e92db9d83219add909dd"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 163537,
+      "sha256": "4f502cd88dd23269113e84aef733462f68156733f9a38297c020d3a0609a58d7",
+      "head_blob": "02442fd8034b573d376397e1eee105c7b3d96849",
+      "clean_oid": "02442fd8034b573d376397e1eee105c7b3d96849"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "head_blob": "a78e3f6a336f84fc3d44d042516808748622feb8",
+      "clean_oid": "a78e3f6a336f84fc3d44d042516808748622feb8"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 14957,
+      "sha256": "52716fa7a627b96d6b9397b775b4603ce85860fe4f5c101a0523cc95cab21838",
+      "head_blob": "14e2cb42fb816d88e2b67f9223dfa573d30bb663",
+      "clean_oid": "14e2cb42fb816d88e2b67f9223dfa573d30bb663"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 160774,
+      "sha256": "32eb365d1b6b523ef07e3fc950ae824d4cc94e226558947e6d32342f2f27b77f",
+      "head_blob": "26327a36a8f89cf503036239def64b0585465136",
+      "clean_oid": "26327a36a8f89cf503036239def64b0585465136"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    }
+  ],
+  "targets": [
+    {
+      "identity": "public.calendar_feed_attestation_payload(jsonb)",
+      "args": [
+        {
+          "name": "p_claims",
+          "type": "jsonb",
+          "default": null
+        }
+      ],
+      "return_type": "bytea",
+      "language": "plpgsql",
+      "volatility": "immutable",
+      "security_definer": false,
+      "default_count": 0,
+      "default_deparse": null,
+      "body_bytes": 581,
+      "body_sha256": "fe5beb0c01c85ca5e36f3154b827f905e8cf39a494a231fa27c8d3524833f067",
+      "external_execute": null
+    },
+    {
+      "identity": "public.calendar_feed_verify_attestation_internal(jsonb,text,text)",
+      "args": [
+        {
+          "name": "p_claims",
+          "type": "jsonb",
+          "default": null
+        },
+        {
+          "name": "p_signature",
+          "type": "text",
+          "default": null
+        },
+        {
+          "name": "p_operation",
+          "type": "text",
+          "default": null
+        }
+      ],
+      "return_type": "boolean",
+      "language": "plpgsql",
+      "volatility": "volatile",
+      "security_definer": false,
+      "default_count": 0,
+      "default_deparse": null,
+      "body_bytes": 1878,
+      "body_sha256": "2aa3f8da7ab16d5d10efab2973bbd328f2f5dd124cdb2e9d1d28f2587bbfe72e",
+      "external_execute": null
+    },
+    {
+      "identity": "public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)",
+      "args": [
+        {
+          "name": "p_tenant",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_membership",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_actor",
+          "type": "uuid",
+          "default": "null"
+        },
+        {
+          "name": "p_admin",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "return_type": "boolean",
+      "language": "sql",
+      "volatility": "stable",
+      "security_definer": false,
+      "default_count": 2,
+      "default_deparse": "NULL::uuid, false",
+      "body_bytes": 583,
+      "body_sha256": "433872ba3cd1dd8b0a939715552d5218328db9e5b162e47b3ab07203eaae8b9e",
+      "external_execute": null
+    },
+    {
+      "identity": "public.calendar_feed_now_internal()",
+      "args": [],
+      "return_type": "timestamptz",
+      "language": "sql",
+      "volatility": "volatile",
+      "security_definer": false,
+      "default_count": 0,
+      "default_deparse": null,
+      "body_bytes": 26,
+      "body_sha256": "cd23047eb8d5945a837a8937197c30baf0b9c065d471e99455211dbf6cdd6528",
+      "external_execute": null
+    },
+    {
+      "identity": "public.fetch_calendar_feed(text,text,jsonb,text)",
+      "args": [
+        {
+          "name": "p_token_hash",
+          "type": "text",
+          "default": null
+        },
+        {
+          "name": "p_ip_hash",
+          "type": "text",
+          "default": null
+        },
+        {
+          "name": "p_claims",
+          "type": "jsonb",
+          "default": null
+        },
+        {
+          "name": "p_signature",
+          "type": "text",
+          "default": null
+        }
+      ],
+      "return_type": "jsonb",
+      "language": "plpgsql",
+      "volatility": "volatile",
+      "security_definer": true,
+      "default_count": 0,
+      "default_deparse": null,
+      "body_bytes": 4827,
+      "body_sha256": "6b3ef153f4735a1f477a9910b0aa0817f92987cff51c68b2568b677d4cc56983",
+      "external_execute": "anon"
+    },
+    {
+      "identity": "public.read_calendar_feed_status(uuid,uuid)",
+      "args": [
+        {
+          "name": "p_tenant_id",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_attempt_id",
+          "type": "uuid",
+          "default": "null"
+        }
+      ],
+      "return_type": "jsonb",
+      "language": "plpgsql",
+      "volatility": "volatile",
+      "security_definer": true,
+      "default_count": 1,
+      "default_deparse": "NULL::uuid",
+      "body_bytes": 1361,
+      "body_sha256": "b48db0ace3e97f7de078e38c30185d6bfc4b53d7c3548861cdc772db4f5f6888",
+      "external_execute": "authenticated"
+    },
+    {
+      "identity": "public.manage_calendar_feed(uuid,uuid,uuid,text,integer,uuid,text,uuid,jsonb,text)",
+      "args": [
+        {
+          "name": "p_tenant_id",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_actor_id",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_membership_id",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_action",
+          "type": "text",
+          "default": null
+        },
+        {
+          "name": "p_expected_revision",
+          "type": "integer",
+          "default": null
+        },
+        {
+          "name": "p_attempt_id",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_new_hash",
+          "type": "text",
+          "default": null
+        },
+        {
+          "name": "p_correlation_id",
+          "type": "uuid",
+          "default": null
+        },
+        {
+          "name": "p_claims",
+          "type": "jsonb",
+          "default": null
+        },
+        {
+          "name": "p_signature",
+          "type": "text",
+          "default": null
+        }
+      ],
+      "return_type": "jsonb",
+      "language": "plpgsql",
+      "volatility": "volatile",
+      "security_definer": true,
+      "default_count": 0,
+      "default_deparse": null,
+      "body_bytes": 3503,
+      "body_sha256": "28dbac3004d9309feb566dd0c62a273eaeb2260949cf660db1da03250bb9b99b",
+      "external_execute": "authenticated"
+    },
+    {
+      "identity": "public.read_calendar_feed_abuse(uuid)",
+      "args": [
+        {
+          "name": "p_tenant_id",
+          "type": "uuid",
+          "default": null
+        }
+      ],
+      "return_type": "jsonb",
+      "language": "plpgsql",
+      "volatility": "volatile",
+      "security_definer": true,
+      "default_count": 0,
+      "default_deparse": null,
+      "body_bytes": 621,
+      "body_sha256": "0df30bdd54e6fed03481a6f691dda04fb5cae4bea4b22af13b29bf889a6ab979",
+      "external_execute": "authenticated"
+    }
+  ],
+  "causal_boundary": "The ordinary non-inheriting grantor defect is a source-backed conditional witness. Actual hosted matrix identifies three ACL refusal bits only; PUBLIC/grantor/application sequence remain UNOBSERVED. Strict111guard is valid and remains unchanged, not an invalid assumption to remove.",
+  "application_gate": "Predecessor20261020220000 is immutable. Root must record concrete111 edit clearance with Coordinator before assignment. Known E16/retained Documents facts are not global absence. Any actual successful111 application/adoption => freeze111 and separately coordinate forward/fresh-bootstrap compatibility; no retimestamp/insertion workaround.",
+  "legacy_acl_preflight": {
+    "normalization": "For each exact target OID, use aclexplode(coalesce(proacl,acldefault(f,proowner))); map fixed owner/desired-JWT OIDs to symbolic identities internally. Treat entries as a sorted set only after asserting no duplicate tuple/grantee, no extra privilege type and exact expected cardinality. Never emit raw ACLs.",
+    "entry_rules": {
+      "grantor": "Exactly actual dedicated owner OID for EVERY entry; former postgres, setup admin, other grantor and indirect chains rejected. Owner transfer is expected to remap source grants.",
+      "privilege_type": "EXECUTE only",
+      "is_grantable": "false for EVERY raw entry, including owner. Implicit owner grant authority is distinct and preserved; no raw grant-option row is needed.",
+      "required_owner_entry": "Exactly one owner->owner EXECUTE/no-grant-option entry."
+    },
+    "allowed_normalized_sets": [
+      "D: exactly owner->owner EXECUTE false plus owner->PUBLIC EXECUTE false (cardinality2). NULL/default and explicit D both allowed.",
+      "I(owner-only): exactly owner->owner EXECUTE false (cardinality1).",
+      "I(anon): exactly owner->owner and owner->anon EXECUTE false (cardinality2).",
+      "I(authenticated): exactly owner->owner and owner->authenticated EXECUTE false (cardinality2)."
+    ],
+    "per_function_rule": "Each target permits only D OR its own I(external_execute) set from targets. For owner-only targets I has no external grantee. PUBLIC plus desired-JWT together, unexpected direct anon/service/auth on other classes, extra known/unknown role, foreign grantor, grantable bit, non-EXECUTE privilege, duplicate or missing owner row are NOT silently cleaned: reject before effects.",
+    "why_finite": "D is the documented standard default remnant in the conditional witness; I is exact source-intended final ACL. This deliberately does not accept every Supabase/platform/custom default. If actual state falls outside D/I, stop a named SOURCE_ACL_NOT_COMPARABLE prerequisite; no automatic observer or relaxed allowlist.",
+    "already_correct": "I passes and may be reconciled idempotently. Owner-only helpers with I and external entrypoints with I remain exact. No source-level authorization broadening."
+  },
+  "all8_preflight_before_any_mutation": [
+    "Keep existing postgres session/current LOGIN/nonSUPER qualification, hardened owner seven flags, direct/effective SET true, effective owner USAGE false, no unexpected/outbound/inherited membership, public CREATE false and adapter absent. No fallback, role grant or privilege repair.",
+    "Resolve all8 exact regprocedure identities once; require eight distinct existing OIDs/public namespace and no additional overload under any of those eight public names. Capture OIDs; do not drop/recreate functions.",
+    "For EVERY target compare owner to hardened owner; exact arg type OID order/names/return type from targets; prokind=f, proretset=false, provariadic=0, IN-only arguments (proallargtypes/proargmodes NULL), pronargs, pronargdefaults and defaults as specified. Zero-arg proargnames NULL; others exact arg-name arrays.",
+    "Expected fixed defaults: status pg_get_expr(proargdefaults,0)=NULL::uuid; subject=NULL::uuid, false; all others proargdefaults NULL/count0. These are explicit prospective PG17 canonical representations, not native observations by this plan; mismatch fails closed, never coerces/ignores defaults.",
+    "Exact language/security/volatility from targets; proconfig exactly [search_path=\"\"]; proisstrict=false, proleakproof=false, proparallel=u, prosupport=0, procost=100, prorows=0, protrftypes NULL, prosqlbody NULL. No unreviewed alternative implementation.",
+    "Embed/cross-validate exact immutable predecessor bodies for all8, compare prosrc byte-exact, including whitespace. The three adapter targets still require original auth.uid occurrence3/2/3. No trim, regexp normalization or general body replacement.",
+    "Apply the finite legacy ACL rules to ALL8 and qualify required known roles before any SET ROLE/REVOKE/GRANT/schema/adapter mutation. Missing/NULL/malformed/unknown fails. Snapshot all8 pg_proc non-ACL metadata plus pg_get_functiondef, OIDs and relevant existing role/membership/schema authority. No partial reconciliation if the eighth row fails."
+  ],
+  "atomic_order": [
+    "Inside existing single DO/statement: finish all8 read-only preflight and snapshots first.",
+    "SET LOCAL ROLE calendar_feed_owner; immediately assert actual current owner, session remains postgres, all hardened/membership invariants unchanged. This uses existing SET authority only; no CREATE on public is needed for ACL ownership operations.",
+    "For the exact8 OIDs/signatures only, REVOKE ALL from PUBLIC,anon,authenticated,service_role. GRANT EXECUTE only fetch->anon and status/manage/abuse->authenticated. Four internal helpers retain owner-only ACL. No CASCADE, ALL FUNCTIONS IN SCHEMA, unlisted target, role/member/Auth/table/default privilege operation.",
+    "RESET ROLE and prove actual current/session postgres and original authority unchanged. Compare all8 non-ACL pg_proc metadata, definitions, owners/OIDs and relevant role/membership/schema snapshots exactly; ACL differences intentional only.",
+    "Assert every normalized raw ACL equals its exact I set, owner EXECUTE true, PUBLIC absent, and known effective role boundaries: owner-only denies anon/authenticated/service_role; fetch permits anon only; status/manage/abuse permit authenticated only. Any inherited JWT grant violating these predicates aborts; do not repair memberships.",
+    "Retain the COMPLETE existing original3 guard and diagnostic matrix unchanged after reconciliation and before adapter DDL. Then capture adapter replacement metadata baseline including reconciled ACLs. Keep existing helper creation/private EXEC, transient CREATE->owner SET->exact8 identity substitutions->RESET->REVOKE/effective CREATE absence and postreplacement conservation.",
+    "Any error/precondition/postcondition/reset failure aborts the whole statement and all reconciliation/adapter work. No independent commit, exception swallow, superuser fallback or partial-success label."
+  ],
+  "stable_scope": "Only ACLs intentionally restored to source-required sets. Bodies/OIDs/signatures/defaults/config/volatility/owners and all existing roles/memberships/Auth/table/schema privileges unchanged. postgres-owned secret helper remains untouched; preparsed actor helper keeps its separate original strict contract.",
+  "helper_and_RLS010": {
+    "inventory": "Add subject and now/clock to existing helper purpose union/query; retain payload/verifier/secret/actor. Four entrypoints plus four transferred internal helpers cover all8, while secret/actor remain separately checked.",
+    "facts": "Expose closed per-function rawAclExact, ownerExecute and service-role effective denial in addition to existing PUBLIC/anon/auth checks; report no ACL arrays. Retain actor invoker/preparsed/dependency/private EXEC and exact filtered-secret assertions. Verify complete purpose set, owner/config/security/volatility expectations; no omitted function.",
+    "case": "Extend existing RLS010 only; no new acceptance case or skipped case/count change. Preserve all existing owner/JWT/table/Vault/public-CREATE and other case assertions."
+  },
+  "ordinary_grantor_native_regression": {
+    "placement": "New narrowly scoped helper export in calendar-feed-atdd.ts, invoked once from existing RLS010 before row fixture setup; separate from acl() (which remains read-only). Same case may need explicit180s timeout; no global runner/project/serial setting change. This is a new future test effect, NOT allocated by this plan.",
+    "isolation": "Two fresh UUID NOLOGIN roles (migrator CREATEROLE/nonSUPER/NOINHERIT with no other elevated attributes; hardened owner created by migrator), one UUID schema and one inert never-invoked function. No shared/public function replacement, key/fault/table DDL, existing role membership or ACL changes. Uncommitted private catalog objects do not commit; no migration replay.",
+    "qualification": "Reuse existing reviewed wrapper exports validateAdmission/validateStackIdentity/createCalendarFeedDatabaseClient/readCalendarFeedSetupAuthority/readCalendarFeedPrivacyPreflight. Same fixed readonly docker inspect db+gateway and supabase status JSON as INT015; actual source/checkout/loopback/container/image/current complete migration ledger required. No status URL/default-password fallback or generic pool. Original SupAdmin LOGIN+SUPER and all4 privacy settings proved on main AND fresh cleanup connection, never assumed from adminQuery/adminSession DSN.",
+    "new_effects_explicit": "Two bounded read-only metadata subprocesses; two direct DB connections (one transactional proof, one fresh read-only cleanup). Original setup authority creates only new migrator/schema; transaction-local SESSION AUTHORIZATION to new migrator. All subsequent owner creation/bootstrap/function/ACL operations under actual ordinary nonSUPER migrator. No hosted/provider access/new service.",
+    "flow": [
+      "BEGIN with bounded statement/lock/idle-transaction deadlines and collision-before-DDL checks. Snapshot relevant existing catalog/roles excluding owned UUIDs; no Auth/business rows.",
+      "Create UUID migrator+schema under qualified setup authority, SET LOCAL SESSION AUTHORIZATION migrator. Reversibly name-adapt exact source bootstrap for new owner; prove ordinary identity, no inherited owner privileges, effective SET true and no independent function grant option.",
+      "Create inert fixture function as migrator with same representative status header and standard owner+PUBLIC default, transfer to new owner using actual SET authority. Run the predecessor exact source ACL statements with reversible identifier adaptation and no SET ROLE; assert observed three-bit failure/noop state while metadata/OID unchanged.",
+      "At owned savepoint, SET LOCAL ROLE new owner, execute actual production reconciliation ACL fragment with checked reversible fixed-target adaptation. Force a fixed post-reconciliation exception, rollback-to/release savepoint, restore ordinary identity and assert exact pre-branch ACL/metadata conservation. This is one planned negative branch, not a retry.",
+      "Then execute owner-context fragment successfully once, reset/requalify, assert intended strict raw/effective ACL and unchanged OID/owner/body/config. No function invocation or production permission mutation.",
+      "Close admission to new work; join ALL actual query promises/timers. Full ROLLBACK first, reset session/role, prove same-connection exact two-role/schema/function absence. Close main connection; qualify independent fresh read-only client and prove exact absence, then close. Any pending/timeout/query/reset/absence/close failure retains explicit UUID custody and fails the case. No cleanup deletion/drop fallback."
+    ],
+    "parallel_boundary": "Existing RLS file stays parallel; the new regression touches only uncommitted UUID objects and their intra-fixture membership, never shared fault DDL. Amend its comment precisely. Coordinator/runtime allocation must confirm no competing exclusive catalog-proof reservation; if a genuine shared/exclusive dependency is found, STOP for additional exact allocation rather than silently serializing/changing config.",
+    "limits": "This executes the ordinary conditional witness and owner-context correction, not historical hosted cause. The source helper qualification code is reused by provenance/exports; INT015 itself remains unchanged. No separate private payload automatically authorized."
+  },
+  "controls_and_commands": {
+    "unit": "Actual-source extracted preflight/reconcile/RLS wiring controls: for EACH8 target mutate missing/overload/owner/body/signature/default/language/security/volatility/config and each legacy ACL field/grantor/grantability; prove rejection before first SET/DDL. Accept NULL D/explicit D/exact I; reject D+desired, unrelated JWT/other role, former creator grantor, duplicate/non-EXECUTE and all grantable raw entries. Prove all8 completion precedes first mutation and full original3 IF/matrix inverse remains exact. Preserve current102 controls.",
+    "production_postconditions": "Inject failures/reset/postcondition drift to verify aborting source path; real native savepoint rollback branch provides actual rollback evidence rather than fake query labels. RLS010 sees complete all8 raw/effective ACLs after migration.",
+    "static": [
+      "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "pnpm exec tsc --noEmit",
+      "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/integration/rls/calendar-feed.rls.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "git diff --check",
+      "python .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "future_native": "Only after actual source allocation/implementation/distinct targeted committed-delta High review and separately authorized fresh checkpoint: full normal DB/RLS including unchanged INT015 and extended existing RLS010, all95 normal cases and separate recovery. Required services unavailable =>fail, no skip credit. No current command executed by this plan."
+  },
+  "Spec_contract": "Implementation-only restoration of existing approved private-ACL and adapter obligations. Kernel5760/SHA0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977, baseline3a1c3bc9 and counter3 unchanged. Author single SRO/rationale/ARR remain in-review; no delivery/DONE/normal credit. Any requested obligation/approved-kernel change must stop for Spec-first validation.",
+  "future_ownership_request": "Exact5 hunks above including restricted native regression effects and current111 conditional edit clearance. No predecessor, wrapper/pin, workflow/dispatcher, dependency/env, additional tracked/private path or global runner change. Separate review/allocation before any source or runtime effect.",
+  "stop_rules": [
+    "Unknown ACL/shape/authority =>reject before mutation, retain exact prerequisite SOURCE_ACL_NOT_COMPARABLE, Root owner; no auto observer/relax/retry.",
+    "Any actual111 successful application/adoption =>freeze and coordinate forward/bootstrap path.",
+    "Runtime/cleanup uncertainty =>case fails with owned UUID custody and exact pending operation; no normal completion claim.",
+    "Three broad rounds exhausted; only new delta/unresolved consequential High review. CI/human approval remains separate."
+  ],
+  "actual_preparation_checks": {
+    "effects": 0,
+    "SQL_executions": 0,
+    "native_credit": 0,
+    "targets_extracted": 8,
+    "source_bindings_verified": 6,
+    "review_refs_verified": 4,
+    "current_normal_acceptance": 0,
+    "no_commands_tests_or_runtime_executed": "Only bounded source reads, lexical extraction and raw/Git hash comparisons for this proposal."
+  }
+}

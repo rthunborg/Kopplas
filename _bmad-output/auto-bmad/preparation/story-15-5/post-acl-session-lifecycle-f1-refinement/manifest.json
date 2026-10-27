@@ -1,0 +1,18 @@
+{
+  "kind": "F1-only-refinement-manifest",
+  "head": "1e2e05c802933326868b7353fc4de4a56b343bfa",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-refinement/proposal.json",
+      "bytes": 12163,
+      "sha256": "dc7191d83bb2796a593b5fafd5f0e78345640695ce82f50423b6f263df198add"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-refinement/input-binding.json",
+      "bytes": 4607,
+      "sha256": "781eac306f01b766befd89499c024cf53fef28087029fa458a8d110b1e277a47"
+    }
+  ],
+  "source_changes": 0,
+  "native_effects": 0
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "kind": "PARENT_INDEPENDENT_METADATA_IDENTITY_AND_PROVENANCE_CHECK",
+  "status": "PASS",
+  "source": "af5af69fd5018795a963a28c1ad367147b4a9bc3",
+  "capsule": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-denial-cause-proof.json",
+    "bytes": 852019,
+    "sha256": "23b1751be315acab911ae84bc864a0d9005513a4b9419332c50b3f2465b4fac9"
+  },
+  "verifier": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-denial-cause-proof-parent.mjs",
+    "bytes": 16069,
+    "sha256": "b24cdbb4d872dd8c9eb702d5b33daf72ed04a74bc57ccb307b0343cb433d5c10"
+  },
+  "actual": {
+    "source_paths": 70,
+    "raw_clean_differences": 41,
+    "author_commits": 19,
+    "root_commits": 11,
+    "ancestry": 30,
+    "full_recursive_refs": 631,
+    "unique_ref_paths": 530,
+    "historical_equalities": 734,
+    "protected_SQL": 109,
+    "protected_consumers": 37,
+    "original_preparation_blobs": 69,
+    "snapshots": 27,
+    "historical_raw_uncredited": 12,
+    "baseline_only": 15,
+    "failed_histories": 11,
+    "prior_capsules": 11,
+    "native_object_batch_count": 132
+  },
+  "review": {
+    "composite": "cb8 NOTPASS;520 F1/F2 CLOSED but F3 NOTPASS;af5 F3 PASS",
+    "no_retroactive_whole_PASS": true,
+    "completed_broad_rounds": 3,
+    "fourth_broad": false,
+    "kernel_bytes": 5760,
+    "SRO_stops": 89
+  },
+  "raw_review_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/review-input.md",
+      "bytes": 573067,
+      "sha256": "b0bbbc6364f450be9376fe3a6474c5451ff355cd3620158a7d747dc57f89e129",
+      "single_space_context_lines": 33
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-review/latest.diff",
+      "bytes": 130414,
+      "sha256": "ee863b3048266665ae603fddfd61243d21c19f6e283a8d272216b069c4a8876f",
+      "single_space_context_lines": 33
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/review-input.md",
+      "bytes": 143357,
+      "sha256": "08d47625a44b1e4546fdaf411098cbcaadc9dd8676fb96be6e88550794e36d4a",
+      "single_space_context_lines": 9
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-corrective-review/latest.diff",
+      "bytes": 52357,
+      "sha256": "7b0d3ead71a3c721193145bc39013c80ee2ebb7c0ca61cd40e78bc198f92b6d9",
+      "single_space_context_lines": 9
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/review-input.md",
+      "bytes": 41806,
+      "sha256": "d525e848f1ebd95676f656a1bc8ff420fa9c3214923fdef8455fcc3c36a62bb7",
+      "single_space_context_lines": 2
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/latest.diff",
+      "bytes": 9507,
+      "sha256": "84373f05c0f7353b8551d8ab47abd2f3d24ef255d05a5b71e5b9148c3c5cdd65",
+      "single_space_context_lines": 2
+    }
+  ],
+  "producer_lint": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-freeze/producer-lint.json",
+    "bytes": 3089,
+    "sha256": "a64e5e2544e509fdfe05ce9027b8c1186bf0107f8a002ded6395008883c1d83c"
+  },
+  "reused_historical_proof": {
+    "capsule": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json",
+      "bytes": 720807,
+      "sha256": "fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd"
+    },
+    "full_occurrences": 500,
+    "parent_final_receipt": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair-parent-check.json",
+      "bytes": 3266,
+      "sha256": "237aba0c395a1d8037b04e106a7afb1358f2875e38ab18ebf6cc907733a16af5"
+    },
+    "parent_final_verifier": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-dependency-audit-repair-parent.mjs",
+      "bytes": 31725,
+      "sha256": "1d53e79cfa97b4f8e8d1a9e8881f123147c40344e6603d4ed6fc6c4378961690"
+    },
+    "earlier_count_qualifiers_preserved": true
+  },
+  "exact_recursive_skip": "git.root_metadata_snapshot ONLY; actual baseline objects separately verified",
+  "archive_member_limit": "member_* descriptor is not a physical loose-file reference; exact extraction and qualification refs verified",
+  "native_exit": 0,
+  "elapsed_ms": 8405,
+  "initial_parent_reader_failures": [],
+  "source_index_unchanged": true,
+  "global_clean_not_claimed": true,
+  "semantic_tests_rerun": false,
+  "native_or_diagnostic_credit": 0,
+  "private_consumer_created": false,
+  "source_edits": false,
+  "development_complete": false
+}

@@ -1,0 +1,101 @@
+{
+  "schema": "kopplas.resumed-deadline-E2E001-terminal-binding-review.v1",
+  "verdict": "PASS_NARROW_TERMINAL_DATA_BINDING_SOURCE_ONLY",
+  "status": "PASS",
+  "review": {
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "Only the frozen two-file terminal enrollment: identity/path data, exact inverse, unchanged function segments and actual terminal/source reference compatibility. No repeated algorithm review, matrix or fourth broad round."
+  },
+  "files": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition-preparation/read-diagnostic-artifact.py",
+      "bytes": 16565,
+      "sha256": "00544bff386a7288cca46beaf41f57a8e26b51a35a2d9343aa4b7f70ddb9b743"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition-preparation/proposal.json",
+      "bytes": 24854,
+      "sha256": "3e88276ba0a05567761838b65e2b615e885a7dcadc5e486aa92abe0a369de611"
+    }
+  ],
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal.json",
+    "bytes": 15056,
+    "sha256": "00bf9ea5de8ed9aa11361324e41ec4aab98e068bca2d0e7100432ff0c56b88b2",
+    "run": 39762193452,
+    "attempt": 1,
+    "head": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1",
+    "checkpoint_id": "ade128cf-abd1-416b-a7d4-c9511ef8991f",
+    "ref": "codex/epic-15-original-failure-debug",
+    "repo": "rthunborg/Kopplas",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "workflow_id": 296219797,
+    "event": "workflow_dispatch",
+    "mode": "original-e2e001",
+    "cause_proof": false,
+    "release_validation": false,
+    "conclusion": "failure",
+    "jobs": "All nine completed: admission/verify success, E2E failure, six skipped.",
+    "terminal_stop_stack": "success"
+  },
+  "reused_source_authority": {
+    "review_path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-original-E2E001-deadline-source-targeted-review.json",
+    "review_bytes": 11950,
+    "review_sha256": "40868919484d6f130ef0b729461d1c79c2f53e485f4319e9a7968b728fb3279e",
+    "predecessor_reader_bytes": 16488,
+    "predecessor_reader_sha256": "f470f8363543d19c62c481c55fbd424efe08b28dc453e2989db152721cee7c67",
+    "predecessor_proposal_bytes": 18673,
+    "predecessor_proposal_sha256": "361cdee6f36f8f60143f38c785f556f156d4db06bbb91d3e5b86eb2d512d19ed"
+  },
+  "independent_check": {
+    "chunk": "f5a623",
+    "native_exit": 0,
+    "wall_seconds": 0.1686488,
+    "kind": "Pure local read/hash/AST source-segment comparison only.",
+    "results": [
+      "Exactly three top-level quoted path/tuple replacements; complete inverse restores every byte of the reviewed16488 predecessor.",
+      "All eight function source segments and their hashes are byte-identical, including parser, admission and complete two-GET orchestration.",
+      "Actual run/head/attempt/checkpoint/ref/actors/workflow/mode/title and nine terminal job conclusions match the proposal.",
+      "All input references and four diagnostic raw/LF/computed-clean-Git source identities match.",
+      "False activation template contains the actual tuple and existing fixed mode/max2/no_retry settings; new activation and output paths are absent."
+    ],
+    "tests_or_controls_rerun": 0,
+    "reader_import_or_main": 0,
+    "API_calls": 0,
+    "Git_commands": 0,
+    "resources": 0
+  },
+  "assessment": {
+    "algorithm": "No parser, annotation schema, output budget, transport/archive helper, request endpoint shape, retry policy or privacy change. The existing deadline source and private consumer PASS applies with verified provenance.",
+    "truth": "Observed settlement bookkeeping remains distinct from actual Promise state and backend settlement. No current diagnostic counts, deadline rows or causes have been acquired by this binding check.",
+    "history": "Native's initial overlapping-prefix inverse assertion stopped before writes/API; its corrected exact-quoted inverse/AST compile is historical author evidence. This reviewer independently checked the full inverse without executing the reader.",
+    "findings": []
+  },
+  "activation_requirements": {
+    "validator_change": false,
+    "conditions": "Use the existing template with actual exact reader16565/proposal24854 references, this independent PASS reference, completed finite acquisition allocation and fresh Root source proof; populate a fresh v4 operation UUID distinct from checkpoint and execution_authorized=true only after Root admission.",
+    "mode": "ONE_ORIGINAL_E2E001_DEADLINE_LIST_AND_REPORT",
+    "maximum_logical_requests": 2,
+    "no_retry": true,
+    "activation_path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition-activation.json",
+    "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition",
+    "freshness": "Exclusive fsynced Root activation, exact nine-job mapping and absent output remain required. Historical activations/intents do not authorize this new path. No additional validator field is introduced.",
+    "source_only": "This PASS creates no activation and grants no acquisition, runtime, correction or retry authority. Actual acquisition and distinct causal qualification are separate."
+  },
+  "remaining": {
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "required_missing_cases": 35,
+    "broad_review_counter": 3,
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "actual_deadline_owner_and_stage": "UNKNOWN",
+    "abort_origin": "UNKNOWN",
+    "backend_settlement": "UNKNOWN",
+    "custody": "Unverified; successful ended-job Stop-stack remains a limited handoff."
+  }
+}

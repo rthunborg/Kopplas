@@ -1,0 +1,25 @@
+{
+  "kind": "bounded artifact parser/discovery checks; no runtime product tests",
+  "actual_ready": {
+    "found": true,
+    "status": "ready-for-dev",
+    "ambiguous": false,
+    "hard_stop": false,
+    "warnings": [],
+    "error": null
+  },
+  "actual_candidate_count": 1,
+  "synthetic_temp_only_done": {
+    "found": true,
+    "status": "done",
+    "ambiguous": false,
+    "hard_stop": false,
+    "warnings": [],
+    "error": null
+  },
+  "synthetic_candidate_count": 1,
+  "real_lifecycle_status_unchanged": true,
+  "old_raw_sha256": "533ebcf72dbe19f7b81fdc125166fb1ad12247e7da727f55578c21c414d1f0b6",
+  "old_lf_sha256": "60b9823b687e32d049a388b7a803548fd933cdf4a1d95896c8be76516fd6436a",
+  "new_intent_contract_sha256": "035ee9683e8b3e6e0420204a3ddfa8d81b0dcb6a47aa12e638673859d60cc234"
+}

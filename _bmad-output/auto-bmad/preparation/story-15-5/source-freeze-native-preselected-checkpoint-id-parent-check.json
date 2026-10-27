@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "kind": "PARENT_INDEPENDENT_METADATA_IDENTITY_AND_PROVENANCE_CHECK",
+  "status": "PASS",
+  "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "capsule": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-preselected-checkpoint-id.json",
+    "bytes": 884427,
+    "sha256": "9009a6a62233fe6b68f7b8ae415870a9b81e8a664a4eecea0f3f5c9e90049232"
+  },
+  "verifier": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-preselected-checkpoint-id-parent.mjs",
+    "bytes": 18994,
+    "sha256": "f6471b2e92945c205b25aacab001340ae26b3778687e5b08a90983ceb2c261f0"
+  },
+  "actual": {
+    "source_paths": 70,
+    "raw_clean_differences": 41,
+    "author_commits": 20,
+    "root_commits": 12,
+    "ancestry": 32,
+    "full_recursive_refs": 670,
+    "unique_ref_paths": 557,
+    "historical_equalities": 734,
+    "protected_SQL": 109,
+    "protected_consumers": 37,
+    "original_preparation_blobs": 69,
+    "snapshots": 30,
+    "historical_raw_uncredited": 12,
+    "baseline_only": 18,
+    "failed_histories": 11,
+    "prior_capsules": 12,
+    "native_object_batch_count": 135
+  },
+  "review": {
+    "composite": "Historical cb8/520 NOTPASS preserved;af5 F3 closure reused;current f304 prerequisite PASS",
+    "no_retroactive_whole_PASS": true,
+    "completed_broad_rounds": 3,
+    "fourth_broad": false,
+    "kernel_bytes": 5760,
+    "SRO_stops": 92
+  },
+  "raw_review_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "bytes": 67694,
+      "sha256": "173b5caf9ee43fc9024694b8232c4d6e768be4159cc0330c37efa965021070f5",
+      "single_space_context_lines": 3,
+      "numbered_empty_source_quotes": 3,
+      "other_trailing_space": 0
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+      "bytes": 13507,
+      "sha256": "7757ceb9971e96b2b595cf54b5fd51759f312ae39fb28f5140a12715191db63b",
+      "single_space_context_lines": 3,
+      "numbered_empty_source_quotes": 0,
+      "other_trailing_space": 0
+    }
+  ],
+  "producer_lint": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-freeze/producer-lint.json",
+    "bytes": 638,
+    "sha256": "ec5792e008f4285e1f381feda80c77c9fcbda317a959a968539d28aaa6d21893"
+  },
+  "reused_historical_proof": {
+    "capsule": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-denial-cause-proof.json",
+      "bytes": 852019,
+      "sha256": "23b1751be315acab911ae84bc864a0d9005513a4b9419332c50b3f2465b4fac9"
+    },
+    "full_occurrences": 631,
+    "unique_paths": 530,
+    "parent_final_receipt": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-denial-cause-proof-parent-check.json",
+      "bytes": 4759,
+      "sha256": "3f6faca430878041990912cf601286e990b2cc888953b88459d1116f5b59ed50"
+    },
+    "parent_final_verifier": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/verify-source-freeze-native-denial-cause-proof-parent.mjs",
+      "bytes": 16069,
+      "sha256": "b24cdbb4d872dd8c9eb702d5b33daf72ed04a74bc57ccb307b0343cb433d5c10"
+    },
+    "earlier_9CORE384_FULL385_10FULL442_11FULL500_qualifiers_unchanged": true
+  },
+  "exact_recursive_skip": "git.root_metadata_snapshot ONLY; actual baseline objects separately verified",
+  "archive_member_limit": "member_* descriptor is not a physical loose-file reference; exact extraction and qualification refs verified",
+  "native_exit": 0,
+  "elapsed_ms": 8626,
+  "initial_parent_reader_failures": [],
+  "source_index_unchanged": true,
+  "global_clean_not_claimed": true,
+  "semantic_tests_rerun": false,
+  "native_or_diagnostic_credit": 0,
+  "private_consumer_created": false,
+  "source_edits": false,
+  "development_complete": false
+}

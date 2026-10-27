@@ -1,0 +1,45 @@
+{
+  "label": "INT014-focused-RED-localization",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "--experimental-strip-types",
+    "--import",
+    "./tests/support/register.mjs",
+    "--test",
+    "--test-name-pattern",
+    "^actual fixture status observation refuses",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 1,
+  "elapsed_seconds": 0.271156,
+  "reason": null,
+  "caps": {
+    "seconds": 60,
+    "stdout": 2097152,
+    "stderr": 262144
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 1921,
+      "sha256": "db75fc87ef57607b9c5e03c194ba50637555d7d66219e9eb1394409302458b21",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": []
+}

@@ -1,0 +1,44 @@
+{
+  "phase": "review-native-cause-proof-corrective-latest7",
+  "role": "independent-sensitive-latest7-corrective-regression-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "recorded_by_root_before_dispatch": true,
+  "dispatch_owner": "Parent; author does not dispatch",
+  "source": "52007b760ff10f056ac75c5ed5b7dcdf49f99036",
+  "base": "cb8d696d19c53e63be05ecb1ae273449af60efaf",
+  "scope": "Exact committed seven-path latest-fix regression review; not fourth broad story review",
+  "completed_broad_rounds": 3,
+  "source_spec_index_frozen": true,
+  "verdict": "PENDING",
+  "native_credit": 0,
+  "root_identity_metadata_only": {
+    "current_source_paths": 70,
+    "normalization_differences": 41,
+    "delta_normalization_differences": 3,
+    "author_commits": 18,
+    "root_commits": 11,
+    "ancestry": 29,
+    "root_dirty_state_report_excluded": true,
+    "mutable_root_raw_not_resampled": true
+  },
+  "limits": {
+    "native_diagnostic": "UNEXECUTED",
+    "all43_db_causes": "UNRESOLVED",
+    "browser14": "UNRESOLVED",
+    "hosted_availability": "UNKNOWN before later fresh Root checks",
+    "private_consumer": "UNBORN; later exact-schema High review/adoption required; no consumer instantiated",
+    "acceptance_credit": 0,
+    "original_cb8_code_review": "NOTPASS F1+F2; findings require reviewer resolution",
+    "original_F1_plan_sufficiency": "NOT_ADOPTED; same-connection visibility addendum supersedes",
+    "F1_claim": "Physical absence only exact10 returned AuthIDs and2tenantIDs in same statement with actual-role SUPERUSER OR BYPASSRLS; not historical deletion or partial setup closure"
+  },
+  "effect_fences": [
+    "ONE expanded existing final parameterized SELECT; no new roundtrip/HTTP/connection/principal/grant",
+    "Same statement directly reads actual current_user pg_roles plus auth.users and public.tenants",
+    "Actual adapter spawn/refusal facts, uncertain launch is not proven no-start; no exitcode/group-absence conflation",
+    "Existing captured identity/group stop, command/query/HTTP/output drain, COMMIT and key-custody guards retained",
+    "Default registered active/path/hash/root dispatch presence vs full reviewed candidate capability; same GET/sole POST/nonce/mode/ref guards",
+    "No default update/fallback/retry/normal gate/artifact/inverse weakening"
+  ]
+}

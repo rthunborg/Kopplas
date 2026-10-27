@@ -1,0 +1,129 @@
+# DOCUMENT ONLY; proposed unallocated file. Execution admission required before publication.
+name: Fixed Chromium capsule C mock proof
+on:
+  push:
+    branches: [codex/epic-15-scheduling-time-calendar]
+    paths:
+      - .github/workflows/fixed-chromium-capsule-mock-proof.yml
+      - tests/diagnostics/fixed-chromium-capsule-mock.c
+permissions:
+  contents: read
+concurrency:
+  group: fixed-chromium-capsule-mock-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  capsule-mock:
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/codex/epic-15-scheduling-time-calendar' &&
+      (github.event.head_commit.message == format('chore(story-15-1): add capsule C mock proof{0}{0}Prepare the reviewed, fully mocked capsule producer proof.{0}Execution admission: 1f93046c-858d-4ef2-8933-023913519af2.', fromJSON('"\n"')) ||
+       github.event.head_commit.message == format('chore(story-15-1): add capsule C mock proof{0}{0}Prepare the reviewed, fully mocked capsule producer proof.{0}Execution admission: 1f93046c-858d-4ef2-8933-023913519af2.{0}', fromJSON('"\n"')))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      # Outer Actions equality is case-insensitive: provider VM/read-only preflight may run.
+      # No checkout, compiler qualification or workload before this exact guard succeeds.
+      - name: Require case-sensitive complete event admission
+        id: exact-admission
+        shell: bash
+        run: |
+          /usr/bin/python3 - <<'PY'
+          import json,os,sys
+          CANONICAL="chore(story-15-1): add capsule C mock proof\n\nPrepare the reviewed, fully mocked capsule producer proof.\nExecution admission: 1f93046c-858d-4ef2-8933-023913519af2."
+          EXPECTED_REF='refs/heads/codex/epic-15-scheduling-time-calendar'
+          def exact_message(value):
+              return isinstance(value,str) and value in (CANONICAL,CANONICAL+'\n')
+          try:
+              with open(os.environ['GITHUB_EVENT_PATH'],'r',encoding='utf-8') as stream:
+                  event=json.load(stream)
+              head=event.get('head_commit') if isinstance(event,dict) else None
+              allowed=isinstance(head,dict) and exact_message(head.get('message')) and event.get('ref')==EXPECTED_REF and os.environ.get('GITHUB_REF')==EXPECTED_REF and os.environ.get('GITHUB_EVENT_NAME')=='push'
+          except Exception:
+              allowed=False
+          if not allowed:
+              print('exact-admission-refused')
+              sys.exit(1)
+          print('exact-admission-accepted')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Prepare private output and qualify candidate toolchain
+        shell: bash
+        run: |
+          set -eu
+          umask 077
+          OUT=$(/usr/bin/python3 -c 'import pathlib,os,uuid;p=pathlib.Path(os.environ["RUNNER_TEMP"])/("capsule-c-mock-"+str(uuid.uuid4()));p.mkdir(mode=0o700);print(p)')
+          printf 'CAPSULE_MOCK_OUT=%s\n' "$OUT" >> "$GITHUB_ENV"
+          ulimit -f 256
+          test -x /usr/bin/clang-18 && test -x /usr/bin/timeout
+          /usr/bin/readlink -f /usr/bin/clang-18 > "$OUT/clang-path.txt"
+          /usr/bin/sha256sum /usr/bin/clang-18 /usr/bin/timeout /usr/bin/python3 > "$OUT/toolchain-sha256.txt"
+          /usr/bin/timeout -s TERM -k 1s 3s /usr/bin/clang-18 --version > "$OUT/clang-version.txt" 2> "$OUT/qualification.stderr"
+          /usr/bin/timeout -s TERM -k 1s 3s /usr/bin/clang-18 -dumpmachine > "$OUT/clang-target.txt"
+          cp /etc/os-release "$OUT/os-release.txt"
+          /usr/bin/python3 - "$OUT" <<'PY'
+          import pathlib,re,sys,json
+          o=pathlib.Path(sys.argv[1]);v=(o/'clang-version.txt').read_text();target=(o/'clang-target.txt').read_text().strip();osrelease=pathlib.Path('/etc/os-release').read_text();ok=bool(re.search(r'clang version 18\.',v)) and bool(re.fullmatch(r'x86_64[^\n]*linux[^\n]*',target)) and 'VERSION_ID="24.04"' in osrelease
+          (o/'qualification.json').write_text(json.dumps({'qualified':ok,'platform':'Ubuntu24.04/x86_64','clangMajor':18,'target':target,'sourceSha':'a48c96a0e196416aa5e0036010085676fc696ff844f166903044e317064c530c'})+'\n')
+          sys.exit(0 if ok else 1)
+          PY
+      - name: Bound actual-source extraction
+        shell: bash
+        run: |
+          set -eu
+          umask 077
+          /usr/bin/python3 - tests/diagnostics/fixed-chromium-owned-process.c tests/diagnostics/fixed-chromium-capsule-mock.c "$CAPSULE_MOCK_OUT/mock-capsule.c" <<'PY'
+          import hashlib,pathlib,sys
+          source=pathlib.Path(sys.argv[1]).read_bytes()
+          scaffold=pathlib.Path(sys.argv[2]).read_bytes()
+          assert len(source)==21149 and hashlib.sha256(source).hexdigest()=='a48c96a0e196416aa5e0036010085676fc696ff844f166903044e317064c530c'
+          assert hashlib.sha256(scaffold).hexdigest()=='fba14fa7508e22ea5552219b984ee279d560c62ce8576d29a77cf49b5a9fa60f'
+          part=source[6297:15299]
+          assert hashlib.sha256(part).hexdigest()=='58110a2a79866ca8406b2a2b27aebe4e692d0f4e96272405ae662ee8d9381a22'
+          marker=b'/* OWNED-CAPSULE-ACTUAL-SOURCE */\n'
+          assert scaffold.count(marker)==1
+          result=scaffold.replace(marker,part)
+          assert hashlib.sha256(result).hexdigest()=='2227fd1dab92d5ab43916dd18d78200a1713ceee4a30392a49a533487ed82a91'
+          with open(sys.argv[3],'xb') as f:f.write(result)
+          PY
+          sha256sum "$CAPSULE_MOCK_OUT/mock-capsule.c" > "$CAPSULE_MOCK_OUT/generated-sha256.txt"
+      - name: Compile and execute only the bound mock
+        shell: bash
+        run: |
+          set -u
+          umask 077
+          ulimit -f 256
+          export TMPDIR="$CAPSULE_MOCK_OUT"
+          set +e
+          /usr/bin/timeout -s TERM -k 1s 20s /usr/bin/clang-18 -std=c11 -Wall -Wextra -Werror -O0 "$CAPSULE_MOCK_OUT/mock-capsule.c" -o "$CAPSULE_MOCK_OUT/mock-capsule" > "$CAPSULE_MOCK_OUT/compiler.stdout" 2> "$CAPSULE_MOCK_OUT/compiler.stderr"
+          code=$?
+          printf '%s\n' "$code" > "$CAPSULE_MOCK_OUT/compiler.exit"
+          test "$code" = 0 || exit 1
+          /usr/bin/timeout -s TERM -k 1s 3s "$CAPSULE_MOCK_OUT/mock-capsule" > "$CAPSULE_MOCK_OUT/mock.stdout" 2> "$CAPSULE_MOCK_OUT/mock.stderr"
+          code=$?
+          printf '%s\n' "$code" > "$CAPSULE_MOCK_OUT/mock.exit"
+          /usr/bin/python3 - "$CAPSULE_MOCK_OUT" <<'PY'
+          import pathlib,re,sys,json
+          root=pathlib.Path(sys.argv[1]); reasons=[]
+          for name in ['compiler.stdout','compiler.stderr','mock.stdout','mock.stderr']:
+           p=root/name
+           if not p.is_file() or p.stat().st_size>32768:reasons.append('output-bound')
+          rows=(root/'mock.stdout').read_text() if not reasons else ''
+          expected=["01 stdin-open","02 stdin-dup","03 stdout-dup","04 no-new-privileges","05 securebits","06 ambient-clear","07 bounding-read","08 bounding-drop","09 bounding-limit","10 groups-drop","11 gid-drop","12 uid-drop","13 capset","14 uid-check","15 euid-check","16 gid-check","17 egid-check","18 groups-check","19 no-new-privileges-check","20 workload-chdir","21 fd-close-range","22 node-directory-format","23 node-path-length","24 environment-clear","25 env-home","26 env-path","27 env-ci","28 env-db-required","29 env-runtime-temp","30 env-browser-path","31 env-app-mode","32 env-attestation-key","33 env-attestation-secret","34 node-exec","35 delivery-unavailable","36 mock-exec-success"]
+          lines=rows.splitlines()
+          if lines!=['case '+s+' PASS' for s in expected]+['mock_cases=36 failures=0 skipped=0 native_actions=0']:reasons.append('case-gate')
+          for name in ['compiler.exit','mock.exit']:
+           if (root/name).read_text().strip()!='0':reasons.append('exit-gate')
+          (root/'result.json').write_text(json.dumps({'pass':not reasons,'cases':36 if not reasons else 0,'skip':0 if not reasons else 'unknown','reasons':sorted(set(reasons))})+'\n')
+          sys.exit(1 if reasons else 0)
+          PY
+      - name: Preserve all available output on failure or success
+        if: always() && steps.exact-admission.outcome == 'success' && env.CAPSULE_MOCK_OUT != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: capsule-c-mock-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.CAPSULE_MOCK_OUT }}
+          if-no-files-found: error
+          retention-days: 7

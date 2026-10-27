@@ -1,0 +1,16 @@
+{
+  "head_before": "76f50d3854a2f6d5bb2b3e810f06b1c65cb0e9af",
+  "scope": "Read-only preservation receipt; no source or canonical state mutation authorized",
+  "sha256": {
+    "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md": "18bd5e71802ebe055e564837a40d6bdd2b4e85a2bad5962a8f9a9392f5e3888c",
+    "_bmad-output/implementation-artifacts/epic-15-context.md": "f41bccd2029d5dbd027f9b98c3f7b3e8b93b4ce7627331ec7bcf2592aded910a",
+    "_bmad-output/implementation-artifacts/epic-14-retro-2026-10-08.md": "f4137cdae55235f1dca86360f8f3b0945c34079d02ebeab62a8543d2e68ee10d",
+    "_bmad-output/implementation-artifacts/sprint-status.yaml": "e6e018f1531503e343870ca0a8269e73ff3b6f9d9497169023e1aa32e62b2521",
+    "_bmad-output/auto-bmad/state/15-2-recurring-bookings-series-materialized-occurrences-exceptions.yaml": "99280a9c03689574c78666396e600898afc68923abdd1456a610ea33f33871f6",
+    "src/scope/manifest.ts": "5bcce4869eae64c3b99c48e78e3e5a05a60f0ca4786600146e159a7d85ba74dd",
+    "src/server/authz/permission-matrix.ts": "3b0b893a1db22b491820e3f0c8e27d32171f3b16b9ad0fd803687442b3877dea",
+    "src/features/scheduling/capacity.ts": "54034427803bfd0ce6f3baace8c7879bf269dd3def54e1fddca9f1a78873f652",
+    "tests/unit/server/authz/phase-a-surface.test.ts": "34c043972dff469e37752c429b2d673bae5201556543eaae0bb7ddbae82a2384"
+  },
+  "prior_story_15_2_specs": []
+}

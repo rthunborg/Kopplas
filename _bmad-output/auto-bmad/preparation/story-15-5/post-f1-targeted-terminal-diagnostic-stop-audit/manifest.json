@@ -1,0 +1,33 @@
+{
+  "schema": "TARGETED_STOP_AUDIT_SELF_EXCLUDED_MANIFEST_v1",
+  "verdict": "PASS_QUALIFIED_STOP",
+  "operation_outcome": "STOP_UNKNOWN_OUTPUT_CAP",
+  "run_id": 39664130401,
+  "attempt": 1,
+  "members": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "original-report.md",
+      "bytes": 3414,
+      "sha256": "b823ad0ad84ca76388aaeab141192037701461c64e1ef96deb99d98ce5e12711"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 15290,
+      "sha256": "7e3c7446fe15a65f3dc24f93519bd9fe3163913d881afc93128a350f903b60de"
+    },
+    {
+      "path": "result.json",
+      "bytes": 936,
+      "sha256": "d6c9f6c383ba1e490bbb62b7f1115321f3dd234d435e0b628ba36c32b9eae936"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance": 0,
+  "execution_authorized": false
+}

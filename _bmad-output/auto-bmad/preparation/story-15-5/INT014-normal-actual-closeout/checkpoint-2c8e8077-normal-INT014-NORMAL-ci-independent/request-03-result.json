@@ -1,0 +1,44 @@
+{
+  "argv": [
+    "gh",
+    "api",
+    "--method",
+    "GET",
+    "repos/rthunborg/Kopplas/actions/artifacts/12506806108/zip"
+  ],
+  "capture_complete": true,
+  "category": null,
+  "custody": "OWN_GH_CHILD_AND_OUTPUT_SETTLED",
+  "elapsed_seconds": 1.159,
+  "handles_closed": true,
+  "inline_source_sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920",
+  "intent_persisted_before_spawn": true,
+  "label": "native-general-browser",
+  "native_exit": 0,
+  "raw_persisted": false,
+  "sequence": 3,
+  "settled": true,
+  "stderr_cap": 65536,
+  "stdout_cap": 33554432,
+  "streams": [
+    {
+      "joined": true,
+      "observed_bytes": 9750,
+      "overflow": false,
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "sha256": "19d2fb991d62a35610ea62ab53d840961e403259183c9b5a7b2d935775a4b888"
+    },
+    {
+      "joined": true,
+      "observed_bytes": 0,
+      "overflow": false,
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "timeout_seconds": 15
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "POST_F1_BOUNDARY_STATE_REFINEMENT_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/boundary-state-refinement/report.md",
+      "bytes": 6172,
+      "sha256": "6633944f1ca3ba71aaece44dd43b2d1953de037eec8da267758e601b280d5223"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/boundary-state-refinement/attestation.json",
+      "bytes": 10935,
+      "sha256": "00359b5c5951cbbfcd41429edb8711f5e5f17023597675ad7388b2dfef600ac3"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 3,
+  "normal_acceptance": 0
+}

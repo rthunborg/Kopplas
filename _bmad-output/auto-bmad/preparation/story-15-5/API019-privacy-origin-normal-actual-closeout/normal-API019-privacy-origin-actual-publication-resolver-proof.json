@@ -1,0 +1,121 @@
+{
+  "schema": "ROOT_ACTUAL_PUBLICATION_RESOLVER_PROOF_V1",
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "source_provenance": "Reviewed source Git parent and fresh204binding equality; source is not a native run-payload field.",
+  "run": 39990057474,
+  "operation_id": "5e17d7ae-9ad6-4ac4-a4fa-e304a20ce207",
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "started_at": "2026-10-23T16:49:59.854511+00:00",
+  "dispatch_accepted_at": "2026-10-23T16:50:08.681568+00:00",
+  "resolution_count": 1,
+  "controller_native_receipts": [
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/remote-before-receipt.json",
+        "bytes": 697,
+        "sha256": "c8933269b2171ff160c6e754c0bd5377436f30e57a05ec08d87b59f5cdfba003"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 0.693411,
+      "configured_LOOP_seconds": 20,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/push-receipt.json",
+        "bytes": 698,
+        "sha256": "3bb690839f7ac3ae3a4c54b4123c19c312ebc976939c119e87fcc57144ae279d"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 3.428536,
+      "configured_LOOP_seconds": 60,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/remote-readback-receipt.json",
+        "bytes": 697,
+        "sha256": "01e4a6035b1717553c999e8d899542eb3cd842dd0e0f222fcc582c1d1254c315"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 0.605245,
+      "configured_LOOP_seconds": 20,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/dispatch-receipt.json",
+        "bytes": 842,
+        "sha256": "ac691564e3ebe33b1d0aac2d0e9e504a4a39ad799b736e9721e200f3a6e73526"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 3.976728,
+      "configured_LOOP_seconds": 90,
+      "full_EOF_joined_closed_settled": true
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/resolve-1-receipt.json",
+        "bytes": 701,
+        "sha256": "05ea76e0eb13a9b426623a1c1c2abea1fe3891d977389fe4c43f76042fba0293"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 1.354954,
+      "configured_LOOP_seconds": 20,
+      "full_EOF_joined_closed_settled": true
+    }
+  ],
+  "native_captured_count": 5,
+  "underlying_GitHub_calls": {
+    "canonical": {
+      "GET": 4,
+      "POST": 1,
+      "native_child": "one Node canonical adapter; no per-nested-call capture count inferred"
+    },
+    "resolver_GET": 1,
+    "basis": "Qualified unchanged source branches and completed canonical/resolver captures; no retry."
+  },
+  "configured_caps_match_allocation": true,
+  "remote_before_and_readback_exact_expected_91bytes_sha256": [
+    {
+      "receipt": "remote-before-receipt.json",
+      "expected_bytes": 91,
+      "expected_sha256": "9aa47ff4b33aca124e0975639e1c6ec9696041a51c9238eec5745e227ed3ff0b",
+      "actual_verified": true
+    },
+    {
+      "receipt": "remote-readback-receipt.json",
+      "expected_bytes": 91,
+      "expected_sha256": "850836588dad42c9deb6c648ff7be2c65edc70151143837a78c97a814a32c460",
+      "actual_verified": true
+    }
+  ],
+  "source_proof_age_at_dispatch_accepted_upper_bound_seconds": 187.264309,
+  "provider_age_at_dispatch_accepted_upper_bound_seconds": 117.069449,
+  "guard_basis": "Unchanged admitted source additionally checks freshproof at mutation/POST and provider age at canonical invocation/POST; accepted-time figures are conservative upper bounds.",
+  "initial_actual_outer": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-initial-outer-provenance.json",
+    "bytes": 907,
+    "sha256": "8c1e417e0907d719489cf48127de0dac912fc436e2352ce428aff9fc1dbfe93e"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-effects-allocation.json",
+    "bytes": 5952,
+    "sha256": "6403123ad4873d4d4b1c2d7363b89c7d23baab021c8fdc6d7455f204fbd9b34d"
+  },
+  "provider_outer": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-provider-execution-receipt.json",
+    "bytes": 3755,
+    "sha256": "a4503f92a8652e23bc9dd0ad4f1872ca57a2bc5da842bc4074b05d737ca7bf7d"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-current-source-proof.json",
+    "bytes": 59108,
+    "sha256": "eb6abe2600d8414bf74611b60e5757c553778f06149773ada9c4670f682b0c30"
+  },
+  "normal_acceptance": 0,
+  "phase": "Publication and resolution complete; sole bounded Root poller remains active.",
+  "artifact_GETs": 0,
+  "no_retry": true
+}

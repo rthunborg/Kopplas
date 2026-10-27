@@ -1,0 +1,20 @@
+{
+  "kind": "ROOT_MECHANICAL_R1_PREPARATION_ADMISSION_ONLY",
+  "manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/manifest.json",
+    "bytes": 1367,
+    "sha256": "6e2697886267ca13db8c3755ac1cb7c9f4e04728401e7a9b823c4e03da0aad9c"
+  },
+  "preparation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-targeted-terminal-diagnostic-preparation/r1/preparation.json",
+    "bytes": 8342,
+    "sha256": "a8e135e86fb6d6a71af2ae5b4a4c20b74a2c5c21e20ce91b5d1a47b18323a29a"
+  },
+  "verified_members": 4,
+  "verified_files_including_self": 5,
+  "actual_GETs": 0,
+  "execution_authorized": false,
+  "normal_acceptance_credit": 0,
+  "source_semantics_reviewed_by_root": false,
+  "independent_source_audit": "IN_PROGRESS"
+}

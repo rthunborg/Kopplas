@@ -1,0 +1,26 @@
+{
+  "authorization": "Root e15277 native0; exact three generated author logs",
+  "files": [
+    {
+      "source": "_bmad-output/auto-bmad/preparation/story-15-6/author-unit-output.txt",
+      "destination": ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-unit-output.txt",
+      "sha256": "9eb3c652418abcec65cb3050fb9c4692ba80ff776557972d4cc340f70ef6b10e",
+      "sourceAbsent": true,
+      "byteHashPreserved": true
+    },
+    {
+      "source": "_bmad-output/auto-bmad/preparation/story-15-6/author-unit-final-output.txt",
+      "destination": ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-unit-final-output.txt",
+      "sha256": "4180a85bd946a44dde85f68e5315712241a2c0a048eae259fc416be992003cc7",
+      "sourceAbsent": true,
+      "byteHashPreserved": true
+    },
+    {
+      "source": "_bmad-output/auto-bmad/preparation/story-15-6/author-fixtures-output.txt",
+      "destination": ".env.epic15.mail-runtime/story-15-6-preparation/author-logs/author-fixtures-output.txt",
+      "sha256": "d0531d6eaf16a1020b7456f0feb27c007425fef4b064d36ba64e6370a0c5ca46",
+      "sourceAbsent": true,
+      "byteHashPreserved": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "Blockers": "All five actual GETs remain unallocated by this audit; no activation/terminal/output packet authority is created. No development/release/native acceptance credit.",
+  "Deferred work": "Root separately verifies all terminal/allocation/source-admission conditions immediately before activation and any finite acquisition; independent actual packet audit follows.",
+  "Files changed": "Only new post-f1-terminal-operator-source-review files",
+  "Open questions": "Actual current-head report/test counts, fullDB/RLS/API019, diagnostic causes, attachment content and custody outcomes remain unknown; real acquisition allocation/activation is unobserved. Root terminal is now locally bound completed FAILURE and compatible with admission schema.",
+  "Outcome": "PASS_PREGET_SOURCE_WITH_TERMINAL_CONDITIONS",
+  "Status": {
+    "GETs": 0,
+    "actual_terminal_compatibility": {
+      "bytes": 1627,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/terminal-compatibility.json",
+      "sha256": "0a6c19cd4158f8eb8a2e3cf1261e6a16c2626121fd4cd1a3c4530dbac545bccb"
+    },
+    "attestation": {
+      "bytes": 12900,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/original-attestation.json",
+      "sha256": "4318fdc490d1031d4b54862ff98f5cf3dc3673f84d80e4c8a492875704512ddd"
+    },
+    "findings": [],
+    "native_acceptance": 0,
+    "normalizations": 45,
+    "operator": {
+      "bytes": 31222,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+      "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+    },
+    "prepared_manifest": {
+      "bytes": 1675,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/manifest.json",
+      "sha256": "b4e8cf2a438405fa2ec8117a500fd2f1a47aa93487f6e3da2f1666fe39cda044"
+    },
+    "pure_actual_terminal_control": "1P; actual terminal with synthetic RAM-only activation/review/allocation references; no authority",
+    "pure_tests": "10P/47controls;0fail/error/skip;exit0",
+    "report": {
+      "bytes": 5027,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/original-report.md",
+      "sha256": "a712df8c0ad2d3d65a58019e298a72f0e16e0bb0b2f91faf79bb3658cf87e7e7"
+    },
+    "reused_spans": 7,
+    "source_rows": 73
+  }
+}

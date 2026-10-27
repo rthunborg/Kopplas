@@ -1,0 +1,200 @@
+{
+  "kind": "exact-committed-three-path-vite-security-lock-latest-review",
+  "source_head": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "baseline": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "source_state": "EXACT_COMMITTED_APPEND_ONLY_THREE_NO_POSTCOMMIT_SPEC_DELTA",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 113261,
+      "raw_sha256": "b33f59ebf25955b7d5acf082ce255907b462ca6171aacf50ab5621df9f7da5c1",
+      "actual_git_clean_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "normalized_bytes": 112048,
+      "normalized_sha256": "0ea107912c53c54f3755cc162d08bd9ee084e4c7b52363fa5e13c8bdb7024264",
+      "head_blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "head_blob_bytes": 112048,
+      "head_blob_sha256": "0ea107912c53c54f3755cc162d08bd9ee084e4c7b52363fa5e13c8bdb7024264",
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "baseline_bytes": 106886,
+      "baseline_sha256": "50838c6116e14f5909b2580e10b4a10423b18f1b6b4766b211e1c0dfee79576d"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "actual_git_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "normalized_bytes": 2299,
+      "normalized_sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+      "head_blob_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "head_blob_bytes": 2299,
+      "head_blob_sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+      "raw_equals_normalized": false,
+      "baseline_blob_oid": "598270905d8c52582bc2256fd9f103e03913942d",
+      "baseline_bytes": 2299,
+      "baseline_sha256": "832ce6962f5552b0eb1f68c8bc44b9f4b757ddfce7e7b1dc99ca05b31260d468"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "actual_git_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "normalized_bytes": 162159,
+      "normalized_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "head_blob_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "head_blob_bytes": 162159,
+      "head_blob_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "raw_equals_normalized": true,
+      "baseline_blob_oid": "74ec6fee4c984ecab29cf0b6cada7852e6db2bd9",
+      "baseline_bytes": 161963,
+      "baseline_sha256": "4335f56b85f868b1ad7e84ec7fe4c820214195068e577dd91fff0cf6c3d47b84"
+    }
+  ],
+  "input_bytes": 123810,
+  "input_sha256": "af29f6ea57780da357814dd23c3b6a1716c26bc30b0aa1c75073eca13d7f264c",
+  "diff_bytes": 31410,
+  "diff_sha256": "fbe6d5180959f82f0d039d377b27c271cd0e73021aaff00f540a5fb802c61ca5",
+  "full_manifest_bytes": 2299,
+  "full_manifest_sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+  "full_old_new_lock_blobs_bound": true,
+  "semantic_graph": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/dependency-graph.json",
+    "bytes": 41018,
+    "sha256": "77f462af3f72a4a9cc313a144e98dce96323eb86a36ed68e04db52aa92c2faad"
+  },
+  "spec_excerpt": {
+    "included_lines": [
+      988,
+      1214
+    ],
+    "included_bytes": 20707,
+    "included_sha256": "8d106a8e232d03d0d979a9c9f6526c0f14307fc5999590ff3f5909b7a50a21a3"
+  },
+  "bound_metadata": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/dependency-graph.json",
+      "bytes": 41018,
+      "sha256": "77f462af3f72a4a9cc313a144e98dce96323eb86a36ed68e04db52aa92c2faad",
+      "included_lf_bytes": 41018,
+      "included_lf_sha256": "77f462af3f72a4a9cc313a144e98dce96323eb86a36ed68e04db52aa92c2faad"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/local-checks.json",
+      "bytes": 4629,
+      "sha256": "373f1b507d0d2336174b8ca61de756a1c06340c2cc29e64d2856ffa088d0fd1b",
+      "included_lf_bytes": 4629,
+      "included_lf_sha256": "373f1b507d0d2336174b8ca61de756a1c06340c2cc29e64d2856ffa088d0fd1b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/author-route.json",
+      "bytes": 1423,
+      "sha256": "aefc7cd7f1eeb1064728be0adaaee1b9ee87236e1b885e770ed65f1a52c2adcf",
+      "included_lf_bytes": 1423,
+      "included_lf_sha256": "aefc7cd7f1eeb1064728be0adaaee1b9ee87236e1b885e770ed65f1a52c2adcf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-dependency-audit-repair-allocation.json",
+      "bytes": 5420,
+      "sha256": "61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581",
+      "included_lf_bytes": 5336,
+      "included_lf_sha256": "4ca62f2668a1bb448778ff9503e2456691d96fd2393a0135de57722ba15c006d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/primary-sources.json",
+      "bytes": 2945,
+      "sha256": "fda300edc1df47fa376d4e82e1d80772bd86a6ab23859dba674787930a2a8c53",
+      "included_lf_bytes": 2945,
+      "included_lf_sha256": "fda300edc1df47fa376d4e82e1d80772bd86a6ab23859dba674787930a2a8c53"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/proposal.md",
+      "bytes": 6978,
+      "sha256": "c412bef2926e43d0e9e62816d9cb11a7a286a8e3671ea1f63be6864fcb42c472",
+      "included_lf_bytes": 6978,
+      "included_lf_sha256": "c412bef2926e43d0e9e62816d9cb11a7a286a8e3671ea1f63be6864fcb42c472"
+    }
+  ],
+  "root_route": {
+    "path": "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+    "mutable_raw_bytes_unverified_uncredited": 113081,
+    "mutable_raw_sha256_unverified_uncredited": "4b42cdeadbb8e114281096d6fe7848c3c3f96ac8554ee39186f7317039e0e277",
+    "included_lines": [
+      21,
+      29
+    ],
+    "included_lf_bytes": 592,
+    "included_lf_sha256": "fa18ccc860a4f1c00a0618b7d8b84021bc73362336c9aad9eec2e22600c63d6f",
+    "source_commit_excluded": true
+  },
+  "failed_tenth_packet": {
+    "manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-ci-independent/manifest.json",
+      "bytes": 4308,
+      "sha256": "a9afcbb4ebaa008228f76641aa1068e274bbcb4c719e86bcac7f40a1d0bdc7ba"
+    },
+    "qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-ci-independent/native-qualification.json",
+      "bytes": 19081,
+      "sha256": "fa67a9f9eda576bc85f1969b4ede1ccf7413ee310543fe496dc4e12684e8e825"
+    },
+    "root_receipt": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-be2c1a53-packet-admission.json",
+      "bytes": 1206,
+      "sha256": "488f277d104a5eb6fbb1e2e6cf82e181d47cd581f1fbadd6d34422950d70635d"
+    },
+    "run": 39503939856,
+    "attempt": 1,
+    "conclusion": "FAILURE",
+    "later_checks": "UNEXECUTED",
+    "old43DB14browser": "UNRESOLVED"
+  },
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/manifest.json",
+    "bytes": 1847,
+    "sha256": "5d9c8b5f72e3f77c3067d407fa0656c10fd80bfb60fef33ce9092d7efd908192"
+  },
+  "current_root_identity_metadata_only": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-55db468e-source-path-admission.json",
+    "bytes": 38071,
+    "sha256": "4435b2c1d01cef9e701ad22d412da260c5d7c4e857b48c0c098d96c1c794a499"
+  },
+  "review_route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "distinct_context_free": true,
+    "cap": 3,
+    "completed_broad_rounds": 3,
+    "latest_fix_only": true,
+    "fourth_broad_review": false
+  },
+  "kernel_bytes": 5760,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "e0d04c97a78ff01b4f4f15d6b2aa13a73d4577c289fb89be2d02630ca764e10d",
+  "literal_stops": 61,
+  "actual_separate_node_controls": 67,
+  "high_audit": {
+    "exit": 0,
+    "high": 0,
+    "moderate": 2
+  },
+  "canonical_local_lint": "INCOMPLETE_TERMINATED_EXIT1_NOT_PASS_CLEAN_CI_REQUIRED",
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "native_credit_for_controls": 0,
+  "local_checks": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/local-checks.json",
+    "bytes": 4629,
+    "sha256": "373f1b507d0d2336174b8ca61de756a1c06340c2cc29e64d2856ffa088d0fd1b"
+  },
+  "preparation_generator": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/prepare-input.mjs",
+    "bytes": 20083,
+    "sha256": "8c7cd3da7eb00e68d193835e29d82af3ff9128647083c0c431ccf0c416e656cc"
+  },
+  "raw_input_single_0x20_context_lines": 99,
+  "source_edits_after_freeze_allowed": false
+}

@@ -1,0 +1,20 @@
+{
+  "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+  "phase": "ROOT_STOPPED",
+  "started_at": "2026-10-24T16:04:27.173745+00:00",
+  "resolution_count": 1,
+  "poll_count": 20,
+  "run_id": 40109869919,
+  "normal_acceptance": 0,
+  "dispatch_accepted_at": "2026-10-24T16:04:34.231548+00:00",
+  "canonical_state": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-dispatch-state.json",
+    "bytes": 485,
+    "sha256": "919289d34519ee7b10f272e5ceb5ecebd296c9b445b5b4bf1d56a256d67c0f9f"
+  },
+  "last_resolution": "2026-10-24T16:04:39.231297+00:00",
+  "last_poll": "2026-10-24T16:23:06.253275+00:00",
+  "stopped_at": "2026-10-24T16:23:07.531041+00:00"
+}

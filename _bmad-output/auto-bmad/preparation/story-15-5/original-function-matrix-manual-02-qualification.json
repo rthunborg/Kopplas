@@ -1,0 +1,420 @@
+{
+  "Outcome": "PASS — actual closed observation qualified as ordinal1 original-guard predicate refusal. STOP for unexplained ACL/effective-privilege drift; no invalid-guard or production-fix conclusion.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-qualification.json",
+      "identity": "Exclusive new qualification only; final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": {
+    "kind": "INDEPENDENT_OFFLINE_ACTUAL_MATRIX_MANUAL02_QUALIFICATION",
+    "reviewer": {
+      "agent": "/root/review15_5_preselected_id_high",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "distinct_from_author": true,
+      "distinct_from_manual02_reviewer": "/root/review15_5_private_diagnostic_high",
+      "fresh_qualification_task": true,
+      "reused_agent": true,
+      "broad_story_review": false
+    },
+    "target": {
+      "run_id": 39627344465,
+      "attempt": 1,
+      "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+      "source": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+      "checkpoint": "18562d27-e3e4-4e2f-be69-e2a775b8af93",
+      "mode": "cause-proof",
+      "release_validation": false,
+      "db_job_id": 119317329698
+    },
+    "observed_matrix": {
+      "checks": {
+        "acl_grantees_safe": false,
+        "anon_denied": false,
+        "authenticated_execute": true,
+        "body_exact": true,
+        "call_count_exact": true,
+        "exact_proconfig": true,
+        "owner_matches": true,
+        "plpgsql": true,
+        "security_definer": true,
+        "service_role_denied": false,
+        "volatile": true
+      },
+      "false_count": 3,
+      "interpretation": "OBSERVED_GUARD_PREDICATES",
+      "null_count": 0,
+      "ordinal": 1,
+      "schema": "calendar-original-function-guard-v1"
+    },
+    "sql_state_observed": "P0001",
+    "matched_records": 1,
+    "observed_meaning": [
+      "Source-bound ordinal1 denotes the first status-function target. Its eleven closed predicate bits contain exactly3 false,8 true and0NULL.",
+      "False acl_grantees_safe means the existing unsafe-ACL EXISTS was true. False anon_denied and service_role_denied mean their existing has_function_privilege EXECUTE tests were true at this guard. No grantee/grantor/role-entry identities or membership paths were observed.",
+      "Owner/security/volatility/language/exact-config/authenticated-execute/exact-body/call-count bits are true. They are only these target predicates, not full catalog, privilege, migration-ledger or application-sequence proof.",
+      "These observations localize an actual refusal. They do not establish transformation/grant/default/inheritance cause or prove any guard assumption invalid. No PUBLIC grant or specific grant entry is inferred.",
+      "The bound intended source revokes execution from PUBLIC/anon/authenticated/service_role, then grants the three private entrypoints to authenticated. Its intended private boundary is not disproved by the observed refusal."
+    ],
+    "terminal_metadata": {
+      "run_completed": true,
+      "run_conclusion": "failure",
+      "event": "workflow_dispatch",
+      "branch": "codex/epic-15-scheduling-time-calendar",
+      "checkpoint_admission": "success",
+      "verify": "success",
+      "db": "failure",
+      "startup": "failure",
+      "migration_reset": "skipped",
+      "causeproof_execution": "skipped",
+      "diagnostic_upload": "failure",
+      "stop": "success",
+      "other_six_jobs": "skipped",
+      "truthful_upload_failure_preserved": true
+    },
+    "transport_and_selection": {
+      "category": null,
+      "exit_code": 0,
+      "settled": true,
+      "capture_complete": true,
+      "handles_closed": true,
+      "both_streams_done_eof_joined": true,
+      "reader_errors": false,
+      "overflows": false,
+      "streams": [
+        {
+          "bytes": 615996,
+          "done": true,
+          "eof": true,
+          "error": false,
+          "joined": true,
+          "overflow": false,
+          "sha256": "79860ed3e2614d059b8ccdf0e300d8aaf93cf542bf265c25d966a2379037ec2c"
+        },
+        {
+          "bytes": 0,
+          "done": true,
+          "eof": true,
+          "error": false,
+          "joined": true,
+          "overflow": false,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "archive_bytes": 615996,
+      "archive_sha256": "79860ed3e2614d059b8ccdf0e300d8aaf93cf542bf265c25d966a2379037ec2c",
+      "archive_count_digest_matches_stdout": true,
+      "compressed_cap_bytes": 33554432,
+      "stderr_cap_bytes": 65536,
+      "zip_entries": 42,
+      "zip_entry_cap": 2048,
+      "zip_declared_bytes": 3389650,
+      "declared_and_selected_inflate_cap_bytes": 134217728,
+      "selected_actual_bytes": 68917,
+      "selected_member_cap_bytes": 8388608,
+      "selected_members": [
+        {
+          "bytes": 68917,
+          "sha256": "ae7898d495ae819a79d83a7e30d9b86be63d6db3a5389d1ba205f5f4cd64fa14",
+          "step": "Start local Supabase stack"
+        }
+      ],
+      "selection": "Exactly fixed db startup member; failed-startup branch does not inflate conditional causeproof/upload/stop members. Bound02 reviewer verified this with36 pure controls; qualification did not rerun/import extractor or inspect raw ZIP.",
+      "reviewed_additional_limits": {
+        "request_deadline_seconds": 15,
+        "owned_cleanup_seconds_max": 4,
+        "declared_ratio_max": 1000,
+        "projection_cap_bytes": 4096
+      },
+      "result_bytes": 2035,
+      "raw_archive_or_logs_accessed_by_qualifier": false,
+      "filesystem_extraction": false,
+      "privacy": "Only closed matrix/fixed member title/byte digests/metadata retained; no raw logs/archive/SQL/ACL/error/URL/secret content acquired or copied."
+    },
+    "provenance_checks": {
+      "activation_raw_digest_matches_marker_and_result": true,
+      "terminal_raw_digest_matches_marker_and_result": true,
+      "result_admission_matches_actual_bytes_sha": true,
+      "base_terminal_run_job_step_facts_match_exact_terminal": true,
+      "exact_payloads_match_activation_and_review": true,
+      "manual02_review": "Distinct PrivateDiagnosticHigh PASS36; raw originals verified; no new test credit claimed here.",
+      "specific_allocation": "Refreshed exact02 one-archive allocation binds same actual run/head/source/checkpoint and reviewed inputs; original direct human approval ref verified.",
+      "source71": "Exact Root source-admission27103B/SHA6455b8e03f53f95ed682e645d0cbb46535215260743a23846166d7840e4fcc68 bound; source71 is stored identity evidence, not native migration application proof.",
+      "source18": "All18 declared raw hashes and exact checkpoint Git blob identities independently rechecked.",
+      "predecessor01": "Retained zero-request static admission diagnosis and stop bytes verified; consumed/result absent. Generic original stop alone did not identify inner failure; later frozen-input ordering proof establishes pre-marker/GET refusal.01 remains retired, never rerun.",
+      "logical_gets": {
+        "retired01": 0,
+        "consumed02": 1
+      },
+      "http_redirect_request_count": null,
+      "operation_consumed": true,
+      "no_retry_or_alternate_authorized": true
+    },
+    "custody_and_nonclaims": {
+      "own_gh_custody": "OWN_GH_CHILD_OUTPUT_SETTLED",
+      "hosted_database_or_key_cleanup_qualified": false,
+      "stop_step_success": "Terminal metadata only, not verified hosted service/container shutdown.",
+      "lifecycle": null,
+      "lifecycle_status": "UNAVAILABLE_UNKNOWN",
+      "artifact_bodies": null,
+      "artifact_body_status": "UNAVAILABLE_UNKNOWN",
+      "backend_cause": "UNPROVEN",
+      "actual_current111_migration_application_proven": false,
+      "server_version_or_full_ledger_in_projection": false,
+      "normal_acceptance_credit": 0,
+      "source_fix_authority": false,
+      "guard_relaxation_authority": false,
+      "more_detailed_observer_or_retry_authority": false
+    },
+    "next_prerequisite": {
+      "plan_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-proposal/proposal.json",
+        "bytes": 11241,
+        "sha256": "9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48"
+      },
+      "applicable_existing_decision": {
+        "observation": "body_exact false or ACL/config bit false but cause of drift not established",
+        "meaning": "Names the actual missing invariant, not the transformation/grantor cause. STOP with exact source-comparability/catalog prerequisite; no automatic more-detailed observer, guessed edit or normal retry."
+      },
+      "disposition": "STOP at unexplained ACL/config drift, not an automatic observer or normal retry.",
+      "owner": "Root for evidence custody and any specifically routed subsequent assessment; qualification grants no new effects.",
+      "exact_resume_condition": "A source-comparable, evidence-backed assessment must establish whether the actually observed ACL/effective-execution condition reflects an invalid assumption or unintended stored state before a fix can be proposed. Grant identities/entries/cause are currently unobserved. Any new acquisition/observer requires a separately justified, independently reviewed and explicitly allocated scope; do not invent or automatically launch it.",
+      "source_only_assessment": "Offline assessment of existing immutable source and primary engine semantics can test a precise assumption without runtime effects. These present bindings do not establish an invalid assumption: intended revokes/authenticated-only grants and the unsafe-ACL/effective-execution negatives are mutually coherent. Source-only review may identify a logically demonstrated issue if one exists, but no such issue is established by this qualification or these three false bits."
+    },
+    "receipt_bindings": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-result.json",
+        "bytes": 2035,
+        "sha256": "df41f286bfe77d59dfe61b915b7c5b564cbf496af74c6faed260b64df0032cae"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-activation.json",
+        "bytes": 2103,
+        "sha256": "69476e4e6b95af794c6600435958fad199897c25fea6a5f77cc6b6483e0b6dc2"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-terminal-facts.json",
+        "bytes": 895,
+        "sha256": "d22e3ef338acb879121ecf264ce11947a31b9069ad782f06e244ca0df64efa41"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-consumed.json",
+        "bytes": 326,
+        "sha256": "08ed1b1403f7daa35dfe329b655acf75136b3264d957dc9f576d4e1fda198688"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-02-result-admission.json",
+        "bytes": 711,
+        "sha256": "e7127874aa496cba37ad20ceda223f503a551d2920f4757a5f0128241c56890d"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-c97f9ac5-terminal-job-facts.json",
+        "bytes": 8313,
+        "sha256": "0da10d845a11f68c3007920101d79b9686509d1bf4222b3163e174babfc7e076"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-manual-02-input-admission.json",
+        "bytes": 1221,
+        "sha256": "2b57bc5ff908b65646d8c1477e13ffc3bf1352e480e907b16cb6e05f00d7cb74"
+      }
+    ],
+    "authority_review_bindings": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-matrix-manual-02-review-admission.json",
+        "bytes": 1406,
+        "sha256": "1986a2ca1e083983d80a42549cf8961a1cb4ca1bcd4f21760d9a6b1bf28e8a40"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-direct-matrix-manual-02-archive-allocation.json",
+        "bytes": 2705,
+        "sha256": "45f194b106f386a68758e880d51396f30fee99d2270a662727ee3901a5976124"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-187a4c6f-source-admission.json",
+        "bytes": 27103,
+        "sha256": "6455b8e03f53f95ed682e645d0cbb46535215260743a23846166d7840e4fcc68"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-human-approval-20261021.json",
+        "bytes": 1174,
+        "sha256": "47bff4eddcb9357fa244aa44fe993c526a3250021e2ee2876c743a8b646ce185"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-direct-matrix-manual-archive-allocation.json",
+        "bytes": 2048,
+        "sha256": "c87965edba3449a326a0df48fecba556caa7029ddbd057379610e94d94514e34"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-review/original-report.md",
+        "bytes": 4496,
+        "sha256": "17fdd1caed7e351d61f4393fb73916fc1932adc07012ecc166f5347bc432fa63"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-review/original-attestation.json",
+        "bytes": 10147,
+        "sha256": "2f92b519a487a42d2567a9cc246b1544abc6662aba26050895902b1ff3a26893"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-02-review/result.json",
+        "bytes": 844,
+        "sha256": "dc03c006dd0d22736c59b03a07156c04b47b3481bf9b73e134adb7b5139fce0a"
+      }
+    ],
+    "actual_payload_bindings": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/extract.py",
+        "bytes": 22194,
+        "sha256": "9596f077a9b112fee38fadc17d04bd7190fc8bfcd335b5515b7d24b75af9b7df"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/test_extract.py",
+        "bytes": 21518,
+        "sha256": "4c72e6bb2f9ce2465eb6cad8cb042779fe5aaf31a00a97abf34e588767672a0b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-02/proposal.json",
+        "bytes": 23834,
+        "sha256": "82e5620b152710105d01dbd8f2fa279f3efc89306c7f1ff802f91331ee69d1ae"
+      }
+    ],
+    "actual_source18_bindings": [
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 160774,
+        "sha256": "32eb365d1b6b523ef07e3fc950ae824d4cc94e226558947e6d32342f2f27b77f",
+        "checkpoint_git_blob": "26327a36a8f89cf503036239def64b0585465136"
+      },
+      {
+        "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+        "bytes": 13136,
+        "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+        "checkpoint_git_blob": "93b55ab54ec63a775894e92db9d83219add909dd"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 163537,
+        "sha256": "4f502cd88dd23269113e84aef733462f68156733f9a38297c020d3a0609a58d7",
+        "checkpoint_git_blob": "02442fd8034b573d376397e1eee105c7b3d96849"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "bytes": 19782,
+        "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+        "checkpoint_git_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "checkpoint_git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 47151,
+        "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+        "checkpoint_git_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8024,
+        "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+        "checkpoint_git_blob": "2a5fec9b04c3259f608c95db25668836016808e5"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 89043,
+        "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+        "checkpoint_git_blob": "a78e3f6a336f84fc3d44d042516808748622feb8"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36884,
+        "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+        "checkpoint_git_blob": "35863f8eeb563f21e9c0ff741115f018ee545134"
+      },
+      {
+        "path": "tests/factories/admin-sql.ts",
+        "bytes": 3694,
+        "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+        "checkpoint_git_blob": "f7d2c10c669252912bc045659ed7886dceae3ae0"
+      },
+      {
+        "path": "tests/factories/tenants.ts",
+        "bytes": 455,
+        "sha256": "069f8805525f055f8ef262789354062cebc60a7914e39171ff22642f84606e12",
+        "checkpoint_git_blob": "6655ccb2dcbb09580c45eacffd482ce6b58a0637"
+      },
+      {
+        "path": "tests/factories/tenants/core.ts",
+        "bytes": 21309,
+        "sha256": "e877c463e15173bc6b5a8ed0018de919289217c5e9b4379a6eb5aa8fc9457265",
+        "checkpoint_git_blob": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0"
+      },
+      {
+        "path": "tests/support/global-setup.ts",
+        "bytes": 2970,
+        "sha256": "adad74b1ef885d8c0714ef6bb5ab9e61b4973021d2c0e7f2e8df17ef6c5ea788",
+        "checkpoint_git_blob": "8cb06568f42fcdccdb47c4ee3b95698a48907ca3"
+      },
+      {
+        "path": "tests/support/test-env.ts",
+        "bytes": 12287,
+        "sha256": "4ad1f1e80782da40f653bdf5a69a1b5ea0e41db08ed334c460f95a49875130df",
+        "checkpoint_git_blob": "f30ddbeae604e9a383712edcea04fd2d8f4302cc"
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 3602,
+        "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+        "checkpoint_git_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "bytes": 24435,
+        "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+        "checkpoint_git_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+      },
+      {
+        "path": "package.json",
+        "bytes": 2352,
+        "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+        "checkpoint_git_blob": "819459b2df6f2c385a8442dda25ef7904576e270"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+        "checkpoint_git_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+      }
+    ],
+    "retired01_proof_bindings": [
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-admission-diagnosis.json",
+        "bytes": 10469,
+        "sha256": "505c3434137596e62004fc1a8e286515130cbba60f73fdc9163ae1b89bfc0bd0"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-matrix-manual-01-invocation-stop.json",
+        "bytes": 820,
+        "sha256": "08185ce64b5bc0a523993f4ddf9fbe5bb488bf8ee369ac1a7d7122e77a794188"
+      }
+    ],
+    "effects_of_qualification": {
+      "sql_api_ci_docker_resources": 0,
+      "extractor_or_runner_execution_or_import": 0,
+      "raw_log_archive_artifact_access": 0,
+      "git_source_spec_state_report_mutations": 0,
+      "writes": "Only this new qualification JSON; prior originals and frozen inputs unchanged."
+    }
+  },
+  "Open questions": [
+    "Which stored ACL/grantability entry and effective-access path caused the three false bits, and why it differs from the intended private source boundary, remain unobserved. The actual predecessor/current111 application sequence and cause remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Only a separately justified source-comparability/ACL assessment under the existing plan stop condition; no automatic detailed observer, guard relaxation, production fix or normal CI retry. Normal acceptance remains0."
+  ],
+  "Blockers": [
+    "Unexplained actual ACL/effective-privilege drift. Existing immutable source does not presently prove an invalid assumption, so a production fix is not justified."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "operation_id": "22bdbe66-9f08-4095-b7bf-be4810758313",
+  "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+  "checkpoint_id": "430dbc33-7e01-440e-aa3c-dcd1f528908a",
+  "phase": "ROOT_STOPPED",
+  "mode": "original-int009",
+  "started_at": "2026-10-23T11:03:45.619789+00:00",
+  "resolution_count": 1,
+  "poll_count": 7,
+  "run_id": 39943446009,
+  "normal_acceptance": 0,
+  "dispatch_accepted_at": "2026-10-23T11:03:49.145393+00:00",
+  "last_resolution": "2026-10-23T11:03:53.483720+00:00",
+  "last_poll": "2026-10-23T11:10:12.958998+00:00",
+  "stopped_at": "2026-10-23T11:10:15.417578+00:00",
+  "all_remaining_slots_closed": true
+}

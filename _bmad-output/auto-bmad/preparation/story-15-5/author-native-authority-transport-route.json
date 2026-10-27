@@ -1,0 +1,22 @@
+{
+  "kind": "author-isolated-supadmin-transport-implementation-route",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Explicit setup credential use, authenticated superuser boundary, same-session privacy and restricted-session transactional proof require High.",
+  "source_before": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "reviewed_source": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "allocation": { "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-authority-boundary-allocation.json", "bytes": 5160, "sha256": "91097d8da439a9a88d99453e52416dcfa4799ccf3a3b5d834d86acd44a22df13" },
+  "proposal": { "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md", "bytes": 16753, "sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4" },
+  "actual_evidence": "Fifth run39468849461 failed: authenticated postgres session=current, both super false, bypassRLS true; three required privacy matches false/on_error true. Verify3102/Python43/recovery1 separate PASS;65 feature bodies unexecuted. Source admin credential mapping/auth remains unverified.",
+  "owned_paths": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/integration/commands/calendar-feed.int.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "bounds": "Sole existing nonempty POSTGRES_PASSWORD from the same freshly qualified source container, memory only; fixed SupAdmin/local publication; actual original session=current LOGIN+SUPER and four effective privacy values before key/fixture mutation. No guesses, fallback, retry route, alternate transport/target, grants, role elevation, persistent GUC or new privileged child/generic pool configuration.",
+  "preservation": "INT015 only: original exact two UUID roles/transaction scope, restricted SESSION AUTHORIZATION and immediate identity/attribute/source/SET/owner checks, expected savepoint/full rollback, same/fresh absence and independently qualified fresh identity/privacy. Preserve wrapper fixed argv, COMMIT uncertainty, exact UUID/name cleanup, settlement, redaction and custody. No process sandbox or native success claim.",
+  "execution": "Bounded Node/type/lint/kernel/SRO/Git checks only, no local managed runtime/DB/Docker/Supabase/browser qualification. Exact five-path Conventional body source commit before distinct context-free High latest-delta review; no push; cap3. Root metadata/receipts/capsules excluded.",
+  "written_before_source_edits": true
+}

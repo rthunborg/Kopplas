@@ -1,0 +1,26 @@
+{
+  "schema": "EXACT_E16_THREE_UNIT_FIXTURE_HIGH_REVIEW_MANIFEST_v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/original-report.md",
+      "bytes": 4472,
+      "sha256": "9f89b36bdf9113a4005c442675c8f2f0f473cd0e043f730ca2c95505e164ed59"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/original-attestation.json",
+      "bytes": 15558,
+      "sha256": "f93293628135a75ab92ad8a65c54087a54fbb45969c8efc50b38d8b714dfca40"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/result.json",
+      "bytes": 1896,
+      "sha256": "20841f13e39b83bb0e734330f8089115b9540d1a3ecc4e6f81b60b90c97111f5"
+    }
+  ],
+  "reviewed_commit": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+  "reviewed_tree": "b47f8f8e11a367e7b7df0a4c61f9d641e8282909",
+  "frozen": true,
+  "normal_acceptance": 0,
+  "execution_authority": false
+}

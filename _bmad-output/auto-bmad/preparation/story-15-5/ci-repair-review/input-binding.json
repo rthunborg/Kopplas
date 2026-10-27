@@ -1,0 +1,131 @@
+{
+  "kind": "post-cap-latest-CI-repair-delta-only",
+  "completed_review_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "before": "9487c0d9dc6f622b472780587e20e834abf98595",
+  "source_head": "2674b3f7fa5e7853314923a0ceed52d84fcf0677",
+  "input_bytes": 41327,
+  "input_sha256": "a899b8b58c1039dccafbcc36558516a06249af0db9dcecf4461be2b26c27978b",
+  "source_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 63130,
+      "raw_sha256": "fa0d2254108c40338d0c4a6aa6b9504aad3ad78d3749eca4d345a7f8223e1ea9",
+      "head_bytes": 63130,
+      "head_sha256": "fa0d2254108c40338d0c4a6aa6b9504aad3ad78d3749eca4d345a7f8223e1ea9",
+      "head_blob": "41841f9046609a63a865edd064505fb0b7b7d3cc",
+      "worktree_clean_blob": "41841f9046609a63a865edd064505fb0b7b7d3cc"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 3964,
+      "raw_sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+      "head_bytes": 3964,
+      "head_sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+      "head_blob": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "worktree_clean_blob": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 3777,
+      "raw_sha256": "947f5017d40e06860839fa0d975b14c51b20090e323e32a2000cd63b311b1ca7",
+      "head_bytes": 3777,
+      "head_sha256": "947f5017d40e06860839fa0d975b14c51b20090e323e32a2000cd63b311b1ca7",
+      "head_blob": "f53a5e73c9070ce0b54da2845355fd6675448fcb",
+      "worktree_clean_blob": "f53a5e73c9070ce0b54da2845355fd6675448fcb"
+    },
+    {
+      "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "raw_bytes": 59069,
+      "raw_sha256": "ef07bc2abf9e9a8ef9bcd0f1ad82fc53f65c6d178de88dd7530358869d0716bf",
+      "head_bytes": 58066,
+      "head_sha256": "5c6044fcd3ffd0f9e9084eb9b04ae0e674a524ea8b35e7aacc1b14d5ece47db0",
+      "head_blob": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+      "worktree_clean_blob": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63"
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw_bytes": 14949,
+      "raw_sha256": "840ea1cd7ee1427914ffd2832ffa2f72f9b2126c82d2ec8b5bb0136820426231",
+      "head_bytes": 14720,
+      "head_sha256": "7c5b063be512505b4ff3ddfe89125a94df40a14e78f4abcd5fd6bb85fac15aef",
+      "head_blob": "21c88025a20ade6152d5636c565330e1041e14eb",
+      "worktree_clean_blob": "21c88025a20ade6152d5636c565330e1041e14eb"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 27499,
+      "raw_sha256": "f1c67a4ca513d69709f700cd2982f9de682cfb6dcb8d5fe88169d1448a3840cb",
+      "head_bytes": 27499,
+      "head_sha256": "f1c67a4ca513d69709f700cd2982f9de682cfb6dcb8d5fe88169d1448a3840cb",
+      "head_blob": "b18dafb0be5411433b4321c3b6e7d9f53a058976",
+      "worktree_clean_blob": "b18dafb0be5411433b4321c3b6e7d9f53a058976"
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "raw_bytes": 2683,
+      "raw_sha256": "f0cc288c5a43174becb191a23c45b5f80007e054694a29b3572735da8e3ef289",
+      "head_bytes": 2645,
+      "head_sha256": "b6a4461ea492083f76c084e99d44459685a68a3df9f3a2ca3d76db7bfa815cbe",
+      "head_blob": "f580168cf767a0999e2e6b56de99355e2339486c",
+      "worktree_clean_blob": "f580168cf767a0999e2e6b56de99355e2339486c"
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "raw_bytes": 2506,
+      "raw_sha256": "4909b48d639bcc45031c67e2c30cac250447c99158a9a2992f9fa19222618cf0",
+      "head_bytes": 2456,
+      "head_sha256": "2cc2c1c75bb308f7bbcaf7a1457b8bb530fa543425308df72ff355c2b4778082",
+      "head_blob": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453",
+      "worktree_clean_blob": "02ddcdc52a403f127a921913b5ca5ef1ed7fa453"
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "raw_bytes": 140788,
+      "raw_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+      "head_bytes": 140788,
+      "head_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+      "head_blob": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+      "worktree_clean_blob": "6964ff6bb9685ebead2eed4ad1bb82f141268764"
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output\\auto-bmad\\preparation\\story-15-5\\accepted-ci-contract-repair-allocation.json",
+      "bytes": 3976,
+      "sha256": "f0c35067c1691c7df20e5ebc25ca5fec89e718f2d98a01d6d62bf2902c153cf7"
+    },
+    {
+      "path": "_bmad-output\\auto-bmad\\preparation\\story-15-5\\ci-repair-route.json",
+      "bytes": 3173,
+      "sha256": "3b1125135225a17874acbe7e4d428ac8dfd47307b6da9a33c0ed939c37678efe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-9487c0d9-ci-independent/native-qualification.md",
+      "bytes": 2638,
+      "sha256": "f90a53cf0285dfe8f0051553e527da311f7e79041dc280868ef18cb79cc540d9"
+    }
+  ],
+  "route_before_dispatch": {
+    "reviewer": "ci_repair_delta_review",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "reason": "CI required evidence/admission fences, wrapper command integrity and literal command authorization enrollment"
+  },
+  "scope": "Only latest nine-path repair and consequential regressions; no broad unchanged review or cap increment.",
+  "runtime": "No local native runtime/qualification; required successor exact-head CI remains pending."
+}

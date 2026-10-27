@@ -1,0 +1,26 @@
+{
+  "kind": "delivery-only-author-route",
+  "source_head": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+  "native_run": 39415418173,
+  "root_pass_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-4-preparation/root-checkpoint-cad4d37f-qualified-pass.json",
+    "raw_sha256": "a5b997dfb7ca0b17273fee5414e0ca24150ff2aae6dcc9eea78a23369cc802f3",
+    "verified_native_files": 190,
+    "all24_conditions": true,
+    "report_hashes": {
+      "report.json": "d92811e5c91ae4429fd14e40d5a68a32adc3c7b87cb4c166cdcea88ffc54a360",
+      "report.md": "b6c35394f5a34ee1f00e4fc87d246f1dc1f66e5017a28fda718753806b69e599",
+      "sha256-manifest.json": "d3558fc2b6a98f1ac4fdf32eff6b497a9ea28dcc367ff6bd1c64bb4b8479733a"
+    }
+  },
+  "author": {
+    "agent": "retained original author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Truthful authorization/tenant/transaction/numeric and executed-gate reconciliation"
+  },
+  "only_author_write": "_bmad-output/auto-bmad/delivery/15-4-time-reporting-filing-timesheet-review.json",
+  "prohibited": "NO source60/spec/state/oldpacket writes; noDONE/developmentcomplete/commit/push/runtime.",
+  "delivery_contract": "policy_version2026-10-19; evidence_revision exactcad4; explicitapprovedkernel/pinnedcontractreconciliation; actualnonempty passeddevelopmentchecks/review provenance; retain failures/skips/unknowns; owneddeferredreleaseitems status/evidence/nextaction;release_readyfalse.",
+  "next": "Root executable delivery_gate then DISTINCT fresh High truth/provenance audit; only explicit status-only admission allows literalDONE closure."
+}

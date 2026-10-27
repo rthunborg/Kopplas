@@ -1,0 +1,150 @@
+{
+  "schema": "ZOD_SECURITY_PREREQUISITE_EXACT_SOURCE_PROOFS_V1",
+  "base": "d647c81d93634ecdb85df66d8d3e8e7e4d51d841",
+  "source_before": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "tracked_changed_paths": [
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml"
+  ],
+  "current_source_pins": [
+    {
+      "path": "pnpm-workspace.yaml",
+      "bytes": 480,
+      "sha256": "e1b873361cb21813a8b487c4111fb08be29a486fcfa1f3a4f7021797997342f8",
+      "LF_bytes": 462,
+      "LF_sha256": "6464c218bc0c2e87d8ad7bac5c641491a3d056b6247ef643aef2376f3e07f66d"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162204,
+      "sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95",
+      "LF_bytes": 162204,
+      "LF_sha256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95"
+    }
+  ],
+  "preimage_pins": {
+    "pnpm-workspace.yaml": {
+      "path": "pnpm-workspace.yaml",
+      "bytes": 434,
+      "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+      "LF_bytes": 417,
+      "LF_sha256": "8aa3509d64e2ea496258100228fba8120bb754cab9a7c0c26ea1dc55b3c3df41"
+    },
+    "pnpm-lock.yaml": {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "LF_bytes": 162159,
+      "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56"
+    },
+    "package.json": {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+    }
+  },
+  "Git_blobs": {
+    "pnpm-workspace.yaml": {
+      "base_blob": "102380cce74643d682e06df30c05a10e6aa37167",
+      "current_filtered_blob": "f80dd43c8bf6dcbf80d4701449ba011a25daa017"
+    },
+    "pnpm-lock.yaml": {
+      "base_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a",
+      "current_filtered_blob": "3c0ae6b01c1853d5478b9d0727bc64dba3eb8a12"
+    }
+  },
+  "inverse_proofs": {
+    "workspace_raw_inverse_bytes": 434,
+    "workspace_raw_inverse_sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e",
+    "workspace_raw_inverse_equals_allocated_preimage": true,
+    "workspace_LF_inverse_equals_base_blob": true,
+    "lock_inverse_bytes": 162159,
+    "lock_inverse_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+    "lock_inverse_equals_base_and_allocated_preimage": true,
+    "allowed_transformations": [
+      "Remove exact single parent-scoped override line",
+      "Revert only zod4.6.6 package/snapshot and consumer/peer suffix references to4.4.3",
+      "Revert selected zod package integrity once"
+    ],
+    "no_other_churn": true
+  },
+  "policy_invariants": {
+    "package_json": {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497"
+    },
+    "package_json_unchanged": true,
+    "existing_patch": {
+      "path": "patches/@next__eslint-plugin-next@16.3.6.patch",
+      "bytes": 672,
+      "sha256": "74162e49b4c3ab38559adffc97da8646ce1989d750469a6fbe15f806e29c22f4",
+      "LF_bytes": 657,
+      "LF_sha256": "88513a4345d44468acd514beee604f895a6d6d2b61ebe4ee4ab8972de663385e"
+    },
+    "all_other_workspace_bytes_raw_unchanged": true,
+    "all_other_lock_bytes_unchanged": true,
+    "workspace_line_endings": "CRLF preserved",
+    "lock_line_endings": "LF preserved",
+    "ignoredBuiltDependencies": [
+      "sharp",
+      "unrs-resolver"
+    ],
+    "patched_dependency": "@next/eslint-plugin-next@16.3.8; existing patch path/hash unchanged",
+    "package_manager": "pnpm10.24.0",
+    "store_major": 10,
+    "same_existing_store": true,
+    "pendingBuilds": [],
+    "scripts_ignored_on_regen_and_install": true,
+    "store_integrity_explicit_on_install": true,
+    "no_new_dependency_module_or_other_version_upgrade": true,
+    "no_threshold_ignore_config_change": true
+  },
+  "checks": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/zod-security-prerequisite-author/checks.json",
+    "bytes": 36991,
+    "sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb",
+    "LF_bytes": 36991,
+    "LF_sha256": "08b9c767b43c88513cc7a94264bcc715b48b613d459dc98d931f0a665ea726eb"
+  },
+  "SuggestedReviewOrder": [
+    {
+      "order": 1,
+      "focus": "Official advisory and exact two-file scope",
+      "evidence": "current-lockfile-audit-diagnostic/result.json; Root allocation; GHSA-mrhx-c7xc-m3w5",
+      "stop": "Version4.4.3 affected, official patched baseline4.6.6; current dependency evidence only, historical CI cause UNKNOWN."
+    },
+    {
+      "order": 2,
+      "focus": "Parent-scoped override and exact generated lock delta",
+      "evidence": "pnpm-workspace.yaml; pnpm-lock.yaml; this source-proofs inverse checks",
+      "stop": "Only eslint-plugin-react-hooks7.1.1>zod4.6.6 and corresponding integrity/snapshot/peer suffix changes. Original raw line endings and all other policy bytes preserved."
+    },
+    {
+      "order": 3,
+      "focus": "Install, selected artifact and actual consumer graph",
+      "evidence": "checks.frozen_install; checks.selected_package_integrity_and_graph",
+      "stop": "One frozen ignore-scripts install, same v10 store/pnpm10.24/pendingBuilds[];840 installed package files verify against selected store index; hooks and validation-error peer both resolve4.6.6."
+    },
+    {
+      "order": 4,
+      "focus": "Actual validation and meaningful failed approaches",
+      "evidence": "checks focused10P; tracked lint1261files0errors31warnings; type/build/audit native0; failed full-package lint receipts",
+      "stop": "Invalid custom smoke and JSON overflow are not PASS. Actual default formatter RangeError retained. Tracked API is separately scoped; clean-checkout CI lint still required. Current audit high0/critical0/moderate3."
+    },
+    {
+      "order": 5,
+      "focus": "Authority and unresolved acceptance limits",
+      "evidence": "Root allocation; result Status/Open questions/Blockers",
+      "stop": "Independent High actual two-path review required before Root commit. No historical-CI repair attribution, runtime95 credit, story completion, deployment or DEBUG validity claim."
+    }
+  ],
+  "independent_High_review": "REQUIRED_BEFORE_ROOT_COMMIT",
+  "normal_acceptance": 0,
+  "historical_CI_cause": "UNKNOWN"
+}

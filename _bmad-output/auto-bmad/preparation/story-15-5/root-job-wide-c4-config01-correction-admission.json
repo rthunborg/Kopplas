@@ -1,0 +1,23 @@
+{
+  "kind": "ROOT_MECHANICAL_C4_CONFIG01_CORRECTION_ADMISSION",
+  "head": "deba16e915df997af122a3dc2b6e1684d4fe16b3",
+  "correction": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/correction.json",
+    "bytes": 4949,
+    "sha256": "6b7f7f0e725a18a5e46fdf4cd95e80d4b688b95ad15afddcd995ec8ba461f0f9"
+  },
+  "bindings": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/bindings.json",
+    "bytes": 13242,
+    "sha256": "6900f4f61e88ba367aa1e5a35b92b924c462a2de9993fbc11b6cee42c2d3de2a"
+  },
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-c4-config01-correction/manifest.json",
+    "bytes": 1264,
+    "sha256": "75b4509a76e750b9d89059f45285759208e2754a9965c2543500fc5efa585704"
+  },
+  "verified_file_ref_occurrences": 49,
+  "source_edit_authorized": false,
+  "native_effects_authorized": false,
+  "normal_acceptance_credit": 0
+}

@@ -1,0 +1,153 @@
+{
+  "round": 1,
+  "completed_rounds": 1,
+  "cap": 3,
+  "review_loop_iteration": 0,
+  "source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "input_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+  "layers_completed": 6,
+  "raw_claims": 17,
+  "unique_claims": 13,
+  "classification": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 11,
+    "defer": 1,
+    "reject": 1
+  },
+  "route_before_fix_dispatch": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Public-token authorization/RLS, transactional counters, role ownership and CI key/process lifecycle fixes; actual sensitive changed lines",
+    "author": "implementation_author"
+  },
+  "findings": [
+    {
+      "id": "R1-01",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:235",
+      "claim": "Required isolated recovery restore lacks calendar_feed_owner",
+      "fix": "Add only allocated feed role block to ops/recovery/bootstrap-roles.sql and named existing pilot-operations recovery Compose unit case. Absent-only create; validate seven role attributes and retained membership; restore principal only supabase_admin, no admin option or runtime/JWT grants. Preserve existing provisioning/runtime/password/settings. Actual restore evidence remains mandatory CI.",
+      "allocation": "accepted-recovery-allocation.json SHA324b587635d247df329f74813fd3de7027e1d499cb706e829953eb3a1bdb24ce"
+    },
+    {
+      "id": "R1-02",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:2",
+      "claim": "Unconditional cluster-scoped role creation breaks replay",
+      "fix": "Idempotent absent-only creation with fail-closed retained seven-attribute and unexpected runtime/JWT membership validation. Migration executor grant is distinct from isolated recovery membership. Own migration is unapplied; historical migrations unchanged."
+    },
+    {
+      "id": "R1-03",
+      "category": "reject",
+      "severity": "none",
+      "source": "blind+same-finding clarification",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:182",
+      "claim": "Global cardinality transaction lock causes cross-tenant functional failure",
+      "reason": "Source establishes blocking coupling, but original High reviewer explicitly could not substantiate a permitted operation/workload causing timeout, budget failure or isolation bypass. Approved default requires hard-bounded cardinality and atomic counters; suggested early release/session lock misses uncommitted rows and weakens that bound. Treat original stronger claim as unproven performance concern; no new defense-in-depth/protocol change or passed performance claim. Representative workload qualification remains already deferred."
+    },
+    {
+      "id": "R1-04",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:219",
+      "claim": "Projection query_canceled escapes WHEN OTHERS and rolls back admitted counters",
+      "fix": "Handle SQLSTATE57014 within projection subtransaction and assert admitted token/IP counter persistence and no last-used update with scoped real SQL cancellation/fault in allocated serial test; retain generic503 and cleanup."
+    },
+    {
+      "id": "R1-05",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind+external",
+      "file": "src/features/calendar-feed/icalendar.ts:12",
+      "claim": "Accepted microsecond booking intervals become empty/equal timestamps or whole-feed503",
+      "fix": "Use existing microsecond-preserving parser for ordering and define positive-duration whole-second RFC5545 export. Preserve supported fractional booking authority, UID, DST/all-day and independent bytes; regressions for submillisecond and same-second intervals. Record proportional rounding choice."
+    },
+    {
+      "id": "R1-06",
+      "category": "patch",
+      "severity": "medium",
+      "source": "blind+RFC5545 source check",
+      "file": "supabase/migrations/20261020220000_personal_calendar_feed.sql:208",
+      "claim": "Component revision timestamps ignore changed projected labels; METHOD stamp semantics also inconsistent",
+      "fix": "Keep full live minimal projection and stable UID, derive current component timestamp from every projected mutable source. For a subscription representation omit optional METHOD or supply proper creation stamp; RFC5545 sections3.8.7.2/3.8.7.3 checked at https://www.rfc-editor.org/rfc/rfc5545.html. Preserve frozen planning history; record narrow post-review technical correction and independent edit vectors, no provider-interoperability pass claim."
+    },
+    {
+      "id": "R1-07",
+      "category": "patch",
+      "severity": "medium",
+      "source": "blind+edge",
+      "file": "src/components/calendar-feed/CalendarSubscription.tsx:33",
+      "claim": "Automatic post-commit refresh retains now-superseded issued URL",
+      "fix": "Apply current active/revision supersession check after automatic refresh, clear obsolete raw URL and stale success message; consequential race regression using actual state/UI seam, preserve honest lost-response behavior."
+    },
+    {
+      "id": "R1-08",
+      "category": "patch",
+      "severity": "high",
+      "source": "blind+security+external",
+      "file": "scripts/ci/with-calendar-feed-runtime.mjs:165",
+      "claim": "Repeated stop can signal reused group; abnormal nested browser exit may delete key before detached server settlement",
+      "fix": "Memoize proven settlement and avoid re-signaling settled numeric handles; verify identity before further signaling. Any abnormal browser completion without independently proven normal teardown is unverified and must fail, preserve exact owned key UUID/name/job custody until disposable-job destruction, primary plus cleanup failures. Add null-signal/nonzero nested-runner case and repeated-stop/no foreign signal injected tests."
+    },
+    {
+      "id": "R1-09",
+      "category": "defer",
+      "severity": "medium",
+      "source": "blind",
+      "file": "tests/e2e/calendar-feed.e2e.spec.ts:71",
+      "claim": "Unwrapped optional exhaustive release branch lacks feed runtime",
+      "owner": "Root/CI release operator",
+      "status": "deferred",
+      "development_blocking": false,
+      "release_blocking": true,
+      "reason": "Specific owner allocation explicitly excludes and preserves exhaustive branch/commands/conditions and requires future exact-scope feed release-runtime integration; development completion policy defers this release breadth. Do not drop/skip new feed cases or claim exhaustive pass.",
+      "next_action": "Before release_validation=true qualification, obtain exact Coordinator allocation for equivalent isolated ephemeral key/runtime lifecycle and then execute native exhaustive branch. No writes to this branch in current fix."
+    },
+    {
+      "id": "R1-10",
+      "category": "patch",
+      "severity": "low",
+      "source": "blind",
+      "file": "src/components/app-shell/AppShell.tsx:279",
+      "claim": "Profile link sends denied scheduling roles to inaccessible destination",
+      "fix": "Condition existing profile entry on server-filtered scheduling navigation/capability result, no client role grants. Add assertion to already-owned denied-role browser case; no unrelated shared test expansion."
+    },
+    {
+      "id": "R1-11",
+      "category": "patch",
+      "severity": "medium",
+      "source": "verification",
+      "file": "scripts/ci/with-calendar-feed-runtime.mjs:70",
+      "claim": "API019 privacy proof discards unrecognized raw output before detecting standalone token/hash/IP leaks",
+      "fix": "Detect known/generic raw capability/proof/hash/IP representations and unexpected response fields before filtering; safely distinguish known non-request infrastructure output. Inject realistic standalone/JSON sensitive leak vectors, keep only sanitized detection receipts and actual marker observations; preserve native artifact confidentiality."
+    },
+    {
+      "id": "R1-12",
+      "category": "patch",
+      "severity": "medium",
+      "source": "verification",
+      "file": "tests/support/calendar-feed-atdd.ts:258",
+      "claim": "Status privacy assertions inspect reconstructed mapper DTO instead of directly callable RPC payload",
+      "fix": "Ordinary authenticated raw status RPC exact key/field allow-list and absence of physical hash/URL/IP/proof; retain higher-level mapper tests, current-authority/reconcile cases and redacted assertion failure behavior."
+    },
+    {
+      "id": "R1-13",
+      "category": "patch",
+      "severity": "high",
+      "source": "verification",
+      "file": "tests/integration/calendar-feed/public-feed.int.test.ts:193",
+      "claim": "API009 leaves global unknown-IP budget exhausted for later serial HTTP scenarios",
+      "fix": "Capture/reset/restore only allocated isolated unknown-IP fixture in serial finally or explicit scenario initial state; settle all requests before cleanup, preserve cleanup failures and no parallel/global side effects."
+    }
+  ],
+  "followup_review_recommended": true,
+  "runtime": "No native DB/RLS/HTTP/browser/recovery/installed collection executed; all remain Root exact-head CI requirements.",
+  "source_fixes_started": false
+}

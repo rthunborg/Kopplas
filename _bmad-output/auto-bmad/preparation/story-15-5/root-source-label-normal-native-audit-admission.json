@@ -1,0 +1,45 @@
+{
+  "schema": "ROOT_SOURCE_LABEL_NORMAL_NATIVE_AUDIT_ADMISSION_v1",
+  "status": "PASS_QUALIFIED_FAILED_RUN",
+  "run_id": 39683227657,
+  "head": "3a385df516088811e6af526beed457292c6d8b1f",
+  "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+  "review_directory": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-native-provenance-audit",
+  "review_manifest_sha256": "c8689e52d5ca119c96e7e8172bf7f2747526c643fcbb6e2dd2864832069d84d9",
+  "packet_manifest_sha256": "9ea62ca05d4b750872fe85f853b7b1fda7c8f1d31c8a87da73a3ce8db84cec5e",
+  "Node": {
+    "tests": 3243,
+    "pass": 3241,
+    "fail": 2,
+    "suites": 103,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "Python": "SKIPPED_UNEXECUTED",
+  "build": "SKIPPED_UNEXECUTED",
+  "DB51_browser14_recovery1": "SKIPPED_UNEXECUTED_ZERO_NEW_COVERAGE",
+  "source_bound_declaration_candidates": [
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "line": 2409,
+      "column": 1
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "line": 2430,
+      "column": 1
+    }
+  ],
+  "candidate_interpretation": "Declaration identities only; original assertion/throw/cause UNKNOWN",
+  "logical_GETs": 2,
+  "artifact_count": 0,
+  "ZIP_GETs": 0,
+  "execution_lineage": "cc8f49 native0 wall2.3329438/no session/waits Native-attributed; raw child tool not independently read by Root",
+  "source_labels": "UNKNOWN_NULL; producer jobs unexecuted",
+  "custody": "UNKNOWN; no historical inheritance",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "no_further_reads_or_retries": true
+}

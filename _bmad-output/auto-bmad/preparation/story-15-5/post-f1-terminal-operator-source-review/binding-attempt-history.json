@@ -1,0 +1,10 @@
+{
+  "API": 0,
+  "all_seven_recorded_bytes_and_sha_match": true,
+  "corrected_method": "ast.get_source_segment",
+  "initial_exit": 1,
+  "initial_local_check": "Trailing-newline span slicing disagreed with the recorded AST segment boundary; assertion stopped before any operator execution",
+  "not_test_or_runtime_acceptance": true,
+  "operator_execution": 0,
+  "source_changes": 0
+}

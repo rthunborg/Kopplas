@@ -1,0 +1,978 @@
+{
+  "schema": "INDEPENDENT_SOURCE_LABEL_NORMAL_NATIVE_PROVENANCE_AUDIT_v1",
+  "verdict": "PASS_QUALIFIED_FAILED_RUN",
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "NativeHigh operator",
+      "implementation_author",
+      "BuildHigh source author"
+    ],
+    "scope": "finite actual failed-run provenance/truth/count/custody audit; broad counter remains3"
+  },
+  "target": {
+    "run": 39683227657,
+    "attempt": 1,
+    "head": "3a385df516088811e6af526beed457292c6d8b1f",
+    "source": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+    "checkpoint_id": "7d80da58-1a19-4dd2-bdf7-a8fa0331aa2c",
+    "mode": "normal",
+    "cause_proof": false,
+    "release_validation": false
+  },
+  "packet": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/manifest.json",
+      "bytes": 3535,
+      "sha256": "9ea62ca05d4b750872fe85f853b7b1fda7c8f1d31c8a87da73a3ce8db84cec5e"
+    },
+    {
+      "bytes": 565,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/acquisition-summary.json",
+      "sha256": "38a731ce720cac3e8e2c7642642da4768077f2591a5813abf2ae5b7a8f2b69fc"
+    },
+    {
+      "bytes": 179,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/artifact-list-projection.json",
+      "sha256": "8e2982465cf2f0350910ca0054310f8eccd4ee7c5348b58a189a7249fb5aa5af"
+    },
+    {
+      "bytes": 1052,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/execution-receipt.json",
+      "sha256": "49c3deec7b4ea24148ac022bafafaa2edd7a100a7f0fafa97bafe391acbfc39d"
+    },
+    {
+      "bytes": 9538,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/native-qualification.json",
+      "sha256": "c3caf063daaa4a6d55f3380a571740b8884709c317d73dd64d7072f0406af8b3"
+    },
+    {
+      "bytes": 7442,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/operator-intent.json",
+      "sha256": "95ca29da1d32b46763763a47d368aa52596a0ea8a7f4a52353db27d44d3fdb10"
+    },
+    {
+      "bytes": 413,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/request-01-intent.json",
+      "sha256": "d5a927fe32e72651b92e453a1f7dfbd5ed4e8caf9d81213aad607676e03f40f6"
+    },
+    {
+      "bytes": 1134,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/request-01-result.json",
+      "sha256": "72ad4f0a85c3f12d6c0784cacb4982a696d8a7e690daa308ff527f0aa88750d1"
+    },
+    {
+      "bytes": 432,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/request-02-intent.json",
+      "sha256": "6b755ed846d065af7dcf87af00ada78e2d136133a5d75c60b1c35ad8bf8a6434"
+    },
+    {
+      "bytes": 1149,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/request-02-result.json",
+      "sha256": "8af202131bf7b2eec7fbf7c90333ef615bf1ee3eca49ca6ef605c54a2e6a78f7"
+    },
+    {
+      "bytes": 8382,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/run-archive-projection.json",
+      "sha256": "52c083e1d76554043c6d1d83689b94e447c9bdd02f6ea208b900cf30c7e64c53"
+    },
+    {
+      "bytes": 1480,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/source-label-projection.json",
+      "sha256": "94be2c5fe2fae4e12a49638232e1939ba7015515fd5f294326a0456796fc1c0b"
+    },
+    {
+      "bytes": 6800,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/source-provenance.json",
+      "sha256": "cb727a2042159c8b30d911d0f0c17b6d45e9e685d07b808ec58b8eb12f51db16"
+    },
+    {
+      "bytes": 5448,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-3a385df5-source-label-normal-ci-independent/terminal-bindings.json",
+      "sha256": "a12c8da238f5257dd5dd8bf52fa5f4f6929035bd0e440e9987d1f80e06ef713c"
+    }
+  ],
+  "input_refs": [
+    {
+      "bytes": 9443,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-terminal.json",
+      "sha256": "0b8e587b6c615008b197b16605c31923f7dfd979d66dcf11b758f77d8b0c3e8c"
+    },
+    {
+      "bytes": 1389,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-terminal-current-source-proof.json",
+      "sha256": "e14f4b2788ee8116522648488097053baed420a49365dfa9919ac80511faf6b8"
+    },
+    {
+      "bytes": 4099,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-source-label-normal-terminal-acquisition-allocation.json",
+      "sha256": "3d5ddb2bf2130b6f417f86a9f5c359f6433b96c834cc2bdcd5d94b1e6fc5173d"
+    },
+    {
+      "bytes": 954,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-source-label-verify-unit-refinement-source-audit-admission.json",
+      "sha256": "8e257ad8d4ce8350a6e241c2160e947a80f161545e9657700603bb60b36f74d6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement-source-review/manifest.json",
+      "bytes": 1064,
+      "sha256": "bd5fce32012ef9a74a7c4dc3b5f757772aa0d030897d6720d08371d9edd45cbc"
+    },
+    {
+      "bytes": 6011,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement-source-review/original-report.md",
+      "sha256": "fe8a05e658fa51c4fc1bae4e2b98df8115d340d1df4135d047c79db5f86a6918"
+    },
+    {
+      "bytes": 12880,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement-source-review/original-attestation.json",
+      "sha256": "5ece041db3c4bf25a171e22689cf0a77969619ea7149f042201efc98c7f891e3"
+    },
+    {
+      "bytes": 2916,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement-source-review/result.json",
+      "sha256": "25fd28a7722a55662e46972c47f47d350fae0396c4369dfd39fc5420cf8ca356"
+    },
+    {
+      "bytes": 73023,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-vitest-meta-author-result.json",
+      "sha256": "79bf14fe77599a3f627c9ed08ed71d2bb619b2a322f47cc962da7d79645325a3"
+    },
+    {
+      "bytes": 31222,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-terminal-evidence-preparation/normal-evidence-operator.py",
+      "sha256": "c71d5f16e5375d8fed1cc2f51a80464721d0b14d0e649e4a918caa035f0d5a8c"
+    },
+    {
+      "bytes": 1399,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-source-label-vitest-meta-closure-admission.json",
+      "sha256": "60fc0ebd26c2ce094a57b554fd3d9bf7d2c496608fffdafb259928749b016594"
+    },
+    {
+      "bytes": 938,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-vitest-meta-high-review/manifest.json",
+      "sha256": "b77fff582720f271d72ed07707b844f4f0c43dec72a162b5ed658e3faac9a51d"
+    },
+    {
+      "bytes": 16077,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-vitest-meta-high-review/original-attestation.json",
+      "sha256": "0396a5668a8f9314ce11d87f6926a46adfcccb995395ae06acb8bba6305fa9a1"
+    },
+    {
+      "bytes": 1026,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/manifest.json",
+      "sha256": "6f486cba89b559e523ab833e963194a45eedeb486cf5ff0dfb93a5487222caf6"
+    },
+    {
+      "bytes": 151531,
+      "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+      "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+    },
+    {
+      "bytes": 58324,
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/dist/tasks.d-DEYaIMIu.d.ts",
+      "sha256": "53cf4076f42b29b8d411259d168d51b3a0274c42c8814e5b44dfa8803a35d4fc"
+    },
+    {
+      "bytes": 113407,
+      "path": "node_modules/vitest/dist/chunks/reporters.d.DtoKVV2s.d.ts",
+      "sha256": "7fa6fdc6eeeb3850e6b3166836f8c9199594c4f4bed3cee02cac0ca33d71894d"
+    },
+    {
+      "bytes": 5918,
+      "path": "node_modules/vitest/package.json",
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+    },
+    {
+      "bytes": 297798,
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/runner/index.js",
+      "sha256": "42772378ebad5d2387726d02d377721112edbdde99d495c1259855ddb701b08e"
+    },
+    {
+      "bytes": 1559,
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/package.json",
+      "sha256": "6b840268612656f0639fb7d68782e8353bdf11518589d30ddf66f283c2670ed5"
+    },
+    {
+      "bytes": 1349,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/manifest.json",
+      "sha256": "c8d4f71ea9def529aa8e18aebd03e87a9828fd59993db4a560a4508be6647ddc"
+    },
+    {
+      "bytes": 42166,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/normal-evidence-operator.py",
+      "sha256": "fcbdec106b6906e98f55256e4655a88e2c48c14b3428c62e1af01706133732ac"
+    },
+    {
+      "bytes": 16397,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/test_operator.py",
+      "sha256": "ea4c3e592e88c04e86fc090b2b7d45e2f036bcb77b3bc141808a32f74f57164a"
+    },
+    {
+      "bytes": 39053,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/bindings.json",
+      "sha256": "f4cd90f90646d60d47b9cc6169dfd1024d66fa3e70d4070beaf9d94a1952ac56"
+    },
+    {
+      "bytes": 9112572,
+      "path": "node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/typescript.js",
+      "sha256": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+    },
+    {
+      "bytes": 3620,
+      "path": "node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/package.json",
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    },
+    {
+      "bytes": 4188,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-terminal-evidence-activation.json",
+      "sha256": "ce8ad6c5c5f21b7782b257a42d3126928b8e1ff4a51f12c3f5bab6272ff6bc32"
+    },
+    {
+      "bytes": 47860,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement/normal-evidence-operator.py",
+      "sha256": "47831dbcd0f063c6abe38c2e62470ce5b1c2303b05cac123d56184de50699fb8"
+    },
+    {
+      "bytes": 70222,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement/bindings.json",
+      "sha256": "1101a17a4572ef2971a1d072c93b8ad8ef3a6a9bf709f65844df8b6400458f8b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement/manifest.json",
+      "bytes": 1503,
+      "sha256": "e1582f4d12d2df08e1fbb5f33b5b7e449ee93e36f39bf4b0179fbf0535523717"
+    },
+    {
+      "bytes": 12012,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement/preparation.json",
+      "sha256": "9ba8e7186dfc3f8d181d650cdca15d5fd70c13e9715e8393895c3aca70601193"
+    },
+    {
+      "bytes": 1852,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement/result.json",
+      "sha256": "239abfd2cd50505c5a10d8c4f2f04730db0418009e786d57dbab8ef579f1bc15"
+    },
+    {
+      "bytes": 23312,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-normal-evidence-preparation/verify-unit-failure-refinement/test_operator.py",
+      "sha256": "02721e9fdfa66c04d46b37a55a2da98f1cbedfbba5a1870688a3cf2817a08a8e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-source-label-normal-actual-packet-preaudit-admission.json",
+      "bytes": 959,
+      "sha256": "1da8f3d74c7941b761b0c718ee6de1faecd2b95ca863d5e0db6d430479e4383d"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    }
+  ],
+  "current_source_vector": [
+    {
+      "Git_blob_source_and_metadata": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "clean_bytes": 75930,
+      "clean_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e"
+    },
+    {
+      "Git_blob_source_and_metadata": "2ce6a96ecf7ea562cabc469d815a83d2fc58335d",
+      "clean_bytes": 211654,
+      "clean_sha256": "d4efb0e56056cc3b7d875e0a6ff3ead5136d19ace16a5542fcd0025bd4470d1f",
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 211654,
+      "raw_sha256": "d4efb0e56056cc3b7d875e0a6ff3ead5136d19ace16a5542fcd0025bd4470d1f"
+    },
+    {
+      "Git_blob_source_and_metadata": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+      "clean_bytes": 4251,
+      "clean_sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+      "path": "docs/security/calendar-feed-operations.md",
+      "raw_bytes": 4251,
+      "raw_sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494"
+    },
+    {
+      "Git_blob_source_and_metadata": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+      "clean_bytes": 4752,
+      "clean_sha256": "fa43d6c746d11d1ab8d854cef9128bb69023f8a8865e3e3b250dd2ebee383fe5",
+      "path": "middleware.ts",
+      "raw_bytes": 4842,
+      "raw_sha256": "228c1aee2ea3952788fe231f73e852ea020ca81fa812d5248e52f5564155fcad"
+    },
+    {
+      "Git_blob_source_and_metadata": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+      "clean_bytes": 3992,
+      "clean_sha256": "6a80547c1fbbd7dd2d7e4bf4a0f73671f7d83e5fcd5e84dac9ba555403c52529",
+      "path": "ops/recovery/bootstrap-roles.sql",
+      "raw_bytes": 4085,
+      "raw_sha256": "c578eb8fc33273221491badd93fc00a44d7c0c32d72e9d902a5076fee550c83e"
+    },
+    {
+      "Git_blob_source_and_metadata": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "clean_bytes": 2299,
+      "clean_sha256": "1d3d0f6fc9544c2d28eabd0cb0a73d7985062961a522af82ad474e2086ba775a",
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412"
+    },
+    {
+      "Git_blob_source_and_metadata": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "clean_bytes": 162159,
+      "clean_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f"
+    },
+    {
+      "Git_blob_source_and_metadata": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "clean_bytes": 19492,
+      "clean_sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a"
+    },
+    {
+      "Git_blob_source_and_metadata": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d",
+      "clean_bytes": 47931,
+      "clean_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 48616,
+      "raw_sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00"
+    },
+    {
+      "Git_blob_source_and_metadata": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+      "clean_bytes": 15487,
+      "clean_sha256": "cae0878c509fecfb9d2bab4ccf60eb6fa8edd7f5cf5bf96da430409cfed39273",
+      "path": "scripts/verify/check-service-role-containment.mjs",
+      "raw_bytes": 15806,
+      "raw_sha256": "6eaec1f8ee90dd5375625b3c0d54c545c12074f0c1b6d5499a0bd5fc940ebde5"
+    },
+    {
+      "Git_blob_source_and_metadata": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+      "clean_bytes": 352,
+      "clean_sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "raw_bytes": 352,
+      "raw_sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98"
+    },
+    {
+      "Git_blob_source_and_metadata": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+      "clean_bytes": 513,
+      "clean_sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "raw_bytes": 513,
+      "raw_sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f"
+    },
+    {
+      "Git_blob_source_and_metadata": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+      "clean_bytes": 319,
+      "clean_sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+      "path": "src/app/(public)/calendar/feed/[token]/route.ts",
+      "raw_bytes": 319,
+      "raw_sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679"
+    },
+    {
+      "Git_blob_source_and_metadata": "fe46e33866a3181a720082ae699faa0eb68665a6",
+      "clean_bytes": 112,
+      "clean_sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+      "path": "src/app/(public)/layout.tsx",
+      "raw_bytes": 112,
+      "raw_sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822"
+    },
+    {
+      "Git_blob_source_and_metadata": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+      "clean_bytes": 16757,
+      "clean_sha256": "f71f45a2f76c7a740e5274f591ce57e65f89aba7fc16c079e0a88113e8dac27a",
+      "path": "src/components/app-shell/AppShell.tsx",
+      "raw_bytes": 17127,
+      "raw_sha256": "ccc09d93ee141abaeeaab6904c0539f6918d5b9c1b83b239c3950a3ac5d9d0e3"
+    },
+    {
+      "Git_blob_source_and_metadata": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+      "clean_bytes": 810,
+      "clean_sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+      "path": "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "raw_bytes": 810,
+      "raw_sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340"
+    },
+    {
+      "Git_blob_source_and_metadata": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+      "clean_bytes": 8674,
+      "clean_sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504",
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "raw_bytes": 8674,
+      "raw_sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504"
+    },
+    {
+      "Git_blob_source_and_metadata": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "clean_bytes": 904,
+      "clean_sha256": "d426154fb3888241ed6b36e98c3b25756f40f85c059dca9bf0785b88bc6eade1",
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "raw_bytes": 905,
+      "raw_sha256": "f70bf49b2d6fac7a9c194d1f2c5bb09d76abd997956095771d6a705029e14202"
+    },
+    {
+      "Git_blob_source_and_metadata": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+      "clean_bytes": 1845,
+      "clean_sha256": "b1c2a6b92000519f9b1eaffde9b96737b7207c286adcc47df78482898d91a454",
+      "path": "src/features/calendar-feed/action-state.ts",
+      "raw_bytes": 1861,
+      "raw_sha256": "d3ec31672a8b5a2e160864c0919dbbe1070ea726770c735ce4ac9bbea2cfb439"
+    },
+    {
+      "Git_blob_source_and_metadata": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+      "clean_bytes": 801,
+      "clean_sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+      "path": "src/features/calendar-feed/actions.ts",
+      "raw_bytes": 801,
+      "raw_sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd"
+    },
+    {
+      "Git_blob_source_and_metadata": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+      "clean_bytes": 3412,
+      "clean_sha256": "266b5067c4007e493590c2c44bad4d5406389b5e306354b0f2c4bacacb20fa1f",
+      "path": "src/features/calendar-feed/icalendar.ts",
+      "raw_bytes": 3469,
+      "raw_sha256": "e83ccfbe7d81db4320b987c0bf2c42e77b473b6a267092d4e3f879d0e2260bbe"
+    },
+    {
+      "Git_blob_source_and_metadata": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+      "clean_bytes": 959,
+      "clean_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+      "path": "src/features/calendar-feed/types.ts",
+      "raw_bytes": 959,
+      "raw_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e"
+    },
+    {
+      "Git_blob_source_and_metadata": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+      "clean_bytes": 1123,
+      "clean_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+      "path": "src/features/calendar-feed/validation.ts",
+      "raw_bytes": 1123,
+      "raw_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20"
+    },
+    {
+      "Git_blob_source_and_metadata": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+      "clean_bytes": 17836,
+      "clean_sha256": "5a0154fa1fdfdce452b6d5a44719cab6e6f5c2b481f0ee9e867db27552f7a969",
+      "path": "src/scope/manifest.ts",
+      "raw_bytes": 18310,
+      "raw_sha256": "df7b4d9d21e701548eb54cffaa1841eced560a3a69f3aab808b8c9d820a8d765"
+    },
+    {
+      "Git_blob_source_and_metadata": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "clean_bytes": 3543,
+      "clean_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "path": "src/server/calendar-feed/attestation.ts",
+      "raw_bytes": 3543,
+      "raw_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5"
+    },
+    {
+      "Git_blob_source_and_metadata": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+      "clean_bytes": 143,
+      "clean_sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+      "path": "src/server/calendar-feed/policy.ts",
+      "raw_bytes": 143,
+      "raw_sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147"
+    },
+    {
+      "Git_blob_source_and_metadata": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+      "clean_bytes": 4421,
+      "clean_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "raw_bytes": 4421,
+      "raw_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c"
+    },
+    {
+      "Git_blob_source_and_metadata": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+      "clean_bytes": 1196,
+      "clean_sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+      "path": "src/server/calendar-feed/trusted-ip.ts",
+      "raw_bytes": 1196,
+      "raw_sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e"
+    },
+    {
+      "Git_blob_source_and_metadata": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "clean_bytes": 4729,
+      "clean_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b"
+    },
+    {
+      "Git_blob_source_and_metadata": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "clean_bytes": 4856,
+      "clean_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81"
+    },
+    {
+      "Git_blob_source_and_metadata": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "clean_bytes": 16764,
+      "clean_sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02",
+      "path": "src/server/commands/envelope.ts",
+      "raw_bytes": 17101,
+      "raw_sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a"
+    },
+    {
+      "Git_blob_source_and_metadata": "a6f550ed29147b310f6753417da02cfedb415403",
+      "clean_bytes": 505,
+      "clean_sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+      "path": "src/server/db/supabase-public-client.ts",
+      "raw_bytes": 505,
+      "raw_sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466"
+    },
+    {
+      "Git_blob_source_and_metadata": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "clean_bytes": 3472,
+      "clean_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35"
+    },
+    {
+      "Git_blob_source_and_metadata": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "clean_bytes": 24435,
+      "clean_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555"
+    },
+    {
+      "Git_blob_source_and_metadata": "da1270c7238db113f0cd2485581a635a66981a65",
+      "clean_bytes": 32551,
+      "clean_sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "raw_bytes": 32551,
+      "raw_sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567"
+    },
+    {
+      "Git_blob_source_and_metadata": "4865721f7930e08f3be2b01af683e923ae8d85fb",
+      "clean_bytes": 28255,
+      "clean_sha256": "1caf0188ab38aa9195fce4df54664ba24c3c8cd5a9819cb26570db6d6a99c1ff",
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw_bytes": 28255,
+      "raw_sha256": "1caf0188ab38aa9195fce4df54664ba24c3c8cd5a9819cb26570db6d6a99c1ff"
+    },
+    {
+      "Git_blob_source_and_metadata": "920b6d31f68254f340067f85d6a7155ee8bdf600",
+      "clean_bytes": 59370,
+      "clean_sha256": "43887ef4cf1d5cf5fded7098db18e4d4637532659d8154fc5084359473b7fc7b",
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 59370,
+      "raw_sha256": "43887ef4cf1d5cf5fded7098db18e4d4637532659d8154fc5084359473b7fc7b"
+    },
+    {
+      "Git_blob_source_and_metadata": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "clean_bytes": 26504,
+      "clean_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "raw_bytes": 26921,
+      "raw_sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40"
+    },
+    {
+      "Git_blob_source_and_metadata": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "clean_bytes": 36884,
+      "clean_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36884,
+      "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08"
+    },
+    {
+      "Git_blob_source_and_metadata": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+      "clean_bytes": 3486,
+      "clean_sha256": "70775d21c58ae45841ee07384472fbb2ed30729f56b579314fa2952135af5ec9",
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "raw_bytes": 3534,
+      "raw_sha256": "6ac7a41a4dca5bccf4aae4300be8ccf38689b3ae19ceb4daa9c8c22d7282db42"
+    },
+    {
+      "Git_blob_source_and_metadata": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+      "clean_bytes": 7417,
+      "clean_sha256": "24984ffb2a5e1d7dc28fe8d0f10db22e84a667db0c4a01b02f9d981c77cfbce0",
+      "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "raw_bytes": 7563,
+      "raw_sha256": "40186690034643019fb770250bc545627444abd29f73699b184b7f7714941279"
+    },
+    {
+      "Git_blob_source_and_metadata": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+      "clean_bytes": 14581,
+      "clean_sha256": "f3b5d81c863157396fa6496e55675fa6ba4128508ea43f2782645b6c9c218e67",
+      "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "raw_bytes": 14845,
+      "raw_sha256": "8b991461ba76072d230a3c5a989e96c87ec15b5af208cace238083449dbb6b89"
+    },
+    {
+      "Git_blob_source_and_metadata": "1d8fa33b27b7fa58ca2908c3fc8ed1db8947ee69",
+      "clean_bytes": 16735,
+      "clean_sha256": "7f07806e21e1e90b3c6f364347fdec8214d5c7c4e492db6bce80ad91f0473884",
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_bytes": 16989,
+      "raw_sha256": "fb636129a2497479f7826b18f08ffd574d200c2512d2624e8d913dfb502cf9fc"
+    },
+    {
+      "Git_blob_source_and_metadata": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+      "clean_bytes": 39863,
+      "clean_sha256": "791e8cc320a02cacf2b52701c24d1cdf81964afe9ea0451a7f716d410709c1e2",
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "raw_bytes": 40640,
+      "raw_sha256": "44fd6b6777c3c3c1c99ee6ac576240561f0a19b66c7088440cf414faf5f9c101"
+    },
+    {
+      "Git_blob_source_and_metadata": "263e6d650190fe012997aaf2f128767fd3c96399",
+      "clean_bytes": 36015,
+      "clean_sha256": "75d29ccdb208850009c1f76556f242ffe81807ec077a5edf533e964906845206",
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "raw_bytes": 36735,
+      "raw_sha256": "291971b7e06d66a14988174ba378cd61814b3d3c9fbd0bf708ca59b919edad97"
+    },
+    {
+      "Git_blob_source_and_metadata": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+      "clean_bytes": 28076,
+      "clean_sha256": "e20c0e31cf595e82b38c48100bd68fe82a237acf652f284af5547bc543c29aa5",
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "raw_bytes": 28367,
+      "raw_sha256": "42e10db1a915f26cb0d732dfd56301d062dc046129e006e88da1b5e493b1f522"
+    },
+    {
+      "Git_blob_source_and_metadata": "925764138215e4fdb6db039568540439d6036449",
+      "clean_bytes": 101303,
+      "clean_sha256": "7b855ba58c3ae1f36c56fba65311bd50951f86145e551bb25f56a4541a9ec7ce",
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "raw_bytes": 103434,
+      "raw_sha256": "531dcd3ab659b67ba41035691aad65d77310f1ab367a3c94ef0006843dd32309"
+    },
+    {
+      "Git_blob_source_and_metadata": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+      "clean_bytes": 15490,
+      "clean_sha256": "73e3372433ae8e720e1ebf0955419fec5242f5e6257fec77552bd87c122754c1",
+      "path": "tests/support/authz/role-harness.ts",
+      "raw_bytes": 15759,
+      "raw_sha256": "3d3e518c0f70bd44a934275d25088e715a3acbc2e16ed3a8e3346f2bfec358c0"
+    },
+    {
+      "Git_blob_source_and_metadata": "46d78f836b41899fcfe87932ebb2e14abf35a4d6",
+      "clean_bytes": 131461,
+      "clean_sha256": "66b90539dc01d04102305e3cd9cf26187dd8685e384ff622252197335f574956",
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 132791,
+      "raw_sha256": "20b5d616fe3e861b60fc3250e224c3a27c6bf21e90b5962036d09b6010b6a859"
+    },
+    {
+      "Git_blob_source_and_metadata": "1c5e3b5f646d23d098257f209da533e05452a6d4",
+      "clean_bytes": 8024,
+      "clean_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677",
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 8135,
+      "raw_sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63"
+    },
+    {
+      "Git_blob_source_and_metadata": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+      "clean_bytes": 58066,
+      "clean_sha256": "5c6044fcd3ffd0f9e9084eb9b04ae0e674a524ea8b35e7aacc1b14d5ece47db0",
+      "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "raw_bytes": 59069,
+      "raw_sha256": "ef07bc2abf9e9a8ef9bcd0f1ad82fc53f65c6d178de88dd7530358869d0716bf"
+    },
+    {
+      "Git_blob_source_and_metadata": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+      "clean_bytes": 4034,
+      "clean_sha256": "2f747082d163552fea743823dcc6e8fb9b1c7eb877ce1cddd47af3f65e2552a4",
+      "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+      "raw_bytes": 4086,
+      "raw_sha256": "2536d7a63ff437cd21cd22982d505dd60fc98cbb8ffa908abe044bd393f4db9b"
+    },
+    {
+      "Git_blob_source_and_metadata": "834025e861c0c2947e85374a90d3443ef8b923d2",
+      "clean_bytes": 6560,
+      "clean_sha256": "5854b2764427f839c9a7b7b6b41c69d3ab7352f7a4c685013114b30d037250b8",
+      "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "raw_bytes": 6651,
+      "raw_sha256": "862aa51c0c100f993949e60b96d035a25eef5a976f4edac6e4c76681258729a9"
+    },
+    {
+      "Git_blob_source_and_metadata": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+      "clean_bytes": 2545,
+      "clean_sha256": "953a906010ad8bcf5912872db48a881b194599a9e793f1d7ce37fcdabf947a76",
+      "path": "tests/unit/features/calendar-feed/validation.test.ts",
+      "raw_bytes": 2581,
+      "raw_sha256": "1f1f2fda1a02070d5d02298d53d21ff258fe5276976bd441da3c017db538647f"
+    },
+    {
+      "Git_blob_source_and_metadata": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+      "clean_bytes": 35108,
+      "clean_sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+      "path": "tests/unit/ops/pilot-operations.test.ts",
+      "raw_bytes": 35108,
+      "raw_sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e"
+    },
+    {
+      "Git_blob_source_and_metadata": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+      "clean_bytes": 2116,
+      "clean_sha256": "5550cbc4a1175ca745fae9ab780b48a3dd5a78861882bb9c66c7c15ef65f5acb",
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "raw_bytes": 2143,
+      "raw_sha256": "643f862ff30ff826c3c3a2447b294931d2aad36cb55931e31789dec794986ede"
+    },
+    {
+      "Git_blob_source_and_metadata": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+      "clean_bytes": 15681,
+      "clean_sha256": "1f334cd9cd69f290ec12197e229f4e85bebecab831bf43fe384b40a88fa51722",
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "raw_bytes": 16009,
+      "raw_sha256": "7f00ff1a27cb0a260a32b690046a0175f3b7090bb9893f664f31353be6109486"
+    },
+    {
+      "Git_blob_source_and_metadata": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+      "clean_bytes": 8808,
+      "clean_sha256": "d908da7ef3b71684cec08a13153d2c69c109276850f7969b2806421ab52bc8f2",
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "raw_bytes": 9000,
+      "raw_sha256": "29b4a2647de1ea4ebe1857f5f300494a039e4c986df0bd68e9a2c70d5ca170d6"
+    },
+    {
+      "Git_blob_source_and_metadata": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+      "clean_bytes": 10424,
+      "clean_sha256": "6227e6220d184a18418083c10ae8c3909179e965da8477a5c8909da8aad30a50",
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "raw_bytes": 10648,
+      "raw_sha256": "3092592321b5e9a2a923a95fccc1f8ec1a19b1cdf36ee2b06f8cac02b2ed1b40"
+    },
+    {
+      "Git_blob_source_and_metadata": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+      "clean_bytes": 1652,
+      "clean_sha256": "8e2619a9feff891bad02cd3bd806984b1158e5eaf8428bd190442f94ed73fcb2",
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "raw_bytes": 1680,
+      "raw_sha256": "4bc8bf9fb08c33cd446b1e2c9e0d8b5addea89a46add567188889aa39d99c068"
+    },
+    {
+      "Git_blob_source_and_metadata": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+      "clean_bytes": 29711,
+      "clean_sha256": "99bb62d37e65e539089f638f43a13312c4650a04bfea4a364aaa22beceb089bf",
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw_bytes": 29955,
+      "raw_sha256": "bc93e6e13b735ba1fa45ce35b68aa3481af0f5325ff147304d401f2c1c2ed656"
+    },
+    {
+      "Git_blob_source_and_metadata": "2110add8cd436a26c7acb28c82e42ee5b3fe09f6",
+      "clean_bytes": 263551,
+      "clean_sha256": "2717dbd4b7737f5c146869c0a96c2f26d5635c2dbe9a30aeaccb934b05c58693",
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 263551,
+      "raw_sha256": "2717dbd4b7737f5c146869c0a96c2f26d5635c2dbe9a30aeaccb934b05c58693"
+    },
+    {
+      "Git_blob_source_and_metadata": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "clean_bytes": 3946,
+      "clean_sha256": "a3e666701c2b1eb6b0b8f81e7fdbf6411b5c0f1093bd2afbf02d5b8a162938d6",
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "raw_bytes": 3984,
+      "raw_sha256": "3e1b31e0f8c47eb7d83e6c07cab2af3d0efa09d436f908af691fd5c24691332b"
+    },
+    {
+      "Git_blob_source_and_metadata": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+      "clean_bytes": 3020,
+      "clean_sha256": "a29c884f12042477979797b304b3026376f3a47336542111e62a7825bffcdb4a",
+      "path": "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "raw_bytes": 3062,
+      "raw_sha256": "61290cccfc72bb2407a945344b4c00b2d950a81119977a305b9f4fa42a0bb87d"
+    },
+    {
+      "Git_blob_source_and_metadata": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "clean_bytes": 3374,
+      "clean_sha256": "53c722f11869cdf4492722e996ddda57c64206a837f45320adb40fc7b5e1ffc1",
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "raw_bytes": 3424,
+      "raw_sha256": "b27e0d9c28d5b6602f0c6684b2d0f43c4feb29ddd0e1535a08ba3b0876cb29a1"
+    },
+    {
+      "Git_blob_source_and_metadata": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+      "clean_bytes": 140788,
+      "clean_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "raw_bytes": 140788,
+      "raw_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5"
+    },
+    {
+      "Git_blob_source_and_metadata": "a7099404789438217d3715a6ee00ce5a0bbf945a",
+      "clean_bytes": 22287,
+      "clean_sha256": "9254b77bffd7c5028c8b5935080b2c25f43c98d3610a1ebc1a0ea17586695b2f",
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "raw_bytes": 22537,
+      "raw_sha256": "b8ed2cc0aa91ac6a30ea370a5321f8d69e9b592f1a5d36c37a54c8b4e2012a17"
+    },
+    {
+      "Git_blob_source_and_metadata": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+      "clean_bytes": 4663,
+      "clean_sha256": "9468d5d3c61cabc7c1eca67b14d65ae72e5d3a498cc4eeebbc8254a6e2dd6f0c",
+      "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+      "raw_bytes": 4728,
+      "raw_sha256": "b7e33cfbe5f4ef1e2352d65117ba63fcb2601eb771027bad9ca359b2029b8003"
+    },
+    {
+      "Git_blob_source_and_metadata": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+      "clean_bytes": 4396,
+      "clean_sha256": "335a1d26a1e845085c804d85160f91fa605a3ef95df9779ba2f924d44e2a0994",
+      "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "raw_bytes": 4458,
+      "raw_sha256": "f02a1015ba35b08d9c6cc2926f1b8f8c5cb8c736feba3e260b9c51a1ccd33386"
+    },
+    {
+      "Git_blob_source_and_metadata": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+      "clean_bytes": 2382,
+      "clean_sha256": "e9b700099017309ec77c8c9cb53e4c2e769df0e18fb446d28b8e70c1153e554f",
+      "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "raw_bytes": 2416,
+      "raw_sha256": "e9afe40327412798a22f2af0100b8df9c1911c42338cf452c241272a648420e0"
+    },
+    {
+      "Git_blob_source_and_metadata": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770",
+      "clean_bytes": 4725,
+      "clean_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd",
+      "path": "vitest.config.ts",
+      "raw_bytes": 4805,
+      "raw_sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30"
+    },
+    {
+      "Git_blob_source_and_metadata": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "clean_bytes": 4780,
+      "clean_sha256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31",
+      "path": "playwright.config.ts",
+      "raw_bytes": 4872,
+      "raw_sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+    },
+    {
+      "Git_blob_source_and_metadata": "6cc5dec60f8dd598a562c1c15464110c4094cf38",
+      "clean_bytes": 11802,
+      "clean_sha256": "3ffbb092b6fc3f03785c6359aae47a8e686a0d0878ad3baf8c8ef70319aec4fd",
+      "path": "tests/factories/admin-sql.ts",
+      "raw_bytes": 12007,
+      "raw_sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77"
+    },
+    {
+      "Git_blob_source_and_metadata": "209528d744adb11d6e266e92a37c4a8dc19b2c13",
+      "clean_bytes": 44323,
+      "clean_sha256": "553b220c98ca487e5a0433882201865b6d73894717538eab1795736fe8e61ba9",
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "raw_bytes": 44323,
+      "raw_sha256": "553b220c98ca487e5a0433882201865b6d73894717538eab1795736fe8e61ba9"
+    },
+    {
+      "Git_blob_source_and_metadata": "314f7d518984ef3858c55e8cbd9acb30c49c3cf6",
+      "clean_bytes": 22799,
+      "clean_sha256": "6b96221185dee8f79699bd11999d65f6227562350fcdf7074b02902bcff3e2b7",
+      "path": "tests/support/time-reports-atdd.ts",
+      "raw_bytes": 22799,
+      "raw_sha256": "6b96221185dee8f79699bd11999d65f6227562350fcdf7074b02902bcff3e2b7"
+    }
+  ],
+  "proof_checked": {
+    "packet_members": 14,
+    "hashed_members": 13,
+    "current_raw_LF_computed_blobs": 75,
+    "CRLF_normalizations": 44,
+    "Root_Git225_and_remote_proof": "BOUND_REUSE_NOT_REEXECUTED",
+    "intents_before_spawn": "VERIFIED_SOURCE_ORDER_AND_CLOSED_RECEIPTS",
+    "logical_GETs": 2,
+    "archive_bytes": 572282,
+    "listing_bytes": 32,
+    "artifacts": 0,
+    "ZIP_GETs": 0,
+    "IO": "both native0, physicalEOF/readersjoined/handlesclosed/processsettled; no overflow/error",
+    "node_totals": {
+      "cancelled": 0,
+      "fail": 2,
+      "pass": 3241,
+      "skipped": 0,
+      "suites": 103,
+      "tests": 3243,
+      "todo": 0
+    },
+    "positive_TAP_occurrences": 32,
+    "positive_distinct_IDs": 30,
+    "declaration_candidates": {
+      "availability": "OBSERVED_BOUND_FAILURE_CANDIDATES",
+      "candidate_only": true,
+      "cause": "UNKNOWN",
+      "duplicate_records": false,
+      "omission_UNKNOWN": false,
+      "record_count": 2,
+      "records": [
+        {
+          "candidate_only": true,
+          "case_id": null,
+          "column": 1,
+          "format": "TAP",
+          "line": 2409,
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "test_identity_sha256": "9f5f9f7c52120bbf65754245864a609d056aba0826ccd59c70e455490991a844"
+        },
+        {
+          "candidate_only": true,
+          "case_id": null,
+          "column": 1,
+          "format": "TAP",
+          "line": 2430,
+          "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+          "test_identity_sha256": "123ccd0f683eaff5fd526fc69d2771cbfedba36bf743b9833c3eca48498bd31e"
+        }
+      ],
+      "selected_step_number": 12,
+      "selected_step_sha256": "2dde29e8f17d850255084deb8ca5be18ff7ccfd1b23e46cc32dead8d10abfa7a",
+      "underlying_failure_count": null,
+      "unqualified_count_capped": false,
+      "unqualified_marker_count": 0
+    },
+    "projection_bytes": 1480,
+    "projection_cap": 32768,
+    "canonical_same_bytes": true
+  },
+  "executed_vs_reused": {
+    "reviewer": "bounded offline metadata/hash/source-literal checks only; zero test/native/network/Git executions",
+    "reused_source_audit_pure_controls": 36,
+    "reused_source_audit_helper_spans": 16,
+    "counts_nonadditive": true
+  },
+  "native_tool_lineage": {
+    "basis": "NativeHigh attributed completion projection; raw tool return not read independently",
+    "chunk_id": "cc8f49",
+    "native_exit": 0,
+    "wall_seconds": 2.3329438,
+    "session_id": null,
+    "waits": [],
+    "exact_MCP_tool_UUID": null,
+    "internal_HTTP_count": null
+  },
+  "limits": [
+    "Raw archive/listing RAM-only and unavailable to independently replay; digests/closed projections and audited transform qualify bounded facts.",
+    "Framework-shaped declaration associations are candidates only; causes/assertions/throw order UNKNOWN; underlying_failure_count null.",
+    "Missing NUDGE/browser metadata UNKNOWN, not absence; no runtime attachments.",
+    "DB51/browser14/recovery1/fullDBRLS/API019/sixserial/PG17 unexecuted; historical failed custody UNKNOWN.",
+    "Prior run39664130401 evidence remains historical and nonadditive.",
+    "No activation/retry/new query/source fix/acceptance authority."
+  ],
+  "findings": [],
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "input_preservation": "all frozen identities checked again after output publication",
+  "write_scope": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-native-provenance-audit",
+  "policy_date": "2026-10-19"
+}

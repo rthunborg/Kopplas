@@ -1,0 +1,23 @@
+{
+  "schema": "accepted-original-function-direct-evidence-source-allocation-v1",
+  "status": "SOURCE_ONLY_EXACT_THREE_HUNKS",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_turn": "01a15e58-38e9-7a73-8d36-355b227f92cd",
+  "grant_tool": "exec-0ee731e8-304e-4300-a149-1f96351566a3",
+  "final_message": "msg_0954b60b44796db1016ad8aa244ed48191a84b6aa5d6e26d96",
+  "plan_sha256": "9856e25ba8240a2c0a116dcbd11571a4af568fa9893c79c46522b920e145fb48",
+  "plan_review": "PASS_PLAN_ONLY",
+  "root_review_binding_sha256": "6ebf6437a519ea2aa5b9b05620aefa241425675491b3f5043873d91e5890398a",
+  "paths": [
+    "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "hunks": "Existing original-function IF failure-message construction only, existing wrapper unit actual-source controls, own Spec evidence/SRO. Original IF/targets/prior guards/subsequent DDL byte-identical, P0001 unchanged. Kernel5760/counter3/statusinreview preserved.",
+  "observation_effect": "After refusal only, evaluate same bounded catalog predicates and emit fixed schema/ordinal1..3/11 boolean-or-NULL values. No raw catalog/ACL/body/role/claim/error payload; no guard weakening/privilege or source function behavior change.",
+  "ownership": "Actual E16 known no111adoption/application/plans; current E16 migration20261021102151/selected-tenant and quote work, Documents completed claims retained; no known overlap. Unknown other actors not inferred absent.",
+  "freeze_condition": "Any successful111application/adoption discovered => stop editing, freeze and coordinate forward migration.",
+  "required": "High author meaningful focused controls and distinct committed-delta High review before push; no fourth broad review.",
+  "excluded": "No CI/GET/resources/local SQL/execution/provider/mainmerge/deploy/foreign writes/monitor resume. Future diagnostic unexpected-success effects separately bound/reviewed/allocated. Oldv1 collector never adopted/relabelled.",
+  "normal_acceptance_credit": 0
+}

@@ -1,0 +1,249 @@
+{
+  "phase": "P4 RED only",
+  "newFiles": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/api-worker.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/api-worker.json",
+      "bytes": 81722,
+      "sha256": "491180b4f84ee30c3bfc4cd50b8541e7731b7e8d6cef3137930787eae1ed1f0f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/e2e-notes.md",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/e2e-notes.md",
+      "bytes": 5133,
+      "sha256": "98db7d371b835b73cd724907a9f519bbd0fb4d5b4a5e0d1bbb2d419036594496"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/e2e-worker.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/e2e-worker.json",
+      "bytes": 37717,
+      "sha256": "a9b10600205a601e0ec5d0c8876d0e20c3112353b3f42c890bc9627c35bb70e0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/finalize-artifacts.mjs",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/finalize-artifacts.mjs",
+      "bytes": 7371,
+      "sha256": "c073ea8d122d5c07030f581658234884640aa8f58e6d09d69175f0c3d0f7ddff"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
+      "bytes": 418,
+      "sha256": "f165984e1844d3182017177dec2f8d40f4e3113141f93ab5739e597e84f1293c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/native-red-probe.txt",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/native-red-probe.txt",
+      "bytes": 1802,
+      "sha256": "a4b8a8d69412d3fcadcf490e840c9c614e948e51c2ea5e4020812fb6afa45474"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/native-unit-discovery.txt",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/native-unit-discovery.txt",
+      "bytes": 9284,
+      "sha256": "e396c76e51ec55c18bd3f54d53f5650b60f62e64041b3d5fb3c97e21fd613ba1"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/playwright-discovery.txt",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/playwright-discovery.txt",
+      "bytes": 2622,
+      "sha256": "40bc158bbf984e8eb9eb56a00d75a8be29f36d9857195fa0e124a1f5b1c21b86"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/preservation-after.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/preservation-after.json",
+      "bytes": 28823,
+      "sha256": "6693075cf943ae300eab711d9b02ea043ab755e509c16b70a5e7092ab6f2d81e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/preservation-before.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/preservation-before.json",
+      "bytes": 1364,
+      "sha256": "9f8152b7e0b9a85b189a0545d1ed121b67c6f0c5558278a518b0336c7cade47b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/red-probe.mjs",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/red-probe.mjs",
+      "bytes": 954,
+      "sha256": "4b5075eb39a77f835522f3d7d3235cc0c111f2633e09ebf7eaf726e16dbdb431"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/run-context.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/run-context.json",
+      "bytes": 2960,
+      "sha256": "afed99084bc1dbab45fa7f934b7f8f261fa15a5d96eb1a67889067a98090ab46"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/scaffold-inventory.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/scaffold-inventory.json",
+      "bytes": 59161,
+      "sha256": "ab64daa3f831a28964741f7af2e84675744357056c8ef4e60762b36bfcd9aad7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/scaffold-inventory.mjs",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/scaffold-inventory.mjs",
+      "bytes": 3223,
+      "sha256": "71f00b8f3a32eff88ebb14b5e5ff1f0d448995a2259b99ef69fdaf78249fc315"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/static-discovery.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/static-discovery.json",
+      "bytes": 12292,
+      "sha256": "82d14da24c3a12753497f6d94be53fe215ad440a096899ee49d55b253a594f72"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/static-discovery.mjs",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/static-discovery.mjs",
+      "bytes": 1919,
+      "sha256": "00c6b9fd950e78fe28b84ab58231fa3875683f6fb1c27af133c20b7f42189df5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/typecheck-initial.txt",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/typecheck-initial.txt",
+      "bytes": 737,
+      "sha256": "204de6da0f5d89a2f35dae00d19aed2133165a2c3bb87c7d327bf62f4cf1542b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/typecheck.txt",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/typecheck.txt",
+      "bytes": 737,
+      "sha256": "204de6da0f5d89a2f35dae00d19aed2133165a2c3bb87c7d327bf62f4cf1542b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/validate-preservation.mjs",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/validate-preservation.mjs",
+      "bytes": 2969,
+      "sha256": "f175ad965ccba8079d0b1d8463dd6d45ad771f257b054d89e9dd5c638ef25a76"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/validation.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/validation.json",
+      "bytes": 5372,
+      "sha256": "9afe70498f1c6df2f8313ce84db20a0f1f63d6f325f1c96958b6bf09f6204e2f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/worker-output-check.json",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/worker-output-check.json",
+      "bytes": 946,
+      "sha256": "c6321b96beaed80b97b45d332c93adb1f1b73ef173c2f432fd8af65cc1fd1cea"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/write-checklist.mjs",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/atdd/write-checklist.mjs",
+      "bytes": 18204,
+      "sha256": "719c7b88df7705d813d93ad2ab1f83c0bf6754bd249f3bce8b3b20434fb4d184"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/atdd-checklist-spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/test-artifacts/atdd-checklist-spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 23772,
+      "sha256": "4708782d8e509f99ceebda886e974ca6bb2e4b405361cef2504a62e6e1674ab9"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 17816,
+      "sha256": "73520d9f650ee7621341e205d8a1ad0e5d8bb31b6d7f77ea451892ce8fe8da68"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 10370,
+      "sha256": "373239acc42a66757e4e8deffb7e4cdbbda5a9a650f06423a8ea06bf0f14f3c3"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 25271,
+      "sha256": "a675da0b7b0b9d21fb8feb32a0a4bd5990cde03cbad01cac6d27a56c13fd7f9b"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 16637,
+      "sha256": "e7f1b7a27ee94e92bcfe288cb990245e8dba788b61e6e81d495a5693f658a804"
+    },
+    {
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/components/calendar-feed.test.ts",
+      "bytes": 2720,
+      "sha256": "0e5d734092c8540e85804f6a1ebe5822328f561afdbdd8f5b86c3711d2d5be23"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 14279,
+      "sha256": "178be6bf90cd0e3c0b692f47a238db2293581b3db32bf9ccd5aec98d662e6929"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/support/calendar-feed-atdd.ts",
+      "bytes": 14344,
+      "sha256": "c38f3fac0d2601427d3709bfcab2934a001724cc1802ad5f714ba9f35969f36c"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/calendar-feed/action-state.test.ts",
+      "bytes": 3017,
+      "sha256": "4b1fcba5ee93f7649a964ecbc4d49b1c4cf0e859b6bc244bf9d7313808c05355"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/calendar-feed/icalendar.test.ts",
+      "bytes": 4672,
+      "sha256": "862c34ce516ed931eaf0591e3a53c1a052035242ce748e5b5dbe728210ee32b7"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/validation.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/calendar-feed/validation.test.ts",
+      "bytes": 2455,
+      "sha256": "094ff6acfc8467f7ff2b6671ea2c34999f70551e0c363bd319072e590ec824a2"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/calendar-feed/attestation.test.ts",
+      "bytes": 4385,
+      "sha256": "797340ff4c30dc163d7a3158686314ff79487a639e095c1fd734770f490f0653"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/calendar-feed/public-shell.test.ts",
+      "bytes": 2807,
+      "sha256": "4ff77eb126aca93b9d19f510bf6e6dc367ce0a8a03579066ab099d47cce88e12"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "absolutePath": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "bytes": 2339,
+      "sha256": "1b6c1911c4eaa8c0f476059ba1fd895f78abfb0232e72c076e39972aeee512f0"
+    }
+  ],
+  "existingFilesModified": [],
+  "frozenSpecManifest": "_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json",
+  "frozenSpecManifestSHA256": "c5c764796b218a7e0903bbb258fb0b2eafc15d28476cae86679d2ba2d4fa13b2",
+  "note": "This ATDD manifest is new and separate from the unchanged frozen35-binding specification manifest. It intentionally excludes its own digest.",
+  "receiptPresentationNormalization": {
+    "reason": "Remove only the trailing blank EOF from the lint presentation; native facts are unchanged.",
+    "originalCommit": "b940df85acfb2de36c0dcd5000a0039758f2b820",
+    "rawLintProvenance": {
+      "gitRef": "b940df85acfb2de36c0dcd5000a0039758f2b820:_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
+      "gitBlob": "ccd5fefde33d7bf00b8830494926a49a977f8627",
+      "gitBlobSHA256": "9bd460bf881e37299aec4ec3ebb01027261207ad1d1e68da5e6608ed698bf3e3",
+      "rawBytes": 420,
+      "rawSHA256": "d28898e29bd762dcea81825ca8155fb5a258290a989b4dc4c9b7db0c4e7a3e40",
+      "reconstruction": "Git core.autocrlf=true stored LF. Replace each Git-blob LF with CRLF to reconstruct the original raw capture; reconstructed bytes verified against the original manifest binding."
+    },
+    "originalManifest": {
+      "gitRef": "b940df85acfb2de36c0dcd5000a0039758f2b820:_bmad-output/auto-bmad/preparation/story-15-5/atdd/artifact-manifest.json",
+      "gitBlob": "84b5d68cb835d93b4e58177f126ff671802771c3",
+      "sha256": "da7148a1ced26496c0dbbbf8850381dfc7102bcc863ccbef6446dc18ba752675"
+    },
+    "normalizedPresentation": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/lint.txt",
+      "bytes": 418,
+      "sha256": "f165984e1844d3182017177dec2f8d40f4e3113141f93ab5739e597e84f1293c"
+    },
+    "nativeFactsUnchanged": true,
+    "note": "Normalized presentation is not byte-identical to the original raw capture. No lint/test/review/runtime command was rerun."
+  }
+}

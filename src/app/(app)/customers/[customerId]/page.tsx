@@ -1,3 +1,4 @@
+import { readTimeReportActionDescriptor } from "@/server/read-models/time-reports";
 import { EntityDocumentsLink } from "@/components/documents/EntityDocumentsLink";
 import { readEntityDocumentsLink } from "@/server/read-models/document-context";
 /**
@@ -143,7 +144,7 @@ export default async function CustomerDetailPage({
       customer={customer}
       facilities={facilities}
       contacts={contacts}
-      bookingPanel={<BookingEntry {...await readBookingHost({customerId})} options={await readBookingEditorOptions()} customerId={customerId} host="customer" />}
+      bookingPanel={<BookingEntry reportAction={await readTimeReportActionDescriptor()} {...await readBookingHost({customerId})} options={await readBookingEditorOptions()} customerId={customerId} host="customer" />}
       filesPanel={
         <>
         <EntityDocumentsLink link={await readEntityDocumentsLink({ module: "crm", ownerType: "customer", ownerId: customer.id })} />

@@ -1,0 +1,23 @@
+{
+  "schema": "SOURCE_LABEL_COMMITTED_DELTA_HIGH_REVIEW_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/report.md",
+      "bytes": 5005,
+      "sha256": "905f3d2ac181f0597ac7afacd76d28657e48d2822d8fe2264128671fbdf5d557"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/attestation.json",
+      "bytes": 15141,
+      "sha256": "2ca4a0af1d40cbdbc13981299556263ccd1d761233bb74253260439c5f90cd42"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/result.json",
+      "bytes": 1486,
+      "sha256": "36133b06851f18321465afb068aa2c49984535fa8166985d8581c343c8f8eed9"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 4,
+  "normal_acceptance": 0
+}

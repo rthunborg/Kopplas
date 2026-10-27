@@ -1,0 +1,147 @@
+{
+  "round": 1,
+  "cap": 3,
+  "baseline_revision": "118ebced2898b96f4b3dfce86f2dec8b52dd8f72",
+  "diff_sha256": "9f0158d2e8bce52a5535cfc9d321eac84a4312541ea9fb122e4e8b0d02db8f67",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "changes_requested",
+  "followup_review_recommended": true,
+  "collection": "All six configured lenses launched before triage; subagent layers capacity-batched; external CLI ran concurrently. Source remained frozen.",
+  "layers": [
+    {
+      "name": "blind-hunter",
+      "agent": "/root/build15_6_high/round1_blind",
+      "findings": 10
+    },
+    {
+      "name": "edge-case-hunter",
+      "agent": "/root/build15_6_high/round1_edge",
+      "findings": 1,
+      "claim": "Unsupported date/week boundary throws during render."
+    },
+    {
+      "name": "verification-gap",
+      "agent": "/root/build15_6_high/round1_verification",
+      "findings": 2,
+      "claims": [
+        "Actual workspace overlapping read gates unexercised.",
+        "Whole-week toggle UI-to-server path unexercised."
+      ]
+    },
+    {
+      "name": "intent-alignment",
+      "agent": "/root/build15_6_high/round1_intent",
+      "result": "Separated authority/presentation and persistent filing align. Actual page identity/race guarantee is broader than synthetic reducer tests. Missing optional context is incorrectly rendered as known joblessness. Runtime gates honestly pending."
+    },
+    {
+      "name": "auto-bmad-security",
+      "agent": "/root/build15_6_high/round1_security",
+      "result": "No findings."
+    },
+    {
+      "name": "auto-bmad-cross-model",
+      "command_total_exit": 1,
+      "external_cli_exit": "0 inferred from && TYPE tail execution; fresh review artifact produced",
+      "wrapper_failure": "cmd TYPE rejects forwardslash C:/ filename; reproduced native1 then identical backslash path native0. No model rerun.",
+      "artifact": "review-round-1-external.md",
+      "sha256": "83208d3c395e206bdb29d56a95c194f3750fa1994d69f08bc9d30430b8813580",
+      "findings": 2
+    }
+  ],
+  "triage": {
+    "intent_gap": 0,
+    "bad_spec": 0,
+    "patch": 11,
+    "defer": 0,
+    "reject": 0,
+    "note": "Duplicates collapse only same claim and action. Test gaps are recorded as verification patches, not asserted production defects."
+  },
+  "patches": [
+    {
+      "id": "R1-01",
+      "severity": "high",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayWorkspace.tsx:17",
+      "claim": "Server RSC context change retains previous initial lists because useState ignores new initial props; date/mode-only gate does not bind current user/tenant.",
+      "caller": "Current user with multiple active memberships; old preferred membership becomes disabled and existing report confirmation triggers router.refresh.",
+      "invariant": "No older user/tenant lists/actions beneath current server context."
+    },
+    {
+      "id": "R1-02",
+      "severity": "medium",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayWorkspace.tsx:29",
+      "claim": "Date controls can select an unsupported boundary week and throw in render."
+    },
+    {
+      "id": "R1-03",
+      "severity": "medium",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayBookingCard.tsx:17",
+      "claim": "All-day cards have no local date/range in multi-day week agenda."
+    },
+    {
+      "id": "R1-04",
+      "severity": "low",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayBookingCard.tsx:18",
+      "claim": "Withheld job context is incorrectly described as known joblessness."
+    },
+    {
+      "id": "R1-05",
+      "severity": "medium",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayWorkspace.tsx:88",
+      "claim": "Seven-column date targets fall below 44px width at 360px after shell/workspace padding."
+    },
+    {
+      "id": "R1-06",
+      "severity": "medium",
+      "kind": "source",
+      "location": "src/server/read-models/my-day.ts:44",
+      "claim": "More-change link cannot reach omitted notices behind existing notification-center newest100 all-category cap.",
+      "downstream_checked": "src/server/notifications/read-model.ts readPersonalNotifications limit(100), no continuation."
+    },
+    {
+      "id": "R1-07",
+      "severity": "low",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayWorkspace.tsx:97",
+      "claim": "Report save clears the dialog invoking booking control; shared Dialog restores focus to detached DOM."
+    },
+    {
+      "id": "R1-08",
+      "severity": "medium",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayWorkspace.tsx:68",
+      "claim": "Gesture starts on interactive/multitouch controls, cancelling native interaction and navigating weeks."
+    },
+    {
+      "id": "R1-09",
+      "severity": "low",
+      "kind": "source",
+      "location": "src/components/my-day/MyDayWorkspace.tsx:67",
+      "claim": "Nested main inside existing AppShell main creates competing main landmarks."
+    },
+    {
+      "id": "R1-10",
+      "severity": "medium",
+      "kind": "verification",
+      "claim": "Actual workspace overlapping request behavior lacks outer-surface assertion; reducer-only tests cannot detect removing workspace guard."
+    },
+    {
+      "id": "R1-11",
+      "severity": "low",
+      "kind": "verification",
+      "claim": "Actual week-mode toggle lacks multi-date then selected-day assertion. Native gesture coverage accompanies R1-08."
+    }
+  ],
+  "required_runtime_evidence": "Still pending Root exact-head canonical CI, full DB/RLS, direct isolated recovery and essential production browser. No development complete claim.",
+  "source_hash_audit": {
+    "files": 23,
+    "author_hash_matches": 23,
+    "mismatches": 0
+  },
+  "status": "Author applying one bounded patch batch within allocated files; no new paths or product contract authorized."
+}

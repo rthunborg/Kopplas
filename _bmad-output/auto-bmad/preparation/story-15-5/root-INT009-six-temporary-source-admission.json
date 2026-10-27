@@ -1,0 +1,55 @@
+{
+  "schema": "ROOT_INT009_SIX_TEMPORARY_SOURCE_ADMISSION_v1",
+  "status": "SOURCE_ONLY_ACTIVATED",
+  "source_claims": [
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    ".github/workflows/ci.yml",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts"
+  ],
+  "exclusive_owner": "native15_5_high explicitSolHigh; ONLYdebugcheckout",
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-int009-debug/Kopplas",
+  "branch": "codex/epic-15-int009-debug",
+  "base_head": "68a4add8f5b559ba49c798868dac28355f9b6f71",
+  "actual_completed_grant_turn": "01a163d2-3889-7360-9fa2-083cb910b9da",
+  "actual_completed_grant_tool": "exec-a380da78-781b-492d-bd86-ad174ebd4c76",
+  "grant": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-INT009-six-temporary-source-allocation.json",
+    "bytes": 3402,
+    "sha256": "47fdb3041230764a256afb709ce7f6427d1f8f7a21b0607c1b45eb2d4c5e1fdb"
+  },
+  "proposal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-fixed-capability-source-proposal.json",
+    "bytes": 16278,
+    "sha256": "aae905b7b8aad894369f6c82a2c84b689bc17fd5d409abc4f7e46eebf01d216c"
+  },
+  "Root_mechanical_D1_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-INT009-six-capability-proposal-root-mechanical-proof.json",
+    "bytes": 1642,
+    "sha256": "15e30ad279740f41cef929c1267ca156242af50c9834cd00368ff9a5872ce1fb"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-six-capability-source-activation.json",
+    "bytes": 5024,
+    "sha256": "cf76bde709ce469978c30e09dd9470b851bea66125bf8b5a308fa035840e601a"
+  },
+  "dependency_junction": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-int009-debug/Kopplas/node_modules",
+    "resolved_target": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/node_modules",
+    "Root_actual_creation": "d2ef6d/native0",
+    "only_owned_MAIN_dependencies": true,
+    "project_and_installed_lock_LF_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+    "install_or_lock_changes": false
+  },
+  "capture_sourcePASS": "173e1f65/b4763afe2c7db66780f973a091dcd9378f3522af2a1ca1b43bd872a28e2c7d55",
+  "preservation": "Capturehelper/calendarintegration/Spec/all118SQL and MAINnormalworkflow unchanged; no foreigncheckouts",
+  "allowed_checks": "Focused actualsource unit/static/config-only; no hooks/testbody/DB/browser workload",
+  "next_gate": "DistinctSolHigh actual six-path CI privilege/privacy/custody/inverse/fixedselector review before separate operational admission",
+  "native_runtime_API_provider_push_dispatch_resources_vars_deploy_merge_authorized": false,
+  "normal_acceptance": 0,
+  "P5": "OPEN",
+  "broad_review_counter": 3,
+  "fourth_broad_review": false
+}

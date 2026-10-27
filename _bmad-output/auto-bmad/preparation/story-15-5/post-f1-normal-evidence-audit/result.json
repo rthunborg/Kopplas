@@ -1,0 +1,22 @@
+{
+  "Outcome": "PASS_QUALIFIED_FAILED_RUN — packet facts/counts/custody qualified with Native-attributed tool-lineage limit; no nativePASS.",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": "Offline audit complete. Current partial failed run is distinct from old12-failure run. Normal acceptance0; development/release false.",
+  "Open questions": [
+    "Nonstory DB/browser failure causes and both backend/key custody remain UNKNOWN.",
+    "35API/INT cases unexecuted; API019/INT015 unqualified. Seven attachment bodies unavailable.",
+    "Tool8163e5/native0 is Native-attributed corroboration; original raw output was not independently inspected."
+  ],
+  "Deferred work": [
+    "Parent separately routes evidence-led assessment; no concrete fix or new acquisition assessed/authorized here."
+  ],
+  "Blockers": [
+    "Full DB/RLS failed and missing35story cases; mandatory95 zero-required-skip gate unmet.",
+    "Three essential browser failures/one flaky case, unpassed API019 privacy and both retained key custododies; no completion claim."
+  ]
+}

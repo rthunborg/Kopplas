@@ -1,0 +1,300 @@
+{
+  "status": "development-done-explicit-Root-admission; exacthead-CI-qualified; release-ready-false",
+  "artifacts": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "sha256": "688977b8b6047d3cc9e4a62381598aa1df670a4075d3b7fff6e7a3d0b0364bfc"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-intent-matrix.md",
+      "sha256": "706b67ab538040c2e1d7275c96331a798d98eab853dcbb68fe05f8069905a923"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-implementation-handoff.md",
+      "sha256": "ba6ecee4fbbec03f1af114ac0e1480eaf24853db7ed80e847543566108306283"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-change-inventory.json",
+      "sha256": "5101b757cd237aaa2eb405324b20bb857c7fff071333a15a0df70a20273a64d0"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-source-freeze.json",
+      "sha256": "c0aadd3c19e468fced582c92a16ab0ab2388df64df04890f18218cad96a2a29d"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-author-verification.json",
+      "sha256": "4138004ebcb1779e2f4d9cb868e53206d040195f99a550e63df9a206216ce8da"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-canonical-reader.json",
+      "sha256": "688d83d66136b7734a4f57334c1f42526ba934409c4714e6fd8416bb39f627f7"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-final.log",
+      "sha256": "7627256629aa8161f52332b6dec7248c2f86bb2b4315f37cd9acfafd00ff900d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/15-2-recurring-bookings-series-materialized-occurrences-exceptions.json",
+      "sha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/canonical-metadata-preservation-current.json",
+      "sha256": "a752afbfb1619306e0a77ed985ac0a4f1d5f76521048d6d0b4335771b80c5b05"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/source-test-freeze-009-current.json",
+      "sha256": "6666a3b1cdbf4178543fadb78fba9199b9e33c5fa19b3c08c072d6b16a39024b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/final-ci-author-refresh-6aa5b5d5-9c56-4074-9acc-fdb1e43ee1c5/preservation.json",
+      "sha256": "8520fdbb75fc3ce19c8f661619cc97ed03f086e33e4a5a485263bbb2ed389836"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/release-deferred-p7-harvest-release-ledger-current.json",
+      "sha256": "e797e1530933af14cb099b235db5d390113730872e86b431fbed88a48641ee4c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/qualification-final.json",
+      "sha256": "d5b0b28924ff7d830b670e78bc6fc1f59e5229a65da62f92fa3a827376be0f9b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/SHA256SUMS-final.json",
+      "sha256": "5f374e5c5b6ec4c534e775af0edfef3135e5d64b81e5a445a1d1933d5691dfe6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/admitted-status-closure-7a1a7d6e-e8b0-44cb-b2ee-f6354d7642dd/preservation.json",
+      "sha256": "4953e187b3f473aa7579c9051c37c25e95d7d941926f4ce1e31fe0bf1979ce9e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.md",
+      "sha256": "b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.json",
+      "sha256": "b3abb4f0b52a4161e543d5f0c23b08f2f030fa4bbb0a41e564904a59d9682b56"
+    }
+  ],
+  "local_round1_evidence_artifacts": [
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-bundle-round1.log",
+      "sha256": "464010b24818a8d93e2dfe345cd82aaa7eb02f1730d0434ff4000cca809bebb9"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-production-round1.log",
+      "sha256": "db9630ed13828e063ccb9d7e5c225267519cf355a3766f8a7961f083c48ffb7e"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-public-binding-round1.json",
+      "sha256": "295bbfa12c5a76cee93fc0b87e8ed7f24c16bce382810e8d06e7de59a40bd9bd"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-009.log",
+      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-current.log",
+      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-final.log",
+      "sha256": "7627256629aa8161f52332b6dec7248c2f86bb2b4315f37cd9acfafd00ff900d"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-sql-green.log",
+      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1-unicode.log",
+      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-review-order-round1.log",
+      "sha256": "4942070ecfb39cb2bac17a941b037fb35aadc590028dc1b68e9eb3833a91bf23"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-offline-final.log",
+      "sha256": "a68ddd419855297fd6b41c6e75d8922068fcf4a21ba1c4cd7966ee0c59bb0c03"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-offline.log",
+      "sha256": "563a934af4ef378a16508831b8a71641ca935c020f6542e68112b3ec0abb8a3e"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-009-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-author-verification.json",
+      "sha256": "4138004ebcb1779e2f4d9cb868e53206d040195f99a550e63df9a206216ce8da"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-canonical-reader.json",
+      "sha256": "688d83d66136b7734a4f57334c1f42526ba934409c4714e6fd8416bb39f627f7"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-final.log",
+      "sha256": "b4cbf79aea44f8e426a5cbf10f9ade33a37c6b6206de91daab54cee2ad8e9bc6"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-green.log",
+      "sha256": "6efe725d47456b2ff264ed71d414f6c484823fcfa2b1bb35c92d24eb46ad0221"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-red.log",
+      "sha256": "ee8b750f6b3e7e9a4895058d216a3a7028ca2cc259523640eae2952f2c60dd36"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-compatibility-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-editor-plan-first-green.log",
+      "sha256": "c18d27f0ad422e0db7c132f6dc133556d696d81998c2eff3bf83fcc5a19f1e1d"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-editor-red.log",
+      "sha256": "0f03e9b368e6275bde00bf03a4e497c4543f0e161af4feb99aee60a784ea6a77"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-integrity-wrapper-offline.log",
+      "sha256": "b66b204bfc4e3b420f29c8c1d4339705b8b13b1f31bb9bf0b2b1042e1c13fc66"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-lint-first.log",
+      "sha256": "9ed9d0927eb24cfa83e2030759d515deb7b94a18ee4231824d819a941a1fd666"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-plan-red.log",
+      "sha256": "434eced8a606e3d825f68cf7979caf25c8ddfb8e13a94aec18fa4abddea24c01"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-pure-final.log",
+      "sha256": "171dc4540f69383ef1912be5aa23071be4a6361fde3722b5d85bcdba1ab790cb"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-pure-first.log",
+      "sha256": "5daf70173797121120098b0c23448c7bcda9a84fca9581497f83e7545ff90247"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-pure-green.log",
+      "sha256": "448cf4d7e9903b37614d151d116ae7876f5a6f4dab1e6a2d0b65350e052d3bf1"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-successor-offline.log",
+      "sha256": "c99458a26302cb72b5b6eac318b49217bdb12c347fb51a5b6af43881687a2050"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-typecheck-final-source.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-typecheck-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-typecheck-first.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-unicode-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-unicode-offline.log",
+      "sha256": "c99458a26302cb72b5b6eac318b49217bdb12c347fb51a5b6af43881687a2050"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story15-2/build-round1-unicode-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "implementation_file_inventory": {
+    "path": "_bmad-output/test-artifacts/story15-2/build-change-inventory.json",
+    "sha256": "5101b757cd237aaa2eb405324b20bb857c7fff071333a15a0df70a20273a64d0",
+    "paths": 52,
+    "product": 22,
+    "schema": 2,
+    "testsOrFixtures": 28
+  },
+  "limits": "Index lists current author-owned canonical artifacts and all local build-round1/review-order-round1 evidence artifacts; immutable ignored runtime packets are separately referenced by exact manifests/receipts in matrix and verification. Raw auth/private bindings are not exported.",
+  "metadata_correction": {
+    "previousIndexCopy": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/metadata-inventory-counter-correction-6b2a783a-2769-4120-a05c-2de243e1ec7b/_bmad-output/test-artifacts/story15-2/build-round1-handoff-artifacts.json",
+    "previousIndexSha256": "203de94c0cf96537ef35f9942aec5b5da4bfd06603dc4c594715539e91ab22ca",
+    "preservation": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/metadata-inventory-counter-correction-6b2a783a-2769-4120-a05c-2de243e1ec7b/preservation.json",
+    "preservationSha256": "ee259fec119a67c2bd14619990b4bfa3bc2391cf6ef6ce3b5132d07a1405a31a",
+    "scope": "Only omitted already-reviewed additive unit inventory entries, repair-loop counter0 and dependent hashes/notes. BroadRound1/followuptrue unchanged; no source/test/runtime/checkpoint done claim."
+  },
+  "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+  "CI_run": 39335595653,
+  "source52_dependency_assessment": {
+    "evidence_revision": "effbf5e18e19556d0fad231d3fc01369397c8402",
+    "verified_raw_local_paths": 52,
+    "product": 22,
+    "schema": 2,
+    "testsOrFixtures": 28,
+    "hashMismatches": [],
+    "sourceChangesInFinalEvidenceRefresh": false,
+    "scope": "All source/test/schema inventory hashes equal pre-final-refresh/reviewed source. Four R1 UI paths changed before effbf5e1 and retain actual targeted007009/High dependency qualification; local earlier-flow reuse is scoped, no fresh whole-series/host claim. CI AuthJobs smoke remains separate.106localCRLF versus GitLF normalization is recorded, never treated as rawidentity."
+  },
+  "release_deferred_ledger_harvest": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/release-deferred-p7-harvest-release-ledger-current.json",
+    "sha256": "e797e1530933af14cb099b235db5d390113730872e86b431fbed88a48641ee4c",
+    "status": "pendingRootP7harvest",
+    "target": "_bmad-output/auto-bmad/recovery/deferred-validation.md",
+    "target_observed_sha256": "75c62fa2e7fc31697c23439c92e6f06099185aad491aa77600a7963bba51089e",
+    "rows": 3,
+    "existing_row_mapping": {
+      "delivery0": [
+        7,
+        8
+      ],
+      "delivery1": [
+        9
+      ],
+      "delivery2": [
+        11
+      ]
+    },
+    "ledger_updated_by_author": false
+  },
+  "final_evidence_preservation": {
+    "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/final-ci-author-refresh-6aa5b5d5-9c56-4074-9acc-fdb1e43ee1c5/preservation.json",
+    "sha256": "8520fdbb75fc3ce19c8f661619cc97ed03f086e33e4a5a485263bbb2ed389836"
+  },
+  "Root_final_admission": {
+    "deliverySha256": "c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576",
+    "gate": {
+      "reportedBy": "Root explicit final admission",
+      "native": 0,
+      "ok": true,
+      "development_complete": true,
+      "approval_granted": false
+    },
+    "independentHighProvenance": {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.md",
+      "sha256": "b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c",
+      "JSONpath": ".env.epic15.mail-runtime/story-15-2-ci-effbf5e1-independent/delivery-provenance-final.json",
+      "JSONsha256": "b3abb4f0b52a4161e543d5f0c23b08f2f030fa4bbb0a41e564904a59d9682b56",
+      "status": "passed"
+    },
+    "statusTransitionAuthorized": true,
+    "noNewTestsOrRuntime": true,
+    "preDonePreservation": {
+      "path": ".env.epic15.mail-runtime/story-15-2-round1-author-fixes-25d131e9-9b87-4f9e-83cd-4c9bcfa2e330/admitted-status-closure-7a1a7d6e-e8b0-44cb-b2ee-f6354d7642dd/preservation.json",
+      "sha256": "4953e187b3f473aa7579c9051c37c25e95d7d941926f4ce1e31fe0bf1979ce9e"
+    }
+  },
+  "statusClosureNoSourceChanges": true
+}

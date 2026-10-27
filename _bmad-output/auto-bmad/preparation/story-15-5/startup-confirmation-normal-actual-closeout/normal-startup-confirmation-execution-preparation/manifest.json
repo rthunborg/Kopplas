@@ -1,0 +1,27 @@
+{
+  "schema": "NORMAL_STARTUP_CONFIRMATION_OPERATIONAL_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/provider.py",
+      "bytes": 20581,
+      "sha256": "a85dd331e162fc4e66cc89f603715dbb31f0bdb0d235744c99a862abd8aeefec"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/root-driver.py",
+      "bytes": 21106,
+      "sha256": "3aa7b7ccdd65790b32164b17953a776f2b0a0d6e556e8598bc11d8dd28831dff"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/proposal.json",
+      "bytes": 234985,
+      "sha256": "4b5ad16b3de1fc42d46b7f204f73faba0eefa215b09b2b5cf015c3cec020763b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/pure-controls.json",
+      "bytes": 3988,
+      "sha256": "f4d14bd0093f44b6eced55370501ff0b9bc5d4cabb682b8daaa17e40edbb43de"
+    }
+  ]
+}

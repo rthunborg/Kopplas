@@ -1,0 +1,24 @@
+{
+  "Outcome": "PASS_PLAN_ONLY_LOCATION_01_CLOSED",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/report.md",
+      "bytes": 2500,
+      "sha256": "abc499acc6551c51c50cdfd5e07f34a7025be635f4dfc4401b85b236ef769fca"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/attestation.json",
+      "bytes": 7223,
+      "sha256": "8b588fad598c4afd2603fc9b3166367e98a95ea5fca91c2d5a611feb31ec94e4"
+    }
+  ],
+  "Status": "Exact74-path location refinement closes PLAN-LOCATION-01; original NOTPASS preserved. Operator preparation only.",
+  "Open questions": [
+    "Actual failed assertion/cause, browser failures/flake and backend/key custody remain UNKNOWN."
+  ],
+  "Deferred work": [
+    "Prepare separately allocated private operator; independently review executable source and inverse controls.",
+    "Actual Coordinator effects grant and Root once activation remain required before two GETs; no source fix/normal retry authorized."
+  ],
+  "Blockers": []
+}

@@ -1,0 +1,249 @@
+{
+  "schema": "SOLE_NORMAL_TERMINAL_OUTER_EXECUTION_RECEIPT_V1",
+  "run_id": 39950998114,
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-preparation/reader.py",
+    "--execute-once-after-terminal-grant"
+  ],
+  "started_at_utc": "2026-10-23T12:44:21.734542+00:00",
+  "completed_at_utc": "2026-10-23T12:44:28.429768+00:00",
+  "elapsed_seconds": 6.695226100000582,
+  "native_exit": 0,
+  "timed_out": false,
+  "eof": {
+    "stdout": true,
+    "stderr": true
+  },
+  "reader_errors": {
+    "stdout": false,
+    "stderr": false
+  },
+  "overflow": {
+    "stdout": false,
+    "stderr": false
+  },
+  "readers_joined": true,
+  "handles_closed": true,
+  "direct_process_settled": true,
+  "captured_bytes": {
+    "stdout": 731,
+    "stderr": 0
+  },
+  "closed_stdout_projection": null,
+  "activation_sha256": "ad3e15f23e91991d2e5d81186ca1d25e35dd20abfd8478b88235fb249a3bfa88",
+  "proof_age_before_invocation_seconds": 116.775439,
+  "maximum_logical_GETs": 5,
+  "all_unused_slots_closed": true,
+  "no_retry": true,
+  "normal_acceptance": 0,
+  "actual_tool_provenance": {
+    "chunk_id": "6ccbd9",
+    "outer_native_exit": 0,
+    "outer_wall_seconds": 6.9698185,
+    "session_id": null,
+    "waits": [],
+    "observation": "NativeHigh tool result; no claim Root independently observed child lifecycle"
+  },
+  "packet_inventory": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/acquisition-summary.json",
+      "bytes": 2544,
+      "sha256": "5ea38fd8adaf9e4ac292719580ea2b4e80d71d81583ac07a3c96846c4abd6a89"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "5104f71c75efec0fb7aa84a899506717c86285743050ac0979cc2d8be6d70f1c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-full-integration-projection.json",
+      "bytes": 61132,
+      "sha256": "e0aaf1dc2876d7438fb70f6fd818496f1435c555a5214cb6d466b21aa72678a3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-general-browser-projection.json",
+      "bytes": 13358,
+      "sha256": "985763deb2abfd7d25e532722cae5643b1af4983c68ab06b6f8452686565c1b7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "ec7fe45d22f40cec2a0fe5683fbb862bcd09b859de9c23e3ceec12e67609b140"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/operator-intent.json",
+      "bytes": 8956,
+      "sha256": "9266544d55e31d878e9e965d12a875d6614f0498fafd1f483f9c127070a46376"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "b327b3fef8e1618fa28edf2001e6d1a60ec3b05a5933c545195a8f50d7c0907d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-01-result.json",
+      "bytes": 1134,
+      "sha256": "34b3c9127c2cad828905970ae6e421aaad717976abcc956bf08596b568de9124"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "1a2ba481bec48a427025efeb80f33d3560b991a37d3942ba3d3f307b81c70b04"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "f8a0df8de3098456d87caeefba9dce888b5d0cd0d9d66ca9f0938b6d611399da"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-03-intent.json",
+      "bytes": 422,
+      "sha256": "bd88cd3f259248383e150afbee8dc0d27289a804c27dd68e24ffcfc731ce0e0b"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-03-result.json",
+      "bytes": 1142,
+      "sha256": "e7136a982d7ee110fac759642399bb5c57c40cfc2abbacd0642c039f650e6c6c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-04-intent.json",
+      "bytes": 421,
+      "sha256": "7c268bd21ec3011db739e63187d5fb8d342dc62e85796f82b9b271aa2c1a5db1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-04-result.json",
+      "bytes": 1140,
+      "sha256": "1ff062d6580af34c242b28bfe3f8b25020cfd0ffe12e965637b0691516ef6468"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-05-intent.json",
+      "bytes": 431,
+      "sha256": "ff76d8d8ecbf226d1c6d38b3964b74093c912b02502068217d7844efb66f97d5"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-05-result.json",
+      "bytes": 1149,
+      "sha256": "5927b76cc7ac51df913d3cbd8df7fc3753aef7f3ad14875ac7e679d3ed410b48"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/run-archive-projection.json",
+      "bytes": 48553,
+      "sha256": "b5eb1a5801a05fc69d0974a0dd826fe6100ce73b38b973323a05c2bb26da71cc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "a95c7502b504de74901c3738c49dc7dc43682d20e2b8332c98527e918c4638d0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/source-provenance.json",
+      "bytes": 8218,
+      "sha256": "c7e93d92d2a02d03ec76e210cf1ab40f6da61c09d163e2319a587dc93f283f7f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "711634db153f811c811a238b0028832acee057370ba1402f5d2b54d84d606834"
+    }
+  ],
+  "closed_stdout_projection_limitation": "Whole stdout was not admitted as one JSON document; raw stdout not persisted. Actual summary below derives only existing closed packet JSON; no rerun.",
+  "actual_logical_requests": 5,
+  "operator_status": "BOUNDED_ACQUISITIONS_COMPLETE",
+  "request_results": [
+    {
+      "category": null,
+      "label": "normal-run-archive",
+      "native_exit": 0,
+      "sequence": 1,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "normal-artifact-list",
+      "native_exit": 0,
+      "sequence": 2,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "native-full-integration",
+      "native_exit": 0,
+      "sequence": 3,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "native-general-browser",
+      "native_exit": 0,
+      "sequence": 4,
+      "settled": true
+    },
+    {
+      "category": null,
+      "label": "native-isolated-storage-recovery",
+      "native_exit": 0,
+      "sequence": 5,
+      "settled": true
+    }
+  ],
+  "report_summaries": [
+    {
+      "case_summary": {
+        "numFailedTestSuites": 2,
+        "numFailedTests": 1,
+        "numPassedTestSuites": 544,
+        "numPassedTests": 2095,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 52,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 546,
+        "numTotalTests": 2149,
+        "success": false
+      },
+      "member_bytes": 1020355,
+      "name": "native-full-integration",
+      "report": "native-full-integration-projection.json",
+      "sha256": "6da38797ec9953df3415d40ca40b45b6de8cea652b52331766f51f3959f06502"
+    },
+    {
+      "case_summary": {
+        "duration": 298231.651,
+        "expected": 56,
+        "flaky": 0,
+        "skipped": 0,
+        "unexpected": 0
+      },
+      "member_bytes": 91991,
+      "name": "native-general-browser",
+      "report": "native-general-browser-projection.json",
+      "sha256": "a69579d4891c48147f61ab0ee2cb1780eb5f5f60694852258cec82267fcf940f"
+    },
+    {
+      "case_summary": {
+        "numFailedTestSuites": 0,
+        "numFailedTests": 0,
+        "numPassedTestSuites": 2,
+        "numPassedTests": 1,
+        "numPendingTestSuites": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "numTotalTestSuites": 2,
+        "numTotalTests": 1,
+        "success": true
+      },
+      "member_bytes": 1161,
+      "name": "native-isolated-storage-recovery",
+      "report": "native-isolated-storage-recovery-projection.json",
+      "sha256": "2ed493efd6d6327ecee4a0e2eb1deb4299f2d80a7212721199751ee4446d2b32"
+    }
+  ],
+  "packet_manifest_disposition": "Operator produced20 files and no separate manifest. Immutable packet inventory is bound in this outside receipt; no member added or changed.",
+  "packet_member_count": 20,
+  "packet_inventory_sha256": "3627156a05ad104def7513f7b96d61f6a04f01415e379b9c568d49bfb7d22b01",
+  "distinct_actual_evidence_qualification_required": true
+}

@@ -1,0 +1,36 @@
+{
+  "mode": "healthy",
+  "argv": [
+    "node",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+    "run",
+    "--config",
+    "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-custody-containment-proposal\\healthy.config.mjs",
+    "--configLoader",
+    "runner"
+  ],
+  "native_exit": 0,
+  "elapsed_seconds": 2.503,
+  "stdout_bytes": 2041,
+  "stdout_sha256": "6293bcf4d7ca415451d71c09f2b10339915402c7c44f228211a5a13f2d173b26",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "summary": {
+    "numTotalTests": 4,
+    "numPassedTests": 4,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "success": true
+  },
+  "sentinels": {
+    "C4_FIXTURE_IMPORTED": 0,
+    "C4_FIRST_MODULE_IMPORTED": 0,
+    "C4_NEXT_MODULE_IMPORTED": 0,
+    "C4_PARALLEL_TEARDOWN_END": 0,
+    "C4_NEXT_BODY": 0,
+    "C4_DIFFERENT_TARGET_ADMITTED": 0
+  },
+  "unknown_error_output": null,
+  "raw_persisted": false,
+  "network": 0
+}

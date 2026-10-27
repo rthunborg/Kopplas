@@ -1,0 +1,337 @@
+{
+  "schema": "INDEPENDENT_INT009_NORMAL_EXISTING_ARTIFACT_CAPTURE_SOURCE_REVIEW_V1",
+  "outcome": "PASS_INT009_NORMAL_EXISTING_ARTIFACT_CAPTURE_SOURCE_ONLY",
+  "status": "PASS",
+  "verdict": "PASS",
+  "independent": true,
+  "execution_authorized": false,
+  "effect_authority_granted": false,
+  "normal_acceptance": 0,
+  "reviewer": "/root/validate15_4_high; distinct explicit gpt-6.1-sol High independent of author and Root operator",
+  "route": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-source-review-route.json",
+    "bytes": 548,
+    "sha256": "6e5ec87a94ee8c70c995ba328fcd608ecf524f53f8e40f38d8443496460fe6bf"
+  },
+  "scope": "Targeted changed-source/privacy/admission review of minimum reader for one already-known Normal artifact. No fourth broad story review, new collector/transport family, application test run or cause inference.",
+  "findings": [],
+  "finding_count": 0,
+  "required_repairs": [],
+  "actual_bindings": {
+    "exact_frozen3": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/reader.py",
+        "bytes": 17443,
+        "sha256": "acd621d2a80d3075636e77bf5b5221f8888192457e33f3f466c4155219548969"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/proposal.json",
+        "bytes": 24279,
+        "sha256": "232df85a5dc560d88680a4c84bfc229c302e79e584331771b24d352103dfdf4c"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/manifest.json",
+        "bytes": 632,
+        "sha256": "1a534423888a6d0ecba191174b85b81d38d2593a87925528a0016931353da290"
+      }
+    ],
+    "prior_reader": {
+      "bytes": 17439,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/retry-INT009-terminal-acquisition-preparation/reader.py",
+      "sha256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c"
+    },
+    "prior_independent_source_privacy_review": {
+      "bytes": 15799,
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-reader-actual-source-review.json",
+      "sha256": "dc535126aeeae6ba3cefcf295fb9d04753de6983e3c95932855108ff50c43a36"
+    },
+    "qualified_normal_dependency": {
+      "bytes": 50745,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-main-fenced-normal-terminal-preparation/normal-evidence-operator.py",
+      "sha256": "4dd32afdc6bc3adcef2b2f9ecf4c410b1247c202d781f00f2b5467a1d7a8da76"
+    },
+    "all11_input_refs_actual_size_SHA256_match": true,
+    "source_bindings_count": 6,
+    "source6_raw_LF_size_SHA256_and_LF_Git_blob_actual_match": true,
+    "installed_schema_bindings": [
+      {
+        "bytes": 151531,
+        "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+        "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798"
+      },
+      {
+        "bytes": 113407,
+        "path": "node_modules/vitest/dist/chunks/reporters.d.DtoKVV2s.d.ts",
+        "sha256": "7fa6fdc6eeeb3850e6b3166836f8c9199594c4f4bed3cee02cac0ca33d71894d"
+      },
+      {
+        "bytes": 5918,
+        "path": "node_modules/vitest/package.json",
+        "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+      }
+    ],
+    "all3_installed_schema_hashes_match": true,
+    "current_actual_normal_qualification": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-actual-native-qualification.json",
+      "bytes": 39154,
+      "sha256": "5d3a51aaa3752578e9f49e454af87660fbd7f0e47d3211d7fff40f282323f5fa"
+    },
+    "known_native_projection": {
+      "bytes": 63568,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent/native-full-integration-projection.json",
+      "sha256": "25bb1d6a469814081d25567decddcf49066f86b89d07d4656068fae239e3f755"
+    },
+    "known_artifact_list_projection": {
+      "bytes": 1291,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent/artifact-list-projection.json",
+      "sha256": "4c967b8801ef3e89a73929ef09426ea0a71e6c9599d976c2c494ac21d59c2c58"
+    },
+    "known_acquisition_manifest": {
+      "bytes": 3648,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-fd930e71-INT009-canonical-catalog-normal-ci-independent/manifest.json",
+      "sha256": "6f3ffdc3ba13501479629b9a46651f23a84eee7642f6077f5e91dee2fe0ba0d5"
+    },
+    "actual_terminal": {
+      "bytes": 24085,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/terminal.json",
+      "sha256": "33da582caff461fc376234c27e11797d4616416306dc223986e997f26455975b"
+    },
+    "ownership_record": {
+      "bytes": 3387,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-ownership.json",
+      "sha256": "8ecd810e854e5fa445e35bc691c0de5e57e8c1c12b65c387f647e0d1c7a106bf"
+    },
+    "focused_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-independent-controls.json",
+      "bytes": 2235,
+      "sha256": "c068b966beee4d564a6d14a915fe2b8d2cd7b52f4217ff80f65987ebc07c52d6"
+    }
+  },
+  "identity": {
+    "attempt": 1,
+    "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+    "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "mode": "normal",
+    "run": 39816833651,
+    "source": "0ed3710929ea09afae49ef7b8d3266975331e827"
+  },
+  "change_proof": {
+    "actual_full_inverse_equal_prior17439": true,
+    "restored_SHA256": "54d015baf316be24d4b86d6bacebe01de51700fb468e3ef29e37c752b5d6388c",
+    "changed_definitions": [
+      "admit",
+      "validate",
+      "project",
+      "manifest",
+      "main"
+    ],
+    "unchanged_definitions": [
+      "reference",
+      "checkref",
+      "fresh",
+      "select_artifact",
+      "source_file",
+      "namespace"
+    ],
+    "namespace_and_source_file_byte_identical": true,
+    "qualified_dependency50745_4dd32_unchanged": true,
+    "transport_ZIP_capture_helpers_reused": 9,
+    "no_namespace_schema_allowlist_expansion": true,
+    "substantive_delta": "Exact current Normal tuple/source1GET; global diagnostic P+F==1 replaced with exactly one executed selected INT009 within full multi-case report. Exact file/title/fullName/missing/duplicate guards and full-report declared P/F reconciliation remain. Listing removed; pinned artifact and member size/SHA enforced."
+  },
+  "artifact_and_member_provenance": {
+    "pinned_artifact": {
+      "advertised_bytes": 111167,
+      "digest": "sha256:cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+      "id": 12444580340,
+      "name": "native-full-integration"
+    },
+    "pinned_member": {
+      "bytes": 1029153,
+      "name": "full-integration.json",
+      "sha256": "03541a24713308754d36c5946550ba03d1243a93d729c184c4f2a905d8202766"
+    },
+    "actual_known_qualified_projection_pins_match": true,
+    "basis": "Existing qualified Normal acquisition bound artifact12444580340 to run39816833651/headfd930/attempt1; previous listing marked unique/eligible/nonexpired and archive digest/size/member digest verified. Current reader uses that immutable recorded identity, without new listing/status/refetch. Any expired/unavailable ZIP or byte mismatch stops unknown; no alternative artifact or refreshed metadata is permitted. API_digest_verified means match to prior qualified API digest, not a new listing observation.",
+    "only_future_GET": "repos/rthunborg/Kopplas/actions/artifacts/12444580340/zip",
+    "archive_bytes": 111167,
+    "archive_SHA256": "cdb1c4d1c71ae5d595e90dbbf0e0cc9bfab4bafd2ed455cf0de7e9d77179eac4",
+    "member": "full-integration.json",
+    "member_bytes": 1029153,
+    "member_SHA256": "03541a24713308754d36c5946550ba03d1243a93d729c184c4f2a905d8202766"
+  },
+  "assessments": [
+    {
+      "area": "Admission/default/once",
+      "status": "PASS",
+      "reason": "Actual admit exact schema/keys, true execution flag, fixed current run/head/attempt/checkpoint/jobs/output, canonical distinct operation UUIDv4, maxrequests integer1, no_retry true, UTC age0..300 and independent PASS evidence are required. Actual validate pins self/proposal, absent output, exact literal artifact/member dictionaries, all refs, actual completed allocation turn/tool, current terminal9 jobs/DB job119959269301 and fresh source proof/118vectors/6source/3schema. All precede exclusive output directory and fsynced operator/request intents. Default/wrong/missing activation refuses before GET; Root must durably journal one invocation including refusal/unused slot closure."
+    },
+    {
+      "area": "Minimum network and integrity boundary",
+      "status": "PASS",
+      "reason": "Actual main contains one get of fixed admitted artifact ZIP only; no listing/log/status/provider/Git/CI fallback. Exact111167 archive size/digest must match prior qualified evidence. Qualified ZIP/raw-name guards plus sole full-integration.json member precede inflate; exact1029153 member size/hash checked before JSON parser. Uncertain capture/digest/member/schema errors publish only closed stop receipt and terminate; no retry or second endpoint. Existing qualified transport full EOF/join/closed/settled/native guard is unchanged."
+    },
+    {
+      "area": "Normal selected-case parser delta",
+      "status": "PASS",
+      "reason": "Actual project scans bounded full report and preserves one matching source file/exact title/fullName and exactly one executed selected INT009. Other Normal passed/failed cases are allowed; their derived counters remain full-report counters. Declared P/F must match all rows; source fullName/file/cardinality conflicts and selected pending/skipped are refused. Pending/total/todo declarations retain their preexisting declared-counter meaning, not new execution evidence. Missing/duplicate case/fullName tests passed using actual definitions. This change does not manufacture isolated diagnostic global P+F==1 or claim whole report has one execution."
+    },
+    {
+      "area": "Privacy/atomic/custody limits",
+      "status": "PASS",
+      "reason": "Namespace remains exact six closed string fields, PRIMARY then max3 CLEANUP with fixed vocabularies/final OMITTED and4096 ASCII cap. Raw foreign metadata/errors/messages/stack/SQL values never emitted. Missing/malformed namespace becomes typed UNKNOWN without raw fallback. COMMIT_ATTEMPT and WRAPPER_OUTCOME_UNKNOWN remain separate ordered producer observations, not native first-throw or backend outcomes. Projection keeps body_assertions_reached/original_exception_or_stack UNKNOWN, native retry counter null, wrapper key/backend custody unknown and normal_acceptance0. Final actual packed output<=8192 enforced before publication. Actual producer and installed reporter semantics are reused source-bound unchanged."
+    },
+    {
+      "area": "Proof interface and exact qualification-file exception",
+      "status": "PASS",
+      "reason": "Source-proof schema requires exact run/head, source_bindings_verified, terminal_ownership_verified, checked_at_utc<=300 and118 SQL vectors; it has no blanket clean-bit requirement. Root can keep HEADfd930 unchanged and document only exact owned current qualification39154/5d3a51... exception while freshly verifying application/test/SQL bindings, source0ed/pushed Git objects and all other tracked/index state. Additional proof fields may record the exception and qualifier hash; activation/ref hashing still pins exact proof. This review did no Git status/proof execution and does not prequalify a future freshness claim."
+    }
+  ],
+  "focused_controls": {
+    "evidence": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-independent-controls.json",
+      "bytes": 2235,
+      "sha256": "c068b966beee4d564a6d14a915fe2b8d2cd7b52f4217ff80f65987ebc07c52d6"
+    },
+    "qualified_groups": 6,
+    "failed": 0,
+    "tool": "f088b3",
+    "native_exit": 0,
+    "wall_seconds": 0.2721031,
+    "method": "AST functions/classes/literal constants only; no reader/dependency module imports. No get function/Popen available in extracted helpers. Actual main function tested with mocked validate and bounded synthetic report/ZIP + memory filesystem/single fake GET. Synthetic own byte pins substitute only after mocked admission; production exact literal pins separately inspected. Real artifact was not downloaded or reconstructed.",
+    "checks": [
+      "full inverse/only5defs/11refs/6source/3schema bindings",
+      "actual multi-case2090P1F6pending52skipped fixture with selectedINT009once, negatives",
+      "namespace unknown/raw-field refusal/no-leak/atomic distinction",
+      "strict1GET activation identity/types/freshness and admission gates",
+      "default/missing activation0GET and actual one-call/no-listing/intents/static digest gates",
+      "actual main one-GET success, archive/member mismatch, capture uncertainty and missing capture UNKNOWN paths"
+    ],
+    "synthetic_actual_packed_projection_bytes": 2950,
+    "source_matrix_reuse": "Prior15799/dc535126 independent privacy/capture/ZIP review and helper matrix reused through exact source binding/full inverse, nonadditive; no full matrix/source catalog/SQL scan rerun.",
+    "author7_focused_AST_checks": "Reused corroboration only; not added to independent6.",
+    "known_artifact_pin_comparison_tool": "efb756/native0/0.1809811s"
+  },
+  "required_Root_interfaces": {
+    "future_argv": [
+      "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "-B",
+      ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/reader.py",
+      "--execute-once-after-terminal-grant"
+    ],
+    "activation_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-activation.json",
+    "activation_schema": "ROOT_INT009_NORMAL_EXISTING_ARTIFACT_ACTIVATION_v1",
+    "mode": "INT009_METADATA_ARTIFACT_ONLY",
+    "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture",
+    "reader": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/reader.py",
+      "bytes": 17443,
+      "sha256": "acd621d2a80d3075636e77bf5b5221f8888192457e33f3f466c4155219548969"
+    },
+    "proposal": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/proposal.json",
+      "bytes": 24279,
+      "sha256": "232df85a5dc560d88680a4c84bfc229c302e79e584331771b24d352103dfdf4c"
+    },
+    "actual_terminal": {
+      "bytes": 24085,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-root-operation/terminal.json",
+      "sha256": "33da582caff461fc376234c27e11797d4616416306dc223986e997f26455975b"
+    },
+    "terminal_shape": "Use raw Root controller projection24085/33da582..., whose top-level run_id/head/branch/title/jobs fields are expected by this reader; do not substitute inherited23827 envelope.",
+    "ownership_record": {
+      "bytes": 3387,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-ownership.json",
+      "sha256": "8ecd810e854e5fa445e35bc691c0de5e57e8c1c12b65c387f647e0d1c7a106bf"
+    },
+    "run": 39816833651,
+    "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+    "attempt": 1,
+    "checkpoint_id": "ec23cc94-24db-4b37-827b-3cba5246222b",
+    "actual_jobs": {
+      "checkpoint-admission": "success",
+      "dashboard-e2e": "skipped",
+      "db": "failure",
+      "e2e": "success",
+      "fixed-chromium-application-verification": "skipped",
+      "fixed-chromium-paired-probe": "skipped",
+      "native-stream-probe": "skipped",
+      "recovery-storage-loader": "success",
+      "verify": "success"
+    },
+    "maximum_logical_requests": 1,
+    "no_retry": true,
+    "operation_id": "NEW canonical UUIDv4 distinct checkpoint; one exclusive Root invocation journal",
+    "issued_at_utc": "Fresh UTC0..300 seconds",
+    "operator_review": {
+      "status": "PASS",
+      "independent": true,
+      "evidence": "Root supplies1..3 exact actual completed review refs including this report; external path/bytes/SHA, no placeholder evidence."
+    },
+    "allocation": "NEW actual completed finite one-ZIP-GET Coordinator grant with actual_turn/actual_tool and completed turn/tool statuses; semantically bound by Root to exact frozen3/tuple/known digest/no retry, not prior5GET or2GET slots.",
+    "source_proof_required": {
+      "SQL_LF_vector_sha256": "44affd4128ee22262017d27d461784a63ded12075c5196b5c7a1316cb356476b",
+      "SQL_RAW_vector_sha256": "a6381d9d17d296fb5b20587ccf06c65f4c4d58fe45bf0e6711b4d61a584ef82e",
+      "SQL_count": 118,
+      "checked_at_utc": "Root UTC <=300s",
+      "head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+      "run": 39816833651,
+      "source_bindings_verified": true,
+      "terminal_ownership_verified": true
+    },
+    "source_proof_exception": "Root planned a286d2: fresh203 Git/85rawLF/75rows/118unchanged SQL/currentHEADfd930/source0ed proof; allow only exact owned qualifier39154/5d3a51... status exception with every other tracked/index source unchanged. Pin qualifier and exception in proof/allocation evidence. No pre-execution proof claimed by reviewer.",
+    "execution_authorized": "Only Root after actual completed grant/proof/review admission; current prep/review grants no effect authority."
+  },
+  "interface_clarifications": [
+    {
+      "field": "proposal.caps.requests_max",
+      "inherited_value": 2,
+      "operative_value": 1,
+      "reason": "Descriptive caps row is inherited from old2GET reader. Actual admit, operator intent, effect_proposal, Root types and main enforce1 and no listing. Root grant/activation must use1. This cannot admit a second GET; no source repair is required for the bounded path."
+    }
+  ],
+  "current_evidence_limits": {
+    "actual_current_qualifier": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-actual-native-qualification.json",
+      "bytes": 39154,
+      "sha256": "5d3a51aaa3752578e9f49e454af87660fbd7f0e47d3211d7fff40f282323f5fa"
+    },
+    "required95": {
+      "passed": 68,
+      "failed": 1,
+      "zero_coverage": 26
+    },
+    "current_story_browser_retry0_passed": 14,
+    "DB_broad": {
+      "passed": 2090,
+      "failed": 1,
+      "pending": 6,
+      "skipped": 52
+    },
+    "existing_normal_projection_capture_gap": "calendarInt009SetupV1 intentionally not projected; minimum reader addresses only that gap.",
+    "first_guard": "UNKNOWN until actual bounded capture independently qualified",
+    "canonicalization_outcome": "UNKNOWN; no new correction inferred",
+    "DB_custody": "retained/unverified; separate qualified archive facts unchanged",
+    "new_normal_acceptance": 0,
+    "new_CI_run_or_source_fix_authorized": false
+  },
+  "effects_during_review": {
+    "real_GET_API": 0,
+    "Git_commands": 0,
+    "real_Popen": 0,
+    "module_main_or_reader_import": 0,
+    "application_tests_configload": 0,
+    "runtime_resources": 0,
+    "tracked_state_source_input_edits": 0
+  },
+  "open_questions": [],
+  "deferred_work": [
+    "New completed1GET grant, Root fresh proof/exclusive activation and one invocation if admitted.",
+    "Independent actual capture/evidence qualification and narrowly source-backed next action; no cause or repair inference before evidence."
+  ],
+  "blockers": [],
+  "conservation": "Frozen3 rehashed against exact Root pins immediately before this private report. Prior reader/reviews/normal qualification and acquisition inputs preserved. Only new owned private focused-controls and review written; no input or tracked qualifier edit."
+}

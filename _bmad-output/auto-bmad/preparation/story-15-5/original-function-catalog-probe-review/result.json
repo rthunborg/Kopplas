@@ -1,0 +1,27 @@
+{
+  "Outcome": "PASS — no consequential findings in the exact rollback-only catalog payload and Root transport.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/original-report.md",
+      "bytes": 4998,
+      "sha256": "a996351bccd2bd527e4f9026c67fac019ab4b0f162cf544e086761c764832bda"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/original-attestation.json",
+      "bytes": 8329,
+      "sha256": "10fcf2bc04c0586a512f5b06cb207e63155d9c2923b0f898d8a2b7363a5b714e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-catalog-probe-review/result.json",
+      "identity": "Final bytes/SHA reported out of band."
+    }
+  ],
+  "Status": "Independent targeted Sol6.1 High review complete; 29 pure parser controls passed; no SQL, Docker, resource or native execution.",
+  "Open questions": [
+    "Actual engine results and live resource qualification are unborn; fixture cannot establish hosted catalog rows or cause."
+  ],
+  "Deferred work": [
+    "Actual evidence qualification if separately executed; alltrue/incomparable/uncertain observations remain STOP UNKNOWN, no opaque CI retry."
+  ],
+  "Blockers": []
+}

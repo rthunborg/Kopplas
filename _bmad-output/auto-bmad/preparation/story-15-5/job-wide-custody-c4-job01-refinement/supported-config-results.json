@@ -1,0 +1,105 @@
+{
+  "schema": "C4_SUPPORTED_CONFIG_INSTALLED_PROBE_v1",
+  "config_sha256": "f3251da24dc3bcab9ce9e4597e7540a167b73f5759ebb343677be5e36e96fc4c",
+  "runs": [
+    {
+      "mode": "supported",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-custody-c4-job01-refinement\\guard.config.mjs",
+        "--configLoader",
+        "runner"
+      ],
+      "config_bytes": 1226,
+      "config_sha256": "f3251da24dc3bcab9ce9e4597e7540a167b73f5759ebb343677be5e36e96fc4c",
+      "native_exit": 0,
+      "elapsed_seconds": 0.731,
+      "stdout_bytes": 1520,
+      "stdout_sha256": "456e52af52f502fa20eca37ddca8980b5724aacbca6da06e0564afee2d3d09b4",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fixed_config_stop": false,
+      "summary": {
+        "numTotalTests": 3,
+        "numPassedTests": 3,
+        "numFailedTests": 0,
+        "numPendingTests": 0
+      },
+      "execution_before_config_failure": null
+    },
+    {
+      "mode": "explicit-one",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-custody-c4-job01-refinement\\explicit-one.config.mjs",
+        "--configLoader",
+        "runner"
+      ],
+      "config_bytes": 107,
+      "config_sha256": "ded826537e32828cbaa0ccca5366a7fa1dd2427a2df9098d3a9a7563fd44be37",
+      "native_exit": 1,
+      "elapsed_seconds": 0.39,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 1933,
+      "stderr_sha256": "a85f69d9b00722ab0bc34c87a7523dfdcb90170d08f61001ea462becc0cbeedd",
+      "fixed_config_stop": true,
+      "summary": null,
+      "execution_before_config_failure": false
+    },
+    {
+      "mode": "disabled-parallel",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-custody-c4-job01-refinement\\disabled-parallel.config.mjs",
+        "--configLoader",
+        "runner"
+      ],
+      "config_bytes": 116,
+      "config_sha256": "3e92316dacf89ddfe7ce79df6eb62b12400d8a7cd4ca75e092796307fbabf4c3",
+      "native_exit": 1,
+      "elapsed_seconds": 0.389,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 1933,
+      "stderr_sha256": "a85f69d9b00722ab0bc34c87a7523dfdcb90170d08f61001ea462becc0cbeedd",
+      "fixed_config_stop": true,
+      "summary": null,
+      "execution_before_config_failure": false
+    },
+    {
+      "mode": "disabled-bail",
+      "argv": [
+        "node",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-5\\job-wide-custody-c4-job01-refinement\\disabled-bail.config.mjs",
+        "--configLoader",
+        "runner"
+      ],
+      "config_bytes": 101,
+      "config_sha256": "b000e0ec53fbc0ad834aaba9f4963137dcba059a16c1d87d0ca95005d24f2ae5",
+      "native_exit": 1,
+      "elapsed_seconds": 0.384,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 1933,
+      "stderr_sha256": "a85f69d9b00722ab0bc34c87a7523dfdcb90170d08f61001ea462becc0cbeedd",
+      "fixed_config_stop": true,
+      "summary": null,
+      "execution_before_config_failure": false
+    }
+  ],
+  "raw_persisted": false,
+  "app_network_SQL_resources": 0
+}

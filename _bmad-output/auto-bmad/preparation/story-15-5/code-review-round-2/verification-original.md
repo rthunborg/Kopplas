@@ -1,0 +1,9 @@
+### Automatic refresh supersession is tested only through its helper
+
+- **Changed surface:** `C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/calendar-feed/CalendarSubscription.tsx:35` clears a superseded issuance and replaces its success message after automatic refresh.
+- **Impacted consumer or site:** The settings page’s `mutate()` flow and live status announcement at `C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/src/components/calendar-feed/CalendarSubscription.tsx:68`.
+- **Existing test evidence:** `C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/tests/unit/features/calendar-feed/action-state.test.ts:41` calls `reconcileCalendarFeedIssuance()` directly and asserts its returned state. It never executes `mutate()`, refresh wiring, or message replacement. Repository symbol/import searches found only this helper test, SSR component tests, and the settings component. I also read all calendar-feed E2E cases; none introduces a newer committed revision between issuance and its automatic refresh.
+- **Missing verification:** Assert that this race removes the rendered URL/copy control and replaces the prior issuance-success announcement.
+- **Demonstration:** Removing the `setMessage()` at component line 37 leaves “Länken är skapad. Kopiera den nu…” after authoritative status supersedes that link. The helper test remains green, SSR never runs the handler, and the existing E2E journeys do not create this race. Removing the component’s reconciliation call likewise escapes these assertions.
+- **Consequence:** The accepted R1-07 user-visible correction can regress while its new regression test still passes.
+- **Suggested test shape:** Exercise the actual component lifecycle with a controlled issuance/refresh race for concurrent revoke and rotation; assert both URL removal and the resulting status announcement, retaining a current-revision control case.

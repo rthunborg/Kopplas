@@ -1,0 +1,16 @@
+{
+  "kind": "author-bounded-privacy-preflight-checks",
+  "base_head_during_checks": "e91b366b8b362f8ffbd867940dfe1cd2d817e72b",
+  "source_state_during_checks": "Four allocated source/spec paths dirty, Root metadata separately dirty and excluded. Source committed afterward as e472741a91f58c5ef9e623720e2bba0d1164c360; no code/test delta after passing checks.",
+  "checks": [
+    { "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts", "result": "PASS", "passed": 30, "failed": 0, "skipped": 0, "cancelled": 0, "receipt_chunk": "738f64", "dependency": "Injected runtime lifecycle; one real pg8.22.0 client construction/startup-serialization/end check without connect. No native DB/server. Node emitted MODULE_TYPELESS_PACKAGE_JSON warning." },
+    { "command": "pnpm exec tsc --noEmit --incremental false", "result": "PASS", "exit_code": 0, "receipt_start": "7c9c73", "receipt_completion": "80e3c8" },
+    { "command": "pnpm exec eslint scripts/ci/with-calendar-feed-runtime.mjs tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/support/calendar-feed-ci-contract.ts", "result": "PASS", "errors": 0, "warnings": 0, "receipt_chunk": "cb07af" },
+    { "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md", "result": "PASS", "stops": 31, "errors": [], "receipt_chunk": "61c3b7", "additional_literal_check": "refresh-privacy-review-order.mjs resolved all31 path/line literal stops and required unchanged frozen kernel; no unknown line guesses." },
+    { "command": "git diff --check -- <exact four allocated paths>", "result": "PASS", "receipt_chunk": "cdc660" },
+    { "command": "git diff --cached --check", "result": "PASS", "receipt_chunk": "51e62e", "staged_inventory_receipt": "b002ab", "staged_paths": 4 }
+  ],
+  "repaired_local_intermediate_results": "First unit run had29pass/1fail solely stale actual-wrapper SHA pin before its update; first tsc flagged four accesses to installed pg internals absent from public Client types. Explicit narrow interface for actual startup serialization corrected that test typing. Final30/30 and tsc passed after corrections.",
+  "preserved_contracts": "Original inverse48adc320f459b648212ee87950facc76cdda306bb0a14e72f2786c67c2c689e0; actual entry/argv/reporters/nativeJSON/unrelated workflow+wrapper negatives all execute in wrapper unit file. Frozen kernel0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977.",
+  "limits": "No broad passing lanes/build rerun; app source unchanged in this repair. Feature95 unchanged, bootstrap30 separate. All65 native Vitest/browser bodies unexecuted. Four prior capsules and four failed packets immutable; previous native unit/recovery passes are bounded historical evidence, not current-head native success. No local managed runtime/qualification/DB/Docker/Supabase/browser execution."
+}

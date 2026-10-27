@@ -12,15 +12,18 @@ export interface RevalidateFieldsProps {
   readonly parentCustomerId?: string;
   readonly parentQuoteId?: string;
   readonly parentVersionId?: string;
+  readonly parentJobId?: string;
 }
 
 export function RevalidateFields({
   parentCustomerId,
   parentQuoteId,
   parentVersionId,
+  parentJobId,
 }: RevalidateFieldsProps) {
   return (
     <>
+      {parentJobId ? <input type="hidden" name="revalidate_job_id" value={parentJobId} /> : null}
       {parentCustomerId ? (
         <input type="hidden" name="revalidate_customer_id" value={parentCustomerId} />
       ) : null}

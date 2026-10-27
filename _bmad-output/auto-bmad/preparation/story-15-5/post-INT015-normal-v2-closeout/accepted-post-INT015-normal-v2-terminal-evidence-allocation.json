@@ -1,0 +1,102 @@
+{
+  "schema": "ROOT_POST_INT015_NORMAL_V2_TERMINAL_FINITE_ALLOCATION_V1",
+  "turn_status": "completed",
+  "tool_status": "completed",
+  "actual_turn": "01a16f83-6eb6-7893-9864-50e05a9e4e1a",
+  "actual_tool": "exec-cabea8bb-e2cb-4c5c-a386-a84adafb2196",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "root_actual_completed_turn_read": true,
+  "verification_tools": [
+    {
+      "id": "exec-12a464f0-119a-4095-95c7-bda0dbb81eec",
+      "status": "completed",
+      "native_exit": 0,
+      "duration_ms": 229
+    }
+  ],
+  "exact_allocation_text": "COMPLETED FINITE TERMINAL ACQUISITION ALLOCATION under standing human authorization. Coordinator actualc67804/native0 read FULL independent review17301/0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac bothPASS_POST_INT015_NORMAL_V2_TERMINAL_EVIDENCE_OPERATIONAL_SOURCE_ONLY/independenttrue/findings[]; all EIGHT actual reviewed_refs match request/report, HEAD019f21d1d484ebe02ab1ed00ace10e4eb0be4d36 clean. Ownership retained E15/no known competing claims since actualf1b1c8/aff75a. Read completed Coordinator turn/tool before NEWaccepted-post-INT015-normal-v2-terminal-evidence-allocation.json; enroll actualcompletedturn/tool IDs truthfully.\nEXCLUSIVE acquisitionOPf27670b7-0d69-42b7-8035-e3325e060ce0/normalOPee690878-b3e0-4e9f-9eba-5b5a293a2d4a/CP7d700bbe-f620-4be5-b158-6c37f788266d/HEAD019f/sourcecbe3e5d5f462b9be2a992bba56c4bf33b71706fe/run40125241153/attempt1/rthunborg/Kopplas/WF296219797/actor+trigger rthunborg/ownedbranchcodex/epic-15-scheduling-time-calendar/workflow_dispatch/NORMAL/allotherflagsfalse. Allobservation/oldreadslotsCLOSED. Currentactualterminalreview15810/545db0753e2953ba8e4ed986654304736864a518577a5df6680c1083cc10aee2 binds9terminal/5requiredP/4optionalSKIPmetadataonly.\nENROLL reviewed_refs=ALL8 exactobjects in verified currentreview: reader52895/ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09;proposal220347/3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9;controls3420/5274c3ed4ac7eda33b51a5a1a5d2a8ee3794573758159e3eae9e737e70c63c25;manifest1519/bc92bca530975e08a45acf5ccf00e624d7bf3dffc9dc4c25779e4cce8830161a;delta24546/4243ae9f07dd7557c0ab0452430c529e88efe25e3808305c1c98031b664f7c5f;result16791/3346b4ef685826a833c65f45d6cb610acf7bd9d4c81d3c6d27fce99821859147 in exactnewpreparationfolder;Root_admission_helper7281/c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6 andRoot_outer_wrapper7495/08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997 at exactBpaths. operator_review=Root_outer_wrapper_review=actual17301currentreviewref. Root_outer_capture_contract=B/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json1118/298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6. Enroll requiredactualIDs/operation_id/head/run_id/completedturn/tool. Rootall8pinresponsibility explicit; no inventedgenericruntime8loop/circularpins.\nALLOCATED exclusive EXACTproposaltemplate capturecontract1118 above, terminal-envelope25378/773f4b3d33e3d9ba8fca353d6b883ae58171587454bae69c92a70c8caf0cc4ba/source75-envelope33787/550adce9da34f92f118ba0e7eee3a273a4d8fab48e09a602342fd7fa3ad8f1b6/freshproof/journal/activation/consumedonce/outerreceipt/outputpacket only. Helper7localGit20s/postreturn<2MiBstdout64KiBstderr HEAD/branch/clean/localtrackingHEAD/ancestry/twotrees/76uniquesource75+workspaceblob equality. Rootraw75SQL0. Exactenrolled generic/compilerCLIbytepinmetadata only/no compilerNodeinstallworkload. Reader future75raw/CRLFnorm/computedGithash-only expressly includes ONLY3SQL:ops/recovery/bootstrap-roles.sql;supabase/migrations/20261020220000_personal_calendar_feed.sql;supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql. No118rawSQL/corpus/DEBUG/catalogrefresh. Currentcatalog450/201wrapper/19reusedstaticonly. Proof<=300satouter/allguards/oldslotsclosed.\nONE fixedisolatedPythonreader through frozenouter; MAX5logicalGET: exactrunarchive1/artifactlistingpage1001/<=3uniqueeligiblefullintegration-browser-recoveryZIPs. No pagination/fallback/refetch/optional/newrun/retry. Missing/ambiguous/malformed/partial/nonzero/unknown STOP consumes/closeunused. Inner15sLOOP32MiBarchiveZIPor4MiBlisting/64KiBstderr/wait2/twojoins1. ZIP<=4096entries/128MiBaggregate/ratio1000/member16MiB/CRCnameschemasizedigest/noFSextract. Outer180sLOOP512KiBstdout64KiBstderr/wait2/twojoins1 exactinline2449/57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1/finalphysicalJSONlineparser. Loop+tails notprocess-treehardwall. Root separatelyrecords actualoutsidechunk/nativeexit/wall/initialsession/waits aftertoolreturn; qualify immutableinnerouterEOF/join/handles/directsettlement/receipts beforeoutputuse. Directorypresence/outer0/ACQUISITION_COMPLETE alone notacceptance.\nRawlogZIPreportsourceerrorRAM-only; intentionalobservedstream/archive/member/artifact/source fingerprints/closedtypedmetadata retained. Source-label32768 ONLY/no genericprojectioncap. Output B/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent +exactproposalpaths only. No source/test/specedit/Gitmutation/provider/variables/workflow/CIrerun/install/resources/foreigncheckout/manualDBbrowser/mainmerge/deploy/demo/dbpush. Native95/IP/cleanup/directrecoveryUNQUALIFIED/P5OPENcap3/15.6unstarted pendingactualindependentqualification. AnyuncertaintyconsumesSTOP/no retryresetrenewalalternatefamily. This completed grant authorizes only the exact bounded acquisition above.",
+  "no_retry": true,
+  "no_deployment": true,
+  "operation_id": "f27670b7-0d69-42b7-8035-e3325e060ce0",
+  "head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+  "run_id": 40125241153,
+  "source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+  "operator_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/reader.py",
+    "bytes": 52895,
+    "sha256": "ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09"
+  },
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+    "bytes": 220347,
+    "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+  },
+  "operator_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+    "bytes": 17301,
+    "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+  },
+  "reviewed_refs": [
+    {
+      "bytes": 52895,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/reader.py",
+      "sha256": "ab017463d07cc2e594ec216d081491449ddad8604a4a792ae300c93e2f6bac09"
+    },
+    {
+      "bytes": 220347,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/proposal.json",
+      "sha256": "3d1a8fff3c1324d27347f254948d3252acbc2d3ba15c1b7671bef0795486d1a9"
+    },
+    {
+      "bytes": 3420,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/pure-controls.json",
+      "sha256": "5274c3ed4ac7eda33b51a5a1a5d2a8ee3794573758159e3eae9e737e70c63c25"
+    },
+    {
+      "bytes": 1519,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/manifest.json",
+      "sha256": "bc92bca530975e08a45acf5ccf00e624d7bf3dffc9dc4c25779e4cce8830161a"
+    },
+    {
+      "bytes": 24546,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/source-delta.json",
+      "sha256": "4243ae9f07dd7557c0ab0452430c529e88efe25e3808305c1c98031b664f7c5f"
+    },
+    {
+      "bytes": 7281,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+      "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+    },
+    {
+      "bytes": 7495,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+      "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-preparation/result.json",
+      "bytes": 16791,
+      "sha256": "3346b4ef685826a833c65f45d6cb610acf7bd9d4c81d3c6d27fce99821859147"
+    }
+  ],
+  "Root_admission_helper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+    "bytes": 7281,
+    "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+  },
+  "Root_outer_wrapper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-outer.py",
+    "bytes": 7495,
+    "sha256": "08c652101999d3dbd471e607c5b971e42c02c696fbc92df9ac8be55d013b2997"
+  },
+  "Root_outer_wrapper_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+    "bytes": 17301,
+    "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+  },
+  "Root_outer_capture_contract": {
+    "bytes": 1118,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json",
+    "sha256": "298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6"
+  },
+  "Root_actual_review_read": "3a627c/native0"
+}

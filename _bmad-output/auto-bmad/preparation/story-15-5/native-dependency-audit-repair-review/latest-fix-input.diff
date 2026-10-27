@@ -1,0 +1,2878 @@
+EXACT COMMITTED THREE-PATH DEPENDENCY SECURITY LATEST-DELTA REVIEW; cap3/no fourth broad.
+Source 55db468eef3106ca1b02dc846ba12967a28dc238; baseline be2c1a535dff0e58b1579fe3db5890c7819916ab. Exact3package/lock/Spec source held; no postcommitSpecdrift. Review required semantic lock closure/integrities/peerkeys/editorbundle/securityscope and unchanged scripts/gates/otherdeclarations. No newapp/schema/authority effects.
+Native tenth39503939856 failed highaudit1HIGH4MODERATE after install+lockPASS; all later95feature+67controls/runtimeUNEXECUTED. Old43DB14browser unresolved. Current local highauditexit0/0HIGH2MODERATE,67boundedcontrols/type/build/bundle/lockguard/focusedlintPASS, canonicalfulllocal lintINCOMPLETEterminatedexit1 dueignoredhistoricalreportassets; cleanCIcanonical lint and normalnativegates mandatory. No localDB/browser/service/Vitestcollection/globalSetup/newCI/push.
+Vite8.1.6 minimum patched current8.1branch per currentGHSA/officialOct6release; installedbundleeditor2.14.2. No proof productionNext exposes/editorpath/exploitation. SameNodeengine and Vitest^8range are compatibilityconditions, not fullnativePASS.
+
+COMPLETE EXACT3 COMMITTED DIFF:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index 571dc0bb..6a50199f 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -976,33 +976,90 @@ Current67 separate bounded Node controls passed with0 failures/skips/cancellatio
+ first INT001/API001/RLS001 callbacks with injected stopping fixtures, exact guard
+ and matcher source, and installed in-memory runner/processError/JsonReporter.
+ Controls cover finite outcomes/sites, precise safe matcher frames, preceding and
+ no-later call order, once/value identity, hostile accessors, HTTP arguments and
+ upstream UNKNOWN limits. Synthetic callers prove neither actual SQL nor native
+ failure causes. Whole TypeScript and focused three-file lint passed; final kernel,
+ review-stop and Git checks precede the append-only exact four-path commit.
+ No managed runtime, Vitest runner/collection/global setup, browser, extra operation,
+ observer, client/then instrumentation, authority workaround or new build ran.
+ Fresh distinct High committed latest-four review and Root exact-head native CI
+ remain pending; no fourth broad review, DONE/delivery or release claim.
+ 
++## Minimal Vite security patch after blocking audit - 2026-10-21
++
++Tenth checkpointbe2/run39503939856 remains FAILED: install/frozen lock validation
++passed, then pnpm audit --audit-level=high exited1 with1high/4moderate findings
++and GHSA-587h-7wmj-h5pm. All later checks,95feature cases,67separate controls
++and managed runtime were UNEXECUTED at that head. Earlier43DB/14browser failures
++remain unresolved. The tenth packet/capsule and all predecessor evidence remain
++immutable; the previous exact380 owned-origin High review passed without findings.
++
++Root/Coordinator admitted exactly package.json's devDependencies.vite key,
++mechanically required lock closure and this post-kernel author trail under
++`accepted-native-dependency-audit-repair-allocation.json`, SHA
++`61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581`.
++The exact Vite pin moves8.1.0 to8.1.6, the minimum patched release on the same8.1
++branch according to the current reviewed advisory and official2026-10-06 release.
++Its bundle includes launch-editor2.14.2; overriding a separately resolved editor
++would not replace Vite's bundled2.14.1. This is an affected tool inventory and
++remediation, not evidence that production Next exposes or exploited that path.
++
++Actual pnpm10.24.0 lock-only --ignore-scripts resolution followed by frozen
++--ignore-scripts materialization passed. No unrelated manifest/script/version or
++lock settings/override/patch changes occurred. The required closure is Vite8.1.6,
++picomatch4.0.7, rolldown1.1.5 with15 matching platform bindings, and rolldown's
++@oxc-project/types0.139.0. Existing postcss8.5.23 stays fixed. Vitest4.1.9 and
++mocker retain versions and resolve the same Vite8.1.6 via changed peer snapshot
++keys. Vite's integrity is the actual registry/pnpm value
++`sha512-aRAHIxx5SW5zc1sMqFwJU/t5qaFfXb5Hj0J7W0VXihu/X99+346tz6080tO1T1xVIJORX/b3zVTXGFqUXh35uw==`.
++Installed bundle region markers confirm launch-editor and middleware2.14.2.
++Vite's Nodeengine remains ^20.19.0 || >=22.12.0, compatible with existing22;
++Vitest's existing ^8.0.0 range accepts the candidate. No schema/data/application,
++privilege/authority/provider/secret/workflow/toolchain or workspace change occurs.
++The new lockfile source path expands the authored union68 to69; protected109SQL
++and37consumer files stay unchanged. Old installed dependency contexts remain
++historical, not new-byte proof for the changed graph.
++
++Actual post-materialization pnpm audit --audit-level=high passed exit0, reporting
++2moderate findings and no high findings; no ignore, threshold change or retry was
++used. Do not infer identities of the remaining moderate findings or claim all
++advisories gone. verify:lockfiles, full TypeScript,67/67bounded Node controls
++(0fail/skip/cancel), production Next build and built-bundle containment passed.
++These controls retain61+6 with no new version-mirror tests, no Vitest runner,
++collection/globalSetup or DB/browser execution. Full local pnpm run lint traversed
++ignored retained historical Playwright report assets and was terminated through
++only its captured command session (exit1); it is INCOMPLETE, not PASS. Focused
++ESLint on the existing three calendar-feed fixture/control files passed with
++0errors/0warnings. No historical report deletion, ignore/config change or blanket
++warning attribution occurred. Clean-checkout canonical lint remains mandatory CI.
++
++The approved5760-byte intent contract stays unchanged/in-review. One refreshed
++review trail and native/staged Git checks precede the append-only exact three-file
++commit. Fresh distinct context-free High review of the exact dependency delta and
++Root exact-head normal CI remain pending. A successful audit permits later gates;
++it does not establish compatibility of the full native feature, resolve43DB and
++14browser failures, or qualify browser attachment content. No managed service,
++local qualification, blind CI retry, fourth broad review, push, merge/deployment,
++DONE/delivery or release claim is made.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+ Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
+ native setup diagnostics, same-connection privacy qualification and explicit
+ isolated setup authority transport, bounded child settlement, browser diagnostic repair,
+ actual SQL callback ownership, executed-feature fixture/status/policy repairs and
+-bounded safe-leaf transport through the installed reporter and closed owned scenario origins.
++bounded safe-leaf transport through the installed reporter, closed owned scenario origins and the minimal Vite security patch.
+ Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+ 
+ The two personal entry points reach one settings surface; the profile entry uses
+ server-filtered navigation. Confirmations and component-memory issuance retain
+ explicit uncertainty handling, while later authoritative status removes stale URLs.
+ The error render fallback reuses the existing approved sentence without enabling
+ retry before uncertain results have been reconciled; all four isolated SSR cases passed.
+ 
+ - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+@@ -1127,12 +1184,30 @@ safe source frames identify other assertion lines without inspecting native erro
+ - `tests/support/calendar-feed-atdd.ts:733` — `const outcome = result.outcome`: classifies the same consumed outcome without observing an RPC.
+ - `tests/integration/rls/calendar-feed.rls.test.ts:23` — `calendarFixtureAssertionAt(allowedSites[subject]`: distinguishes four allowed contracts without changing the loop.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:792` — `actual first INT001 and API001 callbacks stop`: proves preceding/no-later operations with injected fixtures, not native acceptance.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:824` — `actual first callbacks retain precise safe assertion frames`: proves controlled frames and unrecoverable upstream UNKNOWN limits.
+ 
+ Current evidence:67 bounded controls passed with0 failures/skips/cancellations,
+ whole TypeScript and focused lint passed, and the approved5760-byte kernel is
+ unchanged. Ninth native8P43F exposes44 scenario/unknown leaves; first actual
+ branches and all43 causes remain unknown. Fixed outcome tags cannot distinguish
+ collapsed backend causes. Native acceptance, RLS010/API019 later predicates and
+ browser attachment privacy remain pending. Distinct High latest-four review is
+ pending; prior review/SSR/runtime receipts retain their historical dependency scope.
++
++### Patch the bundled tool without weakening the gate
++
++The same-branch minimum patched Vite replaces its bundled editor. Only its required
++lock closure changes; scripts, Vitest versions, overrides and audit threshold stay
++fixed. Local synthetic controls/build do not replace fresh native qualification.
++
++- `package.json:50` — `"vite": "8.1.6"`: pins the patched tool without changing scripts.
++- `pnpm-lock.yaml:2297` — `vite@8.1.6:`: binds the actual registry integrity and unchanged engine.
++- `pnpm-lock.yaml:2059` — `rolldown@1.1.5:`: carries the required types and matching platform bindings.
++
++Evidence: frozen installation, high-threshold audit (exit0/2moderate/no high),
++lock guard, full typecheck,67bounded controls, production build and bundle
++containment passed after materialization. Focused lint passed0errors/0warnings;
++canonical local lint was terminated/incomplete after scanning ignored historical
++assets and receives no PASS credit. Clean-CI canonical lint/native gates and fresh
++independent exact dependency-delta review remain pending. All prior failed heads
++and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
+diff --git a/package.json b/package.json
+index 59827090..819459b2 100644
+--- a/package.json
++++ b/package.json
+@@ -38,16 +38,16 @@
+     "@playwright/test": "^1.61.1",
+     "@tailwindcss/postcss": "4.3.1",
+     "@types/node": "20.19.43",
+     "@types/pg": "8.20.0",
+     "@types/react": "19.2.17",
+     "@types/react-dom": "19.2.3",
+     "eslint": "9.39.4",
+     "eslint-config-next": "16.3.8",
+     "pdfjs-dist": "4.10.38",
+     "pg": "8.22.0",
+     "tailwindcss": "4.3.1",
+     "typescript": "5.9.3",
+-    "vite": "8.1.0",
++    "vite": "8.1.6",
+     "vitest": "4.1.9"
+   }
+ }
+diff --git a/pnpm-lock.yaml b/pnpm-lock.yaml
+index 74ec6fee..4d8fefc7 100644
+--- a/pnpm-lock.yaml
++++ b/pnpm-lock.yaml
+@@ -71,29 +71,29 @@ importers:
+         specifier: 4.10.38
+         version: 4.10.38
+       pg:
+         specifier: 8.22.0
+         version: 8.22.0
+       tailwindcss:
+         specifier: 4.3.1
+         version: 4.3.1
+       typescript:
+         specifier: 5.9.3
+         version: 5.9.3
+       vite:
+-        specifier: 8.1.0
+-        version: 8.1.0(@types/node@20.19.43)(jiti@2.7.0)
++        specifier: 8.1.6
++        version: 8.1.6(@types/node@20.19.43)(jiti@2.7.0)
+       vitest:
+         specifier: 4.1.9
+-        version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0))
++        version: 4.1.9(@types/node@20.19.43)(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0))
+ 
+ packages:
+ 
+   '@alloc/quick-lru@5.2.0':
+     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
+     engines: {node: '>=10'}
+ 
+   '@babel/code-frame@7.29.7':
+     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
+     engines: {node: '>=6.9.0'}
+ 
+   '@babel/compat-data@7.29.7':
+@@ -525,123 +525,123 @@ packages:
+     os: [win32]
+ 
+   '@next/swc-win32-x64-msvc@16.3.8':
+     resolution: {integrity: sha512-WcTlaKt/TWkh5kUjdJcUmB1XgZ+1c6fz4Y9fDHL73YNSdGaUWjceeWrrlwF0nv19iABYWC4iAq1oX1w4Bn0vfg==}
+     engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [win32]
+ 
+   '@nolyfill/is-core-module@1.0.39':
+     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
+     engines: {node: '>=12.4.0'}
+ 
+-  '@oxc-project/types@0.137.0':
+-    resolution: {integrity: sha512-WT+Gb24i8hmvo85AIv2oEYouEXkRlKAlT9WaCa3TfLgNCN+GhrJOGZuIlMouAh38Qe4QOx26eUOVsq70qXrywA==}
++  '@oxc-project/types@0.139.0':
++    resolution: {integrity: sha512-r9gHphtCs+1M7J0pw6Sn/hh/Wpa/iQrOOkrNAlVLF/gHq+/CJmHIWKKUUhdWjcD6CIa8idarspCsASiXCXvFUw==}
+ 
+   '@pdf-lib/standard-fonts@1.0.0':
+     resolution: {integrity: sha512-hU30BK9IUN/su0Mn9VdlVKsWBS6GyhVfqjwl1FjZN4TxP6cCw0jP2w7V3Hf5uX7M0AZJ16vey9yE0ny7Sa59ZA==}
+ 
+   '@pdf-lib/upng@1.0.1':
+     resolution: {integrity: sha512-dQK2FUMQtowVP00mtIksrlZhdFXQZPC+taih1q4CvPZ5vqdxR/LKBaFg0oAfzd1GlHZXXSPdQfzQnt+ViGvEIQ==}
+ 
+   '@playwright/test@1.61.1':
+     resolution: {integrity: sha512-8nKv6+0RJSL9FE4jYOEGXnPeM/Hg12qZpmqzZjRh3qM0Y7c3z1mrOTfFLids72RDQYVh9WpLEfR5WdpNX4fkig==}
+     engines: {node: '>=18'}
+     hasBin: true
+ 
+-  '@rolldown/binding-android-arm64@1.1.3':
+-    resolution: {integrity: sha512-DT6Z3PhvioeHMvxo+xHc3KtqggrI7CCTXCmC2h/5zUlp5jVitv7XEy+9q5/7v8IolhlioawpMo8Kg0EEBy7J0g==}
++  '@rolldown/binding-android-arm64@1.1.5':
++    resolution: {integrity: sha512-lZg8fqIv2v7FF237bwMgzGZEJvGL79/s5knJ/i6FmsGF4XXlzccZ4jb+TrFIxtSSxFtIpdsgrPZeMk1I9AFcyQ==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [arm64]
+     os: [android]
+ 
+-  '@rolldown/binding-darwin-arm64@1.1.3':
+-    resolution: {integrity: sha512-0NwgwsjM7LrsuVnXMK3koTpagBNOhloc/BNjKqZjv4V5zI5r13qx69uVhRx+o5Z0yy4Hzq+lpy7TAgUG/ocvrw==}
++  '@rolldown/binding-darwin-arm64@1.1.5':
++    resolution: {integrity: sha512-51Bnx9pNiMRKSUNtBfySkNJ9vMU9Hh3I1ozDd6gyPPYzaXCfnptUcEZxXGYFn+ul2dtcMUiqGR1Yai2K10uoTw==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [arm64]
+     os: [darwin]
+ 
+-  '@rolldown/binding-darwin-x64@1.1.3':
+-    resolution: {integrity: sha512-YtiBp4disu6V560loT6PjMdiRaWmVvDNrUunAalbiFx2ggeJwxdAsgZMcoGP17uyAsTwAj5V1niksxlHnVQ1Sw==}
++  '@rolldown/binding-darwin-x64@1.1.5':
++    resolution: {integrity: sha512-Tm+gbfC0aHu1tBA/JvKQh32S0K6YgCHkiAF4/W6xX0K0RmNuc94VeK419dJoE65R5aRxmo+noZQSWrAMF6yb6g==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [x64]
+     os: [darwin]
+ 
+-  '@rolldown/binding-freebsd-x64@1.1.3':
+-    resolution: {integrity: sha512-yD3EkEdXk2LypPxnf/kSZHirarsI8gcPzc62SukhR9VJTyvV+F9Q/GxWNuCojc7sXyuVC4DxRGhdDK4X8VSsbw==}
++  '@rolldown/binding-freebsd-x64@1.1.5':
++    resolution: {integrity: sha512-JMzDKCCXq93YccG5gz3hvOs1oXRKAf0XYpfOS88e+wZrC8Iugj6j68867vrYZkvpDDpKn/KoKORThmchMpF6TA==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [x64]
+     os: [freebsd]
+ 
+-  '@rolldown/binding-linux-arm-gnueabihf@1.1.3':
+-    resolution: {integrity: sha512-c+8vieQbsD7HNAHKIA34w0GJ9FedFFuJGD+7E6vz7Q3uqAIugL5p45fhlsj4UaAsHpcmlqugBWMhA0/j7o0sIg==}
++  '@rolldown/binding-linux-arm-gnueabihf@1.1.5':
++    resolution: {integrity: sha512-uML21j2K5TfPGutKxub+M+nLjZIrWjXQ5Grx4lCe/nimTj9B4L63zHpjXLl4y0L3mcm2htEQIb06oCG/szerNw==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [arm]
+     os: [linux]
+ 
+-  '@rolldown/binding-linux-arm64-gnu@1.1.3':
+-    resolution: {integrity: sha512-50jD0uUwLvur7Zz9LHz17kaAdTPjn5wN93hEgjvmYFRZwiR7ZJYovTd5ipyWJDAnXKvZ+wgc+/Ika6dwSF5OcA==}
++  '@rolldown/binding-linux-arm64-gnu@1.1.5':
++    resolution: {integrity: sha512-navSiuTMogvnQoZoM/v+l3ZWo50/NTwSHSzheABx/RCnmUPaKwq9qSo4Br2OYRs21+Fz8uFqITZM3H4opOB0/Q==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [arm64]
+     os: [linux]
+ 
+-  '@rolldown/binding-linux-arm64-musl@1.1.3':
+-    resolution: {integrity: sha512-BO9+oPL8K9poZJBfYPsXNtYjPE5uM3qeehT3aFcW4LITOl+iSqhp0abzjR2nWBUNjIZeKXjAEWBZ64WjNoHd6w==}
++  '@rolldown/binding-linux-arm64-musl@1.1.5':
++    resolution: {integrity: sha512-lAryqH7IteztmCXQXk0etKj4wBQ7Gx5S6LjKhsgp9zb8I5bsuvU/2llH1hDQcjsFeqIsovMVN339/8pUDDBXxA==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [arm64]
+     os: [linux]
+ 
+-  '@rolldown/binding-linux-ppc64-gnu@1.1.3':
+-    resolution: {integrity: sha512-f3VpLB1vQ0Eo6ecr/6cekLnvYMFF4YBFoVGkfkvPLq1bAkbAwHYQPZKoAmG6OJyTcxxoC+AvezGx/S1obNC0Mw==}
++  '@rolldown/binding-linux-ppc64-gnu@1.1.5':
++    resolution: {integrity: sha512-fsK/sNBnxzBlL4O1JNrZakVQxPspqpED5dLtNsZS9oOKmtSpdNIzxH2kkol5HYTWJN47sE20ztMJPxfZ89qGOg==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [ppc64]
+     os: [linux]
+ 
+-  '@rolldown/binding-linux-s390x-gnu@1.1.3':
+-    resolution: {integrity: sha512-AmurZ26Pqx/RI9N1gzEOCklkKXl927yjfXWUUS0O7Puh8ARM/Ob8qfrD3qnWksScdw6cSrW5PSHE9DyLu7+PtA==}
++  '@rolldown/binding-linux-s390x-gnu@1.1.5':
++    resolution: {integrity: sha512-gLYb4BIadlfTOYT5gO503n8zQjXflgzpD0FcyKh0Mzx3rqCZKnHoJWV9xe1KXUJ5lx2JfcSHr/mhzS0PC/McAA==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [s390x]
+     os: [linux]
+ 
+-  '@rolldown/binding-linux-x64-gnu@1.1.3':
+-    resolution: {integrity: sha512-JJpqs8bRGITDOdbkNKnlojzBabbOHrqjSvDr0IVsZObE1lBcPjxItUEY9eWIDbxaJ3cGrXPWGfGkIxFijg/URg==}
++  '@rolldown/binding-linux-x64-gnu@1.1.5':
++    resolution: {integrity: sha512-FjcpEKUyJygHgs1o50VYNvkt5+7Le/VEdYt0AkRpkL33MnyQfwr8l5mXwMmfmTbyMPr5vJLC+8/Gd9gXnwU1QQ==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [x64]
+     os: [linux]
+ 
+-  '@rolldown/binding-linux-x64-musl@1.1.3':
+-    resolution: {integrity: sha512-rSJcdjPxzA/by/6/rYs+v+bXU7UjvnbUWz8MJb6kh6+knqB1dCrtHg0uu7C/4haqJvqdkYHQ5IGn+tCH9GLW/g==}
++  '@rolldown/binding-linux-x64-musl@1.1.5':
++    resolution: {integrity: sha512-Me+PfPI2TMeOQk0gYWfLQZtTktrmzbr8cDboqX83XKc7UrgAi55gF+2dUkWdxd19n55Essp2yeca+O9N5rBxHg==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [x64]
+     os: [linux]
+ 
+-  '@rolldown/binding-openharmony-arm64@1.1.3':
+-    resolution: {integrity: sha512-hQ3/PYkDJICgevvyNcVrihVeqq7k1Pp3VZ9lY+dauAYUJKO+auqApvANhvR1An9BhmqYKvW2Mu1F9u4DXSMLxQ==}
++  '@rolldown/binding-openharmony-arm64@1.1.5':
++    resolution: {integrity: sha512-yc5WrLzXks6zCQfn9Oxr8pORKyl/pF+QjHmW/Qx3qu0oyrrNC+y2JLTU1E2rcWYAmzlnqngWXHQjy51VzW70Vw==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [arm64]
+     os: [openharmony]
+ 
+-  '@rolldown/binding-wasm32-wasi@1.1.3':
+-    resolution: {integrity: sha512-Elcv/BtML9lXrV6JuKITc/grN2kYV9gjsQpW8Jfw4ioK0TOkjBjye0nnyqQNy9STNaI20lXNaQBRrD5gSgR0Yg==}
++  '@rolldown/binding-wasm32-wasi@1.1.5':
++    resolution: {integrity: sha512-VbQGPX2b4r48TAMIM2cjgluIM1HYutm4pcTEJsle7iEP7sB1dFqtPLBVbdLAZCxy1txCcPxf4QFf4v8uvltPqA==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [wasm32]
+ 
+-  '@rolldown/binding-win32-arm64-msvc@1.1.3':
+-    resolution: {integrity: sha512-2DrEfhluH9yhiaFApmsjsjwrSYbNcY1oFTzYSP1a535jDbV98zCFanA/96TBUd0iDFcxGmw9QRExwGCXz3U+/g==}
++  '@rolldown/binding-win32-arm64-msvc@1.1.5':
++    resolution: {integrity: sha512-gHv82k63z4qpV5+Q1y/12KrK0ltWBukVDI8nZcbT7Tt/ZlOIVwppazneq0F93oDxTo3IgAMEDIoQh3E2n6mVsw==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [arm64]
+     os: [win32]
+ 
+-  '@rolldown/binding-win32-x64-msvc@1.1.3':
+-    resolution: {integrity: sha512-OL4OMk7UPXOeVGGd3qo5zJyPIljf4AFgk5QAkPPS+OoLuOOozhuaQGC18MxVTnw/06q93gShAJzlwnSCY9YtqA==}
++  '@rolldown/binding-win32-x64-msvc@1.1.5':
++    resolution: {integrity: sha512-tTZuDBPw85tEN5PQi1pnEBzDy0Z49HtScLAbD5t6hyeU92A95pRWaSMw1GZZi/RwgSgUIl0xrSlXIT/9QzvYSA==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     cpu: [x64]
+     os: [win32]
+ 
+   '@rolldown/pluginutils@1.0.1':
+     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
+ 
+   '@rtsao/scc@1.1.0':
+     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
+ 
+   '@standard-schema/spec@1.1.0':
+     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+@@ -1966,24 +1966,28 @@ packages:
+         optional: true
+ 
+   pgpass@1.0.5:
+     resolution: {integrity: sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug==}
+ 
+   picocolors@1.1.1:
+     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
+ 
+   picomatch@4.0.4:
+     resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
+     engines: {node: '>=12'}
+ 
++  picomatch@4.0.7:
++    resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
++    engines: {node: '>=12'}
++
+   playwright-core@1.61.1:
+     resolution: {integrity: sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg==}
+     engines: {node: '>=18'}
+     hasBin: true
+ 
+   playwright@1.61.1:
+     resolution: {integrity: sha512-DWnY5o3YbLWK4GovuAVwpqL+1VwGNdUGrRr++8j8PtQQzvAVZUIMjKQ90fY689sEJZJBbZVw1rXaOKSTitkzPQ==}
+     engines: {node: '>=18'}
+     hasBin: true
+ 
+   possible-typed-array-names@1.1.0:
+     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
+@@ -2043,26 +2047,26 @@ packages:
+   resolve-from@4.0.0:
+     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
+     engines: {node: '>=4'}
+ 
+   resolve-pkg-maps@1.0.0:
+     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
+ 
+   resolve@2.0.0-next.7:
+     resolution: {integrity: sha512-tqt+NBWwyaMgw3zDsnygx4CByWjQEJHOPMdslYhppaQSJUtL/D4JO9CcBBlhPoI8lz9oJIDXkwXfhF4aWqP8xQ==}
+     engines: {node: '>= 0.4'}
+     hasBin: true
+ 
+-  rolldown@1.1.3:
+-    resolution: {integrity: sha512-1F1eEtUBtFvcGm1HQ9TiUIUHPQG7mSAODrhIzjxoUEFuo8OcbrGLiVLkevNgj84TE4lnHvnumwFjhJO5Eu135g==}
++  rolldown@1.1.5:
++    resolution: {integrity: sha512-t9z29cJjXf/vxQ8dyhCSpt6H6aSwHTk8cT5I3iy6SMXuFpk5mB6PL6XfC8PCwrPTx93udwKUm9HRteAlTGBLiA==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     hasBin: true
+ 
+   safe-array-concat@1.1.4:
+     resolution: {integrity: sha512-wtZlHyOje6OZTGqAoaDKxFkgRtkF9CnHAVnCHKfuj200wAgL+bSJhdsCD2l0Qx/2ekEXjPWcyKkfGb5CPboslg==}
+     engines: {node: '>=0.4'}
+ 
+   safe-push-apply@1.0.0:
+     resolution: {integrity: sha512-iKE9w/Z7xCzUMIZqdBsp6pEQvwuEebH4vdpjcDWnyzaI6yl6O9FHvVpmGelvEHNsoY6wGblkxR6Zty/h00WiSA==}
+     engines: {node: '>= 0.4'}
+ 
+   safe-regex-test@1.1.0:
+@@ -2281,26 +2285,26 @@ packages:
+   unrs-resolver@1.12.2:
+     resolution: {integrity: sha512-dmlRxBJJayXjqTwC+JtF1HhJmgf3ftQ3YejFcZrf4+KKtJv0qDsK1pjqaaVjG7wJ5NJ6UVP1OqRMQ71Z4C3rxQ==}
+ 
+   update-browserslist-db@1.3.2:
+     resolution: {integrity: sha512-UQ+MSxlhRm1bzjhU+DcuXfjFO1FzNtqhK5+9Yvlp90ItDLk5vT932A0rFu619nf7RVS+Y/VeaUW1jaRDqZ8VJw==}
+     hasBin: true
+     peerDependencies:
+       browserslist: 4.28.8
+ 
+   uri-js@4.4.1:
+     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+ 
+-  vite@8.1.0:
+-    resolution: {integrity: sha512-BuJcQK/56NQTWDGn4ABea3q4SSBdNPWwNZKTkkUpcMPnLoquSYH8llRtSUIgoL1KSCpHt5eghLShn50mH36y7Q==}
++  vite@8.1.6:
++    resolution: {integrity: sha512-aRAHIxx5SW5zc1sMqFwJU/t5qaFfXb5Hj0J7W0VXihu/X99+346tz6080tO1T1xVIJORX/b3zVTXGFqUXh35uw==}
+     engines: {node: ^20.19.0 || >=22.12.0}
+     hasBin: true
+     peerDependencies:
+       '@types/node': ^20.19.0 || >=22.12.0
+       '@vitejs/devtools': ^0.3.0
+       esbuild: ^0.27.0 || ^0.28.0
+       jiti: '>=1.21.0'
+       less: ^4.0.0
+       sass: ^1.70.0
+       sass-embedded: ^1.70.0
+       stylus: '>=0.54.8'
+       sugarss: ^5.0.0
+@@ -2841,85 +2845,85 @@ snapshots:
+ 
+   '@next/swc-linux-x64-musl@16.3.8':
+     optional: true
+ 
+   '@next/swc-win32-arm64-msvc@16.3.8':
+     optional: true
+ 
+   '@next/swc-win32-x64-msvc@16.3.8':
+     optional: true
+ 
+   '@nolyfill/is-core-module@1.0.39': {}
+ 
+-  '@oxc-project/types@0.137.0': {}
++  '@oxc-project/types@0.139.0': {}
+ 
+   '@pdf-lib/standard-fonts@1.0.0':
+     dependencies:
+       pako: 1.0.11
+ 
+   '@pdf-lib/upng@1.0.1':
+     dependencies:
+       pako: 1.0.11
+ 
+   '@playwright/test@1.61.1':
+     dependencies:
+       playwright: 1.61.1
+ 
+-  '@rolldown/binding-android-arm64@1.1.3':
++  '@rolldown/binding-android-arm64@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-darwin-arm64@1.1.3':
++  '@rolldown/binding-darwin-arm64@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-darwin-x64@1.1.3':
++  '@rolldown/binding-darwin-x64@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-freebsd-x64@1.1.3':
++  '@rolldown/binding-freebsd-x64@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-linux-arm-gnueabihf@1.1.3':
++  '@rolldown/binding-linux-arm-gnueabihf@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-linux-arm64-gnu@1.1.3':
++  '@rolldown/binding-linux-arm64-gnu@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-linux-arm64-musl@1.1.3':
++  '@rolldown/binding-linux-arm64-musl@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-linux-ppc64-gnu@1.1.3':
++  '@rolldown/binding-linux-ppc64-gnu@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-linux-s390x-gnu@1.1.3':
++  '@rolldown/binding-linux-s390x-gnu@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-linux-x64-gnu@1.1.3':
++  '@rolldown/binding-linux-x64-gnu@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-linux-x64-musl@1.1.3':
++  '@rolldown/binding-linux-x64-musl@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-openharmony-arm64@1.1.3':
++  '@rolldown/binding-openharmony-arm64@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-wasm32-wasi@1.1.3':
++  '@rolldown/binding-wasm32-wasi@1.1.5':
+     dependencies:
+       '@emnapi/core': 1.11.1
+       '@emnapi/runtime': 1.11.1
+       '@napi-rs/wasm-runtime': 1.1.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+     optional: true
+ 
+-  '@rolldown/binding-win32-arm64-msvc@1.1.3':
++  '@rolldown/binding-win32-arm64-msvc@1.1.5':
+     optional: true
+ 
+-  '@rolldown/binding-win32-x64-msvc@1.1.3':
++  '@rolldown/binding-win32-x64-msvc@1.1.5':
+     optional: true
+ 
+   '@rolldown/pluginutils@1.0.1': {}
+ 
+   '@rtsao/scc@1.1.0': {}
+ 
+   '@standard-schema/spec@1.1.0': {}
+ 
+   '@supabase/auth-js@2.108.2':
+     dependencies:
+       tslib: 2.8.1
+ 
+@@ -3226,31 +3230,31 @@ snapshots:
+   '@unrs/resolver-binding-win32-x64-msvc@1.12.2':
+     optional: true
+ 
+   '@vitest/expect@4.1.9':
+     dependencies:
+       '@standard-schema/spec': 1.1.0
+       '@types/chai': 5.2.3
+       '@vitest/spy': 4.1.9
+       '@vitest/utils': 4.1.9
+       chai: 6.2.2
+       tinyrainbow: 3.1.0
+ 
+-  '@vitest/mocker@4.1.9(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0))':
++  '@vitest/mocker@4.1.9(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0))':
+     dependencies:
+       '@vitest/spy': 4.1.9
+       estree-walker: 3.0.3
+       magic-string: 0.30.21
+     optionalDependencies:
+-      vite: 8.1.0(@types/node@20.19.43)(jiti@2.7.0)
++      vite: 8.1.6(@types/node@20.19.43)(jiti@2.7.0)
+ 
+   '@vitest/pretty-format@4.1.9':
+     dependencies:
+       tinyrainbow: 3.1.0
+ 
+   '@vitest/runner@4.1.9':
+     dependencies:
+       '@vitest/utils': 4.1.9
+       pathe: 2.0.3
+ 
+   '@vitest/snapshot@4.1.9':
+     dependencies:
+@@ -4377,24 +4381,26 @@ snapshots:
+       pgpass: 1.0.5
+     optionalDependencies:
+       pg-cloudflare: 1.4.0
+ 
+   pgpass@1.0.5:
+     dependencies:
+       split2: 4.2.0
+ 
+   picocolors@1.1.1: {}
+ 
+   picomatch@4.0.4: {}
+ 
++  picomatch@4.0.7: {}
++
+   playwright-core@1.61.1: {}
+ 
+   playwright@1.61.1:
+     dependencies:
+       playwright-core: 1.61.1
+     optionalDependencies:
+       fsevents: 2.3.2
+ 
+   possible-typed-array-names@1.1.0: {}
+ 
+   postcss@8.5.23:
+     dependencies:
+@@ -4455,44 +4461,44 @@ snapshots:
+ 
+   resolve-pkg-maps@1.0.0: {}
+ 
+   resolve@2.0.0-next.7:
+     dependencies:
+       es-errors: 1.3.0
+       is-core-module: 2.16.2
+       node-exports-info: 1.6.0
+       object-keys: 1.1.1
+       path-parse: 1.0.7
+       supports-preserve-symlinks-flag: 1.0.0
+ 
+-  rolldown@1.1.3:
++  rolldown@1.1.5:
+     dependencies:
+-      '@oxc-project/types': 0.137.0
++      '@oxc-project/types': 0.139.0
+       '@rolldown/pluginutils': 1.0.1
+     optionalDependencies:
+-      '@rolldown/binding-android-arm64': 1.1.3
+-      '@rolldown/binding-darwin-arm64': 1.1.3
+-      '@rolldown/binding-darwin-x64': 1.1.3
+-      '@rolldown/binding-freebsd-x64': 1.1.3
+-      '@rolldown/binding-linux-arm-gnueabihf': 1.1.3
+-      '@rolldown/binding-linux-arm64-gnu': 1.1.3
+-      '@rolldown/binding-linux-arm64-musl': 1.1.3
+-      '@rolldown/binding-linux-ppc64-gnu': 1.1.3
+-      '@rolldown/binding-linux-s390x-gnu': 1.1.3
+-      '@rolldown/binding-linux-x64-gnu': 1.1.3
+-      '@rolldown/binding-linux-x64-musl': 1.1.3
+-      '@rolldown/binding-openharmony-arm64': 1.1.3
+-      '@rolldown/binding-wasm32-wasi': 1.1.3
+-      '@rolldown/binding-win32-arm64-msvc': 1.1.3
+-      '@rolldown/binding-win32-x64-msvc': 1.1.3
++      '@rolldown/binding-android-arm64': 1.1.5
++      '@rolldown/binding-darwin-arm64': 1.1.5
++      '@rolldown/binding-darwin-x64': 1.1.5
++      '@rolldown/binding-freebsd-x64': 1.1.5
++      '@rolldown/binding-linux-arm-gnueabihf': 1.1.5
++      '@rolldown/binding-linux-arm64-gnu': 1.1.5
++      '@rolldown/binding-linux-arm64-musl': 1.1.5
++      '@rolldown/binding-linux-ppc64-gnu': 1.1.5
++      '@rolldown/binding-linux-s390x-gnu': 1.1.5
++      '@rolldown/binding-linux-x64-gnu': 1.1.5
++      '@rolldown/binding-linux-x64-musl': 1.1.5
++      '@rolldown/binding-openharmony-arm64': 1.1.5
++      '@rolldown/binding-wasm32-wasi': 1.1.5
++      '@rolldown/binding-win32-arm64-msvc': 1.1.5
++      '@rolldown/binding-win32-x64-msvc': 1.1.5
+ 
+   safe-array-concat@1.1.4:
+     dependencies:
+       call-bind: 1.0.9
+       call-bound: 1.0.4
+       get-intrinsic: 1.3.0
+       has-symbols: 1.1.0
+       isarray: 2.0.5
+ 
+   safe-push-apply@1.0.0:
+     dependencies:
+       es-errors: 1.3.0
+@@ -4802,57 +4808,57 @@ snapshots:
+       '@unrs/resolver-binding-win32-x64-msvc': 1.12.2
+ 
+   update-browserslist-db@1.3.2(browserslist@4.28.8):
+     dependencies:
+       browserslist: 4.28.8
+       escalade: 3.2.0
+       picocolors: 1.1.1
+ 
+   uri-js@4.4.1:
+     dependencies:
+       punycode: 2.3.1
+ 
+-  vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0):
++  vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0):
+     dependencies:
+       lightningcss: 1.32.0
+-      picomatch: 4.0.4
++      picomatch: 4.0.7
+       postcss: 8.5.23
+-      rolldown: 1.1.3
++      rolldown: 1.1.5
+       tinyglobby: 0.2.17
+     optionalDependencies:
+       '@types/node': 20.19.43
+       fsevents: 2.3.3
+       jiti: 2.7.0
+ 
+-  vitest@4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0)):
++  vitest@4.1.9(@types/node@20.19.43)(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0)):
+     dependencies:
+       '@vitest/expect': 4.1.9
+-      '@vitest/mocker': 4.1.9(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0))
++      '@vitest/mocker': 4.1.9(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0))
+       '@vitest/pretty-format': 4.1.9
+       '@vitest/runner': 4.1.9
+       '@vitest/snapshot': 4.1.9
+       '@vitest/spy': 4.1.9
+       '@vitest/utils': 4.1.9
+       es-module-lexer: 2.1.0
+       expect-type: 1.3.0
+       magic-string: 0.30.21
+       obug: 2.1.3
+       pathe: 2.0.3
+       picomatch: 4.0.4
+       std-env: 4.1.0
+       tinybench: 2.9.0
+       tinyexec: 1.2.4
+       tinyglobby: 0.2.17
+       tinyrainbow: 3.1.0
+-      vite: 8.1.0(@types/node@20.19.43)(jiti@2.7.0)
++      vite: 8.1.6(@types/node@20.19.43)(jiti@2.7.0)
+       why-is-node-running: 2.3.0
+     optionalDependencies:
+       '@types/node': 20.19.43
+     transitivePeerDependencies:
+       - msw
+ 
+   which-boxed-primitive@1.1.1:
+     dependencies:
+       is-bigint: 1.1.0
+       is-boolean-object: 1.2.2
+       is-number-object: 1.1.1
+       is-string: 1.1.1
+
+COMPLETE COMMITTED MANIFEST:
+{
+  "name": "kopplas",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.24.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/run-tests.mjs",
+    "test:unit": "node --experimental-strip-types --import ./tests/support/register.mjs --test \"tests/unit/**/*.test.ts\"",
+    "test:int": "vitest run",
+    "test:int:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:pilot-performance": "node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts",
+    "test:bmad-focused": "python _bmad/scripts/tests/test_memlog.py",
+    "test:auto-bmad-focused": "python .agents/skills/auto-bmad/scripts/tests/test_routing_migration.py && python .agents/skills/auto-bmad/scripts/tests/test_cli_delegate_windows_pid.py && python -m unittest discover -s .agents/skills/auto-bmad/scripts/tests -p test_delivery_gate.py",
+    "verify:lockfiles": "node scripts/verify/check-lockfiles.mjs",
+    "verify:service-role-containment": "node scripts/verify/check-service-role-containment.mjs",
+    "verify:bundle-containment": "node scripts/verify/check-bundle-containment.mjs",
+    "test:smoke": "playwright test tests/e2e/auth/login-and-tenant-context.e2e.spec.ts tests/e2e/auth/auth-mail-callback.e2e.spec.ts tests/e2e/jobs/jobs-depth.e2e.spec.ts tests/e2e/conflict-resolver.e2e.spec.ts tests/e2e/time-reports.e2e.spec.ts tests/e2e/calendar-feed.e2e.spec.ts --reporter=list,json",
+    "verify:development": "node scripts/ci/verify-development.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "0.12.0",
+    "@supabase/supabase-js": "2.108.2",
+    "next": "16.3.8",
+    "pdf-lib": "1.17.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@tailwindcss/postcss": "4.3.1",
+    "@types/node": "20.19.43",
+    "@types/pg": "8.20.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.8",
+    "pdfjs-dist": "4.10.38",
+    "pg": "8.22.0",
+    "tailwindcss": "4.3.1",
+    "typescript": "5.9.3",
+    "vite": "8.1.6",
+    "vitest": "4.1.9"
+  }
+}
+
+CURRENT COMMITTED SPEC TRAIL+SRO lines988-1214:
+## Minimal Vite security patch after blocking audit - 2026-10-21
+
+Tenth checkpointbe2/run39503939856 remains FAILED: install/frozen lock validation
+passed, then pnpm audit --audit-level=high exited1 with1high/4moderate findings
+and GHSA-587h-7wmj-h5pm. All later checks,95feature cases,67separate controls
+and managed runtime were UNEXECUTED at that head. Earlier43DB/14browser failures
+remain unresolved. The tenth packet/capsule and all predecessor evidence remain
+immutable; the previous exact380 owned-origin High review passed without findings.
+
+Root/Coordinator admitted exactly package.json's devDependencies.vite key,
+mechanically required lock closure and this post-kernel author trail under
+`accepted-native-dependency-audit-repair-allocation.json`, SHA
+`61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581`.
+The exact Vite pin moves8.1.0 to8.1.6, the minimum patched release on the same8.1
+branch according to the current reviewed advisory and official2026-10-06 release.
+Its bundle includes launch-editor2.14.2; overriding a separately resolved editor
+would not replace Vite's bundled2.14.1. This is an affected tool inventory and
+remediation, not evidence that production Next exposes or exploited that path.
+
+Actual pnpm10.24.0 lock-only --ignore-scripts resolution followed by frozen
+--ignore-scripts materialization passed. No unrelated manifest/script/version or
+lock settings/override/patch changes occurred. The required closure is Vite8.1.6,
+picomatch4.0.7, rolldown1.1.5 with15 matching platform bindings, and rolldown's
+@oxc-project/types0.139.0. Existing postcss8.5.23 stays fixed. Vitest4.1.9 and
+mocker retain versions and resolve the same Vite8.1.6 via changed peer snapshot
+keys. Vite's integrity is the actual registry/pnpm value
+`sha512-aRAHIxx5SW5zc1sMqFwJU/t5qaFfXb5Hj0J7W0VXihu/X99+346tz6080tO1T1xVIJORX/b3zVTXGFqUXh35uw==`.
+Installed bundle region markers confirm launch-editor and middleware2.14.2.
+Vite's Nodeengine remains ^20.19.0 || >=22.12.0, compatible with existing22;
+Vitest's existing ^8.0.0 range accepts the candidate. No schema/data/application,
+privilege/authority/provider/secret/workflow/toolchain or workspace change occurs.
+The new lockfile source path expands the authored union68 to69; protected109SQL
+and37consumer files stay unchanged. Old installed dependency contexts remain
+historical, not new-byte proof for the changed graph.
+
+Actual post-materialization pnpm audit --audit-level=high passed exit0, reporting
+2moderate findings and no high findings; no ignore, threshold change or retry was
+used. Do not infer identities of the remaining moderate findings or claim all
+advisories gone. verify:lockfiles, full TypeScript,67/67bounded Node controls
+(0fail/skip/cancel), production Next build and built-bundle containment passed.
+These controls retain61+6 with no new version-mirror tests, no Vitest runner,
+collection/globalSetup or DB/browser execution. Full local pnpm run lint traversed
+ignored retained historical Playwright report assets and was terminated through
+only its captured command session (exit1); it is INCOMPLETE, not PASS. Focused
+ESLint on the existing three calendar-feed fixture/control files passed with
+0errors/0warnings. No historical report deletion, ignore/config change or blanket
+warning attribution occurred. Clean-checkout canonical lint remains mandatory CI.
+
+The approved5760-byte intent contract stays unchanged/in-review. One refreshed
+review trail and native/staged Git checks precede the append-only exact three-file
+commit. Fresh distinct context-free High review of the exact dependency delta and
+Root exact-head normal CI remain pending. A successful audit permits later gates;
+it does not establish compatibility of the full native feature, resolve43DB and
+14browser failures, or qualify browser attachment content. No managed service,
+local qualification, blind CI retry, fourth broad review, push, merge/deployment,
+DONE/delivery or release claim is made.
+
+## Suggested Review Order
+
+Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+explicitly delegated browser and bootstrap contributors. Refreshed after all
+Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
+native setup diagnostics, same-connection privacy qualification and explicit
+isolated setup authority transport, bounded child settlement, browser diagnostic repair,
+actual SQL callback ownership, executed-feature fixture/status/policy repairs and
+bounded safe-leaf transport through the installed reporter, closed owned scenario origins and the minimal Vite security patch.
+Stops below resolve to final source literals before the repair commit.
+
+### Own settings and honest lifecycle results
+
+The two personal entry points reach one settings surface; the profile entry uses
+server-filtered navigation. Confirmations and component-memory issuance retain
+explicit uncertainty handling, while later authoritative status removes stale URLs.
+The error render fallback reuses the existing approved sentence without enabling
+retry before uncertain results have been reconciled; all four isolated SSR cases passed.
+
+- `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+- `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+- `src/components/calendar-feed/CalendarSubscription.tsx:69` — `state?.status === "error"`: AC2/6 renders fallback guidance without changing lifecycle controls.
+- `tests/integration/components/calendar-feed.test.ts:36` — `15.5-COMP-003`: AC2/6 existing error/retry SSR assertions passed in isolation.
+- `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 supersession cases failed at3e7; changed-head browser evidence pending.
+- `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 browser control failed at3e7; changed-head evidence pending.
+
+### Signed current-self authority and atomic writes
+
+Ordinary JWT commands derive self authority; SQL rechecks current exact membership
+and role union under the scheduling tenant lock. Dedicated proofs bind privileged
+inputs, and CAS/history/audit commit together without plaintext recovery.
+
+- `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
+- `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; subsequent native stack resets compiled it.
+- `tests/support/calendar-feed-atdd.ts:353` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+- `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 case failed at3e7; no downstream field/ACL credit inferred.
+
+### Complete live snapshots and essential RFC correctness
+
+The exact public middleware boundary precedes authentication/cookies. Projection
+is complete and minimal; stable IDs, every projected-source revision and explicit
+fractional rounding produce a subscription snapshot without scheduling METHOD.
+
+- `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:236` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
+- `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
+- `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
+
+### Durable abuse admission and hardened restore ownership
+
+Independent budgets keep admitted counters through projection cancellation without
+advancing last-use. Serial fixtures restore only their captured unknown-IP row;
+source creator ADMIN is distinct from SET authority, while unchanged recovery
+keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
+
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
+- `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 case failed at3e7; changed-head durability evidence pending.
+- `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
+- `tests/integration/commands/calendar-feed.int.test.ts:434` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at3e7.
+- `tests/support/calendar-feed-atdd.ts:555` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
+- `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 RLS010 failed at3e7; individual predicate reach remains unknown.
+- `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
+
+### Isolated CI custody and honest evidence limits
+
+Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
+The added PG17 case qualifies that disposable stack and owns transaction-local
+UUID roles/schema/function through dedicated connections, with no pool reuse.
+Settlement is memoized; abnormal browser teardown retains exact job custody, while
+privacy detection measures raw output in memory before sanitized records persist.
+Before any secret, one fixed read-only query requires exact effective privacy on
+the same connection later used for key creation and deletion. SET ACL facts
+remain observations. The later admitted setup transport separately requires actual
+authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
+restricted-session oracle. No new privileged child configuration or grant is added.
+
+- `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+- `scripts/ci/with-calendar-feed-runtime.mjs:257` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
+- `scripts/ci/with-calendar-feed-runtime.mjs:179` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1276` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+- `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:33` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+- `scripts/ci/with-calendar-feed-runtime.mjs:32` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:314` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+- `scripts/ci/with-calendar-feed-runtime.mjs:443` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:210` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
+- `scripts/ci/with-calendar-feed-runtime.mjs:99` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
+- `scripts/ci/with-calendar-feed-runtime.mjs:86` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
+- `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:148` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
+
+- `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+- `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+- `tests/e2e/support/calendar-feed-atdd.ts:705` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:490` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1042` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
+
+- `tests/e2e/support/calendar-feed-atdd.ts:93` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1122` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
+
+- `tests/support/calendar-feed-atdd.ts:201` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
+- `tests/support/calendar-feed-atdd.ts:271` — `phase = "additional-users"`: marks actual callback entry; upstream lost code remains unknown.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:595` — `actual fixture diagnostics preserve only`: injected classification and upstream-loss negatives are not native failure-cause proof.
+- `tests/integration/rls/acceptance-tables-migration-reset.int.test.ts:212` — `approved role-specific policies`: exact ten-policy/role case passed at3e7, retaining DELETE/ALL/extra-policy rejection.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:924` — `the actual allocated policy case rejects`: injected rows exercise catalog negatives; actual3e7 policy case passed separately.
+
+- `tests/support/calendar-feed-atdd.ts:233` — `calendarFixtureSafeFailures.get(child)?.children`: flattens only guarded, already-sanitized children for the one-level reporter boundary.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:871` — `installed failure transport reproduces lost`: old-shape control distinguishes JSON projection loss from in-process unknown.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:883` — `actual repaired fixture diagnostics reach`: ordered safe primary/cleanup leaves remain one failed synthetic case.
+
+Evidence: historical check receipts keep their exact revisions and dependency
+limits. Eighth checkpoint3e7 ran all51 story Vitest cases:8 passed/43 failed;
+all four component cases and the exact shared policy case passed. Fourteen story
+browser cases failed across28 attempts. Separate verify3130/bootstrap58/Python43/
+recovery1 and actual DB child/key cleanup/INT015 passed; the full DB result still
+failed1944P43F52skip. Browser custody, RLS010/API019 failure and unavailable
+attachment content receive no borrowed proof. All43 native fixture messages had
+only group markers: no leaf serialization, no diagnosed SQL or cleanup cause.
+Current61 separate bounded Node tests passed, including three installed
+runner/processError/JsonReporter transport controls using synthetic failures.
+Actual pure source seams, injected rows and synthetic reporter tasks are not native
+SQL/auth/browser acceptance. Prior isolated localSSR4 and native component4
+passes keep their own scope; no SSR rerun here. Changed-head managed runtime,
+complete native success and attachment-content privacy require Root exact-head CI.
+Prior production builds remain historical, and no new build is claimed here.
+All three broad rounds completed; only distinct High latest-delta review remains.
+No provider/device/visual/performance or release-ready claim; the unallocated
+exhaustive branch remains explicitly release-blocking deferred.
+
+### Closed origins without inferred backend causes
+
+The existing guards report only compile-time origins or outcome enums already
+consumed. RLS001 preserves each allowed-subject assertion and adds a fixed site;
+safe source frames identify other assertion lines without inspecting native errors.
+
+- `tests/support/calendar-feed-atdd.ts:189` — `export function calendarFixtureOrigin`: registers only newly created fixed safe errors.
+- `tests/support/calendar-feed-atdd.ts:194` — `export function calendarFixtureAssertionAt`: calls the existing assertion once and returns its result.
+- `tests/support/calendar-feed-atdd.ts:733` — `const outcome = result.outcome`: classifies the same consumed outcome without observing an RPC.
+- `tests/integration/rls/calendar-feed.rls.test.ts:23` — `calendarFixtureAssertionAt(allowedSites[subject]`: distinguishes four allowed contracts without changing the loop.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:792` — `actual first INT001 and API001 callbacks stop`: proves preceding/no-later operations with injected fixtures, not native acceptance.
+- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:824` — `actual first callbacks retain precise safe assertion frames`: proves controlled frames and unrecoverable upstream UNKNOWN limits.
+
+Current evidence:67 bounded controls passed with0 failures/skips/cancellations,
+whole TypeScript and focused lint passed, and the approved5760-byte kernel is
+unchanged. Ninth native8P43F exposes44 scenario/unknown leaves; first actual
+branches and all43 causes remain unknown. Fixed outcome tags cannot distinguish
+collapsed backend causes. Native acceptance, RLS010/API019 later predicates and
+browser attachment privacy remain pending. Distinct High latest-four review is
+pending; prior review/SSR/runtime receipts retain their historical dependency scope.
+
+### Patch the bundled tool without weakening the gate
+
+The same-branch minimum patched Vite replaces its bundled editor. Only its required
+lock closure changes; scripts, Vitest versions, overrides and audit threshold stay
+fixed. Local synthetic controls/build do not replace fresh native qualification.
+
+- `package.json:50` — `"vite": "8.1.6"`: pins the patched tool without changing scripts.
+- `pnpm-lock.yaml:2297` — `vite@8.1.6:`: binds the actual registry integrity and unchanged engine.
+- `pnpm-lock.yaml:2059` — `rolldown@1.1.5:`: carries the required types and matching platform bindings.
+
+Evidence: frozen installation, high-threshold audit (exit0/2moderate/no high),
+lock guard, full typecheck,67bounded controls, production build and bundle
+containment passed after materialization. Focused lint passed0errors/0warnings;
+canonical local lint was terminated/incomplete after scanning ignored historical
+assets and receives no PASS credit. Clean-CI canonical lint/native gates and fresh
+independent exact dependency-delta review remain pending. All prior failed heads
+and the43DB/14browser gaps remain failed/unresolved; no whole-native reuse.
+
+ACTUAL INSTALLED EDITOR BUNDLE C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/node_modules/.pnpm/vite@8.1.6_@types+node@20.19.43_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js lines11229-11327 (fullfile hash bound, no node_modules edit):
+//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/parse-file.js
+var require_parse_file = /* @__PURE__ */ __commonJSMin(((exports, module) => {
+	const path$8 = __require("path");
+	const positionRE = /:(\d+)(:(\d+))?$/;
+	module.exports = function parseFile(file) {
+		if (file.startsWith("file://")) file = __require("url").fileURLToPath(file);
+		const unresolvedFileName = file.replace(positionRE, "");
+		const fileName = unresolvedFileName ? path$8.resolve(unresolvedFileName) : "";
+		const match = file.match(positionRE);
+		return {
+			fileName,
+			lineNumber: match && match[1],
+			columnNumber: match && match[3]
+		};
+	};
+}));
+//#endregion
+//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/index.js
+var require_launch_editor = /* @__PURE__ */ __commonJSMin(((exports, module) => {
+	/**
+	* Copyright (c) 2015-present, Facebook, Inc.
+	*
+	* This source code is licensed under the MIT license found in the
+	* LICENSE file at
+	* https://github.com/facebookincubator/create-react-app/blob/master/LICENSE
+	*
+	* Modified by Yuxi Evan You
+	*/
+	const fs$6 = __require("fs");
+	const path$7 = __require("path");
+	const colors = require_picocolors();
+	const childProcess$1 = __require("child_process");
+	const guessEditor = require_guess();
+	const getArgumentsForFile = require_get_args();
+	const constructWindowsLaunchCommand = require_construct_windows_launch_command();
+	const parseFile = require_parse_file();
+	function wrapErrorCallback(cb) {
+		return (fileName, errorMessage) => {
+			console.log();
+			console.log(colors.red("Could not open " + path$7.basename(fileName) + " in the editor."));
+			if (errorMessage) {
+				if (errorMessage[errorMessage.length - 1] !== ".") errorMessage += ".";
+				console.log(colors.red("The editor process exited with an error: " + errorMessage));
+			}
+			console.log();
+			if (cb) cb(fileName, errorMessage);
+		};
+	}
+	function isTerminalEditor(editor) {
+		switch (editor) {
+			case "vim":
+			case "emacs":
+			case "nano": return true;
+		}
+		return false;
+	}
+	let currentChildProcess = null;
+	function launchEditor(file, specifiedEditor, onErrorCallback) {
+		const { fileName, lineNumber, columnNumber } = parseFile(file);
+		if (typeof specifiedEditor === "function") {
+			onErrorCallback = specifiedEditor;
+			specifiedEditor = void 0;
+		}
+		onErrorCallback = wrapErrorCallback(onErrorCallback);
+		if (process.platform === "win32" && fileName.startsWith("\\\\")) return onErrorCallback(fileName, "UNC paths are not supported on Windows to avoid security issues. See https://github.com/vitejs/launch-editor/tree/main/packages/launch-editor#unc-paths-on-windows for details.");
+		if (!fs$6.existsSync(fileName)) return;
+		const [editor, ...args] = guessEditor(specifiedEditor);
+		if (!editor) {
+			onErrorCallback(fileName, null);
+			return;
+		}
+		const extraArgs = getArgumentsForFile(editor, fileName, lineNumber, columnNumber);
+		args.push.apply(args, extraArgs);
+		let launchCommand;
+		if (process.platform === "win32") try {
+			launchCommand = constructWindowsLaunchCommand(editor, args);
+		} catch (error) {
+			onErrorCallback(fileName, error.message);
+			return;
+		}
+		if (currentChildProcess && isTerminalEditor(editor)) currentChildProcess.kill("SIGKILL");
+		if (process.platform === "win32") currentChildProcess = childProcess$1.exec(launchCommand, {
+			stdio: "inherit",
+			shell: true
+		});
+		else currentChildProcess = childProcess$1.spawn(editor, args, { stdio: "inherit" });
+		currentChildProcess.on("exit", function(errorCode) {
+			currentChildProcess = null;
+			if (errorCode) onErrorCallback(fileName, "(code " + errorCode + ")");
+		});
+		currentChildProcess.on("error", function(error) {
+			let { code, message } = error;
+			if ("ENOENT" === code) message = `${message} ('${editor}' command does not exist in 'PATH')`;
+			onErrorCallback(fileName, message);
+		});
+	}
+	module.exports = launchEditor;
+}));
+//#endregion
+
+BOUND METADATA/PRIMARY SOURCE PROPOSAL _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/dependency-graph.json:
+{
+  "kind": "committed-old-new-lock-and-current-installed-graph",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "baseline": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "parser": {
+    "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\.pnpm\\js-yaml@4.3.2\\node_modules\\js-yaml\\index.js",
+    "bytes": 1585,
+    "sha256": "e85d524fcd45466669dfc37618284e0c53ccaaf3f4bef1e23cd25ec6c43120bc",
+    "used_for_metadata_only_no_runtime_test_credit": true
+  },
+  "package_only_vite_pin_changed": true,
+  "scripts_and_all_other_manifest_values_unchanged": true,
+  "unchanged_top_lock_sections": [
+    "lockfileVersion",
+    "settings",
+    "overrides",
+    "patchedDependencies"
+  ],
+  "dependency_pin_and_peer_changes": {
+    "before": {
+      "vite": {
+        "specifier": "8.1.0",
+        "version": "8.1.0(@types/node@20.19.43)(jiti@2.7.0)"
+      },
+      "vitest": {
+        "specifier": "4.1.9",
+        "version": "4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0))"
+      }
+    },
+    "after": {
+      "vite": {
+        "specifier": "8.1.6",
+        "version": "8.1.6(@types/node@20.19.43)(jiti@2.7.0)"
+      },
+      "vitest": {
+        "specifier": "4.1.9",
+        "version": "4.1.9(@types/node@20.19.43)(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0))"
+      }
+    }
+  },
+  "changed_nodes": [
+    {
+      "section": "packages",
+      "key": "@oxc-project/types@0.137.0",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-WT+Gb24i8hmvo85AIv2oEYouEXkRlKAlT9WaCa3TfLgNCN+GhrJOGZuIlMouAh38Qe4QOx26eUOVsq70qXrywA=="
+        }
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-android-arm64@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-DT6Z3PhvioeHMvxo+xHc3KtqggrI7CCTXCmC2h/5zUlp5jVitv7XEy+9q5/7v8IolhlioawpMo8Kg0EEBy7J0g=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "android"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-darwin-arm64@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-0NwgwsjM7LrsuVnXMK3koTpagBNOhloc/BNjKqZjv4V5zI5r13qx69uVhRx+o5Z0yy4Hzq+lpy7TAgUG/ocvrw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "darwin"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-darwin-x64@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-YtiBp4disu6V560loT6PjMdiRaWmVvDNrUunAalbiFx2ggeJwxdAsgZMcoGP17uyAsTwAj5V1niksxlHnVQ1Sw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "darwin"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-freebsd-x64@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-yD3EkEdXk2LypPxnf/kSZHirarsI8gcPzc62SukhR9VJTyvV+F9Q/GxWNuCojc7sXyuVC4DxRGhdDK4X8VSsbw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "freebsd"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-arm-gnueabihf@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-c+8vieQbsD7HNAHKIA34w0GJ9FedFFuJGD+7E6vz7Q3uqAIugL5p45fhlsj4UaAsHpcmlqugBWMhA0/j7o0sIg=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm"
+        ],
+        "os": [
+          "linux"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-arm64-gnu@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-50jD0uUwLvur7Zz9LHz17kaAdTPjn5wN93hEgjvmYFRZwiR7ZJYovTd5ipyWJDAnXKvZ+wgc+/Ika6dwSF5OcA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "linux"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-arm64-musl@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-BO9+oPL8K9poZJBfYPsXNtYjPE5uM3qeehT3aFcW4LITOl+iSqhp0abzjR2nWBUNjIZeKXjAEWBZ64WjNoHd6w=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "linux"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-ppc64-gnu@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-f3VpLB1vQ0Eo6ecr/6cekLnvYMFF4YBFoVGkfkvPLq1bAkbAwHYQPZKoAmG6OJyTcxxoC+AvezGx/S1obNC0Mw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "ppc64"
+        ],
+        "os": [
+          "linux"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-s390x-gnu@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-AmurZ26Pqx/RI9N1gzEOCklkKXl927yjfXWUUS0O7Puh8ARM/Ob8qfrD3qnWksScdw6cSrW5PSHE9DyLu7+PtA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "s390x"
+        ],
+        "os": [
+          "linux"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-x64-gnu@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-JJpqs8bRGITDOdbkNKnlojzBabbOHrqjSvDr0IVsZObE1lBcPjxItUEY9eWIDbxaJ3cGrXPWGfGkIxFijg/URg=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "linux"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-x64-musl@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-rSJcdjPxzA/by/6/rYs+v+bXU7UjvnbUWz8MJb6kh6+knqB1dCrtHg0uu7C/4haqJvqdkYHQ5IGn+tCH9GLW/g=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "linux"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-openharmony-arm64@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-hQ3/PYkDJICgevvyNcVrihVeqq7k1Pp3VZ9lY+dauAYUJKO+auqApvANhvR1An9BhmqYKvW2Mu1F9u4DXSMLxQ=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "openharmony"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-wasm32-wasi@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-Elcv/BtML9lXrV6JuKITc/grN2kYV9gjsQpW8Jfw4ioK0TOkjBjye0nnyqQNy9STNaI20lXNaQBRrD5gSgR0Yg=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "wasm32"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-win32-arm64-msvc@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-2DrEfhluH9yhiaFApmsjsjwrSYbNcY1oFTzYSP1a535jDbV98zCFanA/96TBUd0iDFcxGmw9QRExwGCXz3U+/g=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "win32"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-win32-x64-msvc@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-OL4OMk7UPXOeVGGd3qo5zJyPIljf4AFgk5QAkPPS+OoLuOOozhuaQGC18MxVTnw/06q93gShAJzlwnSCY9YtqA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "win32"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "rolldown@1.1.3",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-1F1eEtUBtFvcGm1HQ9TiUIUHPQG7mSAODrhIzjxoUEFuo8OcbrGLiVLkevNgj84TE4lnHvnumwFjhJO5Eu135g=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "hasBin": true
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "vite@8.1.0",
+      "before": {
+        "resolution": {
+          "integrity": "sha512-BuJcQK/56NQTWDGn4ABea3q4SSBdNPWwNZKTkkUpcMPnLoquSYH8llRtSUIgoL1KSCpHt5eghLShn50mH36y7Q=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "hasBin": true,
+        "peerDependencies": {
+          "@types/node": "^20.19.0 || >=22.12.0",
+          "@vitejs/devtools": "^0.3.0",
+          "esbuild": "^0.27.0 || ^0.28.0",
+          "jiti": ">=1.21.0",
+          "less": "^4.0.0",
+          "sass": "^1.70.0",
+          "sass-embedded": "^1.70.0",
+          "stylus": ">=0.54.8",
+          "sugarss": "^5.0.0",
+          "terser": "^5.16.0",
+          "tsx": "^4.8.1",
+          "yaml": "^2.4.2"
+        },
+        "peerDependenciesMeta": {
+          "@types/node": {
+            "optional": true
+          },
+          "@vitejs/devtools": {
+            "optional": true
+          },
+          "esbuild": {
+            "optional": true
+          },
+          "jiti": {
+            "optional": true
+          },
+          "less": {
+            "optional": true
+          },
+          "sass": {
+            "optional": true
+          },
+          "sass-embedded": {
+            "optional": true
+          },
+          "stylus": {
+            "optional": true
+          },
+          "sugarss": {
+            "optional": true
+          },
+          "terser": {
+            "optional": true
+          },
+          "tsx": {
+            "optional": true
+          },
+          "yaml": {
+            "optional": true
+          }
+        }
+      },
+      "after": null
+    },
+    {
+      "section": "packages",
+      "key": "@oxc-project/types@0.139.0",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-r9gHphtCs+1M7J0pw6Sn/hh/Wpa/iQrOOkrNAlVLF/gHq+/CJmHIWKKUUhdWjcD6CIa8idarspCsASiXCXvFUw=="
+        }
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-android-arm64@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-lZg8fqIv2v7FF237bwMgzGZEJvGL79/s5knJ/i6FmsGF4XXlzccZ4jb+TrFIxtSSxFtIpdsgrPZeMk1I9AFcyQ=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "android"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-darwin-arm64@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-51Bnx9pNiMRKSUNtBfySkNJ9vMU9Hh3I1ozDd6gyPPYzaXCfnptUcEZxXGYFn+ul2dtcMUiqGR1Yai2K10uoTw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-darwin-x64@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-Tm+gbfC0aHu1tBA/JvKQh32S0K6YgCHkiAF4/W6xX0K0RmNuc94VeK419dJoE65R5aRxmo+noZQSWrAMF6yb6g=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "darwin"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-freebsd-x64@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-JMzDKCCXq93YccG5gz3hvOs1oXRKAf0XYpfOS88e+wZrC8Iugj6j68867vrYZkvpDDpKn/KoKORThmchMpF6TA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "freebsd"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-arm-gnueabihf@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-uML21j2K5TfPGutKxub+M+nLjZIrWjXQ5Grx4lCe/nimTj9B4L63zHpjXLl4y0L3mcm2htEQIb06oCG/szerNw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm"
+        ],
+        "os": [
+          "linux"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-arm64-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-navSiuTMogvnQoZoM/v+l3ZWo50/NTwSHSzheABx/RCnmUPaKwq9qSo4Br2OYRs21+Fz8uFqITZM3H4opOB0/Q=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "linux"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-arm64-musl@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-lAryqH7IteztmCXQXk0etKj4wBQ7Gx5S6LjKhsgp9zb8I5bsuvU/2llH1hDQcjsFeqIsovMVN339/8pUDDBXxA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "linux"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-ppc64-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-fsK/sNBnxzBlL4O1JNrZakVQxPspqpED5dLtNsZS9oOKmtSpdNIzxH2kkol5HYTWJN47sE20ztMJPxfZ89qGOg=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "ppc64"
+        ],
+        "os": [
+          "linux"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-s390x-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-gLYb4BIadlfTOYT5gO503n8zQjXflgzpD0FcyKh0Mzx3rqCZKnHoJWV9xe1KXUJ5lx2JfcSHr/mhzS0PC/McAA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "s390x"
+        ],
+        "os": [
+          "linux"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-x64-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-FjcpEKUyJygHgs1o50VYNvkt5+7Le/VEdYt0AkRpkL33MnyQfwr8l5mXwMmfmTbyMPr5vJLC+8/Gd9gXnwU1QQ=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "linux"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-linux-x64-musl@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-Me+PfPI2TMeOQk0gYWfLQZtTktrmzbr8cDboqX83XKc7UrgAi55gF+2dUkWdxd19n55Essp2yeca+O9N5rBxHg=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "linux"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-openharmony-arm64@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-yc5WrLzXks6zCQfn9Oxr8pORKyl/pF+QjHmW/Qx3qu0oyrrNC+y2JLTU1E2rcWYAmzlnqngWXHQjy51VzW70Vw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "openharmony"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-wasm32-wasi@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-VbQGPX2b4r48TAMIM2cjgluIM1HYutm4pcTEJsle7iEP7sB1dFqtPLBVbdLAZCxy1txCcPxf4QFf4v8uvltPqA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "wasm32"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-win32-arm64-msvc@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-gHv82k63z4qpV5+Q1y/12KrK0ltWBukVDI8nZcbT7Tt/ZlOIVwppazneq0F93oDxTo3IgAMEDIoQh3E2n6mVsw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "arm64"
+        ],
+        "os": [
+          "win32"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "@rolldown/binding-win32-x64-msvc@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-tTZuDBPw85tEN5PQi1pnEBzDy0Z49HtScLAbD5t6hyeU92A95pRWaSMw1GZZi/RwgSgUIl0xrSlXIT/9QzvYSA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "cpu": [
+          "x64"
+        ],
+        "os": [
+          "win32"
+        ]
+      }
+    },
+    {
+      "section": "packages",
+      "key": "picomatch@4.0.7",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA=="
+        },
+        "engines": {
+          "node": ">=12"
+        }
+      }
+    },
+    {
+      "section": "packages",
+      "key": "rolldown@1.1.5",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-t9z29cJjXf/vxQ8dyhCSpt6H6aSwHTk8cT5I3iy6SMXuFpk5mB6PL6XfC8PCwrPTx93udwKUm9HRteAlTGBLiA=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "hasBin": true
+      }
+    },
+    {
+      "section": "packages",
+      "key": "vite@8.1.6",
+      "before": null,
+      "after": {
+        "resolution": {
+          "integrity": "sha512-aRAHIxx5SW5zc1sMqFwJU/t5qaFfXb5Hj0J7W0VXihu/X99+346tz6080tO1T1xVIJORX/b3zVTXGFqUXh35uw=="
+        },
+        "engines": {
+          "node": "^20.19.0 || >=22.12.0"
+        },
+        "hasBin": true,
+        "peerDependencies": {
+          "@types/node": "^20.19.0 || >=22.12.0",
+          "@vitejs/devtools": "^0.3.0",
+          "esbuild": "^0.27.0 || ^0.28.0",
+          "jiti": ">=1.21.0",
+          "less": "^4.0.0",
+          "sass": "^1.70.0",
+          "sass-embedded": "^1.70.0",
+          "stylus": ">=0.54.8",
+          "sugarss": "^5.0.0",
+          "terser": "^5.16.0",
+          "tsx": "^4.8.1",
+          "yaml": "^2.4.2"
+        },
+        "peerDependenciesMeta": {
+          "@types/node": {
+            "optional": true
+          },
+          "@vitejs/devtools": {
+            "optional": true
+          },
+          "esbuild": {
+            "optional": true
+          },
+          "jiti": {
+            "optional": true
+          },
+          "less": {
+            "optional": true
+          },
+          "sass": {
+            "optional": true
+          },
+          "sass-embedded": {
+            "optional": true
+          },
+          "stylus": {
+            "optional": true
+          },
+          "sugarss": {
+            "optional": true
+          },
+          "terser": {
+            "optional": true
+          },
+          "tsx": {
+            "optional": true
+          },
+          "yaml": {
+            "optional": true
+          }
+        }
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@oxc-project/types@0.137.0",
+      "before": {},
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-android-arm64@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-darwin-arm64@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-darwin-x64@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-freebsd-x64@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-arm-gnueabihf@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-arm64-gnu@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-arm64-musl@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-ppc64-gnu@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-s390x-gnu@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-x64-gnu@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-x64-musl@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-openharmony-arm64@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-wasm32-wasi@1.1.3",
+      "before": {
+        "dependencies": {
+          "@emnapi/core": "1.11.1",
+          "@emnapi/runtime": "1.11.1",
+          "@napi-rs/wasm-runtime": "1.1.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)"
+        },
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-win32-arm64-msvc@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-win32-x64-msvc@1.1.3",
+      "before": {
+        "optional": true
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@vitest/mocker@4.1.9(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0))",
+      "before": {
+        "dependencies": {
+          "@vitest/spy": "4.1.9",
+          "estree-walker": "3.0.3",
+          "magic-string": "0.30.21"
+        },
+        "optionalDependencies": {
+          "vite": "8.1.0(@types/node@20.19.43)(jiti@2.7.0)"
+        }
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "rolldown@1.1.3",
+      "before": {
+        "dependencies": {
+          "@oxc-project/types": "0.137.0",
+          "@rolldown/pluginutils": "1.0.1"
+        },
+        "optionalDependencies": {
+          "@rolldown/binding-android-arm64": "1.1.3",
+          "@rolldown/binding-darwin-arm64": "1.1.3",
+          "@rolldown/binding-darwin-x64": "1.1.3",
+          "@rolldown/binding-freebsd-x64": "1.1.3",
+          "@rolldown/binding-linux-arm-gnueabihf": "1.1.3",
+          "@rolldown/binding-linux-arm64-gnu": "1.1.3",
+          "@rolldown/binding-linux-arm64-musl": "1.1.3",
+          "@rolldown/binding-linux-ppc64-gnu": "1.1.3",
+          "@rolldown/binding-linux-s390x-gnu": "1.1.3",
+          "@rolldown/binding-linux-x64-gnu": "1.1.3",
+          "@rolldown/binding-linux-x64-musl": "1.1.3",
+          "@rolldown/binding-openharmony-arm64": "1.1.3",
+          "@rolldown/binding-wasm32-wasi": "1.1.3",
+          "@rolldown/binding-win32-arm64-msvc": "1.1.3",
+          "@rolldown/binding-win32-x64-msvc": "1.1.3"
+        }
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0)",
+      "before": {
+        "dependencies": {
+          "lightningcss": "1.32.0",
+          "picomatch": "4.0.4",
+          "postcss": "8.5.23",
+          "rolldown": "1.1.3",
+          "tinyglobby": "0.2.17"
+        },
+        "optionalDependencies": {
+          "@types/node": "20.19.43",
+          "fsevents": "2.3.3",
+          "jiti": "2.7.0"
+        }
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "vitest@4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0))",
+      "before": {
+        "dependencies": {
+          "@vitest/expect": "4.1.9",
+          "@vitest/mocker": "4.1.9(vite@8.1.0(@types/node@20.19.43)(jiti@2.7.0))",
+          "@vitest/pretty-format": "4.1.9",
+          "@vitest/runner": "4.1.9",
+          "@vitest/snapshot": "4.1.9",
+          "@vitest/spy": "4.1.9",
+          "@vitest/utils": "4.1.9",
+          "es-module-lexer": "2.1.0",
+          "expect-type": "1.3.0",
+          "magic-string": "0.30.21",
+          "obug": "2.1.3",
+          "pathe": "2.0.3",
+          "picomatch": "4.0.4",
+          "std-env": "4.1.0",
+          "tinybench": "2.9.0",
+          "tinyexec": "1.2.4",
+          "tinyglobby": "0.2.17",
+          "tinyrainbow": "3.1.0",
+          "vite": "8.1.0(@types/node@20.19.43)(jiti@2.7.0)",
+          "why-is-node-running": "2.3.0"
+        },
+        "optionalDependencies": {
+          "@types/node": "20.19.43"
+        },
+        "transitivePeerDependencies": [
+          "msw"
+        ]
+      },
+      "after": null
+    },
+    {
+      "section": "snapshots",
+      "key": "@oxc-project/types@0.139.0",
+      "before": null,
+      "after": {}
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-android-arm64@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-darwin-arm64@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-darwin-x64@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-freebsd-x64@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-arm-gnueabihf@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-arm64-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-arm64-musl@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-ppc64-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-s390x-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-x64-gnu@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-linux-x64-musl@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-openharmony-arm64@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-wasm32-wasi@1.1.5",
+      "before": null,
+      "after": {
+        "dependencies": {
+          "@emnapi/core": "1.11.1",
+          "@emnapi/runtime": "1.11.1",
+          "@napi-rs/wasm-runtime": "1.1.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)"
+        },
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-win32-arm64-msvc@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@rolldown/binding-win32-x64-msvc@1.1.5",
+      "before": null,
+      "after": {
+        "optional": true
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "@vitest/mocker@4.1.9(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0))",
+      "before": null,
+      "after": {
+        "dependencies": {
+          "@vitest/spy": "4.1.9",
+          "estree-walker": "3.0.3",
+          "magic-string": "0.30.21"
+        },
+        "optionalDependencies": {
+          "vite": "8.1.6(@types/node@20.19.43)(jiti@2.7.0)"
+        }
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "picomatch@4.0.7",
+      "before": null,
+      "after": {}
+    },
+    {
+      "section": "snapshots",
+      "key": "rolldown@1.1.5",
+      "before": null,
+      "after": {
+        "dependencies": {
+          "@oxc-project/types": "0.139.0",
+          "@rolldown/pluginutils": "1.0.1"
+        },
+        "optionalDependencies": {
+          "@rolldown/binding-android-arm64": "1.1.5",
+          "@rolldown/binding-darwin-arm64": "1.1.5",
+          "@rolldown/binding-darwin-x64": "1.1.5",
+          "@rolldown/binding-freebsd-x64": "1.1.5",
+          "@rolldown/binding-linux-arm-gnueabihf": "1.1.5",
+          "@rolldown/binding-linux-arm64-gnu": "1.1.5",
+          "@rolldown/binding-linux-arm64-musl": "1.1.5",
+          "@rolldown/binding-linux-ppc64-gnu": "1.1.5",
+          "@rolldown/binding-linux-s390x-gnu": "1.1.5",
+          "@rolldown/binding-linux-x64-gnu": "1.1.5",
+          "@rolldown/binding-linux-x64-musl": "1.1.5",
+          "@rolldown/binding-openharmony-arm64": "1.1.5",
+          "@rolldown/binding-wasm32-wasi": "1.1.5",
+          "@rolldown/binding-win32-arm64-msvc": "1.1.5",
+          "@rolldown/binding-win32-x64-msvc": "1.1.5"
+        }
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0)",
+      "before": null,
+      "after": {
+        "dependencies": {
+          "lightningcss": "1.32.0",
+          "picomatch": "4.0.7",
+          "postcss": "8.5.23",
+          "rolldown": "1.1.5",
+          "tinyglobby": "0.2.17"
+        },
+        "optionalDependencies": {
+          "@types/node": "20.19.43",
+          "fsevents": "2.3.3",
+          "jiti": "2.7.0"
+        }
+      }
+    },
+    {
+      "section": "snapshots",
+      "key": "vitest@4.1.9(@types/node@20.19.43)(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0))",
+      "before": null,
+      "after": {
+        "dependencies": {
+          "@vitest/expect": "4.1.9",
+          "@vitest/mocker": "4.1.9(vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0))",
+          "@vitest/pretty-format": "4.1.9",
+          "@vitest/runner": "4.1.9",
+          "@vitest/snapshot": "4.1.9",
+          "@vitest/spy": "4.1.9",
+          "@vitest/utils": "4.1.9",
+          "es-module-lexer": "2.1.0",
+          "expect-type": "1.3.0",
+          "magic-string": "0.30.21",
+          "obug": "2.1.3",
+          "pathe": "2.0.3",
+          "picomatch": "4.0.4",
+          "std-env": "4.1.0",
+          "tinybench": "2.9.0",
+          "tinyexec": "1.2.4",
+          "tinyglobby": "0.2.17",
+          "tinyrainbow": "3.1.0",
+          "vite": "8.1.6(@types/node@20.19.43)(jiti@2.7.0)",
+          "why-is-node-running": "2.3.0"
+        },
+        "optionalDependencies": {
+          "@types/node": "20.19.43"
+        },
+        "transitivePeerDependencies": [
+          "msw"
+        ]
+      }
+    }
+  ],
+  "no_unrelated_semantic_nodes": true,
+  "required_actual_vite_snapshot": {
+    "key": "vite@8.1.6(@types/node@20.19.43)(jiti@2.7.0)",
+    "value": {
+      "dependencies": {
+        "lightningcss": "1.32.0",
+        "picomatch": "4.0.7",
+        "postcss": "8.5.23",
+        "rolldown": "1.1.5",
+        "tinyglobby": "0.2.17"
+      },
+      "optionalDependencies": {
+        "@types/node": "20.19.43",
+        "fsevents": "2.3.3",
+        "jiti": "2.7.0"
+      }
+    }
+  },
+  "required_rolldown_snapshot": {
+    "dependencies": {
+      "@oxc-project/types": "0.139.0",
+      "@rolldown/pluginutils": "1.0.1"
+    },
+    "optionalDependencies": {
+      "@rolldown/binding-android-arm64": "1.1.5",
+      "@rolldown/binding-darwin-arm64": "1.1.5",
+      "@rolldown/binding-darwin-x64": "1.1.5",
+      "@rolldown/binding-freebsd-x64": "1.1.5",
+      "@rolldown/binding-linux-arm-gnueabihf": "1.1.5",
+      "@rolldown/binding-linux-arm64-gnu": "1.1.5",
+      "@rolldown/binding-linux-arm64-musl": "1.1.5",
+      "@rolldown/binding-linux-ppc64-gnu": "1.1.5",
+      "@rolldown/binding-linux-s390x-gnu": "1.1.5",
+      "@rolldown/binding-linux-x64-gnu": "1.1.5",
+      "@rolldown/binding-linux-x64-musl": "1.1.5",
+      "@rolldown/binding-openharmony-arm64": "1.1.5",
+      "@rolldown/binding-wasm32-wasi": "1.1.5",
+      "@rolldown/binding-win32-arm64-msvc": "1.1.5",
+      "@rolldown/binding-win32-x64-msvc": "1.1.5"
+    }
+  },
+  "all15_platform_bindings": [
+    "@rolldown/binding-android-arm64@1.1.5",
+    "@rolldown/binding-darwin-arm64@1.1.5",
+    "@rolldown/binding-darwin-x64@1.1.5",
+    "@rolldown/binding-freebsd-x64@1.1.5",
+    "@rolldown/binding-linux-arm-gnueabihf@1.1.5",
+    "@rolldown/binding-linux-arm64-gnu@1.1.5",
+    "@rolldown/binding-linux-arm64-musl@1.1.5",
+    "@rolldown/binding-linux-ppc64-gnu@1.1.5",
+    "@rolldown/binding-linux-s390x-gnu@1.1.5",
+    "@rolldown/binding-linux-x64-gnu@1.1.5",
+    "@rolldown/binding-linux-x64-musl@1.1.5",
+    "@rolldown/binding-openharmony-arm64@1.1.5",
+    "@rolldown/binding-wasm32-wasi@1.1.5",
+    "@rolldown/binding-win32-arm64-msvc@1.1.5",
+    "@rolldown/binding-win32-x64-msvc@1.1.5"
+  ],
+  "registry_integrities_from_actual_pnpm_lock": {
+    "@oxc-project/types@0.139.0": "sha512-r9gHphtCs+1M7J0pw6Sn/hh/Wpa/iQrOOkrNAlVLF/gHq+/CJmHIWKKUUhdWjcD6CIa8idarspCsASiXCXvFUw==",
+    "@rolldown/binding-android-arm64@1.1.5": "sha512-lZg8fqIv2v7FF237bwMgzGZEJvGL79/s5knJ/i6FmsGF4XXlzccZ4jb+TrFIxtSSxFtIpdsgrPZeMk1I9AFcyQ==",
+    "@rolldown/binding-darwin-arm64@1.1.5": "sha512-51Bnx9pNiMRKSUNtBfySkNJ9vMU9Hh3I1ozDd6gyPPYzaXCfnptUcEZxXGYFn+ul2dtcMUiqGR1Yai2K10uoTw==",
+    "@rolldown/binding-darwin-x64@1.1.5": "sha512-Tm+gbfC0aHu1tBA/JvKQh32S0K6YgCHkiAF4/W6xX0K0RmNuc94VeK419dJoE65R5aRxmo+noZQSWrAMF6yb6g==",
+    "@rolldown/binding-freebsd-x64@1.1.5": "sha512-JMzDKCCXq93YccG5gz3hvOs1oXRKAf0XYpfOS88e+wZrC8Iugj6j68867vrYZkvpDDpKn/KoKORThmchMpF6TA==",
+    "@rolldown/binding-linux-arm-gnueabihf@1.1.5": "sha512-uML21j2K5TfPGutKxub+M+nLjZIrWjXQ5Grx4lCe/nimTj9B4L63zHpjXLl4y0L3mcm2htEQIb06oCG/szerNw==",
+    "@rolldown/binding-linux-arm64-gnu@1.1.5": "sha512-navSiuTMogvnQoZoM/v+l3ZWo50/NTwSHSzheABx/RCnmUPaKwq9qSo4Br2OYRs21+Fz8uFqITZM3H4opOB0/Q==",
+    "@rolldown/binding-linux-arm64-musl@1.1.5": "sha512-lAryqH7IteztmCXQXk0etKj4wBQ7Gx5S6LjKhsgp9zb8I5bsuvU/2llH1hDQcjsFeqIsovMVN339/8pUDDBXxA==",
+    "@rolldown/binding-linux-ppc64-gnu@1.1.5": "sha512-fsK/sNBnxzBlL4O1JNrZakVQxPspqpED5dLtNsZS9oOKmtSpdNIzxH2kkol5HYTWJN47sE20ztMJPxfZ89qGOg==",
+    "@rolldown/binding-linux-s390x-gnu@1.1.5": "sha512-gLYb4BIadlfTOYT5gO503n8zQjXflgzpD0FcyKh0Mzx3rqCZKnHoJWV9xe1KXUJ5lx2JfcSHr/mhzS0PC/McAA==",
+    "@rolldown/binding-linux-x64-gnu@1.1.5": "sha512-FjcpEKUyJygHgs1o50VYNvkt5+7Le/VEdYt0AkRpkL33MnyQfwr8l5mXwMmfmTbyMPr5vJLC+8/Gd9gXnwU1QQ==",
+    "@rolldown/binding-linux-x64-musl@1.1.5": "sha512-Me+PfPI2TMeOQk0gYWfLQZtTktrmzbr8cDboqX83XKc7UrgAi55gF+2dUkWdxd19n55Essp2yeca+O9N5rBxHg==",
+    "@rolldown/binding-openharmony-arm64@1.1.5": "sha512-yc5WrLzXks6zCQfn9Oxr8pORKyl/pF+QjHmW/Qx3qu0oyrrNC+y2JLTU1E2rcWYAmzlnqngWXHQjy51VzW70Vw==",
+    "@rolldown/binding-wasm32-wasi@1.1.5": "sha512-VbQGPX2b4r48TAMIM2cjgluIM1HYutm4pcTEJsle7iEP7sB1dFqtPLBVbdLAZCxy1txCcPxf4QFf4v8uvltPqA==",
+    "@rolldown/binding-win32-arm64-msvc@1.1.5": "sha512-gHv82k63z4qpV5+Q1y/12KrK0ltWBukVDI8nZcbT7Tt/ZlOIVwppazneq0F93oDxTo3IgAMEDIoQh3E2n6mVsw==",
+    "@rolldown/binding-win32-x64-msvc@1.1.5": "sha512-tTZuDBPw85tEN5PQi1pnEBzDy0Z49HtScLAbD5t6hyeU92A95pRWaSMw1GZZi/RwgSgUIl0xrSlXIT/9QzvYSA==",
+    "picomatch@4.0.7": "sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==",
+    "rolldown@1.1.5": "sha512-t9z29cJjXf/vxQ8dyhCSpt6H6aSwHTk8cT5I3iy6SMXuFpk5mB6PL6XfC8PCwrPTx93udwKUm9HRteAlTGBLiA==",
+    "vite@8.1.6": "sha512-aRAHIxx5SW5zc1sMqFwJU/t5qaFfXb5Hj0J7W0VXihu/X99+346tz6080tO1T1xVIJORX/b3zVTXGFqUXh35uw=="
+  },
+  "installed": {
+    "vite": {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\.pnpm\\vite@8.1.6_@types+node@20.19.43_jiti@2.7.0\\node_modules\\vite\\package.json",
+      "bytes": 5084,
+      "sha256": "a9a79d7a1bd9a20ca0dbfb596b6f5218992ea4ce223ad96e7c52eb4f5ebeded2",
+      "version": "8.1.6",
+      "engine": "^20.19.0 || >=22.12.0",
+      "root": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\.pnpm\\vite@8.1.6_@types+node@20.19.43_jiti@2.7.0\\node_modules\\vite\\"
+    },
+    "vitest": {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\.pnpm\\vitest@4.1.9_@types+node@20_705083ccb909461fa54bf1db68cdbdfe\\node_modules\\vitest\\package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9",
+      "version": "4.1.9",
+      "vite_range": "^6.0.0 || ^7.0.0 || ^8.0.0",
+      "resolved_vite_package": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\.pnpm\\vite@8.1.6_@types+node@20.19.43_jiti@2.7.0\\node_modules\\vite\\package.json",
+      "resolved_vite_version": "8.1.6"
+    },
+    "rolldown_package": {
+      "path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\node_modules\\.pnpm\\rolldown@1.1.5\\node_modules\\rolldown\\package.json",
+      "bytes": 5741,
+      "sha256": "01de4c2d7ebcc0f36c92f41e4ecab383ae7f5dd2e26f8f4b640fc58ca9c8f8e7"
+    },
+    "editor_bundle": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/node_modules/.pnpm/vite@8.1.6_@types+node@20.19.43_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js",
+      "bytes": 1325493,
+      "sha256": "9d9d6a26374aa5495b099ba77c234c8131b477aaeaafed8e1f3c9ed6fd10d4fc",
+      "regions": [
+        {
+          "line": 10951,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/editor-info/macos.js"
+        },
+        {
+          "line": 10986,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/editor-info/linux.js"
+        },
+        {
+          "line": 11020,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/editor-info/windows.js"
+        },
+        {
+          "line": 11053,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/guess.js"
+        },
+        {
+          "line": 11128,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/get-args.js"
+        },
+        {
+          "line": 11211,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/construct-windows-launch-command.js"
+        },
+        {
+          "line": 11229,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/parse-file.js"
+        },
+        {
+          "line": 11246,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor@2.14.2/node_modules/launch-editor/index.js"
+        },
+        {
+          "line": 11328,
+          "origin": "//#region ../../node_modules/.pnpm/launch-editor-middleware@2.14.2/node_modules/launch-editor-middleware/index.js"
+        }
+      ],
+      "included_lines": [
+        11229,
+        11327
+      ],
+      "included_lf_sha256": "db51a8d9e2ce6f8767541d24cfd76bb17f2e0075426ac7112baccad44919285b"
+    }
+  },
+  "caveat": "Installed peer topology changes Vitest virtual store path; old frozen installed-source paths remain historical. No project exploitability/newnative acceptance inferred. Package tarball integrity is actual admitted registry/pnpm resolution, not a guessed value."
+}
+
+BOUND METADATA/PRIMARY SOURCE PROPOSAL _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/local-checks.json:
+{
+  "kind": "actual-postmaterialization-check-results",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "baseline": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "commands": [
+    {
+      "command": "pnpm install --lockfile-only --ignore-scripts",
+      "exit_code": 0,
+      "pnpm": "10.24.0",
+      "receipt": "cc0a53"
+    },
+    {
+      "command": "manifest equality except Vite pin / actual required lock semantic closure",
+      "exit_code": 0,
+      "receipts": [
+        "f7980e",
+        "1640b1"
+      ],
+      "current_semantic_metadata": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/dependency-graph.json",
+        "bytes": 41018,
+        "sha256": "77f462af3f72a4a9cc313a144e98dce96323eb86a36ed68e04db52aa92c2faad"
+      }
+    },
+    {
+      "command": "pnpm install --frozen-lockfile --ignore-scripts",
+      "exit_code": 0,
+      "receipt": "237c21",
+      "limit": "Frozen local materialization with scripts disabled; normal clean-CI install policy remains required."
+    },
+    {
+      "command": "pnpm audit --audit-level=high",
+      "exit_code": 0,
+      "high": 0,
+      "moderate": 2,
+      "receipt": "63eb97",
+      "ignore_or_threshold_change": false,
+      "retry": false
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipts": [
+        "d1aaf4",
+        "72f57e"
+      ]
+    },
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=tap tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 67,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipts": [
+        "c1c99f",
+        "a0dca1",
+        "03da0e"
+      ],
+      "output": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/dependency-repair-unit.tap",
+        "bytes": 19017,
+        "sha256": "75bbc60288675545f7773a9cd0b0f1f42bf9befd4223e2f1de51656157f584fe"
+      },
+      "native_credit": 0
+    },
+    {
+      "command": "pnpm run verify:lockfiles",
+      "exit_code": 0,
+      "receipt": "02a938"
+    },
+    {
+      "command": "pnpm run build",
+      "exit_code": 0,
+      "receipts": [
+        "7f622b",
+        "10a7a5",
+        "bb86af"
+      ],
+      "mode": "Next16.3.8 production build, no web server"
+    },
+    {
+      "command": "pnpm run verify:bundle-containment",
+      "exit_code": 0,
+      "receipt": "ac63fc"
+    },
+    {
+      "command": "pnpm run lint",
+      "status": "INCOMPLETE_TERMINATED_NOT_PASS",
+      "exit_code": 1,
+      "captured_session": 73611,
+      "receipts": [
+        "767210",
+        "f7916f",
+        "bf3009",
+        "b5186f",
+        "47d063"
+      ],
+      "reason": "Canonical local scan traversed ignored retained historical Playwright report assets. Stopped ONLY captured own command viaCtrl-C. No source/config/ignore/evidence deletion; clean-checkout CI canonical lint still mandatory."
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/integration/rls/calendar-feed.rls.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "e8dae0",
+      "limit": "Focused existing source only; not a substitute PASS for canonical lint."
+    },
+    {
+      "command": "intent kernel / single SRO literal check",
+      "kernel_bytes": 5760,
+      "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "sections": 1,
+      "stops": 61,
+      "receipts": [
+        "55ff68",
+        "fed98c"
+      ]
+    },
+    {
+      "command": "native diffcheck/staged diffcheck/exact3 staged paths/append-only commit/source index clean",
+      "exit_code": 0,
+      "receipts": [
+        "236ab0",
+        "9caa0f",
+        "8aad7c",
+        "b1be58",
+        "1f339e"
+      ]
+    }
+  ],
+  "initial_failures": "No dependency resolution/frozen installation/type/unit/build/containment/focused-lint failure. Full canonical lint was terminated and remains incomplete, not passed. Two moderate advisories remain; their identities are not inferred from high-threshold summary.",
+  "dependency_reuse": "No source/Spec changes after commit.67existing controls retained; no new version-mirror tests. Current dependencies invalidate old whole-installed-byte runtime evidence; prior native43DB/14browser failures remain unresolved. No local services, Vitest collection/globalSetup, nativeDB/browser, CI rerun or blind retry.",
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "native_credit": 0
+}
+
+BOUND METADATA/PRIMARY SOURCE PROPOSAL _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/author-route.json:
+{
+  "kind": "author-postimplementation-route-binding",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "baseline": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "implementation_route_recorded_before_handoff": "build-native-dependency-audit-repair/build-author-bounded-vite-security-patch",
+  "review_route_recorded_before_dispatch": "review-native-dependency-latest-three/independent-context-free-vite-security-lock-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "exact_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-dependency-audit-repair-allocation.json",
+    "bytes": 5420,
+    "sha256": "61ce9199157fe35aaa2ce50e6c6bc67be221a3ebd8975fccc56b8f2f39d0f581"
+  },
+  "authored_after_implementation": true,
+  "does_not_claim_preedit_artifact_bytes": true,
+  "cap": 3,
+  "completed_broad_rounds": 3,
+  "latest_serious_fix_only": true,
+  "fourth_broad_review": false,
+  "scope": "Exact direct Vite8.1.0->8.1.6 pin and mechanically required closure only plus authorSpectrail. All scripts/auditthreshold/workspace/override/patch/otherdeclarations unchanged; no application/schema/data/authority/provider/resource effect. FreshnativeCI mandatory; highaudit success is not oldfeaturefailure remediation."
+}
+
+BOUND METADATA/PRIMARY SOURCE PROPOSAL _bmad-output/auto-bmad/preparation/story-15-5/accepted-native-dependency-audit-repair-allocation.json:
+{
+  "kind": "accepted-bounded-shared-dependency-security-repair-allocation",
+  "status": "GRANTED_BY_ACTUAL_COORDINATOR_NATIVE_HANDOFF_AND_ROOT_BASELINE_VERIFIED",
+  "base_head": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "candidate_proposal_sha256": "c412bef2926e43d0e9e62816d9cb11a7a286a8e3671ea1f63be6864fcb42c472",
+  "proposal_manifest_sha256": "5d9c8b5f72e3f77c3067d407fa0656c10fd80bfb60fef33ce9092d7efd908192",
+  "coordinator": {
+    "thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "actual_completed_turn": "01a15b55-2fa3-7dd2-b3b0-85188b7628d0",
+    "actual_completed_native_handoff": "exec-1aadaa95-afc1-4ed9-a71d-fed1143a1ad9",
+    "candidate_base_scope_verified_from_actual_arguments": true
+  },
+  "reconciled_owners": {
+    "E16": {
+      "thread": "01a13ebb-0847-7452-a25b-a878067e8516",
+      "protected_head": "7b220c5e8fe71a81c00ded9e654e8c5c96c2b878",
+      "actual_reply_item": "msg_00547986a7b40b0c016ad7e41f4fb881918510d3cd00d514af",
+      "claims": "Package/lock no pending edits or changes since passing CI;16.5 script-only; no dependency update planned. No vulnerability conclusion about E16 inferred."
+    },
+    "Documents": {
+      "thread": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "actual_terminal_turn": "01a13465-d9cb-71f1-9020-8d8b3d7224d5",
+      "handoff_head": "1fb9a3a",
+      "status": "20.3 ready for integration terminal; retained E20finalizedPR97-99 claims reconciled by coordinator, no active followup/paused session resumed"
+    },
+    "prior_exclusive_dependency": {
+      "thread": "01a11aeb-9946-7af3-b2ee-865c34db6c24",
+      "actual_terminal_turn": "01a11b28-2322-7692-8c6d-ad0d23013d50",
+      "status": "Maintenance lane complete;PR89 merged23c48b34c8a6c9158eeaf0edfca74e628d575cbc; no further development"
+    }
+  },
+  "failed_inventory_absence_evidence": "WITHDRAWN_UNAVAILABLE; actual completed claims/owner responses used, not failed200/100 inventory or idle alone",
+  "allowed_write_paths": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "verified_prewrite_bindings": [
+    {
+      "path": "package.json",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 2352,
+      "raw_sha256": "51854ce2f0bdbbeb97fcc0b471bc2001cea047811a99830ed219fc497c3fda2f",
+      "actual_native_git_clean_oid": "598270905d8c52582bc2256fd9f103e03913942d",
+      "checkpoint_blob_oid": "598270905d8c52582bc2256fd9f103e03913942d",
+      "checkpoint_blob_bytes": 2299,
+      "checkpoint_blob_sha256": "832ce6962f5552b0eb1f68c8bc44b9f4b757ddfce7e7b1dc99ca05b31260d468",
+      "already_in_current68_source_union": true,
+      "protected37_consumer": false
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 166878,
+      "raw_sha256": "532abe9d606d49daa060b41ebc91bc44b359291059b8832bed98233b65299ee2",
+      "actual_native_git_clean_oid": "74ec6fee4c984ecab29cf0b6cada7852e6db2bd9",
+      "checkpoint_blob_oid": "74ec6fee4c984ecab29cf0b6cada7852e6db2bd9",
+      "checkpoint_blob_bytes": 161963,
+      "checkpoint_blob_sha256": "4335f56b85f868b1ad7e84ec7fe4c820214195068e577dd91fff0cf6c3d47b84",
+      "already_in_current68_source_union": false,
+      "protected37_consumer": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "role": "PROPOSED_FUTURE_WRITE_NOT_ALLOCATED",
+      "raw_bytes": 108024,
+      "raw_sha256": "2eafca41b10338575a2dad114a333d999564254829b2e3bffbee96003dc6c065",
+      "actual_native_git_clean_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "checkpoint_blob_oid": "571dc0bbb2ff3dfb71fdfa19aa13e5ef02b2531b",
+      "checkpoint_blob_bytes": 106886,
+      "checkpoint_blob_sha256": "50838c6116e14f5909b2580e10b4a10423b18f1b6b4766b211e1c0dfee79576d",
+      "already_in_current68_source_union": true,
+      "protected37_consumer": false
+    }
+  ],
+  "package_scope": "ONLY devDependencies.vite exact8.1.0 to8.1.6. Preserve all scripts/other declarations.",
+  "lock_scope": "ONLY mechanically required Vite peer-key/integrity/transitive closure; admitted pnpm resolution authoritative. Candidate picomatch>=4.0.5/rolldown~1.1.5/matching platform bindings; unrelated churn STOP/reconcile. New69th authored source-union path explicit.",
+  "spec_scope": "Author trail and Suggested Review Order only; approved5760B kernel0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977 unchanged, in-review until qualified completion.",
+  "permitted_bounded_work": "High author exact3 source edits in own checkout; lock-only ignore-scripts resolution then frozen materialization; lock/audit/type/lint/67controls/build; append-only source commit excluding Root state/prep.",
+  "required_followup": "Fresh DISTINCT context-free Sol6.1 High exact committed latest3 delta review; tenth failed packet remains immutable; new capsule/root admission/checkpointpush/ONE exact-head nativeCI; no fourth broad review.",
+  "prohibited": "No overrides/audit-threshold/workspace/toolchain/scripts/CI/schema/app/data/authority/provider/secrets/foreign-checkout changes; no deployment/mainmerge/monitorresume/managedresources by this bounded allocation.",
+  "development_complete": false,
+  "release_ready": false
+}
+
+BOUND METADATA/PRIMARY SOURCE PROPOSAL _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/primary-sources.json:
+{
+  "kind": "current-primary-source-links-and-bounded-observations",
+  "checked_date": "2026-10-20",
+  "source_bytes_not_claimed_captured": true,
+  "sources": [
+    {
+      "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
+      "observed": "Current reviewed advisory, updated2026-10-20, high/CVE-2026-112942. AffectedVite8.0.0–8.1.5; patched8.1.6. launch-editor<=2.14.1 patched2.14.2. Windows path-normalization existence bypass can combine with prior escaping issue. No project exploitability/exploitation inferred.",
+      "browse_receipt": "turn168view0"
+    },
+    {
+      "url": "https://github.com/vitejs/vite/releases/tag/v8.1.6",
+      "observed": "Official immutable8.1.6 release dated2026-10-06; signed tag dade886 abbreviated source identity.",
+      "browse_receipt": "turn169view0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/vitejs/vite/v8.1.6/packages/vite/CHANGELOG.md",
+      "observed": "8.1.6 entry dates2026-10-06 and explicitly updates launch-editor2.14.2 viae46fc9c77edc7703570e96bd84cd2c7e76f06ae3; also HTML/server fixes. Intervening8.1 patches contain transform/SSR/module-runner/dependency changes; patch compatibility still requires native gates.",
+      "browse_receipt": "turn170view0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/vitejs/vite/v8.1.6/packages/vite/package.json",
+      "observed": "Official tag package version8.1.6; Nodeengine unchanged; selected runtime dependency lower bounds and editor bundling requirement recorded in graph artifact.",
+      "browse_receipt": "turn169view1"
+    },
+    {
+      "url": "https://github.com/vitejs/vite/commit/e46fc9c77edc7703570e96bd84cd2c7e76f06ae3",
+      "observed": "Vite upstream change raises bundled editor-middleware requirement2.14.1→2.14.2.",
+      "browse_receipt": "turn171view1"
+    },
+    {
+      "url": "https://github.com/vitejs/launch-editor/releases/tag/v2.14.2",
+      "observed": "Official2.14.2 tag dated2026-10-06, abbreviated source b533489.",
+      "browse_receipt": "turn169view2"
+    },
+    {
+      "url": "https://github.com/vitejs/launch-editor/commit/f13cd83",
+      "observed": "Official fix resolves path before existence checking; upstream regression covers a parent component created by a position suffix. No exploit or editor process executed locally.",
+      "browse_receipt": "turn170view1"
+    },
+    {
+      "url": "https://pnpm.io/10.x/cli/install#--lockfile-only",
+      "observed": "lockfile-only updates manifest/lock without node_modules; frozen-lockfile refuses drift. ignore-scripts is separately documented. Future proposed commands only, none executed.",
+      "browse_receipt": "turn172view1"
+    }
+  ],
+  "unavailable_web_fetches": [
+    "registry.npmjs.org/vite/8.1.6 via web unavailable; bounded pnpm view metadata succeeded instead",
+    "vitejs/vite/security advisory URL with sameGHSA returned404; canonical GitHub advisory and official release/fix used"
+  ]
+}
+
+BOUND METADATA/PRIMARY SOURCE PROPOSAL _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/proposal.md:
+# Minimal dependency audit remediation proposal
+
+Status: planning only; no package/lock/source/Spec allocation or install/update.
+Root route: plan-native-dependency-audit-repair / security-dependency-bounded-remediation-planner / gpt-6.1-sol High.
+Frozen checkpoint: be2c1a535dff0e58b1579fe3db5890c7819916ab; author source: 380c3e720d5caaa1dc2181d70737b9320337f451.
+
+## Recommended candidate and evidence
+
+Pin the existing direct development dependency Vite8.1.0 to exact8.1.6, then regenerate only its required lock graph using the existing pnpm10.24.0. This is the minimum patched release on the current8.1 branch in the [current reviewed advisory](https://github.com/advisories/GHSA-587h-7wmj-h5pm). The [official8.1.6 changelog](https://raw.githubusercontent.com/vitejs/vite/v8.1.6/packages/vite/CHANGELOG.md) explicitly carries launch-editor2.14.2; the current installed Vite bundle contains2.14.1. No separately resolved launch-editor appears in pnpm why. The supported fix must replace the bundle, so a standalone launch-editor override is insufficient.
+
+The advisory applies to a Windows editor-launch path, and this workspace runs on Windows. This establishes an affected tool version, not that the application's production Next server exposes that path or that any exploitation occurred. The Linux CI audit still correctly blocks its high-severity dependency inventory. Do not waive it based on deployment platform.
+
+The candidate keeps Vite's Nodeengine and satisfies installed Vitest4.1.9's Vite range. Published registry metadata and official tagged source agree on8.1.6. This is a compatibility inference, not a successful install/runtime claim. Its runtime requirements raise picomatch4.0.4→at least4.0.5 and rolldown1.1.3→a1.1.5-compatible patch, including coupled platform bindings. Current overridden postcss8.5.23 already satisfies the candidate's lower bound. Actual transitive versions/integrities must come from the admitted pnpm resolution, not this proposal.
+
+## Exact proposed write scope
+
+1. package.json: only devDependencies.vite exact8.1.0→8.1.6. Keep every script, dependency category, other version, packageManager and engines byte/semantic value unchanged.
+2. pnpm-lock.yaml: importer vite specifier/resolution and Vitest/mocker Vite peer snapshot keys; Vite package resolution/integrity; Vite snapshot and only necessary transitive picomatch/rolldown/platform-binding packages/snapshots. Preserve lockfileVersion9/settings, all existing overrides and patchedDependencies, unrelated package versions and platform entries. Do not hand-invent integrity hashes. Generated unrelated version churn or another required file is a stop for narrow review/ownership reconciliation.
+3. Author Spec: post-kernel evidence/Suggested Review Order only, before source commit; retain in-review and unchanged5760-byte approved kernel. Record dependency/runtime evidence invalidation, exact graph changes, current failure and pending gates. No assertion or feature code changes.
+
+pnpm-workspace.yaml, workflows, configs, test source, production source, .nvmrc, patches, audit threshold and scripts are read-only preserve-unchanged context. package.json is already in current68; pnpm-lock.yaml is a new source-union path, so the exact proposed union would be69. Neither package nor lock is in protected37; no protected109/37 exception is proposed. Existing historical capsules and their old dependency bindings remain immutable. Current shared package/lock and Documents/E16 claims must be reconciled by Root/Coordinator before any writes; clean files or landed stories are not an ownership grant.
+
+## Alternatives and effects
+
+Do not choose a major/minor Vite jump, a Vitest/Next/React upgrade, a launch-editor override, audit ignore/threshold change, or broad dependency refresh. Other patched lines6.4.4/7.3.7/8.2.4/8.3.3 add unnecessary version movement here. The proposal requires no application/schema/data migration, privileges, providers, secrets, resource or workflow effect. Tooling resolution and Vitest transformed execution can change, including intermediate8.1 patch SSR/module-runner fixes, so old native evidence cannot establish current runtime compatibility. The four moderate findings are observed but not identified by the bounded native packet; do not invent their identities or promise they disappear. Preserve the high threshold; newly reported high/critical findings require explicit triage rather than suppression.
+
+## Implementation and validation plan, only after admission
+
+Author changes the one package key, then uses existing pnpm10.24.0 to generate lock metadata with pnpm install --lockfile-only --ignore-scripts. This is a proposed future dependency mutation, not executed here. Review semantic lock graph against the current bound baseline; require one patched Vite resolution for root/Vitest/mocker and no residual affected Vite8.1.0. Preserve all unrelated manifest/script/override/patch values. Validate registry integrity of the patched Vite artifact and installed bundled editor fix after installation. Never edit node_modules to fake the repair.
+
+After Root admits dependency materialization, perform reproducible frozen-lockfile installation using the normal approved script policy, verify:lockfiles, and unchanged pnpm audit --audit-level=high (no ignore/retry-until-green). Run typecheck, lint, existing bounded Node controls including installed reporter/partition contracts, and production build/bundle checks. Do not launch local Vitest collection/globalSetup/DB/browser resources. The actual installed dependency graph must be rebound for review; hardcoded historical node_modules contexts in old prep are not rewritten or reused as new-byte proof.
+
+Append-only exact three-file source commit with mandatory body and native/staged diff checks, then fresh distinct context-free High review of the exact dependency/lock/trail delta under cap3 latest-serious-only policy. Root independently admits the successor source/capsule, pushes one source-equal checkpoint and qualifies fresh normal CI, including frozen install/audit and full native DB/RLS/HTTP/browser/recovery gates. Audit success only permits later gates to run; it does not fix or waive the prior43DB/14browser failures, qualify attachment privacy or establish functional acceptance. No fourth broad review, automatic retry, merge/deploy/DONE/delivery claim.
+
+## Planning evidence and limits
+
+Read-only pnpm why and installed package/bundle inspection establish the current graph; pnpm view establishes candidate public registry metadata. Current primary links/version dates are recorded in primary-sources.json. All proposed-source raw/native-Git-clean/checkpoint bindings are in source-bindings.json. The admitted tenth failure packet is separately hash-bound; no raw native logs/errors/secrets were copied. No install/update/package/lock/source/Spec/test/workflow/provider/CI/resource operation occurred. Only this new proposal directory was written.
+
+ROOT RECORDED ROUTE _bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml; mutable raw observation UNVERIFIED_UNCREDITED/excluded source commit:
+selected_phase: review-native-dependency-latest-three
+selected_role: independent-context-free-vite-security-lock-reviewer
+selected_profile: sensitive
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Exact committed Vite security-advisory patch, supply-chain lock integrity/necessary closure, unchanged scripts/auditpolicy and compatibility are sensitive; require fresh distinct context-free High latest3 review, no fourth broad review. Canonical local lint incomplete; fresh CI full lint mandatory."

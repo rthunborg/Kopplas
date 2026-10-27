@@ -1,0 +1,23 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "verdict": "PASS_TARGETED_OWNED_REQUEST_V3_CONSUMER_SOURCE_ONLY",
+  "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-consumer-high-review/original-report.md",
+      "bytes": 5275,
+      "sha256": "23bf491eed776796f29a765e1843eb2aba0c192e62197dada0fbf408546fafc3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-consumer-high-review/original-attestation.json",
+      "bytes": 10246,
+      "sha256": "e60e62eaa9873b23ec2bad79e3e154df633dd9a59983f85c5fd021e7317e63cb"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owned-request-lifetime-v3-consumer-high-review/result.json",
+      "bytes": 1262,
+      "sha256": "26bccd10cfac3947fb4302971d7d46dc38e479405afcfd6362de93499429daa5"
+    }
+  ]
+}

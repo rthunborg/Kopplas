@@ -1,0 +1,50 @@
+{
+  "schema": "ROOT_BOUNDED_SOURCE_CONTROL_ALLOCATION_V1",
+  "allocated_at_utc": "2026-10-24T11:56:00.815292+00:00",
+  "authority": "Existing human wholeEpic implementation authorization; exact fivepath source/control allocation after independent conditional minimumplan qualification and actual ownership reconciliation. No runtime/remote effects granted.",
+  "head": "fe1826587c225736893ca000fa4c6453ff051f2e",
+  "functional_source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "scope": {
+    "scripts/ci/with-calendar-feed-runtime.mjs": "Only reviewed existing reader stream/completeness metadata, unchanged raw detector and fixed firstPrivacy enums; no timers/listeners/buffer/await/custody/filter/order changes.",
+    "tests/support/calendar-feed-atdd.ts": "Exact legacy2/newclosed4 validation, existing28 fallback+generic malformed refusal, four fixed integrationIP source labels/publisher only.",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts": "Meaningful actualformatter/reader/observer/helper/publisher RAM controls and affected exactsource expectations only.",
+    "tests/support/calendar-feed-ci-contract.ts": "wrapperSha256 LF-normalized digest LITERAL ONLY; preserve all negative/fullfile/argv/workflow guards.",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md": "Author Suggested Review Order/evidence only; preserve raw outside SRO, kernel/OwnerFacts, status/AutoRunResult/round3/gates."
+  },
+  "plan": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-emitter-candidate-minimum-plan.json",
+    "bytes": 18308,
+    "sha256": "dc0e19543b593c7183767dd98794cd2ff0f6f21de4f7a3ff1fb65e18e71248c1"
+  },
+  "independent_plan_review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-minimum-plan-independent-review.json",
+    "bytes": 12948,
+    "sha256": "46a80ac3e5ae3caac628a71b60d3ea534eb2de7b01a7583805ee91f3ef929b53"
+  },
+  "ownership": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-current-owner-coordination.json",
+    "bytes": 1337,
+    "sha256": "d9c82a8dd7e063a48c17e9851a33bbea8fdd83419a901f59865d7f66afca794a"
+  },
+  "mandatory_clarifications": [
+    "C1 exact fifth contract path wrapperSha256 literal only.",
+    "C2 exactvalidlegacy2 orclosed4; wrongtype/missing/extra/invalid=>GENERICrefusal; validlegacy/UNKNOWNstream=>original28; onlyknownintegrationIPstream/form=>4fixedleaves.",
+    "C3 everyforced16384fragment AND continuation through actualnewline OTHER_OR_UNKNOWN; normalchunk reconstructedcomplete line mayqualify; perstream completeness snapshot beforequeuedawait, no newbuffer."
+  ],
+  "controls": "Meaningful actualsource RED/GREEN plus one full affected existing suite aftercode; TypeScript, scopedlint, review-note referencecheck. No repeatedfullrepo suites/redundantcontrols. All results real bounded native exits/closed safeprojections.",
+  "private_outputs": "NEW integration-IP-provenance-author/ result/proofs/control harness only; no raw lines/titles/taskIDs/IPs/secrethashes/paths/URLs or native secretvalues persisted. Synthetic source fixtures permitted; runtime proof enums/counts/digests of source only.",
+  "private_consumer_edit_authorized": false,
+  "source_catalog": "Any necessary changed unit staticcatalog refresh ONCE after finalsource; never confer runtimecoverage. No historicalrawSQLrescan.",
+  "prohibitions": [
+    "Git mutations/publication",
+    "network/GET/CLI lifecycle/resources/DB/browser/native workload",
+    "app/publicfeed/SQL/migrations/workflows/deps/config/.env changes",
+    "spec kernel/status/AutoRunResult/reviewscore/counter/gate changes",
+    "privacy exemption/whitelist/scan-order/boolean/count/reset/timing/assertion/custody relaxation",
+    "new collector/parser/transport/test family",
+    "hostcause/benignity/fix/acceptance/devcomplete or nextNORMAL claim"
+  ],
+  "P5": "OPEN",
+  "review_counter": 3,
+  "story15_6": "UNSTARTED"
+}

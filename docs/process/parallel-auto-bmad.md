@@ -144,3 +144,7 @@ retries reuse the exact token/payload; changed payloads require fresh review and
 cannot replace completed finalization. The helper atomically audits adoption and
 finalizes, but does not publish, merge or claim that skipped tests executed.
 Implementation/synthetic verification alone does not apply this operation live.
+
+## Development completion — owner decision 2026-10-19
+
+Coordinators and workers follow [development completion policy](development-completion-policy.md). Claims and ownership remain mandatory. Worker submissions identify passed development evidence separately from owned deferred release validation. Only the coordinator publishes the single final epic PR; separate prerequisite/split PR publication needs owner approval. Existing paused sessions are not resumed by this policy.

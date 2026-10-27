@@ -1,0 +1,29 @@
+{
+  "kind": "ROOT_MECHANICAL_PREGET_SOURCE_AUDIT_ADMISSION_ONLY",
+  "utc": "2026-10-21T20:03:12.445474+00:00",
+  "run_id": 39664130401,
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/manifest.json",
+    "bytes": 1842,
+    "sha256": "1fbb88ac7b8b6d58faf89322c396fa9f6247eac1de8fdd4d719def65abd07e23"
+  },
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/original-attestation.json",
+    "bytes": 12900,
+    "sha256": "4318fdc490d1031d4b54862ff98f5cf3dc3673f84d80e4c8a492875704512ddd"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-terminal-operator-source-review/original-report.md",
+    "bytes": 5027,
+    "sha256": "a712df8c0ad2d3d65a58019e298a72f0e16e0bb0b2f91faf79bb3658cf87e7e7"
+  },
+  "verified_members": 8,
+  "verified_current_source_files": 73,
+  "verified_source_pushed_local_Git_objects": 219,
+  "reviewer_verdict": "PASS_PREGET_SOURCE_WITH_TERMINAL_CONDITIONS",
+  "terminal_GETs_authorized": false,
+  "normal_acceptance_credit": 0,
+  "root_semantic_review": false
+}

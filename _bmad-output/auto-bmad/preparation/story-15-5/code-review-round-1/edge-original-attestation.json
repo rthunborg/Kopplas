@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "later-original-report-persistence",
+  "review_layer": "edge-case-hunter",
+  "round": 1,
+  "original_input_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+  "original_input_bytes": 325115,
+  "source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "native_original_completion_provenance": {
+    "actor_task": "/root/build15_5_high/round1_edge",
+    "delivery": "Original completed final-channel JSON returned natively to parent /root/build15_5_high before this follow-up",
+    "original_completion_time": "Not independently recorded",
+    "original_report_saved_at_completion": false
+  },
+  "persistence": {
+    "persisted_at_utc": "2026-10-20T14:24:55.3399648Z",
+    "authority": "Parent follow-up requests later persistence of original completed final JSON only",
+    "new_review_performed": false,
+    "source_revalidated": false,
+    "report_content": "Original final-channel JSON reproduced verbatim, UTF-8 without BOM or trailing newline"
+  },
+  "report_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/edge-original.md",
+  "report_bytes": 570,
+  "report_sha256": "429b76c7a43e37875d3a09c31b8b7eeee1d47e8c030433137d679abc19fce28a"
+}

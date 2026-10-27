@@ -1,4 +1,5 @@
 name: CI
+run-name: ${{ github.event_name == 'workflow_dispatch' && (inputs.calendar_feed_cause_proof && format('checkpoint:cause-proof:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha) || format('checkpoint:{0}:{1}', inputs.checkpoint_id, inputs.expected_sha)) || format('CI {0}', github.ref_name) }}
 
 # Phase A verification gates (architecture §19).
 # `verify` job — stages 1-5 + 10: install, lockfile guard, service-role containment
@@ -16,6 +17,45 @@ name: CI
 # the universal local-demo defaults, not real secrets).
 
 on:
+  workflow_dispatch:
+    inputs:
+      calendar_feed_cause_proof:
+        description: One diagnostic call and unmodified rollback-only baseline; zero acceptance
+        type: boolean
+        required: false
+        default: false
+      native_stream_probe:
+        description: Data-free native stream diagnostic after general E2E completes
+        type: boolean
+        required: false
+        default: false
+      # FIXED-APPLICATION-INPUT-BEGIN
+      fixed_chromium_application_verification:
+        description: Isolated exact full158 application verification after original General
+        type: boolean
+        required: false
+        default: false
+      # FIXED-APPLICATION-INPUT-END
+      # FIXED-CHROMIUM-INPUT-BEGIN
+      fixed_chromium_paired_probe:
+        description: Data-free exact full-Chrome 149/158 paired stream diagnostic
+        type: boolean
+        required: false
+        default: false
+      # FIXED-CHROMIUM-INPUT-END
+      expected_sha:
+        description: Exact full lowercase source commit; must equal the dispatched branch head
+        type: string
+        required: true
+      checkpoint_id:
+        description: Unique UUID generated and persisted by checkpoint-dispatch.mjs
+        type: string
+        required: true
+      release_validation:
+        description: Also run exhaustive browser and dashboard diagnostics
+        type: boolean
+        required: false
+        default: false
   pull_request:
     # Verify the dependent Epic 11 repair PRs before their approved retarget to main.
     branches:
@@ -34,20 +74,48 @@ permissions:
 # Only cancel for pull_request events — a push→main run is never cancelled, so
 # the post-merge safety-net run always completes for every merged commit.
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event_name == 'workflow_dispatch' && inputs.checkpoint_id || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  checkpoint-admission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Bind dispatch to its immutable source revision
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          CHECKPOINT_ID: ${{ inputs.checkpoint_id }}
+          CAUSE_PROOF: ${{ inputs.calendar_feed_cause_proof || false }}
+          RELEASE_VALIDATION: ${{ inputs.release_validation || false }}
+          OTHER_DIAGNOSTICS: ${{ inputs.native_stream_probe || inputs.fixed_chromium_paired_probe || inputs.fixed_chromium_application_verification || false }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$CAUSE_PROOF" = true ]; then
+            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            test "$RELEASE_VALIDATION" = false
+            test "$OTHER_DIAGNOSTICS" = false
+          fi
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            [[ "$EXPECTED_SHA" =~ ^[a-f0-9]{40}$ ]]
+            [[ "$CHECKPOINT_ID" =~ ^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$ ]]
+            test "$EXPECTED_SHA" = "$GITHUB_SHA"
+            test "$GITHUB_RUN_ATTEMPT" = 1
+            test "$GITHUB_REF_TYPE" = branch
+          fi
   verify:
+    needs: [checkpoint-admission]
     runs-on: ubuntu-latest
     # Bound the job so a hung step (networked install, or the `next build`
     # Google-font fetch) fails fast instead of running to the 360-minute default.
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       # pnpm BEFORE setup-node: setup-node's `cache: pnpm` needs pnpm on PATH.
       # action-setup reads the version from package.json "packageManager"
@@ -56,6 +124,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
+        id: node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -68,6 +137,15 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-verify-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-verify-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-
 
       - name: Verify lockfiles (single package manager)
         run: pnpm run verify:lockfiles
@@ -93,9 +171,9 @@ jobs:
         run: pnpm lint
 
       - name: Unit tests (pure logic, node --test)
-        # Test execution only: dependency installation and the later build are
-        # deliberately outside the approved 180-second unit ceiling.
-        run: node scripts/verify/run-with-time-budget.mjs --label "Unit tests" --max-seconds 180 -- pnpm run test:unit
+        # Ordinary progression has no separate execution stopwatch. The job
+        # timeout bounds stalled runs without expiring approval or a checkpoint.
+        run: pnpm run test:unit
 
       - name: BMAD focused concurrent memlog contracts
         run: pnpm run test:bmad-focused
@@ -104,7 +182,7 @@ jobs:
         run: pnpm run test:auto-bmad-focused
 
       - name: Build
-        run: pnpm build
+        run: node scripts/ci/timed-build.mjs
 
       # Stage 10 (lightweight containment): the AUTHORITATIVE R-002 built-bundle
       # service-role grep (Story 2.4). MUST run AFTER `pnpm build` — it scans the
@@ -113,6 +191,15 @@ jobs:
       # uses NO service-role key (anon + RLS), so a clean build yields zero hits.
       - name: Verify built-bundle service-role containment (no leakage in .next)
         run: pnpm run verify:bundle-containment
+
+      - name: Upload production build timing
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build-timing-verify
+          path: ${{ runner.temp }}/build-timing-verify.json
+          retention-days: 7
+          if-no-files-found: ignore
 
   # ──────────────────────────────────────────────────────────────────────────
   # Story 2.2 activates architecture §19 stage 6 (migration reset) + stage 8
@@ -124,7 +211,7 @@ jobs:
   # ──────────────────────────────────────────────────────────────────────────
   db:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     # Gate the expensive ~20-min Supabase boot behind the fast `verify` job: if a
     # type/lint/unit error would fail `verify`, do NOT waste CI minutes spinning up
     # the local stack (review fix 2026-06-26).
@@ -136,6 +223,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -190,24 +278,55 @@ jobs:
           echo "supabase db reset failed after 3 attempts — treating as a REAL failure"
           exit 1
 
+      - name: Calendar feed cause proof (diagnostic only; no pilot or acceptance)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof }}
+        env:
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+          CALENDAR_FEED_CAUSE_PROOF_CHECKPOINT: ${{ inputs.checkpoint_id }}
+        run: node scripts/ci/with-calendar-feed-runtime.mjs cause-proof
+
+      - name: Upload native calendar feed cause proof JSON
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-calendar-feed-cause-proof
+          path: test-results/calendar-feed-cause-proof/upload/
+          retention-days: 7
+          if-no-files-found: error
+
       # Stage 8: DB-backed integration + cross-tenant RLS-negative suites.
       - name: Integration, RLS, and Epic 11 pilot performance gates (local stack)
-        # Fixed 420s DB+pilot ceiling derives from the complete 326.38s run;
-        # round 1.25x that measurement upward to a whole-minute bound.
-        # Starts after stack/reset, measuring test:int and the explicit NFR
-        # probe, rather than installs or Supabase startup/migration time. Keep
-        # test:int visible as the historic Phase A gate; this Epic 11 probe is
-        # deliberately not represented as a Phase A package-script result.
-        run: >-
-          node scripts/verify/run-with-time-budget.mjs --label "Database, RLS, and pilot performance tests" --max-seconds 420 -- bash -c
-          'pnpm run test:int --reporter=default --reporter=github-actions --reporter=json --outputFile=test-results/full-integration.json && node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts'
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+        env:
+          # This opt-in alone is insufficient: the wrapper also proves this
+          # hosted job's fresh Docker identities, publications and current ledger.
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+        run: |
+          node scripts/ci/with-calendar-feed-runtime.mjs db
+          pnpm run test:pilot-performance
 
       - name: Upload native full integration JSON
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
         uses: actions/upload-artifact@v4
         with:
           name: native-full-integration
           path: test-results/full-integration.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Capture bounded owned Auth cleanup failure facts
+        if: ${{ failure() && !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+        timeout-minutes: 1
+        env:
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+        run: node --experimental-strip-types scripts/ci/auth-cleanup-collector.mjs
+
+      - name: Upload bounded Auth cleanup failure facts
+        if: ${{ failure() && !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-auth-cleanup-facts
+          path: test-results/auth-cleanup-facts.json
           retention-days: 7
           if-no-files-found: error
 
@@ -220,8 +339,9 @@ jobs:
   # the local CI stack, restores it into a separate recovery volume, then proves
   # absent bytes can be materialized without changing protected logical rows.
   recovery-storage-loader:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     needs: [verify]
     env:
       SUPABASE_TEST_REQUIRED: "1"
@@ -230,6 +350,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -249,7 +370,7 @@ jobs:
           version: 2.115.0
 
       - name: Start local schema source
-        run: supabase start
+        run: supabase start --exclude mailpit
 
       - name: Reset local schema source
         run: supabase db reset
@@ -383,8 +504,9 @@ jobs:
           rm -rf recovery/source recovery/synthetic-storage
           rm -f ops/recovery/.env ops/recovery/.private.db-bootstrap.compose.yaml ops/recovery/.private.runtime.compose.yaml
   e2e:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
     # is green. Runs in parallel with `db` (each boots its own local stack).
     needs: [verify]
@@ -402,11 +524,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
+        id: node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -415,8 +539,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Playwright browser (chromium + OS deps)
-        run: pnpm exec playwright install --with-deps chromium
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'playwright.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
 
       - name: Install Supabase CLI
         uses: supabase/setup-cli@v1
@@ -456,11 +592,18 @@ jobs:
       # The Playwright webServer builds + starts the app against the local stack
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
-      - name: E2E tests (Playwright)
-        # The configured reporter sums Playwright test attempts only. Its own
-        # production build/web-server bootstrap remains outside the approved
-        # 800-second general-browser attempt-sum execution budget.
-        run: pnpm run test:e2e
+      - name: Essential authentication smoke (production app and local Auth)
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.release_validation) }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
+          CALENDAR_FEED_CI_DISPOSABLE_STACK: ${{ github.run_id }}:${{ github.run_attempt }}:${{ github.job }}
+        run: node scripts/ci/with-calendar-feed-runtime.mjs browser
+
+      - name: Exhaustive browser validation (explicit opt-in)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/general-browser.json
+        run: pnpm run test:e2e --reporter=list,json
 
       - name: Upload native general browser JSON
         if: ${{ !cancelled() }}
@@ -480,14 +623,32 @@ jobs:
           retention-days: 7
           if-no-files-found: ignore
 
+      - name: Upload browser runtime identity and timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-runtime-${{ github.job }}
+          path: |
+            ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
+            ${{ runner.temp }}/build-timing-${{ github.job }}.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop
+
       - name: Stop local Supabase stack
         if: always()
         run: supabase stop
 
-  # Story19.1 required partition: isolated runner/database, own fixture setup and real read proxy.
+  # Broad UI diagnostics are deferred from ordinary progression by owner decision.
+  # Explicit release validation retains the dedicated fixtures and real read proxy.
   dashboard-e2e:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_validation }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
     # is green. Runs in parallel with `db` (each boots its own local stack).
     needs: [verify]
@@ -502,11 +663,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
+        id: node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -515,8 +678,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Playwright browser (chromium + OS deps)
-        run: pnpm exec playwright install --with-deps chromium
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-dashboard-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/e2e/dashboard/playwright.ci.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-dashboard-e2e-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/e2e/dashboard/playwright.ci.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
 
       - name: Install Supabase CLI
         uses: supabase/setup-cli@v1
@@ -556,11 +731,10 @@ jobs:
       # The Playwright webServer builds + starts the app against the local stack
       # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
       # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
-      - name: Required dashboard browser tests (dedicated fixtures and read proxy)
-        # The configured reporter sums Playwright test attempts only. Its own
-        # production build/web-server bootstrap remains outside the approved
-        # five-minute browser execution budget.
-        run: pnpm exec playwright test --config tests/e2e/dashboard/playwright.ci.config.ts
+      - name: Dashboard browser validation (dedicated fixtures and read proxy)
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/dashboard-browser.json
+        run: pnpm exec playwright test --config tests/e2e/dashboard/playwright.ci.config.ts --reporter=list,json
 
       - name: Upload native dashboard browser JSON
         if: ${{ !cancelled() }}
@@ -580,6 +754,938 @@ jobs:
           retention-days: 7
           if-no-files-found: ignore
 
+      - name: Upload browser runtime identity and timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-runtime-${{ github.job }}
+          path: |
+            ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
+            ${{ runner.temp }}/build-timing-${{ github.job }}.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop
+
       - name: Stop local Supabase stack
         if: always()
         run: supabase stop
+
+  # Optional synthetic transport experiment; original E2E artifacts finish first.
+  native-stream-probe:
+    runs-on: ubuntu-latest
+    needs: [verify, e2e]
+    timeout-minutes: 10
+    if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.native_stream_probe && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
+    steps:
+      - name: Checkout
+        timeout-minutes: 1
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Install pnpm
+        timeout-minutes: 1
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        timeout-minutes: 1
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        timeout-minutes: 3
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser (chromium + OS deps)
+        timeout-minutes: 2
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Native stream diagnostic
+        timeout-minutes: 2
+        run: node tests/diagnostics/no-store-stream-probe.mjs
+
+      - name: Upload native stream diagnostic
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-stream-probe
+          path: test-results/native-stream-probe.json
+          retention-days: 7
+          if-no-files-found: error
+
+  # FIXED-CHROMIUM-JOB-BEGIN
+  fixed-chromium-paired-probe:
+    runs-on: ubuntu-latest
+    needs: [verify, e2e]
+    timeout-minutes: 18
+    if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_paired_probe && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
+    steps:
+      - name: Checkout
+        timeout-minutes: 1
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Install pnpm
+        timeout-minutes: 1
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        timeout-minutes: 1
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        timeout-minutes: 3
+        run: pnpm install --frozen-lockfile
+
+      - name: Install pinned Playwright Chromium and OS dependencies
+        timeout-minutes: 2
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Acquire exact CfT and validate provenance
+        id: fixed
+        timeout-minutes: 3
+        run: node tests/diagnostics/no-store-stream-probe.mjs --acquire-fixed-chromium
+
+      - name: Publish fresh acquisition boundary authority
+        id: receipt_publish
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() }}
+        env:
+          ACQUISITION_RECEIPT_DIRECTORY: ${{ steps.fixed.outputs.acquisition_receipt_directory }}
+        run: node tests/diagnostics/no-store-stream-probe.mjs --publish-acquisition-receipt "$ACQUISITION_RECEIPT_DIRECTORY"
+
+      - name: Paired native stream diagnostic
+        timeout-minutes: 4
+        env:
+          FIXED_CHROMIUM_EXECUTABLE: ${{ steps.fixed.outputs.executable }}
+        run: node tests/diagnostics/no-store-stream-probe.mjs --paired-fixed-chromium "$FIXED_CHROMIUM_EXECUTABLE"
+
+      - name: Upload paired native stream diagnostic
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-paired-probe
+          path: test-results/fixed-chromium-paired-probe.json
+          retention-days: 7
+          if-no-files-found: error
+
+      # ACQUISITION-UPLOADER-BEGIN
+      - name: Upload fresh acquisition boundary receipt
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() && steps.receipt_publish.conclusion == 'success' && steps.receipt_publish.outputs.acquisition_receipt_written == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-acquisition
+          path: test-results/fixed-chromium-acquisition.json
+          retention-days: 7
+          if-no-files-found: error
+      # ACQUISITION-UPLOADER-END
+  # FIXED-CHROMIUM-JOB-END
+
+  # FIXED-APPLICATION-JOB-BEGIN
+  fixed-chromium-application-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    # Same gate as `db`: only spin up the stack + browser after the fast `verify` job
+    # is green. Runs in parallel with `db` (each boots its own local stack).
+    needs: [verify, e2e]
+    if: ${{ always() && !cancelled() && github.event_name == 'workflow_dispatch' && inputs.fixed_chromium_application_verification && needs.verify.result == 'success' && (needs.e2e.result == 'success' || needs.e2e.result == 'failure') }}
+    env:
+      # ROOT-SERVICE-ENV-BEGIN: a dispatch flag is not native execution admission.
+      FIXED_CHROMIUM_HOSTED_ADMISSION: ${{ vars.FIXED_CHROMIUM_HOSTED_ADMISSION }}
+      FIXED_CHROMIUM_HOSTED_ADMISSION_SHA: ${{ vars.FIXED_CHROMIUM_HOSTED_ADMISSION_SHA }}
+      # ROOT-SERVICE-ENV-END
+      # Auth-mail E2E must fail loudly if its required local Auth/Mailpit stack is
+      # unavailable; this matches the database integration gate.
+      SUPABASE_TEST_REQUIRED: "1"
+      # Booking fixture helpers also preview/sign inside the Playwright worker.
+      # Match the existing local seed and webServer pair; these are synthetic
+      # CI-only values, not a production fallback or browser-public credential.
+      BOOKING_CONFLICT_ATTESTATION_KEY_ID: "test_v1"
+      BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET: "local-test-only-booking-conflict-attestation-secret-v1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      # ROOT-SERVICE-PREFLIGHT-BEGIN
+      - name: Require separately admitted hosted mode and exact source
+        run: |
+          test "$FIXED_CHROMIUM_HOSTED_ADMISSION_SHA" = "$GITHUB_SHA"
+          case "$FIXED_CHROMIUM_HOSTED_ADMISSION" in capability|application) ;; *) exit 1 ;; esac
+          test "${RUNNER_OS}" = Linux
+      # ROOT-SERVICE-PREFLIGHT-END
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser (chromium + OS deps)
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Install Supabase CLI
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
+        uses: supabase/setup-cli@v1
+        with:
+          # Pin the same explicit version as the `db` job (see its note).
+          version: 2.115.0
+
+      - name: Start local Supabase stack
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
+        run: supabase start
+
+      - name: Migration reset (empty DB → migrate → seed)
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
+        # Bounded retry (added 2026-07-26): `supabase db reset` intermittently fails with
+        # "Error status 502: An invalid response was received from the upstream server" during its
+        # FINAL "Restarting containers..." step — i.e. AFTER every migration applied and seed.sql ran.
+        # The same exact-ledger + seed + auth verifier used by `db` distinguishes completed recovery
+        # from a real migration/seed failure before any retry or Playwright execution.
+        run: |
+          for attempt in 1 2 3; do
+            echo "::group::supabase db reset (attempt $attempt/3)"
+            if supabase db reset; then
+              echo "::endgroup::"
+              exit 0
+            fi
+            echo "::endgroup::"
+            echo "db reset attempt $attempt failed"
+            if node scripts/verify/check-local-supabase-reset.mjs; then
+              echo "db reset completed; recovered from the CLI's final restart error"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep 15
+            fi
+          done
+          echo "supabase db reset failed after 3 attempts — treating as a REAL failure"
+          exit 1
+
+      # The Playwright webServer builds + starts the app against the local stack
+      # (NEXT_PUBLIC_* are inlined from playwright.config.ts), globalSetup seeds the
+      # two-tenant fixture, and the specs drive the real browser journeys (G-2/G-3).
+      - name: Acquire exact full158 with reviewed authority
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
+        id: fixed
+        timeout-minutes: 3
+        run: node tests/diagnostics/no-store-stream-probe.mjs --acquire-fixed-chromium
+
+      - name: Publish fresh acquisition boundary authority
+        id: receipt_publish
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        env:
+          ACQUISITION_RECEIPT_DIRECTORY: ${{ steps.fixed.outputs.acquisition_receipt_directory }}
+        run: node tests/diagnostics/no-store-stream-probe.mjs --publish-acquisition-receipt "$ACQUISITION_RECEIPT_DIRECTORY"
+
+      # ROOT-SERVICE-BOOTSTRAP-BEGIN
+      - name: Compile private reviewed broker and prepare exclusive hosted session
+        id: hosted_session
+        timeout-minutes: 2
+        env:
+          ACQUIRED_CHROMIUM: ${{ steps.fixed.outputs.executable }}
+        run: |
+          test "$(node --version)" = v22.23.3
+          command -v /usr/bin/clang-18
+          command -v /usr/bin/systemd-run
+          # OWNED-PARENT-ADMISSION-BEGIN
+          # Fail closed; parent descriptors and identities bind the one retained tree.
+          private_root="$(/usr/bin/timeout --signal=TERM --kill-after=1s 2s python3 - <<'PY_OWNED_PARENT' 2>/dev/null
+          import os, stat, time
+          MAX_SECONDS = 1.0
+          MAX_BYTES = 4096
+          PARENT_COMPONENTS = ('var', 'tmp')
+          class Refused(Exception):
+              pass
+
+          def admit_owned_root():
+              started = time.monotonic()
+              owned = set()
+              def live():
+                  if time.monotonic() - started >= MAX_SECONDS:
+                      raise Refused()
+              def number(value, maximum=18446744073709551615):
+                  return type(value) is int and 0 <= value <= maximum
+              def remember(fd):
+                  if not number(fd, 2147483647):
+                      raise Refused()
+                  owned.add(fd)
+                  return fd
+              def close(fd):
+                  os.close(fd)
+                  owned.remove(fd)
+              def attributes(fd):
+                  names = os.listxattr(fd)
+                  live()
+                  if type(names) is not list or len(names) > 64 or any(type(n) is not str or len(n) > 256 for n in names):
+                      raise Refused()
+                  if 'system.posix_acl_access' in names or 'system.posix_acl_default' in names:
+                      raise Refused()
+              def metadata(fd):
+                  value = os.fstat(fd)
+                  live()
+                  if not all(number(getattr(value, key)) for key in ('st_dev', 'st_ino', 'st_uid', 'st_gid', 'st_mode')) or value.st_ino == 0 or value.st_mode > 131071:
+                      raise Refused()
+                  if not stat.S_ISDIR(value.st_mode):
+                      raise Refused()
+                  return value
+              def executable_mount(fd):
+                  flag = os.ST_NOEXEC
+                  value = os.fstatvfs(fd).f_flag
+                  live()
+                  if not number(flag) or flag == 0 or not number(value) or value & flag:
+                      raise Refused()
+              def qualify(fd, base):
+                  value = metadata(fd)
+                  mode = stat.S_IMODE(value.st_mode)
+                  if value.st_uid != 0 or not mode & 0o001:
+                      raise Refused()
+                  if base:
+                      if not mode & stat.S_ISVTX or mode & 0o003 != 0o003:
+                          raise Refused()
+                      executable_mount(fd)
+                  elif mode & 0o022:
+                      raise Refused()
+                  attributes(fd)
+                  return (value.st_dev, value.st_ino)
+              def open_chain():
+                  live()
+                  flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
+                  root = remember(os.open('/', flags))
+                  chain = [root]
+                  identities = [qualify(root, False)]
+                  for index, component in enumerate(PARENT_COMPONENTS):
+                      live()
+                      fd = remember(os.open(component, flags, dir_fd=chain[-1]))
+                      chain.append(fd)
+                      identities.append(qualify(fd, index == 1))
+                  return chain, identities
+              def conserve(expected):
+                  chain, actual = open_chain()
+                  if actual != expected:
+                      raise Refused()
+                  for fd in reversed(chain):
+                      close(fd)
+              try:
+                  live()
+                  creator = os.geteuid()
+                  if not number(creator, 4294967295) or creator == 0:
+                      raise Refused()
+                  chain, identities = open_chain()
+                  parent = chain[-1]
+                  entropy = os.urandom(16)
+                  live()
+                  if type(entropy) is not bytes or len(entropy) != 16:
+                      raise Refused()
+                  name = 'kopplas-owned-' + entropy.hex()
+                  payload = os.fsencode('/var/tmp/' + name + '\n')
+                  if type(payload) is not bytes or not 0 < len(payload) <= MAX_BYTES:
+                      raise Refused()
+                  conserve(identities)
+                  live()
+                  # One exclusive name only: collision is refusal, never retry/removal.
+                  os.mkdir(name, 0o700, dir_fd=parent)
+                  live()
+                  child = remember(os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=parent))
+                  created = metadata(child)
+                  if created.st_uid != creator or stat.S_IMODE(created.st_mode) != 0o700 or created.st_dev != identities[-1][0]:
+                      raise Refused()
+                  attributes(child)
+                  executable_mount(child)
+                  conserve(identities)
+                  # Same child device/inode through the anchored descriptor before publication.
+                  checked = remember(os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=parent))
+                  current = metadata(checked)
+                  if (current.st_dev, current.st_ino, current.st_uid, stat.S_IMODE(current.st_mode)) != (created.st_dev, created.st_ino, creator, 0o700):
+                      raise Refused()
+                  close(checked)
+                  for fd in list(owned):
+                      close(fd)
+                  live()
+                  if os.write(1, payload) != len(payload):
+                      return 1
+                  live()
+                  return 0
+              except (Refused, OSError, AttributeError, TypeError, ValueError):
+                  return 1
+              finally:
+                  for fd in list(owned):
+                      try:
+                          os.close(fd)
+                      except OSError:
+                          pass
+          raise SystemExit(admit_owned_root())
+          PY_OWNED_PARENT
+          )"
+          # OWNED-PARENT-ADMISSION-END
+          generation="$(cat /proc/sys/kernel/random/uuid)"
+          account="kopplas-${generation:0:20}"
+          unit="kopplas-fixed-${generation}.service"
+          source_sha="$(sha256sum tests/diagnostics/fixed-chromium-owned-process.c | cut -d ' ' -f 1)"
+          node_path="$(readlink -f "$(command -v node)")"
+          mkdir "$private_root/control" "$private_root/workload" "$private_root/home"
+          /usr/bin/clang-18 --version > "$private_root/control/compiler.txt"
+          /usr/bin/ld --version > "$private_root/control/linker.txt"
+          dpkg-query -W clang-18 binutils libc6-dev linux-libc-dev > "$private_root/control/packages.txt"
+          /usr/bin/clang-18 -std=c11 -D_GNU_SOURCE -Wall -Wextra -Werror -O2 -fPIE -pie -Wl,-z,relro,-z,now tests/diagnostics/fixed-chromium-owned-process.c -o "$private_root/broker"
+          sha256sum tests/diagnostics/fixed-chromium-owned-process.c "$private_root/broker" > "$private_root/control/binary-source.txt"
+          git archive HEAD | tar -x -C "$private_root/workload"
+          cp -a node_modules "$private_root/workload/node_modules"
+          mkdir -p "$private_root/home/.cache"
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then
+            cp -a "$HOME/.cache/ms-playwright" "$private_root/home/.cache/ms-playwright"
+            candidate_directory="$(dirname "$(dirname "$ACQUIRED_CHROMIUM")")"
+            cp -a "$candidate_directory" "$private_root/$(basename "$candidate_directory")"
+            candidate="$private_root/$(basename "$candidate_directory")/chrome-linux64/chrome"
+          else
+            candidate=/not-executed/capability-only
+          fi
+          cli_path="$(node -e 'const p=require.resolve("@playwright/test/package.json"); process.stdout.write(require("node:path").join(require("node:path").dirname(p),"cli.js"))')"
+          cli_relative="${cli_path#"$GITHUB_WORKSPACE/"}"
+          test "$cli_relative" != "$cli_path"
+          sudo -n /usr/sbin/useradd --system --user-group --no-create-home --shell /usr/sbin/nologin "$account"
+          uid="$(id -u "$account")"; gid="$(id -g "$account")"
+          # GENERATED-NEXT-ENV-BIND-BEGIN
+          next_env_identity="$(python3 - "$private_root" "$generation" "$source_sha" "$unit" "$node_path" "$candidate" "$cli_relative" "$uid" "$gid" "$FIXED_CHROMIUM_HOSTED_ADMISSION" <<'PY'
+          import pathlib,sys
+          root,generation,source,unit,node,candidate,cli,uid,gid,mode=sys.argv[1:]
+          values=[('generation',generation),('source',source),('unit',unit),('node',node),('repo',root+'/workload'),('candidate',candidate),('cli',root+'/workload/'+cli),('home',root+'/home'),('root',root),('uid',uid),('gid',gid)]
+          if any('\n' in value or '\r' in value or '\0' in value for _,value in values): raise SystemExit(1)
+          pathlib.Path(root+'/control/session').write_text(''.join(key+'='+value+'\n' for key,value in values))
+          if mode == 'application':
+              import os, stat, time
+              started = time.monotonic()
+              descriptors = []
+              result = None
+              try:
+                  flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
+                  parent = os.open(root, flags)
+                  descriptors.append(parent)
+                  workload = os.open('workload', flags, dir_fd=parent)
+                  descriptors.append(workload)
+                  values = [os.fstat(parent), os.fstat(workload)]
+                  if any(not stat.S_ISDIR(value.st_mode) or value.st_uid != os.geteuid() or stat.S_IMODE(value.st_mode) & 0o022 for value in values):
+                      raise ValueError('binding')
+                  pairs = [number for value in values for number in (value.st_dev, value.st_ino)]
+                  if any(type(number) is not int or number < 0 or number > (1 << 64) - 1 for number in pairs) or any(value.st_ino == 0 for value in values):
+                      raise ValueError('binding')
+                  entry = os.stat(root, follow_symlinks=False)
+                  child = os.stat('workload', dir_fd=parent, follow_symlinks=False)
+                  if (entry.st_dev, entry.st_ino) != (values[0].st_dev, values[0].st_ino) or (child.st_dev, child.st_ino) != (values[1].st_dev, values[1].st_ino):
+                      raise ValueError('binding')
+                  result = ' '.join(str(number) for number in pairs) + '\n'
+                  if len(result.encode('ascii')) > 128 or time.monotonic() - started >= 1.0:
+                      raise ValueError('binding')
+              except Exception:
+                  result = None
+              finally:
+                  for descriptor in reversed(descriptors):
+                      try:
+                          os.close(descriptor)
+                      except Exception:
+                          result = None
+              if result is None or time.monotonic() - started >= 1.0:
+                  raise SystemExit(1)
+              sys.stdout.write(result)
+          elif mode != 'capability':
+              raise SystemExit(1)
+          PY
+          )"
+          # GENERATED-NEXT-ENV-BIND-END
+          sudo -n /bin/chown -R root:root "$private_root"
+          sudo -n /bin/chmod -R a+rX,a-w "$private_root/workload" "$private_root/home"
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then
+            sudo -n /bin/chmod -R a+rX,a-w "$private_root/$(basename "$candidate_directory")"
+          fi
+          sudo -n /bin/chmod 0711 "$private_root"
+          sudo -n /bin/chmod 0700 "$private_root/control" "$private_root/broker"
+          sudo -n /bin/chmod 0600 "$private_root/control/session"
+          for relative in .next tests/e2e/.auth test-results playwright-report; do
+            sudo -n /usr/bin/install -d -o "$uid" -g "$gid" -m 0755 "$private_root/workload/$relative"
+          done
+          sudo -n /bin/chown "$uid:$gid" "$private_root/home"
+          sudo -n /bin/chmod 0700 "$private_root/home"
+          # GENERATED-NEXT-ENV-ADMISSION-BEGIN
+          # Application-only fixed generated file; parents, code, home and control stay unchanged.
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = application ]; then
+            read -r next_env_root_device next_env_root_inode next_env_workload_device next_env_workload_inode <<< "$next_env_identity"
+            next_env_admitted="$(sudo -n /usr/bin/timeout --signal=TERM --kill-after=1s 2s /usr/bin/python3 -I - "$private_root" "$uid" "$gid" "$next_env_root_device" "$next_env_root_inode" "$next_env_workload_device" "$next_env_workload_inode" <<'PY_GENERATED_NEXT_ENV'
+          import os, re, stat, sys, time
+          MAX_SECONDS = 1.0
+          MAX_BYTES = 128
+          started = time.monotonic()
+          fds = []
+          ready = False
+
+          def checkpoint():
+              if time.monotonic() - started >= MAX_SECONDS:
+                  raise ValueError('deadline')
+
+          def call(fn, *args, **kwargs):
+              checkpoint()
+              result = fn(*args, **kwargs)
+              checkpoint()
+              return result
+
+          def uint(value, positive=False, limit=(1 << 64) - 1):
+              if not re.fullmatch(r'0|[1-9][0-9]{0,19}', value):
+                  raise ValueError('identity')
+              number = int(value)
+              if number > limit or positive and number == 0:
+                  raise ValueError('identity')
+              return number
+
+          def metadata(value):
+              for key in ('st_dev', 'st_ino', 'st_uid', 'st_gid', 'st_mode'):
+                  number = getattr(value, key)
+                  if type(number) is not int or number < 0 or number > (1 << 64) - 1:
+                      raise ValueError('metadata')
+              if value.st_ino == 0:
+                  raise ValueError('metadata')
+              return value
+
+          def identity(value):
+              return value.st_dev, value.st_ino
+
+          def open_dir(name, parent=None):
+              kwargs = {} if parent is None else {'dir_fd': parent}
+              fd = call(os.open, name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, **kwargs)
+              fds.append(fd)
+              return fd
+
+          def permissions(fd):
+              value = metadata(call(os.fstat, fd))
+              mount = call(os.fstatvfs, fd)
+              if type(mount.f_flag) is not int or mount.f_flag & os.ST_NOEXEC:
+                  raise ValueError('mount')
+              names = call(os.listxattr, fd)
+              if not isinstance(names, list) or len(names) > 128 or any(type(name) is not str for name in names):
+                  raise ValueError('acl')
+              if sum(len(name.encode('utf8')) for name in names) > 4096 or any(name in ('system.posix_acl_access', 'system.posix_acl_default') for name in names):
+                  raise ValueError('acl')
+              return value
+
+          def directory(fd, mode):
+              value = permissions(fd)
+              if not stat.S_ISDIR(value.st_mode) or value.st_uid != 0 or value.st_gid != 0 or stat.S_IMODE(value.st_mode) != mode:
+                  raise ValueError('parent')
+              return value
+
+          def linked(parent, name, fd):
+              entry = metadata(call(os.stat, name, dir_fd=parent, follow_symlinks=False))
+              value = metadata(call(os.fstat, fd))
+              if identity(entry) != identity(value) or entry.st_mode != value.st_mode:
+                  raise ValueError('substitution')
+
+          try:
+              if len(sys.argv) != 8 or call(os.geteuid) != 0:
+                  raise ValueError('authority')
+              root, user, group, root_device, root_inode, workload_device, workload_inode = sys.argv[1:]
+              if not re.fullmatch(r'/var/tmp/kopplas-owned-[0-9a-f]{32}', root):
+                  raise ValueError('binding')
+              user = uint(user, True, (1 << 32) - 2)
+              group = uint(group, True, (1 << 32) - 2)
+              expected_root = uint(root_device), uint(root_inode, True)
+              expected_workload = uint(workload_device), uint(workload_inode, True)
+              for name in ('O_DIRECTORY', 'O_NOFOLLOW', 'O_CLOEXEC', 'O_CREAT', 'O_EXCL', 'ST_NOEXEC'):
+                  if type(getattr(os, name)) is not int:
+                      raise ValueError('unsupported')
+              base = open_dir('/')
+              directory(base, 0o755)
+              var = open_dir('var', base)
+              directory(var, 0o755)
+              tmp = open_dir('tmp', var)
+              directory(tmp, 0o1777)
+              private_name = root.rsplit('/', 1)[1]
+              private = open_dir(private_name, tmp)
+              if identity(directory(private, 0o711)) != expected_root:
+                  raise ValueError('binding')
+              workload = open_dir('workload', private)
+              if identity(directory(workload, 0o555)) != expected_workload:
+                  raise ValueError('binding')
+              linked(tmp, private_name, private)
+              linked(private, 'workload', workload)
+              slot = call(os.open, 'next-env.d.ts', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW | os.O_CLOEXEC, 0o600, dir_fd=workload)
+              fds.append(slot)
+              value = permissions(slot)
+              if not stat.S_ISREG(value.st_mode) or stat.S_IMODE(value.st_mode) != 0o600 or value.st_uid != 0 or value.st_gid != 0 or value.st_size != 0 or value.st_nlink != 1 or value.st_dev != expected_workload[0]:
+                  raise ValueError('file')
+              linked(workload, 'next-env.d.ts', slot)
+              linked(tmp, private_name, private)
+              linked(private, 'workload', workload)
+              call(os.fchown, slot, user, group)
+              linked(workload, 'next-env.d.ts', slot)
+              call(os.fchmod, slot, 0o600)
+              value = permissions(slot)
+              if not stat.S_ISREG(value.st_mode) or stat.S_IMODE(value.st_mode) != 0o600 or value.st_uid != user or value.st_gid != group or value.st_size != 0 or value.st_nlink != 1:
+                  raise ValueError('file')
+              linked(workload, 'next-env.d.ts', slot)
+              linked(tmp, private_name, private)
+              linked(private, 'workload', workload)
+              directory(private, 0o711)
+              directory(workload, 0o555)
+              ready = True
+          except Exception:
+              ready = False
+          finally:
+              for fd in reversed(fds):
+                  try:
+                      os.close(fd)
+                  except Exception:
+                      ready = False
+          if time.monotonic() - started >= MAX_SECONDS:
+              ready = False
+          if ready:
+              try:
+                  result = b'next_env_admitted=true\n'
+                  if len(result) > MAX_BYTES or os.write(1, result) != len(result) or time.monotonic() - started >= MAX_SECONDS:
+                      ready = False
+              except Exception:
+                  ready = False
+          raise SystemExit(0 if ready else 1)
+          PY_GENERATED_NEXT_ENV
+            )"
+            test "$next_env_admitted" = next_env_admitted=true
+          fi
+          # GENERATED-NEXT-ENV-ADMISSION-END
+          # HOSTED-PATH-METADATA-BASH-BEGIN
+          # Diagnostic only: one-second collection, two-second TERM, one-second KILL.
+          # UNKNOWN or unavailable metadata never changes preparation/native execution.
+          printf '%s\n' 'path_metadata_written=false' >> "$GITHUB_OUTPUT" || :
+          if [ "$FIXED_CHROMIUM_HOSTED_ADMISSION" = capability ]; then
+            if /usr/bin/timeout --signal=TERM --kill-after=1s 2s python3 - "$private_root/workload" "$uid" "$gid" <<'PY_PATH_METADATA' >/dev/null 2>&1
+          # HOSTED-PATH-METADATA-COLLECTOR-BEGIN
+          import json, os, stat, sys, time
+          MAX_SECONDS = 1.0
+          MAX_BYTES = 4096
+          MAX_COMPONENTS = 12
+          SINK_NAME = 'fixed-chromium-hosted-path-admission.json'
+          class Unknown(Exception):
+              pass
+          def run_metadata():
+              start = time.monotonic()
+              def live():
+                  if time.monotonic() - start >= MAX_SECONDS:
+                      raise Unknown()
+              def number(value):
+                  return type(value) is int and 0 <= value <= 4294967295
+              receipt = {'schemaVersion': 1, 'kind': 'hosted-path-metadata', 'collectionState': 'UNKNOWN',
+                  'reason': 'INPUT', 'workloadCredentials': 'UNOBSERVED', 'intendedUid': None,
+                  'intendedGid': None, 'collectorIds': None, 'components': []}
+              reason = None
+              def unknown(value):
+                  nonlocal reason
+                  if reason is None:
+                      reason = value
+              try:
+                  live()
+                  ids = [os.getuid(), os.geteuid(), os.getgid(), os.getegid()]
+                  if not all(number(value) for value in ids):
+                      raise Unknown()
+                  receipt['collectorIds'] = dict(zip(['uid', 'euid', 'gid', 'egid'], ids))
+                  path = sys.argv[1]
+                  uid, gid = sys.argv[2:4]
+                  if len(sys.argv) != 4 or not uid.isascii() or not gid.isascii() or not uid.isdecimal() or not gid.isdecimal():
+                      raise Unknown()
+                  uid, gid = int(uid), int(gid)
+                  if not number(uid) or not number(gid) or uid == 0 or gid == 0:
+                      raise Unknown()
+                  receipt['intendedUid'], receipt['intendedGid'] = uid, gid
+                  if len(path) > 4096 or not path.startswith('/') or path.startswith('//') or '\\' in path or '\0' in path or '\n' in path or '\r' in path:
+                      raise Unknown()
+                  parts = path.split('/')[1:]
+                  if not parts or parts[-1] != 'workload' or any(part in ('', '.', '..') for part in parts):
+                      raise Unknown()
+                  paths = ['/'] + ['/' + '/'.join(parts[:i]) for i in range(1, len(parts) + 1)]
+                  if len(paths) > MAX_COMPONENTS:
+                      unknown('DEPTH')
+                  else:
+                      for index, component in enumerate(paths):
+                          row = {'index': index, 'label': 'workload' if index == len(paths) - 1 else
+                              'session-root' if index == len(paths) - 2 else 'ancestor', 'uid': None,
+                              'gid': None, 'mode': None, 'type': 'UNKNOWN', 'symlink': None, 'aclPresence': 'UNKNOWN'}
+                          receipt['components'].append(row)
+                          live()
+                          try:
+                              value = os.lstat(component)
+                              live()
+                              if not number(value.st_uid) or not number(value.st_gid) or type(value.st_mode) is not int:
+                                  unknown('FILESYSTEM')
+                                  break
+                              row.update(uid=value.st_uid, gid=value.st_gid, mode=stat.S_IMODE(value.st_mode),
+                                  symlink=stat.S_ISLNK(value.st_mode), type='symlink' if stat.S_ISLNK(value.st_mode)
+                                  else 'directory' if stat.S_ISDIR(value.st_mode) else 'other')
+                              if row['type'] != 'directory':
+                                  unknown('SYMLINK' if row['symlink'] else 'FILESYSTEM')
+                                  break
+                              try:
+                                  names = os.listxattr(component, follow_symlinks=False)
+                                  live()
+                                  row['aclPresence'] = 'PRESENT' if 'system.posix_acl_access' in names else 'ABSENT'
+                              except OSError:
+                                  unknown('ACL')
+                          except OSError:
+                              unknown('FILESYSTEM')
+                              break
+              except Unknown:
+                  unknown('DEADLINE' if time.monotonic() - start >= MAX_SECONDS else 'INPUT')
+              except (OSError, AttributeError, IndexError, ValueError, TypeError):
+                  unknown('UNSUPPORTED')
+              receipt['reason'] = reason or 'NONE'
+              receipt['collectionState'] = 'UNKNOWN' if reason else 'COMPLETE'
+              parent = sink = None
+              try:
+                  live()
+                  payload = (json.dumps(receipt, separators=(',', ':')) + '\n').encode('utf8')
+                  if len(payload) > MAX_BYTES:
+                      receipt.update(collectionState='UNKNOWN', reason='BYTE_CAP', components=[])
+                      payload = (json.dumps(receipt, separators=(',', ':')) + '\n').encode('utf8')
+                  if len(payload) > MAX_BYTES:
+                      return 1
+                  parent = os.open(os.environ['RUNNER_TEMP'], os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC)
+                  info = os.fstat(parent)
+                  live()
+                  if not stat.S_ISDIR(info.st_mode) or info.st_uid != os.geteuid() or info.st_mode & 0o022:
+                      return 1
+                  sink = os.open(SINK_NAME, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW | os.O_CLOEXEC,
+                      0o600, dir_fd=parent)
+                  info = os.fstat(sink)
+                  live()
+                  if not stat.S_ISREG(info.st_mode) or info.st_uid != os.geteuid() or stat.S_IMODE(info.st_mode) != 0o600:
+                      return 1
+                  if os.write(sink, payload) != len(payload):
+                      return 1
+                  os.fsync(sink)
+                  os.close(sink)
+                  sink = None
+                  live()
+                  return 0  # Receipt availability only; collectionState may remain UNKNOWN.
+              except (OSError, AttributeError, KeyError, Unknown):
+                  return 1
+              finally:
+                  for fd in (sink, parent):
+                      if fd is not None:
+                          try:
+                              os.close(fd)
+                          except OSError:
+                              pass
+          raise SystemExit(run_metadata())
+          # HOSTED-PATH-METADATA-COLLECTOR-END
+          PY_PATH_METADATA
+            then printf '%s\n' 'path_metadata_written=true' >> "$GITHUB_OUTPUT" || :; else :; fi
+          fi
+          # HOSTED-PATH-METADATA-BASH-END
+          printf '%s\n' "FIXED_CHROMIUM_BROKER_ROOT=$private_root" "FIXED_CHROMIUM_WORKLOAD_REPO=$private_root/workload" "FIXED_CHROMIUM_BROKER_GENERATION=$generation" "FIXED_CHROMIUM_BROKER_SOURCE_SHA256=$source_sha" "FIXED_CHROMIUM_BROKER_UNIT=$unit" >> "$GITHUB_ENV"
+
+      - name: Capability capsule only (no browser, application, or database execution)
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' }}
+        run: node tests/diagnostics/fixed-chromium-application-runner.mjs --capability-capsule
+
+      - name: Preserve capability capsule receipt
+        if: ${{ !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-hosted-capability
+          path: test-results/fixed-chromium-hosted-capability.json
+          retention-days: 7
+          if-no-files-found: error
+      # HOSTED-PATH-METADATA-UPLOAD-BEGIN
+      - name: Preserve bounded private path metadata (not capability acceptance)
+        if: ${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'capability' && steps.hosted_session.outputs.path_metadata_written == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-hosted-path-admission
+          path: ${{ runner.temp }}/fixed-chromium-hosted-path-admission.json
+          retention-days: 7
+          if-no-files-found: error
+      # HOSTED-PATH-METADATA-UPLOAD-END
+      # ROOT-SERVICE-BOOTSTRAP-END
+
+      - name: Isolated full158 application tests (original full General population)
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
+        # The configured reporter sums Playwright test attempts only. Its own
+        # production build/web-server bootstrap remains outside the approved
+        # 800-second general-browser attempt-sum execution budget.
+        env:
+          FIXED_CHROMIUM_EXECUTABLE: ${{ steps.fixed.outputs.executable }}
+        run: node tests/diagnostics/fixed-chromium-application-runner.mjs --verify-application "$FIXED_CHROMIUM_EXECUTABLE"
+
+      - name: Upload fixed application native JSON
+        if: ${{ !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-application-native
+          # ROOT-SERVICE-PATH-BEGIN
+          path: ${{ env.FIXED_CHROMIUM_WORKLOAD_REPO }}/test-results/fixed-chromium-application/general-browser.json
+          # ROOT-SERVICE-PATH-END
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload fixed application Playwright report
+        if: ${{ !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-application-report
+          # ROOT-SERVICE-PATH-BEGIN
+          path: ${{ env.FIXED_CHROMIUM_WORKLOAD_REPO }}/playwright-report/fixed-chromium-application/
+          # ROOT-SERVICE-PATH-END
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Upload fixed application provenance
+        if: ${{ always() && !cancelled() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-application-provenance
+          path: test-results/fixed-chromium-application/provenance.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload fresh acquisition boundary receipt
+        timeout-minutes: 1
+        if: ${{ always() && !cancelled() && steps.receipt_publish.conclusion == 'success' && steps.receipt_publish.outputs.acquisition_receipt_written == 'true' && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: fixed-chromium-application-acquisition
+          path: test-results/fixed-chromium-acquisition.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Stop local Supabase stack
+        # ROOT-SERVICE-CONDITION-BEGIN
+        if: ${{ always() && env.FIXED_CHROMIUM_HOSTED_ADMISSION == 'application' }}
+        # ROOT-SERVICE-CONDITION-END
+        run: supabase stop
+
+  # FIXED-APPLICATION-JOB-END
+
+  # Additive data-free entry UI feedback; required jobs below never consume its
+  # classifier. A green result is not auth, affected-component or release acceptance.
+  feedback-scope:
+    needs: [checkpoint-admission]
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.calendar_feed_cause_proof) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      entry_ui: ${{ steps.classify.outputs.entry_ui }}
+    steps:
+      - name: Checkout immutable diff
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Classify additive feedback
+        id: classify
+        run: node scripts/ci/classify-feedback.mjs
+      - name: Upload conservative classification
+        uses: actions/upload-artifact@v4
+        with:
+          name: feedback-classification
+          path: test-results/feedback-classification.json
+          retention-days: 7
+          if-no-files-found: error
+
+  entry-ui-feedback:
+    needs: [checkpoint-admission, feedback-scope]
+    if: ${{ needs.feedback-scope.outputs.entry_ui == 'true' }}
+    runs-on: ubuntu-latest
+    # Five minutes is a measured objective, not an execution acceptance cutoff.
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node
+        id: node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - name: Install dependencies
+        timeout-minutes: 3
+        run: pnpm install --frozen-lockfile
+
+      # Intermediates only: never restore a .next build, auth state or test data.
+      # Source-specific writes; restore only within the same toolchain/config/env.
+      - name: Cache Next build intermediates
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-entry-ui-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/feedback/playwright.config.ts') }}-${{ hashFiles('src/**') }}
+          restore-keys: next-intermediates-${{ runner.os }}-${{ steps.node.outputs.node-version }}-entry-ui-v1-${{ hashFiles('pnpm-lock.yaml', '.nvmrc', 'next.config.*', 'tsconfig.json', 'postcss.config.*', 'playwright.config.ts', 'tests/support/test-env.ts', '.github/workflows/ci.yml', 'scripts/ci/browser-runtime.mjs', 'scripts/ci/timed-build.mjs', 'tests/feedback/playwright.config.ts') }}-
+
+      # Browser + Linux dependencies are preinstalled in the reviewed official
+      # image. Keep the host Node/Next/Supabase topology and use a loopback protocol.
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
+
+      - name: Production entry UI feedback (two isolated data-free viewports)
+        timeout-minutes: 6
+        run: pnpm exec playwright test --config tests/feedback/playwright.config.ts
+
+      - name: Upload entry UI native results and screenshots
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: entry-ui-feedback
+          path: |
+            test-results/entry-ui.json
+            test-results/entry-ui/
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload browser runtime identity and timings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-runtime-${{ github.job }}
+          path: |
+            ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
+            ${{ runner.temp }}/build-timing-${{ github.job }}.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop

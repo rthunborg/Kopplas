@@ -1,0 +1,224 @@
+{
+  "Outcome": "PASS — OBSERVED_LOCAL_ENGINE_FEASIBILITY_ONLY",
+  "Files changed": [
+    "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-qualification.json"
+  ],
+  "Status": "Offline qualification passed: exact reviewed payload/transport and once activation bind actual PG17.6/prefix102. Probe and independent fresh cleanup native0, complete EOF, settled reported psql exits and all strict booleans true. No source repair or hosted cause is established.",
+  "Open questions": [],
+  "Deferred work": [
+    "Root/Coordinator exact implementation allocation and required focused/integration integrity verification remain before any source repair claim. This proof covers only the controlled local adapter feasibility; current15.5/hosted historical causes and43DB/14browser failures remain unresolved.",
+    "Stop accepted for resource00292597-909e-4714-b733-fe0b8f72fa7a as stop_requested/verifiedfalse. Shutdown is not claimed or polled; this acknowledgment is not a qualification blocker."
+  ],
+  "Blockers": [],
+  "provenance": {
+    "kind": "INDEPENDENT_HIGH_OFFLINE_ACTUAL_NATIVE_PROOF_QUALIFICATION",
+    "reviewer": {
+      "task": "/root/review15_5_preselected_id_high",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "route": "P5_invoker_probe",
+      "independent_of_SQL_author_and_Root_execution": true,
+      "new_broad_review": false
+    },
+    "allocation": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-invoker-probe-once-allocation.json",
+      "bytes": 2397,
+      "sha256": "2e366fcf05798bf5531b23424e6e21d0a7fadf12a73545839be132ee6e4d8e0e"
+    },
+    "review_manifest": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/manifest.json",
+      "bytes": 2099,
+      "sha256": "313ba5426fdd95fae6719f689f1b7c86122adf4d5e8268a47be37b04a7fea576"
+    },
+    "seven_reviewed_inputs_verified": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/probe.sql",
+        "bytes": 12741,
+        "sha256": "e61418559ffbc37c92dc8bfe626f9bf56aff8d819ad2d99809541fd942ffb79e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/verify-cleanup.sql",
+        "bytes": 1104,
+        "sha256": "749d84ff15f2ae68a1d96d9842268065554bcfb736478420a406c4721bba7caa"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-probe-01/proposal.json",
+        "bytes": 7181,
+        "sha256": "8b828dffef4827144f8615b3faa16836feebe8f514298377fe986e0515bc1d73"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-runner.py",
+        "bytes": 9204,
+        "sha256": "90f0cb9215a2609e807b2c2515494960c3be8998421cd6b2b61b2dd4ef7ce76a"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-report.md",
+        "bytes": 5330,
+        "sha256": "1756792af12612805d082898674e7f4c6249a3c9f8fa813d6a77aa7d92c144ea"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/original-attestation.json",
+        "bytes": 6529,
+        "sha256": "eeb59490acd0491ed184be0fe5898c6a32cebd8f1ae56d16027a1ee321ab7141"
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-probe-review/result.json",
+        "bytes": 800,
+        "sha256": "731bc1508a67c6667e5ee2e20734307f3504190111d7e7acaf8c4abc38d29472"
+      }
+    ],
+    "actual_artifacts": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-compose-intent.json",
+        "bytes": 995,
+        "sha256": "59d51ef0f56ecc8fa0e7983d67cebef1c751d764f610d1ad639d9b9cea1f862e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-compose-start.json",
+        "bytes": 378,
+        "sha256": "42c0cc6a64333cf45f1a048a1886cf8dbe947506cba083a5fc6b90a56094fdfa"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-compose-readiness.json",
+        "bytes": 1517,
+        "sha256": "fbec48874cb3e30f015eeb40bc21b3116657bb0602cb4394f3df42467c276749"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-activation.json",
+        "bytes": 1387,
+        "sha256": "dfdfa6835a05d38dbd6e2c38dcc03e496126f07d36a7609f64284de72aeda2de"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-consumed.json",
+        "bytes": 408,
+        "sha256": "852a16e12f3c7ad2e2cf1040678abb5947937b082ea7ea4dbb1aa122c5856352"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-result.json",
+        "bytes": 2266,
+        "sha256": "8067abe471966bb0a6191f49369a7386d65bf9387caf750ed36ab60842da8058"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-invoker-adapter-probe-01-compose-stop.json",
+        "bytes": 324,
+        "sha256": "3d38e20892114bbabc843554082fed605f1f74ef96e58bc5ce5f2b6879d0a6b2"
+      }
+    ],
+    "binding_checks": {
+      "requestId": "c8dbe3c7-15b5-44ff-9bae-af57cd48efd2",
+      "resourceId": "00292597-909e-4714-b733-fe0b8f72fa7a",
+      "project": "rg-b03bb4a5a5c01b6c748bde6d72d8bcbfc9b2d1bf",
+      "container": "b841e76229b56fe9959b358a2df0c937d1b34d23a58800a57452a14674ea950c",
+      "all_payload_and_review_hashes_match": true,
+      "original_review3_unchanged": true,
+      "marker_binds_activation": true,
+      "result_binds_marker": true,
+      "one_primary_and_one_fresh_scheduled": true,
+      "readiness_active_owned_outcome_verified_before_activation": true,
+      "live_exact_container_gates": "Enforced by unchanged reviewed runner before either client; no live reinspection during this qualification."
+    },
+    "actual_clients": {
+      "probe": {
+        "native_exit": 0,
+        "timed_out": false,
+        "overflow": false,
+        "child_settled": true,
+        "transport_complete": true,
+        "write_errors": [],
+        "row": {
+          "server_version_num": 170006,
+          "ledger_count": 102,
+          "preflight_qualified": true,
+          "creator_qualified": true,
+          "restricted_qualified": true,
+          "direct_lookup_denied": true,
+          "first_adapter_matches": true,
+          "absent_identity_matches": true,
+          "adapter_execute_denied": true,
+          "bound_invoker_verified": true,
+          "existing_catalog_preserved": true
+        },
+        "closed_shape": true,
+        "qualified": true,
+        "connection_settlement": "PSQL_EXIT_REPORTED",
+        "stdout": {
+          "bytes": 343,
+          "sha256": "e6cf4c5a3c9c63b4d73b455e4371a67e4e05ee13f3cbb9776a02297835aff9af",
+          "eof": true,
+          "reader_error": null
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "eof": true,
+          "reader_error": null
+        }
+      },
+      "fresh_cleanup": {
+        "native_exit": 0,
+        "timed_out": false,
+        "overflow": false,
+        "child_settled": true,
+        "transport_complete": true,
+        "write_errors": [],
+        "row": {
+          "server_version_num": 170006,
+          "setup_identity_qualified": true,
+          "ledger_count": 102,
+          "ledger_prefix_matches": true,
+          "role_absent": true,
+          "schema_absent": true,
+          "adapter_absent": true
+        },
+        "closed_shape": true,
+        "qualified": true,
+        "connection_settlement": "PSQL_EXIT_REPORTED",
+        "stdout": {
+          "bytes": 192,
+          "sha256": "d132e8ea439bdf597d0a91fb43986c9a4fe9b0cd2da8f450341ffa8793b54400",
+          "eof": true,
+          "reader_error": null
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "eof": true,
+          "reader_error": null
+        }
+      }
+    },
+    "observed_semantics": [
+      "Exact17.6 and102-prefix preflight, original setup identity/privacy/timeouts and new UUID absence qualified.",
+      "Adapter created as actual non-superuser postgres, preparsed invoker/search_path configuration and actual auth.uid dependency verified.",
+      "Restricted session/current role lacked Auth USAGE but had canonical EXECUTE; direct canonical lookup denied42501 before first adapter invocation.",
+      "First restricted adapter result matched canonical synthetic identity; absent identity matched canonical NULL; revoked new-adapter EXECUTE denied42501.",
+      "Existing Auth/function/role/membership/ledger fingerprint preserved.",
+      "Exact reviewed SQL emits success only after unconditional rollback/reset and same-session fixture absence; fresh read-only client independently confirmed role/schema/function absence and102-prefix."
+    ],
+    "stream_evidence_limits": "Recorded streamed counts/digests/EOF and typed rows are qualified through the unchanged reviewed runner. Raw stdout/stderr was intentionally not retained, so raw byte digests were not independently remeasured; zero-byte stderr hashes were recomputed.",
+    "stop": {
+      "accepted": true,
+      "state": "stop_requested",
+      "verified": false,
+      "shutdown_claimed": false,
+      "shutdown_polled": false
+    },
+    "limits": {
+      "normal_acceptance_credit": 0,
+      "normal95_coverage": false,
+      "current_15_5_repair_proven": false,
+      "hosted_or_historical_cause_proven": false,
+      "production_authority_inferred": false,
+      "fixture_engine_feasibility_only": true,
+      "source_or_historical_comparability": "UNQUALIFIED",
+      "DB43_browser14_unresolved": true
+    },
+    "qualification_actions": {
+      "offline_file_hash_type_and_binding_checks_only": true,
+      "SQL_DB_Docker_API_CI_resource_reruns": 0,
+      "source_Spec_Git_mutations": 0,
+      "existing_review_artifact_mutations": 0,
+      "new_owned_writes": 1
+    }
+  }
+}

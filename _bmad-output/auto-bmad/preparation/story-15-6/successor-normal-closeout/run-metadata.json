@@ -1,0 +1,34 @@
+{
+  "id": 40192543175,
+  "name": "checkpoint:9226ceaa-1456-47de-80d0-5cff0083b6e9:b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "display_title": "checkpoint:9226ceaa-1456-47de-80d0-5cff0083b6e9:b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "head_branch": "codex/epic-15-scheduling-time-calendar",
+  "head_sha": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+  "path": ".github/workflows/ci.yml",
+  "run_number": 508,
+  "event": "workflow_dispatch",
+  "status": "completed",
+  "conclusion": "success",
+  "workflow_id": 296219797,
+  "run_attempt": 1,
+  "created_at": "2026-10-25T12:18:45Z",
+  "updated_at": "2026-10-25T12:37:20Z",
+  "run_started_at": "2026-10-25T12:18:45Z",
+  "html_url": "https://github.com/rthunborg/Kopplas/actions/runs/40192543175",
+  "repository": {
+    "id": 1269069679,
+    "full_name": "rthunborg/Kopplas"
+  },
+  "head_repository": {
+    "id": 1269069679,
+    "full_name": "rthunborg/Kopplas"
+  },
+  "actor": {
+    "login": "rthunborg",
+    "id": 53317458
+  },
+  "triggering_actor": {
+    "login": "rthunborg",
+    "id": 53317458
+  }
+}

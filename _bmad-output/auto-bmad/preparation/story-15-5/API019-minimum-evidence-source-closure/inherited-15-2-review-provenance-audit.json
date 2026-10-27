@@ -1,0 +1,568 @@
+{
+  "schema": "INDEPENDENT_HIGH_INHERITED_15_2_REVIEW_PROVENANCE_AUDIT_V1",
+  "outcome": "THIRD_BROAD_PASS_ALREADY_COMPLETED_FLAG_INTENTIONALLY_RETAINED_CAP_EXHAUSTED",
+  "scope": "Read-only saved review/state/spec provenance and mechanical Git identity assessment. No code review, test execution, story-loop advancement or acceptance decision.",
+  "owner": "Independent gpt-6.1-sol High; route5b938d",
+  "identity": {
+    "review_base": "85755eb7cea3affdc77dbe1d30bb18279b614c5a",
+    "final_reviewed_tested_source": "a00dd595d96a73c398328ed1778bac334aca9de6",
+    "final_story_metadata_commit": "244cf1f31b8fd749588070ecd20d2dd3b1f4a26a",
+    "audit_source_snapshot": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb"
+  },
+  "authoritative_spec_reader": {
+    "command": "python -X utf8 -B .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+    "tool_chunk": "6c86af",
+    "native_exit": 0,
+    "writes": false,
+    "status": "done",
+    "auto_run_result": {
+      "status": "done",
+      "blocking_condition": null
+    },
+    "review_loop_iteration": 0,
+    "followup_review_recommended": true,
+    "parse_warnings": [],
+    "warnings": [
+      "oversized"
+    ],
+    "last_review_pass": {
+      "date": "2026-10-20",
+      "intent_gap": 0,
+      "bad_spec": 0,
+      "patch": 2,
+      "defer": 0,
+      "reject": 3,
+      "dismissed": 0
+    }
+  },
+  "current_state_interpretation": {
+    "completed_phases": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "followup_passes": 2,
+    "broad_review_rounds": 3,
+    "review_unverified": true,
+    "counters": "P5 initial broad review plus two Phase7 follow-ups = three completed broad rounds. review_loop_iteration=0 is a separate repair/nonconvergence counter, not zero completed reviews.",
+    "stale_pending_override": "overrides.final_settling_within_cap describes the remaining third pass after Round2. It is historical planning text superseded by p7_round3/status and final receipts; it is not authority to run another third or a fourth broad pass.",
+    "why_flag_remains": "The pipeline explicitly sets review_unverified=true when the final spec still recommends follow-up, even if review passes ran. Root's P7 completion patch and E5h receipt intentionally retained it. No missed metadata synchronization is established for this flag."
+  },
+  "completed_rounds": [
+    {
+      "round": 1,
+      "stage": "P5",
+      "source": "effbf5e18e19556d0fad231d3fc01369397c8402",
+      "metadata": "499c5baf48094c7fb27916953dbcb84c07228081",
+      "accepted_patches": 8,
+      "status": "Saved author/spec/state evidence records independent review, qualified CI and delivery provenance; recommendation retained."
+    },
+    {
+      "round": 2,
+      "stage": "P7 follow-up1",
+      "source": "a51531888252189a3cc98798b5e8e315f0348fb0",
+      "metadata": "ec6226b23c209ee8ede907351306f8cb86fe53cd",
+      "accepted_patches": 3,
+      "status": "Recorded meaningful High fixes followed by status-only delivery/provenance admission; recommendation retained."
+    },
+    {
+      "round": 3,
+      "stage": "P7 follow-up2/final settling",
+      "initial_review_source": "ecb3f6d0b835388d73a81aadf8beec9f6f899469",
+      "final_source": "a00dd595d96a73c398328ed1778bac334aca9de6",
+      "final_metadata": "244cf1f31b8fd749588070ecd20d2dd3b1f4a26a",
+      "six_layers_completed_before_triage": true,
+      "accepted_medium": 2,
+      "rejected_low": 3,
+      "intent_gap": 0,
+      "bad_spec": 0,
+      "defer": 0,
+      "weighted_score": 6,
+      "followup": true,
+      "broad_completed": 3,
+      "broad_cap": 3,
+      "nonconvergence": 0,
+      "status": "Completed. R3-01 effective-suffix/date correction and R3-02 complete signed-retention matrix have targeted High final closures. No serious unresolved finding is identified in those final saved reports; this is not a new current-source verdict."
+    }
+  ],
+  "saved_final_evidence": {
+    "targeted_high_source": "targeted-high-source-final.md PASS, qualified by later intermediate finding",
+    "targeted_high_correction": "targeted-high-correction-final.md PASS closes the lost effective-date finding",
+    "targeted_high_implemented": "targeted-high-r3-02-implemented-final.md PASS closes the completeness fix",
+    "final_frozen_provenance": "delivery-provenance-a00-final.md PASS; frozen final record and all six reports/current High hashes verified by that reviewer",
+    "ci": "Historical independently qualified exact source a00/run39348312783; five required jobs successful. Saved evidence retains 3004 units,43 process,fullDB1828P52 explicit skips,included RLS800P14 skips,separateStorage1P and browser10 first passes+1 flaky/12attempts/1retry. This audit performs no runtime requalification and claims no current CI pass.",
+    "delivery": "Root delivery gate PASS plus separate independent frozen-record provenance and explicit status-only admission established historical development done; three release deferrals/release_ready=false and followup recommendation persisted.",
+    "historical_review_not_generic_current_pass": true
+  },
+  "git_identity_assessment": {
+    "method": "Read-only Git ancestry, path names and blob IDs/SHA256 only; no current source-content review. Original changed-path inventory = Git diff review_base..final_source, excluding _bmad-output for the production/test overlap census.",
+    "rows": [
+      {
+        "path": "src/components/resources/BookingEditor.tsx",
+        "reviewed_blob": "a657e70ef911663bf8c49b1e9a7333161b962eb9",
+        "current_blob": "70cd66329c8bc0230a4ad9fb5ec4f50c66112f00",
+        "equal": false
+      },
+      {
+        "path": "src/components/resources/BookingEntry.tsx",
+        "reviewed_blob": "3e29ad744121252d0c8a79cebedf40813c224865",
+        "current_blob": "c250ce2f73e5eac6d0e56cf6c0e5dd71efc99b79",
+        "equal": false
+      },
+      {
+        "path": "src/components/scheduling/BookingBlock.tsx",
+        "reviewed_blob": "385c20c5066da16d4c08ad8e62b63b2463855d53",
+        "current_blob": "49c8329543efc9497e8d5326bf23d13e68efa26a",
+        "equal": false
+      },
+      {
+        "path": "src/features/resources/booking-action-state.ts",
+        "reviewed_blob": "1ff5063f70c7956a8608496f940711866ff91802",
+        "current_blob": "6704851d7795c63da659c623741898a06c4047a9",
+        "equal": false
+      },
+      {
+        "path": "src/features/resources/bookings-read.ts",
+        "reviewed_blob": "bf645b085954f8e91f97ab4244907ccebe8e5c26",
+        "current_blob": "b52adfadac17e706167de55118f85292c94fd396",
+        "equal": false
+      },
+      {
+        "path": "src/scope/manifest.ts",
+        "reviewed_blob": "49f49a30405b74d65d4dea71024db5653a9b6acb",
+        "current_blob": "d7db4a3602eea7ab52fec2e7baa3ac4eb236d84a",
+        "equal": false
+      },
+      {
+        "path": "src/server/bookings/series-conflicts.ts",
+        "reviewed_blob": "4e3285d21b10df936f9c8de65d5c1763647812ef",
+        "current_blob": "21294a4d14dfcabb3ee34d9a69f6eb2d3001d39a",
+        "equal": false
+      },
+      {
+        "path": "src/server/commands/envelope.ts",
+        "reviewed_blob": "bd09bdf40f8293f2d47ef02fe994c54172d4d742",
+        "current_blob": "61cd95ccf52a65e78c914ce0665b96c02662eaa3",
+        "equal": false
+      },
+      {
+        "path": "src/server/read-models/scheduling.ts",
+        "reviewed_blob": "7f0fb32e8498f8b0c2f45ca42a8dd0b908416db5",
+        "current_blob": "4875994f651c1f4751f0a0eddc74361252e06046",
+        "equal": false
+      },
+      {
+        "path": "tests/integration/commands/booking-editor.int.test.ts",
+        "reviewed_blob": "0419871f1d4fa88adb112ee0f26efb8fa3bbf29f",
+        "current_blob": "f6645e8895705c99ace9b3c1bbc25af6dc28f9ba",
+        "equal": false
+      },
+      {
+        "path": "tests/integration/commands/booking-series.int.test.ts",
+        "reviewed_blob": "c27c8f72735a673dd25489b9d8993176d395942f",
+        "current_blob": "e07f666ca9e7ad51fdc69bb30f9234413af49014",
+        "equal": false
+      },
+      {
+        "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+        "reviewed_blob": "cc6bc8579be53661d5a6b1fbc87c318b2c445182",
+        "current_blob": "231dea63eb2d60cbd0d8b77070cc62c8b0971057",
+        "equal": false
+      },
+      {
+        "path": "tests/integration/rls/migration-reset.int.test.ts",
+        "reviewed_blob": "3f4294a15b9b4d8a978720537ac16e924bc8f5e6",
+        "current_blob": "5c6a563a1e1be59f4cece8dec2ab207a8d6a46e4",
+        "equal": false
+      },
+      {
+        "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+        "reviewed_blob": "2af1f678a5d303e7a1ab7e7b22f7ad46879480e6",
+        "current_blob": "7e4d03387b9ec5809ec0a50e8e382c2e1f53c930",
+        "equal": false
+      },
+      {
+        "path": "tests/integration/rls/tenant-table-inventory.ts",
+        "reviewed_blob": "237a906ee7485d321d9bc74317a00fba593ae815",
+        "current_blob": "d242773f4b126b66f64acad65036b9c87190aee4",
+        "equal": false
+      },
+      {
+        "path": "tests/support/authz/role-harness.ts",
+        "reviewed_blob": "149d17b71aad50e1ff6b575da8d8acb3a998ad33",
+        "current_blob": "8682e09a5eb21d0d556cdfcc3649854050237bf8",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+        "reviewed_blob": "5e369642cd35aa79b3011554c642ad1a14f9435f",
+        "current_blob": "7523ffba81d55bd8824c9191f0717c48d7719729",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/features/resources/bookings-read.test.ts",
+        "reviewed_blob": "d8c98c8bcc2d31839fc3e13d1b2a5ebc864cc079",
+        "current_blob": "0aa910d138f5014981d703979ce58c699f5aa969",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/features/scheduling/calendar-components.test.ts",
+        "reviewed_blob": "65ddebd3fbaffb7fc9abb9d46dd4be5d42f2a971",
+        "current_blob": "29d4d8a141cb399154b199c579067cf8a2a4df80",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/scope/booking-editor-scope.test.ts",
+        "reviewed_blob": "9972070d92acb0f08d06a5839666d56ae701a400",
+        "current_blob": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/scope/manifest-coherence.test.ts",
+        "reviewed_blob": "2d9bcd696bd05a5429c6331e88370c9118f03eaf",
+        "current_blob": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/scope/manifest-derivations.test.ts",
+        "reviewed_blob": "5d07ba17bf8a062d584917bd7a4190ed43bcc513",
+        "current_blob": "02a6845c81d4bbae8cb7c3f499c11ce3635948bd",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/scope/manifest-shape.test.ts",
+        "reviewed_blob": "f1124cff31848f6c7271d46f71fa430adff4ded0",
+        "current_blob": "132a02849637c12cbedab4e012619f7cbadccf40",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+        "reviewed_blob": "fd337b8f75a7911047f3d5383de84b635b46b382",
+        "current_blob": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+        "equal": false
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "reviewed_blob": "0c711e1340b4606baab0f0ec549d0b3820133d6c",
+        "current_blob": "dfb805ad6b3c2cdb047303e8d609ce941a88fb61",
+        "equal": false
+      }
+    ],
+    "final_four": [
+      {
+        "path": "src/features/resources/booking-series-actions.ts",
+        "reviewed_SHA256": "337d91190c8e43ad6acba7d68cfbd3d3f2388f86bedde49f368b3b3a840b04ac",
+        "reviewed_blob": "961b7d7e06ee9bb3a3055adc2bc081ee97ecc880",
+        "current_blob": "961b7d7e06ee9bb3a3055adc2bc081ee97ecc880",
+        "equal": true
+      },
+      {
+        "path": "src/server/bookings/series-conflicts.ts",
+        "reviewed_SHA256": "45e3839f46125ebb8995b5fd134e97ea9f8c07b6b1f756c42237b001ecda53aa",
+        "reviewed_blob": "4e3285d21b10df936f9c8de65d5c1763647812ef",
+        "current_blob": "21294a4d14dfcabb3ee34d9a69f6eb2d3001d39a",
+        "equal": false
+      },
+      {
+        "path": "src/server/commands/bookings/series-validation.ts",
+        "reviewed_SHA256": "bc7bbc82e58d898b7668314610d9052137e886d4add4e2ca23ea69cfa62068ee",
+        "reviewed_blob": "2a6ba6355dd85777c102db846bc3ec04b4f20bc9",
+        "current_blob": "2a6ba6355dd85777c102db846bc3ec04b4f20bc9",
+        "equal": true
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "reviewed_SHA256": "60cb711c59dc3cf58b3e2679443260799c88ec1b53e0be969605726da902da2e",
+        "reviewed_blob": "0c711e1340b4606baab0f0ec549d0b3820133d6c",
+        "current_blob": "dfb805ad6b3c2cdb047303e8d609ce941a88fb61",
+        "equal": false
+      }
+    ],
+    "post_review_production_overlaps": [
+      {
+        "path": "src/components/resources/BookingEditor.tsx",
+        "commits": [
+          "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c fix(epic-15): restore UTF-8 text in scheduling composition",
+          "aa1a16adf2980355f0228badf889c95a4f230248 merge(epic-15): integrate approved Epic 16 scheduling composition",
+          "ae6ac81d6a063a46207ef97927a9c1f55d5c2057 fix(epic-16): preserve edits and compare booking end deadlines",
+          "dd7e54d08bdda0dfdf1a39610fc05310e486a909 feat(story-16-4): checkpoint reviewed job semantics",
+          "3aaa522bc8448e38a7ec7ce2fecc2dbcb9b927b4 fix(scheduling): repair resolver review integrity and series flows",
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix"
+        ]
+      },
+      {
+        "path": "src/components/resources/BookingEntry.tsx",
+        "commits": [
+          "aa1a16adf2980355f0228badf889c95a4f230248 merge(epic-15): integrate approved Epic 16 scheduling composition",
+          "4562b3feecece4e36674242c7d95a8cbf5f5b5b7 chore(story-16-5): build blocked (external review approval)",
+          "dd7e54d08bdda0dfdf1a39610fc05310e486a909 feat(story-16-4): checkpoint reviewed job semantics",
+          "73169cc0c75d88fbb16dc999ef99cbd9028ff361 feat(scheduling): add submitted time reporting and bounded review",
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix"
+        ]
+      },
+      {
+        "path": "src/components/scheduling/BookingBlock.tsx",
+        "commits": [
+          "73169cc0c75d88fbb16dc999ef99cbd9028ff361 feat(scheduling): add submitted time reporting and bounded review",
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix"
+        ]
+      },
+      {
+        "path": "src/features/resources/booking-action-state.ts",
+        "commits": [
+          "aa1a16adf2980355f0228badf889c95a4f230248 merge(epic-15): integrate approved Epic 16 scheduling composition",
+          "dd7e54d08bdda0dfdf1a39610fc05310e486a909 feat(story-16-4): checkpoint reviewed job semantics"
+        ]
+      },
+      {
+        "path": "src/features/resources/bookings-read.ts",
+        "commits": [
+          "aa1a16adf2980355f0228badf889c95a4f230248 merge(epic-15): integrate approved Epic 16 scheduling composition",
+          "4562b3feecece4e36674242c7d95a8cbf5f5b5b7 chore(story-16-5): build blocked (external review approval)",
+          "dd7e54d08bdda0dfdf1a39610fc05310e486a909 feat(story-16-4): checkpoint reviewed job semantics",
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix"
+        ]
+      },
+      {
+        "path": "src/scope/manifest.ts",
+        "commits": [
+          "aa1a16adf2980355f0228badf889c95a4f230248 merge(epic-15): integrate approved Epic 16 scheduling composition",
+          "ae020f63a88089966b9323c55a36b6554f7e3900 feat(story-15-5): implement personal calendar feed",
+          "103ee03540e222dff1e54995726037819539b9dd feat(story-16-3): add job work orders and dependencies",
+          "73169cc0c75d88fbb16dc999ef99cbd9028ff361 feat(scheduling): add submitted time reporting and bounded review",
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix"
+        ]
+      },
+      {
+        "path": "src/server/bookings/series-conflicts.ts",
+        "commits": [
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix"
+        ]
+      },
+      {
+        "path": "src/server/commands/envelope.ts",
+        "commits": [
+          "aa1a16adf2980355f0228badf889c95a4f230248 merge(epic-15): integrate approved Epic 16 scheduling composition",
+          "ae020f63a88089966b9323c55a36b6554f7e3900 feat(story-15-5): implement personal calendar feed",
+          "dd7e54d08bdda0dfdf1a39610fc05310e486a909 feat(story-16-4): checkpoint reviewed job semantics",
+          "103ee03540e222dff1e54995726037819539b9dd feat(story-16-3): add job work orders and dependencies",
+          "73169cc0c75d88fbb16dc999ef99cbd9028ff361 feat(scheduling): add submitted time reporting and bounded review",
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix",
+          "5d5186e1cfb3e045db9ef101e1c6cf6b50133040 feat(story-16-2): add scoped job crew and lead authority"
+        ]
+      },
+      {
+        "path": "src/server/read-models/scheduling.ts",
+        "commits": [
+          "a80e615214ade42f25b18906ca8c1ee86fadc187 fix(scheduling): repair resolver CI paths and read fixtures",
+          "9548c5cd33d6696817ed334fc832b2259e592437 feat(scheduling): implement checked conflict resolver and integrity matrix"
+        ]
+      }
+    ],
+    "original_changed_paths": 77,
+    "non_bmad_paths": 53,
+    "unchanged": 28,
+    "changed": 25,
+    "observed_HEAD_at_freeze": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+    "ancestry": [
+      {
+        "revision": "a00dd595d96a73c398328ed1778bac334aca9de6",
+        "ancestor_of_audit_snapshot": true
+      },
+      {
+        "revision": "244cf1f31b8fd749588070ecd20d2dd3b1f4a26a",
+        "ancestor_of_audit_snapshot": true
+      }
+    ]
+  },
+  "E8_minimum_next_step": {
+    "classification": "Cap/provenance disposition, not a missing third review.",
+    "steps": [
+      "Attach the actual third-pass/final High closure/delivery provenance to the inherited 15.2/Epic review ledger and mark the old planned-final-settling text as completed history through Root-owned normal metadata reconciliation. Preserve actual counters3/3 and the unchanged authoritative recommendation.",
+      "Use this mechanical changed-blob census to bind existing 15.3/15.4/15.5 and approved E16-composition/latest-fix review evidence to the relevant current overlapping blobs. Do not present the historical a00 review as reviewing later changes. Reuse exact unchanged blobs and already-qualified later reviews instead of rerunning a broad pass.",
+      "If a consequential changed-overlap or unresolved serious finding lacks an applicable independent review, commission only that bounded latest-fix/serious-finding High assessment. No fourth broad 15.2 pass or unused third-pass claim is permitted.",
+      "Retain review_unverified=true and the draft predicate while followup_review_recommended remains true. A ready-PR disposition must use the documented explicit authorized caveat/override mechanism if existing session authority supports it; neither cap exhaustion, 15.5 PASS nor this audit permits silently falsifying the recommendation/flag. Final Coordinator fresh-chat external review and required exact-head gates remain separate.",
+      "Do not advance15.6 or finalization now. Historical development done, deferred release validation, present functional evidence and merge/deployment authority remain distinct."
+    ],
+    "not_required": "A newly invented third review, another full source review, repeated unchanged test suites, raw SQL scan or silent metadata clear.",
+    "current_gap_limit": "This audit establishes historical review completion and later blob drift, not that all later review coverage is missing or that a current production defect exists. E8's bounded mapping must distinguish existing adequate provenance from an actual consequential gap.",
+    "unresolved_consequential_findings": "None identified as unresolved in the final retained15.2 High closure/provenance reports. The remaining TRUE recommendation is weighted score6, not a newly established open serious defect. Current later integration/changed-overlap review applicability still needs explicit provenance reconciliation.",
+    "owner": "Root owns canonical state/anchor/report reconciliation; a distinct High E8 provenance reviewer maps later changed-blob/integration evidence and only addresses any actual uncovered consequential latest-fix/serious finding. No source author or this readiness auditor silently clears the flag."
+  },
+  "effects": {
+    "API": 0,
+    "tests_or_source_harness": 0,
+    "code_reviews_started": 0,
+    "Git_mutations": 0,
+    "source_Spec_state_writes": 0,
+    "other_checkout_writes": 0,
+    "resources": 0,
+    "own_private_assessment_files": 1
+  },
+  "source_pins": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/scripts/story_plan.py",
+      "bytes": 230306,
+      "sha256": "13cf46aceda340152fd10cb0bc57991c498c36e28628a98bfb4e60e1fd99d5ae"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/references/pipeline.md",
+      "bytes": 51216,
+      "sha256": "5b344a38acb58e57ddc383ddbdbcd7b76c4dc6e8f19a995de7d0d0098e589877"
+    },
+    {
+      "path": ".agents/skills/auto-bmad/references/state-and-resume.md",
+      "bytes": 46553,
+      "sha256": "eb8f8e8caa8bd49ad1dabcfe59a9d1e02728a93e2fff3de60dd6b1ee35d37957"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/state/15-2-recurring-bookings-series-materialized-occurrences-exceptions.yaml",
+      "bytes": 12059,
+      "sha256": "d0d31c5fbd4991c502ed207af7e143167dfcf2ba5f9f8dbd3fadf3ffb3f4516e"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+      "bytes": 76316,
+      "sha256": "1738f2519989e62634eb0b826ef8d24585d4d1e533cf42e6c25ddff942b15a81"
+    }
+  ],
+  "review_report_pins": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/triage-before-fixes.json",
+      "bytes": 2794,
+      "sha256": "783d51f8462b0721fc50fff7496a99d0877a7f83d49806f0541ec9f654b45357"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/targeted-high-source-final.md",
+      "bytes": 1444,
+      "sha256": "7a2916ee70e49b2597f7a78cc38ffe46185b35695d2b96d1eda9264d254fab2d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/targeted-high-correction-final.md",
+      "bytes": 1447,
+      "sha256": "7fbb279a2536b490b9307ee1f2049a23c3e3d75b7b534fcdf8e0ea582e63ef79"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/targeted-high-r3-02-implemented-final.md",
+      "bytes": 1821,
+      "sha256": "9d22c98c681df3cf98080174ebffca36abe0b86d726fae716c151094505b47b0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/primary-final-halt-done.json",
+      "bytes": 3080,
+      "sha256": "bd36e7d2a6ca0bfee889b1aa7751fea35b83fd9e7a920fe9b2d4efa9f68cfdd3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/final-a00-qualified-evidence-freeze.json",
+      "bytes": 7417,
+      "sha256": "5b1c9d7bf3260cef2fd87465765fb2a31e86c2b62c200a5641e0d136d7a79624"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/root-phase7-complete-patch.json",
+      "bytes": 2939,
+      "sha256": "2a6dc2ab7d9232fdc895521265d5626d4197a79712b123c78a6eaa158ac91b63"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-round3-review-dom7o2j1/root-E5h-atomic-receipt.json",
+      "bytes": 543,
+      "sha256": "0652f73bf1ef2e38966324efaf14b1cc15af92265eb97ef888c8632856643205"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-a00dd595-independent/delivery-provenance-a00-final.md",
+      "bytes": 2486,
+      "sha256": "17505c8a5fdaa884c66fe7a16e01f2c388155114dc28090431e33a33380c6be7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-2-ci-a00dd595-independent/delivery-provenance-a00-final.json",
+      "bytes": 12857,
+      "sha256": "061f1b2d0e958ed494f30f6755adb697a6a6f0b6bf4b7a94c237b914b02deb3d"
+    }
+  ],
+  "round3_roster_hash_verification": [
+    {
+      "name": "blind-hunter.md",
+      "bytes": 2417,
+      "sha256": "e9b958b0e1a0a60b596b7c033f64c3179308c6edd8686e7c5beab1262c4d6848",
+      "match": true
+    },
+    {
+      "name": "edge-case-hunter.md",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "match": true
+    },
+    {
+      "name": "verification-gap.md",
+      "bytes": 27,
+      "sha256": "cf87c32d185d257a566f972441f0b6160112e6bf4ec0bc1cd98dfbbdf87ce05b",
+      "match": true
+    },
+    {
+      "name": "intent-alignment.md",
+      "bytes": 5121,
+      "sha256": "bfee549aae4d8e6854a662c5950bd9232965176cdf5549e24da7af0cbc8e7310",
+      "match": true
+    },
+    {
+      "name": "auto-bmad-security.md",
+      "bytes": 12,
+      "sha256": "2557f6e38ead83874f9694ea4332f459014b6921de5a7e153be890185da08ef5",
+      "match": true
+    },
+    {
+      "name": "external-review-recovered.diff.review",
+      "bytes": 679,
+      "sha256": "e1c84f6809e4e902ff1992f9de5023804c3f391c4a920fb3a85e903e461a30e6",
+      "match": true
+    }
+  ],
+  "acceptance": 0,
+  "review_flag_cleared": false,
+  "story_or_epic_status_advanced": false,
+  "available_later_review_manifest_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/manifest.json",
+      "bytes": 1043,
+      "sha256": "cc1f43a4267a11120f14ab6567a2704bb1a583730fd36168af81a06af045580a",
+      "qualification": "Existing later-review manifest located and hash-bound only. E8 owner must use its actual source/review refs for changed-blob mapping; no fresh review or universal current coverage inferred here."
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/manifest.json",
+      "bytes": 1020,
+      "sha256": "d18040bd747bd5c72951c27f335fff3489ce8c40c0e60d9c6217d5e44c98b357",
+      "qualification": "Existing later-review manifest located and hash-bound only. E8 owner must use its actual source/review refs for changed-blob mapping; no fresh review or universal current coverage inferred here."
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/series-protocol-active-assertion-high-closure/manifest.json",
+      "bytes": 989,
+      "sha256": "5e3260b79d97e92f739187d0856887d5a620ba40f230c3c23cbc7fcfd8a6ee1e",
+      "qualification": "Existing later-review manifest located and hash-bound only. E8 owner must use its actual source/review refs for changed-blob mapping; no fresh review or universal current coverage inferred here."
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/manifest.json",
+      "bytes": 1005,
+      "sha256": "47198c09dd3cbaf8d6d21a1ffc4b2d48ed616b69cfd7f38c9cfbd2144cdacbbb",
+      "qualification": "Existing later-review manifest located and hash-bound only. E8 owner must use its actual source/review refs for changed-blob mapping; no fresh review or universal current coverage inferred here."
+    }
+  ]
+}

@@ -1,0 +1,441 @@
+{
+  "schema": "story-15-5-job-wide-C4-proposal-review-v1",
+  "verdict": "NOTPASS_PLAN_REFINEMENT_REQUIRED",
+  "reviewer": {
+    "identity": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "BuildHigh/source/proposal author",
+      "Root"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_claim": false,
+    "nested_work": []
+  },
+  "scope": {
+    "head": "a189b65712f7984024cec5ce39a8471609224a66",
+    "partial_source": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+    "cumulative_base": "f0000e7c107f10371543148280e555971e753342",
+    "kind": "Narrow C4 plan only; no fourth broad/cumulative code review",
+    "policy_version": "2026-10-19",
+    "normal_acceptance_credit": 0
+  },
+  "frozen_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/proposal.json",
+      "bytes": 10670,
+      "sha256": "e48f91f5b7ccb67e93b211a4d9f609d64d1ae04b2fb7eb023ca70577b40015d6"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/bindings.json",
+      "bytes": 11117,
+      "sha256": "f1e203bf240fc03e3eaf3c319c202f698bf8b06c4d91c4451870e213fbef18a0"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/manifest.json",
+      "bytes": 4963,
+      "sha256": "0ca268dc035995cd3b7e23a1dfa141c084c1b52dc457fe59778b5c7067d69d33"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-job-wide-custody-proposal-admission.json",
+      "bytes": 1267,
+      "sha256": "3b9067051adfaa5d582e2b0855bfc4a4cbb788cc6ef175dfd2d450462c041904"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    }
+  ],
+  "source_vector": {
+    "binding_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/bindings.json",
+      "bytes": 11117,
+      "sha256": "f1e203bf240fc03e3eaf3c319c202f698bf8b06c4d91c4451870e213fbef18a0"
+    },
+    "source_rows_verified": 23,
+    "all_raw_bytes_SHA_and_clean_HEAD_objects_verified": true,
+    "explicit_CRLF_to_LF_comparison": true,
+    "rows": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 11938,
+        "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823",
+        "head_git_blob": "4c3e77375a8ac8c89fdd7d0081e73ec61df04312",
+        "current_clean_git_blob": "4c3e77375a8ac8c89fdd7d0081e73ec61df04312",
+        "equals_head": true
+      },
+      {
+        "path": "docs/process/development-completion-policy.md",
+        "bytes": 8460,
+        "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893",
+        "head_git_blob": "ddb6e0f5da79135f5a9b246d217c8b1f5cb6985d",
+        "current_clean_git_blob": "ddb6e0f5da79135f5a9b246d217c8b1f5cb6985d",
+        "equals_head": true
+      },
+      {
+        "path": "vitest.config.ts",
+        "bytes": 3602,
+        "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+        "head_git_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "current_clean_git_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+        "equals_head": true
+      },
+      {
+        "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+        "bytes": 9087,
+        "sha256": "ea88c63c7fda518328fe7a2ab5f2c9d90628995f64f76607e184ef47b405f1f0",
+        "head_git_blob": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+        "current_clean_git_blob": "761f0b917e7bca32a046f4af21625a406dc9bbc6",
+        "equals_head": true
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 47151,
+        "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+        "head_git_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+        "current_clean_git_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+        "equals_head": true
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8024,
+        "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+        "head_git_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+        "current_clean_git_blob": "2a5fec9b04c3259f608c95db25668836016808e5",
+        "equals_head": true
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 131207,
+        "sha256": "effa7aebc64591f1441891ad300cc610a9f7f30142f5fa78317b96ea27401332",
+        "head_git_blob": "ce8196d51c27251dcfd793c1d3af6259ddb78b4d",
+        "current_clean_git_blob": "ce8196d51c27251dcfd793c1d3af6259ddb78b4d",
+        "equals_head": true
+      },
+      {
+        "path": "tests/factories/admin-sql.ts",
+        "bytes": 12007,
+        "sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77",
+        "head_git_blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38",
+        "current_clean_git_blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38",
+        "equals_head": true
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 223590,
+        "sha256": "e2b51edd0bb23fdb6be31d93400dc3871d1a5d40c4047d38cb52a63ce96ac59f",
+        "head_git_blob": "c4a685c73a1285841f74634fbae47281fa97b5ad",
+        "current_clean_git_blob": "c4a685c73a1285841f74634fbae47281fa97b5ad",
+        "equals_head": true
+      },
+      {
+        "path": "tests/integration/jobs/job-runs.int.test.ts",
+        "bytes": 4904,
+        "sha256": "5d387ead588913269702e3f48e8c9618067bd1e9bec8a1224ee737c351a23ac3",
+        "head_git_blob": "3c374ac23d0ce4e2bceb949224e644696430a1ce",
+        "current_clean_git_blob": "3c374ac23d0ce4e2bceb949224e644696430a1ce",
+        "equals_head": true
+      },
+      {
+        "path": "tests/integration/commands/conflict-resolver.int.test.ts",
+        "bytes": 48269,
+        "sha256": "72e942bd65ba8fcbc1904c06035535b5570b097613751e5daf31a47ee52a0104",
+        "head_git_blob": "e05ded491723a1f72fcfc7a402014fa7993cb673",
+        "current_clean_git_blob": "e05ded491723a1f72fcfc7a402014fa7993cb673",
+        "equals_head": true
+      },
+      {
+        "path": "tests/integration/commands/time-reports.int.test.ts",
+        "bytes": 18382,
+        "sha256": "fba465dce98b1d3c2e3d351ffd605954e4569e66024e20b6115df7c35aef8e2f",
+        "head_git_blob": "6c6f80ad1739db06bf774303b0a0ffb608303be4",
+        "current_clean_git_blob": "6c6f80ad1739db06bf774303b0a0ffb608303be4",
+        "equals_head": true
+      },
+      {
+        "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+        "bytes": 40586,
+        "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+        "head_git_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "current_clean_git_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+        "equals_head": true
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36884,
+        "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+        "head_git_blob": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "current_clean_git_blob": "35863f8eeb563f21e9c0ff741115f018ee545134",
+        "equals_head": true
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "bytes": 26921,
+        "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+        "head_git_blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "current_clean_git_blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+        "equals_head": true
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "bytes": 16989,
+        "sha256": "fb636129a2497479f7826b18f08ffd574d200c2512d2624e8d913dfb502cf9fc",
+        "head_git_blob": "1d8fa33b27b7fa58ca2908c3fc8ed1db8947ee69",
+        "current_clean_git_blob": "1d8fa33b27b7fa58ca2908c3fc8ed1db8947ee69",
+        "equals_head": true
+      },
+      {
+        "path": "tests/support/global-setup.ts",
+        "bytes": 2970,
+        "sha256": "adad74b1ef885d8c0714ef6bb5ab9e61b4973021d2c0e7f2e8df17ef6c5ea788",
+        "head_git_blob": "8cb06568f42fcdccdb47c4ee3b95698a48907ca3",
+        "current_clean_git_blob": "8cb06568f42fcdccdb47c4ee3b95698a48907ca3",
+        "equals_head": true
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "bytes": 75930,
+        "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+        "head_git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "current_clean_git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+        "equals_head": true
+      },
+      {
+        "path": "package.json",
+        "bytes": 2352,
+        "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+        "head_git_blob": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "current_clean_git_blob": "819459b2df6f2c385a8442dda25ef7904576e270",
+        "equals_head": true
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "bytes": 162159,
+        "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+        "head_git_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "current_clean_git_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+        "equals_head": true
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/partial-six-source-checkpoint.json",
+        "bytes": 2393,
+        "sha256": "cc23c189ef4c683e217b188c3030138141759cb60008ffc653e54be859ddca65",
+        "head_git_blob": "811b8753745456ad97fc30c0447551ea28be9b5f",
+        "current_clean_git_blob": "811b8753745456ad97fc30c0447551ea28be9b5f",
+        "equals_head": true
+      },
+      {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-session-lifecycle-f1-refinement/proposal.json",
+        "bytes": 12163,
+        "sha256": "dc7191d83bb2796a593b5fafd5f0e78345640695ce82f50423b6f263df198add",
+        "head_git_blob": "d241d5e70a5fb096b1aeafa3a95e02c12c58c000",
+        "current_clean_git_blob": "d241d5e70a5fb096b1aeafa3a95e02c12c58c000",
+        "equals_head": true
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 181788,
+        "sha256": "bbc7416fc206a81937d084d429744fffc67a8c6f4997c48f2d4533892b82b7a6",
+        "head_git_blob": "8c3410db7a3950b56aa9743c666212cec84fd0d3",
+        "current_clean_git_blob": "8c3410db7a3950b56aa9743c666212cec84fd0d3",
+        "equals_head": true
+      }
+    ]
+  },
+  "installed_inputs": [
+    {
+      "path": "node_modules/vitest/package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/defaults.9aQKnqFk.js",
+      "bytes": 2190,
+      "sha256": "e500ba917d0d320a037b4ad92ae691462b50a939e21b1f98d0073c45d55466ab"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/index.DXx9Dtk7.js",
+      "bytes": 7330,
+      "sha256": "984c62280948e3916bfd83d47786b912081f61fbac6d79d5be189cb656a570ac"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/cli-api.24X8XwN1.js",
+      "bytes": 495252,
+      "sha256": "02f2ab29d67228334503688a0168fa08ddb42949aa447fbcd7541d06919a4f7d"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/base.BE3cXZj3.js",
+      "bytes": 8972,
+      "sha256": "51b3c786fb87ab41d6ecefb8df4a3f0e51d77ca27d3033c710c4158b6f198262"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/package.json",
+      "bytes": 1156,
+      "sha256": "f65bab94ffa60ceff123e4aed2dc88a8f62d522391244d5aff1eef57d802c614"
+    },
+    {
+      "path": "node_modules/typescript/package.json",
+      "bytes": 3620,
+      "sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js",
+      "bytes": 54974,
+      "sha256": "e509f3cc1bd81ae6426265253fa926cbde02be5cebfe35b1df422017bffdca31"
+    }
+  ],
+  "historical_partial_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-acl-six-source-author-result-v2.json",
+      "bytes": 19747,
+      "sha256": "851b7ea4000cd5473b8f3327d4eabd1b53240a7d95a9651cc60aecb56dad612a",
+      "credit": "partial-source provenance only; not independent cumulative code PASS or native execution"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-acl-six-source-precommit-admission-v2.json",
+      "bytes": 26594,
+      "sha256": "c448c899f65cd188924ad55ce2b3817775f32494db9338c14c9c70c062611456",
+      "credit": "partial-source provenance only; not independent cumulative code PASS or native execution"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-acl-six-source-postcommit-binding.json",
+      "bytes": 893,
+      "sha256": "ae6d628d8f719df51430c819ab08e6a16d3624a4522509d6ed0ff4e92242bb59",
+      "credit": "partial-source provenance only; not independent cumulative code PASS or native execution"
+    }
+  ],
+  "author_probe_packet": {
+    "manifest_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/manifest.json",
+      "bytes": 4963,
+      "sha256": "0ca268dc035995cd3b7e23a1dfa141c084c1b52dc457fe59778b5c7067d69d33"
+    },
+    "all28_members_rehashed": true,
+    "final_ordered_results": [
+      {
+        "file": "healthy-ordered-result.json",
+        "exit": 0,
+        "passed": 4,
+        "failed": 0,
+        "next_file_import": true,
+        "expected_denial_pass": true
+      },
+      {
+        "file": "uncertain-ordered-result.json",
+        "exit": 1,
+        "passed": 1,
+        "failed": 1,
+        "next_file_import": false
+      },
+      {
+        "file": "caught-inner-ordered-result.json",
+        "exit": 1,
+        "passed": 1,
+        "failed": 1,
+        "next_file_import": false
+      },
+      {
+        "file": "caught-outer-ordered-result.json",
+        "exit": 0,
+        "passed": 3,
+        "failed": 0,
+        "next_file_import": true,
+        "meaning": "deliberate outer-catch counterexample, not safety PASS"
+      }
+    ],
+    "limits": "Initial JSON-only healthy lacked observable sentinels. First observed four used synthetic parallel maxWorkers1: installed group0/single-worker special-case scheduled that bucket last. Preserve originals as limited evidence; corrected own synthetic parallelmax2 results above replace ordering claim, not history.",
+    "order_history_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/probe-order-correction.json",
+      "bytes": 918,
+      "sha256": "02ebd8366b48a554336694dd9dd1402d095dec58f6e968284b2059d437d28415"
+    },
+    "assembly_history_ref": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-wide-custody-containment-proposal/probe-assembly-history.json",
+      "bytes": 810,
+      "sha256": "ad3be418a86cc2c6be6030584a2b8b5e3a95b9f2b407627f85925c6795ea4163"
+    },
+    "counterexample_status": "Outer-whole-fixture catch passing is unsafe negative evidence, not safety PASS.",
+    "not_reexecuted": "No independent Vitest child launched or full retained-probe requalification; installed source and retained projections reviewed."
+  },
+  "findings": [
+    {
+      "id": "C4-JOB-01",
+      "classification": "Blocking finite propagation-contract bypass",
+      "location": "Frozen caller-boundary-check.mjs and proposed partition-unit AST guard",
+      "caller": "A current serial test callback whose entire fixture rejection is suppressed by an enclosing finally return.",
+      "invariant": "Every custody-latched fixture must produce a failed test before the next isolated serial file can import.",
+      "bypass": "try { await withCalendarFeedFixture(...) } finally { return; } preserves34 awaited calls/test IDs/callback depth and zero outer catches, passes actual frozen checker, but suppresses fixture rejection.",
+      "downstream_guard": "Vitest bail only sees failed tests; a suppressed rejection leaves a passed test. Module isolation resets the in-memory latch for the next file. No later validator repairs the missed failure.",
+      "required_correction": "Enforce an explicit non-suppressing current34 caller form, e.g. immediate top-level awaited expression statement of actual test callback with intended binding/enrollment. Reject outer catch/finally-return and other suppressing wrappers/void/return forms with biting inverses. All current34 match the stricter form. No new global protocol or helper rewrite needed."
+    }
+  ],
+  "independent_pure_controls": [
+    {
+      "kind": "Exact frozen TypeScript AST guard with one actual source-derived try/finally-return mutation",
+      "native_exit": 0,
+      "actual_call_count_preserved": 34,
+      "all_calls_awaited": true,
+      "outer_catches": 0,
+      "guardAccepted": true,
+      "synthetic_whole_fixture_rejection_suppressed": true,
+      "outcome": "Biting bypass found; runner would receive no failed test.",
+      "actual_app_modules_executed": 0,
+      "SQL_network": 0
+    },
+    {
+      "kind": "Feasibility of immediate top-level awaited expression contract on current sources",
+      "native_exit": 0,
+      "current_calls_checked": 34,
+      "all_exact_test_callback_top_level_await_expressions": true,
+      "app_modules_SQL_network": 0
+    }
+  ],
+  "runner_observations": {
+    "failed_test_boundary": "Installed worker fail path sends coordinator cancellation before queued single-worker serial admission; proposed controls must assert no next module/hooks/fixture, not merely no test-body output.",
+    "active_work": "Bail/cancellation never certifies SQL/escaped promise/backend/canonical settlement. Current partial helper/factory remains pending independent cumulative review.",
+    "caught_inner": "Final helper latch throws outside scenario catch. Whole fixture suppression is prohibited by enforceable caller contract, not an assumption.",
+    "low_worker": "groupSpecs special-case is isolate && groupOrder0 && configured project.maxWorkers1; it appends that bucket after other groups. Default CPU-derived one worker is not itself this branch. Explicit1 override is unsupported unless rejected before effects or separately corrected.",
+    "supported_configuration_condition": "Keep healthy success enrollment/all six serial once after parallel; require resolved-setting controls, low-worker inverse and exact native ordering evidence. Do not treat only corrected synthetic parallelmax2 evidence as universal."
+  },
+  "wrapper_observations": {
+    "direction": "Conservative postcommit unsuccessful/uncertain DB runtime custody gate supported.",
+    "required_branches": [
+      "nonzero/signal build or integration",
+      "timeout/cancellation",
+      "readiness/launch failure",
+      "failed/forced/unverified owned stop",
+      "post-run cancellation"
+    ],
+    "on_failure": "No key DELETE/readback; retain existing failures/keyOutcome unverified/custody. Still stop exact owned children and bounded db.end.",
+    "on_success": "Normal child0 + qualified owned settlement retains exact UUID/name deletion and custody release. Expected-denial assertions remain normal success.",
+    "unchanged": "Setup rollback/collision, browser/diagnostic uncertainty, schema/receipt/channel and workflow always upload/stop preserved.",
+    "not_inferred": "No backend rollback or canonical restoration proof from frontend child/client closure."
+  },
+  "exact_proposed_source_allowlist": [
+    "vitest.config.ts",
+    "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "effect_split": {
+    "source_offline": "Exact six paths only after corrected plan acceptance/shared allocation; static/AST/isolated installed-runner controls and author Spec/SRO; no native authority.",
+    "later_native": "Separately authorized exact reviewed-head normal CI with existing hosted stack/migrations/full DB/RLS/browser/recovery/pilot boundaries. Cancellations retain partial counts and disposal custody; no manual backend repair or retry.",
+    "review_now": "Read-only sources/installed code/hashes and two in-memory TypeScript/JS controls. No application/.env/DB import/connection, SQL, browser, remote, resource, source/Spec/Git/state effect."
+  },
+  "remaining_requirements": [
+    "Correct C4-JOB-01 caller contract and inverse controls; preserve current34 enrollment.",
+    "Keep serial bail1/isolate/single worker/exact six and parallel exclusions; guard unsupported configured parallelmaxWorkers1 ordering.",
+    "Implement and independently review the exact wrapper failure/custody gate and pin; preserve startup/readiness/safe stop/successful cleanup.",
+    "Pending cumulative partial-helper/factory committed-delta High review remains required; no native/proven-restoration inference from this plan.",
+    "All95 successful distinct cases, required full DB/RLS and recovery are later executed gates; API019/privacy/browser failures/flakies/custody unresolved."
+  ],
+  "report": {
+    "path": "original-report.md",
+    "bytes": 5857,
+    "sha256": "9095aedb0af40dd39fab0bea1cb18fdc50f284e2ad726881182863742d06db62"
+  }
+}

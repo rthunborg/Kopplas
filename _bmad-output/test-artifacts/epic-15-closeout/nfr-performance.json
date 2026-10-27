@@ -1,0 +1,37 @@
+{
+  "domain": "performance",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Representative response/throughput/resource thresholds",
+      "status": "CONCERNS",
+      "description": "Representative scheduling dataset,p95/resource/throughput andSLA thresholds remain UNKNOWN/R-012; no product performance certification. NarrowAdminuserspilot/helper durations are not substitutes.",
+      "evidence": [
+        "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+        "Six canonical story delivery records and closeout trace-mapping.json/nfr-thresholds.json"
+      ],
+      "recommendations": [
+        "Product/Architect approve workload/thresholds; QA measure complete scheduling surfaces at release."
+      ]
+    },
+    {
+      "category": "Configured public-feed budgets",
+      "status": "PASS",
+      "description": "Approved15.5AC5 defines60/token,120/IP per900seconds; actual boundary/concurrency/reset API/SQL tests passed. This is correctness of configured budgets, not load capacity.",
+      "evidence": [
+        "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+        "Six canonical story delivery records and closeout trace-mapping.json/nfr-thresholds.json"
+      ],
+      "recommendations": []
+    }
+  ],
+  "compliance": {
+    "representative_performance": "CONCERNS",
+    "configured_limiter_contract": "PASS"
+  },
+  "priority_actions": [
+    "Approve representative scheduling performance volumes and thresholds before certification."
+  ],
+  "summary": "CONCERNS: actual representative performance evidence missing; advisory under ownerpolicy.",
+  "execution": "sequential domain audit in combined delegate; no new nested broad review or runtime"
+}

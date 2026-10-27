@@ -1,0 +1,68 @@
+{
+  "schema": "ROOT_BYTEPIN_WINDOW_PUBLISHED_PREPOST_STOP_V1",
+  "at": "2026-10-23T08:03:17.021070+00:00",
+  "operation_id": "d7575a0c-3fc5-433a-a68d-15c1a678baf7",
+  "checkpoint_id": "8e7d8a59-629b-4866-be9f-7a92382045c7",
+  "provider_GET": 1,
+  "MAIN_push": 1,
+  "DEBUG_push": 1,
+  "prePOST_GETs": 4,
+  "POST": 0,
+  "resolver_GET": 0,
+  "poll_pairs": 0,
+  "artifact_GET": 0,
+  "all_remaining_slots_closed": true,
+  "run_id": null,
+  "MAIN_head": "987edccdafee51e59b7d63376e36dadd220409ae",
+  "DEBUG_head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+  "MAIN_operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-main-docs-operation/operation.json",
+    "bytes": 271,
+    "sha256": "a9cea48c7c0ce9b8fc5df5ae261f93f924d3995f4cb8d1704dd0d4c82521bd37"
+  },
+  "DEBUG_operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-root-operation/operation.json",
+    "bytes": 408,
+    "sha256": "b13a1f4adb306d39f1c4392760c1b4de49a914e27c12eb22cd4b60cc14865abc"
+  },
+  "provider_host": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-provider-host-attribution.json",
+    "bytes": 1027,
+    "sha256": "661638c9f1e100f1a7c303b8a5e08564bf783c7c92058e651e56dfdceabb08f8"
+  },
+  "MAIN_outer": {
+    "start_tool": "a1154c",
+    "session_id": 69775,
+    "start_wall_seconds": 10.005468,
+    "completion_tool": "8054f3",
+    "completion_wall_seconds": 4.8799501,
+    "exit": 0
+  },
+  "DEBUG_outer": {
+    "start_tool": "45f5ad",
+    "session_id": 84901,
+    "start_wall_seconds": 10.006516,
+    "waits": [
+      "4b609f",
+      "c7828c"
+    ],
+    "completion_tool": "c7828c",
+    "completion_wall_seconds": 8.2e-06,
+    "exit": 1
+  },
+  "Root_actual_local_reads": [
+    "682226",
+    "63f7ab",
+    "aa8c6c"
+  ],
+  "deterministic_prePOST_source_defect": {
+    "actual_code_body_bytes": 265,
+    "actual_code_body_sha256": "836e225d758cd132f35240b12f8bfe984d256f9ef6ca16b7760f16a5af61f812",
+    "proposal_body_sha256": "f4bf9ad6b83afd94be916c8bab00fe5c529e62a23f4aec6e90dd65472bb07d15",
+    "cause": "Code serializes insertion-order body ref-first; reviewed proposal pin uses different object ordering. Both semanticJSON same but byteSHA differs before bodyfile/dispatch-mode-intent/POST. FourGET receipt validationfields are not persisted, so do not infer exact lastpassed remote guard."
+  },
+  "no_dispatch_body_or_intents": true,
+  "no_retry": true,
+  "no_release_or_acceptance": true,
+  "next": "Independent offline actual-stop qualification and minimum simpler remaining dispatch-only proposal; branches alreadypublished, no repeatpushes"
+}

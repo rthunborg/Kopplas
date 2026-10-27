@@ -1,0 +1,26 @@
+{
+  "schema": "EXACT_E16_COMPOSITION_ENCODING_HIGH_CLOSURE_MANIFEST_v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/original-report.md",
+      "bytes": 3013,
+      "sha256": "d7986790e97de7d30055154c08d94387cf28c1b3a1134d337774ea28a902ffb3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/original-attestation.json",
+      "bytes": 12205,
+      "sha256": "ce63ab1942bdedab89ed6b1892a2b26a308894c7100083ca28554bf31e040e70"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-composition-encoding-high-closure/result.json",
+      "bytes": 1581,
+      "sha256": "289f65bc0b7d80db816984f3cba6737e52c85e2025357c2a0afed1105663e27d"
+    }
+  ],
+  "frozen": true,
+  "source_commit": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "source_tree": "329b31ef0ec2eb0c49100b44aba4252ae27c4be4",
+  "native_actions": 0,
+  "execution_authority": false
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "bounded-frozen-review-artifact-format-qualification",
+  "unrestricted_native_check": "FAILED",
+  "unrestricted_exit_code": 2,
+  "unrestricted_stdout": "_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:17: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:74: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:82: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:86: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:98: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:150: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:267: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:298: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:373: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:381: trailing whitespace.\n+ \n_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff:393: trailing whitespace.\n+ \n",
+  "unrestricted_stderr": "",
+  "frozen_input": "_bmad-output/auto-bmad/preparation/story-15-5/native-setup-diagnostic-review/latest-delta-input.diff",
+  "bytes": 43259,
+  "sha256": "6066a8c53d71c299f4f5aaa4da16ba680d440c087c5681e6713d842340479f4d",
+  "single_space_context_line_count": 11,
+  "line_numbers": [
+    17,
+    74,
+    82,
+    86,
+    98,
+    150,
+    267,
+    298,
+    373,
+    381,
+    393
+  ],
+  "staged_raw_equals_frozen": true,
+  "every_other_staged_path_native_check_exit": 0,
+  "high_parent_assessment": "Only exact single-byte 0x20 empty-context lines in the sole frozen input qualify; raw/staged hashes match; all other staged paths pass; preserve unrestricted FAILED, no bypass/source/config/checker/hook mutation. Artifact format only, not review/runtime acceptance.",
+  "development_complete": false,
+  "release_ready": false
+}

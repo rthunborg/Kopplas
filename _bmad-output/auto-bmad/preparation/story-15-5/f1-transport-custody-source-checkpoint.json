@@ -1,0 +1,60 @@
+{
+  "kind": "F1_EXACT3_SOURCE_CHECKPOINT_NOT_NATIVE_ACCEPTANCE",
+  "source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "prior_reviewed_source": "22508ef2773bb872d6c880328390812dbc358559",
+  "parent_metadata": "f03491dac3ef7483b214a76a81daf81e26976aa1",
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/f1-transport-custody-author-result.json",
+    "bytes": 66777,
+    "sha256": "ae850d24d5c59dd9fbd690e9afaf6bf595bb94ce32ca84b1d0d9e977fb08939a"
+  },
+  "precommit_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f1-transport-custody-precommit-admission.json",
+    "bytes": 2433,
+    "sha256": "1079bff8e11012f3aeb8abe9bbf01ca5cac19631a0f302ccd0828483fd90c273"
+  },
+  "postcommit_binding": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f1-transport-custody-postcommit-binding.json",
+    "bytes": 855,
+    "sha256": "ba0c748a32e975903d3ae0254a5f1edd139089f1d1fea247c1707892a0e51492"
+  },
+  "verified_source_objects": 73,
+  "changed_paths": 3,
+  "unchanged": 70,
+  "historical_objects_checked": 219,
+  "actual_author_fresh_checks": {
+    "affected_Node": {
+      "passed": 131,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "TypeScript_exit": 0,
+    "lint_exit": 0,
+    "diff_exit": 0,
+    "reader_warnings": []
+  },
+  "initial_history": "Initial127P4F and selected7P nonadditive; prior125/partition5+9children reused only unchanged dependencies.",
+  "kernel_author_assertion": {
+    "bytes": 5760,
+    "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "unchanged": true
+  },
+  "Spec_ARR": "in-review",
+  "review_counter": 3,
+  "SRO_author_stops": 153,
+  "dependency_port_scope_clarification": {
+    "kind": "scope_only_not_semantic_CODEPASS",
+    "allowed": "Closed fetch_calendar_feed-only view of existing dependency.rpc invoking SAMEanon.rpc exactlyonce unchanged receiver/args; awaitsameoperationonce, inspectownstatusbefore503erasure, returnIDENTICALresult/errorbehavior.",
+    "excluded": "No new Supabaseclient/principal/extraRPC/query/clientmutation/thenobserver/genericobserver/protocol/channel.",
+    "requirements": "Helper-only proportional; prove exactonce/receiverargs/resultidentity/positive completed denial cleanup and UNKNOWNlatch before restore/delete inreceipt/SRO; distinctHigh reviewer explicitlyinspects; stop if existingcapability insufficient.",
+    "Coordinator_notified": true,
+    "native_acceptance_credit": 0
+  },
+  "independent_review": "F1 targeted closure/latest-fix regressions ACTIVE, no fourth broad pass.",
+  "reviewer": "/root/review15_5_private_diagnostic_high",
+  "normal_acceptance_credit": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "next": "Independent F1 code closure; then exact-source native readiness/effect allocation and all95/fullDBRLS/recovery."
+}

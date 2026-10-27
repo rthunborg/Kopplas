@@ -69,6 +69,7 @@ describe("8.5-UNIT-01: limited file-index pure DECISION logic (owner-category ma
       quote_version: "Offert",
       quote_acceptance: "Acceptans",
       job: "Jobb",
+      work_order: "Arbetsorder",
     };
     // Every Phase A owner type the index lists has a label (the map domain is exactly the index set).
     for (const ot of Object.keys(expected)) {

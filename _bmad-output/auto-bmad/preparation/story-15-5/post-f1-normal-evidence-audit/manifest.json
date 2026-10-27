@@ -1,0 +1,34 @@
+{
+  "schema": "POST_F1_FAILED_RUN_AUDIT_SELF_EXCLUDED_MANIFEST_v1",
+  "verdict": "PASS_QUALIFIED_FAILED_RUN",
+  "run": 39664130401,
+  "attempt": 1,
+  "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "members": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "files": [
+    {
+      "path": "original-report.md",
+      "bytes": 7517,
+      "sha256": "9369f5e42286761f72977ab6f7fb293210e469c6df765534fedce0ba216b0a07"
+    },
+    {
+      "path": "original-attestation.json",
+      "bytes": 18912,
+      "sha256": "8e79be9484918c26a1f4aba2bc68fb5b7b8186884c717ed231e412ef50a378e9"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1139,
+      "sha256": "f0330307ea7463646ebf95c6bb78b1c75d6f10e510fa4c1c76c592b536762b0e"
+    }
+  ],
+  "self_excluded": "manifest.json",
+  "normal_acceptance": 0,
+  "activation_authorized": false
+}

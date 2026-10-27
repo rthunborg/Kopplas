@@ -1,0 +1,27 @@
+{
+  "kind": "ROOT_MECHANICAL_QUALIFIED_STOP_AUDIT_ADMISSION",
+  "actual_run_id": 39664130401,
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-stop-audit/manifest.json",
+    "bytes": 880,
+    "sha256": "00d27de79f4c0be2cfc6ca347c8b409ccb972398c1f3d593b0a6500a5ee9ab13"
+  },
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-stop-audit/original-attestation.json",
+    "bytes": 15290,
+    "sha256": "7e3c7446fe15a65f3dc24f93519bd9fe3163913d881afc93128a350f903b60de"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-stop-audit/original-report.md",
+    "bytes": 3414,
+    "sha256": "b823ad0ad84ca76388aaeab141192037701461c64e1ef96deb99d98ce5e12711"
+  },
+  "auditor_outcome": "PASS_QUALIFIED_STOP",
+  "actual_targeted_GETs": 2,
+  "operator_native_exit": 1,
+  "closed_stop": "OUTPUT_CAP",
+  "diagnostic_candidates": null,
+  "runtime_causes": "UNKNOWN",
+  "normal_acceptance_credit": 0,
+  "next": "Highlocaloutputbudgetassessment withsynthetics; oldreadallocationconsumed; no relaunch"
+}

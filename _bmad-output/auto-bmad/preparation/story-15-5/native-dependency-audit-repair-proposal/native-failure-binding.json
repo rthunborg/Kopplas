@@ -1,0 +1,40 @@
+{
+  "kind": "qualified-tenth-native-failure-binding",
+  "run": 39503939856,
+  "attempt": 1,
+  "head": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "conclusion": "FAILURE",
+  "manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-ci-independent/manifest.json",
+    "bytes": 4308,
+    "sha256": "a9afcbb4ebaa008228f76641aa1068e274bbcb4c719e86bcac7f40a1d0bdc7ba"
+  },
+  "qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-ci-independent/native-qualification.json",
+    "bytes": 19081,
+    "sha256": "fa67a9f9eda576bc85f1969b4ede1ccf7413ee310543fe496dc4e12684e8e825"
+  },
+  "bounded_verify_stop": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-be2c1a53-ci-independent/native-verify-stop.json",
+    "bytes": 1078,
+    "sha256": "45a5311cd96bbbea9d755a1848347e1f42a7bf2335966e345bc57aff2eacf81d"
+  },
+  "Root_integrity_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-be2c1a53-packet-admission.json",
+    "bytes": 1206,
+    "sha256": "488f277d104a5eb6fbb1e2e6cf82e181d47cd581f1fbadd6d34422950d70635d"
+  },
+  "actual": {
+    "dependency_install_and_lock_verification": "PASS",
+    "audit_command": "pnpm audit --audit-level=high",
+    "audit_exit": 1,
+    "high": 1,
+    "moderate": 4,
+    "public_advisory_id": "GHSA-587h-7wmj-h5pm",
+    "later_checks": "UNEXECUTED",
+    "feature95": "UNEXECUTED_AT_THIS_HEAD",
+    "separate67": "UNEXECUTED_AT_THIS_HEAD",
+    "managed_runtime": "UNEXECUTED"
+  },
+  "prior_limits": "Earlier43DB+14browser failures remain unresolved; this advisory observation neither attributes introduction nor diagnoses those failures."
+}

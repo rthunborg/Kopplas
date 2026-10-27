@@ -1,0 +1,401 @@
+{
+  "schema": "story-15-5-targeted-post-acl-harness-proposal-review-v1",
+  "verdict": "PASS_PLAN_ONLY",
+  "consequential_blocking_findings": [],
+  "reviewer": {
+    "identity": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_from": [
+      "/root/build15_5_high",
+      "BuildHigh/source author",
+      "Root"
+    ],
+    "reused_existing_reviewer": true,
+    "fresh_context_claim": false,
+    "nested_work": []
+  },
+  "scope": {
+    "current_metadata_head": "bc5e9b90ba05f7f60ff68d0d1693315691d61bbe",
+    "source_commit": "589652335657df7153d7578b1a421b020fa2ce8c",
+    "actual_runhead": "b459af22d490eadc90113fd713a73b65aff89471",
+    "actual_run": {
+      "id": 39637925040,
+      "attempt": 1,
+      "head": "b459af22d490eadc90113fd713a73b65aff89471",
+      "checkpoint_id": "b34acf03-1116-4411-9ce4-7dbe04d48745",
+      "mode": "normal",
+      "release_validation": false,
+      "conclusion": "FAILURE"
+    },
+    "kind": "Only current finite five-path harness repair proposal and necessary failed-path context",
+    "broad_rounds_exhausted": 3,
+    "new_broad_review": false,
+    "policy_version": "2026-10-19"
+  },
+  "reviewed_proposal_governance_admissions": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-normal-failure-assessment/assessment.json",
+      "bytes": 30681,
+      "sha256": "8eec50f192e5b509801b87fc1866eeac641432ca80b109281602d88d99f75957"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-normal-failure-assessment/manifest.json",
+      "bytes": 523,
+      "sha256": "17c2a0a96889790d4081356f7cd6bcf07f70242f72c0fc32fd92eb51bd2477f5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-post-acl-failure-assessment-admission.json",
+      "bytes": 1291,
+      "sha256": "0e8936ae5e116962991f444f45b9d3f0becca8a5a7bba8fa44eb9dea7a7cbef3"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-evidence-audit-admission.json",
+      "bytes": 1507,
+      "sha256": "81b538512e8e6ad23337437d9eca730f1d357a25e9624aa77ba17cc8beac44eb"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "reviewed_source_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 110189,
+      "sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde",
+      "proposed_write": true,
+      "clean_git_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "metadata_head_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "author_source_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "actual_runhead_oid": "8e6ea22df4bb49de7b1a93b6127ddd549bd8d28a",
+      "actual_git_blob_bytes": 110189,
+      "actual_git_blob_sha256": "44d63a54d314d08bb728e6dffa11683e2e86ea1c2b6d8e9f8a7aaba625daafde"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 189039,
+      "sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580",
+      "proposed_write": true,
+      "clean_git_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "metadata_head_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "author_source_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "actual_runhead_oid": "d4eab9b65caa73233bb8b3ecb632d157adf96530",
+      "actual_git_blob_bytes": 189039,
+      "actual_git_blob_sha256": "8b7d8078b42e9f85ca46dcf310ed3b69669ef5c9b6449c91d4ff8ac526517580"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "bytes": 16017,
+      "sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950",
+      "proposed_write": true,
+      "clean_git_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "metadata_head_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "author_source_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "actual_runhead_oid": "643eda6f18612322aa73b39f5c784d256de4c77e",
+      "actual_git_blob_bytes": 16017,
+      "actual_git_blob_sha256": "e1fa13ac662ace0d5239c0e5ddd0eb428e196e40bd43b84e0d3e1904be624950"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 27768,
+      "sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe",
+      "proposed_write": true,
+      "clean_git_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "metadata_head_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "author_source_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "actual_runhead_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "actual_git_blob_bytes": 27768,
+      "actual_git_blob_sha256": "b2851627142916a7aaaef4d1bf9324be00587d7114d474ba728dd781330d0efe"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 170000,
+      "sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d",
+      "proposed_write": true,
+      "clean_git_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "metadata_head_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "author_source_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "actual_runhead_oid": "d6bbdf298314db597de50ec7999a994c7196e1e0",
+      "actual_git_blob_bytes": 170000,
+      "actual_git_blob_sha256": "8c4b57c2703117c4626512840a02cf9a7f7fe7ec4ea4b38627e83eb9b7264f5d"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "proposed_write": false,
+      "clean_git_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "metadata_head_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "author_source_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "actual_runhead_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "actual_git_blob_bytes": 26504,
+      "actual_git_blob_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "proposed_write": false,
+      "clean_git_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "metadata_head_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "author_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "actual_runhead_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "actual_git_blob_bytes": 36884,
+      "actual_git_blob_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 55454,
+      "sha256": "4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f",
+      "proposed_write": false,
+      "clean_git_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "metadata_head_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "author_source_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "actual_runhead_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "actual_git_blob_bytes": 54738,
+      "actual_git_blob_sha256": "849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3"
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "bytes": 905,
+      "sha256": "f70bf49b2d6fac7a9c194d1f2c5bb09d76abd997956095771d6a705029e14202",
+      "proposed_write": false,
+      "clean_git_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "metadata_head_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "author_source_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "actual_runhead_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "actual_git_blob_bytes": 904,
+      "actual_git_blob_sha256": "d426154fb3888241ed6b36e98c3b25756f40f85c059dca9bf0785b88bc6eade1"
+    },
+    {
+      "path": "src/server/read-models/scheduling.ts",
+      "bytes": 13920,
+      "sha256": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b",
+      "proposed_write": false,
+      "clean_git_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "metadata_head_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "author_source_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "actual_runhead_oid": "4875994f651c1f4751f0a0eddc74361252e06046",
+      "actual_git_blob_bytes": 13920,
+      "actual_git_blob_sha256": "800dffae99e3c8ed8977129ed9122463b997257b32dba7f8345240dcd801af5b"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "proposed_write": false,
+      "clean_git_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "metadata_head_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "author_source_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "actual_runhead_oid": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8",
+      "actual_git_blob_bytes": 47151,
+      "actual_git_blob_sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "proposed_write": false,
+      "clean_git_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "metadata_head_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "author_source_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "actual_runhead_oid": "f7d2c10c669252912bc045659ed7886dceae3ae0",
+      "actual_git_blob_bytes": 3593,
+      "actual_git_blob_sha256": "02e592a1cb08892aea3513cb439840c2b0495cd90a2cf5eee916ba5061539ed2"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "proposed_write": false,
+      "clean_git_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "metadata_head_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "author_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "actual_runhead_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "actual_git_blob_bytes": 24435,
+      "actual_git_blob_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 32551,
+      "sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567",
+      "proposed_write": false,
+      "clean_git_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "metadata_head_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "author_source_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "actual_runhead_oid": "da1270c7238db113f0cd2485581a635a66981a65",
+      "actual_git_blob_bytes": 32551,
+      "actual_git_blob_sha256": "73b347ce62d4e936055e6de7f1054e9d1003a7550a738aa433261f7631150567"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 3602,
+      "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+      "proposed_write": false,
+      "clean_git_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "metadata_head_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "author_source_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "actual_runhead_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "actual_git_blob_bytes": 3536,
+      "actual_git_blob_sha256": "5f2cb605e2109c38a5606c035ab71fbba935e5f32713257f2a75cb66fb87c123"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 4872,
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+      "proposed_write": false,
+      "clean_git_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "metadata_head_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "author_source_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "actual_runhead_oid": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+      "actual_git_blob_bytes": 4780,
+      "actual_git_blob_sha256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31"
+    }
+  ],
+  "frozen_evidence_refs_rehashed": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/manifest.json",
+      "bytes": 4947,
+      "sha256": "a964912b04fff6fc7f93a29f63ef84fa2aa5788e357e9f57a24a07eb95f46a81"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/native-qualification.json",
+      "bytes": 55310,
+      "sha256": "82933a54c3093d4b6e31a8fca97f6844b362593716b0cd1f91d5735606a00b84"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/native-full-integration-projection.json",
+      "bytes": 78353,
+      "sha256": "49207a2076b9db04a99b4598b05777de7d5070b79c80a1c7fa9ebe8ef26049e3"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-b459af22-ci-independent/native-general-browser-projection.json",
+      "bytes": 11458,
+      "sha256": "bf8c9de1542ad515399439e16866f35abb9f66105d89da8199830612206e6834"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-report.md",
+      "bytes": 6639,
+      "sha256": "5b2689aa3cc872f31a2d84dec6529f05589a4f2ee7cdef2da31816967d5c644e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/original-attestation.json",
+      "bytes": 13713,
+      "sha256": "ca77d3173dfff1ee08702a46a37e386a56f575bea73dea714eb0e564c24008cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-evidence-audit/result.json",
+      "bytes": 1181,
+      "sha256": "8a1889c6bc1090cf4b32c25433e1d97742d528591c0cc800af3be5d5c07a6121"
+    }
+  ],
+  "source_binding_observation": {
+    "rows": 16,
+    "actual_comparison_heads": [
+      "bc5e9b90ba05f7f60ff68d0d1693315691d61bbe",
+      "589652335657df7153d7578b1a421b020fa2ce8c",
+      "b459af22d490eadc90113fd713a73b65aff89471"
+    ],
+    "all_raw_size_SHA_match": true,
+    "all_three_clean_Git_OIDs_and_blob_size_SHA_match": true,
+    "all_raw_explicit_CRLF_to_LF_equal_blobs": true,
+    "not_claimed": "No independent72-path recheck or raw archive reacquisition; unchanged audit packet qualification reused as identified dependency."
+  },
+  "decisions": {
+    "H1": "Supported deterministic source harness mismatch. foreign tenant-only override equals its own caller identity; legitimate self-management is demanded to fail. Different existing tenant plus input invariant and unchanged physical oracle fixes that negative without production changes.",
+    "H2": "Reachable source-supported fixture authority mismatch under intended ordinary postgres/noninherit context. Actual native first statement/current pool role not observed. Private owner clock EXEC and owner-only replacements must be exercised using qualified owner-scoped test setup, not grants to pool or production permission repair.",
+    "H3": "Supported empty-state assertion-target mismatch. Actual component places empty text/link outside empty agenda wrapper. Source/SSR is not geometry/native first-failure proof. No-profile-only structural+visible-content change preserves usable coverage.",
+    "U1_U2_U3": "Unknown privacy/browser branches and unverified browser custody remain failures. No inferred leak, backend cause, attachment content or successful cleanup; wrapper fail-closed fence is supported and stays unchanged."
+  },
+  "required_implementation_conditions": [
+    {
+      "id": "C1",
+      "scope": "RLS002 negative meaning",
+      "requirement": "Every spoof must actually differ from the selected caller in the intended identity component. Preserve all caller/spoof combinations, exact once ordinary RPC, denied/no rows and exact before/after mutation oracle; retain legitimate self positive without including its mutation inside the negative baseline. No production claim/signature or permission relaxation."
+    },
+    {
+      "id": "C2",
+      "scope": "Fixed owner operation admission",
+      "requirement": "Same actual configured postgres session/current identity and existing hardened owner SET authority; needed schema grant authority observed before effects. Exact allowlisted clock/subject/fetch OID/owner/definition/state, strict ACL and shape/metadata preflight. No fallback to wrapper SupAdmin or new pool/principal. If unavailable, stop with an authority prerequisite rather than grant privileges."
+    },
+    {
+      "id": "C3",
+      "scope": "Atomic publication and private reads",
+      "requirement": "Per-operation transaction with bounded statement/lock/admission budgets; only necessary transient CREATE, SET LOCAL exact owner and bound operation; RESET original actor and revoke/effective-absence/metadata checks before commit. Private clock reads use a separate bounded owner operation, never an EXEC grant. Commit seam publication before ordinary external callback so no DDL lock/open transaction blocks or hides the fault."
+    },
+    {
+      "id": "C4",
+      "scope": "Restoration and uncertainty",
+      "requirement": "Finally restore captured canonical definition and full non-body metadata/ACL/OID after every outcome. Release gates and settle all affected actual work before restoration/deletion. No orphan timeout race or retry after uncertain commit. Successful rollback/reset/identity proof must precede treating pooled connection as clean; adminSession DISCARD/release alone is insufficient. Uncertainty retains exact custody and blocks subsequent shared seam assumptions; if existing interface cannot meet this, stop for exact additional allocation rather than edit factory implicitly."
+    },
+    {
+      "id": "C5",
+      "scope": "Existing serial boundary",
+      "requirement": "Only existing serial command/public helpers may mutate shared clock/subject/fetch; all six serial files once after parallel project, existing barriers and ordinary request clients retained. No row-isolated/global owner mode or runner change."
+    },
+    {
+      "id": "C6",
+      "scope": "E2E002C semantics",
+      "requirement": "Only empty no-profile variant changes visible empty wrapper assertion to structural presence, with visible personal region/exact empty content and unchanged unique link/href/keyboard/settings/create assertions. Populated A/B still require visible agenda and all personal/foreign/privacy checks remain."
+    },
+    {
+      "id": "C7",
+      "scope": "Meaningful source and later native controls",
+      "requirement": "Actual source operation/callback negatives for missing authority, unsafe target/shape/ACL, failure before mutation, assertion/SQL/commit/rollback/reset/restore failures, pending work/custody and no persistent CREATE. Verify restricted production callers and exact canonical restoration; no static string-only substitute for behavior. Author SRO/kernel/counter updated honestly, then distinct committed-delta High review. Actual session/catalog/fault semantics remain native gates, not prerequisites to writing the safely fail-closed source."
+    }
+  ],
+  "exact_candidate_write_paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "allocation_readiness": "Five paths/effects are sufficient for source-only implementation when Root allocation carries C1-C7. No additional author plan refinement is required to begin a fail-closed implementation. Actual authority compatibility is later native qualification; failure must stop, never authorize widening.",
+  "actual_checks": {
+    "hash_and_Git_binding_checks": "16 source rows across three commits, seven evidence refs, assessment/manifest/two admissions and governance identities",
+    "source_regions_read": [
+      "RLS001/RLS002 rawManage identity construction and downstream checks",
+      "calendarSerialControls clock/private reads",
+      "calendarFault projection capture/restore",
+      "calendarBarrier subject capture/restore",
+      "adminSession query/discard/release",
+      "E2E002 variants and actual PersonalCalendarView",
+      "Vitest serial membership/group ordering",
+      "API019 telemetry/privacy boundaries",
+      "browser cleanup and wrapper custody fence"
+    ],
+    "new_test_runs": 0,
+    "author_assessment_pure_controls": "Child rawManage stub and parent five SSR assertions remain author evidence; not relabelled as reviewer execution or native/browser geometry.",
+    "SQL_connections_network_API_CI_resources": 0,
+    "source_Spec_state_Git_mutations": 0,
+    "allowed_writes": "Only three new review metadata artifacts"
+  },
+  "native_reality_dependency": {
+    "source_of_counts": "Unchanged independently qualified failed-normal audit/projections; hash identities verified here, not broad re-audited",
+    "story_DB": "39 pass / 12 fail / 0 skipped of51",
+    "story_browser": "8 expected / 4 flaky / 2 unexpected of14",
+    "ordinary_oracles": "RLS010 ordinary grantor and INT015 passed inside declared cases; recovery1 passed separately",
+    "normal_acceptance_credit": 0,
+    "migration111": "Successfully applied; immutable, as are all other applied migrations",
+    "requests": "Prior5 logical GETs consumed; no new request made or authorized",
+    "browser_cleanup": "Key deletion/child settlement unverified and custody retained; DB close/stop-step success are not deletion proof"
+  },
+  "later_requirements": [
+    "Only after explicit source allocation: exact5 implementation/author SRO and meaningful focused/static checks; preserve approved kernel/in-review/baseline/counter3. Separate targeted independent High committed-delta review.",
+    "U1/U2 exact closed branch evidence needs a separate bounded Root decision/allocation; do not add labels/collector/API acquisition within this acceptance or run normal merely to obtain finer UNKNOWN data.",
+    "Only after separate exact owned checkpoint/activation/runtime authority: fresh full normal required DB/RLS/browser/recovery; all95 clean passing, privacy and essential browser cases resolved, actual query/request/child settlement and key custody qualified. No historical or skip credit."
+  ],
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-harness-proposal-review/original-report.md",
+    "bytes": 6398,
+    "sha256": "f3c1cf39ce85bbb253df199f3f7412bdf254ece231fd5284ad46abe7e548009e"
+  }
+}

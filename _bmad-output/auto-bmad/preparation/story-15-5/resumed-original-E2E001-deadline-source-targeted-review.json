@@ -1,0 +1,172 @@
+{
+  "schema": "kopplas.resumed-original-E2E001-deadline-source-targeted-review.v1",
+  "verdict": "PASS_TARGETED_DEADLINE_CAPTURE_SOURCE_AND_PRIVATE_CONSUMER_ONLY",
+  "status": "PASS",
+  "review": {
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "Exact two committed diagnostic sources and two versioned private acquisition files; changed-line regressions, promise topology, privacy and bounded projection only. No fourth broad review."
+  },
+  "revision": {
+    "commit": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1",
+    "parent": "584e97329ea516d49b49dec242e8e097594adf95",
+    "diagnostic_checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-original-failure-debug/Kopplas",
+    "main_metadata": "a73b7c5e0e4df1e3c5578d77b05c3c40a09bfe78",
+    "attribution": "Root verified actual committed two-file scope, preimages, Git identities and clean diagnostic tree. Reviewer independently verified raw/LF/computed-clean-blob bindings without Git commands. Historical UNCOMMITTED placeholders in preparation rows are not current execution or commit claims."
+  },
+  "source_bindings": [
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 71184,
+      "raw_sha256": "9fdd46e1a9ce29a80c4cc51b42c77edf86e189c2751181de2a0133fa0a58aee1",
+      "LF_bytes": 70322,
+      "LF_sha256": "8d8cdfab99a695fa80530cf093117e75992cca67f6dbb6ad374563c1fef03401",
+      "computed_clean_blob": "f3e8198e50c83fad3947580b2a616f343b2fa27c"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 301799,
+      "raw_sha256": "9304898cda637b5e9423323197800e0500a58ccacaab12cf826842746c54e38d",
+      "LF_bytes": 298959,
+      "LF_sha256": "47ba320683e1cf62254207031f37feeeebeddbf4651a4f8325694de9c202b193",
+      "computed_clean_blob": "af4245415702758a06f05145f04936abde1b23bc"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-E2E001-deadline-acquisition-preparation/read-diagnostic-artifact.py",
+      "bytes": 16488,
+      "sha256": "f470f8363543d19c62c481c55fbd424efe08b28dc453e2989db152721cee7c67"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-E2E001-deadline-acquisition-preparation/proposal.json",
+      "bytes": 18673,
+      "sha256": "361cdee6f36f8f60143f38c785f556f156d4db06bbb91d3e5b86eb2d512d19ed"
+    }
+  ],
+  "grant": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-resumed-original-E2E001-deadline-source-allocation.json",
+    "turn_status": "completed",
+    "tool_status": "completed",
+    "operative_tool": "exec-a45fdb48-4692-44d8-a2ac-cf0a2f0ba3c7",
+    "scope": "Source-only, including the explicit conditional discarded-handler substitution; zero live-effect budget.",
+    "bytes": 3042,
+    "sha256": "baa9575c64592e7d779e879145ac8c5f310e178906aa7d7fe748776b9dd0ee95"
+  },
+  "root_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-original-E2E001-deadline-source-commit-proof.json",
+    "bytes": 2127,
+    "sha256": "28644f98ed1df26d6a226b821a392970dbba32ec5a6fee8ac8803d45f6e82e91",
+    "reuse": "Root-qualified committed scope and unchanged 118 SQL canonical/current/HEAD evidence; no SQL runtime claim."
+  },
+  "findings": [],
+  "assessment": {
+    "promise_semantics": {
+      "locations": [
+        "tests/e2e/support/calendar-feed-atdd.ts:238-276",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2809-2833"
+      ],
+      "judgment": "The fulfillment reaction intentionally changes in diagnostic mode, as explicitly granted; it is not claimed automatically behavior-neutral.",
+      "facts": [
+        "Exactly one existing discarded completion.catch and one existing discarded observation.catch become one discarded then(success,reject) each only when deadline capture is enabled; else retains each original catch.",
+        "The original completion and observation variables are not reassigned or replaced; observe returns the same observation and trackReadback returns the same work.",
+        "Promise.allSettled receives the original [observation, completion], and pending/actualWork ownership remains unchanged. The derived observer promises are discarded without a chain.",
+        "Marking mutates only private plain bookkeeping within a no-throw safe wrapper; it neither transforms the original values/rejections nor adds rejection propagation.",
+        "The original rejection normalization, failure accumulation, cancellation verification, error precedence and cleanup custody gate remain unchanged by the full inverse.",
+        "No parallel observer, new request/listener/promise/await/timer/retry/timeout or assertion is introduced."
+      ]
+    },
+    "deadline_capture": {
+      "locations": [
+        "tests/e2e/support/calendar-feed-atdd.ts:54-77",
+        "tests/e2e/support/calendar-feed-atdd.ts:278-290",
+        "tests/e2e/support/calendar-feed-atdd.ts:675-695"
+      ],
+      "facts": [
+        "A one-shot immutable serialized snapshot is taken synchronously inside the existing timeout callback immediately before resolve(false), retaining default20000ms and the existing one timer/four lifecycle await expressions.",
+        "Capture reads actual actualWork.size and pending.size at that boundary, not derived elapsed or guessed promise state.",
+        "Exactly three fixed action-owner rows carry registered flags, observed settlement states and fixed await-stage literals. PENDING means no bookkeeping handler has observed settlement; it is not Promise-state introspection or backend evidence.",
+        "Stage marking occurs only at existing callback/await boundaries. Unknown linkage or repeated registration is explicit UNKNOWN; count overflow produces null plus an overflow flag.",
+        "Fixed owners and closed source literals exclude runtime IDs, error text, URLs, tokens, bodies, DOM or arbitrary payloads. Producer JSON is bounded to1536 ASCII bytes and sink failures cannot replace the existing timeout.",
+        "Snapshot is not resampled after late settlement. Missing snapshot, including no timeout or a failed sink, is UNKNOWN rather than proof of absence.",
+        "Normal environment does not provide a deadline sink, so the original handler path remains active. Workflow/wrapper/selectors and application behavior remain outside this exact delta."
+      ]
+    },
+    "unit_guards": {
+      "locations": [
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2410-2431",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2764-2766"
+      ],
+      "facts": [
+        "The old golden operation vector [7,8,6,5,14,2] remains unchanged. Its source view inverts exactly the two admitted conditional observer fragments, each exactly once; extra/mutated observers remain visible and refused.",
+        "The old original-code no-await/no-timer/no-JSON view now ends at the newly adjacent deadline-function comment. This restores the original function boundary, rather than waiving its assertions.",
+        "The new actual-source controls inspect observer receivers/derived promises, fulfillment/rejection paths, deadline ordering, late settlement immutability, tracked Set counts and missing linkage. They exercise meaningful behavior; they are not runtime evidence."
+      ]
+    },
+    "private_consumer": {
+      "judgment": "The exact diff is limited to the closed deadline_annotation parser, its added projected field, inert future identity/path/mode/schema changes and the early unbound-tuple refusal.",
+      "facts": [
+        "Exact schema/key sets, booleans, fixed three-owner order, closed observed-state/stage enums, bounded counts and <=1536 ASCII input are enforced. Unknown keys, raw text, malformed/duplicate/conflicting snapshots refuse to UNKNOWN.",
+        "Agreeing copied RESULT/TEST records retain source provenance; unavailable or state UNKNOWN remains unavailable causal information.",
+        "Existing original-code/error/static-frame projections and all imported transport/archive functions remain unchanged.",
+        "The full reader inverse restores every byte of the frozen13519 predecessor, demonstrating unchanged two-GET orchestration, exclusive intents, no-retry/caps/EOF/join/settlement/archive guards and raw-RAM privacy.",
+        "Future RUN/HEAD/CP are null and validate refuses before reading activation or creating output. Old activation paths/grants cannot authorize this version. Future tuple/source proof and actual activation require separate bounded admission.",
+        "Only the exact production encoder output is written, with final32768 byte refusal unchanged. The source-bound sample and conservative producer-size proof support the finite shape; arbitrary API metadata is not claimed universally bounded."
+      ]
+    },
+    "causal_limits": "No new runtime snapshot has been observed. A future observed PENDING owner/stage would localize bookkeeping at the deadline, not prove native Promise state, abort initiator, backend nonsettlement or a corrective change. No successful gate requires manufactured failure labels."
+  },
+  "independent_evidence": {
+    "command": {
+      "chunk": "e9f361",
+      "native_exit": 0,
+      "wall_seconds": 0.2054763,
+      "kind": "Pure source/hash/inverse checks only."
+    },
+    "complete_inverses": [
+      {
+        "file": "helper",
+        "restored_LF_bytes": 65776,
+        "restored_LF_sha256": "6319a38678a350774c9167a3dc6d073e8d3947b457dffb03f3da0916a91afefa"
+      },
+      {
+        "file": "existing wrapper unit",
+        "restored_LF_bytes": 289451,
+        "restored_LF_sha256": "1e9b41fcf2b78aa96a300440f012f1de049604c359123c722e778d754e0c7967"
+      },
+      {
+        "file": "private reader",
+        "restored_bytes": 13519,
+        "restored_sha256": "136f2baea86c9b281d599325b499f90c97765eaaf2b180746dc18585bfb47400"
+      }
+    ],
+    "reader_history": "Initial inverse readers stopped on indentation and a newly appended separator LF; corrected source-only inverses then passed. A metadata-only diagnostic printed an unasserted unit flag and is not counted as unit inverse evidence; the final e9f361 check asserts all three exact predecessor hashes.",
+    "tests_rerun": 0,
+    "API_calls": 0,
+    "Git_commands": 0,
+    "imports_or_main": 0,
+    "resources": 0
+  },
+  "author_evidence": {
+    "attribution": "Frozen proposal/Root-reported author evidence reused; no author check is presented as an independent rerun.",
+    "full_affected_unit": "173 passed,0failed/skipped/cancelled; includes focused9 and five newly appended tests, nonadditive.",
+    "static": "Whole TypeScript/affected lint/diff exit0.",
+    "private_controls": "8 passed/API0; actual producer snapshot741B, conservative producer bound831B<1536, actual projector/encoder sample3639B<32768; final exact-byte cap retained.",
+    "history": "Initial focused8/9, initial type error and first full171/173 remain historical failures, followed by the qualified corrected checks. Historical13519 reader/proposal and completed packet remain immutable."
+  },
+  "remaining": {
+    "status": "SOURCE_ONLY_PASS",
+    "activation_created": false,
+    "new_runtime_or_GET_authority": false,
+    "minimum_next_requirement": "Root binds the exact reviewed committed head and separately obtains the finite existing E2E001-only effect allocation before any provider/push/dispatch/runtime. A future completed actual terminal then needs a data-only tuple/source binding review, fresh finite acquisition authority and exclusive Root activation. No automatic correction or repeat is authorized.",
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "required_missing_cases": 35,
+    "broad_review_counter": 3,
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "abort_origin": "UNKNOWN",
+    "backend_settlement": "UNKNOWN",
+    "custody": "Existing unverified conditions preserved."
+  }
+}

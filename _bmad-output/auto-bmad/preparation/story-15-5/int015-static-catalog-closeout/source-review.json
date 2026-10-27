@@ -1,0 +1,107 @@
+{
+  "Outcome": "PASS_INT015_STATIC_CATALOG_V4_PUBLICATION_GUARD_SOURCE_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/INT015-static-catalog-v4-independent-source-review.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "route": "Root754cbc/native0 explicit independent Sol6.1 High operational source review",
+    "scope": "Exact v4 publication-guard source and frozen parent/recovery metadata only; no further declaration census, AST extraction, test or source/function execution.",
+    "context": "Root handoff: current committed reviewed source checkpointcbe3e5d5f462b9be2a992bba56c4bf33b71706fe. This review did not execute Git or independently certify that HEAD. Active four-path design delivery is separate and was not inspected.",
+    "source": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/refresh-static-catalog.mjs",
+      "bytes": 5409,
+      "sha256": "f92b370cbb620bb84f5a26c3cfa0388e79482f9919170cd1c89bf5c033658471"
+    },
+    "qualified_fix": {
+      "exact_delta": "Independently compared source strings: only lines2,3,16,17 differ from v3. Four changes are output namespace, allocation filename, truthful per-invocation/cumulative limits text and precise comparison boundary. Reversing these recovers actual v3 raw5146/SHA256044657489f174eff732a8655d85f6c1b4fb32df5e845741259bd427da5a0a9dc exactly.",
+      "algorithm": "Independently extracted text only, without JavaScript/AST evaluation: original algorithm slice420 bytes; v4 slice421 bytes includes one CR immediately before LF+const old sentinel. Removing that single terminal separator CR yields exact original420/SHA256f6ed302d53dbb02c9e7f6399b89544ed5888016ec82573fbfe7e7ed0a7c89694. visit predicate, title hash, one-based line, line length/null fields and recursive traversal are unchanged.",
+      "guard": "The comparison uses endsWith CR followed by slice0,-1 only on that bounded slice, then requires original length420 and exact equality. It is not trim or full-source newline normalization. Double terminal CR leaves a CR; internal bare CR, body drift and separator space remain unequal. Recovery report six RAM string controls honestly qualify this representation operation only; no executed JS guard/AST/runtime claim is inferred."
+    },
+    "actual_flow_assessment": [
+      "Allocation JSON is read before any AST call; five input roles are byte/hash checked before historical/embedding parsing and the single ts.createSourceFile/visit. With current allocation path absent, this script cannot reach AST in the expected MAIN caller context. Imports of fs/crypto/TypeScript precede that refusal, so inert here means no refresh/extraction/publication, not zero module loading.",
+      "The script itself enforces readable allocation refs and exact pins; it does not authenticate grant status, independent-review status, caller identity, completed coordination or a maximum invocation count. Those are Root finite-allocation/caller obligations, not claimed internal guards. Exact future role paths/pins and script/review binding are mandatory enrollment conditions below. No arbitrary or untrusted allocation is approved.",
+      "Old catalog assertion enforces199 rows and199 distinct title hashes; current hashes unique; every old hash present; exactly the two known additional hashes. These imply201 distinct declarations when reached. They do not compare old199 full rows/line locations byte-for-byte. The new rows/locations are fresh AST results, not runtime coverage.",
+      "Other19 paths come only from the pinned20-path unit catalog and pinned unique203 vector; the literal wrapper is excluded. Each must have a matching vector and raw/LF length/hash before reuse. No other source discovery, AST extraction or recount occurs. The20 metadata paths are unit-source paths, not a migration/SQL corpus.",
+      "Catalog construction spreads unchanged pinned units then replaces only the wrapper row, so other19 reuse follows from construction. other19_catalogs_reused_unchanged is a computed boolean field, not an extra throw predicate. Existing raw/LF hash guards remain enforced; recorded Git blob values stay historical/unverified. No stronger old-row or current-Git assertion is claimed.",
+      "After algorithm comparison, source pin is reread before publication. The caller must preserve frozen source/input ownership during the operation, and later actual qualification must verify emitted source pin equals the allocated raw363561/7ad2... source. This is not an atomic filesystem snapshot or a substitute for that output check.",
+      "Publication is only unit-source-catalog.json with flagwx; old outputs cannot be overwritten. PASS_STATIC_ONLY is logged after that write. A catalog write followed by logging/capture failure would be a partial/failing operation requiring stop and qualification, not rerun or fabricated success. closed:true in stdout is a script assertion; only actual caller/native EOF/join/settlement receipt proves transport closure.",
+      "Payload remains STATIC_UNIT_SOURCE_CATALOG_REFRESH_ONLY_V1: source ref,20 metadata catalogs, counts/new hash-line-length-null rows, preserved-title boolean,19 hash checks and explicitly historical aggregate448/19/199. Runtime coverage is0, no current aggregate declaration count is claimed, and no raw source/test/runtime payload is persisted by the catalog. Root-owned result.json is outer closed receipt metadata, not another output generated by this script."
+    ],
+    "closed_history": {
+      "v2": "Closed native1/273ms, initial allocation JSON ENOENT under wrong CWD before AST. One refresh-harness Node invocation;0 AST extraction. No catalog.",
+      "v3": "Closed native1/391.401ms, empty stdout, Error algorithm changed at line17:328. Since that actual throw is after AST/title/inventory/hash checks, one AST completed and transient201 declaration predicates/19 hash guards passed. Algorithm mismatch is the one separator CR. Final source reread/exclusive catalog write/PASS log were not reached. Catalog absent; no lost row serialization can be recreated honestly from the closed failure metadata.",
+      "cumulative": "This review executes0 Node/0 AST. Prior final-source lane totals2 refresh-harness Node invocations and1 AST; if one future v4 call reaches/completes its AST, totals become3 Node/2 AST. refreshes:1 and actual_AST_refreshes:1 are per-invocation only. Historical initial catalog creation and metadata-only Node version probe are outside those lane counters. All old slots remain consumed/closed."
+    },
+    "future_enrollment": {
+      "authority": "NONE created by source PASS. Root must separately issue a new precise finite allocation; no old grant reuse or automatic retry.",
+      "allocation_path": ".env.epic15.mail-runtime/story-15-5-preparation/root-INT015-final-static-catalog-single-refresh-allocation-v4.json",
+      "caller": "Explicit Python cwd=MAIN/os.chdir MAIN, absolute existing Node22.23.2 and exact script path, timeout15s; one process/one AST maximum with captured actual native exit/elapsed/stdout/stderr/closure. Bind this5409/f92... script and this independent review actual pin. Do not rely on tool workdir or PowerShell login CWD.",
+      "required_roles": [
+        "source_review:9373/e46f51b28f65bea738f3062a7a72b04d073cac41d309ec59a88b655569c2b81e, exact INT015-annotation-CRLF-targeted-followup-review.json",
+        "source:tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts363561/7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147",
+        "historical_catalog:integration-IP-provenance-author/unit-source-catalog.json29592/dd33b59e1ee9ed11bb84139c707f1b4a71b387886fcfdab47413066de98e24ed",
+        "reviewed_existing_extractor:integration-IP-provenance-author/refresh-static-catalog.mjs2011/576c27ec02e060dd28d6d168b6cc66606c2612c0b69d8ba21f8d906a17dbeebc",
+        "prior_embedding:post-zod-normal-observation-execution-preparation-v2/proposal.json287968/b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3"
+      ],
+      "outputs": "Fresh exclusive v4 unit-source-catalog.json plus Root-owned closed result.json only; preserve all old scripts/catalogs/receipts. On failure/uncertainty stop, preserve partial outcomes and report; no second invocation.",
+      "after_actual": "Only actual native0/full closure plus exact catalog/source/output pins and bounded independent qualification can credit publication. Check exact201 title set/additions/locations,19 hash checks/reuse, schema/count meanings and no unqualified aggregate/runtime credit. No acceptance from arithmetic or script stdout alone."
+    },
+    "verified_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-static-catalog-publication-guard-recovery-assessment.json",
+        "bytes": 17897,
+        "sha256": "f4a9a68c75b9027a932061b0de5c041b515d89105640d1cab65d3bebae8959c3"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v3/refresh-static-catalog.mjs",
+        "bytes": 5146,
+        "sha256": "044657489f174eff732a8655d85f6c1b4fb32df5e845741259bd427da5a0a9dc"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v3/result.json",
+        "bytes": 2247,
+        "sha256": "8ea19a219b072eaa81d3c907fdf665f913ae5b4e30fb1a4fec41c7e081a7ecb2"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog/result.json",
+        "bytes": 1929,
+        "sha256": "f7e4bb109550e2ac77f8adb37059901332fdb3e659e6c9951a9f4d6f628019fc"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-INT015-final-static-catalog-single-refresh-allocation-v3.json",
+        "bytes": 6984,
+        "sha256": "499ceda4a8b5b28cbd572e3ac1f618e108af3483f8e11219492be973cfb5afad"
+      }
+    ],
+    "independent_verification": "Actual v4/v3/old-extractor/closed result/allocation/recovery pins matched. Independently verified old catalog199 rows/199 unique hashes and frozen embedding20 unit paths/historical448/19/199 metadata; source raw363561/7ad2... matched by hash only. No current wrapper or other19 AST/source reread/census was performed. Independent RAM exact inverse and420-byte algorithm comparison performed without executing source. Future v4 allocation/catalog/result and v3 catalog verified absent.",
+    "preserved_boundaries": {
+      "approved_kernel": "Previously qualified15.5 kernel0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977 preserved; no spec/kernel edit in this review",
+      "current95": "93P/API019F/API020unexecuted",
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "old_effect_slots": "CLOSED",
+      "native_or_catalog_acceptance_granted": false,
+      "runtime_cause": "UNKNOWN",
+      "custody": "Current/historical deletion/backend UNKNOWN facts not changed; job-ended operational disposition remains separate",
+      "merge_or_deployment_authorized": false
+    },
+    "reviewer_activity": "Static source/JSON and metadata reads, .NET source-string/hash comparison only. No Node/AST/source-function/guard/test/import execution, Git operation/mutation, network/install/CI/provider/DB/browser/resources/SQL/DEBUG or in-flight design-doc read. Sole write is this frozen review."
+  },
+  "Open questions": [
+    "Future v4 actual exit/closure, catalog row serialization and output pin remain unobserved. No current published catalog exists.",
+    "Root must bind exact new allocation, script/review refs, five input roles, caller CWD/budgets and exclusive outputs before any invocation."
+  ],
+  "Deferred work": [
+    "Root may separately allocate at most one new bounded v4 Node/AST invocation after reading this source review; this report is not that allocation.",
+    "Independently qualify actual native/capture/publication metadata and catalog if produced; retain every prior failure and cumulative counts.",
+    "Current native95/development/delivery/custody gates remain separately required."
+  ],
+  "Blockers": [
+    "No concrete v4 source/publication-guard defect found in this bounded review.",
+    "Future invocation remains unallocated and unexecuted; no current catalog/publication credit.",
+    "Current failed/incomplete95 independently blocks P5; no new operational effect, merge or deployment authority."
+  ]
+}

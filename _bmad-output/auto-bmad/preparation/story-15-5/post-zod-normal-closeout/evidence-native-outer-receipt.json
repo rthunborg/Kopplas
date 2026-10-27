@@ -1,0 +1,57 @@
+{
+  "schema": "ROOT_POST_ZOD_TERMINAL_EVIDENCE_NATIVE_OUTER_RECEIPT_V1",
+  "operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+  "transport": {
+    "native_exit": 0,
+    "category": null,
+    "elapsed_seconds": 6.241712,
+    "timeout_seconds": 180,
+    "capture_complete": true,
+    "readers_joined": true,
+    "handles_closed": true,
+    "direct_process_settled": true,
+    "streams": [
+      {
+        "observed_bytes": 731,
+        "sha256": "68a0c27f4f89d50b8eeccb37f66ae305261e77b5657cbde09d9d6aa2987d7dd4",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      },
+      {
+        "observed_bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physical_EOF": true,
+        "reader_done": true,
+        "reader_error": false,
+        "overflow": false
+      }
+    ]
+  },
+  "safe_reader_result": {
+    "status": "ACQUISITION_COMPLETE",
+    "logical_GETs": 5,
+    "normal_acceptance": 0
+  },
+  "consumed_intent": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-invocation-consumed.json",
+    "bytes": 1485,
+    "sha256": "6673de7736dd354f3e9a7485c7d864d182887cc21693692ebeb28066f7933826"
+  },
+  "wrapper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2.py",
+    "bytes": 7442,
+    "sha256": "784ebfcfad4c48b146124c04e9c46fc3b528760c41deef2c0385975dbb426a83"
+  },
+  "capture_contract": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-capture-contract.json",
+    "bytes": 2765,
+    "sha256": "55dc41fba27e079471db9590f665d25ea3d4305549490a7fd7beaf4cb4c4a77a"
+  },
+  "raw_stdout_stderr_persisted": false,
+  "native_function_sha256": "57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1",
+  "output_packet_present": true,
+  "no_retry": true,
+  "normal_acceptance": 0
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "kind": "ACCEPTED_NEW_ARTIFACT_RECOVERY_CODE_REVIEW_ALLOCATION",
+  "created_at_utc": "2026-10-21T06:20:36.453334+00:00",
+  "Coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_grant_turn": "01a15d1c-0db6-7530-b131-abd5d88b964a",
+  "actual_completed_grant_tool_call": "exec-986a4c77-c110-4419-8ea7-187aa4d683a9",
+  "actual_final_item": "msg_0954b60b44796db1016ad85979212c8191bd4864139fd09b86",
+  "source_turn_completion": "inProgress snapshot with completed grant tool call and final_answer present; not claimed turn-completed",
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "operation": "artifact-recovery-33cfa8df-01",
+  "recovery_operation_id": "6395eae9-7110-49a9-9c16-12a55c06c0bf",
+  "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+  "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+  "run_id": 39551805476,
+  "attempt": 1,
+  "plan_revision1_manifest_sha256": "5c04c4457240909ec0c239f9af0c58d12332e3d7adbb2b76b113e9faf520cba0",
+  "independent_plan_validation_result_sha256": "20db30ea819132c23644bcc03a0821bbcc88c09ab85def31d5ed65507dfc3a59",
+  "exact_seven": {
+    "High_author": [
+      "collect-recovery-evidence.py",
+      "test_collect_recovery_evidence.py"
+    ],
+    "Root_only": [
+      "expected-recovery-admission.json",
+      "terminal-recovery-facts.json"
+    ],
+    "High_offline_separate_grant": [
+      "diagnostic-evidence.json",
+      "diagnostic-qualification.json",
+      "manifest.json"
+    ]
+  },
+  "directory": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01",
+  "Root_outside_two": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+    ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-result.json"
+  ],
+  "implementation_review_exact_seven": [
+    "review-input.md",
+    "input-binding.json",
+    "local-checks.json",
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "existing_Root_governance_ownership_retained": true,
+  "code_review_allocated": true,
+  "distinct_composite_High_code_review_required": true,
+  "listed_meaningful_offline_controls_required": true,
+  "network_effects_conditional_only": {
+    "fixed_listing_GET": "repos/rthunborg/Kopplas/actions/runs/39551805476/artifacts?per_page=100&page=1",
+    "listing_max": 1,
+    "exact_positive_Root_admitted_ID_ZIP_max": 1,
+    "same_invocation_Root_five_field_confirmation": true,
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2026-03-10",
+    "listing_bytes": 262144,
+    "ZIP_bytes": 4500000,
+    "entry_report_caps": "unchanged reviewed revision1",
+    "explicit_Root_once_admission_durable_intent_required": true
+  },
+  "network_currently_authorized": false,
+  "offline_publication_currently_authorized": false,
+  "forbidden": [
+    "old operation retry or edits",
+    "pagination/run/job/log requests",
+    "supplied URL/alternate version/fallback",
+    "raw API/archive/native JSON persistence",
+    "CI/DB/SQL/resource/source/Spec/secret/provider/default/mainmerge/deploy/monitor effects",
+    "foreign checkout writes"
+  ],
+  "old_P33": "consumed UNKNOWN; old exact4/start/stop/driver unchanged",
+  "normal_acceptance_credit": 0,
+  "correction_provenance": "Exact two own draft copies removed after equal hashcopy; observed-empty proposal directory removed nonrecursively; prior existence UNKNOWN; no broader cleanup authority",
+  "new_E16_activity": "Active PR checkpoint review is not new private E15 claim; prior Documents/CI completed claims retained"
+}

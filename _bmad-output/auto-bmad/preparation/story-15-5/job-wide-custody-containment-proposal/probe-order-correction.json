@@ -1,0 +1,25 @@
+{
+  "reason": "Installed special-case schedules isolated groupOrder0/maxWorkers1 in a last sequential bucket; initial results prove serial bail only, not production parallel-before-serial. Correct synthetic parallel worker budget to2; serial remains1.",
+  "before": [
+    {
+      "file": "healthy.config.mjs",
+      "bytes": 777,
+      "sha256": "42da9da33f5d97bf1f64f612e40ff5c3515ea56fa8716763f183703cb1b9215b"
+    },
+    {
+      "file": "uncertain.config.mjs",
+      "bytes": 779,
+      "sha256": "d66fb96138905bbd042b66d25b4eb0a6c7cdbc23c7464708e4632ef0a858bbad"
+    },
+    {
+      "file": "caught-inner.config.mjs",
+      "bytes": 782,
+      "sha256": "29857ab0c18b6b2a7b119b6340f09621fa0096c720206efa6df2c0ecd780b763"
+    },
+    {
+      "file": "caught-outer.config.mjs",
+      "bytes": 782,
+      "sha256": "6a399189792907883a9614f9e22581615ed6af9e3bd30f5bf590810ca27bbaa3"
+    }
+  ]
+}

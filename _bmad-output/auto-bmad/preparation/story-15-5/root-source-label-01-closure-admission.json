@@ -1,0 +1,18 @@
+{
+  "schema": "ROOT_SOURCE_LABEL_01_CLOSURE_ADMISSION_v1",
+  "status": "PASS_SOURCE_ONLY_SOURCE_LABEL_01_CLOSED",
+  "source_commit": "b72c3af782adde452d47bdedfddec0fbefbfeb49",
+  "prior_NOTPASS_preserved": "5d5ea4e65cdeb793c759d865e25eb516f7ba2f3f",
+  "closure_directory": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/source-label-01-closure",
+  "closure_manifest_bytes": 951,
+  "closure_manifest_sha256": "f21668d0a6bdc6281bc1b75b1e105c06bf35004093c7da914d5c67d430369645",
+  "source_precommit_admission": ".env.epic15.mail-runtime/story-15-5-preparation/root-source-label-01-precommit-admission.json",
+  "source_precommit_admission_sha256": "16964133c98f96b4009deb39d6b734076df3b42f67e65c0d76933faea07c81a9",
+  "broad_review_rounds": 3,
+  "new_broad_review": false,
+  "native_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "effects_authorized_here": 0,
+  "next": "Prepare concrete readiness and separate effects allocation for one labelled NORMAL/full95 comparison. No automatic retry."
+}

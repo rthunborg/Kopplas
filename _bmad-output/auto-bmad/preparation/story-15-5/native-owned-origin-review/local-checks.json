@@ -1,0 +1,65 @@
+{
+  "kind": "actual-bounded-owned-origin-controls",
+  "source": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "baseline": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "commands": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=tap tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 67,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "765598",
+      "receipt_completion": "29d9c4",
+      "actual_count_receipt": "98d3fc",
+      "output": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-origin-unit-final.tap",
+        "bytes": 19019,
+        "sha256": "9627c00b8e0755f2ecb20e563871e873db0a5e3c6d6deac5df1e666cf496beb3"
+      },
+      "limits": "61 retained plus six live-source controls. Exact first callbacks/guard/matcher/HTTP source with injected stopping fixtures and actual installed failTask/processError/public JsonReporter in memory; no native acceptance credit."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "223473",
+      "receipt_completion": "6d2951"
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/integration/rls/calendar-feed.rls.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "cd1d5e"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec>",
+      "exit_code": 0,
+      "sections": 1,
+      "literal_stops": 58,
+      "receipt": "cd1d5e"
+    },
+    {
+      "command": "intent-contract exact LF bytes/SHA256",
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "receipt": "db52fc"
+    },
+    {
+      "command": "git diff --check -- <exact4>; git diff --cached --check; exact4 staged paths; append-only commit",
+      "exit_code": 0,
+      "receipts": [
+        "3ddf61",
+        "6a71c1",
+        "78ba4c",
+        "b96014"
+      ],
+      "source_index_clean_receipt": "f39c1a"
+    }
+  ],
+  "initial_harness_failures": "New extraction harness first had a file-parser parenthesis error, then an HTTP source stripping top-level-return error. Corrected before final successful67 execution; the intermediate66 pass and aborted attempts are not substituted for the final count. Removed the now-unused SubjectName import before final lint.",
+  "dependency_limits": "After final67 run only Spec evidence/review-stop refresh occurred before commit; no source/Spec edits after commit. No broad check, build, SSR, Vitest runner/collection/globalSetup, DB/auth/browser, resource or native execution. Earlier SSR4/component4/nativeINT015 and key cleanup keep historical scope, not a whole-current-feature acceptance claim.",
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "actual43causes": "UNKNOWN",
+  "native_credit": 0
+}

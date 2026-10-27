@@ -1,0 +1,29 @@
+{
+  "kind": "AUTHOR_METADATA_DERIVATION_NOT_INDEPENDENT_PARENT_VERIFIER",
+  "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "source70": 70,
+  "normalization41": 41,
+  "author_commits": 20,
+  "root_commits": 12,
+  "ancestry": 32,
+  "historical_equalities": 734,
+  "failed_histories": 11,
+  "prior_capsules": 12,
+  "snapshots": {
+    "total": 30,
+    "raw_uncredited": 12,
+    "baseline_only": 18
+  },
+  "private_historical_raw_refs": 10,
+  "current35_and_separate80_not_aggregate": true,
+  "formatting": {
+    "input_raw_single_0x20": 3,
+    "input_numbered_empty_source_quote_lines": 3,
+    "diff_raw_single_0x20": 3,
+    "single_space_not_total_stage_warning_count": true
+  },
+  "initial_reader_stops": [],
+  "native_credit": 0,
+  "parent_independent_verifier": "PENDING_PARENT_OWNED",
+  "no_semantic_or_runtime_action": true
+}

@@ -29,6 +29,10 @@ and do not start a product worker unless asked. Do not hot-upgrade running loops
 Workers use only their explicit assignment, never the copied bare-story picker.
 For user instructions see `docs/process/parallel-auto-bmad.md`.
 
+## Project completion policy — owner decision 2026-10-19
+
+Read `docs/process/development-completion-policy.md` before starting or resuming. Carry it into every delegate prompt. It supersedes exhaustive routine browser/visual/manual completion gates; preserve focused integrity evidence, essential smoke and independent review. The implementation/verification delegate authors the delivery record; the root validates it with `scripts/delivery_gate.py` before done flips or finalization, without reading code or authoring specs. Do not resume paused chats implicitly.
+
 ## Output discipline
 Work quietly — don't pre-announce or narrate routine reads/detections; just do them. Surface only what the user needs:
 - decisions (with brief rationale);

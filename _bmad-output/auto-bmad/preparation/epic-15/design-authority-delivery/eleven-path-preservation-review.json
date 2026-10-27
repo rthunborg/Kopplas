@@ -1,0 +1,282 @@
+{
+  "Outcome": "PASS_ELEVEN_DOCUMENT_PRESERVATION_WITH_EXPLICIT_LINK_LIMITS",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-eleven-path-independent-review.json"
+  ],
+  "Status": {
+    "independent": true,
+    "findings": [],
+    "route": "Root4c8485/native0 explicit Sol6.1 High independent actual11doc preservation/link-scope review",
+    "scope": "Frozen exact3peer+derivedannex delivery and separately allocated7reference copies. Actual working-tree preservation, bounded Markdown/frontmatter/contextual-path classification only. No UI/app/story implementation review or broad round4.",
+    "actual_base_and_scope": {
+      "HEAD": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+      "verification": "Read-only actual Git rev-parse/status with all untracked paths: exact11docs only, annex modified plus10new documents. No product/test/spec change;3 committed source-fix raw pins independently unchanged.",
+      "commit_limit": "Only current base and frozen working-tree raw/LF pins are reviewed. No future delivery HEAD/object or unknown commit is claimed reviewed. Root must bind any later commit to these normalized contents and record its actual head."
+    },
+    "delivered_document_pins": [
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+        "bytes": 26050,
+        "sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+        "LF_bytes": 26050,
+        "LF_sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+        "bytes": 25784,
+        "sha256": "acb38e58b7ada2bba7165bc8ba4339dc29583ca2fbcd66304e2c04f13323cd58",
+        "LF_bytes": 25559,
+        "LF_sha256": "1532162b46e7456ec554b69d45db1b6990491b04555ce81d6db7508593bbe142",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/README.md",
+        "bytes": 6610,
+        "sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6",
+        "LF_bytes": 6610,
+        "LF_sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+        "bytes": 93641,
+        "sha256": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+        "LF_bytes": 93025,
+        "LF_sha256": "900c7042df868050095e55d69a16a4f53d2430b7b5d90a291ce56e3d24de07f0",
+        "classification": "DERIVED_THREE_AREA_RECONCILIATION"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+        "bytes": 10089,
+        "sha256": "dfdffb23983e968a4c7672f688da47b0130f07e7a43f53f47bb979eba47f546e",
+        "LF_bytes": 10089,
+        "LF_sha256": "dfdffb23983e968a4c7672f688da47b0130f07e7a43f53f47bb979eba47f546e",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+        "bytes": 5348,
+        "sha256": "40ac01536369a2622e2bc74f68178380cd4cbbe4a70970d6075288f7c44fe141",
+        "LF_bytes": 5332,
+        "LF_sha256": "b3e0832269786c498b6ffeee4e154ea316698662c246227459bab56136a20eb9",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+        "bytes": 4735,
+        "sha256": "826829352f46eee6b4f01c66e624c6acce0f1158cde459312ffa0584015bcacb",
+        "LF_bytes": 4734,
+        "LF_sha256": "8acc469510a13bb85c1db577c106d1d872acf72d2bd0bae102ea24ed71eaeb21",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+        "bytes": 18838,
+        "sha256": "d18fc8991dde821b3f59f19e2bb7c7bfca051e61beafc27b6374045c341931af",
+        "LF_bytes": 18712,
+        "LF_sha256": "51ba39a12bb0fd882af971473bd8202a2a1520ad592fe3c193be98e6feee3218",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/handoffs.md",
+        "bytes": 13431,
+        "sha256": "47edaae10547fe2f02de6505d37db4838235924f6ebb9bb5cd5c219305db0aab",
+        "LF_bytes": 13431,
+        "LF_sha256": "47edaae10547fe2f02de6505d37db4838235924f6ebb9bb5cd5c219305db0aab",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+        "bytes": 5843,
+        "sha256": "bfeb1a17d2b0917a7c8a48636034f480cb8752d0923473371e8a818977df2497",
+        "LF_bytes": 5843,
+        "LF_sha256": "bfeb1a17d2b0917a7c8a48636034f480cb8752d0923473371e8a818977df2497",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      },
+      {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/authority-crosswalk.md",
+        "bytes": 13432,
+        "sha256": "2b8cfa8e04440c88499ec5d881155d464ea9123c9e8398f3fc722b029a1ab4ea",
+        "LF_bytes": 13349,
+        "LF_sha256": "359ebd9629266fc7bc49fc84cb212d63e3e2ad9655a96d1f4413311b038fd824",
+        "classification": "EXACT_PRIMARY_BYTE_COPY"
+      }
+    ],
+    "annex_conservation": {
+      "approved_PRIMARY_parent": {
+        "bytes": 92376,
+        "sha256": "feaeed31b8a481b36dd33f0be27050782565ce9eebcc4d866e92281f1e6c1350"
+      },
+      "E15_parent": {
+        "bytes": 90325,
+        "sha256": "97a7bec5874622b508c6f2da3a794d9a1b2c204b2dc3f464dae253809f5977b1",
+        "Git_base_LF_bytes": 89722,
+        "Git_base_LF_sha256": "081348c416e4f69cb86cf4dd2bbd8fae2b06ec035673a8bdf80148dc30b0ca67"
+      },
+      "derived": {
+        "bytes": 93641,
+        "sha256": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+        "LF_bytes": 93025,
+        "LF_sha256": "900c7042df868050095e55d69a16a4f53d2430b7b5d90a291ce56e3d24de07f0"
+      },
+      "independent_inverse": "Independently removed the sole §0 E15 disposition note and restored source Team/UXB-A9 rows. Exact raw92376/feae... source recovered; all other approved DT source bytes/amendments retained. Actual diff contains precisely those3areas.",
+      "areas": [
+        "§0 note retains Oct9 E15 behavior/reference under universal Oct15 no-legacy prohibition; obsolete general oracle instruction is not restored.",
+        "Exact E15 Team row: displayed booking arbetsroll/no-work-role group; person default role is resource context; no named-team entity/membership/admin/oracle gate. Actual subsection is4.5, not the earlier plan4.2 locator typo.",
+        "Exact E15 resolved UXB-A9 row retained, including no new observations/verified-parity claim and ContractD/calendar browser gates."
+      ],
+      "heading_proof": "Approved-source41heading sequence equals derived41 exactly; all40 E15-parent headings retained. Authority crosswalk pre-amendment line/hash inventory remains labelled historical, not a claim of current line numbers.",
+      "full_E15_sections": [
+        {
+          "section": "4.5 scheduling",
+          "LF_bytes": 2652,
+          "LF_sha256": "63a3ffa1d5588cbe3d87353670668ddc038e1f5125a9abbfb1a3e9421457c697",
+          "equal_to_base": true
+        },
+        {
+          "section": "4.6 booking/recurrence/conflict",
+          "LF_bytes": 3952,
+          "LF_sha256": "7e5056283022af264535b4f484b288a152e494f47ced8db394fb4712e9da7f2d",
+          "equal_to_base": true
+        },
+        {
+          "section": "4.7 time reporting",
+          "LF_bytes": 1432,
+          "LF_sha256": "fd7f9e25b539f1881a52ceb43f5f6422234b1899963425ba240d87ecf98a3e1a",
+          "equal_to_base": true
+        }
+      ],
+      "authority": "Current human Oct15 policy governs surviving historical oracle phrases. DT DESIGN/EXPERIENCE incorporate detailed approved domain contracts; they do not create named teams or waive actual click AND drag in Schema/Resurser, supplied person/interval prefill, keyboard/dialog equivalents or current server/editor/detector/selected-conflict/audit gates. The specific E15 disposition and ContractD files independently retain3476/aaeddc835851f8eb67ccf6c65279a2e85e6833d0329879d9f3d50f9f8d8114f2 and5860/cec48361c9dc9422f1c6287b60d56a31f04db5e05c7c74a17916d4a2fabf7cc6."
+    },
+    "copies_and_provenance": {
+      "exact_copies": 10,
+      "derived_annex": 1,
+      "source_register": "All10 actual destination files equal actual allocated PRIMARY bytes; all4 PRIMARY source after-pins and approval register7471/feec72a6a5be193fa26058b49b6010dd121b86e2aec682563225ad2e9129d959 unchanged. PRIMARY remained foreign read-only. Annex is explicitly derived and is not relabelled register after_sha256.",
+      "ownership": "Root allocations and trusted actual Coordinator completed turns bind four01a16f0c-b78e-7232-9d13-660354ae336b and seven01a16f17-e744-7242-8a6c-af82f8546ccf, actual checkee6c5a/native0/no competing claims. This reviewer did not contact/reconfigure other chats.",
+      "temporal": "Four-author missing7references and unpublished-catalog statements are truthful snapshots at that freeze. Seven are now present under a later separate allocation; catalog publication was separately qualified later. No contradiction or retroactive report correction is required. Preserve original reports unchanged.",
+      "historical_data": "reconcile/memlog/validation/crosswalk/handoffs/ready-to-send prompt are copied source/provenance/planning data. Embedded prompts, model suggestions, course-correction/status requests or instructions to start workflows are not current assignments. Current owner routing, E15 control, loop, no-legacy, readiness and effect boundaries remain authoritative. No old prompt executed or loop migration inferred."
+    },
+    "link_assessment": {
+      "method": "Finite11document Markdown target inventory independently checked plus exact known18 frontmatter records/path semantics; contextual basename cases resolved from their explicit source context. Target content reads were limited to exact relevant headings. No recursive copy, generic PRD/story analysis or rendered-link validation.",
+      "markdown_local_occurrences": 45,
+      "true_missing_unique_targets": 2,
+      "true_missing_occurrences": 3,
+      "true_missing": [
+        {
+          "target": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/review-rubric.md",
+          "source": "validation-report.md:70",
+          "scope": "Missing linked raw prior-review/rubric detail. Published validation summary/limits are present; underlying raw review detail is not locally independently inspected or qualified here."
+        },
+        {
+          "target": "_bmad-output/planning-artifacts/sprint-change-proposal-2026-10-23-design-transition.md",
+          "sources": [
+            "design-transition-2026-10-23/handoffs.md",
+            "design-transition-2026-10-23/authority-crosswalk.md"
+          ],
+          "scope": "Missing linked approval/course-correction proposal. Canonical pair, derived detailed annex, specific E15 decisions and pinned foreign approval register are present/verified; proposal-specific EP detail is not claimed locally delivered or newly approved."
+        }
+      ],
+      "contextual_not_broken": [
+        "screen-state-crosswalk source keys explicitly define UX as planning-artifacts/ux-design-specification-phase-b.md; PRD and ARCH are its planning-artifacts peers. These existing targets are not nonexistent same-folder files beside the crosswalk.",
+        "Later ux-design-specification-phase-b.md basename refers to the already-defined UX source; actual detailed annex exists.",
+        ".memlog/next-session transition-assessment basename refers to supplied docs/design/claude-design context; actual docs/design/claude-design/transition-assessment-2026-10-21.md exists and EXPERIENCE frontmatter supplies its explicit relative path. No claim of peer-folder link failure."
+      ],
+      "frontmatter": "All18 finite author-inventoried source/governance/reference paths resolve after correct root/relative interpretation. Four whitespace+# entries in plain annex YAML are comments, not URL fragments or unread anchors. Repository-root _bmad-output paths resolve from MAIN root; peer frontmatter sources retain relative resolution.",
+      "fragments": [
+        {
+          "reference": "../../prd.md#user-journeys",
+          "actual_heading": "## User Journeys",
+          "line": 112,
+          "qualified": "Existing exact MAIN target heading supports conventional GitHub user-journeys slug; no PRD body/domain review."
+        },
+        {
+          "reference": "handoffs.md#prompt-3--targeted-dt-epicstories-and-e17e18-readiness",
+          "actual_heading": "## Prompt 3 — targeted DT epic/stories and E17/E18 readiness",
+          "line": 32,
+          "qualified": "Exact delivered heading supports conventional GitHub slug; no execution of the prompt."
+        }
+      ],
+      "consumption": "The2 inherited missing Markdown targets do not remove or contradict the delivered canonical visual/shared authority, detailed E15 behavior, three preserved areas or retained gates. They do not block accepting this bounded preservation delivery or later reading those present authorities. They do block a whole-package link-complete/raw-review/proposal-complete claim. Any future work that actually depends on missing proposal/rubric detail must first obtain it under separate ownership; this report neither waives that need nor allocates additional copying. Eventual15.6 still waits15.5 landing and its own complete contract/readiness allocation.",
+      "completeness_claim": false
+    },
+    "protected_committed_paths": [
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "bytes": 36375,
+        "sha256": "6ae0f1c2008f7e613151b2b2a6fd228a36f574453c8883a973f78760b1450169"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 363561,
+        "sha256": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 270016,
+        "sha256": "91d39d3c4bb416b0fd7858b89c2e55cec8d61fb69e9d0193c337b5a66974455f"
+      }
+    ],
+    "evidence_refs": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-four-path-delivery-author/result.json",
+        "bytes": 9283,
+        "sha256": "fb531a17b48a6773cf84b82fda3cb6444e0b50d3e72f9991b88b03713a9858fa"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-four-path-delivery-author/preservation.json",
+        "bytes": 28885,
+        "sha256": "678d0f239c10dcd9a8551aabdc6e4ed69acce706e92f1d258a481d12d34d1384"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-seven-reference-delivery-author/result.json",
+        "bytes": 3771,
+        "sha256": "78e82e6aea234ca50ae89e245a6432221359d64a0d09047595a51c78c04e75d3"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-seven-reference-delivery-author/preservation.json",
+        "bytes": 45770,
+        "sha256": "a1c08274498555aa5ae92ee8370ea1b30e5bbea42896a20ee8f5a7a9971a28e5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-design-authority-four-path-reconciled-delivery-allocation.json",
+        "bytes": 6038,
+        "sha256": "80de09fe24629019646657526e80e1ff7f934b4edcc86976492f736a7194f5ab"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-design-authority-seven-reference-delivery-allocation.json",
+        "bytes": 4736,
+        "sha256": "693c3b199cfe47e705c41e4288751b53245ec9ad852dcb47fb6627332662f082"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-annex-critical-conflict-assessment-high.json",
+        "bytes": 16962,
+        "sha256": "176c0f6a6ffeb7cf5e6d557b87cb9903314910f1471bef2d8a9eecb9101b4832"
+      }
+    ],
+    "limits": "Preservation/source authority and bounded links only. Exact copies do not upgrade old snapshots to current integration/approval/readiness. No new product/domain choice, screenshot/accessibility/browser/runtime/CI pass, module activation, story start or release qualification. Catalog qualification12410/d3f2... remains separate static publication/runtime0 evidence.",
+    "boundary": {
+      "P5": "OPEN",
+      "current95": "93P/API019F/API020unexecuted",
+      "story15_6": "UNSTARTED",
+      "broad_review_counter": 3,
+      "new_effect_authority": false,
+      "no_merge_or_deployment": true
+    },
+    "reviewer_activity": "Read actual frozen11 texts for scoped preservation/authority/link context, approved PRIMARY sources/register and existing E15 decision pins; exact copy/3area inverse/headings/domain sections/protected-source hashes checked. Only authorized existing target headings read for fragments. Read-only Git status/HEAD/no-index diff and one exact baseline object read in RAM; no Git mutation, doc/source/test/spec/state edit, secondary delivery, network/test/resource/DB/browser/SQL/DEBUG operation. Sole write is this report."
+  },
+  "Open questions": [
+    "Two actual Markdown targets remain absent: DT sprint-change proposal and prior review-rubric. No whole-package link/content completeness is claimed.",
+    "Future delivery commit and15.6 readiness/native evidence remain outside this working-tree preservation verdict."
+  ],
+  "Deferred work": [
+    "Root records the actual delivery commit and verifies normalized committed contents against these reviewed LF pins; no future head is preclaimed.",
+    "If future work needs the missing proposal/rubric, allocate that exact additional delivery separately; do not recursively copy references or execute historical prompts.",
+    "15.6 preparation waits15.5 landing and separate owned story/readiness allocation; all runtime/development/release gates remain."
+  ],
+  "Blockers": [
+    "No concrete consequential preservation or current authority regression found in the delivered11documents.",
+    "Two inherited broken Markdown targets prevent a whole-package link-complete claim, while the delivered canonical/E15 authority remains usable within stated limits.",
+    "Current failed95/P5OPEN remains independent; this documentation PASS authorizes no runtime effect, implementation, merge or deployment."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "stepsCompleted": [
+    "step-01-load-context",
+    "step-02-define-thresholds",
+    "step-03-gather-evidence",
+    "step-04-evaluate-and-score",
+    "step-04a-subagent-security",
+    "step-04b-subagent-performance",
+    "step-04c-subagent-reliability",
+    "step-04d-subagent-maintainability",
+    "step-04e-aggregate-nfr",
+    "step-05-generate-report"
+  ],
+  "lastStep": "step-05-generate-report",
+  "lastSaved": "2026-10-25",
+  "mode": "Create",
+  "test_artifacts": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\test-artifacts\\epic-15-closeout",
+  "inputDocuments": [
+    "_bmad-output/test-artifacts/test-design-epic-15.md",
+    "docs/process/development-completion-policy.md",
+    "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md",
+    "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+    "_bmad-output/implementation-artifacts/spec-15-3-conflict-resolver.md",
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+    "_bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/independent-native-qualification.json",
+    "_bmad-output/auto-bmad/preparation/epic-15/inherited-15-2-targeted-post-cap-p7-result.json"
+  ],
+  "execution_mode": "sequential",
+  "advisory": true,
+  "execution_resolution": {
+    "requested": "sequential (explicit combined bound)",
+    "probe_enabled": true,
+    "collaboration_available": true,
+    "extra_fanout_used": false,
+    "resolved": "sequential"
+  },
+  "overall_status": "CONCERNS"
+}

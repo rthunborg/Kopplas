@@ -1,0 +1,23 @@
+{
+  "schema": "POST_F1_SOURCE_LABEL_PLAN_REVIEW_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/report.md",
+      "bytes": 5115,
+      "sha256": "1e40afb06d0f75531e4ba47eae362d3103ea3de0ce76379633de24c364766c5d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/attestation.json",
+      "bytes": 15559,
+      "sha256": "cee2fa01560b7d2deab96bd392876f7cc638de5a65380f251ceb346f519dd059"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-source-label-diagnostic-plan-review/result.json",
+      "bytes": 1760,
+      "sha256": "1fb6be277b651249f8d3fc335b1f4f458ecfd1b73bc3eaf2fca980447133a87f"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 4,
+  "normal_acceptance": 0
+}

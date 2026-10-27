@@ -1,0 +1,130 @@
+{
+  "status": "BLOCKED_POST_ZOD_NORMAL_TERMINAL_ROOT_OUTER_STATUS_FRAMING",
+  "outcome": "BLOCKED_POST_ZOD_NORMAL_TERMINAL_ROOT_OUTER_STATUS_FRAMING",
+  "independent": true,
+  "findings": [
+    {
+      "id": "POST-ZOD-OUTER-P2-01",
+      "priority": 2,
+      "title": "Whole-buffer JSON decoding loses the actual reader final status on multi-request output",
+      "wrapper": "post-zod-normal-terminal-evidence-root-outer.py",
+      "wrapper_lines": [
+        75,
+        76,
+        77,
+        79,
+        82,
+        83
+      ],
+      "producer": "post-zod-normal-terminal-evidence-preparation/reader.py",
+      "producer_lines": [
+        92,
+        304,
+        339,
+        597,
+        599,
+        601
+      ],
+      "trigger": "Any otherwise qualified invocation that reaches at least one request status followed by a final reader result; every successful acquisition necessarily has archive and listing progress lines plus a final line.",
+      "actual_path": "Conserved reader.get line92 prints a complete JSON status per request. acquire_normal304/339 invokes archive then listing; up to3 artifact calls follow. main597 then prints final ACQUISITION_COMPLETE JSON;599/601 similarly print STOP_UNKNOWN after prior request output. The wrapper captures all stdout and applies json.loads(output) at79, which only accepts one JSON document. Multiple producer documents cause ExtraData, caught by82; safe remainsNone and is persisted in83.",
+      "consequence": "Intended retained closed final status and logical_GETs are systematically absent for successful multi-request acquisition and for post-request stops. The raw stdout is correctly not persisted, and no later wrapper code reparses the final line or selects that final record. This is a reachable producer/consumer interface defect before the bounded one-shot acquisition.",
+      "downstream_check": "Native transport receipts still retain actual inner native_exit/category/EOF/join/closure. The wrapper reports ROOT_READER_INVOCATION_RETURNED rather than PASS; safeNone does not invent success. No capture bypass, raw-content leak, wrong-target request or unsafe acquisition acceptance is alleged. Existing source-only reader review14294 remains valid; it did not qualify this then-unexamined wrapper.",
+      "required_correction": "Preserve frozen v1 and apply minimal versioned final-record selection compatible with actual reader JSON-lines output, retaining only allowed closed final status/int GET count. Keep exact native/admission/once/retention behavior. Source-bound pure RAM controls should cover archive+listing(+artifacts) progress then COMPLETE, progress then STOP_UNKNOWN, one-line PRE_GET_REFUSED and malformed/partial/nonqualifying final data, with no actual functions/transport/acquisition by reviewer."
+    }
+  ],
+  "result": {
+    "Outcome": "BLOCKED_POST_ZOD_NORMAL_TERMINAL_ROOT_OUTER_STATUS_FRAMING",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-review.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [
+        {
+          "id": "POST-ZOD-OUTER-P2-01",
+          "priority": 2,
+          "title": "Whole-buffer JSON decoding loses the actual reader final status on multi-request output",
+          "wrapper": "post-zod-normal-terminal-evidence-root-outer.py",
+          "wrapper_lines": [
+            75,
+            76,
+            77,
+            79,
+            82,
+            83
+          ],
+          "producer": "post-zod-normal-terminal-evidence-preparation/reader.py",
+          "producer_lines": [
+            92,
+            304,
+            339,
+            597,
+            599,
+            601
+          ],
+          "trigger": "Any otherwise qualified invocation that reaches at least one request status followed by a final reader result; every successful acquisition necessarily has archive and listing progress lines plus a final line.",
+          "actual_path": "Conserved reader.get line92 prints a complete JSON status per request. acquire_normal304/339 invokes archive then listing; up to3 artifact calls follow. main597 then prints final ACQUISITION_COMPLETE JSON;599/601 similarly print STOP_UNKNOWN after prior request output. The wrapper captures all stdout and applies json.loads(output) at79, which only accepts one JSON document. Multiple producer documents cause ExtraData, caught by82; safe remainsNone and is persisted in83.",
+          "consequence": "Intended retained closed final status and logical_GETs are systematically absent for successful multi-request acquisition and for post-request stops. The raw stdout is correctly not persisted, and no later wrapper code reparses the final line or selects that final record. This is a reachable producer/consumer interface defect before the bounded one-shot acquisition.",
+          "downstream_check": "Native transport receipts still retain actual inner native_exit/category/EOF/join/closure. The wrapper reports ROOT_READER_INVOCATION_RETURNED rather than PASS; safeNone does not invent success. No capture bypass, raw-content leak, wrong-target request or unsafe acquisition acceptance is alleged. Existing source-only reader review14294 remains valid; it did not qualify this then-unexamined wrapper.",
+          "required_correction": "Preserve frozen v1 and apply minimal versioned final-record selection compatible with actual reader JSON-lines output, retaining only allowed closed final status/int GET count. Keep exact native/admission/once/retention behavior. Source-bound pure RAM controls should cover archive+listing(+artifacts) progress then COMPLETE, progress then STOP_UNKNOWN, one-line PRE_GET_REFUSED and malformed/partial/nonqualifying final data, with no actual functions/transport/acquisition by reviewer."
+        }
+      ],
+      "scope": "Actual Root outer-wrapper source review only. No story broad round4 or other source edits; frozen reader/helper/contract/reviews preserved.",
+      "route": "Root explicit Sol6.1 High5b3e0d/native0 before dispatch",
+      "bindings": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer.py",
+          "bytes": 7422,
+          "sha256": "384147bfad9f2fa1efeed145ecf51dfd521044774f12fa8e66a5b9fb3cc3b668"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/reader.py",
+          "bytes": 52883,
+          "sha256": "b4a6ed837ba773b574d589bd6023d8fc105a47ec8bf143600ead9637ef85f45c"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-capture-contract.json",
+          "bytes": 2765,
+          "sha256": "55dc41fba27e079471db9590f665d25ea3d4305549490a7fd7beaf4cb4c4a77a"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-operational-review.json",
+          "bytes": 14294,
+          "sha256": "8487ee0f010d9650d53b7f2bea5f523d5bfe8fb2153634260dc13ec6554ee5ce"
+        }
+      ],
+      "source_conservation": "Independently extracted native function2449 bytes/SHA57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1 matches exact reviewed driver source. No native/function/helper/wrapper/control execution performed.",
+      "bounded_assessment": [
+        "Explicit MAIN cwd and exact self path, completed finite grant IDs/current read op/run/head/self pin/capture-contract pin and independent supplemental review pin precede native invocation. Reader52883 exact pin, activation/grant/sourceproof/journal refs and fresh proof age0..300 are checked before exclusive consumed intent. No effect authority exists in this report.",
+        "One exact reader argv at MAIN cwd180s/stdout512KiB/stderr64KiB/wait2/twojoins1, exact reviewed native function. Loop budgets and tails are not process-tree hardwalls; partial/timeout/nonzero/unsettled receipt remains unqualified. Outer process return or output-directory existence alone never establishes acquisition success.",
+        "Existing native stdout/stderr digests/closure metadata and only selected safe status/count are intended to persist, not rawstdoutstderr. The concrete defect is missing final-line projection, not a new raw-retention/privacy violation.",
+        "Actual hostchunk/exit/wall/session/waits remain separately required after returned tool, distinct from inner receipt and tool-wait sums. Existing finite source75+3SQL/hash refs scope remains only a future completed-grant action."
+      ],
+      "acquisition_operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+      "target_run_id": 40109869919,
+      "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "unused_operation": "Still unused; no grant/helper/activation/acquisition execution. Future correction is not a retry or reset.",
+      "normal_acceptance": 0,
+      "actual95": "UNKNOWN_UNQUALIFIED",
+      "IP_question": "UNKNOWN_UNOBSERVED",
+      "custody": "UNRESOLVED_UNCHANGED",
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "execution_authority": false,
+      "no_deployment": true,
+      "reviewer_activity": "Static source reads/pins/native-source extraction only; sole write is this new report. No raw75/SQL/DEBUG/body/network/Git/helper/operator/test execution."
+    },
+    "Open questions": [
+      "Actual95 outcomes, first integration/IP metadata and current/historical custody remain unknown. No runtime evidence is acquired."
+    ],
+    "Deferred work": [
+      "Root routes a versioned minimal wrapper projection correction with pure RAM actual-JSONL seam controls, preserving frozen7422-byte v1 wrapper and this NONPASS.",
+      "Independent follow-up is limited to that correction and consequential regressions; completed finite grant and actual outer/native closure remain separate prerequisites."
+    ],
+    "Blockers": [
+      "POST-ZOD-OUTER-P2-01 blocks qualification of the actual wrapper final-status projection. No source-only PASS or effect authority for this wrapper version."
+    ]
+  }
+}

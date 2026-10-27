@@ -1,0 +1,35 @@
+{
+  "schema": "ROOT_POST_ZOD_TERMINAL_EVIDENCE_ONCE_JOURNAL_V1",
+  "phase": "ONE_READER_INVOCATION_ALLOCATED",
+  "created_at_utc": "2026-10-24T16:55:48.905890+00:00",
+  "operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+  "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+  "run_id": 40109869919,
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-fresh-source-proof.json",
+    "bytes": 15618,
+    "sha256": "f80232423fca824574b2747e03c1461b02bada54424cbd6e04b79d9164c117c9"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-zod-normal-terminal-evidence-allocation.json",
+    "bytes": 7097,
+    "sha256": "b5c2efcd4eea71df7cab61904604f85a8befc8c67b35d5739c997887223e755d"
+  },
+  "operator_source": {
+    "bytes": 52883,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/reader.py",
+    "sha256": "b4a6ed837ba773b574d589bd6023d8fc105a47ec8bf143600ead9637ef85f45c"
+  },
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/proposal.json",
+    "bytes": 206884,
+    "sha256": "028813ea6e24b9a19f48242d616b6258aa51430afafe490eae5688870fa1c83e"
+  },
+  "outer_capture_contract": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-capture-contract.json",
+    "bytes": 2765,
+    "sha256": "55dc41fba27e079471db9590f665d25ea3d4305549490a7fd7beaf4cb4c4a77a"
+  },
+  "no_retry": true,
+  "normal_acceptance": 0
+}

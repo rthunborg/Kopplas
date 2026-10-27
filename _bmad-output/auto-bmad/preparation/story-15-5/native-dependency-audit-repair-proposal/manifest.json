@@ -1,0 +1,44 @@
+{
+  "kind": "new-readonly-dependency-proposal-files",
+  "self_excluded": true,
+  "count": 6,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/prepare-proposal.mjs",
+      "bytes": 17532,
+      "sha256": "c84a734defe51c87aeeca186f57f3cb9bf1d898ddcf9530732b5751fca627910"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/proposal.md",
+      "bytes": 6978,
+      "sha256": "c412bef2926e43d0e9e62816d9cb11a7a286a8e3671ea1f63be6864fcb42c472"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/source-bindings.json",
+      "bytes": 4786,
+      "sha256": "9259deff40cc2c0e8f6121e46b6a368788d296763b918bc389cc8d27a1519fbc"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/dependency-graph.json",
+      "bytes": 4291,
+      "sha256": "a5fa1581f771f9f5b0105db4a23d4eda410512767d74b5e8c5ac4f122cbc97ac"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/primary-sources.json",
+      "bytes": 2945,
+      "sha256": "fda300edc1df47fa376d4e82e1d80772bd86a6ab23859dba674787930a2a8c53"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/native-failure-binding.json",
+      "bytes": 1704,
+      "sha256": "0e2459df766a4fe34723f7eada9161f60ee1c84ce1f64b732f7cd91ed31c7a74"
+    }
+  ],
+  "source_head": "be2c1a535dff0e58b1579fe3db5890c7819916ab",
+  "author_head": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "source_mutations": false,
+  "dependency_install_or_update": false,
+  "tests_or_runtime": false,
+  "allocation": "PENDING_ROOT_COORDINATOR",
+  "proposal_only": true
+}

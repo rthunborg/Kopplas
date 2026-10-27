@@ -1,0 +1,23 @@
+{
+  "finding": "R2-01",
+  "authority": "Root relayed Coordinator SAME gpt-6.1-sol High interpretation after focused direct owner approval; this does not resume paused monitoring",
+  "source_migration": "Trusted postgres source creator is distinct from the recovery SupAdmin principal. PostgreSQL17 native CREATEROLE creator ADMIN is permitted for postgres; ADMIN does not confer SET. The source guard must not apply the recovery-only NOADMIN rule to this creator.",
+  "preserve": [
+    "All seven negative target-owner role attributes",
+    "No owner outbound memberships or unexpected inbound grantees",
+    "JWT and runtime principal denials",
+    "Narrow source-executor SET and ownership ability",
+    "Recovery SupAdmin-only membership with NOADMIN remains unchanged",
+    "No persistent schema CREATE, BYPASSRLS, superuser, JWT or general Vault workaround"
+  ],
+  "author_plan": "Permit trusted source postgres creator ADMIN; explicitly grant SET TRUE and INHERIT FALSE without clearing native ADMIN; assert current executor pg_has_role SET before ownership DDL. Existing named static source assertion may be refreshed. Recovery SQL byte-unchanged.",
+  "native_fixture": "Two-role transaction test remains unallocated and unwritten pending exact effect disposition. Source pins alone are not native version or restricted execution evidence.",
+  "identity_proof": "SET ROLE alone leaves session_user unchanged, so a superuser session can select any role without proving restricted SET. Proposed proof uses SET LOCAL SESSION AUTHORIZATION and asserts session_user=current_user=restricted owned migrator before tested operations. Primary PostgreSQL17 documents and REL_17_STABLE source inspected read-only; no runtime execution.",
+  "primary_sources": [
+    "https://www.postgresql.org/docs/17/sql-set-role.html",
+    "https://www.postgresql.org/docs/17/sql-set-session-authorization.html",
+    "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/commands/alter.c",
+    "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/utils/adt/acl.c"
+  ],
+  "review": "Final targeted Round3 after stable source fixes; distinct sensitive High review required, no fourth broad review."
+}

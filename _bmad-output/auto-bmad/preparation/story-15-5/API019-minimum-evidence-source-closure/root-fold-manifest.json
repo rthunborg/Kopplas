@@ -1,0 +1,457 @@
+{
+  "schema": "ROOT_API019_EVIDENCE_SOURCE_CLOSURE_MANIFEST_V1",
+  "source": "e52568795789034c556f64b0721318f75aa13691",
+  "copies": 37,
+  "byteidentical": true,
+  "entries": [
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/inherited-15-2-review-provenance-audit.json",
+        "bytes": 28277,
+        "sha256": "8c3546636780a0aa5ce8ab1ca064f8adc1be8fcf8f6fcfe4512ea66ce7ff2b8d"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/inherited-15-2-review-provenance-audit.json",
+        "bytes": 28277,
+        "sha256": "8c3546636780a0aa5ce8ab1ca064f8adc1be8fcf8f6fcfe4512ea66ce7ff2b8d"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-actual-patch-independent-review.json",
+        "bytes": 11149,
+        "sha256": "a620f3dbeb328619fa02f9dfcbf52590373114ac9d4fcf58146456605365f808"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-actual-patch-independent-review.json",
+        "bytes": 11149,
+        "sha256": "a620f3dbeb328619fa02f9dfcbf52590373114ac9d4fcf58146456605365f808"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-GREEN-native.json",
+        "bytes": 1191,
+        "sha256": "f2077e04f6c5ee3757131c98d0a93456c240aa14cc67ddd0704aa63a6ee88205"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-GREEN-native.json",
+        "bytes": 1191,
+        "sha256": "f2077e04f6c5ee3757131c98d0a93456c240aa14cc67ddd0704aa63a6ee88205"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-GREEN-summary.json",
+        "bytes": 355,
+        "sha256": "37e08d1f4a1f423eab1b56b457a588e2b9cfdbada8610f6dbd56af93d8eefd26"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-GREEN-summary.json",
+        "bytes": 355,
+        "sha256": "37e08d1f4a1f423eab1b56b457a588e2b9cfdbada8610f6dbd56af93d8eefd26"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-corrected-extraction-native.json",
+        "bytes": 1210,
+        "sha256": "ce7ee1392dc1ec41f6329eedc497c01accf7ef19a990c0f8d39be2876bb0c7ad"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-RED-corrected-extraction-native.json",
+        "bytes": 1210,
+        "sha256": "ce7ee1392dc1ec41f6329eedc497c01accf7ef19a990c0f8d39be2876bb0c7ad"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-corrected-extraction-summary.json",
+        "bytes": 681,
+        "sha256": "aa22314f24d02395dfbc09de1099d69fba877e3f826cc91510a31b188477215d"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-RED-corrected-extraction-summary.json",
+        "bytes": 681,
+        "sha256": "aa22314f24d02395dfbc09de1099d69fba877e3f826cc91510a31b188477215d"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-native.json",
+        "bytes": 1188,
+        "sha256": "312d7edf9733a36c1ca1c5c3df90b2dbb4b7be57ec8b314c6643e580fff7ee24"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-RED-native.json",
+        "bytes": 1188,
+        "sha256": "312d7edf9733a36c1ca1c5c3df90b2dbb4b7be57ec8b314c6643e580fff7ee24"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-RED-summary.json",
+        "bytes": 755,
+        "sha256": "c1f1c01f173430e057cba3d3e181a906a65d80673f40283c7b5b4050f7bd6ac5"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-RED-summary.json",
+        "bytes": 755,
+        "sha256": "c1f1c01f173430e057cba3d3e181a906a65d80673f40283c7b5b4050f7bd6ac5"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-affected-native.json",
+        "bytes": 1142,
+        "sha256": "f73dc3b1cc12159f86274cec5e41471d65d00cfb221a39bb87d92696ad04186a"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-affected-native.json",
+        "bytes": 1142,
+        "sha256": "f73dc3b1cc12159f86274cec5e41471d65d00cfb221a39bb87d92696ad04186a"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-affected-summary.json",
+        "bytes": 362,
+        "sha256": "d031364e3d0fd89f1fa2174c913ebb4466808064b2a804f671fc711b421434c3"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-affected-summary.json",
+        "bytes": 362,
+        "sha256": "d031364e3d0fd89f1fa2174c913ebb4466808064b2a804f671fc711b421434c3"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-changed-paths-native.json",
+        "bytes": 963,
+        "sha256": "9f148951ce2d06721ff766f93839ae7bd81e7f9a73a3ce50883cece0485baf36"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-changed-paths-native.json",
+        "bytes": 963,
+        "sha256": "9f148951ce2d06721ff766f93839ae7bd81e7f9a73a3ce50883cece0485baf36"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-changed-paths-summary.json",
+        "bytes": 365,
+        "sha256": "88b3177f8b9af4216d5c22ff1aca2167cb718c71d1251752024244ad1ada591e"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-changed-paths-summary.json",
+        "bytes": 365,
+        "sha256": "88b3177f8b9af4216d5c22ff1aca2167cb718c71d1251752024244ad1ada591e"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-diff-check-native.json",
+        "bytes": 954,
+        "sha256": "16f43c85526ca7ea2626cf94f9ec896d62d35eccace5fb8cc51dad3e6a9a6179"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-diff-check-native.json",
+        "bytes": 954,
+        "sha256": "16f43c85526ca7ea2626cf94f9ec896d62d35eccace5fb8cc51dad3e6a9a6179"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-diff-check-summary.json",
+        "bytes": 73,
+        "sha256": "5acd2dba19d6abfabd247cadbe2021dff4d6d85635594d1111517c822692e9b1"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-diff-check-summary.json",
+        "bytes": 73,
+        "sha256": "5acd2dba19d6abfabd247cadbe2021dff4d6d85635594d1111517c822692e9b1"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-final-diff-check-native.json",
+        "bytes": 960,
+        "sha256": "b1d2c5e3585de165c3c30b09a5109f7cd425391bdfe9d8791b52c4ee05e57bbd"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-final-diff-check-native.json",
+        "bytes": 960,
+        "sha256": "b1d2c5e3585de165c3c30b09a5109f7cd425391bdfe9d8791b52c4ee05e57bbd"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-lint-native.json",
+        "bytes": 1313,
+        "sha256": "e47a09a7e766f88a43427620bad5c6d7ed3dc4adffa47a7e8c46a325c265257c"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-lint-native.json",
+        "bytes": 1313,
+        "sha256": "e47a09a7e766f88a43427620bad5c6d7ed3dc4adffa47a7e8c46a325c265257c"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-lint-summary.json",
+        "bytes": 228,
+        "sha256": "828dca7cbbd1eab8a161a1e289edb6ce73ed78720b7dfbd2e968d2e254472a0f"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-lint-summary.json",
+        "bytes": 228,
+        "sha256": "828dca7cbbd1eab8a161a1e289edb6ce73ed78720b7dfbd2e968d2e254472a0f"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-reader-compatibility-native.json",
+        "bytes": 1931,
+        "sha256": "17485555fdfb086fffba57ed71c8550f8adbcbb001b89f5744a46b5b02822078"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-reader-compatibility-native.json",
+        "bytes": 1931,
+        "sha256": "17485555fdfb086fffba57ed71c8550f8adbcbb001b89f5744a46b5b02822078"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-corrected-native.json",
+        "bytes": 1134,
+        "sha256": "cc082012d6c4443320f906571b84ae681dfc04fc7fc368363919f052c7b52bbd"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-review-order-corrected-native.json",
+        "bytes": 1134,
+        "sha256": "cc082012d6c4443320f906571b84ae681dfc04fc7fc368363919f052c7b52bbd"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-corrected-summary.json",
+        "bytes": 359,
+        "sha256": "09982455673c88424992fe54eb27ba92eebad7c5b986082d030272b86a1991aa"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-review-order-corrected-summary.json",
+        "bytes": 359,
+        "sha256": "09982455673c88424992fe54eb27ba92eebad7c5b986082d030272b86a1991aa"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-native.json",
+        "bytes": 1122,
+        "sha256": "fb3dfa8c7ea737d0742b52ab4be1c7c569c866b6da87e17419dd4729de1fb2f6"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-review-order-native.json",
+        "bytes": 1122,
+        "sha256": "fb3dfa8c7ea737d0742b52ab4be1c7c569c866b6da87e17419dd4729de1fb2f6"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-review-order-summary.json",
+        "bytes": 73,
+        "sha256": "0d5412c19e6e908b5e93a89d7f041643d3a433254ebfc74d527a55c01f34139f"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-review-order-summary.json",
+        "bytes": 73,
+        "sha256": "0d5412c19e6e908b5e93a89d7f041643d3a433254ebfc74d527a55c01f34139f"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-typecheck-native.json",
+        "bytes": 1214,
+        "sha256": "0e1ab6b7f8b4728b49745acf743f318b15e1f3c88218150f14244f1b196e6b03"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-typecheck-native.json",
+        "bytes": 1214,
+        "sha256": "0e1ab6b7f8b4728b49745acf743f318b15e1f3c88218150f14244f1b196e6b03"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/API019-typecheck-summary.json",
+        "bytes": 233,
+        "sha256": "28fec361a347d597ebf72c4dad07e110b24e357c21b539fb287046d96f6899ed"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/API019-typecheck-summary.json",
+        "bytes": 233,
+        "sha256": "28fec361a347d597ebf72c4dad07e110b24e357c21b539fb287046d96f6899ed"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/SRO-coordinate-delta.json",
+        "bytes": 25907,
+        "sha256": "34c29ec4bb4b080767bc5d8bf733a5766a5f707d57db44f1b3813242ea4cffb5"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/SRO-coordinate-delta.json",
+        "bytes": 25907,
+        "sha256": "34c29ec4bb4b080767bc5d8bf733a5766a5f707d57db44f1b3813242ea4cffb5"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/SRO-validator-history.json",
+        "bytes": 474,
+        "sha256": "f4e91765297c06cd42a61b0d782e6343ec471e289c701f76a035d81e97a98d2f"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/SRO-validator-history.json",
+        "bytes": 474,
+        "sha256": "f4e91765297c06cd42a61b0d782e6343ec471e289c701f76a035d81e97a98d2f"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/author-result.json",
+        "bytes": 14132,
+        "sha256": "94ebd435d23279bbe71d2d9df95c62b08efae2268f600a94695477b654b7d90d"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/author-result.json",
+        "bytes": 14132,
+        "sha256": "94ebd435d23279bbe71d2d9df95c62b08efae2268f600a94695477b654b7d90d"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/final-inverse-conservation-v2.json",
+        "bytes": 4503,
+        "sha256": "047bd4e4ccfc447aa64726d095baa864c96b02233f16952c9543684395b33156"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/final-inverse-conservation-v2.json",
+        "bytes": 4503,
+        "sha256": "047bd4e4ccfc447aa64726d095baa864c96b02233f16952c9543684395b33156"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/final-inverse-conservation.json",
+        "bytes": 4323,
+        "sha256": "f2801df95a3c5fe9420c48eace72331b2e55c055e468dcb55f7134dccb8b857d"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/final-inverse-conservation.json",
+        "bytes": 4323,
+        "sha256": "f2801df95a3c5fe9420c48eace72331b2e55c055e468dcb55f7134dccb8b857d"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/helper-delta.json",
+        "bytes": 1335,
+        "sha256": "33c0b24734cca95b58cdf4603b1d72585294df646972c652e4dfcc8028045cfa"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/helper-delta.json",
+        "bytes": 1335,
+        "sha256": "33c0b24734cca95b58cdf4603b1d72585294df646972c652e4dfcc8028045cfa"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/initial-extraction-localization.json",
+        "bytes": 368,
+        "sha256": "f2e0048884e65655e4a2fbe2ccc54fe0afef2fe05c8d73eb77bc5b26668fbaa6"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/initial-extraction-localization.json",
+        "bytes": 368,
+        "sha256": "f2e0048884e65655e4a2fbe2ccc54fe0afef2fe05c8d73eb77bc5b26668fbaa6"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/pre-edit-bindings.json",
+        "bytes": 2800,
+        "sha256": "ed5a62050250ab5d2cde9b96002aafd169d44579e1e56a6037d81f7f86f923fe"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/pre-edit-bindings.json",
+        "bytes": 2800,
+        "sha256": "ed5a62050250ab5d2cde9b96002aafd169d44579e1e56a6037d81f7f86f923fe"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-author/reader-stage-data-proof.json",
+        "bytes": 1409,
+        "sha256": "537bf789756a38a980855d1f7aa96bb1d51dc9f59e8037fbd6cae922f3b8729f"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-author/reader-stage-data-proof.json",
+        "bytes": 1409,
+        "sha256": "537bf789756a38a980855d1f7aa96bb1d51dc9f59e8037fbd6cae922f3b8729f"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-first-failure-source-assessment.json",
+        "bytes": 15468,
+        "sha256": "889630120740d1d8145667622067a43befc520cee85bb0c296004bb5e0d9c806"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-first-failure-source-assessment.json",
+        "bytes": 15468,
+        "sha256": "889630120740d1d8145667622067a43befc520cee85bb0c296004bb5e0d9c806"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-future-inert-identities.json",
+        "bytes": 581,
+        "sha256": "74c3f3283155b60f989d5c4cac3e0dbe087c6b15dbfbe20bf38cca676fe0a871"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-future-inert-identities.json",
+        "bytes": 581,
+        "sha256": "74c3f3283155b60f989d5c4cac3e0dbe087c6b15dbfbe20bf38cca676fe0a871"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-minimum-plan-independent-review.json",
+        "bytes": 11819,
+        "sha256": "86fc7d77a0d22ce0a84e9e14a930eab5641b8c481c917f9cdfa6ad88cc78e4a1"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-minimum-plan-independent-review.json",
+        "bytes": 11819,
+        "sha256": "86fc7d77a0d22ce0a84e9e14a930eab5641b8c481c917f9cdfa6ad88cc78e4a1"
+      }
+    },
+    {
+      "source": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-root-source-commit-proof.json",
+        "bytes": 2155,
+        "sha256": "84a4e7f9e94b108a88d3ef4ed5d293286c2950a4ac56d1da76575fa3f841ee00"
+      },
+      "tracked": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/API019-minimum-evidence-source-closure/normal-API019-root-source-commit-proof.json",
+        "bytes": 2155,
+        "sha256": "84a4e7f9e94b108a88d3ef4ed5d293286c2950a4ac56d1da76575fa3f841ee00"
+      }
+    }
+  ],
+  "routes_folded": 6,
+  "source_changes": 3,
+  "runtime_effects": 0,
+  "required95_unchanged": "93 passed,1 failedAPI019,1 pendingAPI020",
+  "P5": "OPEN"
+}

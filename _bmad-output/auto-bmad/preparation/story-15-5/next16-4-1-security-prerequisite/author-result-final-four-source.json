@@ -1,0 +1,521 @@
+{
+  "schema": "NEXT1641_FINAL_FOUR_SOURCE_AUTHOR_RECORD_V1",
+  "policy_version": "2026-10-19",
+  "role": "explicit gpt-6.1-sol High author; independentreview remainsseparate",
+  "Outcome": "AUTHORIZED_FOUR_SOURCE_SECURITY_AND_COMPATIBILITY_PATCH_READY_FOR_TARGETED_REVIEW",
+  "Files changed": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+    "tests/unit/dependencies/next-image-optimizer.test.ts"
+  ],
+  "Status": "Alladmittedlocalgates passed; lintLOCALinputalignment0E28W, canonicalcleanCI stillrequired",
+  "Open questions": [
+    "CurrentINT009runtimecauseUNKNOWN; required95 remains68P1F26zero",
+    "CanonicalcleanCI lint/currentheadruntime notexecuted here"
+  ],
+  "Deferred work": [
+    "DistinctHighactualfourpath/security/lockreview",
+    "RootGitcommit/reviewedfourpathreplaytoDEBUG/alignmentverification",
+    "AnyfreshCI/provider/push/dispatch requires separateactualeffectsallocation"
+  ],
+  "Blockers": [
+    "DEBUGstrictHOLDuntilRootreview/replay/alignment",
+    "No development-complete/release-ready/normalacceptance claim"
+  ],
+  "actual_readonly_HEAD": "987edccdafee51e59b7d63376e36dadd220409ae",
+  "source_after": [
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "LF_bytes": 2509,
+      "LF_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "prospective_Git_blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "LF_bytes": 162159,
+      "LF_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "prospective_Git_blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a"
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "bytes": 140788,
+      "sha256": "62f4cd651de979264ddfce282d3b958346fa9b2003df8015889de59845946044",
+      "LF_bytes": 140788,
+      "LF_sha256": "62f4cd651de979264ddfce282d3b958346fa9b2003df8015889de59845946044",
+      "prospective_Git_blob": "33b3efb90b5b787dda5ed4daae730a36437746a8"
+    },
+    {
+      "path": "tests/unit/dependencies/next-image-optimizer.test.ts",
+      "bytes": 1928,
+      "sha256": "e94f75454692db3e4341a51432579447b551f8ac29ea8ddce0d151cab6f9e108",
+      "LF_bytes": 1894,
+      "LF_sha256": "1f487754eb834bca75118743ae05e8dcecd61f0f180e564c344bc109b19b2bc5",
+      "prospective_Git_blob": "54c1af95d689c20489ca43f198a0ede4df12e5d2"
+    }
+  ],
+  "source_before": {
+    "package.json": {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3",
+      "LF_bytes": 2509,
+      "LF_sha256": "5143efaefd4d68f995ceefac22838ed135c89f20c36c63104db80bfad7f657c3",
+      "prospective_blob": "c9a10117ed149a876f529edd1d2c730359dbdd98"
+    },
+    "pnpm-lock.yaml": {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "LF_bytes": 162159,
+      "LF_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "prospective_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    },
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts": {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "bytes": 140788,
+      "sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+      "LF_bytes": 140788,
+      "LF_sha256": "5c2a91280cd653136c3bffa299c5d9d86a870bc9b78c88e880203b3f0ce90df5",
+      "prospective_blob": "6964ff6bb9685ebead2eed4ad1bb82f141268764"
+    },
+    "tests/unit/dependencies/next-image-optimizer.test.ts": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/before-next-image-optimizer.test.ts",
+      "bytes": 1908,
+      "sha256": "3c60271a4cafabfb06dea6faa2b01c21e45a61921493124a838c13b50fef89f8",
+      "LF_bytes": 1874,
+      "LF_sha256": "e6d59a817dbb464ee9dca3963c932d77aa4c8fb77bc6355f0bc74cd0ee4fde9e",
+      "prospective_Git_blob": "55b11a1b2f5def2d0658a50e0382122ebd4c0dac"
+    }
+  },
+  "inverses": {
+    "package": "Restoreonlynext16.4.1->16.3.8 givesbyteexactoriginal",
+    "lock": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/lock-closure.json",
+      "bytes": 3962,
+      "sha256": "2207577321d5aceccb764a06b5f5eddaa36f554b452c864cca7efaca4531d4ae"
+    },
+    "writer_test": "RestoreonlyNextversionassertconstantgivesbyteexactbaseline; VMdeniedimports/readFilewriteFile/readonlyEACCES/existingfileoracles preserved",
+    "optimizer_test": "Restoreexacttwo/transformmoduleliterals givesbyteexact1908baseline; allrealimagepixel/format/size/channeloracles preserved"
+  },
+  "tool": {
+    "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+    "entry": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+    "entry_bytes": 1102,
+    "entry_sha256": "b276da51dc8ca5b0d3ee3371695b50fc8b3244b281b091c63a3f082a88dadeb9",
+    "package_version": "10.24.0",
+    "npm_acquisition": "2a79a2/session82150 completion4685f7 native0"
+  },
+  "install": {
+    "actual_success": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/shared-frozen-install-native-store-native.json",
+      "bytes": 1389,
+      "sha256": "c7257b5d8cb87031607631b13a5b1da63ee9528a669e51774256ae07e55b6f1d"
+    },
+    "new_intent": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/native-store-additional-install-consumed-intent.json",
+      "bytes": 834,
+      "sha256": "382da72ea29e9c85d052bf782aa73b6d70cafe7a7a7e991e7c199e5a10333c61"
+    },
+    "qualified_guard": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-store-guard-independent-qualification.json",
+      "bytes": 12195,
+      "sha256": "d6665de210ccec61a24b336f6e68924a4dadd64ce8e956382168b14a7f649fea"
+    },
+    "metadata": {
+      "layoutVersion": "5",
+      "nodeLinker": "isolated",
+      "packageManager": "pnpm@10.24.0",
+      "pendingBuilds": "[]",
+      "storeDir": "C:\\Users\\Rasmus\\AppData\\Local\\pnpm\\store\\v10",
+      "virtualStoreDirMaxLength": "60"
+    },
+    "metadata_ref": {
+      "path": "node_modules/.modules.yaml",
+      "bytes": 27758,
+      "sha256": "00dc5a1b0eebc1213df769f5b17645b15c4fe808f71edd3c5e1b220683f7594f"
+    },
+    "installedNext_package": {
+      "path": "node_modules/.pnpm/next@16.4.1_@babel+core@7.2_d1cd6155ae9461badfa886ae67f3d9c5/node_modules/next/package.json",
+      "bytes": 3188,
+      "sha256": "546222266ef4402af870e96f03964570038e8498f4a4f7cb6dcf591f08cb07ec"
+    },
+    "one_successful_new_install": 1,
+    "one_previous_refused_slot_closed": 1,
+    "no_other_installs": true,
+    "no_force_CI_TTY_config_recreation_prune_or_migration": true,
+    "ignore_scripts": true,
+    "officialregistry_only": true,
+    "DEBUG_junction_hold": true
+  },
+  "graph_security": {
+    "package_onlyNextpin": true,
+    "eslint_config_next_retained": "16.3.8",
+    "workspace_override_patch_and_ignoredBuiltDependencies_byteexact": true,
+    "workspace": {
+      "path": "pnpm-workspace.yaml",
+      "bytes": 434,
+      "sha256": "2b4869ca8af5b97c391239705229bb8ee1459a01e75873a4c0f326bd67a2773e"
+    },
+    "lint_plugin_patch": {
+      "path": "patches/@next__eslint-plugin-next@16.3.6.patch",
+      "bytes": 672,
+      "sha256": "74162e49b4c3ab38559adffc97da8646ce1989d750469a6fbe15f806e29c22f4"
+    },
+    "lock_entire_inverse_exact_except10Next_env_SWCintegrities_versions": true,
+    "all8_optional_SWCs_retained": true,
+    "audit_all_dependencies_high_noignore_prod_filter_waiver": true,
+    "audit_reported_below_threshold": 3,
+    "new_platformruntime_evidence_limit": "Windowsactualbuild/images only; optionalplatformentriespreserved notexecuted"
+  },
+  "writer_actual_compiled": {
+    "ref": {
+      "path": "node_modules/.pnpm/next@16.4.1_@babel+core@7.2_d1cd6155ae9461badfa886ae67f3d9c5/node_modules/next/dist/lib/typescript/writeAppTypeDeclarations.js",
+      "bytes": 3523,
+      "sha256": "3973ebf0093b08136059a790442951ba498421627a52bfcf06e1584360e034c9"
+    },
+    "byteequal_old3523_SHA3973ebf0093b08136059a790442951ba498421627a52bfcf06e1584360e034c9": true
+  },
+  "gates": {
+    "audit_high": {
+      "status": "PASS_UNCHANGED_HIGH_THRESHOLD",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/audit-high-native.json",
+        "bytes": 1218,
+        "sha256": "2c126c7a1a652bd36aa591ce2b7214be8bfc21be71f8a851e91c0aaaf5a6b782"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 0.938861,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "audit",
+        "--audit-level=high"
+      ],
+      "outer": {
+        "chunk": "0b4234",
+        "outer_exit": 0
+      }
+    },
+    "actual_writer": {
+      "status": "PASS1P0F0skip",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/focused-installed-writer-native.json",
+        "bytes": 1268,
+        "sha256": "2f7e103da831a6d4f1d1ee5cbaa723e70ac554dcb67b06b4caf9e4ba18a74eb9"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 0.797033,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-name-pattern=^pinned Next direct writer needs only the existing generated file writable$",
+        "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"
+      ],
+      "outer": {
+        "chunk": "0b4234",
+        "outer_exit": 0
+      }
+    },
+    "actual_optimizer_images": {
+      "status": "PASS2P0F0skip",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/focused-real-image-optimizer-native.json",
+        "bytes": 1151,
+        "sha256": "1f99ff0fafee2ad4b1e1bdb1fea7075d499c08dcbfd7d2f764c503636790048b"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 0.837263,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/dependencies/next-image-optimizer.test.ts"
+      ],
+      "outer": {
+        "start": "e4b5fc",
+        "session": 78630,
+        "step_printed_in_start_tool": true
+      }
+    },
+    "whole_TypeScript": {
+      "status": "PASS",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/whole-typecheck-after-source4-native.json",
+        "bytes": 1227,
+        "sha256": "0b881f76c84691e4c7f38ac7ef680f892256ffabf830fa2e1737b36929088de8"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 2.874344,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "typecheck"
+      ],
+      "outer": {
+        "start": "e4b5fc",
+        "session": 78630,
+        "step_printed_in_start_tool": true
+      }
+    },
+    "local_lint_input_aligned": {
+      "status": "PASS_LOCAL_ONLY_0E28W",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/whole-lint-local-input-aligned-native.json",
+        "bytes": 1502,
+        "sha256": "fe9386444792f3ee8fa2e8f406017bebdca190aefcd9d34bc1306769c5f20ff2"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 16.606003,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "lint",
+        "--format",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\lint-presentation-preparation\\closed-lint-formatter.cjs",
+        "--ignore-pattern",
+        ".env.epic15.mail-runtime/**"
+      ],
+      "outer": {
+        "start": "25ad14",
+        "session": 71974,
+        "completion": "a91496",
+        "outer_exit": 0
+      }
+    },
+    "verify_lockfiles": {
+      "status": "PASS",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/verify-lockfiles-native.json",
+        "bytes": 1220,
+        "sha256": "d91e3b574d0674a35eaa6a5a4cfea3f770dafd4009e2d3d5e12165596375bf6d"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 0.329113,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "verify:lockfiles"
+      ],
+      "outer": {
+        "start": "216606",
+        "session": 73185,
+        "step_printed_in_start_tool": true,
+        "completion": "04969f",
+        "outer_exit": 0
+      }
+    },
+    "production_build": {
+      "status": "PASS",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/production-build-native.json",
+        "bytes": 1247,
+        "sha256": "d8daa376ff41d7ec80d599fe3ca983dd0448b2265ae5551ec3638737286ee3c8"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 23.908992,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\.env.epic15.mail-runtime\\story-15-5-preparation\\Next16-4-1-author\\npm-cache\\_npx\\92afc42852bb890b\\node_modules\\pnpm\\bin\\pnpm.cjs",
+        "run",
+        "build"
+      ],
+      "outer": {
+        "start": "216606",
+        "session": 73185,
+        "completion": "04969f",
+        "outer_exit": 0
+      }
+    },
+    "canonical_full_Node": {
+      "status": "PASS3424P0F1skip",
+      "native_receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/canonical-full-Node-native.json",
+        "bytes": 1118,
+        "sha256": "e0dba4c3dba2d6e64d7ee28f9a8270143fcf545ee812c49748eae42240cd29c7"
+      },
+      "native_exit": 0,
+      "elapsed_seconds": 24.898363,
+      "complete_EOF_joined_closed_directsettled": true,
+      "argv": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "tests/unit/**/*.test.ts"
+      ],
+      "outer": {
+        "start": "6c13f0",
+        "session": 40395,
+        "completion": "246c83",
+        "outer_exit": 0
+      }
+    }
+  },
+  "canonical_Node_summary": {
+    "native_receipt": "canonical-full-Node-native.json",
+    "summary": {
+      "tests": 3425,
+      "suites": 103,
+      "pass": 3424,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 1,
+      "todo": 0,
+      "duration_ms": 24809.8122
+    },
+    "failing_framework_lines": [],
+    "actual_files_inventory_count": 314,
+    "concurrency": "No override; actualNode22runnerdefault, exactcanonicalargv",
+    "skips_are_zero_coverage": true,
+    "normal_runtime_acceptance": 0,
+    "DEBUG_HOLD": true
+  },
+  "canonical_Node_skipped_coverage": 0,
+  "lint": {
+    "actual_result": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/lint-local-input-aligned-result.json",
+      "bytes": 5976,
+      "sha256": "27fe31e2333485ea15a8d9e89eee30f6571fd22d385be6d5f648d6497672aa72"
+    },
+    "counts": {
+      "global": {
+        "files": 1272,
+        "messages": 28,
+        "errorCount": 0,
+        "warningCount": 28,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      },
+      "privateB": {
+        "files": 0,
+        "messages": 0,
+        "errorCount": 0,
+        "warningCount": 0,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      },
+      "otherMAIN": {
+        "files": 1272,
+        "messages": 28,
+        "errorCount": 0,
+        "warningCount": 28,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      },
+      "unbound": {
+        "files": 0,
+        "messages": 0,
+        "errorCount": 0,
+        "warningCount": 0,
+        "fatalErrorCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+      }
+    },
+    "omitted_details": 20,
+    "warning_policy": "Existingpackage scripteslint unchanged; no --max-warnings/quiet/fix/suppress flags. Installedcaller countErrors/tooManyWarnings semantics bound by independentqualification. Native0 with28W is notzero-warningclaim.",
+    "caller_qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-lint-presentation-independent-qualification.json",
+      "bytes": 13635,
+      "sha256": "6170645efc8a3ae54e6525f600a28fb513c478c2f87c44bc437904e088a70cfb"
+    },
+    "local_input_qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-local-lint-input-isolation-independent-qualification.json",
+      "bytes": 7610,
+      "sha256": "6989153991d03eb90903d1acdcfdb90fcfc305bdfc62b10e25a4a68e08e2e72a"
+    },
+    "ignored_parent_zero_tracked": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/runtime-input-classification-proof.json",
+      "bytes": 6724,
+      "sha256": "45f1365e3e37d6089b4757ba96645747c9c99594f762502d2d843504bfe74989"
+    },
+    "only_local_ignore_pattern": ".env.epic15.mail-runtime/**",
+    "project_config_scripts_rules_thresholds_unchanged": true,
+    "canonical_clean_CI_still_REQUIRED": true,
+    "historical_failedlint4257E46063W_unknown_distribution_notrelabeled": true
+  },
+  "build": {
+    "standard_script": "next build",
+    "extra_process_environment_only": [
+      "NEXT_TELEMETRY_DISABLED=1",
+      "NODE_DISABLE_COMPILE_CACHE=1 inheritedcapture"
+    ],
+    "envfiles_written": 0,
+    "compiled_success": true,
+    "no_production_deployment": true
+  },
+  "preservation": {
+    "author_tracked_delta_exact4": true,
+    "Root_owned_other_dirty_paths_not_touched": [
+      "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml"
+    ],
+    "SQL118_noGitdiff_or_authorwrite": true,
+    "app_workflow_Spec_selectors_no_authorwrite": true,
+    "no_source5": true,
+    "no_Git_mutation": true,
+    "DEBUG_readers_or_writes": 0,
+    "DEBUG_hold_mismatch": "OldDEBUGmanifest16.3.8 remains against sharedNext16.4.1; noDEBUGvalidityclaim; Rootreviewedreplayrequired."
+  },
+  "previous_immutable_receipts": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/author-result.json",
+      "bytes": 23371,
+      "sha256": "cad3181dae7e6cd634e1405e7e8afadbcfac9c2f505760e30a47db853172f5f6"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/author-result-native-store.json",
+      "bytes": 19909,
+      "sha256": "8aa89fd39798c331f455743e175c084ebb91e14967a467c54f04a5ae93f2814e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/author-result-source4.json",
+      "bytes": 15485,
+      "sha256": "3f7b874bf44b22accd030a88574525a8db9a7fae77d985588776c19808c020f2"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/lint-diagnostic-result.json",
+      "bytes": 2651,
+      "sha256": "e0ec97a51633acbc38c9b67a4bcfef597ff8756f78f25054af8116a2c072f4a8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/lint-bounded-formatter-result.json",
+      "bytes": 5892,
+      "sha256": "1806d403fd897da86c29382fb15aa4a20454964e9a6cdb81ff7cec2fedae4476"
+    }
+  ],
+  "history_limits": "Failedfirstinstall,TSbeforefourth,lostfirstlintdiagnostic,secondstylishRangeError andunfilteredlintfindings preserved; successfullaterlocalinputrun is distinctscope notrelabeledretry. No broadreview/counterincrement. Nativecapturereceipts areauthorobservations; Rootindependentreads/review stillnecessary.",
+  "normal_acceptance": 0,
+  "required95": {
+    "passed": 68,
+    "failed": 1,
+    "zero_coverage": 26
+  },
+  "P5": "OPEN",
+  "review_counter": 3,
+  "development_complete": false,
+  "release_ready": false
+}

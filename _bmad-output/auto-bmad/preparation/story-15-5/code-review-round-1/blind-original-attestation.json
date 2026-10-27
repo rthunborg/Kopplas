@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "kind": "later-artifact-persistence-of-original-completed-review",
+  "layer": "blind-hunter",
+  "original_input_sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf",
+  "original_input_bytes": 325115,
+  "source_head": "ae020f63a88089966b9323c55a36b6554f7e3900",
+  "baseline": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "native_original_completion_provenance": {
+    "actor_task": "/root/build15_5_high/round1_blind",
+    "delivery": "Original completed final-channel report delivered to parent before this subsequent artifact-persistence request",
+    "originally_saved_to_file": false,
+    "original_completion_timestamp": "Not recorded; no timestamp fabricated",
+    "report_content": "Original final report preserved verbatim; UTF-8 file serialization adds a terminal newline",
+    "subsequent_work": "Persistence only; no new review, source validation, findings changes, code changes or spec changes"
+  },
+  "report_path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/blind-original.md",
+  "report_bytes": 4628,
+  "report_sha256": "215c552664d70a03ad8ea92ae9cbd4e7cebbdad1996b00e0999b7be86bdc569a",
+  "persisted_at_utc": "2026-10-20T14:24:55.6672539Z"
+}

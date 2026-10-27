@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "kind": "REVISION_1_PROPOSAL_INTEGRITY",
+  "source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "checkpoint": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/prepare-revision.mjs",
+      "bytes": 34573,
+      "sha256": "dbfc0a86f72badeb4fab8f3663a8f11a9e739df231f861cccf50eff3d0a6efe8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/proposal.md",
+      "bytes": 16665,
+      "sha256": "6d41cda99f51403ab49fed4e6bc31976427efca7358beb80f164d4cf7064e90d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/contract-and-bindings.json",
+      "bytes": 32880,
+      "sha256": "7cdbae09f37bdb04c9c9965aca3c0b8bdab6ed6cdaa148b35a64e2c41b2ad0cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-proposal-revision-1/result.json",
+      "bytes": 1767,
+      "sha256": "68c676bfb444fe96440d53f293710b6bb213dd9cebd937d9e9592cd3e6608ca0"
+    }
+  ],
+  "self_excluded": true,
+  "implementation_admitted": false,
+  "native_credit": 0,
+  "scope": {
+    "candidate_path_count": 14,
+    "proposed_source_union": 70,
+    "new_to_owned69": [
+      "scripts/ci/checkpoint-dispatch.mjs"
+    ],
+    "protected37_overlap": [],
+    "historical109_overlap": [],
+    "every_candidate_needs_new_exact_allocation": true,
+    "normal_consumer_context_only": [
+      "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts"
+    ],
+    "no_new_source_file": true
+  }
+}

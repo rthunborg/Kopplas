@@ -1,0 +1,26 @@
+{
+  "kind": "ROOT_MECHANICAL_R1_SOURCE_AUDIT_ADMISSION_ONLY",
+  "actual_run_id": 39664130401,
+  "reviewer_outcome": "PASS_R1_PREGET_SOURCE_WITH_FRESH_ALLOCATION_ACTIVATION_CONDITIONS",
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/manifest.json",
+    "bytes": 3259,
+    "sha256": "c21b508737349905d7274dec6a118c90e947645bda037007c1c10f98650366a4"
+  },
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-attestation.json",
+    "bytes": 11126,
+    "sha256": "38646c1f19ebccc51323d58ec52dafdcff0d6659ef4bd980f0671d90c3580501"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-source-review/original-report.md",
+    "bytes": 5714,
+    "sha256": "7317b7245de3b69520fc6f055cbfdf3b191168c69b647d63415b4ba61ec61520"
+  },
+  "verified_members": 11,
+  "verified_files_including_self": 12,
+  "actual_new_GETs": 0,
+  "execution_authorized": false,
+  "root_semantic_review": false,
+  "normal_acceptance_credit": 0
+}

@@ -1,0 +1,202 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: 15-2-recurring-bookings-series-materialized-occurrences-exceptions
+epic_num: 15
+story_num: 2
+story_suffix: ""
+story_source: sprint
+spec_folder: null
+story_id: null
+branch: codex/epic-15-scheduling-time-calendar
+status: done
+updated_at: "2026-10-25T15:43:28Z"
+started_at: "2026-10-19T17:01:38Z"
+completed_at: "2026-10-25T15:43:28Z"
+active_seconds: 30032
+timing_anchor: null
+is_first_in_epic: false
+is_last_in_epic: false
+git_mode: remote
+base_branch: main
+selected_phase: followup_review
+selected_role: primary-reviewer
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Actual post-cap targeted P7/reuse: latest R3-01/02 regressions and remaining serious findings only; preserve3broad rounds; current essential-flow dependency bridge. Combined concise E8 under owner efficiency steering."
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity; final automatic settling round3of3 following meaningful Round2 High fixes under recorded whole-epic run interpretation\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Actual post-cap targeted P7/reuse: latest R3-01/02 regressions and remaining serious findings only; preserve3broad rounds; current essential-flow dependency bridge. Combined concise E8 under owner efficiency steering.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate, trace-advisory]
+tea_rationale: "Recurrence/DST and materialized occurrence mutations with dedupe, tombstones and identity-preserving splits require integrity coverage; long-epic story advisory applies."
+epic_story_count: 6
+stories_after_in_epic: 4
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7]
+spec_path: "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md"
+spec_approved: true
+build:
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: [oversized]
+followup_passes: 3
+hitl_halt: "auto-continued (epic — no halt)"
+review_unverified: false
+story_trace:
+  verdict: PASS
+  uncovered: []
+  ran: true
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [76f50d38, eb228636, 33c68c5a, eb3da24d, 85755eb7, effbf5e1, 499c5baf, 7ca73633, fe99dbca, a5153188, 3145f16b, ec6226b2, ecb3f6d0, 3c871f2f, c5337032, a00dd595, 308dfa3a, 244cf1f3, af4328ed, 4ed86264, 8134b6a8]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/108"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/39348312783"
+ci_status: passed
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers: []
+overrides:
+  oracle: "Owner 2026-10-15: no legacy URLs or browsing; record owner-authorized design decisions using approved requirements and the existing design system."
+  ownership: "Coordinator 2026-10-19 permits independent 15.2 story-only preparation; E16 shared source/schema/fixture claims remain reserved pending exact overlap coordination."
+  spec_validation: Before every build
+  unattended: Full epic request
+  calendar_host: Contract D transferred acceptance into15.1
+  deploy: Forbidden
+  merge: "Authorized after independent review and all required checks; merge commit; retain branch"
+  retro: "October8 accepted-with-open-items; October7 historical"
+  checkpoint_push: User commit/push completed work authorization applies to reviewed preparation checkpoint while awaiting ownership
+  blocked_checkpoint_push: "Owner requested commit/push; explicitly incomplete blockedcheckpoint branch only noEpicPR/finalization/merge/deploy"
+  legacy_oracle: "Owner decision supersedes oracle browsing; retain historical records"
+  owner_preview_policy: "Explicit owner decision: disable automatic previews for ALL Kopplas project branches and leave disabled until owner reenable; no automatic restore/replay; no-deploy remains."
+  latest_project_rules: "Oct16 owner rules apply immediately; frontend finalPR requires agent-fix label application and verification; all approved scope/security/integrity/test gates preserved."
+  merge_main: false
+  development_completion_policy: 2026-10-19
+  deployment: false
+  owner_resume: "2026-10-19 explicit authorization; Coordinator verified recovery handoff"
+  final_settling_within_cap: "Root interpretation of owner unattended whole-epic authorization and three-round cap: use remaining third/final settling pass after meaningful Round2 High fixes before E5h; no fourth broad review or silent recommendation clearing."
+constraints:
+  - "Coordinator permits own-branch coherent integration of completed 16.1 ancestor 26dac3ab539ad54a79916135c53f25931e958d76 after preparation checkpoint and actual object/ref checks; preserve E15 contracts and E16 v3 facts/proof/migrations together."
+  - "Coherent26dac3ab prerequisite integrated by merge33c68c5a and independently verified: original-author conflict resolutions, local static/build/DB/RLS/8 browser cases, and exact-head standard CI39304828183 all five required jobs passed. No main merge or deployment."
+  - "Story15.2 P3 approved after exact-head CI39304828183 and distinct High current-baseline validation PASS. Kernel013b7ae0 preserved;9 tasks/8ACs unchanged. Existing Coordinator allocation stands without additional wait: narrow series registry/H4 enrollment, two series command envelope rows, named batch facts/proof/forwardSQL seams; protected shared capacity/matrix/auth surface and old SQL stay unchanged. Migration20261019180000 reservation rechecked absent before approval; any additional actual overlap must be coordinated before editing. No main merge or deployment."
+broad_review_rounds: 3
+p5_delivery:
+  source_revision: effbf5e18e19556d0fad231d3fc01369397c8402
+  metadata_revision: 499c5baf48094c7fb27916953dbcb84c07228081
+  delivery_sha256: c1d63ea5d6d610d6453852ef7a7e21c601d04d58e24faee55626a8b24d468576
+  root_contract_gate: PASS native0
+  independent_provenance: PASS b88fc40faef8e3e3adc91538aa8b2589fa6cbdef1db9e0e764d5d0fd88d5755c
+  ci_run: "39335595653"
+  ci_required_jobs: 5 successful
+  broad_review_rounds: 1
+  review_cap: 3
+  release_ready: false
+  resource_stop: "3 accepted stop_requested; shutdown unverified; saved state retained"
+p6_automation:
+  assessment: done
+  test_change: RLS005 two added fresh-preview denial and unchanged-snapshot assertions
+  candidate_sha256: b7cebf2c860419e411cbe6ef563ccbe6c7faccf5e1fcc6091c25cbbe24bec6c0
+  lint: passed native0
+  typecheck: passed native0
+  functional_execution: "OriginalP6assessmentUNEXECUTED; revisedRLS005 lateractuallypassed exacta00CI39348312783 (alsohistoricala515/c533)"
+  new_cases: 0
+  new_assertions: 2
+  prior_delivery_status: "historical source checkpoint qualified; refreshed test dependency needs P7 and CI before renewed admission"
+p7_round2:
+  status: "done; final settling still pending within P7"
+  source_revision: a51531888252189a3cc98798b5e8e315f0348fb0
+  metadata_revision: ec6226b23c209ee8ede907351306f8cb86fe53cd
+  patches: 3
+  high_patches: 2
+  medium_patches: 1
+  rejects: 2
+  broad_rounds: 2
+  review_cap: 3
+  nonconvergence: 0
+  ci_run: 39342433474 exact source PASS
+  delivery_sha256: 570d0c7442c4e902b4564b85a55e77b9928042fd98ac4229a3503c82bede3e06
+  root_gate: PASS native0
+  independent_provenance: PASS801253f2e8728fc32146699f1ecb940da54539ab1f15d2bc81932216ef4fe971
+  local_database: "persisted106;107 only executed in CI"
+  followup_recommended: true
+  release_ready: false
+p7_round3:
+  status: "P7complete; actualfinal3of3 HALTdone+trace+harvest+releaseledger reconciled"
+  source_revision: a00dd595d96a73c398328ed1778bac334aca9de6
+  broad_rounds: 3
+  review_cap: 3
+  patches: 2
+  medium_patches: 2
+  rejects: 3
+  nonconvergence: 0
+  followup_recommended: true
+  source_inventory_sha256: e6aae2115e2e9b1c680f3066c7a8f9e1a1a822fdbcd1fe95634e244002ef6e9f
+  focused: "45P0F0S;13matrix+32related; actual mixedtombstone RED8P1F retained"
+  static: fullnonincrementalTSC0/scopedlint0
+  targeted_High_report: 9d22c98c681df3cf98080174ebffca36abe0b86d726fae716c151094505b47b0
+  ci_run: 39348312783 exacta00 qualifiedPASSwith1browserflake
+  ci_record: ".env.epic15.mail-runtime/standard-ci-a00dd595-20261020.json"
+  prior_c533_CI: "39346825739 exactc533 SUCCESS independentlyqualified; notfinalactioncoverage"
+  obsolete_3c_CI: "39346496291 completed/cancelled; nofinalcoverage"
+  delivery_gate: pending author exactfinalCI refresh thenRootgate+independentfrozenrecordprovenance
+  spec_status: "done; parsewarningsnone; oneSRO26refs; 2patch3rejectTRUE/nonconv0"
+  local_database: "persisted106; no local107apply or newruntime"
+  release_ready: false
+  deployment_actions: 0
+  metadata_revision: 244cf1f31b8fd749588070ecd20d2dd3b1f4a26a
+  delivery_sha256: a40a8ec4a3b78e63809d99f18f34b0648f1e708aa4ba472e17792699db3a7048
+  root_gate: PASSnative0 fa55cb7b297c4819e65fc2d9ac57b47652e2cd3fd8066186252f4946c2f03cc1
+  independent_provenance: PASS17505c8a5fdaa884c66fe7a16e01f2c388155114dc28090431e33a33380c6be7
+  root_status_admission: 3c5183f51c6db90d5ed98e4cef08d3ec392c9e41e9e9ce5215bedd197faeda6b
+  browser: "10firstpasses+1flaky/12attempts1retry/0finalfail,skips,globalerrors; qualified unchangedstandaloneE03 retry"
+  pilot: readp9518.046681ms/CPU4.864174ms/2requests narrowAdminusers only
+  trace_advisory: "PASS; skillgateNOT_EVALUATED/allow_gatefalse;P0mapping6of6/P1mapping2of2/overall8of8;not100percentexecution"
+  uncovered_development_ACs: []
+  review_deferred_harvested: 0
+  release_delivery_items: 3
+  release_ledger_mapping: "item0 rows7+8;item1 row9;item2 row11;owners/status/history preserved;General/E16 unchanged"
+  release_ledger_sha256: 8f877cc30fa0c8f94640ed862cd00434c5376058e445072b613385de941a0e88
+p7_targeted_post_cap_closure:
+  verdict: PASS_TARGETED_POST_CAP_CLOSURE_AND_REUSE
+  actual_new_passes: 1
+  weighted_score: 0
+  broad_rounds: 3
+  historical_round3_score: 6
+  historical_recommendation: true
+  result: "_bmad-output/auto-bmad/preparation/epic-15/inherited-15-2-targeted-post-cap-p7-result.json"
+  result_sha256: 714201e6150bfdad88e6946622d76c8d3396258168f1e4b75c40e28c3086ac55
+  source: b57de61075646820ce9cb5feff7fd054fd2f8320

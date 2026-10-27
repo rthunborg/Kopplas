@@ -1,0 +1,52 @@
+{
+  "schema": "INDEPENDENT_INERT_DEBUG_ENUM_READER_FOCUSED_CONTROLS_V1",
+  "reader": {
+    "bytes": 17493,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-capture-window-reader-preparation/reader.py",
+    "sha256": "0f1f7600c68246acaa07a3919b754e0d62cd07e06c2bcd55c48c56708527761d"
+  },
+  "scope": "Inert finite-enum algorithm only; historical producer bindings are not approved current source.",
+  "results": [
+    {
+      "name": "exact_full_inverse10_defs_unchanged_frozen6refs_historical14_only3changes",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_frozen_contract_closed_added_enums_only_and_unknown_raw_refusal",
+      "status": "PASS"
+    },
+    {
+      "name": "extended_enum_longest4records_existing4096_and8192_projection_bounds_privacy",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_default_and_historicaltuple_refuse_unenrolled_None_DB0_noGET",
+      "status": "PASS"
+    }
+  ],
+  "counts": {
+    "pass": 4,
+    "fail": 0
+  },
+  "budgets": {
+    "namespace_ASCII_pretty10": 1262,
+    "project_ASCII_pretty2": 3703
+  },
+  "method": "AST selected functions/literal constants only; no reader/dependency module import. No actual get/Popen compiled or available. Unknown/default tests call actual main only before fake validation refusal. Synthetic maximum identity used for projection shape only then reset to None. No producer source/control rerun.",
+  "effects": {
+    "GET_API": 0,
+    "Git": 0,
+    "real_Popen": 0,
+    "module_import": 0,
+    "application_tests_configload": 0,
+    "SQL_rescan": 0,
+    "runtime_resources": 0,
+    "input_edits": 0
+  },
+  "mandatory_before_use": [
+    "Corrected committed producer and distinct source PASS",
+    "New exact14 bindings with corrective3 rows and new source/PASS refs; confirm enums unchanged or review enum delta",
+    "New actual future tuple/terminal/DB job enrollment + distinct data binding review",
+    "NEW completed2GET grant/fresh Root proof/exclusive activation/journal/output"
+  ]
+}

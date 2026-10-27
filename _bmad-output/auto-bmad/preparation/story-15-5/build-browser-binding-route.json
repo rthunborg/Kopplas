@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "phase": "same-story-essential-browser-test-binding",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "risk_domains": [
+    "public-tokens",
+    "authorization",
+    "rls",
+    "secrets",
+    "transactional-integrity"
+  ],
+  "reason": "Bind actual real browser/HTTP/DB acceptance across private issuance, public capability, rotation/revoke and persisted audit; disjoint two-file same-story author support",
+  "authority": "Root explicit same-story delegation instruction 2026-10-20",
+  "ownership": [
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts"
+  ],
+  "runtime": "No local resources or runtime execution; Root isolated CI after reviewed source freeze",
+  "commit": "Implementation author integrates and commits; child never commits/pushes"
+}

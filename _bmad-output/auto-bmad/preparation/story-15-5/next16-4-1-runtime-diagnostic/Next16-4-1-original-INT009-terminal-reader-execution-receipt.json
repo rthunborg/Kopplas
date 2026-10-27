@@ -1,0 +1,194 @@
+{
+  "schema": "NEXT1641_ORIGINAL_INT009_TWO_READ_ACTUAL_EXECUTION_RECEIPT_V1",
+  "scope": "Authoractualexecutionattribution only; distinctHighactualtruth/causalqualification required",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/reader.py",
+    "--execute-once-after-terminal-grant"
+  ],
+  "cwd": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+  "login": false,
+  "actual_tool": {
+    "exec_command_chunk": "1f7ade",
+    "outer_native_exit": 0,
+    "wall_seconds": 1.9054426,
+    "session": null,
+    "waits": [],
+    "attribution": "Actualtools.exec_command completion observedbyNativeHigh; noRootdirectchildlifecycleclaim. Tool API supplies outercompletion; nestedtransportEOF/join/handleproof in packetrequestreceipts."
+  },
+  "sole_invocation": 1,
+  "logical_GETs": 2,
+  "requests": [
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/request-01-result.json",
+        "bytes": 1156,
+        "sha256": "3cc5e7b411fe39ddf9b44cb5b7f0ff9e90ad8ff3db049dd25b633954f0088e05"
+      },
+      "native_exit": 0,
+      "seconds": 0.578,
+      "complete_EOF_readersjoined_handlesclosed_directsettled": true,
+      "request_intent_before_spawn": true,
+      "stdout_observed_bytes": 750,
+      "stderr_observed_bytes": 0
+    },
+    {
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/request-02-result.json",
+        "bytes": 1137,
+        "sha256": "cd8e505f82c5c21d0a25c61e7a8120a69c7ee7d441b30fe3da855cedadfaa7a5"
+      },
+      "native_exit": 0,
+      "seconds": 1.018,
+      "complete_EOF_readersjoined_handlesclosed_directsettled": true,
+      "request_intent_before_spawn": true,
+      "stdout_observed_bytes": 2001,
+      "stderr_observed_bytes": 0
+    }
+  ],
+  "all_slots_closed": true,
+  "retry": false,
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-activation.json",
+    "bytes": 2816,
+    "sha256": "00623b0ab44ed82e4a7cb445ee2e5a775df46027fcdcd4503782149934aad8e4"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-Next16-4-1-original-INT009-terminal-two-read-allocation.json",
+    "bytes": 2686,
+    "sha256": "1e1dce253921e7c9d6ad6ddd1b7cb424226780cab5247b2cc377ff4707436354"
+  },
+  "reader": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-reader-preparation/reader.py",
+    "bytes": 17875,
+    "sha256": "cb08895c292db089bb9d8e67d8c8fb1eff6bdd0a562c0d922505b633d282bfc9"
+  },
+  "manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/manifest.json",
+    "bytes": 1360,
+    "sha256": "66ba10008644fd643a9d14bf5fb07d9d99fb33a0368e6a825169fbd3b3bd47b2"
+  },
+  "manifest_member_count": 8,
+  "packet_file_count_including_manifest": 9,
+  "packet_members_verified": true,
+  "native_projection": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/native-projection.json",
+    "bytes": 4457,
+    "sha256": "529bf433d024f546f65de6303dd149b96b63b2ab3ea4beaee11319648efe6e80"
+  },
+  "acquisition_summary": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-terminal-artifact-capture/acquisition-summary.json",
+    "bytes": 143,
+    "sha256": "bbed1668d73cc89a55be6d43be95153cfe3e2c9bf1bd6f3107a52c227ad04413"
+  },
+  "closed_status": "OWNED_SETUP_CAPTURE_AVAILABLE",
+  "actual_case_counts": {
+    "selected_occurrences": 1,
+    "selected_status": "failed",
+    "executed_pass_plus_fail": 1,
+    "declared_report_totals": {
+      "numFailedTests": 1,
+      "numPassedTests": 0,
+      "numPendingTests": 14,
+      "numTodoTests": 0,
+      "numTotalTests": 15
+    },
+    "derived_assertion_status_counts": {
+      "disabled": 0,
+      "failed": 1,
+      "passed": 0,
+      "pending": 0,
+      "skipped": 14,
+      "todo": 0
+    }
+  },
+  "observed_closed_capture": {
+    "cleanup": [
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "WRAPPER_OUTCOME_UNKNOWN",
+        "publication": "OWNER_RESTORE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "DEFINITION",
+        "publication": "OWNER_RESTORE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "OMITTED",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "UNKNOWN",
+        "publication": "UNKNOWN",
+        "sqlstate": "UNKNOWN"
+      }
+    ],
+    "omission_UNKNOWN": true,
+    "primary": {
+      "guard": "UNKNOWN",
+      "kind": "PRIMARY",
+      "nativeClass": "UNKNOWN",
+      "operation": "DEFINITION",
+      "publication": "OWNER_RESTORE",
+      "sqlstate": "UNKNOWN"
+    },
+    "reason": null,
+    "records": [
+      {
+        "guard": "UNKNOWN",
+        "kind": "PRIMARY",
+        "nativeClass": "UNKNOWN",
+        "operation": "DEFINITION",
+        "publication": "OWNER_RESTORE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "WRAPPER_OUTCOME_UNKNOWN",
+        "publication": "OWNER_RESTORE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "UNKNOWN",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "DEFINITION",
+        "publication": "OWNER_RESTORE",
+        "sqlstate": "UNKNOWN"
+      },
+      {
+        "guard": "OMITTED",
+        "kind": "CLEANUP",
+        "nativeClass": "UNKNOWN",
+        "operation": "UNKNOWN",
+        "publication": "UNKNOWN",
+        "sqlstate": "UNKNOWN"
+      }
+    ],
+    "status": "OWNED_RECORDS_AVAILABLE"
+  },
+  "body_assertions_reached": "UNKNOWN",
+  "backend_settlement": "UNKNOWN",
+  "wrapper_custody": {
+    "available_in_expected_artifact": false,
+    "backend_settlement": "UNKNOWN",
+    "key_deleted": null,
+    "lifecycle_receipt": "NOT_UPLOADED_BY_THIS_MODE"
+  },
+  "raw_persisted": false,
+  "normal_acceptance": 0,
+  "causal_fix_authority": false,
+  "no_newrequests_aftersoleinvocation": true
+}

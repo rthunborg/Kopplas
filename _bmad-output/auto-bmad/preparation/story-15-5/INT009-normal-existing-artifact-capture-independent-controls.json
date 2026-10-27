@@ -1,0 +1,56 @@
+{
+  "schema": "INDEPENDENT_NORMAL_EXISTING_ARTIFACT_CAPTURE_FOCUSED_CONTROLS_V1",
+  "reader": {
+    "bytes": 17443,
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation/reader.py",
+    "sha256": "acd621d2a80d3075636e77bf5b5221f8888192457e33f3f466c4155219548969"
+  },
+  "results": [
+    {
+      "name": "complete_actual_inverse_only5changeddefs_6source3schema11inputrefs",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_multicase_fullreport_counts_selectedonce_missing_duplicate_pending_fullname_guards",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_namespace_actual_project_unknown_privacy_atomic_no_inference",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_strict1GET_activation_freshness_typed_refusals_and_fixed_pin_grant_gates",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_default_inert_one_fixed_get_no_listing_intent_and_archive_member_guards",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_main_memory1GET_healthy_strictdigest_uncertain_unknown_stop_paths",
+      "status": "PASS"
+    }
+  ],
+  "counts": {
+    "pass": 6,
+    "fail": 0
+  },
+  "actual_packed_budget": {
+    "synthetic_actual_packed_native_bytes": 2950
+  },
+  "method": "AST function/class definitions and literal constants only. Existing qualified helper definitions reused with no get compiled. Actual reader main function uses mocked validate, in-memory output/write and single mocked GET with synthetic report/ZIP. Production fixed artifact/member literals checked independently in source; synthetic body pins substituted only in mocked admitted own object to test post-admission assembly, never authorize real bytes. No module-main/top-level/import/Popen/API effects.",
+  "current_qualifier": {
+    "bytes": 39154,
+    "sha256": "5d3a51aaa3752578e9f49e454af87660fbd7f0e47d3211d7fff40f282323f5fa"
+  },
+  "effects": {
+    "GET": 0,
+    "real_Popen": 0,
+    "reader_import": 0,
+    "application_test_configload": 0,
+    "Git": 0,
+    "runtime_resources": 0,
+    "input_edits": 0
+  },
+  "unchanged_transport_ZIP_namespace_matrix": "Prior independent15799/dc535126 review reused via full inverse and exact definitions; no matrix rerun."
+}

@@ -1,0 +1,213 @@
+{
+  "schema": "SOURCE_LABEL_01_TARGETED_CORRECTIVE_COMMIT_CLOSURE_v1",
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "same_existing_independent_reviewer": true,
+    "independent_from_implementation_author": true,
+    "fresh_context_free": false
+  },
+  "outcome": "PASS_SOURCE_ONLY_SOURCE_LABEL_01_CLOSED",
+  "base_commit": "b17091f3225e8c31cfa4f9aaef2bc7c5bb7098d1",
+  "corrective_commit": "b72c3af782adde452d47bdedfddec0fbefbfeb49",
+  "previous_reviewed_source": "5d5ea4e65cdeb793c759d865e25eb516f7ba2f3f",
+  "scope": "Only SOURCE-LABEL-01 correction plus changed-line regressions. Prior nonfinding exact-six conclusions reused.",
+  "original_review_immutable_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/report.md",
+      "bytes": 5005,
+      "sha256": "905f3d2ac181f0597ac7afacd76d28657e48d2822d8fe2264128671fbdf5d557"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/attestation.json",
+      "bytes": 15141,
+      "sha256": "2ca4a0af1d40cbdbc13981299556263ccd1d761233bb74253260439c5f90cd42"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/result.json",
+      "bytes": 1486,
+      "sha256": "36133b06851f18321465afb068aa2c49984535fa8166985d8581c343c8f8eed9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/manifest.json",
+      "bytes": 879,
+      "sha256": "6908460babb3fad0ef7a8c12a278c42ca507acb34eaa7ed08579bc4b1976582b"
+    }
+  ],
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-01-correction-author-result.json",
+    "bytes": 72008,
+    "sha256": "fea68291aab94d7b42d9400baf0e96c456aee4a84ea7ac2086785a73ac1d3f1a"
+  },
+  "Root_mechanical_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-source-label-01-precommit-admission.json",
+    "bytes": 1076,
+    "sha256": "16964133c98f96b4009deb39d6b734076df3b42f67e65c0d76933faea07c81a9"
+  },
+  "corrective_source_inputs": [
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 22799,
+      "sha256": "6b96221185dee8f79699bd11999d65f6227562350fcdf7074b02902bcff3e2b7",
+      "corrective_commit_blob": "314f7d518984ef3858c55e8cbd9acb30c49c3cf6",
+      "base_blob": "f2c165485050e0825d187fba830ce3f77c72150e",
+      "previously_reviewed_blob": "f2c165485050e0825d187fba830ce3f77c72150e"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 254821,
+      "sha256": "c9ec1290f55dd93916b101a6e6cbe87f0f64297654157bb796aef2fbb4b83dfe",
+      "corrective_commit_blob": "056651e8dde615bd93c98664d2ba1e43649a1c9c",
+      "base_blob": "5c4ebf00b070889b4021f42e7f60affce3ae5135",
+      "previously_reviewed_blob": "5c4ebf00b070889b4021f42e7f60affce3ae5135"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 205193,
+      "sha256": "65cf0da6b46dc14c356011e059f428a4d2c1ea0d0b827f7996223e86aa52830e",
+      "corrective_commit_blob": "ffc0430dd1cae63cc09715af16612f9f8a830ca3",
+      "base_blob": "aff075ae959056b79901c64ded7bff5dcc130181",
+      "previously_reviewed_blob": "aff075ae959056b79901c64ded7bff5dcc130181"
+    }
+  ],
+  "unchanged_prior_scope_inputs": [
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "bytes": 40796,
+      "sha256": "da4d50af47cab3f9c9565ad71b0c9a669ea96665f0f39ab49b6dc3e285bff70d",
+      "reviewed_commit_blob": "f0be1b001e343518ba92d0b2d5c7b9fed0c578de",
+      "base_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 28255,
+      "sha256": "1caf0188ab38aa9195fce4df54664ba24c3c8cd5a9819cb26570db6d6a99c1ff",
+      "reviewed_commit_blob": "4865721f7930e08f3be2b01af683e923ae8d85fb",
+      "base_blob": "2baa9ef0b2a74bf2ef9e573aa0b076987b7cc2cd"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 59370,
+      "sha256": "43887ef4cf1d5cf5fded7098db18e4d4637532659d8154fc5084359473b7fc7b",
+      "reviewed_commit_blob": "920b6d31f68254f340067f85d6a7155ee8bdf600",
+      "base_blob": "e0517e8c3e11a4bf9052a920a14e65356a234156"
+    }
+  ],
+  "governance": [
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": "docs/process/review-order.md",
+      "bytes": 14757,
+      "sha256": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115"
+    }
+  ],
+  "closure": {
+    "finding": "SOURCE-LABEL-01",
+    "status": "CLOSED",
+    "same_inner_TEST_FINAL": "Retains SAME_AS_OBSERVED_INNER",
+    "different_outer_override_TEST_FINAL": "Retains DIFFERENT_FROM_OBSERVED_INNER",
+    "genuinely_no_observed_inner": "Only established before-callback or after-callback-return branch reports NO_INNER_OBSERVED",
+    "LOCAL_or_unestablished_TEST_FINAL": "UNKNOWN; LOCAL does not overwrite retained final relation",
+    "error_cause_precedence_cleanup": "Preserved",
+    "sink_failure": "Cannot replace original final error; existing unknown latch/bounds retained"
+  },
+  "new_findings": [],
+  "actual_independent_controls": {
+    "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern='actual opted-in outer nudge|actual nudge clients|actual nudge labels|actual enclosing NUDGE|actual labelled recipient|actual recipient cleanup|SOURCE-LABEL-01' tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tool_output_chunk": "93cb10",
+    "exit_code": 0,
+    "tests": 8,
+    "pass": 8,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0,
+    "duration_ms": 250.434,
+    "meaning": "Actual source regions with injected existing dependencies compose actual helper and actual NUDGE004 catch; no DB/Auth/browser/network.",
+    "coverage": [
+      "Original same-inner contradiction closed",
+      "Different outer-cleanup override",
+      "Genuine no-inner before and after callback",
+      "Intermediate LOCAL and unestablished final UNKNOWN",
+      "Sink throw, hostile properties and final identity/cause",
+      "Original cleanup order and27 recipients/default silence"
+    ],
+    "nonadditive": "Independent8 and author8 are separate; prior146/C4guard2 are historical unchanged-scope evidence."
+  },
+  "mechanical_checks": {
+    "three_raw_base_corrective_Git_bindings": true,
+    "unchanged_prior_three_paths_raw_hashes": true,
+    "diff": {
+      "paths": 3,
+      "insertions": 98,
+      "deletions": 5
+    },
+    "kernel": {
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "unchanged": true
+    },
+    "SRO": {
+      "headings": 1,
+      "stops": 166,
+      "sha256": "a33da28bfbb1f5f52e3e67e69d28497a193bb234640a6d78926b2435f091d648",
+      "all_stops_resolve": true
+    },
+    "all166_stops_independently_resolved": true,
+    "story": {
+      "status": "in-review",
+      "ARR_status": "in-review",
+      "review_loop_iteration": 3,
+      "baseline_revision": "3a1c3bc9fbf22b13c926179288a8b6eefe440c12",
+      "parse_warnings": [],
+      "historical_frontmatter_warnings": [
+        "oversized"
+      ]
+    },
+    "author_static_checks": "TS/two-file ESLint/diff/reader0/parsewarnings[] receipt-attributed, not rerun here."
+  },
+  "history_preserved": {
+    "previous_NOTPASS": true,
+    "original_author_receipt": true,
+    "plan_history": true,
+    "old_packets": true,
+    "prior_initial_failures_nonadditive": true
+  },
+  "future_conditions": [
+    "Source-only PASS permits preparation of separately coordinated ONE changed-information NORMAL/full95 comparison; unchanged driver/DIAG001 boundaries apply.",
+    "Actual Coordinator effects allocation and Root exact ownership/source/head/fresh UUID/once/custody admission/activation required before any dispatch.",
+    "Native reporter publication, cause/cleanup and all mandatory fullDB-RLS/full95/essential browser/privacy/recovery gates require actual qualified evidence.",
+    "No automatic retry/collector expansion, no applied migration edits, no deployment/main adoption."
+  ],
+  "limits": {
+    "native_label_publication": "UNKNOWN; Node source/stderr controls do not prove actual Vitest/Playwright/hosted output",
+    "application_backend_cause": "UNKNOWN",
+    "backend_key_custody": "UNKNOWN",
+    "native_acceptance": 0
+  },
+  "effects": {
+    "source_Spec_state_or_old_artifact_writes": 0,
+    "Git_mutations": 0,
+    "network_SQL_CI_provider_resources": 0,
+    "owned_metadata_only": true
+  },
+  "broad_reviews_completed": 3,
+  "new_broad_review": false,
+  "development_complete": false,
+  "release_ready": false,
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-committed-delta-high-review/source-label-01-closure/report.md",
+    "bytes": 3461,
+    "sha256": "f838fe5d432c40ec7b17060efda8706dcdb623c6bbe064711f45e2fb1150ab36"
+  }
+}

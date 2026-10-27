@@ -1,0 +1,6 @@
+{
+  "Root_decision": "STOP_JSON_FORMATTER_USE_EXISTING_PACKAGE_LINT_STANDARD_FORMATTER_ONCE",
+  "facts": "Full lint JSON-format attempt native1/CAP_EXCEEDED/118s/stdout44804264observed/stderr4961/fullEOFjoinedclosedsettled/capture_completefalse. No lint verdict or retained diagnostics; not evidence of Zod regression. Type/build/audit unexecuted. Two source pins unchanged.",
+  "continuation": "One unchanged package lint script defaultformatter invocation under same cap/bound, no biggercapture/noignorechanges/noJSONretry. If native0/fullcapture continue alreadyallocated type/build/audit. If actual complete lint failure, report bounded safe concrete paths/rules/categories with no rawsource/env/token content and stop for disposition; do not guess cause.",
+  "authorization": "Standing owner necessaryfixauthority and current boundedprerequisite scope; no additional source or effect authority."
+}

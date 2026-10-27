@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-20",
+  "phase": "targeted-independent-specification-revalidation",
+  "outcome": "done",
+  "status": "PASS",
+  "validator": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "same_validator_as_initial": true,
+    "broad_review_repeated": false,
+    "delegates_spawned": 0
+  },
+  "baseline_revision": "159557e114f18123e73282c39c90830917de9948",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "candidate": {
+    "spec_path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "raw_spec_sha256": "e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02",
+    "raw_spec_bytes": 28615,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "approved_kernel": null,
+    "tasks": 10,
+    "gwt_acceptance_criteria": 9,
+    "source_ac_sketches_preserved_verbatim": 1,
+    "canonical_status": "ready-for-dev",
+    "parse_warnings": [],
+    "review_loop_iteration": 0,
+    "followup_review_recommended": false,
+    "deferred_count": 0,
+    "warning": "oversized"
+  },
+  "initial_assessment": {
+    "report_path": "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validation-report.json",
+    "report_sha256": "06cd1977c389e1b7b7e476fe5b54dc19a258987f6fda6723c3d93c15b92eb39a",
+    "historical_status": "FAIL",
+    "unchanged_pass_checks_reused": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C13",
+      "C14"
+    ],
+    "failed_checks_closed_by_targeted_revalidation": [
+      "C05",
+      "C12"
+    ],
+    "original_artifacts_remain_immutable": true
+  },
+  "counts": {
+    "targeted_checks": 6,
+    "targeted_passed": 6,
+    "targeted_failed": 0,
+    "initial_findings_closed": 2,
+    "remaining_findings": 0,
+    "new_findings": 0,
+    "unchanged_initial_pass_assessments_reused": 12,
+    "original_author_snapshot_files": 15,
+    "original_independent_files": 4,
+    "source_snapshots_verified_unchanged": 40,
+    "successor_manifest_bindings_verified": 30,
+    "resources_started": 0,
+    "implementation_changes": 0,
+    "runtime_tests_executed": 0,
+    "code_review_rounds_consumed": 0
+  },
+  "checks": [
+    {
+      "id": "R1",
+      "status": "PASS",
+      "subject": "Exact candidate and immutable predecessor/successor preservation",
+      "evidence": "Verified current 30 manifest bindings, successor manifest SHA879e..., history-manifest SHA3e333..., all original 15 author bytes in initial-candidate snapshot, original four independent report/helper/manifest files and all initial 40 source hashes unchanged; exact HEAD and branch remain baseline."
+    },
+    {
+      "id": "R2",
+      "status": "PASS",
+      "subject": "Close F15.5-01 using executable existing-model eligibility",
+      "evidence": "Kernel line31, AC4 line98, design lines7/11 and handoff SQL/fixtures lines25/32/60 consistently require tenant existence, exact active self/token-bound membership and current primary/additional Bookings.View role union. Neither NULL nor non-ready provisioning_state independently denies otherwise eligible membership. Current resolver-core lines99/128/130, has_tenant_role line45 and nullable tenant provisioning migration lines21-26 support this; no tenant suspension/lifecycle is added. T7 line88 and handoff60 require legacy NULL active positive and disabled/invited/missing membership/role-loss negatives."
+    },
+    {
+      "id": "R3",
+      "status": "PASS",
+      "subject": "Close F15.5-02 at actual personal-view entry and allocation surface",
+      "evidence": "Spec code map69/T5 line86/AC1 line95/T9 line90, design37 and handoff47/62 name the actual PersonalCalendarView.tsx section, its agenda/week/empty states and accessible keyboard/phone link to the same /settings/calendar surface. Approved UX244 and unchanged actual view4/Workspace175 confirm the host. Handoff requires Coordinator allocation of this one new shared path before edit and real essential browser starting there; profile entry and headless single management surface remain."
+    },
+    {
+      "id": "R4",
+      "status": "PASS",
+      "subject": "Consequential security/scope/acceptance conservation",
+      "evidence": "Programmatic comparison proves the entire old intent kernel becomes the new kernel with exactly the F15.5-01 authority-clause replacement; all other kernel bytes remain unchanged. AC2/3/5/6/7/8 are byte-equal after newline normalization; AC1/4/9 changes are the two reviewed clarifications. Manual diffs of spec, both companions and discovery show only corresponding requirements/trace/metadata. Hashes prove the same underlying 40 current source contracts; no new public capability, token/key/proof/counter weakening, job protocol consumption, permission grant or product module is introduced."
+    },
+    {
+      "id": "R5",
+      "status": "PASS",
+      "subject": "Independent canonical parsing/discovery and accepted source sketch",
+      "evidence": "Fresh actual read-only story_plan.py --spec returns ready-for-dev, parse_warnings=[], error=null and correct title/frontmatter; --find-spec returns found=true, ambiguous=false, hard_stop=false and exact candidate. Independently counted ten tasks/nine GWT ACs and the complete approved 15.5 source sketch once."
+    },
+    {
+      "id": "R6",
+      "status": "PASS",
+      "subject": "No implementation/resource admission and bounded gate preservation",
+      "evidence": "Root-owned two tracked state paths remain the only tracked changes. Dedicated migration/serial-DDL/fixture/test-key/runtime resources are still pending fresh Coordinator allocation; PersonalCalendarView is explicitly included. No source/Spec/author/predecessor file was edited by validator, no runtime or remote operation occurred. Required implementation evidence/High actual-diff review/delivery gate and release-validation/hosted key/IP prerequisites remain; no approval kernel is pinned."
+    }
+  ],
+  "findings_closed": [
+    {
+      "id": "F15.5-01",
+      "status": "closed-at-specification-level",
+      "proof": "Exact current authority and legacy provisioning compatibility are now explicit and testable across kernel/AC4/design/RPC/fixture obligations. No independent tenant status fixture or lifecycle remains."
+    },
+    {
+      "id": "F15.5-02",
+      "status": "closed-at-specification-level",
+      "proof": "Actual personal-view link, exact file allocation, accessible states, independent profile entry and essential real keyboard/browser starting point now exist in plan/handoff. UI is not implemented yet."
+    }
+  ],
+  "findings": [],
+  "open_questions": [],
+  "blockers": [],
+  "deferred_work": [
+    {
+      "owner": "Root",
+      "item": "Consume this planning PASS, independently freeze/admit the current kernel through existing orchestration; this validator does not pin approval or grant implementation."
+    },
+    {
+      "owner": "Coordinator + Root",
+      "item": "Allocate exact shared deltas including PersonalCalendarView.tsx, fresh combined E15/E16 migration chronology/reservation, newly owned serial fault/DDL files and isolated fixtures/test-key/Vault/runtime/resources before implementation writes."
+    },
+    {
+      "owner": "Implementation author + independent High reviewer",
+      "item": "Implement and produce actual full development DB/RLS/direct Storage/HTTP/parser/essential production-browser evidence, including legacy NULL positive and personal-view entry. Complete author Suggested Review Order, capped actual-diff review and delivery gate."
+    },
+    {
+      "owner": "Release operator + QA/UX + Product/Architect/ops",
+      "item": "Hosted dedicated key/Vault/runtime and deployed IP trust still unverified; separate release authorization and tracked provider/device/visual/manual/performance/polish validation remain. release_ready=false; inherited epic review_unverifiedTRUE retained."
+    }
+  ],
+  "assessment_limits": [
+    "Targeted specification revalidation only; no new broad source hunt or code-review round.",
+    "PASS means repaired plan satisfies specification validation, not that any public feed implementation exists or passes tests.",
+    "Initial unchanged 12 PASS assessments reused with source/provenance checks; initial FAIL report remains historically FAIL.",
+    "No app tests/build/DB/RLS/HTTP/browser/CI run, secret/provider grant, managed resource, Git mutation, foreign checkout or legacy browsing."
+  ],
+  "source_preservation": {
+    "allowed_root_tracked_changes": [
+      "_bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml",
+      "_bmad-output/auto-bmad/state/epic/epic-15.yaml"
+    ],
+    "successor_manifest_sha256": "879e0e5ce51aab56a18a22d1b2aea6ea658f1ca31cc638e723c5ad6b36741e72",
+    "history_manifest_sha256": "3e333d3a5248def87b32b29f556a1f60f9158f9d4b6eef1c32a497c2091b86e1",
+    "original_frozen_author_files": 15,
+    "initial_frozen_independent_files": 4,
+    "source_snapshots": 40,
+    "successor_bindings": 30
+  },
+  "commands_executed": [
+    "git rev-parse HEAD; git branch --show-current; git diff --name-only HEAD (read-only)",
+    "git diff --no-index original snapshot/current Spec and companion files (read-only, differences expected exit1)",
+    "Fresh canonical story_plan.py --spec and --find-spec (read-only PASS)",
+    "Direct SHA256 comparisons of all successor/history/initial-independent/source hashes",
+    "Programmatic whole-kernel single-replacement, unchanged nonrepair ACs and source-sketch/task/AC count comparisons"
+  ],
+  "approved_kernel": null,
+  "implementation_admitted": false,
+  "resource_granted": false,
+  "release_ready": false,
+  "input_freeze_sha256": {
+    "_bmad-output/auto-bmad/preparation/story-15-5/candidate-intent-contract.txt": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "_bmad-output/auto-bmad/preparation/story-15-5/current-contracts-and-design.md": "3a064755bc380f386214ca9b296c575dfa3b8e5995d4a136ee06aa6f428c4647",
+    "_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md": "822050eb7bf8fa78ef3e543089113b9d6ab7a46843cd36d6ca274cdb0fefa03f",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json": "bcaf54e0f8914e777acc281413de5652902734e6ba8c7c99218f1893bde419e5",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/candidate-intent-contract.txt": "e0f81d85be76f7d33a1c17e6db2a47002f2ea8692571e415c91be338087985b8",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/current-contracts-and-design.md": "cd8c6ee5b803162789c006fcd8d87ef9d45a8e5ccacfe101f749faaedcd4faa3",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/implementation-ownership-handoff.md": "784c25c39ba97732a4f5af8a11dccdfd100e5090679a0a1091195cab045410b7",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/routes.json": "429a75e1a5fed758625f7854c1e943f229c59444ca19e56ef4b813eb12e4fdfb",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/source-discovery.md": "d186642b9d01b2ef9637fd4161ddddb962852897d0a84070c0dfd77d0484c935",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-after.json": "928d6c01912f46198cbd9f64be6e4ac75fd8e6257478ab54e4f99e7a80fdd07c",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-before.json": "e7d1bdefc1e0dec8e8569bd3c58bb6cf980359490f6c4821abdecff6f11d514d",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/spec-discovery.json": "c631c068d139cdc4645bc1ec5983efac32f15137c52852bd1e6203b2f2e516c7",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/spec-reader.json": "2a14cbb66ea27f51d8efc44c959fd4649b6a16e161d6ad9397220f7b1c10987a",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/spec-self-validation.md": "24425ac3ba6c819709ce3564cb9e217ac1a62041bc8a476591152bfa035dce90",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/story-file-audit.md": "192eaa53f9d33bff1a9cdc358f1244ae24ee3cc78ce6edf8c07bf88a57be6399",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/validate-planning.py": "348fcdfe4f61ce45002edc56ec79077438625168f316048ae497513f6a2ae9f0",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/auto-bmad/preparation/story-15-5/validation.json": "a4e466326b6ae80cc3ce93a40a7d67a3dd1f3f011cd017ec379269b02fb32802",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md": "0fac6de1fea61340517fbb865efc20830a764220f3b7030e3abed302cd138b88",
+    "_bmad-output/auto-bmad/preparation/story-15-5/revisions/initial-candidate/history-manifest.json": "3e333d3a5248def87b32b29f556a1f60f9158f9d4b6eef1c32a497c2091b86e1",
+    "_bmad-output/auto-bmad/preparation/story-15-5/routes.json": "e2693d0223bcbea606913fc4a7c45e87b40d9544eb6ce55ef78f3adaed41e41f",
+    "_bmad-output/auto-bmad/preparation/story-15-5/source-discovery.md": "7f512cbe665ad90507c78f14b0dcc8a63b91d1e3e79e039b68061a5e98ce5c0d",
+    "_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-after.json": "f75f1d6ec6694ec0d356262e63f27a7d25ba1c6b9ecfa8dd731d902e1373845e",
+    "_bmad-output/auto-bmad/preparation/story-15-5/source-preservation-before.json": "e7d1bdefc1e0dec8e8569bd3c58bb6cf980359490f6c4821abdecff6f11d514d",
+    "_bmad-output/auto-bmad/preparation/story-15-5/spec-discovery.json": "ec628d893639fa1388720b38e6698b3e2894573a339cece435f24bda76e4712d",
+    "_bmad-output/auto-bmad/preparation/story-15-5/spec-reader.json": "2a14cbb66ea27f51d8efc44c959fd4649b6a16e161d6ad9397220f7b1c10987a",
+    "_bmad-output/auto-bmad/preparation/story-15-5/spec-self-validation.md": "4d9f536a04fe0309eaa77690f6626af9ee8f95006fbc9e4fa275307e6429198d",
+    "_bmad-output/auto-bmad/preparation/story-15-5/story-file-audit.md": "22214c73c76eaf2614bdf81661ac74e28a924a07ac8a2b9d667c81f1a6deb789",
+    "_bmad-output/auto-bmad/preparation/story-15-5/validate-planning.py": "28a59b5f50d70d505a483c0ac5efd8af0d61d57fc4dbab692cd5dac224e520e5",
+    "_bmad-output/auto-bmad/preparation/story-15-5/validation.json": "057a2fb7b200f30bc16e37e7de9e2b7c980d67ab6aca722793e4aa9d7307753b",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md": "e5b90560af2187f263a19fc2a2889d615a7bf059b35d99da7355f264514c2d02",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/artifact-manifest.json": "b731aece483dba4365f22446aa6cce489aff79af52b6f42e64e9af07d5f05cc8",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validate-independent.py": "a639081ddf1eeaf2c40741254a6c139da608712522fb698bcf9e4ae7e60fa2dd",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validation-report.json": "06cd1977c389e1b7b7e476fe5b54dc19a258987f6fda6723c3d93c15b92eb39a",
+    "_bmad-output/auto-bmad/preparation/story-15-5/independent-validation/validation-report.md": "8508ff2615633a5236770a098cff5f5fea91db6de0b7823bb3ffd0940f1af638",
+    "_bmad-output/auto-bmad/preparation/story-15-5/artifact-manifest.json": "879e0e5ce51aab56a18a22d1b2aea6ea658f1ca31cc638e723c5ad6b36741e72"
+  }
+}

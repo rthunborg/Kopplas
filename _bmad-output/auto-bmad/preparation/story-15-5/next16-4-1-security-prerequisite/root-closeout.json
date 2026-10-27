@@ -1,0 +1,110 @@
+{
+  "schema": "STORY155_NEXT1641_SECURITY_PREREQUISITE_ROOT_CLOSEOUT_V1",
+  "recorded_at_utc": "2026-10-23T10:27:00.014230+00:00",
+  "MAIN_source_commit": "e3069dee12bee6a5b0619ed370098df25712c505",
+  "DEBUG_replay_commit": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+  "source_eligible": true,
+  "review": "PASS_FOUR_SOURCE_PATCH_CHECKPOINT_ELIGIBLE",
+  "review_counter": 3,
+  "review_kind": "Targeted security-fix follow-up; no fourth broad round",
+  "exact_source_paths": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+    "tests/unit/dependencies/next-image-optimizer.test.ts"
+  ],
+  "installed_Next": "16.4.1",
+  "source_install_alignment": "Exactfour Git/LF equality and actualsharedNext verified; dependencyHOLD lifted, no CI authority inferred",
+  "SQL118": "Onlyfour nonSQL paths changed; all otherGitblobs conserved; priorimmutableSQLvectors reused",
+  "latest_diagnostic": {
+    "run_id": 39924479291,
+    "head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+    "checkpoint": "8167a3f6-c1f5-4324-b720-a85e9e50b803",
+    "attempt": 1,
+    "all9terminal": true,
+    "admission": "success",
+    "verify": "failure at blockinghighaudit step8",
+    "INT009": "UNEXECUTED",
+    "all_other_jobs": "SKIPPED",
+    "acceptance_added": 0,
+    "all_effect_slots": "CLOSED",
+    "artifact_log_GETs": 0
+  },
+  "publication_history": {
+    "published_MAIN_before_security": "987edccdafee51e59b7d63376e36dadd220409ae",
+    "published_DEBUG_before_security": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+    "predecessor_bytepin": "Provider+bothpushes succeeded, prePOSTbodyorder guard stopped; POST0 and runNULL; independentlyqualifiedclosed",
+    "successor_dispatch_only": "OneexactPOST accepted/run39924479291; Rootresolver1/poll1 sawall9terminal andSTOPPED",
+    "no_old_slot_reuse": true,
+    "new_remote_effects_since_security_authoring": 0
+  },
+  "security_history": {
+    "locked_before": "Next16.3.8; twoCritical+oneHigh currentadvisorymatches",
+    "minimum_vendor_fix": "16.4.1",
+    "unchanged_lint_graph": "eslint-config-next16.3.8/pluginpatch/workspace/lifecycle policy retained",
+    "lock_delta": "Next/@next/env/eightoptionalSWC plus10SHA512integrities only",
+    "first_install": "native1 nonTTYprepurge refusal; Windowsforwardslashstore path derivation qualified; consumedclosed",
+    "second_install": "newfinitegrant exact existingnativebackslashstore; native0/46.693979s; noforce/migration/recreation",
+    "test_compatibility": "writer exactversionconstant only; optimizer twointernalmodulepath literals only; originaloracles preserved",
+    "local_lint": "Two stylishfailures, then boundedformatter exposed actualoldmachine-artifact findings; exactlocalignoredruntime exclusion after0trackedproof+independentmatcher qualification, no projectconfig/rule changes"
+  },
+  "local_validation": {
+    "audit_high": "native0;3belowthresholdfindings remain",
+    "actual_writer": "1P0F0skip;compiledmodulebyteequal",
+    "actual_real_images": "2P0F0skip",
+    "whole_TypeScript": "native0 afterexactsource4adaptation",
+    "local_lint": {
+      "native_exit": 0,
+      "files": 1272,
+      "errors": 0,
+      "warnings": 28,
+      "fatal": 0,
+      "excluded_tracked_paths": 0,
+      "canonical_clean_CI_required": true
+    },
+    "verify_lockfiles": "native0",
+    "production_build": "native0;process-onlytelemetrydisable;nodecompilecacheinherit;noenvfilewrites",
+    "full_Node": {
+      "native_exit": 0,
+      "files": 314,
+      "suites": 103,
+      "tests": 3425,
+      "passed": 3424,
+      "failed": 0,
+      "skipped": 1,
+      "skip_identity": "UNKNOWN",
+      "skip_reason": "UNKNOWN",
+      "skip_coverage": 0,
+      "current_story30_ID_coverage": "UNKNOWNuntilcurrentheadCI"
+    }
+  },
+  "remaining": {
+    "P5": "OPEN",
+    "completed_story_phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "last_qualified_normal_run": 39816833651,
+    "last_qualified95": {
+      "passed": 68,
+      "failed": 1,
+      "unexecuted": 26
+    },
+    "current_INT009_cause": "UNKNOWN",
+    "DB_custody": "Retained/unverified; no new cleanupcredit",
+    "next": "Freshsource-bound reviewed checkpoint/push and isolatedINT009 diagnostic; then cause-backedfix/fullNORMAL95/recovery/P5delivery/P6/P7/15.6/epicgates",
+    "canonical_clean_exact_head_CI": "REQUIRED; notexecuted bylocalreview",
+    "spec_review_iteration": 3,
+    "spec_status": "in-review",
+    "Spec_kernel_SRO": "Unchanged; authorrefresh later afteractualruntimeclosure",
+    "development_complete": false,
+    "release_ready": false,
+    "normal_acceptance": 0,
+    "epic15_6": "UNSTARTED"
+  },
+  "ownership": "OwnedMAIN+DEBUGonly; no Documents/E16/foreigncheckout writes; no localmanagedresources or deployment",
+  "evidence_manifest": "evidence-manifest.json"
+}

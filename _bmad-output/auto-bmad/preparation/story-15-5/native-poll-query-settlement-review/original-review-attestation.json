@@ -1,0 +1,128 @@
+{
+  "kind": "original-independent-completed-review-attestation",
+  "report": "original-review.md",
+  "report_preservation": "Original completed final report preserved verbatim with one terminal newline. Persistence only; no new review, reassessment or rerun.",
+  "reviewer": {
+    "task": "/root/build15_5_high/native_poll_query_delta_review",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_implementation_author": true
+  },
+  "original_completion": {
+    "verdict": "PASS",
+    "finding_count": 0,
+    "original_finding_resolved": "Join SQL callbacks independently of the polling deadline",
+    "resolution": "Actual poll callbacks and both real readTokens/readAudit query promises are independently registered before invocation; closing denies queued/late query factories; unresolved actual work prevents fixture SQL/Auth cleanup.",
+    "latest_consequential_regressions": 0
+  },
+  "scope": {
+    "before": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+    "reviewed_source": "e3f1c2e1c5db81947a48233da617ff8535fd24aa",
+    "paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "tests/e2e/support/calendar-feed-atdd.ts",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+    ],
+    "completed_broad_rounds": 3,
+    "cap": 3,
+    "fourth_broad_review": false,
+    "review_type": "Original unresolved serious finding and consequential regressions in latest three-path fix only",
+    "prior_assessment_reuse": "Unchanged portions of the prior 33b six-path assessment reused explicitly; prior original one-P2 NOTPASS report remains historical. This is not a newly performed whole-final-six-path review."
+  },
+  "immutable_inputs": [
+    {
+      "path": "latest-fix-input.diff",
+      "bytes": 122270,
+      "sha256": "7485ac3451d408e1dd02c178c5042bebe584816d2fb25e9db32b402641c40a6e",
+      "hash_checked": true
+    },
+    {
+      "path": "input-binding.json",
+      "bytes": 10939,
+      "sha256": "b51bacded7f0480962bcfc2bcb9033386f85220e29e6e2917bde434197abb566",
+      "hash_checked": true
+    },
+    {
+      "path": "local-checks.json",
+      "bytes": 3376,
+      "sha256": "f631fa11b2780a6ae76e0132fb46ba4e807412180ca49368d87bb3c766b9039b",
+      "hash_checked": true
+    }
+  ],
+  "actual_source_checks": {
+    "head_matches_reviewed_source": true,
+    "branch": "codex/epic-15-scheduling-time-calendar",
+    "committed_three_path_delta_confirmed": true,
+    "exact_git_diff_bytes": 37079,
+    "exact_git_diff_sha256": "5d8d58598422e38b61ca3ff5109dc44fe1adb81fe02ae199f1dfcc8693d45b76",
+    "exact_git_diff_unified_context": 18,
+    "all_three_current_and_three_unchanged_prior_path_raw_lengths_and_sha256_match": true,
+    "all_six_current_and_baseline_committed_blob_lengths_and_sha256_match": true,
+    "all_six_actual_git_clean_oids_equal_bound_head_blob_oids": true,
+    "all_three_prior_paths_byte_unchanged_between_commits": true,
+    "complete_helper_context_byte_equal_to_current_committed_helper": true,
+    "crlf_distinction_preserved": "calendar-feed-atdd.ts raw 55454 bytes SHA256 4fc068948f1244c72f949a672514605a7fc33d70c1e55b8ff1ec17e7bebca41f; clean committed 54738 bytes SHA256 849eb64dd094c22a372cd8d4c6b9ca5f0c2c59ebc65a519e88ba04f23dbc4fc3",
+    "reviewed_source_paths_clean_at_completion": true,
+    "no_spec_drift_observed_after_binding": true,
+    "root_metadata_dirty_excluded": true
+  },
+  "actual_context_checks": {
+    "all_five_included_context_raw_lengths_and_sha256_match": true,
+    "all_five_included_lf_lengths_and_sha256_match": true,
+    "all_five_context_contents_present_in_packet": true,
+    "paths": [
+      "author-native-poll-query-settlement-route.json",
+      "native-poll-query-settlement-review/local-checks.json",
+      "native-settlement-browser-review/original-review.md",
+      "native-settlement-browser-review/original-review-attestation.json",
+      "native-settlement-browser-review/input-binding.json"
+    ],
+    "context_bindings_reference": "input-binding.json contexts; paths above are relative to story-15-5 preparation",
+    "mutable_root_route_snapshot_unverified_uncredited": true
+  },
+  "manual_dependency_inspection": {
+    "scope": "Actual caller/downstream behavior necessary for original finding and latest-fix judgment",
+    "actual_caller_wiring_inspected": "committedAttempt -> tracked actual expect.poll callback -> physicalRows -> independently tracked readTokens/readAudit -> adminQuery; cancelAndSettle -> cleanupAllowed -> SQL/Auth cleanup or retainedCalendarFixtureCustody",
+    "installed_playwright": "1.61.1",
+    "both_installed_dependency_raw_length_and_sha256_bindings_checked": true,
+    "both_installed_excerpt_length_and_sha256_bindings_checked": true,
+    "both_installed_excerpts_byte_present_in_packet": true,
+    "installed_excerpts": [
+      "playwright-core/lib/coreBundle.js lines 4408-4442",
+      "playwright/lib/matchers/expect.js lines 12949-12974"
+    ],
+    "actual_admin_sql_helper_inspected": true,
+    "author_latest_trail_and_evidence_limits_inspected": true
+  },
+  "activity": {
+    "original_review_read_only": true,
+    "tests_executed_by_reviewer": false,
+    "native_ci_rerun": false,
+    "resources_started": false,
+    "runtime_started": false,
+    "database_started_or_used": false,
+    "browser_started_or_used": false,
+    "next_started": false,
+    "docker_or_vault_launches": false,
+    "source_or_spec_edits": false,
+    "commits": false,
+    "pushes": false,
+    "persistence_only_after_original_completion": true,
+    "persistence_owned_new_files": [
+      "original-review.md",
+      "original-review-attestation.json"
+    ]
+  },
+  "limitations": {
+    "current_head_native_qualification": "pending",
+    "prior_failed_checkpoints": "remain failed",
+    "local_author_checks": "51/51 reported bounded units and static checks are author evidence, not reviewer execution or native qualification; no inferred current native count",
+    "pure_browser_seams": "Injected exact pure helper source and installed polling helper do not qualify full-module alias plumbing, native SQL/browser or application acceptance",
+    "native_db_feature_cases": "51 unexecuted on latest failed checkpoint",
+    "native_browser_feature_cases": "14 failed across 28 attempts on latest failed checkpoint",
+    "attachment_content_privacy": "null/unavailable; metadata references without bodies establish neither leak nor PASS",
+    "native_failure_root_cause_fixed_claim": false,
+    "delivery_or_done_or_release_approval": false
+  }
+}

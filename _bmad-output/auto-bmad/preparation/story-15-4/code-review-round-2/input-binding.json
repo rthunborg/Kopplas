@@ -1,0 +1,49 @@
+{
+  "kind": "limited-latest-fixes-review",
+  "round": 2,
+  "rounds_completed_before": 1,
+  "cap": 3,
+  "rederivation_iteration": 0,
+  "before": "73169cc0c75d88fbb16dc999ef99cbd9028ff361",
+  "source_head": "1f19e3f3b7562bd43732dc61c17a9d0b1b5cee34",
+  "review_input": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\auto-bmad\\preparation\\story-15-4\\code-review-round-2\\review-content.diff",
+  "external_input": "C:\\Users\\Rasmus\\AppData\\Local\\Temp\\auto-bmad-15-4-round2-1f19e3f3b756.diff",
+  "input_bytes": 257335,
+  "input_sha256": "ec5d409b466b789a2e658e46f65c313046fa5b57ed001d5e53949456219cb2d4",
+  "scope": "Only nine accepted findings/latest-fix regressions. Reuse unchanged full six-layer Round1; original external wrapper failed and is not a PASS. No new broad unchanged review.",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+    "src/components/time-reports/PersonalTimesheet.tsx",
+    "src/components/time-reports/TimeReportEntry.tsx",
+    "src/components/time-reports/TimeReportForm.tsx",
+    "src/components/time-reports/TimeReportReview.tsx",
+    "src/components/time-reports/TimeReportWorkspace.tsx",
+    "src/features/time-reports/action-state.ts",
+    "src/features/time-reports/domain.ts",
+    "src/features/time-reports/types.ts",
+    "supabase/migrations/20261020190000_time_reports.sql",
+    "tests/e2e/support/time-reports-atdd.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "tests/integration/components/time-reports.test.ts",
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/integration/rls/migration-reset.int.test.ts",
+    "tests/unit/features/time-reports/action-state.test.ts",
+    "tests/unit/features/time-reports/domain.test.ts"
+  ],
+  "full_current_context": [
+    "tests/e2e/support/time-reports-atdd.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "tests/integration/components/time-reports.test.ts",
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/unit/features/time-reports/action-state.test.ts",
+    "tests/unit/features/time-reports/domain.test.ts",
+    "supabase/migrations/20261020190000_time_reports.sql",
+    "src/features/time-reports/action-state.ts",
+    "src/features/time-reports/domain.ts"
+  ],
+  "route": {
+    "targeted_reviewer": "context-free gpt-6.1-sol High",
+    "external_qualification": "native Node/Codex same gpt-6.1-sol High read-only/ephemeral; capture native exit/model metadata/report bytes to fix failed cmd wrapper plumbing"
+  },
+  "runtime_evidence": "DB/RLS/Storage/migration and 3browser pending RootCI; not executed here"
+}

@@ -1,0 +1,132 @@
+{
+  "status": "PASS_POST_ZOD_NORMAL_TERMINAL_EVIDENCE_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_POST_ZOD_NORMAL_TERMINAL_EVIDENCE_OPERATIONAL_SOURCE_ONLY",
+  "independent": true,
+  "findings": [],
+  "result": {
+    "Outcome": "PASS_POST_ZOD_NORMAL_TERMINAL_EVIDENCE_OPERATIONAL_SOURCE_ONLY",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-operational-review.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [],
+      "scope": "Independent targeted actual reader/current data binding, privacy retention, Root admission helper and outer capture-contract source review only. No story broad round4, acquisition, function/operator execution or source corpus renewal.",
+      "routing": "Root Sol6.1 High cf205b/native0 before initial dispatch; b6cb8c/native0 extends same review to exact Root helper/contract.",
+      "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "acquisition_operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+      "target_normal_operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+      "run_id": 40109869919,
+      "attempt": 1,
+      "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+      "frozen4": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/reader.py",
+          "bytes": 52883,
+          "sha256": "b4a6ed837ba773b574d589bd6023d8fc105a47ec8bf143600ead9637ef85f45c"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/proposal.json",
+          "bytes": 206884,
+          "sha256": "028813ea6e24b9a19f48242d616b6258aa51430afafe490eae5688870fa1c83e"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/pure-controls.json",
+          "bytes": 9430,
+          "sha256": "a845d5e91dc228f91dd7558c8f34e2e8d58df3427aa852f816e6edf9ba9783c4"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/manifest.json",
+          "bytes": 1146,
+          "sha256": "d0873ff011ddd98f89ec8a95a1fb1b1ead23d22f48ca69353192ed07994c0f20"
+        }
+      ],
+      "Root_bindings": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-admission.py",
+          "bytes": 7240,
+          "sha256": "b7af2a69bb37c5804a6fbe052df46312990cb9c7bf7ac589ae86fd48cb872972"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-capture-contract.json",
+          "bytes": 2765,
+          "sha256": "55dc41fba27e079471db9590f665d25ea3d4305549490a7fd7beaf4cb4c4a77a"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-binding-data-disposition.json",
+          "bytes": 1582,
+          "sha256": "a76d911c3ca125b159e72a56e3084855b4669691387c4a93e922889ec43102bd"
+        }
+      ],
+      "source_conservation": "Reviewer independently reversed only four declared binding literals and recovered exact baseline52893/23cd432bceeebe53cc3146ed098175b0b31e5dff35cd2753b4069dbe7b612cf1.35 top-level/41 including nested functions:34/40 unchanged; only validate_admission has exact tuple/output literal delta. API/capture/ZIP/inflate/parsing/projection/labels/custody logic remains identical. RUN/HEAD/CP/OUT/OWNERSHIP defaultNone; false/null template and unsupported/default invocation refuse before any GET.",
+      "current_envelopes": {
+        "terminal": "Exact UTF8 template25757/7d78244ea20ed5abcf5ac643f10d2c861e0d11b6ac0208a0c1ff963725aabd09 independently hashed/parsed in RAM. Typed ownership/run shape satisfies conserved accessor; all nine actual job/step fields match pinned terminal24085/9e8ff486... . Serialization key order differs only. Actual run completed/failure, DB step11 failed; optional4 skipped.",
+        "source75": "Exact UTF8 template34220/23f8e8ef53b0af521837492e91b5f3fa095cefa33a8db8b071d5775359cfb40f independently hashed/parsed. All75 row fields match current reviewed terminal_source75 vector, paths match explicit scope, six recorded known-current substitutions have provenance. No old current-hash alias, raw75 read,118 scan or catalog rebuild.",
+        "inputs": "All19 proposal input refs independently match actual local bytes/hash, including functional17457/40a01b..., Zod9994/8e123e..., operational10225/148e83..., metadata11961/8142fd... and current workspace+lock. Workspace is absent75 and enforced by generic refs/overlay. Historical dispatch60788 proof remains immutable lineage, not freshness-renewed.",
+        "future_SQL": "Explicit future75 includes ops/recovery/bootstrap-roles.sql plus exactly two named calendar migrations. Separate completed finite grant must enroll those three hash-only reads; no other118 migration scan. Root helper reads no SQL bytes. This preparation/review performs no75/SQL source read.",
+        "compiler_catalog": "TypeScript module/package and unit_sources448/19excluded/199wrapper are bytehash references/declaration data. Actual native site is only get()->gh api GET. No compiler/import/test/extractor/install/Git process exists inside reader."
+      },
+      "finite_reader": {
+        "GET_surface": "At most5 logical calls: owned run40109869919 archive; owned-run artifacts?per_page=100 listing; at most one uniquely eligible artifact ZIP for each native-full-integration/native-general-browser/native-isolated-storage-recovery. Returned positive artifact ID must be nonexpired, run/head-bound, typed-size/digest-qualified; duplicate expected name, digest/size/member/schema failure halts. No optional playwright-report, pagination, retry/refetch or fallback.",
+        "capture": "Each get uses inherited MAIN cwd,15s loop, stdout32MiB archive/ZIP or4MiB listing, stderr64KiB, wait2s and two joins1s. Native0/full physicalEOF/read done/joined/closed/direct settlement required before bytes return. Request intent is exclusive before spawn; failed/partial/overflow/timeout/nonzero halts without retry. These are loop+tail limits, not process-tree hardwalls.",
+        "ZIP": "Compressed<=32MiB,<=4096entries, declared/actual aggregate inflate<=128MiB, ratio<=1000, selected member<=16MiB, exact fixed member/report schema, CRC/size and raw filename checks. No filesystem extraction.",
+        "once": "Exclusive output directory and fsynced operator/per-request intents; Root exclusive one-invocation journal binds immutable fresh read op. Any refusal/partial/error/uncertainty consumes operation and unused slots close. Missing eligible artifacts does not authorize another request/run.",
+        "labels": "Source-label-only cap32768. Author actual assembler witness27213 bytes/global44<=48/row512 and same published bytes retained; four exact new leaves parse and invalid stage refuses. No generic projection/whole-packet size-cap claim."
+      },
+      "privacy_retention": {
+        "assessment": "Qualified for this exact owned immutable terminal under conserved source policy; no new privacy exception inferred from a review title. Actual get/archive/list/report writers and the explicit INT009 privacy_and_integrity_assessments closed-projection paragraph were inspected. Three historical review refs are exact available inputs; they are not current acquisition authority.",
+        "retained": "Native stdout AND stderr observed-byte SHA256 persist even on failed/incomplete capture, plus counts/caps/closure metadata. Archive/listing/member/selected-step/report fingerprints, API-advertised artifact digest, bounded case/location metadata, fixed categories and labels persist. This is deliberate fingerprint retention, not zero future payload-hash retention.",
+        "omitted": "Raw ZIP/log/JSON/source bytes, stderr/error text, messages/stacks/SQL/capabilities stay RAM-only. Actual selected log member names are enrolled terminal job/step names. Projections use constrained relative test paths, case IDs/status/counts, closed failure/lifecycle vocabularies; unknown attachments/content/cause remain unqualified. No raw content or acquisition hash was created during preparation/review.",
+        "inference_limits": "Digests are not proof of benignity or privacy of underlying unretained content. Fixed IP stream/form syntax is forgeable: no emitter authenticity, benignity, cause, native-first-throw or request-linkage inference. Child settlement/stack stop does not prove backend rollback/key deletion.",
+        "historical_refs": [
+          {
+            "bytes": 26289,
+            "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-reader-independent-source-review.json",
+            "sha256": "f4f3afc32af11364036d16df234850aae72257bd1383888367caed81afe921c2"
+          },
+          {
+            "bytes": 15744,
+            "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-NORMAL-terminal-reader-operational-review.json",
+            "sha256": "db86efc22e40b29dbcd94a06a5e1bbaee8a09cf17aaf9ed605fee15489fff987"
+          },
+          {
+            "bytes": 13171,
+            "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+            "sha256": "3ab0bc9c4ed85bc189b11790ea476f103334b1e183e3ebcbb935771d0502e483"
+          }
+        ]
+      },
+      "Root_helper_and_outer": {
+        "helper": "Exact7240/b7af2a69... source reviewed. Requires actual completed grant IDs, exact helper+review pins and this exact PASS status/outcome before7 Git metadata calls/materialization. Exact frozen4 enforced. Parses exact two templates, requires75unique rows, adds/deduplicates workspace+lock overlay to76 blob rows. HEAD/branch/clean/localtrackingHEAD/SOURCE-HEAD ancestry/two tree metadata must match before exclusive template creation. Five sha/ref/check/write/git bodies independently text-equal prior7216/8ba90118... . New body is metadata control-plane only, not an unchanged whole-helper claim.",
+        "proof": "Exclusively materializes exact two templates, fresh Git-only proof, once journal and activation. Proof truthfully records Root raw75false/SQLbytes0, localtracking rather than a new remote observation. Current operational-review actual pin goes in operator_review.evidence. Proposal source-review.json name is an inert exemplar; no alias file or accessor change is needed.",
+        "helper_caller": "Future finite grant must bind exact7240 helper and2765 capture-contract refs, explicitly os.chdir(MAIN), use exact relative helper path for __file__/grant reference equality, and enroll7 local Git metadata commands at20s each/stdout<2MiB/stderr<64KiB. Exact helper statements only; no old helper replay or additional Git/network operations.",
+        "outer": "Static driver21112/892a9ac99827e7aed7655b6e94a347ecd81cac0ec092ecff507c2b25a1faef7d and extracted2449-byte native function SHA57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1 independently verified. Future Root wrapper extracts/compiles that function only with required stdlib, no whole driver import/other operator. One exact future reader argv at MAIN cwd;180s loop/512KiB stdout/64KiB stderr/wait2/twojoins1.",
+        "outer_limits": "No independent deadline exists inside reader across all requests. Outer180 includes up to5 inner loops/tails plus local hashing/ZIP/projection overhead but is not a guaranteed-success or strict process-tree bound. Capture uncertainty means STOP/no retry; no orphan-child settlement assumption. Actual outer native/EOF/join/close/direct settlement and Root chunk/exit/wall/session/waits must be retained before output use. Tool-wait sum is not end-to-end elapsed.",
+        "authority": "Helper/outer contract source qualification is not execution authorization and does not certify an unexamined future wrapper. Completed finite grant must explicitly enroll exact helper/capture, future75 hashes including3SQL, reference/compiler hash reads, fixed output paths and one <=5GET invocation."
+      },
+      "controls": "Author evidence only: actual identity/terminal predicate positive and6 refusers, four fixed leaf parses, invalid stage refusal, default main0GET and label budget. No full validate_admission execution or acquisition is claimed. Two pre-write tooling failures preserved without credit. Reviewer reran no controls/functions/operators.",
+      "current_absence": "Accepted acquisition grant, activation, fresh proof, once journal, two future envelopes and output directory all absent at review. Sole reviewer write is this new report.",
+      "normal_acceptance": 0,
+      "actual95": "UNKNOWN_UNQUALIFIED_PENDING_ACTUAL_EVIDENCE",
+      "IP_question": "UNKNOWN_UNOBSERVED",
+      "custody": "UNRESOLVED_UNCHANGED; prior399982 custody not cleared",
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "execution_authority": false,
+      "no_deployment": true
+    },
+    "Open questions": [
+      "Actual eligible artifact availability,95 outcomes, IP pipe/rendered form and current/historical custody remain unqualified.",
+      "Future actual capture and outputs need independent evidence qualification; source-only review cannot supply runtime acceptance."
+    ],
+    "Deferred work": [
+      "Root obtains completed finite grant explicitly covering the reviewed helper/capture and exact source75/ref/GET scope, then materializes only the exact exclusive envelopes/proof/activation/journal.",
+      "Any actual acquisition failure or uncertainty closes remaining slots; no automatic repair/refetch/rerun. Existing development/delivery/release/merge/deployment gates remain."
+    ],
+    "Blockers": [
+      "No concrete source/binding defect remains in the reviewed bounded preparation/helper/contract. Missing completed acquisition grant and actual runtime evidence still block effects and stronger acceptance/completion claims."
+    ]
+  }
+}

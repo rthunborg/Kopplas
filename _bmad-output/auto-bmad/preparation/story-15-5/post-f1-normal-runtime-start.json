@@ -1,0 +1,40 @@
+{
+  "kind": "ACTUAL_ONE_NORMAL_CHECKPOINT_STARTED",
+  "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "checkpoint_id": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+  "run_id": 39664130401,
+  "attempt": 1,
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "run_url": "https://github.com/rthunborg/Kopplas/actions/runs/39664130401",
+  "pushes": 1,
+  "push_native_exit": 0,
+  "push_chunk": "00a84e",
+  "normal_dispatches": 1,
+  "dispatch_native_exit": 0,
+  "dispatch_chunk": "09d7d7",
+  "first_status_native_exit": 0,
+  "first_status_chunk": "514902",
+  "run_binding": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-run-binding.json",
+    "bytes": 788,
+    "sha256": "61c6957cac715797e2a850729adf353f727b6ce53b86ea078ee6e88aa0f18dfb"
+  },
+  "prepush_binding": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-execution-binding.json",
+    "bytes": 1069,
+    "sha256": "5dc24f5a93835fb324b3e88f119b7a274b49833a1bf26530c3b3822ed7219b01"
+  },
+  "actual_initial_job_progress": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-f1-normal-progress-1.json",
+    "bytes": 465,
+    "sha256": "6e4946c8ca169a5970fc9ef4c9d176cb329f0439e0366a6e41aaab6edb902d1b"
+  },
+  "source_and_context_admission": "73source+10triggerconfig/package/workflow+2runtimecontexts exact currentraw/clean/pushedGit; currentbranch/cleanFF/expectedpriorremote verified.",
+  "normal_acceptance_credit": 0,
+  "terminal_GETs_authorized": false,
+  "development_complete": false,
+  "release_ready": false
+}

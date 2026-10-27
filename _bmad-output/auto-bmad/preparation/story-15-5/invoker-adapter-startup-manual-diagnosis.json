@@ -1,0 +1,108 @@
+{
+  "schema": "story-15-5-invoker-adapter-startup-manual-diagnosis-v1",
+  "outcome": "OBSERVED_OWNER_SET_GUARD_REFUSAL_WITH_REACHABLE_PER_GRANTOR_MEMBERSHIP_DEFECT",
+  "head": "93473f1208f5b883b560903faf10348c205d2211",
+  "source_commit": "571f5014efc5edad9649b947c26d391a804afe66",
+  "run": 39587739462,
+  "attempt": 1,
+  "review_scope": "targeted startup failure diagnosis; three broad rounds remain exhausted",
+  "acquisition": {
+    "receipt": ".env.epic15.mail-runtime/story-15-5-preparation/invoker-adapter-startup-manual-acquisition-01.json",
+    "bytes": 2253,
+    "sha256": "e0a317924a85ce443a3db68d55f4fbf8300d409ab09ad24ce8229dc633bf3d72",
+    "get_attempts": 1,
+    "native_exit": 0,
+    "archive_bytes": 719403,
+    "archive_sha256": "3956574128c201a0d4670d978b3c07359db77975e68de4687b69191cd1d3dcf1",
+    "redacted_tool_context_bytes": 319,
+    "raw_persisted": false,
+    "settled": true
+  },
+  "observed": {
+    "jobs": [
+      "db",
+      "e2e",
+      "recovery-storage-loader"
+    ],
+    "after_apply_marker": "20261021102723_calendar_feed_preparsed_actor_identity.sql",
+    "fixed_diagnostic": "ERROR: calendar actor owner or SET authority refused (SQLSTATE P0001)",
+    "source_location": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:82",
+    "interpretation": "The named owner/SET guard refused before adapter creation and transient public CREATE. The exact true OR predicate and hosted catalog rows were not emitted. Earlier automated projections remain UNKNOWN, not successful cause extraction."
+  },
+  "source_proof": {
+    "defect_location": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql:80",
+    "invalid_requirement": "Every inbound grant row to the trusted executor must have SET true, even though effective SET and existence of a direct SET-true/INHERIT-false row are separately required.",
+    "reachable_state": "PG17 native non-superuser role creation gives its creator ADMIN true, INHERIT false, SET false from bootstrap superuser. A later explicit grant can supply SET true in a distinct grantor row. The existing source bootstrap deliberately preserves creator ADMIN and grants SET separately.",
+    "cross_validation": [
+      "supabase/migrations/20261020220000_personal_calendar_feed.sql leading role bootstrap",
+      "tests/integration/commands/calendar-feed.int.test.ts:425-441: INT015 native creator baseline ADMIN true/SET false/INHERIT false, followed by effective SET true/USAGE false and creator ADMIN true"
+    ],
+    "primary_sources": [
+      "https://www.postgresql.org/docs/17/catalog-pg-auth-members.html",
+      "https://raw.githubusercontent.com/postgres/postgres/REL_17_STABLE/src/backend/commands/user.c"
+    ],
+    "primary_semantics": "PG17 user.c records creator self-membership with admin=true, inherit=false, set=false; explicit non-superuser grants use the current authorized grantor. Membership options apply to grant rows, not a universal SET requirement for every row.",
+    "pure_control": {
+      "executed": true,
+      "sql_engine_executions": 0,
+      "description": "Exact current predicate occurrence asserted once. Fixed legitimate two-grant fixture: old rejection EXISTS true; proposed rejection EXISTS false; required direct SET-true/non-inherited row exists true.",
+      "native_credit": 0
+    },
+    "limit": "This establishes a concrete source defect and an explanatory reachable state consistent with the observed guard refusal; it does not independently prove that this was the sole true hosted guard predicate, nor any earlier 43 DB/14 browser failure cause."
+  },
+  "minimal_proposal": {
+    "paths": [
+      "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+    ],
+    "migration_hunk": "Remove only 'or not set_option' from the bad-membership-row EXISTS at line80. Preserve all role attribute checks, effective SET true, effective USAGE false, at least one direct SET-true/non-inherited row, no outbound membership, no foreign inbound member, no inherited grant, and effective public CREATE absence.",
+    "effect": "No role/ACL/grant/claim/public response change. Accept the already-sanctioned lower-authority creator row alongside the effective SET grant; atomicity, owners, OIDs, adapter private EXEC and remaining catalog guards remain unchanged.",
+    "regressions": "Use actual source predicate controls: valid creator-plus-SET pair and direct SET-only accepted; absent/all-false SET authority, inherited/foreign/outbound grants and unsafe role/public CREATE conditions still rejected. Preserve existing 97 controls. Refresh author Spec evidence/SRO only; approved 5760-byte kernel unchanged.",
+    "application_condition": "Root must reconcile exact ownership and confirm the new failed atomic migration has not been successfully applied elsewhere before authorizing this unapplied migration correction. A later migration cannot repair a predecessor guard that prevents reaching it.",
+    "validation_after_allocation": "Focused actual-source controls, TypeScript, affected lint/diff, distinct targeted High committed-delta review, then Root-owned fresh normal exact-head gates/all95. No local SQL or CI execution is authorized by this diagnosis."
+  },
+  "bindings": [
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 11965,
+      "sha256": "ef59b5d0cad587a01842e00de84ffc409f8f51c232b9e059a841e5d19575483d",
+      "head_blob": "5af613dc46fd79a86298161cc044d106d20fcbb8"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 147988,
+      "sha256": "7a23135ef82de7b36c1bd7858b9761ccc759d313767b90033f5a0a8e7ef10544",
+      "head_blob": "a7d712ae5f3f75b3f6af04d808c7219a45b4bef7"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 150709,
+      "sha256": "e66b240b9cf72f27fb35100053f46e621456a2d643ee30e6ee98b6137c212eb7",
+      "head_blob": "a3d6a9ca41a5315305b91ba284e563d37b97e051"
+    }
+  ],
+  "normal_acceptance": {
+    "credit": 0,
+    "node_passed": 3183,
+    "python_separate_passed": 43,
+    "story_runtime_unexecuted": 65,
+    "recovery_unexecuted": 1,
+    "artifacts": 0,
+    "old_failures_unresolved": true
+  },
+  "effects": {
+    "source_edits": 0,
+    "sql_executions": 0,
+    "ci_retries": 0,
+    "resource_operations": 0,
+    "git_mutations": 0,
+    "further_acquisition_allowed": false
+  }
+}

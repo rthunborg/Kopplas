@@ -1,0 +1,59 @@
+{
+  "schema": "ROOT_INT009_DEBUG_WINDOW_PROVIDER_STOP_CLOSEOUT_V1",
+  "at": "2026-10-22T19:01:46.543844+00:00",
+  "main_head": "30951e7a5ac39eb65f68493d26db80e281f05602",
+  "debug_head": "3e6bd3ae0d307eaf6411636ad83a5fba59683148",
+  "refs": {
+    "INT009-DEBUG-capture-window-corrective-operational-source-review.json": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-capture-window-corrective-operational-source-review.json",
+      "bytes": 22244,
+      "sha256": "706d59db084351c9884a3463371c26441b22f4bf3aa342d7b080f308b97b83f7"
+    },
+    "INT009-DEBUG-capture-window-corrective-independent-operational-controls.json": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-capture-window-corrective-independent-operational-controls.json",
+      "bytes": 3050,
+      "sha256": "8c12d205af7935d72707c35a455dc066a1b6a017724e61692100acb31338ddc8"
+    },
+    "INT009-DEBUG-window-provider-outer-capture.json": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-window-provider-outer-capture.json",
+      "bytes": 1591,
+      "sha256": "33d29a41ccc5adb7a7eeccfb40b278034d8b72d0c71ff9f5c0e9c94381473431"
+    },
+    "INT009-DEBUG-window-provider-host-stop-attribution.json": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-window-provider-host-stop-attribution.json",
+      "bytes": 884,
+      "sha256": "6028d650a2feb759582c50508282f3053e14b9475f74370bd511b9534cc502be"
+    },
+    "INT009-DEBUG-window-provider-actual-stop-independent-offline-audit.json": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-window-provider-actual-stop-independent-offline-audit.json",
+      "bytes": 10355,
+      "sha256": "47816482769054b244b3bd4c4ec6112343ba539bd08705dee2e1c69e49ab05b3"
+    },
+    "INT009-DEBUG-window-provider-stop-audit-exact-ref-corrective-attestation.json": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-DEBUG-window-provider-stop-audit-exact-ref-corrective-attestation.json",
+      "bytes": 5837,
+      "sha256": "cb6c24918195fc39074b71c35f3890a5bcc18f823ab6e9fe5bfd9f8922ed1cae"
+    }
+  },
+  "actual_stop": "4014fe/outer1/provider2 PRE_REQUEST_REFUSED before provider intent/GET",
+  "actual_effect_counts": {
+    "provider_GET": 0,
+    "MAIN_push": 0,
+    "DEBUG_push": 0,
+    "POST": 0,
+    "metadata_GET": 0,
+    "artifact_GET": 0
+  },
+  "all_effect_slots_closed": true,
+  "no_replay": true,
+  "independent_audit_admission": "6e566f+d60031/native0 actual full reads; use corrective attestation for failed index/ref",
+  "first_failed_guard": "provider70 heterogeneous proposal.input_refs index1 valid pinned Python18529/e4527c then load_pin48 unconditional JSON decode; index0 JSON and preceding gates passed",
+  "source_correction_owner": "native15_5_high explicitSol6.1High new private immutable namespace, byte-only mixed refs, genuine JSON guards retained, complete offline preflight required",
+  "normal95": "68P1F26zero",
+  "functional_cause": "UNKNOWN",
+  "DB_custody": "retained/unverified",
+  "normal_acceptance": 0,
+  "P5": "OPEN",
+  "development_complete": false,
+  "release_ready": false
+}

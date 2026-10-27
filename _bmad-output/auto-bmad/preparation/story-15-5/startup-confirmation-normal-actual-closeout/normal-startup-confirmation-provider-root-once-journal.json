@@ -1,0 +1,31 @@
+{
+  "schema": "ROOT_API019_NORMAL_ONCE_JOURNAL_V1",
+  "phase": "PROVIDER_ONCE_ALLOCATED_ROOT_PUBLISH_PENDING_SUCCESS",
+  "created_at_utc": "2026-10-23T17:48:18.999711+00:00",
+  "operation_id": "d891e444-e6d5-401f-bd00-0a4b85b701e9",
+  "checkpoint_id": "06c4e602-246c-465d-b858-802be78c9ba1",
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-effects-allocation.json",
+    "bytes": 7462,
+    "sha256": "3a9e2eae1a60abebb0ff8d4d59d8c1ab17fc19a2e248d7338766bbf541691624"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-current-source-proof.json",
+    "bytes": 59110,
+    "sha256": "67f002bce2c021141c096606559a00c0f5fb713998d8fd6e091219b5c045b9d7"
+  },
+  "provider": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/provider.py",
+    "bytes": 20581,
+    "sha256": "a85dd331e162fc4e66cc89f603715dbb31f0bdb0d235744c99a862abd8aeefec"
+  },
+  "controller": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-execution-preparation/root-driver.py",
+    "bytes": 21106,
+    "sha256": "3aa7b7ccdd65790b32164b17953a776f2b0a0d6e556e8598bc11d8dd28831dff"
+  },
+  "normal_acceptance": 0,
+  "no_retry": true
+}

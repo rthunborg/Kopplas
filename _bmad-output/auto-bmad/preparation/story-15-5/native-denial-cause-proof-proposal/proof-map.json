@@ -1,0 +1,844 @@
+{
+  "schema_version": 1,
+  "kind": "UNALLOCATED_DENIAL_CAUSE_PROOF_DESIGN",
+  "author_source": "55db468eef3106ca1b02dc846ba12967a28dc238",
+  "checkpoint": "56324120f8e08de995e8cc7432ab27f2d0c98635",
+  "route": {
+    "phase": "plan-native-denial-cause-proof",
+    "role": "security-permission-native-cause-proof-planner",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "recorded_by_root_before_dispatch": true
+  },
+  "implementation_admitted": false,
+  "native_execution": false,
+  "native_credit": 0,
+  "actual_native": {
+    "run_id": "39507120872",
+    "attempt": 1,
+    "status": "FAILURE",
+    "feature": {
+      "passed": 38,
+      "failed": 57,
+      "skipped": 0
+    },
+    "db_failed_cases": 43,
+    "closed_leaves": 44,
+    "stages": {
+      "scenario-issued-denied": 34,
+      "scenario-assertion": 5,
+      "scenario": 4,
+      "scenario-rls001-own": 1
+    },
+    "all_leaf_categories": "unknown",
+    "all_sqlstates": null,
+    "backend_cause": "UNPROVEN",
+    "issued_denied_cases": [
+      "API001",
+      "API002",
+      "API003",
+      "API004",
+      "API005",
+      "API006",
+      "API007",
+      "API008",
+      "API009",
+      "API010",
+      "API012",
+      "API013",
+      "API014",
+      "API015",
+      "API016",
+      "API017",
+      "API018",
+      "API019",
+      "API020",
+      "INT001",
+      "INT002",
+      "INT007",
+      "INT008",
+      "INT010",
+      "INT011",
+      "INT012",
+      "INT014",
+      "RLS003",
+      "RLS004",
+      "RLS005",
+      "RLS006",
+      "RLS007",
+      "RLS011",
+      "RLS012"
+    ],
+    "assertion_cases": [
+      "INT003",
+      "INT004",
+      "INT006",
+      "INT013",
+      "RLS010"
+    ],
+    "scenario_leaves": [
+      "INT005",
+      "INT009-primary-or-cleanup-unproven",
+      "INT009-second-ordered-leaf-unproven",
+      "RLS008"
+    ],
+    "browser": {
+      "story_failed": 14,
+      "attempts": 28,
+      "other_passed": 17,
+      "error_context_metadata": 28,
+      "content": null,
+      "privacy_qualified": false
+    },
+    "separate_positive": [
+      "Node3139",
+      "Python43",
+      "recovery1",
+      "canonical CI audit/lint",
+      "frozen Vite identity"
+    ],
+    "no_inference": [
+      "denied does not identify backend auth cause",
+      "closed scenario frames do not identify native throw origin",
+      "INT015 setup authority is not actual JWT RPC caller identity",
+      "RLS010 later predicates uncredited",
+      "API019 HTTP/telemetry/detector assertions unreached"
+    ]
+  },
+  "original_call_dataflow": [
+    {
+      "boundary": "intent",
+      "authority": "ordinary JWT client; no client-supplied tenant authority",
+      "source": "manage-calendar-feed.ts:38-42",
+      "branches": [
+        "input-invalid",
+        "envelope-success",
+        "COMMAND_CONFLICT",
+        "SERVER_ERROR",
+        "closed-denied-command-code"
+      ],
+      "observation": "Exact existing consumed runCommand code, closed allowlist; original return object identity preserved."
+    },
+    {
+      "boundary": "envelope",
+      "authority": "getClaims verified sub -> active membership -> normalized current primary/additional roles -> scheduling Bookings.View -> validation",
+      "source": "resolve-tenant-context.ts / resolve-tenant-context-core.ts / envelope-core.ts / envelope.ts",
+      "branches": [
+        "UNAUTHENTICATED",
+        "TENANT_MEMBERSHIP_REQUIRED",
+        "PERMISSION_DENIED",
+        "VALIDATION_FAILED",
+        "TENANT_ACCESS_DENIED",
+        "SERVER_ERROR",
+        "COMMAND_CONFLICT"
+      ],
+      "observation": "Exact typed result code only; SERVER_ERROR does not identify underlying resolver/key/clock/execute exception. Current config has no ownership gate and auditablefalse; do not allege missing downstream guards."
+    },
+    {
+      "boundary": "status-rpc",
+      "authority": "same actual ordinary client -> read_calendar_feed_status SECURITY DEFINER feedowner",
+      "source": "read-models/calendar-feed.ts:8-11",
+      "branches": [
+        "rpc42501",
+        "rpc-other-error",
+        "status-schema-invalid",
+        "status-valid"
+      ],
+      "observation": "42501 is recorded before TENANT_ACCESS_DENIED replacement, not from native text; shape branches remain separate. No second await/request."
+    },
+    {
+      "boundary": "manage-rpc",
+      "authority": "same actual ordinary client -> manage_calendar_feed SECURITY DEFINER feedowner",
+      "source": "calendar-feed-db.ts:4-11",
+      "branches": [
+        "rpc42501",
+        "rpcCF409",
+        "rpc-other-error",
+        "manage-schema-invalid",
+        "manage-valid"
+      ],
+      "observation": "Actual consumed code before CommandError/fixed Error; no RPC/client/thenable instrumentation."
+    },
+    {
+      "boundary": "direct-rls-normalizer",
+      "authority": "RLS001 ordinary own/admin/planner/mixed JWT calls bypass command envelope; forbidden/foreign cases retain actual denial assertions",
+      "source": "calendar-feed-atdd.ts:308,361 and RLS001",
+      "branches": [
+        "raw-manage-error-allowlisted-code",
+        "raw-manage-error-unavailable-code",
+        "raw-manage-no-error"
+      ],
+      "observation": "Own data descriptor of error.code AFTER existing await, only at this exact existing call site before boolean normalization; getters/proxies unknown. Returns identical normalized shape; no generic four-RPC observer."
+    },
+    {
+      "boundary": "RLS010-first-predicate",
+      "authority": "existing read-only catalog facts; no additional SELECT",
+      "source": "calendar-feed.rls.test.ts:170-173",
+      "branches": [
+        "login",
+        "inherit",
+        "superuser",
+        "bypassRls",
+        "publicSchemaCreate",
+        "assumableByJwtRoles",
+        "unrelatedTableRead",
+        "generalVaultRead",
+        "effectiveReadOutsideAllowedColumns",
+        "filteredHelperOnly",
+        "invalid-own-data-shape"
+      ],
+      "observation": "Unchanged full matcher once; first finite field mismatch, own boolean data only, never actual name/values/rows. Later helper/function predicates credited only if actually reached."
+    },
+    {
+      "boundary": "assertion-and-scenario-loss",
+      "authority": "existing fixture/caller controls",
+      "source": "INT003/004/005/006/009/013, RLS008",
+      "branches": [
+        "preceding-management-closed-trace",
+        "lose-response-notcommitted",
+        "raw-status-error-before-allowlist-guard",
+        "fault-setup",
+        "fault-run",
+        "fault-cleanup",
+        "barrier-setup",
+        "barrier-wait",
+        "barrier-release",
+        "barrier-absence"
+      ],
+      "observation": "Actual existing catch/guard location plus closed trace, not generic matcher arguments or inferred primary/cleanup cause. INT009 both ordered failures retained; no added observer/queries; an unfinished request is not settled."
+    }
+  ],
+  "sql_erasure_map": [
+    {
+      "lines": "146-160",
+      "boundary": "read_calendar_feed_status",
+      "explicit_denial": "auth.uid null OR active membership absent OR subject predicate false",
+      "indistinguishable_from": "engine42501 in schema/helper/table access or earlier evaluation",
+      "not_observed": true
+    },
+    {
+      "lines": "166-173",
+      "boundary": "manage initial compound guard",
+      "explicit_denial": "auth/argument/claim/hash/verifier condition group",
+      "indistinguishable_from": "verifier returns false for native exception or bad proof; engine42501 outside explicit guard",
+      "not_observed": true
+    },
+    {
+      "lines": "176",
+      "boundary": "manage current subject",
+      "explicit_denial": "current membership/role union fails",
+      "indistinguishable_from": "engine42501 at subject helper or table/column access",
+      "not_observed": true
+    },
+    {
+      "lines": "120-134",
+      "boundary": "verifier",
+      "false_groups": [
+        "shape/schema/domain/operation",
+        "keys/types",
+        "clock/expiry",
+        "filtered-secret-missing-or-format",
+        "decoded-secret-format",
+        "signature-comparison",
+        "caught-engine-error"
+      ],
+      "limitation": "WHEN OTHERS RETURN false erases SQLSTATE before TS. TS-only cannot recover it."
+    },
+    {
+      "lines": "32-34,66-92,263-273",
+      "boundary": "enforced grants/owners/RLS",
+      "fact": "Auth schemaUSAGE and auth.uid EXECUTE grants exist; function owners/EXECUTE and table policies are enforced downstream. No missing-auth-grant or generic privilege defect proved."
+    }
+  ],
+  "proposed_paths": [
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 1054,
+      "raw_sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+      "git_clean_blob_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "actual_git_blob_bytes": 1054,
+      "actual_git_blob_sha256": "1223d202b250b69ea9ed7de3aa8f3621324b6ff9e1c01bcd06cd80b96d680d43",
+      "checkpoint_blob_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "author_blob_oid": "b9ad7ddcb31e9b51a2c7836589bf4df7da6cb2c7",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Existing executeCalendarFeed error/shape branches; module-private opt-in AsyncLocalStorage closed trace; no client/RPC wrapper.",
+      "context_only": false
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 3964,
+      "raw_sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+      "git_clean_blob_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "actual_git_blob_bytes": 3964,
+      "actual_git_blob_sha256": "dd14101ae51c5f90da6a10b7547ae431adfff515eabb3ec499cb548f3cb1a77b",
+      "checkpoint_blob_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "author_blob_oid": "e83ca8ab80cf69ddfd5e3c3800dd1132cefb363f",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Existing validation and runCommand result-code erasure, plus phase labels around existing calls; preserve cached commands and returned data identity.",
+      "context_only": false
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3111,
+      "raw_sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+      "git_clean_blob_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+      "actual_git_blob_bytes": 3111,
+      "actual_git_blob_sha256": "487198b2ebaebf6d80f86b00e40e8e36ed1d1cb73f12b9df296913e8de45671e",
+      "checkpoint_blob_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+      "author_blob_oid": "131fe1ae486e2a9fd4517125ba4c8e889ce27ac1",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Existing status RPC error/shape branches before fixed replacement; no query/result changes.",
+      "context_only": false
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 68474,
+      "raw_sha256": "c6afda12230f3aea89693afba24be6b457ddfe0df0e3b0fc2c9d5d995824ab78",
+      "git_clean_blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "actual_git_blob_bytes": 67735,
+      "actual_git_blob_sha256": "1536a68c58e0b5bd7cb8e8c818779181d1ed0f3d869542dc03ed9bd88e0c2478",
+      "checkpoint_blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "author_blob_oid": "fce69a9da924b0127517b56a645e8cde2cd6fe75",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Per-invocation capture and private result association; exact post-await rawManage and raw status boundaries; existing fault/barrier/lose-response erasures; fixed closed predicate diagnostics.",
+      "context_only": false
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_bytes": 14914,
+      "raw_sha256": "4579e0f2aadd7957766145679930fc49de06c876ffcc01b3e8b7c761f6d8d552",
+      "git_clean_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "actual_git_blob_bytes": 14685,
+      "actual_git_blob_sha256": "c768e4fb8b56d097fbc7cf2ea9238d526dc98e07582fad573057ffb3f036f564",
+      "checkpoint_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "author_blob_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "RLS001 existing allowed sites; RLS008 existing failed status/scenario context; RLS010 unchanged composite matcher once plus first fixed owner-field mismatch using already-read facts.",
+      "context_only": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 101722,
+      "raw_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "git_clean_blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "actual_git_blob_bytes": 101722,
+      "actual_git_blob_sha256": "412ee7364fd4b301102eb70e4a68fade800014d634039b1622baa99725784c19",
+      "checkpoint_blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "author_blob_oid": "7d08c0a31c6ddd3e27212dfd63aa6cadc546f88d",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Retain67; faithful trace, concurrency, value/once-call, reporter, strict privacy and targeted-runner negatives; no native services.",
+      "context_only": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 113261,
+      "raw_sha256": "b33f59ebf25955b7d5acf082ce255907b462ca6171aacf50ab5621df9f7da5c1",
+      "git_clean_blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "actual_git_blob_bytes": 112048,
+      "actual_git_blob_sha256": "0ea107912c53c54f3755cc162d08bd9ee084e4c7b52363fa5e13c8bdb7024264",
+      "checkpoint_blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "author_blob_oid": "6a50199f01f20296a42b68ae8da69942b1a981e7",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Author trail/SRO only, in-review, approved intent unchanged; no new product behavior.",
+      "context_only": false
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36136,
+      "raw_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "git_clean_blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "actual_git_blob_bytes": 36136,
+      "actual_git_blob_sha256": "da67a1bdfbe9eae9e0199e1ee1cddd6dd00863e263af7cf6a1aaa6dc3f092891",
+      "checkpoint_blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "author_blob_oid": "178491d5b34b37dcf6fab346250e653418ca9428",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "One explicitly new targeted cause-proof case INT016; existing cases/INT015 unchanged. Dedicated rollback-only SQL differential proof described below.",
+      "context_only": false
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 35025,
+      "raw_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "git_clean_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "actual_git_blob_bytes": 35025,
+      "actual_git_blob_sha256": "8f142ebe8a015aacc38ae55b37f36f98c61daa0621b62fb266c3991cedecbe8d",
+      "checkpoint_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "author_blob_oid": "72d931cba063ced2144e62395c006828bfedabdc",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Separate fixed cause-proof mode and argv; same fresh-stack/key/setup/privacy/cleanup qualification, no Next child for this non-HTTP slice; original db/browser modes preserved.",
+      "context_only": false
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 3777,
+      "raw_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "git_clean_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "actual_git_blob_bytes": 3777,
+      "actual_git_blob_sha256": "c7c2b16b130b3ae37ff5130a5916c6418ac36cc23669d2b8c76eade533a37735",
+      "checkpoint_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "author_blob_oid": "3c6bafb46e6c1545654b70bdc378875ae98b32c6",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Actual new wrapper LF pin and exact optional-mode workflow projection/negative fences; preserve original inverse hash and reject unrelated source/workflow drift.",
+      "context_only": false
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75339,
+      "raw_sha256": "ffeb2a7d6080b5d07e7aede44d850e123cd5eda2ef30d877780b8ce1aab7979d",
+      "git_clean_blob_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "actual_git_blob_bytes": 73870,
+      "actual_git_blob_sha256": "0a7c1b210e87b020e882787869cae7b9fa314068f7d561e52dd14443495d57c7",
+      "checkpoint_blob_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "author_blob_oid": "bf3e201438bd06912e2fc908f001049c23ca356f",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": "Explicit workflow_dispatch cause-proof boolean defaultfalse; existing qualified db stack executes fixed targeted mode only when requested; no browser job in this diagnostic-only run, no success/acceptance substitution. Normal and release commands/conditions preserved.",
+      "context_only": false
+    }
+  ],
+  "context_bindings": [
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw_bytes": 17101,
+      "raw_sha256": "b9f88aa193e3fe1a5ced9e741382131a28b0dbff4db0c79f515d932d5927d38a",
+      "git_clean_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "actual_git_blob_bytes": 16764,
+      "actual_git_blob_sha256": "bebaa7827e701ee9cb1e8b77deeade619ad198f379fb1216494141bbc337cf02",
+      "checkpoint_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "author_blob_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "raw_bytes": 12421,
+      "raw_sha256": "f1412208ad090c8a69d92694bd1ed340ffaa987614ee076ad8fe96ed54fa999d",
+      "git_clean_blob_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "actual_git_blob_bytes": 12130,
+      "actual_git_blob_sha256": "9c9189279b831a2f32842df723111dc874cf892304c7b55020f2829ea98b3210",
+      "checkpoint_blob_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "author_blob_oid": "22905f9d6deda34a493f2f472d77593f82a0317e",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": false,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/server/commands/command-errors.ts",
+      "raw_bytes": 13807,
+      "raw_sha256": "59a81dcc08175204cfeafc08519f2c3bbe6b83eac6bda2be7d7527927cb5e422",
+      "git_clean_blob_oid": "c342e54a77614fb81bc583456cb1fe8c9898b2b6",
+      "actual_git_blob_bytes": 13595,
+      "actual_git_blob_sha256": "45015e79465ccc712784afd38d82a1a1a84977d7007b571ca8f402add2c7af6f",
+      "checkpoint_blob_oid": "c342e54a77614fb81bc583456cb1fe8c9898b2b6",
+      "author_blob_oid": "c342e54a77614fb81bc583456cb1fe8c9898b2b6",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": false,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context.ts",
+      "raw_bytes": 13297,
+      "raw_sha256": "1d46e1504583d08d0a0d805dc7e3df7ac3f502fc2ab89e976d5a86c439280cf2",
+      "git_clean_blob_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "actual_git_blob_bytes": 13027,
+      "actual_git_blob_sha256": "767a3ee06e8c309e3069f7a36d61c0c12cbaacd39f849c0c8f5008443c1e9e12",
+      "checkpoint_blob_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "author_blob_oid": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": false,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/server/auth/resolve-tenant-context-core.ts",
+      "raw_bytes": 6009,
+      "raw_sha256": "014279223fffb62e5bace20c9920a4fe8e89186768e7354cb075f26b99d37153",
+      "git_clean_blob_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "actual_git_blob_bytes": 5874,
+      "actual_git_blob_sha256": "91786d75aa5159e848d50c2badb1428569fbc18666d55c2beee774735a9f26f1",
+      "checkpoint_blob_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "author_blob_oid": "8d309fc2cfb8311261dce9c80eb9288b11906ede",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": false,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/server/authz/require-capability.ts",
+      "raw_bytes": 654,
+      "raw_sha256": "9e9b3587061dac16e09004f6c244e62ddf8eeca243cdbce241b8f7bde450e519",
+      "git_clean_blob_oid": "6a7e19761ea7bf3e20ff939f419483a84e7253ef",
+      "actual_git_blob_bytes": 641,
+      "actual_git_blob_sha256": "214a2ef77110b5e33f43db0c0f76841521c20e03447be6cc55e26777fde715e2",
+      "checkpoint_blob_oid": "6a7e19761ea7bf3e20ff939f419483a84e7253ef",
+      "author_blob_oid": "6a7e19761ea7bf3e20ff939f419483a84e7253ef",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": false,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "raw_bytes": 7914,
+      "raw_sha256": "b839190977e94262ac68ca8d57a631449f08b0c50335b3e6e9f0830f55f390fc",
+      "git_clean_blob_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "actual_git_blob_bytes": 7767,
+      "actual_git_blob_sha256": "470a2d0932c78a178d192fb94a5693a98c689f2e8e8c50b2be6ac780c7849c04",
+      "checkpoint_blob_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "author_blob_oid": "426da1a3e4aa856a4d95d45ad11be7f14cbd1f44",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": false,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/features/calendar-feed/validation.ts",
+      "raw_bytes": 1123,
+      "raw_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+      "git_clean_blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+      "actual_git_blob_bytes": 1123,
+      "actual_git_blob_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+      "checkpoint_blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+      "author_blob_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "raw_bytes": 3543,
+      "raw_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "git_clean_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "actual_git_blob_bytes": 3543,
+      "actual_git_blob_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "checkpoint_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "author_blob_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "git_clean_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "actual_git_blob_bytes": 24435,
+      "actual_git_blob_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "checkpoint_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "author_blob_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": true,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "raw_bytes": 22030,
+      "raw_sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681",
+      "git_clean_blob_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "actual_git_blob_bytes": 21725,
+      "actual_git_blob_sha256": "44753b239d6618bb1ade96f05b18723ab086c68499a0b42fa6ccaa3f045beb52",
+      "checkpoint_blob_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "author_blob_oid": "a1217258358c416364fd2843b04efe0b4f1d29c2",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": false,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "raw_bytes": 26921,
+      "raw_sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "git_clean_blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "actual_git_blob_bytes": 26504,
+      "actual_git_blob_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+      "checkpoint_blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "author_blob_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "author_checkpoint_equal": true,
+      "raw_equals_git_blob": false,
+      "already_in_owned69": true,
+      "protected_consumer37": false,
+      "historical_sql109": false,
+      "proposed_hunk": null,
+      "context_only": true
+    }
+  ],
+  "anchors": [
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "line": 39,
+      "literal_anchor": "if (!validated.ok)",
+      "meaning": "input rejection before runCommand"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "line": 40,
+      "literal_anchor": "const result = await runCommand",
+      "meaning": "actual envelope once"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "line": 16,
+      "literal_anchor": "const status = await readCalendarFeedStatus",
+      "meaning": "status precedes token/proof/manage RPC"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "line": 42,
+      "literal_anchor": "result.code ===",
+      "meaning": "typed-code collapse"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "line": 7,
+      "literal_anchor": "error.code === \"42501\"",
+      "meaning": "management RPC code erasure"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "line": 9,
+      "literal_anchor": "error?.code === \"42501\"",
+      "meaning": "status RPC code erasure"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "line": 308,
+      "literal_anchor": "function normalizedRpc",
+      "meaning": "raw RPC error to denied boolean"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "line": 629,
+      "literal_anchor": "loseCommittedResponse:",
+      "meaning": "noncommitted fixed error"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "line": 639,
+      "literal_anchor": "async function calendarFault",
+      "meaning": "fault source/catch/cleanup context"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "line": 666,
+      "literal_anchor": "async function calendarBarrier",
+      "meaning": "barrier setup/wait/release context"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "line": 171,
+      "literal_anchor": "expect(facts.owner).toMatchObject",
+      "meaning": "first failed RLS010 composite"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "line": 134,
+      "literal_anchor": "exception when others then return false;",
+      "meaning": "verifier engine cause erased inside PostgreSQL"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "line": 152,
+      "literal_anchor": "if auth.uid() is null or member is null",
+      "meaning": "status explicit42501 group"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "line": 166,
+      "literal_anchor": "if auth.uid() is null or auth.uid() is distinct",
+      "meaning": "management initial compound guard"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "line": 176,
+      "literal_anchor": "if not public.calendar_feed_subject_internal",
+      "meaning": "management eligibility42501"
+    }
+  ],
+  "immutable_references": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-failed-56324120-packet-admission.json",
+      "bytes": 1304,
+      "sha256": "34785381fc18743aeeb67f23517683c48e790509b0c0b15e3fc683bd927f2a0a",
+      "immutable_dependency_only": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/manifest.json",
+      "bytes": 6469,
+      "sha256": "4db7cdae3b90b727cbd4628444420ed96981d4d7996f08bce9dbb57e25775191",
+      "immutable_dependency_only": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/native-qualification.json",
+      "bytes": 39649,
+      "sha256": "9fab0c5db825a7f2d2d49384a9f420c0ae246fb43a3d1476f4d760708c8883da",
+      "immutable_dependency_only": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/native-db-diagnostic-serialization-reach.json",
+      "bytes": 24907,
+      "sha256": "5d9f24c778e1f3004b552de2c5df0eaccb7f0fb6ba09841694548dd155a5278f",
+      "immutable_dependency_only": true
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-56324120-ci-independent/native-db-failure-reach.json",
+      "bytes": 92932,
+      "sha256": "54f02140e73edffe914dc8501553c3b2421b427b20b334ed4703d67041b84557",
+      "immutable_dependency_only": true
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-dependency-audit-repair.json",
+      "bytes": 720807,
+      "sha256": "fdf228c001e59f666cf362c5ee847513a90b101fb2c0188f5d8932a0d27912cd",
+      "immutable_dependency_only": true
+    }
+  ],
+  "scope": {
+    "existing_owned69_candidate_paths": 11,
+    "candidate_paths": 11,
+    "new_source_paths": [],
+    "protected37_candidate_overlap": [],
+    "historical109_candidate_overlap": [],
+    "shared_claims_required": [
+      ".github/workflows/ci.yml exact new diagnostic input/branch",
+      "tests/support/calendar-feed-ci-contract.ts exact new fixed-mode inverse/pin",
+      "all actual affected wrapper/CI checker ownership must be reconciled before writing"
+    ],
+    "not_allocated_by_old_story_or_dependency_grants": true
+  },
+  "primary_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.23.2/doc/api/async_context.md",
+      "use": "Independent AsyncLocalStorage invocation stores; source rationale, not native proof."
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/sql-set-session-authorization.html",
+      "use": "SET SESSION AUTHORIZATION changes session and current identity; initial authenticated superuser requirement; invoker privilege checking differs from setup authority."
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/sql-createfunction.html",
+      "use": "Replacement identity, ownership/permission and SECURITY DEFINER semantics; preservation must be verified, not inferred."
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/plpgsql-control-structures.html#PLPGSQL-ERROR-TRAPPING",
+      "use": "Exception rollback and handler behavior; no error context/message inspection proposed."
+    },
+    {
+      "url": "https://www.postgresql.org/docs/17/transaction-iso.html",
+      "use": "A new snapshot is not the historical PostgREST transaction; clock_timestamp continues advancing."
+    }
+  ],
+  "outcome": "DESIGN_FOR_INDEPENDENT_CHALLENGE_ONLY",
+  "sufficient_for_historical_original_sql_cause": false,
+  "next_gate": "Independent High challenge of target replay/equivalence/cleanup and exact scope; Root allocation before any implementation or native invocation. No diagnostic-only full-CI repeat based solely on TS localization.",
+  "effect_inventory": {
+    "transactional": [
+      "one dedicated repeatable-read transaction",
+      "bounded local claims/timeouts/session identity changes",
+      "temporary replacement of three existing function bodies; same OIDs/owners/ACL/attributes",
+      "catalog/function locks and tenant advisory locks",
+      "possible exact-owned token/audit writes; full rollback; no COMMIT"
+    ],
+    "not_rolled_back": [
+      "existing wrapper committed key installation/deletion",
+      "canonical fixture/auth/PostgREST transactions and compensating cleanup",
+      "existing selected fault/barrier sequence advancement and separate cleanup",
+      "entropy/clock passage",
+      "test process/CI resources/files"
+    ],
+    "no_new": [
+      "role",
+      "schema",
+      "membership",
+      "grant",
+      "endpoint",
+      "credential",
+      "Vault probe mutation",
+      "persistent function definition"
+    ],
+    "exclusive_runner": "one worker/no file parallelism/own fresh stack/no concurrent browser or other feed consumer; locktimeout stops",
+    "replay_not_original": true
+  }
+}

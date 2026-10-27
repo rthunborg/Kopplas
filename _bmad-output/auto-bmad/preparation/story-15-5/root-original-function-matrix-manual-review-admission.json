@@ -1,0 +1,32 @@
+{
+  "schema": "root-original-function-matrix-manual-review-admission-v1",
+  "verdict": "PASS_PREPARATION_ONLY",
+  "reviewer": "/root/review15_5_preselected_id_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "originals": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-review/original-report.md",
+      "bytes": 5180,
+      "sha256": "c370875446d68d2484cf9e4ce4f49845861b45c8b21d1d4c4a57accbf85a490c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-review/original-attestation.json",
+      "bytes": 11663,
+      "sha256": "72117389a2c73eacaa72287055d25c9609448c2029f152a4b3856df5186b754f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-matrix-manual-review/result.json",
+      "bytes": 1486,
+      "sha256": "59904a326a6b596b00f996ac83b77326a3dd9b83e77dc723f678d19549a79ecd"
+    }
+  ],
+  "actual_payloads_verified": 3,
+  "actual_source_checkpoint_bindings_verified": 18,
+  "actual_run_id": null,
+  "api_calls": 0,
+  "activation": false,
+  "ci_or_get_authority": false,
+  "human_approval": "PENDING",
+  "normal_acceptance_credit": 0
+}

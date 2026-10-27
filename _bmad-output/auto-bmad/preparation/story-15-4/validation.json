@@ -1,0 +1,42 @@
+{
+  "outcome": "done",
+  "halt_status": "ready-for-dev",
+  "blocking_condition": null,
+  "spec_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas\\_bmad-output\\implementation-artifacts\\spec-15-4-time-reporting-filing-timesheet-review.md",
+  "baseline_revision": "5040f683cf9446d39de8512cdca82242c55fca3e",
+  "phase": "planning-only",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "tasks": 10,
+  "acceptance_criteria": 9,
+  "source_ac_sketches_preserved_verbatim": 1,
+  "story_file_audit_checks_passed": 7,
+  "kernel_sha256": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb",
+  "kernel_hash_definition": "UTF-8 LF exact text including both intent-contract tags, no appended newline",
+  "raw_sha256": "7933d020fba0986d283294cb94f85859a58d1fdc83f884a4d29e8b69751c89bb",
+  "raw_bytes": 24771,
+  "approved_kernel": null,
+  "approval_status": "pending-root-independent-High-validation-and-freeze",
+  "reader_passed": true,
+  "discovery_passed": true,
+  "preservation_passed": true,
+  "preservation_method": "unchanged canonical HEAD plus clean tracked Git status and cached-context SHA256",
+  "cached_epic_context": "valid-reused-byte-unchanged",
+  "runtime_tests_executed": 0,
+  "resources_started": 0,
+  "code_review_rounds": 0,
+  "independent_spec_review": "pending-root",
+  "release_ready": false,
+  "proposed_migration": {
+    "logical_basename": "time_reports",
+    "timestamp_after": "20261020180000",
+    "timestamp_reserved": false,
+    "sql_write_grant": false
+  },
+  "proposed_new_table": "time_reports",
+  "proposed_notification": "time_report.nudge (in_app only)",
+  "build_prerequisites": [
+    "Root independent High validation/freeze",
+    "Coordinator exact shared semantic allocation, migration reservation, isolated fixtures/resources"
+  ]
+}

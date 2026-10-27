@@ -1,0 +1,7 @@
+{
+  "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false --pretty false",
+  "exitCode": 0,
+  "output": "",
+  "acceptanceBodiesExecuted": 0,
+  "note": "Final source after bounded RLS falsifiability correction"
+}

@@ -1,0 +1,96 @@
+{
+  "actual_jobs": {
+    "checkpoint-admission": "success",
+    "verify": "success",
+    "db": "failure",
+    "e2e": "success",
+    "recovery-storage-loader": "success",
+    "dashboard-e2e": "skipped",
+    "native-stream-probe": "skipped",
+    "fixed-chromium-paired-probe": "skipped",
+    "fixed-chromium-application-verification": "skipped"
+  },
+  "actual_run_id": 39990057474,
+  "actual_terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/actual-terminal-envelope.json",
+    "bytes": 26294,
+    "sha256": "5abc36d28f1f7e36a004a7aa510150d1f7f9e53bcb9ddb141d1efbecb989b811"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-API019-privacy-origin-terminal-effects-allocation.json",
+    "bytes": 6024,
+    "sha256": "eeff9b51d0fe9e13702ef147ceeea665d0576ed85d08551c062d7a45427fe969"
+  },
+  "attempt": 1,
+  "cause_proof": false,
+  "checkpoint_id": "8b61639c-1015-45a7-835f-b9a88ccd9e92",
+  "current_review_readiness": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-fresh-source-proof.json",
+      "bytes": 59892,
+      "sha256": "d09d1978b585127656947bc600439665778ae7aec86b45a9d02cc13b199a8168"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+      "bytes": 13171,
+      "sha256": "3ab0bc9c4ed85bc189b11790ea476f103334b1e183e3ebcbb935771d0502e483"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/manifest.json",
+      "bytes": 1182,
+      "sha256": "85968d82cad505e37e78ea043055bf85cf9a7daf921bb7b1f059f62084fdbfae"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/source-rows.json",
+      "bytes": 32933,
+      "sha256": "c59f8b39cc9cfe57b3a36259c04c1185622f682e6bef7d52ce8c925fc9b57ead"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "1a8cd8c017e2a09933f05c8debb2fafcb837385a775eb1aa8cbd7d7a3d7d7d2e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-actual-root-ownership.json",
+      "bytes": 34524,
+      "sha256": "5626dc096d8dbdcb406c1d77b555c1539ce6b4299a98bd8299d829cad22368ed"
+    }
+  ],
+  "execution_authorized": true,
+  "head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "maximum_logical_requests": 5,
+  "mode": "normal",
+  "no_retry": true,
+  "normal_acceptance_credit": 0,
+  "operator_bindings": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/proposal.json",
+    "bytes": 113205,
+    "sha256": "bdf29463f744fa29faf03208867370be895c70fdd9420af43103e3c6179fe550"
+  },
+  "operator_review": {
+    "status": "PASS",
+    "independent": true,
+    "evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-reader-operational-review.json",
+        "bytes": 13171,
+        "sha256": "3ab0bc9c4ed85bc189b11790ea476f103334b1e183e3ebcbb935771d0502e483"
+      }
+    ]
+  },
+  "operator_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-actual-preparation/reader.py",
+    "bytes": 52638,
+    "sha256": "8a1985592420ab2271e484ee52d238286f6ef92a081d0998f67acdd5a277eb68"
+  },
+  "output_packet": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-7d8b213f-normal-API019-privacy-origin-ci-independent",
+  "pushed_source_head": "7d8b213f9f1ff9cdeb31689a0bb08577a24249cd",
+  "pushed_source_objects_equal": true,
+  "release_validation": false,
+  "source_Git_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-fresh-source-proof.json",
+    "bytes": 59892,
+    "sha256": "d09d1978b585127656947bc600439665778ae7aec86b45a9d02cc13b199a8168"
+  },
+  "source_head": "48a7c32faa1be7ae2b6d81095282521cebfaa621"
+}

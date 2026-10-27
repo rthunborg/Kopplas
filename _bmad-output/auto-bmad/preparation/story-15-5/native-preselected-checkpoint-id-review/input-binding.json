@@ -1,0 +1,1192 @@
+{
+  "schema_version": 1,
+  "kind": "EXACT_COMMITTED_PRESELECTED_CHECKPOINT_ID_REVIEW_INPUT",
+  "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "base": "2524306ca9edd6079c23d205cf01268797288d89",
+  "route": {
+    "phase": "prepare-actual-preselected-checkpoint-id-review-input",
+    "recorded_by_root_before_preparation": true,
+    "author_model": "gpt-6.1-sol",
+    "author_effort": "high",
+    "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "base": "2524306ca9edd6079c23d205cf01268797288d89",
+    "scope": "Exact3 optional dispatch-only preselected correlation-ID interface; no fourth broad review",
+    "completed_broad_rounds": 3,
+    "review_dispatch_owner": "Parent/Root after independent input identity check and fresh distinct High route; author does not dispatch",
+    "fresh_review_verdict": "PENDING",
+    "accepted_allocation": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-preselected-checkpoint-id-allocation.json",
+      "bytes": 2858,
+      "sha256": "73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398"
+    },
+    "primary_plan_ACK": {
+      "reference_artifact": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-preselected-checkpoint-id-allocation.json",
+        "bytes": 2858,
+        "sha256": "73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398"
+      },
+      "field": "independent_high_plan_validation",
+      "recorded_value": "/root/review15_5_private_diagnostic_high ACKWITHLIMITS_PLANONLY actualcompleted, recordedcanonicalstates; no nativeexecution.",
+      "authority": "Root-attributed completed independent High ACKWITHLIMITS_PLANONLY; original dialogue not re-fetched or fabricated as a separate file"
+    },
+    "root_identity_metadata_only": {
+      "artifact": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json",
+        "bytes": 38696,
+        "sha256": "9979b077d41f0bce0345425a1c9d67a2195cb7e5e04df8e407a6d91ff9880281"
+      },
+      "current_source_paths": 70,
+      "raw_clean_differences": 41,
+      "unchanged_since_af5": 67,
+      "author_commits": 20,
+      "root_commits": 12,
+      "ancestry": 32,
+      "index_source_clean": true,
+      "global_clean_not_claimed": true
+    },
+    "fences": [
+      "Canonical lowercase existing UUIDv4 grammar; validate supplied string before any API, no payload expansion",
+      "Optional dispatch-only CLI/programmatic; all status/cancel and duplicate/missing/malformed/case/version/variant refusals",
+      "Valid supplied identity or unchanged randomUUID at same exclusive fsynced durable prePOST state",
+      "Same ID in state/payload/title/ownership; correlation NOT GitHub idempotency; fresh Root UUID never reuse after uncertainty",
+      "Record refusal/uncertainty retention/zero redispatch preserved",
+      "No callbacks/new transport/API/workflow/schema/dependencies/provider effects",
+      "P252 private helper/test immutable and UNEXECUTED; future new pushed SHA requires NEW private preparation/freshUUID/rebound helper-test review"
+    ],
+    "native_credit": 0,
+    "still_failed_histories": 11,
+    "checkpoint252_had_new_native_attempt": false,
+    "source_spec_index_frozen": true
+  },
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw": {
+        "bytes": 135154,
+        "sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41"
+      },
+      "actual_git_clean_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+      "committed": {
+        "oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+        "bytes": 135154,
+        "sha256": "2eed8c734be77e5ac8203df1f7e0b2a382c32ca795d443d8facce77be3f1ad41"
+      },
+      "baseline": {
+        "oid": "046d41efbe28e31d8fdf4a1f9f03fa27b400b7f5",
+        "bytes": 131245,
+        "sha256": "d6c5ea5c0248e86f2d69a20210dcacdff76d5f7476ad6fdbafba0f11794a02da"
+      },
+      "raw_equals_committed_blob": true
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw": {
+        "bytes": 19782,
+        "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a"
+      },
+      "actual_git_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "committed": {
+        "oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+        "bytes": 19492,
+        "sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f"
+      },
+      "baseline": {
+        "oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d",
+        "bytes": 18962,
+        "sha256": "2d5c32540eddb578dd24118445c3b708c26bfaede1f631632c46af8e9be73ec1"
+      },
+      "raw_equals_committed_blob": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw": {
+        "bytes": 29955,
+        "sha256": "bc93e6e13b735ba1fa45ce35b68aa3481af0f5325ff147304d401f2c1c2ed656"
+      },
+      "actual_git_clean_oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+      "committed": {
+        "oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+        "bytes": 29711,
+        "sha256": "99bb62d37e65e539089f638f43a13312c4650a04bfea4a364aaa22beceb089bf"
+      },
+      "baseline": {
+        "oid": "fb0f9d9b427c513b0cd890087a8c7aa23b1213bd",
+        "bytes": 25201,
+        "sha256": "7785f56fa8e7a0ec6ee6e2366ac6ebb2969e93f87ce14e5c79c60a51a4e92865"
+      },
+      "raw_equals_committed_blob": false
+    }
+  ],
+  "current70_object_binding_reuse": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "current_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "reviewed_af5_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "current_oid": "c12885d9464e569b726c163431f64549bc4ed0d0",
+      "reviewed_af5_oid": "046d41efbe28e31d8fdf4a1f9f03fa27b400b7f5",
+      "unchanged_since_af5": false,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "docs/security/calendar-feed-operations.md",
+      "current_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+      "reviewed_af5_oid": "2e337daea57f82ff146bf8a458161bde4c6ac2a5",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "middleware.ts",
+      "current_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+      "reviewed_af5_oid": "aaed428ce41103ad1994187151bbcd6a69d1dadd",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "ops/recovery/bootstrap-roles.sql",
+      "current_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+      "reviewed_af5_oid": "6f1bb539432b1c5319b1979050c23b247aa46ffb",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "package.json",
+      "current_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "reviewed_af5_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "current_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "reviewed_af5_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "current_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "reviewed_af5_oid": "6325d7fae7366655e8d0fc14f26222d6e4f1f92d",
+      "unchanged_since_af5": false,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "current_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "reviewed_af5_oid": "ecbcaa951a4656ad5fe99b59bf2a0a8cb3c1599d",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "scripts/verify/check-service-role-containment.mjs",
+      "current_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+      "reviewed_af5_oid": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "current_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+      "reviewed_af5_oid": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "current_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+      "reviewed_af5_oid": "bb74cf0a651200ff62329945871d6ec80378e9ad",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/app/(public)/calendar/feed/[token]/route.ts",
+      "current_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+      "reviewed_af5_oid": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/app/(public)/layout.tsx",
+      "current_oid": "fe46e33866a3181a720082ae699faa0eb68665a6",
+      "reviewed_af5_oid": "fe46e33866a3181a720082ae699faa0eb68665a6",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/components/app-shell/AppShell.tsx",
+      "current_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+      "reviewed_af5_oid": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "current_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+      "reviewed_af5_oid": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "current_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+      "reviewed_af5_oid": "a3a06ed8c0d92ec04030318bc339552d5fe99878",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "current_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "reviewed_af5_oid": "529a9485cba52b6c16fc0837fea1da62e279e806",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/features/calendar-feed/action-state.ts",
+      "current_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+      "reviewed_af5_oid": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/features/calendar-feed/actions.ts",
+      "current_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+      "reviewed_af5_oid": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/features/calendar-feed/icalendar.ts",
+      "current_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+      "reviewed_af5_oid": "cf81dc189acca97463ba9e8cc6009e8d648f5de3",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/features/calendar-feed/types.ts",
+      "current_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+      "reviewed_af5_oid": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/features/calendar-feed/validation.ts",
+      "current_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+      "reviewed_af5_oid": "456d92828beaf8cde818853af2fbd70097e6b5ff",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "current_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+      "reviewed_af5_oid": "5d2c8f0d2a04426bda4ac03f4926db078456c3ad",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "current_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "reviewed_af5_oid": "7fd549fbec4b52f1c1751d742616d265d95cb5b8",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/calendar-feed/policy.ts",
+      "current_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+      "reviewed_af5_oid": "b99b0253f32d128aed98f9bef5d879b7de4eff9f",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "current_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+      "reviewed_af5_oid": "230f65dac3fbd97ad6d41c1d5a26cd5490382656",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/calendar-feed/trusted-ip.ts",
+      "current_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+      "reviewed_af5_oid": "48041b7409ee6a82d43f27ff0e1e338a55923fef",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "current_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "reviewed_af5_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "current_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "reviewed_af5_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "current_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "reviewed_af5_oid": "6e1381aeb9babc09ab1b25ab3cd06e42d15c7102",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/db/supabase-public-client.ts",
+      "current_oid": "a6f550ed29147b310f6753417da02cfedb415403",
+      "reviewed_af5_oid": "a6f550ed29147b310f6753417da02cfedb415403",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "current_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "reviewed_af5_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "current_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "reviewed_af5_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "current_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "reviewed_af5_oid": "df94faf607602dc8493ec09a3eb329b05cbfb0bc",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "current_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "reviewed_af5_oid": "e0517e8c3e11a4bf9052a920a14e65356a234156",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "current_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "reviewed_af5_oid": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "current_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "reviewed_af5_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "current_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+      "reviewed_af5_oid": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "current_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+      "reviewed_af5_oid": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "current_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+      "reviewed_af5_oid": "770a4357d1ad78373476eecc1dd2d7bfd64229e0",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "current_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "reviewed_af5_oid": "68f5522bb859349588c4a5ca09702ced8f91752c",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "current_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+      "reviewed_af5_oid": "3ba2d14351c43cd988c82f8f7f0ffd62a11f9d9a",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "current_oid": "263e6d650190fe012997aaf2f128767fd3c96399",
+      "reviewed_af5_oid": "263e6d650190fe012997aaf2f128767fd3c96399",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "current_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+      "reviewed_af5_oid": "7c829bd759e410f1fe2a929dcc43d7b133679627",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "current_oid": "925764138215e4fdb6db039568540439d6036449",
+      "reviewed_af5_oid": "925764138215e4fdb6db039568540439d6036449",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "current_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+      "reviewed_af5_oid": "8175a21fae261b8efea3f803cd2439edd374a8d7",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "current_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "reviewed_af5_oid": "7eb081cc2a8f8ed9848319cdb0693d04fbec97b2",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "current_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+      "reviewed_af5_oid": "0d2e0e0743dbc0d42d13e58de6a10b541589c925",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "current_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+      "reviewed_af5_oid": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+      "current_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+      "reviewed_af5_oid": "953b0dcf999053fe5a016f86c6c14436f6da13eb",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "current_oid": "834025e861c0c2947e85374a90d3443ef8b923d2",
+      "reviewed_af5_oid": "834025e861c0c2947e85374a90d3443ef8b923d2",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/validation.test.ts",
+      "current_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+      "reviewed_af5_oid": "093858972ec1058edf8454a0e2584eda4f67d8e4",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/ops/pilot-operations.test.ts",
+      "current_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+      "reviewed_af5_oid": "5628c63a423a77a3d43e9d607ee69db32e19ef6f",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "current_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+      "reviewed_af5_oid": "9697b15be13f5c4bc639c7987f30961ed4b56592",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "current_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+      "reviewed_af5_oid": "a2196980f3ffcedc8f5631749e50193ccf451aac",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "current_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+      "reviewed_af5_oid": "c4109872cb67f2b4299e4a853d02a86f553973e9",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "current_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+      "reviewed_af5_oid": "2def2661deab2acf1a20c97a108b4424869ccfc0",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "current_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+      "reviewed_af5_oid": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "current_oid": "a99cfcb6ce8177844b950039cdfefa7bedfb5807",
+      "reviewed_af5_oid": "fb0f9d9b427c513b0cd890087a8c7aa23b1213bd",
+      "unchanged_since_af5": false,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "current_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+      "reviewed_af5_oid": "911ed4e0d01053011d3850d9250593b05265cc66",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "current_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "reviewed_af5_oid": "09ff9ca598d6ae03cf4ad690d9d23befb3277802",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "current_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+      "reviewed_af5_oid": "b580e38f016843584623ec4fdbbf050a4cb2a9be",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "current_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "reviewed_af5_oid": "d7b56bf80d06cbc060af219410f232342c53297c",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "current_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+      "reviewed_af5_oid": "6964ff6bb9685ebead2eed4ad1bb82f141268764",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "current_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+      "reviewed_af5_oid": "b109fe505ab12e755289170802cbda503025a0a5",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+      "current_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+      "reviewed_af5_oid": "730c4eab336c5d8e91c28ebef3519e0fc54870f8",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "current_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+      "reviewed_af5_oid": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "current_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+      "reviewed_af5_oid": "84b7ba8986e7d4cd2db2e293489f037c77f1e116",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    },
+    {
+      "path": "vitest.config.ts",
+      "current_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "reviewed_af5_oid": "d18bd17d6558e02549b4296f976acb0f9d831e0b",
+      "unchanged_since_af5": true,
+      "root70_raw_clean_binding_evidence": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json"
+    }
+  ],
+  "references": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-preselected-checkpoint-id-allocation.json",
+      "bytes": 2858,
+      "sha256": "73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json",
+      "bytes": 38696,
+      "sha256": "9979b077d41f0bce0345425a1c9d67a2195cb7e5e04df8e407a6d91ff9880281"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/input-binding.json",
+      "bytes": 23288,
+      "sha256": "7bff37b024750b79abe337303857ce93a9126523cac5bec4dadaa7e10259f0ae"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/review-input.md",
+      "bytes": 41806,
+      "sha256": "d525e848f1ebd95676f656a1bc8ff420fa9c3214923fdef8455fcc3c36a62bb7"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/original-report.md",
+      "bytes": 8950,
+      "sha256": "df7d00824655747aa24b272b378f44103cdc557c2ed3ceec1d0a056bb1a0e926"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-parser-f3-review/original-attestation.json",
+      "bytes": 12213,
+      "sha256": "393b4528f4a9535a213c130ec09c34648a21aa7e54437ed082c97edcaa97af2d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-denial-cause-proof.json",
+      "bytes": 852019,
+      "sha256": "23b1751be315acab911ae84bc864a0d9005513a4b9419332c50b3f2465b4fac9"
+    }
+  ],
+  "input_files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+      "bytes": 13507,
+      "sha256": "7757ceb9971e96b2b595cf54b5fd51759f312ae39fb28f5140a12715191db63b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+      "bytes": 67694,
+      "sha256": "173b5caf9ee43fc9024694b8232c4d6e768be4159cc0330c37efa965021070f5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/local-checks.json",
+      "bytes": 1624,
+      "sha256": "babf73ed10ab45398f5555eed2eb05d2a89a61421dce7630c8651f9c9812df5b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/route-context.json",
+      "bytes": 2938,
+      "sha256": "9f7545987813e38e76ba4f3932e1f9d1c650bf22076f636ae5a83a65e9892d22"
+    }
+  ],
+  "author_order": {
+    "section_count": 1,
+    "stop_count": 92,
+    "verified_stops": [
+      {
+        "path": "src/components/app-shell/AppShell.tsx",
+        "line": 279,
+        "anchor": "navigation.some"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 34,
+        "anchor": "const current = await refresh();"
+      },
+      {
+        "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+        "line": 69,
+        "anchor": "state?.status === \"error\""
+      },
+      {
+        "path": "tests/integration/components/calendar-feed.test.ts",
+        "line": 36,
+        "anchor": "15.5-COMP-003"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 380,
+        "anchor": "15.5-E2E-010-"
+      },
+      {
+        "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+        "line": 447,
+        "anchor": "15.5-E2E-011"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 10,
+        "anchor": "function calendarFeedConfig"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 38,
+        "anchor": "command: \"calendar_feed.create\""
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 162,
+        "anchor": "create function public.manage_calendar_feed"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 122,
+        "anchor": "is distinct from (case"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 354,
+        "anchor": "const allowed = [\"membershipId\""
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 129,
+        "anchor": "15.5-RLS008"
+      },
+      {
+        "path": "middleware.ts",
+        "line": 40,
+        "anchor": "request.nextUrl.pathname"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 236,
+        "anchor": "'updatedAt',greatest"
+      },
+      {
+        "path": "src/features/calendar-feed/icalendar.ts",
+        "line": 40,
+        "anchor": "export function encodeCalendarFeed"
+      },
+      {
+        "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+        "line": 76,
+        "anchor": "R1-05 positive"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 247,
+        "anchor": "exception when sqlstate '57014'"
+      },
+      {
+        "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "line": 364,
+        "anchor": "15.5-API018"
+      },
+      {
+        "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+        "line": 27,
+        "anchor": "pg_has_role(current_user,feed_owner.oid,'SET')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 445,
+        "anchor": "memberships.every(row => row.inherit_option === false)"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 556,
+        "anchor": "has_schema_privilege(oid,'public','CREATE')"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 171,
+        "anchor": "publicSchemaCreate: false"
+      },
+      {
+        "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "line": 131,
+        "anchor": "has_schema_privilege('calendar_feed_owner','public','CREATE')"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 486,
+        "anchor": "// FULL rollback comes first"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 328,
+        "anchor": "export function createOwnedGroupStopper"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 249,
+        "anchor": "export function createTelemetryObserver"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1282,
+        "anchor": "nonzero/null-signal nested browser loss"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "line": 83,
+        "anchor": "projectCalendarFeedCiCommands"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 39,
+        "anchor": "CI command projection rejects"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 100,
+        "anchor": "function safeDiagnostic"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 320,
+        "anchor": "COMMIT uncertainty is not cleared"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 553,
+        "anchor": "receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 216,
+        "anchor": "privacy preflight rejects incomplete"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 167,
+        "anchor": "export function createCalendarFeedDatabaseClient"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 154,
+        "anchor": "export async function readCalendarFeedSetupAuthority"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 508,
+        "anchor": "await fresh.connect(); await setupQualified(fresh); await absent(fresh);"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 154,
+        "anchor": "setup construction refuses missing"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 83,
+        "anchor": "export function createCalendarLifecycleObservations"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 25,
+        "anchor": "export function calendarBrowserDiagnostic"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 705,
+        "anchor": "if (base && cleanupAllowed)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 496,
+        "anchor": "missing leaders with persistent groups"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1048,
+        "anchor": "actual browser bounded cancellation"
+      },
+      {
+        "path": "tests/e2e/support/calendar-feed-atdd.ts",
+        "line": 93,
+        "anchor": "trackReadback<T>"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1128,
+        "anchor": "installed polling deadline cannot credit"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 202,
+        "anchor": "export function calendarFixtureDiagnostic"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 272,
+        "anchor": "phase = \"additional-users\""
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 601,
+        "anchor": "actual fixture diagnostics preserve only"
+      },
+      {
+        "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+        "line": 212,
+        "anchor": "approved role-specific policies"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 930,
+        "anchor": "the actual allocated policy case rejects"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 234,
+        "anchor": "calendarFixtureSafeFailures.get(child)?.children"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 877,
+        "anchor": "installed failure transport reproduces lost"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 889,
+        "anchor": "actual repaired fixture diagnostics reach"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 190,
+        "anchor": "export function calendarFixtureOrigin"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 195,
+        "anchor": "export function calendarFixtureAssertionAt"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 734,
+        "anchor": "const outcome = result.outcome"
+      },
+      {
+        "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "line": 23,
+        "anchor": "calendarFixtureAssertionAt(allowedSites[subject]"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 798,
+        "anchor": "actual first INT001 and API001 callbacks stop"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 830,
+        "anchor": "actual first callbacks retain precise safe assertion frames"
+      },
+      {
+        "path": "package.json",
+        "line": 50,
+        "anchor": "\"vite\": \"8.1.6\""
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2297,
+        "anchor": "vite@8.1.6:"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "line": 2059,
+        "anchor": "rolldown@1.1.5:"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+        "line": 25,
+        "anchor": "export async function captureCalendarFeedTrace"
+      },
+      {
+        "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+        "line": 48,
+        "anchor": "const code = result.code"
+      },
+      {
+        "path": "src/server/read-models/calendar-feed.ts",
+        "line": 10,
+        "anchor": "if (error?.code === \"42501\")"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 744,
+        "anchor": "export function calendarCauseProofSelection"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 750,
+        "anchor": "export async function calendarCauseProofIdle"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 762,
+        "anchor": "export async function runCalendarFeedCauseProof"
+      },
+      {
+        "path": "tests/integration/commands/calendar-feed.int.test.ts",
+        "line": 21,
+        "anchor": "test(\"15.5-DIAG001\""
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 83,
+        "anchor": "function diagnosticAvailability"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 15,
+        "anchor": "function verificationMode"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 14,
+        "anchor": "export const CAUSE_PROOF_ARGS"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 50,
+        "anchor": "export async function finishCauseProof"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "line": 262,
+        "anchor": "- name: Calendar feed cause proof (diagnostic only; no pilot or acceptance)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1358,
+        "anchor": "actual per-invocation trace preserves once-call value"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1379,
+        "anchor": "actual baseline decision chooses one observed boundary"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1404,
+        "anchor": "actual installed failed native report and closed observation"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 245,
+        "anchor": "diagnostic selection is durable before the only POST"
+      },
+      {
+        "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+        "line": 41,
+        "anchor": "cause-proof capture is distinct mode-bound"
+      },
+      {
+        "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+        "line": 53,
+        "anchor": "diagnostic dispatch excludes pilot"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 889,
+        "anchor": "(select r.rolsuper or r.rolbypassrls"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "line": 895,
+        "anchor": "if (!Array.isArray(rows)"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 388,
+        "anchor": "child.once(\"spawn\","
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 502,
+        "anchor": "const refreshLaunch"
+      },
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "line": 69,
+        "anchor": "if (![\"not-attempted\", \"not-created-confirmed\"].includes(receipt.childLaunchState))"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 26,
+        "anchor": "export function assertDefaultDispatchWorkflow"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "line": 1495,
+        "anchor": "actual diagnostic caller requires same-statement"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 286,
+        "anchor": "default recognizer refuses comments"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 64,
+        "anchor": "|| /:\\s|:$/.test(value)"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 309,
+        "anchor": "F3 actual default plain-scalar syntax refusal"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 178,
+        "anchor": "const suppliedId = \"checkpoint_id\" in options"
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "line": 207,
+        "anchor": "checkpoint_id: suppliedId ? selectedId : randomUUID()"
+      },
+      {
+        "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+        "line": 326,
+        "anchor": "preselected and legacy generated checkpoint identity"
+      }
+    ],
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "status": "in-review"
+  },
+  "preparation": {
+    "metadata_only": true,
+    "no_tests_or_native_or_provider": true,
+    "no_saved_producer": true,
+    "producer_lint": "NOT_APPLICABLE:no producer script saved",
+    "context_encoding": "Actual Git UTF8/LF numbered source; raw worktree and base objects bound separately; native diff untrimmed",
+    "format_classification": {
+      "input": {
+        "artifact": {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/review-input.md",
+          "bytes": 67694,
+          "sha256": "173b5caf9ee43fc9024694b8232c4d6e768be4159cc0330c37efa965021070f5"
+        },
+        "raw_single_0x20_count": 3,
+        "raw_single_0x20_lines": [
+          69,
+          114,
+          173
+        ],
+        "numbered_empty_source_quote_count": 3,
+        "numbered_empty_source_quote_lines": [
+          317,
+          331,
+          346
+        ],
+        "other_trailing_space_count": 0
+      },
+      "diff": {
+        "artifact": {
+          "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-preselected-checkpoint-id-review/latest.diff",
+          "bytes": 13507,
+          "sha256": "7757ceb9971e96b2b595cf54b5fd51759f312ae39fb28f5140a12715191db63b"
+        },
+        "raw_single_0x20_count": 3,
+        "raw_single_0x20_lines": [
+          8,
+          53,
+          112
+        ],
+        "numbered_empty_source_quote_count": 0,
+        "other_trailing_space_count": 0
+      },
+      "raw_single_space_is_not_total_formatting_warning_count": true
+    }
+  },
+  "integrity": {
+    "full_recursive_artifact_ref_occurrences": 16,
+    "unique_artifact_paths": 11,
+    "definition": "Recursive path/bytes/sha256 refs in complete input-binding.json after all fields including format artifact refs; binding self excluded; referenced JSON documents are not recursively expanded."
+  },
+  "fresh_review_verdict": "PENDING",
+  "native_credit": 0
+}

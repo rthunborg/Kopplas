@@ -1,0 +1,25 @@
+{
+  "schema": "CURRENT_BROWSER_DIAGNOSTIC_NATIVE_AUDIT_MANIFEST_v1",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/current-browser-diagnostic-native-audit/original-report.md",
+      "bytes": 4503,
+      "sha256": "9cc9a3075aafc67f53a2f8aa5afe4e9f208cb7d53d09a0cb3434bd7d547082e8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/current-browser-diagnostic-native-audit/original-attestation.json",
+      "bytes": 16222,
+      "sha256": "9040ce3a5d1ae417c444d18f65a57263ec9df52caf657bc4dcf8b97f39bb205b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/current-browser-diagnostic-native-audit/result.json",
+      "bytes": 2723,
+      "sha256": "355e4e62469d08be400c958d2f4478c2af83c84791fc5f8ae30a335b11fb08f7"
+    }
+  ],
+  "frozen": true,
+  "packet_manifest_sha256": "cf58e7b2c085356e27b9f08c1633a5f486927deeeccd6f22c8287b6ced080345",
+  "normal_acceptance": 0,
+  "execution_authority": false
+}

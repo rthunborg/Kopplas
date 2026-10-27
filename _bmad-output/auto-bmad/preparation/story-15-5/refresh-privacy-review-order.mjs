@@ -1,0 +1,25 @@
+import fs from "node:fs";
+import path from "node:path";
+import crypto from "node:crypto";
+const root = "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas";
+const file = "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md";
+const original = fs.readFileSync(path.join(root, file), "utf8").replaceAll("\r\n", "\n");
+const marker = "## Suggested Review Order\n";
+if (original.split(marker).length !== 2) throw new Error("Exactly one author section required");
+let stops = 0;
+const [before, section] = original.split(marker);
+const refreshed = section.replace(/^- `([^`]+):(\d+)` — `([^`]+)`/gm, (all, target, previous, anchor) => {
+  const lines = fs.readFileSync(path.join(root, target), "utf8").replaceAll("\r\n", "\n").split("\n");
+  const candidates = lines.flatMap((line, index) => line.includes(anchor) ? [index + 1] : []);
+  const resolved = lines[Number(previous) - 1]?.includes(anchor) ? Number(previous) : candidates.length === 1 ? candidates[0] : null;
+  if (resolved === null) throw new Error(`Author literal must resolve: ${target} ${anchor}`);
+  stops++;
+  return `- \`${target}:${resolved}\` — \`${anchor}\``;
+});
+if (stops !== 31) throw new Error("Expected31 author stops");
+const final = before + marker + refreshed;
+const kernel = final.match(/<intent-contract>[\s\S]*?<\/intent-contract>/)?.[0];
+const sha = value => crypto.createHash("sha256").update(value).digest("hex");
+if (!kernel || sha(kernel) !== "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977") throw new Error("Frozen kernel changed");
+fs.writeFileSync(path.join(root, file), final);
+process.stdout.write(JSON.stringify({ stops, kernel_sha256: sha(kernel), suggested_review_order_sha256: sha(refreshed) }) + "\n");

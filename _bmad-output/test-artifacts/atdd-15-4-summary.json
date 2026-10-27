@@ -1,0 +1,453 @@
+{
+  "storyId": "15.4",
+  "mode": "Create",
+  "head": "38b3a60257e32a482fca93e840fd7e5c858e1f86",
+  "route": "gpt-6.1-sol High",
+  "requiredChildren": {
+    "foreGroundAwaited": true,
+    "API": "gpt-6.1-sol High completed",
+    "E2E": "gpt-6.1-sol High completed"
+  },
+  "declarations": 50,
+  "frameworkParameterizedDeclarations": 0,
+  "frameworkExpandedCases": 50,
+  "allPersistedSkipped": true,
+  "counts": {
+    "unit": 11,
+    "API": 32,
+    "componentSSR": 4,
+    "E2E": 3
+  },
+  "actualUnitSkipped": 11,
+  "temporaryActivatedMissingSourceFailures": 11,
+  "behavioralAssertionsPassed": 0,
+  "behavioralAssertionsFailed": 0,
+  "databaseTestsExecuted": 0,
+  "browserTestsExecuted": 0,
+  "storageTestsExecuted": 0,
+  "typecheckExitCode": 0,
+  "eslint": {
+    "warnings": 8,
+    "exitCode": 0,
+    "errors": 0,
+    "details": "E2E unused destructuring names only; retained author scaffold"
+  },
+  "originalSpecAndPreparationConserved": true,
+  "frozenBindingCount": 19,
+  "testFiles": [
+    "tests/integration/commands/time-reports.int.test.ts",
+    "tests/integration/rls/time-reports.rls.test.ts",
+    "tests/integration/read-models/time-reports.int.test.ts",
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "tests/integration/components/time-reports.test.ts",
+    "tests/unit/features/time-reports/validation.test.ts",
+    "tests/unit/features/time-reports/domain.test.ts",
+    "tests/unit/features/time-reports/action-state.test.ts"
+  ],
+  "scenarios": [
+    {
+      "id": "15.4-INT-001",
+      "name": "[P0] 15.4-INT-001 AC1 AC6 AC8 own planned booking files exact submitted minutes for Admin PL and Montor",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-002",
+      "name": "[P0] 15.4-INT-002 AC1 AC6 standalone requires neither link nor profile and deliberate same-day rows stay distinct",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-003",
+      "name": "[P0] 15.4-INT-003 AC2 AC8 concurrent exact retry converges; changed content and another actor never reuse the result",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-004",
+      "name": "[P0] 15.4-INT-004 AC6 AC8 SQL rejects bad references and exact-minute/date boundaries without partial writes",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-005",
+      "name": "[P0] 15.4-INT-005 AC2 AC4 AC9 snapshot and exact replay survive live booking changes and removed assignment",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-006",
+      "name": "[P0] 15.4-INT-006 AC2 AC8 current SQL authority is rechecked after actual tenant-lock wait for fresh and replay",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-007",
+      "name": "[P0] 15.4-INT-007 AC6 AC8 locked assignment booking status and job relation cannot change before fresh filing",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-008",
+      "name": "[P0] 15.4-INT-008 AC4 AC7 annotation CAS latest exact retry and blank clear preserve every filed core field",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-009",
+      "name": "[P0] 15.4-INT-009 AC2 AC7 audit fault proves filing or review stage then rolls all effects back",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-INT-010",
+      "name": "[P0] 15.4-INT-010 AC7 AC8 revoked reviewer cannot replay latest annotation and superseded attempt cannot overwrite",
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-RLS-001",
+      "name": "[P0] 15.4-RLS-001 AC7 AC8 raw RPC union roles authorize ReportOwn separately from Review",
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-RLS-002",
+      "name": "[P0] 15.4-RLS-002 AC3 AC4 AC8 own projection excludes peers; Review reads tenant standalone and linked rows only",
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-RLS-003",
+      "name": "[P0] 15.4-RLS-003 AC7 AC8 direct DML and private replay columns denied for every ordinary role",
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-RLS-004",
+      "name": "[P0] 15.4-RLS-004 AC2 AC6 AC8 actor tenant and on-behalf spoofing fail SQL independently with no existence oracle",
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-RLS-005",
+      "name": "[P0] 15.4-RLS-005 AC8 anon inactive revoked seller economy and platform-only identities gain no report surface",
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-RLS-006",
+      "name": "[P0] 15.4-RLS-006 AC7 AC9 database core-field guard protects rows even beyond direct-grant denial",
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-RLS-007",
+      "name": "[P0] 15.4-RLS-007 AC7 AC8 forced RLS exact safe column ACL and checked RPC security survive direct catalog inspection",
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-READ-001",
+      "name": "[P1] 15.4-READ-001 AC3 AC8 own week totals chips and missing weekdays expose only caller rows",
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-READ-002",
+      "name": "[P0] 15.4-READ-002 AC4 AC8 complete review pages honor person job week filters and standalone groups",
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-READ-003",
+      "name": "[P1] 15.4-READ-003 AC4 AC9 booked-at-filing delta stays frozen and standalone has no fabricated booked comparison",
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-READ-004",
+      "name": "[P0] 15.4-READ-004 AC3 AC4 AC8 failed first page cannot publish success or zero totals",
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-READ-006",
+      "name": "[P0] 15.4-READ-006 AC3 AC4 AC8 later-page transport failure with real persisted prefix is an explicit read failure",
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-READ-005",
+      "name": "[P0] 15.4-READ-005 AC1 AC6 AC8 current selectors prefill own real instants; manager visibility never implies assignment",
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-001",
+      "name": "[P0] 15.4-NUDGE-001 AC5 AC8 frozen seven completed Stockholm dates exclude weekend today future old and reported day",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-002",
+      "name": "[P0] 15.4-NUDGE-002 AC5 AC8 adapter uses one scoped checked RPC injected client and leaves raw booking ACL revoked",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-003",
+      "name": "[P0] 15.4-NUDGE-003 AC5 AC8 current opt-out inactive role loss archived profile and cancelled booking suppress recipients",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-004",
+      "name": "[P0] 15.4-NUDGE-004 AC5 AC8 more than25 real recipients continue stable frozen scoped cursor without gaps duplicates or fact return",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-005",
+      "name": "[P0] 15.4-NUDGE-005 AC5 duplicate concurrent hourly retries emit zero new notification or audit effects",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-006",
+      "name": "[P0] 15.4-NUDGE-006 AC5 AC8 tenant lock checks current preferences and membership after actual blocked producer",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-007",
+      "name": "[P0] 15.4-NUDGE-007 AC2 AC5 filing committed before serialized nudge predicate suppresses notification",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-008",
+      "name": "[P0] 15.4-NUDGE-008 AC5 atomic system audit failure verifies inserted recipient-date nudge then rolls it back",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-NUDGE-009",
+      "name": "[P0] 15.4-NUDGE-009 AC5 AC8 existing authenticated jobs dispatch passes exact tenant and frozen run instant to real nudge adapter",
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-E2E-001",
+      "name": "[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week",
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-E2E-002",
+      "name": "[P0] 15.4-E2E-002 no-profile standalone at 360×640 keeps unsent input through failure/lost commit and keyboard same-attempt retry",
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-E2E-003",
+      "name": "[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload",
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-COMP-001A",
+      "name": "[P1] 15.4-COMP-001A AC1 AC2 unsent failure retains labelled values and explicit retry",
+      "file": "tests/integration/components/time-reports.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-COMP-001B",
+      "name": "[P1] 15.4-COMP-001B AC2 pending is announced without submitted success",
+      "file": "tests/integration/components/time-reports.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-COMP-001C",
+      "name": "[P1] 15.4-COMP-001C AC3 failed week read is connection error with retry rather than zero total",
+      "file": "tests/integration/components/time-reports.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-COMP-001D",
+      "name": "[P1] 15.4-COMP-001D AC4 AC9 standalone comparison remains absent and review cannot approve",
+      "file": "tests/integration/components/time-reports.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-001",
+      "name": "[P1] 15.4-UNIT-001 AC6 locale decimal hours preserve exact whole minutes",
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-002",
+      "name": "[P0] 15.4-UNIT-002 AC6 rejects nonminute zero negative nonfinite and integer overflow without rounding",
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-003",
+      "name": "[P1] 15.4-UNIT-003 AC6 real Gregorian report dates include leap day and exclude rollover",
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-004",
+      "name": "[P1] 15.4-UNIT-004 AC1 AC6 bounded note normalization clears blanks without truncating meaning",
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-005",
+      "name": "[P1] 15.4-UNIT-005 AC6 Stockholm DST prefill uses elapsed instants not wall-clock subtraction",
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-006",
+      "name": "[P1] 15.4-UNIT-006 AC5 seven completed Stockholm dates filter weekends and never extend window to seven weekdays",
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-007",
+      "name": "[P1] 15.4-UNIT-007 AC3 own weekly minutes and missing-day indicators do not infer hour completeness",
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-008",
+      "name": "[P1] 15.4-UNIT-008 AC4 AC9 delta is report minus frozen booked-at-filing minutes and standalone stays absent",
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-009",
+      "name": "[P0] 15.4-UNIT-009 AC2 unknown filing outcome preserves exact payload and attempt until confirmed",
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-010",
+      "name": "[P0] 15.4-UNIT-010 AC2 failure never claims submitted and definite rejection permits correction",
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "priority": "[P0]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    },
+    {
+      "id": "15.4-UNIT-011",
+      "name": "[P1] 15.4-UNIT-011 AC3 AC7 old reads and superseded annotation responses require refresh",
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "priority": "[P1]",
+      "persisted": "skipped",
+      "expectedToFail": true
+    }
+  ],
+  "allocationIsNotRuntimePass": true,
+  "developmentComplete": false,
+  "releaseReady": false
+}

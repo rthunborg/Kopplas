@@ -1,0 +1,28 @@
+{
+  "schema": "ACCEPTED_COORDINATOR_EXACT_SOURCE_ALLOCATION_v1",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_grant": {
+    "turn_id": "01a15f8a-8e3e-7833-87ed-ece826584b09",
+    "tool_id": "exec-5fa9a32f-40af-4f3e-9332-d1471215d8dd",
+    "status": "completed",
+    "prompt": "EXPLICIT exact5SOURCE-ONLYharness allocation GRANTED underactualdistinctHighPLANPASS f3c1cf39ce85bbb253df199f3f7412bdf254ece231fd5284ad46abe7e548009e/result4067e657198c25542ec5eee47facdbfc338c1b3d0b7efdcd28d88b0fa2366a05/frozenassessment8eec50f192e5b509801b87fc1866eeac641432ca80b109281602d88d99f75957+ALLC1\u2013C7conditions. ONLY tests/support/calendar-feed-atdd.ts;existingwrapperunit;feedRLS010suite;feedE2Espec;ownSpec15.5trail. No productionapp/migration/wrapper/factory/runner/collectoredits. ExistingactualE16Jobs/bookingreadcallerPR105closeoutclaims+Docscompleted/privateCIresources showNOknownoverlap; no newownerqueryneededabsentnewclaim. PreservemeaningfulDIFFERENTcaller spoof/no-mutationoracle; configuredSAMEclientactualpostgres/session/ownerSET+schemagrantauthoritypreflight/exacttargetOID/fullmetadataACL. ProposedsourcehelperMUSTencodeboundedperoperationATOMICtransientCREATE/SETLOCALowner/RESET/revoke/EFFECTIVEabsenceBEFOREcommit, committedpublicationBEFOREindependentcallbacks/privateclockreadwithoutEXECgrant; actualaffectedoperationssettledBEFORErestore, exactcanonical+metadatarestoreALLoutcomes/provenrollback-reset-sessionidentitybeforepoolclean, uncertaintyCUSTODY/STOP/no blindretry. Existing6serialonceafterparallelUNCHANGED. E2E002Cstructuralemptyagenda+visibleemptyregion/copy/linkONLY;A/Bvisibilityoraclesunchanged. Meaningfulbehaviorcontrols+DISTINCTcommitteddeltaHighreview mandatory/no4thbroad. IfexistinginterfacesinsufficientSTOPexactadditionalallocation/noimplicitfactoryedit. API019privacy/E2E001flaky/custodyremainOPEN; sourcefixNOTnativeproof/95enrollment/kernel5760/review3/inreviewpreserved. ALL111+earlierSQLAPPLIEDIMMUTABLE. ThisgrantSOURCE+offlinecontrols/RootexactcommitONLY, NOactualSQL/connections/runtime/CI/GET/resource/localstack/push/provider/mainmerge/deployeffect. Laternormalruntimeeffectsseparateexplicitqualification/allocation. ProceedwithHighauthorwithinexact5; no repeatgenericACK.",
+    "prompt_sha256": "b1cc2fa77193f08198b613ac585c71de845c70dbdfb37300f9f9f2c451e515e1"
+  },
+  "base_metadata_head": "bc5e9b90ba05f7f60ff68d0d1693315691d61bbe",
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "actual_run_head": "b459af22d490eadc90113fd713a73b65aff89471",
+  "candidate_write_paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "conditions_ref": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-harness-proposal-review/original-attestation.json::required_implementation_conditions C1-C7",
+  "source_and_offline_controls_authorized": true,
+  "root_exact_commit_authorized": true,
+  "native_runtime_network_ci_resource_push_deploy_effects_authorized": false,
+  "production_migration_wrapper_factory_runner_collector_edits_authorized": false,
+  "all_applied_migrations_immutable": true,
+  "normal_acceptance_credit": 0
+}

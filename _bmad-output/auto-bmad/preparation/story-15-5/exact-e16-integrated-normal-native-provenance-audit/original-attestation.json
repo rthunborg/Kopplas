@@ -1,0 +1,177 @@
+{
+  "schema": "EXACT_E16_FAILED_NORMAL_NATIVE_PROVENANCE_AUDIT_ATTESTATION_v1",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent": true,
+  "scope": "frozen evidence provenance/truth only; unchanged source and C4 reviews reused",
+  "verdict": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+  "proof": {
+    "verdict": "PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE",
+    "packet_files": 14,
+    "manifest_members_hash_bound": 13,
+    "packet_manifest_sha256": "1f7f9101aebaae40a8e2f7674572b3408e999e1f868e232f18709d8adaebeece",
+    "activation_sha256": "d46dd52405df9d00bdb7c991f77895a969a4fc02e5681cd9d5cca271c64d9bb8",
+    "source75_SQL116_raw_clean_unchanged": true,
+    "requests": [
+      {
+        "sequence": 1,
+        "label": "normal-run-archive",
+        "observed_bytes": 600554,
+        "native_exit": 0,
+        "capture_complete": true,
+        "EOF_joined_closed_settled": true
+      },
+      {
+        "sequence": 2,
+        "label": "normal-artifact-list",
+        "observed_bytes": 32,
+        "native_exit": 0,
+        "capture_complete": true,
+        "EOF_joined_closed_settled": true
+      }
+    ],
+    "eligible_ZIPs": 0,
+    "unused_slots_closed": 3,
+    "Node": {
+      "cancelled": 0,
+      "fail": 35,
+      "pass": 3354,
+      "skipped": 0,
+      "suites": 103,
+      "tests": 3389,
+      "todo": 0
+    },
+    "positive_lines": 32,
+    "distinct_positive_markers": 30,
+    "positive_markers_nonadditive": true,
+    "bound_failure_candidates": 0,
+    "unqualified_failure_markers": 35,
+    "underlying_failure_count": null,
+    "labels": "UNKNOWN_MISSING",
+    "downstream_runtime_coverage": 0,
+    "normal_acceptance": 0,
+    "original_cause": "UNKNOWN",
+    "runtime_custody": "UNKNOWN",
+    "native_tool_provenance": "Native-reported retained execution receipt; no independent direct Native child-tool observation by this auditor or Root",
+    "metadata_provenance": "Root owned terminal record; no new query",
+    "auditor_GETs": 0,
+    "operator_main_calls": 0,
+    "algorithm_tests_rerun": 0
+  },
+  "proof_script": "import pathlib,json,hashlib,collections\nbase=pathlib.Path.cwd();prep=base/'.env.epic15.mail-runtime/story-15-5-preparation';p=prep/'checkpoint-98134335-e16-integrated-normal-ci-independent'\ndef sha(b):return hashlib.sha256(b).hexdigest()\ndef bound(r):\n raw=(base/r['path']).read_bytes();assert len(raw)==r['bytes'] and sha(raw)==r['sha256'],r['path'];return raw\ndef load(name):return json.loads((p/name).read_bytes())\nmanifest=load('manifest.json');assert sha((p/'manifest.json').read_bytes())=='1f7f9101aebaae40a8e2f7674572b3408e999e1f868e232f18709d8adaebeece'\nassert len(list(p.iterdir()))==14 and len(manifest['files'])==13\nassert {q.name for q in p.iterdir()}=={'manifest.json'}|{pathlib.Path(r['path']).name for r in manifest['files']}\nfor r in manifest['files']:bound(r)\nq=load('native-qualification.json');er=load('execution-receipt.json');intent=load('operator-intent.json');summary=load('acquisition-summary.json');archive=load('run-archive-projection.json');listing=load('artifact-list-projection.json');labels=load('source-label-projection.json');tb=load('terminal-bindings.json');sp=load('source-provenance.json')\nfor ref in q['references']+intent['inputs']+sp['input_refs']:bound(ref)\nactivation=json.loads(bound(intent['activation']));assert len(activation)==23 and activation['execution_authorized'] is True\nassert sha(bound(intent['activation']))=='d46dd52405df9d00bdb7c991f77895a969a4fc02e5681cd9d5cca271c64d9bb8'\nterminal=json.loads(bound(activation['actual_terminal']));allocation=json.loads(bound(activation['allocation']));proof=json.loads(bound(activation['source_Git_proof']))\nassert allocation['turn_status']=='completed' and allocation['actual_completed_grant_tool']['status']=='completed'\nassert allocation['actual_completed_grant_tool']['id']=='exec-cc9e23c0-187e-452d-a8a4-a3d0c8bc3f01'\nassert activation['operator_review']['status']=='PASS' and activation['operator_review']['independent'] is True\nfor ref in activation['operator_review']['evidence']+activation['current_review_readiness']:bound(ref)\nop=bound(activation['operator_source']);assert sha(op)==intent['operator_sha256']==er['operator']['sha256']=='175d747346a6b460e514332c04422ae76aeb1de0a909e8b1828d887fe19d7797'\nbound(activation['operator_bindings'])\nrun=39691553004;head='98134335cd52e396fe4878bc5e49921f70c0f6b6';source='1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c';cp='35dd743c-c66c-4989-b9c4-3e20be8efc60'\nfor doc in [manifest,q,intent,labels]:\n assert doc['run']==run and doc['head']==head and doc['source']==source\nassert q['attempt']==activation['attempt']==1 and q['checkpoint_id']==activation['checkpoint_id']==cp\nassert q['mode']==activation['mode']=='normal' and q['cause_proof'] is activation['cause_proof'] is False and q['release_validation'] is activation['release_validation'] is False\nassert terminal['run']['id']==run and terminal['run']['head_sha']==head and terminal['run']['run_attempt']==1 and terminal['run']['status']=='completed' and terminal['run']['conclusion']=='failure'\nassert tb['ownership']==terminal['ownership']\nassert len(tb['jobs'])==9 and {j['name']:j['conclusion']for j in tb['jobs']}==q['jobs']==activation['actual_jobs']\nfor j in tb['jobs']:\n original=next(o for o in terminal['jobs']if o['name']==j['name'])\n assert j['id']==original['id'] and j['steps']==[{k:s[k]for k in ['name','number','status','conclusion']}for s in original['steps']]\nassert activation['source_Git_proof'] in activation['current_review_readiness'] and proof['source']==source and proof['head']==proof['pushed']==proof['current']==head\nassert activation['pushed_source_objects_equal'] is True and activation['pushed_source_head']==head\nassert summary['actual_logical_requests']==q['acquisition']['logical_GETs']==er['logical_GETs']==2\nassert summary['reports']==[] and listing['total_count']==0 and listing['artifacts']==[] and q['acquisition']['report_count']==0\nassert not any('projection' in x.name and x.name.startswith('native-') for x in p.iterdir())\ndetails=[]\nfor seq,label,endpoint,cap,observed in [(1,'normal-run-archive',f'repos/rthunborg/Kopplas/actions/runs/{run}/logs',33554432,600554),(2,'normal-artifact-list',f'repos/rthunborg/Kopplas/actions/runs/{run}/artifacts?per_page=100',4194304,32)]:\n ri=load(f'request-{seq:02}-intent.json');rr=load(f'request-{seq:02}-result.json')\n for d in [ri,rr]:\n  assert d['argv']==['gh','api','--method','GET',endpoint] and d['sequence']==seq and d['label']==label\n  assert d['inline_source_sha256']==sha(op) and d['intent_persisted_before_spawn'] is True and d['raw_persisted'] is False\n  assert d['stdout_cap']==cap and d['stderr_cap']==65536 and d['timeout_seconds']==15\n assert rr['capture_complete'] is True and rr['settled'] is True and rr['handles_closed'] is True and rr['native_exit']==0 and rr['category'] is None\n assert 0<=rr['elapsed_seconds']<=15 and len(rr['streams'])==2\n for st in rr['streams']:\n  assert all(st[k]is True for k in ['joined','physical_EOF','reader_done']) and st['overflow'] is False and st['reader_error'] is False\n assert rr['streams'][0]['observed_bytes']==observed and rr['streams'][1]['observed_bytes']==0 and rr['streams'][1]['sha256']==sha(b'')\n projected=archive if seq==1 else listing\n assert rr['streams'][0]['sha256']==projected['archive_sha256' if seq==1 else 'listing_sha256']\n stdout=er['closed_stdout_records'][seq-1];assert stdout=={'category':None,'label':label,'native_exit':0,'request':seq,'settled':True,'stdout_bytes':observed}\n details.append({'sequence':seq,'label':label,'observed_bytes':observed,'native_exit':0,'capture_complete':True,'EOF_joined_closed_settled':True})\nassert {int(q.name[8:10])for q in p.iterdir()if q.name.startswith('request-')}=={1,2}\nassert archive['archive_bytes']==600554 and archive['zip_entries']==22 and archive['selected_inflated_bytes']<=archive['declared_total_bytes']<=134217728\nassert sum(x['bytes']for xs in archive['jobs'].values()for x in xs)==archive['selected_inflated_bytes']\nassert all(archive['jobs'][n]==[] for n in ['db','e2e','recovery-storage-loader'])\nfor job,rows in archive['jobs'].items():\n allowed={f\"{s['number']}_{s['name']}.txt\":s for j in terminal['jobs']if j['name']==job for s in j['steps']}\n for row in rows:\n  member=row['member'];assert member.startswith(job+'/')and member[len(job)+1:] in allowed\n  assert row['step_conclusion']==allowed[member[len(job)+1:]]['conclusion'] and row['bytes']<=16777216\nunit=next(x for x in archive['jobs']['verify']if x['member']=='verify/12_Unit tests (pure logic, node --test).txt')\ncounts={'cancelled':0,'fail':35,'pass':3354,'skipped':0,'suites':103,'tests':3389,'todo':0}\nassert unit['Node_totals']==[counts] and q['Node']['full_native_summary']==counts and counts['pass']+counts['fail']==counts['tests']\nmarkers=unit['story_Node_pass_lines'];c=collections.Counter(markers)\nassert len(markers)==q['Node']['story_positive_lines']==32 and len(c)==q['Node']['story_distinct_positive_framework_markers']==30\nassert {k:v for k,v in c.items()if v>1}==q['Node']['duplicated_positive_marker_counts']=={'R1-06':2,'R1-07':2}\nfailure=labels['verify_unit_failures'];assert failure==q['Node']['failure_projection']\nassert failure['record_count']==0 and failure['records']==[] and failure['underlying_failure_count'] is None and failure['unqualified_marker_count']==35 and failure['omission_UNKNOWN'] is True and failure['cause']=='UNKNOWN'\nassert failure['selected_step_sha256']==unit['sha256'] and failure['selected_step_number']==12\nassert labels['nudge']['record_count'] is None and labels['nudge']['availability']=='UNKNOWN_MISSING' and labels['browser']=={'attempts':[],'availability':'UNKNOWN_MISSING'}\nassert len((p/'source-label-projection.json').read_bytes())==1011<=32768\nassert all(j['conclusion']=='skipped' for j in terminal['jobs']if j['name']not in ['verify','checkpoint-admission'])\nassert all(x['python_batches']==[] and x['python_OK_markers']==0 for x in archive['jobs']['verify'])\nassert all(q['normal_acceptance']==d['normal_acceptance']==0 for d in [summary,labels,intent,manifest,er])\nmeta=er['actual_returned_tool_metadata'];assert meta['chunk_id']=='22aaa8' and meta['exit_code']==0 and meta['session_id'] is None and meta['waits']==[] and meta['wall_time_seconds']==2.3798036\nassert er['additional_execution_or_network']==0\n# Current data remains the same previously reviewed source; recheck bodies only, no new Git or algorithm tests.\nbindings=json.loads(bound(activation['operator_bindings']));data=json.loads(bound(bindings['source75_and_SQL116_ref']))\nfor row in data['rows']+data['migrations']:\n raw=(base/row['path']).read_bytes();assert len(raw)==row['raw_bytes'] and sha(raw)==row['raw_sha256'] and sha(raw.replace(b'\\r\\n',b'\\n'))==row['clean_sha256']\nprint(json.dumps({'verdict':'PASS_QUALIFIED_FAILED_NORMAL_EVIDENCE','packet_files':14,'manifest_members_hash_bound':13,'packet_manifest_sha256':sha((p/'manifest.json').read_bytes()),'activation_sha256':sha(bound(intent['activation'])),'source75_SQL116_raw_clean_unchanged':True,'requests':details,'eligible_ZIPs':0,'unused_slots_closed':3,'Node':counts,'positive_lines':32,'distinct_positive_markers':30,'positive_markers_nonadditive':True,'bound_failure_candidates':0,'unqualified_failure_markers':35,'underlying_failure_count':None,'labels':'UNKNOWN_MISSING','downstream_runtime_coverage':0,'normal_acceptance':0,'original_cause':'UNKNOWN','runtime_custody':'UNKNOWN','native_tool_provenance':'Native-reported retained execution receipt; no independent direct Native child-tool observation by this auditor or Root','metadata_provenance':'Root owned terminal record; no new query','auditor_GETs':0,'operator_main_calls':0,'algorithm_tests_rerun':0},indent=2))\n",
+  "proof_script_sha256": "ac982c1e6c961d3eebfd4f9f0bfbcb3ab983152c9366a9b365cba7fa2021e75f",
+  "proof_exit": 0,
+  "proof_wall_seconds": 0.2131462,
+  "packet_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/manifest.json",
+    "bytes": 3850,
+    "sha256": "1f7f9101aebaae40a8e2f7674572b3408e999e1f868e232f18709d8adaebeece"
+  },
+  "packet_members": [
+    {
+      "bytes": 565,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/acquisition-summary.json",
+      "sha256": "dd67befc2961bd864a26fe71027127b20ab058dd811a3e5919c444aac38db13e"
+    },
+    {
+      "bytes": 179,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/artifact-list-projection.json",
+      "sha256": "8e2982465cf2f0350910ca0054310f8eccd4ee7c5348b58a189a7249fb5aa5af"
+    },
+    {
+      "bytes": 1657,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/execution-receipt.json",
+      "sha256": "60881447a4526e3391184147e8bd303dc60f73a4f075a93ec45c82f5d34db16e"
+    },
+    {
+      "bytes": 5377,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/native-qualification.json",
+      "sha256": "05364f4ec58ccc872b096dd26e42ecd74437ef8b0e59f933de719d87e34cd976"
+    },
+    {
+      "bytes": 7799,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/operator-intent.json",
+      "sha256": "63e7115ea9876483cce61940019d84fb9b9c8894c18f7d75711297a0eec7cfc9"
+    },
+    {
+      "bytes": 413,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/request-01-intent.json",
+      "sha256": "01039650ce7d94acea013e8d5861d10ae5ea23657f841f13cb1b04d92e0dcbaf"
+    },
+    {
+      "bytes": 1134,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/request-01-result.json",
+      "sha256": "0276b60b468987aa99a2af422cea908abe7b0ddbef9e44ad7105d8c088d25bb4"
+    },
+    {
+      "bytes": 432,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/request-02-intent.json",
+      "sha256": "ad5fee053215e48994c12da3c2cab6fa4620b357313901942b44a1e3a272364f"
+    },
+    {
+      "bytes": 1149,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/request-02-result.json",
+      "sha256": "43a84c4c6b0d01ba8ad5cd55c165e2bcbaddaa6fefa55dc6df304b0898f7651c"
+    },
+    {
+      "bytes": 8383,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/run-archive-projection.json",
+      "sha256": "529e6f67dc33c99935612de7c193de31ef1c26f0c0f7b267c9113016911d03ea"
+    },
+    {
+      "bytes": 1011,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/source-label-projection.json",
+      "sha256": "ddaf885d0b8ab64ca667f2218e5d0c876c7fee648cc847dbfebe8ab091c198b0"
+    },
+    {
+      "bytes": 7149,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/source-provenance.json",
+      "sha256": "a4fe7507a35bc4cc3384e1dcba1507e1584ea153a8ab593661108e27db884430"
+    },
+    {
+      "bytes": 5448,
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/terminal-bindings.json",
+      "sha256": "b8e4802465d89654014ed7c298aa65325744edefd3236217e55222a48def8476"
+    }
+  ],
+  "execution_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/execution-receipt.json",
+    "bytes": 1657,
+    "sha256": "60881447a4526e3391184147e8bd303dc60f73a4f075a93ec45c82f5d34db16e"
+  },
+  "native_qualification": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-98134335-e16-integrated-normal-ci-independent/native-qualification.json",
+    "bytes": 5377,
+    "sha256": "05364f4ec58ccc872b096dd26e42ecd74437ef8b0e59f933de719d87e34cd976"
+  },
+  "source_review_reuse": {
+    "pre_effect_binding_review_manifest": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/exact-e16-integrated-normal-terminal-evidence-binding-review/manifest.json",
+      "bytes": 984,
+      "sha256": "75397c107d1dfb9763cf0e8a004fd845bc7b7ecab29c29c5a18d409350f87783"
+    },
+    "historical_algorithm_controls": "not rerun/nonadditive",
+    "C4_integration_closure": "unchanged, no new native coverage"
+  },
+  "provenance_limit": "Native-reported execution receipt is not independent direct observation of its underlying tools.exec_command record; Root independently owns terminal metadata. Raw bodies RAM-only and unavailable for independent offline reparse.",
+  "normal_acceptance": 0,
+  "required_story_case_inventory": 95,
+  "recovery_case_separate": 1,
+  "runtime_DB_browser_recovery_coverage": 0,
+  "failure_identities": "UNKNOWN",
+  "original_exceptions": "UNKNOWN",
+  "backend_custody": "UNKNOWN",
+  "auditor_effects": {
+    "GETs": 0,
+    "status_queries": 0,
+    "operator_main": 0,
+    "algorithm_tests": 0,
+    "network": 0,
+    "runtime_resources": 0,
+    "provider": 0,
+    "Git_mutations": 0,
+    "source_Spec_writes": 0
+  },
+  "review_round_increment": 0,
+  "execution_authority": false
+}

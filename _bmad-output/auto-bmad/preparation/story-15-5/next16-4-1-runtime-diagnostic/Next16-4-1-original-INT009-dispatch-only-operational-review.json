@@ -1,0 +1,185 @@
+{
+  "schema": "NEXT1641_PUBLISHED_ORIGINAL_INT009_DISPATCH_ONLY_INDEPENDENT_OPERATIONAL_REVIEW_V1",
+  "status": "PASS_NEXT1641_ORIGINAL_INT009_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_NEXT1641_ORIGINAL_INT009_OPERATIONAL_SOURCE_ONLY",
+  "verdict": "PASS",
+  "independent": true,
+  "route": "Root943650 private P5-sensitive-postsecurity-published-INT009-dispatch-only-independent-review; explicit gpt-6.1-sol High. Targeted operational delta; story broad-review counter remains3.",
+  "execution_authorized": false,
+  "effect_authority": false,
+  "normal_acceptance": 0,
+  "packet": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-preparation/provider-readonly.py",
+      "bytes": 17989,
+      "sha256": "7115150020e92f564dd45f92e73dc786458216c645e6fac1cd1a8ef1585de00f"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-preparation/root-driver.py",
+      "bytes": 19999,
+      "sha256": "eeaf7d9ebb3128ad3f9a84c63fc3d884fd1386546e6aee08437d3662f87bae33"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-preparation/fixed-dispatch-body.json",
+      "bytes": 265,
+      "sha256": "989f58dc3140269e25cfc364629ef54e55b9889f27fd6700b27e48fab3dd96e7"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-preparation/proposal.json",
+      "bytes": 39082,
+      "sha256": "dc7686446073aed5b97d964e9f5b685005d746814adfcbfebfffe98fd297f64c"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-preparation/pure-controls.json",
+      "bytes": 20592,
+      "sha256": "a8ff2b8e2efa91600d0b9b457f9b5232c07ae9256f13764d88482d5b2ac92835"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-preparation/manifest.json",
+      "bytes": 1450,
+      "sha256": "977bf43d5c9dd4ed304c81a5844193eff2a8496892bd5a2c26ea909bc1b7d067"
+    }
+  ],
+  "findings": [],
+  "identity": {
+    "MAIN": {
+      "branch": "codex/epic-15-scheduling-time-calendar",
+      "head": "bbd6d1f307aa9fccbbaf83281779042f9a2e4bfe",
+      "source": "e3069dee12bee6a5b0619ed370098df25712c505"
+    },
+    "DEBUG_head_source": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+    "DEBUG_ref": "codex/epic-15-int009-debug",
+    "checkpoint_id": "430dbc33-7e01-440e-aa3c-dcd1f528908a",
+    "run_id": null,
+    "attempt": 1,
+    "workflow_id": 296219797,
+    "actor_and_triggering_actor": "rthunborg",
+    "repo": "rthunborg/Kopplas",
+    "event": "workflow_dispatch",
+    "mode": "original-int009",
+    "cause_proof": false,
+    "release_validation": false,
+    "original_int009": true
+  },
+  "actual_publication_bridge": {
+    "ownership": {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-actual-root-ownership.json",
+      "bytes": 6232,
+      "sha256": "6fa0a7099de047de88d06dd68ee046f4ffccf5b8d7c2d279dc65e436015ab7be"
+    },
+    "reads": [
+      "4ba750/native0",
+      "eb9150/native0"
+    ],
+    "verification": "All13 bound publication references match exact bytes/hashes. Six native Git receipts have native0, full physical EOF, joined readers, closed handles, settled direct processes. Operation ROOT_STOPPED_SUCCESS records exact MAINbbd6/DEBUG1eeb readbacks,6remoteGitcalls/2pushes/POST0/all remaining slots closed. Provider had complete native0 capture and exact typed containment/repository predicates. Historical completed publication evidence is not a renewed provider qualification or dispatch allocation."
+  },
+  "actual_source_review": {
+    "actual_diff_read": "e86388; all diffs printed before metadata-only reporting error",
+    "admission_localproof_read": "7fb92d/native0",
+    "full_inverse_and_controls": "f82a3e/native0",
+    "provider": "Complete indexed-line inverse restores qualified16243/184bc7... baseline; all7 function source segments byte-identical. New tuple/namespaces/ref paths/security review/8row overlay/lock pin and limited-contract wording only. Strict JSON versus heterogeneous verify_pin separation retained.",
+    "root": "Complete indexed-line inverse restores successful18216/ea2b... baseline; only localproof and admit function bodies change. All16 other function bodies byte-identical, including actualmain/api/native/mutation_fresh/ownedrun/resolver-poller/STOP behavior. No new publisher, remote Git or transport framework.",
+    "security_bridge": "Exact independent security review13795/49b5b590... requires both source-eligibility enums and independenttrue. Provider separately pins retained producer3e6 review and current dependency/replay1eeb. Driver admit and localproof overlay exactly4 reviewed paths per owner; all8 rows equal the qualified publication rows, including owner-specific raw/LF/Git blob differences. Supplemental4perowner checked even outside retained catalog.",
+    "catalog_and_SQL": "13 actual input_refs verified, including old203/85 catalog200439/3eb4065d..., security review, commit/replay/docs proofs, actual closed publication and inert tuple binding. Retained raw/LF/Git and118SQL vector/tree validators consumed; no new catalog or raw SQL scan.",
+    "body": "Actual fixed265-byte disk file is exact old body with only HEAD and UUID substitutions. SHA989f58dc3140269e25cfc364629ef54e55b9889f27fd6700b27e48fab3dd96e7 and exact JSON semantics match proposal. main checks bytes/hash/semantics before mode intent; api rechecks pinned same disk file immediately before unchanged gh --input call. No runtime body reserialization.",
+    "privilege_boundary": "Fixed four GET endpoints check exact user, write/maintain/admin collaborator permission, exact DEBUG branch SHA, workflow296219797/.github/workflows/ci.yml/active before the sole fixed POST. No normal-mode overlay or unsupported canonical option; original-int009 mode is explicit."
+  },
+  "focused_controls": {
+    "independent_receipt": "f82a3e/native0",
+    "full_source_inverses": 2,
+    "provider_functions_unchanged": 7,
+    "driver_functions_unchanged": 16,
+    "changed_driver_functions": [
+      "localproof",
+      "admit"
+    ],
+    "actual_admit_positive_with_only_future_capabilities_virtual": 1,
+    "actual_admit_refusals": [
+      "wrong operational outcome",
+      "incomplete completed-grant status",
+      "missing security row",
+      "old DEBUG head"
+    ],
+    "body_literal_inverse_and_semantics": "PASS",
+    "input_refs_verified": 13,
+    "security_overlay_equal_to_qualified_publication": true,
+    "author_controls": {
+      "bound_member": "pure-controls.json",
+      "actual_tool": "2016a7/native0/0.4315187s",
+      "count": 20,
+      "failed": 0,
+      "scope": "Actual source preflight/main/api/write paths with emulated future capabilities/time/Git answers/HTTP/filesystem; immutable actual source/body read, real transports hard-disabled. Includes exact4GET+POST, guard failure, tampered body, partial POST UNKNOWN, replay refusal, exact owned resolver,9terminalSTOP and no postterminal requests. Not live execution or authority.",
+      "reused_prior_families": "Existing qualified capture/parser/privacy/native/resolver/poller/control proofs unchanged, not rerun or added to count."
+    },
+    "history": [
+      "e86388 metadata-summary helper encountered string inverse entry after actual diffs were printed; no packet edits/effects.",
+      "ce7e4e admission harness lacked __file__ after source inverse checks passed; supplied actual frozen file path only, finalf82a3e passes. Initial results retained nonadditively."
+    ]
+  },
+  "once_freshness_custody": {
+    "provider": "Default inert, exact flag plus schema/identity/UUID/strict fresh activation/proof/selfpin/pinned completed allocation and both independent review enums before one exclusive fsynced provider intent; unchanged bounded15s4MiB/256KiB native capture. RAM-only raw body/stderr, exact closed typed output.",
+    "POST": "New namespace mkdir exclusive; actual operation/mode/API intents are fsynced before effects and consumed before POST. Sourceproof/activation/provider age0..300s checked at mutation boundaries; provider additionally<=180s immediately before bounded20s native POST. Fixed disk hash verified there. Nonempty/partial/timeout/capture-uncertain response UNKNOWN_STOP; no replay or blind retry.",
+    "observation": "Root sole operator/poller. At most6 resolver GETs/page20/min5s; at most90 run/jobs pairs/min30s;5400s original operation wall. observe resolves OR polls, premature poll and cooldown return0GET. Exact owned SHA/ref/title/UUID/workflow/event/repo/actor/attempt tuple enforced. All9 owned jobs terminal closes all remaining slots; budget/ambiguity/uncertainty STOP.",
+    "privacy": "Same qualified native fullEOF/joined/closed/settled capture; no raw provider/API/error persistence. Only existing owned closed run/jobs projection. No logs/artifact acquisition or custody inference."
+  },
+  "Root_interfaces": {
+    "review_path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-operational-review.json",
+    "required_status_and_outcome": "PASS_NEXT1641_ORIGINAL_INT009_OPERATIONAL_SOURCE_ONLY",
+    "independent_required": true,
+    "templates": "Exact inert Root_interfaces in bound proposal: provider activation, root activation and sourceproof currently nonauthorizing/null/false; actual pins and completed-grant provenance must be materialized separately.",
+    "before_effects": [
+      "Root actual full read and exact review/packet pin admission.",
+      "Actual new completed finite Coordinator allocation covering only the bound provider/dispatch/observation limits.",
+      "Fresh sourceproof for both clean exact published heads, all source/provider/security bindings and reviewed publication bridge; proof fields published_remote_MAIN/DEBUG mean qualified historical readbacks, not invented new remote Git observations.",
+      "New exclusive provider activation/qualification/intent, then separately bound fresh Root effects activation in this namespace. No reusing old grants, intents, qualification or operations."
+    ],
+    "future_effect_limits": {
+      "provider_GET": 1,
+      "push": 0,
+      "remote_Git": 0,
+      "prePOST_GET": 4,
+      "POST": 1,
+      "POST_seconds": 20,
+      "resolver_GET_max": 6,
+      "resolver_page": 20,
+      "resolver_min_seconds": 5,
+      "poll_pairs_max": 90,
+      "poll_min_seconds": 30,
+      "wall_seconds": 5400,
+      "artifact_log_GET": 0
+    },
+    "forbidden_now_and_in_lane": [
+      "pushes",
+      "remote Git calls",
+      "provider mutation",
+      "artifact/log GET",
+      "deployment",
+      "merge",
+      "resources"
+    ],
+    "after_actual_terminal": "Separate actual terminal enrollment/source review and finite artifact acquisition allocation; no current artifact or result acceptance."
+  },
+  "retained_acceptance_limits": {
+    "required95": "68P1F26unexecuted unchanged",
+    "P5": "OPEN",
+    "INT009_cause": "UNKNOWN",
+    "DB_custody": "Retained/unverified",
+    "local_Node": "3424P0F1skip; actual skip identity UNKNOWN/zero coverage; current30 distinct acceptance-ID coverage not claimed.",
+    "canonical_clean_exact_head_CI": "Still required; targeted diagnostic1attempt/14skipped is not full95 acceptance.",
+    "development_complete": false,
+    "release_ready": false,
+    "deployment_authorized": false
+  },
+  "nonexecution": {
+    "reviewer_provider_API_remoteGit_POST_CI": 0,
+    "source_spec_state_Git_mutations": 0,
+    "DB_browser_resources_tests_dependency_mutations": 0,
+    "raw_SQL_scan_or_catalog_reextract": 0
+  },
+  "open_questions": [],
+  "deferred_work": [
+    "Root actual admission and new finite effects allocation.",
+    "Actual run/terminal/evidence acquisition and canonical completion gates remain pending."
+  ],
+  "blockers": []
+}

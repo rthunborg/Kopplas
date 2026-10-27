@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "kind": "NATIVE_ARTIFACT_RECOVERY_ACQUISITION_PROPOSAL",
+  "status": "PLAN_ONLY_NOT_EXECUTION_ADMISSION",
+  "route": "P5_artifact_recovery_plan",
+  "author_profile": "independent gpt-6.1-sol High",
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "33cfa8dfa1323708edf80034c0a98b0620790b6a",
+    "producer_source_sha": "f304ea548faa05f037cd3aa44c65888d96d543df",
+    "producer_checkpoint_id": "44738655-b7e9-4bb7-8b8c-77f7c2a32bcf",
+    "run_id": 39551805476,
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof",
+    "producer_evidence_class": "diagnostic-only"
+  },
+  "established_limits": {
+    "old_operation": "CONSUMED_IMMUTABLE_NOT_RETRYABLE",
+    "old_listing_GETs": "UNKNOWN_0_OR_1",
+    "old_ZIP": "NOT_REACHED",
+    "old_inner_cause": "UNKNOWN_NOT_RECOVERABLE_FROM_DISCARDED_OUTPUT",
+    "current_terminal_source": "Existing Root two-GET proof; no additional run/jobs GET required.",
+    "normal_acceptance_credit": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "unresolved_normal_cases": "43 DB / 14 browser; no recovery claim resolves them"
+  },
+  "proposed_operational_scope": {
+    "new_directory": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01",
+    "exact_seven": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+        "writer": "Allocated High code author"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/test_collect_recovery_evidence.py",
+        "writer": "Allocated High code author"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/expected-recovery-admission.json",
+        "writer": "Root only"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/terminal-recovery-facts.json",
+        "writer": "Root only; PENDING to final exact-five-field admission"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/diagnostic-evidence.json",
+        "writer": "High offline after Root freezes closed operation result"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/diagnostic-qualification.json",
+        "writer": "High offline"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/manifest.json",
+        "writer": "High offline; self-excluded hash membership"
+      }
+    ],
+    "Root_outside_two": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+        "writer": "Root operational code owner; independently reviewed with helper/test"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-result.json",
+        "writer": "Root driver only; exclusive reservation before child/effect, durable closed updates, frozen at terminal"
+      }
+    ],
+    "extra_files_or_caches": false,
+    "protected": "Old P33/P252, start marker, expected/terminal/stop receipt, source/Spec, normal collectors and eleven failed packets are never changed.",
+    "directory_creation": "Root exclusive creation only after allocation; existing directory or output reservation refuses restart."
+  },
+  "additional_effects": {
+    "requires_new_allocation": true,
+    "old_authority_not_reused": true,
+    "local_capability_process": {
+      "argv": [
+        "gh",
+        "api",
+        "--help"
+      ],
+      "maximum": 1,
+      "timeout_seconds": 5,
+      "stdout_cap_bytes": 65536,
+      "output": "Memory only; fixed flag-supported boolean and byte/digest proof. No endpoint, credential/config command or fallback."
+    },
+    "network": [
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/39551805476/artifacts?per_page=100&page=1",
+        "maximum": 1,
+        "cap_bytes": 262144
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/<positive-exact-Root-admitted-ID>/zip",
+        "maximum": 1,
+        "conditional": "Only compatible sole artifact, same-invocation Root confirmation and unchanged frozen inputs.",
+        "cap_bytes": 4500000
+      }
+    ],
+    "transport": "Fixed gh argv, shell false, stderr discarded; 30s wait, at most5s kill wait and5s reader join per invocation. No retry or alternative endpoint. Logical invocations, not measured HTTP-hop counts.",
+    "forbidden": [
+      "POST",
+      "CI dispatch/rerun/cancel",
+      "run/jobs/log GET",
+      "pagination",
+      "SQL/RPC/DB/browser/provider/resources",
+      "new functional source/CI work",
+      "raw API/ZIP/native JSON persistence"
+    ],
+    "retained_caps": {
+      "listing_bytes": 262144,
+      "archive_bytes": 4500000,
+      "native_bytes": 1000000,
+      "observation_bytes": 65536,
+      "receipt_bytes": 65536,
+      "manifest_bytes": 65536,
+      "uncompressed_bytes": 1196608,
+      "entries": 4,
+      "json_depth": 16,
+      "json_nodes": 4096,
+      "continuation_bytes": 4096
+    }
+  },
+  "admission_and_provenance": {
+    "operation_id": "Fresh Root-assigned canonical UUIDv4 AFTER allocation; distinct from producer checkpoint UUID; not yet assigned.",
+    "timing": "POSTHOC_AFTER_PRODUCER_TERMINAL_BEFORE_RECOVERY_GET",
+    "expected": "Bind target, original terminal proof, historical old intent/expected/stop, new operation ID, exact new helper/test/driver hashes, review/allocation references, caps and one-shot budget. No claim historical pre-POST intent bound new recovery code.",
+    "terminal": "Root projects existing actual terminal proof and nine unique completed rows; selected checkpoint-admission/verify/db, other six suppressed/skipped. New operation ID and expected-recovery rawSHA are fixed. No new run/jobs reads.",
+    "old_references": "Historical old intent/expected retain original timing and hashes; old P33 PENDING facts never relabelled final.",
+    "mutable_terminal_fields": [
+      "artifact_admission_state",
+      "artifact_id",
+      "artifact_listing_sha256",
+      "artifact_listing_bytes",
+      "artifact_candidate_sha256"
+    ],
+    "states": [
+      "PENDING",
+      "CONFIRMED_PRESENT",
+      "CONFIRMED_EMPTY"
+    ],
+    "pending": "Other four admission values null; permits sole listing, never ZIP.",
+    "candidate": "Closed target + operation/expected/pending digests, listing bytes/SHA and artifact null OR exact {id,name,archive_bytes,archive_sha256}; canonical candidate SHA. Name native-calendar-feed-cause-proof; integer ID excludes bool and >0; bytes1..4500000; SHA256 lowerhex64.",
+    "confirmation": "Same invocation only. Root binds retained candidate/listing; positive exact ID for present or null only genuinely empty. All non-five fields and expected/code inputs unchanged. One <=4096B closed JSON continuation line, explicit flush+CLOSE stdin/EOF within60s. Raw final terminal SHA checked on exactly one reread before ZIP.",
+    "result_binding": "Separate new recovery admission/final-terminal hashes from original producer input hashes. Preserve candidate/pending provenance explicitly; never claim pending bytes final or historical session/input equivalence."
+  },
+  "implementation_constraints": {
+    "pure_reuse": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f",
+      "allowed": "Read-only import of bounded JSON/listing/archive/report/observation qualification functions with exact-hash/source compatibility. Do not call old main/collect/network entry point, mutate old globals or feed new admission into old expected validator."
+    },
+    "wire_schema": "Original producer receipt/manifest/native/observation grammar remains hash-bound. New recovery admission/failure envelope is distinct, typed and reviewed. No schema adoption by inference.",
+    "listing_schema": "Exact top {total_count,artifacts}, count equals length<=1. Artifact required id/name/size_in_bytes/expired/digest/workflow_run; optional only node_id/url/archive_download_url/created_at/updated_at. Original nested identity/type/digest checks retained. Unknown fields STOP.",
+    "failure_shape_proof": "Only fixed required/optional field-presence masks, missing/unknown-field counts and fixed type/digest-valid booleans. No unknown key names, values or arbitrary payload.",
+    "stages": [
+      "STARTUP",
+      "INPUT_ADMISSION",
+      "LOCAL_CLI_CAPABILITY",
+      "LISTING_TRANSPORT",
+      "LISTING_SCHEMA",
+      "ROOT_ADMISSION",
+      "ARCHIVE_TRANSPORT",
+      "ARCHIVE_REPORT_VALIDATION",
+      "CLOSED_EVIDENCE",
+      "OFFLINE_PUBLICATION"
+    ],
+    "categories": [
+      "INPUT_REFUSED",
+      "CLI_UNQUALIFIED",
+      "TRANSPORT_FAILED",
+      "TIMEOUT",
+      "CAP_EXCEEDED",
+      "SCHEMA_REFUSED",
+      "IDENTITY_REFUSED",
+      "ADMISSION_REFUSED",
+      "REPORT_REFUSED",
+      "CHILD_PROTOCOL_REFUSED",
+      "CUSTODY_UNKNOWN",
+      "UNEXPECTED_EXCEPTION"
+    ],
+    "failure_envelope": "Durably retain fixed stage/category; allowlisted inner refusal code or UNKNOWN; child spawn/settlement booleans, nullable exit, byte/digest counters, EOF/overflow flags, actual input/code hashes and logical invocation attempted/settled counters. Attempt is not proof HTTP happened. No error/message/stack/cause/statusbody/token/URL/SQLparams.",
+    "Root_driver": "Reserve outside result exclusively before launching. Recognize closed helper refusal BEFORE candidate parsing. Drain queued bytes through EOF even when child has exited; never equate poll()!=None or temporarily empty queue with no output. Bound queue/stdout/lines. Preserve every failure in same result; no new retry marker. Existing reservation forbids restart.",
+    "bounds_and_custody": "Automatic Root continuation without agent turn. Parent overall deadline180s; only own child killed/waited on failure, pipes closed, reader joined. If settlement cannot be proven, explicit CUSTODY_UNKNOWN; no cleanup-by-name/port. Root result can remain nonterminal under crash; never erase it."
+  },
+  "prerequisites_and_controls": [
+    "Independent High plan challenge and Coordinator exact ownership/effects allocation before any implementation or request.",
+    "Implement only allocated code, source/schema equality and distinct High composite helper/test/driver review before network.",
+    "Offline startup/import/frozen-input, exact local argv and local help capability checks before new GET; failure consumes no network permission and stops.",
+    "Pure controls: valid sole-list->exactZIP; empty->noZIP; null/bool/wrong ID or changed facts->noZIP; unknown field/oversize/schema/privacy refusal; closed COMPATIBILITY_STOP recognition; early EOF; delayed queued bytes after process exit; malformed output; timeout/overflow; actual own pipe-child termination.",
+    "Meaningful controls are acquisition-only; no functional suites or native acceptance counts invented.",
+    "Root freezes new posthoc expected admission and reserves once-only operation result before effect. No automatic retry after uncertainty."
+  ],
+  "offline_publication": {
+    "handoff": "Root outside result contains only validated closed emitted producer evidence plus new operation/admission/process provenance and closed-output byte/digests. Never raw API/archive/native reports.",
+    "schema": "New recovery envelope explicitly labels producer_evidence separately from posthoc recovery_operation; current new-helper/code and final new-terminal hashes included. Original source/producer UUID remain unchanged.",
+    "High_outputs": "After separate Root offline-publication activation, write exact final3 from frozen closed handoff and inputs, with zero additional GET. Evidence bytes are new serialization, not falsely original native bytes.",
+    "manifest": "List all exact7 new-directory members, hash six non-self files, self membership explicitly self-excluded; bind external Root driver/result/review/input identities. Return actual manifest bytes/SHA externally for Root admission.",
+    "semantics": "Selected producer-case counts and observations only if actually validated. Unknown/absent content stays null/unqualified. Diagnostic success/exit0 never satisfies normal95/fullDB/RLS/pilot/browser/recovery or resolves backend first cause."
+  },
+  "proposed_review_and_proof_outputs": {
+    "plan_challenge": {
+      "directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-challenge",
+      "files": [
+        "original-report.md",
+        "original-attestation.json",
+        "result.json",
+        "manifest.json"
+      ]
+    },
+    "accepted_allocation_receipt": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-artifact-recovery-33cfa8df-01-allocation.json",
+    "implementation_review": {
+      "directory": "_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-implementation-review",
+      "files": [
+        "review-input.md",
+        "input-binding.json",
+        "original-report.md",
+        "original-attestation.json",
+        "result.json",
+        "local-checks.json",
+        "manifest.json"
+      ]
+    },
+    "ownership": "Independent High owns original review outputs; Root owns accepted Coordinator receipt; no author rewrites originals. All are proposed additional governance scope, not created now."
+  },
+  "current_work": {
+    "created": "Only this proposal plan.md/plan.json/manifest.json",
+    "tests_executed": "Read-only identity checks only; all recovery controls are PLANNED",
+    "requests_executed": 0,
+    "code_implemented": false,
+    "native_credit": 0,
+    "normal_acceptance_credit": 0,
+    "accidental_foreign_draft_writes": 2,
+    "foreign_draft_correction_recorded": true
+  },
+  "proposal_provenance": {
+    "path_error": "This actor used relative AddFile paths; global patch cwd was C:/DEV/Kopplas, so two proposal drafts were written outside the assigned worktree. This is an actual deviation, not zero foreign writes.",
+    "own_creation_evidence": "Own AddFile call produced these exact proposal contents; the wrong directory contained exactly these two names. Source/target raw hashes were checked equal before removing either source file. No foreign preexistence snapshot was taken; no claim is made about an independently verified prior directory state.",
+    "correction": [
+      {
+        "name": "plan.json",
+        "wrong_path": "C:/DEV/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.json",
+        "owned_target": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.json",
+        "before_copy_bytes": 14024,
+        "before_copy_sha256": "16c9a9e8a946eaf7e758def5d526f676e9c2adddc2de36145d03cdf4b998a310",
+        "after_copy_bytes": 14024,
+        "after_copy_sha256": "16c9a9e8a946eaf7e758def5d526f676e9c2adddc2de36145d03cdf4b998a310",
+        "source_copy_removed_after_hash_equality": true
+      },
+      {
+        "name": "plan.md",
+        "wrong_path": "C:/DEV/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.md",
+        "owned_target": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/native-artifact-recovery-33cfa8df-01-proposal/plan.md",
+        "before_copy_bytes": 5503,
+        "before_copy_sha256": "4cf68306aeeafcc69bf25dbedce907d86fa2e65ccb91535b00b4cce6ea3feec8",
+        "after_copy_bytes": 5503,
+        "after_copy_sha256": "4cf68306aeeafcc69bf25dbedce907d86fa2e65ccb91535b00b4cce6ea3feec8",
+        "source_copy_removed_after_hash_equality": true
+      }
+    ],
+    "cleanup": "Only these two exact draft files were copied and removed; then their observed-empty proposal directory was removed nonrecursively, before Root subsequently prohibited directory cleanup. No other directory cleanup occurred.",
+    "after_correction": "Only authorized proposal files are changed. Future patch paths absolute; exec commands explicitly select owned worktree. Root notified; no further foreign writes."
+  }
+}

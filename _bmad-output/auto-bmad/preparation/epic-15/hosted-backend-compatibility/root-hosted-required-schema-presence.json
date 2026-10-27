@@ -1,0 +1,15 @@
+{
+  "scope": "One read-only pg_catalog presence SELECT on documented linked Kopplas backend; no tenant data/secrets/DB/provider writes",
+  "project_id": "wmqmzznmwpheswjjozhq",
+  "project_name": "Kopplas",
+  "query": "SELECT pg_catalog.to_regclass('public.booking_series') IS NOT NULL AS booking_series_present, pg_catalog.to_regclass('public.time_reports') IS NOT NULL AS time_reports_present, pg_catalog.to_regclass('public.calendar_feed_tokens') IS NOT NULL AS calendar_feed_tokens_present, pg_catalog.to_regprocedure('public.read_my_day(uuid,timestamp with time zone,timestamp with time zone,boolean)') IS NOT NULL AS migration119_read_my_day_present;",
+  "result": {
+    "booking_series_present": false,
+    "time_reports_present": false,
+    "calendar_feed_tokens_present": false,
+    "migration119_read_my_day_present": false
+  },
+  "concrete_impact": "Required series/time/calendar-feed relations and exact My Day RPC are absent; deploying E15 against this backend breaks those paths (MyDay reader returns UNAVAILABLE).",
+  "minimal_remedy": "Apply existing reviewed pending forward migrations in dependency order through119 under separate database-push authorization; do not invent replacement objects.",
+  "database_writes": 0
+}

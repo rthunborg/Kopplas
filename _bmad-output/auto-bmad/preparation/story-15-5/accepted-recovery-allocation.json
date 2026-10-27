@@ -1,0 +1,22 @@
+{
+  "kind": "Root-recorded-narrow-recovery-allocation",
+  "received_at": "2026-10-20T14:26:58.750354+00:00",
+  "source": "Coordinator01a1160d-b5b1-7623-a8e8-54ef3dc537ed SAMEexplicitSolHigh FINAL CONDITIONALGRANT",
+  "condition_before_write": "Actual all6Round1 triage confirms defect",
+  "paths": [
+    "ops/recovery/bootstrap-roles.sql:feedroleblockONLY",
+    "tests/unit/ops/pilot-operations.test.ts:existingnamedrecoveryComposecaseONLY"
+  ],
+  "no_foreign_ownership_collision_or_Documents_claim_reported": true,
+  "conditions": [
+    "Create calendar_feed_owner ONLY absent; validate new+retained ALL7 negative role attributes; unsafe existing failclosed/no globalALTER",
+    "Recovery membership only existing supabase_admin NOADMINOPTION; noauthenticator/anon/authenticated/service_role/recoveryruntime grant; reject unexpected retained runtime/JWT membership",
+    "Preserve provisioning role block/three existing login roles/passwords/DBsettings",
+    "Own UNAPPLIED feedmigration matching idempotent attribute guard within existing allocation; distinguish migrationexecutor from recoverymembership",
+    "Owner for restored policies/functions only; preserve FORCE RLS/owner policies/narrowACL; no unrelatedtable/generalVaultownership",
+    "Actual required recovery replay proves SupAdmin ownershiptransfers incl schemaCREATE prerequisite; precise failure reported, no persistentCREATE/superuser/BYPASS/JWT workaround",
+    "Unit guards idempotency/all7attrs/exactmembership/noJWT-runtime grants preserving negatives; static notrestoreevidence",
+    "DistinctHigh actualfix followup and exacthead recoveryCI required; noCompose/workflow/provider/globalrole/hostedrestore permission"
+  ],
+  "runtime_actions": 0
+}

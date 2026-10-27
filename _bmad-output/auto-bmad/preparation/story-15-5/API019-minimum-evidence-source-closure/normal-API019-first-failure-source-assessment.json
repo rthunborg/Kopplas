@@ -1,0 +1,242 @@
+{
+  "schema": "API019_FIRST_FAILURE_READONLY_MINIMUM_OBSERVABILITY_ASSESSMENT_V1",
+  "policy_version": "2026-10-19",
+  "created_at_utc": "2026-10-23T14:24:03.276302+00:00",
+  "Outcome": "No causal production/fixture fix demonstrated. Original failing scenario boundary is erased; propose only a finite existing-origin observability amendment, not a functional repair or blind NORMAL rerun.",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-first-failure-source-assessment.json"
+  ],
+  "Status": "READONLY_NO_FIX_MINIMUM_PROPOSAL_AWAITING_ROOT_DIRECTION",
+  "Open questions": [
+    "Exact API019 original failing operation/error/matcher remainsUNKNOWN; current closed leaf identifies scenario only.",
+    "Whether actual telemetry lacked responses/observation, failed privacy flags, failed parsing, or another scenario await failed isUNKNOWN.",
+    "DB key is retained/keyDeletedfalse; backend settlement and key deletion remain unverified. Browsercleanup/recovery facts are separate."
+  ],
+  "Deferred work": [
+    "Independent qualification of this minimum observability scope before any edit/test/effect.",
+    "If needed, one separately admitted fixed API019 workload rather than repeating whole NORMAL merely to rediscover a generic scenario leaf.",
+    "Required final functional95 and separate recovery/custody after actual consequential issues resolved; API020pending remainszero coverage."
+  ],
+  "Blockers": [
+    "Native failure origin erased and no current request/source/runtime authority. P5OPEN/15.6unstarted."
+  ],
+  "identity": {
+    "actual_run": 39962445963,
+    "attempt": 1,
+    "actual_run_head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+    "functional_source": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+    "checkpoint": "127ec671-bb41-4c77-9f30-64b8c386f3fe",
+    "current_docs_only_HEAD_attributed_to_Root": "c4c195d9dee4abd7af5a1cc96cbfa2fdb16bc4cb",
+    "docs_bridge": "Root290b1f124docs only; no functional source change or new runtime evidence."
+  },
+  "actual_qualified_facts": {
+    "independent_qualification": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-native-qualification.json",
+      "bytes": 21439,
+      "sha256": "6783122e9760501c82ad7c6691ad16a7bb4fc714c0765bf4519c7fdcbbe53c04"
+    },
+    "required95": {
+      "passed": 93,
+      "failed": 1,
+      "zero_coverage": 1,
+      "failed_ID": "API019",
+      "pending_ID": "API020"
+    },
+    "DB": {
+      "passed": 49,
+      "failed": 1,
+      "pending": 1
+    },
+    "Node_distinct": 30,
+    "browser": "14 firstattempt/retry0P",
+    "recovery": "1P separately",
+    "INT009_INT014_INT015": "passed",
+    "API019_projection": {
+      "duration_ms": 3009.291689999998,
+      "failure": {
+        "fixed_category_counts": {},
+        "invalid_owned_tuple_headers": 0,
+        "owned_leaf_tuple_count": 1,
+        "owned_leaf_tuples": [
+          {
+            "category": "unknown",
+            "sqlState": null,
+            "stage": "scenario"
+          }
+        ],
+        "raw_failure_details": "NOT_PERSISTED",
+        "typed_assertion_pairs": [],
+        "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+      },
+      "id": "API019",
+      "status": "failed"
+    },
+    "limits": "Independent finalcounts attributed to frozen qualification; this author performs no new coverage audit or acceptance claim. Test duration3009.29169ms is observed, not a causal discriminator."
+  },
+  "evidence_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/native-full-integration-projection.json",
+      "bytes": 67094,
+      "sha256": "d46499454c41c1022ec98538339fc06ae89a647a65e68079910d35d788122518"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/run-archive-projection.json",
+      "bytes": 48552,
+      "sha256": "67aa5607329f251f6af9a46c1afe88a160c3c2321645501934ca95531c047d24"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-execution-receipt.json",
+      "bytes": 10685,
+      "sha256": "6a1989f8dd8718c921a59c842d815cda1f7a3fefb72f251a71c4bcdf91b555b6"
+    }
+  ],
+  "source_chain": [
+    {
+      "site": "tests/integration/calendar-feed/public-feed.int.test.ts:389-403",
+      "fact": "API019 issues ownURL, trusted inprocess fetch, separately asserts actualHTTP200, obtains deliberatelytampered rawfetch error, physicalaudits/Adminmonitoring, telemetry and rawstatusDTO, then asserts every known URL/token/IP/hash/key/proof absent. All privacy/success criteria remain strict."
+    },
+    {
+      "site": "tests/support/calendar-feed-atdd.ts:30-43,238-242,251-298",
+      "fact": "expectCalendar replaces matcher throws with owned scenario-assertion. WeakMap-owned origins survive nested diagnostic walks. Plain errors without a recognized code become generated scenario/unknown/sqlstateunavailable leaves; originalmessage/stack/cause is not retained. Therefore current scenario leaf does not identify a failed matcher or exact original operation."
+    },
+    {
+      "site": "tests/support/calendar-feed-atdd.ts:549-561",
+      "fact": "telemetry reads the existing owned JSONL path repeatedly for3s, parses every nonemptyline, requires a response marker plus latest runtime_observation.responseCount>0 and false/0privacy flags. Missingpath, read/JSONparse errors, privacyrefusal and eventual observationabsence are distinct code paths but generic scenario erases their distinction. Existing polling20ms/deadline are not changed by this proposal."
+    },
+    {
+      "site": "scripts/ci/with-calendar-feed-runtime.mjs:247-284,399-443,481,617-622",
+      "fact": "Observer scans raw lines beforefiltering, admits exact event/status responses only, persists closed counters/flags and never raw lines. launchOwned serializes line observations perchild; productionserver and testchild both use observer. No bypass around detector is proposed. JSONL is an owned temporary file, not uploaded by the existing native report artifact."
+    },
+    {
+      "site": "src/server/calendar-feed/public-feed.ts:15-17,46-49",
+      "fact": "Both generic responses and success log exact event/status; current Nextconfig has no removeConsole setting. Source does not prove that the actual expected marker reached observer/file in this run."
+    }
+  ],
+  "causal_assessment": {
+    "source_proven_functional_or_fixture_defect": false,
+    "plausibility_not_cause": "Observed~3s duration is compatible with telemetry observation timeout but also includes other work; it does not identify that branch. Partial JSONL read, delayed output or detector findings are possibilities only, not demonstrated defects or repair authority.",
+    "downstream_guards": "Rawstatus field/privacy/actualmapper, feed200, actualexternalHTTP, telemetry shape/privacy and secretabsence checks already enforce relevant invariants. Do not weaken/assertion-skip/filteraway evidence or treat privacyfailure as harmless telemetry.",
+    "single_missing_fact": "Which source-owned existing telemetry branch (observationdeadline, privacyrefusal, JSONparse) or other scenario operation originally failed. A source-located fixed origin is sufficient; no raw text, stack, token, IP, payload or detector matched value is needed.",
+    "existing_artifact_limit": "Helper creates replacement safe Errors without original stack/cause. AnotherGET of the same native.json cannot recover an error discarded before reporter. No refetch/log fallback/newcollector is recommended."
+  },
+  "minimum_observability_proposal_ONLY": {
+    "producer_seam": "Reuse existing calendarFixtureOwnedOrigins/calendarFixtureOrigin and existing Calendar fixture failure stage wire shape, not a new schema or enum family.",
+    "proposed_three_fixed_origins": [
+      "scenario-telemetry-observation-timeout",
+      "scenario-telemetry-privacy-refused",
+      "scenario-telemetry-parse-refused"
+    ],
+    "helper_scope": "tests/support/calendar-feed-atdd.ts only: add3 closed origins; replace the existing telemetry timeout and privacy throws with corresponding owned origin; isolate only current JSON.parse transformation in a catch that throws parse-refused. Keep await readFile outside parse catch so IO errors are not mislabeled. Missingpath/read errors retain currentUNKNOWN unless later evidence requires another named boundary.",
+    "preserved": "Same request count, original2server/test paths, existing3sdeadline/20mssleep, JSONLsource/shape, observer/output queue, rawprivacyfirstscan, every matcher/token/RLS/counter/SQL/rollback/custody rule. No new timer/listener/request/await/poll/successmarker; no raw messages or cause retained. No app/workflow/config/SQL edit for this producer amendment.",
+    "companion_scope": "Existing tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts only; authorSRO refresh if Root laterassigns.",
+    "consumer_seam": {
+      "reader": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+        "bytes": 50733,
+        "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+      },
+      "change": "In a NEW independently reviewed private successor only, add exactly the same3 strings to existing stages constant. failure_facts function/regex/shape/caps unchanged; current frozen reader/packet immutable.",
+      "why_needed": "Current failure_facts admits stage only if in finite stages set, so producer-only origins would otherwise become invalid_owned_tuple_headers/UNKNOWN.",
+      "schema_caps": "Same6primitive/general existing leafshape; categories/sqlstates unchanged; no arbitrary metadata/newreport, no cap increase."
+    },
+    "meaningful_pure_controls_after_authorization": [
+      "Execute actual telemetry method plus existing observer under inert injected readFile/clock/sleep/persist; no realservices/IO/environmentsecret. Valid actual marker/observation must return unchanged bytes.",
+      "Drive existing timeout with missingrequiredmarker/observation and verify exact owned timeout origin, unchanged3s/20ms boundaries and no generated success.",
+      "Drive true/privacy-shape/count refusal and malformedJSON to distinct fixed owned origins; original raw source/text never serialized. Existing readFile rejection remainsUNKNOWN notparse.",
+      "Pass origins through actual calendarFixtureDiagnostic and unchanged production failure_facts with only stage-data additions; exactthreeadmitted, unknown/injected/rawtext refused, originalscenario/assertion unchanged.",
+      "No repeated broadNode/build/sourcecatalog or unchanged transport matrix. Pure controls do not prove the actual hosted failing branch."
+    ]
+  },
+  "materially_simpler_next_native_alternative_NOT_AUTHORIZED": {
+    "first_step": "Qualify the tiny producer/consumer amendment and meaningful pure controls; no blind fullNORMAL retry.",
+    "needed_native_fact": "If no deterministic source defect emerges, execute ONE fixed API019 original workload with existing real productionserver/ordinaryJWT/ownedprivilegedsetup and conservative keyretention/teardown; diagnosticacceptance0. Capture only the existing3source-owned origins.",
+    "candidate_stock_argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "--testNamePattern=^\\[P0\\] 15[.]5-API019 AC1 AC4 AC5 AC9 logs audit and public errors disclose no raw token hash proof key or IP$",
+      "--reporter=default",
+      "--reporter=github-actions",
+      "--reporter=json",
+      "--outputFile=test-results/api019-diagnostic/native.json"
+    ],
+    "qualification_limits": "This argv is a SOURCE proposal only: unchanged C4 partition must be checked offline beforeadmission; no global no-file-parallelism/maxWorkers/project override. Existing MAIN wrapper admits db/browser/causeproof only and pins INTEGRATION_ARGS; current NORMAL cannot accept arbitrary filters. A temporary fixed capability with its necessary exact existing guardcompanions and separate explicit source/effect allocation is required beforehostedexecution. Never silently reuse DIAG001/originalINT009 or invent a supportedworkflowinput. No such implementation or detailedcapabilityscope is authorized by this assessment.",
+    "reuse": "Reuse owned reviewed setup/productionserver/key/retirement/custody/isolatedcleanup and reporter, no genericworkflow/collector/framework. Exactlyoneintendedcase/P+F=1/retry0, nonmatchingcaseszero. Native0 alone is not95/developmentcredit.",
+    "if_unknown_or_nonreproduction": "Stop with exact retainedmissingfact; no automaticretry or genericdiagnosticfamily."
+  },
+  "source_bindings": [
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "bytes": 26921,
+      "sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "LF_bytes": 26504,
+      "LF_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 139901,
+      "sha256": "74721f43ece77fac70414592317ce06556b5cfc0718d9d6014afbec32bdf2c25",
+      "LF_bytes": 138508,
+      "LF_sha256": "d3d7a13919233a6bbd75646449a4de80257c015aa718a16616c513c6c5e8cef5"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "LF_bytes": 47931,
+      "LF_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "bytes": 4421,
+      "sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "LF_bytes": 4421,
+      "LF_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 325812,
+      "sha256": "8594bcc0bfb6fcd9c721868c93ee39a8b0744bca3d8df673f6ea050b2e0941b7",
+      "LF_bytes": 322787,
+      "LF_sha256": "fa217e6880476974af32babd14ad9991cff3d9877d4e37cdc99f53975f233e63"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8135,
+      "sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+      "LF_bytes": 8024,
+      "LF_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "LF_bytes": 4725,
+      "LF_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd"
+    },
+    {
+      "path": "next.config.ts",
+      "bytes": 684,
+      "sha256": "19cfa8297557128a416ec4a3b526a04c41ba4a6d032aefbd31ad393cd6bd83aa",
+      "LF_bytes": 664,
+      "LF_sha256": "883694123b99fc52c8e3459568bed4965a551c92988705759daff124c645f48a"
+    }
+  ],
+  "effects": {
+    "source_spec_edits": 0,
+    "tests_or_configloads": 0,
+    "API_network": 0,
+    "Git_mutations": 0,
+    "SQL_changes": 0,
+    "runtime_resources": 0,
+    "oldslots": "CLOSED",
+    "othercheckouts": 0
+  },
+  "normal_acceptance": 0,
+  "P5": "OPEN",
+  "release_ready": false,
+  "review_counter": 3,
+  "fourth_broad_review": false
+}

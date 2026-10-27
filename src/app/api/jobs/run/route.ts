@@ -5,6 +5,7 @@ import { ACTIVE_PRODUCERS, type ProducerDeclaration } from "@/server/jobs/produc
 import { runDueProducers, type JobRunRecord, type RunnerDependencies } from "@/server/jobs/runner";
 import { isAuthorizedCronRequest } from "@/server/jobs/auth";
 import { emitDueFollowUpNotifications } from "@/server/notifications/follow-up-producer";
+import { emitTimeReportNudges, timeReportNudgeAsOf } from "@/server/notifications/time-report-nudge-producer";
 import { processEmailOutbox } from "@/server/email/outbox";
 import { stockholmBusinessDate } from "@/lib/datetime/business-date";
 import { readCursor, type CursorReadOptions } from "@/server/jobs/cursor-read";
@@ -106,6 +107,9 @@ export async function handleJobsRunRequest(request: Request, dependencies: JobsR
     },
     loadProducerCursor: async (producer, tenantId) => loadProducerCursor(client, tenantId, producer.id, { scope: "producer", deadline, signal: abortSignal, now }),
     execute: dependencies.execute ?? (async (producer, tenantId, producerCursor) => {
+      if (producer.id === "scheduling.time-report-nudges") {
+        return emitTimeReportNudges(client, tenantId, { asOf: timeReportNudgeAsOf(producerCursor, tenantId, windowStartedAt.toISOString()), cursor: producerCursor, correlationId, signal: abortSignal });
+      }
       if (producer.id === "quotes.follow-up-reminders") {
         return emitDueFollowUpNotifications(client, tenantId, stockholmBusinessDate(now()), { cursor: producerCursor, signal: abortSignal });
       }

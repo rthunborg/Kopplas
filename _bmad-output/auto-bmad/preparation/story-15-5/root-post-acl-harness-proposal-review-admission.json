@@ -1,0 +1,38 @@
+{
+  "schema": "ROOT_TARGETED_HARNESS_PROPOSAL_REVIEW_ADMISSION_v1",
+  "at": "2026-10-21T17:38:04.255713+00:00",
+  "status": "PASS_PLAN_ONLY_NOT_SOURCE_OR_NATIVE_ALLOCATION",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-harness-proposal-review/original-report.md",
+      "bytes": 6398,
+      "sha256": "f3c1cf39ce85bbb253df199f3f7412bdf254ece231fd5284ad46abe7e548009e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-harness-proposal-review/original-attestation.json",
+      "bytes": 23156,
+      "sha256": "dbe3a01b0e33fa7a218b0878948a3a7267b0eafa2f5f5cf8474c22b06edf8467"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-harness-proposal-review/result.json",
+      "bytes": 2127,
+      "sha256": "4067e657198c25542ec5eee47facdbfc338c1b3d0b7efdcd28d88b0fa2366a05"
+    }
+  ],
+  "bound_refs_checked": 30,
+  "implementation_conditions_ref": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-harness-proposal-review/original-attestation.json",
+    "key": "required_implementation_conditions"
+  },
+  "candidate_write_paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "normal_acceptance_credit": 0,
+  "source_edit_authorized": false,
+  "runtime_effects_authorized": false,
+  "migration111_frozen": true
+}

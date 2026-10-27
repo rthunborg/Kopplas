@@ -1,0 +1,55 @@
+--- a/tests/e2e/support/scheduling-views-atdd.ts
++++ b/tests/e2e/support/scheduling-views-atdd.ts
+@@ -92,7 +92,7 @@
+     await this.page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+     await expect(this.page.getByText("Läser planering…", { exact: true })).toHaveCount(0);
+   }
+-  async open(view: View, mode: "day" | "week" | "month" = "week"): Promise<void> {
++  async open(view: View, mode: "day" | "week" | "month" = "week", date = DATE): Promise<void> {
+     if (!this.page.url().includes("/scheduling")) { await this.page.goto("/scheduling"); await this.settle(); }
+     const tab = this.page.getByTestId(`scheduling-view-${views[view]}`);
+     try { await expect(tab).toBeVisible(); }
+@@ -112,7 +112,7 @@
+       throw new Error(`Scheduling host unavailable: ${JSON.stringify(diagnostic)}`, { cause });
+     }
+     await tab.click(); await this.settle();
+-    await this.page.getByLabel("Datum", { exact: true }).fill(DATE); await this.settle();
++    await this.page.getByLabel("Datum", { exact: true }).fill(date); await this.settle();
+     await this.page.getByLabel("Period", { exact: true }).selectOption(mode); await this.settle();
+   }
+   async filter(label: string, value: string): Promise<void> { await this.page.getByLabel(label, { exact: true }).selectOption(value); await this.settle(); }
+@@ -147,7 +147,13 @@
+   }
+   observeConfirmedSave() { return this.bookingEditor.observeNextConfirmedSave(); }
+   failNextSaveOnce() { return this.bookingEditor.failNextSaveOnce(); }
+-  async reloadAndOpen(id: string): Promise<void> { await this.page.reload(); await this.settle(); await this.block(id).getByRole("button", { name: "Redigera / flytta", exact: true }).click(); }
++  async reloadAndOpen(id: string, host: Host, expected: Interval): Promise<void> {
++    await this.page.reload();
++    // Reload restores application defaults, which can use today's date. Re-establish
++    // this persistence check's host and interval through the real toolbar first.
++    await this.open(host, "day", expected.startsLocal.slice(0, 10));
++    await this.block(id).getByRole("button", { name: "Redigera / flytta", exact: true }).click();
++  }
+   async review(): Promise<void> {
+     await expect(this.editor.getByTestId("booking-review-current-warnings")).toBeVisible();
+     const checks = this.editor.getByTestId("booking-conflict-panel").locator('article input[type="checkbox"]');
+--- a/tests/e2e/scheduling-views.atdd.e2e.spec.ts
++++ b/tests/e2e/scheduling-views.atdd.e2e.spec.ts
+@@ -290,7 +290,7 @@
+     const created = (await h.sqlBookings()).filter(row => !before.some(old => old.id === row.id));
+     expect(created).toHaveLength(1);
+     expect(created[0]).toMatchObject({ startsAt: i.startsAt, endsAt: i.endsAt, assigneeIds: [h.people[0]] });
+-    await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(created[0]!.id);
++    await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(created[0]!.id, host, i);
+     await expectEditor(h, { ...i, assigneeIds: [h.people[0]!] });
+   });
+ }
+@@ -731,7 +731,7 @@
+       const states = await adminQuery<{ status: string }>("select status from public.booking_conflicts where tenant_id=$1 and (booking_id=$2 or related_booking_id=$2)", [h.scenario.tenantId, h.ids.proposal]);
+       expect(states.some(row => row.status === "accepted")).toBe(true);
+       expect(states.some(row => row.status === "open")).toBe(true);
+-      await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(h.ids.proposal); await expectEditor(h, expected); await h.cancel();
++      await expect(h.editor).toHaveCount(0); await h.reloadAndOpen(h.ids.proposal, host, expected); await expectEditor(h, expected); await h.cancel();
+     }
+   });
+ }

@@ -1,0 +1,49 @@
+{
+  "kind": "independent-build-parent-fourth-source-freeze-check",
+  "status": "PASS",
+  "source_head": "3383a1eb4607ddea035e79fb8433dc89a5137530",
+  "capsule_bytes": 293202,
+  "capsule_sha256": "0665da8a44b228583e2dfbd81be3266d6d7cfcd465b6558b7295c1ebfaeb7ee5",
+  "prior_three_capsules_unchanged": true,
+  "source_bindings": 67,
+  "raw_normalized_differences": 40,
+  "author_commits": 8,
+  "root_checkpoint_commits_excluded": [
+    "9487c0d9dc6f622b472780587e20e834abf98595",
+    "c57580580217e34a0b933a23f7c36737306333b7",
+    "1cea5c4caa4996566ca95f5b872c6623da22f807"
+  ],
+  "historical_migrations": 109,
+  "protected_consumers": 37,
+  "historical_preparation_blobs": 69,
+  "artifact_reference_occurrences": 136,
+  "unique_artifact_paths": 133,
+  "failed_checkpoint_source_equalities": 193,
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "review_cap": 3,
+  "latest_distinct_high_delta_review": "PASS; uncommitted four-path provenance, three code/test files exact after commit; not fourth broad",
+  "spec_only_post_review_metadata_independently_inverted": true,
+  "inventory": {
+    "feature": 95,
+    "node": 30,
+    "vitest": 51,
+    "browser": 14,
+    "bootstrap_separate": 26
+  },
+  "author_source_clean": true,
+  "global_clean_not_claimed": true,
+  "limits": "Mechanical path/hash/provenance/accounting check only; no test/runtime execution. Prior third-run real migration/recovery one case credited only in its native packet. Current-head native diagnostic cause and 65 feature bodies remain pending exact-head CI; all three failed checkpoints preserved.",
+  "errors": [],
+  "historical_root_snapshot_rows": 3,
+  "historical_mutable_state_raw_observations": "UNVERIFIED_UNCREDITED; snapshot raw bytes not durably captured, baseline blobs only verified",
+  "historical_author_route_snapshot": "Committed baseline absent; current route independently artifact-bound",
+  "initial_reader_stops": {
+    "count": 3,
+    "credited": false,
+    "causes": [
+      "Historical mutable snapshot treated as current artifact",
+      "Third snapshot row null baseline interpreted as absent map value",
+      "SRO section hash excludes heading and terminating LF"
+    ]
+  }
+}

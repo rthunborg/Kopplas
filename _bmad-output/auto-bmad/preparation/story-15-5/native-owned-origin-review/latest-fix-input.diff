@@ -1,0 +1,2429 @@
+EXACT COMMITTED FOUR-PATH LATEST-SERIOUS-FIX-ONLY REVIEW. Completed broad rounds3/cap3; no fourth broad.
+Source 380c3e720d5caaa1dc2181d70737b9320337f451; baseline 6dad688ec6a51143bfee902618bb88647a81c940; exact committed source/Spec held, no postcommit verdict drift.
+Review closed compile-time owned origins, classification of ONLY already-consumed issuance outcomes, ordinary newly-created safe source frames, four existing RLS001 allowed-subject assertions, and caller-faithful once/value/order/privacy controls. No native message/error/stack/cause/payload or generic matcher actual/expected inspection; no new operations/queries/RPC/client/then/pool/principal/authority/result/settlement/custody effect.
+Ninth run39498246931 attempt1 FAIL: fullDB1944P43F52skip; story51=8P43F0skip (HTTP1P19F,commands1P14F,RLS2P10F,components4P). Sharedpolicy andINT015PASS. API019/RLS010FAIL with no later assertion credit. Reporter now exposes44 ordered leaves across43 failures, ALL scenario/unknown/unavailable; first original branches and all43 causes UNKNOWN. Safe await frames are not causal evidence. Browser17otherP14storyF28attempts, child1/teardownunverified/keycustody,28errorcontextrefs0body/contentNULLunqualified. Setup7/privacy4/DBreadychildren[0,1]/keydeletedconfirmed/closed/custodynull are separate positive observations.
+Finite unavailable/denied labels distinguish failed contracts, NOT collapsed backend SQL/proof/auth causes. Pre-guard seed/authority and upstream erased/swallowed/masked/unmapped failures may remain UNKNOWN. Ambiguous remaining outcome needs targeted cause-proof proposal, not opaque retry.
+Actual67 boundedNodePASS0F0skip0cancel; type/lint0errors0warnings, kernel5760 unchanged, SRO58. Injected fixtures/extracted live source and synthetic installedJSON transport have0native acceptance credit. Current source runtime UNEXECUTED.
+
+COMPLETE EXACT FOUR-PATH COMMITTED DELTA:
+diff --git a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+index d8768aba..571dc0bb 100644
+--- a/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
++++ b/_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md
+@@ -925,148 +925,214 @@ unchanged. Upstream erased/swallowed/masked errors remain unrecoverable.
+ The existing separate bounded Node file passed61/61, zero failures/skips/cancellations:
+ 58 retained plus three actual installed transport controls. Tests extract the unique
+ installed `failTask` body unchanged, supply actual installed `processError`, and
+ invoke public `JsonReporter` against one synthetic task and an in-memory logger.
+ There is no Vitest run/collection/global setup, output file, SQL/auth/browser or
+ managed service. The old nested-shape negative reproduces a known in-process
+ leaf missing from JSON. The actual repaired pure source transports ordered known
+ 42501, UNKNOWN and cleanup leaves while keeping one failed case. Hostile fields,
+ getters, inherited codes, cycle/depth/node limits and truncation retain safe output.
+ These synthetic controls prove transport only, with zero native acceptance credit.
+ Full typecheck and focused two-file lint passed with zero errors/warnings; final
+ kernel/Git checks and the single refreshed review trail precede the source commit.
+ Prior localSSR4 and eighth native component4 passes remain separately scoped;
+ this repair reruns neither. All eight failed packets/capsules and frozen inputs
+ remain intact. Distinct High exact committed three-path latest-fix review and
+ fresh Root exact-head native CI remain pending, without a fourth broad round,
+ DONE/delivery/release claim or claim to have fixed the43 underlying causes.
+ 
++## Bounded owned scenario origins — 2026-10-20
++
++Ninth checkpoint6dad/run39498246931 remains FAILED: story51 ran8P43F0skip;
++fullDB1944P43F52skip, components4/shared policy/INT015 passed separately.
++The repaired reporter now exposes44 ordered safe leaves across43 failed cases,
++all scenario/unknown with unavailable SQLSTATE. These are explicit unknowns,
++not evidence of a permission failure, canonical cleanup cause or an identified
++original branch. Browser14 cases failed across28 attempts; unavailable attachment
++bodies still receive no privacy credit. All nine failed histories stay immutable.
++
++Root admitted exactly four already-owned paths under
++`accepted-native-owned-origin-diagnostic-repair.json`, SHA
++`76a6c87a3e87fac2b36b3b231b4de09461a691ae5ad2ca480e3f090d47a09d0a`.
++Two family-only labels were insufficient. The matcher catch now immediately
++registers a fixed owned assertion origin, keeping only newly constructed safe
++source frames. Issuance guards distinguish already-consumed denied, unavailable,
++conflict, replayed, unknown-noncommitted and committed-missing-url branches.
++Existing token-route and HTTP catch guards emit closed owned origins. RLS001's
++four allowed-subject assertions use compile-time own/admin/planner/mixed sites
++through a synchronous once-call wrapper. No native error fields, matcher
++arguments/actual/expected or original stack/message/cause are inspected.
++All guards, loop order, calls/arguments/results/return identity, query/RPC/client,
++privilege/authority, actual settlement and custody behavior remain unchanged.
++
++These origins localize failed contracts, not underlying backend causes. Different
++backend failures already collapse to denied/unavailable. Pre-guard seed/authority
++failures and upstream erased, swallowed, unmapped or masked errors may still be
++UNKNOWN. If unavailable/denied/uninstrumented UNKNOWN remains, record the exact
++gap and require a targeted cause-proof proposal; do not assume another opaque
++CI retry establishes a diagnosis or that all43 causes are fixed.
++
++Current67 separate bounded Node controls passed with0 failures/skips/cancellations:
++61 retained plus six live-source origin/caller controls. They execute the exact
++first INT001/API001/RLS001 callbacks with injected stopping fixtures, exact guard
++and matcher source, and installed in-memory runner/processError/JsonReporter.
++Controls cover finite outcomes/sites, precise safe matcher frames, preceding and
++no-later call order, once/value identity, hostile accessors, HTTP arguments and
++upstream UNKNOWN limits. Synthetic callers prove neither actual SQL nor native
++failure causes. Whole TypeScript and focused three-file lint passed; final kernel,
++review-stop and Git checks precede the append-only exact four-path commit.
++No managed runtime, Vitest runner/collection/global setup, browser, extra operation,
++observer, client/then instrumentation, authority workaround or new build ran.
++Fresh distinct High committed latest-four review and Root exact-head native CI
++remain pending; no fourth broad review, DONE/delivery or release claim.
++
+ ## Suggested Review Order
+ 
+ Author: Story 15.5 implementation/fix author (gpt-6.1-sol High), incorporating
+ explicitly delegated browser and bootstrap contributors. Refreshed after all
+ Round 3 latest-fix assertions, the subsequent checkpoint repairs and bounded
+ native setup diagnostics, same-connection privacy qualification and explicit
+ isolated setup authority transport, bounded child settlement, browser diagnostic repair,
+ actual SQL callback ownership, executed-feature fixture/status/policy repairs and
+-bounded safe-leaf transport through the installed reporter.
++bounded safe-leaf transport through the installed reporter and closed owned scenario origins.
+ Stops below resolve to final source literals before the repair commit.
+ 
+ ### Own settings and honest lifecycle results
+ 
+ The two personal entry points reach one settings surface; the profile entry uses
+ server-filtered navigation. Confirmations and component-memory issuance retain
+ explicit uncertainty handling, while later authoritative status removes stale URLs.
+ The error render fallback reuses the existing approved sentence without enabling
+ retry before uncertain results have been reconciled; all four isolated SSR cases passed.
+ 
+ - `src/components/app-shell/AppShell.tsx:279` — `navigation.some`: gates the profile link on scheduling access.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:34` — `const current = await refresh();`: clears superseded post-commit output and success.
+ - `src/components/calendar-feed/CalendarSubscription.tsx:69` — `state?.status === "error"`: AC2/6 renders fallback guidance without changing lifecycle controls.
+ - `tests/integration/components/calendar-feed.test.ts:36` — `15.5-COMP-003`: AC2/6 existing error/retry SSR assertions passed in isolation.
+ - `tests/e2e/calendar-feed.e2e.spec.ts:380` — `15.5-E2E-010-`: AC2/6 supersession cases failed at3e7; changed-head browser evidence pending.
+ - `tests/e2e/calendar-feed.e2e.spec.ts:447` — `15.5-E2E-011`: AC2/6 browser control failed at3e7; changed-head evidence pending.
+ 
+ ### Signed current-self authority and atomic writes
+ 
+ Ordinary JWT commands derive self authority; SQL rechecks current exact membership
+ and role union under the scheduling tenant lock. Dedicated proofs bind privileged
+ inputs, and CAS/history/audit commit together without plaintext recovery.
+ 
+ - `src/server/commands/calendar-feed/manage-calendar-feed.ts:10` — `calendarFeedConfig`: exposes plaintext only after confirmed fresh SQL success.
+ - `src/server/commands/calendar-feed/manage-calendar-feed.ts:32` — `command: "calendar_feed.create"`: literal create/rotate/revoke declarations retain independent enrollment discovery.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:162` — `create function public.manage_calendar_feed`: checks signed authority, revision, replay and audit.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:122` — `is distinct from (case`: preserves domain branches while delimiting CASE within the PL/pgSQL IF; subsequent native stack resets compiled it.
+-- `tests/support/calendar-feed-atdd.ts:342` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
++- `tests/support/calendar-feed-atdd.ts:353` — `const allowed = ["membershipId"`: checks raw JWT status keys before mapper reconstruction.
+ - `tests/integration/rls/calendar-feed.rls.test.ts:129` — `15.5-RLS008`: AC1/4/9 case failed at3e7; no downstream field/ACL credit inferred.
+ 
+ ### Complete live snapshots and essential RFC correctness
+ 
+ The exact public middleware boundary precedes authentication/cookies. Projection
+ is complete and minimal; stable IDs, every projected-source revision and explicit
+ fractional rounding produce a subscription snapshot without scheduling METHOD.
+ 
+ - `middleware.ts:40` — `request.nextUrl.pathname`: bypasses only the exact feed token segment.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:236` — `'updatedAt',greatest`: covers mutable booking, role, job, customer and facility revisions.
+ - `src/features/calendar-feed/icalendar.ts:40` — `export function encodeCalendarFeed`: serializes complete snapshots before streaming.
+ - `tests/unit/features/calendar-feed/icalendar.test.ts:76` — `R1-05 positive`: AC3/8 independent positive fractional and boundary vectors passed.
+ 
+ ### Durable abuse admission and hardened restore ownership
+ 
+ Independent budgets keep admitted counters through projection cancellation without
+ advancing last-use. Serial fixtures restore only their captured unknown-IP row;
+ source creator ADMIN is distinct from SET authority, while unchanged recovery
+ keeps SupAdmin-only NOADMIN. Retained unsafe roles fail closed.
+ 
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:247` — `exception when sqlstate '57014'`: keeps projection failure inside the counter transaction.
+ - `tests/integration/calendar-feed/public-feed.int.test.ts:364` — `15.5-API018`: AC5/8 case failed at3e7; changed-head durability evidence pending.
+ - `supabase/migrations/20261020220000_personal_calendar_feed.sql:27` — `pg_has_role(current_user,feed_owner.oid,'SET')`: qualifies source ownership authority independently of creator ADMIN.
+ - `tests/integration/commands/calendar-feed.int.test.ts:434` — `memberships.every(row => row.inherit_option === false)`: AC4/9 INT015 native fresh/replay inherited-owner oracle passed at3e7.
+-- `tests/support/calendar-feed-atdd.ts:544` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
++- `tests/support/calendar-feed-atdd.ts:555` — `has_schema_privilege(oid,'public','CREATE')`: reads actual effective schema privileges including PUBLIC/inherited access.
+ - `tests/integration/rls/calendar-feed.rls.test.ts:171` — `publicSchemaCreate: false`: AC4/9 RLS010 failed at3e7; individual predicate reach remains unknown.
+ - `tests/integration/ops/recovery-storage-immutability.int.test.ts:131` — `has_schema_privilege('calendar_feed_owner','public','CREATE')`: the existing recovery case checks the restored target before Storage requests; separately qualified native case.
+ 
+ ### Isolated CI custody and honest evidence limits
+ 
+ Only captured child identities and one ephemeral Vault UUID belong to the wrapper.
+ The added PG17 case qualifies that disposable stack and owns transaction-local
+ UUID roles/schema/function through dedicated connections, with no pool reuse.
+ Settlement is memoized; abnormal browser teardown retains exact job custody, while
+ privacy detection measures raw output in memory before sanitized records persist.
+ Before any secret, one fixed read-only query requires exact effective privacy on
+ the same connection later used for key creation and deletion. SET ACL facts
+ remain observations. The later admitted setup transport separately requires actual
+ authenticated SupAdmin LOGIN+SUPER for key setup and INT015, preserving its
+ restricted-session oracle. No new privileged child configuration or grant is added.
+ 
+ - `tests/integration/commands/calendar-feed.int.test.ts:475` — `// FULL rollback comes first`: preserves rollback/reset and same/fresh catalog absence proof.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:257` — `export function createOwnedGroupStopper`: memoizes settlement, validates capture, passively observes missing-leader group absence and bounds completion/output.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:179` — `export function createTelemetryObserver`: detects leaks before dropping non-allowlisted output.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1125` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1276` — `nonzero/null-signal nested browser loss`: requires retained key custody for abnormal completion.
+ - `tests/support/calendar-feed-ci-contract.ts:43` — `projectCalendarFeedCiCommands`: validates pinned real wrapper argv and only the two exact workflow inverses.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:33` — `CI command projection rejects`: missing/wrong entry/argv and unrelated-source/workflow negatives preserve the original inverse fence.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:32` — `function safeDiagnostic`: emits only fixed stages/categories and allowlisted SQLSTATE without native payloads.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:314` — `COMMIT uncertainty is not cleared`: rollback alone cannot establish key absence after attempted COMMIT.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:443` — `receipt.privacyPreflight = await readCalendarFeedPrivacyPreflight(db);`: rejects unsafe effective settings before entropy on the existing client.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:210` — `privacy preflight rejects incomplete`: malformed and unsafe settings cannot reach a secret or child; actual driver/same-client/query-close cases exercise the surrounding boundary.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:99` — `export function createCalendarFeedDatabaseClient`: fixes the same qualified source publication, canonical admin and sole captured credential; no default or alternate route.
+ - `scripts/ci/with-calendar-feed-runtime.mjs:86` — `export async function readCalendarFeedSetupAuthority`: actual authenticated session/current LOGIN+SUPER proof is mandatory before mutation.
+ - `tests/integration/commands/calendar-feed.int.test.ts:497` — `await fresh.connect(); await setupQualified(fresh); await absent(fresh);`: INT015 fresh authority/privacy and exact absence oracle passed at3e7.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:148` — `setup construction refuses missing`: credential/target refusals cannot reach secrets or children; actual identity negatives and child-config tests complete the bounded boundary evidence.
+ 
+ - `tests/e2e/support/calendar-feed-atdd.ts:83` — `export function createCalendarLifecycleObservations`: AC2/6 observes both transport promises and joins actual readback before teardown; pure regressions are not native acceptance.
+ - `tests/e2e/support/calendar-feed-atdd.ts:25` — `export function calendarBrowserDiagnostic`: preserves closed stage/category/SQLSTATE without native error payloads.
+ - `tests/e2e/support/calendar-feed-atdd.ts:705` — `if (base && cleanupAllowed)`: canonical SQL/Auth cleanup waits for verified settlement; unresolved references retain fixture custody.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:490` — `missing leaders with persistent groups`: absence is measured within existing budgets; anonymous groups grant no signaling authority.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:891` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1042` — `actual browser bounded cancellation`: timeout cannot credit in-flight SQL/readback settlement; release and real completion are distinct.
+ 
+ - `tests/e2e/support/calendar-feed-atdd.ts:93` — `trackReadback<T>`: registers actual callback/query work independently of Playwright deadlines and closes before drain.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:971` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1122` — `installed polling deadline cannot credit`: HTTP completion plus outer timeout cannot credit unresolved physical query siblings or callback completion.
+ 
+-- `tests/support/calendar-feed-atdd.ts:190` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
+-- `tests/support/calendar-feed-atdd.ts:260` — `phase = "additional-users"`: marks actual callback entry; upstream lost code remains unknown.
++- `tests/support/calendar-feed-atdd.ts:201` — `export function calendarFixtureDiagnostic`: fixed stages/own-data SQLSTATE preserve only reaching errors within bounded aggregates.
++- `tests/support/calendar-feed-atdd.ts:271` — `phase = "additional-users"`: marks actual callback entry; upstream lost code remains unknown.
+ - `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:595` — `actual fixture diagnostics preserve only`: injected classification and upstream-loss negatives are not native failure-cause proof.
+ - `tests/integration/rls/acceptance-tables-migration-reset.int.test.ts:212` — `approved role-specific policies`: exact ten-policy/role case passed at3e7, retaining DELETE/ALL/extra-policy rejection.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:773` — `the actual allocated policy case rejects`: injected rows exercise catalog negatives; actual3e7 policy case passed separately.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:924` — `the actual allocated policy case rejects`: injected rows exercise catalog negatives; actual3e7 policy case passed separately.
+ 
+-- `tests/support/calendar-feed-atdd.ts:222` — `calendarFixtureSafeFailures.get(child)?.children`: flattens only guarded, already-sanitized children for the one-level reporter boundary.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:720` — `installed failure transport reproduces lost`: old-shape control distinguishes JSON projection loss from in-process unknown.
+-- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:732` — `actual repaired fixture diagnostics reach`: ordered safe primary/cleanup leaves remain one failed synthetic case.
++- `tests/support/calendar-feed-atdd.ts:233` — `calendarFixtureSafeFailures.get(child)?.children`: flattens only guarded, already-sanitized children for the one-level reporter boundary.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:871` — `installed failure transport reproduces lost`: old-shape control distinguishes JSON projection loss from in-process unknown.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:883` — `actual repaired fixture diagnostics reach`: ordered safe primary/cleanup leaves remain one failed synthetic case.
+ 
+ Evidence: historical check receipts keep their exact revisions and dependency
+ limits. Eighth checkpoint3e7 ran all51 story Vitest cases:8 passed/43 failed;
+ all four component cases and the exact shared policy case passed. Fourteen story
+ browser cases failed across28 attempts. Separate verify3130/bootstrap58/Python43/
+ recovery1 and actual DB child/key cleanup/INT015 passed; the full DB result still
+ failed1944P43F52skip. Browser custody, RLS010/API019 failure and unavailable
+ attachment content receive no borrowed proof. All43 native fixture messages had
+ only group markers: no leaf serialization, no diagnosed SQL or cleanup cause.
+ Current61 separate bounded Node tests passed, including three installed
+ runner/processError/JsonReporter transport controls using synthetic failures.
+ Actual pure source seams, injected rows and synthetic reporter tasks are not native
+ SQL/auth/browser acceptance. Prior isolated localSSR4 and native component4
+ passes keep their own scope; no SSR rerun here. Changed-head managed runtime,
+ complete native success and attachment-content privacy require Root exact-head CI.
+ Prior production builds remain historical, and no new build is claimed here.
+ All three broad rounds completed; only distinct High latest-delta review remains.
+ No provider/device/visual/performance or release-ready claim; the unallocated
+ exhaustive branch remains explicitly release-blocking deferred.
++
++### Closed origins without inferred backend causes
++
++The existing guards report only compile-time origins or outcome enums already
++consumed. RLS001 preserves each allowed-subject assertion and adds a fixed site;
++safe source frames identify other assertion lines without inspecting native errors.
++
++- `tests/support/calendar-feed-atdd.ts:189` — `export function calendarFixtureOrigin`: registers only newly created fixed safe errors.
++- `tests/support/calendar-feed-atdd.ts:194` — `export function calendarFixtureAssertionAt`: calls the existing assertion once and returns its result.
++- `tests/support/calendar-feed-atdd.ts:733` — `const outcome = result.outcome`: classifies the same consumed outcome without observing an RPC.
++- `tests/integration/rls/calendar-feed.rls.test.ts:23` — `calendarFixtureAssertionAt(allowedSites[subject]`: distinguishes four allowed contracts without changing the loop.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:792` — `actual first INT001 and API001 callbacks stop`: proves preceding/no-later operations with injected fixtures, not native acceptance.
++- `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:824` — `actual first callbacks retain precise safe assertion frames`: proves controlled frames and unrecoverable upstream UNKNOWN limits.
++
++Current evidence:67 bounded controls passed with0 failures/skips/cancellations,
++whole TypeScript and focused lint passed, and the approved5760-byte kernel is
++unchanged. Ninth native8P43F exposes44 scenario/unknown leaves; first actual
++branches and all43 causes remain unknown. Fixed outcome tags cannot distinguish
++collapsed backend causes. Native acceptance, RLS010/API019 later predicates and
++browser attachment privacy remain pending. Distinct High latest-four review is
++pending; prior review/SSR/runtime receipts retain their historical dependency scope.
+diff --git a/tests/integration/rls/calendar-feed.rls.test.ts b/tests/integration/rls/calendar-feed.rls.test.ts
+index 1ccff56b..68f5522b 100644
+--- a/tests/integration/rls/calendar-feed.rls.test.ts
++++ b/tests/integration/rls/calendar-feed.rls.test.ts
+@@ -1,41 +1,41 @@
+ import { randomUUID } from "node:crypto";
+ import { describe, test } from "vitest";
+ import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
+-import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEvents,
+-  type SubjectName } from "../../support/calendar-feed-atdd";
++import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEvents, calendarFixtureAssertionAt } from "../../support/calendar-feed-atdd";
+ 
+ // Provider endpoint: TODO — checked management/status/fetch/abuse RPCs await real
+ // P5 identifiers/signatures; normalized receipt purposes below are not SQL names.
+ // Source scrutinized: frozen 15.5 AC1–9, permission-matrix.ts Bookings.View union,
+ // time-reports.rls.test.ts ordinary-JWT/direct-SQL conventions and inherited ACL
+ // checks in approved-public-acl-repair.int.test.ts. No provider response invented.
+ // PARALLEL ROW-ISOLATED ONLY: no serial controls, key mutation, fault DDL,
+ // unknown-IP HTTP requests or resets. P5 consumes allocated key read-only; direct
+ // proof probes use fixture-owned IP hashes and row-owned subjects exclusively.
+ 
+ describe("15.5 exact self authority, raw SQL boundary and least privilege", () => {
+   test("[P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only", async () => {
+     await withCalendarFeedFixture("row-isolated", async fx => {
+       await fx.setAuthority("mixed", { primary: "saljare", additional: ["montor"] });
+-      const allowed: SubjectName[] = ["own", "admin", "planner", "mixed"];
++      const allowedSites = { own: "scenario-rls001-own", admin: "scenario-rls001-admin", planner: "scenario-rls001-planner", mixed: "scenario-rls001-mixed" } as const;
++      const allowed: Array<keyof typeof allowedSites> = ["own", "admin", "planner", "mixed"];
+       for (const subject of allowed) {
+         const result = await fx.rawManage(subject, lifecycle("create", 0));
+-        expect(result.denied, subject).toBe(false);
++        calendarFixtureAssertionAt(allowedSites[subject], () => expect(result.denied, subject).toBe(false));
+       }
+       for (const subject of ["seller", "economy", "invited", "disabled", "platformOnly", "anon"] as const) {
+         const before = await fx.physical();
+         const result = await fx.rawManage(subject, lifecycle("create", 0));
+         expect(result.denied, subject).toBe(true);
+         expect(result.rows).toEqual([]);
+         expect(await fx.physical()).toEqual(before);
+       }
+       const tokens = (await fx.physical()).tokens;
+       expect(tokens.filter(row => row.revokedAt === null)).toHaveLength(allowed.length);
+       expect(tokens.map(row => row.membershipId).sort()).toEqual(allowed.map(key => fx.subjects[key].membershipId).sort());
+     });
+   });
+ 
+   test("[P0] 15.5-RLS002 AC1 AC4 AC9 admin manager peer foreign and platform cannot act on behalf of a subject", async () => {
+     await withCalendarFeedFixture("row-isolated", async fx => {
+       const before = await fx.physical();
+       for (const caller of ["admin", "planner", "peer", "foreign", "platformOnly"] as const) {
+diff --git a/tests/support/calendar-feed-atdd.ts b/tests/support/calendar-feed-atdd.ts
+index d712a086..fce69a9d 100644
+--- a/tests/support/calendar-feed-atdd.ts
++++ b/tests/support/calendar-feed-atdd.ts
+@@ -17,37 +17,37 @@ import { manageCalendarFeed } from "@/server/commands/calendar-feed/manage-calen
+ import { readCalendarFeedStatus } from "@/server/read-models/calendar-feed";
+ import { publicCalendarFeed } from "@/server/calendar-feed/public-feed";
+ import { feedKeyFromEnv, issueCalendarFeedToken, hashFeedToken, FEED_SCHEMA, FETCH_DOMAIN, MANAGE_DOMAIN, signFeedProof } from "@/server/calendar-feed/attestation";
+ import { hashFeedIp } from "@/server/calendar-feed/trusted-ip";
+ 
+ /**
+  * A failing ordinary matcher prints actual/expected values. These tests inspect
+  * capabilities and hashes, so matcher errors are replaced by fixed text without
+  * a cause. Never use expect.soft, snapshots, console output or raw adapter errors.
+  * P5 adapters must similarly sanitize HTTP/RPC/SQL transport errors at source.
+  */
+ function redactMatchers<T extends object>(assertion: T): T {
+   return new Proxy(assertion, { get(target, key, receiver) {
+     const value: unknown = Reflect.get(target, key, receiver);
+     if (key === "not" && value && typeof value === "object") return redactMatchers(value);
+     if (typeof value !== "function") return value;
+     return (...args: unknown[]) => {
+       try { return Reflect.apply(value, target, args); }
+-      catch { throw new Error(`15.5 assertion ${String(key)} failed; sensitive values redacted`); }
++      catch { throw calendarFixtureOrigin("scenario-assertion"); }
+     };
+   } });
+ }
+ export const expectCalendar: typeof vitestExpect = new Proxy(vitestExpect, {
+   apply(target, thisArg, args) {
+     return redactMatchers(Reflect.apply(target, thisArg, args));
+   },
+ });
+ 
+ export type SubjectName = "own" | "peer" | "admin" | "planner" | "mixed" | "seller" |
+   "economy" | "foreign" | "invited" | "disabled" | "platformOnly" | "noProfile";
+ export type Subject = { tenantId: string; userId: string; membershipId: string; profileId: string | null };
+ export type LifecycleIntent = {
+   action: "create" | "rotate" | "revoke"; expectedRevision: number; attemptId: string; correlationId: string;
+ };
+ export function lifecycle(action: LifecycleIntent["action"], expectedRevision: number): LifecycleIntent {
+   return { action, expectedRevision, attemptId: randomUUID(), correlationId: randomUUID() };
+ }
+@@ -163,41 +163,52 @@ export type SerialControls = {
+   withFault<T>(scope: { tenantId: string; attemptId: string; correlationId: string;
+     stage: "create-audit" | "rotate-audit" | "revoke-audit" | "projection-after-first-page" | "projection-query-canceled" | "counter-write" },
+     run: () => Promise<T>): Promise<{ result: T; stageObserved: boolean; sqlstate: string; ownedObjectsRemaining: number }>;
+   loseCommittedResponse(subject: SubjectName, intent: LifecycleIntent): Promise<void>;
+   barrier(scope: { tenantId: string; membershipId: string; attemptId: string;
+     stage: "fetch-authority-admitted" | "revoke-before-commit" | "rotate-before-commit" |
+       "management-before-authority" | "fetch-before-authority" }): Promise<{
+     waitUntilEntered(timeoutMs: number): Promise<void>; release(): Promise<void>; assertOwnedObjectsAbsent(): Promise<void>;
+   }>;
+   /** One shared conservative unknown-IP bucket, confined to these two serial files. */
+   resetOwnedUnknownIpWindow(): Promise<void>;
+   boundedInfrastructureCounts(): Promise<{ liveWindows: number; expiredWindows: number; documentedBound: number }>;
+ };
+ export type Lane = "row-isolated" | "serial-commands" | "serial-public";
+ export type FixtureByLane<L extends Lane> = CalendarFixture &
+   (L extends "row-isolated" ? Record<never, never> : { serial: SerialControls });
+ 
+ // Pure fixture diagnostics: no DB/client imports or native error text are read.
+-export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown"] as const;
++export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed"] as const;
++export type CalendarFixtureOwnedOrigin = typeof calendarFixtureOwnedOrigins[number];
++export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown", ...calendarFixtureOwnedOrigins] as const;
+ export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
+ const calendarFixtureSqlstates = { "42501": "insufficient-privilege", "42P01": "undefined-table", "42703": "undefined-column", "42883": "undefined-function", "23502": "not-null", "23503": "foreign-key", "23505": "unique-conflict", "23514": "check-constraint", "22P02": "invalid-text", "25P02": "transaction-aborted", "57014": "query-cancelled", "40001": "serialization", "40P01": "deadlock", "08006": "connection-failure" } as const;
+ type CalendarFixtureSafeFailure = { stage: CalendarFixtureDiagnosticStage; children?: readonly Error[] };
+ const calendarFixtureSafeFailures = new WeakMap<object, CalendarFixtureSafeFailure>();
++/** Closed owned origin only: never inspect a native error or matcher arguments. */
++export function calendarFixtureOrigin(origin: CalendarFixtureOwnedOrigin): Error {
++  const stage = calendarFixtureOwnedOrigins.includes(origin) ? origin : "scenario-assertion";
++  const safe = new Error(`Calendar fixture failure [stage=${stage};category=unknown;sqlstate=unavailable]`);
++  calendarFixtureSafeFailures.set(safe, { stage }); return safe;
++}
++export function calendarFixtureAssertionAt<T>(site: "scenario-rls001-own" | "scenario-rls001-admin" | "scenario-rls001-planner" | "scenario-rls001-mixed", run: () => T): T {
++  try { return run(); } catch { throw calendarFixtureOrigin(site); }
++}
+ function fixtureOwnData(value: object, key: string): { found: boolean; value?: unknown } {
+   const descriptor = Object.getOwnPropertyDescriptor(value, key);
+   return descriptor && "value" in descriptor ? { found: true, value: descriptor.value } : { found: false };
+ }
+ export function calendarFixtureDiagnostic(stage: string, error: unknown): Error {
+   const fixedStage = calendarFixtureDiagnosticStages.includes(stage as CalendarFixtureDiagnosticStage) ? stage as CalendarFixtureDiagnosticStage : "unknown";
+   const objectLike = (value: unknown): value is object => (typeof value === "object" && value !== null) || typeof value === "function";
+   // Only this module's own safe objects may bypass native descriptor inspection.
+   if (objectLike(error) && calendarFixtureSafeFailures.has(error)) return error as Error;
+   let nodes = 0, exhausted = false;
+   const seen = new Set<object>();
+   const leaf = (at: CalendarFixtureDiagnosticStage, category: string, code = "unavailable") => {
+     const safe = new Error(`Calendar fixture failure [stage=${at};category=${category};sqlstate=${code}]`);
+     calendarFixtureSafeFailures.set(safe, { stage: at }); return safe;
+   };
+   function walk(value: unknown, at: CalendarFixtureDiagnosticStage, depth: number): Error {
+     // The final node is reserved for an explicit truncation marker.
+     if (++nodes >= 16) { exhausted = true; return leaf(at, "truncated"); }
+@@ -440,37 +451,37 @@ async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnTy
+     },
+     setAuthority: async (name,patch) => {
+       const subject=subjects[name];
+       if(patch.tenantPresent===false) { await removeOwnedTenant(subject.tenantId);return; }
+       if(patch.membershipPresent===false) {await adminQuery("delete from public.booking_assignees where person_profile_id=$1 and tenant_id=$2",[subject.profileId,subject.tenantId]);await adminQuery("delete from public.person_profiles where membership_id=$1 and tenant_id=$2",[subject.membershipId,subject.tenantId]);await adminQuery("delete from public.tenant_memberships where id=$1 and tenant_id=$2",[subject.membershipId,subject.tenantId]);return;}
+       if(patch.primary)await adminQuery("update public.tenant_memberships set role=$2 where id=$1",[subject.membershipId,patch.primary]);
+       if(patch.status)await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[subject.membershipId,patch.status]);
+       if(patch.additional) {await adminQuery("delete from public.membership_roles where membership_id=$1",[subject.membershipId]);for(const role of patch.additional)await adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,$3)",[subject.tenantId,subject.membershipId,role]);}
+       if(patch.profileArchived!==undefined)await adminQuery("update public.person_profiles set archived_at=case when $2 then clock_timestamp() else null end where id=$1",[subject.profileId,patch.profileArchived]);
+     },
+     setProvisioningState: async (name,state) => {await adminQuery("update public.tenants set provisioning_state=$2 where id=$1",[subjects[name].tenantId,state]);},
+     replaceMembership: async name => {
+       const subject=subjects[name];await fixture.setAuthority(name,{membershipPresent:false});
+       const [member]=await adminQuery<{id:string}>("insert into public.tenant_memberships(tenant_id,user_id,status,role) values($1,$2,'active','montor') returning id",[subject.tenantId,subject.userId]);subject.membershipId=member.id;subject.profileId=null;
+     },
+     http: (url,options={}) => track((async () => {
+       const target=new URL(url);if(target.origin!==testOrigin())throw new Error("Non-owned calendar HTTP target rejected");
+       for(const [name,value] of Object.entries(options.query??{}))target.searchParams.set(name,value);
+-      try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw new Error("Calendar HTTP unavailable; request redacted");}
++      try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw calendarFixtureOrigin("scenario-http-transport");}
+     })()),
+     trustedFetch: (url,ip) => track((async () => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})))()),
+     physical: async () => {
+       const raw=await readRows("calendar_feed_tokens"),audits=(await readRows("audit_events")).filter(row=>String(row.command).startsWith("calendar_feed."));
+       audits.sort((a,b)=>Date.parse(String(a.created_at))-Date.parse(String(b.created_at)));
+       const schedulingIntegrity:Record<string,unknown[]>={};for(const table of ["bookings","booking_assignees","booking_series","booking_conflicts","booking_conflict_resolutions","time_reports","jobs"])schedulingIntegrity[table]=await readRows(table);
+       return {tokens:raw.filter(row=>row.token_hash!==null).map(row=>({id:String(row.id),tenantId:String(row.tenant_id),membershipId:String(row.membership_id),hash:String(row.token_hash),revokedAt:iso(row.revoked_at),createdAt:iso(row.created_at)!,lastUsedAt:iso(row.last_used_at),usageCount:Number(row.usage_count),revision:Number(row.revision),attemptId:String(row.attempt_id)})),
+         audits:audits.map(row=>({action:String(row.command),actorId:String(row.actor_user_id),tenantId:String(row.tenant_id),attemptId:String((row.metadata as Record<string,unknown>).attemptId),metadata:row.metadata})),persistedRows:raw,schedulingIntegrity};
+     },
+     readAbuse: async (name,query={}) => {
+       const result=await clients[name].rpc("read_calendar_feed_abuse",{p_tenant_id:query.tenantId??subjects[name].tenantId});
+       return {denied:!!result.error,rows:result.error?[]:[{requestCount:result.data.requests,limitedCount:result.data.limited,lastSpikeAt:result.data.lastSpikeAt}]};
+     },
+     directTable: async (name,table,operation) => {
+       const client=name==="anon"?anon:clients[name];let result;
+       if(operation==="select")result=await client.from(table).select("*");
+       else if(operation==="insert")result=await client.from(table).insert(table==="calendar_feed_tokens"?{tenant_id:subjects.own.tenantId,membership_id:subjects.own.membershipId,token_hash:"a".repeat(64),revision:99,attempt_id:randomUUID(),action:"create",expected_revision:0}:{ip_hash:hashFeedIp(isolatedTrustedIp,key.secret),window_start:new Date().toISOString(),request_count:1});
+       else if(operation==="update")result=await client.from(table).update(table==="calendar_feed_tokens"?{revoked_at:new Date().toISOString()}:{request_count:99}).eq(table==="calendar_feed_tokens"?"tenant_id":"ip_hash",table==="calendar_feed_tokens"?subjects.own.tenantId:hashFeedIp(isolatedTrustedIp,key.secret));
+@@ -700,25 +711,29 @@ export function calendarEvents(body: string): ParsedEvent[] {
+       if (values?.length !== 1) throw new Error(`Expected one ${name}`);
+       return values[0];
+     };
+     return { uid: one("UID"), start: properties["DTSTART;VALUE=DATE"]?.[0] ?? one("DTSTART"),
+       end: properties["DTEND;VALUE=DATE"]?.[0] ?? one("DTEND"), summary: one("SUMMARY"),
+       location: properties.LOCATION?.[0] ?? null, properties };
+   });
+ }
+ export function inactiveContract(response: FeedResponse) {
+   // All security/cache/content headers, not volatile Date/request tracing IDs.
+   const names = ["content-type", "cache-control", "pragma", "expires", "retry-after", "x-content-type-options",
+     "content-security-policy", "referrer-policy", "set-cookie", "location", "etag", "last-modified"];
+   return { status: response.status, body: response.body,
+     headers: Object.fromEntries(names.map(name => [name, response.headers[name] ?? null])) };
+ }
+ export function tokenFromUrl(url: string): string {
+   const path = new URL(url).pathname;
+   const match = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(path);
+-  if (!match) throw new Error("Expected canonical capability route");
++  if (!match) throw calendarFixtureOrigin("scenario-canonical-token-route");
+   return match[1];
+ }
+ export function issuedUrl(result: ManagementObservation): string {
+-  if (result.outcome !== "committed" || !result.issuedUrl) throw new Error("Confirmed fresh issuance required");
++  const outcome = result.outcome;
++  if (outcome !== "committed") {
++    throw calendarFixtureOrigin(outcome === "denied" ? "scenario-issued-denied" : outcome === "unavailable" ? "scenario-issued-unavailable" : outcome === "conflict" ? "scenario-issued-conflict" : outcome === "replayed" ? "scenario-issued-replayed" : "scenario-issued-unknown-noncommitted");
++  }
++  if (!result.issuedUrl) throw calendarFixtureOrigin("scenario-issued-committed-missing-url");
+   return result.issuedUrl;
+ }
+diff --git a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+index 6bd5ce61..7d08c0a3 100644
+--- a/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
++++ b/tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts
+@@ -702,36 +702,187 @@ function actualInstalledFailureTransport() {
+       (result: { state: string; errors?: unknown[] }, error: unknown) => void;
+     const { JsonReporter } = await import("vitest/node");
+     return async error => {
+       const result: { state: string; errors?: unknown[] } = { state: "run" }; failTask(result, error);
+       const file = { type: "suite", name: "fixture transport", filepath: "fixture-transport.test.ts", tasks: [] as unknown[], result: { state: "fail" } };
+       file.tasks.push({ type: "test", name: "one failing fixture", suite: file, result, meta: {}, mode: "run" });
+       const output: string[] = [];
+       const reporter = new JsonReporter({});
+       // No runner/start/collection, output file or service: the public reporter
+       // writes its real JSON into this in-memory logger using a synthetic task.
+       reporter.onInit({ config: {}, snapshot: { summary: {} }, logger: { log(value: string) { output.push(value); }, warn() { throw Error("Unexpected reporter warning"); } } } as never);
+       await reporter.onTestRunEnd([{ task: file }] as never);
+       assert.equal(output.length, 1); return JSON.parse(output[0]);
+     };
+   })();
+   return installedFailureTransport;
+ }
+ 
++async function actualFixtureOrigins() {
++    const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
++    const between = (start: string, end: string) => {
++      assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
++      return source.slice(source.indexOf(start), source.indexOf(end));
++    };
++    const pure = between("// Pure fixture diagnostics:", "// End pure fixture diagnostics.");
++    const matcher = between("function redactMatchers", "export const expectCalendar");
++    const guards = source.slice(source.indexOf("export function tokenFromUrl"));
++    assert.equal(source.split("export function tokenFromUrl").length, 2);
++    const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
++    return import(`data:text/javascript;base64,${Buffer.from(strip(`${pure}\n${matcher}\n${guards}\nexport { redactMatchers };`)).toString("base64")}`);
++}
++
++async function actualFirstCalendarCase(path: string, dependencies: Record<string, unknown>) {
++  const source = readFileSync(new URL(path, import.meta.url), "utf8").replaceAll("\r\n", "\n");
++  const start = source.indexOf('  test("[P0] 15.5-'); assert.ok(start >= 0);
++  const end = source.indexOf("\n  });", start); assert.ok(end > start);
++  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
++  let callback: (() => Promise<void>) | undefined;
++  new Function("test", ...Object.keys(dependencies), strip(source.slice(start, end + "\n  });".length)))(
++    (_name: string, run: () => Promise<void>) => { callback = run; }, ...Object.values(dependencies));
++  assert.ok(callback); return callback();
++}
++
++test("live issuance guards expose only closed consumed outcome classes and retain success identity and access order", async () => {
++  const { issuedUrl, tokenFromUrl, calendarFixtureDiagnostic } = await actualFixtureOrigins();
++  const report = await actualInstalledFailureTransport();
++  let forbiddenReads = 0;
++  for (const outcome of ["denied", "unavailable", "conflict", "replayed", "PRIVATE unexpected"]) {
++    let reads = 0;
++    const result = Object.defineProperties({}, { outcome: { get() { reads++; return outcome; } },
++      issuedUrl: { get() { forbiddenReads++; throw Error("PRIVATE URL"); } },
++      cause: { get() { forbiddenReads++; throw Error("PRIVATE cause"); } } });
++    let failure!: Error;
++    try { issuedUrl(result); assert.fail("Expected closed issuance guard"); } catch (error) { failure = error as Error; }
++    const stage = outcome.startsWith("PRIVATE") ? "unknown-noncommitted" : outcome;
++    assert.match(failure.message, new RegExp(`stage=scenario-issued-${stage};category=unknown`));
++    assert.equal(reads, 1); assert.equal(calendarFixtureDiagnostic("scenario", failure), failure);
++    const json = await report(failure); assert.equal(json.numFailedTests, 1);
++    assert.ok(!JSON.stringify(json).includes("PRIVATE"));
++  }
++  assert.equal(forbiddenReads, 0);
++  assert.throws(() => issuedUrl({ outcome: "committed", issuedUrl: null }), /scenario-issued-committed-missing-url/);
++  const url = `https://example.invalid/calendar/feed/${"a".repeat(43)}`, accesses: string[] = [];
++  const committed = Object.defineProperties({}, { outcome: { get() { accesses.push("outcome"); return "committed"; } },
++    issuedUrl: { get() { accesses.push("url"); return url; } } });
++  assert.equal(issuedUrl(committed), url); assert.deepEqual(accesses, ["outcome", "url", "url"]);
++  assert.equal(tokenFromUrl(url), "a".repeat(43));
++  assert.throws(() => tokenFromUrl("https://example.invalid/PRIVATE"), /scenario-canonical-token-route/);
++});
++
++test("live matcher and synchronous allowed-site wrappers preserve once calls values and controlled callsite frames without native field reads", async () => {
++  const { redactMatchers, calendarFixtureAssertionAt, calendarFixtureDiagnostic } = await actualFixtureOrigins();
++  let calls = 0, reads = 0;
++  const hostile = Object.defineProperties({}, Object.fromEntries(["message", "stack", "cause", "code", "actual", "expected", "then"].map(key => [key, { get() { reads++; throw Error("PRIVATE"); } }])));
++  const marker = {}, args = [Symbol("PRIVATE argument")];
++  const assertion = redactMatchers({ pass(...received: unknown[]) { calls++; assert.equal(received[0], args[0]); return marker; }, fail() { calls++; throw hostile; } });
++  assert.equal(assertion.pass(...args), marker); assert.equal(calls, 1);
++  let failure!: Error;
++  function controlledAssertionCallsite() { assertion.fail(); }
++  try { controlledAssertionCallsite(); } catch (error) { failure = error as Error; }
++  assert.match(failure.message, /stage=scenario-assertion;category=unknown/);
++  assert.ok(failure.stack?.includes("controlledAssertionCallsite"));
++  assert.equal(calendarFixtureDiagnostic("scenario", failure), failure);
++  assert.equal(calendarFixtureAssertionAt("scenario-rls001-own", () => marker), marker);
++  for (const site of ["own", "admin", "planner", "mixed"]) {
++    assert.throws(() => calendarFixtureAssertionAt(`scenario-rls001-${site}`, () => { calls++; throw hostile; }), new RegExp(`stage=scenario-rls001-${site}`));
++  }
++  assert.equal(calls, 6); assert.equal(reads, 0); assert.ok(!failure.stack?.includes("PRIVATE"));
++});
++
++test("actual first INT001 and API001 callbacks stop at the live issuance guard after exactly their existing preceding operations", async () => {
++  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
++  for (const [path, expected] of [
++    ["../../../integration/commands/calendar-feed.int.test.ts", ["manage"]],
++    ["../../../integration/calendar-feed/public-feed.int.test.ts", ["seed", "manage"]],
++  ] as const) {
++    const calls: string[] = [];
++    const fixture = { async seedBookings() { calls.push("seed"); }, async manage() { calls.push("manage"); return { outcome: "unavailable", issuedUrl: null }; } };
++    const failure = await actualFirstCalendarCase(path, { withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture),
++      lifecycle: () => ({}), bookingSeed: (value: unknown) => value, issuedUrl: seams.issuedUrl, tokenFromUrl: seams.tokenFromUrl }).then(() => assert.fail("Expected first callback failure"), error => error);
++    assert.deepEqual(calls, expected); assert.match(failure.message, /scenario-issued-unavailable/);
++    const json = await report(seams.calendarFixtureDiagnostic("scenario", failure));
++    assert.equal(json.numFailedTests, 1); assert.match(json.testResults[0].assertionResults[0].failureMessages[0], /scenario-issued-unavailable/);
++  }
++});
++
++test("actual first RLS001 callback identifies each allowed subject without altering preceding calls or inspecting matcher arguments", async () => {
++  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
++  for (const failingSubject of ["own", "admin", "planner", "mixed"]) {
++    const calls: string[] = [], subjects = ["own", "admin", "planner", "mixed"];
++    const fixture = { async setAuthority() { calls.push("authority"); }, async rawManage(subject: string) { calls.push(subject); return { denied: subject === failingSubject }; } };
++    const failure = await actualFirstCalendarCase("../../../integration/rls/calendar-feed.rls.test.ts", {
++      withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture), lifecycle: () => ({}),
++      calendarFixtureAssertionAt: seams.calendarFixtureAssertionAt,
++      expect: (actual: unknown) => seams.redactMatchers({ toBe(expected: unknown) { assert.equal(actual, expected); } }),
++    }).then(() => assert.fail("Expected subject failure"), error => error);
++    assert.deepEqual(calls, ["authority", ...subjects.slice(0, subjects.indexOf(failingSubject) + 1)]);
++    const json = await report(seams.calendarFixtureDiagnostic("scenario", failure));
++    assert.equal(json.numFailedTests, 1); assert.match(json.testResults[0].assertionResults[0].failureMessages[0], new RegExp(`scenario-rls001-${failingSubject}`));
++  }
++});
++
++test("actual first callbacks retain precise safe assertion frames and unknown upstream limits after successful issuance", async () => {
++  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
++  const url = `https://example.invalid/calendar/feed/${"a".repeat(43)}`;
++  const expect = (actual: unknown) => seams.redactMatchers({ toBe(expected: unknown) { assert.equal(actual, expected); },
++    toHaveLength(expected: number) { assert.equal((actual as unknown[]).length, expected); } });
++  for (const path of ["../../../integration/commands/calendar-feed.int.test.ts", "../../../integration/calendar-feed/public-feed.int.test.ts"]) {
++    const calls: string[] = [];
++    const fixture = { subjects: { foreign: { tenantId: "foreign" }, peer: { membershipId: "peer", userId: "peer" } },
++      async seedBookings() { calls.push("seed"); }, async manage() { calls.push("manage"); return { outcome: "committed", issuedUrl: url }; },
++      async physical() { calls.push("physical"); return { tokens: [] }; }, async http() { calls.push("http"); return { status: 503 }; } };
++    const failure = await actualFirstCalendarCase(path, { withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture),
++      lifecycle: () => ({}), bookingSeed: (value: unknown) => value, issuedUrl: seams.issuedUrl, tokenFromUrl: seams.tokenFromUrl, expect }).then(() => assert.fail("Expected actual first assertion failure"), error => error);
++    assert.deepEqual(calls, path.includes("commands") ? ["manage", "physical"] : ["seed", "manage", "http"]);
++    const messages = (await report(seams.calendarFixtureDiagnostic("scenario", failure))).testResults[0].assertionResults[0].failureMessages;
++    assert.equal(messages.length, 1); assert.match(messages[0], /stage=scenario-assertion/);
++    assert.ok(messages[0].includes("eval at actualFirstCalendarCase"));
++  }
++  // A pre-guard rejection has no invented issuance origin. Direct own code may
++  // survive, but erased/unmapped upstream information stays explicitly unknown.
++  for (const rejection of [new Error("PRIVATE erased upstream"), { code: "42501", detail: "PRIVATE" }]) {
++    let manages = 0;
++    const failure = await actualFirstCalendarCase("../../../integration/calendar-feed/public-feed.int.test.ts", {
++      withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run({ seedBookings: async () => { throw rejection; }, manage: async () => { manages++; } }),
++      bookingSeed: (value: unknown) => value,
++    }).catch(error => seams.calendarFixtureDiagnostic("scenario", error));
++    assert.equal(manages, 0); assert.match(failure.message, /stage=scenario;/);
++    assert.ok(!failure.stack?.includes("PRIVATE"));
++    assert.match(failure.message, rejection instanceof Error ? /category=unknown;sqlstate=unavailable/ : /category=insufficient-privilege;sqlstate=42501/);
++  }
++});
++
++test("live owned HTTP catch emits fixed origin and preserves the existing fetch arguments without examining its rejection", async () => {
++  const seams = await actualFixtureOrigins();
++  const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
++  const start = "    http: (url,options={}) =>", end = "    trustedFetch:";
++  assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
++  const httpSource = source.slice(source.indexOf(start), source.indexOf(end));
++  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
++  let calls = 0, reads = 0; const headers = {}, hostile = Object.defineProperty({}, "message", { get() { reads++; throw Error("PRIVATE"); } });
++  const make = (fetch: (...args: unknown[]) => Promise<unknown>, response: (value: unknown) => unknown) => new Function("track", "testOrigin", "fetch", "response", "calendarFixtureOrigin", `return ${strip(`({${httpSource}}).http`)};`)(
++    (value: unknown) => value, () => "https://example.invalid", fetch, response, seams.calendarFixtureOrigin);
++  const http = make(async (target, options) => { calls++; assert.ok(target instanceof URL); assert.equal(target.searchParams.get("from"), "1900"); assert.deepEqual(options, { headers, redirect: "manual", cache: "no-store" }); throw hostile; }, value => value);
++  await assert.rejects(http("https://example.invalid/calendar/feed/opaque", { headers, query: { from: "1900" } }), /scenario-http-transport/);
++  assert.equal(calls, 1); assert.equal(reads, 0);
++  const result = {}; assert.equal(await make(async () => result, value => value)("https://example.invalid/calendar/feed/opaque"), result);
++});
++
+ test("installed failure transport reproduces lost nested diagnostics without treating reporter absence as unknown in process", async () => {
+   const report = await actualInstalledFailureTransport();
+   const leaf = new Error("Calendar fixture failure [stage=bind-profile;category=insufficient-privilege;sqlstate=42501]");
+   const nested = new AggregateError([leaf], "Calendar fixture failure group [stage=canonical-fixture-cleanup]");
+   const oldShape = new AggregateError([nested], "Calendar fixture failure group [stage=scenario]");
+   assert.equal(nested.errors[0], leaf); // The in-process positive control exists.
+   const json = await report(oldShape), messages = json.testResults[0].assertionResults[0].failureMessages;
+   assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 1);
+   assert.match(messages[0], /group \[stage=canonical-fixture-cleanup\]/);
+   assert.ok(!messages[0].includes("sqlstate=42501"));
+ });
+ 
+ test("actual repaired fixture diagnostics reach installed JSON as ordered primary and cleanup leaves within one failed case", async () => {
+   const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
+   const primary = calendarFixtureDiagnostic("bind-profile", { code: "42501", message: "PRIVATE native" });
+   const unknown = calendarFixtureDiagnostic("booking-fixture-before-callback", new Error("PRIVATE lost 23503"));
+   const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "23503", query: "PRIVATE query" });
+   const nested = calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, new AggregateError([unknown, cleanup], "PRIVATE")], "PRIVATE"));
+
+EXACT COMMITTED SOURCE tests/support/calendar-feed-atdd.ts lines1-740:
+/** Story 15.5 actual command/JWT/SQL/HTTP adapters. No resource launches.
+ * Test observation shapes below normalize real results, never produce expected
+ * outcomes. Dedicated ephemeral key and actual Next host are supplied by the
+ * separately owned isolated CI runtime. Required missing infrastructure fails.
+ */
+import { randomUUID } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { expect as vitestExpect } from "vitest";
+import { adminQuery, adminSession } from "../factories/admin-sql";
+import { seedRoleAwarePhaseAUsers, makeAuthedServerClient, makeAnonServerClient, deleteAuthUser, type FixtureUser, type TestServerClient } from "../factories/tenants";
+import { withBookingFixture, bookingCommand, bookingInput, type BookingFixture } from "./bookings-atdd";
+import { realSeriesInput, reviewRealSeries } from "./booking-series-atdd";
+import { createBookingSeries } from "@/server/commands/bookings/create-booking-series";
+import { updateBookingSeries } from "@/server/commands/bookings/update-booking-series";
+import { runCommand } from "@/server/commands/envelope";
+import { manageCalendarFeed } from "@/server/commands/calendar-feed/manage-calendar-feed";
+import { readCalendarFeedStatus } from "@/server/read-models/calendar-feed";
+import { publicCalendarFeed } from "@/server/calendar-feed/public-feed";
+import { feedKeyFromEnv, issueCalendarFeedToken, hashFeedToken, FEED_SCHEMA, FETCH_DOMAIN, MANAGE_DOMAIN, signFeedProof } from "@/server/calendar-feed/attestation";
+import { hashFeedIp } from "@/server/calendar-feed/trusted-ip";
+
+/**
+ * A failing ordinary matcher prints actual/expected values. These tests inspect
+ * capabilities and hashes, so matcher errors are replaced by fixed text without
+ * a cause. Never use expect.soft, snapshots, console output or raw adapter errors.
+ * P5 adapters must similarly sanitize HTTP/RPC/SQL transport errors at source.
+ */
+function redactMatchers<T extends object>(assertion: T): T {
+  return new Proxy(assertion, { get(target, key, receiver) {
+    const value: unknown = Reflect.get(target, key, receiver);
+    if (key === "not" && value && typeof value === "object") return redactMatchers(value);
+    if (typeof value !== "function") return value;
+    return (...args: unknown[]) => {
+      try { return Reflect.apply(value, target, args); }
+      catch { throw calendarFixtureOrigin("scenario-assertion"); }
+    };
+  } });
+}
+export const expectCalendar: typeof vitestExpect = new Proxy(vitestExpect, {
+  apply(target, thisArg, args) {
+    return redactMatchers(Reflect.apply(target, thisArg, args));
+  },
+});
+
+export type SubjectName = "own" | "peer" | "admin" | "planner" | "mixed" | "seller" |
+  "economy" | "foreign" | "invited" | "disabled" | "platformOnly" | "noProfile";
+export type Subject = { tenantId: string; userId: string; membershipId: string; profileId: string | null };
+export type LifecycleIntent = {
+  action: "create" | "rotate" | "revoke"; expectedRevision: number; attemptId: string; correlationId: string;
+};
+export function lifecycle(action: LifecycleIntent["action"], expectedRevision: number): LifecycleIntent {
+  return { action, expectedRevision, attemptId: randomUUID(), correlationId: randomUUID() };
+}
+export type ManagementObservation = {
+  outcome: "committed" | "replayed" | "conflict" | "denied" | "unavailable";
+  issuedUrl: string | null; revision: number | null;
+};
+export type StatusObservation = {
+  active: boolean; revision: number; lastUsedAt: string | null; usageCount: number;
+  attemptOutcome: "committed" | "not-found" | null; publicDto: Record<string, unknown>;
+};
+export type BookingSeed = {
+  id: string; subject: SubjectName; additionalAssignees: SubjectName[];
+  startsAt: string; endsAt: string; updatedAt: string; allDay: boolean;
+  status: "planned" | "cancelled"; description: string;
+  workRoleLabel: string | null; jobLabel: string | null; customerLabel: string | null;
+  facilityAddress: string | null;
+};
+export function bookingSeed(patch: Partial<BookingSeed> = {}): BookingSeed {
+  return { id: randomUUID(), subject: "own", additionalAssignees: [],
+    startsAt: "2026-10-21T06:00:00Z", endsAt: "2026-10-21T14:00:00Z",
+    updatedAt: "2026-10-20T12:00:00Z", allDay: false, status: "planned",
+    description: "PRIVATE-NOTE: ring Anna på 0700001122", workRoleLabel: "Installation",
+    jobLabel: "Belysning verkstad", customerLabel: "Testkund Väster AB",
+    facilityAddress: "Testgatan 15, Uppsala", ...patch };
+}
+export type TokenRow = {
+  id: string; tenantId: string; membershipId: string; hash: string;
+  revokedAt: string | null; createdAt: string; lastUsedAt: string | null;
+  usageCount: number; revision: number; attemptId: string;
+};
+export type AuditRow = { action: string; actorId: string; tenantId: string; attemptId: string; metadata: unknown };
+export type PhysicalState = {
+  tokens: TokenRow[]; audits: AuditRow[]; persistedRows: unknown[];
+  /** Actual row-scoped bookings/series/exceptions/conflicts/resolutions/reports/jobs readbacks. */
+  schedulingIntegrity: Record<string, unknown[]>;
+};
+export type FeedResponse = { status: number; headers: Record<string, string>; body: string };
+export type ParsedEvent = {
+  uid: string; start: string; end: string; summary: string; location: string | null;
+  properties: Record<string, string[]>;
+};
+export type ProofAttack = "missing" | "wrong-key" | "wrong-domain" | "expired" | "future" |
+  "over-60-seconds" | "tampered-token-hash" | "tampered-ip-hash" | "tampered-request-id" |
+  "tampered-actor" | "tampered-tenant" | "tampered-membership" | "tampered-action" |
+  "tampered-revision" | "tampered-attempt" | "weak-chosen-new-hash" | "changed-new-hash";
+export type RpcObservation = { denied: boolean; rows: unknown[]; sanitizedResult: unknown };
+export type AuthorityPatch = {
+  primary?: "tenant_admin" | "projektledare" | "montor" | "saljare" | "ekonomi";
+  additional?: string[]; status?: "active" | "invited" | "disabled";
+  membershipPresent?: boolean; tenantPresent?: boolean; profileArchived?: boolean;
+};
+export type AclFacts = {
+  tables: Array<{ name: string; rlsEnabled: boolean; anonSelect: boolean; authenticatedDml: boolean;
+    anonDml: boolean; publicInheritedDml: boolean; authenticatedSensitiveColumns: boolean }>;
+  functions: Array<{ purpose: "fetch" | "manage" | "status" | "abuse"; owner: string; securityDefiner: boolean; emptySearchPath: boolean;
+    anonExecute: boolean; authenticatedExecute: boolean; publicExecute: boolean }>;
+  owner: { name: string; login: boolean; inherit: boolean; superuser: boolean; bypassRls: boolean; publicSchemaCreate: boolean;
+    assumableByJwtRoles: boolean; unrelatedTableRead: boolean; generalVaultRead: boolean;
+    effectiveReadOutsideAllowedColumns: boolean; filteredHelperOnly: boolean };
+  helpers: Array<{ purpose: "canonical" | "verifier" | "filtered-secret"; jwtExecute: boolean; publicExecute: boolean; feedOwnerExecute: boolean;
+    otherRoleInheritedExecute: boolean; exactConfiguredKeyFilter: boolean }>;
+  ipColumns: string[];
+};
+export type CalendarFixture = {
+  subjects: Record<SubjectName, Subject>;
+  /** Unique fixture-owned canonical IPv6 address; never the global unknown bucket. */
+  isolatedTrustedIp: string;
+  /** Invokes real request-bound server action/command, not a hand-built signed oracle. */
+  manage(subject: SubjectName, intent: LifecycleIntent): Promise<ManagementObservation>;
+  status(subject: SubjectName, attemptId?: string): Promise<StatusObservation>;
+  /** Bypasses envelope via actual ordinary JWT RPC; overrides are attack input. */
+  rawManage(subject: SubjectName | "anon", intent: LifecycleIntent,
+    overrides?: Partial<Subject>, attack?: ProofAttack): Promise<RpcObservation>;
+  rawFetch(url: string, attack: ProofAttack | "valid" | "replay",
+    options?: { callerWindow?: number; callerLimit?: number; changedIpHash?: string }): Promise<RpcObservation>;
+  seedBookings(rows: BookingSeed[]): Promise<void>;
+  /** Real existing 15.2 commands/materialization; returns seeded surviving IDs, never expected output. */
+  seedSeries(subject: SubjectName): Promise<{ unchangedId: string; movedExceptionId: string; cancelledId: string;
+    splitSurvivingId: string; newOccurrenceIds: string[] }>;
+  changeSeries(kind: "edit" | "exception" | "cancel" | "split", id: string): Promise<void>;
+  setBooking(id: string, patch: Partial<BookingSeed>): Promise<void>;
+  editProjectedSource(id: string, source: "work_roles" | "jobs" | "customers" | "facilities", label: string, updatedAt: string): Promise<void>;
+  setAssignments(id: string, subjects: SubjectName[]): Promise<void>;
+  setAuthority(subject: SubjectName, patch: AuthorityPatch): Promise<void>;
+  setProvisioningState(subject: SubjectName, state: string | null): Promise<void>;
+  replaceMembership(subject: SubjectName): Promise<void>;
+  /** Real HTTP, redirect following and automatic retries disabled; never accepts trusted-IP input. */
+  http(url: string, options?: { headers?: Record<string, string>; query?: Record<string, string> }): Promise<FeedResponse>;
+  /** Real server orchestrator+SQL with private trusted-IP dependency seam; NOT an HTTP header. */
+  trustedFetch(url: string, canonicalIp: string): Promise<FeedResponse>;
+  physical(): Promise<PhysicalState>;
+  readAbuse(subject: SubjectName, query?: Record<string, string>): Promise<{ denied: boolean; rows: Record<string, unknown>[] }>;
+  directTable(subject: SubjectName | "anon", table: "calendar_feed_tokens" | "calendar_feed_ip_windows",
+    operation: "select" | "insert" | "update" | "delete", options?: Record<string, unknown>): Promise<RpcObservation>;
+  /** Read-only pg_catalog/has_*_privilege inspection, INCLUDING inherited PUBLIC/role ACLs. */
+  acl(): Promise<AclFacts>;
+  /** Actual captured server log/error/audit telemetry only; never print sensitive test values. */
+  telemetry(): Promise<string>;
+  /** In-memory TEST-only values for negative leak assertions; never logs/returns them to product. */
+  sensitiveTestValues(): Promise<string[]>;
+  /** Seed real existing booking/series/resolver/report/job records and return physical baseline. */
+  seedSchedulingRegressionState(): Promise<Record<string, unknown[]>>;
+};
+export type SerialControls = {
+  /** Unique allocated TEST key only; restore exact owned state, never borrowed key material. */
+  withKeyState<T>(state: "missing" | "wrong-runtime-key" | "wrong-vault-key" | "unrelated-vault-key-only",
+    run: () => Promise<T>): Promise<T>;
+  /** DB-clock fixture, not caller-signed windows/limits. Binding must prove real SQL time source. */
+  withDatabaseTime<T>(iso: string, run: () => Promise<T>): Promise<T>;
+  counters(url: string, canonicalIp: string | null): Promise<{ token: number; ip: number; windowStart: string;
+    databaseNow: string; spikeCount: number; storedIpIsKeyedHash: boolean }>;
+  withFault<T>(scope: { tenantId: string; attemptId: string; correlationId: string;
+    stage: "create-audit" | "rotate-audit" | "revoke-audit" | "projection-after-first-page" | "projection-query-canceled" | "counter-write" },
+    run: () => Promise<T>): Promise<{ result: T; stageObserved: boolean; sqlstate: string; ownedObjectsRemaining: number }>;
+  loseCommittedResponse(subject: SubjectName, intent: LifecycleIntent): Promise<void>;
+  barrier(scope: { tenantId: string; membershipId: string; attemptId: string;
+    stage: "fetch-authority-admitted" | "revoke-before-commit" | "rotate-before-commit" |
+      "management-before-authority" | "fetch-before-authority" }): Promise<{
+    waitUntilEntered(timeoutMs: number): Promise<void>; release(): Promise<void>; assertOwnedObjectsAbsent(): Promise<void>;
+  }>;
+  /** One shared conservative unknown-IP bucket, confined to these two serial files. */
+  resetOwnedUnknownIpWindow(): Promise<void>;
+  boundedInfrastructureCounts(): Promise<{ liveWindows: number; expiredWindows: number; documentedBound: number }>;
+};
+export type Lane = "row-isolated" | "serial-commands" | "serial-public";
+export type FixtureByLane<L extends Lane> = CalendarFixture &
+  (L extends "row-isolated" ? Record<never, never> : { serial: SerialControls });
+
+// Pure fixture diagnostics: no DB/client imports or native error text are read.
+export const calendarFixtureOwnedOrigins = ["scenario-assertion", "scenario-issued-denied", "scenario-issued-unavailable", "scenario-issued-conflict", "scenario-issued-replayed", "scenario-issued-unknown-noncommitted", "scenario-issued-committed-missing-url", "scenario-canonical-token-route", "scenario-http-transport", "scenario-rls001-own", "scenario-rls001-admin", "scenario-rls001-planner", "scenario-rls001-mixed"] as const;
+export type CalendarFixtureOwnedOrigin = typeof calendarFixtureOwnedOrigins[number];
+export const calendarFixtureDiagnosticStages = ["booking-fixture-before-callback", "canonical-fixture-cleanup", "additional-users", "bind-membership", "bind-profile", "bind-client", "owned-row-cleanup", "additional-auth-cleanup", "cleanup-absence-check", "serial-window-setup", "serial-window-restore", "scenario", "unknown", ...calendarFixtureOwnedOrigins] as const;
+export type CalendarFixtureDiagnosticStage = typeof calendarFixtureDiagnosticStages[number];
+const calendarFixtureSqlstates = { "42501": "insufficient-privilege", "42P01": "undefined-table", "42703": "undefined-column", "42883": "undefined-function", "23502": "not-null", "23503": "foreign-key", "23505": "unique-conflict", "23514": "check-constraint", "22P02": "invalid-text", "25P02": "transaction-aborted", "57014": "query-cancelled", "40001": "serialization", "40P01": "deadlock", "08006": "connection-failure" } as const;
+type CalendarFixtureSafeFailure = { stage: CalendarFixtureDiagnosticStage; children?: readonly Error[] };
+const calendarFixtureSafeFailures = new WeakMap<object, CalendarFixtureSafeFailure>();
+/** Closed owned origin only: never inspect a native error or matcher arguments. */
+export function calendarFixtureOrigin(origin: CalendarFixtureOwnedOrigin): Error {
+  const stage = calendarFixtureOwnedOrigins.includes(origin) ? origin : "scenario-assertion";
+  const safe = new Error(`Calendar fixture failure [stage=${stage};category=unknown;sqlstate=unavailable]`);
+  calendarFixtureSafeFailures.set(safe, { stage }); return safe;
+}
+export function calendarFixtureAssertionAt<T>(site: "scenario-rls001-own" | "scenario-rls001-admin" | "scenario-rls001-planner" | "scenario-rls001-mixed", run: () => T): T {
+  try { return run(); } catch { throw calendarFixtureOrigin(site); }
+}
+function fixtureOwnData(value: object, key: string): { found: boolean; value?: unknown } {
+  const descriptor = Object.getOwnPropertyDescriptor(value, key);
+  return descriptor && "value" in descriptor ? { found: true, value: descriptor.value } : { found: false };
+}
+export function calendarFixtureDiagnostic(stage: string, error: unknown): Error {
+  const fixedStage = calendarFixtureDiagnosticStages.includes(stage as CalendarFixtureDiagnosticStage) ? stage as CalendarFixtureDiagnosticStage : "unknown";
+  const objectLike = (value: unknown): value is object => (typeof value === "object" && value !== null) || typeof value === "function";
+  // Only this module's own safe objects may bypass native descriptor inspection.
+  if (objectLike(error) && calendarFixtureSafeFailures.has(error)) return error as Error;
+  let nodes = 0, exhausted = false;
+  const seen = new Set<object>();
+  const leaf = (at: CalendarFixtureDiagnosticStage, category: string, code = "unavailable") => {
+    const safe = new Error(`Calendar fixture failure [stage=${at};category=${category};sqlstate=${code}]`);
+    calendarFixtureSafeFailures.set(safe, { stage: at }); return safe;
+  };
+  function walk(value: unknown, at: CalendarFixtureDiagnosticStage, depth: number): Error {
+    // The final node is reserved for an explicit truncation marker.
+    if (++nodes >= 16) { exhausted = true; return leaf(at, "truncated"); }
+    if (depth > 4) return leaf(at, "truncated");
+    if (!objectLike(value)) return leaf(at, "unknown");
+    if (seen.has(value)) return leaf(at, "cycle");
+    seen.add(value);
+    const known = calendarFixtureSafeFailures.get(value);
+    if (known) at = known.stage;
+    try {
+      const members = known?.children ? { found: true, value: known.children } : fixtureOwnData(value, "errors");
+      if (members.found && Array.isArray(members.value)) {
+        const size = fixtureOwnData(members.value, "length");
+        if (!size.found || typeof size.value !== "number" || !Number.isSafeInteger(size.value) || size.value < 1) return leaf(at, "unknown");
+        const children: Error[] = [];
+        for (let index = 0; index < size.value && !exhausted; index++) {
+          const member = fixtureOwnData(members.value, String(index));
+          const child = walk(member.found ? member.value : undefined, at, depth + 1);
+          // Vitest unwraps one AggregateError level before JSON selects only
+          // stack/message. Flatten only our already-sanitized, bounded groups;
+          // raw native children still pass through the guarded walk above.
+          children.push(...(calendarFixtureSafeFailures.get(child)?.children ?? [child]));
+        }
+        const safe = new AggregateError(children, `Calendar fixture failure group [stage=${at}]`);
+        calendarFixtureSafeFailures.set(safe, { stage: at, children }); return safe;
+      }
+      // An accessor/malformed aggregate is unknown; never invoke it or native text.
+      if (Object.getOwnPropertyDescriptor(value, "errors")) return leaf(at, "unknown");
+      if (known) return value as Error;
+      const code = fixtureOwnData(value, "code");
+      if (code.found && typeof code.value === "string" && Object.hasOwn(calendarFixtureSqlstates, code.value)) {
+        return leaf(at, calendarFixtureSqlstates[code.value as keyof typeof calendarFixtureSqlstates], code.value);
+      }
+    } catch { /* Proxy/descriptor failure has no safe native information. */ }
+    return leaf(at, "unknown");
+  }
+  return walk(error, fixedStage, 0);
+}
+export async function calendarFixtureStep<T>(stage: CalendarFixtureDiagnosticStage, run: () => T | Promise<T>): Promise<T> {
+  try { return await run(); }
+  catch (error) { throw calendarFixtureDiagnostic(stage, error); }
+}
+// End pure fixture diagnostics.
+
+/** Row-isolated fixtures never mutate keys, global counters or fault DDL.
+ * The two allocated serial files alone receive these controls. All assertions
+ * and transport failures discard sensitive values and retain cleanup outcomes.
+ */
+export async function withCalendarFeedFixture<L extends Lane>(
+  lane: L, run: (fixture: FixtureByLane<L>) => Promise<void>,
+): Promise<void> {
+  let additionalUsers: readonly FixtureUser[] = [];
+  let primary: unknown; const ownedTenants: string[] = [], ownedUsers: string[] = [];
+  // Shared setup can already have replaced code with message-only Error. Do not
+  // guess its internal auth/SQL substage or reconstruct swallowed cleanup errors.
+  let phase: CalendarFixtureDiagnosticStage = "booking-fixture-before-callback";
+  try {
+    feedKeyFromEnv(); // no fallback, fixture fails if the owned CI key is absent
+    await withBookingFixture(async base => {
+      phase = "additional-users";
+      ownedTenants.push(...base.tenantIds);ownedUsers.push(base.base.adminA.id,base.base.adminB.id,base.base.orphanUser.id,...base.extraUsers.map(user=>user.id));
+      let failure: unknown;
+      try {
+        const extra = await calendarFixtureStep(phase, () => seedRoleAwarePhaseAUsers(base.base)); additionalUsers = extra.extraUsers;
+        phase = "bind-membership";
+        const fixture = await bindCalendarFixture(base, extra);
+        const serial = lane === "row-isolated" ? {} : { serial: await calendarSerialControls(fixture) };
+        phase = "scenario";
+        const scenario = () => calendarFixtureStep("scenario", () => run(Object.assign(fixture, serial) as FixtureByLane<L>));
+        if (lane === "row-isolated") await scenario();
+        else await withOwnedUnknownWindow(fixture, scenario);
+      } catch (error) { failure = calendarFixtureDiagnostic(phase, error); }
+      let cleanupFailure: unknown;
+      try { await cleanupCalendarOwnedRows(base.tenantIds); } catch (error) { cleanupFailure = calendarFixtureDiagnostic("owned-row-cleanup", error); }
+      phase = "canonical-fixture-cleanup";
+      if (failure || cleanupFailure) throw new AggregateError([...(failure ? [failure] : []), ...(cleanupFailure ? [cleanupFailure] : [])], "Calendar scenario/owned row cleanup failed");
+    });
+  } catch (error) { primary = calendarFixtureDiagnostic(phase, error); }
+  const cleanup = await Promise.allSettled(additionalUsers.map(user => calendarFixtureStep("additional-auth-cleanup", () => deleteAuthUser(user.id))));
+  const remainingErrors: Error[]=[];
+  try {
+    if(ownedTenants.length && (await adminQuery("select 1 from public.tenants where id=any($1::uuid[]) limit 1",[ownedTenants])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
+    if(ownedUsers.length && (await adminQuery("select 1 from auth.users where id=any($1::uuid[]) limit 1",[[...ownedUsers,...additionalUsers.map(user=>user.id)]])).length)remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", new Error()));
+  }catch(error){remainingErrors.push(calendarFixtureDiagnostic("cleanup-absence-check", error));}
+  if (primary || remainingErrors.length || cleanup.some(result => result.status === "rejected")) throw calendarFixtureDiagnostic("scenario", new AggregateError([
+    ...(primary ? [redactFailure(primary)] : []), ...remainingErrors,
+    ...cleanup.filter(result => result.status === "rejected").map(result => calendarFixtureDiagnostic("additional-auth-cleanup", result.reason)),
+  ], "Calendar fixture failed; primary and cleanup outcomes retained without sensitive values"));
+}
+function redactFailure(error: unknown): Error {
+  return calendarFixtureDiagnostic("scenario", error);
+}
+
+type BoundFixture = CalendarFixture & { base: BookingFixture; clients: Record<SubjectName, TestServerClient>;
+  tenantIds: string[]; keyId: string; secret: string; pendingRequests: Set<Promise<unknown>>; currentRawFetch: Record<string, unknown> | null };
+const iso = (value: unknown) => value === null ? null : new Date(String(value)).toISOString();
+function normalizedRpc(result: { data: unknown; error: unknown }): RpcObservation {
+  return { denied: !!result.error, rows: result.error ? [] : [result.data], sanitizedResult: result.error ? { denied: true } : { admitted: true } };
+}
+async function bindCalendarFixture(base: BookingFixture, extra: Awaited<ReturnType<typeof seedRoleAwarePhaseAUsers>>): Promise<BoundFixture> {
+  const key = feedKeyFromEnv(), subjects = {} as Record<SubjectName, Subject>, clients = {} as Record<SubjectName, TestServerClient>;
+  const users: Record<SubjectName, FixtureUser> = { own: base.users.montor, peer: extra.users.montor, admin: base.base.adminA,
+    planner: base.users.projektledare, mixed: base.roleUnionUser, seller: base.users.saljare, economy: base.users.ekonomi,
+    foreign: base.base.adminB, invited: base.invitedUser, disabled: base.disabledUser, platformOnly: base.base.orphanUser, noProfile: extra.users.projektledare };
+  for (const name of Object.keys(users) as SubjectName[]) {
+    const tenantId = name === "foreign" ? base.base.tenantB.id : base.base.tenantA.id;
+    const [member] = await calendarFixtureStep("bind-membership", () => adminQuery<{ id: string }>("select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, users[name].id]));
+    let profile: string | null = null;
+    if (member && name !== "noProfile") {
+      const rows = await calendarFixtureStep("bind-profile", () => adminQuery<{ id: string }>("select id from public.person_profiles where tenant_id=$1 and membership_id=$2", [tenantId, member.id]));
+      profile = rows[0]?.id ?? (await calendarFixtureStep("bind-profile", () => adminQuery<{id:string}>("insert into public.person_profiles(tenant_id,membership_id) values($1,$2) returning id", [tenantId,member.id])))[0].id;
+    }
+    subjects[name] = { tenantId, userId: users[name].id, membershipId: member?.id ?? randomUUID(), profileId: profile };
+    clients[name] = await calendarFixtureStep("bind-client", () => makeAuthedServerClient(users[name]));
+  }
+  // A mixed allowed role is deliberately not an Admin.
+  await calendarFixtureStep("bind-membership", () => adminQuery("update public.tenant_memberships set role='saljare' where id=$1", [subjects.mixed.membershipId]));
+  await calendarFixtureStep("bind-membership", () => adminQuery("delete from public.membership_roles where membership_id=$1", [subjects.mixed.membershipId]));
+  await calendarFixtureStep("bind-membership", () => adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,'montor')", [subjects.mixed.tenantId,subjects.mixed.membershipId]));
+  const anon = await calendarFixtureStep("bind-client", () => makeAnonServerClient()), trackedRaw: string[] = [], trackedProof: string[] = [], seedFacts = new Map<string, BookingSeed>();
+  const randomPart = randomUUID().replaceAll("-", "").slice(0, 16).match(/.{4}/g)!.join(":");
+  const isolatedTrustedIp = `2001:db8:${randomPart}`;
+  const readRows = async (table: string) => (await adminQuery<{ row: Record<string, unknown> }>(`select to_jsonb(t) row from public.${table} t where tenant_id=any($1::uuid[]) order by tenant_id,id`, [base.tenantIds])).map(row => row.row);
+  const response = async (result: Response): Promise<FeedResponse> => ({ status: result.status, headers: Object.fromEntries(result.headers.entries()), body: await result.text() });
+  const pendingRequests = new Set<Promise<unknown>>();
+  function track<T>(request: Promise<T>): Promise<T> {
+    pendingRequests.add(request);
+    void request.then(() => pendingRequests.delete(request), () => pendingRequests.delete(request));
+    return request;
+  }
+  const fixture: BoundFixture = {
+    base, clients, subjects, pendingRequests, tenantIds: base.tenantIds, keyId:key.keyId,secret:key.secret,currentRawFetch:null,isolatedTrustedIp,
+    manage: async (subject,intent) => {
+      const result = await manageCalendarFeed(clients[subject] as never,{action:intent.action,revision:intent.expectedRevision,attemptId:intent.attemptId},intent.correlationId);
+      if (result.issuedPath) trackedRaw.push(result.issuedPath.split("/").at(-1)!);
+      return {outcome:result.outcome,revision:result.revision,issuedUrl:result.issuedPath?`${testOrigin()}${result.issuedPath}`:null};
+    },
+    status: async (subject,attemptId) => {
+      // Inspect the directly callable ordinary JWT RPC before the mapper can
+      // drop an accidentally added field. Errors never serialize raw payloads.
+      const { data, error } = await clients[subject].rpc("read_calendar_feed_status", { p_tenant_id: subjects[subject].tenantId, p_attempt_id: attemptId ?? null });
+      const allowed = ["membershipId", "active", "revision", "lastUsedAt", "usageCount", "attemptOutcome", "attemptAction", "attemptRevision"].sort();
+      if (error || !data || JSON.stringify(Object.keys(data).sort()) !== JSON.stringify(allowed)) throw new Error("Raw calendar status RPC field allowlist failed");
+      const serialized = JSON.stringify(data);
+      const physical = await adminQuery<{ token_hash: string }>("select token_hash from public.calendar_feed_tokens where tenant_id=any($1::uuid[]) and token_hash is not null", [base.tenantIds]);
+      if ([...trackedRaw, ...trackedProof, key.secret, isolatedTrustedIp, ...physical.map(row => row.token_hash)].some(value => value && serialized.includes(value)) || /calendar\/feed\//.test(serialized)) throw new Error("Raw calendar status RPC privacy failed");
+      const status = await readCalendarFeedStatus(clients[subject] as never,subjects[subject].tenantId,attemptId);
+      return {...status,publicDto:data};
+    },
+    rawManage: async (name,intent,overrides={},attack) => {
+      const subject = subjects[name === "anon" ? "own" : name], now = new Date();
+      const token = intent.action === "revoke" ? null : issueCalendarFeedToken();
+      const claims = {schema:FEED_SCHEMA,domain:MANAGE_DOMAIN,operation:intent.action,tenantId:subject.tenantId,actorId:subject.userId,membershipId:subject.membershipId,
+        revision:String(intent.expectedRevision),attemptId:intent.attemptId,newHash:token?.hash??"",correlationId:intent.correlationId,keyId:key.keyId,issuedAt:now.toISOString(),expiresAt:new Date(now.getTime()+60000).toISOString()};
+      attackClaims(claims,attack);
+      const proof = signFeedProof(claims,attack === "wrong-key" ? Buffer.alloc(32,9).toString("base64url") : key.secret); trackedProof.push(proof);
+      const args: Record<string,unknown> = {p_tenant_id:overrides.tenantId??subject.tenantId,p_actor_id:overrides.userId??subject.userId,p_membership_id:overrides.membershipId??subject.membershipId,
+        p_action:intent.action,p_expected_revision:intent.expectedRevision,p_attempt_id:intent.attemptId,p_new_hash:token?.hash??null,p_correlation_id:intent.correlationId,p_claims:attack === "missing" ? null : claims,p_signature:proof};
+      const fields: Partial<Record<ProofAttack,string>> = {"tampered-actor":"p_actor_id","tampered-tenant":"p_tenant_id","tampered-membership":"p_membership_id","tampered-attempt":"p_attempt_id"};
+      if(attack&&fields[attack])args[fields[attack]!]=randomUUID();
+      if(attack==="tampered-action")args.p_action="revoke";
+      if(attack==="tampered-revision")args.p_expected_revision=intent.expectedRevision+1;
+      if(attack==="weak-chosen-new-hash")args.p_new_hash="0".repeat(64);
+      return normalizedRpc(await (name==="anon"?anon:clients[name]).rpc("manage_calendar_feed",args));
+    },
+    rawFetch: async (url,attack,options={}) => {
+      let args = fixture.currentRawFetch;
+      if(attack!=="replay" || !args) {
+        const now=new Date(),tokenHash=hashFeedToken(tokenFromUrl(url)),ipHash=hashFeedIp(isolatedTrustedIp,key.secret);
+        const claims: Record<string,string>={schema:FEED_SCHEMA,domain:FETCH_DOMAIN,operation:"fetch",tokenHash,ipHash,requestId:randomUUID(),keyId:key.keyId,issuedAt:now.toISOString(),expiresAt:new Date(now.getTime()+60000).toISOString()};
+        attackClaims(claims,attack === "valid" ? undefined : attack as ProofAttack);
+        const proof=signFeedProof(claims,attack==="wrong-key"?Buffer.alloc(32,9).toString("base64url"):key.secret);trackedProof.push(proof);
+        args={p_token_hash:tokenHash,p_ip_hash:ipHash,p_claims:attack==="missing"?null:claims,p_signature:proof};
+        if(attack==="tampered-token-hash")args.p_token_hash="0".repeat(64);
+        if(attack==="tampered-ip-hash")args.p_ip_hash=options.changedIpHash??"f".repeat(64);
+        if(attack==="tampered-request-id")(args.p_claims as Record<string,string>).requestId=randomUUID();
+        if(options.callerWindow!==undefined)args.p_window=options.callerWindow;
+        if(options.callerLimit!==undefined)args.p_limit=options.callerLimit;
+        if(attack==="valid")fixture.currentRawFetch=args;
+      }
+      return normalizedRpc(await anon.rpc("fetch_calendar_feed",args));
+    },
+    seedBookings: async rows => {
+      for(const row of rows) {
+        const subject=subjects[row.subject], tenant=subject.tenantId;
+        const customer=row.customerLabel===null?null:(await adminQuery<{id:string}>("insert into public.customers(tenant_id,customer_type,display_name) values($1,'company',$2) returning id",[tenant,row.customerLabel]))[0].id;
+        const facility=row.facilityAddress===null||!customer?null:(await adminQuery<{id:string}>("insert into public.facilities(tenant_id,customer_id,name,address_line1) values($1,$2,'Fixture',$3) returning id",[tenant,customer,row.facilityAddress]))[0].id;
+        const role=row.workRoleLabel===null?null:(await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,100,200) returning id",[tenant,row.workRoleLabel]))[0].id;
+        const job=row.jobLabel===null||!customer?null:(await adminQuery<{id:string}>("insert into public.jobs(tenant_id,customer_id,facility_id,title) values($1,$2,$3,$4) returning id",[tenant,customer,facility,row.jobLabel]))[0].id;
+        await adminQuery("insert into public.bookings(id,tenant_id,starts_at,ends_at,updated_at,all_day,status,description,work_role_id,job_id,customer_id,facility_id,create_command_id,create_payload_digest,create_result) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,repeat('a',64),'{}')",[row.id,tenant,row.startsAt,row.endsAt,row.updatedAt,row.allDay,row.status,row.description,role,job,customer,facility,randomUUID()]);
+        await fixture.setAssignments(row.id,[row.subject,...row.additionalAssignees]);seedFacts.set(row.id,row);
+      }
+    },
+    seedSeries: async subject => {
+      const selected={...base,ownProfile:{id:subjects[subject].profileId!,membershipId:subjects[subject].membershipId}};
+      const input=realSeriesInput(selected,{rule:{...realSeriesInput(selected).rule,count:5}}),reviewed=await reviewRealSeries(selected,input);
+      const result=await runCommand(createBookingSeries,{client:base.adminClient as never,input:reviewed.input});
+      if(!result.ok||result.data.occurrenceIds.length!==5)throw new Error("Real series fixture failed");
+      return {unchangedId:result.data.occurrenceIds[0],movedExceptionId:result.data.occurrenceIds[1],cancelledId:result.data.occurrenceIds[2],splitSurvivingId:result.data.occurrenceIds[3],newOccurrenceIds:[]};
+    },
+    changeSeries: async (kind,id) => {
+      const [row]=await adminQuery<Record<string,unknown>>("select * from public.bookings where id=$1 and tenant_id=$2",[id,base.base.tenantA.id]);
+      if(!row)throw new Error("Real occurrence missing");
+      if(kind==="split") {
+        const [series]=await adminQuery<Record<string,unknown>>("select * from public.booking_series where id=$1",[row.series_id]);
+        const input={...realSeriesInput(base),sourceSeriesId:String(row.series_id),seriesId:randomUUID(),expectedVersion:Number(series.version),pivotOccurrenceId:id};
+        const reviewed=await reviewRealSeries(base,input),result=await runCommand(updateBookingSeries,{client:base.adminClient as never,input:reviewed.input});
+        if(!result.ok)throw new Error("Real split failed");
+      } else {
+        const input=bookingInput([subjects.own.profileId!],{bookingId:id,status:kind==="cancel"?"cancelled":"planned",startsAt:kind==="exception"?"2026-11-01T07:00:00Z":String(row.starts_at),endsAt:kind==="exception"?"2026-11-01T08:00:00Z":String(row.ends_at),description:"Edited series occurrence"});
+        input.startsAt=new Date(input.startsAt).toISOString();input.endsAt=new Date(input.endsAt).toISOString();
+        const result=await bookingCommand("update",base.adminClient,input);if(!result.ok)throw new Error("Real occurrence update failed");
+      }
+    },
+    setBooking: async (id,patch) => {
+      const current=seedFacts.get(id);if(!current)throw new Error("Owned booking absent");
+      const row={...current,...patch};
+      await adminQuery("update public.bookings set starts_at=$2,ends_at=$3,status=$4,all_day=$5,updated_at=$6 where id=$1 and tenant_id=$7",[id,row.startsAt,row.endsAt,row.status,row.allDay,row.updatedAt,subjects[row.subject].tenantId]);seedFacts.set(id,row);
+    },
+    editProjectedSource: async (id,source,label,updatedAt) => {
+      const current=seedFacts.get(id); if(!current)throw new Error("Owned booking absent");
+      const refs={work_roles:"work_role_id",jobs:"job_id",customers:"customer_id",facilities:"facility_id"} as const;
+      const labels={work_roles:"display_name",jobs:"title",customers:"display_name",facilities:"address_line1"} as const;
+      if(!refs[source] || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(updatedAt))throw new Error("Invalid owned projection edit");
+      await adminSession(async({query})=>{
+        await query("begin");try {
+          // Explicit source revisions are independent oracles, isolated to this
+          // fixture's rows; connection-local trigger suppression is rolled back.
+          await query("set local session_replication_role=replica");
+          const changed=await query(`update public.${source} s set ${labels[source]}=$3,updated_at=$4 from public.bookings b where b.id=$1 and b.tenant_id=$2 and s.tenant_id=b.tenant_id and s.id=b.${refs[source]} returning s.id`,[id,subjects[current.subject].tenantId,label,updatedAt]);
+          if(changed.length!==1)throw new Error("Owned projected source absent");
+          await query("commit");
+        }catch(error){await query("rollback");throw error;}
+      });
+    },
+    setAssignments: async (id,names) => {
+      const [row]=await adminQuery<{tenant_id:string}>("select tenant_id from public.bookings where id=$1 and tenant_id=any($2::uuid[])",[id,base.tenantIds]);if(!row)throw new Error("Owned booking absent");
+      await adminQuery("delete from public.booking_assignees where booking_id=$1 and tenant_id=$2",[id,row.tenant_id]);
+      for(const name of new Set(names))await adminQuery("insert into public.booking_assignees(tenant_id,booking_id,person_profile_id) values($1,$2,$3)",[row.tenant_id,id,subjects[name].profileId]);
+    },
+    setAuthority: async (name,patch) => {
+      const subject=subjects[name];
+      if(patch.tenantPresent===false) { await removeOwnedTenant(subject.tenantId);return; }
+      if(patch.membershipPresent===false) {await adminQuery("delete from public.booking_assignees where person_profile_id=$1 and tenant_id=$2",[subject.profileId,subject.tenantId]);await adminQuery("delete from public.person_profiles where membership_id=$1 and tenant_id=$2",[subject.membershipId,subject.tenantId]);await adminQuery("delete from public.tenant_memberships where id=$1 and tenant_id=$2",[subject.membershipId,subject.tenantId]);return;}
+      if(patch.primary)await adminQuery("update public.tenant_memberships set role=$2 where id=$1",[subject.membershipId,patch.primary]);
+      if(patch.status)await adminQuery("update public.tenant_memberships set status=$2 where id=$1",[subject.membershipId,patch.status]);
+      if(patch.additional) {await adminQuery("delete from public.membership_roles where membership_id=$1",[subject.membershipId]);for(const role of patch.additional)await adminQuery("insert into public.membership_roles(tenant_id,membership_id,role) values($1,$2,$3)",[subject.tenantId,subject.membershipId,role]);}
+      if(patch.profileArchived!==undefined)await adminQuery("update public.person_profiles set archived_at=case when $2 then clock_timestamp() else null end where id=$1",[subject.profileId,patch.profileArchived]);
+    },
+    setProvisioningState: async (name,state) => {await adminQuery("update public.tenants set provisioning_state=$2 where id=$1",[subjects[name].tenantId,state]);},
+    replaceMembership: async name => {
+      const subject=subjects[name];await fixture.setAuthority(name,{membershipPresent:false});
+      const [member]=await adminQuery<{id:string}>("insert into public.tenant_memberships(tenant_id,user_id,status,role) values($1,$2,'active','montor') returning id",[subject.tenantId,subject.userId]);subject.membershipId=member.id;subject.profileId=null;
+    },
+    http: (url,options={}) => track((async () => {
+      const target=new URL(url);if(target.origin!==testOrigin())throw new Error("Non-owned calendar HTTP target rejected");
+      for(const [name,value] of Object.entries(options.query??{}))target.searchParams.set(name,value);
+      try{return await response(await fetch(target,{headers:options.headers,redirect:"manual",cache:"no-store"}));}catch{throw calendarFixtureOrigin("scenario-http-transport");}
+    })()),
+    trustedFetch: (url,ip) => track((async () => response(await publicCalendarFeed(new URL(url).pathname.split("/").at(-1)!,new Headers(),{client:anon,trustedIp:ip})))()),
+    physical: async () => {
+      const raw=await readRows("calendar_feed_tokens"),audits=(await readRows("audit_events")).filter(row=>String(row.command).startsWith("calendar_feed."));
+      audits.sort((a,b)=>Date.parse(String(a.created_at))-Date.parse(String(b.created_at)));
+      const schedulingIntegrity:Record<string,unknown[]>={};for(const table of ["bookings","booking_assignees","booking_series","booking_conflicts","booking_conflict_resolutions","time_reports","jobs"])schedulingIntegrity[table]=await readRows(table);
+      return {tokens:raw.filter(row=>row.token_hash!==null).map(row=>({id:String(row.id),tenantId:String(row.tenant_id),membershipId:String(row.membership_id),hash:String(row.token_hash),revokedAt:iso(row.revoked_at),createdAt:iso(row.created_at)!,lastUsedAt:iso(row.last_used_at),usageCount:Number(row.usage_count),revision:Number(row.revision),attemptId:String(row.attempt_id)})),
+        audits:audits.map(row=>({action:String(row.command),actorId:String(row.actor_user_id),tenantId:String(row.tenant_id),attemptId:String((row.metadata as Record<string,unknown>).attemptId),metadata:row.metadata})),persistedRows:raw,schedulingIntegrity};
+    },
+    readAbuse: async (name,query={}) => {
+      const result=await clients[name].rpc("read_calendar_feed_abuse",{p_tenant_id:query.tenantId??subjects[name].tenantId});
+      return {denied:!!result.error,rows:result.error?[]:[{requestCount:result.data.requests,limitedCount:result.data.limited,lastSpikeAt:result.data.lastSpikeAt}]};
+    },
+    directTable: async (name,table,operation) => {
+      const client=name==="anon"?anon:clients[name];let result;
+      if(operation==="select")result=await client.from(table).select("*");
+      else if(operation==="insert")result=await client.from(table).insert(table==="calendar_feed_tokens"?{tenant_id:subjects.own.tenantId,membership_id:subjects.own.membershipId,token_hash:"a".repeat(64),revision:99,attempt_id:randomUUID(),action:"create",expected_revision:0}:{ip_hash:hashFeedIp(isolatedTrustedIp,key.secret),window_start:new Date().toISOString(),request_count:1});
+      else if(operation==="update")result=await client.from(table).update(table==="calendar_feed_tokens"?{revoked_at:new Date().toISOString()}:{request_count:99}).eq(table==="calendar_feed_tokens"?"tenant_id":"ip_hash",table==="calendar_feed_tokens"?subjects.own.tenantId:hashFeedIp(isolatedTrustedIp,key.secret));
+      else result=await client.from(table).delete().eq(table==="calendar_feed_tokens"?"tenant_id":"ip_hash",table==="calendar_feed_tokens"?subjects.own.tenantId:hashFeedIp(isolatedTrustedIp,key.secret));
+      return normalizedRpc(result);
+    },
+    acl: calendarAcl,
+    telemetry: async () => {
+      const path=process.env.CALENDAR_FEED_TEST_LOG_FILE;if(!path)throw new Error("Actual sanitized server telemetry fixture absent");
+      const deadline=Date.now()+3000;
+      while(Date.now()<deadline) {
+        const value=await readFile(path,"utf8"),records=value.trim().split("\n").filter(Boolean).map(line=>JSON.parse(line) as Record<string,unknown>);
+        const observed=records.filter(row=>row.event==="calendar_feed.runtime_observation").at(-1);
+        if(records.some(row=>row.event==="calendar_feed.response") && observed && Number(observed.responseCount)>0) {
+          if(observed.sensitiveOutputDetected!==false||observed.sensitiveOutputCount!==0)throw new Error("Runtime sensitive-output detector failed");
+          return value;
+        }
+        await new Promise(resolve=>setTimeout(resolve,20));
+      }
+      throw new Error("Actual feed telemetry observation absent");
+    },
+    sensitiveTestValues: async () => [key.secret,...trackedProof],
+    seedSchedulingRegressionState: async () => {
+      await fixture.seedBookings([bookingSeed(),bookingSeed({subject:"peer"})]);await fixture.seedSeries("own");
+      const [booking]=await adminQuery<{id:string}>("select id from public.bookings where tenant_id=$1 order by id limit 1",[subjects.own.tenantId]);
+      await adminQuery("insert into public.time_reports(tenant_id,user_id,report_date,duration_minutes,filing_attempt_id,filing_digest) values($1,$2,'2026-10-12',60,$3,repeat('a',64))",[subjects.own.tenantId,subjects.own.userId,randomUUID()]);
+      await adminQuery("insert into public.booking_conflict_resolutions(tenant_id,actor_id,command_id,booking_id,request_digest,action,outcome,target_keys,affected_booking_ids,result) values($1,$2,$3,$4,repeat('a',64),'accept','accepted','[]',array[$4::uuid],'{}')",[subjects.own.tenantId,subjects.admin.userId,randomUUID(),booking.id]);
+      return (await fixture.physical()).schedulingIntegrity;
+    },
+  };
+  return fixture;
+}
+function testOrigin(): string {
+  const url=new URL(process.env.CALENDAR_FEED_TEST_BASE_URL??`http://127.0.0.1:${process.env.E2E_PORT??3100}`);
+  if(!["127.0.0.1","localhost","[::1]"].includes(url.hostname))throw new Error("Calendar test host must be owned loopback");return url.origin;
+}
+function attackClaims(claims: Record<string,string>,attack?: ProofAttack) {
+  if(attack==="wrong-domain")claims.domain="booking-conflicts";
+  if(attack==="expired") {claims.issuedAt=new Date(Date.now()-120000).toISOString();claims.expiresAt=new Date(Date.now()-60000).toISOString();}
+  if(attack==="future") {claims.issuedAt=new Date(Date.now()+60000).toISOString();claims.expiresAt=new Date(Date.now()+90000).toISOString();}
+  if(attack==="over-60-seconds")claims.expiresAt=new Date(Date.parse(claims.issuedAt)+61000).toISOString();
+}
+async function removeOwnedTenant(tenantId:string) {
+  // Ordinary cascades are retained; remove only owned restrictive booking edges first.
+  await cleanupCalendarOwnedRows([tenantId]);
+  await adminQuery("delete from public.tenants where id=$1",[tenantId]);
+}
+async function cleanupCalendarOwnedRows(tenantIds: readonly string[]) {
+  if(!tenantIds.length||tenantIds.some(id=>!/^[a-f0-9-]{36}$/i.test(id)))throw new Error("Owned tenant UUIDs required");
+  // Connection-local trigger mode follows the established immutable-report
+  // fixture cleanup. It never alters a trigger or another session. Every delete
+  // remains explicitly confined to the independently allocated tenant UUIDs.
+  const tables=["calendar_feed_tokens","audit_events","time_reports","booking_conflict_resolutions","booking_conflicts","booking_assignees","bookings","booking_series","job_members","job_required_work_roles","job_access_windows","job_dependencies","jobs","facilities","contacts","customers","person_work_hours","person_profiles","work_roles"];
+  await adminSession(async({query})=>{
+    await query("begin");
+    try {await query("set local session_replication_role=replica");for(const table of tables)await query(`delete from public.${table} where tenant_id=any($1::uuid[])`,[tenantIds]);await query("commit");}
+    catch(error){await query("rollback");throw error;}
+  });
+  for(const table of tables)if((await adminQuery(`select 1 from public.${table} where tenant_id=any($1::uuid[]) limit 1`,[tenantIds])).length)throw new Error("Owned calendar row cleanup incomplete");
+}
+
+async function calendarAcl(): Promise<AclFacts> {
+  const tables=await adminQuery<AclFacts["tables"][number]>(`select c.relname name,c.relrowsecurity "rlsEnabled",
+   has_table_privilege('anon',c.oid,'SELECT') "anonSelect",
+   has_table_privilege('authenticated',c.oid,'INSERT,UPDATE,DELETE') "authenticatedDml",
+   has_table_privilege('anon',c.oid,'INSERT,UPDATE,DELETE') "anonDml",
+   exists(select 1 from aclexplode(coalesce(c.relacl,acldefault('r',c.relowner))) a where a.grantee=0 and a.privilege_type in ('SELECT','INSERT','UPDATE','DELETE')) "publicInheritedDml",
+   exists(select 1 from pg_attribute a where a.attrelid=c.oid and a.attnum>0 and not a.attisdropped and has_column_privilege('authenticated',c.oid,a.attname,'SELECT')) "authenticatedSensitiveColumns"
+   from pg_class c where c.oid in ('public.calendar_feed_tokens'::regclass,'public.calendar_feed_ip_windows'::regclass) order by c.relname`);
+  const [owner]=await adminQuery<AclFacts["owner"]>(`select rolname name,rolcanlogin login,rolinherit inherit,rolsuper superuser,rolbypassrls "bypassRls",
+   has_schema_privilege(oid,'public','CREATE') "publicSchemaCreate",
+   (pg_has_role('anon',oid,'MEMBER') or pg_has_role('authenticated',oid,'MEMBER') or pg_has_role('service_role',oid,'MEMBER')) "assumableByJwtRoles",
+   has_table_privilege(oid,'public.contacts','SELECT') "unrelatedTableRead",has_table_privilege(oid,'vault.decrypted_secrets','SELECT') "generalVaultRead"
+   from pg_roles where rolname='calendar_feed_owner'`);
+  const allowed:Record<string,string[]>={tenants:["id"],tenant_memberships:["id","tenant_id","user_id","status","role"],membership_roles:["tenant_id","membership_id","role"],person_profiles:["id","tenant_id","membership_id","archived_at"],booking_assignees:["tenant_id","booking_id","person_profile_id"],bookings:["id","tenant_id","starts_at","ends_at","all_day","updated_at","status","work_role_id","job_id","customer_id","facility_id"],jobs:["id","tenant_id","title","customer_id","facility_id","updated_at"],customers:["id","tenant_id","display_name","updated_at"],work_roles:["id","tenant_id","display_name","updated_at"],facilities:["id","tenant_id","address_line1","address_line2","postal_code","city","updated_at"],calendar_feed_tokens:["*"],calendar_feed_ip_windows:["*"]};
+  const effective=await adminQuery<{table:string;column:string}>(`select c.relname "table",a.attname "column" from pg_class c join pg_namespace n on n.oid=c.relnamespace join pg_attribute a on a.attrelid=c.oid where n.nspname='public' and c.relkind in ('r','p') and a.attnum>0 and not a.attisdropped and has_column_privilege('calendar_feed_owner',c.oid,a.attname,'SELECT')`);
+  owner.effectiveReadOutsideAllowedColumns=effective.some(row=>!allowed[row.table]?.some(column=>column==='*'||column===row.column));
+  owner.filteredHelperOnly=!owner.generalVaultRead;
+  const definitions:Record<string,AclFacts["functions"][number]["purpose"]>={fetch_calendar_feed:"fetch",manage_calendar_feed:"manage",read_calendar_feed_status:"status",read_calendar_feed_abuse:"abuse"};
+  const functions=await adminQuery<{name:string;owner:string;securityDefiner:boolean;emptySearchPath:boolean;anonExecute:boolean;authenticatedExecute:boolean;publicExecute:boolean}>(`select p.proname name,r.rolname owner,p.prosecdef "securityDefiner",coalesce('search_path=""'=any(p.proconfig),false) "emptySearchPath",has_function_privilege('anon',p.oid,'EXECUTE') "anonExecute",has_function_privilege('authenticated',p.oid,'EXECUTE') "authenticatedExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute" from pg_proc p join pg_roles r on r.oid=p.proowner where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(definitions)]);
+  const helperNames:Record<string,AclFacts["helpers"][number]["purpose"]>={calendar_feed_attestation_payload:"canonical",calendar_feed_verify_attestation_internal:"verifier",calendar_feed_secret_internal:"filtered-secret"};
+  const helpers=await adminQuery<{name:string;jwtExecute:boolean;publicExecute:boolean;feedOwnerExecute:boolean;otherRoleInheritedExecute:boolean;source:string}>(`select p.proname name,(has_function_privilege('anon',p.oid,'EXECUTE') or has_function_privilege('authenticated',p.oid,'EXECUTE')) "jwtExecute",exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where grantee=0 and privilege_type='EXECUTE') "publicExecute",has_function_privilege('calendar_feed_owner',p.oid,'EXECUTE') "feedOwnerExecute",has_function_privilege('service_role',p.oid,'EXECUTE') "otherRoleInheritedExecute",p.prosrc source from pg_proc p where p.pronamespace='public'::regnamespace and p.proname=any($1::text[])`,[Object.keys(helperNames)]);
+  return {tables,owner,functions:functions.map(fn=>({...fn,purpose:definitions[fn.name]})),helpers:helpers.map(helper=>({...helper,purpose:helperNames[helper.name],exactConfiguredKeyFilter:helper.name!=="calendar_feed_secret_internal"||helper.source.includes("name='calendar_feed_attestation_' || p_key_id")})),ipColumns:(await adminQuery<{column_name:string}>("select column_name from information_schema.columns where table_schema='public' and table_name='calendar_feed_ip_windows'")).map(row=>row.column_name)};
+}
+
+/** Both allocated files are serial. Never expose the shared unknown bucket to
+ * a row-isolated fixture; restore its exact prior state after requests settle. */
+async function withOwnedUnknownWindow<T>(fx: BoundFixture, run: () => Promise<T>): Promise<T> {
+  const ipHash=hashFeedIp(null,fx.secret);
+  const [before]=await calendarFixtureStep("serial-window-setup", () => adminQuery<{window_start:string;request_count:string}>("select window_start::text,request_count::text from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]));
+  let result:T|undefined;const errors:Error[]=[];
+  try {
+    await calendarFixtureStep("serial-window-setup", () => adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]));
+    result=await run();
+  }catch(error){errors.push(redactFailure(error));}
+  while(fx.pendingRequests.size) {
+    const requests=await Promise.allSettled([...fx.pendingRequests]);
+    for(const request of requests)if(request.status==="rejected")errors.push(calendarFixtureDiagnostic("scenario", request.reason));
+  }
+  try {
+    await adminSession(async({query})=>{
+      await query("begin");try {
+        await query("delete from public.calendar_feed_ip_windows where ip_hash=$1",[ipHash]);
+        if(before)await query("insert into public.calendar_feed_ip_windows(ip_hash,window_start,request_count) values($1,$2,$3)",[ipHash,before.window_start,before.request_count]);
+        await query("commit");
+      }catch(error){await query("rollback");throw error;}
+    });
+  }catch(error){errors.push(calendarFixtureDiagnostic("serial-window-restore", error));}
+  if(errors.length)throw new AggregateError(errors,"Unknown-IP scenario and cleanup outcomes retained; values redacted");
+  return result as T;
+}
+
+async function calendarSerialControls(fx: BoundFixture): Promise<SerialControls> {
+  const keyHash=(url:string)=>hashFeedToken(tokenFromUrl(url));
+  return {
+    withKeyState: async (state,run) => {
+      const name=`calendar_feed_attestation_${fx.keyId}`;
+      const [row]=await adminQuery<{id:string}>("select id from vault.secrets where name=$1",[name]);if(!row)throw new Error("Owned test key absent");
+      let primary:unknown;let result:unknown;
+      try {
+        if(state==="missing"||state==="unrelated-vault-key-only")await adminQuery("select vault.update_secret($1::uuid,null,$2::text)",[row.id,`calendar_feed_unrelated_${randomUUID()}`]);
+        else await adminQuery("select vault.update_secret($1::uuid,$2::text)",[row.id,Buffer.alloc(32,19).toString("base64url")]);
+        result=await run();
+      } catch(error) {primary=error;}
+      let cleanup:unknown;try{await adminQuery("select vault.update_secret($1::uuid,$2::text,$3::text)",[row.id,fx.secret,name]);}catch(error){cleanup=error;}
+      if(primary||cleanup)throw new AggregateError([...(primary?[new Error("Owned key fault/assertion failed")]:[]),...(cleanup?[new Error("Owned key restore failed")]:[])],"Calendar key fault failed; values redacted");
+      return result as never;
+    },
+    withDatabaseTime: async (value,run) => {
+      if(!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(value))throw new Error("Invalid test clock");
+      const [before]=await adminQuery<{definition:string}>("select pg_get_functiondef('public.calendar_feed_now_internal()'::regprocedure) definition");
+      let primary:unknown,result:unknown;const errors:Error[]=[];
+      try {await adminQuery(`create or replace function public.calendar_feed_now_internal() returns timestamptz language sql volatile security invoker set search_path='' as $$ select '${value}'::timestamptz $$`);result=await run();}
+      catch(error){primary=error;errors.push(new Error("Clock fixture/assertion failed"));}
+      try {await adminQuery(before.definition);}catch{errors.push(new Error("Owned database clock restore failed"));}
+      if(primary||errors.length)throw new AggregateError(errors,"Clock fixture failure; primary and cleanup retained");return result as never;
+    },
+    counters: async (url,ip) => {
+      const [token]=await adminQuery<{request_count:string;window_start:string;spike_count:string}>("select request_count,window_start,spike_count from public.calendar_feed_tokens where token_hash=$1",[keyHash(url)]);
+      const [axis]=await adminQuery<{request_count:string;ip_hash:string}>("select request_count,ip_hash from public.calendar_feed_ip_windows where ip_hash=$1",[hashFeedIp(ip,fx.secret)]);
+      const [clock]=await adminQuery<{now:string}>("select public.calendar_feed_now_internal() now");
+      return {token:Number(token?.request_count??0),ip:Number(axis?.request_count??0),windowStart:iso(token?.window_start)!,databaseNow:iso(clock.now)!,spikeCount:Number(token?.spike_count??0),storedIpIsKeyedHash:!!axis&&/^[0-9a-f]{64}$/.test(axis.ip_hash)&&axis.ip_hash!==ip};
+    },
+    withFault: async (scope,run) => calendarFault(scope,run),
+    loseCommittedResponse: async (subject,intent) => {const result=await fx.manage(subject,intent);if(result.outcome!=="committed")throw new Error("No committed response to lose");},
+    barrier: scope => calendarBarrier(scope),
+    resetOwnedUnknownIpWindow: async () => {await adminQuery("delete from public.calendar_feed_ip_windows where ip_hash=$1",[hashFeedIp(null,fx.secret)]);},
+    boundedInfrastructureCounts: async () => {
+      const [row]=await adminQuery<{live:string;expired:string}>("select count(*) filter(where window_start>=to_timestamp(floor(extract(epoch from public.calendar_feed_now_internal())/900)*900)) live,count(*) filter(where window_start<to_timestamp(floor(extract(epoch from public.calendar_feed_now_internal())/900)*900)) expired from public.calendar_feed_ip_windows");
+      return {liveWindows:Number(row.live),expiredWindows:Number(row.expired),documentedBound:4096};
+    },
+  };
+}
+
+async function calendarFault<T>(scope: Parameters<SerialControls["withFault"]>[0],run:()=>Promise<T>): Promise<{result:T;stageObserved:boolean;sqlstate:string;ownedObjectsRemaining:number}> {
+  const suffix=randomUUID().replaceAll("-",""),fn=`cf_fault_${suffix}`,seq=`cf_seen_${suffix}`,trigger=`cf_trigger_${suffix}`;
+  const projection=scope.stage==="projection-after-first-page"||scope.stage==="projection-query-canceled";
+  const sqlstate=scope.stage==="projection-query-canceled"?"57014":"PT555";
+  const table=scope.stage.endsWith("audit")?"audit_events":"calendar_feed_tokens";
+  let definition:string|undefined,result:T|undefined,observed=false;const failures:Error[]=[];
+  try {
+    await adminSession(async({query})=>{
+      await query("begin");try{
+        await query(`create sequence public.${seq}`);
+        await query(`create function public.${fn}() returns ${projection?"text":"trigger"} language plpgsql security definer set search_path='' as $$ begin ${projection?"":`if new.tenant_id<>'${scope.tenantId}'::uuid ${table==="audit_events"?`or new.correlation_id<>'${scope.correlationId}'::uuid or new.metadata->>'attemptId'<>'${scope.attemptId}'`:""} then return new; end if;`} perform nextval('public.${seq}'); raise exception 'owned calendar fault' using errcode='${sqlstate}'; end $$`);
+        await query(`revoke all on function public.${fn}() from public,anon,authenticated,service_role`);
+        await query(`grant execute on function public.${fn}() to calendar_feed_owner`);await query("commit");
+      }catch(error){await query("rollback");throw error;}
+    });
+    if(projection) {
+      const [row]=await adminQuery<{definition:string}>("select pg_get_functiondef('public.fetch_calendar_feed(text,text,jsonb,text)'::regprocedure) definition");definition=row.definition;
+      const needle="coalesce(nullif(w.display_name,''),'Bokning')";if(!definition.includes(needle))throw new Error("Projection fault anchor missing");
+      await adminQuery(definition.replace(needle,`case when b.tenant_id='${scope.tenantId}'::uuid then public.${fn}() else ${needle} end`));
+    } else await adminQuery(`create trigger ${trigger} before ${table==="audit_events"?"insert":"update"} on public.${table} for each row execute function public.${fn}()`);
+    result=await run();const [seen]=await adminQuery<{is_called:boolean}>(`select is_called from public.${seq}`);observed=seen.is_called;
+  } catch {failures.push(new Error("Owned fault or assertion failed; values redacted"));}
+  for(const action of [async()=>{if(definition)await adminQuery(definition);else await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);},async()=>{await adminQuery(`drop function if exists public.${fn}()`);},async()=>{await adminQuery(`drop sequence if exists public.${seq}`);},async()=>{const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_class where relname=$2 union all select 1 from pg_trigger where tgname=$3",[fn,seq,trigger]);if(rows.length)throw new Error("Owned catalog objects remain");}])try{await action();}catch{failures.push(new Error("Owned fault cleanup failed; object values redacted"));}
+  if(failures.length)throw new AggregateError(failures,"Fault primary and cleanup outcomes retained");
+  return {result:result as T,stageObserved:observed,sqlstate:observed?sqlstate:"",ownedObjectsRemaining:0};
+}
+
+async function calendarBarrier(scope: Parameters<SerialControls["barrier"]>[0]): ReturnType<SerialControls["barrier"]> {
+  const suffix=randomUUID().replaceAll("-",""),fn=`cf_barrier_${suffix}`,trigger=`cf_barrier_t_${suffix}`,lock=Number.parseInt(suffix.slice(0,7),16);
+  let releaseGate!:()=>void,entered!:()=>void;const gate=new Promise<void>(resolve=>{releaseGate=resolve;}),ready=new Promise<void>(resolve=>{entered=resolve;});
+  const holder=adminSession(async({query})=>{await query("set statement_timeout='10s'");await query("select pg_advisory_lock(27155,$1)",[lock]);entered();try{await gate;}finally{await query("select pg_advisory_unlock(27155,$1)",[lock]);}});
+  await Promise.race([ready,holder.then(()=>{throw new Error("Barrier holder exited before readiness");})]);
+  let definition:string|undefined;const authority=scope.stage.endsWith("before-authority");
+  const table=scope.stage==="fetch-authority-admitted"?"calendar_feed_tokens":"audit_events";
+  try {if(authority) {
+    const [row]=await adminQuery<{definition:string;source:string}>("select pg_get_functiondef(oid) definition,prosrc source from pg_proc where oid='public.calendar_feed_subject_internal(uuid,uuid,uuid,boolean)'::regprocedure");definition=row.definition;
+    const expression=row.source.trim().replace(/^select\s+/i,"");
+    await adminQuery(`create or replace function public.calendar_feed_subject_internal(p_tenant uuid,p_membership uuid,p_actor uuid default null,p_admin boolean default false) returns boolean language plpgsql volatile security invoker set search_path='' as $$ begin if p_tenant='${scope.tenantId}'::uuid and p_membership='${scope.membershipId}'::uuid then perform pg_advisory_xact_lock(27155,${lock}); end if; return (${expression}); end $$`);
+  } else {
+    const condition=table==="audit_events"?`new.tenant_id='${scope.tenantId}'::uuid and new.metadata->>'attemptId'='${scope.attemptId}'`:`new.tenant_id='${scope.tenantId}'::uuid and new.membership_id='${scope.membershipId}'::uuid`;
+    await adminQuery(`create function public.${fn}() returns trigger language plpgsql security definer set search_path='' as $$ begin if ${condition} then perform pg_advisory_xact_lock(27155,${lock}); end if; return new; end $$; revoke all on function public.${fn}() from public,anon,authenticated,service_role;`);
+    await adminQuery(`create trigger ${trigger} before ${table==="audit_events"?"insert":"update"} on public.${table} for each row execute function public.${fn}()`);
+  }} catch {
+    releaseGate();const failures=[new Error("Owned barrier setup failed")];try{await holder;}catch{failures.push(new Error("Owned holder release failed"));}
+    try {if(definition)await adminQuery(definition);else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}}catch{failures.push(new Error("Owned barrier setup cleanup failed"));}
+    throw new AggregateError(failures,"Barrier setup and cleanup outcomes retained");
+  }
+  let released=false;
+  return {
+    waitUntilEntered:async(timeoutMs)=>{const deadline=Date.now()+timeoutMs;while(Date.now()<deadline){const rows=await adminQuery("select 1 from pg_locks where locktype='advisory' and classid=27155 and objid=$1 and not granted",[lock]);if(rows.length)return;await new Promise(resolve=>setTimeout(resolve,20));}throw new Error("Owned calendar barrier was not reached");},
+    release:async()=>{if(!released){released=true;releaseGate();await holder;}},
+    assertOwnedObjectsAbsent:async()=>{
+      if(!released){released=true;releaseGate();await holder;}
+      if(definition)await adminQuery(definition);else {await adminQuery(`drop trigger if exists ${trigger} on public.${table}`);await adminQuery(`drop function if exists public.${fn}()`);}
+      const rows=await adminQuery("select 1 from pg_proc where proname=$1 union all select 1 from pg_trigger where tgname=$2",[fn,trigger]);if(rows.length)throw new Error("Owned calendar barrier cleanup failed");
+    },
+  };
+}
+
+/** Independent small RFC5545 inspection; never calls production serializer/parser. */
+export function calendarEvents(body: string): ParsedEvent[] {
+  const unfolded = body.replace(/\r\n[ \t]/g, "");
+  return [...unfolded.matchAll(/BEGIN:VEVENT\r\n([\s\S]*?)END:VEVENT\r\n/g)].map(match => {
+    const properties: Record<string, string[]> = {};
+    for (const line of match[1].split("\r\n").filter(Boolean)) {
+      const colon = line.indexOf(":");
+      if (colon < 1) throw new Error("Invalid RFC5545 property");
+      const name = line.slice(0, colon);
+      (properties[name] ??= []).push(line.slice(colon + 1));
+    }
+    const one = (name: string) => {
+      const values = properties[name];
+      if (values?.length !== 1) throw new Error(`Expected one ${name}`);
+      return values[0];
+    };
+    return { uid: one("UID"), start: properties["DTSTART;VALUE=DATE"]?.[0] ?? one("DTSTART"),
+      end: properties["DTEND;VALUE=DATE"]?.[0] ?? one("DTEND"), summary: one("SUMMARY"),
+      location: properties.LOCATION?.[0] ?? null, properties };
+  });
+}
+export function inactiveContract(response: FeedResponse) {
+  // All security/cache/content headers, not volatile Date/request tracing IDs.
+  const names = ["content-type", "cache-control", "pragma", "expires", "retry-after", "x-content-type-options",
+    "content-security-policy", "referrer-policy", "set-cookie", "location", "etag", "last-modified"];
+  return { status: response.status, body: response.body,
+    headers: Object.fromEntries(names.map(name => [name, response.headers[name] ?? null])) };
+}
+export function tokenFromUrl(url: string): string {
+  const path = new URL(url).pathname;
+  const match = /^\/calendar\/feed\/([A-Za-z0-9_-]{43})$/.exec(path);
+  if (!match) throw calendarFixtureOrigin("scenario-canonical-token-route");
+  return match[1];
+}
+export function issuedUrl(result: ManagementObservation): string {
+  const outcome = result.outcome;
+  if (outcome !== "committed") {
+    throw calendarFixtureOrigin(outcome === "denied" ? "scenario-issued-denied" : outcome === "unavailable" ? "scenario-issued-unavailable" : outcome === "conflict" ? "scenario-issued-conflict" : outcome === "replayed" ? "scenario-issued-replayed" : "scenario-issued-unknown-noncommitted");
+  }
+  if (!result.issuedUrl) throw calendarFixtureOrigin("scenario-issued-committed-missing-url");
+  return result.issuedUrl;
+}
+
+
+EXACT COMMITTED SOURCE tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts lines576-923:
+let fixtureDiagnostics: Promise<typeof import("../../../support/calendar-feed-atdd")> | undefined;
+function actualFixtureDiagnostics() {
+  // Execute the uniquely bounded actual pure source, never its shared DB/auth
+  // imports. These injected contracts cannot prove a native failing branch/code.
+  fixtureDiagnostics ??= (async () => {
+    const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+    const start = "// Pure fixture diagnostics:", end = "// End pure fixture diagnostics.";
+    assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+    const pureSource = source.slice(source.indexOf(start), source.indexOf(end));
+    const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+    assert.equal(typeof strip, "function");
+    return import(`data:text/javascript;base64,${Buffer.from(strip(pureSource)).toString("base64")}`);
+  })();
+  return fixtureDiagnostics;
+}
+function fixtureFailureMessages(error: Error): string[] {
+  return [error.message, ...(error instanceof AggregateError ? error.errors.flatMap(fixtureFailureMessages) : [])];
+}
+
+test("actual fixture diagnostics preserve only allowlisted own-data SQLSTATE with no native text or payload access", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  let getters = 0;
+  const privateText = "PRIVATE fixture URL token proof key SQL parameters";
+  const error = Object.defineProperties(new Error(privateText), {
+    code: { value: "42501" }, detail: { value: privateText }, query: { value: privateText },
+    cause: { get() { getters++; throw Error(privateText); } }, then: { get() { getters++; throw Error(privateText); } },
+  });
+  const safe = calendarFixtureDiagnostic("bind-membership", error);
+  assert.equal(safe.message, "Calendar fixture failure [stage=bind-membership;category=insufficient-privilege;sqlstate=42501]");
+  assert.equal(safe.cause, undefined); assert.ok(!safe.stack?.includes(privateText));
+  assert.equal(getters, 0);
+  for (const invalid of ["CF409", "42501 PRIVATE", 42501, undefined, null, Symbol("PRIVATE")]) {
+    const unknown = calendarFixtureDiagnostic("bind-profile", { code: invalid, message: privateText });
+    assert.match(unknown.message, /category=unknown;sqlstate=unavailable/);
+    assert.ok(!unknown.message.includes(privateText));
+  }
+});
+
+test("actual fixture diagnostic descriptor inspection refuses inherited accessor and malformed aggregate properties", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  let getters = 0;
+  const inherited = Object.create({ code: "42501" });
+  const accessor = Object.defineProperties({}, { code: { get() { getters++; return "42501"; } },
+    errors: { get() { getters++; return [Error("PRIVATE")]; } } });
+  const trapped = new Proxy({}, { getOwnPropertyDescriptor() { throw Error("PRIVATE descriptor"); } });
+  for (const error of [inherited, accessor, trapped, { errors: "PRIVATE", code: "42501" }, { errors: [] }]) {
+    assert.match(calendarFixtureDiagnostic("not-admitted", error).message, /stage=unknown;category=unknown;sqlstate=unavailable/);
+  }
+  assert.equal(getters, 0);
+});
+
+test("actual fixture bounded aggregates retain reaching primary cleanup stages and explicitly mark cycles and truncation", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  const primary = calendarFixtureDiagnostic("bind-profile", { code: "23503", message: "PRIVATE" });
+  const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "42501", query: "PRIVATE" });
+  assert.equal(calendarFixtureDiagnostic("scenario", primary), primary);
+  const messages = fixtureFailureMessages(calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, cleanup], "PRIVATE")));
+  assert.match(messages[1], /stage=bind-profile;category=foreign-key;sqlstate=23503/);
+  assert.match(messages[2], /stage=owned-row-cleanup;category=insufficient-privilege;sqlstate=42501/);
+  assert.ok(messages.every(message => !message.includes("PRIVATE")));
+  const cycle: { errors: unknown[] } = { errors: [] }; cycle.errors.push(cycle);
+  assert.ok(fixtureFailureMessages(calendarFixtureDiagnostic("scenario", cycle)).some(message => message.includes("category=cycle")));
+  let deep: unknown = Error("PRIVATE"); for (let i = 0; i < 10; i++) deep = new AggregateError([deep], "PRIVATE");
+  assert.ok(fixtureFailureMessages(calendarFixtureDiagnostic("scenario", deep)).some(message => message.includes("category=truncated")));
+  const wide = fixtureFailureMessages(calendarFixtureDiagnostic("scenario", new AggregateError(Array.from({ length: 100 }, () => ({ code: "42501" })), "PRIVATE")));
+  assert.equal(wide.length, 16); assert.match(wide.at(-1)!, /category=truncated/);
+});
+
+test("actual fixture catch wrapper invokes operations once preserves successful values and never observes a client or thenable", async () => {
+  const { calendarFixtureStep } = await actualFixtureDiagnostics();
+  let calls = 0, payloadReads = 0;
+  const result = { ordinary: true };
+  assert.equal(await calendarFixtureStep("additional-users", () => { calls++; return result; }), result);
+  assert.equal(calls, 1);
+  const failure = Object.defineProperties({ code: "42P01" }, {
+    then: { get() { payloadReads++; throw Error("PRIVATE"); } }, client: { get() { payloadReads++; throw Error("PRIVATE"); } },
+    cause: { get() { payloadReads++; throw Error("PRIVATE"); } },
+  });
+  await assert.rejects(calendarFixtureStep("bind-profile", () => { calls++; throw failure; }), /stage=bind-profile;category=undefined-table;sqlstate=42P01/);
+  await assert.rejects(calendarFixtureStep("cleanup-absence-check", () => { calls++; return Promise.reject(failure); }), /stage=cleanup-absence-check;category=undefined-table/);
+  assert.equal(calls, 3); assert.equal(payloadReads, 0);
+});
+
+test("actual fixture diagnostics keep upstream message-only replacement and swallowed outcomes explicitly unknown", async () => {
+  const { calendarFixtureDiagnostic, calendarFixtureStep } = await actualFixtureDiagnostics();
+  // Canonical createTenant/createAuthUser/sign-in/deleteAuthUser copy message,
+  // not code. The owned catch cannot reconstruct it from message or cause.
+  const messageOnly = Object.assign(new Error("PRIVATE canonical 42501"), { cause: { code: "42501" } });
+  const first = calendarFixtureDiagnostic("booking-fixture-before-callback", messageOnly);
+  assert.equal(first.message, "Calendar fixture failure [stage=booking-fixture-before-callback;category=unknown;sqlstate=unavailable]");
+  const finalReplacement = await calendarFixtureStep("owned-row-cleanup", async () => {
+    try { throw { code: "23503" }; } finally { throw new Error("PRIVATE DISCARD replacement"); }
+  }).catch(error => error as Error);
+  assert.match(finalReplacement.message, /stage=owned-row-cleanup;category=unknown/);
+  assert.ok(!fixtureFailureMessages(finalReplacement).some(message => message.includes("23503")));
+  // A canonical best-effort warning is not a rejected outcome at the owned catch.
+  const noFailure = await calendarFixtureStep("canonical-fixture-cleanup", () => "completed-without-owned-rejection");
+  assert.equal(noFailure, "completed-without-owned-rejection");
+});
+
+test("actual fixture pre-callback coarse stage and fine owned stages survive outer aggregation without invented substage", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics();
+  const coarse = calendarFixtureDiagnostic("booking-fixture-before-callback", { code: "23514" });
+  const own = calendarFixtureDiagnostic("additional-users", { code: "23505" });
+  const cleanup = calendarFixtureDiagnostic("additional-auth-cleanup", new Error("PRIVATE already erased"));
+  const aggregate = calendarFixtureDiagnostic("scenario", new AggregateError([coarse, own, cleanup], "PRIVATE"));
+  const messages = fixtureFailureMessages(aggregate);
+  assert.match(messages[1], /stage=booking-fixture-before-callback;category=check-constraint/);
+  assert.match(messages[2], /stage=additional-users;category=unique-conflict/);
+  assert.match(messages[3], /stage=additional-auth-cleanup;category=unknown/);
+});
+
+let installedFailureTransport: Promise<(error: unknown) => Promise<{ numFailedTests: number; testResults: { assertionResults: { failureMessages: string[] }[] }[] }>> | undefined;
+function actualInstalledFailureTransport() {
+  installedFailureTransport ??= (async () => {
+    const require = nodeModule.createRequire(import.meta.url);
+    const fromVitest = nodeModule.createRequire(require.resolve("vitest/package.json"));
+    const runnerEntry = pathToFileURL(fromVitest.resolve("@vitest/runner"));
+    const runnerSource = readFileSync(new URL("./chunk-artifact.js", runnerEntry), "utf8");
+    const start = "function failTask(result, err, diffOptions) {", end = "function markTasksAsSkipped(";
+    assert.equal(runnerSource.split(start).length, 2); assert.equal(runnerSource.split(end).length, 2);
+    const actualFailTask = runnerSource.slice(runnerSource.indexOf(start), runnerSource.indexOf(end));
+    const { processError } = await import(pathToFileURL(fromVitest.resolve("@vitest/utils/error")).href);
+    // Execute the exact installed body. These two control-error classes are not
+    // used by our AggregateError inputs; processError is the actual installation.
+    const failTask = new Function("PendingError", "TestRunAbortError", "processError", `${actualFailTask}\nreturn failTask;`)(class {}, class {}, processError) as
+      (result: { state: string; errors?: unknown[] }, error: unknown) => void;
+    const { JsonReporter } = await import("vitest/node");
+    return async error => {
+      const result: { state: string; errors?: unknown[] } = { state: "run" }; failTask(result, error);
+      const file = { type: "suite", name: "fixture transport", filepath: "fixture-transport.test.ts", tasks: [] as unknown[], result: { state: "fail" } };
+      file.tasks.push({ type: "test", name: "one failing fixture", suite: file, result, meta: {}, mode: "run" });
+      const output: string[] = [];
+      const reporter = new JsonReporter({});
+      // No runner/start/collection, output file or service: the public reporter
+      // writes its real JSON into this in-memory logger using a synthetic task.
+      reporter.onInit({ config: {}, snapshot: { summary: {} }, logger: { log(value: string) { output.push(value); }, warn() { throw Error("Unexpected reporter warning"); } } } as never);
+      await reporter.onTestRunEnd([{ task: file }] as never);
+      assert.equal(output.length, 1); return JSON.parse(output[0]);
+    };
+  })();
+  return installedFailureTransport;
+}
+
+async function actualFixtureOrigins() {
+    const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+    const between = (start: string, end: string) => {
+      assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+      return source.slice(source.indexOf(start), source.indexOf(end));
+    };
+    const pure = between("// Pure fixture diagnostics:", "// End pure fixture diagnostics.");
+    const matcher = between("function redactMatchers", "export const expectCalendar");
+    const guards = source.slice(source.indexOf("export function tokenFromUrl"));
+    assert.equal(source.split("export function tokenFromUrl").length, 2);
+    const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+    return import(`data:text/javascript;base64,${Buffer.from(strip(`${pure}\n${matcher}\n${guards}\nexport { redactMatchers };`)).toString("base64")}`);
+}
+
+async function actualFirstCalendarCase(path: string, dependencies: Record<string, unknown>) {
+  const source = readFileSync(new URL(path, import.meta.url), "utf8").replaceAll("\r\n", "\n");
+  const start = source.indexOf('  test("[P0] 15.5-'); assert.ok(start >= 0);
+  const end = source.indexOf("\n  });", start); assert.ok(end > start);
+  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+  let callback: (() => Promise<void>) | undefined;
+  new Function("test", ...Object.keys(dependencies), strip(source.slice(start, end + "\n  });".length)))(
+    (_name: string, run: () => Promise<void>) => { callback = run; }, ...Object.values(dependencies));
+  assert.ok(callback); return callback();
+}
+
+test("live issuance guards expose only closed consumed outcome classes and retain success identity and access order", async () => {
+  const { issuedUrl, tokenFromUrl, calendarFixtureDiagnostic } = await actualFixtureOrigins();
+  const report = await actualInstalledFailureTransport();
+  let forbiddenReads = 0;
+  for (const outcome of ["denied", "unavailable", "conflict", "replayed", "PRIVATE unexpected"]) {
+    let reads = 0;
+    const result = Object.defineProperties({}, { outcome: { get() { reads++; return outcome; } },
+      issuedUrl: { get() { forbiddenReads++; throw Error("PRIVATE URL"); } },
+      cause: { get() { forbiddenReads++; throw Error("PRIVATE cause"); } } });
+    let failure!: Error;
+    try { issuedUrl(result); assert.fail("Expected closed issuance guard"); } catch (error) { failure = error as Error; }
+    const stage = outcome.startsWith("PRIVATE") ? "unknown-noncommitted" : outcome;
+    assert.match(failure.message, new RegExp(`stage=scenario-issued-${stage};category=unknown`));
+    assert.equal(reads, 1); assert.equal(calendarFixtureDiagnostic("scenario", failure), failure);
+    const json = await report(failure); assert.equal(json.numFailedTests, 1);
+    assert.ok(!JSON.stringify(json).includes("PRIVATE"));
+  }
+  assert.equal(forbiddenReads, 0);
+  assert.throws(() => issuedUrl({ outcome: "committed", issuedUrl: null }), /scenario-issued-committed-missing-url/);
+  const url = `https://example.invalid/calendar/feed/${"a".repeat(43)}`, accesses: string[] = [];
+  const committed = Object.defineProperties({}, { outcome: { get() { accesses.push("outcome"); return "committed"; } },
+    issuedUrl: { get() { accesses.push("url"); return url; } } });
+  assert.equal(issuedUrl(committed), url); assert.deepEqual(accesses, ["outcome", "url", "url"]);
+  assert.equal(tokenFromUrl(url), "a".repeat(43));
+  assert.throws(() => tokenFromUrl("https://example.invalid/PRIVATE"), /scenario-canonical-token-route/);
+});
+
+test("live matcher and synchronous allowed-site wrappers preserve once calls values and controlled callsite frames without native field reads", async () => {
+  const { redactMatchers, calendarFixtureAssertionAt, calendarFixtureDiagnostic } = await actualFixtureOrigins();
+  let calls = 0, reads = 0;
+  const hostile = Object.defineProperties({}, Object.fromEntries(["message", "stack", "cause", "code", "actual", "expected", "then"].map(key => [key, { get() { reads++; throw Error("PRIVATE"); } }])));
+  const marker = {}, args = [Symbol("PRIVATE argument")];
+  const assertion = redactMatchers({ pass(...received: unknown[]) { calls++; assert.equal(received[0], args[0]); return marker; }, fail() { calls++; throw hostile; } });
+  assert.equal(assertion.pass(...args), marker); assert.equal(calls, 1);
+  let failure!: Error;
+  function controlledAssertionCallsite() { assertion.fail(); }
+  try { controlledAssertionCallsite(); } catch (error) { failure = error as Error; }
+  assert.match(failure.message, /stage=scenario-assertion;category=unknown/);
+  assert.ok(failure.stack?.includes("controlledAssertionCallsite"));
+  assert.equal(calendarFixtureDiagnostic("scenario", failure), failure);
+  assert.equal(calendarFixtureAssertionAt("scenario-rls001-own", () => marker), marker);
+  for (const site of ["own", "admin", "planner", "mixed"]) {
+    assert.throws(() => calendarFixtureAssertionAt(`scenario-rls001-${site}`, () => { calls++; throw hostile; }), new RegExp(`stage=scenario-rls001-${site}`));
+  }
+  assert.equal(calls, 6); assert.equal(reads, 0); assert.ok(!failure.stack?.includes("PRIVATE"));
+});
+
+test("actual first INT001 and API001 callbacks stop at the live issuance guard after exactly their existing preceding operations", async () => {
+  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
+  for (const [path, expected] of [
+    ["../../../integration/commands/calendar-feed.int.test.ts", ["manage"]],
+    ["../../../integration/calendar-feed/public-feed.int.test.ts", ["seed", "manage"]],
+  ] as const) {
+    const calls: string[] = [];
+    const fixture = { async seedBookings() { calls.push("seed"); }, async manage() { calls.push("manage"); return { outcome: "unavailable", issuedUrl: null }; } };
+    const failure = await actualFirstCalendarCase(path, { withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture),
+      lifecycle: () => ({}), bookingSeed: (value: unknown) => value, issuedUrl: seams.issuedUrl, tokenFromUrl: seams.tokenFromUrl }).then(() => assert.fail("Expected first callback failure"), error => error);
+    assert.deepEqual(calls, expected); assert.match(failure.message, /scenario-issued-unavailable/);
+    const json = await report(seams.calendarFixtureDiagnostic("scenario", failure));
+    assert.equal(json.numFailedTests, 1); assert.match(json.testResults[0].assertionResults[0].failureMessages[0], /scenario-issued-unavailable/);
+  }
+});
+
+test("actual first RLS001 callback identifies each allowed subject without altering preceding calls or inspecting matcher arguments", async () => {
+  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
+  for (const failingSubject of ["own", "admin", "planner", "mixed"]) {
+    const calls: string[] = [], subjects = ["own", "admin", "planner", "mixed"];
+    const fixture = { async setAuthority() { calls.push("authority"); }, async rawManage(subject: string) { calls.push(subject); return { denied: subject === failingSubject }; } };
+    const failure = await actualFirstCalendarCase("../../../integration/rls/calendar-feed.rls.test.ts", {
+      withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture), lifecycle: () => ({}),
+      calendarFixtureAssertionAt: seams.calendarFixtureAssertionAt,
+      expect: (actual: unknown) => seams.redactMatchers({ toBe(expected: unknown) { assert.equal(actual, expected); } }),
+    }).then(() => assert.fail("Expected subject failure"), error => error);
+    assert.deepEqual(calls, ["authority", ...subjects.slice(0, subjects.indexOf(failingSubject) + 1)]);
+    const json = await report(seams.calendarFixtureDiagnostic("scenario", failure));
+    assert.equal(json.numFailedTests, 1); assert.match(json.testResults[0].assertionResults[0].failureMessages[0], new RegExp(`scenario-rls001-${failingSubject}`));
+  }
+});
+
+test("actual first callbacks retain precise safe assertion frames and unknown upstream limits after successful issuance", async () => {
+  const seams = await actualFixtureOrigins(), report = await actualInstalledFailureTransport();
+  const url = `https://example.invalid/calendar/feed/${"a".repeat(43)}`;
+  const expect = (actual: unknown) => seams.redactMatchers({ toBe(expected: unknown) { assert.equal(actual, expected); },
+    toHaveLength(expected: number) { assert.equal((actual as unknown[]).length, expected); } });
+  for (const path of ["../../../integration/commands/calendar-feed.int.test.ts", "../../../integration/calendar-feed/public-feed.int.test.ts"]) {
+    const calls: string[] = [];
+    const fixture = { subjects: { foreign: { tenantId: "foreign" }, peer: { membershipId: "peer", userId: "peer" } },
+      async seedBookings() { calls.push("seed"); }, async manage() { calls.push("manage"); return { outcome: "committed", issuedUrl: url }; },
+      async physical() { calls.push("physical"); return { tokens: [] }; }, async http() { calls.push("http"); return { status: 503 }; } };
+    const failure = await actualFirstCalendarCase(path, { withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run(fixture),
+      lifecycle: () => ({}), bookingSeed: (value: unknown) => value, issuedUrl: seams.issuedUrl, tokenFromUrl: seams.tokenFromUrl, expect }).then(() => assert.fail("Expected actual first assertion failure"), error => error);
+    assert.deepEqual(calls, path.includes("commands") ? ["manage", "physical"] : ["seed", "manage", "http"]);
+    const messages = (await report(seams.calendarFixtureDiagnostic("scenario", failure))).testResults[0].assertionResults[0].failureMessages;
+    assert.equal(messages.length, 1); assert.match(messages[0], /stage=scenario-assertion/);
+    assert.ok(messages[0].includes("eval at actualFirstCalendarCase"));
+  }
+  // A pre-guard rejection has no invented issuance origin. Direct own code may
+  // survive, but erased/unmapped upstream information stays explicitly unknown.
+  for (const rejection of [new Error("PRIVATE erased upstream"), { code: "42501", detail: "PRIVATE" }]) {
+    let manages = 0;
+    const failure = await actualFirstCalendarCase("../../../integration/calendar-feed/public-feed.int.test.ts", {
+      withCalendarFeedFixture: async (_lane: string, run: (fx: unknown) => Promise<void>) => run({ seedBookings: async () => { throw rejection; }, manage: async () => { manages++; } }),
+      bookingSeed: (value: unknown) => value,
+    }).catch(error => seams.calendarFixtureDiagnostic("scenario", error));
+    assert.equal(manages, 0); assert.match(failure.message, /stage=scenario;/);
+    assert.ok(!failure.stack?.includes("PRIVATE"));
+    assert.match(failure.message, rejection instanceof Error ? /category=unknown;sqlstate=unavailable/ : /category=insufficient-privilege;sqlstate=42501/);
+  }
+});
+
+test("live owned HTTP catch emits fixed origin and preserves the existing fetch arguments without examining its rejection", async () => {
+  const seams = await actualFixtureOrigins();
+  const source = readFileSync(new URL("../../../support/calendar-feed-atdd.ts", import.meta.url), "utf8");
+  const start = "    http: (url,options={}) =>", end = "    trustedFetch:";
+  assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+  const httpSource = source.slice(source.indexOf(start), source.indexOf(end));
+  const strip = (nodeModule as unknown as { stripTypeScriptTypes(source: string): string }).stripTypeScriptTypes;
+  let calls = 0, reads = 0; const headers = {}, hostile = Object.defineProperty({}, "message", { get() { reads++; throw Error("PRIVATE"); } });
+  const make = (fetch: (...args: unknown[]) => Promise<unknown>, response: (value: unknown) => unknown) => new Function("track", "testOrigin", "fetch", "response", "calendarFixtureOrigin", `return ${strip(`({${httpSource}}).http`)};`)(
+    (value: unknown) => value, () => "https://example.invalid", fetch, response, seams.calendarFixtureOrigin);
+  const http = make(async (target, options) => { calls++; assert.ok(target instanceof URL); assert.equal(target.searchParams.get("from"), "1900"); assert.deepEqual(options, { headers, redirect: "manual", cache: "no-store" }); throw hostile; }, value => value);
+  await assert.rejects(http("https://example.invalid/calendar/feed/opaque", { headers, query: { from: "1900" } }), /scenario-http-transport/);
+  assert.equal(calls, 1); assert.equal(reads, 0);
+  const result = {}; assert.equal(await make(async () => result, value => value)("https://example.invalid/calendar/feed/opaque"), result);
+});
+
+test("installed failure transport reproduces lost nested diagnostics without treating reporter absence as unknown in process", async () => {
+  const report = await actualInstalledFailureTransport();
+  const leaf = new Error("Calendar fixture failure [stage=bind-profile;category=insufficient-privilege;sqlstate=42501]");
+  const nested = new AggregateError([leaf], "Calendar fixture failure group [stage=canonical-fixture-cleanup]");
+  const oldShape = new AggregateError([nested], "Calendar fixture failure group [stage=scenario]");
+  assert.equal(nested.errors[0], leaf); // The in-process positive control exists.
+  const json = await report(oldShape), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 1);
+  assert.match(messages[0], /group \[stage=canonical-fixture-cleanup\]/);
+  assert.ok(!messages[0].includes("sqlstate=42501"));
+});
+
+test("actual repaired fixture diagnostics reach installed JSON as ordered primary and cleanup leaves within one failed case", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
+  const primary = calendarFixtureDiagnostic("bind-profile", { code: "42501", message: "PRIVATE native" });
+  const unknown = calendarFixtureDiagnostic("booking-fixture-before-callback", new Error("PRIVATE lost 23503"));
+  const cleanup = calendarFixtureDiagnostic("owned-row-cleanup", { code: "23503", query: "PRIVATE query" });
+  const nested = calendarFixtureDiagnostic("canonical-fixture-cleanup", new AggregateError([primary, new AggregateError([unknown, cleanup], "PRIVATE")], "PRIVATE"));
+  const final = calendarFixtureDiagnostic("scenario", new AggregateError([nested], "PRIVATE"));
+  assert.ok(final instanceof AggregateError); assert.equal(final.errors.length, 3);
+  assert.ok(final.errors.every((error: Error) => !(error instanceof AggregateError)));
+  const json = await report(final), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(messages.length, 3);
+  assert.match(messages[0], /stage=bind-profile;category=insufficient-privilege;sqlstate=42501/);
+  assert.match(messages[1], /stage=booking-fixture-before-callback;category=unknown;sqlstate=unavailable/);
+  assert.match(messages[2], /stage=owned-row-cleanup;category=foreign-key;sqlstate=23503/);
+  assert.ok(!JSON.stringify(json).includes("PRIVATE"));
+});
+
+test("installed diagnostic JSON retains closed getter cycle and truncation negatives without native payload or accessor reads", async () => {
+  const { calendarFixtureDiagnostic } = await actualFixtureDiagnostics(), report = await actualInstalledFailureTransport();
+  let getters = 0;
+  const privateText = "PRIVATE URL TOKEN PROOF KEY SQL PARAMS";
+  const hostile = Object.defineProperties({}, { code: { get() { getters++; throw Error(privateText); } },
+    cause: { get() { getters++; throw Error(privateText); } }, message: { value: privateText }, detail: { value: privateText },
+    query: { value: privateText }, params: { value: [privateText] }, then: { get() { getters++; throw Error(privateText); } } });
+  const cycle: { errors: unknown[] } = { errors: [] }; cycle.errors.push(cycle);
+  let deep: unknown = { code: "42501", message: privateText };
+  for (let i = 0; i < 10; i++) deep = new AggregateError([deep], privateText);
+  const failure = calendarFixtureDiagnostic("scenario", new AggregateError([hostile, Object.create({ code: "42501" }), cycle, deep], privateText));
+  const json = await report(failure), messages = json.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(json.numFailedTests, 1); assert.equal(getters, 0);
+  assert.ok(messages.some(message => message.includes("category=unknown;sqlstate=unavailable")));
+  assert.ok(messages.some(message => message.includes("category=cycle")));
+  assert.ok(messages.some(message => message.includes("category=truncated")));
+  assert.ok(!JSON.stringify(json).includes(privateText));
+  assert.ok(!messages.some(message => message.includes("sqlstate=42501")));
+  const wide = calendarFixtureDiagnostic("scenario", new AggregateError(Array.from({ length: 100 }, () => ({ code: "42501", message: privateText })), privateText));
+  const wideJson = await report(wide), wideMessages = wideJson.testResults[0].assertionResults[0].failureMessages;
+  assert.equal(wideMessages.length, 15); assert.match(wideMessages.at(-1)!, /category=truncated/);
+  assert.ok(!JSON.stringify(wideJson).includes(privateText));
+});
+
+
+EXACT COMMITTED SOURCE tests/integration/commands/calendar-feed.int.test.ts lines1-39:
+import { createHash } from "node:crypto";
+import { describe, test } from "vitest";
+import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
+import { withCalendarFeedFixture, lifecycle, issuedUrl, tokenFromUrl, bookingSeed,
+  type ManagementObservation, type FeedResponse } from "../../support/calendar-feed-atdd";
+
+// Provider endpoint: TODO — authenticated calendar-feed commands/RPCs are new.
+// Frozen provider contract: spec-15-5 AC1/2/4/6/9 and current-contracts-and-design.
+// Seven-point scrutiny: sanitized lifecycle metadata + fresh URL once; outcomes
+// and wire statuses/field names bind to real P5 source (not invented here).
+// Required domain fields: action/revision/UUID attempt/current self; no escrow.
+// Enums/types/nesting here are TEST observation types, not provider response JSON.
+// SERIAL OWNER: later Vitest audit-DDL partition must include ONLY this file and
+// calendar-feed/public-feed.int.test.ts in addition to the existing serial files.
+// P4: every declaration skipped; no fixture, key, SQL, HTTP or resource executes.
+
+describe("15.5 authenticated lifecycle, atomic audit and commit-order", () => {
+  test("[P0] 15.5-INT001 AC1 AC6 own issuance stores only SHA256 and publishes a fresh URL once", async () => {
+    await withCalendarFeedFixture("serial-commands", async fx => {
+      const intent = lifecycle("create", 0);
+      const result = await fx.manage("own", intent), url = issuedUrl(result), raw = tokenFromUrl(url);
+      expect(/^[A-Za-z0-9_-]{43}$/.test(raw)).toBe(true);
+      expect(Buffer.from(raw, "base64url").length).toBe(32);
+      const physical = await fx.physical(), active = physical.tokens.filter(row => row.revokedAt === null);
+      expect(active).toHaveLength(1);
+      expect(active[0]).toMatchObject({ tenantId: fx.subjects.own.tenantId,
+        membershipId: fx.subjects.own.membershipId, hash: createHash("sha256").update(raw, "utf8").digest("hex"),
+        attemptId: intent.attemptId, usageCount: 0, lastUsedAt: null });
+      expect(physical.audits).toHaveLength(1);
+      expect(physical.audits[0]).toMatchObject({ action: "calendar_feed.create",
+        actorId: fx.subjects.own.userId, tenantId: fx.subjects.own.tenantId, attemptId: intent.attemptId });
+      expect(JSON.stringify(physical.persistedRows).includes(raw)).toBe(false);
+      expect(JSON.stringify(physical.persistedRows).includes(url)).toBe(false);
+      const status = await fx.status("own");
+      expect(status).toMatchObject({ active: true, usageCount: 0, lastUsedAt: null });
+      expect(JSON.stringify(status.publicDto).includes(raw)).toBe(false);
+      expect(JSON.stringify(status.publicDto).includes(active[0].hash)).toBe(false);
+    });
+  });
+
+EXACT COMMITTED SOURCE tests/integration/calendar-feed/public-feed.int.test.ts lines1-57:
+import { randomUUID } from "node:crypto";
+import { describe, test } from "vitest";
+import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
+import { withCalendarFeedFixture, lifecycle, issuedUrl, tokenFromUrl, bookingSeed, calendarEvents,
+  inactiveContract, type FeedResponse } from "../../support/calendar-feed-atdd";
+
+// Provider endpoint: TODO — GET /calendar/feed/[token] and checked fetch RPC are new.
+// Seven-point provider scrutiny from frozen AC3–9: successful UTF-8 text/calendar
+// body, generic invalid404, limited429 + Retry-After, unavailable503; no cookie,
+// redirect, cache reuse or tenant/subject override. RFC5545 properties have string
+// values and exact date/time encodings. Generic failure wording and final SQL/
+// internal DTO field names are deliberately not invented; compare equal histories.
+// SERIAL OWNER with commands/calendar-feed.int.test.ts only. P5 must add both
+// files to serial audit-DDL include AND parallel exclude, preserving existing files.
+// Trusted-axis cases call REAL orchestration+SQL through private dependency seams;
+// http() cases call real production HTTP without retries. These are distinct lanes.
+
+describe("15.5 public capability HTTP, projection and independent abuse budgets", () => {
+  test("[P0] 15.5-API001 AC3 AC4 AC9 own minimal projection rejects tenant subject and date overrides", async () => {
+    await withCalendarFeedFixture("serial-public", async fx => {
+      const own = bookingSeed({ additionalAssignees: ["peer"] }), peer = bookingSeed({ subject: "peer" });
+      const foreign = bookingSeed({ subject: "foreign" });
+      await fx.seedBookings([own, peer, foreign]);
+      const url = issuedUrl(await fx.manage("own", lifecycle("create", 0)));
+      const response = await fx.http(url, { query: { tenantId: fx.subjects.foreign.tenantId,
+        membershipId: fx.subjects.peer.membershipId, userId: fx.subjects.peer.userId, from: "1900-01-01", to: "1900-01-02" } });
+      expect(response.status).toBe(200);
+      expect(response.headers["content-type"]).toMatch(/^text\/calendar\b.*charset=utf-8/i);
+      const events = calendarEvents(response.body);
+      expect(events).toHaveLength(1);
+      expect(events[0].uid).toContain(own.id);
+      expect(events[0].start).toBe("20261021T060000Z");
+      expect(events[0].end).toBe("20261021T140000Z");
+      expect(events[0].summary).toContain("Installation");
+      expect(events[0].location).toBe("Testgatan 15\\, Uppsala");
+      for (const denied of [peer.id, foreign.id, own.description, fx.subjects.own.tenantId,
+        fx.subjects.peer.userId, fx.subjects.peer.profileId!, fx.subjects.own.membershipId])
+        expect(response.body).not.toContain(denied);
+      const allowed = ["UID", "DTSTAMP", "LAST-MODIFIED", "DTSTART", "DTEND", "SUMMARY", "LOCATION"];
+      expect(Object.keys(events[0].properties).every(key => allowed.includes(key))).toBe(true);
+      expect(events[0].properties).not.toHaveProperty("DESCRIPTION");
+      expect(events[0].properties).not.toHaveProperty("ATTENDEE");
+      expect(events[0].properties).not.toHaveProperty("ORGANIZER");
+      expect(events[0].properties).not.toHaveProperty("URL");
+      let revision = 2031;
+      for (const source of ["work_roles", "jobs", "customers", "facilities"] as const) {
+        const updatedAt = `${revision}-01-01T12:00:00Z`, label = `Changed ${source}`;
+        await fx.editProjectedSource(own.id, source, label, updatedAt);
+        const edited = calendarEvents((await fx.http(url)).body)[0];
+        expect(edited.uid).toBe(events[0].uid);
+        expect(source === "facilities" ? edited.location : edited.summary).toContain(label);
+        expect(edited.properties["DTSTAMP"]).toEqual([`${revision}0101T120000Z`]);
+        expect(edited.properties["LAST-MODIFIED"]).toEqual([`${revision}0101T120000Z`]);
+        revision++;
+      }
+    });
+  });
+
+EXACT COMMITTED SOURCE tests/integration/rls/calendar-feed.rls.test.ts lines1-36:
+import { randomUUID } from "node:crypto";
+import { describe, test } from "vitest";
+import { expectCalendar as expect } from "../../support/calendar-feed-atdd";
+import { withCalendarFeedFixture, lifecycle, issuedUrl, bookingSeed, calendarEvents, calendarFixtureAssertionAt } from "../../support/calendar-feed-atdd";
+
+// Provider endpoint: TODO — checked management/status/fetch/abuse RPCs await real
+// P5 identifiers/signatures; normalized receipt purposes below are not SQL names.
+// Source scrutinized: frozen 15.5 AC1–9, permission-matrix.ts Bookings.View union,
+// time-reports.rls.test.ts ordinary-JWT/direct-SQL conventions and inherited ACL
+// checks in approved-public-acl-repair.int.test.ts. No provider response invented.
+// PARALLEL ROW-ISOLATED ONLY: no serial controls, key mutation, fault DDL,
+// unknown-IP HTTP requests or resets. P5 consumes allocated key read-only; direct
+// proof probes use fixture-owned IP hashes and row-owned subjects exclusively.
+
+describe("15.5 exact self authority, raw SQL boundary and least privilege", () => {
+  test("[P0] 15.5-RLS001 AC1 AC4 AC9 ordinary SQL current role union authorizes own management only", async () => {
+    await withCalendarFeedFixture("row-isolated", async fx => {
+      await fx.setAuthority("mixed", { primary: "saljare", additional: ["montor"] });
+      const allowedSites = { own: "scenario-rls001-own", admin: "scenario-rls001-admin", planner: "scenario-rls001-planner", mixed: "scenario-rls001-mixed" } as const;
+      const allowed: Array<keyof typeof allowedSites> = ["own", "admin", "planner", "mixed"];
+      for (const subject of allowed) {
+        const result = await fx.rawManage(subject, lifecycle("create", 0));
+        calendarFixtureAssertionAt(allowedSites[subject], () => expect(result.denied, subject).toBe(false));
+      }
+      for (const subject of ["seller", "economy", "invited", "disabled", "platformOnly", "anon"] as const) {
+        const before = await fx.physical();
+        const result = await fx.rawManage(subject, lifecycle("create", 0));
+        expect(result.denied, subject).toBe(true);
+        expect(result.rows).toEqual([]);
+        expect(await fx.physical()).toEqual(before);
+      }
+      const tokens = (await fx.physical()).tokens;
+      expect(tokens.filter(row => row.revokedAt === null)).toHaveLength(allowed.length);
+      expect(tokens.map(row => row.membershipId).sort()).toEqual(allowed.map(key => fx.subjects[key].membershipId).sort());
+    });
+  });
+
+EXACT COMMITTED SOURCE tests/support/bookings-atdd.ts lines187-211:
+export async function withBookingFixture(run: (fixture: Awaited<ReturnType<typeof seedBookingFixture>>) => Promise<void>) {
+  const roleFixture = await createRoleAwarePhaseAFixture();
+  try { await run(await seedBookingFixture(roleFixture)); }
+  finally { await cleanupRoleAwarePhaseAFixture(roleFixture); }
+}
+async function seedBookingFixture(roleFixture: Awaited<ReturnType<typeof createRoleAwarePhaseAFixture>>) {
+  const { base, users } = roleFixture;
+  const seedProfile = async (tenantId: string, user: FixtureUser) => {
+    const [membership] = await adminQuery<{ id: string }>(
+      "select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, user.id]);
+    const id = crypto.randomUUID();
+    await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [id, tenantId, membership.id]);
+    return { id, membershipId: membership.id };
+  };
+  const [adminProfile, ownProfile, coworkerProfile, foreignProfile] = await Promise.all([
+    seedProfile(base.tenantA.id, base.adminA), seedProfile(base.tenantA.id, users.montor),
+    seedProfile(base.tenantA.id, users.projektledare), seedProfile(base.tenantB.id, base.adminB),
+  ]);
+  const [adminClient, plannerClient, montorClient, foreignClient] = await Promise.all([
+    makeAuthedServerClient(base.adminA), makeAuthedServerClient(users.projektledare),
+    makeAuthedServerClient(users.montor), makeAuthedServerClient(base.adminB),
+  ]);
+  return { ...roleFixture, adminProfile, ownProfile, coworkerProfile, foreignProfile,
+    adminClient, plannerClient, montorClient, foreignClient,
+    tenantIds: [base.tenantA.id, base.tenantB.id] };
+
+EXACT COMMITTED SOURCE src/server/commands/calendar-feed/calendar-feed-db.ts lines1-14:
+import type { CommandDbClient } from "../envelope";
+import { CommandError } from "../command-errors";
+export async function executeCalendarFeed(db: CommandDbClient, args: Record<string, unknown>): Promise<{ outcome: "committed" | "replayed"; revision: number }> {
+  const { data, error } = await (db as unknown as { rpc(name: string, args: Record<string, unknown>): PromiseLike<{ data: unknown; error: { code?: string } | null }> }).rpc("manage_calendar_feed", args);
+  if (error) {
+    if (error.code === "CF409") throw new CommandError("COMMAND_CONFLICT");
+    if (error.code === "42501") throw new CommandError("TENANT_ACCESS_DENIED");
+    throw new Error("Calendar write unavailable");
+  }
+  const result = data as Record<string, unknown> | null;
+  if (!result || !["committed", "replayed"].includes(String(result.outcome)) || !Number.isSafeInteger(result.revision) || Number(result.revision) < 0) throw new Error("Calendar write unavailable");
+  return { outcome: result.outcome as "committed" | "replayed", revision: result.revision as number };
+}
+
+
+EXACT COMMITTED SOURCE src/server/commands/calendar-feed/manage-calendar-feed.ts lines1-44:
+import type { CalendarFeedAction, CalendarFeedIntent, CalendarFeedResult } from "@/features/calendar-feed/types";
+import { validateCalendarFeedIntent } from "@/features/calendar-feed/validation";
+import { feedKeyFromEnv, FEED_SCHEMA, MANAGE_DOMAIN, issueCalendarFeedToken, signFeedProof } from "@/server/calendar-feed/attestation";
+import { readCalendarFeedStatus } from "@/server/read-models/calendar-feed";
+import type { createSupabaseServerClient } from "@/server/db/supabase-server-client";
+import { defineCommand, runCommand, type CommandDbClient, type CommandConfig } from "../envelope";
+import { executeCalendarFeed } from "./calendar-feed-db";
+
+/** Plaintext exists only in execute and its confirmed fresh response. */
+function calendarFeedConfig(action: CalendarFeedAction): Omit<CommandConfig<CalendarFeedIntent, CalendarFeedResult>, "command"> {
+  return {
+    auditable: false, eventType: `calendar_feed_${action}`, targetType: "calendar_feed",
+    validateInput: raw => { const result = validateCalendarFeedIntent(raw); return result.ok && result.data.action !== action ? { ok: false, code: "VALIDATION_FAILED" } : result; },
+    execute: async ctx => {
+      const key = feedKeyFromEnv();
+      const status = await readCalendarFeedStatus(ctx.db as unknown as Awaited<ReturnType<typeof createSupabaseServerClient>>, ctx.tenantContext.tenantId, ctx.input.attemptId);
+      // Reconciliation is read-only. A retry never generates a replacement hash.
+      if (status.attemptOutcome === "committed") return { outcome: status.attemptAction === action && status.attemptRevision === ctx.input.revision ? "replayed" : "conflict", revision: status.revision, issuedPath: null };
+      const issued = action === "revoke" ? null : issueCalendarFeedToken(), now = new Date();
+      const claims = { schema: FEED_SCHEMA, domain: MANAGE_DOMAIN, operation: action, tenantId: ctx.tenantContext.tenantId, actorId: ctx.tenantContext.userId,
+        membershipId: status.membershipId, revision: String(ctx.input.revision), attemptId: ctx.input.attemptId, newHash: issued?.hash ?? "", correlationId: ctx.correlationId,
+        keyId: key.keyId, issuedAt: now.toISOString(), expiresAt: new Date(now.getTime() + 60000).toISOString() };
+      const result = await executeCalendarFeed(ctx.db, { p_tenant_id: claims.tenantId, p_actor_id: claims.actorId, p_membership_id: claims.membershipId,
+        p_action: action, p_expected_revision: ctx.input.revision, p_attempt_id: ctx.input.attemptId, p_new_hash: issued?.hash ?? null,
+        p_correlation_id: ctx.correlationId, p_claims: claims, p_signature: signFeedProof(claims, key.secret) });
+      return { ...result, issuedPath: result.outcome === "committed" && issued ? `/calendar/feed/${issued.raw}` : null };
+    },
+  };
+}
+// Each mutation has one literal declaration for independent enrollment discovery.
+const commands = {
+  create: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.create", ...calendarFeedConfig("create") }),
+  rotate: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.rotate", ...calendarFeedConfig("rotate") }),
+  revoke: defineCommand<CalendarFeedIntent, CalendarFeedResult>({ command: "calendar_feed.revoke", ...calendarFeedConfig("revoke") }),
+};
+export function calendarFeedCommand(action: CalendarFeedAction) { return commands[action]; }
+export async function manageCalendarFeed(client: CommandDbClient, input: unknown, correlationId?: string): Promise<CalendarFeedResult> {
+  const validated = validateCalendarFeedIntent(input);
+  if (!validated.ok) return { outcome: "denied", revision: null, issuedPath: null };
+  const result = await runCommand(calendarFeedCommand(validated.data.action), { client, input, correlationId });
+  if (result.ok) return result.data;
+  return { outcome: result.code === "COMMAND_CONFLICT" ? "conflict" : result.code === "SERVER_ERROR" ? "unavailable" : "denied", revision: null, issuedPath: null };
+}
+
+
+INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/dist/chunk-artifact.js lines3055-3074:
+function failTask(result, err, diffOptions) {
+	if (err instanceof PendingError) {
+		result.state = "skip";
+		result.note = err.note;
+		result.pending = true;
+		return;
+	}
+	if (err instanceof TestRunAbortError) {
+		result.state = "skip";
+		result.note = err.message;
+		return;
+	}
+	result.state = "fail";
+	const errors = Array.isArray(err) ? err : [err];
+	for (const e of errors) {
+		const errors = e instanceof AggregateError ? e.errors.map((e) => processError(e, diffOptions)) : [processError(e, diffOptions)];
+		result.errors ??= [];
+		result.errors.push(...errors);
+	}
+}
+
+INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/error.js lines1-44:
+import { format } from '@vitest/pretty-format';
+import { printDiffOrStringify, getDefaultFormatOptions } from './diff.js';
+import { serializeValue } from './serialize.js';
+import 'tinyrainbow';
+import './display.js';
+import './helpers.js';
+import './constants.js';
+
+function processError(_err, diffOptions, seen = new WeakSet()) {
+	if (!_err || typeof _err !== "object") {
+		return { message: String(_err) };
+	}
+	const err = _err;
+	if (err.showDiff || err.showDiff === undefined && err.expected !== undefined && err.actual !== undefined) {
+		const options = {
+			...diffOptions,
+			...err.diffOptions
+		};
+		err.diff = printDiffOrStringify(err.actual, err.expected, options, err);
+		err.expected = prettifyValue(err.expected, options);
+		err.actual = prettifyValue(err.actual, options);
+	}
+	// some Error implementations may not allow rewriting cause
+	// in most cases, the assignment will lead to "err.cause = err.cause"
+	try {
+		if (!seen.has(err) && typeof err.cause === "object") {
+			seen.add(err);
+			err.cause = processError(err.cause, diffOptions, seen);
+		}
+	} catch {}
+	try {
+		return serializeValue(err);
+	} catch (e) {
+		return serializeValue(new Error(`Failed to fully serialize error: ${e?.message}\nInner error message: ${err?.message}`));
+	}
+}
+function prettifyValue(value, options) {
+	if (typeof value !== "string") {
+		return format(value, getDefaultFormatOptions(options));
+	}
+	return value;
+}
+
+export { processError, serializeValue as serializeError };
+
+INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/@vitest+utils@4.1.9/node_modules/@vitest/utils/dist/serialize.js lines1-118:
+const IS_RECORD_SYMBOL = "@@__IMMUTABLE_RECORD__@@";
+const IS_COLLECTION_SYMBOL = "@@__IMMUTABLE_ITERABLE__@@";
+function isImmutable(v) {
+	return v && (v[IS_COLLECTION_SYMBOL] || v[IS_RECORD_SYMBOL]);
+}
+const OBJECT_PROTO = Object.getPrototypeOf({});
+function getUnserializableMessage(err) {
+	if (err instanceof Error) {
+		return `<unserializable>: ${err.message}`;
+	}
+	if (typeof err === "string") {
+		return `<unserializable>: ${err}`;
+	}
+	return "<unserializable>";
+}
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+function serializeValue(val, seen = new WeakMap()) {
+	if (!val || typeof val === "string") {
+		return val;
+	}
+	if (val instanceof Error && "toJSON" in val && typeof val.toJSON === "function") {
+		const jsonValue = val.toJSON();
+		if (jsonValue && jsonValue !== val && typeof jsonValue === "object") {
+			if (typeof val.message === "string") {
+				safe(() => jsonValue.message ??= normalizeErrorMessage(val.message));
+			}
+			if (typeof val.stack === "string") {
+				safe(() => jsonValue.stack ??= val.stack);
+			}
+			if (typeof val.name === "string") {
+				safe(() => jsonValue.name ??= val.name);
+			}
+			if (val.cause != null) {
+				safe(() => jsonValue.cause ??= serializeValue(val.cause, seen));
+			}
+		}
+		return serializeValue(jsonValue, seen);
+	}
+	if (typeof val === "function") {
+		return `Function<${val.name || "anonymous"}>`;
+	}
+	if (typeof val === "symbol") {
+		return val.toString();
+	}
+	if (typeof val !== "object") {
+		return val;
+	}
+	if (typeof Buffer !== "undefined" && val instanceof Buffer) {
+		return `<Buffer(${val.length}) ...>`;
+	}
+	if (typeof Uint8Array !== "undefined" && val instanceof Uint8Array) {
+		return `<Uint8Array(${val.length}) ...>`;
+	}
+	// cannot serialize immutables as immutables
+	if (isImmutable(val)) {
+		return serializeValue(val.toJSON(), seen);
+	}
+	if (val instanceof Promise || val.constructor && val.constructor.prototype === "AsyncFunction") {
+		return "Promise";
+	}
+	if (typeof Element !== "undefined" && val instanceof Element) {
+		return val.tagName;
+	}
+	if (typeof val.toJSON === "function") {
+		return serializeValue(val.toJSON(), seen);
+	}
+	if (seen.has(val)) {
+		return seen.get(val);
+	}
+	if (Array.isArray(val)) {
+		// eslint-disable-next-line unicorn/no-new-array -- we need to keep sparse arrays ([1,,3])
+		const clone = new Array(val.length);
+		seen.set(val, clone);
+		val.forEach((e, i) => {
+			try {
+				clone[i] = serializeValue(e, seen);
+			} catch (err) {
+				clone[i] = getUnserializableMessage(err);
+			}
+		});
+		return clone;
+	} else {
+		// Objects with `Error` constructors appear to cause problems during worker communication
+		// using `MessagePort`, so the serialized error object is being recreated as plain object.
+		const clone = Object.create(null);
+		seen.set(val, clone);
+		let obj = val;
+		while (obj && obj !== OBJECT_PROTO) {
+			Object.getOwnPropertyNames(obj).forEach((key) => {
+				if (key in clone) {
+					return;
+				}
+				try {
+					clone[key] = serializeValue(val[key], seen);
+				} catch (err) {
+					// delete in case it has a setter from prototype that might throw
+					delete clone[key];
+					clone[key] = getUnserializableMessage(err);
+				}
+			});
+			obj = Object.getPrototypeOf(obj);
+		}
+		if (val instanceof Error) {
+			safe(() => clone.message = normalizeErrorMessage(val.message));
+		}
+		return clone;
+	}
+}
+function safe(fn) {
+	try {
+		return fn();
+	} catch {}
+}
+function normalizeErrorMessage(message) {
+	return message.replace(/\(0\s?,\s?__vite_ssr_import_\d+__.(\w+)\)/g, "$1").replace(/__(vite_ssr_import|vi_import)_\d+__\./g, "").replace(/getByTestId('__vitest_\d+__')/g, "page");
+}
+
+export { serializeValue };
+
+INSTALLED4.1.9 TRANSPORT node_modules/.pnpm/vitest@4.1.9_@types+node@20_dd0c506e006b7a7a7c5015e13867d163/node_modules/vitest/dist/chunks/index.UpGiHP7g.js lines3522-3629:
+class JsonReporter {
+	start = 0;
+	ctx;
+	options;
+	coverageMap;
+	constructor(options) {
+		this.options = options;
+	}
+	onInit(ctx) {
+		this.ctx = ctx;
+		this.start = Date.now();
+		this.coverageMap = void 0;
+	}
+	onCoverage(coverageMap) {
+		this.coverageMap = coverageMap;
+	}
+	async onTestRunEnd(testModules) {
+		const files = testModules.map((testModule) => testModule.task);
+		const suites = getSuites(files);
+		const numTotalTestSuites = suites.length;
+		const tests = getTests(files);
+		const numTotalTests = tests.length;
+		const numFailedTestSuites = suites.filter((s) => s.result?.state === "fail").length;
+		const numPendingTestSuites = suites.filter((s) => s.result?.state === "run" || s.result?.state === "queued" || s.mode === "todo").length;
+		const numPassedTestSuites = numTotalTestSuites - numFailedTestSuites - numPendingTestSuites;
+		const numFailedTests = tests.filter((t) => t.result?.state === "fail").length;
+		const numPassedTests = tests.filter((t) => t.result?.state === "pass").length;
+		const numPendingTests = tests.filter((t) => t.result?.state === "run" || t.result?.state === "queued" || t.mode === "skip" || t.result?.state === "skip").length;
+		const numTodoTests = tests.filter((t) => t.mode === "todo").length;
+		const testResults = [];
+		const success = !!(files.length > 0 || this.ctx.config.passWithNoTests) && numFailedTestSuites === 0 && numFailedTests === 0;
+		const { filterMeta } = this.options;
+		for (const file of files) {
+			const tests = getTests([file]);
+			let startTime = tests.reduce((prev, next) => Math.min(prev, next.result?.startTime ?? Number.POSITIVE_INFINITY), Number.POSITIVE_INFINITY);
+			if (startTime === Number.POSITIVE_INFINITY) startTime = this.start;
+			const endTime = tests.reduce((prev, next) => Math.max(prev, (next.result?.startTime ?? 0) + (next.result?.duration ?? 0)), startTime);
+			const assertionResults = tests.map((t) => {
+				const ancestorTitles = [];
+				let iter = t.suite;
+				while (iter) {
+					ancestorTitles.push(iter.name);
+					iter = iter.suite;
+				}
+				ancestorTitles.reverse();
+				return {
+					ancestorTitles,
+					fullName: t.name ? [...ancestorTitles, t.name].join(" ") : ancestorTitles.join(" "),
+					status: StatusMap[t.result?.state || t.mode] || "skipped",
+					title: t.name,
+					duration: t.result?.duration,
+					failureMessages: t.result?.errors?.map((e) => e.stack || e.message) || [],
+					location: t.location,
+					meta: filterMeta ? (() => {
+						const filtered = {};
+						for (const key in t.meta) {
+							const value = t.meta[key];
+							if (filterMeta(key, value)) filtered[key] = value;
+						}
+						return filtered;
+					})() : t.meta,
+					tags: t.tags || []
+				};
+			});
+			if (tests.some((t) => t.result?.state === "run" || t.result?.state === "queued")) this.ctx.logger.warn("WARNING: Some tests are still running when generating the JSON report.This is likely an internal bug in Vitest.Please report it to https://github.com/vitest-dev/vitest/issues");
+			const hasFailedTests = tests.some((t) => t.result?.state === "fail");
+			testResults.push({
+				assertionResults,
+				startTime,
+				endTime,
+				status: file.result?.state === "fail" || hasFailedTests ? "failed" : "passed",
+				message: file.result?.errors?.[0]?.message ?? "",
+				name: file.filepath
+			});
+		}
+		const result = {
+			numTotalTestSuites,
+			numPassedTestSuites,
+			numFailedTestSuites,
+			numPendingTestSuites,
+			numTotalTests,
+			numPassedTests,
+			numFailedTests,
+			numPendingTests,
+			numTodoTests,
+			snapshot: this.ctx.snapshot.summary,
+			startTime: this.start,
+			success,
+			testResults,
+			coverageMap: this.coverageMap
+		};
+		await this.writeReport(JSON.stringify(result));
+	}
+	/**
+	* Writes the report to an output file if specified in the config,
+	* or logs it to the console otherwise.
+	* @param report
+	*/
+	async writeReport(report) {
+		const outputFile = this.options.outputFile ?? getOutputFile(this.ctx.config, "json");
+		if (outputFile) {
+			const reportFile = resolve$1(this.ctx.config.root, outputFile);
+			const outputDirectory = dirname(reportFile);
+			if (!existsSync(outputDirectory)) await promises.mkdir(outputDirectory, { recursive: true });
+			await promises.writeFile(reportFile, report, "utf-8");
+			this.ctx.logger.log(`JSON report written to ${reportFile}`);
+		} else this.ctx.logger.log(report);
+	}
+
+BOUND LOCAL CHECK/ROUTE/ROOT SCOPE _bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/local-checks.json:
+{
+  "kind": "actual-bounded-owned-origin-controls",
+  "source": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "baseline": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "commands": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=tap tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 67,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "765598",
+      "receipt_completion": "29d9c4",
+      "actual_count_receipt": "98d3fc",
+      "output": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/owned-origin-unit-final.tap",
+        "bytes": 19019,
+        "sha256": "9627c00b8e0755f2ecb20e563871e873db0a5e3c6d6deac5df1e666cf496beb3"
+      },
+      "limits": "61 retained plus six live-source controls. Exact first callbacks/guard/matcher/HTTP source with injected stopping fixtures and actual installed failTask/processError/public JsonReporter in memory; no native acceptance credit."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "223473",
+      "receipt_completion": "6d2951"
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/integration/rls/calendar-feed.rls.test.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "cd1d5e"
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec>",
+      "exit_code": 0,
+      "sections": 1,
+      "literal_stops": 58,
+      "receipt": "cd1d5e"
+    },
+    {
+      "command": "intent-contract exact LF bytes/SHA256",
+      "bytes": 5760,
+      "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+      "receipt": "db52fc"
+    },
+    {
+      "command": "git diff --check -- <exact4>; git diff --cached --check; exact4 staged paths; append-only commit",
+      "exit_code": 0,
+      "receipts": [
+        "3ddf61",
+        "6a71c1",
+        "78ba4c",
+        "b96014"
+      ],
+      "source_index_clean_receipt": "f39c1a"
+    }
+  ],
+  "initial_harness_failures": "New extraction harness first had a file-parser parenthesis error, then an HTTP source stripping top-level-return error. Corrected before final successful67 execution; the intermediate66 pass and aborted attempts are not substituted for the final count. Removed the now-unused SubjectName import before final lint.",
+  "dependency_limits": "After final67 run only Spec evidence/review-stop refresh occurred before commit; no source/Spec edits after commit. No broad check, build, SSR, Vitest runner/collection/globalSetup, DB/auth/browser, resource or native execution. Earlier SSR4/component4/nativeINT015 and key cleanup keep historical scope, not a whole-current-feature acceptance claim.",
+  "current_native": "UNEXECUTED_PENDING_ROOT_EXACT_HEAD_CI",
+  "actual43causes": "UNKNOWN",
+  "native_credit": 0
+}
+
+BOUND LOCAL CHECK/ROUTE/ROOT SCOPE _bmad-output/auto-bmad/preparation/story-15-5/native-owned-origin-review/author-route.json:
+{
+  "kind": "author-postimplementation-route-binding",
+  "baseline": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "source": "380c3e720d5caaa1dc2181d70737b9320337f451",
+  "root_implementation_route_recorded_before_handoff": "build-native-owned-origin-diagnostic-repair/build-author-bounded-owned-issuance-and-assertion-origins",
+  "root_review_route_recorded_before_dispatch": "review-native-owned-origin-latest-four/independent-context-free-owned-origin-and-rls-assertion-reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "exact_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-owned-origin-diagnostic-repair.json",
+    "bytes": 4462,
+    "sha256": "76a6c87a3e87fac2b36b3b231b4de09461a691ae5ad2ca480e3f090d47a09d0a"
+  },
+  "authored_after_implementation": true,
+  "does_not_claim_preedit_artifact_bytes": true,
+  "completed_broad_rounds": 3,
+  "cap": 3,
+  "latest_serious_fix_only": true,
+  "fourth_broad_review": false,
+  "scope": "Compile-time matcher/token/HTTP origins; already-consumed issuance enum classification; four RLS001 allowed-subject assertions through synchronous once-call wrapper; six bounded controls and author trail. No native error/matcher argument inspection, operation/query/RPC/client/then/pool/principal/authority/result/settlement/custody/sharedcase/UI change. All43 causes and first actual branches unknown. Outcomes localize failed contracts only; ambiguous/uninstrumented outcomes require targeted cause-proof proposal, never assumed opaque retry."
+}
+
+BOUND LOCAL CHECK/ROUTE/ROOT SCOPE _bmad-output/auto-bmad/preparation/story-15-5/accepted-native-owned-origin-diagnostic-repair.json:
+{
+  "kind": "ROOT_BOUNDED_ALREADY_OWNED_ORIGIN_DIAGNOSTIC_REPAIR_ADMISSION",
+  "base_head": "6dad688ec6a51143bfee902618bb88647a81c940",
+  "author_source_head": "906f80f301d8034f8efe510018137195f3e4c4eb",
+  "failed_run": 39498246931,
+  "attempt": 1,
+  "root_failed_packet_admission_sha256": "1e15decb78fc9060562b7b0c2a0862c407440ec7224ca54896e54845dee02fb3",
+  "failed_manifest_sha256": "50188e3faffbd79f2c7797c2e02a19d13e170eac3b6eaf694368c0c36263d3a5",
+  "actual_four_path_bindings": [
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 66919,
+      "raw_sha256": "c04a8041429361b1cb1cbfa21394bc8f12032c7a58d752e269851c0a10e05349",
+      "actual_head_blob_oid": "d712a086a457a7e71ab8c8028e4803674658838c",
+      "already_owned": true,
+      "protected_shared_path": false
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 88963,
+      "raw_sha256": "993b6e4151bca6a1b6655d0fa97a2016d58f4003916c5d2904fbf34f768b069e",
+      "actual_head_blob_oid": "6bd5ce61427c7e77203b64bf35e1765be2de3877",
+      "already_owned": true,
+      "protected_shared_path": false
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 101920,
+      "raw_sha256": "c167919993c9a6306d616d75937ae7df627efdac348472d2ec8672ea358c5f6a",
+      "actual_head_blob_oid": "d8768abae03342de2f424a9a24b4f43e416bda6d",
+      "already_owned": true,
+      "protected_shared_path": false
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_bytes": 14662,
+      "raw_sha256": "21175773b745729deae8162e24f551f3f8eea57bdd9221cd0d0a2df1f479a7a8",
+      "actual_head_blob_oid": "1ccff56bc5ceac55835dbbc31f3d5135fc0b0fbe",
+      "already_owned": true,
+      "protected_shared_path": false
+    }
+  ],
+  "decision": "Two family-only labels alone were rejected as insufficient. Admit smallest strengthened already-owned four-path scope; no shared ownership expansion.",
+  "scope": "Helper registers compile-time closed origins only at existing matcher catch, issuance guard, token-route guard and HTTP catch. Classify ONLY issuance outcomes already consumed: denied/unavailable/conflict/replayed/unknown-noncommitted versus committed-missing-url. Only RLS001 existing allowed-subject assertions receive own/admin/planner/mixed compile-time site constants through synchronous once-call wrapper; preserve all loops/RPC/expectations and return identity. Unit existing controls plus faithful live/caller/installed reporter controls. Spec author evidence/SRO only, approved kernel unchanged.",
+  "privacy_and_behavior": "No generic matcher arguments/actual/expected or native error/message/cause/stack/body/URL/token parsing/capture. Sanitized errors created at owned sites may retain ordinary controlled source frames. Preserve raw own-data budgets/SQLSTATEallowlist/getterproxycyclebounds/UNKNOWN and all guard branches/return/calls/args/values/results/requests/query/RPC/client/.then/pool/principal/authority/settlement/custody behavior. No generalized observer, extra operation, weakened assertion or shared/protected write.",
+  "meaningful_local_controls": "Retain61; exact first INT/API/RLS callbacks with injected stopping fixtures + live guards/matcher + installedJSON reporter; closedbranches/stages/oncecall/valueidentity/no latercalls/privacy/accessors. Synthetic/caller controls have0nativecredit. Record actual observed counts; wholeTypeScript/focusedlint/diff/kernel/SRO before append-onlycommit.",
+  "limits": "Actual first native failing branches and all43causes stillUNKNOWN. Safe unavailable/denied tags localize a failed public/RPC-result contract, not SQL privilege/proof/auth/current-state cause. Pre-manage seed/setAuthority/unmapped errors may remainUNKNOWN. If unavailable/denied/uninstrumentedUNKNOWN remains, require named-gap targeted cause-proof proposal, not assumed opaque retry. No promise all43 diagnoses or immediate SQL cause.",
+  "git_review": "Append-only exact4 author commit excludes Root metadata; fresh distinct context-free Sol6.1High exact committed latest4review before tenthfreeze/checkpoint. Broadreviewcap3/no fourthbroad; all9failedpackets/capsules/a84refretained.",
+  "source_writes_admitted": true,
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "development_complete": false,
+  "release_ready": false
+}
+
+ROOT RECORDED REVIEW ROUTE; mutable raw snapshot UNVERIFIED_UNCREDITED, source excluded _bmad-output/auto-bmad/state/15-5-personal-calendar-feed-adr-b004-surface-1.yaml:
+selected_phase: review-native-owned-origin-latest-four
+selected_role: independent-context-free-owned-origin-and-rls-assertion-reviewer
+selected_profile: sensitive
+selected_model: gpt-6.1-sol
+selected_effort: high
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Exact4 owned origin/outcome andRLS001 assertion-site diagnostic changes are privacy/authorization/error-integrity sensitive. Fresh independent committed latest-fix-only review of closedlabels/alreadyconsumedclassification/calleridentity/noassertionweakening; no fourthbroad or nativecause inference."

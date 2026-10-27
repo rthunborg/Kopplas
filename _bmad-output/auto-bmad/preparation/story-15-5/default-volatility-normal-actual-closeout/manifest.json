@@ -1,0 +1,524 @@
+{
+  "schema": "ROOT_DEFAULT_VOLATILITY_NORMAL_ACTUAL_DOCS_CLOSURE_MANIFEST_V1",
+  "self_excluded": true,
+  "byte_identical_closed_JSON_copies": [
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/acquisition-summary.json",
+        "bytes": 2544,
+        "sha256": "5ea38fd8adaf9e4ac292719580ea2b4e80d71d81583ac07a3c96846c4abd6a89"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/acquisition-summary.json",
+        "bytes": 2544,
+        "sha256": "5ea38fd8adaf9e4ac292719580ea2b4e80d71d81583ac07a3c96846c4abd6a89"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/artifact-list-projection.json",
+        "bytes": 1290,
+        "sha256": "5104f71c75efec0fb7aa84a899506717c86285743050ac0979cc2d8be6d70f1c"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/artifact-list-projection.json",
+        "bytes": 1290,
+        "sha256": "5104f71c75efec0fb7aa84a899506717c86285743050ac0979cc2d8be6d70f1c"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-full-integration-projection.json",
+        "bytes": 61132,
+        "sha256": "e0aaf1dc2876d7438fb70f6fd818496f1435c555a5214cb6d466b21aa72678a3"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/native-full-integration-projection.json",
+        "bytes": 61132,
+        "sha256": "e0aaf1dc2876d7438fb70f6fd818496f1435c555a5214cb6d466b21aa72678a3"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-general-browser-projection.json",
+        "bytes": 13358,
+        "sha256": "985763deb2abfd7d25e532722cae5643b1af4983c68ab06b6f8452686565c1b7"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/native-general-browser-projection.json",
+        "bytes": 13358,
+        "sha256": "985763deb2abfd7d25e532722cae5643b1af4983c68ab06b6f8452686565c1b7"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/native-isolated-storage-recovery-projection.json",
+        "bytes": 2008,
+        "sha256": "ec7fe45d22f40cec2a0fe5683fbb862bcd09b859de9c23e3ceec12e67609b140"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/native-isolated-storage-recovery-projection.json",
+        "bytes": 2008,
+        "sha256": "ec7fe45d22f40cec2a0fe5683fbb862bcd09b859de9c23e3ceec12e67609b140"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/operator-intent.json",
+        "bytes": 8956,
+        "sha256": "9266544d55e31d878e9e965d12a875d6614f0498fafd1f483f9c127070a46376"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/operator-intent.json",
+        "bytes": 8956,
+        "sha256": "9266544d55e31d878e9e965d12a875d6614f0498fafd1f483f9c127070a46376"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-01-intent.json",
+        "bytes": 413,
+        "sha256": "b327b3fef8e1618fa28edf2001e6d1a60ec3b05a5933c545195a8f50d7c0907d"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-01-intent.json",
+        "bytes": 413,
+        "sha256": "b327b3fef8e1618fa28edf2001e6d1a60ec3b05a5933c545195a8f50d7c0907d"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-01-result.json",
+        "bytes": 1134,
+        "sha256": "34b3c9127c2cad828905970ae6e421aaad717976abcc956bf08596b568de9124"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-01-result.json",
+        "bytes": 1134,
+        "sha256": "34b3c9127c2cad828905970ae6e421aaad717976abcc956bf08596b568de9124"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-02-intent.json",
+        "bytes": 432,
+        "sha256": "1a2ba481bec48a427025efeb80f33d3560b991a37d3942ba3d3f307b81c70b04"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-02-intent.json",
+        "bytes": 432,
+        "sha256": "1a2ba481bec48a427025efeb80f33d3560b991a37d3942ba3d3f307b81c70b04"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-02-result.json",
+        "bytes": 1151,
+        "sha256": "f8a0df8de3098456d87caeefba9dce888b5d0cd0d9d66ca9f0938b6d611399da"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-02-result.json",
+        "bytes": 1151,
+        "sha256": "f8a0df8de3098456d87caeefba9dce888b5d0cd0d9d66ca9f0938b6d611399da"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-03-intent.json",
+        "bytes": 422,
+        "sha256": "bd88cd3f259248383e150afbee8dc0d27289a804c27dd68e24ffcfc731ce0e0b"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-03-intent.json",
+        "bytes": 422,
+        "sha256": "bd88cd3f259248383e150afbee8dc0d27289a804c27dd68e24ffcfc731ce0e0b"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-03-result.json",
+        "bytes": 1142,
+        "sha256": "e7136a982d7ee110fac759642399bb5c57c40cfc2abbacd0642c039f650e6c6c"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-03-result.json",
+        "bytes": 1142,
+        "sha256": "e7136a982d7ee110fac759642399bb5c57c40cfc2abbacd0642c039f650e6c6c"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-04-intent.json",
+        "bytes": 421,
+        "sha256": "7c268bd21ec3011db739e63187d5fb8d342dc62e85796f82b9b271aa2c1a5db1"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-04-intent.json",
+        "bytes": 421,
+        "sha256": "7c268bd21ec3011db739e63187d5fb8d342dc62e85796f82b9b271aa2c1a5db1"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-04-result.json",
+        "bytes": 1140,
+        "sha256": "1ff062d6580af34c242b28bfe3f8b25020cfd0ffe12e965637b0691516ef6468"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-04-result.json",
+        "bytes": 1140,
+        "sha256": "1ff062d6580af34c242b28bfe3f8b25020cfd0ffe12e965637b0691516ef6468"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-05-intent.json",
+        "bytes": 431,
+        "sha256": "ff76d8d8ecbf226d1c6d38b3964b74093c912b02502068217d7844efb66f97d5"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-05-intent.json",
+        "bytes": 431,
+        "sha256": "ff76d8d8ecbf226d1c6d38b3964b74093c912b02502068217d7844efb66f97d5"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/request-05-result.json",
+        "bytes": 1149,
+        "sha256": "5927b76cc7ac51df913d3cbd8df7fc3753aef7f3ad14875ac7e679d3ed410b48"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/request-05-result.json",
+        "bytes": 1149,
+        "sha256": "5927b76cc7ac51df913d3cbd8df7fc3753aef7f3ad14875ac7e679d3ed410b48"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/run-archive-projection.json",
+        "bytes": 48553,
+        "sha256": "b5eb1a5801a05fc69d0974a0dd826fe6100ce73b38b973323a05c2bb26da71cc"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/run-archive-projection.json",
+        "bytes": 48553,
+        "sha256": "b5eb1a5801a05fc69d0974a0dd826fe6100ce73b38b973323a05c2bb26da71cc"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/source-label-projection.json",
+        "bytes": 1691,
+        "sha256": "a95c7502b504de74901c3738c49dc7dc43682d20e2b8332c98527e918c4638d0"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/source-label-projection.json",
+        "bytes": 1691,
+        "sha256": "a95c7502b504de74901c3738c49dc7dc43682d20e2b8332c98527e918c4638d0"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/source-provenance.json",
+        "bytes": 8218,
+        "sha256": "c7e93d92d2a02d03ec76e210cf1ab40f6da61c09d163e2319a587dc93f283f7f"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/source-provenance.json",
+        "bytes": 8218,
+        "sha256": "c7e93d92d2a02d03ec76e210cf1ab40f6da61c09d163e2319a587dc93f283f7f"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-215078e7-INT009-default-volatility-normal-ci-independent/terminal-bindings.json",
+        "bytes": 14266,
+        "sha256": "711634db153f811c811a238b0028832acee057370ba1402f5d2b54d84d606834"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/terminal-bindings.json",
+        "bytes": 14266,
+        "sha256": "711634db153f811c811a238b0028832acee057370ba1402f5d2b54d84d606834"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-execution-receipt.json",
+        "bytes": 9998,
+        "sha256": "3c224c6983d2017448a2ea8c7fa42ed71ec99ecc7916856bf66f971efbf89559"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-terminal-execution-receipt.json",
+        "bytes": 9998,
+        "sha256": "3c224c6983d2017448a2ea8c7fa42ed71ec99ecc7916856bf66f971efbf89559"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-actual-native-qualification.json",
+        "bytes": 21077,
+        "sha256": "59474427cc70223c2547d75915dd62b602ffb04ea5f5373d33a1d06489ae92d7"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-terminal-actual-native-qualification.json",
+        "bytes": 21077,
+        "sha256": "59474427cc70223c2547d75915dd62b602ffb04ea5f5373d33a1d06489ae92d7"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+        "bytes": 12651,
+        "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-terminal-reader-operational-review.json",
+        "bytes": 12651,
+        "sha256": "b236d128f2d8f637351ebc17c4856728f3c08d070fccf5d9ba7191ba2f020799"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+        "bytes": 56578,
+        "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-terminal-fresh-source-proof.json",
+        "bytes": 56578,
+        "sha256": "4a28943d678d6aa3fb1eba6e0bb70bbc26f39e757cef759613602aaa86a32520"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-terminal-effects-allocation.json",
+        "bytes": 3414,
+        "sha256": "26d86f56c36ff02c3edef23dfdadac79a7e0ff0028e62ac93b7df506b0fdec41"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/accepted-INT009-default-volatility-normal-terminal-effects-allocation.json",
+        "bytes": 3414,
+        "sha256": "26d86f56c36ff02c3edef23dfdadac79a7e0ff0028e62ac93b7df506b0fdec41"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-evidence-activation.json",
+        "bytes": 4778,
+        "sha256": "ad3e15f23e91991d2e5d81186ca1d25e35dd20abfd8478b88235fb249a3bfa88"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-terminal-evidence-activation.json",
+        "bytes": 4778,
+        "sha256": "ad3e15f23e91991d2e5d81186ca1d25e35dd20abfd8478b88235fb249a3bfa88"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-terminal-root-once-journal.json",
+        "bytes": 1403,
+        "sha256": "5824692dd97fb5ab64ba517913a5077d14ce8b9e8f9c4bff686d4af174653476"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-terminal-root-once-journal.json",
+        "bytes": 1403,
+        "sha256": "5824692dd97fb5ab64ba517913a5077d14ce8b9e8f9c4bff686d4af174653476"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-root-ownership.json",
+        "bytes": 15880,
+        "sha256": "5d66c65015fd81291fae597e1540934fcccd3be5b8cb5a90f124e21a130af5e6"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-actual-root-ownership.json",
+        "bytes": 15880,
+        "sha256": "5d66c65015fd81291fae597e1540934fcccd3be5b8cb5a90f124e21a130af5e6"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-poll-outer-provenance.json",
+        "bytes": 7990,
+        "sha256": "ada4ebf81d6112031299616e81821bf99c386af7f1dd5981ff2420ed2893dc6d"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-actual-poll-outer-provenance.json",
+        "bytes": 7990,
+        "sha256": "ada4ebf81d6112031299616e81821bf99c386af7f1dd5981ff2420ed2893dc6d"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-actual-initial-outer-provenance.json",
+        "bytes": 4580,
+        "sha256": "80f330fda11f2c405468907dddf1b0c3d69f15f7267b2a1b40dd4080995157d9"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-actual-initial-outer-provenance.json",
+        "bytes": 4580,
+        "sha256": "80f330fda11f2c405468907dddf1b0c3d69f15f7267b2a1b40dd4080995157d9"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-effects-allocation.json",
+        "bytes": 3523,
+        "sha256": "0895a06d1bd346e22cb56cb098cd4b809e035ab1d7422707d0866c1876c79550"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/accepted-INT009-default-volatility-normal-effects-allocation.json",
+        "bytes": 3523,
+        "sha256": "0895a06d1bd346e22cb56cb098cd4b809e035ab1d7422707d0866c1876c79550"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-INT009-default-volatility-normal-read-only-continuation.json",
+        "bytes": 1967,
+        "sha256": "075a0f7eb28aef63d4fb3841c987d80f5e496d4dd9fd472986418f4b6a5c6271"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/accepted-INT009-default-volatility-normal-read-only-continuation.json",
+        "bytes": 1967,
+        "sha256": "075a0f7eb28aef63d4fb3841c987d80f5e496d4dd9fd472986418f4b6a5c6271"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-remote-cap-provenance-qualification.json",
+        "bytes": 7664,
+        "sha256": "d6c9e90aa8e03236ea2daa7b0caead453192729014ecc5743e4278a2732cb165"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-remote-cap-provenance-qualification.json",
+        "bytes": 7664,
+        "sha256": "d6c9e90aa8e03236ea2daa7b0caead453192729014ecc5743e4278a2732cb165"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-readonly-continuation-root-admission.json",
+        "bytes": 1354,
+        "sha256": "1cdae6ae53e5d64e7bb1b06ee80171ced09b406efe1b867156984286ca1deb04"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-readonly-continuation-root-admission.json",
+        "bytes": 1354,
+        "sha256": "1cdae6ae53e5d64e7bb1b06ee80171ced09b406efe1b867156984286ca1deb04"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-operational-review.json",
+        "bytes": 16657,
+        "sha256": "2747bf71ba3f7b24748cb8f0e13cfc0d9b63791d819db4149af7305179c89d59"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-operational-review.json",
+        "bytes": 16657,
+        "sha256": "2747bf71ba3f7b24748cb8f0e13cfc0d9b63791d819db4149af7305179c89d59"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-vercel-readonly-qualification.json",
+        "bytes": 30470,
+        "sha256": "cbd44cf150d0ac1dc734a5d2cb4a0001a896c2137b4730743f963f4b09e171cd"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-vercel-readonly-qualification.json",
+        "bytes": 30470,
+        "sha256": "cbd44cf150d0ac1dc734a5d2cb4a0001a896c2137b4730743f963f4b09e171cd"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-provider-execution-receipt.json",
+        "bytes": 3643,
+        "sha256": "5527c0c297be5e44543ad1d33411dff9ebc339754d9e4c2dd84b27b692bdd105"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-provider-execution-receipt.json",
+        "bytes": 3643,
+        "sha256": "5527c0c297be5e44543ad1d33411dff9ebc339754d9e4c2dd84b27b692bdd105"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-current-source-proof.json",
+        "bytes": 39456,
+        "sha256": "defb2fe2ade5cc7feeaf360640d35f180068dfebf477af744399f3a03f41b69e"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-current-source-proof.json",
+        "bytes": 39456,
+        "sha256": "defb2fe2ade5cc7feeaf360640d35f180068dfebf477af744399f3a03f41b69e"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-effects-activation.json",
+        "bytes": 1806,
+        "sha256": "d8f7f0f6061aa9f7e00d328df5bf4e11f58cb0f3f2441126d4a8a14fb31f4f70"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-root-effects-activation.json",
+        "bytes": 1806,
+        "sha256": "d8f7f0f6061aa9f7e00d328df5bf4e11f58cb0f3f2441126d4a8a14fb31f4f70"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-provider-readonly-activation.json",
+        "bytes": 2520,
+        "sha256": "7f85138195be549b02adce2278c26dad45e99de96ca9415f927f60163be26e0e"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-provider-readonly-activation.json",
+        "bytes": 2520,
+        "sha256": "7f85138195be549b02adce2278c26dad45e99de96ca9415f927f60163be26e0e"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-once-journal.json",
+        "bytes": 1192,
+        "sha256": "0501050f4dcfaa3b233a4458b874b76cf3b9e085c0aa649edf4146803d21454f"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/INT009-default-volatility-normal-root-once-journal.json",
+        "bytes": 1192,
+        "sha256": "0501050f4dcfaa3b233a4458b874b76cf3b9e085c0aa649edf4146803d21454f"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/operation.json",
+        "bytes": 871,
+        "sha256": "071457c09b5587152a1f20b0cb640da77d635b379c8182f673f5ca5bb63d4452"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/operation.json",
+        "bytes": 871,
+        "sha256": "071457c09b5587152a1f20b0cb640da77d635b379c8182f673f5ca5bb63d4452"
+      }
+    },
+    {
+      "original": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-default-volatility-normal-root-operation/terminal.json",
+        "bytes": 24085,
+        "sha256": "c6753fd270588112c73d9d512a2a599b655a60ba257162328085aa31765bbe81"
+      },
+      "tracked_copy": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/default-volatility-normal-actual-closeout/terminal.json",
+        "bytes": 24085,
+        "sha256": "c6753fd270588112c73d9d512a2a599b655a60ba257162328085aa31765bbe81"
+      }
+    }
+  ],
+  "copied_file_count": 43,
+  "source_or_spec_changes": 0
+}

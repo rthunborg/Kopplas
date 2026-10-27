@@ -1,0 +1,2396 @@
+{
+  "API_digest_verified": true,
+  "advertised_size_equal": true,
+  "archive_bytes": 111947,
+  "archive_sha256": "e379897d75e3b02faafe26c5197ea208cc120eeeb3690483c56351f291b3c336",
+  "artifact": {
+    "advertised_bytes": 111947,
+    "digest": "sha256:e379897d75e3b02faafe26c5197ea208cc120eeeb3690483c56351f291b3c336",
+    "expired": false,
+    "expires_at_null": false,
+    "expires_at_present": true,
+    "id": 12566473215,
+    "name": "native-full-integration",
+    "qualified_for_single_download": true,
+    "run_head_bound": true
+  },
+  "declared_total_bytes": 1029145,
+  "member": "full-integration.json",
+  "member_bytes": 1029145,
+  "member_sha256": "5ff8f2dd9e481fb1440a7e040534d34e8ee9da613b094d495e784bb673918922",
+  "projection": {
+    "actual_case_execution_only": "passed/failed are attempted; pending/skipped/todo are not coverage",
+    "assertion_status_counts": {
+      "failed": 1,
+      "passed": 2115,
+      "pending": 1,
+      "skipped": 52
+    },
+    "files": [
+      {
+        "counts": {
+          "failed": 1,
+          "passed": 18,
+          "pending": 1
+        },
+        "endTime": 1792858939031.3984,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "startTime": 1792858867225,
+        "status": "failed",
+        "story_cases": [
+          {
+            "duration_ms": 3664.2974750000003,
+            "id": "API001",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3132.605926,
+            "id": "API002",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3600.5628659999993,
+            "id": "API003",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3754.9914019999997,
+            "id": "API004",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3348.235902999999,
+            "id": "API005",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3887.762048999997,
+            "id": "API006",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3021.309512,
+            "id": "API007",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3742.684089000002,
+            "id": "API008",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 4646.385073000005,
+            "id": "API009",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2560.6242669999992,
+            "id": "API010",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2727.5184109999973,
+            "id": "API011",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2633.4200679999994,
+            "id": "API012",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 9227.820173,
+            "id": "API013",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3033.710433,
+            "id": "API014",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2646.6783579999974,
+            "id": "API015",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2822.5081380000047,
+            "id": "API016",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2701.0201180000004,
+            "id": "API017",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 8038.014870999992,
+            "id": "API018",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2613.398390000002,
+            "failure": {
+              "fixed_category_counts": {},
+              "invalid_owned_tuple_headers": 0,
+              "owned_leaf_tuple_count": 1,
+              "owned_leaf_tuples": [
+                {
+                  "category": "unknown",
+                  "sqlState": null,
+                  "stage": "scenario-telemetry-privacy-refused-integration-ip-stdout-other"
+                }
+              ],
+              "raw_failure_details": "NOT_PERSISTED",
+              "typed_assertion_pairs": [],
+              "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+            },
+            "id": "API019",
+            "status": "failed"
+          },
+          {
+            "duration_ms": null,
+            "id": "API020",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "counts": {
+          "passed": 15
+        },
+        "endTime": 1792858866871.011,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "startTime": 1792858826625,
+        "status": "passed",
+        "story_cases": [
+          {
+            "duration_ms": 2603.862967,
+            "id": "INT001",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2562.091594,
+            "id": "INT002",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3073.2397329999994,
+            "id": "INT003",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2648.9299139999985,
+            "id": "INT004",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2800.8043610000004,
+            "id": "INT005",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2735.2594770000014,
+            "id": "INT006",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2582.9945359999983,
+            "id": "INT007",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2834.427372000002,
+            "id": "INT008",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2694.333903999999,
+            "id": "INT009",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2615.6652509999985,
+            "id": "INT010",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2862.550984999998,
+            "id": "INT011",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2874.6479099999997,
+            "id": "INT012",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3304.0242849999995,
+            "id": "INT013",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2871.5458730000028,
+            "id": "INT014",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 1179.010997999998,
+            "id": "INT015",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "counts": {
+          "passed": 17
+        },
+        "endTime": 1792858792235.285,
+        "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+        "startTime": 1792858761603,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {},
+        "endTime": 1792858281048,
+        "file": "tests/integration/commands/time-reports.int.test.ts",
+        "startTime": 1792858281048,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {},
+        "endTime": 1792858281048,
+        "file": "tests/integration/jobs/job-runs.int.test.ts",
+        "startTime": 1792858281048,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 13
+        },
+        "endTime": 1792858826189.1108,
+        "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+        "startTime": 1792858792651,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 14
+        },
+        "endTime": 1792858473938.0469,
+        "file": "tests/integration/commands/accept-quote-and-create-job.int.test.ts",
+        "startTime": 1792858471424,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858654385.3713,
+        "file": "tests/integration/commands/acceptance-evidence-link.int.test.ts",
+        "startTime": 1792858653673,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 31
+        },
+        "endTime": 1792858327390.1016,
+        "file": "tests/integration/commands/accepted-record-lock.int.test.ts",
+        "startTime": 1792858318727,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858664208.4744,
+        "file": "tests/integration/commands/admin-invitation-retry-flow.test.ts",
+        "startTime": 1792858664174,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858518316.6147,
+        "file": "tests/integration/commands/admin-user-management.int.test.ts",
+        "startTime": 1792858513164,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858739126.9683,
+        "file": "tests/integration/commands/audit-actor-on-delete-set-null.int.test.ts",
+        "startTime": 1792858738878,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858740497.7078,
+        "file": "tests/integration/commands/audit-anon-isolation.int.test.ts",
+        "startTime": 1792858740400,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858745273.97,
+        "file": "tests/integration/commands/audit-append-only.int.test.ts",
+        "startTime": 1792858745227,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858734023.5122,
+        "file": "tests/integration/commands/audit-metadata-hygiene-e2e.int.test.ts",
+        "startTime": 1792858733948,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 62
+        },
+        "endTime": 1792858425315.6,
+        "file": "tests/integration/commands/booking-conflicts.int.test.ts",
+        "startTime": 1792858286773,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858744126.7783,
+        "file": "tests/integration/commands/booking-editor-review-fixes.int.test.ts",
+        "startTime": 1792858739635,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858758971.3167,
+        "file": "tests/integration/commands/booking-editor-round2.int.test.ts",
+        "startTime": 1792858752815,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 58
+        },
+        "endTime": 1792858449384.0735,
+        "file": "tests/integration/commands/booking-editor.int.test.ts",
+        "startTime": 1792858327869,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 23,
+          "skipped": 37
+        },
+        "endTime": 1792858328078.1946,
+        "file": "tests/integration/commands/booking-series.int.test.ts",
+        "startTime": 1792858282355,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 12
+        },
+        "endTime": 1792858652818.8286,
+        "file": "tests/integration/commands/bookings-replay-authority.int.test.ts",
+        "startTime": 1792858627826,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 16
+        },
+        "endTime": 1792858463002.233,
+        "file": "tests/integration/commands/bookings.int.test.ts",
+        "startTime": 1792858425759,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 17
+        },
+        "endTime": 1792858489944.6172,
+        "file": "tests/integration/commands/calculation-commands.int.test.ts",
+        "startTime": 1792858489280,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858728408.1045,
+        "file": "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+        "startTime": 1792858728295,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858467881.0286,
+        "file": "tests/integration/commands/calculation-row-source.int.test.ts",
+        "startTime": 1792858467197,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 14
+        },
+        "endTime": 1792858568804.0227,
+        "file": "tests/integration/commands/capture-quote-acceptance.int.test.ts",
+        "startTime": 1792858567694,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858694926.1824,
+        "file": "tests/integration/commands/create-job.int.test.ts",
+        "startTime": 1792858694738,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 12
+        },
+        "endTime": 1792858488240.4983,
+        "file": "tests/integration/commands/create-new-quote-version.int.test.ts",
+        "startTime": 1792858487132,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 15
+        },
+        "endTime": 1792858536987.0574,
+        "file": "tests/integration/commands/crm-command-coverage.int.test.ts",
+        "startTime": 1792858536351,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 9
+        },
+        "endTime": 1792858693242.453,
+        "file": "tests/integration/commands/crm-customer-commands.int.test.ts",
+        "startTime": 1792858692867,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858723014.3152,
+        "file": "tests/integration/commands/crm-parent-ownership.int.test.ts",
+        "startTime": 1792858722927,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858728000.7698,
+        "file": "tests/integration/commands/disabled-membership-no-access.int.test.ts",
+        "startTime": 1792858726424,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 9
+        },
+        "endTime": 1792858566538.357,
+        "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+        "startTime": 1792858557193,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 26
+        },
+        "endTime": 1792858317576.5715,
+        "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+        "startTime": 1792858290450,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 38
+        },
+        "endTime": 1792858481214.8354,
+        "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+        "startTime": 1792858450667,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 76
+        },
+        "endTime": 1792858337800.7454,
+        "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+        "startTime": 1792858330039,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858739394.3862,
+        "file": "tests/integration/commands/envelope-audit-write.int.test.ts",
+        "startTime": 1792858739261,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858730797.3542,
+        "file": "tests/integration/commands/envelope-failure-modes.int.test.ts",
+        "startTime": 1792858730146,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858635451.1443,
+        "file": "tests/integration/commands/file-audit-events.int.test.ts",
+        "startTime": 1792858634496,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858441905.9702,
+        "file": "tests/integration/commands/file-link-lock.int.test.ts",
+        "startTime": 1792858439769,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 18
+        },
+        "endTime": 1792858507717.7515,
+        "file": "tests/integration/commands/file-link-ownership.int.test.ts",
+        "startTime": 1792858507448,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858633023.8162,
+        "file": "tests/integration/commands/file-signed-access-refresh.int.test.ts",
+        "startTime": 1792858632610,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 14
+        },
+        "endTime": 1792858524413.261,
+        "file": "tests/integration/commands/file-signed-access.int.test.ts",
+        "startTime": 1792858523853,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 19
+        },
+        "endTime": 1792858428877.2244,
+        "file": "tests/integration/commands/file-upload.int.test.ts",
+        "startTime": 1792858428109,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858731293.2974,
+        "file": "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+        "startTime": 1792858730160,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858624118.8232,
+        "file": "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+        "startTime": 1792858622215,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858699036.4504,
+        "file": "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+        "startTime": 1792858698116,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858583446.9778,
+        "file": "tests/integration/commands/generate-quote-pdf-storage-privacy.int.test.ts",
+        "startTime": 1792858581957,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858661215.5408,
+        "file": "tests/integration/commands/job-booking-facts.int.test.ts",
+        "startTime": 1792858640799,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 15
+        },
+        "endTime": 1792858583709.9873,
+        "file": "tests/integration/commands/job-members.int.test.ts",
+        "startTime": 1792858539080,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 28
+        },
+        "endTime": 1792858522905.1023,
+        "file": "tests/integration/commands/job-scheduling-consumers.int.test.ts",
+        "startTime": 1792858442338,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858667426.9644,
+        "file": "tests/integration/commands/job-source-of-truth.int.test.ts",
+        "startTime": 1792858665890,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858657501.9863,
+        "file": "tests/integration/commands/job-upgrade.int.test.ts",
+        "startTime": 1792858636141,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 9
+        },
+        "endTime": 1792858725397.0479,
+        "file": "tests/integration/commands/jobs-depth.int.test.ts",
+        "startTime": 1792858695422,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858578478.99,
+        "file": "tests/integration/commands/mark-quote-version-lost.int.test.ts",
+        "startTime": 1792858577249,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 26
+        },
+        "endTime": 1792858466137.2366,
+        "file": "tests/integration/commands/mark-quote-version-sent.int.test.ts",
+        "startTime": 1792858464172,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858581322.4082,
+        "file": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+        "startTime": 1792858581046,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 17
+        },
+        "endTime": 1792858509686.3276,
+        "file": "tests/integration/commands/pricing-commands.int.test.ts",
+        "startTime": 1792858509201,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 13
+        },
+        "endTime": 1792858535187.697,
+        "file": "tests/integration/commands/provision-tenant.int.test.ts",
+        "startTime": 1792858524976,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858714836.7737,
+        "file": "tests/integration/commands/quote-attachment-carry-forward.int.test.ts",
+        "startTime": 1792858713692,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858483810.7144,
+        "file": "tests/integration/commands/quote-audit-rollback.int.test.ts",
+        "startTime": 1792858482405,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 15
+        },
+        "endTime": 1792858486007.7036,
+        "file": "tests/integration/commands/quote-follow-ups.int.test.ts",
+        "startTime": 1792858485073,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858639721.8188,
+        "file": "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+        "startTime": 1792858639205,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 27
+        },
+        "endTime": 1792858289854.3027,
+        "file": "tests/integration/commands/quote-pdf-validity.int.test.ts",
+        "startTime": 1792858283386,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 15
+        },
+        "endTime": 1792858438467.5222,
+        "file": "tests/integration/commands/quote-review-authorization.int.test.ts",
+        "startTime": 1792858437788,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858556329.477,
+        "file": "tests/integration/commands/quote-successor-non-admin-audit.int.test.ts",
+        "startTime": 1792858555113,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 8
+        },
+        "endTime": 1792858512774.2627,
+        "file": "tests/integration/commands/quote-version.int.test.ts",
+        "startTime": 1792858511051,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858738809.9343,
+        "file": "tests/integration/commands/record-audit-event-search-path.int.test.ts",
+        "startTime": 1792858738665,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858559952.098,
+        "file": "tests/integration/commands/resources-boundaries.int.test.ts",
+        "startTime": 1792858554797,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858693703.2805,
+        "file": "tests/integration/commands/resources.int.test.ts",
+        "startTime": 1792858689819,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858727152.6619,
+        "file": "tests/integration/commands/server-error-vs-no-access.int.test.ts",
+        "startTime": 1792858727104,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 14
+        },
+        "endTime": 1792858538671.677,
+        "file": "tests/integration/commands/settings-commands.int.test.ts",
+        "startTime": 1792858537927,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858580555.7988,
+        "file": "tests/integration/commands/tax-answer-acceptance-job.int.test.ts",
+        "startTime": 1792858579691,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 25
+        },
+        "endTime": 1792858286128.8025,
+        "file": "tests/integration/commands/tax-answer-reconciliation.int.test.ts",
+        "startTime": 1792858282115,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858719836.7615,
+        "file": "tests/integration/commands/update-draft-quote-version.int.test.ts",
+        "startTime": 1792858719387,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858611792.4539,
+        "file": "tests/integration/commands/update-job.int.test.ts",
+        "startTime": 1792858609009,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 14
+        },
+        "endTime": 1792858541027.8784,
+        "file": "tests/integration/commands/work-order-files.int.test.ts",
+        "startTime": 1792858500459,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 25
+        },
+        "endTime": 1792858427218.743,
+        "file": "tests/integration/commands/work-orders.int.test.ts",
+        "startTime": 1792858342925,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 14
+        },
+        "endTime": 1792858672353.4285,
+        "file": "tests/integration/components/booking-editor.test.ts",
+        "startTime": 1792858672314,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858741212.6287,
+        "file": "tests/integration/components/booking-series.test.ts",
+        "startTime": 1792858741071,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858760570.5632,
+        "file": "tests/integration/components/buyer-vat-number-fact.test.ts",
+        "startTime": 1792858760564,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858753921.1604,
+        "file": "tests/integration/components/calendar-feed.test.ts",
+        "startTime": 1792858753892,
+        "status": "passed",
+        "story_cases": [
+          {
+            "duration_ms": 21.102109999999982,
+            "id": "COMP-001",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3.984375,
+            "id": "COMP-002",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 2.381170999999995,
+            "id": "COMP-003",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 1.1604049999999688,
+            "id": "COMP-004",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858760248.5127,
+        "file": "tests/integration/components/conflict-resolver.test.ts",
+        "startTime": 1792858760235,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858756908.0073,
+        "file": "tests/integration/components/create-new-version-attachment-selection.test.ts",
+        "startTime": 1792858756897,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858725634.308,
+        "file": "tests/integration/components/dialog-pending-close-gate.test.ts",
+        "startTime": 1792858725623,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858744159.6338,
+        "file": "tests/integration/components/follow-up-error-visibility.test.ts",
+        "startTime": 1792858744142,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858740835.837,
+        "file": "tests/integration/components/legacy-draft-recovery.test.ts",
+        "startTime": 1792858740811,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858760076.2817,
+        "file": "tests/integration/components/tax-settings-fixed-price-authoring.test.ts",
+        "startTime": 1792858760062,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 18
+        },
+        "endTime": 1792858554466.033,
+        "file": "tests/integration/components/time-reports.test.ts",
+        "startTime": 1792858553830,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858675608.1392,
+        "file": "tests/integration/email/email-delivery-activation.atdd.int.test.ts",
+        "startTime": 1792858672544,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858696914.1165,
+        "file": "tests/integration/email/outbox.atdd.int.test.ts",
+        "startTime": 1792858693897,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858746450.2993,
+        "file": "tests/integration/email/quote-delivery-attachment.atdd.int.test.ts",
+        "startTime": 1792858746390,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858575990.0623,
+        "file": "tests/integration/email/quote-delivery-finalization-failure.int.test.ts",
+        "startTime": 1792858569511,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858629782.5034,
+        "file": "tests/integration/email/quote-delivery-recipient-snapshot.int.test.ts",
+        "startTime": 1792858625578,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858760363.8743,
+        "file": "tests/integration/factories/cleanup-teardown.int.test.ts",
+        "startTime": 1792858759451,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 13
+        },
+        "endTime": 1792858635958.0823,
+        "file": "tests/integration/features/booking-read-actions.test.ts",
+        "startTime": 1792858635916,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858758456.1843,
+        "file": "tests/integration/fixtures/provisioning-cleanup.int.test.ts",
+        "startTime": 1792858757189,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858738199.985,
+        "file": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+        "startTime": 1792858736598,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 11
+        },
+        "endTime": 1792858691734.75,
+        "file": "tests/integration/notifications/notifications.atdd.int.test.ts",
+        "startTime": 1792858685069,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "skipped": 1
+        },
+        "endTime": 1792858281048,
+        "file": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+        "startTime": 1792858281048,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858759586.4106,
+        "file": "tests/integration/read-models/admin-users-current-tenant.test.ts",
+        "startTime": 1792858759579,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858756905.0664,
+        "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+        "startTime": 1792858752165,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858743978.072,
+        "file": "tests/integration/read-models/onboarding-authorization-boundaries.int.test.ts",
+        "startTime": 1792858741843,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858725126.893,
+        "file": "tests/integration/read-models/onboarding-checklist.int.test.ts",
+        "startTime": 1792858721713,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858748532.802,
+        "file": "tests/integration/read-models/operator-console.int.test.ts",
+        "startTime": 1792858745780,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858701210.5964,
+        "file": "tests/integration/read-models/time-reports.int.test.ts",
+        "startTime": 1792858666501,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858749663.5012,
+        "file": "tests/integration/perf/auth-rls-baseline.int.test.ts",
+        "startTime": 1792858748179,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 8
+        },
+        "endTime": 1792858715854.469,
+        "file": "tests/integration/scheduling/booking-reassignment-flags.int.test.ts",
+        "startTime": 1792858701659,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 27
+        },
+        "endTime": 1792858499778.5771,
+        "file": "tests/integration/scheduling/scheduling-read.atdd.int.test.ts",
+        "startTime": 1792858490723,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 16
+        },
+        "endTime": 1792858721175.2654,
+        "file": "tests/integration/snapshots/source-ownership.int.test.ts",
+        "startTime": 1792858721100,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858631766.6272,
+        "file": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+        "startTime": 1792858631686,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858759336.1548,
+        "file": "tests/integration/rls/admin-user-detail-isolation.rls.test.ts",
+        "startTime": 1792858757190,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858760453.7117,
+        "file": "tests/integration/rls/admin-user-management.rls.test.ts",
+        "startTime": 1792858758620,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858738346.9402,
+        "file": "tests/integration/rls/admin-users-current-tenant-counts.rls.test.ts",
+        "startTime": 1792858736986,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 235
+        },
+        "endTime": 1792858718445.2417,
+        "file": "tests/integration/rls/anon-path-isolation.rls.test.ts",
+        "startTime": 1792858717398,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858739658.926,
+        "file": "tests/integration/rls/approved-public-acl-repair.int.test.ts",
+        "startTime": 1792858739626,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858741322.6848,
+        "file": "tests/integration/rls/audit-anon-mutation-enrollment.rls.test.ts",
+        "startTime": 1792858741308,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5,
+          "skipped": 14
+        },
+        "endTime": 1792858483981.2234,
+        "file": "tests/integration/rls/booking-series.rls.test.ts",
+        "startTime": 1792858474644,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858580196.9736,
+        "file": "tests/integration/rls/bookings.rls.test.ts",
+        "startTime": 1792858564907,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 14
+        },
+        "endTime": 1792858597326.086,
+        "file": "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+        "startTime": 1792858597251,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 12
+        },
+        "endTime": 1792858637714.478,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "startTime": 1792858584318,
+        "status": "passed",
+        "story_cases": [
+          {
+            "duration_ms": 4453.840993,
+            "id": "RLS001",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 4745.1830629999995,
+            "id": "RLS002",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 5048.9134429999995,
+            "id": "RLS003",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 4290.298594999998,
+            "id": "RLS004",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3709.566554000001,
+            "id": "RLS005",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 4001.5717379999987,
+            "id": "RLS006",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 4405.105681000001,
+            "id": "RLS007",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3903.4753789999995,
+            "id": "RLS008",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 3903.7036179999996,
+            "id": "RLS009",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 5907.9191349999965,
+            "id": "RLS010",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 4563.568333000003,
+            "id": "RLS011",
+            "status": "passed"
+          },
+          {
+            "duration_ms": 4461.478044999996,
+            "id": "RLS012",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858712647.6511,
+        "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+        "startTime": 1792858705061,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858664822.6748,
+        "file": "tests/integration/rls/crm-tables-migration-reset.int.test.ts",
+        "startTime": 1792858664734,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 233
+        },
+        "endTime": 1792858341811.168,
+        "file": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+        "startTime": 1792858340409,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 11
+        },
+        "endTime": 1792858608065.3298,
+        "file": "tests/integration/rls/dashboard-pipeline.rls.test.ts",
+        "startTime": 1792858584018,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 28
+        },
+        "endTime": 1792858553554.8606,
+        "file": "tests/integration/rls/documents-context.rls.test.ts",
+        "startTime": 1792858518552,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 16
+        },
+        "endTime": 1792858506610.3843,
+        "file": "tests/integration/rls/documents-filter-archive.rls.test.ts",
+        "startTime": 1792858484277,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 24
+        },
+        "endTime": 1792858620674.552,
+        "file": "tests/integration/rls/documents.rls.test.ts",
+        "startTime": 1792858614154,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858736301.5693,
+        "file": "tests/integration/rls/email-outbox.rls.atdd.int.test.ts",
+        "startTime": 1792858734839,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858746155.0344,
+        "file": "tests/integration/rls/email-unsubscribe.atdd.rls.test.ts",
+        "startTime": 1792858744374,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858759175.3054,
+        "file": "tests/integration/rls/epic-12-function-execute-acl.int.test.ts",
+        "startTime": 1792858759124,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858755070.267,
+        "file": "tests/integration/rls/factory-isolation.int.test.ts",
+        "startTime": 1792858754256,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858631212.4993,
+        "file": "tests/integration/rls/file-index-isolation.rls.test.ts",
+        "startTime": 1792858630832,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 19
+        },
+        "endTime": 1792858470324.629,
+        "file": "tests/integration/rls/file-link-lock.rls.test.ts",
+        "startTime": 1792858468748,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 16
+        },
+        "endTime": 1792858612364.8328,
+        "file": "tests/integration/rls/file-tables-migration-reset.int.test.ts",
+        "startTime": 1792858612232,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858747205.4666,
+        "file": "tests/integration/rls/has-tenant-role.rls.test.ts",
+        "startTime": 1792858747117,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 9
+        },
+        "endTime": 1792858736427.027,
+        "file": "tests/integration/rls/helper-semantics.rls.test.ts",
+        "startTime": 1792858734762,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858684760.4585,
+        "file": "tests/integration/rls/job-members.rls.test.ts",
+        "startTime": 1792858667847,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858753477.2744,
+        "file": "tests/integration/rls/job-workspace.rls.test.ts",
+        "startTime": 1792858741728,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 8
+        },
+        "endTime": 1792858627318.155,
+        "file": "tests/integration/rls/jobs-depth.rls.test.ts",
+        "startTime": 1792858597558,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858722070.7786,
+        "file": "tests/integration/rls/membership-integrity.int.test.ts",
+        "startTime": 1792858718913,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 8
+        },
+        "endTime": 1792858663773.2927,
+        "file": "tests/integration/rls/membership-roles.rls.test.ts",
+        "startTime": 1792858661832,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858733097.1477,
+        "file": "tests/integration/rls/membership-self-grant.rls.test.ts",
+        "startTime": 1792858732197,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 15
+        },
+        "endTime": 1792858342685.5286,
+        "file": "tests/integration/rls/migration-reset.int.test.ts",
+        "startTime": 1792858342255,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858704635.7659,
+        "file": "tests/integration/rls/onboarding-checklist.rls.test.ts",
+        "startTime": 1792858699853,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858760529.3665,
+        "file": "tests/integration/rls/onboarding-migration-reset.int.test.ts",
+        "startTime": 1792858760438,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858752342.941,
+        "file": "tests/integration/rls/platform-operators.rls.test.ts",
+        "startTime": 1792858748934,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858692140.7388,
+        "file": "tests/integration/rls/pricing-tables-migration-reset.int.test.ts",
+        "startTime": 1792858692004,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 1
+        },
+        "endTime": 1792858756684.3467,
+        "file": "tests/integration/rls/provisioning-migration-reset.int.test.ts",
+        "startTime": 1792858756630,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 10
+        },
+        "endTime": 1792858689612.0642,
+        "file": "tests/integration/rls/quote-follow-ups-migration-reset.int.test.ts",
+        "startTime": 1792858689558,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858734278.5864,
+        "file": "tests/integration/rls/quote-follow-ups.rls.test.ts",
+        "startTime": 1792858734167,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 12
+        },
+        "endTime": 1792858664487.0322,
+        "file": "tests/integration/rls/quote-lost-reasons-migration-reset.int.test.ts",
+        "startTime": 1792858664436,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858716450.7178,
+        "file": "tests/integration/rls/quote-lost-reasons.rls.test.ts",
+        "startTime": 1792858716244,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 8
+        },
+        "endTime": 1792858624953.6902,
+        "file": "tests/integration/rls/quote-pdf-validity-migration-reset.int.test.ts",
+        "startTime": 1792858624871,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 9
+        },
+        "endTime": 1792858552574.582,
+        "file": "tests/integration/rls/quote-pipeline-read-model.rls.test.ts",
+        "startTime": 1792858541444,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858715570.3125,
+        "file": "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+        "startTime": 1792858715500,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858718102.0452,
+        "file": "tests/integration/rls/quote-table-db-hardening.atdd.int.test.ts",
+        "startTime": 1792858716853,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 17
+        },
+        "endTime": 1792858535625.1267,
+        "file": "tests/integration/rls/quote-tables-migration-reset.int.test.ts",
+        "startTime": 1792858535466,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858751647.3948,
+        "file": "tests/integration/rls/resources.rls.test.ts",
+        "startTime": 1792858750566,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858741542.543,
+        "file": "tests/integration/rls/rls-inventory-gate.int.test.ts",
+        "startTime": 1792858741497,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858563639.1545,
+        "file": "tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts",
+        "startTime": 1792858562978,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 11
+        },
+        "endTime": 1792858436021.3447,
+        "file": "tests/integration/rls/role-harness.atdd.int.test.ts",
+        "startTime": 1792858431391,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 2
+        },
+        "endTime": 1792858744442.4697,
+        "file": "tests/integration/rls/role-storage-grants.int.test.ts",
+        "startTime": 1792858744396,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 5
+        },
+        "endTime": 1792858728901.4314,
+        "file": "tests/integration/rls/security-definer-search-path.rls.test.ts",
+        "startTime": 1792858728849,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 15
+        },
+        "endTime": 1792858560929.7852,
+        "file": "tests/integration/rls/settings-rls.int.test.ts",
+        "startTime": 1792858560677,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858726149.5688,
+        "file": "tests/integration/rls/storage-object-isolation.rls.test.ts",
+        "startTime": 1792858724062,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858689302.517,
+        "file": "tests/integration/rls/time-reports.rls.test.ts",
+        "startTime": 1792858676068,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 3
+        },
+        "endTime": 1792858597009.1052,
+        "file": "tests/integration/rls/work-orders.rls.test.ts",
+        "startTime": 1792858581742,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 17
+        },
+        "endTime": 1792858576343.7937,
+        "file": "tests/integration/features/jobs/job-read-mapping.int.test.ts",
+        "startTime": 1792858576331,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 4
+        },
+        "endTime": 1792858738112.5837,
+        "file": "tests/integration/features/jobs/job-workspace.int.test.ts",
+        "startTime": 1792858725276,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858671815.7551,
+        "file": "tests/integration/features/jobs/my-jobs.int.test.ts",
+        "startTime": 1792858654802,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 7
+        },
+        "endTime": 1792858665821.8413,
+        "file": "tests/integration/features/quotes/quote-pipeline-list-filters.int.test.ts",
+        "startTime": 1792858658668,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858748691.937,
+        "file": "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+        "startTime": 1792858748685,
+        "status": "passed",
+        "story_cases": []
+      },
+      {
+        "counts": {
+          "passed": 6
+        },
+        "endTime": 1792858733162.9612,
+        "file": "tests/integration/server/auth/resolve-tenant-context.int.test.ts",
+        "startTime": 1792858731540,
+        "status": "passed",
+        "story_cases": []
+      }
+    ],
+    "kind": "VITEST_NORMAL_REPORT",
+    "nonstory_failed_cases": [],
+    "report_counts_consistent": true,
+    "story_cases": [
+      {
+        "duration_ms": 3664.2974750000003,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API001",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3132.605926,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API002",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3600.5628659999993,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API003",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3754.9914019999997,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API004",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3348.235902999999,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API005",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3887.762048999997,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API006",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3021.309512,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API007",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3742.684089000002,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API008",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4646.385073000005,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API009",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2560.6242669999992,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API010",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2727.5184109999973,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API011",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2633.4200679999994,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API012",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 9227.820173,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API013",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3033.710433,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API014",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2646.6783579999974,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API015",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2822.5081380000047,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API016",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2701.0201180000004,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API017",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 8038.014870999992,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API018",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2613.398390000002,
+        "failure": {
+          "fixed_category_counts": {},
+          "invalid_owned_tuple_headers": 0,
+          "owned_leaf_tuple_count": 1,
+          "owned_leaf_tuples": [
+            {
+              "category": "unknown",
+              "sqlState": null,
+              "stage": "scenario-telemetry-privacy-refused-integration-ip-stdout-other"
+            }
+          ],
+          "raw_failure_details": "NOT_PERSISTED",
+          "typed_assertion_pairs": [],
+          "underlying_cause": "UNKNOWN_UNLESS_QUALIFIED_BY_OTHER_REACHED_FACTS"
+        },
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API019",
+        "status": "failed"
+      },
+      {
+        "duration_ms": null,
+        "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+        "id": "API020",
+        "status": "pending"
+      },
+      {
+        "duration_ms": 2603.862967,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT001",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2562.091594,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT002",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3073.2397329999994,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT003",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2648.9299139999985,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT004",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2800.8043610000004,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT005",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2735.2594770000014,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT006",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2582.9945359999983,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT007",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2834.427372000002,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT008",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2694.333903999999,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT009",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2615.6652509999985,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT010",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2862.550984999998,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT011",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2874.6479099999997,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT012",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3304.0242849999995,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT013",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2871.5458730000028,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT014",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 1179.010997999998,
+        "file": "tests/integration/commands/calendar-feed.int.test.ts",
+        "id": "INT015",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 21.102109999999982,
+        "file": "tests/integration/components/calendar-feed.test.ts",
+        "id": "COMP-001",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3.984375,
+        "file": "tests/integration/components/calendar-feed.test.ts",
+        "id": "COMP-002",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 2.381170999999995,
+        "file": "tests/integration/components/calendar-feed.test.ts",
+        "id": "COMP-003",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 1.1604049999999688,
+        "file": "tests/integration/components/calendar-feed.test.ts",
+        "id": "COMP-004",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4453.840993,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS001",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4745.1830629999995,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS002",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 5048.9134429999995,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS003",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4290.298594999998,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS004",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3709.566554000001,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS005",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4001.5717379999987,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS006",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4405.105681000001,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS007",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3903.4753789999995,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS008",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 3903.7036179999996,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS009",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 5907.9191349999965,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS010",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4563.568333000003,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS011",
+        "status": "passed"
+      },
+      {
+        "duration_ms": 4461.478044999996,
+        "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+        "id": "RLS012",
+        "status": "passed"
+      }
+    ],
+    "story_reconciliation": {
+      "attempted_story_pass_or_fail": 50,
+      "duplicate_story_ids": [],
+      "expected_count": 51,
+      "missing_expected_ids": [],
+      "noncoverage_story_count": 1,
+      "normal_acceptance": 0,
+      "reported_unique_count": 51,
+      "unexpected_source_ids": []
+    },
+    "summary": {
+      "numFailedTestSuites": 2,
+      "numFailedTests": 1,
+      "numPassedTestSuites": 545,
+      "numPassedTests": 2115,
+      "numPendingTestSuites": 0,
+      "numPendingTests": 52,
+      "numTodoTests": 0,
+      "numTotalTestSuites": 547,
+      "numTotalTests": 2169,
+      "success": false
+    }
+  },
+  "raw_persisted": false,
+  "zip_entries": 1
+}

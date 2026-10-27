@@ -1,0 +1,23 @@
+{
+  "schema": "ROOT_STALE_REVIEW_PIN_REPAIR_V1",
+  "old_helper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-root-admission.py",
+    "bytes": 6920,
+    "sha256": "73014475f74d139fc123b5b98e680488c2b2ff029f7941cdba9a11a9e715cd49"
+  },
+  "new_helper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-terminal-root-admission-v2.py",
+    "bytes": 6871,
+    "sha256": "3317237c7cfbf15646cde3d3dbd7e9cf7bbd5aa9bb8a3babdb0353a2abcae9f5"
+  },
+  "four_functions_byte_exact": true,
+  "full_raw_inverse": true,
+  "changes": [
+    "Remove obsolete prior-report hardcoded SHA assertion.",
+    "After completed finite allocation read, require exact current review path+bytes+SHA ref equal grant.independent_review."
+  ],
+  "why": "Combined review pins helper before actual finite allocation; constant current report SHA would form a hash cycle. Completed Root allocation supplies exact frozen independent review pin after review, preserving integrity without a cycle.",
+  "unchanged": "Current report status/outcome/independent/findings, all source/rows/catalog/freshness/once checks and reader5 unchanged.",
+  "effects": 0,
+  "old_helper_executed": false
+}

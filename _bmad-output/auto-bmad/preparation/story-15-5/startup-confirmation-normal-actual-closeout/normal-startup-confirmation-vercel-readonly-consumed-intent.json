@@ -1,0 +1,28 @@
+{
+  "schema": "INT009_PROVIDER_READ_CONSUMED_v1",
+  "at": "2026-10-23T17:48:29.169446+00:00",
+  "operation_id": "d891e444-e6d5-401f-bd00-0a4b85b701e9",
+  "request": {
+    "method": "GET",
+    "endpoint": "/v9/projects/prj_QYRxEeUBlCStlPL0YZd72y8245rg?teamId=team_jvgtCLGEU7h6atn0TyGLNncd"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-provider-readonly-activation.json",
+    "bytes": 2493,
+    "sha256": "dee79ada1d62a356e150b01f2c9ad6bb92b88e155a1245136169d3bf965fa1f4"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-startup-confirmation-effects-allocation.json",
+    "bytes": 7462,
+    "sha256": "3a9e2eae1a60abebb0ff8d4d59d8c1ab17fc19a2e248d7338766bbf541691624"
+  },
+  "source_proof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-startup-confirmation-current-source-proof.json",
+    "bytes": 59110,
+    "sha256": "67f002bce2c021141c096606559a00c0f5fb713998d8fd6e091219b5c045b9d7"
+  },
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "checkpoint_id": "06c4e602-246c-465d-b858-802be78c9ba1",
+  "allowed_invocations": 1,
+  "retry": false
+}

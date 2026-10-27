@@ -1,0 +1,22 @@
+{
+  "kind": "ROOT_MECHANICAL_SIX_PATH_PREBUILD_SOURCE_IDENTITY_AND_ALLOCATION_ADMISSION",
+  "baseline_metadata_head": "3546c1510be4ec2d0521586ccb874df50c6b11d5",
+  "baseline_source_head": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+  "pushed_head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+  "verified_raw_clean_files": 6,
+  "verified_source_pushed_current_objects": 18,
+  "exact_source_paths": [
+    "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "tests/support/time-reports-atdd.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_allocation": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-source-label-six-path-allocation.json",
+  "actual_completed_tool": "exec-89e22131-40c2-45e5-b35f-43a657418239",
+  "source_only": true,
+  "runtime_effects": false,
+  "normal_acceptance_credit": 0,
+  "root_semantic_review": false
+}

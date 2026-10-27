@@ -1,0 +1,40 @@
+{
+  "kind": "ROOT_ACCEPTED_FRESH_STATUS_ORIGIN_02_CONDITIONAL_ALLOCATION",
+  "source_commit": "bc9c30856f6272f9a099e52691d4ec4a7582732f",
+  "pushed_checkpoint": null,
+  "producer_checkpoint_id": "3eefa8d5-1faf-4ac9-bff5-9dc2d0d45437",
+  "collection_operation_id": "498ff285-2261-4d92-a0ea-1283ae3f45bc",
+  "P": ".env.epic15.mail-runtime\\story-15-5-preparation\\status-origin-discriminator-02",
+  "P_exact7": [
+    "collect-diagnostic-evidence.py",
+    "test_collect_diagnostic_evidence.py",
+    "expected-admission.json",
+    "terminal-facts.json",
+    "diagnostic-evidence.json",
+    "diagnostic-qualification.json",
+    "manifest.json"
+  ],
+  "Root_driver": ".env.epic15.mail-runtime\\story-15-5-preparation\\root-status-origin-discriminator-02-driver.py",
+  "Root_result": ".env.epic15.mail-runtime\\story-15-5-preparation\\root-status-origin-discriminator-02-result.json",
+  "code_semantics": "Reuse current reviewed helper/driver/protocol; only actualfreshidentity/pathbindings; actualdefaultpathname and oldtargetrejection controls",
+  "source_conservation": {
+    "bytes": 7923,
+    "sha256": "e934cc693c990c0ab33940954bc7877d86b17521fe2a1f35eab27c7d7db4cb55"
+  },
+  "actual_pushed_target_receipt": null,
+  "activation": false,
+  "POSTs": 0,
+  "artifact_GETs": 0,
+  "normal_acceptance_credit": 0,
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "completed_turn": "01a15db9-725d-7ad3-acef-6894ad704d96",
+  "grant_tool": "exec-766f3628-af76-4031-a648-cc6a03f13b49",
+  "final_message": "msg_0954b60b44796db1016ad88179b4908191a02f510c9db554d8",
+  "source_fix_review_manifest_sha256": "7d891243f37882825b75e87a02095cf2c3aff2dd15dbf3c9db2704cf69d761bf",
+  "source_delta": {
+    "bytes": 9056,
+    "sha256": "4eeff5a41cc991857a51ca3fa8fc315b34498f67bc3976097bea7d47e0af0b9a"
+  },
+  "conditional": "NoP2code/rebindingbeforeactualRootcheckpointpush; thenHighauthor+distincttargetedbindingreview; freshactualmetadata/prePOSTintentbeforeoncePOST; successactualterminalrunjobsbeforeseparateoncecollection; offlinefinal3latergrant",
+  "old_operations": "Immutablefailedproducer/consumedUNKNOWNlogread/oldexpectedneverreplayed"
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "kind": "INDEPENDENT_HIGH_NARROW_F1_CORRECTIVE_CLOSURE",
+  "verdict": "PASS",
+  "F1": "CLOSED_FOR_CORRECTED_BYTES",
+  "new_findings": [],
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true,
+    "existing_reviewer_reused": true,
+    "fresh_context_free": false,
+    "broad_review": false
+  },
+  "scope": {
+    "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+    "head": "f0b1e5735872ba2effcd7c1480756326125f6752",
+    "only_F1_correction_and_consequential_regressions": true
+  },
+  "inputs": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01.mjs",
+      "bytes": 8505,
+      "sha256": "fde47b848880a7cf1b5d8dd55fec23daef070104b6369ee194fa849edab313aa"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01-corrective-proposal.json",
+      "bytes": 16366,
+      "sha256": "00c96620ae2401a3c8bf284f5f614c83585b8672d1a54aa239b97076cb8d10f3"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01-proposal.json",
+      "bytes": 15202,
+      "sha256": "b266966e2dec8dd74235d7a9edda2b41731b124e328ec3ea567822d94d1ba1fe"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-verify-tap-01-corrective-replacement.json",
+      "bytes": 497,
+      "sha256": "80d2fd6f4038c353a7e06918cad5e7d20202b041fe96b2ff658a52a274c9d4c3"
+    }
+  ],
+  "original_NOTPASS_artifacts_unchanged": [
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/original-report.md",
+      "bytes": 6583,
+      "sha256": "119463908240cc470c2f8af84ef97f2fa1c561272c9cc3b27fb3114aef13a8c3"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/original-attestation.json",
+      "bytes": 7645,
+      "sha256": "a5e8793bb940f2ea9b4ea0367ecd86dd75558ee884d3cbfe6a08f417a30dac54"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/result.json",
+      "bytes": 954,
+      "sha256": "0fad3e4ddeb38f945f67ad4692fce39b6cbc4a306df5b64ddcb5e5df7f53a97d"
+    },
+    {
+      "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-review/manifest.json",
+      "bytes": 759,
+      "sha256": "53797411e09e668661ed4f5038871bb7a74cd6f7e8648a35ca677be69199f404"
+    }
+  ],
+  "preserved_original_payload": {
+    "bytes": 8575,
+    "sha256": "16bcb852e3923e03cff1e3c1fdd08dd38045299851c27fbc8e01c25728a5364a",
+    "location": "Original proposal script.base64"
+  },
+  "corrective_payload_matches_materialization": true,
+  "reuse_provenance": {
+    "unchanged_top_level_AST_statements_excluding_analyzeTap_and_main": 23,
+    "actual_prefix_bytes_before_analyzeTap_equal": true,
+    "actual_source_and_durable_section_bytes_equal": true,
+    "actual_main_acquisition_prefix_equal_except_intent_field_rename": true,
+    "actual_final_durable_catch_finally_bytes_equal": true,
+    "remaining_delta": "analyzeTap is always-UNKNOWN positive-candidate extraction; initial result field rename; actual main stores STOP_UNKNOWN/candidates/tap_completefalse; completion STOP_UNKNOWN/retryfalse/exit1.",
+    "reused_boundaries": [
+      "Fixed target/pins/closed capture",
+      "Exclusive durable consumed reservation before child",
+      "Timeout/cap/shellfalse and no raw output/persistence",
+      "Static source realpath/HEAD/line qualification",
+      "Cleanup/consumed-no-retry handling"
+    ],
+    "actual_effectful_lifecycle_executed": false
+  },
+  "independent_controls": {
+    "runs": 1,
+    "total": 12,
+    "pass": 12,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "cases": [
+      "F1 flat missing second record",
+      "F1 contradictory flat summary",
+      "F1 conflicting root plans",
+      "Valid-looking text remains UNKNOWN",
+      "Empty has null candidates/no zero proof",
+      "Partial diagnostic remains unqualified",
+      "Invalid location skipped",
+      "Source refusal retains UNKNOWN",
+      "Duplicate location skipped",
+      "Oversized title skipped",
+      "32-candidate cap remains UNKNOWN",
+      "50000-line cap remains UNKNOWN"
+    ],
+    "all_qualification_UNKNOWN": true,
+    "all_tap_complete_false": true,
+    "no_summary_or_failure_inventory_fields": true,
+    "synthetic_sentinels_absent": true,
+    "method": "Import-safe actual analyzer with synthetic text and a bounded static-source callback; original module main never invoked.",
+    "author13": "Separate attributed proposal evidence; not rerun or additive."
+  },
+  "closure_properties": {
+    "no_LOCATED_FAILURES_or_tap_summary_or_tap_complete_true_in_code": true,
+    "actual_completion_status": "STOP_UNKNOWN",
+    "actual_completion_retry": false,
+    "actual_process_exitCode": 1,
+    "unqualified_candidates_or_null_only": true,
+    "no_complete_inventory_absence_zero_or_causal_claim": true,
+    "existing_owner_authorization_not_overridden": true,
+    "no_generic_reapproval_requirement_introduced": true
+  },
+  "action_limits": {
+    "owned_new_writes_only": [
+      "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/original-report.md",
+      "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/original-attestation.json",
+      "_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/result.json"
+    ],
+    "main_calls": 0,
+    "real_gh_or_network_calls": 0,
+    "operational_result_created": false,
+    "source_spec_private_script_git_index_state_changes": 0,
+    "CI_provider_resource_effects": 0,
+    "raw_real_log_acquired": false,
+    "normal_acceptance_credit": 0,
+    "native_acceptance_credit": 0
+  },
+  "report": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/original-report.md",
+    "bytes": 4808,
+    "sha256": "97602b36ee04908dc917e3d1aa503f48713ff413a19f5cdae37149b2b12bd676"
+  },
+  "result": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-5/failed-verify-tap-corrective-review/result.json",
+    "bytes": 834,
+    "sha256": "ceaa6117069eb5c78d4681b5a07386555bfcb82e589bc00e9dbe8c8dddd40b5a"
+  }
+}

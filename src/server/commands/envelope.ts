@@ -49,6 +49,11 @@ type CommandCapability = NonNullable<CommandConfig<unknown, unknown>["capability
  * It remains server-only and is validated against the active matrix by tests.
  */
 export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> = {
+  "calendar_feed.create": { module: "scheduling", capability: "Bookings.View" },
+  "calendar_feed.rotate": { module: "scheduling", capability: "Bookings.View" },
+  "calendar_feed.revoke": { module: "scheduling", capability: "Bookings.View" },
+  "time_report.file": { module: "scheduling", capability: "TimeReports.ReportOwn" },
+  "time_report.annotate": { module: "scheduling", capability: "TimeReports.Review" },
   "customer.create": { module: "crm", capability: "Customers.Create" },
   "customer.update": { module: "crm", capability: "Customers.Edit" },
   "customer.archive": { module: "crm", capability: "Customers.Delete" },
@@ -94,6 +99,19 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "quote.pdf.signedAccess.create": { module: "quotes", capability: "Quotes.Export" },
   "job.create": { module: "jobs", capability: "Jobs.Create" },
   "job.update": { module: "jobs", capability: "Jobs.Edit" },
+  "job.card.create": { module: "jobs", capability: "Jobs.Create" },
+  "job.upgrade_to_projekt": { module: "jobs", capability: "Jobs.Edit" },
+  "job.card.update": { module: "jobs", capability: "Jobs.Edit" },
+  "job.member.assign": { module: "jobs", capability: "Jobs.ManageCrew" },
+  "job.member.remove": { module: "jobs", capability: "Jobs.ManageCrew" },
+  "job.lead.set": { module: "jobs", capability: "Jobs.SetLead" },
+  "job.plan_dates.update": { module: "jobs", capability: "Jobs.UpdatePlannedDates" },
+  "work_order.create": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.update": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.assignees.set": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.status.set": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "work_order.dependencies.set": { module: "jobs", capability: "Jobs.WorkOrders.Edit" },
+  "job.work_order_dependencies.set": { module: "jobs", capability: "Jobs.Edit" },
   "document.archive": { module: "files", capability: "Files.Edit" },
   "document.restore": { module: "files", capability: "Files.Edit" },
   "document.signedAccess.create": { module: "documents", capability: "Documents.View" },
@@ -107,6 +125,9 @@ export const COMMAND_CAPABILITIES: Readonly<Record<string, CommandCapability>> =
   "resource.profile_form.save": { module: "resources", capability: "Resources.Maintain" },
   createBooking: { module: "resources", capability: "Bookings.Manage" },
   updateBooking: { module: "resources", capability: "Bookings.Manage" },
+  createBookingSeries: { module: "resources", capability: "Bookings.Manage" },
+  updateBookingSeries: { module: "resources", capability: "Bookings.Manage" },
+  resolveBookingConflict: { module: "resources", capability: "Bookings.Manage" },
 };
 
 /**
@@ -237,6 +258,16 @@ export async function runCommand<I, R>(
       validate: config.validateInput,
       rawInput: input,
       verifyOwnership: (ctx) => verifyOwnership(config, ctx),
+      // Core admits this callback only for its exact closed crew/dates enrollment.
+      verifyJobScope: async (ctx) => {
+        const jobId = (ctx.input as {jobId?: unknown})?.jobId;
+        if (typeof jobId !== "string") return {ok: false, code: "TENANT_ACCESS_DENIED"};
+        const {data, error} = await (ctx.db as unknown as import("@/server/read-models/my-jobs").JobCardRpcClient).rpc("job_is_current_lead", {
+          p_tenant_id: ctx.tenantContext.tenantId, p_job_id: jobId,
+        });
+        if (error) return {ok: false, code: "SERVER_ERROR"};
+        return data === true ? {ok: true} : {ok: false, code: "TENANT_ACCESS_DENIED"};
+      },
       execute: config.execute,
       auditable: config.auditable,
       command: config.command,
@@ -325,3 +356,4 @@ async function verifyOwnership<I, R>(
   }
   return { ok: true };
 }
+

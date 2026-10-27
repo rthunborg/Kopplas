@@ -1,0 +1,27 @@
+{
+  "schema": "ROOT_RETRY_INT009_TERMINAL_TWO_READ_ADMISSION_V1",
+  "reader_source_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/retry-INT009-terminal-reader-actual-source-review.json",
+    "bytes": 15799,
+    "sha256": "dc535126aeeae6ba3cefcf295fb9d04753de6983e3c95932855108ff50c43a36"
+  },
+  "actual_completed_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-retry-INT009-terminal-two-read-allocation.json",
+    "bytes": 2910,
+    "sha256": "8bbc73151046b4df84d0f3434e9bd6ef1b4cc301248f62f86ae6442e36f0d0cb"
+  },
+  "Root_actual_review_read": "06b00d/native0",
+  "Root_actual_grant_read_and_save": "d2cae2/native0",
+  "review_outcome": "PASS_RETRY_INT009_TERMINAL_READER_ACTUAL_SOURCE_ONLY",
+  "read_scope": "ONE owned39804170137 artifact listing plus ONE unique eligible native.json ZIP; raw RAM only; no retry/fallback/log/runtime/mutation",
+  "activation_required": true,
+  "execution_started": false,
+  "normal_acceptance": 0,
+  "case_cause": "UNKNOWN",
+  "custody": "UNKNOWN",
+  "required95": {
+    "passed": 68,
+    "failed": 1,
+    "unexecuted": 26
+  }
+}

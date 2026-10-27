@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "name": "AssertionError",
+  "code": "ERR_ASSERTION",
+  "actual": [
+    "rpc",
+    "physical-privacy"
+  ],
+  "expected": [
+    "rpc"
+  ],
+  "evalFrameLines": [
+    [
+      64,
+      61
+    ]
+  ]
+}

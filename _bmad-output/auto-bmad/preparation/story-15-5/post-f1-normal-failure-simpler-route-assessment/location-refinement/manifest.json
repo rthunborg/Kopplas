@@ -1,0 +1,18 @@
+{
+  "schema": "POST_F1_LOCATION_REFINEMENT_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/report.md",
+      "bytes": 2163,
+      "sha256": "7531416935bcfe6c6556002fe19b8ff2c190e02527b5ca3808be44c4ebdd80c5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/attestation.json",
+      "bytes": 7544,
+      "sha256": "cfafed92855e2642ad99f641b837c5b449fd5dbf25f65cf379d6020e476f6cab"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 3,
+  "normal_acceptance": 0
+}

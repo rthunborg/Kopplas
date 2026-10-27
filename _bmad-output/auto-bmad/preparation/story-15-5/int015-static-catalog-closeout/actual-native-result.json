@@ -1,0 +1,87 @@
+{
+  "Outcome": "PASS_STATIC_ONLY",
+  "Files changed": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/unit-source-catalog.json",
+      "bytes": 76870,
+      "sha256": "2bc70be7214ba27e843a195fbf594033861c75a7b886e12ae4088d06fd0d8602"
+    }
+  ],
+  "Status": {
+    "native_exit": 0,
+    "subprocess_run_returned": true,
+    "communicate_returned": true,
+    "timeout_expired": false,
+    "settled": true,
+    "elapsed_ms": 368.892,
+    "input_pins_verified": [
+      "source_review",
+      "source",
+      "historical_catalog",
+      "reviewed_existing_extractor",
+      "prior_embedding",
+      "script",
+      "independent_v4_review"
+    ],
+    "stdout_bytes": 688,
+    "stdout_sha256": "96067bcc0deddbf87c32a0399c3125fd22fe9e306f33d37b3aa7edf35369e0fd",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "parsed_summary": {
+      "status": "PASS_STATIC_ONLY",
+      "actual_AST_refreshes": 1,
+      "previous_wrapper_declarations": 199,
+      "current_wrapper_declarations": 201,
+      "new_wrapper_declarations": 2,
+      "new_records": [
+        [
+          "1fdfe5ccaae0444aef20363373a9927d9b9c99059dd7f5b53fd626d484d05866",
+          3304,
+          116,
+          null
+        ],
+        [
+          "c07a225e45bb899f2a41a68cd07bc05166005a6ed246c633a6b0adc5395bc2b7",
+          3332,
+          119,
+          null
+        ]
+      ],
+      "other_sources_hash_verified": 19,
+      "other_catalogs_reused": 19,
+      "other_sources_extracted": 0,
+      "runtime_coverage_credit": 0,
+      "TypeScript": "5.9.3",
+      "elapsed_ms": 117.26950000000002,
+      "source": {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 363561,
+        "sha256": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147"
+      },
+      "closed": true
+    },
+    "failure_capture": null,
+    "script_after": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT015-final-static-catalog-v4/refresh-static-catalog.mjs",
+      "bytes": 5409,
+      "sha256": "f92b370cbb620bb84f5a26c3cfa0388e79482f9919170cd1c89bf5c033658471"
+    },
+    "source_after": {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 363561,
+      "sha256": "7ad2fcddd6724cc53cc7afd27f05e3c600f8eeec337c0343eaf4a010d9c6f147",
+      "matches": true
+    },
+    "v4_Node_invocations": 1,
+    "remaining_Node_budget": 0,
+    "cumulative_Node_invocations": 3,
+    "cumulative_AST_extractions": 2,
+    "historical_aggregate": "448 static / 19 dynamic excluded / 199 wrapper remains historical; no current aggregate sum asserted",
+    "runtime_coverage_credit": 0
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root independently qualifies actual published metadata and operational integration; runtime evidence remains separate."
+  ],
+  "Blockers": []
+}

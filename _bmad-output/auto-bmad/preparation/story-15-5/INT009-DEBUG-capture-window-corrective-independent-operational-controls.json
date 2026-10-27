@@ -1,0 +1,136 @@
+{
+  "schema": "INT009_DEBUG_CORRECTIVE_INDEPENDENT_FOCUSED_CONTROLS_V1",
+  "execution": "AST-extracted actual branches/functions; native/API/Git/config/app/main-module effects disabled; mocked paths and JSON held in RAM. No SQL raw read.",
+  "initial_control_fixture_failure": {
+    "tool": "5ded12",
+    "native_exit": 1,
+    "before_output_file": true,
+    "reason": "Harness omitted computed TITLE literal; corrected fixture derives exact production TITLE. No production defect/source modification."
+  },
+  "results": [
+    {
+      "name": "complete_successor_inverse_main-docs-publish.py",
+      "PASS": true
+    },
+    {
+      "name": "complete_successor_inverse_provider-readonly.py",
+      "PASS": true
+    },
+    {
+      "name": "complete_successor_inverse_root-driver.py",
+      "PASS": true
+    },
+    {
+      "name": "complete_NORMAL_inverse_provider",
+      "PASS": true
+    },
+    {
+      "name": "complete_NORMAL_inverse_driver",
+      "PASS": true
+    },
+    {
+      "name": "actual28_input_ref_pins",
+      "PASS": true
+    },
+    {
+      "name": "OP01_actual_report_positive",
+      "PASS": true
+    },
+    {
+      "name": "OP01_negative_old_outcome",
+      "PASS": true
+    },
+    {
+      "name": "OP01_negative_missing_outcome",
+      "PASS": true
+    },
+    {
+      "name": "OP01_negative_wrong_status",
+      "PASS": true
+    },
+    {
+      "name": "OP01_negative_nonindependent",
+      "PASS": true
+    },
+    {
+      "name": "actual_publish_healthy_4GET_one_fixed_POST",
+      "PASS": true
+    },
+    {
+      "name": "actual_user_mismatch_blocks_POST",
+      "PASS": true
+    },
+    {
+      "name": "actual_permission_mismatch_blocks_POST",
+      "PASS": true
+    },
+    {
+      "name": "actual_branch_mismatch_blocks_POST",
+      "PASS": true
+    },
+    {
+      "name": "actual_workflow_mismatch_blocks_POST",
+      "PASS": true
+    },
+    {
+      "name": "docs_UNKNOWN_blocks_DEBUG_before_effect",
+      "PASS": true
+    },
+    {
+      "name": "premature_poll_WAIT_zero_GET",
+      "PASS": true
+    },
+    {
+      "name": "observe_only_one_resolver_unique_bind",
+      "PASS": true
+    },
+    {
+      "name": "last_empty_resolver_closes",
+      "PASS": true
+    },
+    {
+      "name": "ambiguous_resolver_refuses",
+      "PASS": true
+    },
+    {
+      "name": "exact9_terminal_pair_STOP",
+      "PASS": true
+    },
+    {
+      "name": "post_terminal_zero_GET",
+      "PASS": true
+    },
+    {
+      "name": "early_poll_zero_GET",
+      "PASS": true
+    },
+    {
+      "name": "fresh_activation_healthy",
+      "PASS": true
+    },
+    {
+      "name": "fresh_activation_expired_refused",
+      "PASS": true
+    },
+    {
+      "name": "fresh_proof_healthy",
+      "PASS": true
+    },
+    {
+      "name": "fresh_proof_expired_refused",
+      "PASS": true
+    },
+    {
+      "name": "fresh_provider_healthy",
+      "PASS": true
+    },
+    {
+      "name": "fresh_provider_expired_refused",
+      "PASS": true
+    }
+  ],
+  "passed": 30,
+  "failed": 0,
+  "prior_author16groups": "Reused nonadditively, not rerun.",
+  "effects": 0
+}

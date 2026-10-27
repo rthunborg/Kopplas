@@ -5,7 +5,9 @@
     "deploymentEnabled": {
       "codex/story-11-3-invitation-identity-binding": false,
       "codex/story-11-3-invitation-lifecycle": false,
-      "codex/epic-11-wave-b1a-rbac-mechanism-and-admin-user-management": false
+      "codex/epic-11-wave-b1a-rbac-mechanism-and-admin-user-management": false,
+      "codex/epic-15-scheduling-time-calendar": false,
+      "codex/epic-16-jobs": false
     }
   }
 }

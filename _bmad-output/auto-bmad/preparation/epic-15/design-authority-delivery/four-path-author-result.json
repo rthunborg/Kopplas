@@ -1,0 +1,169 @@
+{
+  "Outcome": "DELIVERED_FOUR_PATH_APPROVED_DOCUMENTS_DERIVED_ANNEX_PENDING_INDEPENDENT_REVIEW",
+  "Files changed": [
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+      "bytes": 26050,
+      "sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+      "LF_bytes": 26050,
+      "LF_sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+      "LF_Git_blob_SHA1": "f112496ee595c6694b73fde2c80eed7965766308"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+      "bytes": 25784,
+      "sha256": "acb38e58b7ada2bba7165bc8ba4339dc29583ca2fbcd66304e2c04f13323cd58",
+      "LF_bytes": 25559,
+      "LF_sha256": "1532162b46e7456ec554b69d45db1b6990491b04555ce81d6db7508593bbe142",
+      "LF_Git_blob_SHA1": "c432e45d16b819aab38e6421dcb9a2d03fc4047d"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/README.md",
+      "bytes": 6610,
+      "sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6",
+      "LF_bytes": 6610,
+      "LF_sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6",
+      "LF_Git_blob_SHA1": "078b5c81241379e8c7c84caf577efb054bd42262"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+      "bytes": 93641,
+      "sha256": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+      "LF_bytes": 93025,
+      "LF_sha256": "900c7042df868050095e55d69a16a4f53d2430b7b5d90a291ce56e3d24de07f0",
+      "LF_Git_blob_SHA1": "da82b1cce12133a4175957c2e7e10c02813ba0c8"
+    }
+  ],
+  "Status": {
+    "base_head": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+    "independent": false,
+    "scope": "Exact3 approved-byte peer transfers plus3-area derived annex preservation; no product decision or implementation.",
+    "provenance": {
+      "allocation": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-design-authority-four-path-reconciled-delivery-allocation.json",
+        "bytes": 6038,
+        "sha256": "80de09fe24629019646657526e80e1ff7f934b4edcc86976492f736a7194f5ab"
+      },
+      "High_plan": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-annex-critical-conflict-assessment-high.json",
+        "bytes": 16962,
+        "sha256": "176c0f6a6ffeb7cf5e6d557b87cb9903314910f1471bef2d8a9eecb9101b4832"
+      },
+      "preimage_assessment": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-four-path-delivery-preimage-assessment.json",
+        "bytes": 11618,
+        "sha256": "f38e72f8db165a2aaceab8af552138437943fe637b551d4c1593aafe5b2cae60"
+      },
+      "Coordinator_completed_ownership_turn": "01a16f0c-b78e-7232-9d13-660354ae336b",
+      "Root_route": "432791/native0 before dispatch; explicit Sol6.1 High critical contract-preservation",
+      "approval_register": {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/approval-and-application.json",
+        "exists": true,
+        "bytes": 7471,
+        "sha256": "feec72a6a5be193fa26058b49b6010dd121b86e2aec682563225ad2e9129d959",
+        "LF_bytes": 7330,
+        "LF_sha256": "912eb36f2dda51935d989fe307d4e57dcf076d7f5254408353833403a9475f1d",
+        "root": "C:/DEV/Kopplas READONLY",
+        "decision": "DT-2026-10-23 described planning amendments and bounded preparation approved; detailed requirements retained; no implementation/readiness/deployment authority."
+      },
+      "immutable_source_commit": null,
+      "source_commit_limit": "Approval/register pins and exact stable source bytes qualified; no immutable PRIMARY Git commit was supplied or inferred."
+    },
+    "annex": {
+      "approved_source": {
+        "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+        "bytes": 92376,
+        "sha256": "feaeed31b8a481b36dd33f0be27050782565ce9eebcc4d866e92281f1e6c1350",
+        "LF_bytes": 91761,
+        "LF_sha256": "2905b9c785e7b6690e8bc689defb4fee967a88b5ed84dea5241f9bdc70afa1bf",
+        "LF_Git_blob_SHA1": "66ee8f1340f17cc912acce73c244a82e5c81ec15"
+      },
+      "E15_preimage": {
+        "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+        "bytes": 90325,
+        "sha256": "97a7bec5874622b508c6f2da3a794d9a1b2c204b2dc3f464dae253809f5977b1",
+        "LF_bytes": 89722,
+        "LF_sha256": "081348c416e4f69cb86cf4dd2bbd8fae2b06ec035673a8bdf80148dc30b0ca67",
+        "LF_Git_blob_SHA1": "dd75300909b5c9327cf97183313bb4540b08fe6f"
+      },
+      "derived": {
+        "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+        "bytes": 93641,
+        "sha256": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+        "LF_bytes": 93025,
+        "LF_sha256": "900c7042df868050095e55d69a16a4f53d2430b7b5d90a291ce56e3d24de07f0",
+        "LF_Git_blob_SHA1": "da82b1cce12133a4175957c2e7e10c02813ba0c8"
+      },
+      "classification": "Derived reconciliation intentionally differs from register's approved-source after_sha256; source/register remain unchanged.",
+      "exact_inverse_to_approved_source": true,
+      "areas": 3
+    },
+    "conservation": {
+      "exact_peer_copies": 3,
+      "exact_E15_Team_and_UXB_A9_rows": true,
+      "all_other_DT_source_bytes_preserved": true,
+      "approved_source_headings": 41,
+      "E15_preimage_headings": 40,
+      "all_headings_retained": true,
+      "full_E15_domain_sections_4_5_4_6_4_7_unchanged": true,
+      "three_committed_sourcefix_paths_unchanged": true
+    },
+    "SuggestedReviewOrder": [
+      "Check PRIMARY/register actual source pins and three exclusive peer copies; distinguish exact peers from derived annex.",
+      "Annex29/48/49: retain global Oct15 no-legacy policy and all DT authority/headless text; new scoped Oct9 disposition carries approved behavior without the old general oracle prerequisite.",
+      "Annex255: exact current E15 Team row preserves displayed booking work-role/no-work-role/resource-context/no named-team domain. Actual section4.5 supersedes assessment4.2 locator typo.",
+      "Annex605 and full4.5/4.6/4.7 section hashes: preserve resolved UXB-A9, no observations/parity claim, ContractD/calendar-browser gates and native click/drag/role/conflict boundaries.",
+      "Check three-area raw inverse/headings, four-path scope and snapshot missing7references; no local link-complete/readiness claim."
+    ],
+    "links": {
+      "occurrences": 43,
+      "unique_local_targets": 29,
+      "missing_paths": [
+        "_bmad-output/planning-artifacts/design-transition-2026-10-23/authority-crosswalk.md",
+        "_bmad-output/planning-artifacts/design-transition-2026-10-23/handoffs.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md"
+      ],
+      "missing_count": 7,
+      "locally_link_complete": false,
+      "scope": "Known seven remain absent at this report snapshot; no referenced content copied/read. Existence is not anchor/content verification."
+    },
+    "checks": {
+      "source_preimage_register": "all exact pins matched before writes",
+      "annex_inverse": "3areas, source92376/feaeed31... restored",
+      "Git_diff_check": "native0",
+      "Git_scope": "exact allocated4 paths, HEADcbe3 unchanged",
+      "application_tests": "not run; docs-only",
+      "native_or_runtime_acceptance": 0
+    },
+    "reports": {
+      "preservation": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-four-path-delivery-author/preservation.json"
+    },
+    "P5": "OPEN",
+    "current95": "93P/API019 failed/API020 unexecuted",
+    "cause": "UNKNOWN",
+    "source_catalog": "Unpublished/current qualification separately owned; not read/modified here.",
+    "review_counter": 3,
+    "story15_6": "UNSTARTED; preparation waits for15.5 landing",
+    "implementation_readiness": false,
+    "merge_deployment": false,
+    "frozen": true
+  },
+  "Open questions": [
+    "No new product decision is needed for the three preserved areas under existing approvals.",
+    "Seven direct references remain absent at this snapshot; target content/anchor completion is not established by four-path delivery."
+  ],
+  "Deferred work": [
+    "Independent Sol6.1 High actual four-path delivery diff review before Root commit.",
+    "Root exclusively owns any separately allocated seven-reference delivery and resulting delivery commit.",
+    "15.6 preparation waits for15.5 landing; no implementation/readiness/runtime/merge/deployment work starts here."
+  ],
+  "Blockers": [
+    "Independent actual delivery review remains pending.",
+    "Four-path package is not locally link-complete; no implementation or readiness claim.",
+    "Current required95 remains failed/P5OPEN independently of this documentation delivery."
+  ]
+}

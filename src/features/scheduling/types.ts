@@ -2,6 +2,7 @@ import type { WorkShift } from "../resources/work-hours";
 
 /** Frozen, authoritative facts only. No workflow acceptance or inferred job data. */
 export type SchedulingBooking = {
+  readonly jobId?: string | null;
   readonly id: string; readonly startsAt: string; readonly endsAt: string;
   readonly allDay: boolean; readonly status: "planned" | "cancelled"; readonly assigneeIds: readonly string[];
 };
@@ -15,7 +16,7 @@ export type SchedulingRules = {
   readonly planningBufferMinutes: number; readonly acknowledgmentThresholdMinutes: number;
   readonly authorizedOvertime: readonly { readonly personId: string; readonly startsAt: string; readonly endsAt: string }[];
 };
-export const SCHEDULING_RULES_VERSION = "stockholm-capacity-v1";
+export const SCHEDULING_RULES_VERSION = "stockholm-capacity-v2";
 export const DEFAULT_SCHEDULING_RULES: SchedulingRules = Object.freeze({
   version: SCHEDULING_RULES_VERSION, timeZone: "Europe/Stockholm", planningBufferMinutes: 0,
   acknowledgmentThresholdMinutes: 60, authorizedOvertime: Object.freeze([]),
@@ -26,8 +27,17 @@ export type SchedulingFacts = {
   readonly calendarDays: readonly { readonly date: string; readonly variant: string; readonly reductionPercent?: number }[];
   /** null and absent optional fields mean unavailable, never verified compliance. */
   readonly jobInputs: null | { readonly accessWindows?: readonly { readonly startsAt: string; readonly endsAt: string }[]; readonly requiredWorkRoleIds?: readonly string[] };
+  /** Complete authoritative sets, selected by each evaluated booking's job identity. */
+  readonly jobInputSets?: readonly JobSchedulingInputs[];
   readonly rules: SchedulingRules;
 };
+export type JobSchedulingInputs = { readonly jobId: string;
+  readonly estimatedDurationMinutes?: number | null; readonly crewSize?: number | null; readonly plannedTravelMinutes?: number | null;
+  readonly plannedStartDate?: string | null; readonly plannedEndDate?: string | null;
+  readonly earliestDate?: string | null; readonly desiredDate?: string | null; readonly latestDate?: string | null;
+  readonly customerPresenceRequired?: boolean | null;
+  readonly requiredWorkRoleIds: readonly string[] | null;
+  readonly accessWindows: readonly { readonly startsAt: string; readonly endsAt: string }[] | null };
 export type ConflictType = "double_booking" | "over_capacity" | "outside_work_hours" | "outside_access_window" | "competence_missing";
 export type SchedulingConflict = {
   readonly naturalKey: string; readonly conflictType: ConflictType; readonly bookingIds: readonly string[];

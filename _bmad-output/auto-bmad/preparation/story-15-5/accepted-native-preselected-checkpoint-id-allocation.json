@@ -1,0 +1,21 @@
+{
+  "kind": "accepted_bounded_new_checkpoint_identity_prerequisite_allocation",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "coordinator_title": "Coordinator",
+  "actual_grant_turn": "01a15ce3-1f18-7332-b664-999e428f4d77",
+  "actual_turn_status": "completed",
+  "actual_terminal_item": "msg_0954b60b44796db1016ad84a9d57a48191a7aab14f863588e8",
+  "actual_terminal_text": "The exact three-file change and bounded metadata reads are allocated to Epic15. Independent review, a new checkpoint and rebound collector qualification remain required before dispatch. The previous collector stays unexecuted and unchanged.",
+  "paths": [
+    "scripts/ci/checkpoint-dispatch.mjs",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "source_hunks": "Optional dispatch-only --checkpoint-id/programmaticcheckpoint_id canonicalLOWERCASEUUIDv4 validatedBEFOREANYAPI; rejectonstatus/cancel/duplicates/missing/malformed. SuppliedIDorlegacyrandomUUID entersSAMEexclusivefsyncedintent; durableATPOSTboundarycontrols state/payload/title/ownershipsameID/defaultretained. Preserveexistingstaterefusal/uncertainretention/zeroredispatch. CorrelationNOTidempotency/replay; RootfreshUUIDneverreuseafteruncertainty.",
+  "protected_ownership": "ActualE16terminalprotectede6eeaf9bad34436cd4230105c94dab083b4f7f90 explicitnocurrent/prospectivedispatcherunitclaims/pipelineDONE/noresources; priorCI/Documentscompletedclaimsstand. No newoverlap/foreignwrites.",
+  "readonly_root_metadata_allocation": "ActualgithubApi+reviewedvalidators boundeduser/repo/activeworkflowIDexactpath/default+candidatecontent/blobmetadataONLY, closedmetadata/digests/exactcandidateFULLSHAref. Recordactualrequestset/capsBEFOREuse. ContradictoryunavailableSTOP/no suppliedURLs/additionaldiscovery/logs/secrets/repeatedunchangedreads.",
+  "root_prepost_intent": "NewexclusivefsyncedclosedhashedRootownprivatepreparationintent admittedexplicitlyROOTintentONLY, notdispatcherinternalreceipt/dispatchproof; nooverwrite/adoption.",
+  "gates": "Highauthor exact3implementation, distincttargetedcommitteddeltaHighPASS, Rootsourcefreeze/PUSH, NEWexclusiveprivateP actualnewpushedFULLSHA/freshUUID+reboundhelpertestsreview. Existingprivate7grant retained; P252immutableUNEXECUTED.",
+  "exclusions": "No callback/mocktransport/newpayloadfield/workflow/schema/deps/nativeAPIexpansion. AllocationauthorizesNOPOST/run/nativeSQL/resource/secret/provider/defaultupdate/mainmerge/deploy/monitorresume. Conditionaldispatchstillallpreviousgates/solePOST/zerocredit. No furtherownerACK or unchangedbroadreviewneededwithinbounds.",
+  "independent_high_plan_validation": "/root/review15_5_private_diagnostic_high ACKWITHLIMITS_PLANONLY actualcompleted, recordedcanonicalstates; no nativeexecution."
+}

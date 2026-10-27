@@ -1,0 +1,25 @@
+{
+  "kind": "ROOT_MECHANICAL_TARGETED_DIAGNOSTIC_SOURCE_AUDIT_ADMISSION_ONLY",
+  "run_id": 39664130401,
+  "operator_source_review_verdict": "PASS_PREGET_SOURCE_WITH_FRESH_ALLOCATION_ACTIVATION_CONDITIONS",
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/manifest.json",
+    "bytes": 3865,
+    "sha256": "76176fdf2a31b465f3c0237b130f108c50bc2503c0ab863542d5fe9e195d90e9"
+  },
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/original-attestation.json",
+    "bytes": 12067,
+    "sha256": "c5b03cd4e5838a0734b8781ea14d4c267410a7f6547fc5107045d5a5881b3890"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-operator-source-review/original-report.md",
+    "bytes": 4781,
+    "sha256": "97b0f5e1d6a6ae15e8208bbbfc2d921a4a1d5348962c1983fe15c8a45a64e750"
+  },
+  "verified_members": 13,
+  "source_semantics_reviewed_by_root": false,
+  "actual_new_GETs": 0,
+  "execution_authorized": false,
+  "normal_acceptance_credit": 0
+}

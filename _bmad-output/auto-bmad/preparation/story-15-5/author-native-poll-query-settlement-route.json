@@ -1,0 +1,34 @@
+{
+  "kind": "author-pre-edit-poll-query-settlement-route",
+  "prepared_at": "2026-10-20T19:10:40.357Z",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "phase": "build-native-async-sql-settlement-fix",
+  "role": "build-author-owned-poll-query-settlement-fix",
+  "paths": [
+    "tests/e2e/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "authority": "Root route relayed by parent before this handoff: exact3 subset paths; append-only new fix commit; no wrapper/pin/browserSpec edits.",
+  "finding": "Installed expect.poll races callback against deadline without joining; outer observation and HTTP completion can settle while actual SQL callbacks remain active. Track real callback/query promises synchronously, close before drain, preserve bounded custody/no cleanup against live refs.",
+  "installed_source": [
+    {
+      "path": "node_modules/.pnpm/playwright@1.61.1/node_modules/playwright/lib/matchers/expect.js",
+      "bytes": 526213,
+      "sha256": "78fb9c8cb3214b6ff753e8444034f60ad740e5f16225bac879bb7bca3055fb62"
+    },
+    {
+      "path": "node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js",
+      "bytes": 3352341,
+      "sha256": "6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27"
+    }
+  ],
+  "previous_input": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-settlement-browser-review/input-binding.json",
+    "bytes": 12650,
+    "sha256": "2fdc420f263da44a7bb5daf9b1728679d898a5d8b6fb7992f38b54c25e076da4"
+  },
+  "limits": "No native probes/runtime/services/real SQL or signals; no new matcher/physicalassertion/privilege/effect.47/326 historical33b checks preserved, not current acceptance. Three broad rounds cap; latest-finding-only independent High review after commit."
+}

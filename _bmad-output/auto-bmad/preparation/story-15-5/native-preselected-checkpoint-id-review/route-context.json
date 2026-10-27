@@ -1,0 +1,55 @@
+{
+  "phase": "prepare-actual-preselected-checkpoint-id-review-input",
+  "recorded_by_root_before_preparation": true,
+  "author_model": "gpt-6.1-sol",
+  "author_effort": "high",
+  "source": "f304ea548faa05f037cd3aa44c65888d96d543df",
+  "base": "2524306ca9edd6079c23d205cf01268797288d89",
+  "scope": "Exact3 optional dispatch-only preselected correlation-ID interface; no fourth broad review",
+  "completed_broad_rounds": 3,
+  "review_dispatch_owner": "Parent/Root after independent input identity check and fresh distinct High route; author does not dispatch",
+  "fresh_review_verdict": "PENDING",
+  "accepted_allocation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-preselected-checkpoint-id-allocation.json",
+    "bytes": 2858,
+    "sha256": "73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398"
+  },
+  "primary_plan_ACK": {
+    "reference_artifact": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-preselected-checkpoint-id-allocation.json",
+      "bytes": 2858,
+      "sha256": "73c47ee40695bf48d9997d77dea8e8a1f1b5119f02abc56ef529278364e85398"
+    },
+    "field": "independent_high_plan_validation",
+    "recorded_value": "/root/review15_5_private_diagnostic_high ACKWITHLIMITS_PLANONLY actualcompleted, recordedcanonicalstates; no nativeexecution.",
+    "authority": "Root-attributed completed independent High ACKWITHLIMITS_PLANONLY; original dialogue not re-fetched or fabricated as a separate file"
+  },
+  "root_identity_metadata_only": {
+    "artifact": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-f304ea54-source-path-admission.json",
+      "bytes": 38696,
+      "sha256": "9979b077d41f0bce0345425a1c9d67a2195cb7e5e04df8e407a6d91ff9880281"
+    },
+    "current_source_paths": 70,
+    "raw_clean_differences": 41,
+    "unchanged_since_af5": 67,
+    "author_commits": 20,
+    "root_commits": 12,
+    "ancestry": 32,
+    "index_source_clean": true,
+    "global_clean_not_claimed": true
+  },
+  "fences": [
+    "Canonical lowercase existing UUIDv4 grammar; validate supplied string before any API, no payload expansion",
+    "Optional dispatch-only CLI/programmatic; all status/cancel and duplicate/missing/malformed/case/version/variant refusals",
+    "Valid supplied identity or unchanged randomUUID at same exclusive fsynced durable prePOST state",
+    "Same ID in state/payload/title/ownership; correlation NOT GitHub idempotency; fresh Root UUID never reuse after uncertainty",
+    "Record refusal/uncertainty retention/zero redispatch preserved",
+    "No callbacks/new transport/API/workflow/schema/dependencies/provider effects",
+    "P252 private helper/test immutable and UNEXECUTED; future new pushed SHA requires NEW private preparation/freshUUID/rebound helper-test review"
+  ],
+  "native_credit": 0,
+  "still_failed_histories": 11,
+  "checkpoint252_had_new_native_attempt": false,
+  "source_spec_index_frozen": true
+}

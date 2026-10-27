@@ -18,7 +18,7 @@
 // BOTH a CLI (wired into CI via `verify:service-role-containment`) and a test-importable
 // function (`scanForServiceRoleLeak`) so its bite is provable (Task 6.3).
 
-import { readdirSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, extname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -249,6 +249,7 @@ export async function verifyServiceRoleContainment({ root, allowlist = [] }) {
 }
 
 export async function verifyPublicRouteImports({ root, route }) {
+  if (route.replace(/\\/g, "/").includes("calendar/feed")) return scanCalendarFeedImports({ root, route });
   const imports = [];
   const violations = [];
   for (const file of walk(join(root, route))) {
@@ -256,6 +257,32 @@ export async function verifyPublicRouteImports({ root, route }) {
     const contents = readFileSync(file, "utf8");
     imports.push(...(contents.match(/from\s+["']([^"']+)["']/g) ?? []));
     if (/(tenant-context|resolve-tenant-context|app-shell|navigation|server\/email\/provider)/i.test(contents)) violations.push(`${relative(root, file)}: public unsubscribe imports a privileged shell dependency.`);
+  }
+  return { violations, imports };
+}
+
+/** Follow the actual feed import closure, including re-exports/dynamic imports.
+ * Existing unsubscribe remains under its historical containment contract. */
+export function scanCalendarFeedImports({ root, route = "src/app/(public)/calendar/feed" }) {
+  const pending = [...walk(join(root, route))].filter(shouldScanFile), visited = new Set(), imports = [], violations = [];
+  while (pending.length) {
+    const file = pending.pop();
+    if (visited.has(file)) continue;
+    visited.add(file);
+    const rel = relative(root, file).replace(/\\/g, "/");
+    const code = readFileSync(file, "utf8").replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "");
+    imports.push(rel);
+    if (/next\/headers|supabase-server-client|resolve-tenant-context|app-shell|server\/email\/provider|SERVICE_ROLE|createServerClient|\.auth\.|getUser\(|refreshSession\(/i.test(code)) violations.push(`${rel}: calendar feed reaches a cookie/session/privileged dependency.`);
+    for (const match of code.matchAll(/(?:\bfrom\s*["']([^"']+)["']|\b(?:import|require)\s*\(\s*["']([^"']+)["']\s*\)|\bimport\s*["']([^"']+)["'])/g)) {
+      const specifier = match[1] ?? match[2] ?? match[3];
+      if (/next\/headers|service-role|app-shell|tenant-context/i.test(specifier)) violations.push(`${rel}: forbidden calendar feed import.`);
+      const base = specifier.startsWith("@/") ? join(root, "src", specifier.slice(2)) : specifier.startsWith(".") ? join(dirname(file), specifier) : null;
+      if (!base) continue;
+      const target = [base, `${base}.ts`, `${base}.tsx`, `${base}.js`, `${base}.mjs`, join(base, "index.ts")].find(path => { try { return statSync(path).isFile(); } catch { return false; } });
+      if (!target) violations.push(`${rel}: unresolved calendar feed dependency.`);
+      else pending.push(target);
+    }
+    if ([...code.matchAll(/\b(?:import|require)\s*\(\s*([^)]*)\)/g)].some(match => !/^["'][^"']+["']$/.test(match[1].trim()))) violations.push(`${rel}: nonliteral calendar feed dependency cannot be verified.`);
   }
   return { violations, imports };
 }
@@ -275,6 +302,7 @@ if (invokedDirectly) {
   const { violations } = scanForServiceRoleLeak(repoRoot);
   violations.push(...scanJobsContainment(repoRoot).violations);
   violations.push(...scanEmailProviderContainment(repoRoot).violations);
+  violations.push(...scanCalendarFeedImports({ root: repoRoot }).violations);
   if (violations.length > 0) {
     console.error(
       `❌ Service-role containment guard failed (${violations.length} violation(s)):\n` +

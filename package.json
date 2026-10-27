@@ -19,15 +19,17 @@
     "test:e2e": "playwright test",
     "test:pilot-performance": "node --experimental-strip-types --import ./tests/support/register.mjs scripts/nfr/epic-11-r1108-baseline.ts",
     "test:bmad-focused": "python _bmad/scripts/tests/test_memlog.py",
-    "test:auto-bmad-focused": "python .agents/skills/auto-bmad/scripts/tests/test_routing_migration.py && python .agents/skills/auto-bmad/scripts/tests/test_cli_delegate_windows_pid.py",
+    "test:auto-bmad-focused": "python .agents/skills/auto-bmad/scripts/tests/test_routing_migration.py && python .agents/skills/auto-bmad/scripts/tests/test_cli_delegate_windows_pid.py && python -m unittest discover -s .agents/skills/auto-bmad/scripts/tests -p test_delivery_gate.py",
     "verify:lockfiles": "node scripts/verify/check-lockfiles.mjs",
     "verify:service-role-containment": "node scripts/verify/check-service-role-containment.mjs",
-    "verify:bundle-containment": "node scripts/verify/check-bundle-containment.mjs"
+    "verify:bundle-containment": "node scripts/verify/check-bundle-containment.mjs",
+    "test:smoke": "playwright test tests/e2e/auth/login-and-tenant-context.e2e.spec.ts tests/e2e/auth/auth-mail-callback.e2e.spec.ts tests/e2e/jobs/jobs-depth.e2e.spec.ts tests/e2e/conflict-resolver.e2e.spec.ts tests/e2e/time-reports.e2e.spec.ts tests/e2e/calendar-feed.e2e.spec.ts tests/e2e/jobs/job-members.e2e.spec.ts tests/e2e/jobs/work-orders.e2e.spec.ts tests/e2e/jobs/job-upgrade.e2e.spec.ts tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts tests/e2e/jobs/job-workspace.e2e.spec.ts tests/e2e/my-day.e2e.spec.ts --reporter=list,json",
+    "verify:development": "node scripts/ci/verify-development.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.0",
     "@supabase/supabase-js": "2.108.2",
-    "next": "16.3.8",
+    "next": "16.4.1",
     "pdf-lib": "1.17.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -45,7 +47,7 @@
     "pg": "8.22.0",
     "tailwindcss": "4.3.1",
     "typescript": "5.9.3",
-    "vite": "8.1.0",
+    "vite": "8.1.6",
     "vitest": "4.1.9"
   }
 }

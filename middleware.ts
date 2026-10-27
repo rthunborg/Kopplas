@@ -36,6 +36,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getSupabasePublicEnv } from "@/server/db/supabase-env";
 
 export async function middleware(request: NextRequest) {
+  // ADR-B004: this exact GET capability must not read cookies/env or refresh auth.
+  if (/^\/calendar\/feed\/[^/]+$/.test(request.nextUrl.pathname)) return NextResponse.next({ request });
   let supabaseResponse = NextResponse.next({ request });
 
   try {

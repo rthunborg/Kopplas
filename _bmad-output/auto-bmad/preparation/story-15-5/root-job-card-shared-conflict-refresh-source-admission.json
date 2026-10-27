@@ -1,0 +1,48 @@
+{
+  "schema": "ROOT_TARGETED_FORWARD118_SOURCE_ADMISSION_v1",
+  "source": "d65b6666c5883a7445b3732b6ae5938c08f4a91f",
+  "parent": "9384d4f360943f33896094ff503a66ca17929716",
+  "actual_source_allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-job-card-shared-conflict-refresh-source-allocation.json",
+    "bytes": 3231,
+    "sha256": "577aa2fb8f7591d1feb1a63021a334f693c91eece4f2cb9c4f92eb4873f05fd6"
+  },
+  "generated_path_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-card-shared-conflict-refresh-root-generated-path-admission.json",
+    "bytes": 760,
+    "sha256": "b23d9c91684bfba94dd2fa2859237028e8440fe3c91333f8ab9cc48a59768637"
+  },
+  "author_manifest": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-card-shared-conflict-refresh-correction/manifest.json",
+    "bytes": 862,
+    "sha256": "22f0fb80e7ed719edc388148a3841dd910a60d04ba5009f903754afccef9da82"
+  },
+  "Root_precommit_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/job-card-shared-conflict-refresh-root-precommit-admission.json",
+    "bytes": 2864,
+    "sha256": "536f1284ae111d287f90ec015feddc05edd68590e18dfc9d808ed187056700df"
+  },
+  "independent_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/job-card-shared-conflict-refresh-high-review/manifest.json",
+    "bytes": 1005,
+    "sha256": "47198c09dd3cbaf8d6d21a1ffc4b2d48ed616b69cfd7f38c9cfbd2144cdacbbb"
+  },
+  "verdict": "PASS_TARGETED_JOB_CARD_SHARED_REFRESH_SOURCE_ONLY",
+  "Root_audit4_hashes": "PASS",
+  "source_scope": "Exactly new118migration, REAL011strict9facts, existingseriesunitcontrols, ownSpec evidence/SRO; effectiveE16body preserved exceptsingle807Brefreshblock; all117oldSQL immutable.",
+  "evidence_attribution": {
+    "author": "45P0F0skip0cancel/wholeTS0/2TS lint0/diff0/reader0;kernel5760unchanged/SRO189",
+    "independent": "3 focused controls passed0F0skip0cancel; actualeffective8101Bpreimage/LFCRLFexactinverse/strictREAL011fullfileinverse/prior42prefix/117migrations conserved",
+    "Root": "exact4rawclean/nativeprospective/baselines+12refs/117rawcleanHEADnative/count118/stageddiff/reader beforecommit"
+  },
+  "open_required_evidence": [
+    "PostgreSQL compilation/application/catalog/ACL/atomicrollback",
+    "Fullintegration/RLS and35mandatoryunexecuted cases",
+    "Essentialbrowser response.finished transportlifetime BEFOREtargetteardown",
+    "Backendsettlement/custody remainsUNKNOWN, keysretainedunverified"
+  ],
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "review_counter": 3,
+  "next": "Only shortest concrete verification and remainingbrowserfactproposal; no opaque runretry, genericdiagnosticfamily or effect authority."
+}

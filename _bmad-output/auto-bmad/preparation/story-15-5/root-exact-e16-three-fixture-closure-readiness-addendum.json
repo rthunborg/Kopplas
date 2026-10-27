@@ -1,0 +1,77 @@
+{
+  "outcome": "PASS_TARGETED_THREE_FIXTURE_RECONCILIATION",
+  "reviewed_source": "7864550818ce130fbd5d1fd1bb530f0f4c2b19f4",
+  "application_source_unchanged_from": "1de4722bcaa2d14163c6b56ce4a2b6b9ef3fc84c",
+  "independent_reviewer": "gpt-6.1-sol High /root/acquisition15_observability_source_review_high",
+  "manifest": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-unit-fixture-high-review/manifest.json",
+  "manifest_sha256": "d18040bd747bd5c72951c27f335fff3489ce8c40c0e60d9c6217d5e44c98b357",
+  "root_mechanical_manifest4": "PASS",
+  "reviewer_actual_focused": "52P0F0skip0cancel on committed final3",
+  "author_full314_reused": {
+    "tests": 3390,
+    "suites": 103,
+    "passed": 3389,
+    "failed": 0,
+    "skipped": 1,
+    "skip_reason": "Linuxxattrs",
+    "concurrency": 2,
+    "wall_seconds": 51.095,
+    "limit": "One type-only cast fixed during run; before/after erasedJS equal33947B/SHAce0069645d10c568f09f4c7da6647762e1b2dccb60e15d9eb4bc1cd61ee00679. No frozenfinalrawclaim."
+  },
+  "negative_case_conservation": "Independent AST original6editorcallbodies/7generatedcases,19seriescallbodies,5workspacecases;D02active+syntheticpending;newstrictversion/hashboundarycontrolretained.",
+  "minimal_readiness_basis": {
+    "existing_source75_SQL116_trigger10_ref": "_bmad-output/auto-bmad/preparation/story-15-5/exact-e16-integrated-checkpoint-readiness/source-bindings.json",
+    "sha256": "4b679b724227eb6e1714c6c452538759201de13e4d9531d30074c588a2d80997",
+    "Root_current201raw_equal": true,
+    "production_SQL_Spec_dependency_workflow_guard_changes": false,
+    "delta3": [
+      {
+        "path": "tests/unit/features/jobs/job-workspace-domain.test.ts",
+        "bytes": 8425,
+        "sha256": "a7698008e0871863303559c9e7ce920460833f3b55a0910ed2c9ebf9aa6be220",
+        "clean_bytes": 8425,
+        "clean_sha256": "a7698008e0871863303559c9e7ce920460833f3b55a0910ed2c9ebf9aa6be220",
+        "prospective_clean_oid": "3c3966e4fbe6ebfb5a4827dd71b8d1846a1a36da",
+        "baseline_blob": "e31c78f30dd6ab636c40eb1319b49e4916e4e421",
+        "baseline_body_sha256": "33597d4baba05617e7db4e9b6f5c0c4bbff366c2ce9eab258155676d623f1fc3"
+      },
+      {
+        "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+        "bytes": 10818,
+        "sha256": "30dbb3a94e881c69cc96db21581cfae7231af499456a1c333a72fd20655d63fb",
+        "clean_bytes": 10818,
+        "clean_sha256": "30dbb3a94e881c69cc96db21581cfae7231af499456a1c333a72fd20655d63fb",
+        "prospective_clean_oid": "7523ffba81d55bd8824c9191f0717c48d7719729",
+        "baseline_blob": "5e369642cd35aa79b3011554c642ad1a14f9435f",
+        "baseline_body_sha256": "99f44215540bbea3b17306202b4c1dd1c59473c45386dcd9e93771bfb30b720b"
+      },
+      {
+        "path": "tests/unit/server/bookings/series-plan.test.ts",
+        "bytes": 29415,
+        "sha256": "da5a4ed9987caee817961245ee55c956a0683dcaf670ec15118a6e4521363ac6",
+        "clean_bytes": 29415,
+        "clean_sha256": "da5a4ed9987caee817961245ee55c956a0683dcaf670ec15118a6e4521363ac6",
+        "prospective_clean_oid": "276acb1be1914c126970db59c432c3ffe980031e",
+        "baseline_blob": "0c711e1340b4606baab0f0ec549d0b3820133d6c",
+        "baseline_body_sha256": "60cb711c59dc3cf58b3e2679443260799c88ec1b53e0be969605726da902da2e"
+      }
+    ],
+    "no_new_algorithm_or_preparation_family": true
+  },
+  "checkpoint_proposal": {
+    "checkpoint_id": "6d5e27c3-74f8-4d87-b269-1627a7e45818",
+    "provider_GETs": 1,
+    "FFpush": 1,
+    "NORMAL_dispatcher": 1,
+    "release_validation": false,
+    "cause_proof": false,
+    "Root_sole_poller": true,
+    "admission_variable_mutations": 0,
+    "artifact_GETs_now": 0,
+    "authority": "PROPOSAL_ONLY_FRESH_COORDINATION_REQUIRED"
+  },
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "hosted_cause": "UNKNOWN",
+  "custody": "UNKNOWN"
+}

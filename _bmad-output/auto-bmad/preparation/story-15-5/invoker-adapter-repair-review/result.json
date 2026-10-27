@@ -1,0 +1,27 @@
+{
+  "Outcome": "PASS — no consequential findings in the exact seven-file committed repair.",
+  "Files changed": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/original-report.md",
+      "bytes": 3930,
+      "sha256": "89c107c472e31370137eb37788759231d6a3f40f2101207efe042003e926e3bd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/original-attestation.json",
+      "bytes": 9017,
+      "sha256": "985c580306448a48e740c699757a3b20534618928d11ef1d44b8d1e674a1a1e2"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/result.json",
+      "identity": "Reported out of band after exclusive write."
+    }
+  ],
+  "Status": "Independent targeted Sol6.1 High review complete; eight pure controls pass, 110 review stops resolve; no native migration or normal-acceptance credit.",
+  "Open questions": [
+    "Actual new migration and exact-head native DB/RLS/HTTP/browser behavior remain unexecuted in this review."
+  ],
+  "Deferred work": [
+    "Fresh native gates/normal 95 acceptance and private v2 consumer rebinding remain outside review scope."
+  ],
+  "Blockers": []
+}

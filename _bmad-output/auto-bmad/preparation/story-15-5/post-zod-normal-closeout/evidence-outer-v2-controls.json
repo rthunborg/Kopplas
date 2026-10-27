@@ -1,0 +1,283 @@
+{
+  "schema": "POST_ZOD_NORMAL_TERMINAL_ROOT_OUTER_V2_FOCUSED_CONTROLS_V1",
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-correction-allocation.json",
+    "bytes": 2143,
+    "sha256": "90f028f14014bc3b1210a78954390b2ee6b4d257d8220e2061b0f363f7f4397a"
+  },
+  "baseline": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer.py",
+    "bytes": 7422,
+    "sha256": "384147bfad9f2fa1efeed145ecf51dfd521044774f12fa8e66a5b9fb3cc3b668"
+  },
+  "preserved_v1_NONPASS": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-review.json",
+    "bytes": 10336,
+    "sha256": "e6dcab9d840ebc65ce4901f5040cb6d2743da35ae0620fa73f29b611516cc03a"
+  },
+  "wrapper": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2.py",
+    "bytes": 7442,
+    "sha256": "784ebfcfad4c48b146124c04e9c46fc3b528760c41deef2c0385975dbb426a83"
+  },
+  "reader_source": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/reader.py",
+    "bytes": 52883,
+    "sha256": "b4a6ed837ba773b574d589bd6023d8fc105a47ec8bf143600ead9637ef85f45c"
+  },
+  "declared_delta": [
+    {
+      "before": "SELF=B/'post-zod-normal-terminal-evidence-root-outer.py'",
+      "after": "SELF=B/'post-zod-normal-terminal-evidence-root-outer-v2.py'",
+      "count": 1
+    },
+    {
+      "before": "parsed=json.loads(output)",
+      "after": "parsed=json.loads(output.splitlines()[-1])",
+      "count": 1
+    }
+  ],
+  "full_raw_inverse": {
+    "bytes": 7422,
+    "sha256": "384147bfad9f2fa1efeed145ecf51dfd521044774f12fa8e66a5b9fb3cc3b668",
+    "equals7422_baseline": true
+  },
+  "function_conservation": {
+    "FunctionDef_count_including_nested": 4,
+    "all_raw_segments_byteidentical": true,
+    "changed_definitions": [],
+    "native_raw_AST_segment_bytes": 2449,
+    "native_raw_AST_segment_sha256": "57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1",
+    "native_raw_source_unchanged": true
+  },
+  "actual_source_factory_pins": [
+    {
+      "role": "request_JSON",
+      "source_segment_sha256": "6decd56e2efc9ac89e7c94da6f250d4bc01e2de3d752c19bb21528868388f5d4"
+    },
+    {
+      "role": "final_complete_JSON",
+      "source_segment_sha256": "7d420b3ba824f710d5d1f8d19f034c2d1681eb1a264f241002ffc01b0cc14118"
+    },
+    {
+      "role": "final_stop_JSON",
+      "source_segment_sha256": "83e78b757637d3d9cb3c9dda5dca20bbaa4ae14f72392e9b8558535e568d228f"
+    },
+    {
+      "role": "final_refused_JSON",
+      "source_segment_sha256": "57fbf074e706742d31e913a5b9b8e51d7fffc3675bd5acaab1c3ea0d3a718f7f"
+    }
+  ],
+  "controls": [
+    {
+      "case": "MULTILINE_COMPLETE_2",
+      "capture_complete": true,
+      "native_exit": 0,
+      "v1": null,
+      "v2": {
+        "status": "ACQUISITION_COMPLETE",
+        "logical_GETs": 2,
+        "normal_acceptance": 0
+      },
+      "expected": {
+        "status": "ACQUISITION_COMPLETE",
+        "logical_GETs": 2,
+        "normal_acceptance": 0
+      },
+      "meaningful_v1_loss_v2_recovery": true,
+      "passed": true
+    },
+    {
+      "case": "MULTILINE_STOP_NATIVE_FAILURE_1",
+      "capture_complete": true,
+      "native_exit": 1,
+      "v1": null,
+      "v2": {
+        "status": "STOP_UNKNOWN",
+        "logical_GETs": 1,
+        "normal_acceptance": 0
+      },
+      "expected": {
+        "status": "STOP_UNKNOWN",
+        "logical_GETs": 1,
+        "normal_acceptance": 0
+      },
+      "meaningful_v1_loss_v2_recovery": true,
+      "passed": true
+    },
+    {
+      "case": "MULTILINE_COMPLETE_5",
+      "capture_complete": true,
+      "native_exit": 0,
+      "v1": null,
+      "v2": {
+        "status": "ACQUISITION_COMPLETE",
+        "logical_GETs": 5,
+        "normal_acceptance": 0
+      },
+      "expected": {
+        "status": "ACQUISITION_COMPLETE",
+        "logical_GETs": 5,
+        "normal_acceptance": 0
+      },
+      "meaningful_v1_loss_v2_recovery": true,
+      "passed": true
+    },
+    {
+      "case": "MULTILINE_STOP_NATIVE_FAILURE_5",
+      "capture_complete": true,
+      "native_exit": 1,
+      "v1": null,
+      "v2": {
+        "status": "STOP_UNKNOWN",
+        "logical_GETs": 5,
+        "normal_acceptance": 0
+      },
+      "expected": {
+        "status": "STOP_UNKNOWN",
+        "logical_GETs": 5,
+        "normal_acceptance": 0
+      },
+      "meaningful_v1_loss_v2_recovery": true,
+      "passed": true
+    },
+    {
+      "case": "SINGLE_PRE_GET_REFUSED",
+      "capture_complete": true,
+      "native_exit": 1,
+      "v1": {
+        "status": "PRE_GET_REFUSED",
+        "logical_GETs": 0,
+        "normal_acceptance": 0
+      },
+      "v2": {
+        "status": "PRE_GET_REFUSED",
+        "logical_GETs": 0,
+        "normal_acceptance": 0
+      },
+      "expected": {
+        "status": "PRE_GET_REFUSED",
+        "logical_GETs": 0,
+        "normal_acceptance": 0
+      },
+      "meaningful_v1_loss_v2_recovery": false,
+      "passed": true
+    },
+    {
+      "case": "PROGRESS_ONLY",
+      "capture_complete": true,
+      "native_exit": 0,
+      "v1": null,
+      "v2": null,
+      "expected": null,
+      "meaningful_v1_loss_v2_recovery": false,
+      "passed": true
+    },
+    {
+      "case": "MALFORMED_FINAL",
+      "capture_complete": true,
+      "native_exit": 1,
+      "v1": null,
+      "v2": null,
+      "expected": null,
+      "meaningful_v1_loss_v2_recovery": false,
+      "passed": true
+    },
+    {
+      "case": "EMPTY",
+      "capture_complete": true,
+      "native_exit": 0,
+      "v1": null,
+      "v2": null,
+      "expected": null,
+      "meaningful_v1_loss_v2_recovery": false,
+      "passed": true
+    },
+    {
+      "case": "INCOMPLETE_CAPTURE",
+      "capture_complete": false,
+      "native_exit": null,
+      "v1": null,
+      "v2": null,
+      "expected": null,
+      "meaningful_v1_loss_v2_recovery": false,
+      "passed": true
+    },
+    {
+      "case": "TERMINAL_THEN_PROGRESS_FINAL_ONLY",
+      "capture_complete": true,
+      "native_exit": 0,
+      "v1": null,
+      "v2": null,
+      "expected": null,
+      "meaningful_v1_loss_v2_recovery": false,
+      "passed": true
+    }
+  ],
+  "pre_effect_tooling_history": [
+    {
+      "native_exit": 1,
+      "attempt": "initial_control_assembly",
+      "reason": "Python synthetic-fixture conditional expression missing whitespace after else; script failed to compile before any execution/write/control credit.",
+      "effects_or_writes": 0,
+      "qualified_control_credit": false
+    },
+    {
+      "native_exit": 1,
+      "attempt": "second_control_assembly",
+      "reason": "Universal newline text read changed the native source-segment witness; raw decoded AST segment matches2449/57f57bd8 exactly.",
+      "effects_or_writes": 0,
+      "qualified_control_credit": false
+    }
+  ],
+  "control_method": "Only AST-extracted actual wrapper safe/projection statements and actual reader json.dumps print-expression arguments executed in RAM. No whole module import/execution, native/get/main/admission or filesystem/network sink executed. Synthetic fixed fields/counts only; no raw runtime payload or payload hash acquired/persisted.",
+  "unchanged_contract": {
+    "operation_id": "fe77852b-d6eb-4313-9c2c-48e5647b3dba",
+    "prechecks_freshness_once_exclusivepaths": true,
+    "closed_projection_statuses_and_type_checks": true,
+    "native_loop_seconds": 180,
+    "stdout_cap": 524288,
+    "stderr_cap": 65536,
+    "wait_tail_seconds": 2,
+    "reader_joins": 2,
+    "seconds_each_join": 1,
+    "new_projection_classifications": 0,
+    "effects": 0,
+    "future_effect_paths_absent": true,
+    "P5": "OPEN",
+    "cap": 3,
+    "story15_6": "UNSTARTED",
+    "no_deployment": true
+  },
+  "result": {
+    "Outcome": "PREPARED_INERT_ROOT_OUTER_V2_JSONL_FIX_REVIEW_PENDING",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2.py",
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-controls.json"
+    ],
+    "Status": {
+      "meaningful_multiline_RED_GREEN": 4,
+      "total_focused_cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "same_final_projection": "Final physical bytes line only; no progress-line salvage. Incomplete capture/empty/malformed/nonterminal final yields no terminal result.",
+      "functions_byteidentical": 4,
+      "native_source": "2449/57f57bd8... exact raw AST source segment; full raw function unchanged.",
+      "full_raw_inverse": true,
+      "effects": 0,
+      "execution_authority": false,
+      "P5": "OPEN",
+      "cap": 3,
+      "story15_6": "UNSTARTED"
+    },
+    "Open questions": [
+      "Independent targeted latest-fix/regression review remains required; no acquisition/runtime result exists."
+    ],
+    "Deferred work": [
+      "Root binds new exact wrapper/review pins to the separate finite grant after actual independent PASS. All existing reader/helper/contract/frozen evidence remain unchanged."
+    ],
+    "Blockers": [
+      "No current grant, envelopes, proof, activation, once journal, invocation intent or output exists; preparation grants no effects."
+    ]
+  }
+}

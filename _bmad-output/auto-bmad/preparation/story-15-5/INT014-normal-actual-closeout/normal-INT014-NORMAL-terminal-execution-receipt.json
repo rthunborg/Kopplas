@@ -1,0 +1,270 @@
+{
+  "label": "normal-INT014-NORMAL-terminal",
+  "argv": [
+    "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+    "-I",
+    "-X",
+    "utf8",
+    "-B",
+    ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+    "--execute-once-after-terminal-grant"
+  ],
+  "Node": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+  "native_exit": 0,
+  "elapsed_seconds": 7.047607,
+  "reason": null,
+  "caps": {
+    "seconds": 120,
+    "stdout": 65536,
+    "stderr": 65536
+  },
+  "direct_process_settled": true,
+  "readers_joined": true,
+  "handles_closed": true,
+  "streams": [
+    {
+      "bytes": 731,
+      "sha256": "84b023fca493301f8d67211d9592fa15163b4843833d10e7ffb7ddf7846eb73d",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "physical_EOF": true,
+      "reader_done": true,
+      "reader_error": false,
+      "overflow": false
+    }
+  ],
+  "raw_persisted": false,
+  "extra_environment_keys": [],
+  "schema": "SOLE_INT014_NORMAL_TERMINAL_OUTER_EXECUTION_RECEIPT_V1",
+  "run_id": 39962445963,
+  "actual_tool_provenance": {
+    "chunk_id": "49b378",
+    "outer_native_exit": 0,
+    "outer_wall_seconds": 7.4465726,
+    "session_id": null,
+    "waits": [],
+    "observer": "NativeHigh actual tool result; no claim Root independently observed child lifecycle"
+  },
+  "activation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-evidence-activation.json",
+    "bytes": 4100,
+    "sha256": "5e3ef243f8963cd168fb4703526f99fd1d3ce6bdaaa354b0ff03185a9f23a88c"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-terminal-effects-allocation.json",
+    "bytes": 3508,
+    "sha256": "0f8e9ce6d6a59e55aca083ce7cf60b175f99c35b53193dd79b11a3a6676d1819"
+  },
+  "proof_age_before_invocation_seconds": 96.113038,
+  "sole_invocation_consumed": true,
+  "all_unused_slots_closed": true,
+  "no_retry": true,
+  "normal_acceptance": 0,
+  "packet_inventory": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/acquisition-summary.json",
+      "bytes": 2552,
+      "sha256": "85e2a929a886118d1f9a54d4f6dd8bd6e40a50049caedeebbcc564e4c7974846"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/artifact-list-projection.json",
+      "bytes": 1290,
+      "sha256": "1a5de35c47c245974c7061806149e4c9dae69edbb67abd1de1c03636272067e9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/native-full-integration-projection.json",
+      "bytes": 67094,
+      "sha256": "d46499454c41c1022ec98538339fc06ae89a647a65e68079910d35d788122518"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/native-general-browser-projection.json",
+      "bytes": 13366,
+      "sha256": "e67bc733e8f759f6c192716ffc37b2b9d5a47234b3c3e228ad3df19d7f5bcd23"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/native-isolated-storage-recovery-projection.json",
+      "bytes": 2008,
+      "sha256": "b350483d59fb75427cc431df017b4f2bc15d5b77de2170bee80e8a7deaf27763"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/operator-intent.json",
+      "bytes": 9893,
+      "sha256": "ffb953da322ad00d5eae798f6e4466b386c1fbb8221b0da877aa2ccb07419989"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-01-intent.json",
+      "bytes": 413,
+      "sha256": "9b1399a01f348912dbc0c416681c4fdc2566162166d5f06174b9c8e78756d35a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-01-result.json",
+      "bytes": 1134,
+      "sha256": "d71446990a6c3c4a901d14a94efba336d7e54ef300372417bb30e63112445c66"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-02-intent.json",
+      "bytes": 432,
+      "sha256": "812daca8023298148672e44d989a3ed47110719b1ae2665225cf9214bb60d53e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-02-result.json",
+      "bytes": 1151,
+      "sha256": "ff22dcb96f2617b6ef7bfa75860ed1a5f8136805f5fb5e846bdb217191fa7ac0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-03-intent.json",
+      "bytes": 421,
+      "sha256": "d03dc49ac476abd51f6fcc10bbe512cc9f17b5f9b54947b157ca7f87ad1caf20"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-03-result.json",
+      "bytes": 1140,
+      "sha256": "36cb673abf893057b1b03d80cdd3d87599cf757574f5e0f487c9e44dd0dc7ac0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-04-intent.json",
+      "bytes": 422,
+      "sha256": "2dee0f624df8460ef99715510b5ec461d948bebfcd97652ae532b0deaf092bfb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-04-result.json",
+      "bytes": 1143,
+      "sha256": "bb7a67f98fbd8c120dc56878062b88c4eac5c6227fd6d03d2bb0dd65cddc8917"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-05-intent.json",
+      "bytes": 431,
+      "sha256": "3888aeccc8733671c126aaa44a988662bdaff515d7bc2af064c720fd70437266"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/request-05-result.json",
+      "bytes": 1149,
+      "sha256": "040ad556e4e45432a9b721d92694ac6925216cfad80b5c6b2ccc0e7ca747c016"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/run-archive-projection.json",
+      "bytes": 48552,
+      "sha256": "67aa5607329f251f6af9a46c1afe88a160c3c2321645501934ca95531c047d24"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/source-label-projection.json",
+      "bytes": 1691,
+      "sha256": "3726bdbf01be4a86726967550ac1f9c34a983a6f3ffbaa967e95acf9f1f987c1"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/source-provenance.json",
+      "bytes": 9167,
+      "sha256": "23ba370265f8d92ba63e96f7b68d94dedbdd716491cf6fda6f18f79cb5716ca8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-2c8e8077-normal-INT014-NORMAL-ci-independent/terminal-bindings.json",
+      "bytes": 14266,
+      "sha256": "fe7c68d733300e02d34581b612a84c7b23cb5dd6dfbc5ab9a20d3515bc086c33"
+    }
+  ],
+  "raw_stdout_not_parsed_or_persisted": true,
+  "capture_reuse": "Exact qualified capture() source; only in-memory one receipt destination rebound to approved outside path.",
+  "closed_summary": {
+    "status": "BOUNDED_ACQUISITIONS_COMPLETE",
+    "actual_logical_requests": 5,
+    "requests": [
+      {
+        "category": null,
+        "label": "normal-run-archive",
+        "native_exit": 0,
+        "sequence": 1,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "normal-artifact-list",
+        "native_exit": 0,
+        "sequence": 2,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-general-browser",
+        "native_exit": 0,
+        "sequence": 3,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-full-integration",
+        "native_exit": 0,
+        "sequence": 4,
+        "settled": true
+      },
+      {
+        "category": null,
+        "label": "native-isolated-storage-recovery",
+        "native_exit": 0,
+        "sequence": 5,
+        "settled": true
+      }
+    ],
+    "reports": [
+      {
+        "case_summary": {
+          "duration": 257893.76799999998,
+          "expected": 56,
+          "flaky": 0,
+          "skipped": 0,
+          "unexpected": 0
+        },
+        "member_bytes": 92384,
+        "name": "native-general-browser",
+        "report": "native-general-browser-projection.json",
+        "sha256": "6485e1050c772ec8363da6c546c9cbba6e2a44eeb27fb1210907093b410dc358"
+      },
+      {
+        "case_summary": {
+          "numFailedTestSuites": 2,
+          "numFailedTests": 1,
+          "numPassedTestSuites": 545,
+          "numPassedTests": 2115,
+          "numPendingTestSuites": 0,
+          "numPendingTests": 52,
+          "numTodoTests": 0,
+          "numTotalTestSuites": 547,
+          "numTotalTests": 2169,
+          "success": false
+        },
+        "member_bytes": 1029890,
+        "name": "native-full-integration",
+        "report": "native-full-integration-projection.json",
+        "sha256": "1b8cb6033a4c2edb24ad068f3cf7f744d751ccbfb1ea18411f2fee71bc0ca2a2"
+      },
+      {
+        "case_summary": {
+          "numFailedTestSuites": 0,
+          "numFailedTests": 0,
+          "numPassedTestSuites": 2,
+          "numPassedTests": 1,
+          "numPendingTestSuites": 0,
+          "numPendingTests": 0,
+          "numTodoTests": 0,
+          "numTotalTestSuites": 2,
+          "numTotalTests": 1,
+          "success": true
+        },
+        "member_bytes": 1161,
+        "name": "native-isolated-storage-recovery",
+        "report": "native-isolated-storage-recovery-projection.json",
+        "sha256": "8c1462d2f0f0954602d45214f69344f6c63d92a111ea4bce5f9e9d686f8fb4a6"
+      }
+    ],
+    "normal_acceptance": 0
+  },
+  "packet_member_count": 20,
+  "packet_inventory_sha256": "9d7a7efabd676324baa4d83aab2ce51e6ea206b8814cc02a177bad068fb674ab",
+  "packet_manifest_disposition": "Operator generated20fixedpacketfiles and no separate manifest; canonical exact inventory/hash bound in this outside receipt. No operator member added or edited.",
+  "independent_actual_evidence_qualification_required": true
+}

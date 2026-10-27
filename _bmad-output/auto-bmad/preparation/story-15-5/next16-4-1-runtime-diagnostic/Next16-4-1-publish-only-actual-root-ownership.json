@@ -1,0 +1,163 @@
+{
+  "schema": "ROOT_NEXT1641_PUBLISH_ONLY_ACTUAL_CLOSED_OWNERSHIP_V1",
+  "status": "ACTUAL_BOTH_CHECKPOINTS_PUBLISHED_CLOSED",
+  "Root_provider_outer": {
+    "tool": "be2dc8",
+    "exit": 0,
+    "wall_seconds": 2.1314353,
+    "session": null,
+    "waits": []
+  },
+  "Root_direct_Git_outer": {
+    "tool": "446e70",
+    "exit": 0,
+    "wall_seconds": 7.3620647,
+    "session": null,
+    "waits": []
+  },
+  "sourceproof_tool": "ba30a4/native0",
+  "actual_completed_grant_turn": "01a16857-cc86-7800-9a03-c25a2af73f43",
+  "actual_completed_grant_tool": "exec-e0536b38-cb97-4e99-9378-7f4c24ff08e2",
+  "review": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-operational-review.json",
+    "bytes": 14286,
+    "sha256": "1e0d551f9a10a1421d8eaf52246613936484ca1f3f57dd05622e96da8af6b7c4"
+  },
+  "allocation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-Next16-4-1-publish-only-effects-allocation.json",
+    "bytes": 2628,
+    "sha256": "cbdb4a3632a5eb0471c9fde9280bbde80b0081687f799ca2af96d4429a3dac1b"
+  },
+  "sourceproof": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-current-source-proof.json",
+    "bytes": 70674,
+    "sha256": "1217fc4d155b490ad7cbb487e3754f5aede242d248693b4973c17a7f65792939"
+  },
+  "provider": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-vercel-readonly-qualification.json",
+    "bytes": 58967,
+    "sha256": "be69d7e3195e382fc722e1fef7a481a562e044ed7919574d4d9d29160afc7157"
+  },
+  "operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-root-operation/operation.json",
+    "bytes": 3106,
+    "sha256": "744efab4462141c338e9c8b66f7dabb5be8987a5990cabc52b34967f539d43c1"
+  },
+  "native": [
+    {
+      "label": "MAIN-remote-before",
+      "native_exit": 0,
+      "elapsed_seconds": 0.633439,
+      "full_EOF_joined_closed_settled": true,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-root-operation/MAIN-remote-before-native.json",
+        "bytes": 1050,
+        "sha256": "088604472b14cafb2dee24ae8b648ac4e053c5fd28523a815a08dbde0aa8c0a0"
+      }
+    },
+    {
+      "label": "MAIN-push",
+      "native_exit": 0,
+      "elapsed_seconds": 2.603766,
+      "full_EOF_joined_closed_settled": true,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-root-operation/MAIN-push-native.json",
+        "bytes": 1042,
+        "sha256": "73ba9ca1d98ba28e9d373ba687b0bb0e077ab48ebc99308a930e497fa6200184"
+      }
+    },
+    {
+      "label": "MAIN-readback",
+      "native_exit": 0,
+      "elapsed_seconds": 0.570599,
+      "full_EOF_joined_closed_settled": true,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-root-operation/MAIN-readback-native.json",
+        "bytes": 1045,
+        "sha256": "dc8f96303476cfc8f39e058b45cfbb0e83e4ab928ac2bf51eb9749a614de889f"
+      }
+    },
+    {
+      "label": "DEBUG-remote-before",
+      "native_exit": 0,
+      "elapsed_seconds": 0.591432,
+      "full_EOF_joined_closed_settled": true,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-root-operation/DEBUG-remote-before-native.json",
+        "bytes": 1039,
+        "sha256": "223f8c76352d9ef8dc59655919faaf9e27be0e3a0882459aea03dd3264848db3"
+      }
+    },
+    {
+      "label": "DEBUG-push",
+      "native_exit": 0,
+      "elapsed_seconds": 1.811037,
+      "full_EOF_joined_closed_settled": true,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-root-operation/DEBUG-push-native.json",
+        "bytes": 1031,
+        "sha256": "f4c091e6d8fb455b37808480de88ac53ec181829ad1aef8ac35c6fc37a12f6bf"
+      }
+    },
+    {
+      "label": "DEBUG-readback",
+      "native_exit": 0,
+      "elapsed_seconds": 0.571043,
+      "full_EOF_joined_closed_settled": true,
+      "receipt": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-root-operation/DEBUG-readback-native.json",
+        "bytes": 1034,
+        "sha256": "171177216f0a9dfcc044083d08132d89f5e746eca4ff373a0550690f5903224c"
+      }
+    }
+  ],
+  "push_freshness": [
+    {
+      "label": "MAIN",
+      "provider_age_seconds_at_consumed_intent": 100.108497,
+      "sourceproof_age_seconds_at_consumed_intent": 108.99096,
+      "immediate_prepush_check_enforced": true,
+      "intent": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-main-push-consumed-intent.json",
+        "bytes": 1312,
+        "sha256": "e9ef4e9d1bdbe5a30275f57f842a9d2fd8f9ceb5a55b49d465cd12d3adaae6a7"
+      }
+    },
+    {
+      "label": "DEBUG",
+      "provider_age_seconds_at_consumed_intent": 104.073317,
+      "sourceproof_age_seconds_at_consumed_intent": 112.95578,
+      "immediate_prepush_check_enforced": true,
+      "intent": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-publish-only-debug-push-consumed-intent.json",
+        "bytes": 1289,
+        "sha256": "ab664bfea8502b2939ff018fb0b02e10a17ef041558ed72d36a22b411b4079c7"
+      }
+    }
+  ],
+  "actual_readbacks": {
+    "MAIN": {
+      "head": "bbd6d1f307aa9fccbbaf83281779042f9a2e4bfe",
+      "ref": "refs/heads/codex/epic-15-scheduling-time-calendar",
+      "known_exact": true
+    },
+    "DEBUG": {
+      "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+      "ref": "refs/heads/codex/epic-15-int009-debug",
+      "known_exact": true
+    }
+  },
+  "effects": {
+    "provider_GET": 1,
+    "remote_Git_calls": 6,
+    "push": 2,
+    "POST_manual_CI_API_resolver_poll_artifact_GET": 0
+  },
+  "all_slots_closed": true,
+  "no_retry_or_replay": true,
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "next": "Separatelyprepare/review actualpublishedtuple dispatch-only originalINT009; no duplicatepush",
+  "utc": "2026-10-23T10:46:32.682761+00:00"
+}

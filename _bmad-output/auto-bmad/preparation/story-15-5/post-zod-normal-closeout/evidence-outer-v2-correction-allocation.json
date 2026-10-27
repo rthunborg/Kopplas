@@ -1,0 +1,25 @@
+{
+  "schema": "ROOT_POST_ZOD_OUTER_JSONL_CORRECTION_V2_ALLOCATION_V1",
+  "at": "2026-10-24T16:47:40.857077+00:00",
+  "scope": "Sensitive bounded Root operational stdout protocol projection correction only; no story source/spec work or fourth broad review",
+  "baseline": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer.py",
+    "bytes": 7422,
+    "sha256": "384147bfad9f2fa1efeed145ecf51dfd521044774f12fa8e66a5b9fb3cc3b668"
+  },
+  "owned_new_files": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2.py",
+    ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-controls.json"
+  ],
+  "finding": "Conserved reader.get emits per-request JSON lines before main final JSON. Whole stdout json.loads raises ExtraData, systematically losing safe final status/count; no false pass or capture/privacy bypass claimed.",
+  "allowed_delta": "Exact SELF literal to new v2wrapper; minimal parse of actual final completed JSON line instead of whole JSONL buffer; preserve all admission, once, native function57f57bd8, caps180/512KiB/64KiB/wait2/twojoins1, output names, status projection and no raw retention. Prove full inverse of declared delta to7422baseline.",
+  "pure_controls": "Execute only AST-extracted modified projection seam in RAM against actual-source-shaped request lines plus final ACQUISITION_COMPLETE and STOP_UNKNOWN, single PRE_GET_REFUSED, progress-only, malformed final, empty and incomplete capture. Never execute/import whole wrapper, reader, native/get or any network/Git/source75/SQL/DEBUG.",
+  "unchanged_unused_read_op": "fe77852b-d6eb-4313-9c2c-48e5647b3dba; all grant/templates/proof/activation/journal/intents/output still absent; new source preparation is not replay or clock renewal",
+  "review": "Independent v1 NONPASS retained, then targeted v2 actual diff/regressions only; current reader/helper source review14294 remains separate",
+  "execution_authority": false,
+  "effects": 0,
+  "P5": "OPEN",
+  "cap": 3,
+  "story15_6": "UNSTARTED",
+  "no_deployment": true
+}

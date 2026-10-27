@@ -1,0 +1,36 @@
+{
+  "kind": "status-only-closure-metadata-proof",
+  "author_closure_head": "8a6244072975181a7505e85006accc5aeb0663c3",
+  "native_evidence_revision": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+  "canonical_command": "python .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+  "canonical_exit": 0,
+  "canonical_result": {
+    "frontmatter_status": "done",
+    "auto_run_result_status": "done",
+    "blocking_condition": null,
+    "parse_warnings": [],
+    "followup_review_recommended": false,
+    "review_loop_iteration": 0,
+    "deferred_count": 0
+  },
+  "source60_raw_and_git_unchanged_from_native_cad4": true,
+  "kernel_sha256": "3c701d71dba37a136ae104fd24c3b223ef46081913301fb43ff92baca3f16ffb",
+  "spec_raw_sha256": "2b112ecee170676c8468d246dbbe695f4d07f040c76b3f1c3c2710fc43400c0c",
+  "spec_git_blob": "6e0ebd00d0d3c6d40c2b8af29378d84a62008292",
+  "delivery_bytes": 25618,
+  "delivery_raw_sha256": "acc8cecee0cca409860cd5ec5fdfac0aa81400acccbeb7f88dd5c91cd6537ab6",
+  "delivery_git_blob": "2f03ad47ccce1ede10e81add0a5ac2062dd0b504",
+  "SRO_author_checked": "1section20stops0errors, not redundantlyrerun",
+  "checks_scope": "Metadata-only canonicalreader/hash/Gitconservation; no tests/runtime/newreview/gate/auditrepeat.",
+  "development_complete": true,
+  "release_ready": false,
+  "Root_gate_and_final_distinct_truth": "RootgatePASS;FINAL44checks0errors; status-onlyreceipt admitted",
+  "review_accounting": "3counted=1broad+2limited plus2separate narrowfollowups;rederive0",
+  "deferred_release_checks": 6,
+  "inherited_epic_review_unverified": true,
+  "merge_or_deployment_approval": false,
+  "excluded_root_owned_dirty_paths": [
+    "_bmad-output/auto-bmad/recovery/deferred-validation.md",
+    "_bmad-output/auto-bmad/state/15-4-time-reporting-filing-timesheet-review.yaml"
+  ]
+}

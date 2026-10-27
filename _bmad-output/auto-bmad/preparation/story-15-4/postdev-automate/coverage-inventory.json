@@ -1,0 +1,548 @@
+{
+  "kind": "existing-executed-story-test-inventory",
+  "head": "cad4d37facf8cbf5d9c0c3701117d5b4f21d4de1",
+  "run": 39415418173,
+  "generated_tests": 0,
+  "runtime_runs_this_assessment": 0,
+  "counts": {
+    "real_DB": 38,
+    "component": 18,
+    "pure": 17,
+    "browser": 3
+  },
+  "total": 76,
+  "tests": [
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-001 AC1 AC6 AC8 own planned booking files exact submitted minutes for Admin PL and Montor",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-002 AC1 AC6 standalone requires neither link nor profile and deliberate same-day rows stay distinct",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-003 AC2 AC8 concurrent exact retry converges; changed content and another actor never reuse the result",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-004 AC6 AC8 SQL rejects bad references and exact-minute/date boundaries without partial writes",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-011 AC1 AC6 AC9 genuine fractional booked intervals retain exact snapshots with whole-minute filed time",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-005 AC2 AC4 AC9 snapshot and exact replay survive live booking changes and removed assignment",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-006 AC2 AC8 current SQL authority is rechecked after actual tenant-lock wait for fresh and replay",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-007 AC6 AC8 locked assignment booking status and job relation cannot change before fresh filing",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-008 AC4 AC7 annotation CAS latest exact retry and blank clear preserve every filed core field",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-009 AC2 AC7 audit fault proves filing or review stage then rolls all effects back",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/commands/time-reports.int.test.ts",
+      "title": "[P0] 15.4-INT-010 AC7 AC8 revoked reviewer cannot replay latest annotation and superseded attempt cannot overwrite",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "title": "[P0] 15.4-RLS-001 AC7 AC8 raw RPC union roles authorize ReportOwn separately from Review",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "title": "[P0] 15.4-RLS-002 AC3 AC4 AC8 own projection excludes peers; Review reads tenant standalone and linked rows only",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "title": "[P0] 15.4-RLS-003 AC7 AC8 direct DML and private replay columns denied for every ordinary role",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "title": "[P0] 15.4-RLS-004 AC2 AC6 AC8 actor tenant and on-behalf spoofing fail SQL independently with no existence oracle",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "title": "[P0] 15.4-RLS-005 AC8 anon inactive revoked seller economy and platform-only identities gain no report surface",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "title": "[P0] 15.4-RLS-006 AC7 AC9 database core-field guard protects rows even beyond direct-grant denial",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/rls/time-reports.rls.test.ts",
+      "title": "[P0] 15.4-RLS-007 AC7 AC8 forced RLS exact safe column ACL and checked RPC security survive direct catalog inspection",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "title": "[P1] 15.4-READ-001 AC3 AC8 own week totals chips and missing weekdays expose only caller rows",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "title": "[P0] 15.4-READ-002 AC4 AC8 complete review pages honor person job week filters and standalone groups",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "title": "[P1] 15.4-READ-003 AC4 AC9 booked-at-filing delta stays frozen and standalone has no fabricated booked comparison",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "title": "[P0] 15.4-READ-004 AC3 AC4 AC8 failed first page cannot publish success or zero totals",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "title": "[P0] 15.4-READ-006 AC3 AC4 AC8 later-page transport failure with real persisted prefix is an explicit read failure",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "title": "[P0] 15.4-READ-005 AC1 AC6 AC8 current selectors prefill own real instants; manager visibility never implies assignment",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/read-models/time-reports.int.test.ts",
+      "title": "[P0] 15.4-READ-007 AC1 AC3 AC6 fractional own bookings retain context and a real persisted weekly prefix",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-001 AC5 AC8 frozen seven completed Stockholm dates exclude weekend today future old and reported day",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-002 AC5 AC8 adapter uses one scoped checked RPC injected client and leaves raw booking ACL revoked",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-003 AC5 AC8 current opt-out inactive role loss archived profile and cancelled booking suppress recipients",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-004 AC5 AC8 more than25 real recipients continue stable frozen scoped cursor without gaps duplicates or fact return",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-005 AC5 duplicate concurrent hourly retries emit zero new notification or audit effects",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-006 AC5 AC8 tenant lock checks current membership after actual blocked producer",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-010 AC5 AC8 first authenticated opt-out UPSERT UPDATE or category change serializes before nudge",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-011 AC5 AC8 emission-first preference races fail exactly 55P03 then succeed only on explicit retry",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-012 AC5 AC8 preference gate scopes actual old/new tenants and rechecks membership without exemptions",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-013 AC5 AC8 exact private preference gate and row trigger survive catalog inspection",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-007 AC2 AC5 filing committed before serialized nudge predicate suppresses notification",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-008 AC5 atomic system audit failure verifies inserted recipient-date nudge then rolls it back",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "title": "[P0] 15.4-NUDGE-009 AC5 AC8 existing authenticated jobs dispatch passes exact tenant and frozen run instant to real nudge adapter",
+      "level": "real_DB",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "confirmed filing exposes the exact persisted-success browser seam",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "[P1] 15.4-COMP-001A AC1 AC2 unsent failure retains labelled values and explicit retry",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "[P1] 15.4-COMP-001B AC2 pending is announced without submitted success",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "[P1] 15.4-COMP-001C AC3 failed week read is connection error with retry rather than zero total",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "[P1] 15.4-COMP-001D AC4 AC9 standalone comparison remains absent and review cannot approve",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "unavailable exact prefill is honest and requires explicit reported hours",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "review preserves fractional booked provenance and comparison without rounding",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-01 a lost response then authority denial retains the exact attempt and editing lock until confirmation",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-02 actual filing preserves the late fold start when only the local end changes",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-03 actual hours mode keeps canonical twenty minutes, but explicit rounded input cannot file",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-04 actual standalone first start defaults its day until date is explicitly chosen",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-05 actual booking links confirm dirty discard and block pending/unknown navigation without losing the note",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-08 actual stale annotation locks editing, requires refresh and never calls onSaved",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-09 actual workspace keeps the newest selection when an older read resolves later",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R1-07 actual review markup preserves raw decimal booked provenance and exact decimal delta",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R2-01 actual booking detachment keeps twenty canonical minutes in hours mode and clears both relationships",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "R2-02 actual booking detachment preserves unchanged late-fold UTC endpoints through standalone submission",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/integration/components/time-reports.test.ts",
+      "title": "CI repair review selectors expose exact explicit Person and Jobb accessible names",
+      "level": "component",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-full-integration\\full-integration.json"
+    },
+    {
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "title": "[P0] 15.4-UNIT-009 AC2 unknown filing outcome preserves exact payload and attempt until confirmed",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "title": "[P0] 15.4-UNIT-010 AC2 failure never claims submitted and definite rejection permits correction",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "title": "[P1] 15.4-UNIT-011 AC3 AC7 old reads and superseded annotation responses require refresh",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "title": "unknown filing remains frozen through denied retries until an authorized confirmation",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "title": "each unchanged UTC endpoint preserves its fold and fractional instant independently",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "title": "canonical twenty-minute prefill survives mode selection but an explicitly edited rounded decimal is rejected",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/action-state.test.ts",
+      "title": "first standalone start defaults its local day until report date is explicitly edited",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "title": "[P1] 15.4-UNIT-005 AC6 Stockholm DST prefill uses elapsed instants not wall-clock subtraction",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "title": "[P1] 15.4-UNIT-006 AC5 seven completed Stockholm dates filter weekends and never extend window to seven weekdays",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "title": "[P1] 15.4-UNIT-007 AC3 own weekly minutes and missing-day indicators do not infer hour completeness",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "title": "[P1] 15.4-UNIT-008 AC4 AC9 delta is report minus frozen booked-at-filing minutes and standalone stays absent",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "title": "fractional booked snapshots retain decimal precision while reported whole minutes keep familiar formatting",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/domain.test.ts",
+      "title": "R1-07 decimal deltas preserve tenths without manufacturing binary display digits",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "title": "[P1] 15.4-UNIT-001 AC6 locale decimal hours preserve exact whole minutes",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "title": "[P0] 15.4-UNIT-002 AC6 rejects nonminute zero negative nonfinite and integer overflow without rounding",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "title": "[P1] 15.4-UNIT-003 AC6 real Gregorian report dates include leap day and exclude rollover",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/unit/features/time-reports/validation.test.ts",
+      "title": "[P1] 15.4-UNIT-004 AC1 AC6 bounded note normalization clears blanks without truncating meaning",
+      "level": "pure",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\logs\\118603175261-verify.log"
+    },
+    {
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "title": "[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week",
+      "level": "browser",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-general-browser\\general-browser.json"
+    },
+    {
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "title": "[P0] 15.4-E2E-002 no-profile standalone at 360×640 retains its attempt through lost commit, revoked denial and restored retry",
+      "level": "browser",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-general-browser\\general-browser.json"
+    },
+    {
+      "file": "tests/e2e/time-reports.e2e.spec.ts",
+      "title": "[P1] 15.4-E2E-003 PL/Admin complete person/job/week review totals and attributed annotation survive reload",
+      "level": "browser",
+      "native_status": "passed",
+      "evidence": ".env.epic15.mail-runtime\\story-15-4-preparation\\checkpoint-cad4d37f-ci-independent\\extracted\\native-general-browser\\general-browser.json"
+    }
+  ]
+}

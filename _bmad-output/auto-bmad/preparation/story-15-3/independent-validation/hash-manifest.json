@@ -1,0 +1,42 @@
+{
+  "baseline_revision": "3a0282a70ab9cc539e2d85bd660635820e618731",
+  "note": "Hashes bind reviewed inputs and outputs; this manifest excludes itself.",
+  "reviewed_source_sha256": {
+    "AGENTS.md": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823",
+    "docs/process/agent-model-routing.md": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891",
+    "docs/process/development-completion-policy.md": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893",
+    "docs/decisions/epic-14-story-ownership-contract-d-2026-10-07.md": "cec48361c9dc9422f1c6287b60d56a31f04db5e05c7c74a17916d4a2fabf7cc6",
+    "_bmad-output/planning-artifacts/epics-phase-b.md": "72983bf3d3154cebb52891a244a40434af19aacddf699bd45c5f7561cbe18387",
+    "_bmad-output/planning-artifacts/architecture-phase-b.md": "a96ff60740a87ff35ad6bdd53a1319565475aba6c5b960633e25f5e646f0fa94",
+    "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md": "97a7bec5874622b508c6f2da3a794d9a1b2c204b2dc3f464dae253809f5977b1",
+    "_bmad-output/project-context.md": "f5bf5333ab8147b5dccd0a88e12848b17b6a29967b1175cea352d7aaec51f973",
+    "_bmad-output/test-artifacts/test-design-epic-15.md": "ebd67ef139d180a47af03fa885b0b50fb52905b335d81fe07fc9169b49bff955",
+    "src/scope/manifest.ts": "3b9f6b0669909832f1867d79a15de6c72a85bf77908cabc5f88e76ef12e7c0bb",
+    "src/features/scheduling/conflicts.ts": "341d8e6ffa81041b5054df41e2a75a26290a47abc34bf44d8787d9fd5ddd2d69",
+    "src/server/bookings/conflict-facts.ts": "2e3d5ac0a91179fc19f15d89af2b5573088cbaa6ab76ea774d199211ae4d1cb2",
+    "src/server/bookings/conflict-attestation.ts": "34f0d813ce2624a2afa6c082dc1e608ab9775d517b36323f7cb81b744157f6f1",
+    "src/server/bookings/save-with-conflicts.ts": "71f52ef9aa16f6c5d17bd646554be09e2e31ca52cc84157a6a11059226f77c82",
+    "src/server/bookings/series-conflicts.ts": "45e3839f46125ebb8995b5fd134e97ea9f8c07b6b1f756c42237b001ecda53aa",
+    "src/features/resources/bookings-read.ts": "c9ba98144944192b06ed2e12d9394dd9ca904642426acaffc398fd1982dfc205",
+    "src/server/read-models/scheduling.ts": "8b6c72dd0384937d3eb8de3cb7bf33238218474fac78bbe7680dc985e9ced098",
+    "src/server/authz/permission-matrix.ts": "003ba5073a4a52e962c0fcf1e145cc396d646b5bf957fd1bf01a3b7398850ccb",
+    "src/server/notifications/registry.ts": "09efcf7064800f106a1ba6239ef33ec5e2ce7c2b6bf04f1ff6f759033a8eda41",
+    "src/components/notifications/NotificationPreferences.tsx": "69c2b1949b4fc806f54f5a94d3574fee6f6d3b10e2dfba88002a702b29569d76",
+    "src/app/api/notifications/preferences/route.ts": "ab9022ce0758ae3882aee21947afd205f33fddd4f138cbb871ec57cebf8a44f7",
+    "supabase/migrations/20261006101609_bookings_and_assignees.sql": "c3af5bdeb49b5edf56c9bafb8a7b1c5ec6220bddb513015eea6ecdd4939f371d",
+    "supabase/migrations/20261006122441_booking_conflict_detection_integration.sql": "93670661af85f3372a92c8711bf13918b780abefcc524835c7b9a565ad84579e",
+    "supabase/migrations/20261007120235_booking_editor_audited_override.sql": "79e3e39c6c41d4c2130cfb2961950651a22ef43886c68bdcc1f3d8a9711bea1f",
+    "supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql": "2f557a0bb2ebaec601123cab8013114728cf9f5e09829e594e897d87d1435d72",
+    "supabase/migrations/20261019180000_recurring_booking_series.sql": "24f6982758c9f46c61d3f4fd34ebaaf599a809c8cf6c72e8223544aa73c9f1bd",
+    "supabase/migrations/20261019220000_booking_series_integrity_followup.sql": "c55d1de17b3829e97212076d2627f5b22645126894a8deb7af4b80596b45b44d",
+    "supabase/migrations/20260923170000_in_app_notifications.sql": "9defa57b5f0eca1fd6aed1a47768a7f3c3c4162381e96df2f52610b699e9180d",
+    "supabase/migrations/20260924090000_email_sending_activation.sql": "e2be3e297b213ac3b2d817457b8536182c4294529c177e9edd5d4a2b2cf01131",
+    "supabase/migrations/20260927100000_remove_quote_delivery_preferences.sql": "7a7753558a302c40f30bdb386792fe16af901f911bc16afa7e86c5bc2aecf6a2",
+    ".env.epic15.mail-runtime/story-15-3-preparation/root-coordinator-snapshot-20261020.json": "05b65e8c75f01ff19e2f37bf9680500d84cea3134e28fcdaf69f1e0a8fe55dcb"
+  },
+  "reviewed_author_manifest_sha256": "772fdb85c6a4c2891ece0734ffaa859978770f9349f991b813ca70c2168be574",
+  "independent_output_sha256": {
+    "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation.json": "8830ae4b970bb7fdfc4a8466d49ec32e4a81799cb92c1c78c3742102c2a98aa8",
+    "_bmad-output/auto-bmad/preparation/story-15-3/independent-validation/spec-validation.md": "1077bffe606abb76188d52288cf65e57224078e73d71b1246fa5633591810013"
+  }
+}

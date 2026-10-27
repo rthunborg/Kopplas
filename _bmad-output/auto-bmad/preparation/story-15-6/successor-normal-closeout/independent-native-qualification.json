@@ -1,0 +1,693 @@
+{
+  "Outcome": "COMPLETE: required current native evidence qualified for Story15.6 and retained calendar core at b57de610. All63new+95retained required cases passed without skip; isolated recovery and current scoped DB/browser closure qualified. Author delivery/Root gate transitions remain separate; release readiness is false.",
+  "Files changed": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-6-preparation/successor-terminal-actual-native-qualification.json"
+  ],
+  "Status": {
+    "result": "COMPLETE_REQUIRED_CURRENT_NATIVE_EVIDENCE",
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "run": 40192543175,
+    "head": "b57de61075646820ce9cb5feff7fd054fd2f8320",
+    "checkpoint": "9226ceaa-1456-47de-80d0-5cff0083b6e9",
+    "attempt": 1,
+    "identity_and_integrity": "Reuse independently qualified same-run/head/actor/workflow/repo/attempt native metadata and3JSONpacket. Frozen partial report remainsa59c4d46420c5fd0dc5a707565674701a2e544a8dde1c5513a67c44e6bc6befb. New28ec course closedcomplete,3dedicated fixedjob calls, no unusedslots. Allsafeprojections rehashed against Rootrecorded exact values; rawdecoded body digests/timing/CRC are acquisition provenance, not independently replayed rawbody checks.",
+    "connector_measurement": {
+      "tool": "mcp__codex_apps__github_fetch_workflow_job_logs",
+      "body_path": "root.structuredContent.content",
+      "verify": {
+        "wall_seconds": 2.234,
+        "monotonic_upper_seconds": 2.4816851999967184,
+        "UTF8bytes": 1745765,
+        "decoded_SHA256": "296ef168218c8be2e46ea2c9a245d8dffcaa6a32cb9cbd262105aa9e8289b312"
+      },
+      "db": {
+        "wall_seconds": 1.32,
+        "monotonic_upper_seconds": 1.5757362000003923,
+        "UTF8bytes": 98590
+      },
+      "browser": {
+        "wall_seconds": 1.275,
+        "monotonic_upper_seconds": 1.5424020000027667,
+        "UTF8bytes": 128859
+      },
+      "truth": "Allpromise-settled/isErrorfalse/nonrejected/within15s+8MiB; safe shape persisted before selection. SummaryMCPtext17characters is not the logbody. No nativeexit/hardtransportcap/EOF/thread-teardown/originalHTTP-digest claim.",
+      "hash_self_check": "Root actual tool40d639 reported SHA256 abc and empty standardvectors, plusUTF8 Montör, matchingPythonhashlib native0. This is reported tool evidence, not a rawlog replay; no extra formatter/control introduced."
+    },
+    "required_case_counters": {
+      "new": {
+        "expected": 63,
+        "Node": 38,
+        "SQL": 16,
+        "browser": 9,
+        "passed": 63,
+        "failed": 0,
+        "skipped": 0,
+        "pending": 0,
+        "unexecuted": 0
+      },
+      "retained": {
+        "expected": 95,
+        "Node": 30,
+        "DB_RLS": 51,
+        "browser": 14,
+        "passed": 95,
+        "failed": 0,
+        "skipped": 0,
+        "pending": 0,
+        "unexecuted": 0
+      },
+      "required_total": 158,
+      "required_browser": "All23new+retainedcorebrowser cases expected with exactly1passedretry0; noflaky substitution.",
+      "no_double_count": "Separate isolated recovery1,otherglobalcases,103suitepoints and repeatedunrelatedR1markers do not inflate158."
+    },
+    "public_ready_case_proof": {
+      "newNode_groups": [
+        {
+          "id": "A01",
+          "count": 1,
+          "native_ordinals": [
+            1848
+          ],
+          "passed": 1
+        },
+        {
+          "id": "A02",
+          "count": 1,
+          "native_ordinals": [
+            1849
+          ],
+          "passed": 1
+        },
+        {
+          "id": "A03",
+          "count": 1,
+          "native_ordinals": [
+            1850
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D01",
+          "count": 1,
+          "native_ordinals": [
+            567
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D02",
+          "count": 2,
+          "native_ordinals": [
+            568,
+            569
+          ],
+          "passed": 2
+        },
+        {
+          "id": "D03",
+          "count": 1,
+          "native_ordinals": [
+            570
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D04",
+          "count": 1,
+          "native_ordinals": [
+            571
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D05",
+          "count": 1,
+          "native_ordinals": [
+            572
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D06",
+          "count": 1,
+          "native_ordinals": [
+            573
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D07",
+          "count": 2,
+          "native_ordinals": [
+            574,
+            575
+          ],
+          "passed": 2
+        },
+        {
+          "id": "D08",
+          "count": 3,
+          "native_ordinals": [
+            576,
+            577,
+            578
+          ],
+          "passed": 3
+        },
+        {
+          "id": "D09",
+          "count": 1,
+          "native_ordinals": [
+            579
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D10",
+          "count": 1,
+          "native_ordinals": [
+            580
+          ],
+          "passed": 1
+        },
+        {
+          "id": "D11",
+          "count": 1,
+          "native_ordinals": [
+            581
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R01",
+          "count": 1,
+          "native_ordinals": [
+            2810
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R02",
+          "count": 5,
+          "native_ordinals": [
+            2811,
+            2812,
+            2813,
+            2814,
+            2815
+          ],
+          "passed": 5
+        },
+        {
+          "id": "R03",
+          "count": 1,
+          "native_ordinals": [
+            2816
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R04",
+          "count": 1,
+          "native_ordinals": [
+            2817
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R05",
+          "count": 1,
+          "native_ordinals": [
+            2818
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R06",
+          "count": 1,
+          "native_ordinals": [
+            2819
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R07",
+          "count": 1,
+          "native_ordinals": [
+            2820
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R08",
+          "count": 1,
+          "native_ordinals": [
+            2821
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R09",
+          "count": 1,
+          "native_ordinals": [
+            2822
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R10",
+          "count": 3,
+          "native_ordinals": [
+            2823,
+            2824,
+            2825
+          ],
+          "passed": 3
+        },
+        {
+          "id": "R11",
+          "count": 1,
+          "native_ordinals": [
+            2826
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R12",
+          "count": 1,
+          "native_ordinals": [
+            2827
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R13",
+          "count": 1,
+          "native_ordinals": [
+            2828
+          ],
+          "passed": 1
+        },
+        {
+          "id": "R14",
+          "count": 1,
+          "native_ordinals": [
+            2829
+          ],
+          "passed": 1
+        }
+      ],
+      "newNode_mapping": "D01..D11=15,R01..R14=20,A01..A03=3. R10 has3same-title nativepoints2823/2824/2825 matching approvedfrozen3-loop cardinality; unprinted malformed payload values are not invented. Otherloops retaindistinctnative titles.",
+      "retainedNode": [
+        {
+          "id": "UNIT-009",
+          "native_ordinal": 352,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-010",
+          "native_ordinal": 353,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-011",
+          "native_ordinal": 354,
+          "status": "passed"
+        },
+        {
+          "id": "R1-07",
+          "native_ordinal": 355,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-001",
+          "native_ordinal": 356,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-002-spring",
+          "native_ordinal": 357,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-002-autumn",
+          "native_ordinal": 358,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-003",
+          "native_ordinal": 359,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-004",
+          "native_ordinal": 360,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-005",
+          "native_ordinal": 361,
+          "status": "passed"
+        },
+        {
+          "id": "R1-05-positive-1",
+          "native_ordinal": 362,
+          "status": "passed"
+        },
+        {
+          "id": "R1-05-positive-2",
+          "native_ordinal": 363,
+          "status": "passed"
+        },
+        {
+          "id": "R1-05-positive-3",
+          "native_ordinal": 364,
+          "status": "passed"
+        },
+        {
+          "id": "R1-05-positive-4",
+          "native_ordinal": 365,
+          "status": "passed"
+        },
+        {
+          "id": "R1-05-positive-5",
+          "native_ordinal": 366,
+          "status": "passed"
+        },
+        {
+          "id": "R1-05-order",
+          "native_ordinal": 367,
+          "status": "passed"
+        },
+        {
+          "id": "R1-06",
+          "native_ordinal": 368,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-006",
+          "native_ordinal": 369,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-007",
+          "native_ordinal": 370,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-008",
+          "native_ordinal": 371,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-012",
+          "native_ordinal": 1924,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-013",
+          "native_ordinal": 1925,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-014",
+          "native_ordinal": 1926,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-021",
+          "native_ordinal": 1927,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-018",
+          "native_ordinal": 1928,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-019",
+          "native_ordinal": 1929,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-020",
+          "native_ordinal": 1930,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-015",
+          "native_ordinal": 1931,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-016",
+          "native_ordinal": 1932,
+          "status": "passed"
+        },
+        {
+          "id": "UNIT-017",
+          "native_ordinal": 1933,
+          "status": "passed"
+        }
+      ],
+      "retainedNode_mapping": "Exact30IDset equals prior-qualified map; specificfull-title R1-06snapshot/R1-07authoritative points only. Unrelatedtime-report R1-06/07markers are notcounted.",
+      "newSQL": "Exact16unique currentMyDaySQL leaves,INT01..15 with separate archived/missingINT03variants,allpassed.",
+      "retainedDB": [
+        {
+          "file": "tests/integration/calendar-feed/public-feed.int.test.ts",
+          "count": 20,
+          "IDs": [
+            "API001",
+            "API002",
+            "API003",
+            "API004",
+            "API005",
+            "API006",
+            "API007",
+            "API008",
+            "API009",
+            "API010",
+            "API011",
+            "API012",
+            "API013",
+            "API014",
+            "API015",
+            "API016",
+            "API017",
+            "API018",
+            "API019",
+            "API020"
+          ],
+          "all_passed": true
+        },
+        {
+          "file": "tests/integration/commands/calendar-feed.int.test.ts",
+          "count": 15,
+          "IDs": [
+            "INT001",
+            "INT002",
+            "INT003",
+            "INT004",
+            "INT005",
+            "INT006",
+            "INT007",
+            "INT008",
+            "INT009",
+            "INT010",
+            "INT011",
+            "INT012",
+            "INT013",
+            "INT014",
+            "INT015"
+          ],
+          "all_passed": true
+        },
+        {
+          "file": "tests/integration/components/calendar-feed.test.ts",
+          "count": 4,
+          "IDs": [
+            "COMP-001",
+            "COMP-002",
+            "COMP-003",
+            "COMP-004"
+          ],
+          "all_passed": true
+        },
+        {
+          "file": "tests/integration/rls/calendar-feed.rls.test.ts",
+          "count": 12,
+          "IDs": [
+            "RLS001",
+            "RLS002",
+            "RLS003",
+            "RLS004",
+            "RLS005",
+            "RLS006",
+            "RLS007",
+            "RLS008",
+            "RLS009",
+            "RLS010",
+            "RLS011",
+            "RLS012"
+          ],
+          "all_passed": true
+        }
+      ],
+      "newBrowserIDs": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05",
+        "E06",
+        "E07",
+        "E08",
+        "E09"
+      ],
+      "retainedBrowserIDs": [
+        "E2E-001",
+        "E2E-002A",
+        "E2E-002B",
+        "E2E-002C",
+        "E2E-003",
+        "E2E-004",
+        "E2E-005",
+        "E2E-006",
+        "E2E-008",
+        "E2E-009",
+        "E2E-010-rotate",
+        "E2E-010-revoke",
+        "E2E-011",
+        "E2E-007"
+      ],
+      "browser_mapping": "IDsmatchedoncein their exact current sourcefiles; all23expected/onepassedretry0. Nativecounts are matchedcasefacts, not sourcecatalog arithmetic."
+    },
+    "global_native": {
+      "Node": {
+        "tests": 3483,
+        "suites": 103,
+        "pass": 3483,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 49101.67598
+      },
+      "Node_typed_points": 3586,
+      "Node_reconciliation": "3483test+103suitepoints,alltyped/ok/passed; onefooter each,0fail/cancel/skip/todo. Required xattr exacttest passed atnativeordinal1020.",
+      "integration": "2198=2146passed+0failed+52leafskipped/headerpending;175files/551suites allpassed; rooterrors empty. Actual903RLS-path leaves889passed+14skipped; H4liveinventory/enrollment/negativecontrol passed.",
+      "inherited_skips": "37booking-series command+14booking-series RLS remain inherited15.2skips,0coverage;1full-lane recovery skip gives0directrecoverycredit. Retain their explicit separate disposition; this current15.6corequalification does not reopen/relabel them.",
+      "browser": "65cases:63expected,0unexpected,2flaky,0skip,rooterrors0. Requirednew9+calendar14cleanretry0.",
+      "flaky": [
+        "16.1-E03 response.text Network.getResponseBody ProtocolError retry0failed/retry1passed,alsoflakyhistorically.",
+        "15.4-E2E-002 sameprotocolerror retry0failed/retry1passed in thisrun."
+      ],
+      "flaky_limit": "Outside current63/retained95core,truthfullyflaky; no applicationwritefailure/new15.6regression orcleanretry0 inferred."
+    },
+    "direct_recovery": "Currentseparate physical-loader immutability/overwrite assertion1passed/0failed/0skip/pending, outside63/95. No recoverykeytuple/physicalhostdeletion/backendrollback claim.",
+    "current_lifecycle": {
+      "DB": {
+        "event": "calendar_feed.ci_lifecycle",
+        "mode": "db",
+        "source_timestamp": "2026-10-25T12:36:46.2820973Z",
+        "ready": true,
+        "keyDeleted": true,
+        "dbClosed": true,
+        "launchAttempted": false,
+        "keyOutcome": "deleted-confirmed",
+        "childLaunchState": "not-attempted",
+        "childExitCodes": [
+          0,
+          0
+        ],
+        "custody_field": "present",
+        "custody_retained": false,
+        "custody_disposition": "NO_RETAINED_CUSTODY",
+        "failures_count": 0,
+        "diagnostics_count": 0,
+        "safe_diagnostics": []
+      },
+      "browser": {
+        "event": "calendar_feed.ci_lifecycle",
+        "mode": "browser",
+        "source_timestamp": "2026-10-25T12:29:31.6246988Z",
+        "ready": false,
+        "keyDeleted": true,
+        "dbClosed": true,
+        "launchAttempted": false,
+        "keyOutcome": "deleted-confirmed",
+        "childLaunchState": "not-attempted",
+        "childExitCodes": [
+          0
+        ],
+        "custody_field": "present",
+        "custody_retained": false,
+        "custody_disposition": "NO_RETAINED_CUSTODY",
+        "failures_count": 0,
+        "diagnostics_count": 0,
+        "safe_diagnostics": []
+      },
+      "scope": "Eachfixedjob has exactly1matchingcurrentmode record/0malformedcandidates; keyDeletedtrue,keyOutcomedeleted-confirmed,dbClosedtrue,custody_retainedfalse,0failure/diagnostics. DBchild[0,0],browserchild[0]. Browserreadyfalse andbothlaunchAttemptedfalse/not-attempted are preservedinstrumentationfields, not runtimefailure or proofnochildlaunched. Tuplequalifies scopedcurrentkeydeletion/clientclosure/no retainedcustody only; no broadprocess/backend/physicaldestruction proof."
+    },
+    "history_and_limits": "HistoricalCLI GET7failurecauseUNKNOWN and94a47lostshapeunknown remain unchanged. Currentobserved structuredContent.content andoldhandler omission are not proof ofoldreturnedformat orredirectfailure. Allold/newslotsclosed. All2198Vitestlabels andcurrentbrowserlabels absent/UNKNOWN, not cause/completeness proof. Unsafe/unretainedrawparts remainUNKNOWN. No priorcustody/firstemitter/publicIP/deletionunknown is cleared.",
+    "source_and_gate": "Existing25source/finalb57binding retained; no sourcecensus/newsemantics review.119andprior118immutable. This completes requiredcurrentnative qualification, not authorstory/spec/delivery edits,RootP5status flip,epic completion,externalPRreview,merge/deployment orreleaseapproval. Deferred5releaseitems/release_readyfalse/noDeploy remain.",
+    "input_pins": [
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d\\read-activation.json",
+        "bytes": 5773,
+        "sha256": "23a562d104c1560b3116b99dafee010626d9489146a21c585ec792161d9b30a5"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d\\verify-safe-log-projection.json",
+        "bytes": 833113,
+        "sha256": "de7518c4cd322545dd1ac4ae7e3f19d4dde0bf4366bb4dfbb9144a77197a877b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d\\db-safe-log-projection.json",
+        "bytes": 2034,
+        "sha256": "7690b735f3077bd62779124641940ef34c203a0c2e71924c5a5fa1274feaf40b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d\\e2e-safe-log-projection.json",
+        "bytes": 2037,
+        "sha256": "0087ade8d0bf204a0d9ec1baba2430499236398185283f1dcf97ee78d937a82b"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d\\verify-safe-return-shape.json",
+        "bytes": 1571,
+        "sha256": "446087591d5ace04b22e8c65697d56c90fd8ee4265b800c956529fcdc832bcdb"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d\\db-safe-return-shape.json",
+        "bytes": 1563,
+        "sha256": "b9a6b97144127988a534e7bc1c0c4fb8d509d2f95e939f67984789995a74dc50"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\shape-first-connector-log-read-28ec7655-c7c4-4781-8efc-fd5394701a8d\\e2e-safe-return-shape.json",
+        "bytes": 1566,
+        "sha256": "c502266052863d6d4c01ef89a18bfc4273d475e341be2456682856f200108414"
+      },
+      {
+        "path": ".env.epic15.mail-runtime\\story-15-6-preparation\\successor-partial-native-qualification.json",
+        "bytes": 8356,
+        "sha256": "a59c4d46420c5fd0dc5a707565674701a2e544a8dde1c5513a67c44e6bc6befb"
+      }
+    ],
+    "reviewer_activity": "Local safe-record/case-map qualification only; no network/API/connector/poll/sourceexecution/tests/runtime/Git/source/spec edits.",
+    "implementation_review_rounds_consumed": 0,
+    "new_effect_authority": 0,
+    "native_required_complete": true,
+    "development_gate_transition": "NOT_PERFORMED",
+    "release_ready": false
+  },
+  "Open questions": [
+    "Inherited15.2skipdisposition andtwooutside-coreflakies remaintruthfulseparateobligations; no missingcurrent63/95core/xattr/lifecyclefact identified."
+  ],
+  "Deferred work": [
+    "Authorfinaldelivery/spec/evidence reconciliation andRootdelivery/P5gates; no further nativeacquisition required by this qualification.",
+    "Fiveownedreleasevalidationitems/finalPhaseBcheckpoint and allmerge/deploymentapprovals remainseparate."
+  ],
+  "Blockers": []
+}

@@ -1,0 +1,150 @@
+{
+  "schema": "reviewed-corrections-terminal-binding-audit/v1",
+  "verdict": "PASS_PRE_EFFECT_DATA_BINDING_SOURCE_ONLY",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true
+  },
+  "scope": {
+    "type": "finite terminal data-binding follow-up",
+    "source": "dec30783a23dcac35d6ba57f649420221d741ecd",
+    "run": 39703778989,
+    "head": "64dc6908e58c323cb63453c4abb904ec29474a32",
+    "UUID": "bf7e5fd4-76e5-43ce-86a9-3af87f2446ad",
+    "attempt": 1,
+    "broad_review": false,
+    "counter": 3
+  },
+  "frozen_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal-evidence-preparation/normal-evidence-operator.py",
+      "bytes": 50517,
+      "sha256": "a2b18911efa7834e02cfdae379c4ed4a0bc7bc106df4d2a5b36163d16ca0a9b8"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal-evidence-preparation/bindings.json",
+      "bytes": 75463,
+      "sha256": "7f3554ba2d4813af27d4ce84a870f1b1ee32e8c87e83de7e29eee53c96cd4993"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal-evidence-preparation/result.json",
+      "bytes": 11506,
+      "sha256": "72228148a88453e79ab88635122c1b3ab575428292890fbcf99a614298554ba4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal-evidence-preparation/manifest.json",
+      "bytes": 1114,
+      "sha256": "6a32f8799f8e7b4a0d40276cb6fdcbb49e15de361c43c06d86a1f498c2198c10"
+    }
+  ],
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal.json",
+    "bytes": 23446,
+    "sha256": "7d04d195be3af9194c426a0894b3832852df048997d5c8a9283b75e5ea5d8a4c"
+  },
+  "independent_actual_command": {
+    "chunk": "1d4837",
+    "exit": 0,
+    "wall_seconds": 0.3740096,
+    "proof": {
+      "verdict": "PASS_PRE_EFFECT_DATA_BINDING_SOURCE_ONLY",
+      "prepared4_bound": true,
+      "exact6_inverse_bytes": 50513,
+      "inverse_sha256": "c57bbb84b41b2a79e1c8a94d7b53ce4f7408832ef9b0ee0504a9121d11cf3f05",
+      "unchanged_definitions": 35,
+      "unchanged_helpers": 16,
+      "raw_clean_rows": 205,
+      "source_and_candidate_Git_equalities": 410,
+      "catalog_unchanged": true,
+      "static_declarations": 407,
+      "dynamic_exclusions": 19,
+      "terminal_jobs": 9,
+      "job_status": {
+        "checkpoint-admission": "success",
+        "verify": "success",
+        "db": "failure",
+        "recovery-storage-loader": "success",
+        "e2e": "failure",
+        "dashboard-e2e": "skipped",
+        "fixed-chromium-paired-probe": "skipped",
+        "fixed-chromium-application-verification": "skipped",
+        "native-stream-probe": "skipped"
+      },
+      "actual_terminal_hash": "7d04d195be3af9194c426a0894b3832852df048997d5c8a9283b75e5ea5d8a4c",
+      "archive_member_keys_unique": true,
+      "ownership_mode": "NORMAL",
+      "activation_mode": "normal",
+      "activation_absent": true,
+      "output_absent": true,
+      "isolated_launch_argv": [
+        "C:/Users/Rasmus/AppData/Local/Programs/Python/Python314/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-B",
+        ".env.epic15.mail-runtime/story-15-5-preparation/reviewed-corrections-normal-terminal-evidence-preparation/normal-evidence-operator.py",
+        "--execute-once-after-terminal-grant"
+      ],
+      "budget_reused": 27213,
+      "prior13_controls_rerun": false,
+      "operator_main_calls": 0,
+      "GETs": 0,
+      "network": 0,
+      "normal_acceptance": 0
+    },
+    "method": "Byte hashes and exact six replacement inverse; AST span comparison; bound input refs; current raw/clean source rows; read-only git cat-file --batch; typed actual terminal/step tuple checks; absent activation/output and enrolled isolated argv. No operator import/main/function or writer execution."
+  },
+  "reuse": {
+    "algorithm_authority": "PASS_BROWSER_V2_NORMAL_PARSER_SOURCE_ONLY",
+    "review_manifest": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/browser-v2-normal-parser-high-review/manifest.json",
+      "bytes": 980,
+      "sha256": "5dc5c062e761d96b02b3a492a37ddaeef438fa788770e1c82773394ab7185c3e"
+    },
+    "actual_production_budget_bytes": 27213,
+    "cap": 32768,
+    "author13_controls_rerun": false,
+    "catalog_reextraction": false,
+    "source_tests_run": 0,
+    "source_only_not_native_coverage": true
+  },
+  "terminal_limits": {
+    "Root_native_status_calls": "Root-provided frozen provenance; not independently re-polled here",
+    "counts": "UNKNOWN",
+    "cause": "UNKNOWN",
+    "custody": "UNKNOWN",
+    "normal_acceptance": 0
+  },
+  "admission": {
+    "ownership_mode": "NORMAL",
+    "activation_mode": "normal",
+    "activation_exists": false,
+    "output_exists": false,
+    "fresh_allocation_source_proof_and_Root_exclusive_activation_required": true,
+    "maximum_once_GETs": 5,
+    "archive": 1,
+    "list": 1,
+    "eligible_ZIPs": 3,
+    "retry": false,
+    "effect_authority": false
+  },
+  "author_history": {
+    "initial_prewrite_refusal": {
+      "chunk": "843b97",
+      "reason": "Mode substring appeared twice; replacement narrowed to exact ownership context.",
+      "files_API_effects": 0
+    },
+    "attribution": "Retained author history; not rerun or added to independent check counts."
+  },
+  "findings": [],
+  "effects": {
+    "GET": 0,
+    "network": 0,
+    "operator_main": 0,
+    "Git_mutations": 0,
+    "source_Spec_state_changes": 0,
+    "SQL_browser_CI_provider_resource_actions": 0
+  },
+  "policy": "development-completion-policy2026-10-19; required95 unchanged"
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "ROOT_MECHANICAL_R1_PARTIAL_DIAGNOSTIC_AUDIT_ADMISSION",
+  "actual_run_id": 39664130401,
+  "manifest": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/manifest.json",
+    "bytes": 852,
+    "sha256": "859574b70ca87f2c7cc6b039c8d05c9f1b950c6f007f7a030fc4dce6ff7e153e"
+  },
+  "attestation": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/original-attestation.json",
+    "bytes": 20049,
+    "sha256": "1f887839000a51bba03fa23abc14d768141c5abaffb3f20b8e4dd901508e39f6"
+  },
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-r1-provenance-audit/original-report.md",
+    "bytes": 5194,
+    "sha256": "51a50a5d20dfdc658ea6fe418f753c9bbf67cf7f45e0bbdba13533517d4b9b08"
+  },
+  "verdict": "PASS_QUALIFIED_PARTIAL_DIAGNOSTIC",
+  "normal_acceptance_credit": 0,
+  "verified_members": 3,
+  "actual_GETs_consumed": 2,
+  "operator_native_exit": 1,
+  "known_limits": "Partialsource-locationcandidatesONLY; declarationseparate; omittedfactsUNKNOWNNOTABSENCE; originalthrow/order/backendcauseunproved; toollineageNativeattributed",
+  "new_effect_authority": false,
+  "next": "Highsource-onlyevidence-ledfailureassessment; no fixclaims/newreads/CI"
+}

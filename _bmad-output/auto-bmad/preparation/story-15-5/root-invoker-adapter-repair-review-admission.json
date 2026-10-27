@@ -1,0 +1,32 @@
+{
+  "kind": "ROOT_TARGETED_COMMITTED_DELTA_REVIEW_ADMISSION",
+  "actor": "/root/review15_5_preselected_id_high",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "PASS",
+  "head_before": "bedd0979d8f80eb52f92c81eb5a364f54157c3fe",
+  "source_head": "571f5014efc5edad9649b947c26d391a804afe66",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/original-report.md",
+      "bytes": 3930,
+      "sha256": "89c107c472e31370137eb37788759231d6a3f40f2101207efe042003e926e3bd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/original-attestation.json",
+      "bytes": 9017,
+      "sha256": "985c580306448a48e740c699757a3b20534618928d11ef1d44b8d1e674a1a1e2"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/invoker-adapter-repair-review/result.json",
+      "bytes": 1226,
+      "sha256": "31b9950a6cf5a61b81dac7718a60a8b8b22db137f5a3ec4c2e241288308e50e4"
+    }
+  ],
+  "broad_rounds": 3,
+  "broad_restart": false,
+  "normal_acceptance_credit": 0,
+  "reviewer_controls": 8,
+  "review_order_refs": 110,
+  "limitation": "Native migration and normal five gates/95 cases remain unverified."
+}

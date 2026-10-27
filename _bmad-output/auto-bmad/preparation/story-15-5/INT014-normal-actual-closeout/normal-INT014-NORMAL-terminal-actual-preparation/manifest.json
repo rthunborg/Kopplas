@@ -1,0 +1,28 @@
+{
+  "schema": "INT014_NORMAL_ACTUAL_TERMINAL_PREPARATION_MANIFEST_V1",
+  "self_excluded": true,
+  "execution_authorized": false,
+  "status": "FROZEN_SOURCE_DATA_REVIEW_CANDIDATE",
+  "members": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+      "bytes": 50733,
+      "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/source-rows.json",
+      "bytes": 32340,
+      "sha256": "a2a020b26877f3f7de8b2b23cec96748806f07228308cfc70c25b6a879240182"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26268,
+      "sha256": "fc448cc4141e98d6400fbd8345feb15053c17f33befc334b02c161e2ab74fdfa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/proposal.json",
+      "bytes": 189647,
+      "sha256": "ecc395e1056588f7ab338eb7028a8ff127b4a974af3d5cfa619f0851259c6028"
+    }
+  ]
+}

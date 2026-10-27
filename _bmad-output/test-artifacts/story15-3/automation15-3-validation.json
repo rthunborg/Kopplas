@@ -1,0 +1,182 @@
+{
+  "status": "passed",
+  "workflow": "bmad-testarch-automate",
+  "story": "15.3",
+  "validated_at": "2026-10-20T03:54:50.734493+00:00",
+  "scope": "Artifact/process validation only; no product test/DB/browser/CI execution",
+  "checks": [
+    {
+      "name": "api_worker_schema_and_success",
+      "passed": true,
+      "evidence": "Required aggregate-worker schema parsed"
+    },
+    {
+      "name": "api_zero_addition",
+      "passed": true,
+      "evidence": "No generated test, fixture or runtime action"
+    },
+    {
+      "name": "api_all_AC_maps",
+      "passed": true,
+      "evidence": "All eight ACs present; browser map explicitly empty for AC3"
+    },
+    {
+      "name": "api_no_consequential_gap",
+      "passed": true,
+      "evidence": "Bounded assessment reported no uncovered consequential behavior"
+    },
+    {
+      "name": "api_source_locators_exist",
+      "passed": true,
+      "evidence": {
+        "checked": 43,
+        "bad": []
+      }
+    },
+    {
+      "name": "e2e_worker_schema_and_success",
+      "passed": true,
+      "evidence": "Required aggregate-worker schema parsed"
+    },
+    {
+      "name": "e2e_zero_addition",
+      "passed": true,
+      "evidence": "No generated test, fixture or runtime action"
+    },
+    {
+      "name": "e2e_all_AC_maps",
+      "passed": true,
+      "evidence": "All eight ACs present; browser map explicitly empty for AC3"
+    },
+    {
+      "name": "e2e_no_consequential_gap",
+      "passed": true,
+      "evidence": "Bounded assessment reported no uncovered consequential behavior"
+    },
+    {
+      "name": "e2e_source_locators_exist",
+      "passed": true,
+      "evidence": {
+        "checked": 44,
+        "bad": [],
+        "native_basename_resolution": 3,
+        "note": "Three native JSON case entries store a basename rather than repository-relative path; resolve against configured tests/e2e. All current source references are valid."
+      }
+    },
+    {
+      "name": "zero_generation_rollup",
+      "passed": true,
+      "evidence": "All generation and new priority counters zero"
+    },
+    {
+      "name": "exact_native_counts",
+      "passed": true,
+      "evidence": "Reused focused16unit+25DB/SSR+3browser; nonadditive subsets, no fresh run"
+    },
+    {
+      "name": "source_and_native_provenance",
+      "passed": true,
+      "evidence": "57 Git content matches,102 size/SHA matches,5 pinned evidence matches"
+    },
+    {
+      "name": "unchanged_HEAD",
+      "passed": true,
+      "evidence": "c67950dbd154126e1d3b04444d68764e3271479b"
+    },
+    {
+      "name": "no_dirty_source_paths",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "name": "frozen_spec_conserved",
+      "passed": true,
+      "evidence": "d9480820bd1901be380c16fd8bd93077da1f8b2a2cb95b21a47eb400554a4175"
+    },
+    {
+      "name": "delivery_conserved",
+      "passed": true,
+      "evidence": "886c133b4c76ed98668a8fbf1aadbc3510b57aa557cf29d3ccc73e540134aef2"
+    },
+    {
+      "name": "input_documents_exist",
+      "passed": true,
+      "evidence": {
+        "count": 18
+      }
+    },
+    {
+      "name": "summary_complete",
+      "passed": true,
+      "evidence": "Step completion, deviations, exclusions, limits and deferred status present"
+    },
+    {
+      "name": "route_recorded",
+      "passed": true,
+      "evidence": "Explicit High parent/API/E2E routes retained; workers awaited"
+    },
+    {
+      "name": "release_false",
+      "passed": true,
+      "evidence": "Three existing release areas remain deferred"
+    },
+    {
+      "name": "owned_names_only",
+      "passed": true,
+      "evidence": "Only unique owned automation15-3-* files created by this workflow"
+    }
+  ],
+  "passed_checks": 22,
+  "failed_checks": 0,
+  "source_conserved": true,
+  "new_tests": 0,
+  "runtime_executed": 0,
+  "review_rounds_consumed": 0,
+  "release_ready": false,
+  "artifacts": [
+    {
+      "path": "automation15-3-api-assessment.json",
+      "sha256": "19dc305f1abcbd44bd482da38ee7f242b8edba3f12f37a35711806ceb9ddc712",
+      "bytes": 55668
+    },
+    {
+      "path": "automation15-3-e2e-assessment.json",
+      "sha256": "24f1f96620991242f6e253e508072c69ebb1d5a36516db71e4397cfbe9089d9c",
+      "bytes": 25858
+    },
+    {
+      "path": "automation15-3-generation-summary.json",
+      "sha256": "73f74d5da5776754ead2d6d1856ec677de755970d20ad40f34c1195fad22ab3a",
+      "bytes": 2754
+    },
+    {
+      "path": "automation15-3-provenance.json",
+      "sha256": "35f7ae70be82eb7c60b9e457094c70aaf319b62ed98fff40fab36e7afc599743",
+      "bytes": 44258
+    },
+    {
+      "path": "automation15-3-routing.json",
+      "sha256": "cd2fc8cb359c847f74df2455fa9abb9e335cbd8e4e5f5759eb50c991fb8ba1e4",
+      "bytes": 912
+    },
+    {
+      "path": "automation15-3-summary.md",
+      "sha256": "6b28d8b309af0a27bdd802c951d45a567eaa543c7ce5014a0210971fa816e08a",
+      "bytes": 23477
+    }
+  ],
+  "validation_attempts": [
+    {
+      "attempt": 1,
+      "passed_checks": 21,
+      "failed_checks": 1,
+      "reason": "Artifact validator treated three native browser JSON basenames as repo-relative source paths; no test/source/evidence failure."
+    },
+    {
+      "attempt": 2,
+      "passed_checks": 22,
+      "failed_checks": 0,
+      "reason": "Resolved those exact native case basenames against configured testDir; all44 E2E-related source references valid."
+    }
+  ]
+}

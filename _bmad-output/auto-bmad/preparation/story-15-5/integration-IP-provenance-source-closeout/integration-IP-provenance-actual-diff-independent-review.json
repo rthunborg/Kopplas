@@ -1,0 +1,182 @@
+{
+  "Outcome": "PASS_BOUNDED_PROVENANCE_SOURCE_AND_INERT_PRIVATE_CONSUMER_DELTA_ONLY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-actual-diff-independent-review.json"
+  ],
+  "Status": {
+    "status": "INDEPENDENT_ACTUAL_DIFF_AND_CONTROL_EVIDENCE_REVIEW_FROZEN",
+    "independent": true,
+    "verdict": "PASS within the exact frozen five tracked files and four inert private members. No actionable reachable defect found in this bounded delta. This is neither a fourth broad review nor story/runtime acceptance.",
+    "findings": [],
+    "route": "Root-recorded 602e47; fresh separately allocated gpt-6.1-sol High sensitive review. Private freeze received only after the four members were complete; no partial counterpart inspected.",
+    "revision": {
+      "head": "fe1826587c225736893ca000fa4c6453ff051f2e",
+      "functional_preimage": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+      "verification": "HEAD independently read with read-only Git; current diff has exactly the five allocated tracked paths. The reviewed working bytes, not an uncreated commit, define this verdict."
+    },
+    "tracked_source_pins": [
+      {
+        "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+        "bytes": 50465,
+        "sha256": "e14e4d8b64743b78b09b8d3af766d51365a480d9c4838af09fe44dc6938ef4c2",
+        "LF_sha256": "adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7"
+      },
+      {
+        "path": "tests/support/calendar-feed-atdd.ts",
+        "bytes": 144864,
+        "sha256": "bbaa6f58def715bf3ea41b052f84589e009e812ce58e71854bfe77818fd2f1a5",
+        "LF_sha256": "16a6856b7411053851c19463da1b1b2776377d9941c8a5f64ecc437d8daf7b0d"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "bytes": 352713,
+        "sha256": "630a4aaf02f57926f133e9cd5caf7d8a9bbffdd6dcc1f76da00a6629f5a048bc",
+        "LF_sha256": "d28789aa26532bc801e1f3fac1ffdc407cb6442c4dcface18cfb8cf2301263bb"
+      },
+      {
+        "path": "tests/support/calendar-feed-ci-contract.ts",
+        "bytes": 8135,
+        "sha256": "3ab0a33097dae9b6a238291174637f78443766e537f052190e4732f52b7842d3",
+        "LF_sha256": "82de1d4b5295d1337e962b254079cf4ae48247d65a2ad5822f99fc851a4c7c15"
+      },
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "bytes": 264061,
+        "sha256": "74d75d554fd0a9b77a36151c2b738a24a87c3885c5fc4e3814b8999b96c72abb",
+        "LF_sha256": "99e050e1a8840d78e3db6bc2cbef16bbb2842632a7723e9243c6c38302dd5ee6"
+      }
+    ],
+    "private_pins": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/reader.py",
+        "bytes": 52893,
+        "sha256": "23cd432bceeebe53cc3146ed098175b0b31e5dff35cd2753b4069dbe7b612cf1"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/proposal.json",
+        "bytes": 2953,
+        "sha256": "20bd77828bd448227d3c1627aee270564380d3d7d5e363316982990754881d97"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/manifest.json",
+        "bytes": 1068,
+        "sha256": "92843af03a9d4e363437dd9db81ca19c23234180c98f8f7a4519bbb76ed8473a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-private-consumer-compatibility/safe-proof.json",
+        "bytes": 19228,
+        "sha256": "9c689ae30c93d89e8cfeeadd87111289e6801782e95cb9d3f5cd29a926199bd2"
+      }
+    ],
+    "pin_verification": "All nine current files independently read/hashed against Root's freeze. Private directory contains exactly the four files; manifest correctly self-excludes and pins its three other members.",
+    "author_evidence": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/author-result.json",
+        "bytes": 38384,
+        "sha256": "2451bb7718580659ae1eeff457465cff00423b1ad969bd52581eb2110042c89e"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/final-source-proofs.json",
+        "bytes": 4916,
+        "sha256": "4f5ad4422930c2fa283d831416060b57b995840f48654dcfb17b3e4e6a23a6ee"
+      }
+    ],
+    "control_receipt_pins": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/RED-valid-corrected-result.json",
+        "bytes": 853,
+        "sha256": "98a037b8e61dcd258a7be9b329db1d66e93c374d7e8361cad1b696c45af53689"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/GREEN-frozen-result.json",
+        "bytes": 444,
+        "sha256": "cfa1bb605868e10b6fa103d0d324d5b6f8d24bdd4759f5b3c65e6ee42f68fc89"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/affected-result.json",
+        "bytes": 447,
+        "sha256": "f7cc4eeabee350afd8d087bb1ec2386f01a479c605ebb2345a7570d93ecf1d2a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/typecheck-final-result.json",
+        "bytes": 328,
+        "sha256": "5d63e6c129d0a6a2b1f09f19866ad0e2888b6f8be830d37424daa66be4307f0a"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/lint-final-result.json",
+        "bytes": 324,
+        "sha256": "87acd4e95ae80b0a4ee81f4c49d75f2dd1e57e504acf6cf388833dd906355b1f"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/integration-IP-provenance-author/review-order-final-result.json",
+        "bytes": 630,
+        "sha256": "5c5a63c8190c9092a622149685756d9ef31a3cc00f2f59a7fcb427a460a4ea8b"
+      }
+    ],
+    "C1": {
+      "status": "SATISFIED",
+      "evidence": "Actual contract diff changes only wrapperSha256's literal. Independent LF digest is adfea6fecf16a672983d70e627bc16bd869bf651148da3f3e3df1efaa27f6da7 and equals that literal. Replacing only the literal reconstructs the preimage contract exactly. Full-source hash, argv checks, workflow inverses and negative guards remain unchanged."
+    },
+    "C2": {
+      "status": "SATISFIED",
+      "evidence": "Helper lines601-622 starts from generic refusal. Only exact legacy child/predicate keys or exact closed child/predicate/renderedForm/stream keys with valid enums may select an owned leaf. Wrong types, invalid enums/child/predicate or missing/extra keys retain scenario-telemetry-privacy-refused. Valid legacy pairs and valid UNKNOWN-stream objects retain the original pair; only valid integration/ip-literal plus STDOUT/STDERR selects four fixed constants. Original 28 labels remain unchanged. The privacy branch always throws before telemetry return."
+    },
+    "C3": {
+      "status": "SATISFIED",
+      "evidence": "Existing per-stream reader keeps the same pending string/split/over-16,384 forced-fragment delivery. A continuation boolean and per-delivery const snapshot mark every forced fragment and its continuation through the next newline uncertain. Ordinary split complete lines qualify; later complete lines after the terminating newline recover. Repeated overflow, EOF, first-only and cross-stream cases are covered. No new listener, buffer, observer, await, timer or queued delivery order was introduced."
+    },
+    "privacy_and_behavior_conservation": [
+      "Independently compared raw sensitiveOutputPredicate source with pinned preimage: byte-identical. Known-value/security-field/hex/canonical/IP ordering and exact infrastructure exception are unchanged. Classification occurs only inside the already-refused branch after that predicate; header syntax creates no output exemption.",
+      "firstPrivacy freezes child/predicate/stream/renderedForm synchronously on the lifetime-first failure before count persistence can await. Only primitive closed enums survive; no line/title/taskId/IP/family/address-derived hash/path/URL/content or dynamic leaf is added. Existing count/boolean and clean-observation shapes remain.",
+      "ANSI stripping and exact complete-line stdout-or-stderr space-pipe-space header syntax yield only a forgeable shape observation. Partial, EOF, overflow continuation and uncertain syntax are OTHER_OR_UNKNOWN. Actual pipe enum and rendered header text are separate facts; no origin authentication or content linkage is inferred.",
+      "DB build/server/integration closures forward existing callback promises/errors plus fixed metadata. Actual launch argv, custody stopper, process identity/signal validation, response handling and settlement code are unchanged. Other unannotated observers continue to fall back to unknown facts.",
+      "Existing helper still reads on its 3-second deadline/20-ms poll, refuses boolean/count privacy failure, returns no refused telemetry and publishes one owned safe Error. Four source constants are within the unchanged 80-character bound and maximum 63 ASCII bytes; no parser or filter guard was weakened."
+    ],
+    "tracked_control_qualification": {
+      "method": "Reviewed the actual added tests, existing extraction helpers, installed onUserConsoleLog source, RAM preimage loader and recorded final receipts; no reviewer test/control execution. Qualified author-executed evidence is bound to the frozen source and final corrected controls.",
+      "meaningful_RED": "RED-valid-corrected: native1, 4 executed/0 passed/4 failed/0 skipped. Loader substitutes the pinned wrapper and helper preimages in RAM, resolves the existing TypeScript imports and runs the same four corrected tests. Missing preimage enum fields/new helper recognition cause reached behavioral assertions to fail; this is not the earlier invalid harness/loader RED.",
+      "GREEN": "GREEN-frozen: native0, 4 passed/0 failed/0 skipped. One full affected file: native0, 199 passed/0 failed/0 skipped. Focused counts overlap the 199 and are not added.",
+      "formatter_reader_publisher": "Installed DefaultReporter.onUserConsoleLog executes with RAM logger mocks. Both exact writes, including its separate trailing newline, feed the actual extracted launchOwned definition, actual observer, actual telemetry helper and actual owned-error publisher. Header and content address positions on both pipes produce all four leaves while still refusing. This proves synthetic grammar/transport compatibility only.",
+      "owned_fake_cleanup": "Final control injects fake streams/child, valid captured pid/group/startTime, fake identity and an ESRCH process-absence operation into the actual launchOwned source. The actual createOwnedGroupStopper retains capture validation and awaits done/output settlement; no production custody check is bypassed. No real process is spawned/signaled by this path. Rejected persistence still propagates and matches the original framing inverse.",
+      "coverage": "Finite ANSI/forged-header/malformed-shape/earlier-predicate collision controls; ordinary chunk split/forced continuation/repeated overflow/EOF/recovery/cross-stream order; same first object through held/rejected persistence; exact legacy2/closed4/UNKNOWN and original28 mappings; generic malformed refusal. Existing assertion expectations were adapted to added enums without weakening their original invariants.",
+      "static_checks": "Recorded whole TypeScript noEmit/incremental=false native0; four-file scoped ESLint native0; final review-order helper native0, 225 references and zero errors. These are retained author results, not newly run checks.",
+      "excluded_history": "Initial RED, intermediate GREEN1P3F/GREEN3P1F, failed preimage loader, mock/formatter assumptions, TS2554 and premature SRO-coordinate failures remain historical invalid/failed attempts. None is credited as valid RED, final pass, or additional coverage."
+    },
+    "private_consumer_actual_review": {
+      "baseline": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-API019-privacy-origin-terminal-inert-preparation/reader.py",
+        "bytes": 52631,
+        "sha256": "278531786c36acaf5c219e23b9970c45533b647358b75a544742e6e68af44007"
+      },
+      "independent_structural_result": "One insertion at source offset3665, exactly262 ASCII bytes: four quoted static strings in the existing stages set. Removing it reproduces the complete baseline byte-for-byte. Stage count57 becomes61, no removal or duplicate. Therefore all41 def source bodies, all imports, every other constant, null globals, main/default-refusal and acquisition/admission code remain identical.",
+      "inert_authority": "RUN=HEAD=CP=OUT=OWNERSHIP=None and empty requests remain. validate_admission still requires run==None and then type(run)is int with a positive bound; the conjunction is unsatisfiable. Historical fixed head/checkpoint strings remain inert constraints. Descriptor independently sets execution/current-effect authority false and run/head/checkpoint/output null. No actual target, activation, journal, grant or output packet exists in this four-file counterpart.",
+      "parser_path": "Only stages membership in actual failure_facts changes behavior. Existing exact finite category/SQLSTATE validation, 80-character stage regex, tuple cap/count/invalid counters, raw_failure_details and underlying_cause semantics remain. Actual project_vitest receives the new leaves through the same failed-case path; grammar is forgeable and authenticates no emitter.",
+      "pure_control_evidence": "Reviewed pinned safe-proof: only exact sha/failure_facts/case_id/safe_file/project_vitest definitions were narrowly compiled in RAM with literal stages/cats/codes, re/hashlib and restricted builtins; not the whole reader. Those selected source definitions contain no acquisition, process, filesystem or network sink. Recorded control_failure_count0; four baseline-reject/candidate-accept leaves;114 original-stage differentials equal;8 boundaries equal;36 malformed negatives yield no new tuples;4 surrounding-payload plus1 standalone checks retain no raw values;4 actual project_vitest projections remain failed with zero passes/normal_acceptance and NOT_PERSISTED raw failure details.",
+      "limits": "Reviewer did not import/run the reader or rerun pure controls. Historical source75 and 444 literal/19 excluded/195 wrapper inventory references are preserved as lineage only; they do not qualify the amended source or create executable admission. No parser/collector/transport/catalog-extractor algorithm changed."
+    },
+    "story_scope": "Independently compared current story and author raw preimage: prefix before the sole final ## Suggested Review Order is exactly equal, with the marker at the same offset197018. All story changes are within SRO evidence/rationale/verified-stop coordinates. Intent kernel, status/AutoRunResult, assertions and broad-review counter remain unchanged. No SQL/source census was repeated and no legacy application was used.",
+    "review_limits": "One combined bounded follow-up review of the allocated amendment and inert data-only consumer, within the exhausted three broad rounds. Not a fourth broad pass, unchanged-corpus recertification, actual-evidence requalification, API019 repair, 95-case acceptance, development completion, release readiness or P5 advancement.",
+    "actions": {
+      "new_review_artifacts": 1,
+      "source_or_private_code_edits": 0,
+      "reviewer_tests_or_controls": 0,
+      "reader_module_or_function_invocations": 0,
+      "network_or_GETs": 0,
+      "Git_mutations": 0,
+      "resources_or_workloads": 0,
+      "raw_SQL_reads_or_census_repeats": 0
+    }
+  },
+  "Open questions": [
+    "Lifetime-first actual integration/IP stream/rendered form is still unobserved. Shape metadata can be forged; emitter identity, raw value, benignity/false positive, request linkage, native first throw and actual cause remain UNKNOWN.",
+    "Main database key deletion remains UNVERIFIED and backend settlement UNKNOWN. Inert historical source/catalog bindings cannot authorize a future observation of the amended source."
+  ],
+  "Deferred work": [
+    "Root may use this exact pinned review for its separately authorized checkpoint preparation. Commit/publication/CI and whole-epic delivery gates remain with Root/Coordinator; no merge or deployment is authorized by this verdict.",
+    "Any future runtime proposal must separately bind exact amended source, tests, privacy publication/consumer, ownership and a fresh precise finite grant. The sole possible new question remains the first refusal's pipe and complete-line rendered form. All prior operation/artifact slots remain CLOSED; no unchanged NORMAL replay or automatic retry."
+  ],
+  "Blockers": [
+    "No blocking defect found in the reviewed bounded delta. The story's required gate remains failed: closed run39998246278 has93 passed, API019 failed and API020 unexecuted; the new observations and inert parser recognition do not repair or accept that result.",
+    "P5 remains OPEN, broad-review counter3 and15.6 UNSTARTED. No new runtime, remote, actual-reader or acceptance authority is created."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "accepted-original-function-catalog-probe-allocation-v1",
+  "status": "CONDITIONAL_HIGH_FINAL_REVIEW_PASS_BEFORE_LAUNCH",
+  "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "actual_completed_turn": "01a15e43-4eef-7783-8295-f90974c70bd7",
+  "actual_grant_tool": "exec-a424a4b5-2d6e-4249-aeee-c77dc45cff2f",
+  "actual_final_message": "msg_0954b60b44796db1016ad8a4fb5b3c8191b63e6230b4e5054e",
+  "input_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-original-function-catalog-probe-01-input-admission.json",
+    "bytes": 1296,
+    "sha256": "f1e83063a307288a45fa893a747f7e147bc84192f6a95aee417d314185b33cec"
+  },
+  "exact_tuple": {
+    "proposal": [
+      9096,
+      "90a30b0d579ad544a7028e6e0315d0ca7503a81fdffd83331dc486ed537ae514"
+    ],
+    "probe": [
+      9241,
+      "8a6eca71e0b89c1decca00760c166b9c3931dcdb29d4d2efc2367f599aad962f"
+    ],
+    "cleanup": [
+      1070,
+      "a4520521c0a93807ad8b9724d323659600406b364678b1872129c1adc0f371d1"
+    ],
+    "transport": [
+      10251,
+      "00a321e3196f80feea34efbac54f7908d8bf9e5cc5adc40cc456ca87573b8867"
+    ]
+  },
+  "effects": "One fresh guard usage of exact unchanged owned retained b03 configuration/project/container/image/ports/prefix. One fixed UUID rollback-only new-role/schema/never-invoked-function fixture and one fresh read-only absence/prefix check after settled main native exit+EOF. Stop only own usage. No retries or speculative cleanup.",
+  "uuid": "b452b2c4-9e9e-4004-b644-4cc07a7be90c",
+  "preserve": "Existing roles, memberships, Auth/public/table/default ACLs, business/token data, source and migrations. No replay/reset/commit/CI/provider/main/deploy/foreign effects; monitoring remains paused.",
+  "ownership": "Actual E16 prior no local resource/port claim and completed Documents claims; no known overlap. Guard must validate actual resource and ports; this is not hostwide absence proof.",
+  "drift_or_uncertainty": "Stop and qualify; retain custody, no retry or invented cleanup.",
+  "normal_acceptance_credit": 0,
+  "source_fix_authority": false
+}

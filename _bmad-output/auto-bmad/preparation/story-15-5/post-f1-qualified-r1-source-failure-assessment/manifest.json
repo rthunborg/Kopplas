@@ -1,0 +1,18 @@
+{
+  "schema": "POST_F1_R1_SOURCE_ASSESSMENT_MANIFEST_v1",
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/report.md",
+      "bytes": 7367,
+      "sha256": "dd90121796cf99f361eb79f67e29277851f05b81dd6e5cee7347a8dcd736fc7d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-qualified-r1-source-failure-assessment/attestation.json",
+      "bytes": 13546,
+      "sha256": "8111bd6a24fb287149bfb661f7ce1b44d796f403b273c9f4865798e2d008c5ba"
+    }
+  ],
+  "self_excluded": true,
+  "total_files_including_self": 3,
+  "normal_acceptance": 0
+}

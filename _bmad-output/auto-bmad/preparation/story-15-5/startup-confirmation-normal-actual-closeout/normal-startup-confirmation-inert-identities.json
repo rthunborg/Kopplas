@@ -1,0 +1,15 @@
+{
+  "schema": "fresh-inert-identity-only-v1",
+  "checkpoint": "06c4e602-246c-465d-b858-802be78c9ba1",
+  "operation": "d891e444-e6d5-401f-bd00-0a4b85b701e9",
+  "head": "edf966cc9294448d0b057514d85e361c4f11ddd7",
+  "source": "48a7c32faa1be7ae2b6d81095282521cebfaa621",
+  "namespace": "normal-startup-confirmation",
+  "mode": "NORMAL",
+  "cause_proof": false,
+  "release_validation": false,
+  "original": false,
+  "effects_authorized": false,
+  "maximum_new_NORMAL_observations": 1,
+  "second_consecutive_startup7_failure": "STOP; no third same NORMAL approach"
+}

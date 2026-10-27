@@ -1,0 +1,531 @@
+{
+  "dimension": "determinism",
+  "score": 0,
+  "grade": "F",
+  "violations": [
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 67,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 82,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 96,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 109,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 122,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 136,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 149,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 161,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 173,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 195,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 213,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 225,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 237,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 256,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 272,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 283,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 294,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 307,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 326,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 339,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 353,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 370,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 386,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 396,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 408,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 418,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 432,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 452,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 477,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 497,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 510,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 521,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 532,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 550,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 566,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 583,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 180,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 200,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 212,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 226,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 242,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 256,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 268,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 282,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 295,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 312,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 328,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 345,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 357,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "H1",
+      "severity": "HIGH",
+      "dimension": "determinism",
+      "file": "tests/e2e/auth/auth-mail-callback.e2e.spec.ts",
+      "line": 74,
+      "description": "Mailpit receipt loop sleeps a fixed250ms between requests. RegistryH1 covers bare timer ordering even though the loop is bounded and eventually throws.",
+      "fix": "Use a bounded condition/event-based polling helper in the CI/test-maintenance lane; preserve real-mail assertions and timeout behavior."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/commands/booking-series.int.test.ts",
+      "line": 39,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    },
+    {
+      "row": "C1",
+      "severity": "CRITICAL",
+      "dimension": "determinism",
+      "file": "tests/integration/rls/booking-series.rls.test.ts",
+      "line": 166,
+      "description": "Retired skipped scaffold has its unbound-adapter/RED reason at distant suite header, not on skip line or immediately above as registryC1 requires. This case receives0coverage; activeREALreplacement execution is recorded separately.",
+      "fix": "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+    }
+  ],
+  "recommendations": [
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "Use a bounded condition/event-based polling helper in the CI/test-maintenance lane; preserve real-mail assertions and timeout behavior.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit.",
+    "In an owned test-hygiene follow-up, place the still-true retired/unbound reason adjacent to each skip or relocate historical scaffolds without manufacturing runtime credit."
+  ],
+  "scope_limit": "Complete126file static pins/declaration collector reused; qualified original independent reviews/runtime retained for unchanged files. No new per-lens/full-corpus review, new tests/browser/acquisition or other source context. Absolute mechanically verified findings below are actual; no all-files bonus or fresh blanket code-review PASS.",
+  "execution": "sequential dimension step in combined delegate; existing independent body review reused, no new broad fanout"
+}

@@ -29,11 +29,12 @@ export function validateSchedulingFacts(input: SchedulingFacts): void {
   const seen = new Map<string, string>();
   for (const booking of [input.candidate, ...input.existingBookings]) {
     if (!booking?.id || !["planned", "cancelled"].includes(booking.status) || typeof booking.allDay !== "boolean") throw new Error("Invalid scheduling booking");
+    if (booking.jobId != null && (typeof booking.jobId !== "string" || !booking.jobId)) throw new Error("Invalid scheduling job identity");
     bookingRange(booking); validateIds(booking.assigneeIds);
     if (booking.assigneeIds.some((id: string) => !people.has(id))) throw new Error("Missing scheduling person");
     // The candidate deliberately replaces its prior state; all other IDs must agree.
     if (booking.id !== input.candidate.id) {
-      const canonical = JSON.stringify([parseUtcInstant(booking.startsAt).toString(), parseUtcInstant(booking.endsAt).toString(), booking.allDay, booking.status, [...new Set(booking.assigneeIds)].sort()]);
+      const canonical = JSON.stringify([booking.jobId ?? null, parseUtcInstant(booking.startsAt).toString(), parseUtcInstant(booking.endsAt).toString(), booking.allDay, booking.status, [...new Set(booking.assigneeIds)].sort()]);
       if (seen.has(booking.id) && seen.get(booking.id) !== canonical) throw new Error("Contradictory scheduling booking");
       seen.set(booking.id, canonical);
     }
@@ -44,6 +45,24 @@ export function validateSchedulingFacts(input: SchedulingFacts): void {
     validateLocalDate(day.date); calendar.add(day.date);
   }
   for (const overtime of rules.authorizedOvertime) { if (!people.has(overtime.personId)) throw new Error("Missing overtime person"); bookingRange(overtime); }
+  if (input.jobInputSets !== undefined) {
+    if (!Array.isArray(input.jobInputSets)) throw new Error("Invalid job fact sets");
+    const jobs = new Set<string>();
+    for (const job of input.jobInputSets) {
+      if (!job || typeof job.jobId !== "string" || !job.jobId || jobs.has(job.jobId)) throw new Error("Invalid job fact identity");
+      jobs.add(job.jobId);
+      for (const [value, minimum] of [[job.estimatedDurationMinutes,1],[job.crewSize,1],[job.plannedTravelMinutes,0]] as const)
+        if(value != null && (!Number.isInteger(value) || value < minimum || value > 2147483647)) throw new Error("Invalid job scheduling number");
+      for (const date of [job.plannedStartDate,job.plannedEndDate,job.earliestDate,job.desiredDate,job.latestDate])
+        if(date != null) validateLocalDate(date);
+      if(job.customerPresenceRequired != null && typeof job.customerPresenceRequired !== "boolean") throw new Error("Invalid customer presence fact");
+      if (job.requiredWorkRoleIds !== null) validateIds(job.requiredWorkRoleIds);
+      if (job.accessWindows !== null) {
+        if (!Array.isArray(job.accessWindows)) throw new Error("Invalid access windows");
+        for (const window of job.accessWindows) bookingRange(window);
+      }
+    }
+  }
   if (input.jobInputs !== null) {
     if (!input.jobInputs || typeof input.jobInputs !== "object") throw new Error("Invalid optional job facts");
     if (input.jobInputs.accessWindows !== undefined) {
@@ -63,7 +82,7 @@ function localRange(date: string, start: string, end: string): InstantRange | nu
   return range.start < range.end ? range : null;
 }
 export type DailyCapacity = {
-  readonly terms: CapacityTerms; readonly workWindows: readonly InstantRange[]; readonly availableMicroseconds: bigint;
+  readonly terms: CapacityTerms; readonly workWindows: readonly InstantRange[]; readonly availableMicroseconds: bigint; readonly availableHundredths: bigint;
 };
 /** Exact UTC intervals; numerical reductions never manufacture unavailable windows.
  * Overlapping layers charge in order: closure, absence, blocked, then reduction
@@ -80,7 +99,8 @@ export function dailyCapacity(input: SchedulingFacts, person: SchedulingPerson, 
 /** Prepare immutable work terms once; each candidate supplies exact peer demand.
  * The closure is invocation-local and retains hundredths until the same division.
  */
-export function prepareDailyCapacity(input: SchedulingFacts, person: SchedulingPerson, date: string): (demand: bigint) => DailyCapacity {
+export type DailyCapacityInput = Pick<SchedulingFacts, "calendarDays"> & { readonly rules: Pick<SchedulingFacts["rules"], "authorizedOvertime" | "planningBufferMinutes"> };
+export function prepareDailyCapacity(input: DailyCapacityInput, person: Pick<SchedulingPerson, "id" | "shifts" | "exceptions">, date: string): (demand: bigint) => DailyCapacity {
   const day = localDayRange(date);
   const ordinary = unionRanges(person.shifts.filter((shift) => shift.weekday === weekdayForDate(date)).flatMap((shift) => {
     const range = localRange(date, shift.start, shift.end); if (!range) return [];
@@ -106,7 +126,7 @@ export function prepareDailyCapacity(input: SchedulingFacts, person: SchedulingP
     const availableHundredths = (duration(work) - demand - buffer) * BigInt(100) - reductionHundredths;
     // Demand is whole microseconds: comparison to the floored positive budget is
     // exact. Negative budgets always warn for any positive candidate duration.
-    return { workWindows: work, availableMicroseconds: availableHundredths / BigInt(100), terms: {
+    return { workWindows: work, availableHundredths, availableMicroseconds: availableHundredths / BigInt(100), terms: {
       scheduledMinutes: minutes(duration(scheduled)), holidayClosedMinutes: Number(closedMicros * BigInt(100) + reductionHundredths) / 6000000000,
       absenceMinutes: minutes(absenceMicros), existingBookingMinutes: minutes(demand), blockedMinutes: minutes(blockedMicros),
       bufferMinutes: minutes(buffer), availableMinutes: Number(availableHundredths) / 6000000000,

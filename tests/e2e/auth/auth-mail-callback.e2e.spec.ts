@@ -32,8 +32,12 @@ function callbackUrl(testInfo: TestInfo): string {
   const baseURL = testInfo.project.use.baseURL;
   if (typeof baseURL !== "string") throw new Error("Auth callback proof requires Playwright's configured base URL.");
   const base = new URL(baseURL);
-  if (base.protocol !== "http:" || base.hostname !== "127.0.0.1" || !["3000", "3100"].includes(base.port)) {
-    throw new Error("Auth callback proof requires a configured loopback 3000 or 3100 test host.");
+  const rawPort = process.env.E2E_PORT ?? "3100", configuredPort = Number(rawPort);
+  if (!/^\d+$/.test(rawPort) || !Number.isInteger(configuredPort) || configuredPort < 1 || configuredPort > 65535) {
+    throw new Error("Auth callback proof requires a valid configured test port.");
+  }
+  if (base.protocol !== "http:" || base.hostname !== "127.0.0.1" || !["3000", "3100", String(configuredPort)].includes(base.port)) {
+    throw new Error("Auth callback proof requires a configured loopback test host.");
   }
   return new URL("/auth/invite/confirm", base).toString();
 }

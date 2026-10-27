@@ -259,7 +259,6 @@ _(The one other genuinely-new iter-2 finding — the Story 5.3 update-path `row_
 
 - **[Low] The iter-1 fix commit's two behavior changes (QV409-orphan RAISE; `JobEvidenceLink` both-present dual-render) have no test asserting the NEW behavior.** No INT test manufactures an orphaned acceptance (an acceptance with no job) to prove the `if v_job_id is null then raise … QV409` branch fires with the expected code/mapping; and `grep` finds no test importing `JobEvidenceLink`, so the both/file-only/reference-only/neither branches of the dual-render fix are unverified. Coverage gap on the fix commit's own deltas, not a code defect (the orphan branch is unreachable on the live path; the dual-render is defensive display). Owner: a test-hardening pass — add an orphan-acceptance INT fixture asserting the RAISE/mapping, and a `JobEvidenceLink` component test across the four evidence-presence branches. [supabase/migrations/20260710120000_accept_quote_and_create_job.sql; src/components/jobs/JobEvidenceLink.tsx]
 - **[Low] 7.1↔7.3 evidence-FILE owner_type mismatch renders the generic "Bifogad fil" label instead of the real filename.** The acceptance evidence file is linked `owner_type='quote_acceptance'` (7.1 capture + the 7.2 RPC, `20260710120000…:283-285`), but `readJobDetail` resolves the evidence file's display name only from `detail.files`, filtered to `owner_type === "job"` (`src/features/jobs/read.ts:283`) — so `evidenceFileName` is ALWAYS null for a file evidence and the job detail shows "Bevis (fil): Bifogad fil". Display-label degradation only (the signed-preview posts `evidenceFileId` directly and still works); untested because 7.3's fixture seeds an external reference, not a file. Owner: a later job-detail pass — resolve the evidence file name from the acceptance's own evidence source (a cross-owner-type read on `evidenceFileId`) rather than the job-only `files` list. [src/features/jobs/read.ts:283; src/components/jobs/JobDetailView.tsx]
-- **[Low] `jobs.facility_id`/`contact_id` are populated by the 7.2 accept RPC but never read back by the detail projection.** `JOB_COLUMNS` (`src/features/jobs/read.ts:192-193`) selects `customer_id` + a live `customers(display_name)` join (so a renamed customer live-tracks) but omits `facility_id`/`contact_id`, so the live facility/contact columns the transaction deliberately wrote are write-only from the read layer's view; a facility/contact renamed/reassigned after job creation has no live-tracking display (unlike customer). AC1's "customer/facility/contact" is still satisfied via the FROZEN `quote_versions` snapshot names. Read-side asymmetry, Phase-A-acceptable (facilities/contacts are stable demo data); not covered by the iter-1 ledger (which tracks the write-side carry, not this read-side omission). Owner: a later job-detail pass — extend `JOB_COLUMNS` with `facilities(display_name)`/`contacts(display_name)` joins if live facility/contact tracking is wanted alongside the frozen snapshot. [src/features/jobs/read.ts:192-193]
 - **[Low] `readJobDetail`'s sibling "acceptance row unresolvable" case still fabricates `0 kr` — the iter-1 null-id guard closed only half the "fabricated 0 kr" class.** The fix throws on a null/undefined `quote_acceptance_id`/`quote_version_id` (`src/features/jobs/read.ts:242-244`), but if the id is a valid non-null string that resolves to ZERO rows (acceptance archived/RLS-invisible while the job stays visible), `acceptance` becomes `{}` and `acceptedPriceOre: oreNumber(acceptance.accepted_price_ore) ?? 0` (`:321-322`) fabricates the same "Accepterat pris: 0 kr" the finding set out to eliminate (an existing INT test even green-asserts this `?? 0` boundary). Near-unreachable (the same-tenant composite FK makes an acceptance invisible under a visible job an RLS edge, not a live state); the asymmetry (null id ⇒ loud throw; live id → zero rows ⇒ silent 0 kr) is a documented-nowhere scope boundary rather than a live defect. Owner: fold into the same R-708 "never mask money" pass — throw (or surface a partial/error detail) when a non-null source ref resolves to zero rows, matching the null-id treatment. [src/features/jobs/read.ts:242-244,321-322]
 
 ## Deferred from: code review of 8-2-validated-upload-and-entity-file-panels (2026-07-07)
@@ -419,3 +418,114 @@ existing AC, recorded so it is not re-triaged a third time.
   evidence: Sandbox delivery uses a synthetic body; a real provider template must issue and include the public token URL while preserving its narrow capability and privacy boundary.
   location: src/server/email/templates.ts
   severity: medium
+
+## Deferred from: build-auto review of 15-1-the-five-scheduling-views (2026-10-19)
+
+- source_spec: `spec-15-1-the-five-scheduling-views-2.md`
+  summary: Optional privileged diagnostic broker can miss a final pipe write before reaping/empty fence
+  evidence: Scope: Separately opted-in inactive diagnostic lane; not standard CI/product acceptance Owner: CI/diagnostic maintainer Evidence: tests/diagnostics/fixed-chromium-owned-process.c:273 drain occurs before waitid; actual source is branch-added, optional caller only Next action: Before future opt-in diagnostic use, independently qualify and fix bounded post-exit drain with an interleaving regression; no current execution or acceptance claim.
+  severity: medium
+- source_spec: `spec-15-1-the-five-scheduling-views-2.md`
+  summary: Upstream PR-feedback mutable-workspace gate attestation candidate
+  evidence: Scope: Byte-unchanged versus actual origin/main; commit ba2dcdcff1e0ef3c5c63da7f721b8507f0dde358; outside current scheduling repair Owner: PR-feedback controller maintainer Evidence: .github/workflows/pr-feedback.yml:218; external report; unchanged upstream-source comparison Next action: Focused upstream process-security qualification of test-time workspace mutation and immutable gate provenance before changing that controller; no scheduling source repair.
+  severity: medium
+
+## Deferred from: build-auto review of 16-1-jobs-depth-activation-container-evolution-and-my-jobs (2026-10-19)
+
+- source_spec: `spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md`
+  summary: Exhaustive role/device/browser matrices beyond the four essential Jobs journeys.
+  evidence: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy. Exact d605295a46634e2c20013638e01c5e2a37ad0779 required Chromium smoke passed 11/11, including all four Jobs journeys on first attempts. Broader matrices and optional release_validation=false skips confer no coverage. Next action: at release stabilization, run release_validation=true and the tracked role/device/browser matrix on the qualified final epic candidate; retain results before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json
+- source_spec: `spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md`
+  summary: Screenshot comparison, visual inspection, representative manual walkthrough and polish.
+  evidence: Owner: E16 UI/release-validation owner. Status: deferred under the 2026-10-19 completion policy. No screenshot-comparison, visual or manual pass is claimed; essential connected 360x640 failure/retry/persistence has actual same-head browser evidence. Next action: before release readiness, retain screenshot comparisons and representative viewport/manual design/accessibility walkthroughs, and resolve consequential defects.
+  location: _bmad-output/auto-bmad/delivery/16-1-jobs-depth-activation-container-evolution-and-my-jobs.json
+
+## Deferred from: build-auto review of 16-2-job-members-and-per-job-roles-arbetsledare (2026-10-19)
+
+- source_spec: `spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md`
+  summary: Release-validation only: Exhaustive browser, role and viewport matrices beyond the essential E01-E05 and existing smoke journeys
+  evidence: Classification: release validation only; not a functional acceptance gap or review finding. Status: deferred Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration Evidence: CI 39317194836 executed the 16 essential browser tests, including all five E01-E05 first attempt/retry 0. It did not execute the exhaustive release matrix; optional dashboard/release validation was skipped with release_validation=false and is not coverage. Next action: Before release readiness, the coordinator enumerates and executes the remaining role/viewport/job-kind combinations on a qualified protected runtime, records results and resolves consequential failures in the root-owned release ledger. This mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+  location: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[0]
+- source_spec: `spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md`
+  summary: Release-validation only: Screenshot comparisons and visual inspection of the job-members, designation and dates surfaces
+  evidence: Classification: release validation only; not a functional acceptance gap or review finding. Status: deferred Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration Evidence: No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and essential functional browser passes are development evidence, not visual-release evidence. Next action: Before release readiness, capture and inspect the approved responsive states for both job kinds, record comparison evidence and disposition in the release ledger, and obtain any separately required runtime/deployment authorization. This mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+  location: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[1]
+- source_spec: `spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md`
+  summary: Release-validation only: Manual walkthroughs and presentation/usability polish beyond the verified essential connected flow
+  evidence: Classification: release validation only; not a functional acceptance gap or review finding. Status: deferred Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration Evidence: Manual release walkthroughs and polish were not executed in this author run. The actual automated persistence/retry/authorization journeys passed; no functional, security, transaction or storage obligation is deferred here. Next action: Before release readiness, perform the recorded manual keyboard/phone/desktop walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger. This mirrors the unchanged delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+  location: _bmad-output/auto-bmad/delivery/16-2-job-members-and-per-job-roles-arbetsledare.json#deferred_release_validation[2]
+
+## Deferred from: build-auto review of 16-3-arbetsorder (2026-10-20)
+
+- source_spec: `spec-16-3-arbetsorder-2.md`
+  summary: Release-validation only: Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke
+  evidence: Classification: release validation only; not a functional/security acceptance gap. Scope: Exhaustive browser, role, viewport and job-kind matrices beyond the essential work-order E01-E05 and existing smoke Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration Status: deferred Evidence: CI39410923156 passed21essential journeys first attempt; exhaustive release matrices were not executed. Optional dashboard skipped with release_validation=false is not coverage. Next action: Before release readiness, enumerate and execute the remaining qualified role/viewport/job-kind matrix, record evidence and resolve consequential failures in the root-owned release ledger. Mirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+  location: _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[0]
+- source_spec: `spec-16-3-arbetsorder-2.md`
+  summary: Release-validation only: Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states
+  evidence: Classification: release validation only; not a functional/security acceptance gap. Scope: Screenshot comparisons and visual inspection of work-order cards, pane, dependencies and shared Files states Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration Status: deferred Evidence: No exhaustive screenshot-comparison or visual-inspection evidence is claimed. Production build and functional browser passes are development evidence. Next action: Before release readiness, capture and inspect approved responsive states for both job kinds and record comparison evidence/disposition under separately qualified runtime and deployment authorization. Mirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+  location: _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[1]
+- source_spec: `spec-16-3-arbetsorder-2.md`
+  summary: Release-validation only: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow
+  evidence: Classification: release validation only; not a functional/security acceptance gap. Scope: Manual keyboard/phone/desktop walkthroughs and presentation/usability polish beyond the essential connected flow Owner: Kopplas release-validation coordinator; root owns deferred-ledger integration Status: deferred Evidence: Manual release walkthroughs and polish were not executed in this author run; no functional, authorization, tenant-isolation, transaction or Storage requirement is deferred. Next action: Before release readiness, perform the manual responsive/keyboard walkthrough and polish review, attach evidence and resolve or explicitly disposition release issues in the root-owned ledger. Mirrors the delivery record for supported root-owned Phase 7 harvest; required development checks are not deferred.
+  location: _bmad-output/auto-bmad/delivery/16-3-arbetsorder.json#deferred_release_validation[2]
+
+## Deferred from: build-auto review of 16-4-projekt-upgrade-and-job-card-semantics (2026-10-20)
+
+- source_spec: `spec-16-4-projekt-upgrade-and-job-card-semantics-2.md`
+  summary: Release-only exhaustive browser matrix beyond the seven essential Story16.4 journeys: additional role, viewport and interaction combinations for upgrade/full-card/booking consumers.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Required exact-head essential smoke passed all seven new and 21 existing journeys; exhaustive release_validation dispatch was false and this breadth was not executed. No functional/security acceptance is deferred. Next action: At the Epic16 release checkpoint, run the owned optional release-validation browser matrix and record its exact-head results.
+  location: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/0
+  severity: low
+- source_spec: `spec-16-4-projekt-upgrade-and-job-card-semantics-2.md`
+  summary: Release-only screenshot comparison and visual review of full-card, upgrade confirmation and booking consumer presentation across release viewports.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Functional production browser smoke passed; exhaustive screenshots/visual comparison were not executed. Existing design-system presentation is retained. Next action: Capture the release-state screenshots, compare the approved design-system layouts and record visual findings and fixes in release validation.
+  location: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/1
+  severity: low
+- source_spec: `spec-16-4-projekt-upgrade-and-job-card-semantics-2.md`
+  summary: Release-only manual walkthrough and presentation polish for the completed card/upgrade/booking flows.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Automated required persistence, authority, retry and conservation journeys passed; manual release walkthrough/polish was not executed. Consequential functional/security defects remain development requirements. Next action: Perform the Epic16 release walkthrough, resolve recorded presentation-polish findings, and attach the manual evidence before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-4-projekt-upgrade-and-job-card-semantics.json#/deferred_release_validation/2
+  severity: low
+
+## Deferred from: build-auto review of 16-5-job-workspace-shell (2026-10-20)
+
+- source_spec: `spec-16-5-job-workspace-shell.md`
+  summary: Release-only exhaustive role,viewport and browser matrix beyond the five essential workspace journeys and retained smoke, including remaining traceability/navigation permutations.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). All five workspace journeys passed first attempt; complete required smoke passed33 cases with two honestly qualified retained retries. Optional release_validation=false; exhaustive breadth was not executed. No functional/security failure is deferred. Next action: Run the owned optional Epic16 release-validation matrix on the qualified release head and attach exact results.
+  location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/0
+  severity: low
+- source_spec: `spec-16-5-job-workspace-shell.md`
+  summary: Release-only screenshot comparison and visual review of workspace header,tabs,panels and dialogs across release viewports.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Essential production interaction and persistence checks executed; exhaustive screenshots and visual comparison were not executed. Next action: Capture release-state screenshots,compare the existing design-system layouts and record visual findings before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/1
+  severity: low
+- source_spec: `spec-16-5-job-workspace-shell.md`
+  summary: Release-only manual connected-field walkthrough and presentation polish of workspace,child/file navigation and explicit retry flows.
+  evidence: Status: deferred. Owner: Epic16 release validation owner (root). Automated essential retention,refusal,retry and persistence acceptance executed; manual release walkthrough/polish was not executed. Consequential behavior remains a development requirement. Next action: Perform the Epic16 release walkthrough,resolve presentation-polish findings and attach manual evidence before release readiness.
+  location: _bmad-output/auto-bmad/delivery/16-5-job-workspace-shell.json#/deferred_release_validation/2
+  severity: low
+
+## Deferred from: Story15.6 Min dag implementation (2026-10-25)
+
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Full Min dag role/device/browser matrix beyond nine essential journeys
+  evidence: Status: deferred. Owner: QA / release-validation coordinator. Exhaustive release matrix remains unexecuted. Required current native core9new+14retained browser cases passed clean retry0 at b57de610/run40192543175; global smoke also records two outside-core protocol flakes:15.4-E2E-002 and16.1-E03 retry0failed/retry1passed. These are separately retained verification-reliability observations, not presentation polish or inferred application-write failures. See _bmad-output/auto-bmad/preparation/story-15-6/successor-normal-closeout/browser-projection.json and independent-native-qualification.json. Next action: QA/release-validation coordinator executes the qualified release-head role/device/browser matrix. QA/CI verification maintainer separately investigates the two response-body protocol flakes using per-attempt native evidence, records disposition without hiding retries, and routes any demonstrated consequential functional defect back to development remediation; this is not an acceptance waiver.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/0
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Canonical design screenshot comparison, measured contrast and presentation polish
+  evidence: Status: deferred. Owner: UX / QA. No screenshot, visual comparison or measured rendered contrast performed. Existing neutral primitives used per bounded owner default; shared font/token migration is outside this story allocation. Next action: Compare the rendered Min dag states against approved DESIGN/EXPERIENCE at release viewports; assess shared-token migration in its owned design lane and resolve findings.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/1
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Manual accessibility, keyboard, daylight and exploratory walkthrough
+  evidence: Status: deferred. Owner: QA / UX. Not executed; semantic controls and focus styles are source choices, not manual evidence. Next action: Run and attach the manual connected-field release walkthrough, including long Swedish text and zoom/reflow.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/2
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: E14 advisory triage and approved performance volumes/targets
+  evidence: Status: deferred. Owner: QA / Product / Architect. October8 accepted-with-open-items governs 48 advisory triage and unapproved performance targets; this run made no performance claim. Next action: Reconcile advisory resolution evidence and approve representative performance volumes/targets before qualification claims.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/3
+- source_spec: `spec-15-6-min-dag-the-field-landing.md`
+  summary: Final Phase B release validation and stabilization checkpoint
+  evidence: Status: deferred. Owner: Coordinator / release-validation coordinator. October22 final milestone remains pending, unexecuted; development completion alone cannot satisfy it. Next action: After current PhaseB epics are integrated/development-complete, open assigned checkpoint and execute applicable release checks before explicit release approval.
+  location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/4

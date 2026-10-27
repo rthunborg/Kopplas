@@ -1,0 +1,1399 @@
+{
+  "schema": "ROOT_INT014_NORMAL_TERMINAL_FRESH_SOURCE_PROOF_V1",
+  "checked_at_utc": "2026-10-23T14:12:48.265560+00:00",
+  "head": "2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+  "source": "a9489663addf99aa7da62c9c7ec4089a77f523d7",
+  "branch": "codex/epic-15-scheduling-time-calendar",
+  "tracked_clean": true,
+  "actual_current_Git_bindings": 204,
+  "actual_distinct_bindings": 204,
+  "source_candidate_published_tracking_Git_equal": true,
+  "actual_nonSQL_raw_LF_verified": 86,
+  "current_reader_raw_LF_Git_rows": 75,
+  "migrations_Git_verified": 118,
+  "SQL_provenance": "118 actual current HEAD/source Git bindings equal retained immutable catalog. Historical MAIN raw/LF vectors reused; no fresh raw SQL scan or current-raw-vector claim.",
+  "SQL_RAW_vector_sha256": "a6381d9d17d296fb5b20587ccf06c65f4c4d58fe45bf0e6711b4d61a584ef82e",
+  "SQL_LF_vector_sha256": "44affd4128ee22262017d27d461784a63ded12075c5196b5c7a1316cb356476b",
+  "current_nonSQL_rows": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "lf_bytes": 75930,
+      "lf_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 258842,
+      "raw_sha256": "59da7f5ba3731d56fe50a52409717ee527a920a728cc942ed66f4e30a6d25a16",
+      "lf_bytes": 255757,
+      "lf_sha256": "318c8ecd123d052eb29ab388538a313cc55f3048d7f63eadeeab105f07eccb8a",
+      "blob": "d5aca299a5cb0d15e45bb13601720acbe19f5f8b"
+    },
+    {
+      "path": "docs/security/calendar-feed-operations.md",
+      "raw_bytes": 4251,
+      "raw_sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+      "lf_bytes": 4251,
+      "lf_sha256": "a27bd951f01ac1536d7ce34c545e0f51c5e4fce8114eaf2bb7c63f06aa58b494",
+      "blob": "2e337daea57f82ff146bf8a458161bde4c6ac2a5"
+    },
+    {
+      "path": "middleware.ts",
+      "raw_bytes": 4842,
+      "raw_sha256": "228c1aee2ea3952788fe231f73e852ea020ca81fa812d5248e52f5564155fcad",
+      "lf_bytes": 4752,
+      "lf_sha256": "fa43d6c746d11d1ab8d854cef9128bb69023f8a8865e3e3b250dd2ebee383fe5",
+      "blob": "aaed428ce41103ad1994187151bbcd6a69d1dadd"
+    },
+    {
+      "path": "ops/recovery/bootstrap-roles.sql",
+      "raw_bytes": 4085,
+      "raw_sha256": "c578eb8fc33273221491badd93fc00a44d7c0c32d72e9d902a5076fee550c83e",
+      "lf_bytes": 3992,
+      "lf_sha256": "6a80547c1fbbd7dd2d7e4bf4a0f73671f7d83e5fcd5e84dac9ba555403c52529",
+      "blob": "6f1bb539432b1c5319b1979050c23b247aa46ffb"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2509,
+      "raw_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "lf_bytes": 2509,
+      "lf_sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "blob": "332298f72cb07db501688b1e279f4bdc2a0bb5bd"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "lf_bytes": 162159,
+      "lf_sha256": "69603a5df6fb1b00dcf78c0650c5cf40b042dac1b647b3da872617ab28088f56",
+      "blob": "80085b02c92bf6b2bdeac28e6622dfb50a1ce70a"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "lf_bytes": 19492,
+      "lf_sha256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+      "blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 48616,
+      "raw_sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "lf_bytes": 47931,
+      "lf_sha256": "c1a71aca72edf79553f75b14401dca81a1feec97edf3ddfb05cdaa8fade69bc9",
+      "blob": "42fbb2f8a928493ea8d2a6bb8e374db82cf0128d"
+    },
+    {
+      "path": "scripts/verify/check-service-role-containment.mjs",
+      "raw_bytes": 15806,
+      "raw_sha256": "6eaec1f8ee90dd5375625b3c0d54c545c12074f0c1b6d5499a0bd5fc940ebde5",
+      "lf_bytes": 15487,
+      "lf_sha256": "cae0878c509fecfb9d2bab4ccf60eb6fa8edd7f5cf5bf96da430409cfed39273",
+      "blob": "e7fbfbaad84b9c5540ef5b5f7806b5adec07ff3c"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/layout.tsx",
+      "raw_bytes": 352,
+      "raw_sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+      "lf_bytes": 352,
+      "lf_sha256": "059061edd5b6c8cb1a5b618d468cd2d1eb417c01dd3aeb48a61912d7d7549f98",
+      "blob": "e54bbc369a4d616a2aa5e78509ebbb2074b273f0"
+    },
+    {
+      "path": "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx",
+      "raw_bytes": 513,
+      "raw_sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+      "lf_bytes": 513,
+      "lf_sha256": "a450be320b7d29c6d2c71b7b06371b8c60922cef4cf8a18b5ecc17681bea1a0f",
+      "blob": "bb74cf0a651200ff62329945871d6ec80378e9ad"
+    },
+    {
+      "path": "src/app/(public)/calendar/feed/[token]/route.ts",
+      "raw_bytes": 319,
+      "raw_sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+      "lf_bytes": 319,
+      "lf_sha256": "2b748231df19c3ba795ce65956a66c9e86187bbd34b5d194ea64e931abc52679",
+      "blob": "6a499bf035df7e1720e4a6fc82e65dd80d4b7f09"
+    },
+    {
+      "path": "src/app/(public)/layout.tsx",
+      "raw_bytes": 112,
+      "raw_sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+      "lf_bytes": 112,
+      "lf_sha256": "ecfb73888ee4f6206c3ab3d254c399938b501cd852511b0e077e23cf427ec822",
+      "blob": "fe46e33866a3181a720082ae699faa0eb68665a6"
+    },
+    {
+      "path": "src/components/app-shell/AppShell.tsx",
+      "raw_bytes": 17127,
+      "raw_sha256": "ccc09d93ee141abaeeaab6904c0539f6918d5b9c1b83b239c3950a3ac5d9d0e3",
+      "lf_bytes": 16757,
+      "lf_sha256": "f71f45a2f76c7a740e5274f591ce57e65f89aba7fc16c079e0a88113e8dac27a",
+      "blob": "be0694d06bba6a8cc4df8026d1481f1790ceacf8"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarFeedAbuseQueue.tsx",
+      "raw_bytes": 810,
+      "raw_sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+      "lf_bytes": 810,
+      "lf_sha256": "3c0425ff4eb51b4955f8d486ece313e408d636dc0591271a2a99f56e1ae12340",
+      "blob": "148ab87e9a4b08facb2ce131d306d4ad4d9670fe"
+    },
+    {
+      "path": "src/components/calendar-feed/CalendarSubscription.tsx",
+      "raw_bytes": 8674,
+      "raw_sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504",
+      "lf_bytes": 8674,
+      "lf_sha256": "85b3ea9feaa511ecec89f8ea79dce3f0e31e8f51f3797291c704441984fb5504",
+      "blob": "a3a06ed8c0d92ec04030318bc339552d5fe99878"
+    },
+    {
+      "path": "src/components/scheduling/PersonalCalendarView.tsx",
+      "raw_bytes": 905,
+      "raw_sha256": "f70bf49b2d6fac7a9c194d1f2c5bb09d76abd997956095771d6a705029e14202",
+      "lf_bytes": 904,
+      "lf_sha256": "d426154fb3888241ed6b36e98c3b25756f40f85c059dca9bf0785b88bc6eade1",
+      "blob": "529a9485cba52b6c16fc0837fea1da62e279e806"
+    },
+    {
+      "path": "src/features/calendar-feed/action-state.ts",
+      "raw_bytes": 1861,
+      "raw_sha256": "d3ec31672a8b5a2e160864c0919dbbe1070ea726770c735ce4ac9bbea2cfb439",
+      "lf_bytes": 1845,
+      "lf_sha256": "b1c2a6b92000519f9b1eaffde9b96737b7207c286adcc47df78482898d91a454",
+      "blob": "e66778a830b7b0a887e6955e4f98942aa2c8a6c8"
+    },
+    {
+      "path": "src/features/calendar-feed/actions.ts",
+      "raw_bytes": 801,
+      "raw_sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+      "lf_bytes": 801,
+      "lf_sha256": "07693f8404a5db358b2656600eae263b86e53cf27711e3a57d641a992a118fbd",
+      "blob": "210f2903ed6fbf8ab6d9d408864284c3ef9498b5"
+    },
+    {
+      "path": "src/features/calendar-feed/icalendar.ts",
+      "raw_bytes": 3469,
+      "raw_sha256": "e83ccfbe7d81db4320b987c0bf2c42e77b473b6a267092d4e3f879d0e2260bbe",
+      "lf_bytes": 3412,
+      "lf_sha256": "266b5067c4007e493590c2c44bad4d5406389b5e306354b0f2c4bacacb20fa1f",
+      "blob": "cf81dc189acca97463ba9e8cc6009e8d648f5de3"
+    },
+    {
+      "path": "src/features/calendar-feed/types.ts",
+      "raw_bytes": 959,
+      "raw_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+      "lf_bytes": 959,
+      "lf_sha256": "a4575491dc0f9c0fad557ee9ad039df9d340e03f92e337b4bed4e0212f3c822e",
+      "blob": "6cfaae1198c04db7d87a8f640c9f9d270c5f13e1"
+    },
+    {
+      "path": "src/features/calendar-feed/validation.ts",
+      "raw_bytes": 1123,
+      "raw_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+      "lf_bytes": 1123,
+      "lf_sha256": "a7fed6f5053c5dbd9a77f585222d7b1baf0a9fec22860824879928a1c8dc7d20",
+      "blob": "456d92828beaf8cde818853af2fbd70097e6b5ff"
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "raw_bytes": 18392,
+      "raw_sha256": "77d19ce956d91266268211e0ea62b8d14df9bf244f5e7408b730f8542b370561",
+      "lf_bytes": 17917,
+      "lf_sha256": "2b1c6ade7bbc209bb20da73ffe889bcc45967a39a83b1db7bf03c9aa9d0da4ff",
+      "blob": "d7db4a3602eea7ab52fec2e7baa3ac4eb236d84a"
+    },
+    {
+      "path": "src/server/calendar-feed/attestation.ts",
+      "raw_bytes": 3543,
+      "raw_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "lf_bytes": 3543,
+      "lf_sha256": "002dd9a2222457f6e9928bed24b2b5a5426571720119033a72a2ba3b8632c2a5",
+      "blob": "7fd549fbec4b52f1c1751d742616d265d95cb5b8"
+    },
+    {
+      "path": "src/server/calendar-feed/policy.ts",
+      "raw_bytes": 143,
+      "raw_sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+      "lf_bytes": 143,
+      "lf_sha256": "3362f0959ffc0209b928955586dfa0c03c851e3e8ccfe7090feab4bef23f6147",
+      "blob": "b99b0253f32d128aed98f9bef5d879b7de4eff9f"
+    },
+    {
+      "path": "src/server/calendar-feed/public-feed.ts",
+      "raw_bytes": 4421,
+      "raw_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "lf_bytes": 4421,
+      "lf_sha256": "c997e3f4e576b7f6da6a6155fa559fbdfc473db807e3a85cfd9f5e25ac2d7b8c",
+      "blob": "230f65dac3fbd97ad6d41c1d5a26cd5490382656"
+    },
+    {
+      "path": "src/server/calendar-feed/trusted-ip.ts",
+      "raw_bytes": 1196,
+      "raw_sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+      "lf_bytes": 1196,
+      "lf_sha256": "545a12e0c2492a92003d46b21a1818e9ae06759e53e32ebecf85037f698a543e",
+      "blob": "48041b7409ee6a82d43f27ff0e1e338a55923fef"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "lf_bytes": 4729,
+      "lf_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "blob": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "lf_bytes": 4856,
+      "lf_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "blob": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "raw_bytes": 18651,
+      "raw_sha256": "718028b4d77799f99381f29e0e442e8148660e8b9357d758aea8caf5e8e4dd0a",
+      "lf_bytes": 18292,
+      "lf_sha256": "e99b6c5d55a0465d30a26ec8e904e9c3642b11a773f2ce8f480673162e29b3e5",
+      "blob": "61cd95ccf52a65e78c914ce0665b96c02662eaa3"
+    },
+    {
+      "path": "src/server/db/supabase-public-client.ts",
+      "raw_bytes": 505,
+      "raw_sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+      "lf_bytes": 505,
+      "lf_sha256": "af93dc1a36ce3e98394cbf01751fc62b8538c0f1f022bdafdaeb143e51f4e466",
+      "blob": "a6f550ed29147b310f6753417da02cfedb415403"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "lf_bytes": 3472,
+      "lf_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "blob": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "raw_bytes": 28818,
+      "raw_sha256": "ea3e477d12e2f76fea44c9ecba91f4d304b5b88160021548e0995f7e798e6d0f",
+      "lf_bytes": 28818,
+      "lf_sha256": "ea3e477d12e2f76fea44c9ecba91f4d304b5b88160021548e0995f7e798e6d0f",
+      "blob": "fd0a06c7e63fc414122799aba1dea845d8ab6b2a"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "raw_bytes": 72626,
+      "raw_sha256": "7fc1678c81bd74d37c3433c1134efe7e6c8dbcd84968bc6fe3afe21e6489ffe6",
+      "lf_bytes": 71758,
+      "lf_sha256": "6d3feb3c354b912c53dbb011594c1294dbad4ba168b8ebc6c1020d0e31eaf2af",
+      "blob": "986d2e63b425dfd157d0acde07a0c2efcc1c3b68"
+    },
+    {
+      "path": "tests/integration/calendar-feed/public-feed.int.test.ts",
+      "raw_bytes": 26921,
+      "raw_sha256": "968a9e0b18f1ad1a9f2e74aae79049d2d01fcc2f5f516954e8627000dd9a8b40",
+      "lf_bytes": 26504,
+      "lf_sha256": "a6fb0d16d8dffaac67caf1d15bea34fafc8feae7a592788468bf47edcdf63bc3",
+      "blob": "63cb860f1ab2f92a0e875fbfc9eb89fa0b89bd4b"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36989,
+      "raw_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "lf_bytes": 36989,
+      "lf_sha256": "d30ae48bfe06c9fa83803c61114fff44f26b89db2cdd9f66e66510548e1473c7",
+      "blob": "c5b96c42305a91f7a435381b7b0b4580e685a9bd"
+    },
+    {
+      "path": "tests/integration/components/calendar-feed.test.ts",
+      "raw_bytes": 3534,
+      "raw_sha256": "6ac7a41a4dca5bccf4aae4300be8ccf38689b3ae19ceb4daa9c8c22d7282db42",
+      "lf_bytes": 3486,
+      "lf_sha256": "70775d21c58ae45841ee07384472fbb2ed30729f56b579314fa2952135af5ec9",
+      "blob": "86f7a8add2ee0fdfaeda52b10166b7914198cb4d"
+    },
+    {
+      "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "raw_bytes": 7563,
+      "raw_sha256": "40186690034643019fb770250bc545627444abd29f73699b184b7f7714941279",
+      "lf_bytes": 7417,
+      "lf_sha256": "24984ffb2a5e1d7dc28fe8d0f10db22e84a667db0c4a01b02f9d981c77cfbce0",
+      "blob": "19341337ad414cecab5c0d813a0bfe4b7f9d412e"
+    },
+    {
+      "path": "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+      "raw_bytes": 14845,
+      "raw_sha256": "8b991461ba76072d230a3c5a989e96c87ec15b5af208cace238083449dbb6b89",
+      "lf_bytes": 14581,
+      "lf_sha256": "f3b5d81c863157396fa6496e55675fa6ba4128508ea43f2782645b6c9c218e67",
+      "blob": "770a4357d1ad78373476eecc1dd2d7bfd64229e0"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_bytes": 16989,
+      "raw_sha256": "fb636129a2497479f7826b18f08ffd574d200c2512d2624e8d913dfb502cf9fc",
+      "lf_bytes": 16735,
+      "lf_sha256": "7f07806e21e1e90b3c6f364347fdec8214d5c7c4e492db6bce80ad91f0473884",
+      "blob": "1d8fa33b27b7fa58ca2908c3fc8ed1db8947ee69"
+    },
+    {
+      "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+      "raw_bytes": 40076,
+      "raw_sha256": "7f3a319552e34ccb65d8c9132f54d2e1c7b5343e4c2dd846f30af5a23d629ef2",
+      "lf_bytes": 40076,
+      "lf_sha256": "7f3a319552e34ccb65d8c9132f54d2e1c7b5343e4c2dd846f30af5a23d629ef2",
+      "blob": "231dea63eb2d60cbd0d8b77070cc62c8b0971057"
+    },
+    {
+      "path": "tests/integration/rls/migration-reset.int.test.ts",
+      "raw_bytes": 38383,
+      "raw_sha256": "1d16e021f75de5f5005514520956153004faa9558bc0bf168b408d201b3fd993",
+      "lf_bytes": 38383,
+      "lf_sha256": "1d16e021f75de5f5005514520956153004faa9558bc0bf168b408d201b3fd993",
+      "blob": "5c6a563a1e1be59f4cece8dec2ab207a8d6a46e4"
+    },
+    {
+      "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+      "raw_bytes": 31068,
+      "raw_sha256": "1f76e604e8db8938110ec8ae80ec4911f1bef2aa5c59984f120691ad88c17820",
+      "lf_bytes": 31068,
+      "lf_sha256": "1f76e604e8db8938110ec8ae80ec4911f1bef2aa5c59984f120691ad88c17820",
+      "blob": "7e4d03387b9ec5809ec0a50e8e382c2e1f53c930"
+    },
+    {
+      "path": "tests/integration/rls/tenant-table-inventory.ts",
+      "raw_bytes": 102070,
+      "raw_sha256": "42812b873a6048e385ad570e73f045ccd3ff682cdb751f30f1ebab8fdc6c2317",
+      "lf_bytes": 102070,
+      "lf_sha256": "42812b873a6048e385ad570e73f045ccd3ff682cdb751f30f1ebab8fdc6c2317",
+      "blob": "d242773f4b126b66f64acad65036b9c87190aee4"
+    },
+    {
+      "path": "tests/support/authz/role-harness.ts",
+      "raw_bytes": 16442,
+      "raw_sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9",
+      "lf_bytes": 16163,
+      "lf_sha256": "5166d5d86028c94ea675166f09f242e1de7475da9daf0ba8b8ec613d28b36bc7",
+      "blob": "8682e09a5eb21d0d556cdfcc3649854050237bf8"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 139901,
+      "raw_sha256": "74721f43ece77fac70414592317ce06556b5cfc0718d9d6014afbec32bdf2c25",
+      "lf_bytes": 138508,
+      "lf_sha256": "d3d7a13919233a6bbd75646449a4de80257c015aa718a16616c513c6c5e8cef5",
+      "blob": "f97ac4c551d0e42fd47b46995ec6148ec64f82b7"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "raw_bytes": 8135,
+      "raw_sha256": "7dfedc0974c40fa0388a783de2d9db5097c14f5c574e1ce0fe7fdf0e30fd7c63",
+      "lf_bytes": 8024,
+      "lf_sha256": "b8faeb354340ef779b79225dd46a19e60c46ccb16200de49f9e4120020198677",
+      "blob": "1c5e3b5f646d23d098257f209da533e05452a6d4"
+    },
+    {
+      "path": "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+      "raw_bytes": 59069,
+      "raw_sha256": "ef07bc2abf9e9a8ef9bcd0f1ad82fc53f65c6d178de88dd7530358869d0716bf",
+      "lf_bytes": 58066,
+      "lf_sha256": "5c6044fcd3ffd0f9e9084eb9b04ae0e674a524ea8b35e7aacc1b14d5ece47db0",
+      "blob": "ca28c3fa84b1c0f8e04edecfaa80f617140e9a63"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/action-state.test.ts",
+      "raw_bytes": 4086,
+      "raw_sha256": "2536d7a63ff437cd21cd22982d505dd60fc98cbb8ffa908abe044bd393f4db9b",
+      "lf_bytes": 4034,
+      "lf_sha256": "2f747082d163552fea743823dcc6e8fb9b1c7eb877ce1cddd47af3f65e2552a4",
+      "blob": "953b0dcf999053fe5a016f86c6c14436f6da13eb"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/icalendar.test.ts",
+      "raw_bytes": 6651,
+      "raw_sha256": "862aa51c0c100f993949e60b96d035a25eef5a976f4edac6e4c76681258729a9",
+      "lf_bytes": 6560,
+      "lf_sha256": "5854b2764427f839c9a7b7b6b41c69d3ab7352f7a4c685013114b30d037250b8",
+      "blob": "834025e861c0c2947e85374a90d3443ef8b923d2"
+    },
+    {
+      "path": "tests/unit/features/calendar-feed/validation.test.ts",
+      "raw_bytes": 2581,
+      "raw_sha256": "1f1f2fda1a02070d5d02298d53d21ff258fe5276976bd441da3c017db538647f",
+      "lf_bytes": 2545,
+      "lf_sha256": "953a906010ad8bcf5912872db48a881b194599a9e793f1d7ce37fcdabf947a76",
+      "blob": "093858972ec1058edf8454a0e2584eda4f67d8e4"
+    },
+    {
+      "path": "tests/unit/ops/pilot-operations.test.ts",
+      "raw_bytes": 35108,
+      "raw_sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+      "lf_bytes": 35108,
+      "lf_sha256": "be13d379c2e9fea8b0aea12d33a2b1d0ce0f6fd1d8b714f6d9ba40cc3b68c91e",
+      "blob": "5628c63a423a77a3d43e9d607ee69db32e19ef6f"
+    },
+    {
+      "path": "tests/unit/scope/booking-editor-scope.test.ts",
+      "raw_bytes": 2143,
+      "raw_sha256": "643f862ff30ff826c3c3a2447b294931d2aad36cb55931e31789dec794986ede",
+      "lf_bytes": 2116,
+      "lf_sha256": "5550cbc4a1175ca745fae9ab780b48a3dd5a78861882bb9c66c7c15ef65f5acb",
+      "blob": "9697b15be13f5c4bc639c7987f30961ed4b56592"
+    },
+    {
+      "path": "tests/unit/scope/manifest-coherence.test.ts",
+      "raw_bytes": 16009,
+      "raw_sha256": "7f00ff1a27cb0a260a32b690046a0175f3b7090bb9893f664f31353be6109486",
+      "lf_bytes": 15681,
+      "lf_sha256": "1f334cd9cd69f290ec12197e229f4e85bebecab831bf43fe384b40a88fa51722",
+      "blob": "a2196980f3ffcedc8f5631749e50193ccf451aac"
+    },
+    {
+      "path": "tests/unit/scope/manifest-derivations.test.ts",
+      "raw_bytes": 8841,
+      "raw_sha256": "5f7f30cd116421943c980e1aa41b08f1237356ce84b802883bdcb4dc27dbf783",
+      "lf_bytes": 8841,
+      "lf_sha256": "5f7f30cd116421943c980e1aa41b08f1237356ce84b802883bdcb4dc27dbf783",
+      "blob": "02a6845c81d4bbae8cb7c3f499c11ce3635948bd"
+    },
+    {
+      "path": "tests/unit/scope/manifest-shape.test.ts",
+      "raw_bytes": 10473,
+      "raw_sha256": "c92b9c621a999a335dc5c8a6a97a9bedfad1d36302afcfba3f044110f6e2f13e",
+      "lf_bytes": 10473,
+      "lf_sha256": "c92b9c621a999a335dc5c8a6a97a9bedfad1d36302afcfba3f044110f6e2f13e",
+      "blob": "132a02849637c12cbedab4e012619f7cbadccf40"
+    },
+    {
+      "path": "tests/unit/scope/resources-activation.atdd.test.ts",
+      "raw_bytes": 1680,
+      "raw_sha256": "4bc8bf9fb08c33cd446b1e2c9e0d8b5addea89a46add567188889aa39d99c068",
+      "lf_bytes": 1652,
+      "lf_sha256": "8e2619a9feff891bad02cd3bd806984b1158e5eaf8428bd190442f94ed73fcb2",
+      "blob": "16715ae5dcb0e6b48ce6ceeb10fca2d2b9cdae8a"
+    },
+    {
+      "path": "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+      "raw_bytes": 29955,
+      "raw_sha256": "bc93e6e13b735ba1fa45ce35b68aa3481af0f5325ff147304d401f2c1c2ed656",
+      "lf_bytes": 29711,
+      "lf_sha256": "99bb62d37e65e539089f638f43a13312c4650a04bfea4a364aaa22beceb089bf",
+      "blob": "a99cfcb6ce8177844b950039cdfefa7bedfb5807"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "raw_bytes": 325812,
+      "raw_sha256": "8594bcc0bfb6fcd9c721868c93ee39a8b0744bca3d8df673f6ea050b2e0941b7",
+      "lf_bytes": 322787,
+      "lf_sha256": "fa217e6880476974af32babd14ad9991cff3d9877d4e37cdc99f53975f233e63",
+      "blob": "71970ab77e69ad475e5e900d25ffb4e2ef70dff6"
+    },
+    {
+      "path": "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+      "raw_bytes": 3984,
+      "raw_sha256": "3e1b31e0f8c47eb7d83e6c07cab2af3d0efa09d436f908af691fd5c24691332b",
+      "lf_bytes": 3946,
+      "lf_sha256": "a3e666701c2b1eb6b0b8f81e7fdbf6411b5c0f1093bd2afbf02d5b8a162938d6",
+      "blob": "09ff9ca598d6ae03cf4ad690d9d23befb3277802"
+    },
+    {
+      "path": "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+      "raw_bytes": 3062,
+      "raw_sha256": "61290cccfc72bb2407a945344b4c00b2d950a81119977a305b9f4fa42a0bb87d",
+      "lf_bytes": 3020,
+      "lf_sha256": "a29c884f12042477979797b304b3026376f3a47336542111e62a7825bffcdb4a",
+      "blob": "b580e38f016843584623ec4fdbbf050a4cb2a9be"
+    },
+    {
+      "path": "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+      "raw_bytes": 3424,
+      "raw_sha256": "b27e0d9c28d5b6602f0c6684b2d0f43c4feb29ddd0e1535a08ba3b0876cb29a1",
+      "lf_bytes": 3374,
+      "lf_sha256": "53c722f11869cdf4492722e996ddda57c64206a837f45320adb40fc7b5e1ffc1",
+      "blob": "d7b56bf80d06cbc060af219410f232342c53297c"
+    },
+    {
+      "path": "tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts",
+      "raw_bytes": 140788,
+      "raw_sha256": "62f4cd651de979264ddfce282d3b958346fa9b2003df8015889de59845946044",
+      "lf_bytes": 140788,
+      "lf_sha256": "62f4cd651de979264ddfce282d3b958346fa9b2003df8015889de59845946044",
+      "blob": "33b3efb90b5b787dda5ed4daae730a36437746a8"
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "raw_bytes": 22537,
+      "raw_sha256": "b8ed2cc0aa91ac6a30ea370a5321f8d69e9b592f1a5d36c37a54c8b4e2012a17",
+      "lf_bytes": 22287,
+      "lf_sha256": "9254b77bffd7c5028c8b5935080b2c25f43c98d3610a1ebc1a0ea17586695b2f",
+      "blob": "a7099404789438217d3715a6ee00ce5a0bbf945a"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/attestation.test.ts",
+      "raw_bytes": 4728,
+      "raw_sha256": "b7e33cfbe5f4ef1e2352d65117ba63fcb2601eb771027bad9ca359b2029b8003",
+      "lf_bytes": 4663,
+      "lf_sha256": "9468d5d3c61cabc7c1eca67b14d65ae72e5d3a498cc4eeebbc8254a6e2dd6f0c",
+      "blob": "730c4eab336c5d8e91c28ebef3519e0fc54870f8"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/public-shell.test.ts",
+      "raw_bytes": 4458,
+      "raw_sha256": "f02a1015ba35b08d9c6cc2926f1b8f8c5cb8c736feba3e260b9c51a1ccd33386",
+      "lf_bytes": 4396,
+      "lf_sha256": "335a1d26a1e845085c804d85160f91fa605a3ef95df9779ba2f924d44e2a0994",
+      "blob": "a445da964dac94961ae1e0cf2b3829fc79e0bd8c"
+    },
+    {
+      "path": "tests/unit/server/calendar-feed/trusted-ip.test.ts",
+      "raw_bytes": 2416,
+      "raw_sha256": "e9afe40327412798a22f2af0100b8df9c1911c42338cf452c241272a648420e0",
+      "lf_bytes": 2382,
+      "lf_sha256": "e9b700099017309ec77c8c9cb53e4c2e769df0e18fb446d28b8e70c1153e554f",
+      "blob": "84b7ba8986e7d4cd2db2e293489f037c77f1e116"
+    },
+    {
+      "path": "vitest.config.ts",
+      "raw_bytes": 4805,
+      "raw_sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "lf_bytes": 4725,
+      "lf_sha256": "9e1df57c92fcf611c9b3314eb88b1582045d87acdbe0766134268ee155fd0dfd",
+      "blob": "1c75b680f80f5f1f61eaba8fccac9a0c9d257770"
+    },
+    {
+      "path": "playwright.config.ts",
+      "raw_bytes": 4872,
+      "raw_sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706",
+      "lf_bytes": 4780,
+      "lf_sha256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31",
+      "blob": "9457ea35425d200d0449fe96308ef9346b18a9a5"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "raw_bytes": 12007,
+      "raw_sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77",
+      "lf_bytes": 11802,
+      "lf_sha256": "3ffbb092b6fc3f03785c6359aae47a8e686a0d0878ad3baf8c8ef70319aec4fd",
+      "blob": "6cc5dec60f8dd598a562c1c15464110c4094cf38"
+    },
+    {
+      "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+      "raw_bytes": 44323,
+      "raw_sha256": "553b220c98ca487e5a0433882201865b6d73894717538eab1795736fe8e61ba9",
+      "lf_bytes": 44323,
+      "lf_sha256": "553b220c98ca487e5a0433882201865b6d73894717538eab1795736fe8e61ba9",
+      "blob": "209528d744adb11d6e266e92a37c4a8dc19b2c13"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "raw_bytes": 22799,
+      "raw_sha256": "6b96221185dee8f79699bd11999d65f6227562350fcdf7074b02902bcff3e2b7",
+      "lf_bytes": 22799,
+      "lf_sha256": "6b96221185dee8f79699bd11999d65f6227562350fcdf7074b02902bcff3e2b7",
+      "blob": "314f7d518984ef3858c55e8cbd9acb30c49c3cf6"
+    },
+    {
+      "path": "vercel.json",
+      "raw_bytes": 472,
+      "raw_sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129",
+      "lf_bytes": 459,
+      "lf_sha256": "3a7b07f7e6b769f923be6e1bbf8ea343228f414892fd51178823a04c67ebe989",
+      "blob": "e9e72baa26445c9aee75e47a85946a54dd146acb"
+    },
+    {
+      "path": ".github/workflows/auto-bmad-parallel.yml",
+      "raw_bytes": 2068,
+      "raw_sha256": "126d339ac627f0fc455ef7049d3b12bf3ea53411b8a61c8c0e65bb48193ffa65",
+      "lf_bytes": 2012,
+      "lf_sha256": "3c99511a589c8d87cf9b7f4fb557e9f0cd6b2117cf900d7004da918b88c68532",
+      "blob": "70ec909ee72324b65ce270eee3201e106cedeb70"
+    },
+    {
+      "path": ".github/workflows/cloudflare-monitor-verify.yml",
+      "raw_bytes": 1435,
+      "raw_sha256": "18965e82fb30ebfc8b06346f95369b7dcd1f81345f47fcfcabf3b10232eca553",
+      "lf_bytes": 1393,
+      "lf_sha256": "f933ff37bce1b3416875bc09768a86f9a7697d3b13661137aa948db5975d1fb8",
+      "blob": "0619e28d79a603178b787189883683b61cc92f14"
+    },
+    {
+      "path": ".github/workflows/fixed-chromium-capsule-mock-proof.yml",
+      "raw_bytes": 8443,
+      "raw_sha256": "4aa549f5df3ac1e51a0e475826dde0f99d70e1143f83878454efa90780986b86",
+      "lf_bytes": 8443,
+      "lf_sha256": "4aa549f5df3ac1e51a0e475826dde0f99d70e1143f83878454efa90780986b86",
+      "blob": "bdfe9dc0849c327f53aaf8fda768e025e794a869"
+    },
+    {
+      "path": ".github/workflows/pilot-availability.yml",
+      "raw_bytes": 7000,
+      "raw_sha256": "a8a6ecfce478cc86529583535ec24a7a7358e250ce0d6833091e0f8663e5e721",
+      "lf_bytes": 6860,
+      "lf_sha256": "1ca061d43dfaffe729e496076b36bf6925a9b457ada0b6829ce610bb8b2204a7",
+      "blob": "8e34762aa940ecf8f391fdfbc5cc3010ab31f0c4"
+    },
+    {
+      "path": ".github/workflows/pilot-backup.yml",
+      "raw_bytes": 6920,
+      "raw_sha256": "b63f6bb2dadc687bc0ca21f5657175be5f7b374287b84adfaa2194df5294a547",
+      "lf_bytes": 6807,
+      "lf_sha256": "448117efd1b9487517ad8bc4235bcc534b0c4ef8f86241a8beb06556d99e0628",
+      "blob": "bf43be8a559eb38d67cea3097162e29fa2a3fb02"
+    },
+    {
+      "path": ".github/workflows/pilot-isolated-recovery-rehearsal.yml",
+      "raw_bytes": 13238,
+      "raw_sha256": "a62307f2ff235d2137175bf3ae6102342cf11310d2c8d9b721e6f2a2c05592ec",
+      "lf_bytes": 13060,
+      "lf_sha256": "391c9a3a380cbdff33e4c522bfacea60b19b03fe43d33ea627cb47f9cdbfa6bd",
+      "blob": "cbf524c97a3d282eb3edc2da80fa499a1ac201bd"
+    },
+    {
+      "path": ".github/workflows/pr-feedback.yml",
+      "raw_bytes": 13698,
+      "raw_sha256": "6b5a72c5459fbb54991b511d0d583bdb44cd7232d7363129ecb3b8cf93638cea",
+      "lf_bytes": 13410,
+      "lf_sha256": "0bbd45fa4c6684a181040ecac0df046f30e14a7433fc1960dcf8d5bc15d50e6e",
+      "blob": "4e8fbf4d495dc7230048cfa6a18025e348ed9649"
+    },
+    {
+      "path": "tests/unit/features/jobs/job-workspace-domain.test.ts",
+      "raw_bytes": 8425,
+      "raw_sha256": "a7698008e0871863303559c9e7ce920460833f3b55a0910ed2c9ebf9aa6be220",
+      "lf_bytes": 8425,
+      "lf_sha256": "a7698008e0871863303559c9e7ce920460833f3b55a0910ed2c9ebf9aa6be220",
+      "blob": "3c3966e4fbe6ebfb5a4827dd71b8d1846a1a36da"
+    },
+    {
+      "path": "tests/unit/features/resources/booking-series-editor.test.ts",
+      "raw_bytes": 10818,
+      "raw_sha256": "30dbb3a94e881c69cc96db21581cfae7231af499456a1c333a72fd20655d63fb",
+      "lf_bytes": 10818,
+      "lf_sha256": "30dbb3a94e881c69cc96db21581cfae7231af499456a1c333a72fd20655d63fb",
+      "blob": "7523ffba81d55bd8824c9191f0717c48d7719729"
+    },
+    {
+      "path": "tests/unit/server/bookings/series-plan.test.ts",
+      "raw_bytes": 43328,
+      "raw_sha256": "b82ba58531b579abc8bab720118a1bbc67cc25be0d3326768c132303dc9651f4",
+      "lf_bytes": 43328,
+      "lf_sha256": "b82ba58531b579abc8bab720118a1bbc67cc25be0d3326768c132303dc9651f4",
+      "blob": "dfb805ad6b3c2cdb047303e8d609ce941a88fb61"
+    },
+    {
+      "path": "tests/e2e/support/resource-cdp-attachment.ts",
+      "raw_bytes": 2862,
+      "raw_sha256": "4b60769e8f0a39b930e5d53ac7583ac9b4014e9b5a86bc93b559c2ef23f33be5",
+      "lf_bytes": 2795,
+      "lf_sha256": "c904322c0897223b02663da0d1c820750f68cfc9d74737894dc0b1b1d0c9c804",
+      "blob": "4473538bc594f9b75ec1e7be718c151da6100bdf"
+    },
+    {
+      "path": "tests/unit/dependencies/next-image-optimizer.test.ts",
+      "raw_bytes": 1928,
+      "raw_sha256": "e94f75454692db3e4341a51432579447b551f8ac29ea8ddce0d151cab6f9e108",
+      "lf_bytes": 1894,
+      "lf_sha256": "1f487754eb834bca75118743ae05e8dcecd61f0f180e564c344bc109b19b2bc5",
+      "blob": "54c1af95d689c20489ca43f198a0ede4df12e5d2"
+    }
+  ],
+  "migration_Git_rows": [
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "blob": "da1270c7238db113f0cd2485581a635a66981a65"
+    },
+    {
+      "path": "supabase/migrations/20260625122433_tenant_foundation.sql",
+      "blob": "77d1b3759d0b70d4a6fedda7a154179c1b9a7a9f"
+    },
+    {
+      "path": "supabase/migrations/20260629121136_audit_events.sql",
+      "blob": "b65ca19ac9e91a9140414ad1c41e45947563d0bd"
+    },
+    {
+      "path": "supabase/migrations/20260629140000_audit_events_actor_null_exemption.sql",
+      "blob": "b352a99b78a2f356cf933b0ba4472d14b8a335c2"
+    },
+    {
+      "path": "supabase/migrations/20260630120000_crm_data_model.sql",
+      "blob": "cee9740febc664a2565714f8e0833bddf3050fa0"
+    },
+    {
+      "path": "supabase/migrations/20260630130000_company_settings_and_quote_terms.sql",
+      "blob": "e3086c464074e8dae733b13d6dcf7a4a6aaf6ab8"
+    },
+    {
+      "path": "supabase/migrations/20260630140000_work_roles_and_articles.sql",
+      "blob": "0149273da72439e1b7c45df91d232eee520f5a29"
+    },
+    {
+      "path": "supabase/migrations/20260702120000_calculation_data_model.sql",
+      "blob": "77961e10cf2a0e0119ad8dd5022807e8160f25a0"
+    },
+    {
+      "path": "supabase/migrations/20260703120000_calculation_row_pricing_source.sql",
+      "blob": "04391a0d4d75632688b7814b7bf15c0494c58858"
+    },
+    {
+      "path": "supabase/migrations/20260704120000_file_storage_foundation.sql",
+      "blob": "ffb838e68233926144c1cf3bff922196f9c56910"
+    },
+    {
+      "path": "supabase/migrations/20260705120000_quote_version_model.sql",
+      "blob": "6ab681b61673f09ade8d06e3163d9cdb613992d4"
+    },
+    {
+      "path": "supabase/migrations/20260706120000_quote_pdf_render_state.sql",
+      "blob": "359cbb655d4b40edddcc511363e100a6379afbc3"
+    },
+    {
+      "path": "supabase/migrations/20260707120000_quote_version_sent_lock.sql",
+      "blob": "6d4a3667f1f9c86332fdd90faa8fdf6c0ca70c3c"
+    },
+    {
+      "path": "supabase/migrations/20260708120000_quote_new_version.sql",
+      "blob": "f566808964e70425a6574314914e5144ea2defc8"
+    },
+    {
+      "path": "supabase/migrations/20260709120000_acceptance_to_job_model.sql",
+      "blob": "17af85776c565fe2da598a27a8ddb7d7a4d5add8"
+    },
+    {
+      "path": "supabase/migrations/20260710120000_accept_quote_and_create_job.sql",
+      "blob": "77e12348afd31cb413184b48bcf343942d2527ad"
+    },
+    {
+      "path": "supabase/migrations/20260711120000_accepted_record_lock.sql",
+      "blob": "81e5ce2566b4c772f97b5f247676224aece86fee"
+    },
+    {
+      "path": "supabase/migrations/20260712120000_file_link_lock.sql",
+      "blob": "bb7bdb3a3672a5b8736e091440fdb5b47b905080"
+    },
+    {
+      "path": "supabase/migrations/20260714095225_standalone_job_creation.sql",
+      "blob": "6c55605cf22e98898b5312f8fb36a9846630c18a"
+    },
+    {
+      "path": "supabase/migrations/20260719120000_quote_lost_reasons_and_lost_status.sql",
+      "blob": "fc90f5bdc330fdedb5637f23ac7d159fc6a70735"
+    },
+    {
+      "path": "supabase/migrations/20260719130000_quote_follow_ups.sql",
+      "blob": "9a14a235120dd5fa65706d3b52a948bfcec6bc77"
+    },
+    {
+      "path": "supabase/migrations/20260805120000_tax_answer_reconciliation.sql",
+      "blob": "06fddee63644a3e6b4689e51abf370dce9140d57"
+    },
+    {
+      "path": "supabase/migrations/20260831124310_story_10_8_quote_review_authorization.sql",
+      "blob": "5bbd67b5e99b5942e1ffface42ccb56e5b0d3a51"
+    },
+    {
+      "path": "supabase/migrations/20260831124312_story_10_9_quote_pdf_attachment_validity.sql",
+      "blob": "ded6fe8b571859882b5174d538829a7d3a65e772"
+    },
+    {
+      "path": "supabase/migrations/20260902120000_story_10_5_quote_table_hardening_and_pagination.sql",
+      "blob": "a3be49d3fa539227387f488d14e17b1233aac11a"
+    },
+    {
+      "path": "supabase/migrations/20260902123000_story_10_5_authorized_terminal_follow_up_closure.sql",
+      "blob": "2164341793aa509d8d7c1007218b8a2f177e7f6d"
+    },
+    {
+      "path": "supabase/migrations/20260904120000_role_storage_and_permission_matrix.sql",
+      "blob": "0cf36157b5da8efdf0777671b78d32e0a3c5be7f"
+    },
+    {
+      "path": "supabase/migrations/20260907161230_role_storage_explicit_grants.sql",
+      "blob": "c4315ff487fa700d19e5d4765f0ab24b2c0c1aeb"
+    },
+    {
+      "path": "supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql",
+      "blob": "182bc47b44de089969bd8856776e2576aac55d5c"
+    },
+    {
+      "path": "supabase/migrations/20260910165124_admin_user_management.sql",
+      "blob": "83eb20b46ac62bd8e26f03dfcfc76f8aa7854672"
+    },
+    {
+      "path": "supabase/migrations/20260914092606_admin_accept_membership_invitation_identity_binding.sql",
+      "blob": "bef0d08219992b026ad13398589dda6c47ee4a8a"
+    },
+    {
+      "path": "supabase/migrations/20260914092850_story_11_3_invitation_lifecycle_remediation.sql",
+      "blob": "b403e91c123423245c9253622df8be8a0c337d7e"
+    },
+    {
+      "path": "supabase/migrations/20260919090000_tenant_provisioning.sql",
+      "blob": "267aa17bf2b9f43707687cfa5e60db4f9ae5b134"
+    },
+    {
+      "path": "supabase/migrations/20260919100000_provisioning_dispatch_generation_rotation.sql",
+      "blob": "009cd67cf5e94c2e54c99b11b7bcf68305242dc4"
+    },
+    {
+      "path": "supabase/migrations/20260919100100_provisioning_previous_token_hash.sql",
+      "blob": "c064dfc84fd9e8300126cd418c51dce4feed6706"
+    },
+    {
+      "path": "supabase/migrations/20260919120000_provisioning_decision_8a_authority.sql",
+      "blob": "bd24ce59179b97a1b0f79abf7f2525968cf343eb"
+    },
+    {
+      "path": "supabase/migrations/20260919121000_provisioning_vault_reader_owner.sql",
+      "blob": "76661e0cb16f2149acffa1fa8f6c785363814f03"
+    },
+    {
+      "path": "supabase/migrations/20260919122000_provisioning_owner_operator_helper_grant.sql",
+      "blob": "361b5770a1012509c48cde11358c139db3ef8bca"
+    },
+    {
+      "path": "supabase/migrations/20260919123000_provisioning_owner_attestation_dependencies.sql",
+      "blob": "4c7d8523c694c1da8495feb24af35ef79e93c4c9"
+    },
+    {
+      "path": "supabase/migrations/20260919124000_provisioning_owner_auth_schema_usage.sql",
+      "blob": "bdc4631f2efb031609dcbef0c420d2f67d2a7bbd"
+    },
+    {
+      "path": "supabase/migrations/20260919125000_provisioning_owner_auth_usage_repair.sql",
+      "blob": "66cf880a69772f570e8feb36ee2073b8e8f027b4"
+    },
+    {
+      "path": "supabase/migrations/20260919175836_provisioning_actor_claim_repair.sql",
+      "blob": "b0b3f02427167eaf01b30ee577d216591e203e38"
+    },
+    {
+      "path": "supabase/migrations/20260919180249_provisioning_tenant_returning_id_grant.sql",
+      "blob": "c9de1851b785cee4b7facce611a83d09f2707758"
+    },
+    {
+      "path": "supabase/migrations/20260919180337_provisioning_membership_returning_id_grant.sql",
+      "blob": "b2d855774adabd39d90abd888fc5f475b5e94eaf"
+    },
+    {
+      "path": "supabase/migrations/20260919180556_provisioning_actor_claims_json_repair.sql",
+      "blob": "fbc5199166a14ab2d0af580f3afffe682a29c718"
+    },
+    {
+      "path": "supabase/migrations/20260919181436_provisioning_fourth_dispatch_renewal.sql",
+      "blob": "49b0207a1303899bb21c0e4467cf0809b6667b0a"
+    },
+    {
+      "path": "supabase/migrations/20260919182046_provisioning_reconcile_read.sql",
+      "blob": "4c5a159bf97ee6d6314e2dd72b3f52145030ea08"
+    },
+    {
+      "path": "supabase/migrations/20260919183425_provisioning_review_authority_fixes.sql",
+      "blob": "8ecec57c50cf58e93159720c01d0cae83d18e0cc"
+    },
+    {
+      "path": "supabase/migrations/20260919183740_provisioning_membership_reservation_lock_grant.sql",
+      "blob": "416dbc1991a6bd869332d57e3645b165c41b3806"
+    },
+    {
+      "path": "supabase/migrations/20260919192439_provisioning_rpc_attestation_coherence.sql",
+      "blob": "da2ff23df63a251c60c59d0da1b9048bb8124e11"
+    },
+    {
+      "path": "supabase/migrations/20260919192619_provisioning_request_validation_persistence.sql",
+      "blob": "2954a7363c2d96e3ea720499560f6a57d168a5f0"
+    },
+    {
+      "path": "supabase/migrations/20260919193752_provisioning_rpc_coherence_execute_grants.sql",
+      "blob": "96a34414c927d6f6a4755043bf01283dbd9ca64c"
+    },
+    {
+      "path": "supabase/migrations/20260919193857_provisioning_company_settings_trigger_owner.sql",
+      "blob": "e476cf8ba08e0883ff1ebc612f868f47d292c041"
+    },
+    {
+      "path": "supabase/migrations/20260919194051_provisioning_company_settings_conflict_read.sql",
+      "blob": "5f6183993c5efc069880691c06238b828af4b723"
+    },
+    {
+      "path": "supabase/migrations/20260920100000_operator_console_projection.sql",
+      "blob": "9cc9d9df5123b81eacd13c95ede51432a9f930c5"
+    },
+    {
+      "path": "supabase/migrations/20260920101500_operator_console_resume_state.sql",
+      "blob": "63e01fc8d664d41e1b041ce2539522857fc368d1"
+    },
+    {
+      "path": "supabase/migrations/20260920102000_operator_console_resume_target.sql",
+      "blob": "cbfdffd4d26a8ea50fa193dc5bc880cc3b817172"
+    },
+    {
+      "path": "supabase/migrations/20260920110000_first_admin_onboarding_dismissal.sql",
+      "blob": "24d394aed9076e17b1c3aa29d5b9e18a6f58f915"
+    },
+    {
+      "path": "supabase/migrations/20260921090000_onboarding_dismissal_ready_gate.sql",
+      "blob": "c550c2800a8d4171bf8f914f7e809cf14f870d6e"
+    },
+    {
+      "path": "supabase/migrations/20260921170545_repair_provisioning_idempotency_conflict.sql",
+      "blob": "a47a32c1bf2a7b56e3eeec64cd5ca5e0e5a8f1b0"
+    },
+    {
+      "path": "supabase/migrations/20260922111215_provisioning_invite_recovery_approval.sql",
+      "blob": "ddb3a69aa09377f24509e6cb3bc6330ceb724f2a"
+    },
+    {
+      "path": "supabase/migrations/20260922112830_provisioning_renewal_trigger_and_replay_guard.sql",
+      "blob": "946995de661b0464daf966686e626bf2c8d23e63"
+    },
+    {
+      "path": "supabase/migrations/20260922121240_epic_12_function_execute_acl.sql",
+      "blob": "b33d20725b77c2850625a6f9ba61898cf37372a2"
+    },
+    {
+      "path": "supabase/migrations/20260923160000_authenticated_job_runner.sql",
+      "blob": "baf62dcc55832b684cee13eb0530954554aa4590"
+    },
+    {
+      "path": "supabase/migrations/20260923161000_job_runs_authenticated_select_grant.sql",
+      "blob": "1c35516861827c726eb03b8f49d38be62e602d69"
+    },
+    {
+      "path": "supabase/migrations/20260923162000_job_runs_lifecycle_constraints.sql",
+      "blob": "984cf0ead193efb6927c276a9861cf11c1ed9e2d"
+    },
+    {
+      "path": "supabase/migrations/20260923170000_in_app_notifications.sql",
+      "blob": "fa71ab0805e3c678c1a4798a470acb2d5279b35d"
+    },
+    {
+      "path": "supabase/migrations/20260923175035_email_outbox_pipeline.sql",
+      "blob": "b24403e034e90d11c1a5e9e5cd5759da158b7b11"
+    },
+    {
+      "path": "supabase/migrations/20260923181728_email_outbox_transition_guard_fix.sql",
+      "blob": "a36b17c4c4bd545e52c037c654a97c5a3008ffd4"
+    },
+    {
+      "path": "supabase/migrations/20260923182954_email_outbox_security_and_state_fixes.sql",
+      "blob": "140ee22f5d88c85138b06252f3c318883e474e24"
+    },
+    {
+      "path": "supabase/migrations/20260924090000_email_sending_activation.sql",
+      "blob": "790a1090902c61a4cd677b91779cfc4279b7a22f"
+    },
+    {
+      "path": "supabase/migrations/20260924110000_quote_email_delivery_artifacts.sql",
+      "blob": "ae00bb6c71d88197fd566e11bce32166857cfff1"
+    },
+    {
+      "path": "supabase/migrations/20260924120000_email_delivery_followup_fixes.sql",
+      "blob": "d484c6b8ea58788e65b58a039f0cd3cd24f2c342"
+    },
+    {
+      "path": "supabase/migrations/20260924130000_quote_delivery_recipient_correction.sql",
+      "blob": "938c2998cdc7ab9dbad4895844243fe4041cfd02"
+    },
+    {
+      "path": "supabase/migrations/20260925100000_quote_email_delivery_recovery.sql",
+      "blob": "603350c53307f2e810a04361fa6d61f656da4500"
+    },
+    {
+      "path": "supabase/migrations/20260927100000_remove_quote_delivery_preferences.sql",
+      "blob": "da1ea436e85db18aa5ae4fe3d16bbe47c82fb9db"
+    },
+    {
+      "path": "supabase/migrations/20260927110000_quote_delivery_recovery_sender_roles.sql",
+      "blob": "e408a1d48b1c54b154af90a583d476afeef6a88e"
+    },
+    {
+      "path": "supabase/migrations/20260927120000_attest_quote_delivery_recoveries.sql",
+      "blob": "5d536b28b61de6d47f86d5479ea1b701bb854bd0"
+    },
+    {
+      "path": "supabase/migrations/20260927130000_quote_delivery_pdf_send_roles.sql",
+      "blob": "73f49805277bd18493cb8c3022b56eaa4d95a3ae"
+    },
+    {
+      "path": "supabase/migrations/20260927140000_preserve_failed_job_checkpoints.sql",
+      "blob": "ea7d0e736e25c62c5621445541df213c2d2e0f57"
+    },
+    {
+      "path": "supabase/migrations/20260928110819_epic_13_reviewbot_followup_atomic_job_run_audit_and_config_recovery.sql",
+      "blob": "dd9c7c60c886e3c4af02c91c89bb162dc1a9c16b"
+    },
+    {
+      "path": "supabase/migrations/20260929120000_resource_person_profiles_and_work_hours.sql",
+      "blob": "0d0dbb159d6a66588f7b5d064445564687d4df87"
+    },
+    {
+      "path": "supabase/migrations/20261002113000_resource_profile_form_date_regex_fix.sql",
+      "blob": "80ababca4d8ba885e51ed746f29f04ef3d8f6e91"
+    },
+    {
+      "path": "supabase/migrations/20261002121425_quote_follow_ups_privilege_baseline.sql",
+      "blob": "be72f4f0553caf093b6e6bb6552105bea7426af3"
+    },
+    {
+      "path": "supabase/migrations/20261002122535_crm_and_audit_privilege_baseline.sql",
+      "blob": "50721c4e6d582b3dd9117c869fd2b3f93a613037"
+    },
+    {
+      "path": "supabase/migrations/20261002141141_approved_inherited_public_acl_repair.sql",
+      "blob": "67640952705aca48bf6b962d6195ec748c2d4508"
+    },
+    {
+      "path": "supabase/migrations/20261002150000_approved_successor_acl_and_rls_batch_repair.sql",
+      "blob": "699d2a4eaa7aadcb353428f51ec2ddf90477d651"
+    },
+    {
+      "path": "supabase/migrations/20261002171427_resource_command_only_write_acl.sql",
+      "blob": "9e2cab32f43ac4b2c4a81fd94f0222ad64ca7c7a"
+    },
+    {
+      "path": "supabase/migrations/20261002171855_resource_explicit_clear_form_inputs.sql",
+      "blob": "3163ff0bb19639975bfbbc9a8d752ae61f79ff72"
+    },
+    {
+      "path": "supabase/migrations/20261002190000_resource_time_precision_preservation.sql",
+      "blob": "bc147f719d4fa8ccedf04b203a00b810c95b3c71"
+    },
+    {
+      "path": "supabase/migrations/20261006101609_bookings_and_assignees.sql",
+      "blob": "187af410a3e270146af111963b93d3d4769fb57f"
+    },
+    {
+      "path": "supabase/migrations/20261006104143_booking_invariant_corrections.sql",
+      "blob": "85cfdd7da4840659b68a7aefeb907213c2bf0d64"
+    },
+    {
+      "path": "supabase/migrations/20261006113212_booking_replay_current_authority.sql",
+      "blob": "22e5aeecbfb9bb2dc63a10dd0bd366334f40c5af"
+    },
+    {
+      "path": "supabase/migrations/20261006122441_booking_conflict_detection_integration.sql",
+      "blob": "b520d5755e727914dfcb38ed14b0879dba953b11"
+    },
+    {
+      "path": "supabase/migrations/20261006124954_booking_invitation_post_gate_expiry.sql",
+      "blob": "370b71320bdddc9bfd629a3a1d6f2e0ea88ce240"
+    },
+    {
+      "path": "supabase/migrations/20261006144057_booking_conflict_review_integrity_fixes.sql",
+      "blob": "f937fe7d9892d5a7a58b6736e3f7ddff841641e4"
+    },
+    {
+      "path": "supabase/migrations/20261007120235_booking_editor_audited_override.sql",
+      "blob": "6f8bb36356dcd1e864a51e6220bb9a955e3efe50"
+    },
+    {
+      "path": "supabase/migrations/20261007121034_booking_editor_whole_group_validation.sql",
+      "blob": "41e1a6088a63711a2ece4722429fc67e3e0ef014"
+    },
+    {
+      "path": "supabase/migrations/20261007121724_booking_editor_group_alias_fix.sql",
+      "blob": "0c7da27810c2358b73dc743757959e473ce4ee21"
+    },
+    {
+      "path": "supabase/migrations/20261007131222_booking_editor_review_round1_fixes.sql",
+      "blob": "9d8703c2d90f55187b4c0b8043c35afc748c7342"
+    },
+    {
+      "path": "supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql",
+      "blob": "c0628e43a97a971906a4d06f21f4ce534b35cb1b"
+    },
+    {
+      "path": "supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql",
+      "blob": "6d312852e1906e9694e2c93d38a5d51d5562abe7"
+    },
+    {
+      "path": "supabase/migrations/20261013201515_story_15_1_booking_reassignment_flags.sql",
+      "blob": "d63bc16071ff77527d1515e002658aaf2bde17ab"
+    },
+    {
+      "path": "supabase/migrations/20261019133151_e16_16_1_job_depth.sql",
+      "blob": "3abbd77ecd51e6f902048c368d47459d1a478d7d"
+    },
+    {
+      "path": "supabase/migrations/20261019133200_e16_16_1_job_booking_facts.sql",
+      "blob": "df4ee49f87d61d93d405f6c79a1e3d4c7d015ed1"
+    },
+    {
+      "path": "supabase/migrations/20261019180000_recurring_booking_series.sql",
+      "blob": "c3d62afa505cfe753b15fa097a58c40183d84e1f"
+    },
+    {
+      "path": "supabase/migrations/20261019191746_e16_16_2_job_members.sql",
+      "blob": "60071510e142c8f3757bc7ab2bbf087ba5a47add"
+    },
+    {
+      "path": "supabase/migrations/20261019220000_booking_series_integrity_followup.sql",
+      "blob": "0ef010db678b1719e3b4dae1d0803962d181a4ff"
+    },
+    {
+      "path": "supabase/migrations/20261020000000_booking_series_cancelled_role_retention.sql",
+      "blob": "8acccde4f0b3e59c9a114552518176c49ec6a019"
+    },
+    {
+      "path": "supabase/migrations/20261020180000_conflict_resolver.sql",
+      "blob": "568c1160b07ae40629f73f2b824c164f2eecf4e0"
+    },
+    {
+      "path": "supabase/migrations/20261020190000_time_reports.sql",
+      "blob": "e8f8512d635203213e43d8a8920bc89943698cb3"
+    },
+    {
+      "path": "supabase/migrations/20261020200000_e16_16_3_work_orders.sql",
+      "blob": "dc345add995ec31cb70cfaf0b4a2e9b29a18a2da"
+    },
+    {
+      "path": "supabase/migrations/20261020210000_e16_16_4_job_upgrade_and_scheduling.sql",
+      "blob": "7374030b18651692d865fff9cb43d40d4205faca"
+    },
+    {
+      "path": "supabase/migrations/20261021061932_e16_card_revision_and_option_scope.sql",
+      "blob": "692e7d555fd06d3004c5388e8a7b9f58db9741e1"
+    },
+    {
+      "path": "supabase/migrations/20261021102151_e16_job_read_tenant_and_source_quote_scope.sql",
+      "blob": "d9e427bd2e2b2593b4a100b5f65d7802c7ae25d0"
+    },
+    {
+      "path": "supabase/migrations/20261022002335_booking_series_current_conflict_protocol.sql",
+      "blob": "67897c861f4517c1a72ced20de823ced2b14000a"
+    },
+    {
+      "path": "supabase/migrations/20261022014027_job_card_shared_conflict_refresh.sql",
+      "blob": "64affed8bd738c032d17851a2c96d6d1b6612497"
+    }
+  ],
+  "provider_trigger_rows": [
+    {
+      "path": "vercel.json",
+      "bytes": 472,
+      "sha256": "e0e52756499ec94a8a4cce992fb6766b03b5a549ca5de94fa7424f3701791129",
+      "Git_blob_source_and_candidate": "e9e72baa26445c9aee75e47a85946a54dd146acb",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 2509,
+      "sha256": "2e187cece5b9356343265e79f440bc7bd6992690abb423ba49edba76e01dc497",
+      "Git_blob_source_and_candidate": "332298f72cb07db501688b1e279f4bdc2a0bb5bd",
+      "old_qualified_raw_equal": false
+    },
+    {
+      "path": ".github/workflows/auto-bmad-parallel.yml",
+      "bytes": 2068,
+      "sha256": "126d339ac627f0fc455ef7049d3b12bf3ea53411b8a61c8c0e65bb48193ffa65",
+      "Git_blob_source_and_candidate": "70ec909ee72324b65ce270eee3201e106cedeb70",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "Git_blob_source_and_candidate": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": ".github/workflows/cloudflare-monitor-verify.yml",
+      "bytes": 1435,
+      "sha256": "18965e82fb30ebfc8b06346f95369b7dcd1f81345f47fcfcabf3b10232eca553",
+      "Git_blob_source_and_candidate": "0619e28d79a603178b787189883683b61cc92f14",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": ".github/workflows/fixed-chromium-capsule-mock-proof.yml",
+      "bytes": 8443,
+      "sha256": "4aa549f5df3ac1e51a0e475826dde0f99d70e1143f83878454efa90780986b86",
+      "Git_blob_source_and_candidate": "bdfe9dc0849c327f53aaf8fda768e025e794a869",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": ".github/workflows/pilot-availability.yml",
+      "bytes": 7000,
+      "sha256": "a8a6ecfce478cc86529583535ec24a7a7358e250ce0d6833091e0f8663e5e721",
+      "Git_blob_source_and_candidate": "8e34762aa940ecf8f391fdfbc5cc3010ab31f0c4",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": ".github/workflows/pilot-backup.yml",
+      "bytes": 6920,
+      "sha256": "b63f6bb2dadc687bc0ca21f5657175be5f7b374287b84adfaa2194df5294a547",
+      "Git_blob_source_and_candidate": "bf43be8a559eb38d67cea3097162e29fa2a3fb02",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": ".github/workflows/pilot-isolated-recovery-rehearsal.yml",
+      "bytes": 13238,
+      "sha256": "a62307f2ff235d2137175bf3ae6102342cf11310d2c8d9b721e6f2a2c05592ec",
+      "Git_blob_source_and_candidate": "cbf524c97a3d282eb3edc2da80fa499a1ac201bd",
+      "old_qualified_raw_equal": true
+    },
+    {
+      "path": ".github/workflows/pr-feedback.yml",
+      "bytes": 13698,
+      "sha256": "6b5a72c5459fbb54991b511d0d583bdb44cd7232d7363129ecb3b8cf93638cea",
+      "Git_blob_source_and_candidate": "4e8fbf4d495dc7230048cfa6a18025e348ed9649",
+      "old_qualified_raw_equal": true
+    }
+  ],
+  "shared_install_metadata": [
+    {
+      "path": "node_modules/next/package.json",
+      "bytes": 3188,
+      "sha256": "546222266ef4402af870e96f03964570038e8498f4a4f7cb6dcf591f08cb07ec"
+    },
+    {
+      "path": "node_modules/.modules.yaml",
+      "bytes": 27758,
+      "sha256": "00dc5a1b0eebc1213df769f5b17645b15c4fe808f71edd3c5e1b220683f7594f"
+    }
+  ],
+  "local_native_metadata_receipts": [
+    {
+      "label": "HEAD",
+      "native_exit": 0,
+      "elapsed_seconds": 0.047810100000788225,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 41,
+      "stdout_sha256": "130b31162584bb5b56e8d8f2b8f36ce5266c0d3aa37c14fdd8990d616de4aa91",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "BRANCH",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04947030000039376,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 39,
+      "stdout_sha256": "a2daee9ca65603fd03fece8ad3ef4b452276112180a5e0ad610aa8b28e01834d",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "STATUS",
+      "native_exit": 0,
+      "elapsed_seconds": 0.06987529999969411,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "LOCAL_PUBLISHED_TRACKING",
+      "native_exit": 0,
+      "elapsed_seconds": 0.04795000000012806,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 41,
+      "stdout_sha256": "130b31162584bb5b56e8d8f2b8f36ce5266c0d3aa37c14fdd8990d616de4aa91",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "TREE_a9489663addf99aa7da62c9c7ec4089a77f523d7",
+      "native_exit": 0,
+      "elapsed_seconds": 0.05721080000148504,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 734549,
+      "stdout_sha256": "1d15ae09d350fec740a19c1743b443f19fb54ac1bc09b46d52a1bea10de7a4da",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "TREE_2c8e8077f74067a06cd5e6c5136e4c545b83a5ba",
+      "native_exit": 0,
+      "elapsed_seconds": 0.058809499998460524,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 739852,
+      "stdout_sha256": "244439e8069c07c875c0a94b84b8ff9300381244bbc687936da7d2dc8dbab68a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    },
+    {
+      "label": "TREE_refs/remotes/origin/codex/epic-15-scheduling-time-calendar",
+      "native_exit": 0,
+      "elapsed_seconds": 0.07030920000033802,
+      "configured_timeout_seconds": 20,
+      "stdout_bytes": 739852,
+      "stdout_sha256": "244439e8069c07c875c0a94b84b8ff9300381244bbc687936da7d2dc8dbab68a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_EOF_closed_settled": true
+    }
+  ],
+  "input_refs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/reader.py",
+      "bytes": 50733,
+      "sha256": "6b20079069e05e4ddf836fcd973d3e3348d4ed5cbfe9309e3561ccf48f9dd920"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/source-rows.json",
+      "bytes": 32340,
+      "sha256": "a2a020b26877f3f7de8b2b23cec96748806f07228308cfc70c25b6a879240182"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/actual-terminal-envelope.json",
+      "bytes": 26268,
+      "sha256": "fc448cc4141e98d6400fbd8345feb15053c17f33befc334b02c161e2ab74fdfa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/proposal.json",
+      "bytes": 189647,
+      "sha256": "ecc395e1056588f7ab338eb7028a8ff127b4a974af3d5cfa619f0851259c6028"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-actual-preparation/manifest.json",
+      "bytes": 1200,
+      "sha256": "812e5200899edfe5c1d6f50e431b37a477576ebe38fad333c48e410cda2543fe"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-terminal-reader-operational-review.json",
+      "bytes": 12861,
+      "sha256": "5bb18d5f2f4ebf78907a3981685486011935c2e1155016363ec5f9f9234f5b0f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-normal-INT014-NORMAL-terminal-effects-allocation.json",
+      "bytes": 3508,
+      "sha256": "0f8e9ce6d6a59e55aca083ce7cf60b175f99c35b53193dd79b11a3a6676d1819"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-actual-root-ownership.json",
+      "bytes": 40335,
+      "sha256": "bae889178b1d7f60cd50baf443e0d49def96843ca5712775d772db69322ad420"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-root-operation/terminal.json",
+      "bytes": 24085,
+      "sha256": "f5a889fe8309208ce94ab6e4063e88a7279d9698b9e12b35ac85a2d2570970e9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/normal-INT014-NORMAL-actual-publication-resolver-proof.json",
+      "bytes": 4642,
+      "sha256": "d543404ab48d3ff0d5165bf4fc58634d6bb3caae1852e0b92deb3e70e3880a23"
+    }
+  ],
+  "published_identity_provenance": "Actual prior push/readback/controller receipts pinned; fresh local published tracking tree equals source/head for204 bindings. No fresh network observation.",
+  "effects_authorized": "Only actual completed finite terminal allocation; no Gitnetwork/provider/mutation/status retry",
+  "normal_acceptance": 0
+}

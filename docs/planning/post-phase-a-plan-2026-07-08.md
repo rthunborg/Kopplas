@@ -134,6 +134,7 @@ Each module Phase B activates must be removed from the deny-list/guardrails in t
 5. `/bmad-create-epics-and-stories` (Epic 10+, wave-tagged) → `/bmad-sprint-planning`.
 6. Delivery resumes with the established pipeline: `/auto-bmad epic --epic 10`, etc.
 7. In parallel, anytime: W1 cleanup PR; W2 UAT dry-run; owner email follow-ups as answers arrive.
+8. **[ ] Final Phase B release validation and stabilization — PENDING (owner decision 2026-10-22).** When all approved current Phase B epics are development-complete and integrated, the Coordinator opens and assigns the [release checkpoint](../quality/phase-b-release-validation-checkpoint.md) to QA, UI review and the owner. Consolidate every epic's deferred release checks, execute validation against the chosen candidate, resolve consequential findings and record approval before declaring release readiness. Epic completion does not complete this milestone; no fixed calendar date or deployment authorization is implied.
 
 ---
 

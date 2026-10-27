@@ -1,0 +1,18 @@
+{
+  "Outcome": "REVISE — PLAN ONLY; F1 P2 remains open.",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json"
+  ],
+  "Status": "Independent High targeted plan review complete; 20 bound rows and 10 Git blob pairs verified; 6/6 synthetic installed-parser transport frames passed. No runtime or implementation authorization.",
+  "Open questions": [
+    "F1: explicitly exclude the table-ACL-only owner_tokens_select false bit from necessary-privilege conclusions, or specify reviewed effective column-coverage semantics."
+  ],
+  "Deferred work": [
+    "Targeted F1 plan closure; future exact implementation allocation, actual focused controls and independent High committed-delta review; fresh source/private binding and separate Root once activation. All 43 DB and 14 browser failures remain unresolved."
+  ],
+  "Blockers": [
+    "F1 prevents plan PASS. Backend cause remains UNPROVEN; normal/native acceptance credit 0."
+  ]
+}

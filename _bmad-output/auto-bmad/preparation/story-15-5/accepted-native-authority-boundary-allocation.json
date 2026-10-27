@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "kind": "accepted-five-path-native-authority-boundary-allocation",
+  "status": "ACCEPTED_CONDITIONAL_IMPLEMENTATION_ONLY",
+  "source_thread_id": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "source_turn_id": "01a15a80-828c-7851-a8cb-f5e9a162d993",
+  "native_handoff_tool_id": "exec-cd4c0015-e5d0-457b-840b-7d2a6bf02f36",
+  "native_handoff_status": "completed",
+  "actual_incoming_handoff_received": true,
+  "proposal": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal.md",
+    "bytes": 16753,
+    "sha256": "d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4"
+  },
+  "independent_proposal_review": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-authority-boundary-proposal-review/original-review.md",
+    "bytes": 1075,
+    "sha256": "b822dd0bb78ae76540b8283aee068708947cbfe7c7036c77102f42dcfd184a1c",
+    "attestation_sha256": "93164d01ad3aecad2ff8a0edb061b0268f02315f65ab32c257f604ec17662802",
+    "status": "PASS_DESIGN_ONLY"
+  },
+  "coordinator_high_assessment": {
+    "thread_id": "01a13ebf-ebf4-78a1-b25d-7adecead611f",
+    "turn_id": "01a15a7a-8e17-7141-825f-f58cee8ecd3f",
+    "result": "PASS bounded Root/Coordinator admission; no additional human authorization gap; explicit effect admission required and delivered"
+  },
+  "source_baseline": "e472741a91f58c5ef9e623720e2bba0d1164c360",
+  "checkpoint_baseline": "c7570096435dfbae2f6a535be46e61daaf9e28dc",
+  "paths": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "scope": "Exact reviewed same-container authenticated setup effect only"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "scope": "Bounded transport/identity/privacy/custody regressions"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "scope": "Exact reviewed wrapper SHA pin only; all existing fences retained"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "scope": "INT015 only; existing two-role restricted-session oracle and transactional scope retained"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "scope": "Author trail and Suggested Review Order only; approved intent unchanged"
+    }
+  ],
+  "protected_owner_head": "ad9c3b79a4244333384e6d0970e13586f7a05739",
+  "ownership": "Coordinator verified exact four feed paths clean in E16; outside known16.5 workspace claims. No active Documents claim known. Conditional hold only newly conflicting affected scope.",
+  "admitted_effect_exact": "Coordinator explicitly ADMITS exact same-container credential-use/authenticated setup effect and allocates ONLY five proposed existing paths under verified proposal d3a0e8c4da3bb1cfd2adffd74e576cc9adf6fd0afb5e9a264433d948b20791b4. SAME High PASS/no further human gap received and hashes verified. E16 actual owner commentary confirms no current edits on four calendar-feed paths; Root status clean at protected ad9c3b79a4244333384e6d0970e13586f7a05739; these feed-owned wrapper/INT015 scopes remain outside known16.5 workspace claims. No active Documents claim known; no foreign checkout edits or shared runtime adoption. Five paths: wrapper; wrapper unit suite; contract helper SHA pin ONLY; commands/calendar-feed.int.test.ts INT015 ONLY; authorSpec/SRO. Use sole nonempty captured POSTGRES_PASSWORD memory-only from SAME freshly-qualified job-owned source container, fixed canonical SupAdmin TCP existing publication. No guessed/default/fallback/alternate target/retry route/privilege repair. Actual sameclient session=current=supabase_admin LOGIN+SUPER AND all4 exactprivacychecks BEFORE any key/fixture mutation; failclosed if unavailable. No privileged configuration in app/testchildenv/genericpools; exports are callsitecontrols not sandboxclaim. INT015 original2roles/restrictedSESSIONAUTHORIZATION/transaction-onlyeffects retained; fresh cleanup/absenceconnections independently qualify identity/privacy. Preserve COMMIT uncertainty/exactUUID+name cleanup/settledrequests/sanitizedfailures/operatorcustody when unverified, no manufacturedcleanupsuccess. No workflow/migration/recovery/provider/hostedsecret/resourcelaunch expansion. Native credentialmapping/authauthority UNVERIFIED until actual CI; priorrun39468849461 remainsFAIL/sourcepostgres observations preserved. ExistingHighauthor may implement; DISTINCT changed-line High review before ONE next exact-head native CI under standing authorization; no broadre-review/duplicatepacket. Monitoring stayspaused/no deployment. If a new actual conflicting claim appears, hold only affected scope and report.",
+  "required_next": "Recorded explicit High implementation route; distinct changed-line High code review; Root checkpoint admission and one new exact-head CI",
+  "native_prerequisites": "Admin credential mapping/TCP LOGIN+SUPER and runtime privacy remain UNVERIFIED; failed run39468849461 stays failed",
+  "development_complete": false,
+  "release_ready": false,
+  "resource_launch_authorized": false,
+  "deployment_authorized": false
+}

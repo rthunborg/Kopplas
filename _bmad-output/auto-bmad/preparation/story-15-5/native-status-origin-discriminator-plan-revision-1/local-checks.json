@@ -1,0 +1,38 @@
+{
+  "kind": "calendar_feed.status_origin_discriminator_revision_1_local_checks",
+  "status": "PASS_METADATA_IDENTITY_ONLY",
+  "normal_acceptance_credit": 0,
+  "plan": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/plan.md",
+    "bytes": 6409,
+    "sha256": "b375f14d29c899a0288d15b8bf5386bde5d27a3e00e4a0c9d8c97d03010e4350"
+  },
+  "binding": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/input-binding.json",
+    "bytes": 10024,
+    "sha256": "63633bc5d3b9c3749d9f13674cc0f5f14104f1c27fe1ef893f66eae781483421"
+  },
+  "actual_checks": {
+    "original_artifacts_hashed": 7,
+    "unchanged_context_raw_rows_hashed": 19,
+    "assignment_hashed": 1,
+    "binding_full_reference_occurrences": 28,
+    "binding_unique_paths": 28,
+    "source_files_written": 0,
+    "original_files_written": 0,
+    "planned_controls_executed": 0,
+    "queries_connections_native_API_resources_Git_mutations": 0,
+    "new_author_outputs": 3,
+    "retained_permission_fields": 18,
+    "necessary_candidate_fields": 17,
+    "table_acl_only_fields": 1
+  },
+  "limits": [
+    "F1 correction only; all other plan behavior reused by immutable provenance",
+    "Official executor source inspected memory-only; no PostgreSQL execution or effective-column observation",
+    "Original plan REVISE is not rewritten as PASS; independent targeted closure pending",
+    "No source/private-consumer allocation or runtime activation"
+  ],
+  "reader_stops": [],
+  "metadata_generation_native_exit": 0
+}

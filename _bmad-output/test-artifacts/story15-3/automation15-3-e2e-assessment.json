@@ -1,0 +1,620 @@
+{
+  "success": true,
+  "subagent": "e2e-tests",
+  "assessment_only": true,
+  "tests": [],
+  "test_count": 0,
+  "new_tests": 0,
+  "runtime_executed": 0,
+  "fixture_needs": [],
+  "summary": "Existing three essential resolver browser journeys plus focused DB/domain coverage close the assessed development automation need. No consequential uncovered E2E gap was identified within this bounded assertion assessment; no redundant tests generated. Browser scope is representative, not the exhaustive AC/role/device matrix. Runtime results are reused qualified evidence, not newly executed.",
+  "knowledge_fragments_used": [
+    "library-integration-mandate",
+    "playwright-utils-mandate",
+    "network-first",
+    "selector-resilience",
+    "fixture-architecture (pure helper/composed fixture principles)"
+  ],
+  "priority_coverage": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "existing_priority_coverage": {
+    "P0": 2,
+    "P1": 1,
+    "P2": 0,
+    "P3": 0
+  },
+  "playwright_utils_deviations": [],
+  "integration_policy": {
+    "tea_use_playwright_utils": true,
+    "package_installed": false,
+    "mandate_binds": false,
+    "reason": "Two-gate mandate: package.json has no @seontechnologies/playwright-utils dependency. Existing native fixtures/routes/login are not per-file mandate violations. No imports, dependency or fixture changes authorized or needed for this assessment. A future intentional framework migration would supply installation and merged/auth/network fixtures.",
+    "pact": "Parent capability probe unreachable; no relevant independently deployed contract boundary. Provider-source fallback retained; no re-probe or broker claims."
+  },
+  "existing_coverage": [
+    {
+      "id": "15.3-E2E-001",
+      "priority": "P0",
+      "priority_basis": "Historical ATDD worker declaration; current test title has no priority tag. Epic family 15.3-E2E-001 was P1; no count is inferred from family inventory.",
+      "file": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "line": 25,
+      "acs": [
+        "AC1",
+        "AC2",
+        "AC5",
+        "AC6",
+        "AC8"
+      ],
+      "assertions": [
+        {
+          "line": 27,
+          "kind": "actual_browser",
+          "assertion": "Existing scheduling chip is exactly Konflikter (1); navigation loads resolver heading and period-wide scope label."
+        },
+        {
+          "line": 28,
+          "kind": "actual_browser",
+          "assertion": "Explicit selected booking; timeline has two items and both independently seeded descriptions."
+        },
+        {
+          "line": 30,
+          "kind": "actual_browser_with_real_authority_change",
+          "assertion": "Actual membership disable produces alert; reason remains editable; Escape opens unsent-reason discard confirmation and Continue keeps review."
+        },
+        {
+          "line": 32,
+          "kind": "actual_browser_with_real_fact_change",
+          "assertion": "After membership restore and baseline fact change, acknowledgment clears and literal reason is retained before renewed review."
+        },
+        {
+          "line": 33,
+          "kind": "real_server_transport_loss",
+          "assertion": "route.fetch forwards real reviewed POST then aborts delivery; HTTP response.ok is transport-only, not an application-envelope success assertion."
+        },
+        {
+          "line": 35,
+          "kind": "physical_sql",
+          "assertion": "Exactly one real resolution id/command_id/result exists before explicit retry."
+        },
+        {
+          "line": 36,
+          "kind": "actual_browser",
+          "assertion": "Actual history.back/popstate retains dialog and reason. Synthetic cancelable beforeunload event checks the installed listener, not real tab-close or crash recovery."
+        },
+        {
+          "line": 37,
+          "kind": "actual_browser_and_physical_sql",
+          "assertion": "Same-attempt retry shows accepted message and exact durable ledger projection remains unchanged."
+        },
+        {
+          "line": 38,
+          "kind": "actual_browser",
+          "assertion": "Default queue disappears, accepted filter exposes exactly one queue button."
+        },
+        {
+          "line": 39,
+          "kind": "actual_browser",
+          "assertion": "Reloaded accepted filter shows persisted acceptance history."
+        },
+        {
+          "line": 40,
+          "kind": "physical_sql",
+          "assertion": "One conflict has accepted status, exact actor membership and nonnull accepted_at. acceptance_reason is selected but its literal value is not asserted here."
+        },
+        {
+          "line": 41,
+          "kind": "physical_sql",
+          "assertion": "One resolution and exactly the seeded montor recipient with /scheduling route for booking.changed."
+        }
+      ],
+      "limits": [
+        "One double-booking group; no multiple-selected/unrelated-group selectivity matrix in this body.",
+        "No direct audit-table readback, full permission matrix, aggregate detail variants or exact history actor/time text assertions in this body."
+      ]
+    },
+    {
+      "id": "15.3-E2E-002",
+      "priority": "P0",
+      "priority_basis": "Historical ATDD worker declaration; current test title has no priority tag.",
+      "file": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "line": 43,
+      "acs": [
+        "AC4",
+        "AC6",
+        "AC7",
+        "AC8"
+      ],
+      "assertions": [
+        {
+          "line": 45,
+          "kind": "real_checked_setup",
+          "assertion": "Production series preview and create command create a five-slot series; test SQL marks one exception and one cancelled tombstone."
+        },
+        {
+          "line": 48,
+          "kind": "actual_browser",
+          "assertion": "Whole current-series action opens real editor; changed local times preview and protected exception description/cancelled date are visible before save."
+        },
+        {
+          "line": 52,
+          "kind": "actual_browser",
+          "assertion": "Common-segment save reaches exact Sparad i systemet status, not merely HTTP success."
+        },
+        {
+          "line": 53,
+          "kind": "physical_sql",
+          "assertion": "Full protected booking rows remain byte/value equal to snapshot; all five stable occurrence IDs remain."
+        },
+        {
+          "line": 55,
+          "kind": "physical_sql",
+          "assertion": "All three ordinary occurrences have independently literal UTC starts/ends and exact original assignee IDs; one resolution ledger entry."
+        },
+        {
+          "line": 57,
+          "kind": "actual_browser",
+          "assertion": "Following-series scope dialog and Detta och kommande choice use real editor; changed time is previewed and saved."
+        },
+        {
+          "line": 59,
+          "kind": "physical_sql",
+          "assertion": "Source bound is 2026-10-15 with nonnull successor."
+        },
+        {
+          "line": 60,
+          "kind": "physical_sql",
+          "assertion": "Two successor occurrences retain exact IDs with literal UTC starts; protected rows remain equal; two ledger entries."
+        }
+      ],
+      "limits": [
+        "No microsecond/all-day/DST, >=11-warning, assignment-change or existing-later-successor matrix in browser; those belong to focused domain/DB cases.",
+        "Following tail checks IDs/start times; does not separately assert every successor end/assignee field here.",
+        "No direct audit-table assertion."
+      ]
+    },
+    {
+      "id": "15.3-E2E-003",
+      "priority": "P1",
+      "priority_basis": "Historical ATDD worker declaration; current test title has no priority tag.",
+      "file": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "line": 62,
+      "acs": [
+        "AC4",
+        "AC6",
+        "AC8"
+      ],
+      "assertions": [
+        {
+          "line": 63,
+          "kind": "actual_browser",
+          "assertion": "Connected viewport is explicitly 360x640; native queue and adjust buttons are focused and activated by Enter."
+        },
+        {
+          "line": 65,
+          "kind": "actual_browser_and_physical_sql",
+          "assertion": "Still-conflicting reviewed adjustment displays honest remaining notice; one remaining ledger outcome and all selected fixture conflict statuses open."
+        },
+        {
+          "line": 66,
+          "kind": "actual_browser",
+          "assertion": "Second adjustment changes start/end and shows conflict-free preview."
+        },
+        {
+          "line": 67,
+          "kind": "real_server_transport_loss",
+          "assertion": "Real reviewed POST is forwarded then response aborted; response.ok only proves transport status."
+        },
+        {
+          "line": 68,
+          "kind": "actual_browser",
+          "assertion": "Unknown-save status appears and literal start input remains 2026-10-12T11:00."
+        },
+        {
+          "line": 69,
+          "kind": "physical_sql_and_actual_browser",
+          "assertion": "Two real ledger records exist before explicit retry; retry reaches saved state."
+        },
+        {
+          "line": 70,
+          "kind": "physical_sql",
+          "assertion": "Exact id/command_id/result projection remains unchanged after retry; exactly two booking.changed notifications."
+        },
+        {
+          "line": 71,
+          "kind": "actual_browser",
+          "assertion": "Reload shows exactly two booking-change history items, one remaining and one resolved."
+        },
+        {
+          "line": 73,
+          "kind": "physical_sql_projection_and_actual_browser",
+          "assertion": "Stored result outcomes are remaining and resolved; document has no horizontal overflow."
+        }
+      ],
+      "limits": [
+        "This body does not independently read booking times, assignments or audit rows. Do not credit it as standalone proof of those fields; E2E002 and DB integrity suites supply that evidence.",
+        "Keyboard activation covers entry/action buttons; fills/checks/selects are Playwright operations, not a complete tab-order or assistive-tech audit.",
+        "Notification count is checked, not this body's exact recipient set."
+      ]
+    }
+  ],
+  "ac_map": {
+    "AC1": {
+      "browser": [
+        "15.3-E2E-001:27",
+        "15.3-E2E-001:38"
+      ],
+      "scope": "Essential count/chip/scope/default/accepted wiring; complete aggregate reconstruction and failed reads are cross-level, not all browser-executed.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+          "line": 9
+        },
+        {
+          "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+          "line": 21
+        }
+      ]
+    },
+    "AC2": {
+      "browser": [
+        "15.3-E2E-001:28"
+      ],
+      "scope": "Actual two-participant timeline and explicit target. Aggregate context/recency/privacy use READ-001/002 and safe-history RLS; SSR structure is not dynamic browser evidence.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+          "line": 9
+        },
+        {
+          "file": "tests/integration/read-models/booking-conflicts.int.test.ts",
+          "line": 21
+        },
+        {
+          "file": "tests/integration/components/conflict-resolver.test.ts",
+          "line": 8
+        }
+      ]
+    },
+    "AC3": {
+      "browser": [],
+      "scope": "Flytta/Omfordela suggestion selection is not executed by the three browser cases. INT-012 calls actual suggestions action with authenticated-client seam, checks actual load/role candidate, stale denial and fresh checked commit for move/reassign. Current UI source maps those actions to the shared reviewed editor; representative essential smoke need not duplicate every menu.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 121
+        }
+      ],
+      "source_mapping": [
+        {
+          "file": "src/components/scheduling/ConflictDetail.tsx",
+          "line": 16
+        },
+        {
+          "file": "src/components/scheduling/ConflictResolver.tsx",
+          "line": 39
+        },
+        {
+          "file": "src/components/scheduling/ConflictResolver.tsx",
+          "line": 77
+        },
+        {
+          "file": "src/features/resources/booking-conflict-actions.ts",
+          "line": 35
+        }
+      ]
+    },
+    "AC4": {
+      "browser": [
+        "15.3-E2E-002:52",
+        "15.3-E2E-002:55",
+        "15.3-E2E-003:65",
+        "15.3-E2E-003:72"
+      ],
+      "scope": "Common/following persisted edits and honest remaining/resolved outcome. Atomic rollback/precise single overlay/actor/SQL time remain DB-level obligations.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 155
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 223
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 82
+        }
+      ]
+    },
+    "AC5": {
+      "browser": [
+        "15.3-E2E-001:29",
+        "15.3-E2E-001:38",
+        "15.3-E2E-001:40"
+      ],
+      "scope": "Real acceptance and accepted filter; full selected/unrelated/forged/stale and refresh/reopen matrix is not claimed from one browser group.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 143
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 173
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 207
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 69
+        }
+      ]
+    },
+    "AC6": {
+      "browser": [
+        "15.3-E2E-001:35",
+        "15.3-E2E-001:37",
+        "15.3-E2E-001:39",
+        "15.3-E2E-001:41",
+        "15.3-E2E-003:69",
+        "15.3-E2E-003:72"
+      ],
+      "scope": "Real lost-response retry preserves one ledger result, history reload and notification evidence. Full audit/recipient/preference/concurrency/failure invariants require DB suite.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 199
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 223
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 255
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 269
+        }
+      ]
+    },
+    "AC7": {
+      "browser": [
+        "15.3-E2E-002:48",
+        "15.3-E2E-002:53",
+        "15.3-E2E-002:55",
+        "15.3-E2E-002:57",
+        "15.3-E2E-002:60"
+      ],
+      "scope": "Bounded ordinary sibling persistence/protected rows/stable IDs/following split. Higher-cardinality/version/neighboring ownership matrix is focused DB evidence.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 241
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 96
+        },
+        {
+          "file": "tests/integration/commands/conflict-resolver.int.test.ts",
+          "line": 56
+        }
+      ]
+    },
+    "AC8": {
+      "browser": [
+        "15.3-E2E-001:30",
+        "15.3-E2E-001:32",
+        "15.3-E2E-001:36",
+        "15.3-E2E-003:63",
+        "15.3-E2E-003:68",
+        "15.3-E2E-003:70"
+      ],
+      "scope": "Real revoked-membership error, retained reason/stale acknowledgment, phone keyboard entry and explicit retry. Browser success is confirmed by relevant SQL projections, not HTTPok. Full role/tenant/RPC/DML matrix is cross-level; no blanket browser coverage claim.",
+      "supporting_tests": [
+        {
+          "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+          "line": 16
+        },
+        {
+          "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+          "line": 50
+        },
+        {
+          "file": "tests/integration/rls/conflict-resolver.rls.test.ts",
+          "line": 55
+        }
+      ]
+    }
+  },
+  "consequential_gaps": [],
+  "fixture_and_source_seams": [
+    {
+      "file": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "line": 19,
+      "meaning": "Real isolated role/tenant fixture, SQL work hours and checked create commands establish overlapping bookings; owned ledger cleanup in finally. No mocked command results."
+    },
+    {
+      "file": "tests/support/bookings-atdd.ts",
+      "line": 187,
+      "meaning": "Per-case createRoleAwarePhaseAFixture with finally cleanup; authenticated clients for tenant roles."
+    },
+    {
+      "file": "tests/support/bookings-atdd.ts",
+      "line": 87,
+      "meaning": "bookingCommand validates/obtains real reviewed fixture input and executes actual runCommand."
+    },
+    {
+      "file": "tests/support/booking-series-atdd.ts",
+      "line": 57,
+      "meaning": "Real production previewBookingSeries receipt and actual series command setup."
+    },
+    {
+      "file": "tests/factories/admin-sql.ts",
+      "line": 37,
+      "meaning": "adminQuery uses actual pg pool after local-only assertLocalStack, independent physical readbacks."
+    },
+    {
+      "file": "tests/e2e/support/resource-cdp-attachment.ts",
+      "line": 35,
+      "meaning": "Native page in ordinary runner or isolated context/page on explicit loopback guard CDP endpoint; releases only owned page/context, not root browser."
+    },
+    {
+      "file": "src/components/scheduling/ConflictResolver.tsx",
+      "line": 51,
+      "meaning": "Acceptance action preserves attempt request on unknown response, renews stale preview and clears acknowledgment; source is mapping, not additional executed coverage."
+    },
+    {
+      "file": "src/components/scheduling/ConflictResolver.tsx",
+      "line": 55,
+      "meaning": "Resolver editor adapter uses real preview/save actions for common and following paths."
+    },
+    {
+      "file": "src/components/resources/BookingEditor.tsx",
+      "line": 165,
+      "meaning": "Real editor save retains attempted request after unknown result and sets saved state only from success envelope."
+    }
+  ],
+  "discovery": {
+    "package_smoke": {
+      "file": "package.json",
+      "line": 26
+    },
+    "config": {
+      "file": "playwright.config.ts",
+      "line": 33
+    },
+    "included": true,
+    "ignored_only_dashboard": true,
+    "production_server": true,
+    "native_config": "playwright.config.ts; production build then next start; workers=1; CI reuseExistingServer=false; Chromium",
+    "no_next_dev": true
+  },
+  "reused_evidence": {
+    "tested_head": "d550029abac34360af7d9d928f6e66f906665d38",
+    "reviewed_source_head": "6d9836044f643a5ab6df8a1dd430e2801d8a7cdc",
+    "current_head_reported_by_parent": "c67950dbd154126e1d3b04444d68764e3271479b",
+    "current_head_independently_queried_here": false,
+    "run_id": 39363860222,
+    "run_attempt": 1,
+    "release_validation": false,
+    "native_browser_stats": {
+      "startTime": "2026-10-20T03:27:37.707Z",
+      "duration": 88159.45,
+      "expected": 14,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "native_global_errors": [],
+    "resolver_cases": [
+      {
+        "id": "15.3-E2E-001",
+        "file": "conflict-resolver.e2e.spec.ts",
+        "line": 25,
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "errors": [],
+            "duration_ms": 5708
+          }
+        ]
+      },
+      {
+        "id": "15.3-E2E-002",
+        "file": "conflict-resolver.e2e.spec.ts",
+        "line": 43,
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "errors": [],
+            "duration_ms": 5417
+          }
+        ]
+      },
+      {
+        "id": "15.3-E2E-003",
+        "file": "conflict-resolver.e2e.spec.ts",
+        "line": 62,
+        "status": "expected",
+        "attempts": [
+          {
+            "status": "passed",
+            "retry": 0,
+            "errors": [],
+            "duration_ms": 4432
+          }
+        ]
+      }
+    ],
+    "overall_browser_partition": "Auth7 + Jobs4 + resolver3 = 14 first-attempt passes; 0 retry/skip/flaky/global errors",
+    "hashes_verified": {
+      "packet_files_checked": 102,
+      "packet_hashes_and_bytes_match": true,
+      "conserved_source_paths_checked": 57,
+      "current_source_matches_normalized_lf": true,
+      "normalization_note": "Current Windows checkout has CRLF for some files. This worker compared LF-normalized current bytes to the recorded SHA-256 Git-content hashes without invoking Git. Parent separately validates current/tested Git blobs and clean source paths.",
+      "files": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/report.json",
+          "sha256": "9d3b582912bfccb3cecf0edee300018c9d89cb4d5c647ff709cb0e51791ea236"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/report.md",
+          "sha256": "3ecfece99d037155cdefbe6d6de58e52b1ddffad1001067e297cc0f1220fa183"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/sha256-manifest.json",
+          "sha256": "688b9d0fc9e4621e92d1d3ea01f2d70ce88b9f728a896a28cfb33b162cbbb8c4"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/browser-qualification.json",
+          "sha256": "f446302571e7e75fb1da0db860f55a48eb6fd8375c23c2db0fec277a71ba6343"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/extracted/native-general-browser/general-browser.json",
+          "sha256": "efee26db5cada15e11d73ae79a4c00924267dce086633e156b27d9c9dd1b1849"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-3-preparation/checkpoint-d550029a-ci-independent/source-provenance.json",
+          "sha256": "ffc259e80f41f0a821b4ea114a96809b2c3be5fe60aba17a5ec5a9a268c63430"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-3-preparation/author-final-delivery-conservation.json",
+          "sha256": "bbc0be07a48d6ccd3f417851e073ad48673804f4743a13c1118162abff87e3c9"
+        }
+      ]
+    },
+    "historical_atdd": "Original skipped declarations and gaps are preserved historical generation records; they do not override the active current bodies or count as runtime.",
+    "jobs_E03": "Current pass is separately qualified context only. No expansion/re-review of that path and no reliance on the earlier 53e packet failure."
+  },
+  "limitations": [
+    "Bounded named-test assertion assessment, not a fourth broad code review. Review cap remains 3/3.",
+    "No runtime, browser, DB, CI, remote or legacy service accessed; native prior execution is qualified by actual passed bodies, report hashes and unchanged sources.",
+    "Flytta/Omfordela UI suggestion selection is not browser-executed; actual action/checked commit coverage is INT-012. No complete browser AC matrix is claimed.",
+    "Two SSR component cases check static structure only; mocked/projected read-model tests do not earn physical DB, native interaction or layout coverage.",
+    "HTTP response.ok in lost-response forwarding is transport-only. Durable outcome/history/notification projections and explicit saved UI assertions supply the stated success evidence.",
+    "E2E003 does not independently establish exact booking times, assignees or audit rows. Cross-level evidence must retain E2E002 and DB integrity mappings.",
+    "Synthetic beforeunload cancellation is listener evidence only; no real tab-close/browser crash recovery or offline persistence claim.",
+    "Native JSON records runner-local trace/attachment references but available trace/error-context bytes were not provided; no invented screenshot/trace inspection.",
+    "Exhaustive browser/device/gesture matrices, screenshots/visual/manual accessibility/daylight/exploration/polish and representative scheduling performance remain deferred release validation under owner 2026-10-19 policy. They are not passed and not routine-assessment blockers.",
+    "No measured line coverage or parallel speed benefit claimed; original family counts are planning inventory, not test totals."
+  ],
+  "release_ready": false,
+  "development_complete_claim": false,
+  "review_round_consumed": 0,
+  "ownership": "Only this assessment JSON written. No source/test/helper/spec/delivery/shared/config/env/Git mutation; no new resources.",
+  "created_at_utc": "2026-10-20T03:52:05.512512+00:00"
+}

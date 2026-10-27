@@ -1,0 +1,27 @@
+{
+  "kind": "actual-targeted-new-producer-eslint",
+  "command": "pnpm exec eslint _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/prepare-proposal.mjs _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/prepare-input.mjs _bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/prepare-freeze.mjs",
+  "exit_code": 0,
+  "errors": 0,
+  "warnings": 0,
+  "receipt": "5fdda1",
+  "prior_two_frozen_producers_receipt": "6d280e",
+  "producers": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-proposal/prepare-proposal.mjs",
+      "bytes": 17532,
+      "sha256": "c84a734defe51c87aeeca186f57f3cb9bf1d898ddcf9530732b5751fca627910"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/prepare-input.mjs",
+      "bytes": 20083,
+      "sha256": "8c7cd3da7eb00e68d193835e29d82af3ff9128647083c0c431ccf0c416e656cc"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-dependency-audit-repair-review/prepare-freeze.mjs",
+      "bytes": 32407,
+      "sha256": "3190d47e80ddea31e6a24f2e3393fe74dc9309a47ba89e2cce4d3efae8e74d38"
+    }
+  ],
+  "scope": "ONLY these3newproducers; no retained browser assets, no semantic/native/test reruns or frozenproducer mutation"
+}

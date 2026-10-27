@@ -1,0 +1,72 @@
+{
+  "Status": "ADOPTED_PLAN_ONLY_EXECUTION_BLOCKED",
+  "Summary": {
+    "adopted": "Whole-run diagnostic-only revision1 with staged UNKNOWN stops and zero normal acceptance.",
+    "implementation_allocation": "GRANTED per accepted receipt; source implementation/review/native admission not established by this task.",
+    "native_credit": 0,
+    "normal_acceptance_credit": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "Artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/plan.md"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/result.json"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-denial-cause-proof-qualification-plan/manifest.json"
+    }
+  ],
+  "Tests": {
+    "executed_read_only": {
+      "assigned_input_hashes": 7,
+      "proposal_manifest_members": 4,
+      "immutable_references": 10,
+      "context_raw_clean_author_checkpoint_index_bindings": 25,
+      "author_checkpoint_blob_checks": 50,
+      "frozen_source_raw_clean_index_checkpoint_paths": 69,
+      "actual_consumer_call_settlement_source_reads": true
+    },
+    "application_or_runtime_tests_executed": 0,
+    "planned_only": [
+      "mode/legacy/request/uncertainty controls",
+      "normal inverse/artifact/pilot compatibility negatives",
+      "actual-source trace isolation/once/value/error/privacy/report controls",
+      "command/query/HTTP/timer/child settlement and rollback/reset/fresh cleanup controls",
+      "one diagnostic case and conditional one original baseline after distinct execution admission"
+    ]
+  },
+  "Warnings": {
+    "compatibility_blockers": [
+      {
+        "id": "HOSTED_INPUT_AVAILABILITY",
+        "owner": "Root",
+        "status": "UNVERIFIED_PRE_POST_STOP",
+        "next": "Separately admitted fixed GET evidence; no POST while unsupported/uncertain."
+      },
+      {
+        "id": "COMMITTED_IMPLEMENTATION_QUALIFICATION",
+        "owner": "Allocated High author and distinct High reviewer",
+        "status": "IMPLEMENTATION_ALLOCATED_REVIEW_NATIVE_PENDING",
+        "next": "Exact14 hunks, pure controls, committed delta review and refreshed freeze; no assertion already fixed."
+      },
+      {
+        "id": "ROOT_DIAGNOSTIC_CONSUMER",
+        "owner": "Root and independent native qualifier",
+        "status": "NEW_PRIVATE_PACKET_ALLOCATION_REQUIRED",
+        "next": "Assign new diagnostic collector artifacts with persisted mode/identity/capture binding, no frozen normal collector changes."
+      }
+    ],
+    "causal_limits": [
+      "actual command promise is not public-fetch pending set",
+      "new restricted baseline session/proof/input/time/snapshot is not historical PostgREST equivalence",
+      "42501 remains ambiguous; denied/unavailable/unknown labels are not backend cause",
+      "all11 failed histories and browser contentNULL/custody limits preserved"
+    ],
+    "source_snapshot_limit": "69source/25context raw and index matched during bounded reads. Allocated author may now edit; no later global clean claim.",
+    "authority": "Plan adoption only; no source, SQL, CI or provider execution grant."
+  },
+  "Next": "Root retains availability/consumer/execution admission. After actual committed-delta review, assign one exact diagnostic checkpoint; any ambiguity or cleanup uncertainty stops with named minimal next proof, no full CI retry."
+}

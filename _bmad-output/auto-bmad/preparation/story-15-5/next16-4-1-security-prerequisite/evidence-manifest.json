@@ -1,0 +1,161 @@
+{
+  "schema": "ROOT_IDENTICAL_SAFE_EVIDENCE_COPIES_V1",
+  "copies": [
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-published-prePOST-stop-independent-audit.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/INT009-DEBUG-bytepin-published-prePOST-stop-independent-audit.json",
+      "bytes": 14519,
+      "sha256": "73a1d58f2d25e9235da33ed7da4b735afda275e9455990a0d3cda065cea55329",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-bytepin-window-published-prePOST-stop-root-attribution.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/INT009-DEBUG-bytepin-window-published-prePOST-stop-root-attribution.json",
+      "bytes": 2665,
+      "sha256": "f623e8b190a1ee84ae7926351a7ee8e77d652e44c6c0b8c3ce68357fba2ea852",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-operational-review.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/INT009-DEBUG-dispatch-only-operational-review.json",
+      "bytes": 15859,
+      "sha256": "409cc201d727845a7d87c7f700a4964107295404f9d5202d1fb6af88c39b8687",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-actual-terminal-root-ownership.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/INT009-DEBUG-dispatch-only-actual-terminal-root-ownership.json",
+      "bytes": 2594,
+      "sha256": "e028b620db53a33bdee86c0617c27a6d6764b26d417698c7ea46bdd461191de0",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dispatch-only-root-operation/terminal.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/INT009-DEBUG-dispatch-only-actual-terminal.json",
+      "bytes": 9919,
+      "sha256": "ccc6247740b879cf1e5260a4d9f02729b3d06afa0b456911dffdc85855e322de",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-dependency-security-blocker-assessment.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/INT009-DEBUG-dependency-security-blocker-assessment.json",
+      "bytes": 16907,
+      "sha256": "4d1a129bb2dcb1dbfde4f22d01c3280b083ff0998366bb809c6875c8590db16e",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-DEBUG-next16-4-1-independent-plan-qualification.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/INT009-DEBUG-next16-4-1-independent-plan-qualification.json",
+      "bytes": 14605,
+      "sha256": "1acb72f3ef81197bcf7b638aca151b9e1c7ca4e65213b14384de1644141bd21e",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/author-result-final-four-source.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/author-result-final-four-source.json",
+      "bytes": 21640,
+      "sha256": "9c9c3c386cebe04226d76f139e438b807faa679e23cbc36cdbe8727e3b965f0e",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-final-four-source-independent-patch-review.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/Next16-4-1-final-four-source-independent-patch-review.json",
+      "bytes": 13795,
+      "sha256": "49b5b590fc42a54e5b87461a2d066fe00e12d16b0ba33db5327741941905dc86",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-root-four-source-commit-proof.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/Next16-4-1-root-four-source-commit-proof.json",
+      "bytes": 8065,
+      "sha256": "4006afbd263422107149614dc53d0ec9024dcf28071d49feb4b9e39a464fa17b",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-root-four-source-debug-replay-alignment-proof.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/Next16-4-1-root-four-source-debug-replay-alignment-proof.json",
+      "bytes": 8480,
+      "sha256": "4a2bfa69f8a6c1113795bf315280f95fa805369bd9aa77af3d0f45efc5ec63c3",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-local-lint-input-isolation-independent-qualification.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/Next16-4-1-local-lint-input-isolation-independent-qualification.json",
+      "bytes": 7610,
+      "sha256": "6989153991d03eb90903d1acdcfdb90fcfc305bdfc62b10e25a4a68e08e2e72a",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/lint-local-input-aligned-result.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/lint-local-input-aligned-result.json",
+      "bytes": 5976,
+      "sha256": "27fe31e2333485ea15a8d9e89eee30f6571fd22d385be6d5f648d6497672aa72",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/shared-frozen-install-native-store-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/shared-frozen-install-native-store-native.json",
+      "bytes": 1389,
+      "sha256": "c7257b5d8cb87031607631b13a5b1da63ee9528a669e51774256ae07e55b6f1d",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/audit-high-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/audit-high-native.json",
+      "bytes": 1218,
+      "sha256": "2c126c7a1a652bd36aa591ce2b7214be8bfc21be71f8a851e91c0aaaf5a6b782",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/focused-installed-writer-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/focused-installed-writer-native.json",
+      "bytes": 1268,
+      "sha256": "2f7e103da831a6d4f1d1ee5cbaa723e70ac554dcb67b06b4caf9e4ba18a74eb9",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/focused-real-image-optimizer-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/focused-real-image-optimizer-native.json",
+      "bytes": 1151,
+      "sha256": "1f99ff0fafee2ad4b1e1bdb1fea7075d499c08dcbfd7d2f764c503636790048b",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/whole-typecheck-after-source4-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/whole-typecheck-after-source4-native.json",
+      "bytes": 1227,
+      "sha256": "0b881f76c84691e4c7f38ac7ef680f892256ffabf830fa2e1737b36929088de8",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/whole-lint-local-input-aligned-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/whole-lint-local-input-aligned-native.json",
+      "bytes": 1502,
+      "sha256": "fe9386444792f3ee8fa2e8f406017bebdca190aefcd9d34bc1306769c5f20ff2",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/verify-lockfiles-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/verify-lockfiles-native.json",
+      "bytes": 1220,
+      "sha256": "d91e3b574d0674a35eaa6a5a4cfea3f770dafd4009e2d3d5e12165596375bf6d",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/production-build-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/production-build-native.json",
+      "bytes": 1247,
+      "sha256": "d8daa376ff41d7ec80d599fe3ca983dd0448b2265ae5551ec3638737286ee3c8",
+      "identical_copy": true
+    },
+    {
+      "original_private_path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-author/canonical-full-Node-native.json",
+      "tracked_copy": "_bmad-output/auto-bmad/preparation/story-15-5/next16-4-1-security-prerequisite/canonical-full-Node-native.json",
+      "bytes": 1118,
+      "sha256": "e0dba4c3dba2d6e64d7ee28f9a8270143fcf545ee812c49748eae42240cd29c7",
+      "identical_copy": true
+    }
+  ],
+  "count": 22,
+  "raw_streams_or_secrets": false
+}

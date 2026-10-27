@@ -1,0 +1,21 @@
+{
+  "schema": "ROOT_ACCEPTED_INT009_DEFAULT_VOLATILITY_NORMAL_FINITE_ALLOCATION_V1",
+  "actual_turn": "01a168a4-aa0a-7880-97ae-56802ab176e9",
+  "actual_tool": "exec-4781086f-7802-47b8-9d53-c74ace69dfdc",
+  "turn_status": "completed",
+  "tool_status": "completed",
+  "source_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "grant_text": "Coordinator grants ONE NEW finite full NORMAL checkpoint for revieweddefault-volatilityfix. ActualHigh16657/SHA2747bf71ba3f7b24748cb8f0e13cfc0d9b63791d819db4149af7305179c89d59 bothPASS_INT009_DEFAULT_VOLATILITY_NORMAL_OPERATIONAL_SOURCE_ONLY/findings[] verified789895. Savecompletedturn/tool before newexclusiveactivation. Bind exact5packet B/INT009-default-volatility-normal-operational-preparation provider20367/d38b1214794fbcd8d1fe83437c1b6f039871efc88173f58689150cb865cab7a4 driver20841/83c2d107e33bc5b3960ad990049155aad73eb810b93120afd9a8f4476fcbd54e proposal139186/95e43d8e89d528ee67070448495d096e7effcbba17c398976b6fea29bdc7862f controls14887/e3dd4420dd553ff0dbe95c02df9f84082e9a7bb50da7a5f9781f54f0935166b5 manifest1209/402bc9a2be01652881eb9d1553fd94fefe1599e0bc3bbe722037fa4537610633; recheckactualpins/review/currentcleanproof beforeeffects.\nTupleMAINhead215078e7dd74d9c4b4511581682b4c0be1a21c8d/source5e0b63639dfd8636faab4ab5c798ca81bf1b4e41/CPc2fade03-6ac5-44ae-abfd-898e1a3dd602/ownedfeature/repo rthunborg/Kopplas/workflow296219797/actor+trigger rthunborg/attempt1/NORMALallotherflagsfalse. Expectedremote-beforebbd6d1f307aa9fccbbaf83281779042f9a2e4bfe/localFF proof. Current204distinctbindings/7updated197reuse/118SQLGitconservation/10triggers/securitysourcePASSes mandatory, no redundantrawSQLscan.\nExactlyONEfreshreadonlyVercelproject/teamGET15s4MiBstdout256KiBstderr positivelyqualifiesidentityrepo/previewsdisabled/unconditionalexit0/no permittingoverride/limitedordinaryGitcontainmentONLY; actualfullsettledresult+outerattribution thenfreshsourceproof/activation<=300s/provider<=300atmutation/<=180before90sdispatch/directadapter<=300immediatelyPOST. Rootremote-before1(15s)==bbd6/nonforceexplicitMAINFFpush1(60s)to2150/readback1(15s)==2150,512KiBstdout64KiBstderr. ONEcanonicaldispatcher90s512KiBstdout64KiBstderr/SAME1762Badapter strictactualidentitychecks/EXACT4prePOSTmetadataGETs+ONEPOST/API15s4MiB; exactNORMAL201BbodySHA57f7fbccd38344281e6d6c351538a8c709041d8d056a2658755351204a87f56a. NoDEBUGeffects/newdiagnostic.\nRootSOLEresolver<=6GET/page20/min5s; <=90exactrun+90latestjobsGET/page100/min30s/API20s2MiBstdout64KiBstderr/original5400simmutablewall. Actualuniqueownedtuple beforepoll/all9terminalimmediateROOT_STOPPED/freeze/allunusedclose/no postterminalpoll/secondpoller. Exclusivefsyncedconsumedper-effectintents/physicalEOFjoinedclosedsettled/nativeexit+outerattribution/rawRAMclosedprojections. Drift/nonzero/partial/unknown/ambiguity/budgetexpirySTOP/no retry/renewal/leaseextension/adoption/extraPOST/unallocatedcancel. Alloldslotsclosed.\nArtifact/logGET0 NOW; actualterminalreaderenrollment/independentHighreview/separate<=5GETgrant later. vars/providerwrites/localresources/merge/deploy/demo/dbpush0. Fullrequired95(Node30INT51browser14)+separaterecovery/custody actualqualifiedevidence mandatory; sourcecatalog/historynotnewcoverage. Proceedexactoneoperation/returnactualtuple orpreciserefusal.",
+  "limits": {
+    "provider_GET": 1,
+    "remote_Git": 3,
+    "push": 1,
+    "prePOST_GET": 4,
+    "POST": 1,
+    "resolver_GET_max": 6,
+    "poll_pairs_max": 90,
+    "wall_seconds": 5400,
+    "artifact_logs_GET": 0
+  },
+  "no_retry": true
+}

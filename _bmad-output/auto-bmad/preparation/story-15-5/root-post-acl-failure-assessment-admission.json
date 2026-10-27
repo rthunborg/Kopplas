@@ -1,0 +1,31 @@
+{
+  "schema": "ROOT_MECHANICAL_READONLY_ASSESSMENT_ADMISSION_v1",
+  "at": "2026-10-21T17:34:07.814366+00:00",
+  "status": "METADATA_IDENTITIES_PASS_PENDING_INDEPENDENT_PROPOSAL_CHALLENGE",
+  "head": "bc5e9b90ba05f7f60ff68d0d1693315691d61bbe",
+  "artifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-normal-failure-assessment/assessment.json",
+      "bytes": 30681,
+      "sha256": "8eec50f192e5b509801b87fc1866eeac641432ca80b109281602d88d99f75957"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-acl-normal-failure-assessment/manifest.json",
+      "bytes": 523,
+      "sha256": "17c2a0a96889790d4081356f7cd6bcf07f70242f72c0fc32fd92eb51bd2477f5"
+    }
+  ],
+  "source_rows_checked": 16,
+  "evidence_refs_checked": 7,
+  "candidate_write_paths": [
+    "tests/support/calendar-feed-atdd.ts",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "normal_acceptance_credit": 0,
+  "source_write_authorized": false,
+  "native_effects_authorized": false,
+  "migration111_frozen": true
+}

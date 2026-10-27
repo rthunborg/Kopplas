@@ -1,3 +1,4 @@
+import { isJobScopedCommand } from "@/server/authz/job-command-scope";
 import { BOOKING_PUBLIC_COLUMNS } from "@/features/resources/booking-types";
 import { COMMAND_CAPABILITIES, defineCommand, runCommand, type CommandDbClient } from "@/server/commands/envelope";
 import { PERMISSION_MATRIX } from "@/server/authz/permission-matrix";
@@ -22,13 +23,23 @@ export const TABLE_PROJECTION_CAPABILITIES: Readonly<Record<string, string>> = {
   calculations: "Calculations.View", calculation_sections: "Calculations.View", calculation_rows: "Calculations.View",
   files: "Files.View", file_links: "Files.View",
   tenant_counters: "Quotes.Create", quotes: "Quotes.View", quote_versions: "Quotes.View", quote_version_lines: "Quotes.View", quote_version_attachments: "Quotes.View", quote_events: "Quotes.View", quote_review_authorizations: "Quotes.Approve", quote_acceptances: "Economy.ViewContributionMargin", quote_lost_reasons: "Quotes.View", quote_follow_ups: "Quotes.View",
-  jobs: "Jobs.ViewAll", job_events: "Jobs.ViewAll",
+  jobs: "Jobs.ViewAssigned", job_events: "Jobs.ViewAssigned",
+  job_members: "Jobs.ViewAssigned", job_required_work_roles: "Jobs.ViewAssigned", job_access_windows: "Jobs.ViewAssigned", job_dependencies: "Jobs.ViewAssigned",
+  work_orders: "Jobs.ViewAssigned", work_order_assignees: "Jobs.ViewAssigned", work_order_dependencies: "Jobs.ViewAssigned",
   bookings: "Bookings.View", booking_assignees: "Bookings.View", booking_conflicts: "Bookings.View",
+  calendar_feed_tokens: "Bookings.View",
+  time_reports: "TimeReports.ReportOwn",
+  booking_series: "Bookings.View",
+  // Scheduling's existing read metadata; the explicit SQL manager-role boundary below is authoritative.
+  booking_conflict_resolutions: "Bookings.View",
   person_profiles: "Resources.View", person_work_hours: "Resources.View", tenant_calendar_days: "Resources.View",
 };
 
 /** Existing RLS self-context contract, intentionally broader than Memberships.Manage. */
 export const TABLE_DIRECT_RLS_ALLOWED_ROLES: Readonly<Partial<Record<TenantTableName, readonly TenantRole[]>>> = {
+  calendar_feed_tokens: [],
+  booking_series: ["tenant_admin", "projektledare"],
+  booking_conflict_resolutions: ["tenant_admin", "projektledare"],
   // 20260907171252: active users must resolve their tenant context and own membership roles.
   tenants: TENANT_ROLES,
   tenant_memberships: TENANT_ROLES,
@@ -233,9 +244,18 @@ export const TABLE_RLS_PROJECTION_ADAPTERS: Readonly<Record<TenantTableName, Tab
   quote_follow_ups: idProjection("quote_follow_ups"),
   jobs: idProjection("jobs"),
   job_events: idProjection("job_events"),
+  job_members: idProjection("job_members"),
+  job_required_work_roles: idProjection("job_required_work_roles"),
+  job_access_windows: idProjection("job_access_windows"),
+  job_dependencies: idProjection("job_dependencies"),
+  work_orders: idProjection("work_orders"), work_order_assignees: idProjection("work_order_assignees"), work_order_dependencies: idProjection("work_order_dependencies"),
   bookings: { projection: BOOKING_PUBLIC_COLUMNS, read: (client: RlsReadClient,id: string) => client.from("bookings").select(BOOKING_PUBLIC_COLUMNS).eq("id",id) },
   booking_assignees: idProjection("booking_assignees"),
   booking_conflicts: idProjection("booking_conflicts"),
+  calendar_feed_tokens: keyProjection("calendar_feed_tokens", "id", true),
+  time_reports: idProjection("time_reports"),
+  booking_series: idProjection("booking_series"),
+  booking_conflict_resolutions: idProjection("booking_conflict_resolutions"),
   person_profiles: idProjection("person_profiles" as TenantTableName),
   person_work_hours: idProjection("person_work_hours" as TenantTableName),
   tenant_calendar_days: idProjection("tenant_calendar_days" as TenantTableName),
@@ -250,3 +270,10 @@ export function tableRlsProjectionAdapter(table: string): TableRlsProjectionAdap
   if (!adapter) throw new Error(`table RLS projection adapter missing for ${table}`);
   return adapter;
 }
+
+/** These commands additionally require a current per-job relationship. Matrix probes
+ * deliberately supply none and never exercise a production business body. */
+export function isScopedJobHarnessCommand(command: string): boolean {
+  return isJobScopedCommand(command, COMMAND_CAPABILITIES[command]);
+}
+

@@ -1,4 +1,4 @@
-import type { BookingFacts } from "./booking-types";
+import type { BookingOccurrence } from "./booking-types";
 import type { CommandErrorCode } from "@/server/commands/command-errors";
 
 /** Browser DTOs contain display fields only, never detector facts or private proofs. */
@@ -11,13 +11,13 @@ export type BookingEditorOptions = {
   readonly canManage: boolean;
   readonly people: readonly BookingPersonOption[];
   readonly workRoles: readonly BookingOption[];
-  readonly jobs: readonly (BookingOption & { readonly customerId: string; readonly facilityId: string | null; readonly contactId: string | null })[];
+  readonly jobs: readonly (BookingOption & { readonly customerId: string; readonly facilityId: string | null; readonly contactId: string | null; readonly schedulingHint?: import("@/features/jobs/job-scheduling-consumers").JobSchedulingHint })[];
   readonly customers: readonly BookingOption[];
   readonly facilities: readonly (BookingOption & { readonly customerId: string })[];
   readonly contacts: readonly (BookingOption & { readonly customerId: string; readonly facilityId: string | null })[];
   readonly error: string | null;
 };
-export type BookingSummary = BookingFacts & { readonly id: string; readonly openConflictCount: number };
+export type BookingSummary = BookingOccurrence & { readonly id: string; readonly openConflictCount: number };
 export type BookingHostReadResult = {
   readonly canView: boolean;
   readonly canManage: boolean;
@@ -36,6 +36,7 @@ export type BookingEditorWarning = {
   readonly endsAt: string;
 };
 export type BookingEditorPreview = {
+  readonly semantics?: import("@/server/bookings/job-semantics").BookingSemanticsDisplay;
   readonly receipt: string;
   readonly bookingId: string;
   readonly warnings: readonly BookingEditorWarning[];

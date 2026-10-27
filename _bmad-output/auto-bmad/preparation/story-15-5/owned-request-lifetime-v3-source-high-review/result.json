@@ -1,0 +1,30 @@
+{
+  "Outcome": "PASS_TARGETED_OWNED_REQUEST_V3_PRODUCER_SOURCE_ONLY",
+  "Files changed": [
+    "original-report.md",
+    "original-attestation.json",
+    "result.json",
+    "manifest.json"
+  ],
+  "Status": {
+    "source": "7238c589bf562b4a578f6ddc1a991fac3e489988",
+    "parent": "599dafaa4537a26803a7a5b3c087f34bed5b51ba",
+    "source_bindings": 3,
+    "private_files": 4,
+    "independent_focused": "8P0F0skip0cancel",
+    "author161": "separate nonadditive",
+    "same_matched_request": true,
+    "once_post_drain_before_disposal": true,
+    "SQL118_series2_selectors_conserved": true,
+    "browser_rows_max": 28,
+    "combined_max": 44,
+    "new_v3_assembler_credit": false,
+    "effects": 0,
+    "findings": 0,
+    "acceptance": 0,
+    "counter": 3
+  },
+  "Open questions": "Actual terminal category, native event/body/backend settlement and custody remain UNKNOWN.",
+  "Deferred work": "Matching strict v3 consumer and NEW actual emitted-byte/production-assembler proof; required functional gates, without manufactured failure labels.",
+  "Blockers": "None in the targeted producer source; prior functional and custody gaps remain. No effect authority."
+}

@@ -1,0 +1,430 @@
+{
+  "schema": "ROOT_NEXT1641_ORIGINAL_INT009_ACTUAL_CLOSED_OWNERSHIP_V1",
+  "status": "ACTUAL_TERMINAL_DBFAIL_SOURCE_BOUND_READER_ENROLLMENT_ELIGIBLE",
+  "operation": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/operation.json",
+    "bytes": 637,
+    "sha256": "036c864f5d0968f6a70f2b74af36c2c0d0b540dd7ae73a55e074377a8160fe1a"
+  },
+  "terminal": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/terminal.json",
+    "bytes": 14868,
+    "sha256": "1a79febc202375e5cbc586fd584601361fbc49cf9d9161bc47551d5ae1f07a0e"
+  },
+  "Root_terminal_actual_read": "7d97f4/native0/fullclosedprojection",
+  "Root_terminal_poll": "01a927/native0/2.7054855s",
+  "references": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-Next16-4-1-original-INT009-dispatch-only-one-case-effects-allocation.json",
+      "bytes": 3668,
+      "sha256": "cecaa0a1c2e3d72baed02ebf160e23b0b8df750734846e16c5456e43eb2c4493"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-current-source-proof.json",
+      "bytes": 73667,
+      "sha256": "eaeec73a12a10dbf0a4974ca459f54f668ce9a0c25c772ffe35ee6bc4a862e43"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-provider-readonly-activation.json",
+      "bytes": 2552,
+      "sha256": "1aec30b26a514a46020fda4bc82220dd50a57df88ffac60937d4ca8befb97139"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-vercel-readonly-qualification.json",
+      "bytes": 59061,
+      "sha256": "bc699f2d109e2b3640f7f693a04d43c33b34ee7b986f3aac9cc9681ee0f528df"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-provider-execution-receipt.json",
+      "bytes": 1316,
+      "sha256": "aa4296ce1156995442ef677cdf33300dd63ad94e5c256160c533cf2ef592617d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-effects-activation.json",
+      "bytes": 1825,
+      "sha256": "2cd3dbe42a43a82d0475488ac81402e0eacafdcb78f51c7107b6145f5e5d3053"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-operational-review.json",
+      "bytes": 12401,
+      "sha256": "1e0bb664cbd604bf40b84b74e5b7763d28437d29b7686af931b5acc8fe23641c"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-actual-initial-outer-provenance.json",
+      "bytes": 1197,
+      "sha256": "758d088efc186f9e5786c4b7cff0357348686d244e0c7a62398e11dbd15ba380"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-actual-poll-outer-provenance.json",
+      "bytes": 6329,
+      "sha256": "7c2995c6e63fca958ed4e7eace126655689d1a4e4764326ff3d6062b1b45f541"
+    }
+  ],
+  "native": [
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/branch-receipt.json",
+        "bytes": 698,
+        "sha256": "ad5b676072093f75d90ed0a11c44b9a856c90f5cf93ed1a40d06179a75e027b7"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.53883
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/dispatch-receipt.json",
+        "bytes": 696,
+        "sha256": "47dd9552e060771084ff855bf67f6104ac19e8ce11225919ad24dd2d9a461347"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 1.484093
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/jobs-1-receipt.json",
+        "bytes": 699,
+        "sha256": "a89a132b77bf3c86ab3f26b5f159c7e33363db8bc33b36ec2dd8e79b5da60bf7"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.622404
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/jobs-2-receipt.json",
+        "bytes": 699,
+        "sha256": "ae4f21e199e26ab5019394705d6d941ec0f9149054634955c328d9ff8d0a1d77"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.628064
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/jobs-3-receipt.json",
+        "bytes": 700,
+        "sha256": "ab07310102c1cb76930973275883e99c90d4bf938c01cba420130ce7eb347fb0"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.682155
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/jobs-4-receipt.json",
+        "bytes": 700,
+        "sha256": "9e9119c7657d7b66f19dba3223445279787137bcceaa7aae48ff405db06e2e6b"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.680911
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/jobs-5-receipt.json",
+        "bytes": 700,
+        "sha256": "c19e27516919cc4c89ae0c44aa077017848d39105475e9c4b2345a05a3892454"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.629055
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/jobs-6-receipt.json",
+        "bytes": 700,
+        "sha256": "f876b095047461713ac764b89877a42d4070e623640a92792d59d5c9dcbe1049"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 2.584282
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/jobs-7-receipt.json",
+        "bytes": 700,
+        "sha256": "899fa7007f4d4fe065c005de68c6e54bb84adf2bc2661ed8a301ea88721c156d"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 1.144182
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/permission-receipt.json",
+        "bytes": 699,
+        "sha256": "dcbf03936a18ceceaf8d97cfc091a708fefbc7b93d19017114bd01d2daf2db20"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.486724
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/resolve-1-receipt.json",
+        "bytes": 700,
+        "sha256": "e2bd809e19483896df68252e14fc68236a956bbfd8f87c45422eef095657aaad"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.734348
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/run-1-receipt.json",
+        "bytes": 700,
+        "sha256": "5f266d835581177312d3f17a295cc74fb9d58c6ae156931388011b4638bc67b9"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.538469
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/run-2-receipt.json",
+        "bytes": 700,
+        "sha256": "fd82c5433bb7a90aaa96bdd1a2ae1d5b6b25a5632b7439ca7a58b14f7a617a48"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.468092
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/run-3-receipt.json",
+        "bytes": 700,
+        "sha256": "06195c6ac2182a4b9abecedf7d2438c782d01536eda424ad8d230939affd2d7c"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.767795
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/run-4-receipt.json",
+        "bytes": 700,
+        "sha256": "ac1df723832d2059e7ab235da83748505b76bbc800929f570697e3c0dd962270"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.590454
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/run-5-receipt.json",
+        "bytes": 700,
+        "sha256": "0236df5b3a1e3e380f98f26f4db90ed370940a76418bfb691789af968510d044"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.516153
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/run-6-receipt.json",
+        "bytes": 700,
+        "sha256": "9327ea28bd9da5095015fd3be08632689832c31706d1bc5cf053f464e46c0a2e"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 5.500734
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/run-7-receipt.json",
+        "bytes": 700,
+        "sha256": "9612af7e2461fd560d0564b34ac6ab04262448e649d0a44591ab621656dfc858"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 1.246579
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/user-receipt.json",
+        "bytes": 699,
+        "sha256": "766742d9a1fd360972fde34e0ddb5a575815edd0cf90c0e845af8ce05228455d"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.484676
+    },
+    {
+      "binding": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/Next16-4-1-original-INT009-dispatch-only-root-operation/workflow-receipt.json",
+        "bytes": 698,
+        "sha256": "2588f577ab3419a6e5282ced8e9059746421bf31b387efa060f6909dbe255475"
+      },
+      "native_exit": 0,
+      "capture_complete": true,
+      "physical_EOF_both": true,
+      "readers_joined": true,
+      "handles_closed": true,
+      "direct_process_settled": true,
+      "elapsed_seconds": 0.415265
+    }
+  ],
+  "effects": {
+    "provider_GET": 1,
+    "prePOST_GET": 4,
+    "POST": 1,
+    "resolver_GET": 1,
+    "poll_pairs": 7,
+    "total_GitHub_native_calls": 20,
+    "push": 0,
+    "remote_Git": 0,
+    "artifact_log_GET": 0
+  },
+  "run_id": 39943446009,
+  "head": "1eeb3d2b784ecdbdf61cf665b4717b3f54770d52",
+  "checkpoint_id": "430dbc33-7e01-440e-aa3c-dcd1f528908a",
+  "DB_job_id": 120381133081,
+  "jobs": [
+    {
+      "id": 120380231211,
+      "name": "checkpoint-admission",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120380268099,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 120381133081,
+      "name": "db",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 120381135003,
+      "name": "recovery-storage-loader",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120381135368,
+      "name": "native-stream-probe",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120381135454,
+      "name": "fixed-chromium-application-verification",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120381135689,
+      "name": "e2e",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120381135774,
+      "name": "fixed-chromium-paired-probe",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 120381135976,
+      "name": "dashboard-e2e",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "actual_failure_step": 11,
+  "native_original_JSON_upload_step14": "success",
+  "actual_test_cardinality": "UNKNOWN_PENDING_BOUNDED_ARTIFACT",
+  "all_slots_closed": true,
+  "Root_sole_poller": "STOPPED",
+  "no_retry_or_replay": true,
+  "normal_acceptance": 0,
+  "full95": "68P1F26zero_historical_unchanged",
+  "P5": "OPEN",
+  "cause": "UNKNOWN",
+  "DB_custody": "UNKNOWN_PENDING_ARTIFACT",
+  "release_ready": false,
+  "deployment": false,
+  "UTC": "2026-10-23T11:11:22.544803+00:00"
+}

@@ -1,0 +1,267 @@
+{
+  "kind": "independent-targeted-private-matrix-manual-extractor-review",
+  "verdict": "PASS",
+  "consequential_findings": [],
+  "reviewer": {
+    "agent": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of_author": true,
+    "reused_agent": true,
+    "fresh_context_free": false,
+    "broad_story_review": false
+  },
+  "target": {
+    "head": "c97f9ac509e642cb7337b8fcd2deaad90540db1c",
+    "source": "187a4c6f0d941cf2d46a62df8a51fc0ed6fd20cf",
+    "checkpoint": "18562d27-e3e4-4e2f-be69-e2a775b8af93"
+  },
+  "actual_run_id": null,
+  "reviewed_inputs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/extract.py",
+      "bytes": 22147,
+      "sha256": "b2819bf337454a1f1960e9661ac72ff0a9be27801ac80e89f222457d2bba9ff0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/test_extract.py",
+      "bytes": 17772,
+      "sha256": "e3d1f0a4b32c3a7b879e62c6a636080a188b6c2138092bc63d8ff5530c3f9970"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/proposal.json",
+      "bytes": 19751,
+      "sha256": "017a1c5af250d04927b0afe60c46c5e7a8e0b954d5c1caf4c4d4a99882ea88f0"
+    }
+  ],
+  "actual_source_checkpoint_bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "bytes": 160774,
+      "sha256": "32eb365d1b6b523ef07e3fc950ae824d4cc94e226558947e6d32342f2f27b77f",
+      "checkpoint_git_blob": "26327a36a8f89cf503036239def64b0585465136"
+    },
+    {
+      "path": "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql",
+      "bytes": 13136,
+      "sha256": "d0f75428527392aca0d2be34685d83c8d1169479f9c29ad6f5349c5a24afb919",
+      "checkpoint_git_blob": "93b55ab54ec63a775894e92db9d83219add909dd"
+    },
+    {
+      "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "bytes": 163537,
+      "sha256": "4f502cd88dd23269113e84aef733462f68156733f9a38297c020d3a0609a58d7",
+      "checkpoint_git_blob": "02442fd8034b573d376397e1eee105c7b3d96849"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "bytes": 19782,
+      "sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "checkpoint_git_blob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 75930,
+      "sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "checkpoint_git_blob": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 47151,
+      "sha256": "e3eef57fabf0c8a57a81a5b9db95fdcabadf4194f132e84c35408c611cecd943",
+      "checkpoint_git_blob": "d0d186aee7e6a575d52659dcc27d9bd9ff8cbbe8"
+    },
+    {
+      "path": "tests/support/calendar-feed-ci-contract.ts",
+      "bytes": 8024,
+      "sha256": "40aea88849abff55a0faf156c52cf18d6f0232772cc1654c62c4f290b7fefcf5",
+      "checkpoint_git_blob": "2a5fec9b04c3259f608c95db25668836016808e5"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "bytes": 89043,
+      "sha256": "3f923eef322cc7f732013bd201090ce9619317250587709471688c69049d6fef",
+      "checkpoint_git_blob": "a78e3f6a336f84fc3d44d042516808748622feb8"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "bytes": 36884,
+      "sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "checkpoint_git_blob": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 3694,
+      "sha256": "c21253e431e02b45ccf72da756f4cf58fdf1b5f476b0797a465189e39fcad4dd",
+      "checkpoint_git_blob": "f7d2c10c669252912bc045659ed7886dceae3ae0"
+    },
+    {
+      "path": "tests/factories/tenants.ts",
+      "bytes": 455,
+      "sha256": "069f8805525f055f8ef262789354062cebc60a7914e39171ff22642f84606e12",
+      "checkpoint_git_blob": "6655ccb2dcbb09580c45eacffd482ce6b58a0637"
+    },
+    {
+      "path": "tests/factories/tenants/core.ts",
+      "bytes": 21309,
+      "sha256": "e877c463e15173bc6b5a8ed0018de919289217c5e9b4379a6eb5aa8fc9457265",
+      "checkpoint_git_blob": "f72a04caab1acbc2d3d43f1a75c2cc6048125bc0"
+    },
+    {
+      "path": "tests/support/global-setup.ts",
+      "bytes": 2970,
+      "sha256": "adad74b1ef885d8c0714ef6bb5ab9e61b4973021d2c0e7f2e8df17ef6c5ea788",
+      "checkpoint_git_blob": "8cb06568f42fcdccdb47c4ee3b95698a48907ca3"
+    },
+    {
+      "path": "tests/support/test-env.ts",
+      "bytes": 12287,
+      "sha256": "4ad1f1e80782da40f653bdf5a69a1b5ea0e41db08ed334c460f95a49875130df",
+      "checkpoint_git_blob": "f30ddbeae604e9a383712edcea04fd2d8f4302cc"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 3602,
+      "sha256": "83e6ae86cdc6c36f44108eb279ff724d426fc362b6b204fc144f5816fc659bb8",
+      "checkpoint_git_blob": "d18bd17d6558e02549b4296f976acb0f9d831e0b"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "bytes": 24435,
+      "sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "checkpoint_git_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2352,
+      "sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "checkpoint_git_blob": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 162159,
+      "sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "checkpoint_git_blob": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "root_mechanical_and_prior_provenance": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-direct-matrix-manual-input-admission.json",
+      "bytes": 1202,
+      "sha256": "af83a1cd2d8a1df6b050c4393e15f4333a0a900d503ae07a227fcb83d754dc0e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/original-report.md",
+      "bytes": 5098,
+      "sha256": "90d903ce991336a0d31ed6aa50f2ac0d2103d525ad0822571083df181a66936e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/original-attestation.json",
+      "bytes": 7735,
+      "sha256": "21d78d43a90dc0b4ac87769ba8176b54755feca8b05f42cf21ed95f18f722fed"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/result.json",
+      "bytes": 1844,
+      "sha256": "236fcdbd93fa71e34e77a60b65255900d6ea4322b1bda8f5ea54ff4566342041"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/original-function-direct-evidence-code-review/readiness-addendum.json",
+      "bytes": 11089,
+      "sha256": "482b9816c05e5a8ff02694d998a05ccade4e0a87e2f7b20509cb6401408a1519"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-original-function-direct-evidence-code-review-admission.json",
+      "bytes": 1782,
+      "sha256": "52804759b219a5a0da139ae95209041b49e350e825729f1c4eedc9f98a01f117"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    }
+  ],
+  "observations": [
+    "Import/defaultCLI have no acquisition or publication. Exact explicit activation/terminal identity and digest-bound inputs/source/review/allocation/admission refs precede marker/network. Root records remain trusted external authority; typed flags alone are not human approval.",
+    "Exclusive fsynced marker before sole fixed logical gh GET; consumed survives uncertainty/result failure; exclusive fsynced result; no retry/alternate/artifact path.",
+    "ANSI/OSC runtimeERROR/exactprefix parser; actual bound RAISE echo excluded; exact schema/ordinal/11bool-or-NULL keys; duplicate/malformed/conflicting records UNKNOWN; absentSQLSTATE staysNULL.",
+    "NULL/alltrue safe matrices retained UNKNOWN; falsebits do not prove backend cause or authorize a fix. Fixed startup-only selection on failure; conditional fixed lifecycle/upload/stop members only on terminal startupsuccess.",
+    "Bounded ZIP metadata/actualselectedinflate, no filesystem extraction. Current wrapper lifecycle shape yields closed emitted facts only; authority/privacy body qualificationNULL; unacquired artifact bodiesNULL/UNKNOWN; oldv1 unused.",
+    "Stream physicalEOF/readers/process/handles settlement and noerror/native0 required before body interpretation; partial counts/hashes not complete-archive or hosted cleanup proof; own gh child only is killed on timeout/cap."
+  ],
+  "independent_checks": [
+    {
+      "command": "python -X utf8 -B .env.epic15.mail-runtime/story-15-5-preparation/original-function-matrix-manual-01/test_extract.py",
+      "native_exit": 0,
+      "tests": 31,
+      "passed": 31,
+      "failed": 0,
+      "errors": 0,
+      "seconds": 0.389,
+      "local_python_children": 4,
+      "gh_or_network_children": 0,
+      "limits": "Supplied suite rerun independently; not additive to author31 and no actual run/archive evidence."
+    },
+    {
+      "check": "additional targeted pure controls",
+      "cases": 5,
+      "passed": true,
+      "scope": [
+        "nested duplicate key rejection",
+        "ordinal2 retention",
+        "wrongSQLSTATE suffix rejection",
+        "bound source-style RAISE echo exclusion",
+        "ROOT/OWN default paths"
+      ],
+      "effects": 0
+    },
+    {
+      "check": "actual default CLI with no activation args",
+      "native_exit": 1,
+      "category": "PRE_REQUEST_OR_PUBLICATION_STOP",
+      "stderr_bytes": 0,
+      "future_operation_files_created": 0
+    },
+    {
+      "check": "three payload raw hashes and18 exact checkpoint Git/source hashes",
+      "passed": true
+    },
+    {
+      "check": "prior review/policy refs",
+      "verified": 6,
+      "unchanged": true
+    },
+    {
+      "check": "static request callsites",
+      "capture_callsites": 1,
+      "line": 457,
+      "endpoint": "fixed repos/rthunborg/Kopplas/actions/runs/<positive bound run id>/logs",
+      "logical_invocations_max": 1,
+      "http_request_count": "UNKNOWN"
+    },
+    {
+      "check": "future activation/terminal/marker/result absent",
+      "passed": true
+    }
+  ],
+  "limits_and_authority": {
+    "actual_archive_or_run_qualified": false,
+    "api_get_or_ci_calls": 0,
+    "real_activation_calls": 0,
+    "resource_sql_docker_provider_git_source_spec_effects": 0,
+    "normal_acceptance_credit": 0,
+    "source_fix_authority": false,
+    "backend_cause": "UNPROVEN",
+    "artifact_bodies": null,
+    "artifact_body_status": "UNAVAILABLE_UNKNOWN",
+    "approval_state": "CI approval handoff automatically rejected per parent; exact human approval question pending; no execution grant; no workaround.",
+    "review_gate_only": "PASS completes extractor review only; does not authorize CI/GET/activation.",
+    "required_before_effects": [
+      "Actual specific human/Coordinator CI and GET approval/allocation",
+      "Truthful exact terminal run/head/source/checkpoint/mode/attempt/job/step ownership and raw bindings",
+      "Fresh once Root activation bound to this independent review and exact inputs",
+      "Independent offline qualification of actual closed result afterward"
+    ],
+    "writes": "Only three new owned review outputs; frozen inputs/source/Spec/prior originals unchanged."
+  }
+}

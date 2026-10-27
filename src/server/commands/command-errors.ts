@@ -97,6 +97,7 @@ import {
  */
 export type CommandErrorCode =
   | TenantContextErrorCode // UNAUTHENTICATED | TENANT_MEMBERSHIP_REQUIRED | SERVER_ERROR
+  | "JOB_TYPE_DOWNGRADE_FORBIDDEN"
   | "VALIDATION_FAILED"
   | "PERMISSION_DENIED"
   | "TENANT_ACCESS_DENIED"
@@ -166,6 +167,7 @@ export const COMMAND_MESSAGES: Record<CommandErrorCode, string> = {
   UNAUTHENTICATED: TENANT_CONTEXT_MESSAGES.UNAUTHENTICATED,
   TENANT_MEMBERSHIP_REQUIRED: TENANT_CONTEXT_MESSAGES.TENANT_MEMBERSHIP_REQUIRED,
   SERVER_ERROR: TENANT_CONTEXT_MESSAGES.SERVER_ERROR,
+  JOB_TYPE_DOWNGRADE_FORBIDDEN: "Ett projekt kan inte ändras tillbaka till order.",
   // New envelope codes.
   VALIDATION_FAILED:
     "Begäran kunde inte behandlas eftersom indata var ogiltiga. Kontrollera och försök igen.",

@@ -1,0 +1,17 @@
+{
+  "stage": "RED_UNCHANGED_HELPER_SOURCE_FAITHFUL_FIXTURE",
+  "native_exit": 1,
+  "summary": {
+    "tests": 1,
+    "pass": 0,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "selected_name": "actual owner operation commits private read or qualified replacement before ordinary callback and restores full original metadata",
+  "closed_failure": "Existing actual publish/restore path fails with normalized default omitted; no exact hostedcause claim",
+  "raw_persisted": false,
+  "resources": 0,
+  "native_receipt": "restore-default-RED-native.json"
+}

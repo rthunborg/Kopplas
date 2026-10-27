@@ -1,0 +1,141 @@
+{
+  "approved_at": "2026-10-23",
+  "owner": "Rasmus",
+  "decision": "Approved DT-2026-10-23 and companion artifacts for described planning amendments and bounded story preparation. Proceed; no repeat documentation approval.",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "rationale": "Apply exact owner-approved documentation amendments; carry sensitive contracts unchanged. No consequential sensitive decision or delegate dispatch."
+  },
+  "applied_edits": [
+    "EP-01",
+    "EP-02",
+    "EP-03",
+    "EP-04",
+    "EP-05",
+    "EP-06",
+    "EP-08 authority pointers"
+  ],
+  "deferred": [
+    "EP-07 tracking until actual full-spec readiness/coordination",
+    "EP-08 test design and tooling enrollment assessment in later owned preparation",
+    "full targeted story authoring in fresh session Prompt 3"
+  ],
+  "boundaries": [
+    "E15 integration blocks DT-5 only",
+    "No application implementation or stories marked ready",
+    "No sprint/order/status changes",
+    "No merge/deployment",
+    "Detailed requirements retained by reference pending verified transfer",
+    "Sally retains routine visual ambiguity delegation; material/sensitive decisions separately assessed"
+  ],
+  "files": [
+    {
+      "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+      "before_sha256": "11c9a0e271fec165f90115faba04be14847acb2771e330eace95001e9d31bf09",
+      "after_sha256": "feaeed31b8a481b36dd33f0be27050782565ce9eebcc4d866e92281f1e6c1350"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/README.md",
+      "before_sha256": "b869abf539978583828d7ff8eed54d38bc4be860aa6128fee8d06401528e6e97",
+      "after_sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+      "before_sha256": "88c929b46ebec68f235c48fe6b9edfba0144c680a7d03d9cbbdb56ff189670c4",
+      "after_sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+      "before_sha256": "0526de84c83a271e07ca37e154484a748f9501d495e11f886148a31a70bd3dfd",
+      "after_sha256": "acb38e58b7ada2bba7165bc8ba4339dc29583ca2fbcd66304e2c04f13323cd58"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+      "before_sha256": "b3ea5d2f878a7e3be8cad333c5464aebcd102c319b797523349b47de76382e53",
+      "after_sha256": "d18fc8991dde821b3f59f19e2bb7c7bfca051e61beafc27b6374045c341931af"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/prd-phase-b.md",
+      "before_sha256": "55ea67f8fd08b0abd9fec611751891a5362f3b25e52cda84deca266075f46d4e",
+      "after_sha256": "fcc184a49f8d574fc0e4cbd03b0fe5453604eedec4074bc773bfde0f2701560c"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/product-brief-phase-b.md",
+      "before_sha256": "172d8addba625f3130e24a01494dd1c37f226a450b32dd35a7bc5e7458f13239",
+      "after_sha256": "79ecc91d4f85c2c53414d7c4a65d0c309bc48f9b7189a8895b49107f373e833b"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/architecture-phase-b.md",
+      "before_sha256": "2aefeccaee5ef9cc9f272b9235fb97962f306c4ca5daf18e055a2c61514beb79",
+      "after_sha256": "ba7378e3203064177aed4585979a1820ca7accda364bb23d6ccdd1283638f1b5"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/epics-phase-b.md",
+      "before_sha256": "09acd46a8901c6e2b9be4fac89771b4d1283f98c0514235f08111599fc7729bc",
+      "after_sha256": "da23fbfb33f5c8728cc1e06acb646f61d16d59c7128fa35caf21dd6d7faae5f6"
+    },
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "bcd34711129f00fc0f142748ad392da8150e34cc572c7d41953906363bf38a5b",
+      "after_sha256": "e50b9bbc71c55a3e1bb11f73efc1a9c1ead397c8c07a8852d5e2e3e893f6a2b3"
+    },
+    {
+      "path": "_bmad-output/project-context.md",
+      "before_sha256": "d58d2d9a1b6223c780dbff36b45c7e72c5099f0124aa0b1991f116a26c6d09cb",
+      "after_sha256": "cc5262e26bcb23b5e5700f4bc76de5fba1c74f108dfb64ffa5e88d3facad54bd"
+    },
+    {
+      "path": "docs/process/agent-workflow.md",
+      "before_sha256": "1dbc3a045e2c2e801a3a3da7ced999999c91cb7504b25f34c63d48bf511ec831",
+      "after_sha256": "31260a0a185a9e3e1c2ace17eb3d116043019a11ccf89559bd560bab8fd64079"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+      "before_sha256": "593e5e4bde165f3964852d84b64b3d8ba1cbab80f1b7da99ace21f3575b5817e",
+      "after_sha256": "dfdffb23983e968a4c7672f688da47b0130f07e7a43f53f47bb979eba47f546e"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+      "before_sha256": "43502241df9119a7c2f42b1682cb6d762e1e9bcff2ae6a3a2ec0c0f5c486152b",
+      "after_sha256": "40ac01536369a2622e2bc74f68178380cd4cbbe4a70970d6075288f7c44fe141"
+    }
+  ],
+  "verification": {
+    "checked_at": "2026-10-23T15:53:52.517137+02:00",
+    "ux_original_headings_retained": 41,
+    "original_e17_e18_sketches_preserved": 8,
+    "approved_report_oracle_phrase_replaced": true,
+    "unchanged_recorded_inputs": [
+      "_bmad-output/planning-artifacts/architecture.md",
+      "_bmad-output/planning-artifacts/early-b2-documents-checkpoint-2026-10-07.md",
+      "_bmad-output/planning-artifacts/epics.md",
+      "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-11.md",
+      "_bmad-output/planning-artifacts/next-session-prompt.md",
+      "_bmad-output/planning-artifacts/owner-decisions-applied-2026-06-18.md",
+      "_bmad-output/planning-artifacts/owner-decisions-applied-2026-07-06.md",
+      "_bmad-output/planning-artifacts/owner-decisions-applied-2026-09-10-story-11-3-admin-user-management.md",
+      "_bmad-output/planning-artifacts/owner-signoff-questions.md",
+      "_bmad-output/planning-artifacts/phase-b-party-session-2026-07-18.md",
+      "_bmad-output/planning-artifacts/prd.md",
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-06-11.md",
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-06-12.md",
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-08-31-story-10-6-followups.md",
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-09-03.md",
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-10-07.md",
+      "_bmad-output/planning-artifacts/sprint-change-proposal-2026-10-09-kopplas-rename.md",
+      "_bmad-output/planning-artifacts/ux-design-specification.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/review-rubric.md",
+      "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md"
+    ],
+    "v1_hashes_matching": 222,
+    "new_package_or_DT_link_failures": [],
+    "git_diff_check_exit": 0,
+    "application_tests": "not run; documentation-only change",
+    "independent_review": "not claimed",
+    "tracking": "not changed; readiness/coordination pending",
+    "completion_hook": "resolved empty",
+    "next_fresh_session": "Prompt 3 \u2014 targeted DT epic/stories and E17/E18 readiness"
+  }
+}

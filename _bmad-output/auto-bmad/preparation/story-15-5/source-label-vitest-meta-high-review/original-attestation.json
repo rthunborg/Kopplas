@@ -1,0 +1,328 @@
+{
+  "schema": "TARGETED_VITEST_META_CARRIER_HIGH_SOURCE_REVIEW_v1",
+  "reviewed_at_utc": "2026-10-21T21:43:48.668461+00:00",
+  "verdict": "PASS_CODE_ONLY_VITEST_META_TRANSPORT",
+  "findings": [],
+  "reviewer": {
+    "agent_path": "/root/review15_5_private_diagnostic_high",
+    "route": "gpt-6.1-sol High",
+    "independence": "Not implementation_author or source/plan author; prior packet/source audit roles disclosed."
+  },
+  "scope": {
+    "base": "29f60d1b849397cbc7e869b099793b9bd11cc5b8",
+    "reviewed_source_commit": "a4595068d0f1cda01106f9dcdb1af64b1f935e42",
+    "paths": [
+      "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests/integration/notifications/time-report-nudge-producer.int.test.ts"
+    ],
+    "purpose": "Only new NUDGE004 public task.meta transport prerequisite and introduced regressions. No fourth broad review/counter increment/general cause assessment."
+  },
+  "policy_inputs": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11938,
+      "sha256": "b28eec9c075877d175362dad65b739054e45a3134d748b3c11e601ae36fbb823"
+    },
+    {
+      "path": "docs/process/development-completion-policy.md",
+      "bytes": 8460,
+      "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+    },
+    {
+      "path": "docs/process/agent-model-routing.md",
+      "bytes": 7957,
+      "sha256": "116a1d54038568120f4c55be607cb9da9a8850ac3091c410c9bed3caee3ee891"
+    },
+    {
+      "path": "docs/process/review-order.md",
+      "bytes": 14757,
+      "sha256": "fbfe43e4f16fe93755cd465ab00291e2511971a60a97337eaf88c2a0fc58e115"
+    }
+  ],
+  "author_receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-vitest-meta-author-result.json",
+    "bytes": 73023,
+    "sha256": "79bf14fe77599a3f627c9ed08ed71d2bb619b2a322f47cc962da7d79645325a3"
+  },
+  "Root_precommit_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-source-label-vitest-meta-precommit-admission.json",
+    "bytes": 1065,
+    "sha256": "80f2f30850e0e3ccdc9565257f9ee8ff963e9e4f5a0409f33f59337a6c7271d2"
+  },
+  "source_binding": {
+    "inventory_ref": "author_receipt.current_source_inventory",
+    "raw_and_LF_rows_verified": 75,
+    "actual_base_reviewed_blobs_verified": 150,
+    "changed": 3,
+    "unchanged": 72,
+    "canonical_verified_vector_sha256": "372fdee0016faacf79f669bee9f549c62e11bf35d81a5059431af83fe4058e3c",
+    "canonical_vector_format": "Author inventory order, JSON sort_keys=true compact separators; path/raw_bytes/raw_sha256/clean_bytes/clean_sha256/base_blob/reviewed_blob/changed. Blob SHA1 and raw-LF equality checked independently.",
+    "changed_rows": [
+      {
+        "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "raw_bytes": 211654,
+        "raw_sha256": "d4efb0e56056cc3b7d875e0a6ff3ead5136d19ace16a5542fcd0025bd4470d1f",
+        "clean_bytes": 211654,
+        "clean_sha256": "d4efb0e56056cc3b7d875e0a6ff3ead5136d19ace16a5542fcd0025bd4470d1f",
+        "base_blob": "ffc0430dd1cae63cc09715af16612f9f8a830ca3",
+        "reviewed_blob": "2ce6a96ecf7ea562cabc469d815a83d2fc58335d"
+      },
+      {
+        "path": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "raw_bytes": 263551,
+        "raw_sha256": "2717dbd4b7737f5c146869c0a96c2f26d5635c2dbe9a30aeaccb934b05c58693",
+        "clean_bytes": 263551,
+        "clean_sha256": "2717dbd4b7737f5c146869c0a96c2f26d5635c2dbe9a30aeaccb934b05c58693",
+        "base_blob": "056651e8dde615bd93c98664d2ba1e43649a1c9c",
+        "reviewed_blob": "2110add8cd436a26c7acb28c82e42ee5b3fe09f6"
+      },
+      {
+        "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+        "raw_bytes": 44323,
+        "raw_sha256": "553b220c98ca487e5a0433882201865b6d73894717538eab1795736fe8e61ba9",
+        "clean_bytes": 44323,
+        "clean_sha256": "553b220c98ca487e5a0433882201865b6d73894717538eab1795736fe8e61ba9",
+        "base_blob": "f0be1b001e343518ba92d0b2d5c7b9fed0c578de",
+        "reviewed_blob": "209528d744adb11d6e266e92a37c4a8dc19b2c13"
+      }
+    ],
+    "Root_historical_object_checks_reused": 300,
+    "all_applied_SQL_unchanged": true
+  },
+  "frozen_refs_verified": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/source-label-01-correction-author-result.json",
+      "bytes": 72008,
+      "sha256": "fea68291aab94d7b42d9400baf0e96c456aee4a84ea7ac2086785a73ac1d3f1a",
+      "scope": "IMMUTABLE historical receipt paths/provenance only; current source resampled"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/readiness.json",
+      "bytes": 21374,
+      "sha256": "b19311457a726f047a165bac11d26ee46e3e3f4136013241f3932ed68ba986d3",
+      "scope": "FROZEN readiness/source-only carrier prerequisite, not native allocation"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/source-bindings.json",
+      "bytes": 59759,
+      "sha256": "5ab7c6701a698491d0dbfd190e510ba202ba9bf67904dba95a8cce279a2bd9f8",
+      "scope": "FROZEN readiness/source-only carrier prerequisite, not native allocation"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/manifest.json",
+      "bytes": 1026,
+      "sha256": "6f486cba89b559e523ab833e963194a45eedeb486cf5ff0dfb93a5487222caf6",
+      "scope": "FROZEN readiness/source-only carrier prerequisite, not native allocation"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-label-normal-comparison-readiness/result.json",
+      "bytes": 1648,
+      "sha256": "c7d724e8562bfa227bc37617986526f0435ebb130da9c8898eda64264e4235a9",
+      "scope": "FROZEN readiness/source-only carrier prerequisite, not native allocation"
+    },
+    {
+      "path": "tests/support/time-reports-atdd.ts",
+      "bytes": 22799,
+      "sha256": "6b96221185dee8f79699bd11999d65f6227562350fcdf7074b02902bcff3e2b7",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "bytes": 28255,
+      "sha256": "1caf0188ab38aa9195fce4df54664ba24c3c8cd5a9819cb26570db6d6a99c1ff",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    },
+    {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "bytes": 59370,
+      "sha256": "43887ef4cf1d5cf5fded7098db18e4d4637532659d8154fc5084359473b7fc7b",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    },
+    {
+      "path": "tests/support/bookings-atdd.ts",
+      "bytes": 22030,
+      "sha256": "7e5d3c0d615e25358bffa670ba8ca1cbe8d73cb025b13f913266c2249a86f681",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    },
+    {
+      "path": "tests/factories/admin-sql.ts",
+      "bytes": 12007,
+      "sha256": "3bd41701e12e7b41e8a0a6ebd162075355b04ece8f963947ff4f63db772e4b77",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    },
+    {
+      "path": "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+      "bytes": 22537,
+      "sha256": "b8ed2cc0aa91ac6a30ea370a5321f8d69e9b592f1a5d36c37a54c8b4e2012a17",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    },
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "bytes": 48616,
+      "sha256": "f7cba16a1a51958d13fc652c83daae8d9ab9455683e17b1175648cb59c958d00",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    },
+    {
+      "path": "vitest.config.ts",
+      "bytes": 4805,
+      "sha256": "fd79caf7adefc0470cb0ff5b6a1a5a4b5209cbb240804d9386f5287b30419c30",
+      "scope": "UNCHANGED actual helper/emitter/browser/caller/authority/guard/config context"
+    }
+  ],
+  "installed_primary_sources_verified": [
+    {
+      "path": "node_modules/vitest/dist/chunks/index.UpGiHP7g.js",
+      "bytes": 151531,
+      "sha256": "cdafaf8e508042dddba72f8c7bbae84e2836ddb6b06c7026520c35d91af4e798",
+      "scope": "Actual JsonReporter: onTestRunEnd t.meta without filterMeta, writeReport(JSON.stringify(result))",
+      "inspected_lines": "3521-3620"
+    },
+    {
+      "path": "node_modules/.pnpm/@vitest+runner@4.1.9/node_modules/@vitest/runner/dist/tasks.d-DEYaIMIu.d.ts",
+      "bytes": 58324,
+      "sha256": "53cf4076f42b29b8d411259d168d51b3a0274c42c8814e5b44dfa8803a35d4fc",
+      "scope": "Public custom meta saved by JSON; readonly TestContext.task with nested meta",
+      "inspected_lines": "475-477;1286"
+    },
+    {
+      "path": "node_modules/vitest/dist/chunks/reporters.d.DtoKVV2s.d.ts",
+      "bytes": 113407,
+      "sha256": "7fa6fdc6eeeb3850e6b3166836f8c9199594c4f4bed3cee02cac0ca33d71894d",
+      "scope": "Installed public JsonReporter type",
+      "inspected_lines": "2337+"
+    },
+    {
+      "path": "node_modules/vitest/package.json",
+      "bytes": 5918,
+      "sha256": "e12762a5b629bea6cbb2b0540a8a15c50f3098bb3193d3e319293b58b64c4ed9",
+      "scope": "Installed4.1.9",
+      "inspected_lines": "version"
+    }
+  ],
+  "transport_proof": {
+    "public_contract": "TaskBase.meta custom metadata promised by installed runner public type; readonly TestContext.task nested metadata.",
+    "actual_reporter": "Installed JsonReporter.onTestRunEnd assertionResults.meta=t.meta absent filter; actual JSON.stringify/result then writeReport.",
+    "control_boundary": "Real installed reporter/actual source callbacks and helper; synthetic task/meta and in-memory writeReport override only. No collection/setup/hosted worker/CI/report acquisition.",
+    "new_owned_field": "task.meta.calendarSourceLabelsV1",
+    "scope_NUDGE004_only": true,
+    "same_helper_emitter_unchanged": true,
+    "no_new_artifact_stream_filter_workflow": true
+  },
+  "carrier_invariants": {
+    "primitive_ASCII_anchored_grammar": true,
+    "max_record_bytes": 512,
+    "max_records": 16,
+    "max_label_value_bytes": 8192,
+    "JSON_metadata_total_size_NOT_claimed_8192": true,
+    "finite_case_site_boundary_relation_factory_progress_only": true,
+    "factory_fixed_UNKNOWN": true,
+    "source_relation_consistency_checks": true,
+    "new_frozen_array_each_update_defensive_primitive_copies": true,
+    "exact_prior_owned_descriptor_and_identity_required": true,
+    "foreign_or_replaced_slot_refused_and_preserved": true,
+    "plain_or_null_proto_only": true,
+    "sink_failure_cannot_mask_original_result": true,
+    "healthy_default_no_reserved_key": true,
+    "missing_refused_partial_is_UNKNOWN_not_NO_INNER_OBSERVED": true,
+    "generic_foreign_Vitest_metadata_sanitized": false,
+    "foreign_metadata_may_be_serialized_by_generic_reporter": true,
+    "no_native_error_payload_read_by_owned_sink": true
+  },
+  "regression_proof": {
+    "SOURCE_LABEL01": "Unchanged same/different/genuine absence/unknown semantics exercised in actual enclosing callback; original NOTPASS and sourceb72 closure preserved rather than rewritten.",
+    "original_results": "Error/cause identity, failure precedence, same operations/recipient seeds/assertion ASTs/guards and cleanup order pass actual-source controls.",
+    "unchanged_contexts": [
+      "time-report fixture/helper",
+      "browser/source labels",
+      "admin SQL/client principal",
+      "runtime wrapper/pin/workflow",
+      "Vitest config/partition",
+      "SQL migrations"
+    ],
+    "no_new_Promises_clients_queries_protocol_channel": true
+  },
+  "reviewer_executed_checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern='actual opted-in outer nudge|actual nudge clients|actual nudge labels|actual enclosing NUDGE|actual labelled recipient|actual recipient cleanup|actual labelled caller assertions|SOURCE-LABEL-01|VITEST-META' tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 908.1976,
+      "real_installed_reporter": true,
+      "output": "RAM-only writeReport override",
+      "native_application_credit": 0
+    }
+  ],
+  "reused_evidence": {
+    "author_checks": [
+      {
+        "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-name-pattern='actual opted-in outer nudge|actual nudge clients|actual nudge labels|actual enclosing NUDGE|actual labelled recipient|actual recipient cleanup|actual labelled caller assertions|SOURCE-LABEL-01|VITEST-META' tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit_code": 0,
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "duration_ms": 976.3923,
+        "output_bytes": 4694,
+        "output_sha256": "ef8fd0d4590a6cbb6ff6776595c6fdbd1db59be4b7795e35a99d5982e48f29b6",
+        "scope": "Four new carrier tests plus nine retained/adapted actual-source controls; real installed reporter in memory; nativeacceptance0"
+      },
+      {
+        "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+        "exit_code": 0
+      },
+      {
+        "command": "node node_modules/eslint/bin/eslint.js tests/integration/notifications/time-report-nudge-producer.int.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "exit_code": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "command": "git diff --check -- tests/integration/notifications/time-report-nudge-producer.int.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "exit_code": 0
+      },
+      {
+        "command": "python .agents/skills/auto-bmad/scripts/story_plan.py --spec _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+        "exit_code": 0,
+        "parse_warnings": []
+      },
+      {
+        "command": "author exact SRO/kernel in-memory validation",
+        "exit_code": 0,
+        "stops": 170
+      }
+    ],
+    "nonadditivity": "Author13 and reviewer13 are separate verifications, not26cases; earlier146/SOURCE-LABEL01selected8/native3222 are not combined or promoted. No new TypeScript/lint/native aggregate claimed.",
+    "unchanged_prior_SOURCE_LABEL01_closure": "Trusted Root-recorded sourceb72 closure plus actual unchanged helper/hash/retained source controls; not reopened."
+  },
+  "Spec": {
+    "kernel_bytes": 5760,
+    "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+    "unchanged": true,
+    "Suggested_Review_Order_headings": 1,
+    "stops": 170,
+    "new_transport_stops_inspected": true,
+    "status": "in-review",
+    "review_loop_iteration": 3,
+    "ARR_nativeacceptance": 0,
+    "development_complete": false,
+    "release_ready": false
+  },
+  "remaining_conditions": [
+    "Separately prepare bounded metadata-aware operator/acquisition and independent source audit, refresh exact-head readiness.",
+    "Actual completed Coordinator effect allocation for ONE NORMAL/full95 comparison; no dispatch/retry now.",
+    "Required all95/fullDBRLS/separate recovery/essential browser/privacy and actual custody evidence still pending. Existing35API/INT unexecuted includingAPI019/INT015; browser failures/flake and UNKNOWN backend/key custody remain."
+  ],
+  "normal_acceptance": 0,
+  "execution_authorized": false,
+  "effects_by_reviewer": {
+    "Git": "Bounded read-only diff/blob inspection plus original-assertion source controls; no mutation, Root retains Git ownership.",
+    "network_SQL_Auth_HTTP_runtimeinfra_CI_resources_provider_keys": 0,
+    "source_Spec_state_oldartifact_changes": 0,
+    "writes": "Only4newownedreviewmetadatafiles"
+  }
+}

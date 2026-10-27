@@ -1,7 +1,6 @@
 /** Test adapters use real cookie-client actions, checked SQL, sole detector and signer.
  * Seed expectations use literal intervals/IDs, never the preview being asserted. */
 import { createHash } from "node:crypto";
-import { vi } from "vitest";
 import { adminQuery, adminSession } from "../factories/admin-sql";
 import { bookingInput, bookingCommand, bookingPublicColumns, seedBookingParents,
   type BookingFixture, type BookingInput, type DurableRow } from "./bookings-atdd";
@@ -23,6 +22,7 @@ import * as clientFactory from "@/server/db/supabase-server-client";
 import type { TestServerClient } from "../factories/tenants";
 import type { Operation } from "./booking-conflicts-atdd";
 import type { EditorBindings, EditorInput, LogicalGroup, Preview, Scenario } from "./booking-editor-atdd";
+import { bookingEditorSqlEntry, type SqlCatalogEntry } from "./booking-editor-atdd";
 
 export function productionInput(input: EditorInput) {
   const { proposedCreateId, decision, ...base } = input;
@@ -140,6 +140,7 @@ function reviewDecision(p: Preview, selected: string[]) {
     : { ...EMPTY_BOOKING_DECISION, reviewedLogicalIds: [], selectedLogicalIds: [], receipt: p.receipt };
 }
 async function withClient<T>(client: TestServerClient, run: () => Promise<T>): Promise<T> {
+  const { vi } = await import("vitest");
   const stub = vi.spyOn(clientFactory, "createSupabaseServerClient").mockResolvedValue(client as never);
   try { return await run(); } finally { stub.mockRestore(); }
 }
@@ -380,11 +381,11 @@ export async function actualEditorBindings(): Promise<EditorBindings> {
         p_claims: conflictClaims(attempt.snapshot), p_output: attempt.outputText, p_signature: attempt.signature,
         p_review_claims: null, p_review_groups: null, p_review_signature: null, p_groups: [], p_conflicts: attempt.derived!.output,
         p_operation: "create", p_proposed_id: attempt.snapshot.bookingId };
-      const entries = await adminQuery<{ signature: string; name: string; names: string[] }>(`select p.oid::regprocedure::text as signature,p.proname as name,p.proargnames as names
+      const entries = await adminQuery<SqlCatalogEntry>(`select p.oid::regprocedure::text as signature,p.proname as name,p.proargnames as names,p.pronargs as "inputArgumentCount",
+        p.prorettype='pg_catalog.trigger'::regtype as "returnsTrigger"
         from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public'
         and (p.proname like 'booking%internal' or p.proname in ('snapshot_booking_editor','snapshot_booking_conflicts','finalize_booking_editor','finalize_booking_conflicts','booking_editor_people')) order by p.oid::regprocedure::text`);
-      const mapped = entries.map((e) => ({ signature: `public.${e.signature}`, name: e.name,
-        args: Object.fromEntries(e.names.map((name) => [name, name in standard ? standard[name] : null])) }));
+      const mapped = entries.map((entry) => bookingEditorSqlEntry(entry, standard));
       return { checked: mapped.filter((e) => !e.name.endsWith("internal")),
         obsoleteFinalize: mapped.filter((e) => e.name === "finalize_booking_conflicts"), private: mapped.filter((e) => e.name.endsWith("internal")) };
     },

@@ -1,0 +1,13 @@
+export type PublicationRequest = {commit: string; ref: string; path: string};
+export type PublicationResult = {retained: boolean; gitBlob: string};
+export type PresentationFeedback = {kind: string; id: number; rootId: number; sourceFingerprint: string; path?: string};
+export function presentationFeedback(input: {comments?: unknown[]; reviews?: unknown[]; reviewComments?: unknown[]; permissions?: Record<string,string>}): PresentationFeedback[];
+export function feedbackScopeDigest(entries: unknown[]): string;
+export function publicationPath(head: string, capture: {id: string}): string;
+export function publicationUrl(evidence: unknown, head: string, capture: {id: string}): string;
+export function renderPrScreenshots(evidence: unknown, head: string, digest: string, captureIds?: string[]): string;
+export function renderScreenshotReply(input: {e: unknown; head: string; digest: string; repo: string; prNumber: number; feedback: unknown; history?: unknown[]}): string;
+export function validatePresentation(input: {e: unknown; head: string; digest: string; repo: string; prNumber: number; prBody: string;
+  feedback?: unknown[]; comments?: unknown[]; reviewComments?: unknown[]; permissions?: Record<string,string>; authorIds?: number[];
+  loadPublication?: (request: PublicationRequest) => Promise<PublicationResult | undefined>; ownerWaiver: (id: string, rationale: string) => boolean;
+}): Promise<{status: string; scopeDigest: string; feedbackCount: number; evidenceCommit: string; evidenceRef: string; shownCaptures: string[]; exceptions: unknown[]}>;

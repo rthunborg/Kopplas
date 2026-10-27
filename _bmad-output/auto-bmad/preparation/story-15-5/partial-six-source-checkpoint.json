@@ -1,0 +1,40 @@
+{
+  "schema": "PARTIAL_SIX_SOURCE_CHECKPOINT_v1",
+  "at": "2026-10-21T18:32:51.420907+00:00",
+  "status": "PARTIAL_ONLY_JOB_WIDE_C4_UNRESOLVED",
+  "source_head": "d661023af8aa42890fa5f91cb1b2b2655288c6fa",
+  "source_base": "f0000e7c107f10371543148280e555971e753342",
+  "source_files_changed": 6,
+  "source_closure": 73,
+  "unchanged_source_paths": 67,
+  "receipt": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-acl-six-source-author-result-v2.json",
+    "bytes": 19747,
+    "sha256": "851b7ea4000cd5473b8f3327d4eabd1b53240a7d95a9651cc60aecb56dad612a"
+  },
+  "precommit_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-acl-six-source-precommit-admission-v2.json",
+    "bytes": 26594,
+    "sha256": "c448c899f65cd188924ad55ce2b3817775f32494db9338c14c9c70c062611456"
+  },
+  "postcommit_binding": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-acl-six-source-postcommit-binding.json",
+    "bytes": 893,
+    "sha256": "ae6d628d8f719df51430c819ab08e6a16d3624a4522509d6ed0ff4e92242bb59"
+  },
+  "canonical_reader": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-acl-six-source-canonical-reader-v2.json",
+    "bytes": 1713,
+    "sha256": "f73f5e015ff6239025b24c9522ae8aba0782f0e86ca49e7ab38478502af4ef9d"
+  },
+  "checks": "124 intermediate P; after new same-module admission guard final2 affected P plus122 unchanged reused, NOT fresh124aggregate. Final TypeScript,5-fileESLint,diff,reader pass; oneSRO138/kernel5760/counter3/in-review.",
+  "job_wide_gap": "Vitest isolate:true means module custody latch does not span the6serialfiles; exact-target preflight does not prove a later DIFFERENT target safe. No runner/global/env/file workaround taken.",
+  "next_question": "Can existing installed Vitest bail/cancellation or minimal partition boundary prevent later isolated serial admission after custody while preserving95 mandatory cases on successful runs?",
+  "normal_evidence": "Run39637925040 atb459 terminalFAILED:12DBfail,2unexpected4flakybrowser,API019privacyfail/browsercustodyUNVERIFIED. Currentpartialsource native0.",
+  "source_completion": false,
+  "job_wide_C4_satisfied": false,
+  "normal_acceptance_credit": 0,
+  "push_authorized_by_this_record": false,
+  "native_effects_authorized": false,
+  "all_applied_migrations_immutable": true
+}

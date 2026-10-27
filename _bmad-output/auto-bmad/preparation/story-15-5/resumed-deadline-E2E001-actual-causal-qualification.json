@@ -1,0 +1,239 @@
+{
+  "schema": "kopplas.resumed-deadline-E2E001-actual-causal-qualification.v1",
+  "verdict": "QUALIFIED_ACTUAL_DEADLINE_LOCALIZATION_AND_COMPLETION_CONTRACT_MISMATCH",
+  "evidence_status": "PASS_FROZEN_EVIDENCE_QUALIFICATION;FUNCTIONAL_DIAGNOSTIC_FAILED",
+  "review": {
+    "independent": true,
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "scope": "Frozen actual packet, already-bound completion/drain source and exact installed SDK contract only. No fourth broad review or new diagnostic/control family."
+  },
+  "binding": {
+    "run": 39762193452,
+    "attempt": 1,
+    "head": "687b1af9e4dfbe0560ee63fc46e31f42b5c5aae1",
+    "ref": "codex/epic-15-original-failure-debug",
+    "checkpoint_id": "ade128cf-abd1-416b-a7d4-c9511ef8991f",
+    "mode": "original-e2e001",
+    "workflow_id": 296219797,
+    "repo": "rthunborg/Kopplas",
+    "actor": "rthunborg",
+    "triggering_actor": "rthunborg",
+    "cause_proof": false,
+    "release_validation": false,
+    "normal_acceptance": 0
+  },
+  "packet": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-deadline-E2E001-terminal-acquisition",
+    "members": 10,
+    "listed_members": 9,
+    "manifest": {
+      "bytes": 2605,
+      "sha256": "ea30bb5fcc93f7c34eac8ad88ab5e84fdcff8aba982cd706eaac8b8e5183cb1d"
+    },
+    "execution_receipt": {
+      "bytes": 5498,
+      "sha256": "e90a526dbea14bf6f6c0975e5f3af2fb2c2f81a7a4c08addc9da07f412925a09"
+    },
+    "projection": {
+      "bytes": 3571,
+      "sha256": "efc518da1ad34159e169528b00237688984153626ef61805e692b2aa21626db2"
+    },
+    "qualification": "Exact membership and all nine bytes/hashes verified. Activation, completed allocation, terminal, source proof, reader/proposal and independent reviews match their retained references."
+  },
+  "execution_attribution": {
+    "native": "Native-reported one invocation, tool5e9fb5, outer/native0, wall1.7264329s, no session/waits. Child lifecycle is operator-observed and was not directly observed by Root or this reviewer.",
+    "reads": "Exactly two fixed logical GET intent/result pairs: list746B and admitted ZIP3946B, native0, full EOF/capture, readers joined, handles closed, settled, zero stderr and no retry. All slots are closed.",
+    "digest_chain": {
+      "ZIP_sha256": "34a291f5a40e957f0a49b5db540362b3ef5bc6cca82cfa718e50aee89ef99874",
+      "member": "general-browser.json",
+      "member_bytes": 19994,
+      "member_sha256": "1fab1f05eca4676ec5abc874bfdf55ff6bad9b6f21e61db2934e274ead1d6816"
+    },
+    "limit": "Raw listing/ZIP/report were RAM-only and were not reread/re-extracted. Independent qualification binds the mutual consistency of retained source, admission, lifecycle/digest receipts and projection."
+  },
+  "actual_facts": {
+    "case": "E2E-001",
+    "source_path": "tests/e2e/calendar-feed.e2e.spec.ts",
+    "full_title_sha256": "5db4c005e8da5c01cc18a14ead4228bc9bbd3f6358641a7c6e4b139c7fd61918",
+    "identity_bound": true,
+    "report_cases": 1,
+    "selected_cases": 1,
+    "attempts": 1,
+    "retry": 0,
+    "status": "unexpected/failed",
+    "report_counts": {
+      "expected": 0,
+      "unexpected": 1,
+      "flaky": 0,
+      "skipped": 0
+    },
+    "snapshot": {
+      "availability": "AVAILABLE_TYPED_SNAPSHOT",
+      "copies": [
+        "RESULT",
+        "TEST"
+      ],
+      "activeEntries": 3,
+      "trackedReadbacks": 0,
+      "linkageUnknown": false,
+      "countOverflow": false,
+      "owners": [
+        "create",
+        "rotate",
+        "revoke"
+      ],
+      "all_registered": true,
+      "all_requestMatcherFulfilledObserved": true,
+      "all_observation": "OBSERVED_FULFILLED",
+      "all_observationAwait": "NONE",
+      "all_completion": "PENDING",
+      "all_completionAwait": "RESPONSE_FINISHED"
+    },
+    "rotate_annotation": {
+      "availability": "AVAILABLE_TYPED_RECORD",
+      "code": "net::ERR_ABORTED",
+      "copies": [
+        "RESULT",
+        "TEST"
+      ]
+    },
+    "errors": {
+      "ordered_records": 4,
+      "recognized_classes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "bound_static_frames": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "meaning": "Unavailable projected class/frame, not absence of original errors."
+    },
+    "fixture_tuples": [
+      {
+        "stage": "cleanup-lifecycle",
+        "category": "timeout",
+        "sqlState": null
+      },
+      {
+        "stage": "custody-retained",
+        "category": "unverified",
+        "sqlState": null
+      }
+    ],
+    "interpretation": "Agreeing annotation copies are not independent attempts. PENDING is settlement not observed by the existing bookkeeping at the exact timeout boundary; not direct Promise-state or backend introspection. Observed readback fulfillment does not establish full scenario/assertion success."
+  },
+  "source_and_SDK": {
+    "assessment": {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/resumed-original-E2E001-completion-contract-assessment.json",
+      "bytes": 10787,
+      "sha256": "4aec55ee89a23e3f11300bc10c70b5da73cf732218250b8924528944c15c5012"
+    },
+    "installed_primary_source": {
+      "checkout": "C:/Users/Rasmus/.codex/worktrees/epic-15-original-failure-debug/Kopplas",
+      "path": "node_modules/.pnpm/playwright-core@1.61.1/node_modules/playwright-core/lib/coreBundle.js",
+      "version": "1.61.1",
+      "bytes": 3352341,
+      "sha256": "6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27"
+    },
+    "independently_read_contract": [
+      {
+        "lines": "58435-58441,58491-58492",
+        "fact": "A Response owns a ManualPromise; finished() awaits its race with the Request target-closed scope."
+      },
+      {
+        "lines": "60689-60695",
+        "fact": "RequestFailed sets failure text and response-end timing and emits failed events, without resolving/rejecting that Response ManualPromise."
+      },
+      {
+        "lines": "60696-60706",
+        "fact": "The inspected RequestFinished path resolves the associated Response ManualPromise(null)."
+      },
+      {
+        "lines": "58115-58124,58156-58157",
+        "fact": "failure()/timing() expose recorded SDK state; the alternative scope is page/service-worker closed or crashed, not ordinary navigation itself."
+      }
+    ],
+    "current_caller": {
+      "path": "tests/e2e/support/calendar-feed-atdd.ts",
+      "canonical_LF_sha256": "8d8cdfab99a695fa80530cf093117e75992cca67f6dbb6ad374563c1fef03401",
+      "locations": [
+        "238-276",
+        "278-290",
+        "675-695"
+      ],
+      "fact": "withCalendarBrowserFixture.observeLifecycle(create/rotate/revoke) owns original native completion separately from authoritative readback. Each completion awaits response.finished(); the existing drain joins all original completions/observations plus tracked readbacks and retains custody on uncertainty."
+    }
+  },
+  "causal_qualification": {
+    "bounded_harness_completion_contract_defect": true,
+    "name": "Response.finished used as a total native-request termination oracle despite a failed-request path that does not settle it while the target stays open.",
+    "actual_localization": "The missing owner gap is closed: at the existing deadline all three owned observations were observed fulfilled, actual tracked-readback Set count was zero, and all three active native-completion records remained at RESPONSE_FINISHED. The same matched rotate Request was observed failed with ERR_ABORTED after the drain. The installed SDK supplies a source-proven nonsettling failed-request path for this exact completion adapter.",
+    "consequence": "The harness can time out and retain unverified custody even after its readback observations fulfilled, because native failure does not satisfy the completion signal it awaits. This is a concrete harness completion-contract mismatch and a justified target for bounded corrective source work, rather than another generic diagnostic run.",
+    "precision_limits": [
+      "The snapshot is bookkeeping, not direct Promise introspection.",
+      "The rotate failure was sampled after the drain; its exact occurrence time relative to the deadline is not retained. It is not proved to be the sole cause of the elapsed20s.",
+      "Create/revoke have no captured original failure code; do not assert that all three were aborted.",
+      "No reload/cancellation initiator, original primary exception, response-body linkage or backend settlement is proved.",
+      "No application defect, full scenario PASS, successful native completion or functional acceptance follows from readback fulfillment."
+    ]
+  },
+  "smallest_next_action": {
+    "proposal": "Perform a bounded completion-contract correction assessment plus the directly necessary backend/custody source assessment. The actual owner/stage is now known; further generic observability or a repeated run is not required to identify this gate.",
+    "caller_and_invariant": "For the same owned action Request, HTTP successful finish, HTTP terminal failure, and unknown/target loss must remain distinct. A successful readback is evidence of that readback's contract; it is not a substitute for the separate native or backend ownership invariant.",
+    "guarded_fix_requirements": [
+      "Handle the SDK failed-request termination path without relying solely on Response.finished, and bind any terminal fact to the exact already-owned Request. Preserve a truthful failure/unknown outcome rather than relabeling ERR_ABORTED as success.",
+      "Keep every completion, observation, actual readback and any replacement native signal owned and joined. Do not solve the timeout by dropping work, ignoring a rejection, shortening a timeout, closing the page early solely to settle the SDK scope, or racing a timer to a green result.",
+      "Before admitting row/Auth/key cleanup after a terminal client failure, trace the existing server command/postcommit work and physical readback guarantees and identify the exact backend-settlement/ownership proof needed. Client RequestFailed, zero tracked client readbacks and Stop-stack success alone do not supply it. If proof is missing, retain fail-closed custody.",
+      "Preserve all scenario assertions, authorization/tenant principals, operation/error identity and precedence, existing command inputs, timeouts and backend transaction semantics. No navigation blame or reload change is justified without a concrete causal path.",
+      "Any actual source implementation/new native signal must have a concrete bounded allocation, focused integrity controls and independent High review. Then use only the separately authorized minimal functional verification needed for the correction; no blind full-NORMAL or diagnostic retry is authorized here."
+    ],
+    "scope_limit": "This qualification proposes the next source route and required invariants; it does not edit code or authorize a fix, runtime, acquisition, retry, cleanup or deployment."
+  },
+  "custody": {
+    "wrapper_lifecycle_receipt": null,
+    "key_deleted": null,
+    "backend_settlement": "UNKNOWN",
+    "terminal_stop_stack": "success",
+    "disposition": "ENDED_JOB_OPERATOR_HANDOFF_ONLY",
+    "meaning": "The captured request/readback bookkeeping is frontend ownership evidence. It does not certify backend rollback, canonical restoration, exact key deletion or permit foreign adoption/cleanup."
+  },
+  "independent_commands": [
+    {
+      "chunk": "65f8e8",
+      "native_exit": 0,
+      "wall_seconds": 0.1654363,
+      "kind": "Closed packet/hash/reference/tuple/transport/projection consistency only."
+    },
+    {
+      "chunk": "b8ed0c",
+      "native_exit": 0,
+      "wall_seconds": 0.1683352,
+      "kind": "Exact installed SDK hash and bounded source-line read only."
+    }
+  ],
+  "effects": {
+    "new_API_or_GET": 0,
+    "tests_or_controls": 0,
+    "operator_or_browser_runtime": 0,
+    "Git_commands": 0,
+    "resources": 0,
+    "source_or_Spec_writes": 0,
+    "only_write": "This new qualification JSON."
+  },
+  "remaining": {
+    "normal_acceptance": 0,
+    "development_complete": false,
+    "release_ready": false,
+    "prior_full_NORMAL_failure_retained": true,
+    "required_missing_cases": 35,
+    "P5": "OPEN",
+    "story_15_6": "UNSTARTED",
+    "broad_review_counter": 3
+  }
+}

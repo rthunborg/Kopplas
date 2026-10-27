@@ -1,0 +1,36 @@
+{
+  "schema": "ROOT_TERMINAL_ADMISSION_CALLER_PREFLIGHT_REFUSAL_V1",
+  "actual_tool": "d8ef4a/native1",
+  "stage": "Helper line34 __file__ ref equality; before helper Git calls/templates/sourceproof/journal/activation/reader/GET",
+  "root_caller": "runpy.run_path absolutehelper sets absolute __file__; grant helper ref is repository-relative",
+  "reviewed_helper_pin": {
+    "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+    "bytes": 7281,
+    "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+  },
+  "actual_absolute_helper_ref": {
+    "path": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/.env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-admission.py",
+    "bytes": 7281,
+    "sha256": "c2e2e251c0b8217333e81206c8cbf2293a390d05e90398bf571edef22887e1d6"
+  },
+  "created_private_files": [
+    "accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+    "post-INT015-normal-v2-terminal-evidence-root-capture-contract.json"
+  ],
+  "actual_helper_Git_calls": 0,
+  "actual_reader_invocations": 0,
+  "actual_logical_GETs": 0,
+  "absence_checks": {
+    "post-INT015-normal-v2-terminal-fresh-source-proof.json": true,
+    "post-INT015-normal-v2-terminal-evidence-activation.json": true,
+    "post-INT015-normal-v2-terminal-actual-envelope.json": true,
+    "post-INT015-normal-v2-terminal-source75-envelope.json": true,
+    "post-INT015-normal-v2-terminal-evidence-root-once-journal.json": true,
+    "post-INT015-normal-v2-terminal-evidence-root-invocation-consumed.json": true,
+    "post-INT015-normal-v2-terminal-evidence-root-native-outer-receipt.json": true,
+    "checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent": true
+  },
+  "all_remaining_original_slots_closed": true,
+  "no_old_grant_retry": true,
+  "checked_at": "2026-10-24T20:06:30.677184+00:00"
+}

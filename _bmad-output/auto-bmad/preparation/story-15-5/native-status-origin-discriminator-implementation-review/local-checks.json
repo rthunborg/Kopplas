@@ -1,0 +1,106 @@
+{
+  "kind": "AUTHOR_LOCAL_CHECKS",
+  "base": "93f4bf6543f6a9dc519a28f3d6f7824e8f6feedf",
+  "source": "8efb90e5038874c672df120651041176a70b1f2f",
+  "checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "stage": "initial",
+      "tests": 92,
+      "pass": 91,
+      "fail": 1,
+      "skip": 0,
+      "cancel": 0,
+      "exit": 1,
+      "limit": "Null-prototype versus plain-object test equality only; assertion corrected. Not additive with final."
+    },
+    {
+      "command": "same affected Node command",
+      "stage": "intermediate",
+      "runs": 2,
+      "each": {
+        "tests": 92,
+        "pass": 92,
+        "fail": 0,
+        "skip": 0,
+        "cancel": 0,
+        "exit": 0
+      },
+      "limit": "Separate temporal runs, not final93 aggregate."
+    },
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "stage": "final",
+      "tests": 93,
+      "pass": 93,
+      "fail": 0,
+      "skip": 0,
+      "cancel": 0,
+      "exit": 0
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "stage": "final",
+      "exit": 0
+    },
+    {
+      "command": "pnpm exec eslint tests/support/calendar-feed-atdd.ts scripts/ci/with-calendar-feed-runtime.mjs tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/support/calendar-feed-ci-contract.ts",
+      "stage": "final",
+      "exit": 0,
+      "warnings": 0
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs _bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "exit": 0,
+      "stops": 98
+    },
+    {
+      "command": "git diff --check; git diff --cached --check",
+      "stage": "precommit",
+      "exit": 0,
+      "staged_exact_paths": 5
+    }
+  ],
+  "initial_stops": [
+    "Exploratory pg-protocol/package.json lookup rejected by package exports; installed dependency resolved through pg instead; no package mutation.",
+    "Draft status SELECT list lacked comma, found by source inspection and corrected; final live query-construction control asserts separator. PostgreSQL syntax execution0.",
+    "First Spec reader used Windows default encoding and failed before writing. Explicit UTF-8 reader succeeded. The subsequent unrefreshed-trail check exposed13 shifted anchors; final refreshed98 stops passed."
+  ],
+  "logs": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-unit-current.txt",
+      "bytes": 29918,
+      "sha256": "095f3af8c8c0e655f05c1c556f57c601996a98a55f1861e9d5d7b41179a18d9a"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-unit-final.txt",
+      "bytes": 26809,
+      "sha256": "33828e4ee84da31b60118504f3ce61b6ff9a6508db02b459627964f20413d582"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-unit-final-crossfields.txt",
+      "bytes": 26802,
+      "sha256": "e2014112b955a65ab070578560c9c9f9e1b66425555bd1844132210049be3ee9"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-unit-final-caps.txt",
+      "bytes": 27085,
+      "sha256": "b45619cfa7e32a85e2d068c65b649db8cf7ce4ee5d33d19a95bd47c9b24daac2"
+    }
+  ],
+  "kernel": {
+    "bytes": 5760,
+    "sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977"
+  },
+  "normal_acceptance_declarations": 95,
+  "native_execution_credit": 0,
+  "app_build": "NOT_RERUN_APP_BYTES_UNCHANGED",
+  "future_private_interpretation_controls": "UNEXECUTED",
+  "limitations": [
+    "Actual current TS extraction/data-URL functions with injected connections do not execute PostgreSQL or prove SQL syntax/runtime.",
+    "Installed pg-protocol finite frames exercise actual parser own-data mapping, not live server origin taxonomy.",
+    "No claim of underlying42501 cause/guard; external reporting origin only.",
+    "TABLE_ACL_ONLY is not necessary SELECT coverage; future private qualifier owns seventeen-candidate/UNKNOWN interpretation.",
+    "All43DB/14browser normal failures remain unresolved; no functional permission fix or native acceptance."
+  ]
+}

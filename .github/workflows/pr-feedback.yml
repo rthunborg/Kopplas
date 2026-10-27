@@ -17,6 +17,10 @@ on:
         description: 'Validate a candidate without pushing or notifying anyone'
         type: boolean
         default: true
+      monitor_only:
+        description: 'Inspect the existing published revision without a new model attempt (set dry_run=false for notifications)'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -59,7 +63,9 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           PR_FIX_ENABLED: ${{ vars.PR_FIX_ENABLED }}
           PR_FIX_PUBLISH: ${{ vars.PR_FIX_PUBLISH }}
+          PR_FIX_PILOT_PR: ${{ vars.PR_FIX_PILOT_PR }}
           PR_FIX_DRY_RUN: ${{ inputs.dry_run }}
+          PR_FIX_MONITOR_ONLY: ${{ inputs.monitor_only }}
           PR_FIX_APP_ID: ${{ vars.PR_FIX_APP_ID }}
           PR_FIX_APP_USER_ID: ${{ vars.PR_FIX_APP_USER_ID }}
           PR_FIX_APP_PRIVATE_KEY: ${{ secrets.PR_FIX_APP_PRIVATE_KEY }}
@@ -276,6 +282,7 @@ jobs:
         env:
           PR_FIX_ENABLED: ${{ vars.PR_FIX_ENABLED }}
           PR_FIX_PUBLISH: ${{ vars.PR_FIX_PUBLISH }}
+          PR_FIX_PILOT_PR: ${{ vars.PR_FIX_PILOT_PR }}
           PR_FIX_APP_ID: ${{ vars.PR_FIX_APP_ID }}
           PR_FIX_APP_USER_ID: ${{ vars.PR_FIX_APP_USER_ID }}
           PR_FIX_APP_PRIVATE_KEY: ${{ secrets.PR_FIX_APP_PRIVATE_KEY }}
@@ -285,6 +292,7 @@ jobs:
         env:
           PR_FIX_ENABLED: ${{ vars.PR_FIX_ENABLED }}
           PR_FIX_PUBLISH: ${{ vars.PR_FIX_PUBLISH }}
+          PR_FIX_PILOT_PR: ${{ vars.PR_FIX_PILOT_PR }}
           PR_FIX_APP_ID: ${{ vars.PR_FIX_APP_ID }}
           PR_FIX_APP_USER_ID: ${{ vars.PR_FIX_APP_USER_ID }}
           PR_FIX_APP_PRIVATE_KEY: ${{ secrets.PR_FIX_APP_PRIVATE_KEY }}

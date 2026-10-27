@@ -1,0 +1,813 @@
+{
+  "status": "PASS-artifact-format-qualification-only",
+  "unrestricted_check": {
+    "exit_code": 2,
+    "status": "FAILED-retained",
+    "stdout_sha256": "9b60d0f4d25fcb5ebda2ac4996d1d30bf1b1d02d0654e5bc8111a8eb0035577c",
+    "stderr_bytes": 0
+  },
+  "qualified_context_line_count": 152,
+  "violations": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 6,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 17,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 26,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 47,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 49,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 57,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 61,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 273,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 278,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 640,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 645,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 648,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 657,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 997,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1531,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1553,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1562,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1566,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1581,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1596,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1605,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1630,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1658,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1679,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1704,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1713,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1740,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1742,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1771,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1781,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1815,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 1863,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2148,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2159,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2168,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2177,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2186,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2195,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2204,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2213,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2222,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2231,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2240,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2249,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2258,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2267,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2276,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2285,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2294,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2303,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2326,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2339,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2352,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2363,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2372,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2381,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2399,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2408,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2417,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2426,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2435,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2444,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2453,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2462,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2471,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2480,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2498,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2548,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2559,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2568,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2577,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2586,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2595,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2604,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2613,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2622,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2631,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2640,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2649,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2802,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2849,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 2855,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3248,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3306,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3437,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3457,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3474,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3488,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3772,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3800,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3807,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3885,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "line": 3945,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 19,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 21,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 62,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 64,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 66,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 89,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 94,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 127,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 135,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 137,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 144,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 153,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 155,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 269,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 315,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 320,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 369,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 461,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 527,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 572,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 713,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 758,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 833,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 924,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 956,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 980,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 1014,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 1077,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 1119,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "line": 1124,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 33,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 60,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 65,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 87,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 93,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 101,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 103,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "line": 107,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 49,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 75,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 80,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 98,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 165,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 171,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 173,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 175,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 182,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 184,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 187,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 193,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 196,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 202,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 204,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 210,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 218,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 220,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 226,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 739,
+      "exact_content_hex": "20"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "line": 752,
+      "exact_content_hex": "20"
+    }
+  ],
+  "frozen_inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      "bytes": 325115,
+      "sha256": "911ea7c6215a7323a460cee594cf625bbb3d1a753db29c7510c290822956f5cf"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      "bytes": 106573,
+      "sha256": "6fc14dc66c147c9d7b438744aa7a68c7ff8fe4e12495f12d9c5b0d1e563c8e10"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      "bytes": 77068,
+      "sha256": "18c68c9e6a2cdf51439d2c496025ad6cac1adaf846f43a060b6d9a84eac0f164"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff",
+      "bytes": 12817,
+      "sha256": "d1023ad79193131e12bd7f85b9f2990b96b3d2e792d337e48dba324103bd6b56"
+    }
+  ],
+  "all_other_staged_paths_native_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-1/review-content.diff",
+      ":(exclude)_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-2/review-content.diff",
+      ":(exclude)_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/review-content.diff",
+      ":(exclude)_bmad-output/auto-bmad/preparation/story-15-5/code-review-round-3/latest-fix-input.diff"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0
+  },
+  "source_freeze_sha256": "2d1e982a10701831a71b8da9cf13ac03234b41499ad525bb8d84464910094e03",
+  "review_assessment": "Existing High build parent bounded artifact-format assessment; not a code-review round. Exact space is required unified-diff context syntax. No input/source/config mutation or hook bypass."
+}

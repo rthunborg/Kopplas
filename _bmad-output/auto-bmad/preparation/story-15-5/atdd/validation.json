@@ -1,0 +1,166 @@
+{
+  "outcome": "P4-complete-RED-scaffolds-only",
+  "phase": "P4",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "approvedKernel": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "approvedRawSpec": "ce07c0361f3ab47005f326efb199443c777ae6c5c89a62650a20b9af68ee7144",
+  "acPurpose": {
+    "AC1": "own issuance/rotation/revocation, once-only plaintext, exact self authority and audit",
+    "AC2": "CAS/replay/lost response/audit rollback and commit-ordered lifecycle/fetch races",
+    "AC3": "complete current planned own materialized events, minimal disclosure and independent dates/UIDs",
+    "AC4": "generic invalid capability, direct proof/override/current-authority negatives and legacy NULL positive",
+    "AC5": "independent 60/token and120/IP per900 seconds, DB clock/concurrency/persistence and sanitized monitoring",
+    "AC6": "actual fetched last-use, honest connected UI/copy/failure/phone/keyboard and Admin separation",
+    "AC7": "exact public preauth bypass/transitive isolation and real hostile-cookie/cache probes",
+    "AC8": "independent RFC5545/UTF8/DST/all-day vectors, complete large feed and atomic generic503",
+    "AC9": "ordinary/direct SQL ACL/RLS and existing scheduling/report/job integrity/closed-scope preservation"
+  },
+  "actualACsMapped": [
+    "AC1",
+    "AC2",
+    "AC3",
+    "AC4",
+    "AC5",
+    "AC6",
+    "AC7",
+    "AC8",
+    "AC9"
+  ],
+  "allACsUnproven": true,
+  "syntacticDeclarations": 80,
+  "declarationsByClass": {
+    "serial-db-http": 34,
+    "rls": 12,
+    "e2e": 9,
+    "component": 4,
+    "unit": 21
+  },
+  "plannedExpandedCases": {
+    "unit": 22,
+    "lifecycle": 14,
+    "publicHTTP": 20,
+    "rls": 12,
+    "component": 4,
+    "e2e": 11,
+    "total": 83
+  },
+  "parameterizationTruth": "Unit 21 declarations expand to22 native registrations; E2E9 declarations expand to11 list-only cases; all inner vector loops are assertion vectors, not separately credited cases.",
+  "nativeUnitDiscovery": {
+    "exit": 0,
+    "registered": 22,
+    "executed": 0,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 22,
+    "todo": 0
+  },
+  "nativeREDProbe": {
+    "exit": 1,
+    "registered": 3,
+    "executed": 1,
+    "passed": 0,
+    "failed": 1,
+    "failedBeforeAssertions": 1,
+    "skipped": 2,
+    "error": "ENOENT missing approved public route source",
+    "storedScaffoldsRemainSkipped": true
+  },
+  "vitestDiscovery": {
+    "mode": "glob + staticParse only",
+    "modules": 4,
+    "setupExecuted": false,
+    "testBodiesExecuted": 0,
+    "runtimePartitionEvidence": false,
+    "exactSerialConfigDeferred": true,
+    "currentNewFilesAllParallel": true
+  },
+  "playwrightDiscovery": {
+    "exit": 0,
+    "mode": "--list",
+    "registered": 11,
+    "files": 1,
+    "setupExecuted": false,
+    "browserExecuted": 0
+  },
+  "acceptanceAssertionsExecuted": 0,
+  "acceptanceCasesPassed": 0,
+  "checks": {
+    "typecheck": {
+      "exit": 0,
+      "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+      "initialExit": 2,
+      "repair": "Typed own trusted-IP data cases as Record<string,string>[]; initial receipt retained"
+    },
+    "scopedLint": {
+      "exit": 0,
+      "errors": 0,
+      "warnings": 3,
+      "warningScope": "unused parameters in deliberately unbound E2E fixture"
+    },
+    "inventory": {
+      "passed": true
+    },
+    "preservation": {
+      "passed": true,
+      "authorBindings": 35,
+      "independentFiles": 8,
+      "historicalSourceBindings": 40,
+      "companionChecks": 8,
+      "allocationHashes": 3
+    },
+    "diffCheck": {
+      "exit": 0
+    }
+  },
+  "requiredWorkers": [
+    {
+      "name": "api_red",
+      "success": true,
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "declarations": 46,
+      "testsExecuted": 0,
+      "output": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/api-worker.json"
+    },
+    {
+      "name": "e2e_red",
+      "success": true,
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "declarations": 9,
+      "expandedCases": 11,
+      "testsExecuted": 0,
+      "output": "_bmad-output/auto-bmad/preparation/story-15-5/atdd/e2e-worker.json"
+    }
+  ],
+  "changes": {
+    "newTestFiles": 11,
+    "newHelpers": 2,
+    "existingTestFilesModified": 0,
+    "existingConfigFilesModified": 0,
+    "appSchemaImplementationFiles": 0,
+    "frozenSpecFilesModified": 0,
+    "resourcesStarted": 0,
+    "browserDBVaultHTTPActions": 0,
+    "keysCreated": 0,
+    "envFilesModified": 0,
+    "dependencyFilesModified": 0,
+    "gitWrites": 0,
+    "remoteEffects": 0
+  },
+  "p5Requirements": [
+    "Bind every actual-subject/test-driver adapter; no mock success or production env getter",
+    "Apply accepted exact two-file serial include+parallel exclude and six-file partition expectations BEFORE executing fixtures",
+    "Actual installed runtime partition/nonoverlap proof; all new cases active",
+    "Root-admitted ephemeral isolated test key/Vault/DB/production browser lane with scoped faults and complete failure-preserving cleanup",
+    "Full required DB/RLS + direct Storage integrity + HTTP/browser + static/build + High independent review/exact-head CI + delivery truth"
+  ],
+  "releaseReady": false,
+  "developmentComplete": false,
+  "inheritedReviewUnverifiedMustRemain": true,
+  "deferredReleaseChecks": 6,
+  "codeReviewRoundsUsed": 0,
+  "implementationStarted": false,
+  "passed": true
+}

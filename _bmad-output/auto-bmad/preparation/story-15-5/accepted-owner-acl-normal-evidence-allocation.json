@@ -1,0 +1,122 @@
+{
+  "status": "GRANTED",
+  "authority": {
+    "coordinator_thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "actual_completed_turn": "01a15f58-46f1-7060-a4ed-94050bee0e4f",
+    "actual_completed_grant_tool": "exec-74939112-6403-4a97-8482-eb1eb2ce64ea",
+    "root_independently_read_completed_tool": true,
+    "actual_human_approval_turn": "01a15f19-acd9-7261-80ac-8660a2d5abb3",
+    "actual_human_approval_message": "01a15f19-b0c7-74c3-bb36-654971a55868",
+    "standing_hosted_CI_and_exact_effects_approval": true
+  },
+  "checkpoint_head": "b459af22d490eadc90113fd713a73b65aff89471",
+  "source_head": "589652335657df7153d7578b1a421b020fa2ce8c",
+  "checkpoint_id": "b34acf03-1116-4411-9ce4-7dbe04d48745",
+  "ref": "codex/epic-15-scheduling-time-calendar",
+  "attempt": 1,
+  "mode": "normal",
+  "cause_proof": false,
+  "release_validation": false,
+  "code_review_admission": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-source-code-review-admission.json",
+    "bytes": 1491,
+    "sha256": "c7a153de5dbcf5f6a0f73cd72b5782eeb4f78b2e2c7e195a5cbf81de2ccd2d3b"
+  },
+  "readiness": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/owner-acl-normal-readiness.json",
+    "bytes": 34051,
+    "sha256": "f5a61e8d45e704e821357a479594ff496b9a3b6e5ab1d388039ae687be0bdaaa"
+  },
+  "root_readiness_admission": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/root-owner-acl-normal-readiness-admission.json",
+    "bytes": 1255,
+    "sha256": "9112e5018d948441e42f3a1e1af1c030a678c68ce2e45a7380c6038fbae62000"
+  },
+  "source_closure_rechecked": 72,
+  "normal_acceptance_credit": 0,
+  "prohibited": "No local runtime, demo/production/shared variables/persistent secrets/provider/default branch/main merge/deployment, foreign writes, retries, alternate endpoints or unallocated collector edits.",
+  "schema": "root-accepted-owner-acl-normal-evidence-allocation-v1",
+  "eligible_only_after_exact_terminal_Root_admission": true,
+  "actual_run_id": null,
+  "actual_requests": 0,
+  "evidence_scope": {
+    "reuse_protocol_ref": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/owner-acl-future-normal-evidence-readiness.json",
+      "bytes": 16212,
+      "sha256": "35c094615672c4b7a00ae62a8d1f1c768fe2103b5029a4c09a6c5f2c3095ccb7"
+    },
+    "existing_record_path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-93473f12-ci-independent/terminal-acquisition.json",
+    "executable_collector": "No standalone normal collector identified in inspected packet; reusable bounded inline protocol, not new runner. Consumed matrix02 and v1/P2 consumers are unsuitable/unused.",
+    "normal_fixed3": [
+      {
+        "artifact": "native-full-integration",
+        "workspace_file": "test-results/full-integration.json",
+        "expected_single_JSON_basename": "full-integration.json",
+        "format": "Installed Vitest JSON",
+        "qualify": "Actual executed/pass/fail/pending/skipped totals; exact ordinary case titles and file membership, including full RLS cases; not a stand-alone additive RLS subset."
+      },
+      {
+        "artifact": "native-general-browser",
+        "workspace_file": "test-results/general-browser.json",
+        "expected_single_JSON_basename": "general-browser.json",
+        "format": "Installed Playwright JSON",
+        "qualify": "Distinct essential story cases versus retry attempts/flaky/skip; other authentication smoke cases separate. Available attachments privacy facts only; missing content remains NULL/UNQUALIFIED."
+      },
+      {
+        "artifact": "native-isolated-storage-recovery",
+        "workspace_file": "test-results/isolated-storage-recovery.json",
+        "expected_single_JSON_basename": "isolated-storage-recovery.json",
+        "format": "Installed Vitest JSON",
+        "qualify": "Direct separate recovery case and all reached storage/object/protected-row/overwrite-denial/effective-public-CREATE assertions; not ordinary story case credit."
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/<actual-run>/logs",
+        "maximum": 1,
+        "timeout_seconds": 15,
+        "compressed_cap_bytes": 33554432,
+        "memory_inflate_total_cap_bytes": 134217728,
+        "selected_jobs": [
+          "verify",
+          "db",
+          "e2e",
+          "recovery-storage-loader"
+        ]
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/runs/<actual-run>/artifacts?per_page=100",
+        "maximum": 1,
+        "timeout_seconds": 15,
+        "response_cap_bytes": 4194304,
+        "pagination": "No retry/page following; total_count>100 or ambiguous/incomplete listing stops."
+      },
+      {
+        "method": "GET",
+        "endpoint": "repos/rthunborg/Kopplas/actions/artifacts/<exact-qualified-artifact-id>/zip",
+        "maximum": 3,
+        "per_artifact_maximum": 1,
+        "eligible_names": [
+          "native-full-integration",
+          "native-general-browser",
+          "native-isolated-storage-recovery"
+        ],
+        "timeout_seconds": 15,
+        "compressed_cap_bytes": 33554432,
+        "memory_inflate_total_cap_bytes": 134217728,
+        "selected_JSON_cap_bytes": 16777216
+      }
+    ],
+    "eligibility": "After Root exact terminal grant only; one normal run archive, one fixed artifact list, at most one exact-ID ZIP per3 expected reports. Actual exact name/id/run/head/nonexpiry/digest and valid nullable metadata including expires_at; no silent old strict grammar adoption. No pagination/alternate endpoint/per-job logs/retry.",
+    "memory_privacy": "RAM-only containers/logs/JSON/errors; streaming process/cap/EOF/done/joined/native exit measurements, strict path/symlink/duplicate/ratio/CRC/declared+actual inflation caps. Persist selected closed counts/stages/enums/allowlisted facts and permitted digest provenance only, never arbitrary error/SQL/credential/URL/custody identifiers.",
+    "schema_members": "Normal installed Vitest full-integration/recovery JSON and installed Playwright general-browser JSON; expected source paths/basenames in fixed3 above require actual ZIP compatibility, never path rewriting. Diagnostic v1/v2 observation consumer unnecessary in normal lane.",
+    "required_current_reach": "All95 distinct cases0skip; actual fullDB/RLS counts with nonadditive expected historical skips, RLS010 new subproof complete cleanup then later raw ACL predicates, INT015 native engine/restricted proof separately, direct recovery1, browser14 cases vs attempts and other smoke separate. All111 source/start/reset/restore+exact ledger and reached assertions; original/current authority/privacy/readiness/HTTP/poll/child output settlement/exact key deletion or truthful custody.",
+    "missing": "Unacquired report/attachment content NULL/UNQUALIFIED. Missing receipt cannot prove no child/key/cleanup; Stop success not physical shutdown. Failures block development, not deferred visual release work.",
+    "no_authority": "All prior network budgets consumed; this metadata authorizes no GET/CI/effects. Separate exact source-bound ownership/allocation/admission before acquisition."
+  },
+  "High_operator_and_distinct_provenance_audit_required": true,
+  "uncertainty": "Consumes; UNKNOWN truthfully; no retry or alternate route.",
+  "raw_privacy": "RAM-only logs/ZIP/JSON/errors; persist closed counts/stages/facts/hash provenance only."
+}

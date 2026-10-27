@@ -1,0 +1,218 @@
+{
+  "Outcome": "MINIMUM_NEXT_NORMAL_PREPARATION_ASSESSED_ONLY_FRESH_FINAL_SOURCE_CATALOG_AND_ALLOCATION_REQUIRED",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/next-normal-minimum-operational-preparation-assessment.json"
+  ],
+  "Status": {
+    "route": "Root2a3714/native0 before dispatch; explicit gpt-6.1-sol High sensitive operational source assessment",
+    "authority": "Assessment only. This report allocates no IDs, grants no effects and authors no executable controller or live activation.",
+    "sole_write": "New exclusively created frozen assessment; no prior source, packet, grant, activation, state, journal, closeout or in-flight author file modified.",
+    "activity": "Static frozen operational source/JSON reads, filename inventory, local byte/SHA256 metadata and text-segment hashing only. No source module/function/control evaluation, test, Git, native operational command, provider/network/GET, install, DB, browser, resource launch, foreign/DEBUG checkout or in-flight source/spec read.",
+    "root_context": {
+      "head": "603ef74a2afa150638979805c3ed98f07928a5ce",
+      "parent_and_reported_remote": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "functional_source": "9ba1d6151d60ace4a41416e6d49bb55d4ee691aa",
+      "qualification": "Root-reported clean docs-only unpushed dispatch context; no independent Git freshness claim. No final remediation source/head/catalog pins exist in this assessment."
+    },
+    "verified_pins": [
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/provider.py",
+        "bytes": 20587,
+        "sha256": "62a3271253c8d7a92be7e044b61e593263c0065ba1b85f5b08fdc9c6031562c3",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/root-driver.py",
+        "bytes": 21112,
+        "sha256": "892a9ac99827e7aed7655b6e94a347ecd81cac0ec092ecff507c2b25a1faef7d",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/proposal.json",
+        "bytes": 287968,
+        "sha256": "b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/pure-controls.json",
+        "bytes": 6601,
+        "sha256": "b81a2f061b6aba2e7c84b4c2851672bf286e9abd05c14682be6ca3d3b63ce624",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/manifest.json",
+        "bytes": 1694,
+        "sha256": "ab64bde00336db351949e7c208620a43f4dee2886d48088fe310c986baed6349",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-proof-admission-v2.py",
+        "bytes": 7216,
+        "sha256": "8ba90118d7735f44ce8393383f32fd37ce0043f0272178f2fac7c2763011c2ca",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json",
+        "bytes": 10225,
+        "sha256": "148e83bf1b843a49276b1a247452f5cabcd7c2aa367677f20274bc6168df6212",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/reader.py",
+        "bytes": 52883,
+        "sha256": "b4a6ed837ba773b574d589bd6023d8fc105a47ec8bf143600ead9637ef85f45c",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/proposal.json",
+        "bytes": 206884,
+        "sha256": "028813ea6e24b9a19f48242d616b6258aa51430afafe490eae5688870fa1c83e",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/pure-controls.json",
+        "bytes": 9430,
+        "sha256": "a845d5e91dc228f91dd7558c8f34e2e8d58df3427aa852f816e6edf9ba9783c4",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-preparation/manifest.json",
+        "bytes": 1146,
+        "sha256": "d0873ff011ddd98f89ec8a95a1fb1b1ead23d22f48ca69353192ed07994c0f20",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-admission.py",
+        "bytes": 7240,
+        "sha256": "b7af2a69bb37c5804a6fbe052df46312990cb9c7bf7ac589ae86fd48cb872972",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2.py",
+        "bytes": 7442,
+        "sha256": "784ebfcfad4c48b146124c04e9c46fc3b528760c41deef2c0385975dbb426a83",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-operational-review.json",
+        "bytes": 14294,
+        "sha256": "8487ee0f010d9650d53b7f2bea5f523d5bfe8fb2153634260dc13ec6554ee5ce",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-evidence-root-outer-v2-review.json",
+        "bytes": 7760,
+        "sha256": "48a5025767ebf26f81f64079b6e24a60fa482ee0ff3f4543681d574591c39ec8",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-terminal-actual-native-qualification.json",
+        "bytes": 18772,
+        "sha256": "899bef863a818e2833f28e34abd2ad5506f0038e39c9d1de5fc32822ce4d89fc",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-current-failed-case-source-assessment.json",
+        "bytes": 25590,
+        "sha256": "93b98dc737ce55205ccbe0d199a8b319ad53e9f5bc08655368c27117dbf7521b",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      },
+      {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-INT015-annotation-remediation-plan-validation.json",
+        "bytes": 13237,
+        "sha256": "c8b977188a23e43c7d96bf35b03731b45b13b4210f70b3fc6c52320e379d5030",
+        "verification": "Actual local bytes and SHA256 matched; static input, not execution authority"
+      }
+    ],
+    "supplied_pin_discrepancy": {
+      "file": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-proof-admission-v2.py",
+      "actual_bytes": 7216,
+      "actual_sha256": "8ba90118d7735f44ce8393383f32fd37ce0043f0272178f2fac7c2763011c2ca",
+      "supplied_typo": "Supplied ...f44cece839... versus actual ...f44ce839...; actual full64-character pin above matches independent reviewed record.",
+      "disposition": "Use actual verified pin; do not overwrite old source or silently accept the malformed supplied pin."
+    },
+    "native_kernel": {
+      "bytes": 2449,
+      "sha256": "57f57bd8ecb5ad6ffd925d32c8d6deb530eebd586633e7cb040fb9b13830d8b1",
+      "verification": "Independently sliced exact driver native definition as raw UTF8 text, excluding separator newlines; no compilation/evaluation. An initial measurement including one LF was 2450/cb5d4eb04c7f448bb360e51f70ec0a63f35a8a62cf1d36d6f5d70566148e57b8 and is explicitly not the native kernel pin.",
+      "limits": "Same loop plus wait/join tails; no process-tree hardwall or inherited-child/backend settlement guarantee."
+    },
+    "actual_closed_basis": {
+      "run": 40109869919,
+      "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "result": "93 passed / API019 failed / API020 unexecuted among required95. INT015 passed, but no remediation acceptance follows.",
+      "privacy": "Lifetime-first integration/IP refusal STDOUT/OTHER_OR_UNKNOWN; actual first producer/cause UNKNOWN. Annotation output path is reachable source evidence, not authentication of the captured first line.",
+      "current_DB": "keyDeleted=false; keyOutcome=unverified; custody_retained=true; dbClosed=true. Remains separately unresolved.",
+      "historical_DB": "Prior39998246278 custody remains unresolved. Browser deletion-confirmed, isolated recovery1P, child close, stack stop and job completion cannot clear either DB custody.",
+      "closed": "Old provider/push/canonical NORMAL/resolver/poll/read slots consumed and CLOSED. No old activation/journal/read ID or unused old slot may be reset, reused, replayed or freshness-renewed.",
+      "closeout": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-zod-normal-closeout/manifest.json",
+        "bytes": 34272,
+        "sha256": "2323ded8e6081b3bd5fc7bc78e860448b28c7bdb2e271d254a8be6a0cf0eba7e",
+        "contents": "Manifest declares55 closed JSON copies, original-private mapping, raw/LF distinctions and all runtime/acquisition slots closed. Metadata retention is evidence, not executable replay authority. This assessment did not rehash all55 copies."
+      }
+    },
+    "minimum_future_source_and_data_delta": {
+      "prerequisite": "Finish allocated author source/tests/SRO, focused verification and independent High actual latest-fix review first. This assessment must not read or pin in-flight files.",
+      "owned_paths": [
+        "tests/integration/commands/calendar-feed.int.test.ts",
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+        "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+      ],
+      "vector_effect": "All three occur in both frozen204=203+1 operational bindings and75 terminal rows. Refresh their exact raw bytes/SHA256, LF/clean bytes/SHA256, normalized Git blob and provenance from final reviewed source; do not reuse stale spec or test rows. Retain path counts only if actual final path sets remain unchanged. Update every duplicated row/input ref and any final source review/evidence refs; do not add another parallel vector family.",
+      "source_HEAD_relation": "Pin SOURCE to an actual final source commit containing reviewed tests/spec; checkpoint HEAD must contain the same enrolled source objects. Existing helpers require source/head tree equality, and current reader additionally requires HEAD != SOURCE. A final docs/checkpoint descendant may satisfy this only if no enrolled spec/source object changed afterward. Never call old functional9ba or pre-remediation81d a new source. If actual intended geometry violates these predicates, stop for narrow explicit assessment rather than bypassing them.",
+      "catalog": "448 static /19 excluded /199 wrapper remains historical until exactly ONE separately allocated actual static refresh if final unit declarations change. Enroll final wrapper titles/locations/exclusions and exact20 source path catalog only as actually returned; refresh reference/compiler bytehash pins as needed. Static declarations are not executed coverage. No guessed new count and no repeated census.",
+      "dependency_overlay": "Zod4.6.6/workspace+lock and existing Next/security/functional/privacy reviews remain unchanged historical inputs only if final source metadata confirms equality. No dependency install, package change or wrapper contract SHA refresh is required by annotation-removal alone.",
+      "identity_and_literals": "New immutable operation UUIDv4, distinct checkpoint UUIDv4, new acquisition UUIDv4 later, final source/head, branch, expected remote preimage and fresh owned file/directory namespace. Update provider EXPECTED/candidate/ref paths, driver constants/review paths/options/body data, helper constants/expected map/proof text, proposals/manifests and later reader admission/run/job bindings consistently. Branch stays actual owned branch; use fresh actual remote-before equality, not the obsolete d647 literal. Reported remote eadd is only candidate preimage until Root actual readback.",
+      "canonical_binding": "Keep unchanged canonical exported checkpoint/githubApi ADAPTER. Recompute exact compact options and canonical dispatch body size/SHA for new head/checkpoint and new state path; fixed201-byte old body/hash is historical. Preserve ordinary normal/cause_proof=false/release_validation=false/original_int009=false semantics and workflow/repo/actor checks.",
+      "inactive_until_granted": "All new preparation data remains false/null/inert, no materialized grant/activation/sourceproof/oncejournal/intent/state/output. Root may materialize exclusively only after exact independent source review and completed finite grant. This report chooses no new IDs or paths beyond its sole file."
+    },
+    "proportional_reuse_boundary": {
+      "whole_files": "Frozen consumed files remain byte-identical history. Entire executable files cannot truthfully be reused byte-identical for a different source/run because identities and paths are hardcoded. Reuse algorithm/body segments byte-identically and show a finite literal/data substitution inventory plus exact inverse to the pinned predecessor; whole new file pins/manifests/review must be fresh.",
+      "provider": "Conserve seven reviewed helper/readstream definitions, module-level admission order, current lock guard and native capture/provider typed field/identity qualification algorithm. Only declared binding/path/source-row data changes. A new final-source review supplements historical reviewed kernels; do not relabel an old review as current approval.",
+      "driver": "Keep ADAPTER byte-identical and conserve native/ownedrun/localproof/once/freshness/resolve/poll behavior except necessary versioned review/path literals. Preserve all role/workflow/tuple/count/type predicates and state transitions. No direct POST alternative.",
+      "helper": "Conserve five reviewed sha/ref/check/write/git function bodies; top-level data/template/expected-map updates only. Observation helper still performs seven local Git metadata operations plus86 enumerated non-migration hash-only reads, including bootstrap SQL, under explicit grant.118 migrations use historical raw/LF vectors plus fresh Git-only equality; no raw118 scan. Terminal helper remains seven local Git metadata reads and no raw75/SQL read; reader separately hashes exact75 under its own explicit grant.",
+      "reader": "Conserve duplicate-key/pin/schema/ownership/case-count/first-failure/lifecycle/ZIP/retention/capture/source-label algorithms and fixed four privacy leaves. Update SOURCE, activation/preparation/output paths, exact run/head/checkpoint admission literals and catalog/source/envelope/proposal refs only after actual terminal exists. No new parser/classifier/completeness bit, diagnostics family or softened privacy guard.",
+      "outer": "Conserve exact2449 native kernel and v2 final physical line JSON selection; update only SELF/P/OP/run/head/ref/path/reader pin and equivalent bindings. Preserve malformed-final/no-salvage handling, distinct native receipt and safe result. No whole-driver import.",
+      "controls": "Retain old pure-controls and independent reviews byte-identical as historical kernel evidence. Future author produces only small binding/alignment/refusal/inverse witnesses for declared deltas and preserves meaningful latest reporter/raw-observer regression evidence from actual author. Old controls are not newly run controls; no blanket fourth broad story review. Independent High review targets actual deltas, conserved kernels, privacy/custody and ownership boundaries."
+    },
+    "minimum_effect_budget_for_future_completed_allocation": {
+      "ownership": "Root alone executes Git/bookkeeping/provider/push/CI/resolve/poll/read and retains actual host receipts. Separate independent High source and actual-evidence qualification. Every permitted effect/read/output must be enrolled before it occurs.",
+      "provider_once": "Exactly1 fresh existing-project GET;0 provider mutations. Same15s loop,4MiB stdout/256KiB stderr,wait2/twojoins2; actual native0/fullEOF/readers joined/handles closed/direct settlement plus independent Root outer/tool chunk/exit/wall/session/waits. Validate project/account/repo identity, Previewdisabled=true, unconditional exit0 gate and branch-trigger source. No reuse of old point-in-time containment.",
+      "publication": "At most1 owned-branch remote-before read20s,1 non-force FF push60s,1 exact remote-readback20s; expected old ref and clean actual final source/head/ancestry must match. Exclusive pre-effect intents. No blind retry after uncertain result.",
+      "canonical_NORMAL": "At most1 canonical invocation90s, exact4 prePOST GETs and1 POST, perAPI15s/4MiB stdout; outer512KiB/64KiB with native closure. Existing mutation/proof freshness300s, provider<=180s before90s call and adapter<=300s immediately before POST; no clock renewal/retry. Local metadata/source hashing and exact reviewed helper calls also explicitly enrolled, not inferred from network budget.",
+      "resolver": "At most6 single-page GETs;page20,min5s,20s/call. Exact unique owned repo/ref/head/title/workflow/actors/event/attempt1 run only. Missing/ambiguous/partial/uncertain response stops.",
+      "polls": "At most90 owned run/latest-jobs pairs,2 logical GETs/pair,page100,min30s,20s/call,2MiB stdout/64KiB stderr. Immutable started_at5400s wall budget, all9 terminal closes unused slots. Early/unregistered/closed observe remains WAIT0GET. No automatic extension or fallback.",
+      "admission_variables": "Prior reviewed driver budget is repository_variables=0. Assess actual current owned admission prerequisite; if new temporary admission variable reads/writes/restoration are needed, separately enroll exact bounded owned names, prior-state capture, operation's temporary values, independent review and conditional restore only while current values still equal those temporary values. Standing owner authorization permits this bounded lane but does not silently enlarge the old zero-variable controller scope. Do not log secrets or mutate unrelated state.",
+      "terminal_acquisition": "After actual all9terminal metadata and independent exact ownership qualification, allocate a distinct fresh acquisition with exact run/head/checkpoint/source/jobs/steps/artifact names, fresh proof and exclusive paths. One reader invocation, at most5 logical GETs:run logs archive,artifact listing,one unique eligible ZIP each fullintegration/browser/recovery.0 retries/pagination/optional reports/fallback. Exact reader/helper/outer/capture/review refs and75 hash reads including3 SQL explicitly enrolled before effects. All unused slots close on failure or uncertainty.",
+      "acquisition_bounds": "Same15s request loops;32MiB archive/ZIP or4MiB listing;64KiB stderr;wait2/twojoins1. Outer180s/512KiB/64KiB/wait2/twojoins1. ZIP<=4096entries,<=128MiB aggregate inflate,ratio<=1000,selected<=16MiB,CRC/name/schema/digest/size/identity checks. These are loop/tail bounds, not guaranteed end-to-end success or process-tree containment.",
+      "privacy": "Reuse independently qualified retention policy: raw provider/ZIP/log/report/stdout/stderr/error/SQL/capabilities RAM-only; bounded closed metadata and deliberate observed-byte/archive/member/artifact fingerprints remain allowed. A digest is not benignity proof. Source-label32768 is a label-only cap, not a generic projection cap. No first-emitter/native-first-throw/request-linkage inference.",
+      "after": "Independently qualify exact actual source/head/run receipts and required95 executed/skipped/unexecuted counts, original package lint/CI gates and separate recovery/custody. A successful fresh run cannot retroactively clear historical/current retained DB custody. Root folds only final reviewed actual metadata, retaining branch; merge still requires every gate and separate production no-deployment check."
+    },
+    "release_and_scope": {
+      "normal_acceptance": 0,
+      "P5": "OPEN",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "deployment": "None authorized. Fresh ordinary branch push containment is point-in-time and distinct from main merge/production/manual deployment containment. No deployment/demo DB push/merge effect is allocated by this report.",
+      "story_fix_limit": "Actual first privacy emitter remains UNKNOWN; removing reachable INT015 annotation output is not an API019 fix or subsequent-pass claim."
+    }
+  },
+  "Open questions": [
+    "Final author bytes, actual latest-fix review, final source/checkpoint commits and one actual catalog refresh are unavailable; exact new hashes/counts/IDs/body size and output namespace must be frozen later.",
+    "Whether existing owned CI admission is currently sufficient requires Root's separately allocated exact metadata/readback; source assessment cannot assume it.",
+    "Current and historical retained DB custody remains unresolved under independent assessment; no cleanup authority or backend-clearance proof is supplied here."
+  ],
+  "Deferred work": [
+    "Finish final author/independent High delta review, then allocate one actual static refresh if declarations changed and separately freeze minimum new operational source/data with exact inverse/alignment witnesses.",
+    "Independently review fresh operational literals/bindings and conserved kernels; obtain actual completed finite allocation before exclusive Root materialization/source hashing/provider-once/push/canonical NORMAL/finite resolution and polls.",
+    "Only after owned all9 terminal, separately enroll/review/allocate fresh terminal envelopes/source75/helper/outer and <=5GET acquisition; independently qualify actual receipts/case coverage/custody afterward."
+  ],
+  "Blockers": [
+    "Assessment is ready for independent review, not execution. No final author source/catalog pins, fresh reviewed controller/proposal/helper set, fresh immutable IDs/grant/proof/activations or current provider/admission qualification exists for a new run.",
+    "Old operations are closed; replay or freshness renewal is forbidden. Current93P/API019F/API020unexecuted and unresolved DB custody block completion/P5 closure/all-gates merge claims.",
+    "Supplied admission-helper pin typo must be corrected in future bindings using verified actual7216/8ba90118d7735f44ce8393383f32fd37ce0043f0272178f2fac7c2763011c2ca; no source overwrite is appropriate."
+  ]
+}

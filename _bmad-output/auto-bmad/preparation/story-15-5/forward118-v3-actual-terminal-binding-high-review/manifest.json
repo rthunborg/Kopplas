@@ -1,0 +1,23 @@
+{
+  "schema": "self-excluded-sha256-manifest/v1",
+  "self_excluded": true,
+  "verdict": "PASS_PRE_EFFECT_FORWARD118_V3_TERMINAL_BINDING_SOURCE_ONLY",
+  "run": 39710514719,
+  "members": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/forward118-v3-actual-terminal-binding-high-review/original-report.md",
+      "bytes": 3500,
+      "sha256": "34e29ea16098241864763c2df9a8a4168670dead34bad18979436cef0ac4631a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/forward118-v3-actual-terminal-binding-high-review/original-attestation.json",
+      "bytes": 6183,
+      "sha256": "c3486b8f1bbf43762b045625993f05fcc3d3476d1a49871c2c6fa91c0488bb15"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/forward118-v3-actual-terminal-binding-high-review/result.json",
+      "bytes": 1209,
+      "sha256": "d7dd91daba88954cc6c4699faed80c32e1f5c9925e57e389d0e45258c10754f1"
+    }
+  ]
+}

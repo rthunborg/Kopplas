@@ -1,0 +1,182 @@
+{
+  "Outcome": "ASSESSED_SAFE_THREE_HUNK_RECONCILIATION_PLAN_NO_TRANSFER_AUTHORITY",
+  "Files changed": [
+    ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-annex-critical-conflict-assessment-high.json"
+  ],
+  "Status": {
+    "independent": true,
+    "route": "Rootf7849b/native0 explicit Sol6.1 High critical approved-document conflict assessment",
+    "scope": "Exact approved four-source documents/register, current E15 destination annex, scoped E15 scheduling disposition and Contract D, and existing preimage assessment metadata only. PRIMARY is foreign read-only. No candidate, document copy or implementation.",
+    "findings": [
+      {
+        "id": "DT-E15-01",
+        "location": "Annex §0, current MAIN line38/source boundary bullet",
+        "conflict": "Exact source copy removes the explicit E15 Oct9 scheduling-disposition link/resolution while correctly replacing obsolete general oracle authority.",
+        "resolution": "Preserve DT universal Oct15 policy and restore the E15-specific approved disposition/reference as a scoped behavioral preservation note, not as an exception allowing legacy observation."
+      },
+      {
+        "id": "DT-E15-02",
+        "location": "Annex §4.2 Team row, current MAIN line242/source line254",
+        "conflict": "Source row reintroduces oracle-conditional named teams and omits displayed-booking-role grouping, no-work-role group and resource-context/no-team-domain limits.",
+        "resolution": "Retain the exact current E15 Team row in the derived annex. Neither visual approval nor a composition phrase authorizes a named-team entity/membership/admin model."
+      },
+      {
+        "id": "DT-E15-03",
+        "location": "Annex §15 UXB-A9, current MAIN line592/source line604",
+        "conflict": "Source resets the resolved Oct9 disposition to needs oracle check and removes the explicit Contract D/calendar browser gates preservation.",
+        "resolution": "Retain the exact current resolved E15 UXB-A9 row as dated history plus current requirement. Its historical oracle language is governed by the universal Oct15 prohibition, not an observation instruction."
+      }
+    ],
+    "authority_precedence": [
+      "Current human AGENTS owner decision2026-10-15 prohibits legacy URLs as evidence and legacy browsing for future design work; it supersedes older observation requirements everywhere. Missing routine design rules use approved requirements/design system/accessibility and recorded owner-authorized rationale; headless domain/state/validation/actions remain separate. No legacy URL was used or browsed.",
+      "Approved DT-2026-10-23 gives DESIGN visual authority and EXPERIENCE shared interaction/composition entry authority while incorporating detailed annex and approved domain story contracts. DESIGN147, EXPERIENCE20–24, README46–55 and source-annex reading order explicitly preserve approved domain behavior until an explicit scoped amendment and retain detailed requirements until verified transfer. Later file timestamp does not grant blanket domain supersession.",
+      "E15 Oct9 owner disposition remains the more specific approved scheduling behavior: displayed booking arbetsroll grouping, explicit no-work-role group, person default role as resource context, no named-team entity/membership/admin. The Oct15 universal no-observation rule strengthens its evidence boundary rather than reopening UXB-A9.",
+      "Contract D owner approval2026-10-07 retains actual empty-slot click AND drag in both Schema and Resurser, selected interval/person prefill, keyboard/dialog equivalents, current server/editor/detector boundaries and selected reviewed conflict acceptance with nonblank reason/atomic audit. Visual/composition approval does not waive those gates.",
+      "Manifest/PRD/ADRs, current owner contracts and approved story scope remain product/domain authority. DT documentation approval creates no implementation/readiness/activation, E15 takeover, sprint change, release evidence, merge or deployment authority."
+    ],
+    "source_basis": {
+      "PRIMARY": "C:/DEV/Kopplas; foreign read-only",
+      "MAIN": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+      "approved_at": "2026-10-23",
+      "approval_decision": "DT-2026-10-23 described planning amendments and bounded preparation approved; no repeat documentation approval. Sensitive/material changes separately assessed; detailed requirements retained by reference.",
+      "approval_register": {
+        "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/approval-and-application.json",
+        "bytes": 7471,
+        "sha256": "feec72a6a5be193fa26058b49b6010dd121b86e2aec682563225ad2e9129d959",
+        "annex_recorded_before_sha256": "11c9a0e271fec165f90115faba04be14847acb2771e330eace95001e9d31bf09"
+      },
+      "four_source_pins": [
+        {
+          "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+          "bytes": 26050,
+          "sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+          "MAIN_exists": false
+        },
+        {
+          "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+          "bytes": 25784,
+          "sha256": "acb38e58b7ada2bba7165bc8ba4339dc29583ca2fbcd66304e2c04f13323cd58",
+          "MAIN_exists": false
+        },
+        {
+          "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/README.md",
+          "bytes": 6610,
+          "sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6",
+          "MAIN_exists": false
+        },
+        {
+          "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+          "bytes": 92376,
+          "sha256": "feaeed31b8a481b36dd33f0be27050782565ce9eebcc4d866e92281f1e6c1350",
+          "MAIN_exists": true,
+          "MAIN_bytes": 90325,
+          "MAIN_sha256": "97a7bec5874622b508c6f2da3a794d9a1b2c204b2dc3f464dae253809f5977b1"
+        }
+      ],
+      "E15_authority": [
+        {
+          "path": "docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md",
+          "root": "MAIN",
+          "bytes": 3476,
+          "sha256": "aaeddc835851f8eb67ccf6c65279a2e85e6833d0329879d9f3d50f9f8d8114f2",
+          "locators": "UXB-A9 disposition; Preserved gates and evidence limits"
+        },
+        {
+          "path": "docs/decisions/epic-14-story-ownership-contract-d-2026-10-07.md",
+          "root": "MAIN",
+          "bytes": 5860,
+          "sha256": "cec48361c9dc9422f1c6287b60d56a31f04db5e05c7c74a17916d4a2fabf7cc6",
+          "locators": "Recorded owner approval; Entry ownership and cross-epic acceptance ledger; Conflicted save and selective acceptance"
+        }
+      ],
+      "assessment_refs": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-design-authority-four-path-preimages.json",
+          "bytes": 2709,
+          "sha256": "a241c6065b4d18bb989bdea3ec276794883c39393d240faba65b8dc298ff0095"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/design-authority-four-path-delivery-preimage-assessment.json",
+          "bytes": 11618,
+          "sha256": "f38e72f8db165a2aaceab8af552138437943fe637b551d4c1593aafe5b2cae60",
+          "schema": "Assessment sections, not six-field result; treated as data only"
+        }
+      ],
+      "verification": "Independently read DESIGN/EXPERIENCE/README, exact source/destination annex diff/relevant clauses, approval register and both scoped E15 authority records. Independently verified all four actual PRIMARY after-pins against register, MAIN three absences and annex preimage, report/register pins, both E15 authority pins and seven known missing-path absences. Root completed Coordinator snapshot and no-competing-write status are trusted handoff metadata, not newly queried chats. No immutable approved source Git commit was supplied or inferred."
+    },
+    "finite_merge_plan": {
+      "qualification": "Safe preservation plan within existing approvals; no new product decision needed for the three conflicts. No source candidate or derived byte pin is created by this assessment. Actual delivery requires later exact ownership/allocation and independent High actual-diff review.",
+      "method": "At later allocation, start the derived annex from the exact approved PRIMARY after-image and change only the following three bounded E15 areas. Preserve every other source byte/DT amendment. Three new destination DESIGN/EXPERIENCE/README documents may be exact approved-byte transfers under that later allocation; none are copied now.",
+      "hunks": [
+        {
+          "id": 1,
+          "area": "§0 Current-design-authority boundary bullet",
+          "action": "Keep the approved DT Current design authority section, current terminology/behavior bullet and new reading order intact. Immediately adjacent, retain the Oct9 E15 scheduling disposition link and explain that its approved UXB-A9 behavioral resolution remains binding with no new observations/parity claim. It is subordinate to the global Oct15 prohibition; do not restore the old general legacy-oracle prerequisite.",
+          "preserve": "All newly approved visual/shared authority/headless/default-design/manifest and requirement-transfer text stays intact."
+        },
+        {
+          "id": 2,
+          "area": "§4.2 scheduling Team row",
+          "action": "Use current MAIN Team row exactly: week board/day columns/bookings grouped by displayed booking arbetsroll; clearly labelled no-work-role group; person default role is resource context only; no named-team entity/membership/admin/oracle gate; retain the Oct9 decision link.",
+          "preserve": "Other five-view/filter/capacity/editor/server and DT visual/composition requirements remain unchanged."
+        },
+        {
+          "id": 3,
+          "area": "§15 UXB-A9 row",
+          "action": "Use current MAIN resolved UXB-A9 row exactly, including dated historical assumption, displayed-role/no-role-group/resource-context/no-team-domain resolution, Oct9 link, no new observations/parity claim and Contract D/calendar browser gates. The source universal Oct15 authority block explicitly governs the historical wording.",
+          "preserve": "Keep the DT-updated UXB-A1 authority arrangement and every other assumption/section unchanged."
+        }
+      ],
+      "meaning_of_source_and_derived": "PRIMARY feae... is the owner-approved source after-image, not the E15 destination preimage. The recorded before11c9... differs from MAIN97a7..., so a raw copy is not preservation and a common unmodified baseline is not established. The resulting reconciled annex will intentionally differ from approved source bytes in exactly three preservation areas and from MAIN by DT approved amendments. Label/pin it as derived reconciliation with both parents and explicit authority rationale; never claim it matches register after_sha256 or overwrite that historical register claim. Exact source files and any historical evidence remain unchanged.",
+      "required_actual_review": [
+        "Recheck exact source/destination pins, active ownership and completed coordination immediately before later mutation; stop on unexpected drift.",
+        "Verify derived-versus-approved-source diff is restricted to the three E15 preservation areas; derived-versus-MAIN diff retains all E15 behavioral/gate obligations and introduces only the approved DT authority/visual/headless/no-oracle amendments. Preserve numbered headings and incoming links.",
+        "Record resulting raw and LF pins separately; independently review actual written diff and delivery head. No byte-for-byte source-copy claim for the annex and no new implementation or evidence claim."
+      ]
+    },
+    "interpretation_and_decision_boundary": [
+      "EXPERIENCE Responsive & Platform explicitly says Team groups by work role and Foundation incorporates detailed approved contracts. B2 wording selects the team is composition prose; interpret it under the preserved E15 displayed-booking-role grouping/filter/context. It cannot authorize selecting or administering an otherwise absent named-team entity. No edit to the exact approved pair is needed for this constraint.",
+      "Reopening UXB-A9 for legacy observation, introducing named teams/membership/admin, changing booking-role grouping authority, weakening actual click/drag or server/conflict/audit gates, or turning unqualified prototype flow into domain authority would be a material product/contract change requiring a new explicit scoped owner decision. None is supplied or needed for the preservation plan.",
+      "Routine visual ambiguities remain delegated to Sally; color/radius/typography/wordmark/placeholder and headless defaults already approved by DT stay intact. Documentation approval and preservation do not prove UI/accessibility/browser/runtime readiness.",
+      "Dated E15 decision records may describe historical implementation status; they are used for approved obligation provenance, not as a fresh status observation. Current15.6 remains UNSTARTED and waits for15.5 landing; this assessment starts neither."
+    ],
+    "missing_references": {
+      "MAIN_verified_absent": [
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+        "_bmad-output/planning-artifacts/design-transition-2026-10-23/handoffs.md",
+        "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+        "_bmad-output/planning-artifacts/design-transition-2026-10-23/authority-crosswalk.md"
+      ],
+      "scope": "No reference file read/copied/created. Their recorded PRIMARY source pins remain in the Low assessment; this report independently checks only known MAIN absences. Four-path transfer alone is not a link-complete local design package or verified authority-crosswalk transfer. Root must disclose retained external PRIMARY source references and separately allocate any required reference delivery/retirement work, rather than silently widening four-path scope or deleting details. No PRD/architecture/epics/AGENTS/other dirty import."
+    },
+    "boundary": {
+      "copy_authority": "NONE",
+      "new_product_decision": "NONE",
+      "implementation_authority": "NONE",
+      "CI_or_effect_grant": "NONE",
+      "P5": "OPEN",
+      "story15_6": "UNSTARTED",
+      "broad_review_counter": 3,
+      "no_merge_or_deployment": true
+    },
+    "reviewer_activity": "Read-only exact scoped approved documents, metadata and E15 decisions; bounded source/destination no-index diff and SHA/exists metadata only. No foreign writes, document/source/spec/test/state copy/edit, Git mutation, function/control/test/workload/network/resource/SQL/provider/DEBUG execution. Sole write is this new assessment JSON."
+  },
+  "Open questions": [
+    "No material product ambiguity remains for the three preservation conflicts under the enrolled approvals. Any requested named-team/domain/gate change would require a new explicit owner decision.",
+    "No actual reconciled annex, resulting byte pin or delivery commit exists in this assessment; source availability is pinned disk evidence, not an inferred immutable source commit.",
+    "Seven referenced documents remain absent MAIN; a separate future delivery/readiness decision must address their consumption without silently broadening scope."
+  ],
+  "Deferred work": [
+    "Root coordinates DT/E15 file ownership and later allocates the exact four-path delivery plus three-area annex reconciliation. Revalidate preimages before mutation.",
+    "Author records source-versus-derived provenance and preserves all DT current amendments/E15 obligations; independent High review checks the actual derived diff and resulting head.",
+    "Any missing-reference delivery is separately scoped.15.6 preparation still waits for15.5 landing and normal readiness gates; no implementation or effects now."
+  ],
+  "Blockers": [
+    "Exact byte-copy of PRIMARY annex is unsafe: it overwrites three current owner-authorized E15 contract areas. Apply the qualified reconciliation plan under a later allocation instead.",
+    "Four-path transfer cannot be represented as locally link-complete while the seven enrolled reference paths remain absent.",
+    "No current copy/allocation, candidate, independent actual-write review or readiness/effect authority exists."
+  ]
+}

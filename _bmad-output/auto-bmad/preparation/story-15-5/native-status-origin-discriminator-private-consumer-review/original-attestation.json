@@ -1,0 +1,413 @@
+{
+  "kind": "calendar_feed.status_origin_private_consumer_independent_high_attestation",
+  "schema_version": 1,
+  "review_date": "2026-10-21",
+  "reviewer": {
+    "actor": "/root/review15_5_private_diagnostic_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "independent_of": [
+      "author/native qualifier",
+      "Root orchestrator"
+    ]
+  },
+  "verdict": "NOTPASS",
+  "scope": "Distinct new private helper/test/Root-driver protocol, admission and qualifier composite; bounded consequential checks after concrete F1; not fourth broad story review",
+  "target": {
+    "repo": "rthunborg/Kopplas",
+    "ref": "codex/epic-15-scheduling-time-calendar",
+    "head_sha": "f0b1e5735872ba2effcd7c1480756326125f6752",
+    "producer_source_sha": "8efb90e5038874c672df120651041176a70b1f2f",
+    "producer_checkpoint_id": "717a587b-46ad-4763-8cb0-13450df3a29f",
+    "attempt": 1,
+    "producer_verification_mode": "calendar-feed-cause-proof"
+  },
+  "actual_run_id": null,
+  "producer_checkpoint_id": "717a587b-46ad-4763-8cb0-13450df3a29f",
+  "collection_operation_id": "27f9a488-7615-4b73-ab84-d92ad5617d07",
+  "author_metadata": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-review/review-input.md",
+      "bytes": 5740,
+      "sha256": "28d8673b89fc50d6cca7353a2d2a731c612c1d472fe92a98245d9cc563022f7a"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-review/input-binding.json",
+      "bytes": 41608,
+      "sha256": "a72af9b1763f3fecad79facfd2daf91d6c8d4122df4fe1786ae784cb1d25015d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-private-consumer-review/local-checks.json",
+      "bytes": 5026,
+      "sha256": "607917fc6fea45e8209cf4528809e969780f7bec15511624590302e0c4e72b62"
+    }
+  ],
+  "actual_code": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+      "bytes": 42478,
+      "sha256": "60f776c01e1ba5ac464d46ed756e5b98c1887ecb43913c609e548fd44ba614aa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/test_collect_diagnostic_evidence.py",
+      "bytes": 39929,
+      "sha256": "fbcfc53cd1a1c0f76e34538de5249776d57afb8e2eb7bc440f0792318eb484d0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+      "bytes": 12427,
+      "sha256": "541d3c9ed1680f796985da027c599037f70302097c8813926beb1dbb4728b573"
+    }
+  ],
+  "author_driver_payload_equals_actual": true,
+  "driver_present_expected_absent_flag_is_historical_allocation_expectation": true,
+  "verification": {
+    "explicit_path_rows": 20,
+    "unique_paths": 17,
+    "current_producer_raw_clean_rows": 11,
+    "actual_source_checkpoint_Git_blob_equality_pairs": 11,
+    "actual_immutable_Git_rev_parse_reads": 22,
+    "remote_provider_calls": 0,
+    "retained_F1_Lines_AST_equal_to_10bea": true,
+    "retained_F2_four_function_ASTs_equal_to_8e25": true,
+    "schema_sha256": "814a790e877f9df269bb35368281e219836a9da14413a26c024c15dfa1e8d937",
+    "Root_expected_terminal_final3_and_new_result_unborn": true,
+    "historical_result_8036_bytes_unchanged": true
+  },
+  "reviewer_controls": {
+    "frozen_suite_methods": 43,
+    "passed": 43,
+    "failures": 0,
+    "errors": 0,
+    "positive_checks": 91,
+    "negative_checks": 253,
+    "bounded_owned_python_children": 20,
+    "suite_exit_code": 0,
+    "additional_memory_only_result_path_defect_controls": 1,
+    "additional_control_child_spawns": 0,
+    "additional_control_actual_writes": 0,
+    "author_history_nonadditive": true,
+    "author_two_startups_not_rerun": true,
+    "historical_gh_help_not_rerun": true,
+    "actual_network_requests": 0,
+    "native_acceptance_credit": 0
+  },
+  "qualifier_checked": {
+    "path": "qualify_archive -> local receipt_and_manifest / observation -> qualify_status",
+    "exact_observation_fields": 11,
+    "strict_permission_bits": 18,
+    "necessary_candidate_bits": 17,
+    "excluded_TABLE_ACL_ONLY": "owner_tokens_select",
+    "external_origins": [
+      "ACL_ENGINE",
+      "PLPGSQL_RAISE",
+      "UNKNOWN"
+    ],
+    "all17_single_false_both_token_values_actual_archive_controls": true,
+    "zero_multiple_token_only_noneligible_unknown_STOP": true,
+    "underlying_caught_inner_first_error_or_historical_JWT_cause_proven": false
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "title": "Root driver exclusively reserves the immutable historical recovery result instead of its new allocated result",
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+      "line": 6,
+      "use_line": 118,
+      "helper_path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+      "helper_lines": [
+        34,
+        512
+      ],
+      "caller": "Root later once-only terminal-granted new-operation driver invocation",
+      "invariant": "Before any effect, driver exclusively reserves the new allocated result and helper verifies the same reservation",
+      "actual_driver_result": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-result.json",
+      "required_result": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-result.json",
+      "actual_existing_historical": {
+        "bytes": 8036,
+        "sha256": "ecd676f7aef1728f5fe5c7c61e2646779e9bb874a50e20d29959141d38477645"
+      },
+      "reproduction": "Isolated frozen-driver logic with synthetic exclusive storage refused the actual stale constant before child; no operational activation or real file write",
+      "minimal_fix": "Correct new RESULT constant; add actual path equality and pathname-aware once-storage controls; preserve all old bytes/exclusive fsync/no-retry; targeted independent review",
+      "status": "OPEN"
+    }
+  ],
+  "bound_path_rows": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/collect-diagnostic-evidence.py",
+      "bytes": 42478,
+      "sha256": "60f776c01e1ba5ac464d46ed756e5b98c1887ecb43913c609e548fd44ba614aa"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/status-origin-discriminator-01/test_collect_diagnostic_evidence.py",
+      "bytes": 39929,
+      "sha256": "fbcfc53cd1a1c0f76e34538de5249776d57afb8e2eb7bc440f0792318eb484d0"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-01-driver.py",
+      "bytes": 12427,
+      "sha256": "541d3c9ed1680f796985da027c599037f70302097c8813926beb1dbb4728b573"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-native-status-origin-discriminator-source-allocation.json",
+      "bytes": 3505,
+      "sha256": "e64d0f906325c904921caec9aec3c0c324244a1a07ed1871f40e5f3825f18b3d"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/source-freeze-native-status-origin-discriminator.json",
+      "bytes": 132497,
+      "sha256": "8a72fe86d44ec0c5602ade15560d302926f8c00279a66a0c6a06012450c85a5e"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-implementation-review/manifest.json",
+      "bytes": 1672,
+      "sha256": "d064f7ce22b6475087b0e726ca439b01922cc8b4c3b840a28e3c76d6dfa2ff7b"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/manifest.json",
+      "bytes": 1328,
+      "sha256": "9f980c5f0c16f4efa073631e68312dee6750a68b371849d8d52c87abbb6dab0c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-status-origin-discriminator-plan-revision-1/plan.md",
+      "bytes": 6409,
+      "sha256": "b375f14d29c899a0288d15b8bf5386bde5d27a3e00e4a0c9d8c97d03010e4350"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-discriminator-actual-target.json",
+      "bytes": 1550,
+      "sha256": "bb0104c5edd52537313e12bf08c4513e32a7e47a542d34788d5f06e279b46f57"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-sourcefreeze-verification.json",
+      "bytes": 1688,
+      "sha256": "11380ac763d83ed72cc5d970f184a45ff3bcac75ab6e2dbdc78cb14a262dfc47"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-private-consumer-review-assignment.json",
+      "bytes": 782,
+      "sha256": "b5f548d69a1ed3e31b91e142b245013ea57c546c20514e7f14ca5547e17af359"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-driver-payload-write.json",
+      "bytes": 943,
+      "sha256": "108030555193df4672496ac853b7cd8e59707ef936e61493d86e7ce0e152ef52"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 33788,
+      "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 12417,
+      "sha256": "10bea96d7f29eee685fcb761dcd80098d3b3ccd6af60667908c33a552a539beb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/expected-recovery-admission.json",
+      "bytes": 6822,
+      "sha256": "0c520a531ba40641901cf2e2c672a8b3a687c4ccdab97d8a6eb78694dd762a44"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/test_collect_diagnostic_evidence.py",
+      "bytes": 36380,
+      "sha256": "50a3a304522f65924cc105746104801ce03f0f3aca20a24c090ff58f9ca31732"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 33788,
+      "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 12417,
+      "sha256": "10bea96d7f29eee685fcb761dcd80098d3b3ccd6af60667908c33a552a539beb"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f"
+    }
+  ],
+  "producer_binding_rows": [
+    {
+      "path": "scripts/ci/with-calendar-feed-runtime.mjs",
+      "raw_bytes": 47148,
+      "raw_sha256": "a8b2b53a333f1b4f68244416c4a98cc553a7317de3f2a496102a5501a345dbda",
+      "producer_source_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4",
+      "reviewed_clean_oid": "c273329c132650f2c536c958a68ee7a3e76e58b4"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 87490,
+      "raw_sha256": "3bae86d90783ca43ce2a9393670e198f302f26233c7f64e5540f160b2ba6e831",
+      "producer_source_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21",
+      "reviewed_clean_oid": "ff86cacfa2fbe3985c53261e0ed3ade5f1702e21"
+    },
+    {
+      "path": "tests/integration/commands/calendar-feed.int.test.ts",
+      "raw_bytes": 36884,
+      "raw_sha256": "55e4105f0c9e110c7fc08ef17d51f3d5cdd3c8ea6996cf215f53621da1e45e08",
+      "producer_source_oid": "35863f8eeb563f21e9c0ff741115f018ee545134",
+      "reviewed_clean_oid": "35863f8eeb563f21e9c0ff741115f018ee545134"
+    },
+    {
+      "path": "scripts/ci/checkpoint-dispatch.mjs",
+      "raw_bytes": 19782,
+      "raw_sha256": "894586ccf94f6724e32026faeb910f515c6e1f9d6b28475f46e37b8d830fb86a",
+      "producer_source_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+      "reviewed_clean_oid": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "raw_bytes": 75930,
+      "raw_sha256": "8973540c0cbc7f58dbaba26ead37a19a4bd4a3cb6907ef1d155ce89fdd83272e",
+      "producer_source_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a",
+      "reviewed_clean_oid": "3c2fca9d9da9d9dd8a843bbd1fc565db91e29e8a"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/calendar-feed-db.ts",
+      "raw_bytes": 4729,
+      "raw_sha256": "e2c726b7fc90e31407838d672e6683ea02adb94b9951a02da937022ab964af6b",
+      "producer_source_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa",
+      "reviewed_clean_oid": "c21b8c5e897d2b81be994312ba0074475e98c6fa"
+    },
+    {
+      "path": "src/server/commands/calendar-feed/manage-calendar-feed.ts",
+      "raw_bytes": 4856,
+      "raw_sha256": "066f55528f5cb316118d5511eb2ea2a1bdafd1cbfefa98ddbc4d76eda1509b81",
+      "producer_source_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be",
+      "reviewed_clean_oid": "b21159803ea8e875b83df953a3ffdbb53dccf0be"
+    },
+    {
+      "path": "src/server/read-models/calendar-feed.ts",
+      "raw_bytes": 3472,
+      "raw_sha256": "7d0afd55c137a19ebe5479d0bdc0becfc08606e711c3c05de0d70ae132e45a35",
+      "producer_source_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d",
+      "reviewed_clean_oid": "4cccd98e3cb6c335e4eb8de289bf6e06ffd7830d"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "producer_source_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "reviewed_clean_oid": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "package.json",
+      "raw_bytes": 2352,
+      "raw_sha256": "82f78147f699b457c89c912c2e85772b8b688708c93e399c1ef19112d1f28412",
+      "producer_source_oid": "819459b2df6f2c385a8442dda25ef7904576e270",
+      "reviewed_clean_oid": "819459b2df6f2c385a8442dda25ef7904576e270"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "raw_bytes": 162159,
+      "raw_sha256": "84c969ae2b2dfdbb0f88afba7890c58f36b2415bb02e255e1a99bf8aaf60450f",
+      "producer_source_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115",
+      "reviewed_clean_oid": "4d8fefc7c340cb5ad1ca1650563fe6a0ce6db115"
+    }
+  ],
+  "reuse": {
+    "helper": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/artifact-recovery-33cfa8df-01/collect-recovery-evidence.py",
+      "bytes": 33788,
+      "sha256": "8e25c6d5af1de1056abb6acbc9bbc781aa84227a9233ecf31032e4d21a1fb6f7"
+    },
+    "Root_driver": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-33cfa8df-artifact-recovery-01-driver.py",
+      "bytes": 12417,
+      "sha256": "10bea96d7f29eee685fcb761dcd80098d3b3ccd6af60667908c33a552a539beb"
+    },
+    "old_module": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-33cfa8df-cause-proof-ci-independent/collect-diagnostic-evidence.py",
+      "bytes": 45053,
+      "sha256": "c9aeb0e2cc6933557e4909516cbde63d66b95063f0a08a6932bdf8c1fe31215f"
+    },
+    "unchanged_AST_functions": [
+      "pipe_read",
+      "bounded_command",
+      "progress_state",
+      "transport_initial"
+    ],
+    "unchanged_Root_reader_AST": "Lines including all F1 buffered checks",
+    "unchanged_fields": [
+      "API2026-03-10 nullable expires_at grammar/eligibility separation",
+      "raw listing/candidate/final facts hashes",
+      "positive Root exactID and five-field ack",
+      "payload/observation caps and request budgets",
+      "bounded EOF/refusal/settlement/custody logic"
+    ],
+    "compatible_old_pure_entrypoints": [
+      "parse_json",
+      "unpack_archive",
+      "native_report",
+      "obj",
+      "require",
+      "boolean",
+      "integer",
+      "enum_list"
+    ],
+    "old_pure_entrypoints_not_used": [
+      "observation",
+      "receipt_and_manifest",
+      "expected_template",
+      "validate_expected",
+      "main",
+      "collect",
+      "listing_candidate",
+      "listing_artifact",
+      "qualified_evidence",
+      "bounded_gh_get"
+    ],
+    "native_reader_dependency_proof": "Integration diagnostic case, package, lock and workflow raw hashes unchanged; exact new wrapper hash pin matches. Receipt reader copied with explicit new target/run binding; new eleven-field observation is local."
+  },
+  "provenance_receipts": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-private-consumer-review-assignment.json",
+      "bytes": 782,
+      "sha256": "b5f548d69a1ed3e31b91e142b245013ea57c546c20514e7f14ca5547e17af359"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-status-origin-driver-payload-write.json",
+      "bytes": 943,
+      "sha256": "108030555193df4672496ac853b7cd8e59707ef936e61493d86e7ce0e152ef52"
+    }
+  ],
+  "limits": [
+    "No actual driver/collector activation or actual result write; synthetic frozen logic only",
+    "No real API/archive/native body persistence or collection",
+    "Actual run remains null; no current diagnostic execution",
+    "Prior source review was reused independent High, not fresh context-free",
+    "All 43 DB and 14 browser failures remain unresolved"
+  ],
+  "remaining_conditions": [
+    "Root immutable exact-byte custody of original reviewed code/metadata",
+    "Narrow RESULT constant and pathname-aware control correction plus targeted independent High closure",
+    "Actual prePOST metadata/admission/honest fsynced Root intent and separate producer activation",
+    "Actual terminal admission and separate collection activation",
+    "Separate later High offline final-three publication grant"
+  ],
+  "effects": {
+    "files_written": [
+      "original-report.md",
+      "original-attestation.json",
+      "result.json"
+    ],
+    "source_Spec_private_code_tests_Root_driver_or_facts_result_changed": false,
+    "old_records_or_author_inputs_changed": false,
+    "Git_provider_main_deploy_mutations": false,
+    "normal_acceptance_credit": 0,
+    "native_acceptance_credit": 0,
+    "backend_cause_proven": false,
+    "development_complete": false,
+    "release_ready": false,
+    "execution_authorized": false
+  }
+}

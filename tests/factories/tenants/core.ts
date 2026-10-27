@@ -23,6 +23,7 @@
  *   `quoteA` handles ALONGSIDE these without renaming or reshaping the existing
  *   five — the forward-compat smoke in factory-isolation.int.test.ts pins that.
  */
+import { authCleanupFailure } from "../../support/auth-cleanup-diagnostics";
 import { observeQuoteSendRpcs } from "../../support/quote-send-diagnostics";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { TenantRole } from "@/server/authz/roles";
@@ -335,12 +336,17 @@ export async function cleanupRoleAwarePhaseAFixture(
  * authenticated session (the same anon key + RLS path the app runtime uses).
  * Signs in with the user's password so `getClaims()` re-validates a real JWT.
  */
+export function makeAuthedServerClient(user: FixtureUser): Promise<TestServerClient>;
+export function makeAuthedServerClient(user: FixtureUser, fetchOverride: typeof globalThis.fetch | undefined): Promise<TestServerClient>;
 export async function makeAuthedServerClient(
   user: FixtureUser,
+  fetchOverride?: typeof globalThis.fetch,
 ): Promise<TestServerClient> {
   assertLocalStack();
   const client = createClient(LOCAL_SUPABASE_URL, LOCAL_SUPABASE_ANON_KEY, {
     auth: { autoRefreshToken: false, persistSession: false },
+    // Array.map callers supply an index here; preserve that historically ignored argument.
+    ...(typeof fetchOverride === "function" ? { global: { fetch: fetchOverride } } : {}),
   });
   const { error } = await client.auth.signInWithPassword({
     email: user.email,
@@ -363,13 +369,21 @@ export async function makeAuthedServerClient(
  * real delete error (so the test fails loudly), unlike `cleanupFixture`'s best-effort
  * teardown which only warns. Idempotent enough for tests — a subsequent best-effort
  * cleanup delete of the same id simply no-ops/warns.
+ * The NUDGE fixture opts into redacted fixed class/status/code diagnostics only;
+ * its failed deletion still rejects once. Other callers retain the default error.
  */
-export async function deleteAuthUser(userId: string): Promise<void> {
+export async function deleteAuthUser(userId: string, failureMode?: "redacted"): Promise<void> {
   assertLocalStack();
-  const { error } = await admin().auth.admin.deleteUser(userId);
+  let error: unknown;
+  try { ({ error } = await admin().auth.admin.deleteUser(userId)); }
+  catch (failure) {
+    if (failureMode === "redacted") throw authCleanupFailure(failure);
+    throw failure;
+  }
   if (error) {
+    if (failureMode === "redacted") throw authCleanupFailure(error);
     throw new Error(
-      `factory: failed to delete auth user ${userId}: ${error.message}`,
+      `factory: failed to delete auth user ${userId}: ${(error as {message?: string}).message}`,
     );
   }
 }

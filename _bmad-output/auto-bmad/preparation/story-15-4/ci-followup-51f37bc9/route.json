@@ -1,0 +1,34 @@
+{
+  "kind": "bounded-CI-failure-repair-route",
+  "before": "51f37bc965b9e9fb7b65f7cd66cc24cb4e9b48d7",
+  "failed_run": 39408197808,
+  "attempt": 1,
+  "root_failure_admission": {
+    "path": ".env.epic15.mail-runtime/story-15-4-preparation/root-checkpoint-51f37bc9-qualified-failure.json",
+    "raw_sha256": "d0534b6c0a80ee7aecd5ffc74e71998f2e3b7a150fc53997b1fe2abbdc215b21",
+    "errors": []
+  },
+  "author": {
+    "agent": "original author",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "test integrity/cleanup/service-role injection plus accessible review controls; preserve security and transaction assertions"
+  },
+  "allowed_paths": [
+    "tests/support/time-reports-atdd.ts",
+    "src/components/time-reports/TimeReportWorkspace.tsx",
+    "tests/integration/components/time-reports.test.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+    "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md"
+  ],
+  "scope": "Existing local-only genuine test service client injection; UUID-owned recipient cleanup preserving original and ALL cleanup errors; explicit Person/Jobb names and SSR regression; deterministic unique visible ownbooking selector retaining global peer absence and every acceptance tail; exact manifest expected nav append /time-reports only.",
+  "prohibited": "No SQL/CI/env/credentials/deps/appservice/seed/globaltrigger/runtime changes; no first/nth/timeoutincrease or weakened tails; original sourcefreeze/reviews immutable; Root state dirty and unowned.",
+  "review_policy": {
+    "completed_counted_rounds": 3,
+    "cap": 3,
+    "breakdown": "1broadR1+2limitedR2/R3",
+    "next": "DISTINCT High NARROW CI-repair regressions only; separate additional followup, not a fourth broad review"
+  },
+  "next": "Appropriate focused/static/build/containment; author scoped subject+body commit; independent narrow review then successor sourcefreeze and Root exact-head rerun; no DONE"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "ROOT_QUALIFIED_UNIT_PORTABILITY_PRECOMMIT_ADMISSION_v1",
+  "status": "PASS_TARGETED_CODE_ONLY_QUALIFIED_UNIT_PORTABILITY_CORRECTION",
+  "baseline": "177559a551a5735e2d2a4db07776b42ec54ea9f0",
+  "receipt": ".env.epic15.mail-runtime/story-15-5-preparation/qualified-normal-unit-regression-author-result.json",
+  "receipt_bytes": 48716,
+  "receipt_sha256": "681820f0c11d981631bfd165168cdf1d000f5f5d98f03125197d361468543f18",
+  "changed_paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts"
+  ],
+  "current_source_rows": 75,
+  "changed": 2,
+  "unchanged": 73,
+  "native_clean_checks": 75,
+  "historical_Git_object_checks": 375,
+  "actual_reviewed_baseline_bodies_checked": 3,
+  "parser_native_exit": 0,
+  "parser_status": "in-review",
+  "review_loop_iteration": 3,
+  "parser_warnings": [],
+  "full_affected_linux_tests_author_attributed": 152,
+  "hosted_original_exception": "UNKNOWN; controlled Linux Git-pointer failure is not hosted cause proof",
+  "native_acceptance": 0,
+  "source_commit": "4cd5e944ae19785f4d7abfbcca4f1d471cc7491e",
+  "review_directory": "_bmad-output/auto-bmad/preparation/story-15-5/qualified-unit-portability-high-review",
+  "review_manifest_sha256": "201a7051cec9bcdf5f951dd0ab0b0aaec563fef8f0e6e75519ad06e68a429e47",
+  "independent_controls": 2,
+  "author_full_affected_linux_tests": 152
+}

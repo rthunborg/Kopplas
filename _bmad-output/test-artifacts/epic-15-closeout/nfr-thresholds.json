@@ -1,0 +1,42 @@
+[
+  {
+    "category": "Testability & Automation",
+    "threshold": "All retained49AC trace; security and transaction boundary checks actually execute; skipped tests0credit. Changed-logic coverage>=80% when tooling measures, not an invented scenario percentage.",
+    "status": "KNOWN; measured line/branch coverage unavailable."
+  },
+  {
+    "category": "Test Data Strategy",
+    "threshold": "Isolated synthetic local-stack/current tenant/actor fixtures; no production data; scoped owned key/client closure.",
+    "status": "KNOWN"
+  },
+  {
+    "category": "Scalability & Availability",
+    "threshold": "Representative scheduling volumes,p95/resource/throughput,SLA/availability targets UNKNOWN. Feed fixed budgets60/token,120/IP per900seconds from15.5AC5.",
+    "status": "UNKNOWN representative targets; limiter contract KNOWN"
+  },
+  {
+    "category": "Disaster Recovery",
+    "threshold": "Direct physical Storage immutability/overwrite integrity required; generalRTO/RPO/regionalrestore targets UNKNOWN.",
+    "status": "KNOWN narrow integrity; UNKNOWN operationalDR"
+  },
+  {
+    "category": "Security",
+    "threshold": "Role/matrix/current membership/tenant isolation/private outcomes;256-bitCSPRNG,SHA256storage,immediate revoke,atomic audited rotation,minimal own feed,no privileged client/public capability.",
+    "status": "KNOWN"
+  },
+  {
+    "category": "Monitorability/Debuggability/Manageability",
+    "threshold": "Safe bounded audit/outcomes; no raw token/IP/hash/PII in client/monitoring; operator monitoring coverage/lifecycle observations retain limits. Production alert/MTTR thresholds UNKNOWN.",
+    "status": "KNOWN privacy; UNKNOWN operational targets"
+  },
+  {
+    "category": "QoS/QoE",
+    "threshold": "UTC/Stockholm independentDST/all-day/overnight correctness;connected360x640;server-confirmedsuccess/failure/retry.<=30secondonehand filing manual target remains unexecuted.",
+    "status": "KNOWN functional/manualtarget; manualevidence DEFERRED"
+  },
+  {
+    "category": "Deployability",
+    "threshold": "Manifest/nav/H4/public coherence;immutableforward migrations;canonical static/build/containment;qualified finalPhaseBreleasecheckpoint and explicit deploymentapproval required separately.",
+    "status": "KNOWN development; release pending"
+  }
+]

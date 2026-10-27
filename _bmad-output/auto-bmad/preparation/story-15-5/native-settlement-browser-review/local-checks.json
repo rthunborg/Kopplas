@@ -1,0 +1,75 @@
+{
+  "kind": "author-bounded-settlement-browser-checks",
+  "source": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+  "before": "fae644b5349744a531008e2224ca3a08d596836e",
+  "source_state": "Exact committed six-path source; Root metadata separately dirty/excluded; no post-commit Spec verdict delta.",
+  "checks": [
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 47,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "7d4d7d",
+      "receipt_completion": "4e8757",
+      "limit": "Actual injected stopper/full-wrapper and exact pure helper source-region execution, no managed resources/real signals/DB/browser. Node module-type and experimental strip warnings emitted."
+    },
+    {
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test --test-reporter=spec tests/unit/docs/acceptance-gate-report-validators.test.ts tests/unit/scripts/ci/checkpoint-dispatch.test.ts tests/unit/scripts/verify/ci-native-test-reports.test.ts tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts tests/unit/scripts/verify/fixed-chromium-application-admission.test.ts tests/unit/server/authz/command-enrollment.test.ts tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+      "passed": 326,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "receipt_start": "d43535",
+      "receipt_completion": "e02b56",
+      "revision": "33b595a8b7c001bd89788fb1c0e8cd9c626e03ec",
+      "limit": "Includes same47 wrapper cases, not additive;279 other contract-consumer cases. No story95 native acceptance credit."
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "exit_code": 0,
+      "receipt_start": "5a05f0",
+      "receipt_completion": "f831d0",
+      "dependency_reuse": "Executed before sole helper comment correction; actual executable source equality independently proved."
+    },
+    {
+      "command": "pnpm exec eslint scripts/ci/with-calendar-feed-runtime.mjs tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts tests/support/calendar-feed-ci-contract.ts tests/e2e/calendar-feed.e2e.spec.ts tests/e2e/support/calendar-feed-atdd.ts",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "receipt": "ec4ae7",
+      "dependency_reuse": "Executed before sole helper comment correction; no executable source delta."
+    },
+    {
+      "command": "node scripts/verify/check-review-order.mjs <authorSpec>",
+      "exit_code": 0,
+      "sections": 1,
+      "stops": 40,
+      "receipt": "2beb44"
+    },
+    {
+      "command": "git diff --check -- <exact6> / git diff --cached --check",
+      "exit_code": 0,
+      "receipts": [
+        "c5089d",
+        "8c0233",
+        "aaf5a5",
+        "d10e83"
+      ],
+      "exact_index": "Original exact6 then sole requested helper comment before amend; Root metadata never staged."
+    }
+  ],
+  "kernel_sha256": "0b3255e5ffd15bdc442ce5119bdf4fd5e16584fd7855ae5cddd9806c62ffd977",
+  "suggested_review_order_body_lf_sha256": "b59ed70681c58f2f748f487d6972a72b565e141084431449146e1d719f740e57",
+  "suggested_review_order_hash_normalization": "Exclude heading line; body after exact ## Suggested Review Order LF delimiter through EOF; no trim, final newline retained.",
+  "intermediates": "Initial39cases37P2F arose from fake probe sequence assumptions; corrected fixtures without weakening implementation. Full helper import unsupported by existing alias hook directory shadow; no shared hook edits. @types/node20 lacks installed Node22 strip API; explicit typed namespace access fixed. One stale SRO line after final test insertion refreshed. Final47/type/lint and40stops passed.",
+  "counts": {
+    "feature": 95,
+    "feature_node": 30,
+    "feature_vitest": 51,
+    "feature_browser": 14,
+    "bootstrap_separate": 47,
+    "contract_suite_including_bootstrap": 326
+  },
+  "limits": "Pure source extraction uniquely bounded and TypeScript stripping only; no copied implementation/mocks. Full-helper plumbing and native caller behavior unexecuted locally. App/privilege/workflow/INT015 unchanged, no build rerun. Old native3105/Python43/recovery1 and setup7/privacy4 are bounded failed-head facts. Browser14F/28attempts,DB51unexecuted,body contentNULL/unavailable remain. No fourth broad review, push/runtime/DONE/delivery."
+}

@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "source_ac_verbatim_once": true,
+    "all_8_acs_given_when_then": true,
+    "task_count_9": true,
+    "kernel_exactly_once": true,
+    "no_template_placeholders": true,
+    "no_final_trail_manufactured": true,
+    "cached_context_valid": true,
+    "protected_inputs_byte_unchanged": true,
+    "head_unchanged": true,
+    "story_only_preparation_allocated": true
+  },
+  "preservation": {
+    "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views-2.md": true,
+    "_bmad-output/implementation-artifacts/epic-15-context.md": true,
+    "_bmad-output/implementation-artifacts/epic-14-retro-2026-10-08.md": true,
+    "_bmad-output/implementation-artifacts/sprint-status.yaml": true,
+    "_bmad-output/auto-bmad/state/15-2-recurring-bookings-series-materialized-occurrences-exceptions.yaml": true,
+    "src/scope/manifest.ts": true,
+    "src/server/authz/permission-matrix.ts": true,
+    "src/features/scheduling/capacity.ts": true,
+    "tests/unit/server/authz/phase-a-surface.test.ts": true
+  }
+}

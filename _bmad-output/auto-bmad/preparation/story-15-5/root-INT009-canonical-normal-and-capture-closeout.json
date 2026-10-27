@@ -1,0 +1,151 @@
+{
+  "schema": "ROOT_INT009_CANONICAL_NORMAL_AND_CAPTURE_CLOSEOUT_V1",
+  "tested_head": "fd930e7158e7fd9dc89cc7d759667e75803f6e89",
+  "source": "0ed3710929ea09afae49ef7b8d3266975331e827",
+  "run": 39816833651,
+  "checkpoint": "ec23cc94-24db-4b37-827b-3cba5246222b",
+  "url": "https://github.com/rthunborg/Kopplas/actions/runs/39816833651",
+  "terminal": "failure",
+  "Root_controller": "STOPPED_3RESOLVER_9POLLPAIRS",
+  "all_prior_mutation_and_read_slots_closed": true,
+  "new_effect_authority": false,
+  "normal_qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-actual-native-qualification.json",
+    "bytes": 39154,
+    "sha256": "5d3a51aaa3752578e9f49e454af87660fbd7f0e47d3211d7fff40f282323f5fa"
+  },
+  "capture_qualification": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-normal-existing-artifact-capture-actual-qualification.json",
+    "bytes": 22295,
+    "sha256": "a86f597c1475e1c3e3f9b79028ebfc80ca8d9916a25a11e5a660c210a2a05ba9"
+  },
+  "normal_actual_GETs": 5,
+  "capture_actual_GETs": 1,
+  "all_GETs_closed": true,
+  "required95": {
+    "passed": 68,
+    "failed": 1,
+    "zero_coverage": 26,
+    "failed_ids": [
+      "INT009"
+    ],
+    "pending_ids": [
+      "INT010",
+      "INT011",
+      "INT012",
+      "INT013",
+      "INT014",
+      "INT015"
+    ],
+    "absent_ids": "API001-API020"
+  },
+  "story_browser": "14P_retry0",
+  "nonstory_browser": "One flaky leaf failed retry0/passedretry1; retain caveat",
+  "recovery": "1P separate",
+  "canonicalization_native_outcome": "UNKNOWN",
+  "current_primary_guard": "UNKNOWN",
+  "capture_outcome": "QUALIFIED_STOP_UNKNOWN_CAPTURE_UNAVAILABLE",
+  "capture_transport": "GET0/reader1; exact known ZIP/member digests match; no more reads",
+  "DB_custody": "retained/keyDeletedfalse/unverified; backend/rollback/restorationUNKNOWN",
+  "browser_custody": "own exact key deleted-confirmed/connection closed only",
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "P5": "OPEN",
+  "completed_story_phases_preserved": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "review_counter": 3,
+  "fourth_broad_review": false,
+  "next": "High read-only current Normal capture-publication/source assessment. No inferred patch/CI rerun; exact next source/effects ownership needed.",
+  "routes_recorded_before_dispatch": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-independent-source-review-route.json",
+      "bytes": 621,
+      "sha256": "10b03ab53aea3e1554cb950c5fabec5b5c4a0ba6a364d28b452fd295cdc05e25"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-native-execution-route.json",
+      "bytes": 588,
+      "sha256": "dc3500a7da457dd41cc2165c082c4a7477f99daf988273495a4833cb47c09c2e"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-actual-qualification-route.json",
+      "bytes": 597,
+      "sha256": "9cbf3bf861f00f59fd6ee91da4ef012a16431fae321df6151716349351cdc26d"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-preparation-route.json",
+      "bytes": 614,
+      "sha256": "c2d59ca54731e39992c4b06ddb95b31e6c8161b3e49464647de56de41625a7a4"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-source-review-route.json",
+      "bytes": 548,
+      "sha256": "6e5ec87a94ee8c70c995ba328fcd608ecf524f53f8e40f38d8443496460fe6bf"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-native-route.json",
+      "bytes": 535,
+      "sha256": "50fb7f3a9c14c989a102b5452b34253683e7bbd656fa330a2e3dab763c7031ab"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-actual-qualification-route.json",
+      "bytes": 548,
+      "sha256": "c9a3a4dc3347b1da1e76c40fba18f2337e506be5b5494b08d96de869bf136027"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-current-normal-capture-publication-assessment-route.json",
+      "bytes": 591,
+      "sha256": "85f3da95ebdb3343eda0a1a353b1e80a1b06bd69d93a87d0e51866bb27c6d340"
+    }
+  ],
+  "source_review_copies": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-operational-review.json",
+      "bytes": 35896,
+      "sha256": "38b3ecd9e2845e4ef60f6a7741cf87cc0567faee78fcc89c59676eec7e8cff84"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-reader-independent-source-review.json",
+      "bytes": 26289,
+      "sha256": "f4f3afc32af11364036d16df234850aae72257bd1383888367caed81afe921c2"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-canonical-catalog-normal-terminal-independent-controls.json",
+      "bytes": 9201,
+      "sha256": "98c68057aa6d63e3ac4b2bae7e84a85ba51d3ed2a67922db4959ab5ada725fc9"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-normal-existing-artifact-capture-independent-source-review.json",
+      "bytes": 20089,
+      "sha256": "4e319617d2d5884e62893d04c71bf47905a11ecf5a38e62b62e7b1792924d089"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/INT009-normal-existing-artifact-capture-independent-controls.json",
+      "bytes": 2235,
+      "sha256": "c068b966beee4d564a6d14a915fe2b8d2cd7b52f4217ff80f65987ebc07c52d6"
+    }
+  ],
+  "actual_receipts": [
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-canonical-catalog-normal-terminal-execution-receipt.json",
+      "bytes": 10553,
+      "sha256": "a53eebdd14cb27933112c8ec6a24e95c2dd5c3a5ae3c21b5ee4180b121d39192"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/INT009-normal-existing-artifact-capture-execution-receipt.json",
+      "bytes": 7950,
+      "sha256": "56071188b1cf8b6389a2c7bbc568830b5d3b8266236521597b45ed85587e915a"
+    }
+  ],
+  "Root_actual_review_reads": [
+    "65c3f6/native0",
+    "263f5b/native0"
+  ],
+  "operational_proof_limit": "One later proof explicitly tracked_cleanfalse only for hash-bound owned untracked qualifier; all source/index unchanged. Its console summary inherited static true; actual proof and b02584 explicitly retain false."
+}

@@ -1,0 +1,214 @@
+{
+  "schema": "INDEPENDENT_INT009_ONE_CASE_OPERATIONAL_SOURCE_REVIEW_v1",
+  "outcome": "PASS_INT009_ONE_CASE_OPERATIONAL_SOURCE_ONLY",
+  "status": "PASS_INT009_ONE_CASE_OPERATIONAL_SOURCE_ONLY",
+  "execution_authorized": false,
+  "normal_acceptance": 0,
+  "release_ready": false,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "route": "Root e3fc33; canonical route folded96c16d (Root-reported)",
+    "independence": "Distinct from Native execution-draft author, capture author and Root driver author",
+    "review_kind": "Targeted operational source review and OP1-only repair closure; not a fourth broad story round"
+  },
+  "scope": {
+    "MAIN": "C:\\Users\\Rasmus\\.codex\\worktrees\\epic-15-calendar\\Kopplas",
+    "DEBUG": "C:/Users/Rasmus/.codex/worktrees/epic-15-int009-debug/Kopplas",
+    "debug_head": "d818c75370fc4a575fdf08d8add97a7294f5a4fc",
+    "branch": "codex/epic-15-int009-debug",
+    "checkpoint_id": "3558af82-553d-4e86-8a39-f7de8bcce85e",
+    "repo": "rthunborg/Kopplas",
+    "workflow_id": 296219797,
+    "attempt": 1,
+    "identity_provenance": "Root-frozen DEBUG head/clean proof; independently matched raw/LF/computed clean blobs without Git commands. DEBUG not edited.",
+    "reviewed_effects": "Source-only finite providerGET1, userGET1, workflowGET1, remote2, nonforcepush1, fixedPOST1, resolver<=6, sole90run+90job polls. No artifact reader."
+  },
+  "pins": {
+    "current_root_driver": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-driver.py",
+      "bytes": 15017,
+      "sha256": "5505ebe73b38bb2014c22253ec220e077652bd54ecbefa829f9cf5985056e589"
+    },
+    "current_operational_packet_v2": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operational-packet-v2.json",
+      "bytes": 1905,
+      "sha256": "b9690c3491f433118a7be4a1fdf85614866bce9fdbd518b6771aec4bad60353a"
+    },
+    "provider_preparation": {
+      "provider-readonly.py": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-one-case-operational-preparation/provider-readonly.py",
+        "bytes": 20830,
+        "sha256": "40ada22a956ba6cf8e7c0482f8c804613a94fad45f807414801034e1287fa614"
+      },
+      "proposal.json": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-one-case-operational-preparation/proposal.json",
+        "bytes": 30071,
+        "sha256": "fda95303131bfb31b2e4add18619f9ab607f07f2c087096de8abe56dbb505a72"
+      },
+      "pure-controls.json": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-one-case-operational-preparation/pure-controls.json",
+        "bytes": 26141,
+        "sha256": "bf68f7c1d7fb60cd0609071fc39136f09aac246e9b20c3a396a578145bf74386"
+      },
+      "manifest.json": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-one-case-operational-preparation/manifest.json",
+        "bytes": 630,
+        "sha256": "44a36c4892d411d4b7e1376003751b7a7399e0123bb733f284013507cf277534"
+      }
+    },
+    "closure_control_script": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-operational-closure-controls.py",
+      "bytes": 8042,
+      "sha256": "cbe4b0939c0e7793c1b8639d176928d6f9073433d6a2dcc73e08645a40142f96"
+    },
+    "initial_REVISE": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-one-case-operational-review-initial-REVISE.json",
+      "bytes": 7708,
+      "sha256": "adbc8ebf1a86948794118fe1e75f80473610657f29cedb2687947acd955ed494"
+    },
+    "rejected_driver_v1": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-driver-v1-freshness-rejected.py",
+      "bytes": 14703,
+      "sha256": "6d06aeacce81073f080784f6fee10b145d95ec5b079358c6bcded1116d9027c4"
+    },
+    "initial_root_packet": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-operational-packet.json",
+      "bytes": 1569,
+      "sha256": "634f94f4fa91b9aafd5af7e6a832eae2b996e932ff3ad884dcd7718e5c6ca299"
+    },
+    "retained_root_driver_pure_controls": {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-root-driver-pure-controls.json",
+      "bytes": 938,
+      "sha256": "b39f32a6cab24ed2048f448dc1769336bb0dcfe05bbc9cfd7ac687e39d089bfe"
+    }
+  },
+  "findings": [],
+  "required_repairs_remaining": 0,
+  "resolved_findings": [
+    {
+      "id": "OP1",
+      "priority": "P1",
+      "initial": "Driver15017 predecessor14703 checked300s activation/proof/provider validity only at publish entry; stale qualification could survive localproof/prequalification into push/POST.",
+      "initial_evidence": {
+        "receipt": {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-one-case-operational-review-initial-REVISE.json",
+          "bytes": 7708,
+          "sha256": "adbc8ebf1a86948794118fe1e75f80473610657f29cedb2687947acd955ed494"
+        },
+        "actual_AST_inert_control": "4e08a6/native0: initial checks0; localproof advances301; push301 and dispatch301 still reached. All effects stubbed; no real requests."
+      },
+      "repair": "Current mutation_fresh checks all three pinned timestamps immediately after exclusive push-intent/before push and after exclusive dispatch-intent/before POST native. Expiry reaches actual UNKNOWN_STOP handler, with consumed intents and no renewed GET/retry.",
+      "closure": "Actual current main/api/save/fresh/mutation_fresh/error-stop AST controls prove healthy path and both expiry boundaries; six independent stale/future refusals and exact300s acceptance. Exact byte inverse reconstructs rejected14703/6d06 file by removing only helper and two calls."
+    }
+  ],
+  "operational_assessment": {
+    "provider_capture_privacy": "Default/old flag refuses before activation/source/effect reads. Exact activation keys/identity/UTC0..300s/ref bytes+hashes+self pin, completed-grant record, operational/source review status and exact118SQL vectors gate the one GET. Exclusive fsynced consumed intent precedes sole Popen. Qualified retained concurrent capture/caps15s/stdout4MiB/stderr256KiB, physicalEOF/read_error/join/closure/native settlement and typed finite five-field predicate remain byte-identical to retained foundation. Raw response stays RAM; drift persists only closed key names and identity booleans. Logical CLI invocation1 is not a claim of independently measured internal HTTP count.",
+    "provider_containment_contract": "Exact project/account/name/GitHub org+repo and preview-disabled/unconditional exit0 gate qualify only point-in-time ordinary Git push of this fixed branch. Branch-specific override absent; ignoreCommand absent. Git creation remains enabled; cancelled records may exist. No blanket manual/CLI/production disable, future alias/cancellation proof or deployment authorization is inferred.",
+    "activation_and_ownership": "Fresh Root activation must come from actual completed Coordinator turn+tool and exact source proof. Provider outer tool attribution is unavailable inside child and remains Root executing-actor/journal responsibility before Root effects activation. Driver requires operational outcome; provider requires status: both are supplied here. This source PASS itself authorizes no effects.",
+    "driver_finite_effects": "Current driver pins self/proposal/review/allocation and requalifies exact DEBUG source. Fixed user/workflowGET2, remote absence/readback2, nonforce owned-branch push1 and exact compact265byte POST are journaled with exclusive/fsynced intents before effects. UNKNOWN/nonzero/incomplete capture stops without blind retry; exclusive operation directory prevents republish. New mutation freshness checks preserve all existing slots/tuple/body and add no calls.",
+    "run_and_terminal": "Resolver<=6, min5s, exact head/branch/title/UUID/event/workflow/actors/attempt1/repository identity; ambiguity/absence bound stops. Sole poller<=90 run+90 jobs, min60s/max90min; unique expected job names/IDs/run/head and exact owned run validated; nine completed jobs+completed run freeze terminal and ROOT_STOPPED. Failed capture/ownership refuses into UNKNOWN_STOP. Terminal observations are not diagnostic/normal acceptance.",
+    "artifact_boundary": "Listing/ZIP reader deliberately absent. Acquisition requires a separate fresh finite allocation after actual terminal freeze; no artifact/log fallback/refetch authority is supplied by this review.",
+    "source_preservation": "Reuse independently passed actual six-source and capture reviews; no broad reopening. Old argv/inverse/C4/body/privacy/fixtures/118SQL and normal scope remain unchanged. Latest AGENTS/development-completion-policy read; mandatory functional evidence remains actual execution."
+  },
+  "verification": {
+    "initial_binding_checks": {
+      "actual_tool": "8a85a5",
+      "native_exit": 0,
+      "results": [
+        "provider manifest3members exact",
+        "retained11828/e6e11d foundation+3functions+3capture/predicate spans exact",
+        "4current_refs exact",
+        "DEBUG6new+7preserved raw/LF/computed blob identities exact",
+        "9unchanged provider trigger rows exact; CI separately pinned",
+        "2frozen lockbindings exact",
+        "fixedPOST body265/hash8904492b3e451bf0bcfa5a0a4694ff3a2d7b8f567f7907d4a446c8450627ab8e exact"
+      ]
+    },
+    "actual_default_refusals": {
+      "actual_tool": "8a85a5",
+      "provider_native_exit": 2,
+      "provider_result": "REFUSED_NO_ACTIVATION logical_GET_invocations0",
+      "driver_native_exit": 2,
+      "driver_result": "REFUSED_OR_UNKNOWN_STOP no automatic effect retry",
+      "effects": 0
+    },
+    "repair_delta": {
+      "actual_tool": "801fb2",
+      "native_exit": 0,
+      "scope": "Helper mutation_fresh plus exactly2calls only; raw byte inverse independently verified during final controls",
+      "inverse_bytes": 14703,
+      "inverse_sha256": "6d06aeacce81073f080784f6fee10b145d95ec5b079358c6bcded1116d9027c4"
+    },
+    "closure_controls": {
+      "command": "python -I -B .env.epic15.mail-runtime/story-15-5-preparation/resumed-INT009-operational-closure-controls.py",
+      "actual_tool": "f4f2bb",
+      "native_exit": 0,
+      "checks_passed": 10,
+      "checks_failed": 0,
+      "actual_functions": "AST-extracted fresh/mutation_fresh/save/api/main plus actual final exception handler; all file writes, API/Git calls and time are inert in-memory stubs",
+      "scenarios": [
+        {
+          "name": "healthy",
+          "stub_exit": 0,
+          "push": 1,
+          "POST": 1,
+          "GET": 2,
+          "phase": "DISPATCH_ACCEPTED"
+        },
+        {
+          "name": "expire-before-push",
+          "stub_exit": 2,
+          "push": 0,
+          "POST": 0,
+          "GET": 2,
+          "phase": "UNKNOWN_STOP",
+          "push_intent_consumed": true
+        },
+        {
+          "name": "expire-before-POST",
+          "stub_exit": 2,
+          "push": 1,
+          "POST": 0,
+          "GET": 2,
+          "phase": "UNKNOWN_STOP",
+          "dispatch_intent_consumed": true
+        }
+      ],
+      "timestamp_guards": "Each activation/proof/provider timestamp rejects stale301s and future1s (6); exact300s boundary accepts (1). Healthy+2expiry cases=3; total10.",
+      "real_effects": 0,
+      "harness_history": "Earlier inline closure probe used epoch+1 as future while inert clock already+1; refused assertion was a harness expectation error, no source/effect. Corrected future is relative to current inert clock in retained script; final10P0F."
+    },
+    "retained_evidence": "Provider12P0F506df8, Rootdriver15P0F6dd8cb and local source proof706797/native0 were read as author/prior evidence, not rerun or relabelled reviewer execution. Current15017 repair was independently tested only by targeted closure controls.",
+    "limits": {
+      "API_provider_CI_requests": 0,
+      "Git_commands": 0,
+      "pushes": 0,
+      "dispatches": 0,
+      "artifact_requests": 0,
+      "application_schema_dependency_config_edits": 0,
+      "resources_services_DB_browser_or_test_workloads": 0,
+      "nested_agents": 0,
+      "normal_acceptance": 0
+    }
+  },
+  "execution_prerequisites": [
+    "Actual completed finite Coordinator allocation and Root exclusive fresh activation with exact saved pins.",
+    "Actual provider oneGET success with complete transport/fixed selected facts and outer tool attribution; fresh current source proof.",
+    "Root effects activation only after those observations; current freshness checks remain mandatory at push/POST.",
+    "Fresh separately admitted artifact acquisition only after actual terminal ownership freeze."
+  ],
+  "continuity": {
+    "normal_required": 95,
+    "normal_passed": 68,
+    "normal_failed": "INT009",
+    "normal_unexecuted": 26,
+    "feed_browser_retry0_passed": 14,
+    "feed_browser_cases": 14,
+    "cause_inference": "NONE",
+    "development_complete": false,
+    "release_ready": false,
+    "old15_4_work": false
+  },
+  "effect_authority": "NONE. PASS is actual operational SOURCE ONLY; packet execution_authorized=false templates remain inert. Root owns any future grant/admission/Git/CI/provider effects."
+}

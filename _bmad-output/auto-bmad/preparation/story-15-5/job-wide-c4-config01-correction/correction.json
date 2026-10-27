@@ -1,0 +1,49 @@
+{
+  "schema": "C4_CONFIG01_FINITE_CORRECTION_v1",
+  "status": "READY_FOR_TARGETED_INDEPENDENT_VALIDATION_NOT_IMPLEMENTATION",
+  "policy_version": "2026-10-19",
+  "normal_acceptance_credit": 0,
+  "finding": "C4-CONFIG-01: serial-only selection had no parallel-project hook to evaluate full supported predicate. Preserve original NOTPASS. C4-JOB-01 closed strict caller proof reused unchanged.",
+  "exact_delta": {
+    "old": "configureVitest({project,vitest}){ if(project.name!==integration-parallel) return; fullPredicate(vitest.projects) }",
+    "new": "configureVitest({project,vitest}){ fullPredicate(vitest.projects) }",
+    "byte_proof": "Own guard.config.mjs is byte-for-byte prior guard with exactly one fixed early-return substring removed. No predicate or scheduling semantic change. Function context still includes unused project; production author may omit unused parameter while keeping unconditional hook behavior.",
+    "old_bytes": 1226,
+    "old_sha256": "f3251da24dc3bcab9ce9e4597e7540a167b73f5759ebb343677be5e36e96fc4c",
+    "new_bytes": 1178,
+    "new_sha256": "9d259dc5acac944c80544f0c72cc7c375648d8d6bf635ddf3d64435a0a0c0e4f"
+  },
+  "condition": "Every selected project carrying inherited plugin evaluates same full resolved-project predicate. Missing parallel, missing serial, or extra selected project refuses. Existing predicate still requires exact two named projects/current isolate/fileParallelism/groupOrder, serial maxWorkers1+bail1, parallel configured project.maxWorkers!==1. No CPU-derived/CLI-effective1 blanket rejection.",
+  "timing": "Installed configureVitest invocation follows assignment of resolved selected projects and precedes globalSetup/test execution. Closed sentinel probes reject selected-only configs before serial module import/hook or parallel body; no report emitted on refusal. Hook is not conditioned on presence of the missing project.",
+  "pure_results": {
+    "supported": "native0,3P/0F/0pending; healthy plus expected-denial and parallel baseline; serial import/hook observed",
+    "serial_only": "native1 fixed C4_UNSUPPORTED_PROJECT_CONFIG; no serial import/hook or parallel body/report",
+    "parallel_only": "native1 same fixed stop; no test body/report",
+    "extra_project": "native1 same fixed stop; no test import/hook/body/report",
+    "process_bounds": "Four child runs each<25s timeout, all returned native exits/stdout+stderr hashes; raw output RAM-only. No app imports/setup/env/SQL/network/managed resources."
+  },
+  "reuse": {
+    "caller_contract": "Unchanged strict34 direct imported callback top-level await statements/3positive24negative/finally-return suppression proof from previous frozen refinement; not rerun or promoted to native credit. Current23 raw source and10 installed inputs checked unchanged.",
+    "history": "Prior heuristic bypass and both prior failed config/AST assembly histories remain frozen and nonadditive. This correction adds no new alternative mechanism.",
+    "wrapper": "Conservative unsuccessful DB-runtime key custody plan remains as reviewed. No new query/cleanup/protocol; frontend closure is not backend/canonical settlement proof."
+  },
+  "exact_candidate_paths": [
+    "vitest.config.ts",
+    "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "scripts/ci/with-calendar-feed-runtime.mjs",
+    "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts",
+    "tests/support/calendar-feed-ci-contract.ts",
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md"
+  ],
+  "candidate_hunks_changed_now": [
+    "vitest.config.ts proposed hook no longer returns for nonparallel project",
+    "partition unit adds biting serial-only/missing-parallel and retained parallel-only/extra inverses under actual installed resolved-project hook"
+  ],
+  "effects": {
+    "actual": "Only new owned metadata and bounded pure Vitest copies/probes; all existing source/config/runner/Spec/history unchanged. No Git/network/SQL/CI/resource/provider effects.",
+    "later_source": "Exact6 paths still need Root/Coordinator allocation and source author; targeted High C4 closure and pending cumulative source review remain.",
+    "future_native": "Separate authorization only. Successful all95/fullDB/RLS/recovery1 required; exact6serial once after159parallel, expected-negative passing assertions unchanged. Unsupported configuration fails before effects; failure omissions remain unexecuted, never covered."
+  },
+  "challenge_question": "Does unconditional full predicate evaluation from every selected project close serial-only absence before setup/test import, with predicate bytes unchanged, while supported three-case healthy/expected-negative proof and prior strict34/bail/custody contracts remain intact?",
+  "blockers": "No preparation blocker. C4 source implementation/native proof still pending; no completion claim or effects authority."
+}

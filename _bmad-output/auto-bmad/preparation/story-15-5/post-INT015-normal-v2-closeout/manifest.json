@@ -1,0 +1,619 @@
+{
+  "schema": "ROOT_CURRENT15_5_CLOSED_NATIVE_EVIDENCE_EXPORT_V1",
+  "snapshot_at": "2026-10-25T07:31:38.615275+00:00",
+  "native95": {
+    "expected": 95,
+    "attempted": 95,
+    "passed": 95,
+    "failed": 0,
+    "skipped": 0,
+    "pending": 0,
+    "todo": 0,
+    "flaky": 0,
+    "unexecuted": 0,
+    "Node": {
+      "expected": 30,
+      "passed": 30,
+      "distinct_required_IDs": [
+        "UNIT-009",
+        "UNIT-010",
+        "UNIT-011",
+        "R1-07",
+        "UNIT-001",
+        "UNIT-002-spring",
+        "UNIT-002-autumn",
+        "UNIT-003",
+        "UNIT-004",
+        "UNIT-005",
+        "R1-05-positive-1",
+        "R1-05-positive-2",
+        "R1-05-positive-3",
+        "R1-05-positive-4",
+        "R1-05-positive-5",
+        "R1-05-order",
+        "R1-06",
+        "UNIT-006",
+        "UNIT-007",
+        "UNIT-008",
+        "UNIT-012",
+        "UNIT-013",
+        "UNIT-014",
+        "UNIT-021",
+        "UNIT-018",
+        "UNIT-019",
+        "UNIT-020",
+        "UNIT-015",
+        "UNIT-016",
+        "UNIT-017"
+      ],
+      "positive_marker_count": 32,
+      "duplicates_deduplicated": [
+        "R1-06",
+        "R1-07"
+      ],
+      "member": "verify/12_Unit tests (pure logic, node --test).txt",
+      "member_bytes": 1683952,
+      "member_sha256": "4ec140f7cde498c40b1fea360bc80f153ee5769d41173af99dc94c2b41ebb17e",
+      "basis": "Independently constructed required UNIT/R1 set equals actual30 distinct positive markers. Two repeatedR1 IDs count once each. Actual unit step/native total3445P0F0skip0cancel0todo supports no failure/skip bailout; global count not substituted for required ID evidence."
+    },
+    "DB_RLS": {
+      "expected": 51,
+      "passed": 51,
+      "INT": 15,
+      "RLS": 12,
+      "API": 20,
+      "COMP": 4,
+      "duplicates": 0,
+      "missing": 0,
+      "unexpected": 0,
+      "basis": "Independently constructed exact INT001..015/RLS001..012/API001..020/COMP-001..004 set equals51 unique native story leaves; each passed with positive duration in expected file. No missing/pending/skipped/unknown leaf credited.",
+      "API019": {
+        "status": "passed",
+        "duration_ms": 3077.960116999995
+      },
+      "API020": {
+        "status": "passed",
+        "duration_ms": 3147.5969729999924
+      }
+    },
+    "essential_browser": {
+      "expected": 14,
+      "passed": 14,
+      "IDs": [
+        "E2E-001",
+        "E2E-002A",
+        "E2E-002B",
+        "E2E-002C",
+        "E2E-003",
+        "E2E-004",
+        "E2E-005",
+        "E2E-006",
+        "E2E-008",
+        "E2E-009",
+        "E2E-010-rotate",
+        "E2E-010-revoke",
+        "E2E-011",
+        "E2E-007"
+      ],
+      "basis": "Independent exact14-ID set equals native story set; every result expected with exactly1 retry0 passed attempt and failure null. No missing/duplicate/flaky/unexpected/nonattempt credit."
+    },
+    "no_doublecount": "Required Node30+DB51+browser14=95. Recovery1, other smoke42, global totals, duplicate markers and4optional skipped jobs excluded. These are actual case facts, not job-success substitution."
+  },
+  "run_id": 40125241153,
+  "tested_head": "019f21d1d484ebe02ab1ed00ace10e4eb0be4d36",
+  "source": "cbe3e5d5f462b9be2a992bba56c4bf33b71706fe",
+  "copy_count": 39,
+  "copies": [
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/acquisition-summary.json",
+        "bytes": 2543,
+        "sha256": "632c5d778d612ffa239e4baf0dc6c1c2742a4294c0b640af1899d2e1d2add565"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/acquisition-summary.json",
+        "bytes": 2543,
+        "sha256": "632c5d778d612ffa239e4baf0dc6c1c2742a4294c0b640af1899d2e1d2add565"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/artifact-list-projection.json",
+        "bytes": 1290,
+        "sha256": "4b60f896341a844557f23e488194a94843b0edc6ab731418db0d04f025c268be"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/artifact-list-projection.json",
+        "bytes": 1290,
+        "sha256": "4b60f896341a844557f23e488194a94843b0edc6ab731418db0d04f025c268be"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/native-full-integration-projection.json",
+        "bytes": 66001,
+        "sha256": "baf580280245c9c994d9ac5aec9fcfd5ae5328cf43b0c3597ba632cfe4dbbd0c"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/native-full-integration-projection.json",
+        "bytes": 66001,
+        "sha256": "baf580280245c9c994d9ac5aec9fcfd5ae5328cf43b0c3597ba632cfe4dbbd0c"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/native-general-browser-projection.json",
+        "bytes": 13358,
+        "sha256": "56123a7f597015fe0188ad98acbcf2650c184dbfa19f4b106188fc76938259ab"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/native-general-browser-projection.json",
+        "bytes": 13358,
+        "sha256": "56123a7f597015fe0188ad98acbcf2650c184dbfa19f4b106188fc76938259ab"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/native-isolated-storage-recovery-projection.json",
+        "bytes": 2008,
+        "sha256": "832f8862234838e228ea2078041322c6a68beeb66a7fc12f0bbe37aa43c6d89c"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/native-isolated-storage-recovery-projection.json",
+        "bytes": 2008,
+        "sha256": "832f8862234838e228ea2078041322c6a68beeb66a7fc12f0bbe37aa43c6d89c"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/operator-intent.json",
+        "bytes": 15644,
+        "sha256": "4d1ca671203b8629c437dc2037765dd42ae20ea214af6ec219aacf075a4a151d"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/operator-intent.json",
+        "bytes": 15644,
+        "sha256": "4d1ca671203b8629c437dc2037765dd42ae20ea214af6ec219aacf075a4a151d"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-01-intent.json",
+        "bytes": 413,
+        "sha256": "e71f8911a8dfc1161dcb3cd10439ab75296c755e0a59a2a43a7171359ec4ffff"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-01-intent.json",
+        "bytes": 413,
+        "sha256": "e71f8911a8dfc1161dcb3cd10439ab75296c755e0a59a2a43a7171359ec4ffff"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-01-result.json",
+        "bytes": 1134,
+        "sha256": "a6de448c9125309965f4afd413bf448a8d1812461fe1e9a69f478b0583b108b9"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-01-result.json",
+        "bytes": 1134,
+        "sha256": "a6de448c9125309965f4afd413bf448a8d1812461fe1e9a69f478b0583b108b9"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-02-intent.json",
+        "bytes": 432,
+        "sha256": "dd5589d8ff0bc547af4e0bf5bb7f736b5b9e10edc0880a9097e4baa45e45d488"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-02-intent.json",
+        "bytes": 432,
+        "sha256": "dd5589d8ff0bc547af4e0bf5bb7f736b5b9e10edc0880a9097e4baa45e45d488"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-02-result.json",
+        "bytes": 1151,
+        "sha256": "1c0299f5bb91a6b75143da39674c781df13324296c4bc47f03f04ebe425a185e"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-02-result.json",
+        "bytes": 1151,
+        "sha256": "1c0299f5bb91a6b75143da39674c781df13324296c4bc47f03f04ebe425a185e"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-03-intent.json",
+        "bytes": 431,
+        "sha256": "caad8be6ded91eccfe2b97df3f11db1bd4ce709402704ea09a65a6888ad3473f"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-03-intent.json",
+        "bytes": 431,
+        "sha256": "caad8be6ded91eccfe2b97df3f11db1bd4ce709402704ea09a65a6888ad3473f"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-03-result.json",
+        "bytes": 1149,
+        "sha256": "a42afcb31c4797ff5fdd48cb0ff8254389e38dfbd129062ea944c12aeaf0907d"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-03-result.json",
+        "bytes": 1149,
+        "sha256": "a42afcb31c4797ff5fdd48cb0ff8254389e38dfbd129062ea944c12aeaf0907d"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-04-intent.json",
+        "bytes": 421,
+        "sha256": "1d5ee467be2be5e2b9a76714afd47a6ac419b28fe120e9b553ba01a64cf93e3e"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-04-intent.json",
+        "bytes": 421,
+        "sha256": "1d5ee467be2be5e2b9a76714afd47a6ac419b28fe120e9b553ba01a64cf93e3e"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-04-result.json",
+        "bytes": 1140,
+        "sha256": "124316c8c8c030cc4732f9919d56626cdf079dbb8f580e8c6fc103139d7fc5f4"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-04-result.json",
+        "bytes": 1140,
+        "sha256": "124316c8c8c030cc4732f9919d56626cdf079dbb8f580e8c6fc103139d7fc5f4"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-05-intent.json",
+        "bytes": 422,
+        "sha256": "cd5e3f1ffa9c5285e9cd4b2d2c021dacb68c8489fdedddd62c2f53e06e8ba6c8"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-05-intent.json",
+        "bytes": 422,
+        "sha256": "cd5e3f1ffa9c5285e9cd4b2d2c021dacb68c8489fdedddd62c2f53e06e8ba6c8"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/request-05-result.json",
+        "bytes": 1143,
+        "sha256": "97c83c5b35b3582782152ded329e75c1b7a0d6d4ad8993535c28965ae05507a1"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/request-05-result.json",
+        "bytes": 1143,
+        "sha256": "97c83c5b35b3582782152ded329e75c1b7a0d6d4ad8993535c28965ae05507a1"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/run-archive-projection.json",
+        "bytes": 49206,
+        "sha256": "fe7d28ad27ffed2d1574cce53c79ba99ad21fd1e6dcb814bdd88126982adcf55"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/run-archive-projection.json",
+        "bytes": 49206,
+        "sha256": "fe7d28ad27ffed2d1574cce53c79ba99ad21fd1e6dcb814bdd88126982adcf55"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/source-label-projection.json",
+        "bytes": 1691,
+        "sha256": "d062d2c02c7b2b097da37baa3f16bfaf9dab3c23ae0ebe20c3ba5d8f096da64e"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/source-label-projection.json",
+        "bytes": 1691,
+        "sha256": "d062d2c02c7b2b097da37baa3f16bfaf9dab3c23ae0ebe20c3ba5d8f096da64e"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/source-provenance.json",
+        "bytes": 14917,
+        "sha256": "8548eaa9bd2b00d85b7cd515923a1148523aa392ecc6c0c8e5f7eb4606da5fdd"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/source-provenance.json",
+        "bytes": 14917,
+        "sha256": "8548eaa9bd2b00d85b7cd515923a1148523aa392ecc6c0c8e5f7eb4606da5fdd"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-019f21d1-post-INT015-normal-v2-terminal-ci-independent/terminal-bindings.json",
+        "bytes": 14266,
+        "sha256": "08467737422aec83e85e6620ac8ca48f9c91cf003ce19262d623cb819c64bf9e"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/terminal-bindings.json",
+        "bytes": 14266,
+        "sha256": "08467737422aec83e85e6620ac8ca48f9c91cf003ce19262d623cb819c64bf9e"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-terminal-relative-caller-new-allocation.json",
+        "bytes": 10159,
+        "sha256": "ca6630c55e7cf985ed719ef0322eb18b1ab19e0f7aff9815201b9dcc606e8085"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/accepted-post-INT015-terminal-relative-caller-new-allocation.json",
+        "bytes": 10159,
+        "sha256": "ca6630c55e7cf985ed719ef0322eb18b1ab19e0f7aff9815201b9dcc606e8085"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-attempt-intent.json",
+        "bytes": 5048,
+        "sha256": "1601e7beb3a03252cf3db7c0e440c515f895764c5a068d87d0a230910006b797"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-terminal-relative-caller-attempt-intent.json",
+        "bytes": 5048,
+        "sha256": "1601e7beb3a03252cf3db7c0e440c515f895764c5a068d87d0a230910006b797"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-helper-bridge.json",
+        "bytes": 5723,
+        "sha256": "2c0760a7c89a648e6586698f0bc3420033a2ce5f9b6e6e65ac9323f283d73ac0"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-terminal-relative-caller-helper-bridge.json",
+        "bytes": 5723,
+        "sha256": "2c0760a7c89a648e6586698f0bc3420033a2ce5f9b6e6e65ac9323f283d73ac0"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-native-host-qualification.json",
+        "bytes": 8435,
+        "sha256": "b8f755a2b11fb7efe141836fbe097780a253a353d765bba422426f45abfc511b"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-terminal-relative-caller-native-host-qualification.json",
+        "bytes": 8435,
+        "sha256": "b8f755a2b11fb7efe141836fbe097780a253a353d765bba422426f45abfc511b"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-terminal-relative-caller-acquisition-closed.json",
+        "bytes": 3836,
+        "sha256": "a4b29be89ca0c6ee30399bd1b1ccbe32bc25d92afac8c85453ee46d10e586d06"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-terminal-relative-caller-acquisition-closed.json",
+        "bytes": 3836,
+        "sha256": "a4b29be89ca0c6ee30399bd1b1ccbe32bc25d92afac8c85453ee46d10e586d06"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-fresh-source-proof.json",
+        "bytes": 15649,
+        "sha256": "2efdca6202f89ff59e624e91c6a1d87b1a54240cb197326be602afcf7af1cef4"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-fresh-source-proof.json",
+        "bytes": 15649,
+        "sha256": "2efdca6202f89ff59e624e91c6a1d87b1a54240cb197326be602afcf7af1cef4"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-activation.json",
+        "bytes": 5161,
+        "sha256": "0cf9594280f54ec139ed26ca336d0bc7b151590635b4798b07e810408cc54729"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-evidence-activation.json",
+        "bytes": 5161,
+        "sha256": "0cf9594280f54ec139ed26ca336d0bc7b151590635b4798b07e810408cc54729"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-once-journal.json",
+        "bytes": 1626,
+        "sha256": "a5add78a3e16b7572d3f53160df971ea335267b572372fdf40e243204149e8b1"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-evidence-root-once-journal.json",
+        "bytes": 1626,
+        "sha256": "a5add78a3e16b7572d3f53160df971ea335267b572372fdf40e243204149e8b1"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-native-outer-receipt.json",
+        "bytes": 1991,
+        "sha256": "86b27d5a60bf1b39a129cf578d0fb5d46669010f8136795dc2eb83eb7ee7e3f4"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-evidence-root-native-outer-receipt.json",
+        "bytes": 1991,
+        "sha256": "86b27d5a60bf1b39a129cf578d0fb5d46669010f8136795dc2eb83eb7ee7e3f4"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-invocation-consumed.json",
+        "bytes": 1511,
+        "sha256": "9405394062946eb10b687684fd085901dbba6efe91a84c7364f3845e36b5f3b5"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-evidence-root-invocation-consumed.json",
+        "bytes": 1511,
+        "sha256": "9405394062946eb10b687684fd085901dbba6efe91a84c7364f3845e36b5f3b5"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+        "bytes": 9579,
+        "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/accepted-post-INT015-normal-v2-terminal-evidence-allocation.json",
+        "bytes": 9579,
+        "sha256": "2d7817afb5871c92791c8d82125eeaa64b8ade900ba5b0e2e8ac8654b4be03cf"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json",
+        "bytes": 1118,
+        "sha256": "298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-evidence-root-capture-contract.json",
+        "bytes": 1118,
+        "sha256": "298a118658a4f7d6a209756fd9758b5ccd4067b9b32ba8c2e79105fac24b18f6"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+        "bytes": 17301,
+        "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-evidence-operational-review.json",
+        "bytes": 17301,
+        "sha256": "0a0569f1beb8e45b720ad39bb2a96e5c698ea634b52cc7bb2b5d3c99d89bdbac"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/terminal-admission-caller-path-independent-review.json",
+        "bytes": 14934,
+        "sha256": "dbae4247fe257faf5b69cc24dc6e8f90ac7cec40bc2774218a55b52228f8a502"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/terminal-admission-caller-path-independent-review.json",
+        "bytes": 14934,
+        "sha256": "dbae4247fe257faf5b69cc24dc6e8f90ac7cec40bc2774218a55b52228f8a502"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-metadata-independent-qualification.json",
+        "bytes": 15810,
+        "sha256": "545db0753e2953ba8e4ed986654304736864a518577a5df6680c1083cc10aee2"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-metadata-independent-qualification.json",
+        "bytes": 15810,
+        "sha256": "545db0753e2953ba8e4ed986654304736864a518577a5df6680c1083cc10aee2"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-INT015-normal-v2-terminal-actual-native-qualification.json",
+        "bytes": 30202,
+        "sha256": "6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/post-INT015-normal-v2-terminal-actual-native-qualification.json",
+        "bytes": 30202,
+        "sha256": "6b8053fec06e02d89ce98530e56ca4d65bc858d6e4981df1ed91f56cd6266b5f"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/terminal-admission-caller-path-minimum-assessment.json",
+        "bytes": 17108,
+        "sha256": "42af0101226d42d66fc34c423747b53cfa8ff3d820dfbd24f9568e30ca19a3d2"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/terminal-admission-caller-path-minimum-assessment.json",
+        "bytes": 17108,
+        "sha256": "42af0101226d42d66fc34c423747b53cfa8ff3d820dfbd24f9568e30ca19a3d2"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-INT015-terminal-admission-path-refusal.json",
+        "bytes": 1936,
+        "sha256": "fae2f20b9503e945644a5c28911a0d6a3a00e72eba648864cf95c940d956aff5"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/root-post-INT015-terminal-admission-path-refusal.json",
+        "bytes": 1936,
+        "sha256": "fae2f20b9503e945644a5c28911a0d6a3a00e72eba648864cf95c940d956aff5"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    },
+    {
+      "source_reference": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/root-post-INT015-normal-v2-terminal-metadata-closeout.json",
+        "bytes": 1951,
+        "sha256": "d7e466eaa8a862201f0945246dec70e353eba66374b49727cea560cd34c955d3"
+      },
+      "repository_reference": {
+        "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-INT015-normal-v2-closeout/root-post-INT015-normal-v2-terminal-metadata-closeout.json",
+        "bytes": 1951,
+        "sha256": "d7e466eaa8a862201f0945246dec70e353eba66374b49727cea560cd34c955d3"
+      },
+      "copy": "BYTE_EXACT_CLOSED_SAFE_JSON"
+    }
+  ],
+  "mapping_rule": "Nested original private refs remain byte-exact historical provenance; source_reference to repository_reference maps exported safe evidence. Missing nested refs remain pinned historical inputs, not an executable or newlyverified source.",
+  "retention": "Closed safe JSON metadata/projections only. No executable collector, raw provider/log/ZIP/member/SQL/body or credential export. All operation slots remain CLOSED.",
+  "runtime_scope": "95P independentlyqualified; directrecovery1Pseparate; DB/browser scopedkeydeletionconfirmed; strongerobserver/recoveryphysical/historicalcustodyclaimsremainunqualified.",
+  "workflow_scope": "Nativeevidence snapshot. Canonical delivery and state govern later workflow completion; no release/merge/deployclaim."
+}

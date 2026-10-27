@@ -1,0 +1,161 @@
+{
+  "schema": "POST_F1_LOCATION_PLAN_TARGETED_REVALIDATION_v1",
+  "reviewer": {
+    "task": "/root/review15_5_preselected_id_high",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "same_existing_independent_reviewer": true,
+    "fresh_context_free": false,
+    "independent_from_author_and_Root": true
+  },
+  "verdict": "PASS_PLAN_ONLY_LOCATION_01_CLOSED",
+  "scope": "Only PLAN-LOCATION-01 refinement; prior transport/privacy assessment reused unchanged.",
+  "inputs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/report.md",
+      "bytes": 2163,
+      "sha256": "7531416935bcfe6c6556002fe19b8ff2c190e02527b5ca3808be44c4ebdd80c5"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/attestation.json",
+      "bytes": 7544,
+      "sha256": "cfafed92855e2642ad99f641b837c5b449fd5dbf25f65cf379d6020e476f6cab"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/location-refinement/manifest.json",
+      "bytes": 686,
+      "sha256": "da5b54c7dd48724fd30eb63c9c5d545f96861afb045b5214ac4760a86f6541a0"
+    }
+  ],
+  "original_review_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/original-report.md",
+      "bytes": 4242,
+      "sha256": "3c55a9b5e23f4b05025571f29c15acb99c6a18501aefc9bdf46d08af995a5584"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/original-attestation.json",
+      "bytes": 15816,
+      "sha256": "c203260af3148172480486b84239c59d90e832cab12563f01dd8ea533812a464"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/result.json",
+      "bytes": 1618,
+      "sha256": "3e326ceabc95297d8934faf814988d18092d6a78aec067746479373dfcc0a934"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/manifest.json",
+      "bytes": 929,
+      "sha256": "2cdb8864d7191177cc4f2147bba07f0460dcd029b2add78e2ae4d3a24ca1ce40"
+    }
+  ],
+  "immutable_assessment_refs": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/report.md",
+      "bytes": 5879,
+      "sha256": "179c1b2e6ca8d0a45e95b2bd63188bc6fd5297fee298ac2cf125d76d389d298f"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/attestation.json",
+      "bytes": 14700,
+      "sha256": "697d1079c7b4df84721f1e9ab979f0dee1ac734df73badd261d3ba435918217c"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-failure-simpler-route-assessment/manifest.json",
+      "bytes": 641,
+      "sha256": "903fbbe9062abd03321583ee56f37d0ca2d0e16d5d07e9bf722b9ad8ce80c50b"
+    }
+  ],
+  "policy": {
+    "path": "docs/process/development-completion-policy.md",
+    "bytes": 8460,
+    "sha256": "d3617c2bcfb64e0b185c82e8a39f84af40bfc5b0ddda739552d2e099c38d4893"
+  },
+  "identity": {
+    "attempt": 1,
+    "cause_proof": false,
+    "checkpoint": "9565c54d-1bbe-4a32-b647-949c02e6c404",
+    "head": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "mode": "normal",
+    "release_validation": false,
+    "run": 39664130401,
+    "source": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "current_metadata_HEAD": "9e9b6b6fe7deae5094884eb04de4a69f7144f31b"
+  },
+  "base_allowlist_ref": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-normal-checkpoint-readiness/source-bindings.json",
+    "bytes": 36163,
+    "sha256": "d401f988b77b2d4572057ac03eafc4c3ad1968ea80b4f177b462c2144b4199c8"
+  },
+  "added_source_binding": {
+    "path": "tests/integration/notifications/time-report-nudge-producer.int.test.ts",
+    "bytes": 40586,
+    "sha256": "5a8eb88f239a71d4a4f9754d36c8a264c640b533a779d0fa68ec81d0440c95cb",
+    "current_metadata_HEAD": "9e9b6b6fe7deae5094884eb04de4a69f7144f31b",
+    "current_HEAD_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+    "source_commit": "b1b476dee7c936eb4797ce3221bc07b8196a1a4a",
+    "source_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+    "pushed_checkpoint": "ce1943e01b773671e0c2e583ea6b21e56d40e81b",
+    "pushed_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+    "current_native_clean_oid": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+    "valid_lines": {
+      "minimum": 1,
+      "maximum": 497
+    },
+    "column_rule": "Null if absent; otherwise integer1..UTF16 code-unit length of that pinned decoded source line+1. Out-of-range=>SOURCE_MAPPING_REJECTED."
+  },
+  "checks": {
+    "refinement_exact_hashes": 3,
+    "immutable_assessment_hashes": 3,
+    "base_paths": 73,
+    "added_paths": 1,
+    "effective_paths": 74,
+    "excluded_nudge_context_paths": [
+      "tests/support/time-reports-atdd.ts",
+      "src/server/notifications/time-report-nudge-producer.ts",
+      "src/app/api/jobs/run/route.ts"
+    ],
+    "raw_target_bytes_SHA": true,
+    "computed_LF_clean_Git_blob": "ec7aa1b4036bc63fc0eb4a438faff4794de011ff",
+    "target_line_count": 497,
+    "target_declaration_line": 156,
+    "source_pushed_current_Git_reads": "Reused unchanged prior independent10-path ls-tree verification; no new Git commands.",
+    "artifact_member_identity_unchanged": true,
+    "only_contract_replacement": "/proposed_read/location_rule",
+    "native_or_operator_controls_executed": 0
+  },
+  "required_operator_inverse_controls": [
+    "Exact target relative and two permitted absolute root mappings accepted.",
+    "Line0/498, missing/invalid line, invalid UTF16 column rejected; missing column null.",
+    "Other three nudge paths, traversal, NUL, foreign or ambiguous roots, drive/URL remnants and unbound paths rejected without retaining raw frames.",
+    "Source raw/clean/Git mismatch STOP_UNKNOWN before mapping.",
+    "Insufficient accepted location evidence remains namedUNKNOWN, no inferred cause or automatic path expansion."
+  ],
+  "closed_findings": [
+    "PLAN-LOCATION-01"
+  ],
+  "new_findings": [],
+  "remaining_gates": [
+    "Allocate exact private operator/output paths before preparation.",
+    "Independent High actual operator source/controls/privacy/transport review; this metadata check does not qualify executable code.",
+    "Actual Coordinator two-read effect allocation, Root capability admission and once activation before GET1; no normal retry/source fix authority."
+  ],
+  "effects": {
+    "network": 0,
+    "Git_commands": 0,
+    "SQL_or_connections": 0,
+    "runtime_or_resources": 0,
+    "source_Spec_state_report_edits": 0,
+    "prior_artifact_edits": 0
+  },
+  "normal_acceptance": 0,
+  "development_complete": false,
+  "release_ready": false,
+  "new_broad_review": false,
+  "broad_reviews_completed": 3,
+  "report": {
+    "path": "_bmad-output/auto-bmad/preparation/story-15-5/post-f1-targeted-terminal-diagnostic-plan-review/location-refinement-review/report.md",
+    "bytes": 2500,
+    "sha256": "abc499acc6551c51c50cdfd5e07f34a7025be635f4dfc4401b85b236ef769fca"
+  }
+}

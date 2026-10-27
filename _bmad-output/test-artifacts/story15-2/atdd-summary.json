@@ -1,0 +1,144 @@
+{
+  "story": "15.2",
+  "workflow": "bmad-testarch-atdd",
+  "phase": "RED",
+  "sourceHead": "eb3da24daf45a13e2a29fffb020d4cd9c0c65879",
+  "executionMode": "subagent",
+  "workers": [
+    {
+      "artifact": "_bmad-output/test-artifacts/tea-atdd-api-tests-2026-10-19-story15-2.json",
+      "success": true,
+      "testCount": 51
+    },
+    {
+      "artifact": "_bmad-output/test-artifacts/tea-atdd-e2e-tests-2026-10-19-story15-2.json",
+      "success": true,
+      "testCount": 6
+    }
+  ],
+  "canonicalFiles": [
+    {
+      "path": "tests/integration/commands/booking-series.int.test.ts",
+      "lines": 601,
+      "skipRegistrationSites": 37,
+      "activeRegistrationSites": 0,
+      "sha256": "cffa823b4fb5df328bde8a5c350fe14731cd92a7847c07e9698481f12c3337bd"
+    },
+    {
+      "path": "tests/integration/rls/booking-series.rls.test.ts",
+      "lines": 228,
+      "skipRegistrationSites": 14,
+      "activeRegistrationSites": 0,
+      "sha256": "91f34fe7c576e56430bda3b21feea32754bd776b1c6d18ca069899f333b5449b"
+    },
+    {
+      "path": "tests/e2e/booking-series.e2e.spec.ts",
+      "lines": 357,
+      "skipRegistrationSites": 6,
+      "activeRegistrationSites": 0,
+      "sha256": "3ba32b8e25a82f28196da4a81af285331af437b6da334540fb3b2052ab7bc0b5"
+    },
+    {
+      "path": "tests/integration/components/booking-series.test.ts",
+      "lines": 77,
+      "skipRegistrationSites": 6,
+      "activeRegistrationSites": 0,
+      "sha256": "2f1f8f1613dd0345f28f4b5ae1d125961246753b08d764b34d7d920fa978340b"
+    },
+    {
+      "path": "tests/unit/features/scheduling/recurrence.test.ts",
+      "lines": 125,
+      "skipRegistrationSites": 10,
+      "activeRegistrationSites": 0,
+      "sha256": "9695d4e4c6463125b81a9ed6596989e21effbea437c376b0e7bfcec63b732df3"
+    },
+    {
+      "path": "tests/unit/features/resources/booking-series-state.test.ts",
+      "lines": 61,
+      "skipRegistrationSites": 6,
+      "activeRegistrationSites": 0,
+      "sha256": "8837358b997a440e63b4cbbb55c0e269bd14b308ee57bb1488e44f143709fff8"
+    },
+    {
+      "path": "tests/support/booking-series-atdd.ts",
+      "lines": 249,
+      "skipRegistrationSites": 0,
+      "activeRegistrationSites": 0,
+      "sha256": "9ac4ccf71bea1f5263c96d53b5463f1302f1a3813b1ab3eb041ea4c62f79a14b"
+    },
+    {
+      "path": "tests/e2e/support/booking-series-atdd.ts",
+      "lines": 169,
+      "skipRegistrationSites": 0,
+      "activeRegistrationSites": 0,
+      "sha256": "0a313be40933ea8a285452f5d122e7083a2d29f4c33effa5f9e276ccfcf6dd20"
+    },
+    {
+      "path": "tests/support/booking-series-unit-atdd.ts",
+      "lines": 69,
+      "skipRegistrationSites": 0,
+      "activeRegistrationSites": 0,
+      "sha256": "7c27dcedd2e90914fe5c3fd9a542021daa252331f34aa7c295b40eb18108fb6e"
+    },
+    {
+      "path": "tests/fixtures/golden/scheduling/recurrence.json",
+      "lines": 324,
+      "skipRegistrationSites": 0,
+      "activeRegistrationSites": 0,
+      "sha256": "db9407d6fe28b19122ce4d4e24181162e5132e5cbf81be3182d959d2a0607cef"
+    }
+  ],
+  "plannedCases": {
+    "command": 37,
+    "rls": 14,
+    "e2e": 6,
+    "ssr": 7,
+    "pure": 46,
+    "total": 110
+  },
+  "execution": {
+    "api": 0,
+    "rls": 0,
+    "e2e": 0,
+    "ssr": 0,
+    "pure": {
+      "mode": "activate",
+      "sourceHead": "eb3da24daf45a13e2a29fffb020d4cd9c0c65879",
+      "executable": "C:\\nvm4w\\nodejs\\node.exe",
+      "args": [
+        "--experimental-strip-types",
+        "--import",
+        "./tests/support/register.mjs",
+        "--test",
+        "--test-reporter=tap",
+        "_bmad-output\\test-artifacts\\story15-2\\red-activation\\recurrence.test.ts",
+        "_bmad-output\\test-artifacts\\story15-2\\red-activation\\booking-series-state.test.ts"
+      ],
+      "nativeExitCode": 1,
+      "signal": null,
+      "launchError": null,
+      "tests": 46,
+      "pass": 0,
+      "fail": 46,
+      "skipped": 0,
+      "provenance": [
+        {
+          "source": "tests/unit/features/scheduling/recurrence.test.ts",
+          "sha256": "9695d4e4c6463125b81a9ed6596989e21effbea437c376b0e7bfcec63b732df3"
+        },
+        {
+          "source": "tests/unit/features/resources/booking-series-state.test.ts",
+          "sha256": "8837358b997a440e63b4cbbb55c0e269bd14b308ee57bb1488e44f143709fff8"
+        }
+      ],
+      "errorCodes": [
+        "ERR_MODULE_NOT_FOUND",
+        "ERR_TEST_FAILURE"
+      ],
+      "coverageClaim": "Pure cases executed and failed at missing production module binding. No behavioral assertions reached; no acceptance pass."
+    }
+  },
+  "allCanonicalTestsSkipped": true,
+  "acceptancePassClaim": false,
+  "verificationReceipt": "_bmad-output/test-artifacts/story15-2/verification-receipt.json"
+}

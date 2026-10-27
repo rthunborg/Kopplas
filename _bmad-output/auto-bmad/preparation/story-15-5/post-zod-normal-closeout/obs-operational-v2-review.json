@@ -1,0 +1,122 @@
+{
+  "status": "PASS_POST_ZOD_NORMAL_OBSERVATION_OPERATIONAL_SOURCE_ONLY",
+  "outcome": "PASS_POST_ZOD_NORMAL_OBSERVATION_OPERATIONAL_SOURCE_ONLY",
+  "independent": true,
+  "findings": [],
+  "result": {
+    "Outcome": "PASS_POST_ZOD_NORMAL_OBSERVATION_OPERATIONAL_SOURCE_ONLY",
+    "Files changed": [
+      ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review-v2.json"
+    ],
+    "Status": {
+      "independent": true,
+      "findings": [],
+      "scope": "Targeted actual correction review of POST-ZOD-P2-01/02, consequential regressions and Root helper v2 only. No broad story round4, new corpus qualification or execution authority.",
+      "routing": "Root explicit Sol6.1 High route239e1a/native0 before dispatch",
+      "head": "eadd1436c7d807e19ef19838d2896c35abba2238",
+      "source": "81d208105ab43162a8bd13662984b0d8f9ff5e56",
+      "operation_id": "8f97ce19-2cd5-4a01-b5d2-0480a662f545",
+      "checkpoint_id": "8ffb73c6-7309-4782-9e36-8b4bcc02daeb",
+      "frozen5": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/provider.py",
+          "bytes": 20587,
+          "sha256": "62a3271253c8d7a92be7e044b61e593263c0065ba1b85f5b08fdc9c6031562c3"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/root-driver.py",
+          "bytes": 21112,
+          "sha256": "892a9ac99827e7aed7655b6e94a347ecd81cac0ec092ecff507c2b25a1faef7d"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/proposal.json",
+          "bytes": 287968,
+          "sha256": "b764d898e4fd33deb8a365998b1f36a2af3718178ba7422cb9800bc3da6a02d3"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/pure-controls.json",
+          "bytes": 6601,
+          "sha256": "b81a2f061b6aba2e7c84b4c2851672bf286e9abd05c14682be6ca3d3b63ce624"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-execution-preparation-v2/manifest.json",
+          "bytes": 1694,
+          "sha256": "ab64bde00336db351949e7c208620a43f4dee2886d48088fe310c986baed6349"
+        }
+      ],
+      "bindings": [
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-correction-v2-allocation.json",
+          "bytes": 4840,
+          "sha256": "9d53a3e557dff178b40b3f67e6710d1540cee1582778fd3776838aae5e57ace4"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-proof-admission-v2.py",
+          "bytes": 7216,
+          "sha256": "8ba90118d7735f44ce8393383f32fd37ce0043f0272178f2fac7c2763011c2ca"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-root-helper-binding-proof-v2.json",
+          "bytes": 2819,
+          "sha256": "798a424eb130d03dfa6910d00ede6c9dc3775583ba65762a1b869bb5a32b2d2c"
+        },
+        {
+          "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-future-source-hashing-scope.json",
+          "bytes": 1026,
+          "sha256": "0b094dc6f76a2743821ce3d2373bf7c298d90eba9e5caf7cd039fbbc0f1fcc88"
+        }
+      ],
+      "preserved_NONPASS": {
+        "path": ".env.epic15.mail-runtime/story-15-5-preparation/post-zod-normal-observation-operational-review.json",
+        "bytes": 15218,
+        "sha256": "1634fabbee94aec323474370c6d77af101f6df7ab16e18bcff3b6537df56f63c"
+      },
+      "resolved": [
+        {
+          "id": "POST-ZOD-P2-01",
+          "assessment": "Resolved. Actual provider module-level line97 now requires patched LF lock SHA2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95, consistent with generic input_refs, source row and two-row dependency overlay. Guard remains before exclusive intent114 and Popen131; no predicate removal or bypass.",
+          "evidence": "Pinned author controls execute only exact AST-extracted raw-lock assignment/predicate: actual current Path bytes and real hashlib produce v1 LOCK_DRIFT RED/after_guard0, v2 PASS GREEN/after_guard1. Stale-version RAM fixture and altered RAM fixture refuse with real SHA before after-guard marker. Stale fixture is not falsely described as the full historical lock. This is a qualified narrow seam, not full preGET/provider execution."
+        },
+        {
+          "id": "POST-ZOD-P2-02",
+          "assessment": "Resolved. Declared current remote-before d647, push/readback eadd, options/CLI/POST head eadd and checkpoint8ffb73c6, and post-zod state path now agree with actual unchanged driver factory. Twelve corrected declarative leaves; no wrong-target bypass claim.",
+          "evidence": "Author actual Python options assignment at line203 and statically matched JS factories support ten GREEN comparisons; v1 has nine mismatches with equal body length. Reviewer statically checked corrected fields against actual driver constants/use and independently reconstructed fixed ASCII body201 bytes/SHA55922feee52bd6887e8818f695a97b64e83637f37b879b556ee33af82dadcd9f. No reviewer function/JS execution or hosted dispatch/framing claim."
+        }
+      ],
+      "conservation": {
+        "provider": "Independent exact text inverse after only preparation path, review path and current lock data-literal reversion equals frozen v1 provider20581/cc834063ec211d0f5db12e2ba2f96d5b15e145fada6d7bb29590508be9616df7. Seven FunctionDefs are six admission/reference helpers plus readstream, all exact. There is no main FunctionDef; actual module-level lock literal did change.",
+        "driver": "Independent exact inverse of preparation/review path changes equals v1 driver21106/25a53e06e3afc1adebf41939596cf6c9e2a4ccf7a879c0eb1a3a52befea8e8b1. Seventeen non-admit functions and ADAPTER unchanged; admit differs only in versioned review path.",
+        "helper": "Independent raw inverse after two preparation-directory occurrences and expected-five map replacement equals v1 helper7210/c4cc9ab89c38c35a944bc6a6d099355494b23d1bc870193884ccded9473f4586. Five function bodies/loops unchanged; no operational-review source literal exists. The review path comes from pinned v2 proposal Root_interfaces.paths.operational_review. Both prior metadata reads use v2 proposal data, no DEBUG dependency.",
+        "unchanged_data": "Metadata comparison confirms source_bindings, terminal_source75 and terminal_catalog_delta exactly equal v1. Fixed204/75 paths, catalog448/19/199, workspace+lock overlay/generic pins, functional17457 and Zod9994 reviews/proof fields, historical restore guard and MAIN install/trigger metadata conserved. No source corpus, migration raw bytes or catalog re-extraction."
+      },
+      "control_limits": "Two overstrict pre-write control-assembly failures are retained without credit; body length remains201. Author controls are evidence, not reviewer-rerun tests. Prior virtual1positive/7refusals/default refusal and older seven groups remain reused historical controls, not renewed full provider qualification.",
+      "remaining_boundaries": [
+        "Existing default/admission, exact pin, completed finite grant, freshness, exclusive intent, capture/closure and no-retry guards remain unchanged. Same unused op/checkpoint/effect namespace is not a replay or lease reset. Candidate and every future effect path were absent before this report.",
+        "Future86 explicitly enumerated non-migration source hashes include ops/recovery/bootstrap-roles.sql. Only after separate completed finite grant/fresh proof may bytes be read for hashes with no contents retained.118 migration RAW/LF vectors remain historical with fresh Git-only equality; no preparation86 renewal or raw118 scan.",
+        "Reuse qualified unchanged finite family: one provider GET loop15s/4MiB stdout256KiB stderr plus wait2/twojoins2; remote20/push60/canonical90 and canonical4preGET1POST; resolver6/page20/5s; poll90pairs/page100/30s/5400s deadline. Loop-vs-tail limits remain explicit, not process-tree hardwalls. Source-label32768 only, no generic projection-cap claim.",
+        "A future one-NORMAL observation stops at terminal/prerequisite failure/ownership uncertainty with unused slots closed and no automatic retry. Pipe/rendered-form syntax is forgeable, not emitter authenticity, benignity, cause, native-first-throw or request linkage.",
+        "Reviewer performed only static reads/pins/text conservation and metadata comparisons. No actual reader/helper/operator/function/control/import/Node/native/network/registry/resource/Git mutation/DEBUG execution. Sole write is this new report."
+      ],
+      "execution_authority": false,
+      "normal_acceptance": 0,
+      "current_required95": "0P0F95UNEXECUTED",
+      "historical_CI_cause": "UNKNOWN",
+      "IP_question": "UNOBSERVED",
+      "P5": "OPEN",
+      "custody": "UNRESOLVED_UNCHANGED",
+      "broad_review_counter": 3,
+      "story15_6": "UNSTARTED",
+      "original_full_package_lint": "UNPASSED; tracked API recovery is distinct; original clean-checkout CI lint required"
+    },
+    "Open questions": [
+      "Actual provider qualification, future runtime result, first integration/IP metadata and custody clearance remain unobserved/unqualified."
+    ],
+    "Deferred work": [
+      "Separate completed finite grant, fresh source/provider proof and exact exclusive candidate/activation/journal materialization are required before any effect. This review grants none.",
+      "Future exact-head clean CI, original package lint,95 runtime cases, recovery/custody and delivery gates remain required; release/merge/deployment approvals remain separate."
+    ],
+    "Blockers": [
+      "No unresolved concrete defect within this targeted v2 source correction. Missing actual grant/proofs/runtime/delivery evidence still blocks execution or stronger acceptance/completion claims."
+    ]
+  }
+}

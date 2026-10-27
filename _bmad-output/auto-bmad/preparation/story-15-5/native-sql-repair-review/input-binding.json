@@ -1,0 +1,96 @@
+{
+  "kind": "post-cap-latest-native-SQL-and-privilege-assertion-delta-only",
+  "completed_review_rounds": 3,
+  "cap": 3,
+  "fourth_broad_review": false,
+  "before": "c57580580217e34a0b933a23f7c36737306333b7",
+  "source_head": "a76fc492a5273da776ba807559b2eb81d41bfe10",
+  "input_bytes": 26657,
+  "input_sha256": "9d56d85a52a2fe9e804c6b55ccae357746879de509f2efc49eaf3325cd2924cd",
+  "paths": [
+    "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+    "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+    "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+    "tests/integration/rls/calendar-feed.rls.test.ts",
+    "tests/support/calendar-feed-atdd.ts"
+  ],
+  "bindings": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+      "raw_bytes": 68221,
+      "raw_sha256": "90f2ad2bd45d9f8b6915fe268e688c44eb2e64bfa7d635d21e892fa1d4a87601",
+      "head_bytes": 68221,
+      "head_sha256": "90f2ad2bd45d9f8b6915fe268e688c44eb2e64bfa7d635d21e892fa1d4a87601",
+      "head_blob": "92ea0e5bab13cb80a8165306838a8ade3acb55c9",
+      "worktree_clean_blob": "92ea0e5bab13cb80a8165306838a8ade3acb55c9"
+    },
+    {
+      "path": "supabase/migrations/20261020220000_personal_calendar_feed.sql",
+      "raw_bytes": 24435,
+      "raw_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_bytes": 24435,
+      "head_sha256": "b57e6a1726cfac545de1cd141e26f56e6bebb4a535d1cd7f706e4a1ad3e05555",
+      "head_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+      "worktree_clean_blob": "c5d6d53faab649b40dee5c12f7933030224fa4ab"
+    },
+    {
+      "path": "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+      "raw_bytes": 7563,
+      "raw_sha256": "40186690034643019fb770250bc545627444abd29f73699b184b7f7714941279",
+      "head_bytes": 7417,
+      "head_sha256": "24984ffb2a5e1d7dc28fe8d0f10db22e84a667db0c4a01b02f9d981c77cfbce0",
+      "head_blob": "19341337ad414cecab5c0d813a0bfe4b7f9d412e",
+      "worktree_clean_blob": "19341337ad414cecab5c0d813a0bfe4b7f9d412e"
+    },
+    {
+      "path": "tests/integration/rls/calendar-feed.rls.test.ts",
+      "raw_bytes": 14662,
+      "raw_sha256": "21175773b745729deae8162e24f551f3f8eea57bdd9221cd0d0a2df1f479a7a8",
+      "head_bytes": 14433,
+      "head_sha256": "277a558e7aa94560aff25476b60fc26b335523b2a37ad503403e7e10ce38fc15",
+      "head_blob": "1ccff56bc5ceac55835dbbc31f3d5135fc0b0fbe",
+      "worktree_clean_blob": "1ccff56bc5ceac55835dbbc31f3d5135fc0b0fbe"
+    },
+    {
+      "path": "tests/support/calendar-feed-atdd.ts",
+      "raw_bytes": 60911,
+      "raw_sha256": "0a395da2d97dd56e9acf3250ef7786cca660cad4a74c74ff40a1ce5cadad1531",
+      "head_bytes": 60259,
+      "head_sha256": "731394587891c671230f3bffc13e5f51c3f69c6d3548e4ebabd78db5899c7cdd",
+      "head_blob": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05",
+      "worktree_clean_blob": "67e5000a12d4e0034fd1e4cadeb4465da8eeba05"
+    }
+  ],
+  "contexts": [
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/accepted-recovery-schema-assertion-allocation.json",
+      "bytes": 2073,
+      "sha256": "2fa8883400517d3bb268c9d1ab42605811df4669c264bb58b468b4f8479358c8"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/preparation/story-15-5/native-sql-compile-repair-route.json",
+      "bytes": 2803,
+      "sha256": "e857716acaf988739898e9d1c3e0631d23dcbd6f409b0a2a951dd290dfb7f72f"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c5758058-ci-independent/native-qualification.md",
+      "bytes": 2910,
+      "sha256": "57688ed58fbd1e8765b50085c25db8b820ebc8e95cf470061a0f028acbe82a37"
+    },
+    {
+      "path": ".env.epic15.mail-runtime/story-15-5-preparation/checkpoint-c5758058-ci-independent/native-static-sql-failure-context.json",
+      "bytes": 1621,
+      "sha256": "0aaad985319ae8a3441819c83ba0f7df1f637585612e0128a6e34f645bef8f08"
+    }
+  ],
+  "route_before_dispatch": {
+    "reviewer": "native_sql_delta_review",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "context_free": true,
+    "distinct_from_author": true,
+    "reason": "Attestation guard compilation and actual dedicated owner effective schema privilege lifecycle proof"
+  },
+  "scope": "Only latest five paths and consequential regressions; no unchanged broad review/extra principal gates.",
+  "runtime": "Native PostgreSQL compilation and all65 runtime feature bodies pending future exact-head CI; source/static review is not execution."
+}

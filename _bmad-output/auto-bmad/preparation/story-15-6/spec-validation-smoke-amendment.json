@@ -1,0 +1,27 @@
+{
+  "Outcome": "Targeted smoke-wiring planning amendment confirmed; original independent PASS remains preserved.",
+  "Files changed": [
+    "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas/_bmad-output/auto-bmad/preparation/story-15-6/spec-validation-smoke-amendment.json"
+  ],
+  "Status": {
+    "result": "PASS",
+    "scope": "Only the two recorded literal planning changes and package.json test:smoke allocation; no broad repeat or implementation review.",
+    "current_spec_bytes": 20382,
+    "current_spec_sha256": "580f559f618556d0a4f1bb9866fc0fe871a635154576e5b766d73998cb450c44",
+    "verification": [
+      "Each recorded after clause occurs exactly once. Reversing precisely those two substitutions in memory returns 20105 UTF-8 bytes and SHA256 2347eb64e6859246ce1a7e1ff45ab86038aad48a2981c70401766a98c77079a2, exactly the previously validated spec. Thus all other spec bytes, including intent/kernel, approved AC sketch, elaborated ACs and sensitive read/security contract, are unchanged.",
+      "Current package.json test:smoke is an explicit Playwright file list and omits tests/e2e/my-day.e2e.spec.ts. The amendment correctly requires that test to join the existing list and explicitly calls pnpm test:smoke alongside focused verification.",
+      "plan-result.json records package.json in proposed shared ownership and the new spec hash/size. The amendment restricts the future edit to test:smoke only and excludes dependency, lockfile, workflow and controller changes.",
+      "Read-only git status/diff inspection found no package, source, test or schema changes; no runtime, database, provider, network or Git mutation was performed. Only this validation JSON was written. Original spec-validation.json was not modified."
+    ],
+    "findings": [],
+    "review_rounds_consumed": 0,
+    "release_ready": false
+  },
+  "Open questions": [],
+  "Deferred work": [
+    "Root claims exact package.json test:smoke ownership before the implementation author adds tests/e2e/my-day.e2e.spec.ts to the list.",
+    "All previously recorded implementation, actual development verification, independent review and release deferrals remain applicable; no runtime pass is claimed."
+  ],
+  "Blockers": []
+}
