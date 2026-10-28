@@ -1,0 +1,61 @@
+{
+  "storyId": "35.2",
+  "storyKey": "35-2-tokens-font-and-real-login",
+  "workflow": "bmad-testarch-atdd",
+  "mode": "Create",
+  "workflowStatus": "completed",
+  "tdd_phase": "RED",
+  "execution": {
+    "requestedMode": "auto",
+    "resolvedMode": "subagent",
+    "probeEnabled": true,
+    "supports": { "subagent": true, "agentTeam": false },
+    "requiredWorkersCompleted": true,
+    "route": "gpt-6.1-sol high for actual authentication scope"
+  },
+  "total_new_instances": 8,
+  "api_tests": 0,
+  "e2e_tests": 4,
+  "node_handler_tests": 4,
+  "existing_e2e_active_instances_preserved": 5,
+  "all_new_instances_skipped": true,
+  "new_factories": 0,
+  "new_shared_fixtures": 0,
+  "new_production_testids": 0,
+  "priority_instances": { "P0": 2, "P1": 6, "P2": 0, "P3": 0 },
+  "traceability_bindings": { "canonical_acceptance": 7, "owned_states": 9 },
+  "worker_outputs": [
+    "_bmad-output/test-artifacts/atdd-35-2-api-output.json",
+    "_bmad-output/test-artifacts/atdd-35-2-e2e-output.json"
+  ],
+  "generatedTestFiles": [
+    "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+    "tests/unit/auth/login-submission.test.ts"
+  ],
+  "checklist": "_bmad-output/test-artifacts/atdd-checklist-35-2-tokens-font-and-real-login.md",
+  "validation": {
+    "frozen_install": "passed; unchanged package and lockfile",
+    "typecheck": "passed",
+    "focused_eslint": "passed after correcting test-local module variable name",
+    "node_scaffold_discovery": { "pass": 0, "fail": 0, "skipped": 4 },
+    "focused_actual_red": {
+      "node_exit": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0,
+      "expected_active_dispatches": 1,
+      "observed_active_dispatches": 3,
+      "original_skipped_bytes_restored": true,
+      "scope": "Actual TSX direct form-handler invocation with isolated React hook/client/router seams. Not real click/Enter reachability, cookie authority or provider issuance proof."
+    },
+    "browser_auth_db_runtime": "not-executed",
+    "behavioral_acceptance": "pending"
+  },
+  "pact_mcp_reachable": false,
+  "playwright_utils_installed": false,
+  "pact_relevance": "not-applicable",
+  "product_code_changed": false,
+  "story_or_spec_changed": false,
+  "managed_resources_launched": false,
+  "release_ready": false
+}

@@ -9,34 +9,35 @@ spec_folder: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2"
 story_id: 35-2
 branch: codex/story-35-2-foundations-login
 status: in-progress
-updated_at: "2026-10-28T09:31:01Z"
+updated_at: "2026-10-28T09:41:27Z"
 started_at: "2026-10-28T09:15:07Z"
 completed_at: null
-active_seconds: 909
-timing_anchor: 1793179861
+active_seconds: 1535
+timing_anchor: 1793180487
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_per_story
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: high
+selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: authentication"
+escalation_reason: Retain persisted low effort for the in-flight task
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Retain persisted low effort for the in-flight task\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Real login is authentication-facing under TEA rubric; preserve existing authority. No long-epic advisory for one-story folder."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2, 3]
+completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md"
 spec_approved: true
 build:
@@ -56,7 +57,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [e1f02d48, d5fc62a8]
+commits: [e1f02d48, d5fc62a8, 5f58e05d]
 phase8_steps:
   trace_gate: null
   nfr: null
