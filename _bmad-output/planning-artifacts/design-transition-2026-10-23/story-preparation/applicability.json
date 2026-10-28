@@ -1,0 +1,849 @@
+{
+  "date": "2026-10-26",
+  "semantics": {
+    "applies": "owned behavior",
+    "inherited": "affected existing contract regression",
+    "not_applicable": "no added feature/test"
+  },
+  "specs": [
+    {
+      "id": "35.1",
+      "applies": [
+        "documentation authority/base/link/hash/index/handoff checks"
+      ],
+      "inherited": [
+        "downstream implementation requirements represented, not executed"
+      ],
+      "not_applicable": [
+        "all common live UI/state/file/runtime suites"
+      ],
+      "reason": "Documentation-only output."
+    },
+    {
+      "id": "35.2",
+      "applies": [
+        "loading",
+        "loaded",
+        "validation",
+        "denied",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "confirmed"
+      ],
+      "inherited": [
+        "revoked"
+      ],
+      "not_applicable": [
+        "empty",
+        "no-match",
+        "unavailable",
+        "stale",
+        "locked",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "reason": "Login form; no record list, dialog, file flow or capture.",
+      "files": {
+        "classification": "N/A",
+        "reason": "None; no file operation."
+      }
+    },
+    {
+      "id": "35.3",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [
+        "locked"
+      ],
+      "not_applicable": [
+        "unavailable"
+      ],
+      "reason": "Real customer list/form; source entity file panel remains an inherited consumer.",
+      "files": {
+        "classification": "Inherited regression",
+        "reason": "Existing CRM entity panel only; no new upload consumer in representative edit."
+      }
+    },
+    {
+      "id": "35.4",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "locked",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [
+        "no-match"
+      ],
+      "not_applicable": [],
+      "reason": "Real selected-file/dialog consumers; existing upload substrate is regression scope, not a new capture flow.",
+      "files": {
+        "classification": "Applies + inherited regression",
+        "reason": "Selected-link preview/expiry/denial/lock/lifecycle presentation applies; existing type/size/upload/link/partial mechanics are inherited unless changed."
+      }
+    },
+    {
+      "id": "35.5",
+      "applies": [
+        "loading",
+        "loaded",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "error-retry",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [
+        "dirty-navigation",
+        "submitting",
+        "unknown",
+        "confirmed",
+        "stale"
+      ],
+      "not_applicable": [
+        "empty",
+        "no-match",
+        "validation",
+        "locked"
+      ],
+      "reason": "Shell/nav/drawer owns no new domain editor or file operation; preserve consumer guards and sign-out semantics.",
+      "files": {
+        "classification": "N/A",
+        "reason": "No shell file command; destination file behavior belongs to its feature."
+      }
+    },
+    {
+      "id": "35.6",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [
+        "locked",
+        "unavailable"
+      ],
+      "not_applicable": [],
+      "reason": "CRM forms/list and actual entity panels; BookingEntry behavior is inherited E14/E15 scope.",
+      "files": {
+        "classification": "Applies + inherited regression",
+        "reason": "Existing customer entity panel/context preview/upload states apply; byte validation and storage authority remain inherited."
+      }
+    },
+    {
+      "id": "35.7",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "locked",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "unavailable"
+      ],
+      "reason": "Actual settings/pricing forms; no new upload or modal is required.",
+      "files": {
+        "classification": "N/A",
+        "reason": "No new branding or other upload is in this bounded settings/pricing scope."
+      }
+    },
+    {
+      "id": "35.8",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "locked",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [
+        "unavailable"
+      ],
+      "not_applicable": [],
+      "reason": "Existing calculation editor/review and linked source files; no new camera flow.",
+      "files": {
+        "classification": "Inherited regression",
+        "reason": "Existing calculation file/source links; no new upload/capture requirement."
+      }
+    },
+    {
+      "id": "35.9",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "locked",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [],
+      "not_applicable": [],
+      "reason": "Actual quote/PDF/manual acceptance forms/dialogs and evidence; preserve current commands and golden/provenance guards.",
+      "files": {
+        "classification": "Applies + inherited regression",
+        "reason": "Generated PDF/selected attachment/evidence/expiry/locks apply; storage policy/goldens inherited; no camera/multi-shot."
+      }
+    },
+    {
+      "id": "35.10",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "locked",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [],
+      "not_applicable": [],
+      "reason": "Integrated five-tab job flow/files; booking behavior inherited, authoritative E18 completion N/A.",
+      "files": {
+        "classification": "Applies + inherited regression",
+        "reason": "Actual job/work-order Filer presentation applies; existing upload/selected-link/lock authority inherited; no E18 photo pool."
+      }
+    },
+    {
+      "id": "35.11",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "locked",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [],
+      "not_applicable": [],
+      "reason": "Actual Documents filters/preview/lifecycle and entity files; camera/multi-shot N/A.",
+      "files": {
+        "classification": "Applies + inherited regression",
+        "reason": "Actual source-authorized preview/archive/restore/context and upload-panel states apply; storage enforcement inherited."
+      }
+    },
+    {
+      "id": "35.12",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [
+        "locked"
+      ],
+      "not_applicable": [],
+      "reason": "Conditional on actual DT-B15 consumers; no new attachment or completion command.",
+      "files": {
+        "classification": "N/A",
+        "reason": "Scheduling adds no file command; linked entity destinations retain their own file behavior."
+      }
+    },
+    {
+      "id": "35.13",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "locked",
+        "focus-dialog"
+      ],
+      "not_applicable": [],
+      "reason": "Conditional on actual integrated E15 forms; no new field capture or payroll behavior.",
+      "files": {
+        "classification": "N/A",
+        "reason": "No new time/profile capture; future diary/photos are E18.1-owned."
+      }
+    },
+    {
+      "id": "35.14",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "error-retry",
+        "stale",
+        "late-result"
+      ],
+      "inherited": [],
+      "not_applicable": [
+        "validation",
+        "submitting",
+        "unknown",
+        "confirmed",
+        "locked",
+        "dirty-navigation",
+        "focus-dialog"
+      ],
+      "reason": "Read-only WidgetCard/pipeline; no save, lock, draft, dialog or file command.",
+      "files": {
+        "classification": "N/A",
+        "reason": "Widget deep link is not an upload/download operation."
+      }
+    },
+    {
+      "id": "35.15",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "denied",
+        "revoked",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "late-result"
+      ],
+      "inherited": [
+        "dirty-navigation",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "no-match",
+        "validation",
+        "unavailable",
+        "locked"
+      ],
+      "reason": "Notification reads/acknowledgements/preferences and existing popover; no new search/lock/file flow.",
+      "files": {
+        "classification": "N/A",
+        "reason": "Notification deep links do not make the center a file consumer."
+      }
+    },
+    {
+      "id": "35.16",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "no-match",
+        "locked",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "unavailable"
+      ],
+      "reason": "Existing invitation/user/role forms; resource-profile visual edits belong to 35.13; no HR files.",
+      "files": {
+        "classification": "N/A",
+        "reason": "No HR or user-file feature in scope."
+      }
+    },
+    {
+      "id": "35.17",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "late-result"
+      ],
+      "inherited": [
+        "validation",
+        "dirty-navigation",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "no-match",
+        "locked"
+      ],
+      "reason": "Checklist/dismiss/reminder owns no settings editor, new wizard, lock or attachment; linked settings own their guards.",
+      "files": {
+        "classification": "N/A",
+        "reason": "Checklist links are not attachment operations."
+      }
+    },
+    {
+      "id": "35.18",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "no-match",
+        "locked"
+      ],
+      "reason": "Existing operator wizard/grant-bound recovery; no file, new popup or money workflow.",
+      "files": {
+        "classification": "N/A",
+        "reason": "Operator grants are not file artifacts."
+      }
+    },
+    {
+      "id": "35.19",
+      "applies": [
+        "loading",
+        "loaded",
+        "validation",
+        "denied",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "confirmed"
+      ],
+      "inherited": [
+        "revoked",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "not_applicable": [
+        "empty",
+        "no-match",
+        "unavailable",
+        "stale",
+        "locked",
+        "focus-dialog"
+      ],
+      "reason": "Existing auth/invite/recovery/unsubscribe; invalid/expired tokens are auth outcomes, not a new record lock or file flow.",
+      "files": {
+        "classification": "N/A",
+        "reason": "Auth/public tokens are not uploaded files."
+      }
+    },
+    {
+      "id": "17.1",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "no-match",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "locked",
+        "focus-dialog"
+      ],
+      "not_applicable": [],
+      "reason": "Usage/request contracts remain decision-blocked; photos/files only if actually required and authorized, not inferred.",
+      "files": {
+        "classification": "N/A unless approved requirement identifies a file consumer",
+        "reason": "Do not infer request/usage photos from generic template; F1/M3 remain blockers."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    },
+    {
+      "id": "17.2",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "locked",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "no-match"
+      ],
+      "reason": "Plan editor lifecycle/locks await M6/C8; no attachment or capture requirement.",
+      "files": {
+        "classification": "N/A",
+        "reason": "Plan amounts/items have no attachment flow."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    },
+    {
+      "id": "17.3",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "error-retry",
+        "stale",
+        "late-result"
+      ],
+      "inherited": [],
+      "not_applicable": [
+        "no-match",
+        "validation",
+        "submitting",
+        "unknown",
+        "confirmed",
+        "locked",
+        "dirty-navigation",
+        "focus-dialog"
+      ],
+      "reason": "Economy rollup is a read-model; no new input form, save command, dialog, upload or lock workflow.",
+      "files": {
+        "classification": "Inherited regression",
+        "reason": "Accepted quote/source identity remains; rollup owns no new file operation."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    },
+    {
+      "id": "17.4",
+      "applies": [],
+      "inherited": [
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "unknown",
+        "stale",
+        "confirmed",
+        "locked"
+      ],
+      "not_applicable": [
+        "loading",
+        "no-match",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "dirty-navigation",
+        "late-result",
+        "focus-dialog"
+      ],
+      "reason": "Golden/seam proof owns no rendered UI or live command; only existing model cases relevant to resolved money/projection policies are inherited assertions.",
+      "files": {
+        "classification": "N/A to live file tests",
+        "reason": "Fixture/source provenance assertions only; no upload/sign/preview/browser requirement."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    },
+    {
+      "id": "18.1",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "locked",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "no-match"
+      ],
+      "reason": "Diary text/photo contracts; actual camera/multi-shot/caption/per-file outcomes apply after decisions; no photo search feature inferred.",
+      "files": {
+        "classification": "Applies after contract resolution",
+        "reason": "Independent upload/link/progress/partial/unknown/lifetime, caption/camera/multi-shot/one pool; current storage policy inherited."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    },
+    {
+      "id": "18.2",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "dirty-navigation",
+        "late-result"
+      ],
+      "inherited": [
+        "locked",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "no-match"
+      ],
+      "reason": "Separate deviation/risk/member-chat; attachment states apply to approved photos only, not invented risk/chat uploads/search.",
+      "files": {
+        "classification": "Applies only to approved deviation photos",
+        "reason": "No risk/chat uploads inferred. Current selected-link/type/size policy remains inherited."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    },
+    {
+      "id": "18.3",
+      "applies": [
+        "loading",
+        "loaded",
+        "empty",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "late-result"
+      ],
+      "inherited": [
+        "locked",
+        "dirty-navigation",
+        "focus-dialog"
+      ],
+      "not_applicable": [
+        "no-match"
+      ],
+      "reason": "Report request/download/expiry/version projection; no user-upload, camera or multi-shot feature; catalogue/lifecycle blocked.",
+      "files": {
+        "classification": "Applies to generated artifacts only",
+        "reason": "Versioned ready/download/expiry/reauthorization/denial apply; local selection/camera/multi-shot/upload progress N/A."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    },
+    {
+      "id": "18.4",
+      "applies": [
+        "loading",
+        "loaded",
+        "validation",
+        "denied",
+        "revoked",
+        "unavailable",
+        "connection-required",
+        "submitting",
+        "error-retry",
+        "unknown",
+        "stale",
+        "confirmed",
+        "locked",
+        "late-result",
+        "focus-dialog"
+      ],
+      "inherited": [
+        "dirty-navigation"
+      ],
+      "not_applicable": [
+        "empty",
+        "no-match"
+      ],
+      "reason": "Completion confirmation/reconciliation; no upload/search/empty-list or new work editor; actual post-completion write guards remain C8 decisions.",
+      "files": {
+        "classification": "N/A to upload/download",
+        "reason": "C8 defines downstream write locks; completion itself uploads nothing."
+      },
+      "decision_disposition": "DR-B1\u2013DR-B7 accepted; application/contracts-and-gates.md maps remaining technical/dependency/evidence gaps; classifications add no UI/features."
+    }
+  ],
+  "accepted_decisions_amendment": "2026-10-26; existing classifications unchanged"
+}
