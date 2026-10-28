@@ -328,3 +328,15 @@ Renderer defaults when a key is absent: `Overrides` → `none`, `Build` → `not
 
 **Next:** Human review: `/bmad-checkpoint-preview <pr_url | branch>` (spec: `<spec_path>`); then `/auto-bmad` (sprint_plan.py status recommends the next story; stories mode: `/auto-bmad --spec <folder>` picks the next stories.yaml entry). <epic end: "Project context: run /bmad-project-context refresh (recommended after an epic)."> — preview only; do NOT start the next story.
 ```
+
+## Sequential PR-strategy extension (2026-10-28)
+
+For fresh ordinary sequential epics only, `pr_strategy_json` is an immutable
+versioned JSON scalar on the existing epic anchor. Story state carries immutable
+`publication_identity_json` plus separate development/publication/CI/review/visual/
+merge fields listed in `sequential-pr-strategy.md`. Existing writer preserves
+these extension fields; no stories.yaml or separate tracker is introduced.
+Pending publication is resumable, not status done. Legacy anchors without the
+field retain legacy semantics. Aggregate anchor state belongs to the coordinator
+control context; never copy pending sibling anchor/sprint snapshots into story
+branches. Import only exact immutable per-story receipts into aggregate state.

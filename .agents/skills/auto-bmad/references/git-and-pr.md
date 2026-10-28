@@ -227,3 +227,11 @@ Epic mode produces **one** of each artifact for a whole epic (`epic-pipeline.md`
 - Leave the branch checked out.
 - The final report tells the user the branch name and that no GitHub remote/`gh` was found — so they can push/PR manually if they wish.
 - Epic mode is the same — one `epic/{e}-{slug}` branch, no PR.
+
+## Fresh sequential publication override — 2026-10-28
+
+Before applying epic branch/PR/no-checkpoint-push/deletion instructions here,
+read `sequential-pr-strategy.md`. Its isolated per-story publication, source
+checkpoint, pending/resume and retained-branch rules apply to a fresh ordinary
+sequential epic pinned `story-pr`. Single-story, legacy anchors without strategy,
+backend-only `epic-pr` and explicit parallel runs retain their existing route.
