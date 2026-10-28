@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2"
 story_id: 35-2
 branch: codex/story-35-2-foundations-login
 status: in-progress
-updated_at: "2026-10-28T09:41:27Z"
+updated_at: "2026-10-28T11:29:36Z"
 started_at: "2026-10-28T09:15:07Z"
 completed_at: null
-active_seconds: 1535
-timing_anchor: 1793180487
+active_seconds: 8023
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -41,9 +41,9 @@ completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md"
 spec_approved: true
 build:
-  status: ready-for-dev
-  blocking_condition: null
-  followup_review_recommended: false
+  status: blocked
+  blocking_condition: "full unit has 2 reproduced unchanged CRLF failures; the reviewed two-worker required integration/RLS run has 43 failures/52 skips/14 pending and 3 unentered files; isolated recovery-storage and affected inherited consumer/capture evidence are unfinished. Final exact-head PR/CI, build/captures, authenticated owner visual acceptance and trusted hosted source/policy integration remain unmet."
+  followup_review_recommended: true
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
@@ -82,7 +82,8 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "full unit has 2 reproduced unchanged CRLF failures; the reviewed two-worker required integration/RLS run has 43 failures/52 skips/14 pending and 3 unentered files; isolated recovery-storage and affected inherited consumer/capture evidence are unfinished. Final exact-head PR/CI, build/captures, authenticated owner visual acceptance and trusted hosted source/policy integration remain unmet."
 overrides:
   approval_record: docs/quality/story-35-2-approved-admission-2026-10-28.json
   approved_candidate: 65be26c5e6e2923ea0298160f4da54a987bed0fe
@@ -93,5 +94,5 @@ overrides:
 constraints:
   - No merge/deploy/dbpush/global tracking/wholeE35
   - Official Inter v4.1 exact approved bytes
-  - No managed resource launches while root actor hook unavailable
+  - "Root hook restored by direct owner Continue; managed resources remain guard-owned"
   - Initial owner visual acceptance after actual rendering
