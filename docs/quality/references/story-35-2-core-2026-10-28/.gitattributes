@@ -1,0 +1,4 @@
+# Render provenance binds exact input bytes, including CRLF endings.
+*.html -text whitespace=cr-at-eol
+*.css -text whitespace=cr-at-eol
+*.json -text whitespace=cr-at-eol
