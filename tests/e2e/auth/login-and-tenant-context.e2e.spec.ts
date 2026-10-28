@@ -123,7 +123,7 @@ test.describe("Login + tenant-context display (Story 2.1 E2E — G-2/G-3)", () =
 });
 
 /**
- * Story 35.2 RED scaffolds. Selectors are source-derived, not browser-verified.
+ * Story 35.2 actual login caller and foundation coverage.
  * Existing five Story 2.1 cases above remain active and unchanged.
  *
  * E35-2-T-AC1/2/4/5: bounded rendered login foundation/focus/reflow evidence.
@@ -135,9 +135,39 @@ test.describe("Login + tenant-context display (Story 2.1 E2E — G-2/G-3)", () =
  * Existing role/orphan/logout cases supply inherited authority coverage; this
  * does not create another role matrix or a dialog/file flow.
  */
-test.describe("Story 35.2 — real login and accessible foundations (ATDD RED)", () => {
+test.describe("Story 35.2 — real login and accessible foundations", () => {
   // Retained credential values must not become trace/video/screenshot artifacts.
   test.use({ trace: "off", video: "off", screenshot: "off" });
+
+  test.describe("Native credential privacy before JavaScript hydration", () => {
+    test.use({ javaScriptEnabled: false });
+
+    test("[P1] E35-2-T-AC3/7: native submission uses POST without credentials in the URL", async ({ page }) => {
+      const nativeEmail = "native-form@example.invalid";
+      const nativePassword = "synthetic-native-form-password-35-2";
+      await page.goto("/login");
+      await page.getByLabel("E-post", { exact: true }).fill(nativeEmail);
+      await page.getByLabel("Lösenord", { exact: true }).fill(nativePassword);
+      const requestPromise = page.waitForRequest(request =>
+        request.isNavigationRequest() && new URL(request.url()).pathname === "/login");
+      await page.getByRole("button", { name: "Logga in", exact: true }).click();
+      const request = await requestPromise;
+      expect(request.method()).toBe("POST");
+      // Verify the credentials actually participated in native form submission,
+      // without printing the synthetic body or retaining a trace/screenshot.
+      const body = new URLSearchParams(request.postData() ?? "");
+      expect(body.get("email") === nativeEmail).toBe(true);
+      expect(body.get("password") === nativePassword).toBe(true);
+      for (const url of [request.url(), page.url()]) {
+        expect(url.includes(nativeEmail) || url.includes(encodeURIComponent(nativeEmail))).toBe(false);
+        expect(url.includes(nativePassword) || url.includes(encodeURIComponent(nativePassword))).toBe(false);
+        expect(new URL(url).search).toBe("");
+      }
+      await expect(page.getByTestId("tenant-context")).toHaveCount(0);
+      // No JavaScript means no SDK Auth call or supported login completion.
+      // This case proves native method/privacy only, not successful sign-in.
+    });
+  });
 
   const viewports = [
     { width: 360, height: 640 },
@@ -195,7 +225,7 @@ test.describe("Story 35.2 — real login and accessible foundations (ATDD RED)",
   }
 
   for (const viewport of viewports) {
-    test.skip(`[P0] E35-2-T-AC7; [P1] E35-2-T-AC3/4/6: invalid then corrected keyboard sign-in confirms current tenant/user at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+    test(`[P0] E35-2-T-AC7; [P1] E35-2-T-AC3/4/6: invalid then corrected keyboard sign-in confirms current tenant/user at ${viewport.width}x${viewport.height}`, async ({ page }) => {
       await page.setViewportSize(viewport);
       await page.goto("/login");
       const main = page.getByRole("main");
@@ -220,6 +250,9 @@ test.describe("Story 35.2 — real login and accessible foundations (ATDD RED)",
       // not a mocked token response and not evidence of authenticated membership.
       const error = main.getByRole("alert");
       await expect(error).toHaveText("Fel e-post eller lösenord. Försök igen.");
+      await expect(error).toBeFocused();
+      await expect(email).toHaveAttribute("aria-describedby", "login-error");
+      await expect(password).toHaveAttribute("aria-describedby", "login-error");
       await expect(page).toHaveURL(/\/login(\?|$)/);
       await expect(email).toHaveValue(fixture.adminA.email);
       expect(await password.inputValue() === invalidPassword, "Rejected input remains in memory").toBe(true);
@@ -262,7 +295,7 @@ test.describe("Story 35.2 — real login and accessible foundations (ATDD RED)",
       await expect(page.getByTestId("current-user")).toContainText(fixture.adminA.email);
     });
 
-    test.skip(`[P1] E35-2-T-AC1/2/4/5: plain wordmark, local font, readable keyboard focus and enlarged reflow at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+    test(`[P1] E35-2-T-AC1/2/4/5: plain wordmark, local font, readable keyboard focus and enlarged reflow at ${viewport.width}x${viewport.height}`, async ({ page }) => {
       await page.setViewportSize(viewport);
       await page.goto("/login");
       const main = page.getByRole("main");
@@ -312,24 +345,133 @@ test.describe("Story 35.2 — real login and accessible foundations (ATDD RED)",
         await expect(control).toBeInViewport();
         const focus = await control.evaluate((element) => {
           const style = getComputedStyle(element);
+          const luminance = (color: string) => {
+            const channels = color.match(/[\d.]+/g)!.slice(0, 3).map(Number).map(channel => {
+              const value = channel / 255;
+              return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+            });
+            return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+          };
+          // The input uses an inset outline; the action uses an offset outline.
+          const surface = parseFloat(style.outlineOffset) < 0
+            ? style.backgroundColor : getComputedStyle(element.parentElement!).backgroundColor;
+          const background = surface === "rgba(0, 0, 0, 0)" ? "rgb(255, 255, 255)" : surface;
+          const a = luminance(style.outlineColor);
+          const b = luminance(background);
           return {
             signature: `${style.outlineStyle}/${style.outlineWidth}/${style.outlineColor}/${style.boxShadow}`,
             indicator: (style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0) || style.boxShadow !== "none",
+            contrast: (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05),
           };
         });
         expect(focus.signature, "Keyboard focus changes the visible control treatment").not.toBe(before);
         expect(focus.indicator, "Focused controls have a visible outline or ring").toBe(true);
+        expect(focus.contrast, "Actual non-text focus indicator contrast").toBeGreaterThanOrEqual(3);
       }
 
       // Exercise actual text enlargement without adding a product state hook.
       // This desktop-browser check does not claim virtual-keyboard emulation.
-      await page.evaluate(() => { document.documentElement.style.fontSize = "200%"; });
+      await page.evaluate(() => { document.body.style.zoom = "2"; });
       await expectNoHorizontalOverflow(page);
       for (const control of [email, password, submit]) {
         await control.scrollIntoViewIfNeeded();
         await expect(control).toBeInViewport();
       }
       await expect(submit).toBeEnabled();
+
+      if (viewport.width === 360) {
+        await page.evaluate(() => { document.body.style.zoom = "1"; });
+        await page.setViewportSize({ width: 360, height: 320 });
+        // A reduced available viewport exercises scroll/reachability; it does
+        // not claim an actual device virtual-keyboard or screen-reader check.
+        for (const control of [email, password, submit]) {
+          await control.focus();
+          await control.scrollIntoViewIfNeeded();
+          await expect(control).toBeInViewport();
+        }
+        await expectNoHorizontalOverflow(page);
+      }
+    });
+
+    test(`[P1] E35-2-T-loading/submitting/confirmed; E35-2-T-AC2/3/6: delayed real Auth rejects duplicate form submissions at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+      await page.setViewportSize(viewport);
+      await page.goto("/login");
+      const main = page.getByRole("main");
+      const submit = main.getByRole("button", { name: "Logga in", exact: true });
+      await waitForHydrated(submit);
+      await main.getByLabel("E-post").fill(fixture.adminA.email);
+      await main.getByLabel("Lösenord").fill(fixture.adminA.password);
+      let release!: () => void;
+      const held = new Promise<void>(resolve => { release = resolve; });
+      let dispatched = 0;
+      await page.route("**/auth/v1/token?grant_type=password", async route => {
+        dispatched++;
+        await held;
+        await route.continue();
+      });
+      try {
+        await submit.click();
+        const pending = main.getByRole("button", { name: "Loggar in…", exact: true });
+        await expect(pending).toBeDisabled();
+        await expectReadableText(pending);
+        await main.getByLabel("Lösenord").press("Enter");
+        // Also exercise actual submit events that bypass the disabled button,
+        // including two gestures in one browser turn before a React render.
+        await main.locator("form").evaluate((form: HTMLFormElement) => {
+          form.requestSubmit();
+          form.requestSubmit();
+        });
+        await expect.poll(() => dispatched).toBe(1);
+        await expect(page).toHaveURL(/\/login(\?|$)/);
+        await expect(page.getByTestId("tenant-context")).toHaveCount(0);
+      } finally {
+        release();
+      }
+      await expect(page).toHaveURL(/\/dashboard/);
+      expect(dispatched, "Only one real Auth request was dispatched").toBe(1);
+      await expect(page.getByTestId("current-user")).toContainText(fixture.adminA.email);
+    });
+
+    test(`[P1] E35-2-T-connection-required/error-retry/unknown; E35-2-T-AC3/6: actual SDK transport failure retains input until explicit retry at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+      await page.setViewportSize(viewport);
+      await page.goto("/login");
+      const main = page.getByRole("main");
+      const submit = main.getByRole("button", { name: "Logga in", exact: true });
+      await waitForHydrated(submit);
+      const email = main.getByLabel("E-post");
+      const password = main.getByLabel("Lösenord");
+      await email.fill(fixture.adminA.email);
+      await password.fill(fixture.adminA.password);
+      let dispatched = 0;
+      await page.route("**/auth/v1/token?grant_type=password", async route => {
+        dispatched++;
+        await route.abort("connectionfailed");
+      });
+      await submit.click();
+      const error = main.getByRole("alert");
+      await expect(error).toHaveText("Inloggningen kunde inte bekräftas. Kontrollera inloggningen innan du försöker igen.");
+      await expect(error).toBeFocused();
+      await expect(error).toBeInViewport();
+      await expect(submit).toBeDisabled();
+      await expectReadableText(error);
+      await expect(email).toHaveValue(fixture.adminA.email);
+      expect(await password.inputValue() === fixture.adminA.password, "Unsent values remain only in memory").toBe(true);
+      expect(dispatched, "No automatic credential replay").toBe(1);
+      await expect(page).toHaveURL(/\/login(\?|$)/);
+      await expect(page.getByTestId("tenant-context")).toHaveCount(0);
+      await main.locator("form").evaluate((form: HTMLFormElement) => form.requestSubmit());
+      expect(dispatched, "Unconfirmed outcome cannot be blindly resubmitted").toBe(1);
+      // Aborting a request proves failure feedback, not whether a provider issued
+      // a session after response loss. Cookie-bound reload is covered separately.
+      await page.unroute("**/auth/v1/token?grant_type=password");
+      await main.getByRole("link", { name: "Kontrollera inloggningen" }).click();
+      await expect(page).toHaveURL(/\/login(\?|$)/);
+      await waitForHydrated(page.getByRole("button", { name: "Logga in", exact: true }));
+      await page.getByLabel("E-post").fill(fixture.adminA.email);
+      await page.getByLabel("Lösenord").fill(fixture.adminA.password);
+      await page.getByLabel("Lösenord").press("Enter");
+      await expect(page).toHaveURL(/\/dashboard/);
+      await expect(page.getByTestId("current-user")).toContainText(fixture.adminA.email);
     });
   }
 });

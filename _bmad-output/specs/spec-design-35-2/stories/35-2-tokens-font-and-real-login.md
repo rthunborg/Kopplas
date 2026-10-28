@@ -2,9 +2,9 @@
 title: 'Story 35.2: Tokens Font And Real Login'
 type: feature
 created: '2026-10-28'
-status: ready-for-dev
+status: in-review
 tracking_key: 35-2-tokens-font-and-real-login
-baseline_revision: 65be26c5e6e2923ea0298160f4da54a987bed0fe
+baseline_revision: 5b167f1be0b3d96c1d7e9d53737211e3008eeb7e
 planning_revision: d5fc62a88a25bf345754e3f62e5bbea7af964337
 review_loop_iteration: 0
 followup_review_recommended: false
@@ -86,9 +86,33 @@ deferred: []
 
 ## Review Triage Log
 
+2026-10-28 targeted High follow-up: no findings; both fixes present, transport/unknown remain guarded, server session/tenant authority unchanged. Browser execution/visual acceptance still pending; source review is not runtime evidence.
+
+2026-10-28 targeted follow-up route selected before dispatch: gpt-6.1-sol High independent reviewer checks only review-1 auth rejection/native-submit fixes and their regressions, not a new broad review. Author reports focused handler 9 passed/0 failed/0 skipped and targeted lint/type/containment passing; real browser still pending.
+
+### 2026-10-28 — Review pass 1
+- intent_gap: 0
+- bad_spec: 0
+- patch: 2: (high 0, medium 2, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - implemented by Sol High; targeted independent High review passed: distinguish explicit provider validation/rate-limit rejection from ambiguous transport outcomes; retain generic feedback and suitable input for corrected explicit retry. Blind, edge and external reports describe the same required action and are deduplicated.
+  - implemented by Sol High; actual browser execution pending: exercise actual native form submission before hydration/with JavaScript disabled and prove POST/no credentials in navigation URL.
+
+Review evidence limits: foundation-only Low and security High reported no findings; intent alignment records missing runtime/inherited/response-loss/keyboard evidence already explicitly pending, not a completion claim. The external Codex High reviewer produced its report, but the prescribed CMD final display returned exit1, `The system cannot find the file specified.`; the existing output report was read through PowerShell with no rerun. Full local unit remains failed on two baseline CRLF-sensitive assertions, not passed. Fix route selected before dispatch: original context-free Sol High author, authentication classification/native submission safety. No broad second review is started by this batch.
+
+2026-10-28: independent product review round 1 is running against baseline 5b167f1be0b3d96c1d7e9d53737211e3008eeb7e plus the captured candidate diff SHA-256 da11cd82f6f0c43f9fedaa4a8d47bf409c1fc70e3bd9e925296e44585f353e39. Font/token-only Sol Low; actual auth/caller, blind/edge/verification/intent/security and external Codex Sol High. Runtime and visual acceptance remain pending; no readiness verdict.
+
 No implementation review run in this planning phase.
 
 ## Design Notes
+
+2026-10-28 verification continuation: existing context-free Sol High author re-engaged for bounded read-only baseline-byte proof of the unchanged privileged calendar-runtime test failures; no CI/security path edits. Review routes selected before upcoming dispatch: font/layout/token-only review Sol Low; actual auth state/caller diff, security and external Codex review Sol High because changed submission and session reconciliation are sensitive. No production story review round completed yet.
+
+2026-10-28 split ownership: Build Auto Sol Low authors official-font packaging, root layout and additive semantic tokens. Context-free Sol High implementation author owns only login page and allocated auth tests, including presentation in that file; no concurrent page author. Numeric Tailwind spacing and existing consumer classes remain intact. Font archive and all three members matched approved hashes before byte-for-byte installation.
+
+2026-10-28 implementation dispatch: gpt-6.1-sol High, context-free, because the approved scope includes actual authentication submission and session-authority behavior. Independent sensitive review will also use High. This does not reconfigure the Low Build Auto delegate.
 
 Owner-authorized routine composition follows the existing binding: constrained credential group, white background, Inter 500 plain wordmark, sunken fields, ink action, 8px controls and no rest shadow. Use 16px phone gutters and existing token rhythm. Desktop/photo/logo/BankID/demo/reset prototype extras are excluded from accepted composition. Raw source phone export may overflow; it is grouping evidence, not the required responsive result. No pending/error source screenshot is fabricated. Their written requirements and real implementation states supply later comparison inputs. Source captures do not modify `policy.references` or establish owner acceptance.
 
