@@ -166,3 +166,11 @@ Every epic-scoped commit subject substitutes `{epic_label}` for `epic-{e}` (`cho
 ## 10. Unchanged in stories mode
 
 Delegation tiers and the foreground rule (`delegation-runtime.md`); the `cli_phases` external-CLI route (`cli-route.md`); every git rule in `git-and-pr.md` except the write-back line and the naming forms of §3 — branching off base, the clean-tree gate, one commit per phase, the sha-lag `commits[]` rule, the draft predicate (clauses 1–4), push/PR/CI wait/merge prompt; the deferred-work ledger at `<impl>/deferred-work.md` (harvest, reconcile, archive); the security + cross-model review layers inside build-auto; state/report mechanics, timing brackets, outcome vocabulary and Blocked handling.
+
+## Fresh sequential publication override — 2026-10-28
+
+Before applying epic branch/PR/no-checkpoint-push/deletion instructions here,
+read `sequential-pr-strategy.md`. Its isolated per-story publication, source
+checkpoint, pending/resume and retained-branch rules apply to a fresh ordinary
+sequential epic pinned `story-pr`. Single-story, legacy anchors without strategy,
+backend-only `epic-pr` and explicit parallel runs retain their existing route.

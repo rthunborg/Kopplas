@@ -123,3 +123,12 @@ Kopplas is a multi-tenant application for electrical contractors, built with Nex
 - Respect an explicit owner opt-out from labeling for a particular PR.
 - The label does not bypass the remediation policy, required reviews, checks,
   or separate authorization to merge or deploy.
+
+## Sequential Auto-BMAD publication — owner decision 2026-10-28
+
+Fresh ordinary sequential epics assess approved actual visible scope once: any
+UI selects isolated main-target PRs for every story; no UI retains the epic PR.
+Existing anchors, 35.2, single-story and explicit parallel routes remain unchanged.
+Follow `.agents/skills/auto-bmad/references/sequential-pr-strategy.md`; keep source
+order/checkpoints, qualified merged dependencies, current-head gates and merge
+authorization. Pending review/visual/merge is resumable and never epic completion.

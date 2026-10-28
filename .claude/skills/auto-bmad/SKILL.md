@@ -164,3 +164,14 @@ Each entry names the condition; the **verbatim message lives at the producing si
 **Not-silent STOPS** (no question — print the explicit next command, then stop):
 - A no-arg pick landing on a completed caveated story — state `done`, sprint entry parked at `review` (`state-and-resume.md`, the `done` rule).
 - All stories are done — nothing left to run, plus the optional retrospective hint (`pipeline.md` P0.5; stories mode: `stories-mode.md` §2).
+
+## Fresh sequential strategy dispatch — 2026-10-28
+
+Before legacy E0 adoption/branch assumptions, read
+`references/sequential-pr-strategy.md`. For fresh ordinary sequential epics,
+assess approved actual visible scope once and persist the selected strategy in
+E1. Any UI uses one isolated main-target story PR per required story; no UI uses
+the legacy epic PR. Existing anchors without a strategy, single-story requests
+and explicit parallel runs keep their existing behavior. For `story-pr`, that
+reference supersedes conflicting E5/E8/E_final/early-done/stop-on-pending and
+branch-deletion instructions below; legacy paths below are unchanged.

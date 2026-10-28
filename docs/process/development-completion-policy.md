@@ -71,3 +71,15 @@ This owner-authorized process change adds no product surface, migrations, depend
 5. Check `_bmad/custom/` persistent policy facts, pipeline/delegation overlays and equivalent `.claude/skills/auto-bmad/` copies. Reconcile an old pinned story only on its authorized resume; do not rewrite its historic evidence.
 
 Author verification: five focused tests pass; team customization TOML parses and Build Auto customization resolution includes this policy. The upstream state_update/state_plan/story_plan self-tests fail on the same legacy/Windows fixtures when executing the unchanged HEAD scripts; those pre-existing failures are not reported as passed. No application runtime, browser, database or deployment was started for this process change.
+
+### Future sequential UI epics — owner decision 2026-10-28
+
+Fresh ordinary sequential Auto-BMAD epics assess approved actual visible scope
+once. Any UI selects separate isolated main-target story PRs for every story;
+backend-only epics retain the final epic PR. This is standing split-publication
+authorization for that selected route. Existing anchors (including 35.2), single
+stories and explicit parallel runs retain their route. See the project-owned
+[sequential strategy](../../.agents/skills/auto-bmad/references/sequential-pr-strategy.md).
+Pending review/visual/merge permits eligible independent work, never a completion
+claim. Existing development/visual acceptance, exact-head CI, fresh Coordinator
+review, merge authorization and integration obligations remain mandatory.

@@ -100,6 +100,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import os
 import re
@@ -116,6 +117,14 @@ class ContractError(Exception):
 
 class UsageError(Exception):
     """Bad arguments / unparsable input / missing prerequisite file (exit 2)."""
+
+
+def _strategy_transition_errors(current, patch, initializing=False):
+    # Also support embedders loading this standalone script by absolute path.
+    spec = importlib.util.spec_from_file_location("auto_bmad_pr_strategy", Path(__file__).with_name("pr_strategy.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.transition_errors(current, patch, initializing)
 
 
 # --------------------------------------------------------------------------- #
@@ -652,6 +661,9 @@ def cmd_init(state_file: Path, payload: dict) -> dict:
     if state_file.exists():
         raise ContractError(
             f"state file already exists: {state_file} — resume must never re-init (use `set`)")
+    errors = _strategy_transition_errors({}, payload, initializing=True)
+    if errors:
+        raise ContractError("PR strategy: " + "; ".join(errors))
     state = default_state()
     apply_patch(state, payload, allow_started_at=True)
     if not state.get("started_at"):
@@ -663,6 +675,9 @@ def cmd_init(state_file: Path, payload: dict) -> dict:
 
 def cmd_set(state_file: Path, patch: dict) -> dict:
     state = _read_existing(state_file)
+    errors = _strategy_transition_errors(state, patch)
+    if errors:
+        raise ContractError("PR strategy: " + "; ".join(errors))
     info = apply_patch(state, patch)
     write_state(state_file, state)
     return {"ok": True, "action": "set", "state_file": str(state_file),
@@ -672,6 +687,9 @@ def cmd_set(state_file: Path, patch: dict) -> dict:
 
 def cmd_phase_done(state_file: Path, phase: int, patch: dict | None) -> dict:
     state = _read_existing(state_file)
+    errors = _strategy_transition_errors(state, {**(patch or {}), **({"status": "done"} if phase == 9 else {})})
+    if errors:
+        raise ContractError("PR strategy: " + "; ".join(errors))
     if patch and "completed_phases" in patch:
         # The patch is applied after the append below, so a completed_phases
         # value would silently clobber the phase this very call records.
