@@ -8,7 +8,7 @@ plugins:
         - http://127.0.0.1:3100
       methods: [GET, POST, PUT, PATCH, DELETE, OPTIONS]
       headers: [authorization, x-client-info, x-supabase-api-version, apikey, content-type]
-      exposed_headers: [content-range]
+      exposed_headers: [content-range, x-supabase-api-version]
       credentials: true
       max_age: 3600
 services:

@@ -19,6 +19,9 @@ import type { Page, Locator } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
+// Credential values must not become trace/video/screenshot artifacts.
+test.use({ trace: "off", video: "off", screenshot: "off" });
+
 interface FixtureCreds {
   readonly tenantA: { readonly name: string };
   readonly adminA: { readonly email: string; readonly password: string };
@@ -136,9 +139,6 @@ test.describe("Login + tenant-context display (Story 2.1 E2E — G-2/G-3)", () =
  * does not create another role matrix or a dialog/file flow.
  */
 test.describe("Story 35.2 — real login and accessible foundations", () => {
-  // Retained credential values must not become trace/video/screenshot artifacts.
-  test.use({ trace: "off", video: "off", screenshot: "off" });
-
   test.describe("Native credential privacy before JavaScript hydration", () => {
     test.use({ javaScriptEnabled: false });
 
@@ -274,12 +274,10 @@ test.describe("Story 35.2 — real login and accessible foundations", () => {
         }
       }
 
-      // Explicit correction uses the existing real session/cookie flow. Derive
-      // this fixture's destination from the checked role resolver, not a universal
-      // dashboard assumption. Root/protected layout still decide actual access.
-      const { resolveLandingRoute } = await import("../../../src/server/authz/phase-a-surface");
-      const expectedLanding = resolveLandingRoute(["tenant_admin"]);
-      expect(expectedLanding).not.toBeNull();
+      // adminA is the active tenant_admin fixture with the approved office landing.
+      // Assert that exact contract through the real cookie-bound server flow;
+      // root/protected layout still decide access, not this browser expectation.
+      const expectedLanding = "/dashboard";
       await password.focus();
       await password.fill(fixture.adminA.password);
       await page.keyboard.press("Enter");

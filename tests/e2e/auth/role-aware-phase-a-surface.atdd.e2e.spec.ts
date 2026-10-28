@@ -33,7 +33,11 @@ async function waitForHydrated(locator: Locator): Promise<void> {
   );
 }
 
-async function logIn(page: Page, credentials: RoleFixture): Promise<void> {
+async function logIn(
+  page: Page,
+  credentials: RoleFixture,
+  expectedLanding: "/dashboard" | "/my-day",
+): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in" });
   await waitForHydrated(submit);
@@ -43,12 +47,12 @@ async function logIn(page: Page, credentials: RoleFixture): Promise<void> {
   // Login writes the cookie in the client-side callback before routing. Wait for
   // the server-confirmed landing before a test performs a direct navigation, or
   // that navigation can race the cookie write and be redirected back to /login.
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL((url) => url.pathname === expectedLanding);
 }
 
 test.describe("Story 11.2 rollstyrda Phase A-ytor", () => {
   test("[P0] Säljare receives only matrix-granted server navigation and lands on dashboard", async ({ page }) => {
-    await logIn(page, fixture.roleAware.saljare);
+    await logIn(page, fixture.roleAware.saljare, "/dashboard");
 
     await expect(page).toHaveURL(/\/dashboard$/);
     const nav = page.getByRole("navigation", { name: "Huvudnavigation" }).first();
@@ -60,8 +64,8 @@ test.describe("Story 11.2 rollstyrda Phase A-ytor", () => {
   });
 
   test("[P0] Montör direct navigation to active but ungranted settings has one generic denial and no data", async ({ page }) => {
-    await logIn(page, fixture.roleAware.montor);
-    await expect(page).toHaveURL(/\/dashboard$/);
+    await logIn(page, fixture.roleAware.montor, "/my-day");
+    await expect(page).toHaveURL((url) => url.pathname === "/my-day");
     await page.goto("/settings");
 
     const denial = page.getByRole("heading", { name: "Ingen åtkomst" });
@@ -74,10 +78,10 @@ test.describe("Story 11.2 rollstyrda Phase A-ytor", () => {
     await expect(main.getByRole("textbox")).toHaveCount(0);
   });
 
-  test("[P0] Montör lands on the E15-safe dashboard fallback with monetary values withheld", async ({ page }) => {
-    await logIn(page, fixture.roleAware.montor);
+  test("[P0] Montör lands on Min dag with monetary values withheld", async ({ page }) => {
+    await logIn(page, fixture.roleAware.montor, "/my-day");
 
-    await expect(page).toHaveURL(/\/dashboard$/);
+    await expect(page).toHaveURL((url) => url.pathname === "/my-day");
     const main = page.getByRole("main");
     await expect(main).toBeVisible();
     await expect(main.getByText(/SEK|kr/)).toHaveCount(0);
@@ -85,7 +89,7 @@ test.describe("Story 11.2 rollstyrda Phase A-ytor", () => {
   });
 
   test("[P1] Säljare can open its matrix-granted customers route without receiving cost or margin", async ({ page }) => {
-    await logIn(page, fixture.roleAware.saljare);
+    await logIn(page, fixture.roleAware.saljare, "/dashboard");
     await page.goto("/customers");
 
     await expect(page).toHaveURL(/\/customers$/);
@@ -95,7 +99,7 @@ test.describe("Story 11.2 rollstyrda Phase A-ytor", () => {
   });
 
   test("[P0] Säljare is never offered calculation-origin quote creation", async ({ page }) => {
-    await logIn(page, fixture.roleAware.saljare);
+    await logIn(page, fixture.roleAware.saljare, "/dashboard");
     await page.goto("/quotes");
 
     await expect(page).toHaveURL(/\/quotes$/);

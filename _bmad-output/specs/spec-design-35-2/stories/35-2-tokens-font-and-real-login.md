@@ -2,12 +2,12 @@
 title: 'Story 35.2: Tokens Font And Real Login'
 type: feature
 created: '2026-10-28'
-status: in-review
+status: blocked
 tracking_key: 35-2-tokens-font-and-real-login
 baseline_revision: 5b167f1be0b3d96c1d7e9d53737211e3008eeb7e
 planning_revision: d5fc62a88a25bf345754e3f62e5bbea7af964337
 review_loop_iteration: 0
-followup_review_recommended: false
+followup_review_recommended: true
 context:
   - docs/process/review-order.md
   - docs/quality/frontend-quality-gate.md
@@ -108,6 +108,10 @@ No implementation review run in this planning phase.
 
 ## Design Notes
 
+2026-10-28 preliminary actual-image review route selected before dispatch: independent gpt-6.1-sol Low foundation reviewer inspects original source PNGs and actual be4cb52f public-login idle/focus/controlled-state PNGs against written DESIGN/EXPERIENCE. This is bounded visual inspection, not an authentication contract review, configured-provider receipt, authenticated owner acceptance, or development-ready claim. Real-cookie/inherited consumer verification remains blocked by the partial local baseline.
+
+2026-10-28 local baseline operator route selected before dispatch: distinct context-free gpt-6.1-sol High, transactional integrity/security of applying only the 20 independently qualified existing baseline migrations to root-owned loopback test DB. Exact root authorization and PASS_PLAN_ONLY prechecks control execution. No seed replay/reset/db push, existing-ledger rewrite, source migration edit or new schema design. Operator owns ignored per-file evidence only; product files remain with existing authors.
+
 2026-10-28 root exact allocation: append only `/public/licenses/inter/OFL.txt -text` plus a comment in `.gitattributes`, preserving existing rules. Sol Low Build Auto author and original independent Sol Low foundation reviewer handle this byte-preservation correction. Official license bytes already match approval; the rule prevents future Windows CRLF checkout conversion. No unrelated CI normalization or broader attributes authorized.
 
 2026-10-28 verification continuation: existing context-free Sol High author re-engaged for bounded read-only baseline-byte proof of the unchanged privileged calendar-runtime test failures; no CI/security path edits. Review routes selected before upcoming dispatch: font/layout/token-only review Sol Low; actual auth state/caller diff, security and external Codex review Sol High because changed submission and session reconciliation are sensitive. No production story review round completed yet.
@@ -122,17 +126,98 @@ Route: Sol Low planning/token/font/presentation; existing Sol High test design r
 
 ## Verification
 
+### Current execution evidence — 2026-10-28
+
+Status is **blocked; development acceptance incomplete**. Application build/runtime revision: `be4cb52f4c3669003f416fa91d2aec8ac23ee75c`. Later reviewed changes are the bounded local Kong response-header correction, browser-test harness/role assertions and this documentation; application source/build are unchanged. Root's final candidate commit/build/capture is still required.
+
+| Executed check | Actual outcome and limits |
+| --- | --- |
+| Lockfiles, typecheck, lint, service-role containment and diff checks | Passed in author/coauthor runs; full lint retained 31 warnings in unedited paths. Latest focused auth-test lint/typecheck/diff passed after the harness fixes. No bundle-containment PASS is inferred. |
+| `pnpm build` using the ignored synthetic runtime environment | Passed for be4cb52f; `test-results-story35-2-build-be4cb52f.local.log`. Guard-owned production `next start`; no development-server substitution. |
+| Actual TSX handler unit command | `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/auth/login-submission.test.ts`: 9 passed, 0 failed, 0 skipped. Client/router/hooks are mocked; this is caller/order/recovery evidence. Duplicate guard was first RED with 3 dispatches instead of 1. |
+| Full unit suite after fixes | `pnpm run test:unit`: 3,744 tests, 3,741 passed, 2 failed, 1 Linux-xattr-only versioned-file restore skip; 103 suites, exit 1. Both calendar body/literal-LF assertions reproduced unchanged at baseline: 2 executed/2 failed/0 skipped; five relevant files match baseline Git bytes after accounting for Windows CRLF. No assertion/source normalization or weakening. |
+| Controlled actual browser/SDK UI | 10 passed/0 failed/0 skipped at 360×640 and 1440×900; 14 requests intercepted, 0 forwarded Auth requests, no DB fixtures. Pending duplicate, validation/rate correction, transport and malformed-result paths; 16 actual PNGs. Pending/disabled text 6.1961:1 and error text 8.3632:1. `controlled-auth-result.json`. |
+| Controlled auth reflow and native privacy | 4 passed/0 failed/0 skipped using body zoom 2 and 360×320 available-height analogues; 2 intercepted requests, 0 forwarded. Error/actions scroll/keyboard reachable, no horizontal overflow. `controlled-auth-reflow-result.json`. Separate native JS-disabled actual POST/privacy case passed; no authentication success without JS is claimed. |
+| Actual runtime qualification after root-owned CORS lifecycle | Auth and authenticated Storage HTTP 200; local/database ledgers 119/119 with 0 missing/extra. Browser sees API version `2024-01-01` on actual HTTP 400 `invalid_credentials`. `cors-qualified-runtime-check.json`. Root applied the reviewed response-header exposure; no product parser/unknown-outcome weakening. |
+| Real configured Auth and role suites, final run | Derived production/CDP config retains original setup/teardown. Explicit dedicated loopback API 55421/DB 55422 and `SUPABASE_TEST_REQUIRED=1`. **19 registered/executed, 19 passed, 0 failed/skipped/flaky**, exit 0, 17.1s. Includes native privacy, real invalid→corrected submit, current tenant/user plus cookie-bound reload, delayed duplicates, transport→ordinary server reconciliation→explicit retry, logout/orphan denial and exact seller/Montör landings. `real-auth-role-rerun3-report.json` and log. Normal fixture setup/teardown completed; no cleanup warning or retained fixture file. No separate physical erasure proof is inferred. |
+| Earlier real runs, preserved | First run executed setup/teardown but 0 tests because worker-scoped trace/video/screenshot options were nested; moved unchanged off-options to file scope. Rerun1: 19 executed, 15 passed/4 failed/0 skipped (local CORS hides version header; obsolete Montör destination assertions). Rerun2: 19 executed, 17 passed/2 failed/0 skipped; invalid feedback passed, corrected submit not reached because the test imported a server-only alias graph. Reviewed test fix asserts the exact approved adminA `/dashboard` fixture contract through actual UI/server identity/reload checks. No broad destination matcher. |
+| Initial full required integration/RLS | Exit 1: 1,252 passed, 485 failed, 384 skipped and 16 pending after bail, 2,137 total. File results 175: 103 failed/66 passed/1 skipped/5 not entered. Auth logs during 31 overlapping file intervals prove SQLSTATE 53300 connection exhaustion under the 100-connection database limit; not every failure was attributed to capacity. No backend limit/security change. |
+| Reviewed bounded full required integration/RLS | Exact existing `pnpm run test:int --maxWorkers=2 --reporter=default --reporter=json --outputFile=tmp/private/story35-2/candidate-be4cb52f/full-required-integration-budget2-report.json`; `VITEST_MAX_WORKERS` absent and unchanged. Exit 1, 654.07s: **2,056 passed, 43 failed, 52 skipped and 14 pending after serial bail, 2,165 total**. File results 175: 162 passed/9 failed/1 skipped/3 not entered. Pending/skipped/unentered rows are not coverage; nested JSON suite totals are not file counts. |
+| Supplementary coauthor visual/font evidence | Public idle/focus, loaded local roman/italic, 400/500/600 and equal-width tabular numeral probe; 4 ordinary keyboard/reflow profiles. Approved source and packaged `.next/static/media/*.ttf` hashes match the official members; full OFL bytes preserved. Independent Low image review inspected 33 source/actual inputs without concrete visual findings. These are local supplementary evidence, not authenticated owner acceptance/configured-provider receipt or authenticated inherited-consumer proof. |
+| Root-reported frontend controller | At clean `01c4b149867e839e154bc4d92ffac6d88f204235`, local controller with recorded baseline 5b167f1b returned exit 1 requiring the exact-head published PR. No visual gate PASS; final commit/rebuild/capture and live exact-head acceptance remain outstanding. |
+
+Remaining integration failures are grouped in `integration-budget2-failure-grouping.json`: **24** effective table-DML/foreign mutation rejection assertions (matrix mismatch or null/undefined error instead of expected 42501); **4** missing/invalid seed-installed booking-editor rollback fault fixtures; **12** calendar pre-callback refusals with the dedicated calendar key/secret absent in the actual child environment; **1** redacted calendar-owner ACL proof failure; **2** time-report large-prefix cases that hit the unchanged 30,000ms timeout (JSON's fallback says STACK_TRACE_ERROR). All nine failed test files match baseline 5b167f1b Git content after CRLF accounting. This establishes unchanged test source, not that the ACL/functional failures are harmless or unrelated to every runtime dependency. No baseline repair, seed replay, secret/privileged-wrapper bypass, timeout increase, test weakening or additional reproduction was performed.
+
+Sanitized counts/causes/hashes may be published. Raw Auth logs, environments, fixture/token/credential diagnostics remain ignored/private. Runtime files above are in `tmp/private/story35-2/candidate-be4cb52f/`; original source-only references remain separate. Browser workers/owned contexts finished normally, and no test session remains active; root owns service/browser lifecycle and any final cleanup.
+
+AC/state mapping: AC1/2 have bounded foundation/public-render/font evidence; AC3/6 and loaded/confirmed/denied have the real 19-case cookie/tenant/role suite plus 9 handler and 10 controlled-state cases; AC4/5 have actual keyboard/targets/focus and desktop enlargement/reduced-height analogues. Inherited revoked/permission boundaries retain their real role-denial checks, but broader authenticated inherited consumer/dialog evidence is not complete. Real-device virtual keyboard, screen reader and actual provider-issued-session response-loss ambiguity are not established. AC7 remains blocked by the failed required database/integrity gate and unexecuted isolated recovery-storage proof. Auth success does not waive those failures.
+
+Development blockers: full unit remains failed; required integration/RLS remains failed/incomplete; isolated recovery-storage proof and affected inherited consumer/browser captures are unfinished. Root final exact-head build/captures, PR/CI, trusted hosted source/policy integration and authenticated initial owner foundation visual acceptance are unmet. Current frontend acceptance is not deferred polish. Exhaustive release obligations retain E35-2-REL-1/2/3 and existing owners; `release_ready=false`. Follow-up review recommendation is true because the initial two medium patch findings produced recorded score 6; both were repaired and targeted High reviews found no remaining issue in those fixes. The flag is a routing recommendation, not a claim those defects remain unresolved.
+
 Implementation commands: `pnpm install --frozen-lockfile`; `pnpm run verify:lockfiles`; `pnpm typecheck`; `pnpm lint`; `pnpm test`; `pnpm build`; containment/bundle checks and required CI policy. Required integration/RLS uses `SUPABASE_TEST_REQUIRED=1` with executed/failed/skipped counts. Use configured production Playwright server, guarded resources and essential real login/role/inherited journeys; no next dev. Run `pnpm exec playwright test tests/e2e/auth/login-and-tenant-context.e2e.spec.ts` plus affected role/operator/consumer cases from the High plan. Preserve its 16 traceability bindings (seven AC + nine owned states), not 16 invented test functions.
 
-Before completion run `node scripts/quality/frontend-controller.mjs local --base 65be26c5e6e2923ea0298160f4da54a987bed0fe` and use the project completion wrapper for any delivery/status helper. Actual clean committed candidate/one PR/current-head owner foundation visual acceptance are future prerequisites. Trusted main 734d source/policy mismatch is a hosted integration dependency; local 65be paired-source validation is distinct. Do not weaken controller/protection or claim hosted readiness. Exhaustive release matrices remain E35-2-REL-1/2/3; release_ready=false.
+Before completion run `node scripts/quality/frontend-controller.mjs local --base 5b167f1be0b3d96c1d7e9d53737211e3008eeb7e` and use the project completion wrapper for any delivery/status helper. Actual clean committed candidate/one PR/current-head owner foundation visual acceptance are future prerequisites. Trusted main 734d source/policy mismatch is a hosted integration dependency; local 65be paired-source validation is distinct. Do not weaken controller/protection or claim hosted readiness. Exhaustive release matrices remain E35-2-REL-1/2/3; release_ready=false.
 
 Planning evidence: inspected HEAD d5fc62a88a25bf345754e3f62e5bbea7af964337 and intended branch, clean tree before planning writes; no product delta from approved 65be baseline. Renderer invoked exactly once. Source captures used existing root-owned Chrome through an isolated Playwright context and closed only that context. No application tests, product edits, auth service, implementation completion or acceptance claimed.
 
 ## Auto Run Result
 
-Status: ready-for-dev
-Blocking condition: none for planning; halt-after-planning requested.
-Implementation acceptance dependencies: actual candidate functionality/contrast/captures, independent review, initial authenticated owner visual acceptance, exact-head CI and trusted hosted source/policy integration. Review-order completion hook: planning exit preserved; no completed trail manufactured.
+Status: blocked; implementation and real Auth/role verification exist, development acceptance is incomplete.
+Blocking condition: full unit has 2 reproduced unchanged CRLF failures; the reviewed two-worker required integration/RLS run has 43 failures/52 skips/14 pending and 3 unentered files; isolated recovery-storage and affected inherited consumer/capture evidence are unfinished. Final exact-head PR/CI, build/captures, authenticated owner visual acceptance and trusted hosted source/policy integration remain unmet.
+Next action: root records the terminal blocked checkpoint and commits only allocated reviewed files. Further baseline/runtime investigation or inherited verification needs its appropriately scoped continuation; no broad repair/reproduction is undertaken here. Root final exact-head rebuild/capture follows its candidate commit. Refresh this same author trail after any later authorized fix/evidence change.
+Release status: `release_ready=false`; no done, development-complete, review-ready, merge, release or deployment claim. E35-2-REL-1/2/3 retain separately owned release work.
+
+## Suggested Review Order
+
+Author: Sol High implementation/fix author for login/auth and bounded gateway/test fixes; font/token rationale supplied by the Sol Low foundation coauthor.
+Refreshed against app build `be4cb52f4c3669003f416fa91d2aec8ac23ee75c` plus the current reviewed test/CORS/documentation working tree. This guide records choices and executed evidence; blocked acceptance remains explicit.
+
+### A readable credential entry with honest feedback
+
+The approved constrained composition uses the existing page/state/action seam, semantic aliases and plain wordmark. POST protects native prehydration submission; generic associated errors receive focus without introducing a field validator or unsupported login flow (AC1/2/3/4/5).
+
+- `src/app/(auth)/login/page.tsx:19` — `LoginPage`: owns the bounded entry and state/action seam.
+- `src/app/(auth)/login/page.tsx:99` — `method="post"`: keeps native credentials out of navigation URLs.
+- `src/app/(auth)/login/page.tsx:137` — `login-error`: associates readable failure feedback with the existing controls.
+
+### One attempt and a bounded trust boundary
+
+The synchronous ref closes the observed same-turn duplicate gap. The closed definite AuthApiError set permits explicit correction; transport/thrown/unknown outcomes retain the guard and ordinary server reconciliation, while success preserves refresh-before-replace (AC3/6/7).
+
+- `src/app/(auth)/login/page.tsx:37` — `if (inFlight.current) return;`: rejects overlap before React renders.
+- `src/app/(auth)/login/page.tsx:55` — `const rejected`: separates definite API rejection from ambiguity.
+- `src/app/(auth)/login/page.tsx:79` — `router.refresh();`: preserves order before root navigation.
+- `src/app/(auth)/login/page.tsx:146` — `href="/"`: reconciles through ordinary server navigation after uncertainty.
+
+### Local foundation bytes and bounded inheritance
+
+The foundation coauthor selected the exact approved official roman/italic/license bytes and local loading; the OFL attribute preserves those bytes on Windows. The sole inline theme adds ds-N spacing without replacing numeric utilities, intentionally applies white/ink/15px body roles and opt-in motion with reduced duration zero, and adds no inherited selector override (AC1/2).
+
+- `src/app/layout.tsx:5` — `const inter = localFont({`: binds local normal/italic variable faces.
+- `src/app/globals.css:4` — `@theme inline`: contains semantic aliases and additive spacing.
+- `src/app/globals.css:154` — `prefers-reduced-motion`: zeroes the opt-in durations.
+- `.gitattributes:35` — `/public/licenses/inter/OFL.txt -text`: preserves approved full license bytes.
+
+### Tests separate controlled behavior from real authority
+
+Nine TSX handler assertions exercise duplicate suppression, refresh order, correction and guarded ambiguity; 10 controlled SDK/UI cases and four auth reflow cases retain their mock/emulation limits. The final real suite additionally confirms invalid→corrected authentication, current tenant/user and cookie-bound reload at both viewports (AC3/4/5/6/7).
+
+- `tests/unit/auth/login-submission.test.ts:95` — `E35-2-T-loading/submitting/confirmed`: checks one active attempt and refresh order.
+- `tests/unit/auth/login-submission.test.ts:125` — `E35-2-T-validation/denied/connection-required/error-retry`: checks correction versus guarded recovery.
+- `tests/unit/auth/login-submission.test.ts:182` — `E35-2-T-unknown`: prevents claims or replay after response loss.
+- `tests/e2e/auth/login-and-tenant-context.e2e.spec.ts:228` — `E35-2-T-AC7`: checks actual invalid/corrected tenant/user and cookie reload.
+
+### Native privacy, SDK transport and precise role landing
+
+The actual JS-disabled test proves POST/privacy only. The narrowly reviewed local gateway fix exposes the API-version response header required by the installed SDK to parse modern error codes; exact fixture-role expectations avoid both stale Montör assertions and importing the server alias graph into the browser runner, while server authorization remains unchanged.
+
+- `tests/e2e/auth/login-and-tenant-context.e2e.spec.ts:145` — `native submission uses POST`: asserts actual method/body and URL privacy.
+- `ops/test/kong.yml:11` — `exposed_headers`: adds only API-version visibility beside content-range.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:39` — `expectedLanding`: requires the exact approved destination for each fixture role.
+- `src/app/page.tsx:15` — `resolveTenantContext`: retains server-derived root authority.
+
+Evidence: current Verification records final real Auth/roles **19 passed/0 failed/0 skipped**, 9 handler passes, 10 controlled SDK/UI passes, 4 auth reflow passes, native privacy PASS, exact119/CORS qualification and actual be4cb52f build/font evidence. Initial and intermediate failed runs remain recorded. Full unit is 3,741 passed/2 failed/1 skipped; reviewed bounded integration is 2,056 passed/43 failed/52 skipped/14 pending, with 3 files unentered after bail.
+Limits: handler mocks, intercepted responses and temporary font probes do not establish provider issuance. Body zoom/reduced height are desktop analogues; provider-issued-session response loss, real virtual keyboard/screen-reader, broader inherited consumers and isolated recovery proof remain incomplete. Unchanged baseline test source does not waive the 43 database/integrity failures. Final exact-head captures/PR/CI, trusted hosted source/policy and authenticated initial owner acceptance remain required. Status is blocked; no completion/release/deployment authorization follows.
 
 ## Canonical approved content (verbatim body)
 
