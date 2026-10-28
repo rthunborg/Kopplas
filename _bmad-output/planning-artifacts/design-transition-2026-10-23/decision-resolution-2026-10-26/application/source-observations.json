@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-26",
+  "authoring_head": "bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad",
+  "local_origin_main_inspection_pin": "0ae48a243fce47cb42e0998aae319f00c796dc85",
+  "remote_main_read_only_ls_remote": "d02fd8ac2dfe9a1afe447dfb6976cc3b12f2590f",
+  "remote_object_present_locally": false,
+  "current_remote_runtime_or_ancestry_verified": false,
+  "E15_worktree_head": "d190feb91d7af10f59e7681265b06d42a4945cc6",
+  "E15_integrated_DT_B15_established": false,
+  "old_base_consumer_register": "../../story-preparation/base-and-consumers.json remains historical and unchanged",
+  "scope": "read-only metadata/source; no code/worktree/claims adopted or changed"
+}
