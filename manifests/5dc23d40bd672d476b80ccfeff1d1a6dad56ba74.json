@@ -1,0 +1,1539 @@
+{
+  "schemaVersion": 1,
+  "kind": "actual-screenshot-publication-draft",
+  "candidateSha": "5dc23d40bd672d476b80ccfeff1d1a6dad56ba74",
+  "buildId": "NHUNU8wxFn5sX1w69EZTu",
+  "evidenceRef": "codex/visual-evidence/pr-115",
+  "captures": [
+    {
+      "id": "auth-controlled-pending-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-pending-360.png",
+      "gitBlob": "a20ee48dd7a080efb2426a6f513c21dc6cbc168c",
+      "sha256": "475a51c46915f66420fcdfbfcd9444afbb7a8263789b998680751385ea8dbf16",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-invalid-error-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-invalid-error-360.png",
+      "gitBlob": "5e8df8523a938f73353e08fef31301f6bca5a2dd",
+      "sha256": "2278fe0b96842bc6d66cf275ab13e14b83c0dd8fc910be29ce0ff860fdf93c99",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "invalid-error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-validation-error-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-validation-error-360.png",
+      "gitBlob": "268e7117df4c773b6c4f1636791826abe4c8963c",
+      "sha256": "8ddadb6ec1724e0fdb1caba22db9c102b4becc4c835cff0c19af4b45abd6991a",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "validation-error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-validation-correction-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-validation-correction-360.png",
+      "gitBlob": "dd65417502ffb1ef6491232d1c6e4d746942a049",
+      "sha256": "ffb518e22774efe1b18667df1a25523746abd19dde87bc4eee599b68c7c77e66",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "validation-correction",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-rate-limit-error-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-rate-limit-error-360.png",
+      "gitBlob": "da705dde284fb536224239c208cff85b63ebcd22",
+      "sha256": "b54220d10bc1f0fc52d6d0cf6393ffeb435c4f83c28c501e4bcadf90a8eef6f7",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "rate-limit-error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-rate-limit-correction-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-rate-limit-correction-360.png",
+      "gitBlob": "dd65417502ffb1ef6491232d1c6e4d746942a049",
+      "sha256": "ffb518e22774efe1b18667df1a25523746abd19dde87bc4eee599b68c7c77e66",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "rate-limit-correction",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-transport-unconfirmed-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-transport-unconfirmed-360.png",
+      "gitBlob": "cc4d6c4a32b3f1ee5910ef41295fe70098babb63",
+      "sha256": "48fca73a2eaa4533994b89a9cd59395db116a76eca49c980001b6bc217af8fbf",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "transport-unconfirmed",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-unknown-response-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-unknown-response-360.png",
+      "gitBlob": "cc4d6c4a32b3f1ee5910ef41295fe70098babb63",
+      "sha256": "48fca73a2eaa4533994b89a9cd59395db116a76eca49c980001b6bc217af8fbf",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "unknown-response",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-pending-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-pending-1440.png",
+      "gitBlob": "4105fdd99e867134fbd15302cc1d0e89aa49526f",
+      "sha256": "025c49898fb3cbc63c5b0a6d73e789f901cc09b9d66d1fcd8224c46620f931c7",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-invalid-error-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-invalid-error-1440.png",
+      "gitBlob": "f239b1e24b1209a1187d928b618e74e844cd5a59",
+      "sha256": "7598c8db11e5d4e6ba9289b432c55e744614e924fa28dbd2e625b4a1c92abd05",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "invalid-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-validation-error-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-validation-error-1440.png",
+      "gitBlob": "b887c82b6c0b988ea3226a9f91b26c3b807205b5",
+      "sha256": "9bf3914a6812315a1ef7bf7d1a2247ceb6f08774bf42029cab9770c28ec061f9",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "validation-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-validation-correction-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-validation-correction-1440.png",
+      "gitBlob": "aabdc65646d6e37559537bedb6945563b5a11e67",
+      "sha256": "619a4b0da2733ecc58a93461194d00a54087d496e6b39861ca0b52c1fa385746",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "validation-correction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-rate-limit-error-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-rate-limit-error-1440.png",
+      "gitBlob": "dd9f8339290e88b826b0f221baa5596d0f52dbf2",
+      "sha256": "c3cf0c31f4ac8453a5967353a3e944112c8566ca85a66b71770f4d7b59fbdec2",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "rate-limit-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-rate-limit-correction-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-rate-limit-correction-1440.png",
+      "gitBlob": "aabdc65646d6e37559537bedb6945563b5a11e67",
+      "sha256": "619a4b0da2733ecc58a93461194d00a54087d496e6b39861ca0b52c1fa385746",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "rate-limit-correction",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-transport-unconfirmed-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-transport-unconfirmed-1440.png",
+      "gitBlob": "a80271e379577f85a6fcc169ecfb14a6ef739d54",
+      "sha256": "d1f4c1c900bd3298159d188db632ef4cee426a35f9f853989c4790521bee096a",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "transport-unconfirmed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-controlled-unknown-response-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-controlled-unknown-response-1440.png",
+      "gitBlob": "a80271e379577f85a6fcc169ecfb14a6ef739d54",
+      "sha256": "d1f4c1c900bd3298159d188db632ef4cee426a35f9f853989c4790521bee096a",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "unknown-response",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-reflow-validation-error-body-zoom-2",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-reflow-validation-error-body-zoom-2.png",
+      "gitBlob": "cae578735196b487bc1c584e246f89fe53c2425f",
+      "sha256": "371b35f229eb71cb694ac30c5e7ea5f7603bbb9e770dcc7641d9ab3f8000f29b",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "validation-error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI reflow; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-reflow-validation-error-available-viewport-360x320",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-reflow-validation-error-available-viewport-360x320.png",
+      "gitBlob": "5f84cf3b7e6277bf734de5d78745c2541fd0b5ff",
+      "sha256": "d3fcfc09eb1c5f82bbaa754c0bb7223fc879b877c0b9830040c4886b91726370",
+      "width": 360,
+      "height": 320,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "validation-error",
+      "viewport": {
+        "width": 360,
+        "height": 320
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI reflow; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "auth-reflow-unconfirmed-body-zoom-2",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-reflow-unconfirmed-body-zoom-2.png",
+      "gitBlob": "2c01806f45d20fac3f9d3465b282df3cad9b74a9",
+      "sha256": "3893e849d7baf336bd805286a29426eb2016666d6004f62e9c116d2e73246dd7",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "unconfirmed",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI reflow; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "auth-reflow-unconfirmed-available-viewport-360x320",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/auth-reflow-unconfirmed-available-viewport-360x320.png",
+      "gitBlob": "152ad646d8d1ad024241d69fbac413f35e3b830b",
+      "sha256": "3cdaa062d65b00d4004d9f79c42686d4e7742974f42cb10b1bf3834ca15365a4",
+      "width": 360,
+      "height": 320,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "unconfirmed",
+      "viewport": {
+        "width": 360,
+        "height": 320
+      },
+      "fullViewport": true,
+      "captureMode": "controlled real SDK/UI reflow; zero provider forwards",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "login-idle-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-idle-360.png",
+      "gitBlob": "8e3fb4f44ca55a7e7b0b48a65696ca5c478df256",
+      "sha256": "e44cab93a434a5ec1a19b69ab0cae97f9827761072e07112b3cdf10aa3762775",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "finished-idle",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "login-focus-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-focus-360.png",
+      "gitBlob": "d864cfe526026a8fb1268c267be202a410ccb7b4",
+      "sha256": "1674f20c8b46ad614acb5daabe424adf9b7e591c20c2865d9b75052368e4f2be",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "focus-email",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-FOCUS",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-FOCUS.png",
+        "sha256": "f37c0c696c7e115b008433b85b416a58b99e2d32e8e74ac514a5e60165178665",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "login-idle-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-idle-1440.png",
+      "gitBlob": "9c6b1e33eead82b7ebe57f00d0ccc7cc6920f5f9",
+      "sha256": "10d1eec17435769445a6baffcb8bf2f0d5ec7db345d2e0f0bcd657189318666f",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "finished-idle",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "login-focus-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-focus-1440.png",
+      "gitBlob": "56acea12d25e694e7e6cfe830fb3486c0bd9c926",
+      "sha256": "a974934256605fdd4c8b5df3c3ea38e41a3c8edf67433df377495854eed0f092",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "focus-email",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-FOCUS",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-FOCUS.png",
+        "sha256": "3c6db7a2c4a8ed6e7686a44f1338288d5888e14c14e82c1012c55d2e66337dda",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "login-phone-keyboard",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-phone-keyboard.png",
+      "gitBlob": "9e31e847b805e8fe6c6c05fbed4cffcce4e78857",
+      "sha256": "cd22f9e7373ee8fbb729938fdefbd1446efe8d0e61112256f870529a2aa922ec",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "focus-keyboard-reflow",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "login-phone-enlarged-keyboard",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-phone-enlarged-keyboard.png",
+      "gitBlob": "10faa840962744d8e241e7dd18e7bfd232e8e1ed",
+      "sha256": "2fe76d288c41ec9a0c339b8d9f350ff82a49922656aa8644bf31de325a1286bc",
+      "width": 360,
+      "height": 640,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "focus-keyboard-reflow",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-M-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+        "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "login-phone-short-keyboard",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-phone-short-keyboard.png",
+      "gitBlob": "b9554878e7e8e5960dbfe6d673c1720827a39a04",
+      "sha256": "27e31eb7dba08811ce9532a6a1d5c10e5b7e6b5a1658c8542e5906a98faa68b8",
+      "width": 360,
+      "height": 320,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "focus-keyboard-reflow",
+      "viewport": {
+        "width": 360,
+        "height": 320
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "login-desktop-reduced-motion-keyboard",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-desktop-reduced-motion-keyboard.png",
+      "gitBlob": "414e3736c0c3b4b4e8126bb0b9dbf6b5bf910adb",
+      "sha256": "3f8acce6ed9432abc0176edd57ca2295aec08abb3a92b8c3fbcd7de913066b5c",
+      "width": 1440,
+      "height": 900,
+      "screen": "login",
+      "component": "LoginPage",
+      "route": "/login",
+      "state": "focus-keyboard-reflow",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "public production UI; no Auth request",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "source-composition-input-only",
+        "referenceId": "E35-2-SOURCE-D-IDLE",
+        "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+        "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+        "limitation": "Raw source idle/focus grouping. Written requirements govern actual pending/error/reflow; no fabricated prototype state."
+      }
+    },
+    {
+      "id": "dashboard-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/dashboard-360.png",
+      "gitBlob": "3c01e92280d86f3d7eba9e451e0fd5401ceb6780",
+      "sha256": "24c490b02c05c9f7107da6c2770a6efefa3a3b32ed9c377ccd10d373669699ee",
+      "width": 360,
+      "height": 640,
+      "screen": "dashboard",
+      "component": "RootLayout (dashboard consumer)",
+      "route": "/dashboard",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "records-list-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/records-list-360.png",
+      "gitBlob": "a0242004db0c1bacc8520079d9b3902b3932f7cf",
+      "sha256": "f12b959e4a8cc4fa5372f4248c5abbff7b0cddb8af857b2166639a44a1051eeb",
+      "width": 360,
+      "height": 640,
+      "screen": "records-list",
+      "component": "RootLayout (records-list consumer)",
+      "route": "/customers",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "record-detail-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/record-detail-360.png",
+      "gitBlob": "af07d96a680a0778aed069be666beeb9c135502d",
+      "sha256": "7eef284e65c3ce4040de30e9141cb71fb359282dd38a2f0a0f95c3e1e8d77f81",
+      "width": 360,
+      "height": 640,
+      "screen": "record-detail",
+      "component": "RootLayout (record-detail consumer)",
+      "route": "/customers/7cbc35f2-0884-4109-b3db-2423b6e78f8b",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "jobs-list-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/jobs-list-360.png",
+      "gitBlob": "c3b8280d6e83365493064330f00392596eddd3f6",
+      "sha256": "1753f886de7cb0e9338430d6421cc7a4ebd070783151bd7df52c8f89892c5bc8",
+      "width": 360,
+      "height": 640,
+      "screen": "jobs-list",
+      "component": "RootLayout (jobs-list consumer)",
+      "route": "/jobs",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "job-detail-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/job-detail-360.png",
+      "gitBlob": "c65436bd7fd909f03a323288349a0cfe42c7af5b",
+      "sha256": "b83d4b71a2eddc8dcd111be2ed8e6369cb34074887c43e9435090da3493444d2",
+      "width": 360,
+      "height": 640,
+      "screen": "job-detail",
+      "component": "RootLayout (job-detail consumer)",
+      "route": "/jobs/da8c77b2-31be-4300-9c3e-ff936e8776ec",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "documents-list-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/documents-list-360.png",
+      "gitBlob": "aa2bc4fcfb4871f3732ce8b6e2f5b87342ff8286",
+      "sha256": "7b4da2d6a2981563896c3090a491151c061d44a395e3872b99415078b02cd5f0",
+      "width": 360,
+      "height": 640,
+      "screen": "documents-list",
+      "component": "RootLayout (documents-list consumer)",
+      "route": "/files",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "scheduling-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/scheduling-360.png",
+      "gitBlob": "f94d49e41eff0d2b3dff3fe6532db411f2137412",
+      "sha256": "7598eb88863c6b165e888e9d8ad38bcc0046ca2dbf37a83755dcae343d01e6e6",
+      "width": 360,
+      "height": 640,
+      "screen": "scheduling",
+      "component": "RootLayout (scheduling consumer)",
+      "route": "/scheduling",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "time-reports-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/time-reports-360.png",
+      "gitBlob": "77e4f3e2bf97d913b2babbe8abdf0861b4ef1ed6",
+      "sha256": "9a26b131fb01d107703e98090bd25078508832340dfa6e5cf8ee9438efb3bb4a",
+      "width": 360,
+      "height": 640,
+      "screen": "time-reports",
+      "component": "RootLayout (time-reports consumer)",
+      "route": "/time-reports",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "document-preview-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/document-preview-360.png",
+      "gitBlob": "36e1da4e82e991acf1b1a5c75399fc0415a1853f",
+      "sha256": "734bc4ad48a48c925eaca29eafb0f462e883b2eacf0291e849445bb6f97ec16f",
+      "width": 360,
+      "height": 640,
+      "screen": "document-preview",
+      "component": "RootLayout (document-preview consumer)",
+      "route": "/files",
+      "state": "preview-error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "booking-dialog-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/booking-dialog-360.png",
+      "gitBlob": "f185c197224e2ffa484bfd95c060cda821d0e122",
+      "sha256": "0ddb3ba2c735fc8e150fd5ad3cfb26345da99e57acd4d4df0b397f4a9bde8c94",
+      "width": 360,
+      "height": 640,
+      "screen": "booking-dialog",
+      "component": "RootLayout (booking-dialog consumer)",
+      "route": "/scheduling",
+      "state": "open-focus",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "calendar-settings-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/calendar-settings-360.png",
+      "gitBlob": "0180a801c654b75423125ef2d0743d6f25530220",
+      "sha256": "34536e552ba23c2f74718dfa8a928a2026071748691112f6bccd8833d2d140f0",
+      "width": 360,
+      "height": 640,
+      "screen": "calendar-settings",
+      "component": "RootLayout (calendar-settings consumer)",
+      "route": "/settings/calendar",
+      "state": "unissued-no-token-visible",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "my-day-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/my-day-360.png",
+      "gitBlob": "4dafd6336b94b0c18936a21db799b879944765c8",
+      "sha256": "58c70caea53ea197f48626037f634fb35c2b11750a60191e5abd3bc171966678",
+      "width": 360,
+      "height": 640,
+      "screen": "my-day",
+      "component": "RootLayout (my-day consumer)",
+      "route": "/my-day",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "operator-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/operator-360.png",
+      "gitBlob": "d4f3b045766f3b4649724b1f7b3dcfe5fbced90e",
+      "sha256": "0903e8fed030592704506ad033bd792dc1fbecc22c424d4f2aa0239bf674a84b",
+      "width": 360,
+      "height": 640,
+      "screen": "operator",
+      "component": "RootLayout (operator consumer)",
+      "route": "/operator",
+      "state": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "public-invalid-unsubscribe-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/public-invalid-unsubscribe-360.png",
+      "gitBlob": "5cb1b00e4ade2c6ecfaae8e8c53de62a5bf42629",
+      "sha256": "6bed1bf700001ce9d6feb07668d0c40c438fca042b4f92361cf2b8b40836d813",
+      "width": 360,
+      "height": 640,
+      "screen": "public-invalid-unsubscribe",
+      "component": "RootLayout (public-invalid-unsubscribe consumer)",
+      "route": "/unsubscribe/invalid",
+      "state": "invalid-link",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "dashboard-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/dashboard-1440.png",
+      "gitBlob": "a2f1c96198d2536e9ef52f3f998a69448419c304",
+      "sha256": "0deb975340ce7aa312c5af1abef41ba313b297f2f76354d93997008ffe777842",
+      "width": 1440,
+      "height": 900,
+      "screen": "dashboard",
+      "component": "RootLayout (dashboard consumer)",
+      "route": "/dashboard",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "records-list-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/records-list-1440.png",
+      "gitBlob": "2076a633d34db2a4acfd1d725c1d79cd728fbc7c",
+      "sha256": "c210882435ba02e5154b324c7ece4d686ea57968958a73dda815a7c2cf518b42",
+      "width": 1440,
+      "height": 900,
+      "screen": "records-list",
+      "component": "RootLayout (records-list consumer)",
+      "route": "/customers",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "record-detail-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/record-detail-1440.png",
+      "gitBlob": "509b5e7f7a187176f6ea219c5cc30e23677ad5a6",
+      "sha256": "76292bf968b400238d72a9f39843a7b0d9468e2bfb9a26b7976be2564c832f3e",
+      "width": 1440,
+      "height": 900,
+      "screen": "record-detail",
+      "component": "RootLayout (record-detail consumer)",
+      "route": "/customers/7cbc35f2-0884-4109-b3db-2423b6e78f8b",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "jobs-list-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/jobs-list-1440.png",
+      "gitBlob": "14c2a72eb8cd33c553f776048df1692b2f863952",
+      "sha256": "83da23ae1f70621b0eb53dec45bf07d1ddd7906943a31c7f12520f4b3885a48e",
+      "width": 1440,
+      "height": 900,
+      "screen": "jobs-list",
+      "component": "RootLayout (jobs-list consumer)",
+      "route": "/jobs",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "job-detail-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/job-detail-1440.png",
+      "gitBlob": "dff12a79018a2aa6618b310d2391be474e41a9cb",
+      "sha256": "e376410eeff02d44f8a34c459c45286cf2a4c703773012f270a69929450b24a0",
+      "width": 1440,
+      "height": 900,
+      "screen": "job-detail",
+      "component": "RootLayout (job-detail consumer)",
+      "route": "/jobs/da8c77b2-31be-4300-9c3e-ff936e8776ec",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "documents-list-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/documents-list-1440.png",
+      "gitBlob": "5a2270fc8a475c1fe8a2e3056e85704f85385b61",
+      "sha256": "97d948757fcb6be739c1f8d65f2d2ec4f7fcc7a79c4494b551f90f5e74d61135",
+      "width": 1440,
+      "height": 900,
+      "screen": "documents-list",
+      "component": "RootLayout (documents-list consumer)",
+      "route": "/files",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "scheduling-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/scheduling-1440.png",
+      "gitBlob": "5879b7bc7f831eb3fb7b883d3b9994846ae7211a",
+      "sha256": "b3ae4a23cbeeedb258c002d956016840de6e36452c1083ce3392dd37355be6a7",
+      "width": 1440,
+      "height": 900,
+      "screen": "scheduling",
+      "component": "RootLayout (scheduling consumer)",
+      "route": "/scheduling",
+      "state": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "time-reports-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/time-reports-1440.png",
+      "gitBlob": "3bc25f3f312b6309812cdc049816937f15089af9",
+      "sha256": "ac7df7f7dd216e1261c77203d64d3ed793fa833c60a7127791f02e0019819338",
+      "width": 1440,
+      "height": 900,
+      "screen": "time-reports",
+      "component": "RootLayout (time-reports consumer)",
+      "route": "/time-reports",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "document-preview-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/document-preview-1440.png",
+      "gitBlob": "91da59b0a33886abbf37ccec537e196d5b1855b6",
+      "sha256": "d6164b48c99a9fe2c47ad3c9242fb749818b07b05647d43dcc405f12fad6c398",
+      "width": 1440,
+      "height": 900,
+      "screen": "document-preview",
+      "component": "RootLayout (document-preview consumer)",
+      "route": "/files",
+      "state": "preview-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "booking-dialog-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/booking-dialog-1440.png",
+      "gitBlob": "69ff3a5a5729b720a598dacfe95a2f84c94d006e",
+      "sha256": "e86c06b3fec19f49aa2d5afb30304f7a3ffe9f16fb3e32e6ef782c59157851fb",
+      "width": 1440,
+      "height": 900,
+      "screen": "booking-dialog",
+      "component": "RootLayout (booking-dialog consumer)",
+      "route": "/scheduling",
+      "state": "open-focus",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "calendar-settings-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/calendar-settings-1440.png",
+      "gitBlob": "2d7f11c4052696ad6225faac4054c28b4b2f8550",
+      "sha256": "635ddd5956d219a634d717c6d17d872a1303211b5da17b751a1acb401697628f",
+      "width": 1440,
+      "height": 900,
+      "screen": "calendar-settings",
+      "component": "RootLayout (calendar-settings consumer)",
+      "route": "/settings/calendar",
+      "state": "unissued-no-token-visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "my-day-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/my-day-1440.png",
+      "gitBlob": "dc64f0eee2b5a32b8dc6491ce4c3292fa8cdddb3",
+      "sha256": "5dd116e31af6996d7a41ff0311ce94a2ee0dae5d7126bb417dbb82985bd74a79",
+      "width": 1440,
+      "height": 900,
+      "screen": "my-day",
+      "component": "RootLayout (my-day consumer)",
+      "route": "/my-day",
+      "state": "permission-denied",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "operator-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/operator-1440.png",
+      "gitBlob": "814a37cf61b1ab676227099c56f12e96d290b1ea",
+      "sha256": "e5b5f45893e09f9f2af52941297b59f30a0f0a5ed75058526e56f4dec31b7a59",
+      "width": 1440,
+      "height": 900,
+      "screen": "operator",
+      "component": "RootLayout (operator consumer)",
+      "route": "/operator",
+      "state": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    },
+    {
+      "id": "public-invalid-unsubscribe-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/public-invalid-unsubscribe-1440.png",
+      "gitBlob": "4ecc2bf4cfeb81d35032a1c01e3774ad91b5a267",
+      "sha256": "743264707547c008f8a16eabf253c6a6f6828910f2f58a0642e0971ed8d48d4d",
+      "width": 1440,
+      "height": 900,
+      "screen": "public-invalid-unsubscribe",
+      "component": "RootLayout (public-invalid-unsubscribe consumer)",
+      "route": "/unsubscribe/invalid",
+      "state": "invalid-link",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "captureMode": "real authenticated existing synthetic fixture; existing role authority",
+      "synthetic": true,
+      "syntheticPIIReview": "independently-cleared-exact-pixels",
+      "reference": {
+        "status": "missing",
+        "reason": "Inherited screen/component raster or exact short viewport reference not captured; source anchors recorded separately. No candidate image used as reference."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "E35-2-SOURCE-D-IDLE",
+      "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+      "sha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+      "width": 1440,
+      "height": 900,
+      "provenance": "Previously captured immutable approved source export; prototype styling/extras excluded by written authority; not an actual app state."
+    },
+    {
+      "id": "E35-2-SOURCE-M-IDLE",
+      "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+      "sha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+      "width": 360,
+      "height": 640,
+      "provenance": "Previously captured immutable approved source export; prototype styling/extras excluded by written authority; not an actual app state."
+    },
+    {
+      "id": "E35-2-SOURCE-D-FOCUS",
+      "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-FOCUS.png",
+      "sha256": "3c6db7a2c4a8ed6e7686a44f1338288d5888e14c14e82c1012c55d2e66337dda",
+      "width": 1440,
+      "height": 900,
+      "provenance": "Previously captured immutable approved source export; prototype styling/extras excluded by written authority; not an actual app state."
+    },
+    {
+      "id": "E35-2-SOURCE-M-FOCUS",
+      "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-FOCUS.png",
+      "sha256": "f37c0c696c7e115b008433b85b416a58b99e2d32e8e74ac514a5e60165178665",
+      "width": 360,
+      "height": 640,
+      "provenance": "Previously captured immutable approved source export; prototype styling/extras excluded by written authority; not an actual app state."
+    },
+    {
+      "id": "E35-2-SOURCE-M-GROUPING",
+      "repositoryPath": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-GROUPING.png",
+      "sha256": "a89c986171dcfdc884b091ebee87810d23664f2aabf0d970c15db1086825c20b",
+      "width": 360,
+      "height": 640,
+      "provenance": "Previously captured immutable approved source export; prototype styling/extras excluded by written authority; not an actual app state."
+    }
+  ],
+  "independentReviewReceiptSha256": "61dc3989fef60306f528cd290cfbbd38b83251fc04130560f2fbf6bf420ffd86",
+  "syntheticPIIReview": {
+    "status": "cleared-visible-pixels-for56-allowlisted-actual-pngs",
+    "clearedActualCount": 56,
+    "blockedCaptureIDs": [],
+    "checks": [
+      "Passwords represented only as mask dots; no plaintext password visible",
+      "No visible JWT/access/refresh/API key material",
+      "No visible signed or feed-token URL",
+      "No visible unmasked personnummer",
+      "Visible fixture email domains/names/customer records/IDs consistent with supplied deliberate synthetic-fixture provenance; no contrary real-person/customer indication"
+    ],
+    "limits": "Static visible-pixel inspection only; synthetic origin depends on supplied fixture provenance, not independent identity verification. Does not clear PNG metadata, raw HTML, storageState, logs, environment files or any other file. Source references were not publication candidates."
+  },
+  "visualFindings": [
+    {
+      "id": "EVID-1",
+      "type": "capture-state-mismatch",
+      "captureIDs": [
+        "scheduling-1440"
+      ],
+      "severity": "evidence-limit",
+      "detail": "Visible content says planning is loading. Manifest loaded state does not establish settled scheduling-grid coverage.",
+      "blocksPublication": false
+    },
+    {
+      "id": "EVID-2",
+      "type": "capture-state-mismatch",
+      "captureIDs": [
+        "my-day-1440"
+      ],
+      "severity": "evidence-limit",
+      "detail": "Visible permission-denied panel and retry action. This is denial-state evidence, not successful loaded bookings.",
+      "blocksPublication": false
+    },
+    {
+      "id": "EVID-3",
+      "type": "partial-preview-composition",
+      "captureIDs": [
+        "document-preview-360",
+        "document-preview-1440"
+      ],
+      "severity": "evidence-limit",
+      "detail": "Both show failed preview with recovery controls, not rendered document success. Phone capture is scrolled and sticky Dokument heading obscures some preview text/record context. Retry/download/renew controls remain readable. No introduced causal regression proven.",
+      "blocksPublication": false
+    },
+    {
+      "id": "OBS-1",
+      "type": "inherited-typography-observation",
+      "captureIDs": [
+        "public-invalid-unsubscribe-360",
+        "public-invalid-unsubscribe-1440"
+      ],
+      "severity": "noncausal-observation",
+      "detail": "Public invalid-link heading visibly uses serif typography. No matched prechange reference or code causality investigated; cannot certify Inter inheritance for this surface from these pixels or report it as a newly introduced defect.",
+      "blocksPublication": false
+    },
+    {
+      "id": "REF-1",
+      "type": "missing-reference",
+      "captureIDs": [],
+      "severity": "acceptance-package-blocker",
+      "detail": "Manifest records31 missing references. Five source images are grouping/source inputs only. No promoted candidate self-baseline or fabricated reference accepted.",
+      "blocksPublication": false
+    }
+  ],
+  "fixtureCleanup": "High existing teardown completed once, zero warnings, fixture absent; three owned temporary storage-state files removed; no independent DB erasure query claimed.",
+  "missingReferenceCount": 31,
+  "acceptance": "Not a complete visual acceptance package. Missing reference rasters, trusted source integration and authenticated owner acceptance remain pending."
+}
