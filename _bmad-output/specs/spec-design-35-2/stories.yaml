@@ -1,0 +1,4 @@
+- id: "35-2"
+  title: "Tokens Font And Real Login"
+  description: "Implement only individually approved story 35.2 against its exact canonical specification and test design. Bind official Inter v4.1 and the accepted foundation/login composition while preserving authentication authority and inherited consumers."
+  done_checkpoint: true
