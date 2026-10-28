@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-26",
+  "specs": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-1-material-usage-and-requests.md",
+      "before_sha256": "49addccb6f3ad7b60eb3fec361fab55aab95d3607e78484d8baf5503629c8d71",
+      "after_sha256": "748f4b09afecf3ef8a439301353ba91aa189ac51f2e832a22f918c07ba1b0d6d"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-2-projekt-payment-plan.md",
+      "before_sha256": "bfb676a8e22e52ff4da1e2f6c8554553d2d80563f981bf049b2b4315dda2c1b0",
+      "after_sha256": "50cfe185219e409a2f18df02511789fd51e18e64611df1e2ab13f7d6885798bd"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-3-job-economy-rollup.md",
+      "before_sha256": "0562af784338e70e943d7d48f1d436c2976ffdfef232df75dcf2c7d7ff5125fe",
+      "after_sha256": "041c8668c63da36cd26c656598b12f5890de672f7952d74167be4d2dfe53c499"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-4-jobs-money-goldens-and-billing-seam.md",
+      "before_sha256": "efba8503826332cf9537b8b57fad4baa564c7928df95522b971a12372e207871",
+      "after_sha256": "cfde1f0e712f7e3de9bcd84c4f1ba74a87f52e0503cafcb67c687a1f626c8c46"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-1-diary-and-photo-capture.md",
+      "before_sha256": "919a63f4f5d0a763e03db6149cbcb2d616f7ae95da0011d0da6c0fcaf2eae287",
+      "after_sha256": "3614bb112b4b0ff227445484bd0c780395ebfb1e8883dc2f33e34b2c3e4845b9"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-2-deviation-risk-and-member-chat.md",
+      "before_sha256": "2c91c0247f13b92af283d0ae799310211d76b236013117971064ddf4f51b4d88",
+      "after_sha256": "68bd5cbbf61f72b746dddbcedf79fd22dfe56d5d92ec7525211b5450c309fbdf"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-3-job-reports-and-exports.md",
+      "before_sha256": "4a75519f3407bcebd8fefd52208307ffbb1beb1db0cf5930773e067f4543fa1c",
+      "after_sha256": "0eb89261d727f48cc0c8eb8afc0e6cff042f10202c93c917a2f2b9ed9e28c9b8"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-4-authoritative-job-completion.md",
+      "before_sha256": "775ffad88b27b7f9b2af0fda5ab91a109645bb5d7f738c2d74d50b3ed396e6a0",
+      "after_sha256": "25514bd82b01b0d63538e7497f0f1d04133ede655dfa1403361bd15857df4719"
+    }
+  ],
+  "unchanged_E35": 19
+}

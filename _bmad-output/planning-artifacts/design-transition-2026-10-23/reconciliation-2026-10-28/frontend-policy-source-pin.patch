@@ -1,0 +1,11 @@
+--- a/scripts/quality/frontend-policy.json
++++ b/scripts/quality/frontend-policy.json
+@@ -5,7 +5,7 @@
+     "version": "2026-10-26",
+     "hashes": {
+       "DESIGN.md": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+-      "EXPERIENCE.md": "c9a7d8ebf4eb4a58eca4ad8403829f85c0d2bd2e8249652f731c57db4784a25d",
++      "EXPERIENCE.md": "cf36a61123676e175dd8e26678bf7da98bb666dc076bb50e34f3f432db1e54d8",
+       "v1/inventory.sha256.json": "71cccdc4666d2ad07117df171f0e68d3e1082b85e6d2d3e534572a54ac467172"
+     }
+   },

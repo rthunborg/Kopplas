@@ -10,3 +10,23 @@
 # would diverge from the LF bytes CI stores, a false-green on Windows and a false-red in
 # CI (the 9.2-REPEAT-01 / epic-10 Story 10-1 Phase-5 class). Pin them LF everywhere.
 tests/fixtures/golden/**/*.json  text eol=lf
+
+# Exact approved documentary imports preserve recorded raw SHA-256 across checkouts.
+/_bmad-output/implementation-artifacts/spec-35-2-tokens-font-and-real-login.md -text
+/_bmad-output/planning-artifacts/architecture-phase-b.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/README.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-artifacts.json -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-specs.json -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/output-hashes.json -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/routing.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-hashes.json -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-observations.json -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.json -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/spec-hashes.json -text
+/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-2.md -text
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/** -text

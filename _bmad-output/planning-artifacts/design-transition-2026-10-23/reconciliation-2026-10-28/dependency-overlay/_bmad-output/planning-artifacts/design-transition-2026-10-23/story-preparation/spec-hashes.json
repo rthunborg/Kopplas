@@ -1,0 +1,176 @@
+{
+  "algorithm": "sha256",
+  "date": "2026-10-26",
+  "amendment": "accepted DR-B1\u2013DR-B7 policy application; previous complete register retained in application/history",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-1-authority-and-base-contract.md",
+      "sha256": "9a79f7917251deb44fbcbc6173d021032533900b84aac114989a03f246c7765e"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-2-tokens-font-and-real-login.md",
+      "sha256": "ee7bc75184a16d3c6f46623321882f490986deadb81bc9a0dd92e0ba42eb6ff0"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-3-record-inputs-and-tables.md",
+      "sha256": "d70ddd6e3291fc42a0e20e6aeb6f5a2d4df62d619bad0b40588c317be35fe445"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md",
+      "sha256": "cf45a9e55d12824979877f81d1045aa000d11a2476de6ab2e69fed577a2e3aba"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md",
+      "sha256": "90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-6-crm-record-journeys.md",
+      "sha256": "ba16bbcbcf1277c08cc1291c6e6df99d4ae958f03b8228e939490a520c9e906a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-7-settings-and-manual-pricing.md",
+      "sha256": "2997aeb4e3fbdaf99cd327f89662b90ec62a2909e06b022f3730833d158e7989"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-8-calculation-editor-and-review.md",
+      "sha256": "3a503ea913cf19f608c393f6484970e9312142c03fd403d7d7fe30ea0cc400d0"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-9-quote-pdf-and-manual-acceptance.md",
+      "sha256": "7d32d69a29c5f683225904e8c05db34940a53b00c7772451f65170472d461f19"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-10-integrated-job-workspace.md",
+      "sha256": "3f81ffebad8cd209ae693eefe2134d07576e4053b009b81942304971035d21ef"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-11-integrated-documents-and-context.md",
+      "sha256": "29e4167849e1e343b42faf6ac9579bea2ecf7f96213312f0d94a6c76a592c3fb"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-12-integrated-scheduling-views.md",
+      "sha256": "d4354d1ca86763e4bf203ace025b2213bdcc9bb8a4b451201b5ddddb8c5ba0d9"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-13-integrated-time-min-dag-and-profiles.md",
+      "sha256": "dbe6ecdd3cf476b41b6a78ff4735b36f13bb9cd374ec8f3782605849cb699eac"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-14-live-dashboard-pipeline.md",
+      "sha256": "38f6f63cd0589e4aa62e9fb2a36c8a5c1fe01ba410d4aecd4657dddb486a6043"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-15-notification-center-and-preferences.md",
+      "sha256": "5785acb025ab34812c7adc452487b834385da2e06faf7f030fc3191db88abfa9"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-16-users-roles-and-effective-permissions.md",
+      "sha256": "6b8d791dea7d039fe3bce3ee2f5f1a33fa2cc05b2eb5c4a58e429f066c0d154d"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-17-first-admin-onboarding.md",
+      "sha256": "ea04a87bfd9d84b4b36bf84310ab3dc31f64be3c2cbb673cae8113b891bcbf31"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-18-operator-console-presentation.md",
+      "sha256": "0973fe497bee842a241f9c76d800c74df6f5c7cf424ba40e0920d3324c905d58"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-19-auth-and-existing-public-feedback.md",
+      "sha256": "a9d73ae235294ab32021c6fe1daf76c32fcd472556a6b4d081328367c3a1871a"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-1-material-usage-and-requests.md",
+      "sha256": "748f4b09afecf3ef8a439301353ba91aa189ac51f2e832a22f918c07ba1b0d6d"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-2-projekt-payment-plan.md",
+      "sha256": "50cfe185219e409a2f18df02511789fd51e18e64611df1e2ab13f7d6885798bd"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-3-job-economy-rollup.md",
+      "sha256": "041c8668c63da36cd26c656598b12f5890de672f7952d74167be4d2dfe53c499"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-4-jobs-money-goldens-and-billing-seam.md",
+      "sha256": "cfde1f0e712f7e3de9bcd84c4f1ba74a87f52e0503cafcb67c687a1f626c8c46"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-1-diary-and-photo-capture.md",
+      "sha256": "3614bb112b4b0ff227445484bd0c780395ebfb1e8883dc2f33e34b2c3e4845b9"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-2-deviation-risk-and-member-chat.md",
+      "sha256": "68bd5cbbf61f72b746dddbcedf79fd22dfe56d5d92ec7525211b5450c309fbdf"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-3-job-reports-and-exports.md",
+      "sha256": "0eb89261d727f48cc0c8eb8afc0e6cff042f10202c93c917a2f2b9ed9e28c9b8"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-4-authoritative-job-completion.md",
+      "sha256": "25514bd82b01b0d63538e7497f0f1d04133ede655dfa1403361bd15857df4719"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability-validation.json",
+      "sha256": "134d33ed96c99b9c711603623d34384ec639be5f6c12550a6454b268629027fc"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.json",
+      "sha256": "1a0dc7dde4552ebed53192ade14f513d097eeae2c0e425c50de221e2b17575f7"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md",
+      "sha256": "4465c62f14e03ee304fee769797a24df60224a5ff13e94a5b03babd8044801f3"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/audit.md",
+      "sha256": "7a295ac6165b978cc576f5ecab0c8c5f516e8a9e11ab5dbd8898a44059cb155a"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/base-and-consumers.json",
+      "sha256": "3de0415979ee7d7a6130ba76db15a6a24a5d82917ff614559900a0f1a5b245e5"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md",
+      "sha256": "88d8dd91810f9be24c6da437cfa9c9418b761042bc9e1ae0f54c6e7cc5ee4a76"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/feature-index.json",
+      "sha256": "bad2eb64c11f3fe02270f2e08cd8f142f09447706e40d7de2e5b11934153afc5"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/prompt-4-handoff.md",
+      "sha256": "105a938989ae34b9920a8891bf1e43fef0e9046a25ffda8aaef612d77ae3678d"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/README.md",
+      "sha256": "7974c5e61b60492ea2a1da81986478adf54acf4925b14acf30e2502b3eb5bfe4"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/route-allocation.md",
+      "sha256": "c1bc67657d279838ee53fef44236a7cf55570ae449ca386b41f087b8090db6cb"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/routing.md",
+      "sha256": "b2d32f64dbd2ea401bd76ca0e4fe3be326924b439adf84df18d793d6705fd0a6"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/sensitive-assessment.md",
+      "sha256": "3a491bbaa04dafe917a544736d30f97bb3ce2fe99b5c7950eb78e141d7be48ef"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/story-index.json",
+      "sha256": "36d2abaffaddbc84ac3f1b13ec72e93dd53b7140200b93c10347e417a90f93d4"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/validation.json",
+      "sha256": "8efe1c0290a8a4d6752851f092f52bc558e390840d2ad03f15492ed0c79e69de"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/epics-phase-b.md",
+      "sha256": "eaad712983c048eb92a1be578d6562d72b1ea3e49f0785c2824e9292319568cf"
+    }
+  ]
+}

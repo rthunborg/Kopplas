@@ -1,0 +1,12 @@
+{
+  "base": "734d89981f287d128f176ceb7093244ef95fce82",
+  "path": "scripts/quality/frontend-policy.json",
+  "before_raw_sha256": "6d3902b24911f0a4b380a70ffbb046adc4a4cd8ed401d4ec0c2a238942048ebf",
+  "after_raw_sha256": "400a6cebb8ca9d1fb3f32245b350ea4e988972014554e1f803ce0895044af511",
+  "only_changed_value": "EXPERIENCE.md hash",
+  "old_pin": "c9a7d8ebf4eb4a58eca4ad8403829f85c0d2bd2e8249652f731c57db4784a25d",
+  "new_pin": "cf36a61123676e175dd8e26678bf7da98bb666dc076bb50e34f3f432db1e54d8",
+  "design_and_inventory_pins": "unchanged actual trusted main Git-byte hashes",
+  "applied": false,
+  "integration_requirement": "apply source after and policy after together in same qualified reviewed candidate; High review required; no control/authorization weakening"
+}
