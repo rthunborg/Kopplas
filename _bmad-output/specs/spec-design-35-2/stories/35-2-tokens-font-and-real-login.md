@@ -108,6 +108,8 @@ No implementation review run in this planning phase.
 
 ## Design Notes
 
+2026-10-28 root exact allocation: append only `/public/licenses/inter/OFL.txt -text` plus a comment in `.gitattributes`, preserving existing rules. Sol Low Build Auto author and original independent Sol Low foundation reviewer handle this byte-preservation correction. Official license bytes already match approval; the rule prevents future Windows CRLF checkout conversion. No unrelated CI normalization or broader attributes authorized.
+
 2026-10-28 verification continuation: existing context-free Sol High author re-engaged for bounded read-only baseline-byte proof of the unchanged privileged calendar-runtime test failures; no CI/security path edits. Review routes selected before upcoming dispatch: font/layout/token-only review Sol Low; actual auth state/caller diff, security and external Codex review Sol High because changed submission and session reconciliation are sensitive. No production story review round completed yet.
 
 2026-10-28 split ownership: Build Auto Sol Low authors official-font packaging, root layout and additive semantic tokens. Context-free Sol High implementation author owns only login page and allocated auth tests, including presentation in that file; no concurrent page author. Numeric Tailwind spacing and existing consumer classes remain intact. Font archive and all three members matched approved hashes before byte-for-byte installation.
