@@ -46,3 +46,11 @@ Primary existing regression: `tests/e2e/auth/login-and-tenant-context.e2e.spec.t
 ## Capture tooling disposition
 
 Root reports the bounded guarded installed-Chrome launch refused `HOOK_CONTEXT_UNAVAILABLE` because the cross-chat wake-up had no current root turn actor. No backend/resource started. Persistent browser/reference capture is blocked until a direct human turn opens the required actor; do not reuse another actor context or bypass resource guard. This is a lifecycle/tooling limitation, not a repeat design approval. Static source composition and ordinary preparation remain valid; no raster or runtime verification is claimed.
+
+## Source capture closure — 2026-10-28 planning run
+
+The earlier capture-tooling refusal above is historical. A direct active root actor subsequently supplied a verified guarded Chrome resource. This planner connected through Playwright CDP, created one isolated context, rendered immutable source files via file URI and closed only its context. No managed resource was launched or adopted by this planner.
+
+Five raw source captures and their source/image SHA-256, exact viewports and state provenance are in `docs/quality/references/story-35-2-2026-10-28/capture-manifest.json`: main login idle/focused email at 1440x900 and 360x640; field `vyLogin` default grouping at 360x640. Hash verification passed for all five. The main source default is a seeded demonstration, not a real authentication outcome; no credential submission occurred. The field source is the historical identity chooser, only grouping evidence. Prototype logo/photo/pills/BankID/demo/reset controls remain visible in raw source screenshots and are expressly excluded from the accepted implementation composition. Written DESIGN/EXPERIENCE and the bounded reference plan above remain authoritative. Raw phone source overflow is not an accepted responsive result.
+
+These artifacts are source inputs, not promoted application references, current product evidence, policy.references changes, visual acceptance or a hosted gate PASS. Invalid-auth, pending-auth, network-failure and server-confirmed login have no truthful source render here. Their required actual candidate captures and assertions remain implementation work. Initial Rasmus visual acceptance follows actual foundation/login rendering; no repeat approval of the story/font is needed.

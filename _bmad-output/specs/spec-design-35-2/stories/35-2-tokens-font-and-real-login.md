@@ -1,19 +1,112 @@
 ---
-title: "Story 35.2: Tokens Font And Real Login"
-status: draft
+title: 'Story 35.2: Tokens Font And Real Login'
+type: feature
+created: '2026-10-28'
+status: ready-for-dev
 tracking_key: 35-2-tokens-font-and-real-login
 baseline_revision: 65be26c5e6e2923ea0298160f4da54a987bed0fe
+planning_revision: d5fc62a88a25bf345754e3f62e5bbea7af964337
+review_loop_iteration: 0
+followup_review_recommended: false
 context:
+  - docs/process/review-order.md
+  - docs/quality/frontend-quality-gate.md
   - docs/quality/story-35-2-approved-admission-2026-10-28.json
   - docs/quality/story-35-2-reference-and-inheritance-2026-10-28.md
+  - _bmad-output/test-artifacts/test-design-spec-design-35-2.md
   - _bmad-output/specs/spec-design-35-2/source-binding.json
+warnings: [oversized]
+deferred: []
 ---
 
-# Execution admission overlay — 2026-10-28
+<intent-contract>
 
-Approved human message `01a181c3-1173-7e43-9025-13585f376cad` says “Approved. Proceed” for exact canonical spec/test hashes and official Inter v4.1; allocation belongs solely to root implementation chat. This is the draft adapter for `35-2`, not a ready-for-dev declaration. The following canonical body is reproduced for lossless planning context; its historical preparation status/blockers describe the original artifact, superseded only where the dated admission and reference binding supply actual evidence. They do not create repeat owner approval gates. Plan phase must reconcile the concrete tasks/evidence and preserve all AC/test applicability. No product implementation has occurred in this preparation.
+## Intent
 
-Reference composition is bound by named states in the reference/inheritance document; missing raster images are a technical capture gap, not fabricated evidence or a new owner decision. Preserve exact current auth seam and request Sol High assessment for actual sensitive behavior changes. Current source/hash mapping is in source-binding.json. Do not edit the immutable original.
+**Problem:** Approved Story 35.2 has accepted foundation/login direction, but the actual application still uses Geist, generic colors and its original password-login presentation.
+
+**Approach:** Bind the approved official Inter v4.1 assets and written semantic tokens to the existing Tailwind v4/root layout, then compose the real credential form using accepted source grouping and the existing authentication seam. This is the sole admitted story, with a checkpoint after completion.
+
+## Boundaries & Constraints
+
+**Always:** Preserve all canonical AC/state/test IDs and applicability below, exact approved source hashes, Swedish content, server-derived role landing, refresh-before-replace, safe errors and browser-safe client. The dated human admission supersedes historical preparation blockers only where evidenced. Preserve canonical body verbatim. Resolve its relative links against `_bmad-output/implementation-artifacts/spec-35-2-tokens-font-and-real-login.md`, never this adapter directory. Canonical test slice resolves from its own original path. Actual written DESIGN/EXPERIENCE and detailed annex supersede prototype styling. Read the High test plan rather than reinvent authentication policy.
+
+**Block If:** New sensitive behavior/uncertainty requires bounded Sol High assessment before deciding, and independent High review. Conflicting live ownership or required writes beyond allocated paths need exact coordinator reconciliation. Missing actual runtime/visual acceptance blocks development completion, not this planning exit. Trusted-main source/policy integration remains a hosted acceptance dependency; no source override/bypass is authorized.
+
+**Never:** Add auth protocols, receipts, endpoints, signup, reset, BankID, demo impersonation, new file/dialog flows, forced-state hooks, framework/dependency upgrades, numeric-spacing-scale replacement without impact evidence, legacy browsing, other E35 work, global trackers, merge or deployment. Do not change immutable source assets or promote prototype styling/photos/logos into production authority.
+
+## I/O & Edge-Case Matrix
+
+| Scenario | Input / State | Expected Output / Behavior | Error Handling |
+| --- | --- | --- | --- |
+| Existing entitled account | Actual email/password succeeds | Existing refresh then root replace; server resolves current tenant and role destination | No client authorization shortcut |
+| Invalid credentials | Existing Auth error then corrected explicit submit | Generic Swedish alert, input retained, no navigation until success | Do not enumerate accounts or invent field validator |
+| Pending | Hold actual sign-in promise; click/Enter again | Readable pending text, disabled action, one active attempt | Observe actual handler; High assessment before any sensitive fix |
+| Connection failure | Existing seam rejects | Safe persistent feedback and explicit recovery, suitable in-memory values retained | No durable credentials or auto-retry |
+| Unknown outcome | Response lost after dispatch | No claimed success; ordinary server/session navigation reconciles authority | Preserve SDK evidence limits; no new status/receipt protocol |
+
+</intent-contract>
+
+## Code Map
+
+- `src/app/globals.css:1` — Tailwind import and single inline theme; currently only Geist alias/body colors. Add semantic aliases from DESIGN without replacing inherited numeric utilities.
+- `src/app/layout.tsx:2` — current Geist import; replace with local approved normal/italic font binding while preserving `lang="sv"`, metadata and body structure.
+- `src/app/(auth)/login/page.tsx:19` — `LoginPage`; state and `handleSubmit` at line 26 own the current checked Auth seam. Presentation starts at line 60. Keep behavior seam proportional; no new framework.
+- `src/server/db/supabase-browser-client.ts:18` — `createSupabaseBrowserClient`, read-only public/cookie client dependency.
+- `src/app/page.tsx:14` — `Home` resolves tenant context then `resolveLandingRoute`; read-only role authority. `src/app/(app)/layout.tsx:42` rechecks context, navigation and protected shell.
+- `docs/quality/story-35-2-reference-and-inheritance-2026-10-28.md` and source-binding consumer hashes enumerate read-only app/operator/public, jobs, documents/files, booking, scheduling/time/Min dag and calendar-settings inheritance. ICS is not styled. These are regression consumers, not edit allocation.
+- `_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md` and `EXPERIENCE.md` are actual frontend-skill authority paths; use `src/` conventions. No Figma URL, generic nextjs-app path, forced-state hook or prescribed three-layer framework is introduced.
+- `_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/font-provenance.json` and `Inter-v4.1-LICENSE.txt` bind approved official release members. Production binaries must match admission hashes; supplied v1 fonts are not the selected production bytes.
+- `tests/e2e/auth/login-and-tenant-context.e2e.spec.ts`, `role-aware-phase-a-surface.atdd.e2e.spec.ts`, `operator-console.atdd.e2e.spec.ts` are existing real-cookie/landing and inherited guards. Unit resolver/authz and integration authority tests are enumerated by the High test plan.
+- `docs/quality/references/story-35-2-2026-10-28/capture-manifest.json` binds raw immutable source PNGs and hashes at 1440×900/360×640. They show source idle/focus/grouping only, not accepted candidate UI or auth behavior.
+
+## Tasks & Acceptance
+
+**Execution (ordered):**
+- [ ] `docs/quality/story-35-2-reference-and-inheritance-2026-10-28.md`, source-binding and admission — recheck current ownership/base/source hashes before edits; inventory all root-style consumers.
+- [ ] `src/app/fonts/InterVariable.ttf`, `src/app/fonts/InterVariable-Italic.ttf`, `public/licenses/inter/OFL.txt` — copy unchanged official v4.1 members from verified release provenance, compare all three admission hashes and preserve full license; never mutate v1.
+- [ ] `src/app/globals.css`, `src/app/layout.tsx` — bind one local Inter variable font family (400/500/600 and italic), semantic color/space/type/radius/motion aliases, white canvas and tabular-number affordance. Audit inherited effects before/after; keep changes bounded.
+- [ ] `src/app/(auth)/login/page.tsx` — apply plain wordmark and constrained responsive real-credential composition, ≥44px controls, readable pending/errors, associated labels, visible focus and reachable actions. Retain state/validation/actions separately from replaceable markup proportionally. Assess observed duplicate/unknown behavior under High before changing sensitive handling.
+- [ ] `tests/e2e/auth/login-and-tenant-context.e2e.spec.ts` — extend actual caller tests for invalid→corrected, delay/duplicate, rejection/recovery, keyboard and role landing using existing fixtures. A narrow handler test, if necessary, belongs at `tests/unit/auth/login-submission.test.ts`; mock only the existing client/router seam and record that it cannot prove real session authority.
+- [ ] Existing auth/role and bounded consumer test files identified by the High plan — verify affected inherited paths; add no N/A feature/test program. Capture actual candidate states and contrast in the frontend evidence package with source/build/revision provenance.
+- [ ] This story adapter — record commands/counts/skips/limitations, independent review and author-written final Suggested Review Order after implementation. Root owns publication/PR/agent-fix/exact-head CI and acceptance coordination; builder must return visual blockers honestly.
+
+**Acceptance Criteria (canonical IDs, no reduced scope):**
+- Given the real login and inherited consumers, when semantic foundations render, then white/ink, accepted spacing/type/radii/motion and one Tailwind source satisfy E35-2-AC1.
+- Given approved official roman/italic/license bytes, when packaged and rendered, then Inter 400/500/600, plain wordmark, tabular numerals and measured actual text/non-text contrast satisfy E35-2-AC2.
+- Given the real credential form, when invalid, pending, failed, recovered or keyboard-submitted, then actual safe states and unchanged server role landing satisfy E35-2-AC3.
+- Given connected 360×640 and 1440×900 with Swedish content, when touched, tabbed, enlarged or keyboard-occluded, then controls/errors/actions remain usable and current account identity is authoritative under E35-2-AC4.
+- Given actual adapted controls and affected inherited dialogs, when focus/motion/navigation is exercised, then existing applicable focus restoration/guards and reduced motion satisfy E35-2-AC5; no new modal is required.
+- Given the canonical applicability matrix, when owned state assertions run, then all nine Applies IDs remain honest, revoked remains inherited and N/A rows create no flow under E35-2-AC6.
+- Given checked server commands/entitlements and affected consumers, when the UI changes, then authority, money/provenance/integrity/file protections and development/release distinctions remain intact under E35-2-AC7.
+
+## Spec Change Log
+
+2026-10-28 planning: added concrete ordered execution map and Given/When/Then bindings around immutable approved body. Dated approval resolves historical preparation status; source references are now captured with explicit source-only provenance. KEEP all canonical AC/applicability/test IDs and High test-design constraints.
+
+## Review Triage Log
+
+No implementation review run in this planning phase.
+
+## Design Notes
+
+Owner-authorized routine composition follows the existing binding: constrained credential group, white background, Inter 500 plain wordmark, sunken fields, ink action, 8px controls and no rest shadow. Use 16px phone gutters and existing token rhythm. Desktop/photo/logo/BankID/demo/reset prototype extras are excluded from accepted composition. Raw source phone export may overflow; it is grouping evidence, not the required responsive result. No pending/error source screenshot is fabricated. Their written requirements and real implementation states supply later comparison inputs. Source captures do not modify `policy.references` or establish owner acceptance.
+
+Route: Sol Low planning/token/font/presentation; existing Sol High test design reused with provenance. No new sensitive judgment made here. Actual auth-state changes route to bounded Sol High then independent High review.
+
+## Verification
+
+Implementation commands: `pnpm install --frozen-lockfile`; `pnpm run verify:lockfiles`; `pnpm typecheck`; `pnpm lint`; `pnpm test`; `pnpm build`; containment/bundle checks and required CI policy. Required integration/RLS uses `SUPABASE_TEST_REQUIRED=1` with executed/failed/skipped counts. Use configured production Playwright server, guarded resources and essential real login/role/inherited journeys; no next dev. Run `pnpm exec playwright test tests/e2e/auth/login-and-tenant-context.e2e.spec.ts` plus affected role/operator/consumer cases from the High plan. Preserve its 16 traceability bindings (seven AC + nine owned states), not 16 invented test functions.
+
+Before completion run `node scripts/quality/frontend-controller.mjs local --base 65be26c5e6e2923ea0298160f4da54a987bed0fe` and use the project completion wrapper for any delivery/status helper. Actual clean committed candidate/one PR/current-head owner foundation visual acceptance are future prerequisites. Trusted main 734d source/policy mismatch is a hosted integration dependency; local 65be paired-source validation is distinct. Do not weaken controller/protection or claim hosted readiness. Exhaustive release matrices remain E35-2-REL-1/2/3; release_ready=false.
+
+Planning evidence: inspected HEAD d5fc62a88a25bf345754e3f62e5bbea7af964337 and intended branch, clean tree before planning writes; no product delta from approved 65be baseline. Renderer invoked exactly once. Source captures used existing root-owned Chrome through an isolated Playwright context and closed only that context. No application tests, product edits, auth service, implementation completion or acceptance claimed.
+
+## Auto Run Result
+
+Status: ready-for-dev
+Blocking condition: none for planning; halt-after-planning requested.
+Implementation acceptance dependencies: actual candidate functionality/contrast/captures, independent review, initial authenticated owner visual acceptance, exact-head CI and trusted hosted source/policy integration. Review-order completion hook: planning exit preserved; no completed trail manufactured.
 
 ## Canonical approved content (verbatim body)
 

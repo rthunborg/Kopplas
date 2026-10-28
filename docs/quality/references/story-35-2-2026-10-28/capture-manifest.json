@@ -1,0 +1,84 @@
+{
+  "capturedAt": "2026-10-28T09:26:41.505Z",
+  "browser": "156.0.8078.48",
+  "tool": "Playwright connectOverCDP; isolated context, own context closed",
+  "scope": "Source reference inputs only; no actual application, auth success, errors, pending state or visual acceptance claimed.",
+  "missingSourceStates": [
+    "invalid-auth",
+    "pending-auth",
+    "network-failure",
+    "server-confirmed-login"
+  ],
+  "references": [
+    {
+      "id": "E35-2-SOURCE-D-IDLE",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "docs/design/claude-design/v1/handoff/Verksamhetssystem.dc.html",
+      "sourceSha256": "553cbc083b1a31f4110e0a5f8446fae0ed8dc8f190cdf728c2a7494c17e715a1",
+      "image": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+      "imageSha256": "64e8dacc4bc4380d417912a9d98bec7d73585adf2d43a2c7f051fe9711ff84dd",
+      "state": "source default login/grouping",
+      "applicationEvidence": false,
+      "derivation": "Unmodified immutable source HTML rendered via file URI. Prototype styling and unsupported controls remain visible as historical source only; written DESIGN/EXPERIENCE and approved real-credential composition supersede them."
+    },
+    {
+      "id": "E35-2-SOURCE-M-IDLE",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "source": "docs/design/claude-design/v1/handoff/Verksamhetssystem.dc.html",
+      "sourceSha256": "553cbc083b1a31f4110e0a5f8446fae0ed8dc8f190cdf728c2a7494c17e715a1",
+      "image": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+      "imageSha256": "62548286c3a5f3a2e9d84e97beb3892044665122906170727c526e64286fe65e",
+      "state": "source default login/grouping",
+      "applicationEvidence": false,
+      "derivation": "Unmodified immutable source HTML rendered via file URI. Prototype styling and unsupported controls remain visible as historical source only; written DESIGN/EXPERIENCE and approved real-credential composition supersede them."
+    },
+    {
+      "id": "E35-2-SOURCE-D-FOCUS",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "source": "docs/design/claude-design/v1/handoff/Verksamhetssystem.dc.html",
+      "sourceSha256": "553cbc083b1a31f4110e0a5f8446fae0ed8dc8f190cdf728c2a7494c17e715a1",
+      "image": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-FOCUS.png",
+      "imageSha256": "3c6db7a2c4a8ed6e7686a44f1338288d5888e14c14e82c1012c55d2e66337dda",
+      "state": "source email input focused",
+      "applicationEvidence": false,
+      "derivation": "Unmodified immutable source HTML rendered via file URI. Prototype styling and unsupported controls remain visible as historical source only; written DESIGN/EXPERIENCE and approved real-credential composition supersede them."
+    },
+    {
+      "id": "E35-2-SOURCE-M-FOCUS",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "source": "docs/design/claude-design/v1/handoff/Verksamhetssystem.dc.html",
+      "sourceSha256": "553cbc083b1a31f4110e0a5f8446fae0ed8dc8f190cdf728c2a7494c17e715a1",
+      "image": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-FOCUS.png",
+      "imageSha256": "f37c0c696c7e115b008433b85b416a58b99e2d32e8e74ac514a5e60165178665",
+      "state": "source email input focused",
+      "applicationEvidence": false,
+      "derivation": "Unmodified immutable source HTML rendered via file URI. Prototype styling and unsupported controls remain visible as historical source only; written DESIGN/EXPERIENCE and approved real-credential composition supersede them."
+    },
+    {
+      "id": "E35-2-SOURCE-M-GROUPING",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "source": "docs/design/claude-design/v1/handoff/Fältvy.dc.html",
+      "sourceSha256": "bcf7b1db89eeb1ab50c5fd643fe3fc4f362324241175cf98565471dd5b8b0e50",
+      "image": "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-GROUPING.png",
+      "imageSha256": "a89c986171dcfdc884b091ebee87810d23664f2aabf0d970c15db1086825c20b",
+      "state": "source default login/grouping",
+      "applicationEvidence": false,
+      "derivation": "Unmodified immutable source HTML rendered via file URI. Prototype styling and unsupported controls remain visible as historical source only; written DESIGN/EXPERIENCE and approved real-credential composition supersede them."
+    }
+  ]
+}
