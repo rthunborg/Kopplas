@@ -68,6 +68,8 @@ The highest-risk Phase B surfaces are (a) per-role authorization correctness at 
 
 ## 2. Carried Phase A Foundation — ADR-A001..A009 (Unchanged, Deltas Only)
 
+See [Design transition compatibility — DT-2026-10-23](#design-transition-compatibility--dt-2026-10-23) for the approved presentation amendment; existing domain requirements remain binding.
+
 All nine Phase A ADRs remain in force exactly as written in the frozen `architecture.md`. This table cites each and records only its Phase B delta. No delta weakens a Phase A invariant.
 
 | ADR | Carried decision (cite; do not restate) | Phase B delta |
@@ -1094,6 +1096,14 @@ Capture forms (diary, deviation, photo caption, time report, material, and check
 
 Failures render the retained **unsent draft** with an explicit connection-required or failure state and `Försök igen`. The UI renders `Submitted`/`Saved` only after a server-confirmed write. Phase B deliberately uses no `localStorage`, IndexedDB, Cache API, service worker, durable attachment cache, local operation queue, replay engine, or background/reconnect synchronization for field operation. Read ADR-B009 §8B as the authority; ADR-B007 §8A is historical only.
 
+### Design transition compatibility — DT-2026-10-23
+
+Implement accepted DESIGN tokens through the existing Tailwind semantic layer and reusable accessible primitives; keep Next.js/React and current feature boundaries. Presentation/flow composition consumes existing checked feature actions, validation/state and server projections. It never becomes the authority for money, permission, conflicts, lifecycle or persistence. No parallel framework, prototype runtime, storage platform or generic cross-feature transaction is introduced.
+
+Preserve §§3.6/11 entitlement/field absence, current tenant resolution and row scope, ADR-B006 job identity/type, §10 scheduling/current-warning/DST/submitted-time rules, §12 selected-link file authority, §12A integer-öre/tax, ADR-B008 review/PDF provenance, checked command/audit transactionality and current stale-write/facts/proof protections. Dialog and URL composition must preserve protected drafts/history and late-result safeguards. ADR-B009 transient drafts remain unsent until server confirmation. Actual sensitive contract changes require their own High assessment and approved amendment; reuse alone does not require redesign.
+
+DESIGN is specification authority; `src/app/globals.css` and existing shared components remain implementation owners. FEATURE command/state seams remain proportional. Architecture diagrams need only annotate presentation → existing feature/state/actions → checked server projection/command; domain/data diagrams remain unchanged unless a later approved decision changes them. Record the exact integrated base and shared-path owner before edits. Scheduling migration waits for integrated E15, while unrelated foundations may be coordinated earlier.
+
 ## 16. Test Strategy Extension
 
 The Phase A layers (unit / command integration / RLS negative / storage negative / golden-master / migration reset / E2E / docs validators) carry unchanged. Phase B extends along seven axes — five defined at ratification, plus §16.6 and §16.7 added with the 2026-07-26 decisions:
@@ -1138,6 +1148,8 @@ Empty-DB reset must succeed at every migration state; the exact-policy enumerati
 The standing gate covers field paths at 360×640; explicit connection-required behavior; retention of suitable unsent form input after a request failure; explicit retry through the normal authenticated command; server-confirmed success before any `Submitted`/`Saved` state; current authorization on every retry; and honest photo-memory lifecycle messaging. Scope scans also prove that Phase B introduces no PWA manifest, service worker, durable offline store, operation queue, replay/sync engine, or offline conflict taxonomy. Story 10.7 verifies governance and traceability only; the field epics own their connected behavior tests.
 
 ## 17. Repo Structure Delta
+
+See [Design transition compatibility — DT-2026-10-23](#design-transition-compatibility--dt-2026-10-23) for the approved presentation amendment; existing domain requirements remain binding.
 
 Additions to the Phase A structure (everything else carries):
 
@@ -1289,12 +1301,14 @@ Every UX §14 item (U1–U14) and every PRD §15.2 architecture item (P1–P10) 
 1. **Final epic set:** merge candidates per PRD §15.3 (E12→E11, E24→E22, E30 adjacency, E32 bundle); wave tags binding; every module epic's first story carries the manifest flip + matrix rows + negative tests (the §5.5 activation protocol) — make this a story-template requirement.
 2. **Story 10.1 content is fixed** (§5.5 + PRD §13): AGENTS.md/guardrail re-baseline + manifest + derivations + coherence validator. Sequence it before any module story.
 3. **ADR-B006 recording:** ✅ **done 2026-07-26** (§8). The AC-B1b-6 gate is closed and the E16–E18 gate banners in `epics-phase-b.md` are lifted. Remaining work is story-level: E16.1 takes the Option C branch and deletes the Option B branch; E16.3/E16.4/E17.2 drop their `[gated: 7.1/7.3 …]` markers per §8.5.
-4. **Oracle terminology pass (U14):** a `legacy-oracle-explorer` terminology task per epic with `[oracle-check]` labels, before that epic's first story — encode as a story-gate in the epics doc.
+4. **Design-resolution gate (U14 superseded, owner decision 2026-10-15):** follow [Current Design Authority](../../docs/process/agent-workflow.md#current-design-authority--owner-decision-2026-10-15) and [Cross-Epic Delivery Rule 2](epics-phase-b.md#cross-epic-delivery-rules-binding-on-every-phase-b-story). Resolve historical `[oracle-check]` questions before the owning epic's first story using approved requirements and maintainable design defaults; record decisions and rationale. This supersedes earlier oracle requirements here, including U14: never browse the legacy application or reference/use its URLs as evidence; retain historical records without claiming new verification.
 5. **Wave-boundary checkpoints** own: coarse-FR expansion (PRD), B2/B3 schema finalization (§9.3–9.4), the time-report approval decision (§10.6/AB-A10), and any N-9-driven capacity-rule fixtures.
 6. **B2 Fortnox spike story** (during B2, not B3): produce the spike report answering §7's questions; it feeds ADR-B005-final and the N-5 owner conversation (AC-B2-6).
 7. **Owner-decision watchlist for sequencing:** ✅ **all gates closed 2026-07-26; N-3 superseded 2026-09-03.** Current N-3 → ADR-B009 (§8B), with ADR-B007 (§8A) retained as history; N-4 → §3.2A/§3.3A; N-9 → §10.5A; N-6 → §4.6; N-2 → §15.4A; N-5 → §7.1/§7.3; N-8 → §9.4 template contract; N-10 → §12B; tax blocks + `2.2` → §12A. Story 10.6 remains a money-correction prerequisite. Story 10.7 is governance alignment only and is not a prerequisite for E14–E18.
 
 ## 23. Handoff Guidance
+
+See [Design transition compatibility — DT-2026-10-23](#design-transition-compatibility--dt-2026-10-23) for the approved presentation amendment; existing domain requirements remain binding.
 
 Implementation proceeds through the Phase B epics doc (Epic 10+, wave-tagged) via the established per-epic pipeline. Before any Phase B implementation PR merges, confirm: the touched module is manifest-`active` (or the PR is its activation), matrix rows + per-role negatives land with activation, no background path exists outside ADR-B002, no public surface outside ADR-B004's closed set, no Fortnox artifact before ADR-B005-final, money is integer öre through `@/lib/money`, new tables are H4-enrolled with the exact-policy enumeration extended, and the Phase C ledger (PRD §14) stays untouched.
 
@@ -1342,3 +1356,65 @@ What each answer changed in this document and its siblings. `owner-signoff-quest
 ## Product naming amendment — 2026-10-09
 
 The application is now **Kopplas**, under [ADR-B013](../../docs/decisions/ADR-B013-kopplas-product-name-and-compatibility.md). Task `KOPPLAS-RENAME-2026-10-09` applies the cross-cutting rename; requirements, epic/story identities, scope-manifest activation, and historical Phase A records retain their meaning. Stable protocol and persisted-data names remain compatibility identifiers.
+
+## Accepted E17/E18 contract amendment — 2026-10-26
+
+Authority: [owner decisions DR-B1–DR-B7](design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md), seven explicit accepted choices including reviewed completion exceptions. Sensitive author GPT-6.1 Sol / High, [route recorded before dispatch](design-transition-2026-10-23/decision-resolution-2026-10-26/application/routing.md). This amendment applies policy to current prepared E17/E18 contracts; independent High review and remaining engineering/evidence gates are still required. It creates no accepted ADR, runtime privilege or story/implementation/release approval.
+
+The detailed [M1–M7 / F1–F4 / C1–C8 contract and gate map](design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md) is incorporated for this bounded slice. It distinguishes accepted policy, existing invariants, exact remaining technical contract, producer dependency and execution evidence. Earlier recommendation/pending labels are historical for the accepted choices. The original architecture text and before-change spec snapshots remain historical evidence; this dated amendment governs conflicts described below.
+
+### Money and source provenance — §§3.6, 8.6, 10.6, 11 and 12A
+
+1. **DR-B1:** a quote version contains frozen customer-facing sales facts, **no frozen cost budget** (R-607). Reference validated accepted V2 quoted net sales separately from immutable accepted customer payable and any explicitly entered independent internal cost-budget revision. A payable adjustment never supplies revised net/VAT/deduction or a cost budget. Preserve original quote-net with adjusted-acceptance/original-reference label; comparable revised-net variance is unavailable. V1 net/gross are unavailable; invalid V2 is source error. No reconstruction from current calculation/article/rate or guessed tax arithmetic.
+2. **DR-B4:** value actual submitted work using performed-work role, source/report revision and frozen effective-dated job/work-role cost/sell rates selected on work date in Europe/Stockholm. Missing historic role/rate or material cost remains unvalued; explicit zero stays zero. Historical attribution/prior effective dates need authorized explicit attestation/reason, not inferred catalogue history. Cost/sell snapshots and protected valuation revisions remain outside member time/usage payloads.
+3. Material physical facts are positive explicit-unit quantities with at most three decimals; no silent quantity rounding/conversion. Server-verified article sell snapshot is dated at capture; separate internal cost needs evidenced entitled input. Author-own or checked manager preterminal void/replacement preserves lineage and once-only current totals. After terminal parent physical quantity/unit cannot change for any actor; separate entitled financial revaluation preserves source history.
+4. Other costs use bounded manager-entered source-local actual facts, business date, category, source reference and correction reason/actor/server time. Cost/sell/classification have independent authority; no cost implies sale, billability or deduction eligibility. Exact entry commands/source ownership/capability mappings remain technical gates; a read-only rollup does not gain an extra entry form by implication.
+5. **DR-B3:** internal Projekt plan is DB type-bound to the same job, named positive net amount milestones, dates/notes, empty/partial allocations and immutable successor revisions with expected-current precondition/reason. Above-original-reference planning discrepancy needs manager acknowledgement/reason, never revises agreement or approves invoicing. Done permits reasoned manager successor correction; cancelled preserves history without new collection proposal. No percentage/approval/invoice/payment engine in E17.
+6. Existing §12A arithmetic remains unchanged: per-source line net then sum, category/document VAT and claim rounding are separate. Signed actual-minus-comparable-baseline is safe-integer derived output, never a relaxed negative price input. Definitive variance requires complete/current/authorized like-for-like operands. Withheld dependency removes inferable totals/subtotals/counts/deltas; missing/partial/unavailable and stale are separate from withholding. Current scope/version/as-of provenance is explicit.
+
+Exact protected baseline/rate/valuation/plan/source DTOs, checked APIs/ACLs, dependency graph and correction transactions remain engineering contracts to complete before readiness. 17.3 stays a read-model/UI projection slice; 17.4 stays golden/model/seam-only without live UI/command/file/browser work.
+
+### Permanent operational completion and authority — §§8.6, 14 and AB-A15
+
+**DR-B2 supersedes any general-reopen or uniform all-writes-read-only interpretation.** Current active in-scope Admin/PL through existing `Jobs.ApproveCompletion` deliberately completes a nonarchived `created|in_progress` container once. No second completion, all-work-closed/approved-time/fully-valued/paid-plan prerequisite or implicit cascade. Show currently authorized unresolved work/bookings and only actual manifest-active implemented effects before confirmation. Mistaken completion does not restore field editing in Phase B.
+
+The old **mandatory SECURITY INVOKER completion sketch is superseded**: retain current revoked authenticated jobs/job_events direct DML and require a narrowly checked normal-user mutation authority boundary with independent current tenant/role/row checks. Do not restore broad DML or expose a service-role client to make the sketch work. The recommended checked DEFINER/private helper approach is a candidate supported by current enforcement, not a ratified exact schema. Function owner, wrapper/helper signatures, empty search_path/qualification, grants/PUBLIC inheritance and effective ACLs require precise High-reviewed contract before readiness.
+
+AB-A15's server-manifest rule is retained and strengthened as an enforcement obligation: authenticated caller booleans, session flags or TypeScript visibility cannot prove active effect selection. Bind displayed job/source revision and effect set to confirmation; revalidate before mutation and require renewed confirmation on stale input/effect changes. Independently verify server-origin effect provenance at the DB authority boundary without encoding module activation in SQL. Exact proof canonicalization/domain/algorithm/key lifecycle/version/window/config/verifier remains a technical gate; HMAC precedent and quote-specific ADR-B008 do not automatically approve completion's exact mechanism.
+
+One transaction must atomically persist canonical per-job completion identity, terminal state, event/audit and only applicable implemented active effects, or roll back all. All restricted writers must serialize/recheck the same parent in a deterministic compatible lock protocol. Same request replays canonical current-authorized receipt; changed-payload command conflicts; distinct racing commands converge without repeated events/effects. Exact unique keys/digests/schema/lock ordering/result contracts are still engineering gates after source audit. Pending service/E23 and dou/E27 have no production effects/tables/categories; consumer proof is test-only. Later activation does not imply historical catch-up.
+
+The old **failed/disconnected implies uncompleted** wording is superseded: a definitely undispatched/proven-rollback request may retry; any possibly dispatched response loss is unknown. Reconcile current-authorized canonical completion before explicit retry, retaining operation identity. One absent read does not prove an in-flight request failed. Revoked callers get generic denial without receipt/existence disclosure.
+
+Historical status-only done jobs remain terminal with no fabricated actor/date/receipt/cutoff/effects/backfill or re-completion. Cancelled is distinct and creates no completion. Exact historical read DTO and source guard implementation remain engineering gates.
+
+### Accepted late administration and all-writer coverage
+
+The full action/state/role matrix in the incorporated contract governs E14/E15/E16/E17/E18/E20 and generic file/document paths. Every allowed action still needs current feature/row/field authority; terminal status grants no permission.
+
+- Ordinary job/card/type/planned-date/assignment/booking/new field/diary/photo/chat/physical usage writes stop on done/cancelled. Manager may audit access removal; existing authorized explicit booking cancellation may release capacity with history, without reversal or automatic cancellation.
+- After **done only**, current in-scope Admin/PL may close an already-open risk/deviation with resolution/reason/actor/server time/audit. No creation, reopen, original content/severity/assignment/attachment change. Cancelled allows no issue close.
+- After **done or cancelled**, current in-scope Admin/PL may reasonedly **cancel only** a pre-existing `created|in_progress` workorder or `open|in_progress` unfulfilled material request. Preserve immutable from/to/actor/time/command history and already incurred time/material/cost/valuation. No fulfilment/work-completed claim, new work, content/quantity/unit/responsibility/dependency edit, reopen or automatic cascade. Existing completed/fulfilled/rejected/cancelled children remain unchanged. Current workorder cancellation states do not supply the new mandatory-reason/terminal-parent contract.
+- Entitled manager financial append/revaluation reconciles **already incurred sources only**, preserving physical facts and old frozen artifacts. Done permits reasoned successor internal plan correction; cancelled preserves plan history.
+- Late time on done is only for work date no later than authoritative completion instant's Europe/Stockholm business date, using the actual approved E15 source command and actor with reason/original author/work-date provenance. No manager-on-behalf permission or ordinary member late submission is implied. Without an actual approved producer/actor contract the route stays unavailable. Historical status-only done has no invented cutoff; cancelled has no time exception.
+- Current entitled reads/reports/downloads, personal notification preferences and allowlisted administrative effects remain available. Generic multi-owner file archive/restore/link/write must check every affected protected parent; another live owner cannot bypass a terminal job guard. Staging bytes is not authorized final linking. Report artifact generation is a distinct bounded purpose, never arbitrary field upload authority.
+
+Exact cross-owner writer inventory, checked exception commands, source revisions and parent/authority locks must be authored and independently reviewed before readiness. No broad parent-lock bypass is allowed.
+
+### Bounded field and report contracts — §§4.4, 11 and 12
+
+**DR-B5:** material usage/request receipts are independent; requests use Submitted (`open`) → In progress → Fulfilled with Rejected/Cancelled alternatives, dedicated eligible lead/PL responsibility and explicit unassigned fallback. Terminal requests do not reopen. Fulfilment never creates usage or billing. Source-local author/manager history corrections and narrow member feature file access preserve one private pool; no broad Files/Documents grant. Severity Låg/Normal/Hög is explicit operational triage, not safety certification. Risks remain manager-only; chat requires current job membership on every read/write/retry, including managers, with persistence before scoped mentions/notifications. The detailed contract fixes each independent action/terminal matrix; exact command/recipient/purpose binding still needs engineering and evidence.
+
+**DR-B6:** initial internal nonfinancial PDFs are exactly Jobbsammanställning, Dagboks- och fotologg and Avvikelse- och risklista, with the bounded field schemas/exclusions in the incorporated contract. Current entitled in-scope Admin/PL requests for self or one eligible named active same-tenant internal Admin/PL. Intersect requester and recipient source/field authority before rendering; a privileged recipient cannot enlarge requester extraction. No financial fourth report, Montör report grant, arbitrary external email, guest/public link or built-in external sending.
+
+Bind catalogue/template/projection/filter/selected-link and consistent source row/file revision/as-of identities to one immutable artifact/content hash. New generation creates new identity; source changes can mark stale and permit explicitly labeled historical download only under continuing full source authority. Source/job/link archival or access loss denies later download; a reduced projection requires a new request. Recheck authority before worker read/render/store and each actual download.
+
+Current download access cannot be claimed from signing-time authorization of a reusable bearer URL alone. Exact private byte-serving/storage/cache/range/expiry/recipient mechanics remain High engineering gates; no blanket mechanism approval or saved-copy revocation is implied. Downloaded/saved copies can be manually shared and cannot be recalled. Retention/privacy ownership remains separately checkpointed.
+
+### AB-A10 / E26 disposition and evidence boundary
+
+**DR-B7 settles AB-A10's business direction:** operational time remains submitted-only. Authorized E26 billing reviewer must approve exact selected source/time identities and revisions before frozen billing assembly. Submitted does not mean automatically billable; no payroll attestation subsystem. Exact source eligibility, checkpoint approval transaction, coverage/no-double-billing/consumption/copy-by-value contract and evidence remain E26-owned. E17 only exposes the source-linked no-reentry seam.
+
+Inspected integrated object is `0ae48a243fce47cb42e0998aae319f00c796dc85`; newer remote metadata is not runtime qualification. E15 branch `d190feb91d7af10f59e7681265b06d42a4945cc6` shows submitted-time DTO/actor binding but proves no integrated DT-B15 or role/rate/on-behalf/terminal source contract. E15 integration is a consumer-specific dependency, not a blanket pause for unrelated design/E35/test-design work.
+
+Accepted policy enables concrete test design for defined semantic slices now. Exact completion/proof/ACL/lock/download and protected money-source contracts remain engineering gates; real integrated producers and later required-mode DB/RLS counts, production-server connected browser evidence for actual UI, independent High review and exact-head CI remain separate. Existing Applies/Inherited regression/N/A and development-versus-release boundaries are retained. No test was executed for this documentation amendment.

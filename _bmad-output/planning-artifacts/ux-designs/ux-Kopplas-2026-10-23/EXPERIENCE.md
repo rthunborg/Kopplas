@@ -221,3 +221,15 @@ Failure: failed invitation has explicit current recovery, not fake sent state. C
 E17/E18 detail gates and all later module contracts are enumerated in the crosswalk. Missing severity/report/template/content/billing choices are blocked work, never permission to browse legacy URLs or invent policy. Headless domain/state/validation/action seams remain separate from replaceable flow composition.
 
 Author Pass 1: required section shape and all shared component names are covered; all exported top-level/field IDs and five frozen Phase A journeys are mapped; state families and five scheduling views are explicit. B5/B7 retain source-role protagonists without invented personal names. The selected independent [source/contract review](validation-report.md) checked the pair and confirmed corrections to all three initial coverage findings. Future per-action contracts, rendered references and viewport/browser evidence remain outstanding. This remains accepted direction for course correction, not a full-readiness verdict.
+
+
+
+## Accepted E17/E18 policy disposition — 2026-10-26
+
+The owner has [accepted DR-B1–DR-B7](../../design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md). Earlier references here to missing severity/catalogue/completion/valuation choices are historical issue categories, not repeat approval gates for those accepted choices. The [High-applied contracts and gate disposition](../../design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md) and dated eight-spec/architecture amendments govern their current meaning. Exact engineering/source/ACL/proof/download/integration/evidence gates remain explicit; source/contract mapping grants no live UI, permission or readiness. No original detailed rule is retired by this pointer.
+
+Retain [scope-specific applicability](../../design-transition-2026-10-23/story-preparation/applicability.md), independent E35 preparation and actual E15 ownership/dependencies. Use [existing Prompt 4 update instructions](../../design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md); do not create a competing test package or convert documentation/golden stories into UI work.
+
+## Dependency closure — 2026-10-28
+
+E15 is integrated in current main 734d89981f287d128f176ceb7093244ef95fce82; its earlier concurrent/branch-dependent descriptions above are historical. E15 integration blocks no unrelated DT work. Exact DT-B15 exports/spec/test/fixture binding precedes 35.12/35.13 only. Calendar settings presentation is allocated with later scheduling/profile migration; the public calendar feed is ICS with unchanged inherited contracts, not a screen. Read the dated readiness-amendment-2026-10-28.md for exact source identities and accepted policy disposition. This source amendment authorizes no implementation, tracking, merge or deployment.
