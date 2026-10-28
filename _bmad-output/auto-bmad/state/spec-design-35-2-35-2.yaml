@@ -9,7 +9,7 @@ spec_folder: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2"
 story_id: 35-2
 branch: codex/story-35-2-foundations-login
 status: in-progress
-updated_at: "2026-10-28T12:06:51Z"
+updated_at: "2026-10-28T13:10:36Z"
 started_at: "2026-10-28T09:15:07Z"
 completed_at: null
 active_seconds: 8023
@@ -43,7 +43,7 @@ spec_path: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2/storie
 spec_approved: true
 build:
   status: blocked
-  blocking_condition: "full unit has 2 reproduced unchanged CRLF failures; the reviewed two-worker required integration/RLS run has 43 failures/52 skips/14 pending and 3 unentered files; isolated recovery-storage and affected inherited consumer/capture evidence are unfinished. Final exact-head PR/CI, build/captures, authenticated owner visual acceptance and trusted hosted source/policy integration remain unmet."
+  blocking_condition: "Remaining gates: exact final-head CI for the reviewed E09 observer, minimum 18 core actual/reference capture pairs and full-package authenticated visual protocol, plus coherent source/pin integration on trusted main. Native 5dc unit/integration/recovery evidence and latest strict local E09 pass are earned; earlier E09 transport failure remains recorded. Generic story/font and shown idle-login approvals are not pending."
   followup_review_recommended: true
   review_loop_iteration: 0
   deferred_count: 0
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [e1f02d48, d5fc62a8, 5f58e05d]
+commits: [e1f02d48, d5fc62a8, 5f58e05d, 5b167f1b, 01c4b149, be4cb52f, a0912945, 5dc23d40, 22ad29f3, 70553d4b, 5913f3a5, 188c3023, 1e969651, c6af1ec2, 9974943d]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -84,7 +84,9 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "full unit has 2 reproduced unchanged CRLF failures; the reviewed two-worker required integration/RLS run has 43 failures/52 skips/14 pending and 3 unentered files; isolated recovery-storage and affected inherited consumer/capture evidence are unfinished. Final exact-head PR/CI, build/captures, authenticated owner visual acceptance and trusted hosted source/policy integration remain unmet."
+  - "Trusted main EXPERIENCE/policy raw-byte mismatch: prepared source-only bootstrap b01bd9db, no main integration authorized here"
+  - "Final current-head minimum18 core capture/reference package and formal whole-package visual acceptance pending; shown idle views approved"
+  - "Final-head native CI pending for changed E09 test; all prior earned cases/skips/history retained"
 overrides:
   approval_record: docs/quality/story-35-2-approved-admission-2026-10-28.json
   approved_candidate: 65be26c5e6e2923ea0298160f4da54a987bed0fe
@@ -95,8 +97,13 @@ overrides:
   login_shown_views_approval: docs/quality/story-35-2-login-visual-approval-2026-10-28.json
   resume_routing: docs/quality/story-35-2-resume-routing-2026-10-28.json
   login_approved_capture_head: 5dc23d40bd672d476b80ccfeff1d1a6dad56ba74
+  native_earned_verification: "3744 unit passes;2146 integration passes/52 explicit skips; recovery passed at5dc/40680525867"
+  minimum_core_capture_count: 18
+  exploratory_reference_archive: codex/story-35-2-reference-exploration
+  trusted_source_packet: docs/quality/story-35-2-trusted-source-bootstrap-2026-10-28.json
+  latest_e09_local_pass: 1e969651c998708e7f471ce0b968427771220632
 constraints:
   - No merge/deploy/dbpush/global tracking/wholeE35
   - Official Inter v4.1 exact approved bytes
-  - "Root hook restored by direct owner Continue; managed resources remain guard-owned"
-  - Initial owner visual acceptance after actual rendering
+  - "Root managed resources remain guard-owned; direct Continue reopened current actor"
+  - "Two shown idle login views approved at5dc; unseen states/full exact-head protocol not waived"
