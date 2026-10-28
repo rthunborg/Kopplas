@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-28",
+  "worktree": "C:/DEV/K35-implementation",
+  "phase": "resume-blocked-build-35-2",
+  "coordination": {
+    "effort": "low",
+    "model": "gpt-6.1-sol",
+    "responsibility": "Resume existing build/evidence lane without repeated completed checks"
+  },
+  "sensitiveDiagnosis": {
+    "effort": "high",
+    "model": "gpt-6.1-sol",
+    "responsibility": "Bounded read-only hosted E2E/calendar runtime failure and exact required-gate diagnosis; propose only proven narrow fixes after ownership checks"
+  },
+  "independentSensitiveReview": {
+    "effort": "high",
+    "model": "gpt-6.1-sol",
+    "responsibility": "Separate context-free review before any sensitive fix or privileged test setup execution"
+  },
+  "referenceAndCapture": {
+    "effort": "low",
+    "model": "gpt-6.1-sol",
+    "responsibility": "Close precise missing reference/settled-state gaps using approved written sources; High fixture/auth operations and independent visual review retained"
+  },
+  "constraints": [
+    "Only story35.2",
+    "No repeated broad readiness assessment or unchanged blind reruns",
+    "No merge/deploy/dbpush/global tracking/whole-E35",
+    "Preserve previous attempts and screenshot history",
+    "No approval broadening",
+    "No active-session takeover"
+  ]
+}

@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2"
 story_id: 35-2
 branch: codex/story-35-2-foundations-login
 status: in-progress
-updated_at: "2026-10-28T11:29:36Z"
+updated_at: "2026-10-28T12:06:51Z"
 started_at: "2026-10-28T09:15:07Z"
 completed_at: null
 active_seconds: 8023
-timing_anchor: null
+timing_anchor: 1793189191
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -26,12 +26,13 @@ selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Retain persisted low effort for the in-flight task
+escalation_reason: "Resume existing 35.2 evidence/build coordinator after verified shown-view approval; actual auth/security diagnosis is separately routed High with independent High review"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Retain persisted low effort for the in-flight task\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Resume existing 35.2 evidence/build coordinator after verified shown-view approval; actual auth/security diagnosis is separately routed High with independent High review\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Real login is authentication-facing under TEA rubric; preserve existing authority. No long-epic advisory for one-story folder."
@@ -73,9 +74,9 @@ retro:
   verdict: null
   open_action_items: 0
 bmad_status_flipped_at: null
-pr_url: null
-ci_run_url: null
-ci_status: unknown
+pr_url: "https://github.com/rthunborg/Kopplas/pull/115"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40680525867"
+ci_status: failed
 pr_merged: false
 merge_method: null
 merge_commit: null
@@ -91,6 +92,9 @@ overrides:
   single_story_only: true
   allocated_branch: codex/story-35-2-foundations-login
   owner_visual_checkpoint: true
+  login_shown_views_approval: docs/quality/story-35-2-login-visual-approval-2026-10-28.json
+  resume_routing: docs/quality/story-35-2-resume-routing-2026-10-28.json
+  login_approved_capture_head: 5dc23d40bd672d476b80ccfeff1d1a6dad56ba74
 constraints:
   - No merge/deploy/dbpush/global tracking/wholeE35
   - Official Inter v4.1 exact approved bytes
