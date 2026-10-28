@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "verdict": "No concrete visual findings at supplied focused scroll positions",
+  "manifestSha256": "5ff783c528a282e6f87c1d0d77815e4b8a6b0a7431e0e9cd7338f7bda1cf9fed",
+  "captures": [
+    {
+      "id": "auth-reflow-validation-error-available-viewport-360x320",
+      "openedWithViewImage": true,
+      "sha256": "92ec626a0fc6c358c7c4233db3bd88e7561bda3ad13edcf064a81a4f0d08ce54",
+      "hashMatches": true,
+      "dimensions": [
+        360,
+        320
+      ],
+      "PIIreview": "Synthetic-only: reserved example.invalid address and masked authored password; no real person/customer/token visible",
+      "observation": "Rejection feedback and focused outline fully visible, submit fully visible, no horizontal clipping. Synthetic referens@example.invalid only.",
+      "classification": "candidate-independent authored requirements reference; not observed prototype/application state, owner approval or protocol acceptance"
+    },
+    {
+      "id": "auth-reflow-unconfirmed-available-viewport-360x320",
+      "openedWithViewImage": true,
+      "sha256": "a2c33ee269f990d892590772d980fd14e0d86fad9cbd1fd7803a2ffb5660baa3",
+      "hashMatches": true,
+      "dimensions": [
+        360,
+        320
+      ],
+      "PIIreview": "Synthetic-only: reserved example.invalid address and masked authored password; no real person/customer/token visible",
+      "observation": "Unconfirmed feedback and focused outline fully visible; reconciliation fully visible; disabled submit partly below viewport and requires vertical scroll. No horizontal clipping.",
+      "classification": "candidate-independent authored requirements reference; not observed prototype/application state, owner approval or protocol acceptance"
+    },
+    {
+      "id": "login-phone-short-keyboard",
+      "openedWithViewImage": true,
+      "sha256": "90be3b60c155d58dbb258bd65f7e0b72e53114e0b0e7d70a77a06376bef17ac7",
+      "hashMatches": true,
+      "dimensions": [
+        360,
+        320
+      ],
+      "PIIreview": "Synthetic-only: reserved example.invalid address and masked authored password; no real person/customer/token visible",
+      "observation": "Approved wordmark/title/introduction and focused email visible; password and submit below current scroll position. Scrollbar visibly permits continuation; screenshot alone does not show the lower action.",
+      "classification": "candidate-independent authored requirements reference; not observed prototype/application state, owner approval or protocol acceptance"
+    }
+  ],
+  "frozenInputHashesMatch": {
+    "auth-reflow-validation-error-available-viewport-360x320.html": true,
+    "auth-reflow-unconfirmed-available-viewport-360x320.html": true,
+    "login-phone-short-keyboard.html": true,
+    "reference.css": true,
+    "InterVariable.ttf": true,
+    "reference-plan.json": true
+  },
+  "findings": [],
+  "limits": [
+    "Authored synthetic requirements references, not production captures or observed authentication states",
+    "Vertical scroll permitted; partial/offscreen lower controls explicitly recorded, reachability not exercised by this reviewer",
+    "No real virtual keyboard/device, runtime, provider, source changes, owner approval or protocol gate PASS"
+  ]
+}
