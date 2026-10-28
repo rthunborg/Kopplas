@@ -1,5 +1,0 @@
-# Frozen reference input and provenance hashes bind exact bytes.
-*.html -text
-*.css -text
-*.json -text
-OFL.txt -text
