@@ -1,5 +1,5 @@
 {
-  "evidenceDigest": "b2d9b0e9f71c3e77760b16311711168a4d9b0f6c90e7e3f62618e279b00ccc16",
+  "evidenceDigest": "3bbc67867a5d74ae69a1a4298493cf2747ec3c3e37df162a992b02cd4fc4c94b",
   "evidence": {
     "schemaVersion": 1,
     "kind": "frontend",
@@ -174,7 +174,7 @@
       {
         "id": "jobs-list",
         "consumer": "jobs",
-        "component": "JobList",
+        "component": "JobsPage",
         "route": "/jobs",
         "files": [
           "src/app/globals.css",
