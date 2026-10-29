@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3"
 story_id: 35-3
 branch: codex/story-35-3-record-inputs-and-tables
 status: in-progress
-updated_at: "2026-10-29T12:34:20Z"
+updated_at: "2026-10-29T12:43:46Z"
 started_at: "2026-10-29T12:23:26Z"
 completed_at: null
-active_seconds: 643
-timing_anchor: 1793277260
+active_seconds: 1184
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -39,8 +39,8 @@ completed_phases: [0, 1, 2]
 spec_path: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md"
 spec_approved: true
 build:
-  status: null
-  blocking_condition: null
+  status: blocked
+  blocking_condition: canonical stale-write guarantee requires checked expected-current authority outside allocation
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [f6b23d7]
+commits: [f6b23d7, 64a8e3a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -80,7 +80,8 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "Phase 3: independently confirmed stale-authority prerequisite exceeds the seven CRM presentation paths. Coordinator must allocate the minimal checked-baseline/atomic-conflict prerequisite or record an authoritative canonical disposition before resume."
 overrides:
   merge: "not authorized; stop at single-story checkpoint"
   epic: "35.3 only; no whole-E35 enrollment"

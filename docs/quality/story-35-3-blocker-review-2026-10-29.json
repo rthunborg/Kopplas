@@ -1,0 +1,82 @@
+{
+  "Outcome": "done",
+  "Fileschanged": [
+    "docs/quality/story-35-3-blocker-review-2026-10-29.json"
+  ],
+  "Status": {
+    "verdict": "PASS: the targeted canonical stale-write planning blocker is confirmed",
+    "reviewKind": "Independent source-only sensitive planning blocker review; not a product review round, approval, source amendment, merge or deployment authorization",
+    "route": "docs/quality/story-35-3-blocker-review-route-2026-10-29.json; gpt-6.1-sol / high / transactional-integrity",
+    "candidate": {
+      "base": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+      "head": "64a8e3a51d7b05d0a7bec6ce0094cc240002410d",
+      "branch": "codex/story-35-3-record-inputs-and-tables",
+      "localPlanningInputsSha256": {
+        "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md": "1834bee1663c6a430498a92b36e1ecc8f301e55a2a1018f077f855705b3171bc",
+        "_bmad-output/specs/spec-design-35-3/contract-assessment.md": "84fa1d985ca7fd577ccb113eee1f5308243495b279c9fe99e213d42d82862eae",
+        "_bmad-output/test-artifacts/design-35-3/test-design-epic-35-3.md": "64d11d18421696128b3002bed395455fd1785758c7229046329579b6f8c92ec3"
+      },
+      "productDeltaBaseToHead": "git diff --numstat for src, supabase and tests returned no changes; this is a pre-existing contract/allocation mismatch, not a defect introduced by product code in this planning candidate"
+    },
+    "canonicalRequirement": {
+      "source": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md:23",
+      "requirement": "Stale submission cannot overwrite new authoritative data or reuse obsolete review.",
+      "applicability": "The immutable canonical 35.3 spec explicitly lists stale and late-result separately as Applies; its State, tests and release obligations section selects the normative common contract. The pinned Lane A slice independently binds E35-3-STATE-stale / E35-3-T-stale at slice-35-3.md:53 to changed facts after read and an old submission that cannot overwrite latest facts.",
+      "interpretation": "This is a selected customer-edit obligation, not an unselected template row or a requirement to invent obsolete-review semantics for CRM. Local selection/request correlation satisfies a different late-result concern. The later individual approval supersedes historical approval blockers, but the operative allocation and source-binding preserve these canonical obligations."
+    },
+    "verifiedCallerAndInvariant": {
+      "caller": "Authenticated, currently entitled tenant_admin, projektledare or saljare: /customers/[customerId] -> readCustomerDetail -> CustomerDetail editDefaults -> CustomerDialog edit form -> updateCustomerAction -> parseUpdateCustomerForm -> runCommand capability/validation -> updateCustomer -> executeCrmAuditedMutation -> update_customer_with_audit",
+      "authorizationEvidence": [
+        "src/server/authz/permission-matrix.ts:48 Customers.Edit role set",
+        "src/server/commands/envelope.ts:58 customer.update capability enrollment and runCommand/runCommandCore live authority gates",
+        "supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql:1129 current actor/tenant role assertion"
+      ],
+      "reachableExample": "A opens customer C with a valid nonblank phone P0. B, an entitled editor in the same tenant, commits phone P1. A changes city and saves the still-open form, which also submits phone P0. Parsing/validation retain that valid phone and buildCustomerPatch includes it. The authorized RPC writes P0 over P1 and records the ordinary update audit. No invalid identifier, cross-tenant request, obsolete privilege or UI target switch is needed.",
+      "sourceEvidence": [
+        "src/features/crm/read.ts:71 DETAIL_COLUMNS has customer facts but no revision",
+        "src/components/crm/CustomerDetail.tsx:72 editDefaults and CustomerDialog.tsx:104 action selection; default field values are submitted with the edit form",
+        "src/features/crm/form-parsing.ts:126 parseUpdateCustomerForm forwards all nonblank mutable fields without an expected-current input",
+        "src/server/commands/crm/validation.ts:102 UpdateCustomerInput and :185 validateUpdateCustomer validate shape/value, not the read baseline",
+        "src/server/commands/crm/customers.ts:77 updateCustomer and :100 buildCustomerPatch forward supplied fields without baseline comparison",
+        "src/server/commands/crm/crm-db.ts:85 executeCrmAuditedMutation passes RPC arguments and :109 throwMappedWriteError maps errors without stale detection",
+        "supabase/migrations/20260907171252_role_aware_phase_a_policy_evolution.sql:1123-1161 RPC checks actor, tenant, patch shape and allowlist; UPDATE predicate is tenant_id plus id only"
+      ],
+      "downstreamGuardsChecked": [
+        "Envelope/core enforce authentication, current membership/capability, validation and configured ownership; updateCustomer config has no expected-current check. The generic ownership helper only selects id when configured.",
+        "RPC actor/tenant/role and value checks permit this same-tenant authorized valid patch. Atomic write plus audit does not make that write conditional on the facts A read.",
+        "customers identifier-by-type CHECK, same-tenant keys/FKs and RLS do not compare the edit baseline. Current CRM privilege baseline revokes raw authenticated writes and retains checked RPC entry, which still admits this caller.",
+        "customers_set_updated_at is the customer update trigger found in the migration inventory. Its set_updated_at function assigns new.updated_at = now() and returns NEW; it does not reject a stale update. No later customer RPC replacement or customer stale-check trigger was found."
+      ],
+      "uiOnlyLimit": "Refreshing before dispatch retains a race with B. Omitting unchanged fields still loses concurrent changes to a field A also edits. Local busy/generation/result guards cannot atomically reject the database write; suppressing a late success cannot undo it. Disabling every update would not deliver the required usable edit journey."
+    },
+    "minimumAmendment": {
+      "behavior": "A checked read supplies expected facts or a reliable revision for the edited customer. Carry that baseline through the form, parser, validator and command to a tenant/actor-checked atomic SQL compare-and-update, with a distinguishable conflict outcome and preserved unsent draft for refresh/review. No particular version column, receipt, idempotency system or merge policy is mandated by this review.",
+      "minimumAdditionalProductionWriteCandidates": [
+        "src/features/crm/read.ts: expose the checked baseline",
+        "src/features/crm/form-parsing.ts: forward the submitted baseline",
+        "src/server/commands/crm/validation.ts: validate and retain the baseline",
+        "src/server/commands/crm/customers.ts: pass the baseline to the checked mutation",
+        "src/server/commands/crm/crm-db.ts: map the mutation's definite stale conflict distinctly",
+        "supabase/migrations/<new-forward-migration>.sql: enforce the baseline atomically and retain existing actor/tenant/patch/audit guarantees"
+      ],
+      "existingOwnedCallerWork": "CustomerDetail and CustomerDialog carry the baseline and show conflict/refresh/review without dropping the draft; existing E2E allocation can cover that usable flow.",
+      "unnecessaryExpansionAvoided": "actions.ts already forwards parsed.input and propagates CommandErrorCode into CrmActionState; COMMAND_CONFLICT is already in that union. A conflict mapping may therefore reuse these contracts without editing actions.ts, action-state.ts, envelope.ts or command-errors.ts. Inspect final design before allocating such edits. No facility/contact/archive precondition, global draft system or unrelated module change follows from this customer-update finding.",
+      "minimumAdditionalTestCoverage": "Extend tests/integration/commands/crm-customer-commands.int.test.ts with a real two-editor baseline read, B commit, stale A rejection, independent reread proving B's values remain and no successful A update audit, then refresh/review with a current baseline and successful explicit save. Exercise the checked RPC boundary so absent/bad preconditions and any retained old overload cannot bypass the guarantee; preserve actor/tenant denial and valid entitled update coverage. Add focused parser/validator tests only in their existing owning test paths as the final mechanism requires. No new endpoint or parallel harness is necessary.",
+      "callerCoverage": "Repository search found updateCustomer's production consumer in src/features/crm/actions.ts and the checked RPC in the CRM command. Preserve existing integration callers and non-admin audit-wrapper authority coverage. If a new RPC signature is chosen, retire or secure its old callable overload; a compatibility path that omits the precondition would leave the same reachable bypass.",
+      "authorityBoundary": "These are proposed additional paths and verification obligations, outside the current seven-production/two-test allocation. They require a recorded exact prerequisite/allocation decision and sensitive implementation/review; this receipt does not allocate or approve them. Only an explicit authoritative canonical disposition can instead remove/change the stale obligation."
+    },
+    "dirtyHistoryDisposition": "No separate hard allocation blocker established. CustomerDialog can guard owned close/Cancel and pass existing Dialog busy through owned callbacks; shared Dialog.tsx:98 already guards chrome close. Full route/Back/Forward precommit behavior remains a concrete binding/verification question, not proof that excluded shell edits or a global guard are required. Do not infer such rails or count post-popstate rollback as precommit evidence.",
+    "verificationLimit": "Static repository inspection only. No tests, live database queries, browser activity, service launches, remote changes, Git mutations, state/spec/product edits or implementation approval occurred. PASS confirms the blocker assessment only; development completion and release readiness remain unproven."
+  },
+  "Openquestions": [
+    "Coordinator/owner must choose and record the narrow prerequisite/allocation or an explicit authoritative canonical source disposition before the blocked plan can resume; mechanism details can then be resolved by the sensitive implementation author against the checked source."
+  ],
+  "Deferredwork": [
+    "Implement and independently verify any authorized stale-write prerequisite; refresh planning/test bindings against its final contract.",
+    "G-01 unknown-create recovery and G-03/G-04 navigation/transport bindings retain their recorded status; this targeted review neither resolves nor expands them.",
+    "Runtime tests, browser/visual acceptance, completion, publication, merge and deployment remain outside this review."
+  ],
+  "Blockers": [
+    "35.3 canonical E35-3-STATE-stale / E35-3-T-stale requires atomic stale-write rejection that the current authority path lacks, and all necessary server/read/SQL write paths are excluded from the operative allocation. No enforced downstream guard was found that blocks the demonstrated valid authorized caller."
+  ]
+}
