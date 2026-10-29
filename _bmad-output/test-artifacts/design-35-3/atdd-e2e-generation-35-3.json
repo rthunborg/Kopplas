@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "storyId": "35-3",
+  "phase": "RED",
+  "execution": "sequential in assigned Sol High delegate",
+  "activeTests": true,
+  "files": ["tests/e2e/crm/customers.e2e.spec.ts"],
+  "newRuntimeCases": 16,
+  "browserGroups": "B01-B10 with split unknown/storage and Back/Forward cases",
+  "expected_to_fail": true,
+  "fixtures_created": 0,
+  "fixture_needs": ["Existing global CRM fixture", "Existing local tenant/admin-SQL factories", "Production server + isolated migrated backend", "Actual Chromium FormData/navigation harness qualification"],
+  "browserExecution": "not executed",
+  "playwright_utils_deviations": [
+    {"file": "tests/e2e/crm/customers.e2e.spec.ts", "reason": "Flag true; package absent. Two-gate mandate preserves existing vanilla runner/login and real route.fetch/abort/hold patterns; no new dependency or fixture path."}
+  ],
+  "notes": "No synthetic success/Flight response schema, no /api/customers, no completed unknown-create reconciliation, no universal-browser or post-popstate-repair claim. All seven ACs/sixteen Applies states retain checklist bindings; generated code is not runtime evidence."
+}

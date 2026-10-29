@@ -90,6 +90,8 @@ describe("Story 11.2 checked non-admin audit authority", () => {
       prosecdef: boolean;
       proconfig: string[] | null;
       proargnames: string[] | null;
+      identity_arguments: string;
+      pronargdefaults: number;
       anon_exec: boolean;
       authenticated_exec: boolean;
       service_exec: boolean;
@@ -98,6 +100,8 @@ describe("Story 11.2 checked non-admin audit authority", () => {
               p.prosecdef,
               p.proconfig,
               p.proargnames,
+              pg_catalog.pg_get_function_identity_arguments(p.oid) as identity_arguments,
+              p.pronargdefaults,
               has_function_privilege('anon', p.oid, 'EXECUTE') as anon_exec,
               has_function_privilege('authenticated', p.oid, 'EXECUTE') as authenticated_exec,
               has_function_privilege('service_role', p.oid, 'EXECUTE') as service_exec
@@ -118,7 +122,27 @@ describe("Story 11.2 checked non-admin audit authority", () => {
           )
         order by p.proname`,
     );
-    expect(rows).toHaveLength(10);
+    // Story 35.3: both checked customer-update signatures must be inspected.
+    expect(rows).toHaveLength(11);
+    const customerUpdates = rows.filter((row) => row.proname === "update_customer_with_audit");
+    expect(customerUpdates).toHaveLength(2);
+    expect(customerUpdates.map((row) => row.proargnames?.length).sort()).toEqual([5, 6]);
+    for (const update of customerUpdates) {
+      expect(update.proargnames).toEqual([
+        "p_tenant_id", "p_actor_user_id", "p_correlation_id", "p_customer_id", "p_patch",
+        ...(update.proargnames?.length === 6 ? ["p_expected_customer"] : []),
+      ]);
+      expect(update.identity_arguments).toBe(
+        "p_tenant_id uuid, p_actor_user_id uuid, p_correlation_id uuid, p_customer_id uuid, p_patch jsonb"
+        + (update.proargnames?.length === 6 ? ", p_expected_customer jsonb" : ""),
+      );
+      expect(update.pronargdefaults).toBe(0);
+      expect(update.prosecdef).toBe(true);
+      expect(update.anon_exec).toBe(false);
+      expect(update.authenticated_exec).toBe(true);
+      expect(update.service_exec).toBe(false);
+      assertSearchPathExactlyEmpty(update.identity_arguments, update.proconfig);
+    }
 
     const wrapper = rows.find((row) => row.proname === "create_customer_with_audit");
     const internal = rows.find(
@@ -147,7 +171,6 @@ describe("Story 11.2 checked non-admin audit authority", () => {
     assertSearchPathExactlyEmpty(wrapper?.proname ?? "missing wrapper", wrapper?.proconfig ?? null);
 
     for (const name of [
-      "update_customer_with_audit",
       "archive_customer_with_audit",
       "create_facility_with_audit",
       "update_facility_with_audit",

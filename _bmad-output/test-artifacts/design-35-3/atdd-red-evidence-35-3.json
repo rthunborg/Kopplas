@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "storyId": "35-3",
+  "inputHead": "83801855dd8ef3c5ed0b0b6dbeffe8842584827e",
+  "productBase": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "candidate": "Uncommitted ATDD test-only changes over inputHead; root owns the future checkpoint SHA",
+  "unit": {
+    "status": "observed expected RED",
+    "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/crm/form-parsing.test.ts tests/unit/server/commands/crm-validation.test.ts tests/unit/components/crm/customer-presentation.test.ts",
+    "exitCode": 1,
+    "executed": 118,
+    "passed": 85,
+    "failed": 33,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0,
+    "failureReason": "Current parser does not carry/reject expected_customer; current validator drops baseline and accepts malformed/missing original facts. All 33 new tests expose the intended missing contract. Existing regressions pass."
+  },
+  "structural": {
+    "status": "passed",
+    "command": "node node_modules/typescript/bin/tsc --noEmit --pretty false",
+    "exitCode": 0,
+    "scope": "Scaffold snapshot before final E2E hint/privacy assertions and documentation; closing syntax validation is recorded separately after those edits"
+  },
+  "closingStructural": {
+    "status": "passed",
+    "checks": ["TypeScript createSourceFile parse diagnostics: 0 across all five changed test files", "All three ATDD evidence manifests parse as JSON", "git diff --check: exit 0", "Installed workflow.on_complete resolved empty; no terminal hook action"],
+    "scope": "Final ATDD test/document snapshot; parse checking is not a second full typecheck or runtime proof"
+  },
+  "notExecuted": ["DB command/catalogue integration", "PostgREST overload runtime", "Full required integration/RLS", "Recovery/storage", "Production browser", "Images/contrast/owner acceptance", "CI"],
+  "resourcesLaunched": false,
+  "sourceEdited": false,
+  "migrationGeneratedOrApplied": false,
+  "developmentComplete": false,
+  "release_ready": false
+}

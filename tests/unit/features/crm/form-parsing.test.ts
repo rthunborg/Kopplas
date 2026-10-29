@@ -31,6 +31,20 @@ function fd(entries: Record<string, string>): FormData {
   return form;
 }
 
+// Story 35.3: original checked detail facts, distinct from edited business fields.
+function originalCustomer() {
+  return {
+    id: "11111111-1111-1111-1111-111111111111", customer_type: "company",
+    display_name: "  Original AB  ", personnummer: null, org_nr: "556677-8899",
+    contact_name: null, email: null, phone: "+46701111111", address_line1: "",
+    address_line2: null, postal_code: null, city: "Stockholm", archived_at: null,
+  };
+}
+
+function updateFd(entries: Record<string, string>): FormData {
+  return fd({ expected_customer: JSON.stringify(originalCustomer()), ...entries });
+}
+
 test("createCustomer: a private customer carries personnummer and NO org_nr", () => {
   const parsed = parseCreateCustomerForm(
     fd({
@@ -82,7 +96,7 @@ test("createCustomer: company missing org_nr is a field error on org_nr", () => 
 
 test("updateCustomer: never reads customer_type (no type switch on update)", () => {
   const parsed = parseUpdateCustomerForm(
-    fd({
+    updateFd({
       id: "11111111-1111-1111-1111-111111111111",
       customer_type: "company", // present in the form but must be ignored
       display_name: "New Name",
@@ -95,7 +109,7 @@ test("updateCustomer: never reads customer_type (no type switch on update)", () 
 
 test("updateCustomer: a present-but-blank display_name is a field error (cleared a required value)", () => {
   const parsed = parseUpdateCustomerForm(
-    fd({ id: "11111111-1111-1111-1111-111111111111", display_name: "   " }),
+    updateFd({ id: "11111111-1111-1111-1111-111111111111", display_name: "   " }),
   );
   assert.equal(parsed.fieldErrors.display_name, "Fältet är obligatoriskt.");
 });
@@ -208,7 +222,7 @@ test("createCustomer: optional contact/address fields are trimmed; blank ones ar
 
 test("updateCustomer: an entirely absent display_name field is NOT an error (only present-but-blank is)", () => {
   const parsed = parseUpdateCustomerForm(
-    fd({ id: "11111111-1111-1111-1111-111111111111", city: "Malmö" }),
+    updateFd({ id: "11111111-1111-1111-1111-111111111111", city: "Malmö" }),
   );
   assert.deepEqual(parsed.fieldErrors, {});
   assert.equal(parsed.input.city, "Malmö");
@@ -218,7 +232,7 @@ test("updateCustomer: BOTH identifier fields are forwarded as-is (no type-driven
   // Update never reads customer_type, so it cannot filter by type; whichever
   // identifier the (type-consistent) UI submits is forwarded for the DB CHECK.
   const parsed = parseUpdateCustomerForm(
-    fd({
+    updateFd({
       id: "11111111-1111-1111-1111-111111111111",
       personnummer: "199001011234",
       org_nr: "556677-8899",
@@ -229,7 +243,7 @@ test("updateCustomer: BOTH identifier fields are forwarded as-is (no type-driven
 });
 
 test("updateCustomer: a missing id is a field-associated error", () => {
-  const parsed = parseUpdateCustomerForm(fd({ display_name: "Name" }));
+  const parsed = parseUpdateCustomerForm(updateFd({ display_name: "Name" }));
   assert.equal(parsed.fieldErrors.id, "Fältet är obligatoriskt.");
 });
 
@@ -305,4 +319,40 @@ test("values echo: only string form entries are collected (no stray keys)", () =
   assert.equal(parsed.values.name, "HK");
   // A field the form did not submit is simply absent from values.
   assert.equal("city" in parsed.values, false);
+});
+
+test("35.3 E35-3-T-stale [P0]: real FormData preserves all original facts separately from edits and echoed values", () => {
+  const original = originalCustomer();
+  const parsed = parseUpdateCustomerForm(updateFd({
+    id: original.id, display_name: "Edited AB", phone: "+46702222222", city: "Malmö",
+  }));
+  assert.deepEqual(parsed.fieldErrors, {});
+  assert.deepEqual(parsed.input.expected_customer, original);
+  assert.equal(parsed.input.display_name, "Edited AB");
+  assert.equal(parsed.input.phone, "+46702222222");
+  assert.equal(parsed.values.display_name, "Edited AB");
+  assert.equal("expected_customer" in parsed.values, false);
+  assert.equal(JSON.stringify(parsed.values).includes("Original AB"), false);
+});
+
+for (const [label, raw] of [
+  ["missing", undefined], ["blank", ""], ["invalid JSON", "{"],
+  ["oversized UTF-8", JSON.stringify({ ...originalCustomer(), city: "å".repeat(8192) })],
+] as const) {
+  test(`35.3 E35-3-T-validation [P0]: ${label} baseline is a field error and never echoed`, () => {
+    const form = fd({ id: originalCustomer().id, city: "Malmö" });
+    if (raw !== undefined) form.set("expected_customer", raw);
+    const parsed = parseUpdateCustomerForm(form);
+    assert.ok(parsed.fieldErrors.expected_customer);
+    assert.equal("expected_customer" in parsed.values, false);
+    assert.equal(parsed.values.city, "Malmö");
+  });
+}
+
+test("35.3 E35-3-T-validation [P0]: a non-string FormData baseline is rejected without echo", () => {
+  const form = fd({ id: originalCustomer().id, city: "Malmö" });
+  form.set("expected_customer", new Blob(["private baseline"]), "baseline.json");
+  const parsed = parseUpdateCustomerForm(form);
+  assert.ok(parsed.fieldErrors.expected_customer);
+  assert.equal("expected_customer" in parsed.values, false);
 });
