@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "story": "35.3",
+  "executionId": "35-3",
+  "trackingKey": "35-3-record-inputs-and-tables",
+  "status": "approved expanded allocation; metadata bridge only; re-planning and implementation unstarted",
+  "ownerApproval": {
+    "text": "The plan is approved. There are no older callers as we are developing this project from scratch and it has never been live or released.",
+    "coordinatorThread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "requestingOwnerThread": "01a1819b-c72b-7653-aac9-77bb5e554210",
+    "messageId": null,
+    "provenance": "Actual human approval delivered by the Coordinator chat to the requesting owner chat, then supplied by the root in the trusted delegate handoff. No direct-message identity is available or invented."
+  },
+  "approvedPlan": {
+    "path": "docs/quality/story-35-3-stale-authority-prerequisite-plan-2026-10-29.md",
+    "revision": "16d45ec6e0fd104aa160cb326f9b65a4e1a842a4",
+    "gitBlob": "1998295aed6bc206f4e369b640cf22f6578ce8dc",
+    "canonicalGitSha256": "22111708d0ca4568128587f8487fb436609c204477e08d275121314d47b20278",
+    "identityVerified": true,
+    "historicalBytesUnchanged": true
+  },
+  "operativeAllocation": {
+    "authority": "Root-relayed actual human approval of the frozen exact prerequisite plan; extends only the existing individually approved 35.3 assignment",
+    "owner": "Root agent in owner chat 01a1819b-c72b-7653-aac9-77bb5e554210; sole implementation coordination owner",
+    "delegate": "approved_plan_35_3, gpt-6.1-sol High, authorization/transactional-integrity; this dispatch owns metadata only",
+    "worktree": "C:/DEV/K35-records",
+    "branch": "codex/story-35-3-record-inputs-and-tables",
+    "base": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+    "additionalProductionPaths": [
+      "src/features/crm/form-parsing.ts",
+      "src/server/commands/crm/validation.ts",
+      "src/server/commands/crm/customers.ts",
+      "src/server/commands/crm/crm-db.ts"
+    ],
+    "additionalTestPaths": [
+      "tests/integration/commands/crm-customer-commands.int.test.ts",
+      "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "tests/unit/features/crm/form-parsing.test.ts",
+      "tests/unit/server/commands/crm-validation.test.ts"
+    ],
+    "existingAllocation": "Preserve the original seven presentation production paths and two tests in source-binding.json unchanged.",
+    "forwardMigration": {
+      "count": 1,
+      "pathPattern": "supabase/migrations/<unallocated-timestamp>_customer_update_expected_facts.sql",
+      "allocatedPath": null,
+      "allocatedTimestamp": null,
+      "condition": "Root must reconcile the fresh migration filename inventory and reserve the unique semantic filename suffix *_customer_update_expected_facts.sql plus the exclusive 35.3 generation slot before CLI migration new. The installed CLI generates the timestamp; immediately record the actual generated timestamp/path before authoring the SQL body. Do not invent a timestamp or upgrade the CLI; existing migrations remain immutable."
+    },
+    "readOnlyDependencies": [
+      "src/features/crm/read.ts",
+      "src/features/crm/actions.ts",
+      "src/features/crm/action-state.ts"
+    ],
+    "boundary": "customer.update only; customer create/archive and all facility/contact create/update/archive behavior remain unchanged."
+  },
+  "approvedContract": {
+    "baseline": "All 13 original customer facts in the frozen plan, separate from edited business patch; untrusted comparison input grants no authority. No submit-time reread fallback or baseline advancement under retained old edits.",
+    "atomicity": "Existing actor/tenant/role checks, tenant-and-ID row lock, null-safe complete expected-facts comparison, existing allowlisted patch and bound audit in one transaction; definite conflict maps only for update_customer_with_audit to existing COMMAND_CONFLICT.",
+    "compatibility": "Baseline-less five-argument RPC fails closed. Inspect and update actual current in-repository callers/tests within approved scope together. Human confirms there are no older released/external caller cohorts: no old-client census, backward-compatible rollout or edit-unavailable interval is an admission blocker.",
+    "runtimeProof": "Actual required named-argument overload dispatch through PostgREST and full atomic/tenant/audit behavior still require bounded High assessment and isolated integration evidence. Neither this approval nor documentation is runtime proof.",
+    "exclusions": "No new endpoint, idempotency/receipt/version framework, other story, global tracking, dependencies or canonical AC weakening."
+  },
+  "supersession": {
+    "allocation": "This dated approval extends the original operative approval and supersedes only its conflicting read-only restrictions for the four backend paths, four tests and single future migration under the reserved semantic filename/generation slot. SPEC/source-binding links are operative; original records and raw source pins retain their historical bytes.",
+    "planning": "The historical planning HALT, contract assessment and blocked Auto Run Result remain unchanged. Supported recovery permits adapter frontmatter blocked to draft for re-planning; this is neither ready-for-dev nor blocker clearance. Root clears state blockers only after actual successful re-planning.",
+    "releaseCompatibility": "Frozen-plan wording about a released old-caller population, required edit-unavailable interval and further individual migration-application permission is superseded only by the explicit human never-released clarification and standing migration authorization below. Security fail-closed behavior remains required."
+  },
+  "standingProductionMigrationAuthorization": {
+    "text": "Production migration is always approved, until we have real users.",
+    "provenance": "Actual human standing approval delivered through Coordinator and root handoff on 2026-10-29; exact dated AGENTS.md section copied from C:/DEV/Kopplas/AGENTS.md. No fabricated message ID.",
+    "messageId": null,
+    "policy": "AGENTS.md#standing-production-migration-authorization--owner-decision-2026-10-29",
+    "effect": "Supersedes older no-db-push/separate migration-permission constraints for reviewed, qualified forward migrations for approved work while the owner has not reported real users. Application follows proper integration and normal merge/review requirements; do not ask for separate per-story production migration permission under this standing rule.",
+    "conditions": [
+      "Exact target and source verification and ordered migration-ledger reconciliation before application",
+      "Independent High SQL/security/transactional-integrity review",
+      "Forward-only changes; applied SQL immutable",
+      "Post-application verification",
+      "Stop and reconcile uncertain/partial outcomes before retrying; no blind retry",
+      "CI and tests use isolated resources, never production/demo",
+      "No database reset, history rewrite or unrelated destructive action",
+      "Reassess production migration approval and compatibility policy once owner reports real users"
+    ],
+    "currentDispatch": "No SQL exists yet; no application, database push or deployment is performed by this metadata task."
+  },
+  "reviewEvidence": {
+    "reusableBlockerPass": "docs/quality/story-35-3-blocker-review-2026-10-29.json",
+    "meaning": "Reusable only for the unchanged proven stale-authority blocker. The new design and actual implementation diff require bounded independent Sol High review; not a new broad blocker review or a completion claim."
+  },
+  "resume": {
+    "currentAction": "Metadata bridge only; adapter status draft using documented planning-block recovery. Root first reviews and commits clean metadata.",
+    "nextDispatch": "Phase 3 via absolute folder C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3 plus quoted story ID 35-3; halt after planning. Do not launch Build Auto in this task.",
+    "remainingPlanning": "Reconcile approved prerequisite and actual in-repository callers with all canonical IDs/applicability and remaining G-01/G-03/G-04 gaps. No implementation is admitted by merely resetting status."
+  },
+  "evidenceAndCompletion": {
+    "canonicalSources": "Full canonical body, all raw pins, immutable v1 and historical blocked/assessment records preserved.",
+    "visual": "New customer composition requires actual production-server 1440x900 and connected 360x640 revision-bound captures and owner acceptance. Reuse unchanged 35.2 foundation/font/login approval only; no inherited runtime/completion evidence.",
+    "runtimeExecuted": false,
+    "developmentComplete": false,
+    "release_ready": false
+  },
+  "constraints": [
+    "Root owns Git, state, claims, resources, CI and publication",
+    "No product/test/migration creation in this dispatch",
+    "No application merge/deployment or whole-E35 enrollment",
+    "No legacy application URLs as evidence or browsing",
+    "No automatic or blind retry under uncertainty"
+  ]
+}

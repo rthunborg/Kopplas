@@ -88,6 +88,9 @@ export async function executeCrmAuditedMutation(
   args: Record<string, unknown>,
 ): Promise<string> {
   const { data, error } = await asCrmAuditedMutationRpcClient(db).rpc(fn, args);
+  if (error?.code === "PT409" && fn === "update_customer_with_audit") {
+    throw new CommandError("COMMAND_CONFLICT");
+  }
   if (error) throwMappedWriteError(error);
   if (typeof data !== "string") {
     throw new Error(`${fn}: no id returned`);

@@ -1,0 +1,1 @@
+{"phase": "tea_triage", "role": "test-risk-triage", "profile": "light", "model": "gpt-6.1-sol", "effort": "low", "host": "codex", "tier": "subagents", "route": "subagent", "escalation_reason": "Ordinary task uses Low effort"}

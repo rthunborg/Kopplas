@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-29",
+  "phase": "build-planning-contract-assessment",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Transactional integrity: assess canonical stale/unknown/dirty-navigation guarantees against exact seven-production/two-test allocation before ready-for-dev judgment",
+  "scope": "Read-only requirement/caller/missing-authority/minimal-amendment assessment; no implementation, approval expansion or source edits",
+  "baseline": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "head": "64a8e3a51d7b05d0a7bec6ce0094cc240002410d"
+}

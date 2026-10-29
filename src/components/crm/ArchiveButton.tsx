@@ -9,20 +9,27 @@
  * matching archive server action, and on success calls `onArchived` so the caller can
  * refresh/navigate (the row then leaves the active list).
  *
- * A `SERVER_ERROR` is surfaced as a RETRYABLE failure (not a permanent denial); a
- * denial is a generic message. The mutation authority is the 3.1 envelope command.
+ * Customer transport/server errors remain unconfirmed and block replay. Inherited
+ * facility/contact errors retain their existing action contract. Authority stays server-side.
  */
-import { useActionState, useEffect, useState } from "react";
+import { useActionState,useEffect,useRef,useState } from "react";
+import { flushSync } from "react-dom";
 import {
   archiveContactAction,
   archiveCustomerAction,
   archiveFacilityAction,
 } from "@/features/crm/actions";
-import { CRM_ACTION_INITIAL } from "@/features/crm/action-state";
+import { beginCustomerSubmission,customerSubmissionSafety,finishCustomerSubmission } from "./customer-presentation";
+import { CRM_ACTION_INITIAL,type CrmActionState } from "@/features/crm/action-state";
 
-type ArchiveKind = "customer" | "facility" | "contact";
+/** Owned by the detail view, so revalidation may remove this child without ending its attempt. */
+export interface CustomerArchiveView {
+  capture(): {isCurrent(): boolean;canContinue(): boolean;setPending(pending: boolean): void};
+}
 
-const ACTION_BY_KIND = {
+type ArchiveKind="customer"|"facility"|"contact";
+
+const ACTION_BY_KIND={
   customer: archiveCustomerAction,
   facility: archiveFacilityAction,
   contact: archiveContactAction,
@@ -35,7 +42,8 @@ export function ArchiveButton({
   label,
   confirmMessage,
   onArchived,
-  compact = false,
+  compact=false,
+  customerView,
 }: {
   readonly kind: ArchiveKind;
   readonly id: string;
@@ -46,21 +54,64 @@ export function ArchiveButton({
   readonly confirmMessage: string;
   readonly onArchived: () => void;
   readonly compact?: boolean;
+  readonly customerView?: CustomerArchiveView;
 }) {
-  const [state, formAction, pending] = useActionState(
-    ACTION_BY_KIND[kind],
-    CRM_ACTION_INITIAL,
-  );
-  const [confirming, setConfirming] = useState(false);
+  const owner=useRef({ kind,id });
+  const flight=useRef(false);
+  const alive=useRef(true);
+  useEffect(() => { alive.current=true; owner.current={ kind,id }; return () => { alive.current=false; }; },[kind,id]);
+  const [blocked,setBlocked]=useState(kind==="customer");
+  const [unknown,setUnknown]=useState(false);
+  useEffect(() => {
+    if(kind!=="customer") return;
+    queueMicrotask(() => {
+      if(!alive.current) return;
+      try { setBlocked(customerSubmissionSafety(window.sessionStorage)!=="clear"); }
+      catch { setBlocked(true); }
+    });
+  },[kind]);
+  const [state,formAction,pending]=useActionState(async (previous: CrmActionState,data: FormData): Promise<CrmActionState> => {
+    if(flight.current||unknown||kind==="customer"&&["UNAUTHENTICATED","TENANT_MEMBERSHIP_REQUIRED","TENANT_ACCESS_DENIED","PERMISSION_DENIED"].includes(previous.code??"")) return previous;
+    let ownsHint=false;
+    if(kind==="customer") {
+      // A known-unsent attempt must not acquire the unresolved-dispatch hint.
+      if(!navigator.onLine) return { ...CRM_ACTION_INITIAL,status: "error",formError: "Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten." };
+      try { ownsHint=beginCustomerSubmission(window.sessionStorage); } catch { /* Block unsafe dispatch. */ }
+      if(!ownsHint) { setBlocked(true); return previous; }
+    }
+    flight.current=true;
+    const originatingView=customerView?.capture();
+    if(kind==="customer") flushSync(() => originatingView?.setPending(true));
+    let result: CrmActionState|undefined;
+    try { result=await ACTION_BY_KIND[kind](previous,data); } catch { /* Unknown transport. */ }
+    flight.current=false;
+    const stillCurrent=kind==="customer"&&originatingView? originatingView.isCurrent():alive.current;
+    if(!stillCurrent||owner.current.kind!==kind||owner.current.id!==id) return previous;
+    const continueNavigation=originatingView?.canContinue()??true;
+    // Keep edit admission closed while the confirmed archive continues to the list.
+    if(kind==="customer"&&(!(result?.status==="success"&&result.targetId===id)||!continueNavigation)) originatingView?.setPending(false);
+    if(kind==="customer") {
+      if(!result||result.code==="SERVER_ERROR"||result.status==="success"&&result.targetId!==id) {
+        setUnknown(true); setBlocked(true);
+        return { ...CRM_ACTION_INITIAL,status: "error",formError: "Arkiveringens resultat är obekräftat. Försök inte igen innan utfallet har bekräftats." };
+      }
+      let cleared=false;
+      if(ownsHint) { try { cleared=finishCustomerSubmission(window.sessionStorage); } catch { /* Retain block. */ } }
+      setBlocked(!cleared);
+    }
+    if(kind==="customer"&&result?.status==="success"&&result.targetId===id&&continueNavigation) onArchived();
+    return result??{ ...CRM_ACTION_INITIAL,status: "error",code: "SERVER_ERROR",formError: "Åtgärden kunde inte bekräftas." };
+  },CRM_ACTION_INITIAL);
+  const [confirming,setConfirming]=useState(false);
 
   // On a successful archive, hand control back to the caller (which refreshes/navigates,
   // unmounting or re-rendering this control). Only the parent callback runs here — no
   // local setState in the effect body (the row leaves the active list on revalidation).
   useEffect(() => {
-    if (state.status === "success") onArchived();
-  }, [state.status, onArchived]);
+    if(kind!=="customer"&&state.status==="success"&&state.targetId===id&&owner.current.kind===kind&&owner.current.id===id) onArchived();
+  },[state.status,state.targetId,id,kind,onArchived]);
 
-  if (!confirming) {
+  if(!confirming) {
     return (
       <button
         type="button"
@@ -68,8 +119,8 @@ export function ArchiveButton({
         aria-label={label}
         className={
           compact
-            ? "text-sm font-medium text-red-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-            : "rounded-md border border-red-300 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+            ? "min-h-control-lg px-2 text-label text-risk-text hover:underline focus-visible:outline-2 focus-visible:outline-ink"
+            :"min-h-control-lg rounded-control border border-border-default px-3 py-2 text-label text-risk-text hover:bg-risk-surface focus-visible:outline-2 focus-visible:outline-ink"
         }
       >
         Arkivera
@@ -80,12 +131,13 @@ export function ArchiveButton({
   return (
     <form action={formAction} className="flex flex-col items-end gap-1">
       <input type="hidden" name="id" value={id} />
-      {customerId && <input type="hidden" name="customer_id" value={customerId} />}
-      <p role="status" className="text-xs text-zinc-700">
+      {customerId&&<input type="hidden" name="customer_id" value={customerId} />}
+      {kind==="customer"&&blocked&&<p role="alert" className="text-caption text-warn-text">Resultatet är obekräftat eller det går inte att säkert spara i den här fliken.</p>}
+      <p role="status" className="text-caption text-text-secondary">
         {confirmMessage}
       </p>
-      {state.status === "error" && (
-        <p role="alert" className="text-xs text-red-700">
+      {state.status==="error"&&(
+        <p role="alert" className="text-caption text-risk-text">
           {state.formError}
         </p>
       )}
@@ -93,17 +145,18 @@ export function ArchiveButton({
         <button
           type="button"
           onClick={() => setConfirming(false)}
-          className="rounded-md border border-zinc-300 px-2.5 py-1 text-xs font-medium text-zinc-700 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          disabled={pending}
+          className="min-h-control-lg rounded-control border border-border-default px-3 py-2 text-label text-text-secondary hover:bg-hover focus-visible:outline-2 focus-visible:outline-ink"
         >
           Avbryt
         </button>
         <button
           type="submit"
-          disabled={pending}
+          disabled={pending||blocked||kind==="customer"&&["UNAUTHENTICATED","TENANT_MEMBERSHIP_REQUIRED","TENANT_ACCESS_DENIED","PERMISSION_DENIED"].includes(state.code??"")}
           aria-label={label}
-          className="rounded-md bg-red-700 px-2.5 py-1 text-xs font-medium text-white hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 disabled:opacity-60"
+          className="min-h-control-lg rounded-control bg-risk-text px-3 py-2 text-label text-white focus-visible:outline-2 focus-visible:outline-ink disabled:bg-sunken disabled:text-text-disabled"
         >
-          {pending ? "Arkiverar…" : "Arkivera"}
+          {pending? "Arkiverar…":"Arkivera"}
         </button>
       </div>
     </form>

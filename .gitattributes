@@ -54,3 +54,9 @@ tests/fixtures/golden/**/*.json  text eol=lf
 /docs/quality/story-35-2-closeout-*-routing-2026-10-29.json -text whitespace=cr-at-eol
 /docs/quality/story-35-2-process-closeout-routing-2026-10-29.json -text whitespace=cr-at-eol
 /docs/quality/story-35-3-admission-routing-2026-10-29.json -text whitespace=cr-at-eol
+
+# Approved35.3 operative source/ownership evidence retains exact bytes.
+/_bmad-output/specs/spec-design-35-3/source-binding.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-operative-approval-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-admission-review-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-ownership-and-bindings-2026-10-29.json -text whitespace=cr-at-eol

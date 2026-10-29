@@ -1,0 +1,70 @@
+{
+  "executionId": "35-3",
+  "trackingKey": "35-3-record-inputs-and-tables",
+  "baselineRevision": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "ownerApproval": {
+    "thread": "01a1819b-c72b-7653-aac9-77bb5e554210",
+    "text": "35.3 is approved.",
+    "messageId": null,
+    "provenance": "Direct human approval reported by requesting owner chat; no fabricated message identity. The original request asked for a draft handoff, not an immediate build."
+  },
+  "operativeApproval": "docs/quality/story-35-3-operative-approval-2026-10-29.json",
+  "sourceFiles": {
+    "_bmad-output/implementation-artifacts/spec-35-3-record-inputs-and-tables.md": "d70ddd6e3291fc42a0e20e6aeb6f5a2d4df62d619bad0b40588c317be35fe445",
+    "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-3.md": "d354e22692446c6f3413abded4fdc7fb07dfa2bf8d4da6924373ca29996094fa",
+    "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md": "d73d7fd80809c05350b4d403ed526812f831417a28dcbf23edd44317260673e6",
+    "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md": "f1eb82ae69f92ffb04b7a6aa9147e77d9f62be6fc4b45b4d6cf60ad33791c1d6",
+    "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md": "ea1005cc620b7c9683db0db60f2be80e0b1c065ebac8f7cf13568012a679fd4e",
+    "docs/quality/story-35-3-admission-2026-10-29.md": "eba805347f9bfbb09e5323391ef8a151170fe6c2c8ddfa6d6fbedaaf5ea3368d",
+    "docs/quality/story-35-3-admission-2026-10-29.json": "193b86d20e579dc7bf7e6d5a4886cbc059975fdb97aebcf0ed2319a39d4db565",
+    "docs/quality/story-35-3-source-integration-2026-10-29.json": "33682cd5b4269e813c243e0f78fc322f26bd74257ffb63231879b2af315f378a",
+    "docs/quality/story-35-3-operative-approval-2026-10-29.json": "25400289341480cba2098a69c2fcb54095755dc5fbb0ca70326fad64bf53d48f"
+  },
+  "productionWriteAllocation": [
+    "src/components/crm/CustomerList.tsx",
+    "src/components/crm/CustomerDetail.tsx",
+    "src/components/crm/CustomerDialog.tsx",
+    "src/components/crm/FormField.tsx",
+    "src/components/crm/CustomerTypeBadge.tsx",
+    "src/components/crm/ArchiveButton.tsx",
+    "src/components/crm/customer-presentation.ts"
+  ],
+  "testWriteAllocation": [
+    "tests/e2e/crm/customers.e2e.spec.ts",
+    "tests/unit/components/crm/customer-presentation.test.ts"
+  ],
+  "canonicalCopy": {
+    "method": "Decode canonical UTF-8, normalize CRLF and CR to LF, remove YAML frontmatter only, append the complete unchanged body after the canonical-copy marker in the adapter. No trimming or rewriting. Raw source SHA-256 pins refer to immutable original bytes, not normalized adapter bytes.",
+    "marker": "<!-- canonical-body-copy: spec-35-3-record-inputs-and-tables.md -->",
+    "relativeLinks": "Resolve copied canonical body links relative to the original canonical specification directory; test-slice links relative to the original test slice."
+  },
+  "statusMeaning": "Adapter draft only; build-auto owns future story status. No Auto Run Result or executed coverage is claimed.",
+  "sourcePriority": "Current supplied AGENTS owner decisions, approved written DESIGN/EXPERIENCE and detailed annex; immutable canonical AC/state/test/applicability IDs preserved. Reuse 35.2 foundation/font/login approval only; no inherited completion or runtime evidence.",
+  "historicalAdmissionSources": [
+    "docs/quality/story-35-3-admission-2026-10-29.md",
+    "docs/quality/story-35-3-admission-2026-10-29.json",
+    "docs/quality/story-35-3-source-integration-2026-10-29.json"
+  ],
+  "historicalAdmissionMeaning": "Dated preparation, not operative approval. Later operative approval and exact allocation supersede only the approval/allocation gates; source snapshots and historical candidate identity remain unchanged.",
+  "operativeAmendments": [
+    {
+      "date": "2026-10-29",
+      "record": "docs/quality/story-35-3-prerequisite-approval-2026-10-29.json",
+      "kind": "approved customer.update stale-authority prerequisite and standing migration authorization",
+      "additionalProductionPaths": [
+        "src/features/crm/form-parsing.ts",
+        "src/server/commands/crm/validation.ts",
+        "src/server/commands/crm/customers.ts",
+        "src/server/commands/crm/crm-db.ts"
+      ],
+      "additionalTestPaths": [
+        "tests/integration/commands/crm-customer-commands.int.test.ts",
+        "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+        "tests/unit/features/crm/form-parsing.test.ts",
+        "tests/unit/server/commands/crm-validation.test.ts"
+      ],
+      "migrationIdentity": "One forward migration; actual timestamp/path unallocated. Root reserves the semantic filename suffix *_customer_update_expected_facts.sql and exclusive generation slot before later CLI migration new; record its generated timestamp/path immediately before SQL body authoring.",
+      "effect": "Extends only the original seven/two allocation. Historical sourceFiles raw pins and canonical body are unchanged; prior allocation-only/read-only clauses are superseded within this exact amendment. Adapter draft is planning recovery, not readiness or cleared state blockers."
+    }
+  ]
+}

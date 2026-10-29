@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "HALT": "blocked",
+  "branch": "codex/story-35-3-record-inputs-and-tables",
+  "unchangedHead": "dbb18f9cbb06c4f684adb8f8b716bedc94b00a96",
+  "workingTree": "uncommitted reviewed implementation plus disclosed post-R2 capture-only test delta; no worker commit/push/PR",
+  "finalSourceDigest": "5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545",
+  "round2ReviewedDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+  "checks": {
+    "sourceBindingRawPins": 9,
+    "sourcePinMismatches": [],
+    "canonicalCopyEqual": true,
+    "frozenIntentUnchanged": true,
+    "priorMigrationGitBlobs": 119,
+    "priorMigrationMismatches": [],
+    "singleGeneratedMigration": "supabase/migrations/20261029132339_customer_update_expected_facts.sql",
+    "sourceManifestRawFiles": 18,
+    "sourceManifestMismatches": [],
+    "reviewOrder": "20 refs/0errors after HALT metadata writeback",
+    "diffCheck": "exit0",
+    "sourceContainment": "exit0 final production code",
+    "builtBundleContainment": "exit0 final production build"
+  },
+  "completionWrapper": {
+    "command": [
+      "node",
+      "scripts/quality/completion-gate.mjs",
+      "431c27f63183dc0dde0eea44da1427f78adf74c4",
+      "delivery_gate.py",
+      "_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json"
+    ],
+    "exitCode": 1,
+    "log": "tmp/private/story35-3/completion-wrapper-final.log",
+    "result": "frontend controller rejects uncommitted candidate before delivery helper",
+    "storyAndDeliveryHashesUnchanged": true,
+    "noHelperCompletionPass": true
+  },
+  "developmentComplete": false,
+  "release_ready": false,
+  "remainingGates": [
+    "Root final Git checkpoint/full-head freshCoordinatorRound3",
+    "Exact-head native unit/fullDB/RLS and directphysicalrecovery-storage CI",
+    "Final-head proxybuild/exactviewportformalimages/actualCustomerList.loadError capture/evidencecontroller",
+    "Authenticated owner initial new-composition visual acceptance"
+  ],
+  "fileManifest": "_bmad-output/test-artifacts/design-35-3/build-auto-final-files.json",
+  "fileCount": 33,
+  "allocationCheck": "passed exact approved production/test/migration paths",
+  "reviewRound1": "six layers + scoped fixes; final12patches/high2/medium8/low2,8rejected/withdrawn",
+  "reviewRound2": "targeted PASS/no findings on f962; post-review capture-only test delta5e3disclosed",
+  "captureFlagProof": "B01desktop1/0/0+phone1/0/0;8PNGexactviewport;11production+SQLunchanged"
+}

@@ -31,6 +31,15 @@ import {
 const VALID_UUID = "11111111-1111-4111-8111-111111111111";
 const VALID_UUID_2 = "22222222-2222-4222-8222-222222222222";
 
+function expectedCustomerFacts(): Record<string, unknown> {
+  return {
+    id: VALID_UUID, customer_type: "company", display_name: "  Original AB  ",
+    personnummer: null, org_nr: "556677-8899", contact_name: null, email: null,
+    phone: "+46701111111", address_line1: "", address_line2: null,
+    postal_code: null, city: "Stockholm", archived_at: null,
+  };
+}
+
 /** Assert a result is the VALIDATION_FAILED shape (and NEVER echoes the raw value). */
 function assertRejected(result: { ok: boolean }, label: string): void {
   assert.equal(result.ok, false, `expected VALIDATION_FAILED: ${label}`);
@@ -488,30 +497,30 @@ test("createContact accepts an explicit is_primary boolean and preserves it", ()
 
 test("validateUpdateCustomer rejects a non-UUID id", () => {
   assertRejected(
-    validateUpdateCustomer({ id: "nope", display_name: "X" }),
+    validateUpdateCustomer({ id: "nope", expected_customer: expectedCustomerFacts(), display_name: "X" }),
     "update bad id",
   );
 });
 
 test("validateUpdateCustomer rejects an empty display_name WHEN supplied (but allows omission)", () => {
   assertRejected(
-    validateUpdateCustomer({ id: VALID_UUID, display_name: "   " }),
+    validateUpdateCustomer({ id: VALID_UUID, expected_customer: expectedCustomerFacts(), display_name: "   " }),
     "update empty display_name",
   );
   // Omitting display_name entirely is fine — a partial update.
   assertAccepted(
-    validateUpdateCustomer({ id: VALID_UUID, city: "Göteborg" }),
+    validateUpdateCustomer({ id: VALID_UUID, expected_customer: expectedCustomerFacts(), city: "Göteborg" }),
     "update without display_name",
   );
 });
 
 test("validateUpdateCustomer rejects a malformed email/phone WHEN supplied", () => {
   assertRejected(
-    validateUpdateCustomer({ id: VALID_UUID, email: "bad" }),
+    validateUpdateCustomer({ id: VALID_UUID, expected_customer: expectedCustomerFacts(), email: "bad" }),
     "update bad email",
   );
   assertRejected(
-    validateUpdateCustomer({ id: VALID_UUID, phone: "abc" }),
+    validateUpdateCustomer({ id: VALID_UUID, expected_customer: expectedCustomerFacts(), phone: "abc" }),
     "update bad phone",
   );
 });
@@ -604,4 +613,49 @@ test("a client-supplied tenant_id is stripped from the validated value (facility
     "contact strips tenant_id",
   );
   assert.equal("tenant_id" in con, false);
+});
+
+test("35.3 E35-3-T-stale [P0]: a complete original baseline survives unchanged alongside a valid partial patch", () => {
+  const expected = expectedCustomerFacts();
+  const data = assertAccepted<Record<string, unknown>>(validateUpdateCustomer({
+    id: VALID_UUID, expected_customer: expected, city: "Göteborg", phone: "+46702222222",
+    tenant_id: VALID_UUID_2, customer_type: "private",
+  }), "complete original baseline");
+  assert.deepEqual(data.expected_customer, expected);
+  assert.equal(data.city, "Göteborg");
+  assert.equal(data.phone, "+46702222222");
+  assert.equal("tenant_id" in data, false);
+  assert.equal("customer_type" in data, false);
+});
+
+for (const [label, baseline] of [
+  ["missing", undefined], ["null", null], ["array", []], ["string", "{}"],
+  ["wrong identity", { ...expectedCustomerFacts(), id: VALID_UUID_2 }],
+  ["invalid UUID", { ...expectedCustomerFacts(), id: "bad" }],
+  ["unknown type", { ...expectedCustomerFacts(), customer_type: "unknown" }],
+  ["extra key", { ...expectedCustomerFacts(), tenant_id: VALID_UUID_2 }],
+  ["wrong nullable text", { ...expectedCustomerFacts(), phone: 12345 }],
+  ["wrong name type", { ...expectedCustomerFacts(), display_name: null }],
+  ["invalid archived date", { ...expectedCustomerFacts(), archived_at: "not-a-date" }],
+  ["oversized multibyte input", { ...expectedCustomerFacts(), city: "å".repeat(8192) }],
+] as const) {
+  test(`35.3 E35-3-T-validation [P0]: rejects ${label} expected facts without private echo`, () => {
+    assertRejected(validateUpdateCustomer({ id: VALID_UUID, expected_customer: baseline, city: "Göteborg" }), label);
+  });
+}
+
+for (const key of Object.keys(expectedCustomerFacts())) {
+  test(`35.3 E35-3-T-stale [P0]: cannot omit original ${key} even when it is not edited`, () => {
+    const incomplete = expectedCustomerFacts();
+    delete incomplete[key];
+    assertRejected(validateUpdateCustomer({ id: VALID_UUID, expected_customer: incomplete, city: "Göteborg" }), key);
+  });
+}
+
+test("35.3 E35-3-T-stale [P1]: original nullable values and parseable archive instant are facts, not new-value requiredness", () => {
+  const expected = { ...expectedCustomerFacts(), org_nr: null, email: "old noncanonical value", archived_at: "2026-10-29T12:00:00+02:00" };
+  const data = assertAccepted<Record<string, unknown>>(validateUpdateCustomer({
+    id: VALID_UUID, expected_customer: expected, city: "Göteborg",
+  }), "original nullable facts");
+  assert.deepEqual(data.expected_customer, expected);
 });

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "story": "35.3",
+  "executionId": "35-3",
+  "trackingKey": "35-3-record-inputs-and-tables",
+  "ownerApproval": {
+    "thread": "01a1819b-c72b-7653-aac9-77bb5e554210",
+    "text": "35.3 is approved.",
+    "messageId": null,
+    "provenance": "Direct human approval reported by requesting owner chat; no fabricated message identity. The original request asked for a draft handoff, not an immediate build."
+  },
+  "operativeAllocation": {
+    "authority": "Subsequent Coordinator final allocation supplied to this adapter delegate by the sole checkout owner",
+    "owner": "Root agent in owner chat 01a1819b-c72b-7653-aac9-77bb5e554210",
+    "worktree": "C:/DEV/K35-records",
+    "branch": "codex/story-35-3-record-inputs-and-tables",
+    "base": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+    "productionPaths": [
+      "src/components/crm/CustomerList.tsx",
+      "src/components/crm/CustomerDetail.tsx",
+      "src/components/crm/CustomerDialog.tsx",
+      "src/components/crm/FormField.tsx",
+      "src/components/crm/CustomerTypeBadge.tsx",
+      "src/components/crm/ArchiveButton.tsx",
+      "src/components/crm/customer-presentation.ts"
+    ],
+    "testPaths": [
+      "tests/e2e/crm/customers.e2e.spec.ts",
+      "tests/unit/components/crm/customer-presentation.test.ts"
+    ]
+  },
+  "supersession": "Later individual approval and exact allocation supersede historical preparation-only approval/allocation blockers for this assignment only. Canonical source bytes and dated historical records remain unchanged. This bridge is not proof of preflight, build readiness, test execution, or completion.",
+  "constraints": [
+    "No whole E35, additional enrollment, global tracker updates, merge, deployment, or database push",
+    "Shared FormField association contract, DialogActions and ArchiveButton are presentation-only; reconcile inherited consumers before changing shared markup",
+    "Domain/actions/read/action-state/form-parsing/auth/tenant/SQL/server routes/root/globals/fonts/AppShell/shared Dialog/facility-contact bodies/booking-time/files bodies are read-only",
+    "Current owner prohibition on legacy application URLs supersedes historical oracle wording",
+    "No new framework or Figma prerequisite; accepted written DESIGN/EXPERIENCE and detailed annex govern"
+  ],
+  "release_ready": false
+}

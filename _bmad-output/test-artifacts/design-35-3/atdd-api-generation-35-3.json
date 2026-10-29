@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "storyId": "35-3",
+  "phase": "RED",
+  "execution": "sequential in assigned Sol High delegate",
+  "activeTests": true,
+  "skipDefaultOverriddenBy": "Root handoff explicitly requires actual intentional red assertions and forbids skipped scaffolds claiming coverage",
+  "files": [
+    "tests/integration/commands/crm-customer-commands.int.test.ts",
+    "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+    "tests/unit/features/crm/form-parsing.test.ts",
+    "tests/unit/server/commands/crm-validation.test.ts"
+  ],
+  "newUnitCases": 33,
+  "newIntegrationCases": 5,
+  "modifiedCatalogueCases": 1,
+  "expected_to_fail": true,
+  "fixtures_created": 0,
+  "fixture_needs": ["Existing local two-tenant fixture", "Existing forced_audit_failures correlation fixture", "Future root-owned single forward migration before DB execution"],
+  "endpoints_created": [],
+  "pact_mcp_reachable": false,
+  "pact_fallback_source": "existing provider source",
+  "databaseExecution": "not executed",
+  "notes": "Actual current in-repository callers/fixtures; no hypothetical released cohort; five named args fail closed and six require p_expected_customer. Unit observed RED counts are in atdd-red-evidence-35-3.json."
+}

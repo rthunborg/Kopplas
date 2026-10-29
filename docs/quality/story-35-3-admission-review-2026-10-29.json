@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "reviewKind": "bounded independent admission and approval-integrity review before product writes",
+  "reviewRoute": "_bmad-output/auto-bmad/preparation/35-3-admission-review-route.json",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "PASS",
+  "blockingFindings": [],
+  "base": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "branch": "codex/story-35-3-record-inputs-and-tables",
+  "worktree": "C:/DEV/K35-records",
+  "reviewedRawSha256": {
+    "docs/quality/story-35-3-operative-approval-2026-10-29.json": "25400289341480cba2098a69c2fcb54095755dc5fbb0ca70326fad64bf53d48f",
+    "_bmad-output/specs/spec-design-35-3/SPEC.md": "2fd6a4bf969ce8f51db59aea4b96f8f8c5ca54306cdef6ff34255d12d2e984fe",
+    "_bmad-output/specs/spec-design-35-3/stories.yaml": "2a173ba1111036720d2fdfd915861694ef8dd7692d4c1dbd971a4887923b46ba",
+    "_bmad-output/specs/spec-design-35-3/source-binding.json": "bfc2e06954b4fbedddec8737ffa0c6fbda97c48cb51a897fbfb9f5d5e5ce56d9",
+    "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md": "ec529416ec5d6698885e3adafc1ea77ff5063587b55857140313403e69746086",
+    "_bmad/custom/bmad-build-auto.toml": "4aa3caf220958d69f4f1e2ca7363064fa3c9121f0fd4673425a9e8f94be73092"
+  },
+  "sourceIdentity": {
+    "canonicalRawSha256": "d70ddd6e3291fc42a0e20e6aeb6f5a2d4df62d619bad0b40588c317be35fe445",
+    "testSliceRawSha256": "d354e22692446c6f3413abded4fdc7fb07dfa2bf8d4da6924373ca29996094fa",
+    "allNineSourceBindingRawPinsMatch": true,
+    "canonicalAndTestSliceRawBytesEqualBaseGitBlobs": true,
+    "canonicalGitBlob": "ba9cb682b6794b6ac37a045a440be2f1957b8ff0",
+    "testSliceGitBlob": "3ac489f3674c692ece6b8555fe8419a866c240ae",
+    "canonicalBodyPreserved": true,
+    "canonicalCopyVerification": "Normalize CRLF/CR to LF, remove only canonical YAML frontmatter through its closing delimiter/newline, and compare the remaining complete body with adapter suffix after marker plus one separator newline. Exact equality includes the canonical body's original leading blank line and final newline; no trimming or rewriting. Original canonical and test-slice files remain unchanged."
+  },
+  "supportedParser": {
+    "reader": ".agents/skills/auto-bmad/scripts/story_plan.py",
+    "readOnlyOperations": ["--resolve 35-3 --spec-folder C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3", "--spec C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md"],
+    "exitCodes": [0, 0],
+    "storyId": "35-3",
+    "enrolledStoryCount": 1,
+    "storyFileStatus": "draft",
+    "specCheckpoint": false,
+    "doneCheckpoint": true,
+    "autoRunResultPresent": false,
+    "lastReviewPass": null,
+    "warnings": [],
+    "hardStop": false
+  },
+  "authorizationAndScope": {
+    "ownerChat": "01a1819b-c72b-7653-aac9-77bb5e554210",
+    "approvalBasis": "Direct human individual 35.3 approval and subsequent exact Coordinator allocation supplied by requesting root; messageId remains null and no message identity was invented.",
+    "soleExecutionOwner": "Root agent in owner chat",
+    "productionPathsCount": 7,
+    "testPathsCount": 2,
+    "allocationMatchesSuppliedOperativeAuthorization": true,
+    "sharedConsumers": "FormField association contract, DialogActions and ArchiveButton remain presentation-only with inherited-consumer reconciliation; excluded feature/domain/auth/tenant/schema/server/root/global/font/AppShell/shared-Dialog and facility/contact/booking/time/files bodies remain read-only.",
+    "historicalPreparationPreserved": true,
+    "noWholeEpicOrNewOwnerApprovalGate": true,
+    "designAndEvidence": "Approved written DESIGN/EXPERIENCE and detailed annex govern; reuse 35.2 foundation/font/login approval only. Actual changed 35.3 composition still requires future candidate visual/reference acceptance and development verification. No inherited runtime/completion evidence, legacy URL evidence, release-ready claim, merge, deployment or database-push authorization."
+  },
+  "claimsAndBindings": {
+    "savedProof": "tmp/private/story35-3/claims-and-bindings.json",
+    "allThirteenConsumerBaseGitSha256BindingsIndependentlyMatch": true,
+    "savedClaimsDisposition": "Saved catalog has one finalized E20 run with three integrated claims and merged journals; retained E15 reservation is planning-only and does not intersect the nine allocated paths or inherited presentation domains. No intersecting saved non-integrated claim.",
+    "limitation": "Saved-catalog finding only; no universal assertion about unregistered or foreign sessions."
+  },
+  "managedReviewCustomization": {
+    "diffNumstat": "1 insertion, 1 deletion",
+    "change": "Only the external Codex review command's two checkout-path occurrences change from C:/DEV/K35-implementation to C:/DEV/K35-records.",
+    "protectedHooksAndSafeguardsUnchanged": true,
+    "preserved": "Frontend authenticated gate/completion wrapper, approval boundaries, author trail, independent/security review, Sol model, sensitive High escalation, read-only sandbox and failure handling. Git warned of future LF-to-CRLF conversion; this is representation metadata, not a broadened semantic diff."
+  },
+  "limits": "Metadata/source-integrity admission only; not a broad product/code review round, implementation readiness, test execution, visual acceptance or completion. Normal root preflight and plan/ATDD/build remain future pipeline work. No new tests were required or run for these structural checks. Reviewer changed only this owned receipt; no product, Git/state/resource or remote mutations."
+}

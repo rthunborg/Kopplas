@@ -43,10 +43,12 @@ import {
   makeAuthedServerClient,
   cleanupFixture,
   adminSelectCrmRowById,
+  adminInsertMembership,
   type TwoTenantFixture,
   type TestServerClient,
 } from "../../factories/tenants";
 import { adminSelectAuditEvents } from "../../factories/audit-events";
+import { adminExec, closeAdminPool } from "../../factories/admin-sql";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
 import {
@@ -67,16 +69,22 @@ const fixedClock: CommandClock = { now: () => new Date(FIXED_ISO) };
 let stackUp = false;
 let fixture: TwoTenantFixture;
 let a: TestServerClient; // adminA's authenticated anon-key client
+let editorB: TestServerClient;
+let foreign: TestServerClient;
 
 beforeAll(async () => {
   stackUp = await isLocalStackReachable();
   if (!stackUp) return;
   fixture = await createTwoTenantFixture();
   a = await makeAuthedServerClient(fixture.adminA);
+  await adminInsertMembership({ tenant_id: fixture.tenantA.id, user_id: fixture.orphanUser.id, role: "saljare", status: "active" });
+  editorB = await makeAuthedServerClient(fixture.orphanUser);
+  foreign = await makeAuthedServerClient(fixture.adminB);
 });
 
 afterAll(async () => {
   if (stackUp && fixture) await cleanupFixture(fixture);
+  if (stackUp) await closeAdminPool();
 });
 
 // Un-gated (Story 3.1 dev): the CRM commands + migration have landed (Tasks 1-2).
@@ -256,13 +264,209 @@ describe("CRM customer commands via the envelope (AC3 / R-001,R-010)", () => {
     if (skipUnlessStack(testCtx, stackUp)) return;
     // A random id (or a Tenant B id) is invisible under A's RLS → ownership-verify
     // sees zero rows → TENANT_ACCESS_DENIED (envelope verifyOwnership, R-004).
+    const foreignId = crypto.randomUUID();
     const result = await runCommand(updateCustomer, {
       client: a as never,
-      input: { id: crypto.randomUUID(), display_name: "Hijack" },
+      input: { id: foreignId, expected_customer: originalFacts(foreignId), display_name: "Hijack" },
       clock: fixedClock,
       correlationId: crypto.randomUUID(),
     });
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.code).toBe("TENANT_ACCESS_DENIED");
+  });
+});
+
+const FACT_COLUMNS = "id,customer_type,display_name,personnummer,org_nr,contact_name,email,phone,address_line1,address_line2,postal_code,city,archived_at";
+function originalFacts(id: string): Record<string, unknown> {
+  return { id, customer_type: "company", display_name: "Original AB", personnummer: null,
+    org_nr: "556677-8899", contact_name: null, email: null, phone: "+46701111111",
+    address_line1: null, address_line2: null, postal_code: null, city: "Stockholm", archived_at: null };
+}
+async function checkedFacts(client: TestServerClient, id: string): Promise<Record<string, unknown>> {
+  const read = await client.from("customers").select(FACT_COLUMNS).eq("id", id).single();
+  expect(read.error).toBeNull();
+  expect(read.data).not.toBeNull();
+  return read.data as unknown as Record<string, unknown>;
+}
+async function seedEditableCustomer(): Promise<string> {
+  const created = await runCommand(createCustomer, { client: a as never, input: {
+    customer_type: "company", display_name: `35.3 ${crypto.randomUUID()}`, org_nr: "556677-8899",
+    phone: "+46701111111", city: "Stockholm",
+  }, correlationId: crypto.randomUUID() });
+  expect(created.ok).toBe(true);
+  if (!created.ok) throw new Error("35.3 customer setup failed");
+  return created.data.targetId;
+}
+
+describe("35.3 E35-3-T-stale customer expected-facts authority (active RED)", () => {
+  for (const [fact,value] of Object.entries({display_name:"Changed name",org_nr:"556677-8800",personnummer:"19800101-1234",
+    contact_name:"Changed contact",email:"changed@example.test",phone:"+46709999999",address_line1:"Changed street 1",
+    address_line2:"Changed floor 2",postal_code:"12345",city:"Changed city",archived_at:"archive"})) {
+    it(`[P0] actual RPC rejects independently stale ${fact} without changing any row column or audit`, async (testCtx) => {
+      if (skipUnlessStack(testCtx, stackUp)) return;
+      let id: string;
+      if(fact==="personnummer") {
+        const created=await runCommand(createCustomer,{client:a as never,input:{customer_type:"private",display_name:`35.3 private ${crypto.randomUUID()}`,personnummer:"19700101-1234"},correlationId:crypto.randomUUID()});
+        expect(created.ok).toBe(true); if(!created.ok) throw new Error("private setup failed"); id=created.data.targetId;
+      } else id=await seedEditableCustomer();
+      const baseline=await checkedFacts(a,id);
+      if(fact==="archived_at") {
+        // Only the entitled tenant administrator can archive; editorB is a Seller.
+        expect(await runCommand(archiveCustomer,{client:a as never,input:{id},correlationId:crypto.randomUUID()})).toMatchObject({ok:true});
+      } else {
+        expect(await runCommand(updateCustomer,{client:editorB as never,input:{id,expected_customer:baseline,[fact]:value},correlationId:crypto.randomUUID()})).toMatchObject({ok:true});
+      }
+      const entireRow=await adminSelectCrmRowById("customers",id), correlationId=crypto.randomUUID();
+      expect((await checkedFacts(a,id))[fact]).not.toEqual(baseline[fact]);
+      const stale=await a.rpc("update_customer_with_audit",{p_tenant_id:fixture.tenantA.id,p_actor_user_id:fixture.adminA.id,
+        p_customer_id:id,p_correlation_id:correlationId,p_patch:{city:"Must not write"},p_expected_customer:baseline});
+      expect(stale.error?.code).toBe("PT409"); expect(stale.data).toBeNull();
+      expect(await adminSelectCrmRowById("customers",id)).toEqual(entireRow);
+      expect(await adminSelectAuditEvents({correlationId})).toEqual([]);
+    });
+  }
+
+  it("[P0] immutable customer type still participates in comparison and cannot be patched",async(testCtx) => {
+    if(skipUnlessStack(testCtx,stackUp)) return;
+    const id=await seedEditableCustomer(),baseline=await checkedFacts(a,id),entireRow=await adminSelectCrmRowById("customers",id);
+    for(const [p_patch,p_expected_customer,code] of [
+      [{city:"Must not write"},{...baseline,customer_type:"brf"},"PT409"],
+      [{customer_type:"brf"},baseline,"23514"],
+    ] as const) {
+      const correlationId=crypto.randomUUID();
+      const result=await a.rpc("update_customer_with_audit",{p_tenant_id:fixture.tenantA.id,p_actor_user_id:fixture.adminA.id,
+        p_customer_id:id,p_correlation_id:correlationId,p_patch,p_expected_customer});
+      expect(result.error?.code).toBe(code); expect(result.data).toBeNull();
+      expect(await adminSelectCrmRowById("customers",id)).toEqual(entireRow); expect(await adminSelectAuditEvents({correlationId})).toEqual([]);
+    }
+  });
+  it("[P0] two entitled editors: stale A cannot overwrite B; explicit fresh review can save", async (testCtx) => {
+    if (skipUnlessStack(testCtx, stackUp)) return;
+    const id = await seedEditableCustomer();
+    const baselineA = await checkedFacts(a, id);
+    const baselineB = await checkedFacts(editorB, id);
+    expect(baselineB).toEqual(baselineA);
+    const bCorrelation = crypto.randomUUID(), aCorrelation = crypto.randomUUID();
+    const bResult = await runCommand(updateCustomer, { client: editorB as never, input: {
+      id, expected_customer: baselineB, phone: "+46702222222",
+    }, correlationId: bCorrelation });
+    expect(bResult).toMatchObject({ ok: true, data: { targetId: id } });
+    const afterB = await checkedFacts(a, id);
+    const stale = await runCommand(updateCustomer, { client: a as never, input: {
+      id, expected_customer: baselineA, phone: baselineA.phone, city: "Malmö",
+    }, correlationId: aCorrelation });
+    expect(stale).toMatchObject({ ok: false, code: "COMMAND_CONFLICT" });
+    expect(await checkedFacts(a, id)).toEqual(afterB);
+    expect(await adminSelectAuditEvents({ correlationId: aCorrelation })).toEqual([]);
+    const audit = await adminSelectAuditEvents({ correlationId: bCorrelation });
+    expect(audit).toHaveLength(1);
+    expect(audit[0]).toMatchObject({ tenant_id: fixture.tenantA.id, actor_user_id: fixture.orphanUser.id,
+      command: "customer.update", event_type: "customer.updated", target_type: "customer", target_id: id, metadata: {} });
+    const reviewedCorrelation = crypto.randomUUID();
+    const reviewed = await runCommand(updateCustomer, { client: a as never,
+      input: { id, expected_customer: await checkedFacts(a, id), city: "Malmö" }, correlationId: reviewedCorrelation });
+    expect(reviewed).toMatchObject({ ok: true, data: { targetId: id } });
+    expect(await checkedFacts(a, id)).toEqual({ ...afterB, city: "Malmö" });
+    expect(await adminSelectAuditEvents({ correlationId: reviewedCorrelation })).toHaveLength(1);
+  });
+
+  it("[P0] concurrent equal-baseline writers yield exactly one whole winner and one conflict/audit", async (testCtx) => {
+    if (skipUnlessStack(testCtx, stackUp)) return;
+    const id = await seedEditableCustomer();
+    const baseline = await checkedFacts(a, id);
+    const patches = [{ phone: "+46703333333", city: "Uppsala" }, { phone: "+46704444444", city: "Lund" }];
+    const correlations = [crypto.randomUUID(), crypto.randomUUID()];
+    const results = await Promise.all([a, editorB].map((client, index) => runCommand(updateCustomer, {
+      client: client as never, input: { id, expected_customer: baseline, ...patches[index] }, correlationId: correlations[index],
+    })));
+    expect(results.filter((result) => result.ok)).toHaveLength(1);
+    expect(results.filter((result) => !result.ok && result.code === "COMMAND_CONFLICT")).toHaveLength(1);
+    const winner = results.findIndex((result) => result.ok);
+    expect(await checkedFacts(a, id)).toEqual({ ...baseline, ...patches[winner] });
+    const audits = await Promise.all(correlations.map((correlationId) => adminSelectAuditEvents({ correlationId })));
+    expect(audits[winner]).toHaveLength(1);
+    expect(audits[1 - winner]).toEqual([]);
+    expect(audits[winner][0]).toMatchObject({ target_id: id, tenant_id: fixture.tenantA.id,
+      actor_user_id: winner === 0 ? fixture.adminA.id : fixture.orphanUser.id, metadata: {} });
+  });
+
+  it("[P0] raw six named arguments validate every fact and old five named arguments fail closed", async (testCtx) => {
+    if (skipUnlessStack(testCtx, stackUp)) return;
+    const id = await seedEditableCustomer(), baseline = await checkedFacts(a, id);
+    const args = { p_tenant_id: fixture.tenantA.id, p_actor_user_id: fixture.adminA.id,
+      p_customer_id: id, p_patch: { city: "Malmö" } };
+    const malformed: unknown[] = [null, {}, { ...baseline, id: crypto.randomUUID() }, { ...baseline, phone: 123 }];
+    for (const key of Object.keys(baseline)) { const incomplete = { ...baseline }; delete incomplete[key]; malformed.push(incomplete); }
+    for (const p_expected_customer of malformed) {
+      const correlationId = crypto.randomUUID();
+      const result = await a.rpc("update_customer_with_audit", { ...args, p_correlation_id: correlationId, p_expected_customer });
+      expect(result.error?.code).toBe("23514");
+      expect(result.data).toBeNull();
+      expect(await checkedFacts(a, id)).toEqual(baseline);
+      expect(await adminSelectAuditEvents({ correlationId })).toEqual([]);
+    }
+    const oldCorrelation = crypto.randomUUID();
+    const old = await a.rpc("update_customer_with_audit", { ...args, p_correlation_id: oldCorrelation });
+    expect(old.error?.code).toBe("PT409");
+    expect(old.data).toBeNull();
+    expect(await checkedFacts(a, id)).toEqual(baseline);
+    expect(await adminSelectAuditEvents({ correlationId: oldCorrelation })).toEqual([]);
+    const freshCorrelation = crypto.randomUUID();
+    const fresh = await a.rpc("update_customer_with_audit", { ...args, p_correlation_id: freshCorrelation, p_expected_customer: baseline });
+    expect(fresh.error).toBeNull();
+    expect(fresh.data).toBe(id);
+    const staleCorrelation = crypto.randomUUID();
+    const stale = await a.rpc("update_customer_with_audit", { ...args, p_patch: { phone: "+46705555555" },
+      p_correlation_id: staleCorrelation, p_expected_customer: baseline });
+    expect(stale.error?.code).toBe("PT409");
+    expect(JSON.stringify(stale.error)).not.toContain(String(baseline.display_name));
+    expect(await checkedFacts(a, id)).toEqual({ ...baseline, city: "Malmö" });
+    expect(await adminSelectAuditEvents({ correlationId: staleCorrelation })).toEqual([]);
+  });
+
+  it("[P0] exact baseline confers no tenant/actor/revoked-role or raw-table authority", async (testCtx) => {
+    if (skipUnlessStack(testCtx, stackUp)) return;
+    const id = await seedEditableCustomer(), baseline = await checkedFacts(a, id);
+    for (const [client, tenantId, actorId] of [
+      [foreign, fixture.tenantB.id, fixture.adminB.id], [foreign, fixture.tenantA.id, fixture.adminB.id],
+      [a, fixture.tenantA.id, fixture.adminB.id],
+    ] as const) {
+      const correlationId = crypto.randomUUID();
+      const result = await client.rpc("update_customer_with_audit", { p_tenant_id: tenantId, p_actor_user_id: actorId,
+        p_correlation_id: correlationId, p_customer_id: id, p_patch: { city: "Hijack" }, p_expected_customer: baseline });
+      expect(result.error?.code).toBe("42501");
+      expect(result.data).toBeNull();
+      expect(JSON.stringify(result.error)).not.toContain(String(baseline.display_name));
+      expect(await adminSelectAuditEvents({ correlationId })).toEqual([]);
+    }
+    await adminExec("update public.tenant_memberships set status = 'disabled' where tenant_id = $1 and user_id = $2", [fixture.tenantA.id, fixture.orphanUser.id]);
+    try {
+      const correlationId = crypto.randomUUID();
+      const revoked = await editorB.rpc("update_customer_with_audit", { p_tenant_id: fixture.tenantA.id, p_actor_user_id: fixture.orphanUser.id,
+        p_correlation_id: correlationId, p_customer_id: id, p_patch: { city: "Revoked" }, p_expected_customer: baseline });
+      expect(revoked.error?.code).toBe("42501");
+      expect(await adminSelectAuditEvents({ correlationId })).toEqual([]);
+    } finally {
+      await adminExec("update public.tenant_memberships set status = 'active' where tenant_id = $1 and user_id = $2", [fixture.tenantA.id, fixture.orphanUser.id]);
+    }
+    const direct = await a.from("customers").update({ city: "Raw bypass" }).eq("id", id).select("id");
+    expect(direct.error?.code).toBe("42501");
+    expect(await checkedFacts(a, id)).toEqual(baseline);
+  });
+
+  it("[P0] audit insert failure rolls back the entire customer update", async (testCtx) => {
+    if (skipUnlessStack(testCtx, stackUp)) return;
+    const id = await seedEditableCustomer(), baseline = await checkedFacts(a, id), correlationId = crypto.randomUUID();
+    await adminExec("insert into test_support.forced_audit_failures (correlation_id) values ($1::uuid)", [correlationId]);
+    try {
+      const result = await runCommand(updateCustomer, { client: a as never,
+        input: { id, expected_customer: baseline, display_name: "Must roll back", city: "Malmö" }, correlationId });
+      expect(result).toMatchObject({ ok: false, code: "SERVER_ERROR" });
+      expect(await checkedFacts(a, id)).toEqual(baseline);
+      expect(await adminSelectCrmRowById("customers", id)).toMatchObject({ display_name: baseline.display_name });
+      expect(await adminSelectAuditEvents({ correlationId })).toEqual([]);
+    } finally {
+      await adminExec("delete from test_support.forced_audit_failures where correlation_id = $1::uuid", [correlationId]);
+    }
   });
 });

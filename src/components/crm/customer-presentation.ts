@@ -160,3 +160,27 @@ export function findDuplicateLikeNames(
     .filter((c) => !c.isArchived && c.displayName.trim().toLowerCase() === candidate)
     .map((c) => c.displayName);
 }
+
+/** Payload-free, per-tab safety only. This is neither a draft nor a replay receipt. */
+export const CUSTOMER_SAFETY_KEY = "kopplas.customer-submission-safety";
+const UNRESOLVED_HINT = '{"v":1,"pending":true}';
+export type SafetyStorage = Pick<Storage, "getItem" | "setItem" | "removeItem">;
+export function customerSubmissionSafety(storage: SafetyStorage): "clear" | "unconfirmed" | "unavailable" {
+  try { return storage.getItem(CUSTOMER_SAFETY_KEY) === null ? "clear" : "unconfirmed"; }
+  catch { return "unavailable"; }
+}
+export function beginCustomerSubmission(storage: SafetyStorage): boolean {
+  try {
+    if (customerSubmissionSafety(storage) !== "clear") return false;
+    storage.setItem(CUSTOMER_SAFETY_KEY, UNRESOLVED_HINT);
+    return storage.getItem(CUSTOMER_SAFETY_KEY) === UNRESOLVED_HINT;
+  } catch { return false; }
+}
+/** Called only by the owning live attempt after a definite result. */
+export function finishCustomerSubmission(storage: SafetyStorage): boolean {
+  try {
+    if (storage.getItem(CUSTOMER_SAFETY_KEY) !== UNRESOLVED_HINT) return false;
+    storage.removeItem(CUSTOMER_SAFETY_KEY);
+    return storage.getItem(CUSTOMER_SAFETY_KEY) === null;
+  } catch { return false; }
+}

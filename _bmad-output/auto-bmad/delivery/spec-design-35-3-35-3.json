@@ -1,0 +1,65 @@
+{
+  "policy_version": "2026-10-19",
+  "contract_reconciliation": "Approved Story35.3 and narrow customer.update original-facts prerequisite remain authoritative. Canonical body/source pins/prior119 migrations remain immutable. All known fixes and written High reconciliations received actual targeted SolHighRound2 PASS/No findings at frozen source digest f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f. This is targeted scope only: fresh Coordinator Round3, exact-head full native CI/database/direct physical recovery and formal checkpoint-bound viewport images/controller/authenticated owner initial composition acceptance remain REQUIRED development gates. No required visual/manual gate is silently deferred. Existing full local unit/DB failures and external shim repair provenance remain preserved. OriginalP02 production-defect withdrawal is not an ABA pass; distinct actualP13 is fixed and tested. Written refresh reconciliation uses explicit Discard, not silent draft loss. This incomplete record grants no completion/status/finalization/merge/deployment permission. Historical native schema rejection is diagnostic only; any actual delivery/status/finalization check must use the project completion-gate.mjs wrapper and must reject the uncommitted/unaccepted candidate before helper execution. This reconciliation invokes no helper mutation or completion check. Root explicitly authorized a post-Round2 capture-infrastructure-only opt-in E35_CAPTURE_VIEWPORT_ONLY=1 (fullPage:false; defaulttrue). Existing B01 passed once per viewport and all8PNG headers/hashes prove exact1440x900/360x640. Functional assertions and production11+SQL unchanged; historical32/32/33/1 results remain f962-bound. This capture flag is NOT claimed Round2 reviewed; fresh Coordinator Round3 must bind actual full final head. Proof: tmp/private/story35-3/post-r2-viewport-capture-proof.json. No 32-case rerun/new broad review or completion helper invoked.",
+  "evidence_revision": "Uncommitted POST-Round2 capture-infrastructure TESTONLY source digest 5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545;18-path manifest tmp/private/story35-3/source-manifest-post-r2-capture.json. Only captureRecordState in existing CRM E2E file changed after reviewed f962 snapshot; production11+SQL hashes unchanged. No final checkpoint Git head exists.",
+  "development_checks": [
+    {
+      "name": "Focused required integration/RLS",
+      "status": "passed",
+      "evidence": "round1-focused-integration-final.json:33 passed0failed0skipped; SUPABASE_TEST_REQUIRED=1; actual owned loopback RPC/DB, baseline facts including each legal mutable field and immutable type."
+    },
+    {
+      "name": "Production build and owned static checks",
+      "status": "passed",
+      "evidence": "tmp/private/story35-3/round1-navigation-build.log, round1-navigation-typecheck.log, round1-navigation-lint.log, round1-navigation-diff-check.log exit0; all18 source hashes unchanged/strictUTF8/0replacement."
+    },
+    {
+      "name": "Round1 changed browser flows",
+      "status": "passed",
+      "evidence": "Actual final production CRM target1/0/0, desktop32/0/0 native61.856s, phone32/0/0 native52.500s; round1-navigation-{targeted,desktop,phone}.json. No retries/skips. Source digest f96246... same all three. Includes actual history/DOM continuation, offline zero-dispatch, explicit Discard checked read+genuine503, proxy/computed composite samples. No actual unmounted/newdraftABA or physicalOSkeyboard pass claimed."
+    },
+    {
+      "name": "Required exact-head full native CI/unit/database and separate physical recovery-storage",
+      "status": "pending",
+      "evidence": "Local fullunit3777/2/1 and fullDB retry2029pass45fail52nativepending remain failed; standard physical recovery skip is not proof. Exact checkpoint head/native CI not available."
+    },
+    {
+      "name": "Revision-bound frontend and initial owner composition acceptance",
+      "status": "pending",
+      "evidence": "44 final-source fullPage previews incl8primary: tmp/private/story35-3/capture-inventory-round1-navigation.json. Exact supplemental60/11consumers receipt tmp/private/story35-3/inherited-consumer-previews/live-capture-receipt.json; union15 in shared-consumer-impact.json. Round2 verified all104 hashes, not formal visual acceptance. FullPage may exceed viewport; pending root formal replay fullPage:false+separate scrolled footer frames after checkpoint. Synthetic503 HTML fault proof is NOT actualCustomerList.loadError UI; actual app error frame/formal head replay/controller/owner initial acceptance pending. Conditional errors/business mutations not claimed."
+    },
+    {
+      "name": "Post-Round2 viewport capture infrastructure only",
+      "status": "passed",
+      "evidence": "tmp/private/story35-3/post-r2-viewport-capture-proof.json: B01 desktop1/0/0 and phone1/0/0;8PNG actualheaders/SHA256 exact1440x900/360x640; E35_CAPTURE_VIEWPORT_ONLY=1, fullPage:false. Scopedlint/typecheck exit0. Source digest 5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545; this is a test-only capture delta after f962, not a new functional suite or Round2 review."
+    }
+  ],
+  "independent_review": {
+    "status": "pending",
+    "evidence": "Actual targeted independent SolHighRound2 PASS/No findings: _bmad-output/test-artifacts/design-35-3/product-review-round2.json at source digest f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f. Reviewer verified known fixes/reconciliations,20stops,18raw/6normalized source hashes,diff hash,44+60preview hashes and actual33DB/32desktop/32phone/1history reports; did not rerun services/browser. Fresh Coordinator Round3 remains PENDING, so overall independent readiness is NOT passed. Historical six-layer Round1 changes_requested, originalP02 withdrawal and distinctP13 evidence remain. External PATH shim native1 then same-read-only/SolHigh bundlednativeexe repair0 retained. The later capture-only flag/18-path digest 5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545 is outside that reviewed snapshot; fresh Coordinator Round3 must include it. Overall status remains pending."
+  },
+  "deferred_release_validation": [
+    {
+      "item": "E35-3-REL-1 exhaustive visual/device/reflow/contrast matrix",
+      "owner": "UI owner; Coordinator assigns named person",
+      "status": "deferred",
+      "evidence": "Bounded browser computed composite/CSSzoom/reduced visible viewport checks are proxies; no full-device matrix or formal head acceptance claimed.",
+      "next_action": "Assign named owner and exact release candidate; execute remaining physical-device/visual matrix."
+    },
+    {
+      "item": "E35-3-REL-2 physical OS keyboard, screen reader, daylight/manual validation",
+      "owner": "QA/accessibility owner; Coordinator assigns named person",
+      "status": "deferred",
+      "evidence": "Controlled CSS zoom and reduced viewport do not prove physical OS keyboard/device behavior.",
+      "next_action": "Execute named manual/device plan on release candidate and retain outcomes."
+    },
+    {
+      "item": "E35-3-REL-3 final PhaseB consolidation and release approval",
+      "owner": "Coordinator",
+      "status": "deferred",
+      "evidence": "No release approval/merge/deployment in author scope; current development evidence remains incomplete.",
+      "next_action": "Consolidate release obligations, satisfy required development gates and separate release approval."
+    }
+  ],
+  "release_ready": false
+}

@@ -1,0 +1,13 @@
+{
+  "phase": "build-author",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Approved customer.update authorization and atomic row-lock compare/write/audit prerequisite; step-03 requires context-free author delegation.",
+  "projectBaseline": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "buildBaseline": "dbb18f9cbb06c4f684adb8f8b716bedc94b00a96",
+  "invocation": {
+    "specFolder": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3",
+    "storyId": "35-3"
+  },
+  "dispatchContract": "Installed step-03 verbatim author prompt; no prior conversation context. Root retains resources and Git/remote ownership."
+}

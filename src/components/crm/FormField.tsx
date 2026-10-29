@@ -41,10 +41,10 @@ export function TextField({
   const hasError = Boolean(error);
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium text-zinc-800">
+      <label htmlFor={id} className="text-label font-medium text-text-secondary">
         {label}
         {required && (
-          <span aria-hidden="true" className="ml-0.5 text-red-700">
+          <span aria-hidden="true" className="ml-0.5 text-risk-text">
             *
           </span>
         )}
@@ -59,13 +59,10 @@ export function TextField({
         defaultValue={defaultValue}
         aria-invalid={hasError ? "true" : undefined}
         aria-describedby={hasError ? errorId : undefined}
-        className={[
-          "rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
-          hasError ? "border-red-500" : "border-zinc-300",
-        ].join(" ")}
+        className="min-h-control-lg rounded-control border-0 bg-sunken in-[.bg-sunken]:bg-card px-3 py-2 text-body text-text-primary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink"
       />
       {hasError && (
-        <p id={errorId} className="text-sm text-red-700">
+        <p id={errorId} className="text-label text-risk-text">
           {error}
         </p>
       )}
@@ -100,10 +97,10 @@ export function SelectField({
   const hasError = Boolean(error);
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium text-zinc-800">
+      <label htmlFor={id} className="text-label font-medium text-text-secondary">
         {label}
         {required && (
-          <span aria-hidden="true" className="ml-0.5 text-red-700">
+          <span aria-hidden="true" className="ml-0.5 text-risk-text">
             *
           </span>
         )}
@@ -118,10 +115,7 @@ export function SelectField({
         onChange={(e) => onChange?.(e.target.value)}
         aria-invalid={hasError ? "true" : undefined}
         aria-describedby={hasError ? errorId : undefined}
-        className={[
-          "rounded-md border bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
-          hasError ? "border-red-500" : "border-zinc-300",
-        ].join(" ")}
+        className="min-h-control-lg rounded-control border-0 bg-sunken in-[.bg-sunken]:bg-card px-3 py-2 text-body text-text-primary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink"
       >
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
@@ -130,7 +124,7 @@ export function SelectField({
         ))}
       </select>
       {hasError && (
-        <p id={errorId} className="text-sm text-red-700">
+        <p id={errorId} className="text-label text-risk-text">
           {error}
         </p>
       )}
@@ -149,15 +143,15 @@ export function CheckboxField({
 }) {
   const id = useId();
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex min-h-control-lg items-center gap-2">
       <input
         id={id}
         name={name}
         type="checkbox"
         defaultChecked={defaultChecked}
-        className="size-4 rounded border-zinc-300 text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        className="size-5 shrink-0 rounded border-border-strong accent-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
       />
-      <label htmlFor={id} className="text-sm text-zinc-800">
+      <label htmlFor={id} className="flex min-h-control-lg flex-1 items-center text-body text-text-secondary">
         {label}
       </label>
     </div>
@@ -169,16 +163,38 @@ export function CheckboxField({
  * so a screen reader announces it when a submit fails. `role="alert"` makes it an
  * assertive landmark for the blocking case. Renders nothing when there is no error.
  */
-export function FormErrorSummary({ message }: { message: string | null }) {
+export function FormErrorSummary({
+  message,
+  fieldErrors,
+}: {
+  message: string | null;
+  readonly fieldErrors?: Readonly<Record<string, string | undefined>>;
+}) {
+  const entries = Object.entries(fieldErrors ?? {}).filter(
+    (entry): entry is [string, string] => Boolean(entry[1]),
+  );
   return (
     <div aria-live="polite" data-testid="form-error-summary">
-      {message && (
-        <p
-          role="alert"
-          className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
-        >
-          {message}
-        </p>
+      {(message || entries.length > 0) && (
+        <div role="alert" className="rounded-control border border-risk-text bg-risk-surface px-3 py-2 text-label text-risk-text">
+          {message && <p>{message}</p>}
+          {entries.length > 0 && (
+            <ul className="mt-1 list-inside list-disc">
+              {entries.map(([name, error]) => (
+                <li key={name}>
+                  <a href="#" className="inline-flex min-h-control-lg items-center underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink" onClick={(event) => {
+                    event.preventDefault();
+                    const control = event.currentTarget.closest("form")?.elements.namedItem(name);
+                    if (control instanceof HTMLElement) {
+                      control.focus();
+                      control.scrollIntoView({ block: "nearest" });
+                    }
+                  }}>{error}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );
@@ -195,7 +211,7 @@ export function FormWarning({ message }: { message: string | null }) {
     <p
       role="status"
       data-testid="form-warning"
-      className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-900"
+      className="rounded-control border border-warn-text bg-warn-surface px-3 py-2 text-label text-warn-text"
     >
       {message}
     </p>

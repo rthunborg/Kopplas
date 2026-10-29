@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "worktree": "C:/DEV/K35-records",
+  "buildBaseline": "dbb18f9cbb06c4f684adb8f8b716bedc94b00a96",
+  "productBaseline": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "scope": "Tracked/untracked build-stage changes; earlier ATDD checkpoint files are already in buildBaseline. Private ignored runtime/PNG/proof artifacts are linked in author verification.",
+  "files": [
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/archive-runtime-reconciliation.md",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/build-author-route.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/product-review-round2-route.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/product-review-route.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/refresh-contract-reconciliation.md",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/refresh-reconciliation-route.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/author-verification.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/build-auto-final-files.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/build-auto-halt-evidence.json",
+      "purpose": "Bounded35.3 final blocked/HALT evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/build-auto-static-evidence.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/customer-loaderror-capture-assessment.md",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/product-review-round1-external.md",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/product-review-round1.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/product-review-round2.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/_bmad-output/test-artifacts/design-35-3/shared-consumer-impact.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/docs/quality/story-35-3-migration-reservation-2026-10-29.json",
+      "purpose": "Bounded35.3 story/routing/reconciliation/verification or incomplete delivery evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/components/crm/ArchiveButton.tsx",
+      "purpose": "Matching originating customer archive ownership, safety and continuation; inherited defaults retained"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/components/crm/CustomerDetail.tsx",
+      "purpose": "Checked defaults identity and current-view archive/edit coordination"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/components/crm/CustomerDialog.tsx",
+      "purpose": "Protected draft/save/uncertainty and explicit Discard/read recovery"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/components/crm/CustomerList.tsx",
+      "purpose": "Written table/selection/sort/status/empty customer presentation"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/components/crm/CustomerTypeBadge.tsx",
+      "purpose": "Written customer type chip treatment"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/components/crm/FormField.tsx",
+      "purpose": "Shared contextual field/error associations and summary navigation"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/components/crm/customer-presentation.ts",
+      "purpose": "Payload-free fail-closed submission safety helpers"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/features/crm/form-parsing.ts",
+      "purpose": "Bounded separate original-facts parsing"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/server/commands/crm/crm-db.ts",
+      "purpose": "Customer-update-local exact conflict mapping"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/server/commands/crm/customers.ts",
+      "purpose": "Required expected-facts RPC argument separate from patch"
+    },
+    {
+      "path": "C:/DEV/K35-records/src/server/commands/crm/validation.ts",
+      "purpose": "Complete original-facts shape and target validation"
+    },
+    {
+      "path": "C:/DEV/K35-records/supabase/migrations/20261029132339_customer_update_expected_facts.sql",
+      "purpose": "One generated forward atomic checked/fail-closed customer update migration"
+    },
+    {
+      "path": "C:/DEV/K35-records/tests/e2e/crm/customers.e2e.spec.ts",
+      "purpose": "Actual customer regressions and opt-in exact-viewport capture mode"
+    },
+    {
+      "path": "C:/DEV/K35-records/tests/integration/commands/crm-customer-commands.int.test.ts",
+      "purpose": "Real independent per-fact stale/atomic authority evidence"
+    },
+    {
+      "path": "C:/DEV/K35-records/tests/unit/components/crm/customer-presentation.test.ts",
+      "purpose": "Safety/storage and existing presentation invariants"
+    }
+  ],
+  "fileCount": 33,
+  "productionTestMigrationAllocationPassed": true
+}

@@ -1,0 +1,4 @@
+- id: "35-3"
+  title: "Record Inputs And Tables"
+  description: "Implement only individually approved story 35.3: adapt existing customer list/detail/edit presentation to accepted written design while preserving current checked reads, actions and inherited consumers. Preserve all canonical AC/state/test IDs and applicability under the exact seven production and two test path allocation in source-binding.json."
+  done_checkpoint: true

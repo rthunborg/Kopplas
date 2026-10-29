@@ -1,0 +1,60 @@
+{
+  "phase": "targeted-product-fix-review",
+  "round": 2,
+  "priorCompletedProductRounds": 1,
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "riskDomains": [
+    "authorization",
+    "transactional-integrity",
+    "critical-conflict"
+  ],
+  "reason": "Only known R1 fixes/current delta, actual navigation/consented-refresh contracts, consequential evidence and author trail; no broad new pass",
+  "recordedUtc": "2026-10-29T15:34:26.153815+00:00",
+  "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+  "snapshot": {
+    "diffPath": "C:/Users/Rasmus/AppData/Local/Temp/auto-bmad-35-3-targeted-a4369283be2d4c9ea51a49f386bced8b.diff",
+    "sha256": "228978199beefa3fea53fbfba5f115f866d9cf684f034e762963f712608b92ea",
+    "bytes": 51566,
+    "method": "Reconstruct actual Round1 reviewed source from captured unified diff over dbb18f9c; compare only six changed known-fix production/test files to current frozen source. No git/index/source mutation.",
+    "files": [
+      {
+        "path": "src/components/crm/ArchiveButton.tsx",
+        "round1ReviewedSha256": "df73fa4ced70ba087b1374b84aa28e269e1964380af76c10a66cffeb00ad8aff",
+        "currentSha256": "a9a5863038f7fb1981fad59e36311302b07634f394f05504a865454cf0a812e7"
+      },
+      {
+        "path": "src/components/crm/CustomerDetail.tsx",
+        "round1ReviewedSha256": "e17b49ce3b6f9cd909c1505b3853909c9856d49948c3667671f025227b61ce46",
+        "currentSha256": "8894baf8a0a9378c88ca38c2236fee8e91f1cbd7c12e24c56bd38fde059c9a33"
+      },
+      {
+        "path": "src/components/crm/CustomerDialog.tsx",
+        "round1ReviewedSha256": "b30e7a2b9b72dd30253bbeef05dc6a63f8c997331f80242fa9ae0893437e0f80",
+        "currentSha256": "f1cb3b42d400adb0ba43bf2bcae0c8e5baba981f06ae9ecc4dea906b2cd8ab6f"
+      },
+      {
+        "path": "src/components/crm/CustomerList.tsx",
+        "round1ReviewedSha256": "a4b1f329bbf00116104acd7a7b189a62dbe5c2ff0c83edd7ea6e0268c3d343c0",
+        "currentSha256": "effef001431670c7688c44fe21c1f98449f414e5b60191d62f6fd2feded317ed"
+      },
+      {
+        "path": "tests/e2e/crm/customers.e2e.spec.ts",
+        "round1ReviewedSha256": "24976b42222733ec5aed671f52a61db36f9318ad8352d94963fa7dd05e8d2206",
+        "currentSha256": "e8b4126348e0dbfc445b034eb650e890c54dd43baaa5e34ab7a1c7e0327817ac"
+      },
+      {
+        "path": "tests/integration/commands/crm-customer-commands.int.test.ts",
+        "round1ReviewedSha256": "fff8a70bc302795cd2188f84a9e169c395271a20d64301c66ae3ca9c8226cee8",
+        "currentSha256": "c96ddbec77c32668b1655694fd9ce5c627b2be10b2084c767338ade096a5a14a"
+      }
+    ]
+  },
+  "deliveryRoute": {
+    "monitor": "Build Auto /root/build_35_3 monitors through completion and relays root owner chat",
+    "requestingOwnerChat": "01a1819b-c72b-7653-aac9-77bb5e554210",
+    "coordinatorChat": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "reviewerExternalMessages": "none; parent/root delivers"
+  },
+  "readiness": "Incomplete current source-bound candidate; full nativeCI/recovery/formalheadimages/controller/owneracceptance pending"
+}

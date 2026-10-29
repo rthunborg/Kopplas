@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "storyId": "35-3",
+  "recordedUtc": "2026-10-29T13:32:50.143560+00:00",
+  "testedState": "Uncommitted approved implementation over build baseline dbb18f9cbb06c4f684adb8f8b716bedc94b00a96; code may receive subsequent fixes; exact candidate qualification remains future.",
+  "fullUnit": {
+    "command": "pnpm run test:unit",
+    "log": "tmp/private/story35-3/build-auto-unit.log",
+    "exitCode": 1,
+    "tests": 3780,
+    "suites": 103,
+    "passed": 3777,
+    "failed": 2,
+    "skipped": 1,
+    "cancelled": 0,
+    "failures": [
+      {
+        "test": "new atomic migration cross-validates exact original bodies and eight substitutions without widening historical SQL",
+        "location": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:1992",
+        "reason": "Unchanged test normalizes original calendar SQL CRLF to LF but compares against adapter SQL without normalization; literal body comparison fails on Windows CRLF checkout."
+      },
+      {
+        "test": "actual native regression construction uses reversible bootstrap exact predecessor commands and actual owner fragment only",
+        "location": "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts:2237",
+        "reason": "Unchanged test splits adapter source on LF-only marker, which does not match the Windows CRLF checkout; undefined.split."
+      }
+    ],
+    "skips": [
+      {
+        "test": "versioned file-backend restore preserves the DB-owned identity and refuses overwrite",
+        "reason": "Linux xattrs are required; this runs on Ubuntu CI in the same Python/Alpine compatibility family as the recovery loader"
+      }
+    ],
+    "unchangedGitBlobProvenance": {
+      "baseline": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+      "actualGitHashObjectMatchesBaseline": {
+        "tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts": "fbc3643df3517bbe91608dbde8384a38f0be5602",
+        "scripts/ci/with-calendar-feed-runtime.mjs": "ea9df80d07e87e960ebe6694034e5c3e00964e28",
+        "supabase/migrations/20261020220000_personal_calendar_feed.sql": "c5d6d53faab649b40dee5c12f7933030224fa4ab",
+        "supabase/migrations/20261021102723_calendar_feed_preparsed_actor_identity.sql": "da1270c7238db113f0cd2485581a635a66981a65"
+      }
+    },
+    "disposition": "Not passed. Do not edit historical SQL or outside-allocation tests. Exact-head Linux CI remains required; no repeat whole suite under unchanged condition."
+  },
+  "staticChecks": [
+    {
+      "command": "pnpm run verify:lockfiles",
+      "exitCode": 0,
+      "result": "Only pnpm-lock.yaml present"
+    },
+    {
+      "command": "pnpm run verify:service-role-containment",
+      "exitCode": 0,
+      "result": "No public service-role env or client-path reference"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "result": "0 errors, 31 warnings",
+      "log": "tmp/private/story35-3/build-auto-lint.log"
+    },
+    {
+      "command": "pnpm run verify:bundle-containment",
+      "exitCode": 0,
+      "result": "Production .next bundle has no service-role key/JWT/public variable or unauthorized service-role name"
+    }
+  ],
+  "immutableChecks": {
+    "sourceBindingRawPins": 9,
+    "sourceBindingPinMismatches": 0,
+    "canonicalBodyCopyEqual": true,
+    "priorMigrationGitBlobs": 119,
+    "priorMigrationMismatches": 0
+  },
+  "developmentComplete": false,
+  "release_ready": false,
+  "postFix2Utf8Check": {
+    "command": "Strict UTF-8 decode and count U+FFFD in all changed src/test .ts/.tsx paths",
+    "fileCount": 17,
+    "failures": []
+  },
+  "frontendController": {
+    "command": "node scripts/quality/frontend-controller.mjs local --base 431c27f63183dc0dde0eea44da1427f78adf74c4",
+    "exitCode": 1,
+    "status": "blocked",
+    "evidence": "tmp/private/story35-3/frontend-controller-incomplete.log",
+    "reason": "Commit the bounded candidate before claiming revision-bound acceptance; working-tree changes invalidate acceptance. No authenticated new-composition acceptance/current-head package exists."
+  }
+}
