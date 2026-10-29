@@ -504,7 +504,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     try {
       await context.setOffline(true); expect(await page.evaluate(()=>navigator.onLine)).toBe(false);
       await page.getByRole("button",{name:"Arkivera kund",exact:true}).click();
-      await expect(page.getByRole("alert")).toHaveText("Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten.");
+      await expect(page.getByRole("alert").filter({hasText:"Anslutning krävs."})).toHaveText("Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten.");
       expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
       expect(await customerSnapshot(marker)).toEqual(before);
       await captureRecordState(page,"customer-archive-connection-required");

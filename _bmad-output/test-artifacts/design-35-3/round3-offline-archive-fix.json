@@ -117,5 +117,52 @@
     "coordinatorOwnsExactNewHeadDispatch": true
   },
   "historicalEvidence": "R1/R2/original2833 receipts and images retained unchanged; none is relabeled as proof of this fix.",
-  "createdUtc": "2026-10-29T16:43:10.316Z"
+  "createdUtc": "2026-10-29T16:43:10.316Z",
+  "postStaticReviewRuntimeAttempt": {
+    "candidateSha": "1044bb4c7e735a97d666407b06c1ee24f7b0007a",
+    "freshProductionBuild": {
+      "nativeExitCode": 0,
+      "buildId": "iioNUSzMRw0FL-nEwCFLz",
+      "receipt": "tmp/private/story35-3/round3-offline-archive/runtime-1044bb4c/build-receipt.json"
+    },
+    "desktop": {
+      "passed": 6,
+      "failed": 1,
+      "skipped": 0,
+      "nativeExitCode": 1,
+      "report": "tmp/private/story35-3/round3-offline-archive/runtime-1044bb4c/desktop/run.json",
+      "nativeReceipt": "tmp/private/story35-3/round3-offline-archive/runtime-1044bb4c/desktop/native-exit.json",
+      "canonicalFixtureAbsentAfter": true
+    },
+    "phone": {
+      "executed": false,
+      "reason": "Held because the first desktop attempt exposed a deterministic test locator ambiguity."
+    },
+    "failure": "New archive offline assertion matched the real connection feedback plus existing empty Next route announcer. Expected product feedback rendered, but zero-dispatch/retry assertions were not reached; no complete behavioral PASS claimed.",
+    "authorizedTestOnlyCorrection": "Filter role=alert by hasText Anslutning krävs.; retain exact full text and every dispatch/hint/physical snapshot/retry assertion. No production code changes.",
+    "newTestSha256": "8e34b146921c9ab3ac765c1b216a50b0fe8b7552079be7b71d1ea4c0d60a7c75",
+    "staticChecks": [
+      {
+        "name": "locator-typecheck",
+        "command": [
+          "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit"
+        ],
+        "nativeExitCode": 0,
+        "log": "tmp/private/story35-3/round3-offline-archive/runtime-1044bb4c/locator-typecheck.log"
+      },
+      {
+        "name": "locator-eslint",
+        "command": [
+          "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+          "node_modules/eslint/bin/eslint.js",
+          "tests/e2e/crm/customers.e2e.spec.ts"
+        ],
+        "nativeExitCode": 0,
+        "log": "tmp/private/story35-3/round3-offline-archive/runtime-1044bb4c/locator-eslint.log"
+      }
+    ],
+    "status": "Corrected locator; fresh exact-candidate focused runtime pending root local checkpoint. Previous attempt retained unchanged."
+  }
 }
