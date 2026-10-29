@@ -100,3 +100,73 @@
 1. Genuine current-head initial owner composition/reference acceptance remains required only after the concrete PR/image packet is ready. No new story, backend or production-migration permission is needed.
 
 **Next:** Root freezes and publishes the independently reviewed bounded checkpoint, qualifies existing loopback read proxy, rebuilds/captures actual checkpoint, runs exact-head native CI and obtains fresh Coordinator R3 before asking owner for the final visual command.
+
+## Report — 2026-10-29T18:14:43Z (halted — guarded coordinator terminal closeout pending)
+
+**Story:** `spec-design-35-3-35-3` (spec design-35-3, story 35-3) — first-and-last-in-epic.
+**Spec:** `C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md`
+**Branch:** `codex/story-35-3-record-inputs-and-tables` (HEAD `5857cfb`).
+**Pipeline status:** Actual author development completion and the single-adapter retrospective are complete after independent eligibility and root wrapper PASS. Product PR119 and qualified production migration are integrated. Coordinator phase/state/report terminal writes and the separate process-only PR integration remain pending. release_ready=false; wholeE35 is not complete.
+**Continues:** Original HALT sections and raw pre-closeout adapter/delivery/state/author receipts remain unchanged; initial13FULL10PARTIALmatrix and pendinggate preserved alongside distinct finalHighqualifiedtrace.
+
+**Timing:** started 2026-10-29T12:23:26Z; completed in progress — elapsed 5h 51m (≈3h 34m AI-run, ≈2h 16m human/idle wait); resumed 3×.
+
+**Phases run:** Actual Phase 6 gap analysis produced no new tests or suites. Actual Phase 8 trace, test-quality, NFR consolidation and a scoped ledger plan ran. High independently qualified sensitive evidence and production postverification. No fourth broad product review ran.
+**Skipped:** No product/test edit, new suite/runtime/provider operation, globaltracking regeneration or nextstoryassessment. The actual adapter-only retrospective is complete; the terminal state writer remains pending; no phase marker inferred from merge alone.
+
+**Overrides:** Single35.3processcloseout. Original checkpoint merge stop is superseded only by actual conditionally authorized productPR119integration at5857cfb. The separate processPR is not yet integrated; this records no new global merge/deployment approval. Native counters remain0; no sprintstatusflip/wholeE35completion/35.4authorization.
+
+**TEA:** Final development trace: 23/23 FULL (7 ACs and 16 states), P0 10/10 and P1 13/13. NFR: CONCERNS for unknown operational/performance/release metrics. Structural test-quality: Request Changes, 0/F (0 critical, 5 high, 3 medium, 74 low), retained unchanged. High found no consequential uncovered development requirement at the cited sites. Audit execution does not turn an advisory verdict into PASS.
+
+**Build:** Accepted2b594338 merged5857cfb; exactnativeCI40919281738:DB2163pass0fail52pending, browser74pass0fail0skip0flaky, separate recovery1pass0fail0pending. Pending52notcoverage. One admittedproductionmigrationnative0, independentcatalog/source/ACLledgerpostverifyPASS; no productiontenantmutation smoke/globaldrift claim.
+
+**Review:** Three actual broad product rounds and the targeted High P2-fix PASS are reused. Sensitive qualification: _bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json, SHA256 0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081. Owner comment 6504043561 accepts exact 2b594338 and digest bd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce, using owner-manual mode.
+
+**Retrospective:** Actual accepted-with-open-items for spec-design-35-3 only. Supported readers returned foundtrue/verdictaccepted-with-open-items, all_donetrue/retrospective_statusdone/hard_stopfalse/warnings[]. Three open releaseobligations remain; no inventedparticipantfeedback or newproductreview/runtime.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. E35-3-REL-1 exhaustivephysicaldevice/reflow/composite/otherbrowser validation
+2. E35-3-REL-2 physicalOSkeyboard/screenreader/daylightmanual work
+3. E35-3-REL-3 operationalSLO/recoveryqualification and finalPhaseBconsolidation/releaseapproval
+Native read-only plan first found192globalentries andzero35.3-owned entries. Root-authorized exclusive checked append then registered exactly3openRELitems, producing195entries; original192rawbytes unchanged. Postappend nativeplan0 qualified all3open. Archive assessment keeps these unresolved items;0entries moved and no archive writes. Earlier zero-entry receipt remains historical.
+
+**⚠️ Needs human:** (none)
+
+**Next:** High independently reviews frozen current payloads and supported commands. Root alone may invoke admitted guarded phase/state/report writers. ProcessPR CI/freshCoordinatorreview/integration remain pending. Pointer terminal update waits separate root grant. No35.4assessment or implementation.
+
+## Report — 2026-10-29T18:21:43Z (final — single-adapter development closeout)
+
+**Story:** `spec-design-35-3-35-3` (spec design-35-3, story 35-3) — first-and-last-in-epic.
+**Spec:** `C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md`
+**Branch:** `codex/story-35-3-record-inputs-and-tables` (HEAD `5857cfb`).
+**Pipeline status:** Story 35.3 author development and canonical workflow closeout are complete in this process branch. Product PR 119 merged as 5857cfb; one production migration and independent postverification are qualified. The separate process-only record change still requires its actual PR CI, independent review and integration. release_ready=false; the whole E35 epic is not declared complete.
+**Continues:** Original HALT sections and raw pre-closeout adapter/delivery/state/author receipts remain unchanged; initial13FULL10PARTIALmatrix and pendinggate preserved alongside distinct finalHighqualifiedtrace.
+
+**Timing:** started 2026-10-29T12:23:26Z; completed 2026-10-29T18:21:43Z — elapsed 5h 58m (≈3h 34m AI-run, ≈2h 23m human/idle wait); resumed 4×.
+
+**Phases run:** Actual implementation, three broad product reviews and targeted High P2-fix qualification are reused. The actual Phase 6 evidence audit found no additional tests needed. Actual Phase 8 trace, NFR and test-quality audits, scoped release-ledger registration and the adapter-only retrospective executed. Root ran the admitted evidence-stage commands and obtained a clean finalization plan. The guarded Phase 9 writer adds the terminal marker and stamps completion before this final report is rendered.
+**Skipped:** No new product tests, suites, fixtures, runtime sessions, providers or deployment during process closeout. No fourth broad product review or whole-site/35.4 readiness assessment. Global tracking was not regenerated; only the three owned open release ledger items were appended.
+
+**Overrides:** Single 35.3 process closeout. The original checkpoint merge stop was superseded only by the actual conditionally authorized product PR 119 integration. The separate process PR is not yet integrated. No new global merge or deployment approval, invented review counter, sprint-status flip or whole-E35 completion is recorded.
+
+**TEA:** Development trace PASS: 23/23 (7 ACs and 16 states), P0 10/10 and P1 13/13. Advisory NFR CONCERNS for unknown operational, performance and release metrics. Actual structural test-quality Request Changes, 0/F (0 critical, 5 high, 3 medium, 74 low) remains unchanged. High found no consequential required development coverage gap at the cited sites. Audit execution does not turn an advisory verdict into PASS.
+
+**Build:** Accepted product 2b5943381f37eaafc942f50c7c1a4660c8a323d3 merged as 5857cfb757086a26eb8d9a728a1472e58179ecd1. Exact native CI 40919281738 passed: database 2163 passed, 0 failed, 52 pending; browser 74 passed, 0 failed/skipped/flaky; separate recovery 1 passed, 0 failed/pending. The 52 pending cases are not coverage. One admitted production migration returned native 0 and independent source/catalog/ACL/ledger postverification passed. No production tenant-mutation smoke, global drift certification or release approval is claimed.
+
+**Review:** Three actual broad product rounds and the targeted High P2-fix PASS are reused. Sensitive qualification: _bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json, SHA256 0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081. Owner comment 6504043561 accepts exact 2b594338 and digest bd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce, using owner-manual mode.
+
+**Retrospective:** Actual accepted-with-open-items for spec-design-35-3 only. Native verdict and stories readers returned 0, found=true, all_done=true, retrospective_status=done, hard_stop=false and warnings=[]. Three open release obligations remain.
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. E35-3-REL-1 exhaustivephysicaldevice/reflow/composite/otherbrowser validation
+2. E35-3-REL-2 physicalOSkeyboard/screenreader/daylightmanual work
+3. E35-3-REL-3 operationalSLO/recoveryqualification and finalPhaseBconsolidation/releaseapproval
+Native read-only plan first found192globalentries andzero35.3-owned entries. Root-authorized exclusive checked append then registered exactly3openRELitems, producing195entries; original192rawbytes unchanged. Postappend nativeplan0 qualified all3open. Archive assessment keeps these unresolved items;0entries moved and no archive writes. Earlier zero-entry receipt remains historical.
+
+**⚠️ Needs human:** (none)
+
+**Next:** Integrate the separate focused process-only closeout PR after its applicable CI and fresh independent Coordinator review. Verify its actual integration state before relying on it. The next action afterward is bounded next-story readiness/admission in approved order; individual approval, current base, owners and exact allocation remain required. No 35.4 readiness or implementation is authorized by this record.

@@ -1,0 +1,20 @@
+{
+  "purpose": "Independent exact terminal phase9/status/report admission and postwrite verification",
+  "route": {
+    "phase": "followup_review",
+    "role": "primary-reviewer",
+    "profile": "standard",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "host": "codex",
+    "tier": "subagents",
+    "route": "subagent",
+    "escalation_reason": "Automatic sensitive-task escalation: transactional-integrity"
+  },
+  "owner": "admission_review_35_3",
+  "writer": "root completion wrappers only",
+  "packet": "tmp/private/story35-3/process-closeout/terminal/eligibility-packet.json",
+  "packetSha256": "d7caeb42eeb98ede72a0f78e9f42e52a2abc929c278fbb8178b4e48691f043f2",
+  "source": "Actualall0..8complete and cleanfinalizeplan true",
+  "scope": "Terminal metadata only; no product/prod changes or new approval"
+}

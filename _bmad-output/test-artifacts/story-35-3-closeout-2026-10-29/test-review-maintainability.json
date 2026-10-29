@@ -1,0 +1,640 @@
+{
+  "dimension": "maintainability",
+  "execution": "sequential static evidence audit; no new product test run",
+  "score": 0,
+  "violations": [
+    {
+      "row": "H5",
+      "severity": "HIGH",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": null,
+      "description": "File has 1009 lines, exceeding the registry absolute 1000-line threshold.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "M2",
+      "severity": "MEDIUM",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 58,
+      "description": "CustomerListRow domain payload shape is constructed inline at least four times (58,85,172,194); item factory only covers CustomerListItem.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "M4",
+      "severity": "MEDIUM",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 31,
+      "description": "24 top-level test declarations have no describe/context grouping.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 130,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 139,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 162,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 171,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 214,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 237,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 266,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 287,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 304,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 323,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 416,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 453,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 475,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 493,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 523,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 564,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 594,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 606,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 624,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 643,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 670,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 771,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 805,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 842,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 884,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 897,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 915,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 957,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "line": 980,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 28,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 28,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 37,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 37,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 46,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 46,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 51,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 51,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 72,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 72,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 105,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 105,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 111,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 111,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 127,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 127,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 137,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 137,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 153,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 153,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 176,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 176,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 194,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 194,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 199,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 199,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 205,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 205,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 210,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 210,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 215,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 215,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 221,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 221,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 225,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 225,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 235,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 235,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 244,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 244,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 249,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L5",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 249,
+      "description": "Implementation-shaped test title names helper/constant; behavioral naming established in 40 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 260,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 270,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    },
+    {
+      "row": "L2",
+      "severity": "LOW",
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "line": 282,
+      "description": "Missing priority marker under established convention: 33 of 40 sampled.",
+      "dimension": "maintainability"
+    }
+  ],
+  "notes": [],
+  "sourceManifests": [
+    {
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "sha256": "8e34b146921c9ab3ac765c1b216a50b0fe8b7552079be7b71d1ea4c0d60a7c75",
+      "bytes": 67185,
+      "lines": 1009,
+      "testDeclarationCount": 31
+    },
+    {
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "sha256": "c431d2501812ad992fcebaff313cdc521734311da674404096f2dc54cfbb7c62",
+      "bytes": 12427,
+      "lines": 287,
+      "testDeclarationCount": 24
+    }
+  ]
+}

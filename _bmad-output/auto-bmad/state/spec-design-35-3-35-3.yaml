@@ -8,10 +8,10 @@ story_source: stories
 spec_folder: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3"
 story_id: 35-3
 branch: codex/story-35-3-record-inputs-and-tables
-status: in-progress
-updated_at: "2026-10-29T16:01:40Z"
+status: done
+updated_at: "2026-10-29T18:21:43Z"
 started_at: "2026-10-29T12:23:26Z"
-completed_at: null
+completed_at: "2026-10-29T18:21:43Z"
 active_seconds: 12861
 timing_anchor: null
 is_first_in_epic: true
@@ -38,13 +38,13 @@ tea_selected: [atdd, automate]
 tea_rationale: "Late-result and stale/unknown outcome presentation must preserve record identity across delayed responses; high test risk from concurrency, not a newly authorized sensitive contract change."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2, 3, 4]
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 spec_path: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md"
 spec_approved: true
 build:
-  status: blocked
-  blocking_condition: "Exact-head native CI/direct recovery, fresh Coordinator Round3, formal viewport captures/controller and authenticated owner initial composition acceptance remain pending."
-  followup_review_recommended: true
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
@@ -60,36 +60,48 @@ legacy_convergence_unverified: false
 legacy_artifact_path: null
 commits: [f6b23d7, 64a8e3a, 0740f04a, 16d45ec6, 13c4a397, "83801855", dbb18f9c]
 phase8_steps:
-  trace_gate: null
-  nfr: null
-  test_review: null
-  reconcile: null
-  archive: null
-  retro: null
-gate_decision: null
+  trace_gate: done
+  nfr: done
+  test_review: done
+  reconcile: done
+  archive: done
+  retro: done
+gate_decision: PASS
 gate_iterations: 0
 deferred_work_archived: 0
 retro:
-  doc: null
-  verdict: null
-  open_action_items: 0
+  doc: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/RETROSPECTIVE.md"
+  verdict: accepted-with-open-items
+  open_action_items: null
 bmad_status_flipped_at: null
-pr_url: null
-ci_run_url: null
-ci_status: unknown
-pr_merged: false
-merge_method: null
-merge_commit: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/119"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40919281738"
+ci_status: passed
+pr_merged: true
+merge_method: merge
+merge_commit: 5857cfb757086a26eb8d9a728a1472e58179ecd1
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers:
-  - "Checkpoint/fresh Coordinator Round3, exact-head native CI and direct recovery-Storage proof."
-  - Formal current-head viewport captures/controller and genuine authenticated owner initial visual/reference acceptance.
+blockers: []
 overrides:
-  merge: "not authorized; stop at single-story checkpoint"
+  merge: "Product PR 119 merged as 5857cfb757086a26eb8d9a728a1472e58179ecd1 after Coordinator-qualified conditional authorization. The separate process-closeout PR still needs its actual CI, review and integration. This records no new global merge, deployment or unrelated migration approval."
   epic: "35.3 only; no whole-E35 enrollment"
-  review_round_accounting: "Two actual product rounds completed: configured six-layer R1 and targeted High R2. Native helper iteration0 retained; fresh Coordinator R3 remains, then no further broad review."
+  review_round_accounting: "Three actual broad product rounds plus targeted High P2-fix PASS. Native counters remain0; no invented follow-up passes or fourth broad review."
+  process_closeout_scope: "Single 35.3 only; no whole-E35 enrollment, 35.4 assessment/implementation or global regeneration."
+  evidence_reconciliation: "Root completion wrapper native0 admitted development evidence. Exact High production postverification and final trace 23/23 PASS; NFR CONCERNS and structural Request Changes 0/F retained."
+  release_ledger: "Exclusive checked append qualified: 192 to195 entries, three new open REL1/2/3; original prefix unchanged; no archive or unowned resolution."
+  process_integration_pending: true
+  release_ready: false
+  author_done: "Actual18:09:21Z author-done receipt after independent eligibility/rootwrapperPASS/rootgrant."
+  retrospective: "Actual singleadapter retrospective accepted-with-open-items; supportedreaders native0/all_done/warnings[]. Three releaseitems remain open; root coordinatorwrites/processintegration stillpending."
+  phase5_reconciliation: "Actual accepted implementation at2b594338, product merge5857cfb, nativeCI/visual/Highqualification and root wrapper admitted. Apply only after explicit author-done confirmation; native review_loop_iteration0 preserved."
+  phase6_actual_receipt: "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/phase6-automate-result.json plus phase6-sensitive-qualification.json: actual bounded existing-evidence audit, no additional tests needed;0newtests/suites/fixtures/helpers."
+  phase7_review_reconciliation: "Three actual broad product rounds and targeted HighP2fixPASS are reused with unchanged implementation proof. Native followup_passes0 is preserved; actual external review accounting is evidence, not a fabricated native invocation."
+  current_owner_visual_acceptance: "Owner comment6504043561 accepts exact2b594338/digestbd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce; no renewed owner acceptance requested."
+  phase8_audit_evidence: "Final trace23/23PASS; NFRCONCERNS; test-qualityRequestChanges0/F unchanged. Actual scoped ledgerplan and append qualified195entries/3openowned; archive assessment retains all3open and moves0."
+  phase8_actual_retrospective: "Actual single-adapter RETROSPECTIVE.md: accepted-with-open-items; supported readers returned native 0, all_done=true and warnings=[]. Phase 8 completed through admitted root writers; terminal status is recorded by this Phase 9 writer."
+  canonical_workflow_closeout: "The actual admitted evidence-stage writes, clean finalization plan and this guarded Phase 9 terminal writer complete only the 35.3 adapter development workflow. The supported helper owns completed_at; no runtime, phase or review counter is invented."
 constraints:
   - "Original seven CRM production/two test paths plus exactly four backend/four existing tests/one CLI-generated forward migration in approved prerequisite plan; customer.update only."
   - All other domains/actions/read/action-state/auth/tenant/routes/root/global/font/AppShell/sharedDialog/facility-contact dialog bodies/booking-time-files bodies remain read-only.

@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "operation": "Single approved production forward migration",
+  "status": "applied-and-postverified",
+  "project": {
+    "name": "Kopplas",
+    "ref": "wmqmzznmwpheswjjozhq",
+    "organization": "Enhancior",
+    "region": "eu-north-1"
+  },
+  "mergedSha": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "migration": {
+    "path": "supabase/migrations/20261029132339_customer_update_expected_facts.sql",
+    "version": "20261029132339",
+    "name": "customer_update_expected_facts",
+    "gitBlob": "a6615143a402486e857f9bd2120570811cda0fef",
+    "committedRawSha256": "371c069e5fb57bca76f998fa0b11fa338ac52fc74b53ea752dfc06ce581fabdc",
+    "workingTreeRawSha256": "66cf420060c4ad722e10f94dcb551820cc0c5c8fba0a2bbec9c1327174ac4768",
+    "canonicalLfSha256": "371c069e5fb57bca76f998fa0b11fa338ac52fc74b53ea752dfc06ce581fabdc",
+    "prior119GitBlobsUnchanged": true,
+    "crlfNote": "Working tree has CRLF; canonical LF source exactly equals merged Git bytes. No migration file rewritten."
+  },
+  "authorization": {
+    "standingOwnerDecision": "AGENTS.md Standing production migration authorization2026-10-29",
+    "route": "docs/quality/story-35-3-production-migration-route-2026-10-29.json",
+    "independentAdmission": "SolHigh admission_review_35_3 PASS before explicit root grant",
+    "rootApplyGrant": "docs/quality/story-35-3-production-apply-admission-2026-10-29.json",
+    "soleOperator": "build_35_3",
+    "earlierNativeAuthConstraintStop": "Preserved as history. Coordinator clarified ordinary expiry/password renewal of the existing CLI login role; independent admission preceded dry-run/application. No retroactive approval claim."
+  },
+  "preflight": {
+    "repoVersions": 120,
+    "remoteVersions": 119,
+    "onlyPendingVersion": "20261029132339",
+    "namesMatch": true,
+    "unexpectedRemoteVersions": 0,
+    "actualTargetVerified": true,
+    "dryRunNativeExitCode": 0,
+    "dryRunOnlyMigration": "20261029132339_customer_update_expected_facts.sql",
+    "dryRunSeeds": [],
+    "dryRunRoles": []
+  },
+  "execution": {
+    "cliVersion": "2.115.0",
+    "executable": "C:/Users/Rasmus/scoop/apps/supabase/current/supabase.exe",
+    "cliSha256": "691a3312584891204dc11893abcd12fa656dbcce186ef8d0a2782f137463f6d7",
+    "command": [
+      "C:/Users/Rasmus/scoop/apps/supabase/current/supabase.exe",
+      "db",
+      "push",
+      "--project-ref",
+      "wmqmzznmwpheswjjozhq",
+      "--skip-vault",
+      "--yes"
+    ],
+    "workingDirectory": "C:/DEV/K35-records",
+    "stdin": "closed; empty input",
+    "credentialHandling": "Existing standard CLI native credential route only; no credential values printed, passed on argv, copied or newly persisted by operator",
+    "startedUtc": "2026-10-29T17:58:11.560Z",
+    "finishedUtc": "2026-10-29T17:58:15.105Z",
+    "nativeExitCode": 0,
+    "attempts": 1,
+    "appliedMigrations": [
+      "20261029132339_customer_update_expected_facts.sql"
+    ],
+    "seeds": [],
+    "roles": [],
+    "vaultUpdates": false,
+    "retries": 0
+  },
+  "postVerification": {
+    "operatorStatus": "PASS",
+    "ledgerBefore": 119,
+    "ledgerAfter": 120,
+    "checks": {
+      "ledger120ExactVersionsAndNames": true,
+      "newVersionExactlyOnce": true,
+      "prior119LedgerUnchanged": true,
+      "exactlyTwoOverloads": true,
+      "sixRequiredNamedExpectedFacts": true,
+      "sixBodyExactMergedCanonical": true,
+      "fiveFailClosedBodyExactMergedCanonical": true,
+      "fiveAclOwnerSecuritySearchPath": true,
+      "sixAclOwnerSecuritySearchPath": true,
+      "customerTableOidOwnerAclForcedRlsUnchanged": true,
+      "publicSchemaOwnerAclUnchanged": true,
+      "nativeLoginOidAttributesUnchanged": true,
+      "nativeLoginMembershipsUnchanged": true
+    },
+    "functionBodies": [
+      {
+        "arity": 6,
+        "expectedCanonicalSha256": "2b2620a96d2a17fa916f30650d80fe719045984154e6b883c6352b5437e3ee71",
+        "actualCanonicalSha256": "2b2620a96d2a17fa916f30650d80fe719045984154e6b883c6352b5437e3ee71"
+      },
+      {
+        "arity": 5,
+        "expectedCanonicalSha256": "b2075877b393e3cfce6b13a2c3153f4dceb11a5350671ed925b935ccc3fc0e42",
+        "actualCanonicalSha256": "b2075877b393e3cfce6b13a2c3153f4dceb11a5350671ed925b935ccc3fc0e42"
+      }
+    ],
+    "nativeAuthenticationRole": {
+      "oid": "17989",
+      "nonCredentialAttributesAndMembershipsUnchanged": true,
+      "expiryBefore": "2026-10-29T18:00:04.705018+00:00",
+      "expiryAfter": "2026-10-29T18:03:13.731974+00:00",
+      "passwordValuesOrHashesQueried": false
+    },
+    "independentHigh": {
+      "reviewer": "admission_review_35_3",
+      "status": "PASS",
+      "ownProductionSelectUtc": "2026-10-29T17:59:15.769921Z",
+      "scope": "Exactledger120/original119/newversion, merged5/6bodies, requiredargs/default0, owner/ACL/searchpath, customerACL/forcedRLS, nativecredentialroleattributes/membership"
+    },
+    "securityAdvisors": {
+      "executed": true,
+      "categoryCount": 4,
+      "targetWarning": "authenticated_security_definer_function_executable lists the two intended authenticated-only command RPC overloads",
+      "disposition": "Reviewed role/actor checks precede tenantbound comparison/write+audit; exact merged bodies and authenticated-only ACL confirmed. No unexpected target exposure identified. Other notices are outside this migration; no unrelated fixes or blanket security-clear claim.",
+      "remediationReference": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable"
+    }
+  },
+  "boundaries": {
+    "productionTenantWriteTests": false,
+    "tenantDataModifiedByTests": false,
+    "rpcBusinessTests": false,
+    "newCustomRoles": false,
+    "providerChanges": false,
+    "newPatOrCredentialFramework": false,
+    "historyRewrite": false,
+    "otherMigrations": false,
+    "deployInvoked": false,
+    "gitOrPrActionsByOperator": false,
+    "applicationAclChangesBeyondApprovedMigration": false,
+    "postgresOrApplicationUserPasswordResets": false
+  },
+  "evidence": {
+    "privatePreflight": "tmp/private/story35-3/production-closeout/preflight.json",
+    "sourceLedgerInventory": "tmp/private/story35-3/production-closeout/source-ledger-comparison.json",
+    "dryRun": "tmp/private/story35-3/production-closeout/dry-run-receipt.json",
+    "postAuth": "tmp/private/story35-3/production-closeout/post-auth-comparison.json",
+    "applyIntent": "tmp/private/story35-3/production-closeout/apply-intent.json",
+    "nativeApply": "tmp/private/story35-3/production-closeout/apply-receipt.json",
+    "postApply": "tmp/private/story35-3/production-closeout/post-apply-verification.json",
+    "advisors": "tmp/private/story35-3/production-closeout/post-apply-security-advisors.json"
+  },
+  "completionClaim": "Production migration operation only; story/process/release completion remains Coordinator-owned.",
+  "createdUtc": "2026-10-29T18:00:03.973Z"
+}

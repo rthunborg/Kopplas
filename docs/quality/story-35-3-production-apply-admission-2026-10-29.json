@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "operation": "Single approved production forward migration",
+  "authorization": "Standing owner decision2026-10-29 plus actual mergedPR119",
+  "independentAdmission": "SolHigh admission_review_35_3 PASS before grant",
+  "operator": "build_35_3",
+  "mergedSha": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "projectRef": "wmqmzznmwpheswjjozhq",
+  "expectedLedgerBefore": 119,
+  "expectedOnlyPending": "20261029132339_customer_update_expected_facts.sql",
+  "executable": "C:/Users/Rasmus/scoop/apps/supabase/current/supabase.exe",
+  "arguments": [
+    "db",
+    "push",
+    "--project-ref",
+    "wmqmzznmwpheswjjozhq",
+    "--skip-vault",
+    "--yes"
+  ],
+  "workingDirectory": "C:/DEV/K35-records",
+  "attemptLimit": 1,
+  "unknownOrNonzero": "Stop and read-only reconcile; no blind retry",
+  "tenantWriteTests": false,
+  "seeds": false,
+  "vaultUpdates": false,
+  "source": "tmp/private/story35-3/production-closeout/preflight.json"
+}

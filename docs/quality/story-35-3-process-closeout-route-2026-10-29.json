@@ -1,0 +1,17 @@
+{
+  "purpose": "Prepare supported canonical35.3 process closeout only, no state changes before qualified migration outcome",
+  "route": {
+    "phase": "build",
+    "role": "build-delegate",
+    "profile": "standard",
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "host": "codex",
+    "tier": "subagents",
+    "route": "subagent",
+    "escalation_reason": "Ordinary task uses Low effort"
+  },
+  "owner": "preview_images_35_3",
+  "mergedSha": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "scope": "Inspect existing35.2 precedent and supported Auto-BMAD conventions, preserve historical evidence, no global regeneration or next story"
+}

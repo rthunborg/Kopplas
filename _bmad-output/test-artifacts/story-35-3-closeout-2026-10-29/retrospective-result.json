@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-29T18:12:37.862Z",
+  "workflow": "bmad-retrospective -H C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3",
+  "mode": "headless stories; single35.3adapter",
+  "status": "executed",
+  "document": {
+    "path": "_bmad-output/specs/spec-design-35-3/RETROSPECTIVE.md",
+    "sha256": "aafdfa7d96ff5024a3e216b6c6c0e61ab776fa5e72a293b53597baf0f0963ae0"
+  },
+  "authorDone": {
+    "path": "docs/quality/story-35-3-closeout-2026-10-29/author-done.json",
+    "sha256": "d4e4262f3ea0e1e42bb4b51771b94408d9f2aa54aef61d3ea2801559d152ad47"
+  },
+  "workflowActivation": {
+    "resolverNativeExit": 0,
+    "prepend": [],
+    "append": [],
+    "persistentFact": "_bmad-output/project-context.md checked with currentownerdecisions takingprecedence",
+    "configFiles": [
+      "_bmad/bmm/config.yaml",
+      "_bmad/core/config.yaml"
+    ],
+    "onComplete": "empty; no action"
+  },
+  "actualPhases": [
+    "Gather supplied singleadapter/source/execution/author/qualification evidence and supported completenessreader",
+    "Analyze sourced contract/provenance/audit/release lessons, narrow aggregate/diff/runtime scope to existing reviewed evidence underrootinstruction",
+    "Skip opt-in teamdiscussion in headlessmode",
+    "Decide declaredcriteria accepted-with-open-items with three existing releaseobligations",
+    "Finalize fixedRETROSPECTIVE.md and run supported verdict/storiesreaders; no sprintstatuswrite"
+  ],
+  "verdict": "accepted-with-open-items",
+  "declaredItems": 23,
+  "developmentTrace": "PASS23/23",
+  "nfr": "CONCERNS",
+  "structuralTestQuality": "Request Changes0/F unchanged",
+  "actionItems": 3,
+  "actionIds": [
+    "E35-3-REL-1",
+    "E35-3-REL-2",
+    "E35-3-REL-3"
+  ],
+  "nativeLedgerEntryIndices": [
+    192,
+    193,
+    194
+  ],
+  "readers": [
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/retro-verdict-reader.json",
+      "sha256": "16c91d9a49dbd86ec7dcabc479b90b912eb674da3e2855a2fd95c1b321944834",
+      "nativeExit": 0
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/stories-after-retro.json",
+      "sha256": "48b67039d23b818b863c0b0c149497638ffce1fbde97fd033d555d863b563c01",
+      "nativeExit": 0
+    }
+  ],
+  "limitations": [
+    "No new Git evidence prepass, broadproductreview, dependencygraph or browser/runtime per explicitrootboundedauthorization. Existingacceptedreviews/runtime reused with scopequalified.",
+    "No inventedparticipantfeedback/commitcount/churn or otherstoryreadiness.",
+    "Coordinatorstate/report/phase8phase9 andprocessPRintegration remain pending rootguardedwriters and separateindependentpayloadadmission."
+  ],
+  "stateWritersInvoked": 0,
+  "release_ready": false
+}

@@ -1,0 +1,21 @@
+{
+  "purpose": "Read-only production preflight, no apply until independent High admission",
+  "route": {
+    "phase": "build",
+    "role": "build-delegate",
+    "profile": "standard",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "host": "codex",
+    "tier": "subagents",
+    "route": "subagent",
+    "escalation_reason": "Automatic sensitive-task escalation: rls, secrets, transactional-integrity"
+  },
+  "mergedSha": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "projectRef": "wmqmzznmwpheswjjozhq",
+  "migration": "20261029132339_customer_update_expected_facts.sql",
+  "authorization": "AGENTS.md standing owner decision2026-10-29",
+  "operator": "build_35_3",
+  "reviewer": "admission_review_35_3",
+  "noCompetingOperator": true
+}

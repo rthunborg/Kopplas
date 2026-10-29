@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-29T18:16:57.921Z",
+  "scope": "Root-authorized mutable execution pointer update only",
+  "path": "docs/quality/frontend-next-admission.md",
+  "beforeRawSha256": "d7ef1b9ca161e799427753961dafe90bce04b9b603b2d0b39ebcecb4a3d9845d",
+  "afterRawSha256": "5cedcf3fd9045a256b237b4de04625eaaecf162f22ae33db0fe42a0146177ff2",
+  "beforeSnapshot": "tmp/private/story35-3/process-closeout/frontend-next-admission.before-authorized-update.md",
+  "historicalAdmissionsUnchanged": [
+    {
+      "path": "docs/quality/story-35-3-admission-2026-10-29.md",
+      "sha256": "eba805347f9bfbb09e5323391ef8a151170fe6c2c8ddfa6d6fbedaaf5ea3368d"
+    },
+    {
+      "path": "docs/quality/story-35-3-admission-2026-10-29.json",
+      "sha256": "193b86d20e579dc7bf7e6d5a4886cbc059975fdb97aebcf0ed2319a39d4db565"
+    },
+    {
+      "path": "docs/quality/story-35-2-admission-2026-10-28.md",
+      "sha256": "b6c1c8958860412a6cb6c632a15d182049177c99646c58481d8f49bcd92c4568"
+    }
+  ],
+  "actualTerminalWriter": "Pending at this dated update checkpoint; permanent pointer refers to current canonical state.",
+  "processIntegrationPending": true,
+  "nextStoryAssessmentPerformed": false,
+  "nextStoryApproved": false,
+  "globalTrackingRegenerated": false,
+  "release_ready": false,
+  "wordingRule": "Permanent pointer references actual state/report/process PR verification rather than hardcoding a pending integration status that becomes stale on merge."
+}

@@ -529,3 +529,20 @@ existing AC, recorded so it is not re-triaged a third time.
   summary: Final Phase B release validation and stabilization checkpoint
   evidence: Status: deferred. Owner: Coordinator / release-validation coordinator. October22 final milestone remains pending, unexecuted; development completion alone cannot satisfy it. Next action: After current PhaseB epics are integrated/development-complete, open assigned checkpoint and execute applicable release checks before explicit release approval.
   location: _bmad-output/auto-bmad/delivery/15-6-min-dag-the-field-landing.json#/deferred_release_validation/4
+
+## Deferred from: Story 35.3 release validation (2026-10-29)
+
+- source_spec: `35-3-record-inputs-and-tables.md`
+  summary: E35-3-REL-1 — exhaustive visual, device, reflow and shared-consumer release matrix
+  evidence: Status: deferred, not passing coverage. Owner: UI owner; Coordinator assigns a named person and exact release candidate. Accepted product 2b594338 and its 62-frame owner-manual package provide bounded desktop/360×640 development evidence only. Other browsers, exhaustive device/reflow/composite states and inherited conditional/business-flow matrices remain unexecuted. Next action: assign the named UI owner and release candidate, execute the remaining scoped matrix, and retain actual outcomes before release readiness.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json#/deferred_release_validation/0
+
+- source_spec: `35-3-record-inputs-and-tables.md`
+  summary: E35-3-REL-2 — physical OS keyboard, screen reader and daylight/manual validation
+  evidence: Status: deferred, not passing coverage. Owner: QA/accessibility owner; Coordinator assigns a named person. Actual keyboard/focus assertions and controlled zoom/reduced-viewport proxies do not prove physical OS keyboard/device, screen-reader or daylight behavior. Next action: assign the QA/accessibility owner, execute the manual/device plan on the nominated release candidate, and retain actual results and unresolved findings.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json#/deferred_release_validation/1
+
+- source_spec: `35-3-record-inputs-and-tables.md`
+  summary: E35-3-REL-3 — operational qualification and final Phase B release consolidation/approval
+  evidence: Status: deferred; release_ready=false. Owner: Coordinator. The actual scoped security/transactional/deployed compatibility qualification is development evidence, not a longer SLO/load/recovery or full release pass. NFR remains CONCERNS; raw structural test-quality Request Changes, 0/F remains advisory and unchanged. Existing E16/E20 and final Phase B checkpoint obligations remain. Next action: consolidate this story's release evidence with the existing Phase B checkpoint, assign operational validation owners/candidate, execute applicable outstanding checks and obtain separate release approval. This does not authorize deployment, migration, whole-E35 completion or another story.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json#/deferred_release_validation/2

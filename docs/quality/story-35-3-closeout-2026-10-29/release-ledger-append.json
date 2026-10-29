@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "operation": "Exclusive preimage-checked append of exactly three open E35-3 release items",
+  "createdUtc": "2026-10-29T18:07:38.1664054Z",
+  "route": "docs/quality/story-35-3-release-ledger-route-2026-10-29.json",
+  "ledger": "_bmad-output/implementation-artifacts/deferred-work.md",
+  "beforeSha256": "c7b5f49918a3ac7dad0ba3f895dca7db82aac16e414b50a51c1a1b8edd313c87",
+  "afterSha256": "0dd4796e0896209492439a246afc999d91ac89218968b0875e5c0cf20cf1355b",
+  "beforeBytes": 161210,
+  "afterBytes": 163698,
+  "appendedBytes": 2488,
+  "snippetSha256": "bd5948981abe4f0ed66e64680e9359919338aab25f72af90dd796965b973d51b",
+  "originalRawPrefixByteIdentical": true,
+  "exclusiveFileShare": "None",
+  "beforeSnapshot": "tmp/private/story35-3/process-closeout/deferred-ledger-before-append.raw.md",
+  "archiveWrites": 0,
+  "unownedEntryChanges": 0,
+  "statusFlips": 0,
+  "release_ready": false,
+  "parserValidation": {
+    "nativeExitCode": 0,
+    "command": "python .agents/skills/auto-bmad/scripts/deferred_ledger.py plan --ledger _bmad-output/implementation-artifacts/deferred-work.md",
+    "beforeEntries": 192,
+    "afterEntries": 195,
+    "ownedOpenEntries": [
+      {
+        "id": 192,
+        "heading": "## Deferred from: Story 35.3 release validation (2026-10-29)",
+        "source_spec": "35-3-record-inputs-and-tables.md",
+        "summary": "E35-3-REL-1 — exhaustive visual, device, reflow and shared-consumer release matrix",
+        "marker_hint": "open"
+      },
+      {
+        "id": 193,
+        "heading": "## Deferred from: Story 35.3 release validation (2026-10-29)",
+        "source_spec": "35-3-record-inputs-and-tables.md",
+        "summary": "E35-3-REL-2 — physical OS keyboard, screen reader and daylight/manual validation",
+        "marker_hint": "open"
+      },
+      {
+        "id": 194,
+        "heading": "## Deferred from: Story 35.3 release validation (2026-10-29)",
+        "source_spec": "35-3-record-inputs-and-tables.md",
+        "summary": "E35-3-REL-3 — operational qualification and final Phase B release consolidation/approval",
+        "marker_hint": "open"
+      }
+    ],
+    "allThreeOpen": true,
+    "unowned192RawPrefixByteIdentical": true,
+    "releaseReadyFalseRetained": true,
+    "ledgerSha256": "0dd4796e0896209492439a246afc999d91ac89218968b0875e5c0cf20cf1355b"
+  },
+  "ownedReleaseIds": [
+    "E35-3-REL-1",
+    "E35-3-REL-2",
+    "E35-3-REL-3"
+  ]
+}

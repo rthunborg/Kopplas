@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-29T17:57:06.363Z",
+  "phase1File": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/coverage-matrix.json",
+  "phase1ReadBack": true,
+  "collectionStatus": "COLLECTED",
+  "allowGate": false,
+  "gateStatus": null,
+  "disposition": "PENDING_HIGH_AND_PRODUCTION_QUALIFICATION",
+  "rationale": "23 declared items mapped; no missing test mapping; 10 sensitive sufficiency classifications deliberately PARTIAL pending High. No waiver or completion PASS inferred.",
+  "development_complete": false,
+  "release_ready": false
+}

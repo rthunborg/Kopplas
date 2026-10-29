@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "kind": "Independent Git byte-preservation packaging qualification",
+  "createdUtc": "2026-10-29 18:27:17 UTC",
+  "reviewer": "/root/admission_review_35_3",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "route": "docs/quality/story-35-3-byte-preservation-route-2026-10-29.json",
+  "outcome": "PASS",
+  "baseline": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "scope": "Append-only scoped metadata Git attributes and actual staged-byte provenance; no new product review/state/production action.",
+  "attributes": {
+    "file": ".gitattributes",
+    "newDirectives": 12,
+    "oldRulePrefixUnchangedUnderExplicitLfNormalization": true,
+    "precedent": "Existing35.2 content-addressed closeout -text whitespace=cr-at-eol patterns",
+    "scope": "Exact35.3 dated closeout test-artifact/quality namespaces, own history/RETRO/current adapter-delivery-state-report-authorverification, dated route receipts and production operation/admission receipts only.",
+    "activePinnedAttributes": {
+      "text": "unset",
+      "whitespace": "cr-at-eol"
+    },
+    "applicationAndSqlAttributesUnchanged": true,
+    "noFilterOrExecutableAttributeAdded": true,
+    "representation": "Attribute file itself remains unpinned ordinary text; old full rule text was compared with explicit LF normalization, not mislabeled raw-prefix equality."
+  },
+  "actualIndexVerification": {
+    "observedStagedFiles": 78,
+    "pinnedPaths": 75,
+    "all75RawWorkingBytesExactlyEqualActualIndexedGitBlob": true,
+    "pinnedMismatches": [],
+    "allChangedStagedJsonParsed": true,
+    "jsonDecodeFailures": [],
+    "rootManifestEntries": 78,
+    "rootManifestActualIndexObjectAndWorkingSha256Mismatches": [],
+    "privateManifest": "tmp/private/story35-3/process-closeout/staged-byte-proof.json",
+    "privateManifestSha256": "fb2febd49bbf4ca0fe965051963188fe5cdff2d4989885ff68b30fbc99a1e9ac",
+    "cachedDiffCheckNativeExit": 0,
+    "stagedSrcTestsSupabasePaths": [],
+    "protectedExamples": "All4rawhistorical snapshots, independent High receipts, current state/delivery/report/adapter/authorverification andRETRO are included in75exact comparisons. Content hashes from prior qualifications remain actual Git blob bytes under these -text rules."
+  },
+  "ordinaryTextPaths": [
+    {
+      "path": ".gitattributes",
+      "textAttribute": "unspecified",
+      "rawWorkingSha256": "70725eeb88ba415358db3798b56f8fb7695e1682ba7d8479f6d0a15dc8e2aa48",
+      "indexedBlob": "e8d70de22f3cf34471feae78cb5607cbae0cf6bd",
+      "gitBlobSha256": "3eab3ededfc6dfc0c11a90d6c89f5ea671310e0298bf7f637e0e5f98e84db02b",
+      "rawEqual": false,
+      "lfNormalizedContentEqual": true
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/deferred-work.md",
+      "textAttribute": "unspecified",
+      "rawWorkingSha256": "0dd4796e0896209492439a246afc999d91ac89218968b0875e5c0cf20cf1355b",
+      "indexedBlob": "858b9b5492c6bb2a27dcaab7779c74f5b4c163f4",
+      "gitBlobSha256": "ca7ac19e3af8334e47c8f8578013b9559ccc9be11baefc4ccf2e1b83acc9e445",
+      "rawEqual": false,
+      "lfNormalizedContentEqual": true,
+      "priorMergedGitLfPrefixPreserved": true,
+      "note": "Ledger receipt raw hash refers to actual working bytes. Global ledger stays under normal Git text behavior; no global attribute expansion or claim that rawCRLF hash equals GitLF hash."
+    },
+    {
+      "path": "docs/quality/frontend-next-admission.md",
+      "textAttribute": "unspecified",
+      "rawWorkingSha256": "5cedcf3fd9045a256b237b4de04625eaaecf162f22ae33db0fe42a0146177ff2",
+      "indexedBlob": "4533eb14df6e5449df545a570c4c13d5a11e1f5c",
+      "gitBlobSha256": "5cedcf3fd9045a256b237b4de04625eaaecf162f22ae33db0fe42a0146177ff2",
+      "rawEqual": true,
+      "lfNormalizedContentEqual": true
+    }
+  ],
+  "relationshipToPriorVerdict": "Final terminal metadata/postwrite PASS remains valid. Packaging changes only preserve reviewed documentary bytes; no approval/scope/test-quality/release assertion changes.",
+  "newReceiptHandling": "This receipt is created after the78-file index audit. Root must stage it under the reviewed closeout -text rule and compare its actual indexed blob to its working bytes before commit. The78/75 counts describe the audited pre-receipt index, not a fabricated final count.",
+  "processEligibility": "PASS for bounded process packaging/commit and subsequent PR CI/independent review. Root owns Git mutations and checks any later staged changes; no process integration, merge, deployment or release approval claimed.",
+  "blockers": [],
+  "release_ready": false,
+  "reviewerMutations": "This sanitized receipt only; read-only Git/index/filesystem validation, no staging/commit/product/state/provider/production action."
+}

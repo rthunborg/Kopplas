@@ -1,0 +1,21 @@
+{
+  "kind": "bounded-output-validation",
+  "nativeJsonRead": true,
+  "reviewFileCount": 2,
+  "dimensionResults": 4,
+  "deduplicationPassed": true,
+  "scoreArithmeticPassed": true,
+  "recommendation": "Request Changes",
+  "score": 0,
+  "grade": "F",
+  "newTests": 0,
+  "newTestRuns": 0,
+  "inlineComments": false,
+  "productionQualification": "pending; High-owned",
+  "release_ready": false,
+  "limitations": [
+    "Not a CLI vendor review invocation or browser run",
+    "Full workflow quality scoring is structural/advisory; source and protected contract not edited",
+    "No status/delivery/finalization mutation"
+  ]
+}

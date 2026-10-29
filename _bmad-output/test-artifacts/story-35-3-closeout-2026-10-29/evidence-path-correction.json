@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "actualChange": "Reviewer corrected only writeonce-apply-intent.json to actual apply-intent.json; no verdict or qualification scope changed.",
+  "priorQualification": {
+    "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/evidence-path-correction-history/sensitive-qualification-original.json",
+    "sha256": "53c60bcef7a7782ee7a2699a5be8d1fa9d0e93a208c478808ec835237a7eccd9",
+    "originalRawBytesHashVerified": true
+  },
+  "currentQualification": {
+    "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+    "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081"
+  },
+  "downstreamUpdates": [
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/coverage-matrix.final.json",
+      "beforeSha256": "be3ca2d5894d19837152e39959275eee5ccebc448d98d31e392922a1605b4f15",
+      "afterSha256": "85ba07d7b25cd0d25e9d4ada040f9ebe8229f938dc6440c4b3ee5aabc7e3ffd4"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/gate-decision.final.json",
+      "beforeSha256": "b7798f057a4620267afbe10ef0ddd554549787f3aa285a60c9c4de5deca06586",
+      "afterSha256": "a5e787340ac1d2655fb6ab3195c944b19a21a4f0f68a75846b2c5c2d7180369b"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/nfr-summary.final.json",
+      "beforeSha256": "8df007907c184f051ff96385e7205602d1f25d92746e528868a181340579bd5b",
+      "afterSha256": "9952fa9b3fb40567ad5232b8c0b8d9db1c530d71579cebfd27ecaf8acb30416f"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/phase8-tea-result.final.json",
+      "beforeSha256": "e218654ed303063e95e44ba1419a50576bf382d8fc8a16501679ac5caee6dda6",
+      "afterSha256": "eb80976a693f1610338872a3dc86315b4528e25fdec509a9e76ea296a1783818"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/phase6-sensitive-qualification.json",
+      "beforeSha256": "5fc5d9bfbbc678db5abbd636e303d2125f54bdccc1abef1fbbff166f518d1c6b",
+      "afterSha256": "cb004a38dac0e759afb3155b9cea2c0693b04951c97659c416e7735ed50568ff"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/traceability-matrix.final.md",
+      "beforeSha256": "73c099a62e8c6647772787210c3af903c107553e200880b58767431d7574924c",
+      "afterSha256": "210efab142cfe14ae887892307ed189a81479c01c1f025855430b9fa9c955fd2"
+    },
+    {
+      "path": "tmp/private/story35-3/process-closeout/report-evidence-stage.proposed.json",
+      "beforeSha256": "851ae165f6419f2adabfcb153f3791ee81d2c87c267ad789b3f12706dbacb4d4",
+      "afterSha256": "0c3baf3749f37f61eec8e2f31ca48d6b2165ef225d35ff02f0b464fc3cc89b91"
+    }
+  ],
+  "initialMatrixAndPendingGateUnchanged": true
+}

@@ -1,0 +1,21 @@
+{
+  "purpose": "Append exactly3owned35.3 release entries preserving existing192-entryledger",
+  "route": {
+    "phase": "build",
+    "role": "build-delegate",
+    "profile": "standard",
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "host": "codex",
+    "tier": "subagents",
+    "route": "subagent",
+    "escalation_reason": "Ordinary task uses Low effort"
+  },
+  "owner": "preview_images_35_3",
+  "coordinatorAdmission": "Actual ownership check and bounded append approval received",
+  "path": "_bmad-output/implementation-artifacts/deferred-work.md",
+  "expectedRawSha256": "c7b5f49918a3ac7dad0ba3f895dca7db82aac16e414b50a51c1a1b8edd313c87",
+  "existingEntries": 192,
+  "expectedAfter": 195,
+  "scope": "Append only, no existing bytes or unowned status changes; release_readyfalse"
+}

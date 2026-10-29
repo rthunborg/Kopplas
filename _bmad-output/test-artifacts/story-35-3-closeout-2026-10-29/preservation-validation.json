@@ -1,0 +1,40 @@
+{
+  "createdUtc": "2026-10-29T17:58:37.276Z",
+  "checks": [
+    {
+      "source": "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+      "snapshot": "docs/quality/story-35-3-closeout-2026-10-29/adapter-before-closeout.md",
+      "snapshotSha256": "b6f884865097fea885057be901b0b3e58fbf0e2c9c6c452fa398490a7878aab7",
+      "sourceSha256Now": "b6f884865097fea885057be901b0b3e58fbf0e2c9c6c452fa398490a7878aab7",
+      "preserved": true,
+      "canonicalSourceUnchanged": true
+    },
+    {
+      "source": "_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json",
+      "snapshot": "docs/quality/story-35-3-closeout-2026-10-29/delivery-before-closeout.json",
+      "snapshotSha256": "6ddc85a4291a4d737ebfa8c7767aeffff18b7936ea968241085356560e4004cb",
+      "sourceSha256Now": "6ddc85a4291a4d737ebfa8c7767aeffff18b7936ea968241085356560e4004cb",
+      "preserved": true,
+      "canonicalSourceUnchanged": true
+    },
+    {
+      "source": "_bmad-output/auto-bmad/state/spec-design-35-3-35-3.yaml",
+      "snapshot": "_bmad-output/auto-bmad/history/spec-design-35-3-35-3/pre-closeout-2026-10-29.yaml",
+      "snapshotSha256": "19ec1469f6001d88b7e4a26a6ec5abcbb416764cbc311e59557f220b46cad7ba",
+      "sourceSha256Now": "19ec1469f6001d88b7e4a26a6ec5abcbb416764cbc311e59557f220b46cad7ba",
+      "preserved": true,
+      "canonicalSourceUnchanged": true
+    },
+    {
+      "source": "_bmad-output/test-artifacts/design-35-3/author-verification.json",
+      "snapshot": "docs/quality/story-35-3-closeout-2026-10-29/author-verification-before-closeout.json",
+      "snapshotSha256": "4c88fe07b4966c3b22aa4ba24d33490a4d39a9ebfb9d381e619135dfaed3cdf0",
+      "sourceSha256Now": "4c88fe07b4966c3b22aa4ba24d33490a4d39a9ebfb9d381e619135dfaed3cdf0",
+      "preserved": true,
+      "canonicalSourceUnchanged": true
+    }
+  ],
+  "allPassed": true,
+  "canonicalWrites": false,
+  "statusTransitions": false
+}

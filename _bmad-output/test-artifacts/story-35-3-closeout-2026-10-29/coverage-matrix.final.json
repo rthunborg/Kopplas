@@ -1,0 +1,1306 @@
+{
+  "schemaVersion": 1,
+  "phase": "PHASE_1_COMPLETE",
+  "createdUtc": "2026-10-29T18:03:12.621Z",
+  "sourceSha": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "executionEvidenceSourceSha": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "synthetic": false,
+    "external_pointer_status": "not_used",
+    "sources": [
+      "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+      "_bmad-output/test-artifacts/design-35-3/test-design-epic-35-3.md"
+    ]
+  },
+  "collectionMode": "source-and-qualified-execution-receipts",
+  "collectionStatus": "COLLECTED",
+  "requirements": [
+    {
+      "id": "E35-3-AC1",
+      "kind": "AC",
+      "tests": [
+        {
+          "id": "crm-declaration-416",
+          "title": "B01 E35-3-T-AC1/AC2 loaded/no-match: independent selection, sort and reset preserve identity",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 416,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-453",
+          "title": "B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 453,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-915",
+          "title": "B08 E35-3-T-AC4: connected 360×640 targets, labeled overflow and visible actions/errors",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 915,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-980",
+          "title": "B10 E35-3-T-AC5/AC7 inherited contracts: facility/contact labels, summary, cancel and focus remain usable",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 980,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-AC2",
+      "kind": "AC",
+      "tests": [
+        {
+          "id": "crm-declaration-416",
+          "title": "B01 E35-3-T-AC1/AC2 loaded/no-match: independent selection, sort and reset preserve identity",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 416,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-805",
+          "title": "B06 E35-3-T-loading/late-result AC2/AC5: delayed A read cannot replace the newer B selection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 805,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-915",
+          "title": "B08 E35-3-T-AC4: connected 360×640 targets, labeled overflow and visible actions/errors",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 915,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-AC3",
+      "kind": "AC",
+      "tests": [
+        {
+          "id": "crm-declaration-453",
+          "title": "B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 453,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-475",
+          "title": "B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 475,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-493",
+          "title": "B03 R3 offline archive: zero dispatch and no hint until one explicit confirmed retry after reconnect",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 493,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-523",
+          "title": "B03 R1 archive: pending edit exclusion and requested Back history survive one real archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 523,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-564",
+          "title": "B03 R1 archive: lost real response blocks replay through reopen and remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 564,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-594",
+          "title": "B03 R1 archive: unavailable storage prevents dispatch and preserves the whole snapshot",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 594,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-606",
+          "title": "B05 R1 offline before dispatch retains input without a hint; explicit reconnect saves once",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 606,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-624",
+          "title": "B04 E35-3-T-submitting/confirmed AC3/AC5: one real attempt and busy Escape/close protection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 624,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-643",
+          "title": "B05 E35-3-T-connection-required/unknown AC6: ${mode} retains unconfirmed input and blocks replay after remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 643,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-670",
+          "title": "B06 E35-3-T-stale/late-result/confirmed AC6/AC7: two real editors preserve conflict draft until explicit fresh review",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 670,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-884",
+          "title": "B05 E35-3-T-unknown AC6: unavailable safety storage fails closed before dispatch",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 884,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-897",
+          "title": "B05 E35-3-T-unknown AC6: corrupt unresolved hint cannot enable a fresh customer command",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 897,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "B02/B03/B04/B05/B06 executed; validation/draft, matching confirmed save/archive, pending and explicit refresh semantics plus atomic authority integration."
+      }
+    },
+    {
+      "id": "E35-3-AC4",
+      "kind": "AC",
+      "tests": [
+        {
+          "id": "crm-declaration-453",
+          "title": "B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 453,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-915",
+          "title": "B08 E35-3-T-AC4: connected 360×640 targets, labeled overflow and visible actions/errors",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 915,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-AC5",
+      "kind": "AC",
+      "tests": [
+        {
+          "id": "crm-declaration-624",
+          "title": "B04 E35-3-T-submitting/confirmed AC3/AC5: one real attempt and busy Escape/close protection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 624,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-670",
+          "title": "B06 E35-3-T-stale/late-result/confirmed AC6/AC7: two real editors preserve conflict draft until explicit fresh review",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 670,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-771",
+          "title": "B07 E35-3-T-dirty-navigation/focus-dialog AC5: ${traversal} is cancelled before URL/history commit",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 771,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-805",
+          "title": "B06 E35-3-T-loading/late-result AC2/AC5: delayed A read cannot replace the newer B selection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 805,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-842",
+          "title": "B07 E35-3-T-focus-dialog/dirty-navigation AC5: focus wraps and cancelling dirty Escape retains the draft",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 842,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-980",
+          "title": "B10 E35-3-T-AC5/AC7 inherited contracts: facility/contact labels, summary, cancel and focus remain usable",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 980,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "B04/B06/B07/B10 executed: busy close/focus/inherited hooks, dirty traversal cancellation and delayed A read/current B identity within configured Chromium scope."
+      }
+    },
+    {
+      "id": "E35-3-AC6",
+      "kind": "AC",
+      "tests": [
+        {
+          "id": "crm-declaration-453",
+          "title": "B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 453,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-475",
+          "title": "B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 475,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-493",
+          "title": "B03 R3 offline archive: zero dispatch and no hint until one explicit confirmed retry after reconnect",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 493,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-523",
+          "title": "B03 R1 archive: pending edit exclusion and requested Back history survive one real archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 523,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-564",
+          "title": "B03 R1 archive: lost real response blocks replay through reopen and remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 564,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-594",
+          "title": "B03 R1 archive: unavailable storage prevents dispatch and preserves the whole snapshot",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 594,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-606",
+          "title": "B05 R1 offline before dispatch retains input without a hint; explicit reconnect saves once",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 606,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-624",
+          "title": "B04 E35-3-T-submitting/confirmed AC3/AC5: one real attempt and busy Escape/close protection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 624,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-643",
+          "title": "B05 E35-3-T-connection-required/unknown AC6: ${mode} retains unconfirmed input and blocks replay after remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 643,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-670",
+          "title": "B06 E35-3-T-stale/late-result/confirmed AC6/AC7: two real editors preserve conflict draft until explicit fresh review",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 670,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-771",
+          "title": "B07 E35-3-T-dirty-navigation/focus-dialog AC5: ${traversal} is cancelled before URL/history commit",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 771,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-805",
+          "title": "B06 E35-3-T-loading/late-result AC2/AC5: delayed A read cannot replace the newer B selection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 805,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-842",
+          "title": "B07 E35-3-T-focus-dialog/dirty-navigation AC5: focus wraps and cancelling dirty Escape retains the draft",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 842,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-884",
+          "title": "B05 E35-3-T-unknown AC6: unavailable safety storage fails closed before dispatch",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 884,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-897",
+          "title": "B05 E35-3-T-unknown AC6: corrupt unresolved hint cannot enable a fresh customer command",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 897,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-957",
+          "title": "B09 E35-3-T-empty/denied/revoked AC6: successful empty differs from foreign denial and live revocation",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 957,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "All16 current applies-state mappings assessed with executed runtime and actual authority tests; inherited rows regression-only; no N/A feature expansion."
+      }
+    },
+    {
+      "id": "E35-3-AC7",
+      "kind": "AC",
+      "tests": [
+        {
+          "id": "crm-declaration-475",
+          "title": "B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 475,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-493",
+          "title": "B03 R3 offline archive: zero dispatch and no hint until one explicit confirmed retry after reconnect",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 493,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-523",
+          "title": "B03 R1 archive: pending edit exclusion and requested Back history survive one real archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 523,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-564",
+          "title": "B03 R1 archive: lost real response blocks replay through reopen and remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 564,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-594",
+          "title": "B03 R1 archive: unavailable storage prevents dispatch and preserves the whole snapshot",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 594,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-606",
+          "title": "B05 R1 offline before dispatch retains input without a hint; explicit reconnect saves once",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 606,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-643",
+          "title": "B05 E35-3-T-connection-required/unknown AC6: ${mode} retains unconfirmed input and blocks replay after remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 643,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-670",
+          "title": "B06 E35-3-T-stale/late-result/confirmed AC6/AC7: two real editors preserve conflict draft until explicit fresh review",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 670,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-805",
+          "title": "B06 E35-3-T-loading/late-result AC2/AC5: delayed A read cannot replace the newer B selection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 805,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-884",
+          "title": "B05 E35-3-T-unknown AC6: unavailable safety storage fails closed before dispatch",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 884,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-897",
+          "title": "B05 E35-3-T-unknown AC6: corrupt unresolved hint cannot enable a fresh customer command",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 897,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-957",
+          "title": "B09 E35-3-T-empty/denied/revoked AC6: successful empty differs from foreign denial and live revocation",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 957,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-980",
+          "title": "B10 E35-3-T-AC5/AC7 inherited contracts: facility/contact labels, summary, cancel and focus remain usable",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 980,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "Existing unchanged checked reads/actions, scoped expected-facts authority, projection/privacy, inherited consumers and deployed catalog source/ACL evidence. File/money/booking bodies unchanged, no all-business coverage claim."
+      }
+    },
+    {
+      "id": "E35-3-STATE-loading",
+      "testId": "E35-3-T-loading",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-805",
+          "title": "B06 E35-3-T-loading/late-result AC2/AC5: delayed A read cannot replace the newer B selection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 805,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-loaded",
+      "testId": "E35-3-T-loaded",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-416",
+          "title": "B01 E35-3-T-AC1/AC2 loaded/no-match: independent selection, sort and reset preserve identity",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 416,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-empty",
+      "testId": "E35-3-T-empty",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-957",
+          "title": "B09 E35-3-T-empty/denied/revoked AC6: successful empty differs from foreign denial and live revocation",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 957,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-no-match",
+      "testId": "E35-3-T-no-match",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-416",
+          "title": "B01 E35-3-T-AC1/AC2 loaded/no-match: independent selection, sort and reset preserve identity",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 416,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-validation",
+      "testId": "E35-3-T-validation",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-453",
+          "title": "B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 453,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-denied",
+      "testId": "E35-3-T-denied",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-957",
+          "title": "B09 E35-3-T-empty/denied/revoked AC6: successful empty differs from foreign denial and live revocation",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 957,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "B09 foreign detail hides fixture identity; authority integration rejects foreign actor/tenant with no audit and no error leakage."
+      }
+    },
+    {
+      "id": "E35-3-STATE-revoked",
+      "testId": "E35-3-T-revoked",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-957",
+          "title": "B09 E35-3-T-empty/denied/revoked AC6: successful empty differs from foreign denial and live revocation",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 957,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "B09 live revocation retains unsent input/no row; integration rejects revoked editor without audit."
+      }
+    },
+    {
+      "id": "E35-3-STATE-connection-required",
+      "testId": "E35-3-T-connection-required",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-493",
+          "title": "B03 R3 offline archive: zero dispatch and no hint until one explicit confirmed retry after reconnect",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 493,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-606",
+          "title": "B05 R1 offline before dispatch retains input without a hint; explicit reconnect saves once",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 606,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-643",
+          "title": "B05 E35-3-T-connection-required/unknown AC6: ${mode} retains unconfirmed input and blocks replay after remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 643,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-884",
+          "title": "B05 E35-3-T-unknown AC6: unavailable safety storage fails closed before dispatch",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 884,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-897",
+          "title": "B05 E35-3-T-unknown AC6: corrupt unresolved hint cannot enable a fresh customer command",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 897,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-submitting",
+      "testId": "E35-3-T-submitting",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-624",
+          "title": "B04 E35-3-T-submitting/confirmed AC3/AC5: one real attempt and busy Escape/close protection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 624,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-error-retry",
+      "testId": "E35-3-T-error-retry",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-453",
+          "title": "B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 453,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-475",
+          "title": "B03 E35-3-T-error-retry AC3/AC7: archive cancel and confirm retain customer identity and soft archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 475,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-493",
+          "title": "B03 R3 offline archive: zero dispatch and no hint until one explicit confirmed retry after reconnect",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 493,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-523",
+          "title": "B03 R1 archive: pending edit exclusion and requested Back history survive one real archive",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 523,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-564",
+          "title": "B03 R1 archive: lost real response blocks replay through reopen and remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 564,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-594",
+          "title": "B03 R1 archive: unavailable storage prevents dispatch and preserves the whole snapshot",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 594,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-unknown",
+      "testId": "E35-3-T-unknown",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-564",
+          "title": "B03 R1 archive: lost real response blocks replay through reopen and remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 564,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-606",
+          "title": "B05 R1 offline before dispatch retains input without a hint; explicit reconnect saves once",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 606,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-643",
+          "title": "B05 E35-3-T-connection-required/unknown AC6: ${mode} retains unconfirmed input and blocks replay after remount",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 643,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-884",
+          "title": "B05 E35-3-T-unknown AC6: unavailable safety storage fails closed before dispatch",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 884,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-897",
+          "title": "B05 E35-3-T-unknown AC6: corrupt unresolved hint cannot enable a fresh customer command",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 897,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "B03 real committed response loss plus B05 separately executed before-forward/lose-response and unavailable/corrupt storage: hints omit sensitive payload, block replay across remount."
+      }
+    },
+    {
+      "id": "E35-3-STATE-stale",
+      "testId": "E35-3-T-stale",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-670",
+          "title": "B06 E35-3-T-stale/late-result/confirmed AC6/AC7: two real editors preserve conflict draft until explicit fresh review",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 670,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "Independent original-fact integration cases, real two-editor browser conflict, whole-row/no-audit rejection, explicit fresh review establishes baseline only after delivered checked detail."
+      }
+    },
+    {
+      "id": "E35-3-STATE-confirmed",
+      "testId": "E35-3-T-confirmed",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-453",
+          "title": "B02 E35-3-T-validation/confirmed AC3: summary links focus the actual invalid field and retain unsent input",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 453,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-624",
+          "title": "B04 E35-3-T-submitting/confirmed AC3/AC5: one real attempt and busy Escape/close protection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 624,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-670",
+          "title": "B06 E35-3-T-stale/late-result/confirmed AC6/AC7: two real editors preserve conflict draft until explicit fresh review",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 670,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "Real saved/soft-archived rows and exact audit assertions; no timeout/transport-only confirmation."
+      }
+    },
+    {
+      "id": "E35-3-STATE-dirty-navigation",
+      "testId": "E35-3-T-dirty-navigation",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-771",
+          "title": "B07 E35-3-T-dirty-navigation/focus-dialog AC5: ${traversal} is cancelled before URL/history commit",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 771,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-842",
+          "title": "B07 E35-3-T-focus-dialog/dirty-navigation AC5: focus wraps and cancelling dirty Escape retains the draft",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 842,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    },
+    {
+      "id": "E35-3-STATE-late-result",
+      "testId": "E35-3-T-late-result",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-670",
+          "title": "B06 E35-3-T-stale/late-result/confirmed AC6/AC7: two real editors preserve conflict draft until explicit fresh review",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 670,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-805",
+          "title": "B06 E35-3-T-loading/late-result AC2/AC5: delayed A read cannot replace the newer B selection",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 805,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P0",
+      "coverage": "FULL",
+      "assessmentOwner": "Existing independent Sol High sensitive qualification",
+      "basis": "Test mapping present; no Low sensitive sufficiency judgment. Requires existing High qualification disposition before FULL/gate eligibility.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred.",
+      "highQualification": {
+        "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+        "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+        "basis": "B06 delayed A read cannot replace current B, matching live attempt/Back-intent guards and targeted review. Withdrawn unmounted/new-draft ABA excluded."
+      }
+    },
+    {
+      "id": "E35-3-STATE-focus-dialog",
+      "testId": "E35-3-T-focus-dialog",
+      "kind": "state",
+      "tests": [
+        {
+          "id": "crm-declaration-771",
+          "title": "B07 E35-3-T-dirty-navigation/focus-dialog AC5: ${traversal} is cancelled before URL/history commit",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 771,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Parameterized declaration; native run resolves actual cases"
+        },
+        {
+          "id": "crm-declaration-842",
+          "title": "B07 E35-3-T-focus-dialog/dirty-navigation AC5: focus wraps and cancelling dirty Escape retains the draft",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 842,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        },
+        {
+          "id": "crm-declaration-980",
+          "title": "B10 E35-3-T-AC5/AC7 inherited contracts: facility/contact labels, summary, cancel and focus remain usable",
+          "file": "tests/e2e/crm/customers.e2e.spec.ts",
+          "line": 980,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "note": "Static declaration"
+        }
+      ],
+      "priority": "P1",
+      "coverage": "FULL",
+      "assessmentOwner": "Ordinary evidence audit",
+      "basis": "Bounded development assertion mapping; source and actual exact-head execution receipts reviewed.",
+      "limits": "No universal browser/navigation guard, unmounted/new-draft ABA, all-file/business-command or full-device claim. Physical keyboard/reflow/daylight release validation remains separately deferred."
+    }
+  ],
+  "coverageStatistics": {
+    "total": 23,
+    "full": 23,
+    "partial": 0,
+    "none": 0,
+    "overallCoveragePercentage": 100,
+    "priorityBreakdown": {
+      "P0": {
+        "total": 10,
+        "covered": 10,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 13,
+        "covered": 13,
+        "percentage": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      }
+    }
+  },
+  "gateEligible": true,
+  "gateIneligibility": null,
+  "liveEvidence": {
+    "present": false,
+    "counted": 0,
+    "reason": "Existing CI/capture artifacts are execution provenance of static tests, not fabricated runtime_manifest records."
+  },
+  "blockers": [],
+  "release_ready": false,
+  "classification": "Distinct final development trace qualification; initial matrix preserved",
+  "initialMatrix": {
+    "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/coverage-matrix.json",
+    "sha256": "18af4ec853de915a749cf6c1308342460a813e56f031fec7b64d44e118a90295",
+    "full": 13,
+    "partial": 10
+  },
+  "productionQualification": {
+    "outcome": "PASS",
+    "evidence": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+    "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+    "limits": "Catalog/source/privilege verification establishes deployed compatibility with the reviewed required-six-argument caller and intentional checked fail-closed five-argument entry. No production mutation smoke, schema-wide drift certification, global advisor clearance, deployment or release approval."
+  },
+  "sensitiveQualification": {
+    "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+    "sha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+    "actualDisposition": "Ten sensitive PARTIAL placeholders may become FULL for bounded development requirements, using this qualification plus actual execution bindings; original proposed matrix preserved by closeout owner."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "scope": "Pre-closeout raw snapshots; original blocked/pending/failed facts preserved",
+  "baseRevision": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "snapshotTimestampUtc": "2026-10-29T17:54:54.334Z",
+  "snapshots": [
+    {
+      "source": "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+      "snapshot": "docs/quality/story-35-3-closeout-2026-10-29/adapter-before-closeout.md",
+      "bytes": 77781,
+      "sha256": "b6f884865097fea885057be901b0b3e58fbf0e2c9c6c452fa398490a7878aab7"
+    },
+    {
+      "source": "_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json",
+      "snapshot": "docs/quality/story-35-3-closeout-2026-10-29/delivery-before-closeout.json",
+      "bytes": 7576,
+      "sha256": "6ddc85a4291a4d737ebfa8c7767aeffff18b7936ea968241085356560e4004cb"
+    },
+    {
+      "source": "_bmad-output/auto-bmad/state/spec-design-35-3-35-3.yaml",
+      "snapshot": "_bmad-output/auto-bmad/history/spec-design-35-3-35-3/pre-closeout-2026-10-29.yaml",
+      "bytes": 5325,
+      "sha256": "19ec1469f6001d88b7e4a26a6ec5abcbb416764cbc311e59557f220b46cad7ba"
+    },
+    {
+      "source": "_bmad-output/test-artifacts/design-35-3/author-verification.json",
+      "snapshot": "docs/quality/story-35-3-closeout-2026-10-29/author-verification-before-closeout.json",
+      "bytes": 29190,
+      "sha256": "4c88fe07b4966c3b22aa4ba24d33490a4d39a9ebfb9d381e619135dfaed3cdf0"
+    }
+  ],
+  "immutableIntentSha256": "dfe7058d81adc7353fe611ac1b245b298eed688f0fd128d12e432ca6e275f821",
+  "immutableCanonicalSuffixSha256": "86cf050f4fae48cf3a5a904bbffdf025589d80d92961f18430652f7f0ac3214b",
+  "hashRepresentation": "Current raw working bytes; immutable segments preserve current newline representation; not mislabeled Git blob hashes",
+  "statusTransitions": false,
+  "productionQualification": "pending; operator/High-owned"
+}

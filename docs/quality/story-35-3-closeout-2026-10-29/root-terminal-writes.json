@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "baseline": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "admissionSha256": "ece3ca1903ccc09a339c7a679403faa4b6c8f82805dbde7e3ec30d9e962bf589",
+  "commands": [
+    {
+      "index": 0,
+      "nativeExit": 0,
+      "receiptSha256": "13248f83ff4725da18ed3d811f0ba9df8f37eaf5002343adc1828fb9343e45a1"
+    },
+    {
+      "index": 1,
+      "nativeExit": 0,
+      "receiptSha256": "67b6074a2085e1c7b152032619f1c83031da43e25694dda23c2ace2f716d04d3"
+    },
+    {
+      "index": 2,
+      "nativeExit": 0,
+      "receiptSha256": "199f64cefc64fa428e6fda0383d0a30765849ba3334fe794cb28ba16758da42e"
+    },
+    {
+      "index": 3,
+      "nativeExit": 0,
+      "receiptSha256": "5c063301cf01b59caefdcbe343f9d57fe24672dd2dee560ff5abe0a0d00c982c"
+    }
+  ],
+  "nativeStatus": "done",
+  "finalizePlan": {
+    "mode": "finalize",
+    "state_dir": "C:/DEV/K35-records/_bmad-output/auto-bmad/state",
+    "story_key": "spec-design-35-3-35-3",
+    "story_source": "stories",
+    "file": "C:/DEV/K35-records/_bmad-output/auto-bmad/state\\spec-design-35-3-35-3.yaml",
+    "blockers": [],
+    "blocker_count": 0,
+    "gate_decision": "PASS",
+    "ci_status": "passed",
+    "ci_status_source": "arg",
+    "no_pr_draft": false,
+    "clauses": {
+      "blocker": false,
+      "review_unverified": false,
+      "gate_waived": false,
+      "ci_failed_or_timeout": false
+    },
+    "draft": false,
+    "clean_completion": true,
+    "flip_bmad_status": false,
+    "reasons": [
+      "stories mode: no BMAD-status flip (build-auto owns the story-file status)"
+    ],
+    "error": null
+  },
+  "currentStateSha256": "3968a9b3a1219d875654829311a5cb4f2d5ae535546f7c78a880c0aad1182235",
+  "currentReportSha256": "0ab836c2c4ad83f2443a8c6e65de6773db4d3c04e0d8555c5e0ae93ce3daa6ae",
+  "development_complete": true,
+  "release_ready": false,
+  "processIntegration": "Separate focused process PR pending publication/review; productPR119 already merged",
+  "boundary": "No new story, migration or manual deployment"
+}

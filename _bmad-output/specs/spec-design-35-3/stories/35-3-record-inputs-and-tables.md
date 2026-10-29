@@ -2,9 +2,9 @@
 title: "Story 35.3: Record Inputs And Tables"
 type: feature
 created: "2026-10-29"
-status: blocked
+status: done
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 warnings: [oversized]
 deferred: []
 tracking_key: 35-3-record-inputs-and-tables
@@ -199,9 +199,15 @@ Completed the actual configured six layers. Original PATH external attempt faile
 
 Completed targeted independent Sol High fix/regression review: PASS / No findings, 20 author stops verified. The later opt-in test-capture flag is a disclosed post-Round2 infrastructure-only delta with bounded static/B01 viewport proof; all11 production files and SQL unchanged. Fresh Coordinator Round3 must bind the actual final Git head. No broad fourth pass is authorized; no development/readiness/acceptance claim is made.
 
+## Current author closeout — 2026-10-29
+
+Current author status is **done — development complete; release_ready=false**. Independent SolHigh author/delivery eligibility passed, then the root-owned supported completion wrapper passed (native0/oktrue/development_completetrue/errors[]/approval_grantedfalse). Root explicitly granted this author-only metadata transition; no new product/review round or aggregate finalization is performed here. Accepted product2b594338 is merged as5857cfb; nativeCI40919281738, authenticated owner initial visual acceptance comment6504043561/digestbd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce and independently postverified production ledger120 now resolve their earlier evidence gates. The final offline archive correction has real zero-dispatch/no-hint and one-explicit-retry proof at both viewports.
+
+Independent High sensitive qualification finds no consequential development coverage gap across23nodes. The separate structural test-quality RequestChanges0/F remains unchanged advisory evidence, not PASS. Development completion is admitted by the actual eligibility and root wrapper receipts; release_ready=false and original REL-1/2/3 owners/actions remain. The historical planning/result paragraphs below and prior failed/blocked receipts retain their original meaning; pre-closeout raw snapshots are recorded in docs/quality/story-35-3-closeout-2026-10-29/preservation.json. Frozen intent, canonical copied suffix and raw source pins are unchanged.
+
 ## Suggested Review Order
 
-Author: the35.3 implementation/fix author (Sol High), incorporating the recorded Low delegate's written visual choices. Refreshed for the bounded final Round3 offline-archive finding fix above checkpoint `2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447`. Three broad product rounds are already completed; only the same independent High reviewer's targeted fix/regression validation remains. This guide grants no approval; new runtime evidence is pending.
+Author: the35.3 implementation/fix author (Sol High), retaining the recorded Low presentation choices and all historical review/failure receipts. Current evidence is accepted product `2b5943381f37eaafc942f50c7c1a4660c8a323d3`, merged unchanged implementation in `5857cfb757086a26eb8d9a728a1472e58179ecd1`. Three product rounds and the same external High reviewer's targeted final P2/locator/regression validation are complete. Independent author/delivery eligibility and root completion-wrapper admission passed before the root-authorized current status transition. This is development completion only; aggregate closeout and separate release approval remain Coordinator-owned.
 
 ### Start with customer identity and written presentation
 
@@ -247,18 +253,19 @@ The High reconciliation requires explicit Discard consent before a checked refre
 - `src/components/crm/CustomerDialog.tsx:286` — `inert={Boolean(decision)||refreshConsent}`: keeps decision controls from omitting save fields.
 - `src/components/crm/CustomerDialog.tsx:414` — `function DirtyDecision`: owns consent disclosure and focused cancel/discard/save choices.
 
-### Read actual assertions and incomplete gate evidence
+### Read accepted development execution and release limits
 
-Historical precheckpoint author evidence (retained; not proof of the new offline fix): AC1/2 map to B01; AC3 to B02/B03 and33realDB assertions; AC4 to B08 enlargement/reflow/occlusion proxies and computed composites; AC5 to B04/B06/B07; AC6/7 to B05/B06/B09 and real authority/concurrency/audit tests. B10 preserves inherited facility/contact, calculation Field and file-index SelectField hooks without upload. The exact supplemental60PNG receipt/full15consumer map and current44PNG inventory above remain source-bound previews, not conditional error/business-flow proof. Synthetic503 HTML is not actual CustomerList.loadError UI. Round2 verified all104 hashes but did not confer formal visual acceptance. Current final target1/1, desktop32/32, phone32/32 and focusedDB33/33 pass with zero skips; pre-Round1 Node121/121 reuse is limited to unchanged helpers. Targeted independent Round2 PASS is executed evidence atf962, with reviewer scope/limits in its receipt. The post-review capture-only flag has separate B01×2/exact-PNG proof and source manifest; it is not included in that Round2 pass. Fresh Coordinator Round3 is pending. Native local full-suite failures remain development blockers; historical schema rejection is only a diagnostic.
+AC1/2 bind B01; AC3 binds B02/B03 and the unchanged33 focused database assertions; AC5 binds B04/B06/B07; AC6/7 bind B03/B05/B06/B09 and real authority/concurrency/audit evidence. Final focused7+7 and canonical33+33 pass at accepted2b594338; the initial1044 selector failure is retained. NativeCI40919281738 passed: DB2163pass/0fail/52pending, browser74pass/0fail/0skip and separate recovery1pass/0fail/0pending. Pending52 is not coverage. Earlier local CRLF/unit/DB failures remain historical, superseded for current gate qualification by exact-head native evidence, never rewritten as local passes.
 
-- `tests/e2e/crm/customers.e2e.spec.ts:670` — `B06 E35-3-T-stale/late-result/confirmed`: proves consent/offline/checked read/save and genuine503 native fallback.
-- `tests/e2e/crm/customers.e2e.spec.ts:915` — `B08 E35-3-T-AC4`: labels CSS zoom/visible-viewport proxies and measures rendered composites.
-- `_bmad-output/test-artifacts/design-35-3/author-verification.json:6` — `"development_complete": false`: retains exact commands/counts and unresolved development gates.
-- `_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json:37` — `"independent_review"`: keeps the incomplete record incapable of claiming completion.
+The62-frame exact-viewport packet was accepted by authenticated owner comment6504043561 for digestbd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce. Controller native0 used owner-manual mode; configured image-provider review remained unavailable. The actual CustomerList error now has subject-bound checked-read capture, distinct from retained synthetic503 HTML. Current High evidence qualifies23 bounded development nodes and the deployed migration. Literal structural test-quality RequestChanges0/F remains advisory; no overall NFR/performance/manual-device PASS is inferred. Independent author/delivery eligibility and the supported root wrapper passed before this author done transition; release_ready stays false.
 
-Current finding-fix evidence: TypeScript and scoped ESLint passed; fresh build/browser execution and the same independent High reviewer's targeted validation remain pending. The Round3 fix receipt above records actual commands and scope. The old2833 captures/CI are historical and require fresh candidate binding. Development/release remain blocked; no earlier receipt is rewritten as current proof.
+- `tests/e2e/crm/customers.e2e.spec.ts:670` — `B06 E35-3-T-stale/late-result/confirmed`: asserts explicit consent, offline retention and delivered checked facts.
+- `tests/e2e/crm/customers.e2e.spec.ts:915` — `B08 E35-3-T-AC4`: labels enlargement/occlusion proxies and measured composites.
+- `_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json:219` — `PASS for independent production operation postverify`: qualifies bounded sensitive evidence with limits.
+- `docs/quality/story-35-3-production-migration-2026-10-29.json:5` — `"status"`: records the single applied/postverified production migration.
+- `_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json:47` — `"independent_review"`: binds the independent eligibility PASS used by the root wrapper.
 
-Evidence limits: controlled transport/503 pages are synthetic faults around actual isolated commands, not production outage proof. Other browser/device behavior, physical OS keyboard, screen-reader/daylight, cross-tab/restart recovery and exhaustive visual comparison remain unexecuted release work. Original unmountedABA is not established and its classification is withdrawn, never passed. Fresh Coordinator Round3, exact-head fullCI/direct physical recovery, formal viewport images/controller and owner initial visual acceptance remain required and unproved here. Existing fullPage previews can exceed viewport; root formal replay will use fullPage:false plus separate scrolled footer frames, not executed here.
+Evidence limits: physical OS keyboard, screen reader/daylight, exhaustive devices/browsers, longer SLO/load and release consolidation remain REL-1/2/3 work with original owners/actions. Original unmounted/new-draft ABA remains withdrawn; bounded Back-intent evidence is not a universal navigation guarantee. Full historical records and raw pre-closeout snapshots remain immutable.
 
 ## Historical planning result — blocked, retained from 2026-10-29
 
@@ -270,6 +277,22 @@ Planning HALT after step-02. Ten ordered adapter planning tasks recorded; none i
 G01 safe unknown blocking is possible but completed identity-bound create reconciliation is unavailable; SERVER_ERROR alone does not prove rollback. G03 dirty-close/busy fits owned caller; exact route/history precommit protection remains unbound. G04 actual transport fixture binding remains future verification work. No AC is waived or replaced by local generation semantics. No implementation/test/immutable source change, runtime coverage, visual acceptance, development completion or release readiness is asserted. Completion hook preserves this blocked planning result and does not manufacture an author trail.
 
 ## Auto Run Result
+
+Status: done
+Development complete: true
+Release ready: false
+Follow-up product review recommended: false — the three completed product rounds and same-reviewer targeted final P2/locator/regression validation have no unresolved consequential finding; no fourth broad product pass is started.
+
+Accepted and executed product revision is2b5943381f37eaafc942f50c7c1a4660c8a323d3, merged unchanged implementation as5857cfb757086a26eb8d9a728a1472e58179ecd1 inPR119. Exact-head nativeCI40919281738 passed required contexts; DB2163passed/0failed/52pending (pending is not coverage), browser74passed/0failed/0skipped, and separate physical recovery1passed/0failed/0pending. Current local focused7+7 and formal33+33, inherited2/extras1 passed without retries; prior failed/blocked/skipped records remain historical evidence.
+
+The62-pair production-server exact-viewport packet received authenticated owner initial visual acceptance comment6504043561/digestbd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce; owner-manual controller native0 is actual, configured image-provider review was unavailable. The single approved production migration20261029132339 applied once/native0 and was independently postverified: exact120ledger/prior119unchanged, mergedrequired6arg/failclosed5arg bodies, owner/ACL/searchpath/customerforcedRLS and nativecredentialrole boundaries. No productiontenant/RPC mutation tests ran.
+
+Independent High qualification found all23 bounded development nodes sufficient and no consequential gap. Literal structural test-quality RequestChanges0/F remains advisory and is not relabeled PASS. No universal ABA/browser guarantee, longer performanceSLO/load, physical keyboard/daylight or exhaustive device/release validation is claimed. Original REL-1/2/3 owners, deferredstatus and nextactions remain in delivery; release_ready=false.
+
+Author/delivery eligibility receipt: docs/quality/story-35-3-closeout-2026-10-29/independent-author-delivery-eligibility.json. Root wrapper receipt: docs/quality/story-35-3-closeout-2026-10-29/root-wrapper-admission.json; native0/oktrue/development_completetrue/errors[]/approval_grantedfalse on exactdeliverySHA df87301f15d50401a1acae1d62fc649638311dd520298192de55e88bd62a488f before this transition. Root owns aggregate state/report/finalization, Git/publication and remaining process/release work. This author transition invokes no helper, new runtime, product change, production operation, merge or deployment.
+
+### Historical blocked Auto Run Result — retained
+
 
 Status: blocked
 Blocking condition: Required exact-head native CI and direct recovery-Storage proof, fresh Coordinator Round3, formal current-head viewport captures/frontend controller and authenticated owner initial composition acceptance remain pending. The executable frontend gate rejects the uncommitted candidate; no done/finalization helper or commit is authorized by this result.
