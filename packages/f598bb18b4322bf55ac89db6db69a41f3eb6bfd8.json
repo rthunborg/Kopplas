@@ -1,0 +1,587 @@
+{
+  "evidenceDigest": "b2d9b0e9f71c3e77760b16311711168a4d9b0f6c90e7e3f62618e279b00ccc16",
+  "evidence": {
+    "schemaVersion": 1,
+    "kind": "frontend",
+    "candidateSha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+    "changedPaths": [
+      ".gitattributes",
+      "AGENTS.md",
+      "_bmad-output/auto-bmad/preparation/35-2-tea-triage-route.json",
+      "_bmad-output/auto-bmad/state/spec-design-35-2-35-2.yaml",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/EXPERIENCE.after.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/Inter-v4.1-LICENSE.txt",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/implementation-artifacts/spec-35-2-tokens-font-and-real-login.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/architecture-phase-b.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/README.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-artifacts.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-specs.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/output-hashes.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/routing.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-hashes.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-observations.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/spec-hashes.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/dependency-overlay/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-2.md",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/experience-approved-amendment.patch",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/font-provenance.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/frontend-policy-source-pin.patch",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/frontend-policy.after.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/identity-and-dependencies.json",
+      "_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/source-pin-update.json",
+      "_bmad-output/specs/spec-design-35-2/SPEC.md",
+      "_bmad-output/specs/spec-design-35-2/source-binding.json",
+      "_bmad-output/specs/spec-design-35-2/stories.yaml",
+      "_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md",
+      "_bmad-output/test-artifacts/atdd-35-2-api-output.json",
+      "_bmad-output/test-artifacts/atdd-35-2-e2e-output.json",
+      "_bmad-output/test-artifacts/atdd-35-2-summary.json",
+      "_bmad-output/test-artifacts/atdd-checklist-35-2-tokens-font-and-real-login.md",
+      "_bmad-output/test-artifacts/test-design-progress-epic-spec-design-35-2.md",
+      "_bmad-output/test-artifacts/test-design-spec-design-35-2.md",
+      "_bmad/custom/bmad-build-auto.toml",
+      "docs/quality/frontend-activation-2026-10-28.md",
+      "docs/quality/frontend-activation-review-2026-10-28.md",
+      "docs/quality/frontend-admission-routing-2026-10-28.md",
+      "docs/quality/frontend-integration-verification-2026-10-28.md",
+      "docs/quality/frontend-next-admission.md",
+      "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-FOCUS.png",
+      "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-D-IDLE.png",
+      "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-FOCUS.png",
+      "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-GROUPING.png",
+      "docs/quality/references/story-35-2-2026-10-28/E35-2-SOURCE-M-IDLE.png",
+      "docs/quality/references/story-35-2-2026-10-28/capture-manifest.json",
+      "docs/quality/references/story-35-2-core-2026-10-28/.gitattributes",
+      "docs/quality/references/story-35-2-core-2026-10-28/error.html",
+      "docs/quality/references/story-35-2-core-2026-10-28/loading.html",
+      "docs/quality/references/story-35-2-core-2026-10-28/provenance.json",
+      "docs/quality/references/story-35-2-core-2026-10-28/reference.css",
+      "docs/quality/story-35-2-adapter-review-2026-10-28.md",
+      "docs/quality/story-35-2-admission-2026-10-28.md",
+      "docs/quality/story-35-2-admission-review-2026-10-28.md",
+      "docs/quality/story-35-2-approved-admission-2026-10-28.json",
+      "docs/quality/story-35-2-execution-routing-2026-10-28.md",
+      "docs/quality/story-35-2-login-visual-approval-2026-10-28.json",
+      "docs/quality/story-35-2-reference-and-inheritance-2026-10-28.md",
+      "docs/quality/story-35-2-resource-boundary-2026-10-28.md",
+      "docs/quality/story-35-2-resume-routing-2026-10-28.json",
+      "docs/quality/story-35-2-trusted-source-bootstrap-2026-10-28.json",
+      "ops/test/kong.yml",
+      "public/licenses/inter/OFL.txt",
+      "src/app/(auth)/login/page.tsx",
+      "src/app/fonts/InterVariable-Italic.ttf",
+      "src/app/fonts/InterVariable.ttf",
+      "src/app/globals.css",
+      "src/app/layout.tsx",
+      "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "tests/e2e/my-day.e2e.spec.ts",
+      "tests/unit/auth/login-submission.test.ts"
+    ],
+    "source": {
+      "id": "DT-2026-10-23",
+      "version": "2026-10-26",
+      "hashes": {
+        "DESIGN.md": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+        "EXPERIENCE.md": "cf36a61123676e175dd8e26678bf7da98bb666dc076bb50e34f3f432db1e54d8",
+        "v1/inventory.sha256.json": "71cccdc4666d2ad07117df171f0e68d3e1082b85e6d2d3e534572a54ac467172"
+      }
+    },
+    "runtime": {
+      "server": "next start",
+      "buildSha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+      "synthetic": true,
+      "fixture": "One fresh owned current-revision synthetic rich fixture; normal public-anon SDK sign-in/getUser200 and server tenant identity/foreign absence verified for current only; login states controlled with zero provider forwards. Reference images retain their historical fixtures and capture provenance.",
+      "command": "Production next build and guarded next start at this exact current revision; reviewed current-only admin rich holder and six-consumer capture at desktop/phone; six controlled login idle/loading/error captures; owned-context cleanup. Existing immutable reference PNGs reused without recapture.",
+      "result": "18 current actuals and18 references independently opened/hash/dimension/privacy reviewed; fresh current fixture versus retained historical references; cleanup passed. Pre-change references are regression-only, with approved font/body delta governed by written DESIGN/EXPERIENCE."
+    },
+    "surfaces": [
+      {
+        "id": "login",
+        "consumer": "auth",
+        "component": "LoginPage",
+        "route": "/login",
+        "files": [
+          "src/app/(auth)/login/page.tsx",
+          "src/app/layout.tsx",
+          "src/app/globals.css",
+          "public/licenses/inter/OFL.txt",
+          "src/app/fonts/InterVariable-Italic.ttf",
+          "src/app/fonts/InterVariable.ttf"
+        ],
+        "referenceSetting": true,
+        "notApplicable": {
+          "empty": "Credential entry has no domain collection/empty-result state."
+        },
+        "referenceId": "story35-2-login-initial-20261028"
+      },
+      {
+        "id": "records-list",
+        "consumer": "records",
+        "component": "CustomerList",
+        "route": "/customers",
+        "files": [
+          "src/app/globals.css",
+          "src/app/layout.tsx"
+        ],
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Unchanged existing flow; selected finished representative verifies inherited foundations, not a new loading-state migration.",
+          "error": "Unchanged existing error flow; no story-owned error-state mutation.",
+          "empty": "No changed empty-state behavior in this bounded inherited representative."
+        },
+        "referenceId": "story35-2-records-list-initial-20261028"
+      },
+      {
+        "id": "booking-dialog",
+        "consumer": "dialogs",
+        "component": "BookingEditor",
+        "route": "/scheduling",
+        "files": [
+          "src/app/globals.css",
+          "src/app/layout.tsx"
+        ],
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Unchanged existing flow; selected finished representative verifies inherited foundations, not a new loading-state migration.",
+          "error": "Unchanged existing error flow; no story-owned error-state mutation.",
+          "empty": "No changed empty-state behavior in this bounded inherited representative."
+        },
+        "referenceId": "story35-2-booking-dialog-initial-20261028"
+      },
+      {
+        "id": "documents-list",
+        "consumer": "documents",
+        "component": "DocumentFilters",
+        "route": "/files",
+        "files": [
+          "src/app/globals.css",
+          "src/app/layout.tsx"
+        ],
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Unchanged existing flow; selected finished representative verifies inherited foundations, not a new loading-state migration.",
+          "error": "Unchanged existing error flow; no story-owned error-state mutation.",
+          "empty": "No changed empty-state behavior in this bounded inherited representative."
+        },
+        "referenceId": "story35-2-documents-list-initial-20261028"
+      },
+      {
+        "id": "jobs-list",
+        "consumer": "jobs",
+        "component": "JobList",
+        "route": "/jobs",
+        "files": [
+          "src/app/globals.css",
+          "src/app/layout.tsx"
+        ],
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Unchanged existing flow; selected finished representative verifies inherited foundations, not a new loading-state migration.",
+          "error": "Unchanged existing error flow; no story-owned error-state mutation.",
+          "empty": "No changed empty-state behavior in this bounded inherited representative."
+        },
+        "referenceId": "story35-2-jobs-list-initial-20261028"
+      },
+      {
+        "id": "calendar-settings",
+        "consumer": "scheduling",
+        "component": "CalendarSubscription",
+        "route": "/settings/calendar",
+        "files": [
+          "src/app/globals.css",
+          "src/app/layout.tsx"
+        ],
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Unchanged existing flow; selected finished representative verifies inherited foundations, not a new loading-state migration.",
+          "error": "Unchanged existing error flow; no story-owned error-state mutation.",
+          "empty": "No changed empty-state behavior in this bounded inherited representative."
+        },
+        "referenceId": "story35-2-calendar-settings-initial-20261028"
+      },
+      {
+        "id": "time-reports",
+        "consumer": "time-my-day",
+        "component": "TimeReportWorkspace",
+        "route": "/time-reports",
+        "files": [
+          "src/app/globals.css",
+          "src/app/layout.tsx"
+        ],
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Unchanged existing flow; selected finished representative verifies inherited foundations, not a new loading-state migration.",
+          "error": "Unchanged existing error flow; no story-owned error-state mutation.",
+          "empty": "No changed empty-state behavior in this bounded inherited representative."
+        },
+        "referenceId": "story35-2-time-reports-initial-20261028"
+      }
+    ],
+    "captures": [
+      {
+        "id": "records-list-360",
+        "surface": "records-list",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "aa24c354bc76f28c44d0475c9d361550359b1d10",
+          "sha256": "9e7c32232aa1b870b5cc1ac57bc80658f9ee25fc35c4c5a9ce2b9bdeec4486d1"
+        },
+        "reference": {
+          "gitBlob": "49d400f62801eb8f42a35c8b10293335599eed26",
+          "sha256": "2e39e08e7da3247ec97d2e91091db6c93168c8902a11ea7ee3ae801967523b02"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "jobs-list-360",
+        "surface": "jobs-list",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "cd574de11680f95afb3744002f79e03936fd2420",
+          "sha256": "c8016e4f2fdaed0f0bbaf5e1d4822ccb8db7ffa8c2086010fbfa1ffc0c556ca8"
+        },
+        "reference": {
+          "gitBlob": "7f6a6fe843dd92932112b81681a9da03ea150e6b",
+          "sha256": "5adf779ff8bed1c4f045e8a63043eb2621571a6610ed07b71bb0ac6f8128794c"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "documents-list-360",
+        "surface": "documents-list",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "a601ade54c1d8e3b984d89d697d8bb735d95582b",
+          "sha256": "d9386dcf309e19426a1b4e74ed908cda891f6b4a73b0300504548e6396632cc0"
+        },
+        "reference": {
+          "gitBlob": "0c6756f34af5ebb1cb407d32765538a4eb58a935",
+          "sha256": "6df728f2a573ab624e187640c8ee4da1d7429ead5a81ef8202925069827e930c"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "time-reports-360",
+        "surface": "time-reports",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "1bc7c3e0d1fc6d59e679faddb1153a580e5bc8be",
+          "sha256": "1605d36554a8be8a8579fd506f99512c28d76e878953c34afe284f7eb0f17942"
+        },
+        "reference": {
+          "gitBlob": "e07ff0e97dba0eba47b3ac19cd55d397a4f51207",
+          "sha256": "e8278d7731490673367e71f40926a2d7cb9b5efddcd8bf9d04efb65a782d1008"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "booking-dialog-360",
+        "surface": "booking-dialog",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "d9daa30b62b97eefe14e4914f351b76bf12b8750",
+          "sha256": "f34f78d1a78bd3b3c8348cf0d91d328719b4f171a339e082a1ae4024ff24f1b8"
+        },
+        "reference": {
+          "gitBlob": "644710f304134fb97950f1bbf6c25f0240842e3f",
+          "sha256": "7e04b8d1694f12a65579f7dc9a444dc29bd3fe17ac431d41bc6e758e174b2ac8"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "calendar-settings-360",
+        "surface": "calendar-settings",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "c9d5b6f79c134aa2a2e08f686ddbf55b2b9239f0",
+          "sha256": "f5db055c23e84e81f710705e2f7ed84ccfd5835c944229b63b0e8c6445adae8f"
+        },
+        "reference": {
+          "gitBlob": "c61d59834b09190885233b4aeaf8e1d8db2af47c",
+          "sha256": "0a8872e7a2c234d1149e12b6cc882769eb0786ec0283579d39fa4a4401caed60"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "records-list-1440",
+        "surface": "records-list",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "4bf15bf7c9013fe161da47bdd3938258396d92d2",
+          "sha256": "1d2b0b94c92b507ad67813e69ade3dbae7f5653574ba04412715dffcfac974d0"
+        },
+        "reference": {
+          "gitBlob": "7b240b7079cc3787c4fb8c67803b741f6cedc882",
+          "sha256": "58f1f1485e5d12a3762837c6d3c7ccfd8dc020b0a3ff247ba747160001b8d740"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "jobs-list-1440",
+        "surface": "jobs-list",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "533f36ea0fe1a2ef3e76e275dc595ee460bd6187",
+          "sha256": "9727dde28a6dbba5a308f02c5b0ba2207c6e62063bdf93526aaaf85410ca9f9b"
+        },
+        "reference": {
+          "gitBlob": "671a57b068ece6105630ccf2c80f470442f098ba",
+          "sha256": "ab84727b0bfa2243f32c17a81790b2f1d768f7ba5ec7149359d00f5303ff0f71"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "documents-list-1440",
+        "surface": "documents-list",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "f995297d295018fc96afd71334713c803065e79d",
+          "sha256": "e361d4626eb59e722bfaf9501fa7863701744befa1d60a80990bd396048e23bb"
+        },
+        "reference": {
+          "gitBlob": "ebe6960ff77391444009e70454b26e72dc6bf252",
+          "sha256": "430725d66bc6bcbef55378fe63222513a06f7bdfc86e39f9d4dcbd01be15a524"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "time-reports-1440",
+        "surface": "time-reports",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "ac59ad02a5c64feb45946ba9ef346825d137b0c1",
+          "sha256": "7588c5fbd937f4065d42ac6db868c876a0759ed9654323113b7ceb3a2577ee29"
+        },
+        "reference": {
+          "gitBlob": "35b129c59d376381bd3d3e97f233ee4a4e76f186",
+          "sha256": "07a55923de2beaac2343bfc6837254e0a4e4a584ba8bebeb8472fdf5ae10d93c"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "booking-dialog-1440",
+        "surface": "booking-dialog",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "f5bc02d69612d4fdac95871265112836ff1c7fdd",
+          "sha256": "14575a87323a0d9150a1ba882dbc30e8e50ba4a00e45f8d5719366fc713f7199"
+        },
+        "reference": {
+          "gitBlob": "5fdd7a0b3e52a68703b11c13a7b408d2844268ca",
+          "sha256": "e7a83dc117057e4a6333d972d27bc2a03b78eab1f6b507d964841d09c659c49f"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "calendar-settings-1440",
+        "surface": "calendar-settings",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "9c337d4c871852d57bc7141160d300bff8b765bd",
+          "sha256": "0df05414b55fe776944bc7718d3b140ae37524eac8cc285b86266b8363727e8c"
+        },
+        "reference": {
+          "gitBlob": "a07103e9d0e70a115010fe5b72bcdac6fefe4066",
+          "sha256": "5fbc43d2c0e42cf719ba692d985fe30ff4ebe124561ca4c189c75950d4c0167d"
+        },
+        "referenceKind": "owned-prechange-regression-reference; written DESIGN/EXPERIENCE governs approved font/body delta"
+      },
+      {
+        "id": "login-finished-360",
+        "surface": "login",
+        "state": "finished",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "8e3fb4f44ca55a7e7b0b48a65696ca5c478df256",
+          "sha256": "e44cab93a434a5ec1a19b69ab0cae97f9827761072e07112b3cdf10aa3762775"
+        },
+        "reference": {
+          "gitBlob": "8e3fb4f44ca55a7e7b0b48a65696ca5c478df256",
+          "sha256": "e44cab93a434a5ec1a19b69ab0cae97f9827761072e07112b3cdf10aa3762775"
+        },
+        "referenceKind": "narrow-owner-approved-idle-only",
+        "controlledBoundary": "Two scenario executions total,2 intercepted token requests,0 provider forwards; no real session proof"
+      },
+      {
+        "id": "login-loading-360",
+        "surface": "login",
+        "state": "loading",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "ccc7d19264b0172d92f5e6380aa27c7fe31c0c40",
+          "sha256": "540ec46a09ed196cee3b098f773fdb6f2eaa7879961a8bb84c610129a343fc13"
+        },
+        "reference": {
+          "gitBlob": "234f159ab58634542610127fe68670731f5d518f",
+          "sha256": "29b57971b243950a82a98f849a97d9cf6baba35c5aecb531e12f7e46b85821d1"
+        },
+        "referenceKind": "authored-approved-idle-composition-plus-written-state-rules",
+        "controlledBoundary": "Two scenario executions total,2 intercepted token requests,0 provider forwards; no real session proof"
+      },
+      {
+        "id": "login-error-360",
+        "surface": "login",
+        "state": "error",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "5e8df8523a938f73353e08fef31301f6bca5a2dd",
+          "sha256": "2278fe0b96842bc6d66cf275ab13e14b83c0dd8fc910be29ce0ff860fdf93c99"
+        },
+        "reference": {
+          "gitBlob": "095fe657d0df6ded83ccfcd47394e5c752e015fb",
+          "sha256": "0ac0c30d21b4d0a41d8d0c2610f7b20652d863a47897af098ad3ab71fcfa9342"
+        },
+        "referenceKind": "authored-approved-idle-composition-plus-written-state-rules",
+        "controlledBoundary": "Two scenario executions total,2 intercepted token requests,0 provider forwards; no real session proof"
+      },
+      {
+        "id": "login-finished-1440",
+        "surface": "login",
+        "state": "finished",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "9c6b1e33eead82b7ebe57f00d0ccc7cc6920f5f9",
+          "sha256": "10d1eec17435769445a6baffcb8bf2f0d5ec7db345d2e0f0bcd657189318666f"
+        },
+        "reference": {
+          "gitBlob": "9c6b1e33eead82b7ebe57f00d0ccc7cc6920f5f9",
+          "sha256": "10d1eec17435769445a6baffcb8bf2f0d5ec7db345d2e0f0bcd657189318666f"
+        },
+        "referenceKind": "narrow-owner-approved-idle-only",
+        "controlledBoundary": "Two scenario executions total,2 intercepted token requests,0 provider forwards; no real session proof"
+      },
+      {
+        "id": "login-loading-1440",
+        "surface": "login",
+        "state": "loading",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "4105fdd99e867134fbd15302cc1d0e89aa49526f",
+          "sha256": "025c49898fb3cbc63c5b0a6d73e789f901cc09b9d66d1fcd8224c46620f931c7"
+        },
+        "reference": {
+          "gitBlob": "c386ff6bf2bbb680adba95406507c700d7444dab",
+          "sha256": "f65c09b0732a7cc8dbffa0c4ce8bb529973ce0bf59054a734e87f7fd1a052d51"
+        },
+        "referenceKind": "authored-approved-idle-composition-plus-written-state-rules",
+        "controlledBoundary": "Two scenario executions total,2 intercepted token requests,0 provider forwards; no real session proof"
+      },
+      {
+        "id": "login-error-1440",
+        "surface": "login",
+        "state": "error",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "f239b1e24b1209a1187d928b618e74e844cd5a59",
+          "sha256": "7598c8db11e5d4e6ba9289b432c55e744614e924fa28dbd2e625b4a1c92abd05"
+        },
+        "reference": {
+          "gitBlob": "433967af17b1fbec5d6bb80af90654504409aa4a",
+          "sha256": "504786daeda88ea00b8643cfa6ffa8c7b67ecae36af0b033a54f927d1b4e5509"
+        },
+        "referenceKind": "authored-approved-idle-composition-plus-written-state-rules",
+        "controlledBoundary": "Two scenario executions total,2 intercepted token requests,0 provider forwards; no real session proof"
+      }
+    ],
+    "deviations": [],
+    "presentation": {
+      "schemaVersion": 1,
+      "dataPolicy": "synthetic-no-pii",
+      "evidenceCommit": "6e8393cea0547243d461771d7c7a76710098ae5f",
+      "evidenceRef": "codex/visual-evidence/pr-115",
+      "feedback": [],
+      "exceptions": []
+    },
+    "otherAffectedConsumers": "docs/quality/story-35-2-reference-and-inheritance-2026-10-28.md"
+  }
+}
