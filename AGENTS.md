@@ -26,6 +26,20 @@ Mandatory rules:
 - Use the deeper docs in `docs/process`, `docs/quality`, `docs/security`, and `_bmad-output/project-context.md`.
 - A live demo deployment exists (Vercel `enhancior/kopplas` + Supabase `Kopplas`): see [docs/process/demo-environment.md](docs/process/demo-environment.md). Migrations flow repo→demo via `supabase db push` after merge; CI and tests never target the demo project.
 
+## Standing production migration authorization — owner decision 2026-10-29
+
+Until the owner reports that Kopplas has real users, applying production database
+migrations for approved project work is standing-authorized; do not request
+separate migration-application approval for each story. The owner confirms the
+project has never been released and has no older released callers. This does not
+waive independent sensitive-work review, exact target/source verification,
+ordered forward-only migrations, applied-migration immutability, post-application
+verification or stopping to reconcile uncertain/partial outcomes before retrying.
+CI and tests must still use isolated resources, never the production/demo project.
+This authorization does not authorize database resets, history rewrites or
+unrelated destructive operations. Once real users are reported, reassess the
+production migration approval and compatibility policy before further application.
+
 ## Agent Model and Effort
 
 Use `gpt-6.1-sol` by default for Codex primary agents, generic subagents, named

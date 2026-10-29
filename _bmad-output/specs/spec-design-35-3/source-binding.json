@@ -45,5 +45,26 @@
     "docs/quality/story-35-3-admission-2026-10-29.json",
     "docs/quality/story-35-3-source-integration-2026-10-29.json"
   ],
-  "historicalAdmissionMeaning": "Dated preparation, not operative approval. Later operative approval and exact allocation supersede only the approval/allocation gates; source snapshots and historical candidate identity remain unchanged."
+  "historicalAdmissionMeaning": "Dated preparation, not operative approval. Later operative approval and exact allocation supersede only the approval/allocation gates; source snapshots and historical candidate identity remain unchanged.",
+  "operativeAmendments": [
+    {
+      "date": "2026-10-29",
+      "record": "docs/quality/story-35-3-prerequisite-approval-2026-10-29.json",
+      "kind": "approved customer.update stale-authority prerequisite and standing migration authorization",
+      "additionalProductionPaths": [
+        "src/features/crm/form-parsing.ts",
+        "src/server/commands/crm/validation.ts",
+        "src/server/commands/crm/customers.ts",
+        "src/server/commands/crm/crm-db.ts"
+      ],
+      "additionalTestPaths": [
+        "tests/integration/commands/crm-customer-commands.int.test.ts",
+        "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+        "tests/unit/features/crm/form-parsing.test.ts",
+        "tests/unit/server/commands/crm-validation.test.ts"
+      ],
+      "migrationIdentity": "One forward migration; actual timestamp/path unallocated. Root reserves the semantic filename suffix *_customer_update_expected_facts.sql and exclusive generation slot before later CLI migration new; record its generated timestamp/path immediately before SQL body authoring.",
+      "effect": "Extends only the original seven/two allocation. Historical sourceFiles raw pins and canonical body are unchanged; prior allocation-only/read-only clauses are superseded within this exact amendment. Adapter draft is planning recovery, not readiness or cleared state blockers."
+    }
+  ]
 }

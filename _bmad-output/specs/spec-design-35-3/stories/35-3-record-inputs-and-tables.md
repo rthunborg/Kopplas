@@ -2,7 +2,7 @@
 title: "Story 35.3: Record Inputs And Tables"
 type: feature
 created: "2026-10-29"
-status: blocked
+status: draft
 review_loop_iteration: 0
 followup_review_recommended: false
 warnings: [oversized]
@@ -122,6 +122,12 @@ Blocking condition: canonical stale-write guarantee requires checked expected-cu
 Planning HALT after step-02. Ten ordered adapter planning tasks recorded; none implemented. The READY FOR DEVELOPMENT standard fails sufficiency/coherence because E35-3-STATE-stale and E35-3-T-stale require that an old submission cannot overwrite new authoritative facts, while the checked customer update has no expected-current predicate. Context-free Sol High inspected the actual authorized caller and downstream guards; full result and minimal separate amendment are in `../contract-assessment.md`, with route in `../contract-assessment-route.json`. Approval/allocation history is reconciled; this is not a repeat generic approval blocker.
 
 G01 safe unknown blocking is possible but completed identity-bound create reconciliation is unavailable; SERVER_ERROR alone does not prove rollback. G03 dirty-close/busy fits owned caller; exact route/history precommit protection remains unbound. G04 actual transport fixture binding remains future verification work. No AC is waived or replaced by local generation semantics. No implementation/test/immutable source change, runtime coverage, visual acceptance, development completion or release readiness is asserted. Completion hook preserves this blocked planning result and does not manufacture an author trail.
+
+## Approved prerequisite resume amendment — 2026-10-29
+
+[The dated prerequisite approval](../../../../docs/quality/story-35-3-prerequisite-approval-2026-10-29.json) and [SPEC operative amendment](../SPEC.md#operative-prerequisite-approval-amendment--2026-10-29) supersede the historical approval/allocation block only within their exact customer.update scope. The frozen plan is approved; this project has never been released and has no older callers. Preserve the original seven/two allocation and add only the four backend/four test paths plus one future root-reserved CLI-generated forward migration specified there. Existing checked reads/actions/action-state remain read-only. Canonical obligations are unchanged.
+
+Frontmatter blocked → draft is the supported recovery for the prior planning-time block, permitting separate folder+ID re-planning after root commits the metadata. This dated note does not rewrite the Auto Run Result above or assert that the source prerequisite exists, the stale runtime obligation passes, planning is complete or state blockers have cleared. Earlier blocked/read-only wording remains a historical description of that planning exit; the new approved amendment controls the next plan. Root clears state blockers only after actual successful re-planning. Halt the next dispatch after planning; no product, tests or migration are written in this bridge. Standing qualified production migration authority is in AGENTS.md; no SQL is applied now. Development complete=false and release_ready=false.
 
 <!-- canonical-body-copy: spec-35-3-record-inputs-and-tables.md -->
 

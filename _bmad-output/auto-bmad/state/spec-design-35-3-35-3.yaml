@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3"
 story_id: 35-3
 branch: codex/story-35-3-record-inputs-and-tables
 status: in-progress
-updated_at: "2026-10-29T12:50:30Z"
+updated_at: "2026-10-29T12:56:48Z"
 started_at: "2026-10-29T12:23:26Z"
 completed_at: null
 active_seconds: 1548
-timing_anchor: null
+timing_anchor: 1793278386
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -22,14 +22,15 @@ selected_phase: build
 selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: Ordinary task uses Low effort
+escalation_reason: "Automatic sensitive-task escalation: authorization, transactional-integrity"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authorization, transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Late-result and stale/unknown outcome presentation must preserve record identity across delayed responses; high test risk from concurrency, not a newly authorized sensitive contract change."
@@ -55,7 +56,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [f6b23d7, 64a8e3a, 0740f04a]
+commits: [f6b23d7, 64a8e3a, 0740f04a, 16d45ec6]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -86,7 +87,7 @@ overrides:
   merge: "not authorized; stop at single-story checkpoint"
   epic: "35.3 only; no whole-E35 enrollment"
 constraints:
-  - "Exact seven CRM production and two meaningful test paths in operative approval; no scope expansion."
-  - Domain/actions/read/action-state/form-parsing/auth/tenant/SQL/routes/root/global/font/AppShell/sharedDialog/facilitycontactbodies/bookingtime/filesbodies read-only.
-  - "Preserve raw canonical spec/test/source pins and immutable v1; reuse unchanged35.2 foundations approval."
-  - "Resources only through guard when needed; no merge/deploy/database push authority."
+  - "Original seven CRM production/two test paths plus exactly four backend/four existing tests/one CLI-generated forward migration in approved prerequisite plan; customer.update only."
+  - All other domains/actions/read/action-state/auth/tenant/routes/root/global/font/AppShell/sharedDialog/facility-contact dialog bodies/booking-time-files bodies remain read-only.
+  - "Preserve raw canonical sources/pins, immutable v1 and 119 prior migrations; reuse unchanged35.2 foundations approval."
+  - "Resources through guard; no merge or deployment authorization. Reviewed approved production migrations standing-authorized until owner reports real users, at proper integrated delivery sequence with target/ledger verification."
