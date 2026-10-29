@@ -1,0 +1,1642 @@
+{
+  "evidenceDigest": "327ef89b9bbac8178046a7e12cc773cb8daa11bd79c9d382f3445be0f69d5d5e",
+  "evidence": {
+    "schemaVersion": 1,
+    "kind": "frontend",
+    "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+    "changedPaths": [
+      ".gitattributes",
+      "AGENTS.md",
+      "_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json",
+      "_bmad-output/auto-bmad/preparation/35-3-admission-review-route.json",
+      "_bmad-output/auto-bmad/preparation/35-3-tea-triage-route.json",
+      "_bmad-output/auto-bmad/reports/spec-design-35-3-35-3.md",
+      "_bmad-output/auto-bmad/state/spec-design-35-3-35-3.yaml",
+      "_bmad-output/specs/spec-design-35-3/SPEC.md",
+      "_bmad-output/specs/spec-design-35-3/archive-runtime-reconciliation.md",
+      "_bmad-output/specs/spec-design-35-3/build-author-route.json",
+      "_bmad-output/specs/spec-design-35-3/contract-assessment-route.json",
+      "_bmad-output/specs/spec-design-35-3/contract-assessment.md",
+      "_bmad-output/specs/spec-design-35-3/product-review-round2-route.json",
+      "_bmad-output/specs/spec-design-35-3/product-review-route.json",
+      "_bmad-output/specs/spec-design-35-3/refresh-contract-reconciliation.md",
+      "_bmad-output/specs/spec-design-35-3/refresh-reconciliation-route.json",
+      "_bmad-output/specs/spec-design-35-3/source-binding.json",
+      "_bmad-output/specs/spec-design-35-3/stories.yaml",
+      "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+      "_bmad-output/test-artifacts/design-35-3/atdd-api-generation-35-3.json",
+      "_bmad-output/test-artifacts/design-35-3/atdd-checklist-35-3-record-inputs-and-tables.md",
+      "_bmad-output/test-artifacts/design-35-3/atdd-e2e-generation-35-3.json",
+      "_bmad-output/test-artifacts/design-35-3/atdd-red-evidence-35-3.json",
+      "_bmad-output/test-artifacts/design-35-3/author-verification.json",
+      "_bmad-output/test-artifacts/design-35-3/build-auto-final-files.json",
+      "_bmad-output/test-artifacts/design-35-3/build-auto-halt-evidence.json",
+      "_bmad-output/test-artifacts/design-35-3/build-auto-static-evidence.json",
+      "_bmad-output/test-artifacts/design-35-3/customer-loaderror-capture-assessment.md",
+      "_bmad-output/test-artifacts/design-35-3/product-review-round1-external.md",
+      "_bmad-output/test-artifacts/design-35-3/product-review-round1.json",
+      "_bmad-output/test-artifacts/design-35-3/product-review-round2.json",
+      "_bmad-output/test-artifacts/design-35-3/shared-consumer-impact.json",
+      "_bmad-output/test-artifacts/design-35-3/test-design-epic-35-3.md",
+      "_bmad-output/test-artifacts/design-35-3/test-design-progress-epic-35-3.md",
+      "_bmad-output/test-artifacts/design-35-3/test-design-spec-design-35-3.md",
+      "_bmad/custom/bmad-build-auto.toml",
+      "docs/quality/story-35-3-admission-review-2026-10-29.json",
+      "docs/quality/story-35-3-blocker-review-2026-10-29.json",
+      "docs/quality/story-35-3-blocker-review-route-2026-10-29.json",
+      "docs/quality/story-35-3-migration-reservation-2026-10-29.json",
+      "docs/quality/story-35-3-operative-approval-2026-10-29.json",
+      "docs/quality/story-35-3-ownership-and-bindings-2026-10-29.json",
+      "docs/quality/story-35-3-prerequisite-approval-2026-10-29.json",
+      "docs/quality/story-35-3-prerequisite-plan-route-2026-10-29.json",
+      "docs/quality/story-35-3-stale-authority-prerequisite-plan-2026-10-29.md",
+      "docs/quality/story-35-3-ui-plan-route-2026-10-29.json",
+      "src/components/crm/ArchiveButton.tsx",
+      "src/components/crm/CustomerDetail.tsx",
+      "src/components/crm/CustomerDialog.tsx",
+      "src/components/crm/CustomerList.tsx",
+      "src/components/crm/CustomerTypeBadge.tsx",
+      "src/components/crm/FormField.tsx",
+      "src/components/crm/customer-presentation.ts",
+      "src/features/crm/form-parsing.ts",
+      "src/server/commands/crm/crm-db.ts",
+      "src/server/commands/crm/customers.ts",
+      "src/server/commands/crm/validation.ts",
+      "supabase/migrations/20261029132339_customer_update_expected_facts.sql",
+      "tests/e2e/crm/customers.e2e.spec.ts",
+      "tests/integration/commands/crm-customer-commands.int.test.ts",
+      "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "tests/unit/components/crm/customer-presentation.test.ts",
+      "tests/unit/features/crm/form-parsing.test.ts",
+      "tests/unit/server/commands/crm-validation.test.ts"
+    ],
+    "source": {
+      "id": "DT-2026-10-23",
+      "version": "2026-10-26",
+      "hashes": {
+        "DESIGN.md": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+        "EXPERIENCE.md": "cf36a61123676e175dd8e26678bf7da98bb666dc076bb50e34f3f432db1e54d8",
+        "v1/inventory.sha256.json": "71cccdc4666d2ad07117df171f0e68d3e1082b85e6d2d3e534572a54ac467172"
+      }
+    },
+    "runtime": {
+      "server": "next start",
+      "buildSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "synthetic": true,
+      "fixture": "Fresh exclusively owned canonical setup/capture/teardown fixtures per current-head desktop/phone and inherited/extra runs; no real PII. Existing qualified loopback Auth/DB through subject-bound read proxy37921 to owned55421.",
+      "command": "Fresh actual final-head production build, guarded next start with compiled proxy environment; canonical CRM32-test runs at each viewport; fresh inherited11-consumer capture run and actual customer-read-error extras under reviewed root-only arm/conditional-clear; all runtime actions owned by root.",
+      "result": "Build native0/buildId Ac8RfJaxka1Vr4nIV5VzC; canonical desktop32PASS0fail0skip and phone32PASS0fail0skip; inherited2PASS/60PNGs with labels/dimensions/hash assertions; extras native0/1PASS with actual read-error pair, postclear query200/loaded UI/noalert and canonical fixture absence. This is local capture evidence, not owner acceptance or hostedCI pass."
+    },
+    "surfaces": [
+      {
+        "id": "customers-list",
+        "component": "CustomersPage > CustomerList",
+        "route": "/customers",
+        "files": [
+          "src/components/crm/CustomerList.tsx",
+          "src/components/crm/CustomerTypeBadge.tsx",
+          "src/components/crm/customer-presentation.ts",
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-customers-list-initial",
+        "referenceSetting": true,
+        "notApplicable": {}
+      },
+      {
+        "id": "customer-detail",
+        "component": "CustomerDetail",
+        "route": "/customers/[customerId]",
+        "files": [
+          "src/components/crm/CustomerDetail.tsx",
+          "src/components/crm/CustomerTypeBadge.tsx",
+          "src/components/crm/ArchiveButton.tsx",
+          "src/components/crm/customer-presentation.ts"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-customer-detail-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Existing selected-customer transition is represented on the customer list; this detail surface has no separately changed loading composition.",
+          "error": "No separately changed detail read-error composition; affected command failures remain on the originating dialog/archive surface.",
+          "empty": "Customer detail represents an actual selected record; absent/denied target is not a successful empty collection."
+        }
+      },
+      {
+        "id": "customer-create",
+        "component": "CustomerDialog (create)",
+        "route": "/customers",
+        "files": [
+          "src/components/crm/CustomerDialog.tsx",
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-customer-create-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "empty": "Create is an unsent input form, not an empty collection."
+        }
+      },
+      {
+        "id": "customer-edit",
+        "component": "CustomerDialog (edit)",
+        "route": "/customers/[customerId]",
+        "files": [
+          "src/components/crm/CustomerDialog.tsx",
+          "src/components/crm/FormField.tsx",
+          "src/features/crm/form-parsing.ts",
+          "src/server/commands/crm/validation.ts",
+          "src/server/commands/crm/customers.ts",
+          "src/server/commands/crm/crm-db.ts"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-customer-edit-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "Original-facts edit opens from checked detail; submission treatment is shared with captured customer-create pending surface. No new independent edit-loading composition is claimed.",
+          "empty": "Editing an existing selected customer has no successful empty-collection state."
+        }
+      },
+      {
+        "id": "inherited-calculationlist",
+        "component": "CalculationList",
+        "route": "/calculations",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-calculationlist-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/calculations/CalculationList.tsx"
+        ]
+      },
+      {
+        "id": "inherited-taxsettingspanel",
+        "component": "TaxSettingsPanel",
+        "route": "/calculations/[calculationId]",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-taxsettingspanel-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/calculations/TaxSettingsPanel.tsx"
+        ]
+      },
+      {
+        "id": "inherited-calculationeditor",
+        "component": "CalculationEditor",
+        "route": "/calculations/[calculationId]",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-calculationeditor-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/calculations/CalculationEditor.tsx"
+        ]
+      },
+      {
+        "id": "inherited-workroleseditor",
+        "component": "WorkRolesEditor",
+        "route": "/settings/pricing",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-workroleseditor-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/pricing/WorkRolesEditor.tsx"
+        ]
+      },
+      {
+        "id": "inherited-sectioneditor",
+        "component": "SectionEditor",
+        "route": "/calculations/[calculationId]",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-sectioneditor-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/calculations/SectionEditor.tsx"
+        ]
+      },
+      {
+        "id": "inherited-articleseditor",
+        "component": "ArticlesEditor",
+        "route": "/settings/pricing",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-articleseditor-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/pricing/ArticlesEditor.tsx"
+        ]
+      },
+      {
+        "id": "inherited-roweditor",
+        "component": "RowEditor",
+        "route": "/calculations/[calculationId]",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-roweditor-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/calculations/RowEditor.tsx"
+        ]
+      },
+      {
+        "id": "inherited-contactdialog",
+        "component": "ContactDialog",
+        "route": "/customers/[customerId]",
+        "files": [
+          "src/components/crm/FormField.tsx",
+          "src/components/crm/CustomerDialog.tsx"
+        ],
+        "consumer": "dialogs",
+        "referenceId": "story35-3-inherited-contactdialog-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/crm/ContactDialog.tsx"
+        ]
+      },
+      {
+        "id": "inherited-facilitydialog",
+        "component": "FacilityDialog",
+        "route": "/customers/[customerId]",
+        "files": [
+          "src/components/crm/FormField.tsx",
+          "src/components/crm/CustomerDialog.tsx"
+        ],
+        "consumer": "dialogs",
+        "referenceId": "story35-3-inherited-facilitydialog-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/crm/FacilityDialog.tsx"
+        ]
+      },
+      {
+        "id": "inherited-quotetermseditor",
+        "component": "QuoteTermsEditor",
+        "route": "/settings/quote-terms",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-quotetermseditor-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/settings/QuoteTermsEditor.tsx"
+        ]
+      },
+      {
+        "id": "inherited-jobcardform",
+        "component": "JobCardForm",
+        "route": "/jobs",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-jobcardform-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/jobs/JobCardForm.tsx"
+        ]
+      },
+      {
+        "id": "inherited-companysettingsform",
+        "component": "CompanySettingsForm",
+        "route": "/settings/company",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-companysettingsform-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/settings/CompanySettingsForm.tsx"
+        ]
+      },
+      {
+        "id": "inherited-joblist",
+        "component": "JobsPage > JobList",
+        "route": "/jobs",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-joblist-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/jobs/JobList.tsx"
+        ]
+      },
+      {
+        "id": "inherited-fileindexupload",
+        "component": "FileIndexUpload",
+        "route": "/files",
+        "files": [
+          "src/components/crm/FormField.tsx"
+        ],
+        "consumer": "records",
+        "referenceId": "story35-3-inherited-fileindexupload-initial",
+        "referenceSetting": true,
+        "notApplicable": {
+          "loading": "This inherited consumer has no changed asynchronous read/submission flow; capture representative rendered controls only. Conditional loading branches remain covered by original feature contracts, not newly claimed here.",
+          "error": "Unmodified inherited conditional error/summary branch is not exercised by this representative; no error/command proof claimed. Actual affected validation errors are covered on owned customer dialogs.",
+          "empty": "No collection-empty behavior is changed in this inherited control surface; it is represented with existing synthetic fixture controls."
+        },
+        "affectedConsumerFiles": [
+          "src/components/files/FileIndexUpload.tsx"
+        ]
+      }
+    ],
+    "captures": [
+      {
+        "id": "customers-list-loaded-1440",
+        "surface": "customers-list",
+        "state": "finished",
+        "uiState": "loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "cb527c9e4cce1597e9ff2565149c70ee984aa390",
+          "sha256": "e653af81c423243f4914c606ca66555791dae6394c3c21c8e0f863a115e4cd37"
+        },
+        "reference": {
+          "gitBlob": "cb527c9e4cce1597e9ff2565149c70ee984aa390",
+          "sha256": "e653af81c423243f4914c606ca66555791dae6394c3c21c8e0f863a115e4cd37"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-loaded-360",
+        "surface": "customers-list",
+        "state": "finished",
+        "uiState": "loaded",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "958027e8dfe256e7fb5be7656a772c5f65824fc7",
+          "sha256": "3a5d8a229f8f7e456539785fb3209afc9538eef82530430377957a129823b308"
+        },
+        "reference": {
+          "gitBlob": "958027e8dfe256e7fb5be7656a772c5f65824fc7",
+          "sha256": "3a5d8a229f8f7e456539785fb3209afc9538eef82530430377957a129823b308"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-selected-1440",
+        "surface": "customers-list",
+        "state": "finished",
+        "uiState": "selected",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "b16905a0ef5669c43bf8863c275b8448269ed4cb",
+          "sha256": "3b79800908677da8cc91a4dc61ee8cafd171fdae5cf2092404f7254593e8f41d"
+        },
+        "reference": {
+          "gitBlob": "b16905a0ef5669c43bf8863c275b8448269ed4cb",
+          "sha256": "3b79800908677da8cc91a4dc61ee8cafd171fdae5cf2092404f7254593e8f41d"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-selected-360",
+        "surface": "customers-list",
+        "state": "finished",
+        "uiState": "selected",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "69acb73f34e411890a8f088d5449a0d558341396",
+          "sha256": "f490935425d00b64a0c01f128c71dc764ed7e5cfd6837cabb71e2d12178b9b8b"
+        },
+        "reference": {
+          "gitBlob": "69acb73f34e411890a8f088d5449a0d558341396",
+          "sha256": "f490935425d00b64a0c01f128c71dc764ed7e5cfd6837cabb71e2d12178b9b8b"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-no-match-1440",
+        "surface": "customers-list",
+        "state": "empty",
+        "uiState": "no-match",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "da26668a932e0d1204112bd3c67b6b71d59ee633",
+          "sha256": "a30c4ff5b08814e63aca2ed05c40167c618321dcb85a1f559182bc16dae3f7c5"
+        },
+        "reference": {
+          "gitBlob": "da26668a932e0d1204112bd3c67b6b71d59ee633",
+          "sha256": "a30c4ff5b08814e63aca2ed05c40167c618321dcb85a1f559182bc16dae3f7c5"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-no-match-360",
+        "surface": "customers-list",
+        "state": "empty",
+        "uiState": "no-match",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "928e089385f2428dc86189fdcf115964c7301756",
+          "sha256": "ce131b09057cf6bf3b87ea0bb0c0ce55ddc6fb58af69e05ed7a648573e20f0f8"
+        },
+        "reference": {
+          "gitBlob": "928e089385f2428dc86189fdcf115964c7301756",
+          "sha256": "ce131b09057cf6bf3b87ea0bb0c0ce55ddc6fb58af69e05ed7a648573e20f0f8"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-empty-1440",
+        "surface": "customers-list",
+        "state": "empty",
+        "uiState": "empty",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "e40a96503c3b1bb9b072fec25e61814ecdae6c22",
+          "sha256": "23d7eba8c7499c728de15f5e8e110d258f89943feec7af06e39f71c3258f7281"
+        },
+        "reference": {
+          "gitBlob": "e40a96503c3b1bb9b072fec25e61814ecdae6c22",
+          "sha256": "23d7eba8c7499c728de15f5e8e110d258f89943feec7af06e39f71c3258f7281"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-empty-360",
+        "surface": "customers-list",
+        "state": "empty",
+        "uiState": "empty",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "d3cf961a150899ae42e89b21590c9d7ef9fd533c",
+          "sha256": "a0eed34d202901f7f91479f825a46ce773c161007bf7e85f62801d64978edca0"
+        },
+        "reference": {
+          "gitBlob": "d3cf961a150899ae42e89b21590c9d7ef9fd533c",
+          "sha256": "a0eed34d202901f7f91479f825a46ce773c161007bf7e85f62801d64978edca0"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-loading-1440",
+        "surface": "customers-list",
+        "state": "loading",
+        "uiState": "loading",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "04a903922d39e4c7105d25658edca60135122947",
+          "sha256": "d9ab4ba5617b7d5e7a1438535fcd055004f0e4ffbea002186be865161fb590f8"
+        },
+        "reference": {
+          "gitBlob": "04a903922d39e4c7105d25658edca60135122947",
+          "sha256": "d9ab4ba5617b7d5e7a1438535fcd055004f0e4ffbea002186be865161fb590f8"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-loading-360",
+        "surface": "customers-list",
+        "state": "loading",
+        "uiState": "loading",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "544d433059993a8dbef99efff78c215776e41f0f",
+          "sha256": "af6261ebcfa2ba2164869a508e1450ef10a53398f4b1f74465ea48113d25848e"
+        },
+        "reference": {
+          "gitBlob": "544d433059993a8dbef99efff78c215776e41f0f",
+          "sha256": "af6261ebcfa2ba2164869a508e1450ef10a53398f4b1f74465ea48113d25848e"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-read-error-1440",
+        "surface": "customers-list",
+        "state": "error",
+        "uiState": "read-error",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "d8780ecc6429af99a78b6a962f100fe4cdfec9ba",
+          "sha256": "64d9a28bf4612d7fcaaf2de64385b9dbb85dc2944118f2d91f2ef9f60a345076"
+        },
+        "reference": {
+          "gitBlob": "d8780ecc6429af99a78b6a962f100fe4cdfec9ba",
+          "sha256": "64d9a28bf4612d7fcaaf2de64385b9dbb85dc2944118f2d91f2ef9f60a345076"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customers-list-read-error-360",
+        "surface": "customers-list",
+        "state": "error",
+        "uiState": "read-error",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "ce1e7a5421b217769604f8db6c2371154d623408",
+          "sha256": "87fa413b80fd7aa0da67a402421aca06dae058c982c6f9611138f7904597ce1a"
+        },
+        "reference": {
+          "gitBlob": "ce1e7a5421b217769604f8db6c2371154d623408",
+          "sha256": "87fa413b80fd7aa0da67a402421aca06dae058c982c6f9611138f7904597ce1a"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-detail-loaded-1440",
+        "surface": "customer-detail",
+        "state": "finished",
+        "uiState": "loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "aa69bae157749390d0bff6c967449ef1d0dc5bd0",
+          "sha256": "fe557285d237c53f5c2bdeeb2862c6bfa15a90fcc49ce3d436ab113c0196940c"
+        },
+        "reference": {
+          "gitBlob": "aa69bae157749390d0bff6c967449ef1d0dc5bd0",
+          "sha256": "fe557285d237c53f5c2bdeeb2862c6bfa15a90fcc49ce3d436ab113c0196940c"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-detail-loaded-360",
+        "surface": "customer-detail",
+        "state": "finished",
+        "uiState": "loaded",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "99038a5c5bf11a72a02073ae658c8aa9b5b45c2b",
+          "sha256": "da7f49602d9456aab27e6399aea93ef6119cb26bb019c8546c36d9d67246e2f2"
+        },
+        "reference": {
+          "gitBlob": "99038a5c5bf11a72a02073ae658c8aa9b5b45c2b",
+          "sha256": "da7f49602d9456aab27e6399aea93ef6119cb26bb019c8546c36d9d67246e2f2"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-draft-1440",
+        "surface": "customer-create",
+        "state": "finished",
+        "uiState": "draft",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "11a04cbe8aba80e185cc4dd2a390873b7c70428b",
+          "sha256": "541cee77201a3adfcb5397c4448d3b93b5612d49a79696bb1d98f77c61ed715a"
+        },
+        "reference": {
+          "gitBlob": "11a04cbe8aba80e185cc4dd2a390873b7c70428b",
+          "sha256": "541cee77201a3adfcb5397c4448d3b93b5612d49a79696bb1d98f77c61ed715a"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-draft-360",
+        "surface": "customer-create",
+        "state": "finished",
+        "uiState": "draft",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "a7e8945c3c9b91013871a40b77faf591ee8a28d3",
+          "sha256": "641a469fedd3a4d19b2d11e0b51478a36f748c20c6b9451d62650e4c1a87a818"
+        },
+        "reference": {
+          "gitBlob": "a7e8945c3c9b91013871a40b77faf591ee8a28d3",
+          "sha256": "641a469fedd3a4d19b2d11e0b51478a36f748c20c6b9451d62650e4c1a87a818"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-validation-1440",
+        "surface": "customer-create",
+        "state": "error",
+        "uiState": "validation",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "ee13fbf936e5ae1a8297c3ac80450053250215fe",
+          "sha256": "9b6e43a9425ab75caf0697958738bdf7a99f0089f754bf532a73d6988e15a913"
+        },
+        "reference": {
+          "gitBlob": "ee13fbf936e5ae1a8297c3ac80450053250215fe",
+          "sha256": "9b6e43a9425ab75caf0697958738bdf7a99f0089f754bf532a73d6988e15a913"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-validation-360",
+        "surface": "customer-create",
+        "state": "error",
+        "uiState": "validation",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "e1212a5c76208c6ebdb4ea8fc9ec6300529e282d",
+          "sha256": "83be51673251eac6d5d279b4fff307aaf4bc1be852cdf3166ca09e61197029e8"
+        },
+        "reference": {
+          "gitBlob": "e1212a5c76208c6ebdb4ea8fc9ec6300529e282d",
+          "sha256": "83be51673251eac6d5d279b4fff307aaf4bc1be852cdf3166ca09e61197029e8"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-pending-1440",
+        "surface": "customer-create",
+        "state": "loading",
+        "uiState": "pending",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "9abc6dea2049dd1df71ae30813c7859b9778b536",
+          "sha256": "88e12d309cdb6335cf91acbaf2bb07a190be6a62bf1ac6d3429a53208084d873"
+        },
+        "reference": {
+          "gitBlob": "9abc6dea2049dd1df71ae30813c7859b9778b536",
+          "sha256": "88e12d309cdb6335cf91acbaf2bb07a190be6a62bf1ac6d3429a53208084d873"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-pending-360",
+        "surface": "customer-create",
+        "state": "loading",
+        "uiState": "pending",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "a27acd231296580c9872b06cd66e87b4b7c29c6c",
+          "sha256": "fbb056f1373bcb803cc2428da22752e612a740b002a7e95cb05ca8449f3a7080"
+        },
+        "reference": {
+          "gitBlob": "a27acd231296580c9872b06cd66e87b4b7c29c6c",
+          "sha256": "fbb056f1373bcb803cc2428da22752e612a740b002a7e95cb05ca8449f3a7080"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-unknown-before-forward-1440",
+        "surface": "customer-create",
+        "state": "error",
+        "uiState": "unknown-before-forward",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "17059699b3e64a6ed747a350b7b4b94ff54879e7",
+          "sha256": "e8dc0949a5b670c995917e9bd3495be8fc2988e5d4a4e59c08b31c1a21afc0ca"
+        },
+        "reference": {
+          "gitBlob": "17059699b3e64a6ed747a350b7b4b94ff54879e7",
+          "sha256": "e8dc0949a5b670c995917e9bd3495be8fc2988e5d4a4e59c08b31c1a21afc0ca"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-unknown-before-forward-360",
+        "surface": "customer-create",
+        "state": "error",
+        "uiState": "unknown-before-forward",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "6dc2a69d0adbfb49c1735b20a21cad9f669145a5",
+          "sha256": "47e01c19f7275ce993cd34d296998c8c0b3ddc55d536c77f717b06354b1f9127"
+        },
+        "reference": {
+          "gitBlob": "6dc2a69d0adbfb49c1735b20a21cad9f669145a5",
+          "sha256": "47e01c19f7275ce993cd34d296998c8c0b3ddc55d536c77f717b06354b1f9127"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-unknown-lose-response-1440",
+        "surface": "customer-create",
+        "state": "error",
+        "uiState": "unknown-lose-response",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "6c49bca65ff85dd158abd26653b3483cb601a09b",
+          "sha256": "155a5bfdc35b71419875a3b2d3544469ed30491d034945f9eb076f090cf1db58"
+        },
+        "reference": {
+          "gitBlob": "6c49bca65ff85dd158abd26653b3483cb601a09b",
+          "sha256": "155a5bfdc35b71419875a3b2d3544469ed30491d034945f9eb076f090cf1db58"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-unknown-lose-response-360",
+        "surface": "customer-create",
+        "state": "error",
+        "uiState": "unknown-lose-response",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "6dc2a69d0adbfb49c1735b20a21cad9f669145a5",
+          "sha256": "47e01c19f7275ce993cd34d296998c8c0b3ddc55d536c77f717b06354b1f9127"
+        },
+        "reference": {
+          "gitBlob": "6dc2a69d0adbfb49c1735b20a21cad9f669145a5",
+          "sha256": "47e01c19f7275ce993cd34d296998c8c0b3ddc55d536c77f717b06354b1f9127"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-dirty-decision-1440",
+        "surface": "customer-create",
+        "state": "finished",
+        "uiState": "dirty-decision",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "24885da6d9e11a5329bcd97d634bd5e427c4a6e2",
+          "sha256": "df2b21b5f9c9b8f33bd1e6a936e316f660a1943f191adbe160b1cd3098daf708"
+        },
+        "reference": {
+          "gitBlob": "24885da6d9e11a5329bcd97d634bd5e427c4a6e2",
+          "sha256": "df2b21b5f9c9b8f33bd1e6a936e316f660a1943f191adbe160b1cd3098daf708"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-create-dirty-decision-360",
+        "surface": "customer-create",
+        "state": "finished",
+        "uiState": "dirty-decision",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "2fa80dff0d28debc7c552e597aeef6a76a05ebf5",
+          "sha256": "eca2fa1de71cbc630ee75cac92d971b5a5f9b1fc94e8660639448bfb802f8f33"
+        },
+        "reference": {
+          "gitBlob": "2fa80dff0d28debc7c552e597aeef6a76a05ebf5",
+          "sha256": "eca2fa1de71cbc630ee75cac92d971b5a5f9b1fc94e8660639448bfb802f8f33"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-edit-loaded-1440",
+        "surface": "customer-edit",
+        "state": "finished",
+        "uiState": "loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "ecbc97352661af2573cebab7d642bbb8309688a0",
+          "sha256": "c9b302cd4a47ab94af92f404f0d22e5309daf3f809a88f513e33371d20c39866"
+        },
+        "reference": {
+          "gitBlob": "ecbc97352661af2573cebab7d642bbb8309688a0",
+          "sha256": "c9b302cd4a47ab94af92f404f0d22e5309daf3f809a88f513e33371d20c39866"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-edit-loaded-360",
+        "surface": "customer-edit",
+        "state": "finished",
+        "uiState": "loaded",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "130743511ddfd2b22530613de87771cf3455f7ba",
+          "sha256": "628901d338b712af7c9d0ef1b64c46a04ddc9a1f95f68d33f4777f5e74c82714"
+        },
+        "reference": {
+          "gitBlob": "130743511ddfd2b22530613de87771cf3455f7ba",
+          "sha256": "628901d338b712af7c9d0ef1b64c46a04ddc9a1f95f68d33f4777f5e74c82714"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-edit-conflict-1440",
+        "surface": "customer-edit",
+        "state": "error",
+        "uiState": "conflict",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "fde1c1204e2cf6444d653ac8c1823a966c8bdfe0",
+          "sha256": "59819c699526871267f4187a7a9da92b710727ecdbd4294f48a156ac5b533777"
+        },
+        "reference": {
+          "gitBlob": "fde1c1204e2cf6444d653ac8c1823a966c8bdfe0",
+          "sha256": "59819c699526871267f4187a7a9da92b710727ecdbd4294f48a156ac5b533777"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "customer-edit-conflict-360",
+        "surface": "customer-edit",
+        "state": "error",
+        "uiState": "conflict",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "016a56a8bb45ff0b0e5e8a5ce1e7ad36afb60524",
+          "sha256": "0cd5ba8d9ad08a741d624d9549858fafcf2d13d67fa587e87bb8fc8c3b7b6803"
+        },
+        "reference": {
+          "gitBlob": "016a56a8bb45ff0b0e5e8a5ce1e7ad36afb60524",
+          "sha256": "0cd5ba8d9ad08a741d624d9549858fafcf2d13d67fa587e87bb8fc8c3b7b6803"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-calculationlist-controls-1440",
+        "surface": "inherited-calculationlist",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "765ac2d7aaf22698fc2367ca127737cbcb44ef77",
+          "sha256": "eedd13d02887f4546aa15651b03998a38fa8bfc79384cb0be38f8e2e356a8942"
+        },
+        "reference": {
+          "gitBlob": "765ac2d7aaf22698fc2367ca127737cbcb44ef77",
+          "sha256": "eedd13d02887f4546aa15651b03998a38fa8bfc79384cb0be38f8e2e356a8942"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-calculationlist-controls-360",
+        "surface": "inherited-calculationlist",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "a335199e118e2d5a196c1bb7c65d1e90e4546dc0",
+          "sha256": "7158d206c7816fc611df55d393d97237df5661cb620fa02ff94ab3ee8688aabd"
+        },
+        "reference": {
+          "gitBlob": "a335199e118e2d5a196c1bb7c65d1e90e4546dc0",
+          "sha256": "7158d206c7816fc611df55d393d97237df5661cb620fa02ff94ab3ee8688aabd"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-taxsettingspanel-controls-1440",
+        "surface": "inherited-taxsettingspanel",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "c53c7c0976a5b1d4d2b14da9087041f0e44e89a7",
+          "sha256": "8bd5e3bcd3ba6682cc1fa3a463b3968905b74dd7c9d0f752e2bf93fa1b5b6163"
+        },
+        "reference": {
+          "gitBlob": "c53c7c0976a5b1d4d2b14da9087041f0e44e89a7",
+          "sha256": "8bd5e3bcd3ba6682cc1fa3a463b3968905b74dd7c9d0f752e2bf93fa1b5b6163"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-taxsettingspanel-controls-360",
+        "surface": "inherited-taxsettingspanel",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "12ca4c04d6d2c8e1be6c23d1f3f9767fc4dd1bd9",
+          "sha256": "6396f690d6b0e412b38ab356821999a798923b2d99614b4f95af17b3011eec5d"
+        },
+        "reference": {
+          "gitBlob": "12ca4c04d6d2c8e1be6c23d1f3f9767fc4dd1bd9",
+          "sha256": "6396f690d6b0e412b38ab356821999a798923b2d99614b4f95af17b3011eec5d"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-calculationeditor-controls-1440",
+        "surface": "inherited-calculationeditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "756ecc21a841a32e5f8a87eaad5f2ca6eedd380d",
+          "sha256": "8961f7724fa3f0d6c7c7fd03376a919ae5c1b87de2059b847978f73186a57d53"
+        },
+        "reference": {
+          "gitBlob": "756ecc21a841a32e5f8a87eaad5f2ca6eedd380d",
+          "sha256": "8961f7724fa3f0d6c7c7fd03376a919ae5c1b87de2059b847978f73186a57d53"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-calculationeditor-controls-360",
+        "surface": "inherited-calculationeditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "3f60eb60d2407a9eb099fce7896c35fedb96a2bf",
+          "sha256": "b3805bef1e3d44e5c28a04b6c67a6e6254a04fe58202525c77a8748f478342e4"
+        },
+        "reference": {
+          "gitBlob": "3f60eb60d2407a9eb099fce7896c35fedb96a2bf",
+          "sha256": "b3805bef1e3d44e5c28a04b6c67a6e6254a04fe58202525c77a8748f478342e4"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-workroleseditor-controls-1440",
+        "surface": "inherited-workroleseditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "5759940801d5197f7aca51e348182263481583fa",
+          "sha256": "59fcb796e7170d80eef697f234bf4c1cded4289c5752c0064645bfa3a5a41bf2"
+        },
+        "reference": {
+          "gitBlob": "5759940801d5197f7aca51e348182263481583fa",
+          "sha256": "59fcb796e7170d80eef697f234bf4c1cded4289c5752c0064645bfa3a5a41bf2"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-workroleseditor-controls-360",
+        "surface": "inherited-workroleseditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "dab6f77a08ba46b31d27822ef2bb9f4448c958eb",
+          "sha256": "10b19834072c06c46a76db6eef334e0f3051cdea308cf4b16d03b05d9c0a5842"
+        },
+        "reference": {
+          "gitBlob": "dab6f77a08ba46b31d27822ef2bb9f4448c958eb",
+          "sha256": "10b19834072c06c46a76db6eef334e0f3051cdea308cf4b16d03b05d9c0a5842"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-sectioneditor-controls-1440",
+        "surface": "inherited-sectioneditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "850fd968671bd806c593384f6a2bcce522f891d3",
+          "sha256": "21130a8452bf0eb6b8abde101ecb66b8f8d9a586e1c91ba71f4b9cfe7b591cca"
+        },
+        "reference": {
+          "gitBlob": "850fd968671bd806c593384f6a2bcce522f891d3",
+          "sha256": "21130a8452bf0eb6b8abde101ecb66b8f8d9a586e1c91ba71f4b9cfe7b591cca"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-sectioneditor-controls-360",
+        "surface": "inherited-sectioneditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "b2cd158de9a4945018380b28fa427ac20fde87d7",
+          "sha256": "64222c34fa77c64f0edf35fd1eb2e21dd8b9eef923fbe88413e89b12000e03d2"
+        },
+        "reference": {
+          "gitBlob": "b2cd158de9a4945018380b28fa427ac20fde87d7",
+          "sha256": "64222c34fa77c64f0edf35fd1eb2e21dd8b9eef923fbe88413e89b12000e03d2"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-articleseditor-controls-1440",
+        "surface": "inherited-articleseditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "089e55e00653c89207e5f1e24c4da7f5720f8388",
+          "sha256": "b6b9362a840f6a71255ad6ce29e541c659f2a53cbb119f75efb3e61751fb1ba0"
+        },
+        "reference": {
+          "gitBlob": "089e55e00653c89207e5f1e24c4da7f5720f8388",
+          "sha256": "b6b9362a840f6a71255ad6ce29e541c659f2a53cbb119f75efb3e61751fb1ba0"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-articleseditor-controls-360",
+        "surface": "inherited-articleseditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "030f5318a54e88b37c272d00a440579c894b83c8",
+          "sha256": "830e647b6121c05fbe888a5a2382258582c4b577b898f9684b97c4b62a66973f"
+        },
+        "reference": {
+          "gitBlob": "030f5318a54e88b37c272d00a440579c894b83c8",
+          "sha256": "830e647b6121c05fbe888a5a2382258582c4b577b898f9684b97c4b62a66973f"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-roweditor-controls-1440",
+        "surface": "inherited-roweditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "ef5e3012a369e642db98fb91b19a22b79db54c3d",
+          "sha256": "16a4c161688da0093711d5c590064c5056afa23a02ec9f05f04171e405f210f2"
+        },
+        "reference": {
+          "gitBlob": "ef5e3012a369e642db98fb91b19a22b79db54c3d",
+          "sha256": "16a4c161688da0093711d5c590064c5056afa23a02ec9f05f04171e405f210f2"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-roweditor-controls-360",
+        "surface": "inherited-roweditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "c613a65422f5dcda9de2dd4a355461b9ddc0c443",
+          "sha256": "59b5d054384b7c7dccf7546f66c9bb7c512435ad4051d387bd3b941a5b17cc1f"
+        },
+        "reference": {
+          "gitBlob": "c613a65422f5dcda9de2dd4a355461b9ddc0c443",
+          "sha256": "59b5d054384b7c7dccf7546f66c9bb7c512435ad4051d387bd3b941a5b17cc1f"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-contactdialog-controls-1440",
+        "surface": "inherited-contactdialog",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "f8aa7f8708df8435c2592ebb63b8187e1b85952c",
+          "sha256": "7f2232a59875654156aa12a77f1a837b72fe8b3e82a7c7987b1432a9fd730cec"
+        },
+        "reference": {
+          "gitBlob": "f8aa7f8708df8435c2592ebb63b8187e1b85952c",
+          "sha256": "7f2232a59875654156aa12a77f1a837b72fe8b3e82a7c7987b1432a9fd730cec"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-contactdialog-controls-360",
+        "surface": "inherited-contactdialog",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "c1989d6b53091e25b74028dcd520b9f129202f2b",
+          "sha256": "3cdc8e6c2094bf163cde0c51bb0c15b35c9d842896130e27bd43b42886248de0"
+        },
+        "reference": {
+          "gitBlob": "c1989d6b53091e25b74028dcd520b9f129202f2b",
+          "sha256": "3cdc8e6c2094bf163cde0c51bb0c15b35c9d842896130e27bd43b42886248de0"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-facilitydialog-controls-1440",
+        "surface": "inherited-facilitydialog",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "9bbe8c73f7757b916767dd16c4d8458f6f3e0600",
+          "sha256": "326040d68fc26f79799ce049ec450c1a07185f8a9b698310335b05491a9501cc"
+        },
+        "reference": {
+          "gitBlob": "9bbe8c73f7757b916767dd16c4d8458f6f3e0600",
+          "sha256": "326040d68fc26f79799ce049ec450c1a07185f8a9b698310335b05491a9501cc"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-facilitydialog-controls-360",
+        "surface": "inherited-facilitydialog",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "57f4f43ec3b7d490f268ceca860c0712b43f4ec4",
+          "sha256": "224e3109c9d1e3245a5cfd95b69b73bba35be0b2571850905e290c30bf432e34"
+        },
+        "reference": {
+          "gitBlob": "57f4f43ec3b7d490f268ceca860c0712b43f4ec4",
+          "sha256": "224e3109c9d1e3245a5cfd95b69b73bba35be0b2571850905e290c30bf432e34"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-quotetermseditor-controls-1440",
+        "surface": "inherited-quotetermseditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "2f4358d43a260533cff339c91757a03f4bec41af",
+          "sha256": "42fda5be5878ae33360c415ebee4d3e35fe7581a5fb55949f831c78677f9efa4"
+        },
+        "reference": {
+          "gitBlob": "2f4358d43a260533cff339c91757a03f4bec41af",
+          "sha256": "42fda5be5878ae33360c415ebee4d3e35fe7581a5fb55949f831c78677f9efa4"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-quotetermseditor-controls-360",
+        "surface": "inherited-quotetermseditor",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "936c39b4053b5dfc02177bd33268580b70958270",
+          "sha256": "b7e9c6c21aee79bd67b7ec63f59b3c48bde3056b04edfcda1e3e45d6e4c0c67c"
+        },
+        "reference": {
+          "gitBlob": "936c39b4053b5dfc02177bd33268580b70958270",
+          "sha256": "b7e9c6c21aee79bd67b7ec63f59b3c48bde3056b04edfcda1e3e45d6e4c0c67c"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-jobcardform-controls-1440",
+        "surface": "inherited-jobcardform",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "71f4490c79084f08320395e89e1aee3cfcddb676",
+          "sha256": "acf78be67b3ea1eb128a8917aa32874abb62356377f9c7f6ebf562967277e097"
+        },
+        "reference": {
+          "gitBlob": "71f4490c79084f08320395e89e1aee3cfcddb676",
+          "sha256": "acf78be67b3ea1eb128a8917aa32874abb62356377f9c7f6ebf562967277e097"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-jobcardform-controls-360",
+        "surface": "inherited-jobcardform",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "bf0d433df8542e86e8f41a20e47c469be7972319",
+          "sha256": "ce7932deadac682970b75f356f0bd78f2c8dde5a2f3474e6594d542c02c1015d"
+        },
+        "reference": {
+          "gitBlob": "bf0d433df8542e86e8f41a20e47c469be7972319",
+          "sha256": "ce7932deadac682970b75f356f0bd78f2c8dde5a2f3474e6594d542c02c1015d"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-jobcardform-planning-controls-1440",
+        "surface": "inherited-jobcardform",
+        "state": "finished",
+        "uiState": "planning-controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "08865d620d632c692321fb99249404ac7fc46578",
+          "sha256": "a55b9174b1525c9a610c74046f8b5b783847f475b867b42ec9cfe251d5b84ef5"
+        },
+        "reference": {
+          "gitBlob": "08865d620d632c692321fb99249404ac7fc46578",
+          "sha256": "a55b9174b1525c9a610c74046f8b5b783847f475b867b42ec9cfe251d5b84ef5"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-jobcardform-planning-controls-360",
+        "surface": "inherited-jobcardform",
+        "state": "finished",
+        "uiState": "planning-controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "51d36c797a5f81d02719f640205c080f17bcccab",
+          "sha256": "5e81f533ee7dd09586ec941f74501b661181d63864dd60d6a9b5100f165aa5b6"
+        },
+        "reference": {
+          "gitBlob": "51d36c797a5f81d02719f640205c080f17bcccab",
+          "sha256": "5e81f533ee7dd09586ec941f74501b661181d63864dd60d6a9b5100f165aa5b6"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-companysettingsform-controls-1440",
+        "surface": "inherited-companysettingsform",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "925935a65de02b9342c80cffd43d7d48ddd7b438",
+          "sha256": "d5a874b2994722e5fda8a24582c1983fb9919abb461ad50168b5b0169a831ef1"
+        },
+        "reference": {
+          "gitBlob": "925935a65de02b9342c80cffd43d7d48ddd7b438",
+          "sha256": "d5a874b2994722e5fda8a24582c1983fb9919abb461ad50168b5b0169a831ef1"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-companysettingsform-controls-360",
+        "surface": "inherited-companysettingsform",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "e4987b414e32294ccc26a5e58d7dbac1cb588f89",
+          "sha256": "939565345664fa31d12d30f85f125f8c99562de236846f1a6765680d953e3a4c"
+        },
+        "reference": {
+          "gitBlob": "e4987b414e32294ccc26a5e58d7dbac1cb588f89",
+          "sha256": "939565345664fa31d12d30f85f125f8c99562de236846f1a6765680d953e3a4c"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-joblist-controls-1440",
+        "surface": "inherited-joblist",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "4b3c33efc7202e21437debb2986506b77a9d7ece",
+          "sha256": "8e10fed048332991025687fbb84e559afad05dbb913beefad93921525ae0c698"
+        },
+        "reference": {
+          "gitBlob": "4b3c33efc7202e21437debb2986506b77a9d7ece",
+          "sha256": "8e10fed048332991025687fbb84e559afad05dbb913beefad93921525ae0c698"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-joblist-controls-360",
+        "surface": "inherited-joblist",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "2f5d66cb97bf790c5fb5278d3f86a76cbc2f59a2",
+          "sha256": "051b39cb3269d4e268976c05001d21025bd0d66eebbd939fb550a45e2585ae0f"
+        },
+        "reference": {
+          "gitBlob": "2f5d66cb97bf790c5fb5278d3f86a76cbc2f59a2",
+          "sha256": "051b39cb3269d4e268976c05001d21025bd0d66eebbd939fb550a45e2585ae0f"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-fileindexupload-controls-1440",
+        "surface": "inherited-fileindexupload",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "fb8a85b7faf429bfa22c6e72efed154eac555abc",
+          "sha256": "d7867c113bcb945ccccdb115d5be1a0a03c349af596b95576a89da2639446cea"
+        },
+        "reference": {
+          "gitBlob": "fb8a85b7faf429bfa22c6e72efed154eac555abc",
+          "sha256": "d7867c113bcb945ccccdb115d5be1a0a03c349af596b95576a89da2639446cea"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      },
+      {
+        "id": "inherited-fileindexupload-controls-360",
+        "surface": "inherited-fileindexupload",
+        "state": "finished",
+        "uiState": "controls",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullViewport": true,
+        "actual": {
+          "gitBlob": "ddac9ebf0760d2604e7dbcc83cc571bb5f14390f",
+          "sha256": "de046d417052315ff4a14938df6b9f303dd0b158c2bf6cc0e9c594ed73a24b03"
+        },
+        "reference": {
+          "gitBlob": "ddac9ebf0760d2604e7dbcc83cc571bb5f14390f",
+          "sha256": "de046d417052315ff4a14938df6b9f303dd0b158c2bf6cc0e9c594ed73a24b03"
+        },
+        "referenceKind": "Proposed initial same-byte candidate baseline; owner acceptance pending."
+      }
+    ],
+    "deviations": [],
+    "presentation": {
+      "schemaVersion": 1,
+      "dataPolicy": "synthetic-no-pii",
+      "evidenceCommit": "b2e1c0465d3fe675ccf48d4f35b3ffc011f94865",
+      "evidenceRef": "codex/visual-evidence/pr-119",
+      "feedback": [],
+      "exceptions": []
+    },
+    "captureProvenanceSha256": "cbdbf00da80e4be7b64487b96b68005dd413fb00d38f9e06c72f74103ee901a8"
+  }
+}

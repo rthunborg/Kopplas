@@ -1,0 +1,3431 @@
+{
+  "schemaVersion": 1,
+  "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+  "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+  "classification": "Actual final-head formal candidate captures; no owner acceptance or release approval",
+  "gitCleanAfter": true,
+  "coveragePlanPath": "C:/DEV/K35-records/tmp/private/story35-3/frontend-packet/coverage-plan.json",
+  "mappingPlanSha256": "19b5a208db36a636df9776b9e01268a0441d9d8702a45ea5eefb3eacf3dc32a4",
+  "historicCaptureExecutionPlanSha256": "de6449993f83b4cab46a3c1e6af743220d6d614def8fe21dec0a1e8c0fc33c25",
+  "planCorrection": "Root packet High corrected only private Contact/Facility route fields; original execution hash retained; actual per-image routes preserved",
+  "captureCount": 60,
+  "surfaceCount": 18,
+  "captures": [
+    {
+      "id": "customers-list-loaded-1440",
+      "surface": "customers-list",
+      "state": "finished",
+      "uiState": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customers-loaded-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "e653af81c423243f4914c606ca66555791dae6394c3c21c8e0f863a115e4cd37",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-loaded-1440x900.png",
+        "state": "customers-loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-loaded-360",
+      "surface": "customers-list",
+      "state": "finished",
+      "uiState": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customers-loaded-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "3a5d8a229f8f7e456539785fb3209afc9538eef82530430377957a129823b308",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-loaded-360x640.png",
+        "state": "customers-loaded",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-selected-1440",
+      "surface": "customers-list",
+      "state": "finished",
+      "uiState": "selected",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customers-selected-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "3b79800908677da8cc91a4dc61ee8cafd171fdae5cf2092404f7254593e8f41d",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-selected-1440x900.png",
+        "state": "customers-selected",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-selected-360",
+      "surface": "customers-list",
+      "state": "finished",
+      "uiState": "selected",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customers-selected-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "f490935425d00b64a0c01f128c71dc764ed7e5cfd6837cabb71e2d12178b9b8b",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-selected-360x640.png",
+        "state": "customers-selected",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-no-match-1440",
+      "surface": "customers-list",
+      "state": "empty",
+      "uiState": "no-match",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customers-no-match-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "a30c4ff5b08814e63aca2ed05c40167c618321dcb85a1f559182bc16dae3f7c5",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-no-match-1440x900.png",
+        "state": "customers-no-match",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-no-match-360",
+      "surface": "customers-list",
+      "state": "empty",
+      "uiState": "no-match",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customers-no-match-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "ce131b09057cf6bf3b87ea0bb0c0ce55ddc6fb58af69e05ed7a648573e20f0f8",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-no-match-360x640.png",
+        "state": "customers-no-match",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-empty-1440",
+      "surface": "customers-list",
+      "state": "empty",
+      "uiState": "empty",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customers-empty-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "23d7eba8c7499c728de15f5e8e110d258f89943feec7af06e39f71c3258f7281",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-empty-1440x900.png",
+        "state": "customers-empty",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-empty-360",
+      "surface": "customers-list",
+      "state": "empty",
+      "uiState": "empty",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customers-empty-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "a0eed34d202901f7f91479f825a46ce773c161007bf7e85f62801d64978edca0",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customers-empty-360x640.png",
+        "state": "customers-empty",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-loading-1440",
+      "surface": "customers-list",
+      "state": "loading",
+      "uiState": "loading",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-loading-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "d9ab4ba5617b7d5e7a1438535fcd055004f0e4ffbea002186be865161fb590f8",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-loading-1440x900.png",
+        "state": "customer-loading",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-loading-360",
+      "surface": "customers-list",
+      "state": "loading",
+      "uiState": "loading",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-loading-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "af6261ebcfa2ba2164869a508e1450ef10a53398f4b1f74465ea48113d25848e",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-loading-360x640.png",
+        "state": "customer-loading",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-read-error-1440",
+      "surface": "customers-list",
+      "state": "error",
+      "uiState": "read-error",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customers-list-read-error-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "64d9a28bf4612d7fcaaf2de64385b9dbb85dc2944118f2d91f2ef9f60a345076",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "actual checked read under root conditional subject-scoped proxy400",
+      "rawCaptureMetadata": {
+        "file": "customers-list-read-error-1440x900.png",
+        "id": "customers-list-read-error",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers",
+        "sha256": "64d9a28bf4612d7fcaaf2de64385b9dbb85dc2944118f2d91f2ef9f60a345076",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "error",
+        "uiState": "real checked read under subject-scoped transport400",
+        "controlled": true,
+        "notStandalone503Document": true
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customers-list-read-error-360",
+      "surface": "customers-list",
+      "state": "error",
+      "uiState": "read-error",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomersPage > CustomerList",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customers-list-read-error-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "87fa413b80fd7aa0da67a402421aca06dae058c982c6f9611138f7904597ce1a",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "actual checked read under root conditional subject-scoped proxy400",
+      "rawCaptureMetadata": {
+        "file": "customers-list-read-error-360x640.png",
+        "id": "customers-list-read-error",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers",
+        "sha256": "87fa413b80fd7aa0da67a402421aca06dae058c982c6f9611138f7904597ce1a",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "error",
+        "uiState": "real checked read under subject-scoped transport400",
+        "controlled": true,
+        "notStandalone503Document": true
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-detail-loaded-1440",
+      "surface": "customer-detail",
+      "state": "finished",
+      "uiState": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDetail",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/4834991f-d7e7-4c76-9d7e-168a457fe075",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-detail-loaded-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "fe557285d237c53f5c2bdeeb2862c6bfa15a90fcc49ce3d436ab113c0196940c",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-detail-loaded-1440x900.png",
+        "state": "customer-detail-loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers/4834991f-d7e7-4c76-9d7e-168a457fe075"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-detail-loaded-360",
+      "surface": "customer-detail",
+      "state": "finished",
+      "uiState": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDetail",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/b122e716-1dc6-4964-9d32-cf1efa7aa44c",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-detail-loaded-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "da7f49602d9456aab27e6399aea93ef6119cb26bb019c8546c36d9d67246e2f2",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-detail-loaded-360x640.png",
+        "state": "customer-detail-loaded",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers/b122e716-1dc6-4964-9d32-cf1efa7aa44c"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-draft-1440",
+      "surface": "customer-create",
+      "state": "finished",
+      "uiState": "draft",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-create-top-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "541cee77201a3adfcb5397c4448d3b93b5612d49a79696bb1d98f77c61ed715a",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "actual unsent primary create top; separate footer supplemental",
+      "rawCaptureMetadata": {
+        "file": "customer-create-top-1440x900.png",
+        "id": "customer-create-top",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers",
+        "sha256": "541cee77201a3adfcb5397c4448d3b93b5612d49a79696bb1d98f77c61ed715a",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "unsent draft top"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-draft-360",
+      "surface": "customer-create",
+      "state": "finished",
+      "uiState": "draft",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-create-top-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "641a469fedd3a4d19b2d11e0b51478a36f748c20c6b9451d62650e4c1a87a818",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "actual unsent primary create top; separate footer supplemental",
+      "rawCaptureMetadata": {
+        "file": "customer-create-top-360x640.png",
+        "id": "customer-create-top",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers",
+        "sha256": "641a469fedd3a4d19b2d11e0b51478a36f748c20c6b9451d62650e4c1a87a818",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "unsent draft top"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-validation-1440",
+      "surface": "customer-create",
+      "state": "error",
+      "uiState": "validation",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-validation-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "9b6e43a9425ab75caf0697958738bdf7a99f0089f754bf532a73d6988e15a913",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-validation-1440x900.png",
+        "state": "customer-validation",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-validation-360",
+      "surface": "customer-create",
+      "state": "error",
+      "uiState": "validation",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-validation-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "83be51673251eac6d5d279b4fff307aaf4bc1be852cdf3166ca09e61197029e8",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-validation-360x640.png",
+        "state": "customer-validation",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-pending-1440",
+      "surface": "customer-create",
+      "state": "loading",
+      "uiState": "pending",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-pending-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "88e12d309cdb6335cf91acbaf2bb07a190be6a62bf1ac6d3429a53208084d873",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-pending-1440x900.png",
+        "state": "customer-pending",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-pending-360",
+      "surface": "customer-create",
+      "state": "loading",
+      "uiState": "pending",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-pending-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "fbb056f1373bcb803cc2428da22752e612a740b002a7e95cb05ca8449f3a7080",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-pending-360x640.png",
+        "state": "customer-pending",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-unknown-before-forward-1440",
+      "surface": "customer-create",
+      "state": "error",
+      "uiState": "unknown-before-forward",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-unknown-before-forward-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "e8dc0949a5b670c995917e9bd3495be8fc2988e5d4a4e59c08b31c1a21afc0ca",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-unknown-before-forward-1440x900.png",
+        "state": "customer-unknown-before-forward",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-unknown-before-forward-360",
+      "surface": "customer-create",
+      "state": "error",
+      "uiState": "unknown-before-forward",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-unknown-before-forward-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "47e01c19f7275ce993cd34d296998c8c0b3ddc55d536c77f717b06354b1f9127",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-unknown-before-forward-360x640.png",
+        "state": "customer-unknown-before-forward",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-unknown-lose-response-1440",
+      "surface": "customer-create",
+      "state": "error",
+      "uiState": "unknown-lose-response",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-unknown-lose-response-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "155a5bfdc35b71419875a3b2d3544469ed30491d034945f9eb076f090cf1db58",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-unknown-lose-response-1440x900.png",
+        "state": "customer-unknown-lose-response",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-unknown-lose-response-360",
+      "surface": "customer-create",
+      "state": "error",
+      "uiState": "unknown-lose-response",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-unknown-lose-response-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "47e01c19f7275ce993cd34d296998c8c0b3ddc55d536c77f717b06354b1f9127",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-unknown-lose-response-360x640.png",
+        "state": "customer-unknown-lose-response",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-dirty-decision-1440",
+      "surface": "customer-create",
+      "state": "finished",
+      "uiState": "dirty-decision",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-dirty-decision-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "df2b21b5f9c9b8f33bd1e6a936e316f660a1943f191adbe160b1cd3098daf708",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-dirty-decision-1440x900.png",
+        "state": "customer-dirty-decision",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-create-dirty-decision-360",
+      "surface": "customer-create",
+      "state": "finished",
+      "uiState": "dirty-decision",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (create)",
+      "declaredRoute": "/customers",
+      "actualFixtureRoute": "/customers",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-dirty-decision-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "eca2fa1de71cbc630ee75cac92d971b5a5f9b1fc94e8660639448bfb802f8f33",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-dirty-decision-360x640.png",
+        "state": "customer-dirty-decision",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-edit-loaded-1440",
+      "surface": "customer-edit",
+      "state": "finished",
+      "uiState": "loaded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (edit)",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/15992c12-031a-499a-a36d-de72bc72f227",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-edit-top-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "c9b302cd4a47ab94af92f404f0d22e5309daf3f809a88f513e33371d20c39866",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "actual checked primary edit top; separate footer supplemental",
+      "rawCaptureMetadata": {
+        "file": "customer-edit-top-1440x900.png",
+        "id": "customer-edit-top",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers/15992c12-031a-499a-a36d-de72bc72f227",
+        "sha256": "c9b302cd4a47ab94af92f404f0d22e5309daf3f809a88f513e33371d20c39866",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "checked edit top"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-edit-loaded-360",
+      "surface": "customer-edit",
+      "state": "finished",
+      "uiState": "loaded",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (edit)",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/15992c12-031a-499a-a36d-de72bc72f227",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-edit-top-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "628901d338b712af7c9d0ef1b64c46a04ddc9a1f95f68d33f4777f5e74c82714",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "actual checked primary edit top; separate footer supplemental",
+      "rawCaptureMetadata": {
+        "file": "customer-edit-top-360x640.png",
+        "id": "customer-edit-top",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers/15992c12-031a-499a-a36d-de72bc72f227",
+        "sha256": "628901d338b712af7c9d0ef1b64c46a04ddc9a1f95f68d33f4777f5e74c82714",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "checked edit top"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-edit-conflict-1440",
+      "surface": "customer-edit",
+      "state": "error",
+      "uiState": "conflict",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (edit)",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/57d37ab9-7115-4d8f-bc7b-4088c5443705",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/customer-conflict-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "59819c699526871267f4187a7a9da92b710727ecdbd4294f48a156ac5b533777",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-conflict-1440x900.png",
+        "state": "customer-conflict",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers/57d37ab9-7115-4d8f-bc7b-4088c5443705"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "customer-edit-conflict-360",
+      "surface": "customer-edit",
+      "state": "error",
+      "uiState": "conflict",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CustomerDialog (edit)",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/b7829e5d-e133-4d5e-9a12-7f3b3715d9a8",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/customer-conflict-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "0cd5ba8d9ad08a741d624d9549858fafcf2d13d67fa587e87bb8fc8c3b7b6803",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "customer-conflict-360x640.png",
+        "state": "customer-conflict",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers/b7829e5d-e133-4d5e-9a12-7f3b3715d9a8"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-calculationlist-controls-1440",
+      "surface": "inherited-calculationlist",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CalculationList",
+      "declaredRoute": "/calculations",
+      "actualFixtureRoute": "/calculations",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/CalculationList-create-open-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "eedd13d02887f4546aa15651b03998a38fa8bfc79384cb0be38f8e2e356a8942",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "CalculationList-create-open-1-1440x900.png",
+        "consumer": "CalculationList",
+        "state": "create-open",
+        "route": "/calculations",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Titel"
+        ],
+        "sha256": "eedd13d02887f4546aa15651b03998a38fa8bfc79384cb0be38f8e2e356a8942",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\CalculationList-create-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "eedd13d02887f4546aa15651b03998a38fa8bfc79384cb0be38f8e2e356a8942",
+          "lastWriteTimeUtc": "2026-10-29T16:19:53.23Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-calculationlist",
+        "coveragePlanCaptureIds": [
+          "inherited-calculationlist-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations",
+        "actualRoute": "/calculations",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\CalculationList-create-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "e1dffc74d378aa8b0c7822d21577874e71e2a79f4f3eec7b8c74201c587e01c8",
+          "lastWriteTimeUtc": "2026-10-29T14:30:13.325Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-calculationlist-controls-360",
+      "surface": "inherited-calculationlist",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CalculationList",
+      "declaredRoute": "/calculations",
+      "actualFixtureRoute": "/calculations",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/CalculationList-create-open-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "7158d206c7816fc611df55d393d97237df5661cb620fa02ff94ab3ee8688aabd",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "CalculationList-create-open-1-360x640.png",
+        "consumer": "CalculationList",
+        "state": "create-open",
+        "route": "/calculations",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Titel"
+        ],
+        "sha256": "7158d206c7816fc611df55d393d97237df5661cb620fa02ff94ab3ee8688aabd",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\CalculationList-create-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "7158d206c7816fc611df55d393d97237df5661cb620fa02ff94ab3ee8688aabd",
+          "lastWriteTimeUtc": "2026-10-29T16:19:58.306Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-calculationlist",
+        "coveragePlanCaptureIds": [
+          "inherited-calculationlist-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations",
+        "actualRoute": "/calculations",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\CalculationList-create-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "5823bc15a5ce7463cc3047d08c7cddd4df6502e57b70be23293f79d55748e88a",
+          "lastWriteTimeUtc": "2026-10-29T14:30:18.073Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-taxsettingspanel-controls-1440",
+      "surface": "inherited-taxsettingspanel",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "TaxSettingsPanel",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/TaxSettingsPanel-loaded-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "8bd5e3bcd3ba6682cc1fa3a463b3968905b74dd7c9d0f752e2bf93fa1b5b6163",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "TaxSettingsPanel-loaded-1-1440x900.png",
+        "consumer": "TaxSettingsPanel",
+        "state": "loaded",
+        "route": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Momshantering"
+        ],
+        "sha256": "8bd5e3bcd3ba6682cc1fa3a463b3968905b74dd7c9d0f752e2bf93fa1b5b6163",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\TaxSettingsPanel-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "8bd5e3bcd3ba6682cc1fa3a463b3968905b74dd7c9d0f752e2bf93fa1b5b6163",
+          "lastWriteTimeUtc": "2026-10-29T16:19:55.595Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-taxsettingspanel",
+        "coveragePlanCaptureIds": [
+          "inherited-taxsettingspanel-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations/[calculationId]",
+        "actualRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\TaxSettingsPanel-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "9409321b056b4460eef4f8a69574a31785fafa18c804886c20e94022fb1c1bfe",
+          "lastWriteTimeUtc": "2026-10-29T14:30:15.749Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-taxsettingspanel-controls-360",
+      "surface": "inherited-taxsettingspanel",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "TaxSettingsPanel",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/TaxSettingsPanel-loaded-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "6396f690d6b0e412b38ab356821999a798923b2d99614b4f95af17b3011eec5d",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "TaxSettingsPanel-loaded-1-360x640.png",
+        "consumer": "TaxSettingsPanel",
+        "state": "loaded",
+        "route": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Momshantering"
+        ],
+        "sha256": "6396f690d6b0e412b38ab356821999a798923b2d99614b4f95af17b3011eec5d",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\TaxSettingsPanel-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "6396f690d6b0e412b38ab356821999a798923b2d99614b4f95af17b3011eec5d",
+          "lastWriteTimeUtc": "2026-10-29T16:20:00.192Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-taxsettingspanel",
+        "coveragePlanCaptureIds": [
+          "inherited-taxsettingspanel-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations/[calculationId]",
+        "actualRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\TaxSettingsPanel-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "4832134ea610fc907d3922d60fecb9af458264dff0e27041f10890c396bc0ed8",
+          "lastWriteTimeUtc": "2026-10-29T14:30:20.035Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-calculationeditor-controls-1440",
+      "surface": "inherited-calculationeditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CalculationEditor",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/bd0ecbc6-6141-41a4-83a8-cf5b34d43c13",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/inherited-calculation-field-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "8961f7724fa3f0d6c7c7fd03376a919ae5c1b87de2059b847978f73186a57d53",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "inherited-calculation-field-1440x900.png",
+        "state": "inherited-calculation-field",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/calculations/bd0ecbc6-6141-41a4-83a8-cf5b34d43c13"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-calculationeditor-controls-360",
+      "surface": "inherited-calculationeditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CalculationEditor",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/ebdf9f5b-6519-4fc6-8aa7-6c318d647df8",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/inherited-calculation-field-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "b3805bef1e3d44e5c28a04b6c67a6e6254a04fe58202525c77a8748f478342e4",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "inherited-calculation-field-360x640.png",
+        "state": "inherited-calculation-field",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/calculations/ebdf9f5b-6519-4fc6-8aa7-6c318d647df8"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-workroleseditor-controls-1440",
+      "surface": "inherited-workroleseditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "WorkRolesEditor",
+      "declaredRoute": "/settings/pricing",
+      "actualFixtureRoute": "/settings/pricing",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/WorkRolesEditor-loaded-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "59fcb796e7170d80eef697f234bf4c1cded4289c5752c0064645bfa3a5a41bf2",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "WorkRolesEditor-loaded-1-1440x900.png",
+        "consumer": "WorkRolesEditor",
+        "state": "loaded",
+        "route": "/settings/pricing",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Benämning"
+        ],
+        "sha256": "59fcb796e7170d80eef697f234bf4c1cded4289c5752c0064645bfa3a5a41bf2",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\WorkRolesEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "59fcb796e7170d80eef697f234bf4c1cded4289c5752c0064645bfa3a5a41bf2",
+          "lastWriteTimeUtc": "2026-10-29T16:19:53.541Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-workroleseditor",
+        "coveragePlanCaptureIds": [
+          "inherited-workroleseditor-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/pricing",
+        "actualRoute": "/settings/pricing",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\WorkRolesEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "2b90d4deec7d39862263feb5d9ab1516b7233df984b4bb90dcd673c9b1da308e",
+          "lastWriteTimeUtc": "2026-10-29T14:30:13.66Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-workroleseditor-controls-360",
+      "surface": "inherited-workroleseditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "WorkRolesEditor",
+      "declaredRoute": "/settings/pricing",
+      "actualFixtureRoute": "/settings/pricing",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/WorkRolesEditor-loaded-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "10b19834072c06c46a76db6eef334e0f3051cdea308cf4b16d03b05d9c0a5842",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "WorkRolesEditor-loaded-1-360x640.png",
+        "consumer": "WorkRolesEditor",
+        "state": "loaded",
+        "route": "/settings/pricing",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Benämning"
+        ],
+        "sha256": "10b19834072c06c46a76db6eef334e0f3051cdea308cf4b16d03b05d9c0a5842",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\WorkRolesEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "10b19834072c06c46a76db6eef334e0f3051cdea308cf4b16d03b05d9c0a5842",
+          "lastWriteTimeUtc": "2026-10-29T16:19:58.57Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-workroleseditor",
+        "coveragePlanCaptureIds": [
+          "inherited-workroleseditor-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/pricing",
+        "actualRoute": "/settings/pricing",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\WorkRolesEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "fde172cbe3a4d7910d08c1ed3b8e8df573fef57321a9407c7a05272f350ca56f",
+          "lastWriteTimeUtc": "2026-10-29T14:30:18.362Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-sectioneditor-controls-1440",
+      "surface": "inherited-sectioneditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "SectionEditor",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/SectionEditor-loaded-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "21130a8452bf0eb6b8abde101ecb66b8f8d9a586e1c91ba71f4b9cfe7b591cca",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "SectionEditor-loaded-1-1440x900.png",
+        "consumer": "SectionEditor",
+        "state": "loaded",
+        "route": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Sektionstitel"
+        ],
+        "sha256": "21130a8452bf0eb6b8abde101ecb66b8f8d9a586e1c91ba71f4b9cfe7b591cca",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\SectionEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "21130a8452bf0eb6b8abde101ecb66b8f8d9a586e1c91ba71f4b9cfe7b591cca",
+          "lastWriteTimeUtc": "2026-10-29T16:19:55.729Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-sectioneditor",
+        "coveragePlanCaptureIds": [
+          "inherited-sectioneditor-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations/[calculationId]",
+        "actualRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\SectionEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "9110df9e89e5c81cfd9224fcea764cd307b806e3cec3aa3e4c0c257a7241a523",
+          "lastWriteTimeUtc": "2026-10-29T14:30:15.897Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-sectioneditor-controls-360",
+      "surface": "inherited-sectioneditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "SectionEditor",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/SectionEditor-loaded-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "64222c34fa77c64f0edf35fd1eb2e21dd8b9eef923fbe88413e89b12000e03d2",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "SectionEditor-loaded-1-360x640.png",
+        "consumer": "SectionEditor",
+        "state": "loaded",
+        "route": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Sektionstitel"
+        ],
+        "sha256": "64222c34fa77c64f0edf35fd1eb2e21dd8b9eef923fbe88413e89b12000e03d2",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\SectionEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "64222c34fa77c64f0edf35fd1eb2e21dd8b9eef923fbe88413e89b12000e03d2",
+          "lastWriteTimeUtc": "2026-10-29T16:20:00.294Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-sectioneditor",
+        "coveragePlanCaptureIds": [
+          "inherited-sectioneditor-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations/[calculationId]",
+        "actualRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\SectionEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "297de8c27a894b8e5c6a8c4832708e5f740782d58a84509eb2a16ba107fb104d",
+          "lastWriteTimeUtc": "2026-10-29T14:30:20.143Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-articleseditor-controls-1440",
+      "surface": "inherited-articleseditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "ArticlesEditor",
+      "declaredRoute": "/settings/pricing",
+      "actualFixtureRoute": "/settings/pricing",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/ArticlesEditor-loaded-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "b6b9362a840f6a71255ad6ce29e541c659f2a53cbb119f75efb3e61751fb1ba0",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "ArticlesEditor-loaded-1-1440x900.png",
+        "consumer": "ArticlesEditor",
+        "state": "loaded",
+        "route": "/settings/pricing",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Artikelnamn"
+        ],
+        "sha256": "b6b9362a840f6a71255ad6ce29e541c659f2a53cbb119f75efb3e61751fb1ba0",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\ArticlesEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "b6b9362a840f6a71255ad6ce29e541c659f2a53cbb119f75efb3e61751fb1ba0",
+          "lastWriteTimeUtc": "2026-10-29T16:19:53.741Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-articleseditor",
+        "coveragePlanCaptureIds": [
+          "inherited-articleseditor-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/pricing",
+        "actualRoute": "/settings/pricing",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\ArticlesEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "6e7fbf5cc84270790341fc2d63b5fa3696d19562aeb16a0e5e2107bc40750830",
+          "lastWriteTimeUtc": "2026-10-29T14:30:13.868Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-articleseditor-controls-360",
+      "surface": "inherited-articleseditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "ArticlesEditor",
+      "declaredRoute": "/settings/pricing",
+      "actualFixtureRoute": "/settings/pricing",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/ArticlesEditor-loaded-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "830e647b6121c05fbe888a5a2382258582c4b577b898f9684b97c4b62a66973f",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "ArticlesEditor-loaded-1-360x640.png",
+        "consumer": "ArticlesEditor",
+        "state": "loaded",
+        "route": "/settings/pricing",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Artikelnamn"
+        ],
+        "sha256": "830e647b6121c05fbe888a5a2382258582c4b577b898f9684b97c4b62a66973f",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\ArticlesEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "830e647b6121c05fbe888a5a2382258582c4b577b898f9684b97c4b62a66973f",
+          "lastWriteTimeUtc": "2026-10-29T16:19:58.72Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-articleseditor",
+        "coveragePlanCaptureIds": [
+          "inherited-articleseditor-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/pricing",
+        "actualRoute": "/settings/pricing",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\ArticlesEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "7c62d50bab9c5013b351f2a2b3dc1ce3aff5045e08ec887da38c2a084c026c33",
+          "lastWriteTimeUtc": "2026-10-29T14:30:18.516Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-roweditor-controls-1440",
+      "surface": "inherited-roweditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "RowEditor",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/RowEditor-existing-row-open-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "16a4c161688da0093711d5c590064c5056afa23a02ec9f05f04171e405f210f2",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "RowEditor-existing-row-open-1-1440x900.png",
+        "consumer": "RowEditor",
+        "state": "existing-row-open",
+        "route": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Radtyp"
+        ],
+        "sha256": "16a4c161688da0093711d5c590064c5056afa23a02ec9f05f04171e405f210f2",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\RowEditor-existing-row-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "16a4c161688da0093711d5c590064c5056afa23a02ec9f05f04171e405f210f2",
+          "lastWriteTimeUtc": "2026-10-29T16:19:55.874Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-roweditor",
+        "coveragePlanCaptureIds": [
+          "inherited-roweditor-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations/[calculationId]",
+        "actualRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\RowEditor-existing-row-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "8c1f4bc2208ec4d67bda5236b1624ba7c4c9675ae258ddf0309a1453658a4908",
+          "lastWriteTimeUtc": "2026-10-29T14:30:16.032Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-roweditor-controls-360",
+      "surface": "inherited-roweditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "RowEditor",
+      "declaredRoute": "/calculations/[calculationId]",
+      "actualFixtureRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/RowEditor-existing-row-open-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "59b5d054384b7c7dccf7546f66c9bb7c512435ad4051d387bd3b941a5b17cc1f",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "RowEditor-existing-row-open-1-360x640.png",
+        "consumer": "RowEditor",
+        "state": "existing-row-open",
+        "route": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Radtyp"
+        ],
+        "sha256": "59b5d054384b7c7dccf7546f66c9bb7c512435ad4051d387bd3b941a5b17cc1f",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\RowEditor-existing-row-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "59b5d054384b7c7dccf7546f66c9bb7c512435ad4051d387bd3b941a5b17cc1f",
+          "lastWriteTimeUtc": "2026-10-29T16:20:00.385Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-roweditor",
+        "coveragePlanCaptureIds": [
+          "inherited-roweditor-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/calculations/[calculationId]",
+        "actualRoute": "/calculations/93e78fc6-a0ad-46a6-8f48-bc3d171ca797",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\RowEditor-existing-row-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "f93b832c963411522ad8fba4ede897068c702c18b30eedbaaee4506a1c781e97",
+          "lastWriteTimeUtc": "2026-10-29T14:30:20.232Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-contactdialog-controls-1440",
+      "surface": "inherited-contactdialog",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "ContactDialog",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/07c53f30-6bb9-4dbf-a8c3-e4007c7dc1bf",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/ContactDialog-checkbox-visible-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "7f2232a59875654156aa12a77f1a837b72fe8b3e82a7c7987b1432a9fd730cec",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "ContactDialog-checkbox-visible-1-1440x900.png",
+        "consumer": "ContactDialog",
+        "state": "checkbox-visible",
+        "route": "/customers/07c53f30-6bb9-4dbf-a8c3-e4007c7dc1bf",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Primär kontakt"
+        ],
+        "sha256": "7f2232a59875654156aa12a77f1a837b72fe8b3e82a7c7987b1432a9fd730cec",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\ContactDialog-checkbox-visible-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "7f2232a59875654156aa12a77f1a837b72fe8b3e82a7c7987b1432a9fd730cec",
+          "lastWriteTimeUtc": "2026-10-29T16:19:56.392Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-contactdialog",
+        "coveragePlanCaptureIds": [
+          "inherited-contactdialog-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/customers",
+        "actualRoute": "/customers/07c53f30-6bb9-4dbf-a8c3-e4007c7dc1bf",
+        "routeCompositionNote": "Actual contact dialog opens from /customers/{fixture company id}, not bare /customers; assembler must retain actual route.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\ContactDialog-checkbox-visible-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "312ccd72bc323a42f52462c347e200981a7140923d358f97f9db5cf15487e089",
+          "lastWriteTimeUtc": "2026-10-29T14:30:16.534Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-contactdialog-controls-360",
+      "surface": "inherited-contactdialog",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "ContactDialog",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/07c53f30-6bb9-4dbf-a8c3-e4007c7dc1bf",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/ContactDialog-checkbox-visible-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "3cdc8e6c2094bf163cde0c51bb0c15b35c9d842896130e27bd43b42886248de0",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "ContactDialog-checkbox-visible-1-360x640.png",
+        "consumer": "ContactDialog",
+        "state": "checkbox-visible",
+        "route": "/customers/07c53f30-6bb9-4dbf-a8c3-e4007c7dc1bf",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Primär kontakt"
+        ],
+        "sha256": "3cdc8e6c2094bf163cde0c51bb0c15b35c9d842896130e27bd43b42886248de0",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\ContactDialog-checkbox-visible-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "3cdc8e6c2094bf163cde0c51bb0c15b35c9d842896130e27bd43b42886248de0",
+          "lastWriteTimeUtc": "2026-10-29T16:20:00.784Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-contactdialog",
+        "coveragePlanCaptureIds": [
+          "inherited-contactdialog-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/customers",
+        "actualRoute": "/customers/07c53f30-6bb9-4dbf-a8c3-e4007c7dc1bf",
+        "routeCompositionNote": "Actual contact dialog opens from /customers/{fixture company id}, not bare /customers; assembler must retain actual route.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\ContactDialog-checkbox-visible-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "5c9517a884d83174eeedcdd0d81b1caee9e02ada8a8318c9260f1a637152de8c",
+          "lastWriteTimeUtc": "2026-10-29T14:30:20.651Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-facilitydialog-controls-1440",
+      "surface": "inherited-facilitydialog",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "FacilityDialog",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/4834991f-d7e7-4c76-9d7e-168a457fe075",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/inherited-new-facility-button-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "326040d68fc26f79799ce049ec450c1a07185f8a9b698310335b05491a9501cc",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "inherited-new-facility-button-1440x900.png",
+        "state": "inherited-new-facility-button",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers/4834991f-d7e7-4c76-9d7e-168a457fe075"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-facilitydialog-controls-360",
+      "surface": "inherited-facilitydialog",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "FacilityDialog",
+      "declaredRoute": "/customers/[customerId]",
+      "actualFixtureRoute": "/customers/b122e716-1dc6-4964-9d32-cf1efa7aa44c",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/inherited-new-facility-button-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "224e3109c9d1e3245a5cfd95b69b73bba35be0b2571850905e290c30bf432e34",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "inherited-new-facility-button-360x640.png",
+        "state": "inherited-new-facility-button",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/customers/b122e716-1dc6-4964-9d32-cf1efa7aa44c"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-quotetermseditor-controls-1440",
+      "surface": "inherited-quotetermseditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "QuoteTermsEditor",
+      "declaredRoute": "/settings/quote-terms",
+      "actualFixtureRoute": "/settings/quote-terms",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/QuoteTermsEditor-loaded-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "42fda5be5878ae33360c415ebee4d3e35fe7581a5fb55949f831c78677f9efa4",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "QuoteTermsEditor-loaded-1-1440x900.png",
+        "consumer": "QuoteTermsEditor",
+        "state": "loaded",
+        "route": "/settings/quote-terms",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Offertvillkor"
+        ],
+        "sha256": "42fda5be5878ae33360c415ebee4d3e35fe7581a5fb55949f831c78677f9efa4",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\QuoteTermsEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "42fda5be5878ae33360c415ebee4d3e35fe7581a5fb55949f831c78677f9efa4",
+          "lastWriteTimeUtc": "2026-10-29T16:19:54.171Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-quotetermseditor",
+        "coveragePlanCaptureIds": [
+          "inherited-quotetermseditor-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/quote-terms",
+        "actualRoute": "/settings/quote-terms",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\QuoteTermsEditor-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "fe619c14d8faecc4f50edc61692f1f6959c199664fc4c263e092727788bc42f9",
+          "lastWriteTimeUtc": "2026-10-29T14:30:14.285Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-quotetermseditor-controls-360",
+      "surface": "inherited-quotetermseditor",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "QuoteTermsEditor",
+      "declaredRoute": "/settings/quote-terms",
+      "actualFixtureRoute": "/settings/quote-terms",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/QuoteTermsEditor-loaded-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "b7e9c6c21aee79bd67b7ec63f59b3c48bde3056b04edfcda1e3e45d6e4c0c67c",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "QuoteTermsEditor-loaded-1-360x640.png",
+        "consumer": "QuoteTermsEditor",
+        "state": "loaded",
+        "route": "/settings/quote-terms",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Offertvillkor"
+        ],
+        "sha256": "b7e9c6c21aee79bd67b7ec63f59b3c48bde3056b04edfcda1e3e45d6e4c0c67c",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\QuoteTermsEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "b7e9c6c21aee79bd67b7ec63f59b3c48bde3056b04edfcda1e3e45d6e4c0c67c",
+          "lastWriteTimeUtc": "2026-10-29T16:19:59.023Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-quotetermseditor",
+        "coveragePlanCaptureIds": [
+          "inherited-quotetermseditor-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/quote-terms",
+        "actualRoute": "/settings/quote-terms",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\QuoteTermsEditor-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "b7e9c6c21aee79bd67b7ec63f59b3c48bde3056b04edfcda1e3e45d6e4c0c67c",
+          "lastWriteTimeUtc": "2026-10-29T14:30:18.847Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-jobcardform-controls-1440",
+      "surface": "inherited-jobcardform",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "JobCardForm",
+      "declaredRoute": "/jobs",
+      "actualFixtureRoute": "/jobs",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/JobCardForm-card-create-open-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "acf78be67b3ea1eb128a8917aa32874abb62356377f9c7f6ebf562967277e097",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "JobCardForm-card-create-open-1-1440x900.png",
+        "consumer": "JobCardForm",
+        "state": "card-create-open",
+        "route": "/jobs",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Titel"
+        ],
+        "sha256": "acf78be67b3ea1eb128a8917aa32874abb62356377f9c7f6ebf562967277e097",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\JobCardForm-card-create-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "acf78be67b3ea1eb128a8917aa32874abb62356377f9c7f6ebf562967277e097",
+          "lastWriteTimeUtc": "2026-10-29T16:19:55.203Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-jobcardform",
+        "coveragePlanCaptureIds": [
+          "inherited-jobcardform-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/jobs",
+        "actualRoute": "/jobs",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\JobCardForm-card-create-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "59c1d650af73157dc0eb53bea5a33dcad55a6b658d4a3cfe32881e7fa180fc02",
+          "lastWriteTimeUtc": "2026-10-29T14:30:15.345Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-jobcardform-controls-360",
+      "surface": "inherited-jobcardform",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "JobCardForm",
+      "declaredRoute": "/jobs",
+      "actualFixtureRoute": "/jobs",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/JobCardForm-card-create-open-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "ce7932deadac682970b75f356f0bd78f2c8dde5a2f3474e6594d542c02c1015d",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "JobCardForm-card-create-open-1-360x640.png",
+        "consumer": "JobCardForm",
+        "state": "card-create-open",
+        "route": "/jobs",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Titel"
+        ],
+        "sha256": "ce7932deadac682970b75f356f0bd78f2c8dde5a2f3474e6594d542c02c1015d",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\JobCardForm-card-create-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "ce7932deadac682970b75f356f0bd78f2c8dde5a2f3474e6594d542c02c1015d",
+          "lastWriteTimeUtc": "2026-10-29T16:19:59.852Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-jobcardform",
+        "coveragePlanCaptureIds": [
+          "inherited-jobcardform-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/jobs",
+        "actualRoute": "/jobs",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\JobCardForm-card-create-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "ce7932deadac682970b75f356f0bd78f2c8dde5a2f3474e6594d542c02c1015d",
+          "lastWriteTimeUtc": "2026-10-29T14:30:19.669Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-jobcardform-planning-controls-1440",
+      "surface": "inherited-jobcardform",
+      "state": "finished",
+      "uiState": "planning-controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "JobCardForm",
+      "declaredRoute": "/jobs",
+      "actualFixtureRoute": "/jobs",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/JobCardForm-planning-open-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "a55b9174b1525c9a610c74046f8b5b783847f475b867b42ec9cfe251d5b84ef5",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "JobCardForm-planning-open-1-1440x900.png",
+        "consumer": "JobCardForm",
+        "state": "planning-open",
+        "route": "/jobs",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Prioritet"
+        ],
+        "sha256": "a55b9174b1525c9a610c74046f8b5b783847f475b867b42ec9cfe251d5b84ef5",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\JobCardForm-planning-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "a55b9174b1525c9a610c74046f8b5b783847f475b867b42ec9cfe251d5b84ef5",
+          "lastWriteTimeUtc": "2026-10-29T16:19:55.311Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-jobcardform",
+        "coveragePlanCaptureIds": [
+          "inherited-jobcardform-planning-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/jobs",
+        "actualRoute": "/jobs",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\JobCardForm-planning-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "a55b9174b1525c9a610c74046f8b5b783847f475b867b42ec9cfe251d5b84ef5",
+          "lastWriteTimeUtc": "2026-10-29T14:30:15.464Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-jobcardform-planning-controls-360",
+      "surface": "inherited-jobcardform",
+      "state": "finished",
+      "uiState": "planning-controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "JobCardForm",
+      "declaredRoute": "/jobs",
+      "actualFixtureRoute": "/jobs",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/JobCardForm-planning-open-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "5e81f533ee7dd09586ec941f74501b661181d63864dd60d6a9b5100f165aa5b6",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "JobCardForm-planning-open-1-360x640.png",
+        "consumer": "JobCardForm",
+        "state": "planning-open",
+        "route": "/jobs",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Prioritet"
+        ],
+        "sha256": "5e81f533ee7dd09586ec941f74501b661181d63864dd60d6a9b5100f165aa5b6",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\JobCardForm-planning-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "5e81f533ee7dd09586ec941f74501b661181d63864dd60d6a9b5100f165aa5b6",
+          "lastWriteTimeUtc": "2026-10-29T16:19:59.948Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-jobcardform",
+        "coveragePlanCaptureIds": [
+          "inherited-jobcardform-planning-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/jobs",
+        "actualRoute": "/jobs",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\JobCardForm-planning-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "5e81f533ee7dd09586ec941f74501b661181d63864dd60d6a9b5100f165aa5b6",
+          "lastWriteTimeUtc": "2026-10-29T14:30:19.772Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-companysettingsform-controls-1440",
+      "surface": "inherited-companysettingsform",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CompanySettingsForm",
+      "declaredRoute": "/settings/company",
+      "actualFixtureRoute": "/settings/company",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/CompanySettingsForm-loaded-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "d5a874b2994722e5fda8a24582c1983fb9919abb461ad50168b5b0169a831ef1",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "CompanySettingsForm-loaded-1-1440x900.png",
+        "consumer": "CompanySettingsForm",
+        "state": "loaded",
+        "route": "/settings/company",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Företagsnamn"
+        ],
+        "sha256": "d5a874b2994722e5fda8a24582c1983fb9919abb461ad50168b5b0169a831ef1",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\CompanySettingsForm-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "d5a874b2994722e5fda8a24582c1983fb9919abb461ad50168b5b0169a831ef1",
+          "lastWriteTimeUtc": "2026-10-29T16:19:54.422Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-companysettingsform",
+        "coveragePlanCaptureIds": [
+          "inherited-companysettingsform-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/company",
+        "actualRoute": "/settings/company",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\CompanySettingsForm-loaded-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "75cd18772d098b3fce6c2f92f7e8e43ae0409e1a3cfa5b2cd9cba62be4427961",
+          "lastWriteTimeUtc": "2026-10-29T14:30:14.559Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-companysettingsform-controls-360",
+      "surface": "inherited-companysettingsform",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "CompanySettingsForm",
+      "declaredRoute": "/settings/company",
+      "actualFixtureRoute": "/settings/company",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/CompanySettingsForm-loaded-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "939565345664fa31d12d30f85f125f8c99562de236846f1a6765680d953e3a4c",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "CompanySettingsForm-loaded-1-360x640.png",
+        "consumer": "CompanySettingsForm",
+        "state": "loaded",
+        "route": "/settings/company",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Företagsnamn"
+        ],
+        "sha256": "939565345664fa31d12d30f85f125f8c99562de236846f1a6765680d953e3a4c",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\CompanySettingsForm-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "939565345664fa31d12d30f85f125f8c99562de236846f1a6765680d953e3a4c",
+          "lastWriteTimeUtc": "2026-10-29T16:19:59.219Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-companysettingsform",
+        "coveragePlanCaptureIds": [
+          "inherited-companysettingsform-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/settings/company",
+        "actualRoute": "/settings/company",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\CompanySettingsForm-loaded-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "b240b5d7b08551a2df14bc4d13fea40243038af76f40a8777e2e3741a6bb9374",
+          "lastWriteTimeUtc": "2026-10-29T14:30:19.047Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-joblist-controls-1440",
+      "surface": "inherited-joblist",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "JobsPage > JobList",
+      "declaredRoute": "/jobs",
+      "actualFixtureRoute": "/jobs",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/JobList-simple-create-open-1-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "8e10fed048332991025687fbb84e559afad05dbb913beefad93921525ae0c698",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "JobList-simple-create-open-1-1440x900.png",
+        "consumer": "JobList",
+        "state": "simple-create-open",
+        "route": "/jobs",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Kund"
+        ],
+        "sha256": "8e10fed048332991025687fbb84e559afad05dbb913beefad93921525ae0c698",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\JobList-simple-create-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "8e10fed048332991025687fbb84e559afad05dbb913beefad93921525ae0c698",
+          "lastWriteTimeUtc": "2026-10-29T16:19:54.97Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-joblist",
+        "coveragePlanCaptureIds": [
+          "inherited-joblist-controls-1440"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/jobs",
+        "actualRoute": "/jobs",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\JobList-simple-create-open-1-1440x900.png",
+          "width": 1440,
+          "height": 900,
+          "sha256": "036c22e4e00dd10e93226fa5345192dff18ae66391f1a17e610c90a295c72310",
+          "lastWriteTimeUtc": "2026-10-29T14:30:15.115Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-joblist-controls-360",
+      "surface": "inherited-joblist",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "JobsPage > JobList",
+      "declaredRoute": "/jobs",
+      "actualFixtureRoute": "/jobs",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/images/JobList-simple-create-open-1-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "051b39cb3269d4e268976c05001d21025bd0d66eebbd939fb550a45e2585ae0f",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "formal inherited exact representative",
+      "rawCaptureMetadata": {
+        "file": "JobList-simple-create-open-1-360x640.png",
+        "consumer": "JobList",
+        "state": "simple-create-open",
+        "route": "/jobs",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "labelsActuallyAsserted": [
+          "Kund"
+        ],
+        "sha256": "051b39cb3269d4e268976c05001d21025bd0d66eebbd939fb550a45e2585ae0f",
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "source-bound PREVIEW; no formal acceptance",
+        "actual": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\formal-2833fcad\\images\\JobList-simple-create-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "051b39cb3269d4e268976c05001d21025bd0d66eebbd939fb550a45e2585ae0f",
+          "lastWriteTimeUtc": "2026-10-29T16:19:59.683Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event"
+        },
+        "coveragePlanSurfaceId": "inherited-joblist",
+        "coveragePlanCaptureIds": [
+          "inherited-joblist-controls-360"
+        ],
+        "mappingRole": "exact planned representative",
+        "plannedRoute": "/jobs",
+        "actualRoute": "/jobs",
+        "routeCompositionNote": "Actual fixture route preserved.",
+        "reference": {
+          "status": "unassigned; root assembler must explicitly nominate initial reference, no automatic actual-to-reference adoption or acceptance"
+        },
+        "priorPreviewComparator": {
+          "path": "C:\\DEV\\K35-records\\tmp\\private\\story35-3\\inherited-consumer-previews\\fix5-live-attempt2\\JobList-simple-create-open-1-360x640.png",
+          "width": 360,
+          "height": 640,
+          "sha256": "051b39cb3269d4e268976c05001d21025bd0d66eebbd939fb550a45e2585ae0f",
+          "lastWriteTimeUtc": "2026-10-29T14:30:19.505Z",
+          "timestampMeaning": "Filesystem PNG write timestamp, not a browser performance event",
+          "role": "prior uncommitted source-bound preview comparator ONLY; not accepted reference"
+        },
+        "visibleCompositionLimit": "Only labelsActuallyAsserted are execution-asserted; surrounding controls may be visible but are not added to coverage. No conditional summary, command, save/upload/toggle or money/tax correctness claim."
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-fileindexupload-controls-1440",
+      "surface": "inherited-fileindexupload",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "FileIndexUpload",
+      "declaredRoute": "/files",
+      "actualFixtureRoute": "/files",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/captures/inherited-file-index-select-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "d7867c113bcb945ccccdb115d5be1a0a03c349af596b95576a89da2639446cea",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "inherited-file-index-select-1440x900.png",
+        "state": "inherited-file-index-select",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/files"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    },
+    {
+      "id": "inherited-fileindexupload-controls-360",
+      "surface": "inherited-fileindexupload",
+      "state": "finished",
+      "uiState": "controls",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "fullViewport": true,
+      "fullPage": false,
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "buildId": "Ac8RfJaxka1Vr4nIV5VzC",
+      "surfaceComponent": "FileIndexUpload",
+      "declaredRoute": "/files",
+      "actualFixtureRoute": "/files",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/captures/inherited-file-index-select-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "de046d417052315ff4a14938df6b9f303dd0b158c2bf6cc0e9c594ed73a24b03",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "provenance": "canonical current-head32-state production capture",
+      "rawCaptureMetadata": {
+        "file": "inherited-file-index-select-360x640.png",
+        "state": "inherited-file-index-select",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "source": "implemented production-server UI",
+        "classification": "actual rendered UI; transport faults remain test-controlled where named",
+        "url": "/files"
+      },
+      "referenceAssignment": "Root explicitly nominated proposed initial same-byte reference separately; not assigned or accepted by capture coordinator"
+    }
+  ],
+  "supplementalExactViewportFrames": [
+    {
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "kind": "additional exact-viewport scrolled-footer or postclear proof",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-create-footer-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "541cee77201a3adfcb5397c4448d3b93b5612d49a79696bb1d98f77c61ed715a",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "metadata": {
+        "file": "customer-create-footer-1440x900.png",
+        "id": "customer-create-footer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers",
+        "sha256": "541cee77201a3adfcb5397c4448d3b93b5612d49a79696bb1d98f77c61ed715a",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "unsent draft actions"
+      }
+    },
+    {
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "kind": "additional exact-viewport scrolled-footer or postclear proof",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-edit-footer-1440x900.png",
+        "width": 1440,
+        "height": 900,
+        "sha256": "c9b302cd4a47ab94af92f404f0d22e5309daf3f809a88f513e33371d20c39866",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "metadata": {
+        "file": "customer-edit-footer-1440x900.png",
+        "id": "customer-edit-footer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers/15992c12-031a-499a-a36d-de72bc72f227",
+        "sha256": "c9b302cd4a47ab94af92f404f0d22e5309daf3f809a88f513e33371d20c39866",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "checked edit actions"
+      }
+    },
+    {
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "kind": "additional exact-viewport scrolled-footer or postclear proof",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-create-footer-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "fbe1cd7bc048a1cf54a8c3abc722fcafae8c5cb49cffd4c8491bc701163d6037",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "metadata": {
+        "file": "customer-create-footer-360x640.png",
+        "id": "customer-create-footer",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers",
+        "sha256": "fbe1cd7bc048a1cf54a8c3abc722fcafae8c5cb49cffd4c8491bc701163d6037",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "unsent draft actions"
+      }
+    },
+    {
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "kind": "additional exact-viewport scrolled-footer or postclear proof",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customer-edit-footer-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "a1ba5b62857a3dd028a203fd175c9eedb6574899338005b10761862462e95c2f",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "metadata": {
+        "file": "customer-edit-footer-360x640.png",
+        "id": "customer-edit-footer",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers/15992c12-031a-499a-a36d-de72bc72f227",
+        "sha256": "a1ba5b62857a3dd028a203fd175c9eedb6574899338005b10761862462e95c2f",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "checked edit actions"
+      }
+    },
+    {
+      "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+      "kind": "additional exact-viewport scrolled-footer or postclear proof",
+      "actual": {
+        "path": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/customers-list-after-clear-360x640.png",
+        "width": 360,
+        "height": 640,
+        "sha256": "bfb99c34924f6445bc0bc64af5c2b01a1c31462b5b86fd488f2207d8a9ed71ba",
+        "gitBlob": null,
+        "imageCommit": null
+      },
+      "metadata": {
+        "file": "customers-list-after-clear-360x640.png",
+        "id": "customers-list-after-clear",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "fullPage": false,
+        "candidateSha": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+        "route": "/customers",
+        "sha256": "bfb99c34924f6445bc0bc64af5c2b01a1c31462b5b86fd488f2207d8a9ed71ba",
+        "source": "actual checkpoint production UI; candidate acceptance pending",
+        "state": "finished",
+        "uiState": "known record after conditional clear"
+      }
+    }
+  ],
+  "notFormalSupplementals": [
+    "Canonical controlled503 standalone HTML and600px zoom/360x320 occlusion proxy images excluded from60mapping; retained separately as functional/proxy evidence"
+  ],
+  "faultProof": {
+    "journal": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/journal.json",
+    "rootArmRequest": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/arm-request.json",
+    "rootClearRequest": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/clear-request.json",
+    "teardown": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras/teardown-receipt.json",
+    "operationId": "07624225-e163-46fb-85d1-00ae6099ee3a",
+    "actualTargetProxyStatus": 400,
+    "actualErrorCode": "TEST_UNAVAILABLE",
+    "authOtherActorUnplannedPassThrough": true,
+    "afterClearLoadedStatus": 200,
+    "afterClearLoadedKnownRecord": true,
+    "fixtureFileAbsent": true,
+    "sqlAclChanges": false,
+    "armedWindow": "Driver invoked only auth/read probes and pageGET/screenshot; no Save/Upload/business command. This is not a DB-wide network audit."
+  },
+  "nativeRuns": {
+    "desktop": {
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/desktop/native-exit.json"
+    },
+    "phone": {
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/phone/native-exit.json"
+    },
+    "inherited": {
+      "passed": 2,
+      "receipt": "tmp/private/story35-3/inherited-consumer-previews/formal-2833fcad/formal-capture-receipt.json"
+    },
+    "extras": {
+      "passed": 1,
+      "receipt": "C:/DEV/K35-records/tmp/private/story35-3/formal-2833fcad/extras-native-exit.json"
+    }
+  },
+  "limits": [
+    "No source/spec/publicmetadata/Git change",
+    "No provider/owner acceptance/new code review round",
+    "All actual/reference Git objects and acceptance remain Root-owned publication work",
+    "Inherited label-specific rendering does not claim conditional-error or business-mutation coverage; incidental context clipping preserved in Low receipt",
+    "Physical OS keyboard/device proof remains unexecuted; proxies are not relabeled"
+  ]
+}
