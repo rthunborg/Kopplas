@@ -1,0 +1,289 @@
+{
+  "store": "C:\\DEV\\Kopplas\\.git\\auto-bmad-parallel.sqlite3",
+  "mode": "ro",
+  "queryScope": "all saved runs, all claim states; all saved shared_paths, legacy_reservations and non-integrated story write_paths/conflict_domains; journal states",
+  "helperRawSha256": "7a4f43e7e20da603a282d5f446723d3f17ff0374d77ad2b0c0f012cab920889e",
+  "runs": [
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "owner": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+      "state": "finalized",
+      "planHash": "a95443b3d705191f88416f0f24ff8698b35bbfd7ff888b553655786b4fc9901a",
+      "shared_paths": [
+        "_bmad-output/auto-bmad/preparation/story-20-1/",
+        "_bmad-output/auto-bmad/orchestration/phase-b-lanes-2026-10-08.md"
+      ],
+      "legacy_reservations": [
+        {
+          "conflict_domains": [
+            "planning:epic15-specs-and-test-design"
+          ],
+          "epic": "15",
+          "reason": "Explicit owner temporary release of shared product/schema/permission/API/test resource scope while E15 performs specs and epic test planning; own planning artifacts remain reserved. Root-relayed authorization; not inferred from idle/oracle status.",
+          "stories": [
+            "15-1-the-five-scheduling-views",
+            "15-2-recurring-bookings-series-materialized-occurrences-exceptions",
+            "15-3-conflict-resolver",
+            "15-4-time-reporting-filing-timesheet-review",
+            "15-5-personal-calendar-feed-adr-b004-surface-1",
+            "15-6-min-dag-the-field-landing"
+          ],
+          "worktree": "C:/Users/Rasmus/.codex/worktrees/epic-15-calendar/Kopplas",
+          "write_paths": [
+            "_bmad-output/auto-bmad/state/epic/epic-15.yaml",
+            "_bmad-output/auto-bmad/reports/epic-15.md",
+            "_bmad-output/test-artifacts/test-design-epic-15.md",
+            "_bmad-output/test-artifacts/test-design-progress-epic-15.md",
+            "_bmad-output/implementation-artifacts/spec-15-1-the-five-scheduling-views.md",
+            "_bmad-output/implementation-artifacts/spec-15-2-recurring-bookings-series-materialized-occurrences-exceptions.md",
+            "_bmad-output/implementation-artifacts/spec-15-3-conflict-resolver.md",
+            "_bmad-output/implementation-artifacts/spec-15-4-time-reporting-filing-timesheet-review.md",
+            "_bmad-output/implementation-artifacts/spec-15-5-personal-calendar-feed-adr-b004-surface-1.md",
+            "_bmad-output/implementation-artifacts/spec-15-6-min-dag-the-field-landing.md",
+            "_bmad-output/implementation-artifacts/epic-15-context.md",
+            "docs/decisions/epic-15-scheduling-ux-disposition-2026-10-09.md"
+          ]
+        }
+      ],
+      "stories": [
+        {
+          "id": "20.1",
+          "write_paths": [
+            "_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md",
+            "src/scope/manifest.ts",
+            "src/server/authz/permission-matrix.ts",
+            "src/app/(app)/files/layout.tsx",
+            "src/app/(app)/files/page.tsx",
+            "src/features/files/read.ts",
+            "src/features/files/file-index.ts",
+            "src/server/read-models/documents.ts",
+            "src/server/read-models/document-sources.ts",
+            "src/features/documents/actions.ts",
+            "src/server/commands/documents/signed-access.ts",
+            "src/components/files/FileIndexList.tsx",
+            "src/components/files/FilePreviewRow.tsx",
+            "tests/unit/server/read-models/documents.test.ts",
+            "tests/unit/server/read-models/document-sources.test.ts",
+            "tests/integration/rls/documents.rls.test.ts",
+            "tests/integration/commands/documents-signed-access.int.test.ts",
+            "tests/e2e/files/documents.e2e.spec.ts",
+            "src/components/app-shell/nav-items.ts",
+            "src/server/commands/documents/db.ts",
+            "src/server/storage/document-signed-access-attestation.ts",
+            "src/server/commands/envelope.ts",
+            "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+            "tests/unit/server/commands/documents-signed-access.test.ts",
+            "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+            "supabase/migrations/20261009091120_story_20_1_documents_selected_link_access.sql",
+            "_bmad-output/auto-bmad/state/20-1-documents-activation-and-source-authorized-aggregation.yaml",
+            "_bmad-output/auto-bmad/reports/20-1-documents-activation-and-source-authorized-aggregation.md",
+            "tests/unit/scope/manifest-shape.test.ts",
+            "tests/e2e/files/file-index-scope.e2e.spec.ts",
+            "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+            "src/components/files/FileIndexUpload.tsx"
+          ],
+          "conflict_domains": [
+            "registry:scope-manifest",
+            "registry:navigation",
+            "auth:permission-matrix",
+            "auth:current-source-authority",
+            "storage:checked-signing-attestation",
+            "tests:shared-file-fixtures",
+            "schema:migrations",
+            "documents:shared-read-page-actions",
+            "auth:command-enrollment",
+            "tests:shared-fixtures-resources",
+            "documents:shared-read-page-contract"
+          ]
+        },
+        {
+          "id": "20.2",
+          "write_paths": [
+            "_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md",
+            "src/features/documents/filters.ts",
+            "src/features/documents/date-bounds.ts",
+            "src/features/documents/actions.ts",
+            "src/server/read-models/documents.ts",
+            "src/server/read-models/document-sources.ts",
+            "src/server/commands/documents/lifecycle.ts",
+            "src/server/commands/documents/lifecycle-db.ts",
+            "src/server/commands/envelope.ts",
+            "src/components/documents/DocumentFilters.tsx",
+            "src/components/documents/DocumentPreviewPane.tsx",
+            "src/components/documents/DocumentLifecycleActions.tsx",
+            "src/app/(app)/files/page.tsx",
+            "tests/unit/features/documents/filters.test.ts",
+            "tests/unit/features/documents/date-bounds.test.ts",
+            "tests/unit/features/documents/preview-state.test.ts",
+            "tests/unit/server/commands/documents-lifecycle.test.ts",
+            "tests/integration/commands/documents-lifecycle.int.test.ts",
+            "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+            "tests/integration/rls/documents-filter-archive.rls.test.ts",
+            "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+            "supabase/migrations/20261009091121_story_20_2_documents_lifecycle_origin_and_restore.sql",
+            "_bmad-output/auto-bmad/state/20-2-search-filters-preview-and-archive-restore.yaml",
+            "_bmad-output/auto-bmad/reports/20-2-search-filters-preview-and-archive-restore.md",
+            "tests/e2e/files/documents.e2e.spec.ts"
+          ],
+          "conflict_domains": [
+            "schema:migrations",
+            "files:lifecycle-provenance",
+            "auth:command-enrollment",
+            "documents:shared-read-page-actions",
+            "quotes:source-revision-proof-shape",
+            "tests:shared-fixtures-resources",
+            "documents:shared-read-page-contract",
+            "auth:current-source-authority"
+          ]
+        },
+        {
+          "id": "20.3",
+          "write_paths": [
+            "_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md",
+            "src/features/documents/context-navigation.ts",
+            "src/server/read-models/document-context.ts",
+            "src/components/documents/EntityDocumentsLink.tsx",
+            "src/features/documents/filters.ts",
+            "src/server/read-models/documents.ts",
+            "src/components/documents/DocumentFilters.tsx",
+            "src/app/(app)/files/page.tsx",
+            "src/app/(app)/customers/[customerId]/page.tsx",
+            "src/app/(app)/calculations/[calculationId]/page.tsx",
+            "src/app/(app)/jobs/[jobId]/page.tsx",
+            "src/features/files/quote-files-panel.tsx",
+            "src/features/files/acceptance-panel.tsx",
+            "tests/unit/features/documents/context-navigation.test.ts",
+            "tests/unit/server/read-models/document-context.test.ts",
+            "tests/unit/components/documents/entity-documents-link.test.ts",
+            "tests/integration/rls/documents-context.rls.test.ts",
+            "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+            "_bmad-output/auto-bmad/state/20-3-entity-panel-links-and-contextual-navigation.yaml",
+            "_bmad-output/auto-bmad/reports/20-3-entity-panel-links-and-contextual-navigation.md"
+          ],
+          "conflict_domains": [
+            "documents:shared-read-page-filters",
+            "auth:source-context-navigation",
+            "entity-panels:crm-calculation-job-quotes",
+            "tests:shared-fixtures-resources",
+            "documents:shared-read-page-contract",
+            "auth:current-source-authority"
+          ]
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.1",
+      "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "state": "integrated",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-1\\Kopplas"
+    },
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.2",
+      "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "state": "integrated",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-2\\Kopplas"
+    },
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.3",
+      "worker": "01a11ae8-4100-7042-9c22-d1aca188e683",
+      "state": "integrated",
+      "worktree": "C:\\Users\\Rasmus\\.codex\\worktrees\\documents-e20-20-3\\Kopplas"
+    }
+  ],
+  "journals": [
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.1",
+      "state": "merged"
+    },
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.2",
+      "state": "merged"
+    },
+    {
+      "run": "documents-e20-readiness-2026-10-09",
+      "story": "20.3",
+      "state": "merged"
+    }
+  ],
+  "base": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "consumerBindings": [
+    {
+      "path": "src/components/crm/CustomerList.tsx",
+      "gitBytesSha256": "b45cdced9d97e1d0d9a6edad2215e46a9818eafbf96116e7e9df2c2b7f108d06",
+      "match": true
+    },
+    {
+      "path": "src/components/crm/CustomerDetail.tsx",
+      "gitBytesSha256": "7eba5ae4831defa95d769705388233795894431e19d8197b55afad698e9cd8b9",
+      "match": true
+    },
+    {
+      "path": "src/components/crm/CustomerDialog.tsx",
+      "gitBytesSha256": "072bc681a6685ba4f9e08d8f76b86e5ba2ae0abe8ff5e801b0a0efbac60475c9",
+      "match": true
+    },
+    {
+      "path": "src/components/crm/FormField.tsx",
+      "gitBytesSha256": "75781de03dc6667d8e6ec71d3401061674ecc801baf274549b75e04d6c135281",
+      "match": true
+    },
+    {
+      "path": "src/components/crm/CustomerTypeBadge.tsx",
+      "gitBytesSha256": "8be3253ef818797a3eceb4b93c04f85f846da7881ee771c5b8053b5369c7d9c5",
+      "match": true
+    },
+    {
+      "path": "src/components/crm/ArchiveButton.tsx",
+      "gitBytesSha256": "c5e088ec258751aa95657e2e48749bcc095841f4704c6d012acf456571c67fce",
+      "match": true
+    },
+    {
+      "path": "src/components/crm/customer-presentation.ts",
+      "gitBytesSha256": "05e99d221039d0febfe2689d1f32769fa2e1fd04591e448e86d9eac18b10ffc3",
+      "match": true
+    },
+    {
+      "path": "tests/e2e/crm/customers.e2e.spec.ts",
+      "gitBytesSha256": "8c06562b47de04d7dd579a3789db686e80986aaab0882be69ba59859a4af6b93",
+      "match": true
+    },
+    {
+      "path": "tests/unit/components/crm/customer-presentation.test.ts",
+      "gitBytesSha256": "f73154600ece4a79476f9a5574f619208e8b3be30e4efb0f40e53bb1dc7a7ce7",
+      "match": true
+    },
+    {
+      "path": "src/features/crm/actions.ts",
+      "gitBytesSha256": "9df8f1ae665d4ad83915b686ee19a0d3a273312723fe415503fbde96b5d58146",
+      "match": true
+    },
+    {
+      "path": "src/features/crm/read.ts",
+      "gitBytesSha256": "136b6f0a8c8fca52721802bc6a22a385261c9d9bf0bcd973edd57b2eed7cfa65",
+      "match": true
+    },
+    {
+      "path": "src/features/crm/action-state.ts",
+      "gitBytesSha256": "069d690d360fbf62059035f2e2e3ca65c5730b4c6d12f88abf91687637babde7",
+      "match": true
+    },
+    {
+      "path": "src/features/crm/form-parsing.ts",
+      "gitBytesSha256": "c80af542ef28a0eb2cbf51aae629679dfccee1833120cb633c523010e0f7b880",
+      "match": true
+    }
+  ],
+  "sourcePins": {
+    "_bmad-output/implementation-artifacts/spec-35-3-record-inputs-and-tables.md": "d70ddd6e3291fc42a0e20e6aeb6f5a2d4df62d619bad0b40588c317be35fe445",
+    "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-3.md": "d354e22692446c6f3413abded4fdc7fb07dfa2bf8d4da6924373ca29996094fa"
+  },
+  "inheritedConsumerSearch": "431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/calculations/CalculationEditor.tsx:24:import { FormErrorSummary, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/calculations/CalculationList.tsx:19:import { FormErrorSummary, SelectField, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/calculations/RowEditor.tsx:33:import { FormErrorSummary, SelectField, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/calculations/SectionEditor.tsx:15:import { FormErrorSummary, SelectField, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/calculations/TaxSettingsPanel.tsx:6:import { FormErrorSummary, SelectField, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/ContactDialog.tsx:15:import { DialogActions } from \"./CustomerDialog\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/ContactDialog.tsx:21:} from \"./FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/CustomerDetail.tsx:18:import { CustomerDialog, type CustomerEditDefaults } from \"./CustomerDialog\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/CustomerDetail.tsx:26:import { ArchiveButton } from \"./ArchiveButton\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/CustomerDialog.tsx:24:} from \"./FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/CustomerList.tsx:23:import { CustomerDialog } from \"./CustomerDialog\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/FacilityDialog.tsx:13:import { DialogActions } from \"./CustomerDialog\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/crm/FacilityDialog.tsx:14:import { FormErrorSummary, TextField } from \"./FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/files/FileIndexUpload.tsx:29:import { SelectField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/jobs/JobCardForm.tsx:5:import { TextField, SelectField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/jobs/JobList.tsx:26:import { FormErrorSummary, SelectField, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/pricing/ArticlesEditor.tsx:22:import { FormErrorSummary, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/pricing/WorkRolesEditor.tsx:21:import { FormErrorSummary, TextField } from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/settings/CompanySettingsForm.tsx:25:} from \"@/components/crm/FormField\";\n431c27f63183dc0dde0eea44da1427f78adf74c4:src/components/settings/QuoteTermsEditor.tsx:22:import { FormErrorSummary } from \"@/components/crm/FormField\";\n",
+  "verdict": "No intersecting saved non-integrated claims; catalog contains one finalized run with three integrated claims. Its retained E15 planning-only legacy reservation does not intersect nine authorized paths or inherited consumer presentation domains. No universal claim about unregistered sessions."
+}
