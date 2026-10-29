@@ -1,0 +1,35 @@
+{
+  "domain": "security",
+  "execution": "sequential-worker-step",
+  "ran": true,
+  "source_sha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+  "risk_level": "LOW",
+  "findings": [
+    {
+      "category": "Authentication/tenant/client containment/native privacy",
+      "status": "PASS",
+      "description": "Known approved invariants; real-cookie/denied/role/native tests and exact-head containment checks retained",
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "tests/unit/auth/login-submission.test.ts",
+        "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "New provider-issuance guarantee",
+      "status": "N/A",
+      "description": "No such contract is introduced or inferred from controlled captures",
+      "evidence": [
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "recommendations": []
+    }
+  ],
+  "compliance": {
+    "release_approval": "not-assessed",
+    "provider_issuance_guarantee": "not-claimed"
+  },
+  "priority_actions": [],
+  "summary": "Bounded evidence audit; no new scan/runtime execution or compliance certification."
+}

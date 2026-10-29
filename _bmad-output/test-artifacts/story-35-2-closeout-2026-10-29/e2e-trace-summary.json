@@ -1,0 +1,138 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-29T10:40:58.058520+00:00",
+  "repo": "Kopplas",
+  "collection_mode": "source-and-qualified-execution",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "priority_thresholds",
+  "source_sha": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "execution_evidence_source_sha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+  "target": {
+    "type": "story",
+    "id": "35.2",
+    "label": "single-story legacy adapter"
+  },
+  "decision_mode": "deterministic",
+  "evaluator": "bounded Sol High TEA delegate",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/test-artifacts/test-design-spec-design-35-2.md",
+      "_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md"
+    ],
+    "synthetic": false,
+    "external_pointer_status": "not_used"
+  },
+  "coverage": {
+    "inventory": {
+      "covered": 16,
+      "total": 16,
+      "pct": 100.0
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 1,
+        "covered": 1,
+        "pct": 100
+      },
+      "P1": {
+        "total": 15,
+        "covered": 15,
+        "pct": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 14,
+        "criteria_covered": 16
+      },
+      "api": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "component": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "unit": {
+        "tests": 9,
+        "criteria_covered": 10
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 0,
+        "criteria_covered": 0
+      }
+    }
+  },
+  "tests": {
+    "files": 2,
+    "cases": 23,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0
+  },
+  "risk_summary": {
+    "critical_open": 0,
+    "high_open": 0,
+    "medium_open": 0,
+    "low_open": 0
+  },
+  "heuristics": {
+    "endpoint_gaps": 0,
+    "auth_negative_path_status": "present",
+    "error_path_status": "present",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable"
+  },
+  "live_evidence": {
+    "present": false,
+    "freshness": "not_present",
+    "counted": 0,
+    "requirements_live_only": 0,
+    "current_source_sha": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+    "recorded_source_sha": "",
+    "results_file": ""
+  },
+  "blockers": [],
+  "recommendations": [
+    "Retain separate REL-1/2/3 release work and release_ready=false.",
+    "Retain advisory NFR/test-quality findings and existing browser retry/pending inventory."
+  ],
+  "links": {
+    "trace_report_path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/traceability-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "gate_status": "PASS",
+  "gate_criteria": {
+    "p0_coverage_required": "100%",
+    "p0_coverage_actual": "100%",
+    "p0_status": "MET",
+    "p1_coverage_target": "90%",
+    "p1_coverage_minimum": "80%",
+    "p1_coverage_actual": "100%",
+    "p1_status": "MET",
+    "overall_coverage_minimum": "80%",
+    "overall_coverage_actual": "100%",
+    "overall_status": "MET"
+  },
+  "release_ready": false
+}

@@ -2,12 +2,12 @@
 title: 'Story 35.2: Tokens Font And Real Login'
 type: feature
 created: '2026-10-28'
-status: blocked
+status: done
 tracking_key: 35-2-tokens-font-and-real-login
 baseline_revision: 5b167f1be0b3d96c1d7e9d53737211e3008eeb7e
 planning_revision: d5fc62a88a25bf345754e3f62e5bbea7af964337
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 context:
   - docs/process/review-order.md
   - docs/quality/frontend-quality-gate.md
@@ -63,13 +63,13 @@ deferred: []
 ## Tasks & Acceptance
 
 **Execution (ordered):**
-- [ ] `docs/quality/story-35-2-reference-and-inheritance-2026-10-28.md`, source-binding and admission — recheck current ownership/base/source hashes before edits; inventory all root-style consumers.
-- [ ] `src/app/fonts/InterVariable.ttf`, `src/app/fonts/InterVariable-Italic.ttf`, `public/licenses/inter/OFL.txt` — copy unchanged official v4.1 members from verified release provenance, compare all three admission hashes and preserve full license; never mutate v1.
-- [ ] `src/app/globals.css`, `src/app/layout.tsx` — bind one local Inter variable font family (400/500/600 and italic), semantic color/space/type/radius/motion aliases, white canvas and tabular-number affordance. Audit inherited effects before/after; keep changes bounded.
-- [ ] `src/app/(auth)/login/page.tsx` — apply plain wordmark and constrained responsive real-credential composition, ≥44px controls, readable pending/errors, associated labels, visible focus and reachable actions. Retain state/validation/actions separately from replaceable markup proportionally. Assess observed duplicate/unknown behavior under High before changing sensitive handling.
-- [ ] `tests/e2e/auth/login-and-tenant-context.e2e.spec.ts` — extend actual caller tests for invalid→corrected, delay/duplicate, rejection/recovery, keyboard and role landing using existing fixtures. A narrow handler test, if necessary, belongs at `tests/unit/auth/login-submission.test.ts`; mock only the existing client/router seam and record that it cannot prove real session authority.
-- [ ] Existing auth/role and bounded consumer test files identified by the High plan — verify affected inherited paths; add no N/A feature/test program. Capture actual candidate states and contrast in the frontend evidence package with source/build/revision provenance.
-- [ ] This story adapter — record commands/counts/skips/limitations, independent review and author-written final Suggested Review Order after implementation. Root owns publication/PR/agent-fix/exact-head CI and acceptance coordination; builder must return visual blockers honestly.
+- [x] `docs/quality/story-35-2-reference-and-inheritance-2026-10-28.md`, source-binding and admission — recheck current ownership/base/source hashes before edits; inventory all root-style consumers.
+- [x] `src/app/fonts/InterVariable.ttf`, `src/app/fonts/InterVariable-Italic.ttf`, `public/licenses/inter/OFL.txt` — copy unchanged official v4.1 members from verified release provenance, compare all three admission hashes and preserve full license; never mutate v1.
+- [x] `src/app/globals.css`, `src/app/layout.tsx` — bind one local Inter variable font family (400/500/600 and italic), semantic color/space/type/radius/motion aliases, white canvas and tabular-number affordance. Audit inherited effects before/after; keep changes bounded.
+- [x] `src/app/(auth)/login/page.tsx` — apply plain wordmark and constrained responsive real-credential composition, ≥44px controls, readable pending/errors, associated labels, visible focus and reachable actions. Retain state/validation/actions separately from replaceable markup proportionally. Assess observed duplicate/unknown behavior under High before changing sensitive handling.
+- [x] `tests/e2e/auth/login-and-tenant-context.e2e.spec.ts` — extend actual caller tests for invalid→corrected, delay/duplicate, rejection/recovery, keyboard and role landing using existing fixtures. A narrow handler test, if necessary, belongs at `tests/unit/auth/login-submission.test.ts`; mock only the existing client/router seam and record that it cannot prove real session authority.
+- [x] Existing auth/role and bounded consumer test files identified by the High plan — verify affected inherited paths; add no N/A feature/test program. Capture actual candidate states and contrast in the frontend evidence package with source/build/revision provenance.
+- [x] This story adapter — record commands/counts/skips/limitations, independent review and author-written final Suggested Review Order after implementation. Root owns publication/PR/agent-fix/exact-head CI and acceptance coordination; builder must return visual blockers honestly.
 
 **Acceptance Criteria (canonical IDs, no reduced scope):**
 - Given the real login and inherited consumers, when semantic foundations render, then white/ink, accepted spacing/type/radii/motion and one Tailwind source satisfy E35-2-AC1.
@@ -170,15 +170,17 @@ Planning evidence: inspected HEAD d5fc62a88a25bf345754e3f62e5bbea7af964337 and i
 
 ## Auto Run Result
 
-Status: blocked; implementation and real Auth/role verification exist, development acceptance is incomplete.
-Blocking condition: final current-head production build and minimum 18-pair visual package/formal acceptance, final exact-head required CI, and trusted hosted source/policy integration remain unmet. Native 5dc unit/DB gates and the one changed local E09 diagnostic passed with their recorded revision and skip limits; these do not grant final-head readiness.
-Next action: commit only minimal authored reference inputs and this refreshed trail; root freezes/rebuilds once, then runs one existing rich fixture across baseline/current twelve-frame phases plus six isolated login captures. No expanded PDF/My Day fixture, Auth19 rerun or broad baseline investigation. Root owns publication and trusted-source integration.
-Release status: `release_ready=false`; no done, development-complete, review-ready, merge, release or deployment claim. E35-2-REL-1/2/3 retain separately owned release work.
+Status: done
+Blocking condition: none
+Development disposition: PR115 merged accepted product head `f598bb18b4322bf55ac89db6db69a41f3eb6bfd8` as `8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9` after exact-head CI, fresh independent review and authenticated visual acceptance. Canonical delivery is installed; the actual Phase 6 automation-evidence workflow completed with no additional tests needed. Independent Sol High process review cleared the author/delivery record and its targeted evidence refresh. No product implementation blocker remains.
+Pipeline disposition: actual bounded Phase 8 audits are complete: development trace PASS (16/16), advisory NFR CONCERNS, advisory test-quality Request Changes (71/C). Audit completion is not advisory PASS. The actual single-adapter retrospective is accepted-with-open-items, retaining three release obligations. The scoped ledger review found zero35.2 entries among192global entries, so no archive or ledger write occurred. Coordinator supported state/report reconciliation and final independent process review remain terminal finalization records; this author result does not fabricate their counters or markers.
+Historical checkpoint: the prior blocked author result remains verbatim in `docs/quality/story-35-2-closeout-2026-10-29/adapter-before-closeout.md`, bound by `preservation.json`. Earlier failed/skipped results and limitations are not relabeled passed.
+Release status: `release_ready=false`; E35-2-REL-1/2/3 remain separately owned. Done means development completion of the single 35.2 adapter, not release readiness or completion of E35.
 
 ## Suggested Review Order
 
-Author: Sol High implementation/fix author supplied login/auth and bounded gateway/test rationale; Sol Low supplied foundation rationale and this evidence-only refresh from the High E09 handoff.
-Refreshed after independently High-reviewed E09 test commit `1e969651c998708e7f471ce0b968427771220632`, its one passing local diagnostic, native 5dc verification and the minimum visual packet decision. Application logic remains unchanged since the recorded product build; final current-head visual/CI acceptance remains blocked.
+Author: the original Sol High login/auth and Sol Low foundations authors supplied the implementation rationale. Sol High performs this owner-authorized evidence-integrity closeout after the exact accepted product head was merged.
+Refreshed on 2026-10-29 against merged base `8f9bcf8d` and accepted product head `f598bb18`. The original rationale and verified stops below remain applicable because this branch changes only process records. The earlier blocked trail and its evidence remain in the preserved adapter snapshot.
 
 ### A readable credential entry with honest feedback
 
@@ -226,8 +228,21 @@ The actual JS-disabled test proves POST/privacy only. The narrowly reviewed loca
 - `tests/e2e/my-day.e2e.spec.ts:659` — `const record: HeldTerminal`: records exact held-request event, phase and bounded category.
 - `tests/e2e/my-day.e2e.spec.ts:770` — `Only a completed transport after release`: retains the strict late-response verdict after isolation assertions.
 
-Evidence: Verification preserves real Auth/roles **19 passed/0 failed/0 skipped**, 9 handler, 10 controlled SDK/UI and 4 reflow passes, native privacy and 119/CORS qualification. Native hosted 5dc unit **3,744/3,744 passed** and required DB **2,146 passed/0 failed/52 explicit skips** replace local environment-limited failures as evidence for that tested revision. E09 changed local diagnostic at `1e969651` passed **1/1, retry 0, skip 0**, strict finished/after-release/none, all post-release/durable checks reached; previous failed attempt and unproven cause remain recorded.
-Limits: handler mocks/intercepted responses do not establish provider issuance. Real-device keyboard/screen-reader and applicable exhaustive release work remain separate. Owner approval covers only the two shown 5dc idle compositions. Four authored loading/error references have bounded provenance and independent image/PII review; the minimum 18-pair current-head actual packet, formal protocol acceptance and final hosted CI remain pending. Trusted-main source integration remains external and cannot be bypassed. No done, review-ready, merge or deployment claim follows.
+Evidence: exact-head [CI40846238540](https://github.com/rthunborg/Kopplas/actions/runs/40846238540) passed. Native unit results are **3,744 passed / 0 failed / 0 skipped**. The integration artifact has **2,146 passed / 0 failed / 52 pending**; pending rows are not coverage. The separate isolated-storage artifact has **1 passed / 0 failed / 0 pending**. Browser results are **73 expected + 1 flaky / 0 unexpected / 0 skipped**; one retry is retained honestly. The 35.2 real invalid/corrected login, duplicate prevention, SDK failure and existing role journeys are represented in that executed browser report.
+Current production captures comprise **18 actuals and 18 retained references** at the exact accepted head. [Owner comment6493666971](https://github.com/rthunborg/Kopplas/pull/115#issuecomment-6493666971) accepts digest `3bbc67867a5d74ae69a1a4298493cf2747ec3c3e37df162a992b02cd4fc4c94b`; trusted visual check/status passed. Fresh Coordinator review `01a1871c-8702-75f2-a70b-977ed21a74cb` returned PASS for that head. The [retained qualification record and independent receipt](https://github.com/rthunborg/Kopplas/tree/8780be7d6098a8cdd1c93f2c6dc9d1c3bb89e668/closeout/f598bb18b4322bf55ac89db6db69a41f3eb6bfd8) preserve the bounded proof and release obligations.
+Limits: handler mocks and controlled login images do not prove provider issuance. Retained references keep their original source and fixture; current captures use fresh synthetic fixtures. Exhaustive device/manual validation and Phase B consolidation remain deferred release work. No configured vision-provider result is claimed. Canonical delivery is installed at `_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json`; the actual Phase 6 automate receipt reports completed-no-additional-tests-needed using accepted evidence, with no new test execution. Independent Sol High process review and its targeted evidence refresh passed, so author development status is done. Phase 8/retro and root state/report reconciliation remain pipeline finalization work.
+
+## Author closeout — 2026-10-29
+
+This owner-authorized process branch installs the canonical delivery record and preserves the previous adapter snapshot without changing the accepted application, source/font assets, requirements or reference images. The original `<intent-contract>` and the canonical approved-content suffix remain byte-identical; `preservation.json` records the checks. Planning-only text inside the frozen canonical copy remains historical, not the adapter's current status.
+The legacy state is reconciled by the coordinator using installed readers/writers. CI and independent review are reused as actual evidence; they are not invented Phase 6/8 executions or review-loop counters. The remaining selected TEA/adapter-retrospective work is bounded evidence review against existing results, with no new product implementation or exhaustive test program. Phase 6 automation evidence and independent process review are complete; the existing fresh product review is reused. Author development status is done, permitting the adapter-only retrospective. Terminal pipeline status still waits for actual remaining Phase 8 receipts and root state reconciliation.
+Standing authorization of 2026-10-25 covers earned merge-triggered production effects after verified merge gates. Manual deployment, database push and full release approval remain separate. Completing this adapter does not authorize implementation of 35.3; the next story needs its own source-order, dependency and approval admission.
+
+### Executed bounded audit closeout
+
+The actual Phase 6 automate assessment completed with no additional tests needed. The actual Phase 8 trace gate covers all 16 development bindings (7 AC plus 9 owned states). NFR remains advisory CONCERNS because release/load/operational thresholds are not demonstrated. Test-quality audit remains advisory Request Changes (71/C), covering literal deterministic-fixture/viewport assertion selection and inherited test structure; no new behavior gap or production defect was demonstrated. Neither advisory verdict is rewritten as PASS. Receipts are in `_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/phase6-automate-result.json`, `phase8-tea-result.json` and the linked audit outputs. No new suite, fixture, browser, provider, dependency or application change was introduced by these audits.
+The actual adapter-only retrospective returned accepted-with-open-items and preserves three release obligations; the supported retro reader reports no warnings. The scoped ledger review found192entries and zero owned by35.2, with no archive or ledger writes. Bounded independent final process review remains separate. Root alone reconciles phase markers and the terminal state through the installed completion wrapper. Existing E35-2-REL-1/2/3, pending test rows and the one browser retry remain disclosed; `release_ready=false`.
+
 ## Canonical approved content (verbatim body)
 
 # Story 35.2: Tokens Font And Real Login

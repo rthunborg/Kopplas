@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "subagent": "e2e-tests",
+  "execution": "sequential-worker-step; no nested agent claimed",
+  "tests": [],
+  "fixture_needs": [],
+  "knowledge_fragments_used": ["fixture-architecture", "network-first", "test-quality", "selective-testing", "ci-burn-in", "playwright-utils-mandate"],
+  "playwright_utils_deviations": [],
+  "test_count": 0,
+  "summary": "Existing actual login native privacy, invalid/corrected keyboard, duplicate pending, SDK failure/reconciliation and rendered foundation journeys at 360x640/1440x900 cover development targets. Reuse qualified exact-head evidence; no new E2E test or resource is needed. Device/accessibility/daylight/exhaustive release work remains separate."
+}

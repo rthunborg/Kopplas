@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "base": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "status": "prepared-not-approved",
+  "trackingKey": "35-3-record-inputs-and-tables",
+  "provisionalSlice": "DT-1b",
+  "identityMethod": "git show base:path bytes; checkout newline conversion is not semantic drift",
+  "individualApproval": false,
+  "finalizedAllocation": false,
+  "release_ready": false,
+  "consumers": [
+    {
+      "path": "src/components/crm/CustomerList.tsx",
+      "existsAtBase": true,
+      "gitBlob": "838948d0676c0400d882c2b8b7e6a8a3c314a987",
+      "gitBytesSha256": "b45cdced9d97e1d0d9a6edad2215e46a9818eafbf96116e7e9df2c2b7f108d06",
+      "bytes": 11014
+    },
+    {
+      "path": "src/components/crm/CustomerDetail.tsx",
+      "existsAtBase": true,
+      "gitBlob": "92196c79579d08c0ff386e72b6c0d0f3d8d75582",
+      "gitBytesSha256": "7eba5ae4831defa95d769705388233795894431e19d8197b55afad698e9cd8b9",
+      "bytes": 16274
+    },
+    {
+      "path": "src/components/crm/CustomerDialog.tsx",
+      "existsAtBase": true,
+      "gitBlob": "5804d8ddd432699bcd50dfce24133b4ae7d935e9",
+      "gitBytesSha256": "072bc681a6685ba4f9e08d8f76b86e5ba2ae0abe8ff5e801b0a0efbac60475c9",
+      "bytes": 9742
+    },
+    {
+      "path": "src/components/crm/FormField.tsx",
+      "existsAtBase": true,
+      "gitBlob": "b1c304820926b2db3932a4cf827f75c06c26ef1f",
+      "gitBytesSha256": "75781de03dc6667d8e6ec71d3401061674ecc801baf274549b75e04d6c135281",
+      "bytes": 6031
+    },
+    {
+      "path": "src/components/crm/CustomerTypeBadge.tsx",
+      "existsAtBase": true,
+      "gitBlob": "db5b8e48d048769b0dc1b4b2da8d05d97d15fd9e",
+      "gitBytesSha256": "8be3253ef818797a3eceb4b93c04f85f846da7881ee771c5b8053b5369c7d9c5",
+      "bytes": 981
+    },
+    {
+      "path": "src/components/crm/ArchiveButton.tsx",
+      "existsAtBase": true,
+      "gitBlob": "6c4366b66d8adc2179a7eb65ce3f5e8b83144ce5",
+      "gitBytesSha256": "c5e088ec258751aa95657e2e48749bcc095841f4704c6d012acf456571c67fce",
+      "bytes": 3973
+    },
+    {
+      "path": "src/components/crm/customer-presentation.ts",
+      "existsAtBase": true,
+      "gitBlob": "a1e0fa9fdce6e28534fba7ee7bfc8fb6fd309a54",
+      "gitBytesSha256": "05e99d221039d0febfe2689d1f32769fa2e1fd04591e448e86d9eac18b10ffc3",
+      "bytes": 6561
+    },
+    {
+      "path": "tests/e2e/crm/customers.e2e.spec.ts",
+      "existsAtBase": true,
+      "gitBlob": "3332429018452e85d61d0e0b25cdcf1e24e8220d",
+      "gitBytesSha256": "8c06562b47de04d7dd579a3789db686e80986aaab0882be69ba59859a4af6b93",
+      "bytes": 12049
+    },
+    {
+      "path": "tests/unit/components/crm/customer-presentation.test.ts",
+      "existsAtBase": true,
+      "gitBlob": "5efa8d0e115df24107c84bbc577a3f04ddf4dc6d",
+      "gitBytesSha256": "f73154600ece4a79476f9a5574f619208e8b3be30e4efb0f40e53bb1dc7a7ce7",
+      "bytes": 10064
+    },
+    {
+      "path": "src/features/crm/actions.ts",
+      "existsAtBase": true,
+      "gitBlob": "4f61c03a250b6067c457609c36b3b887839f856c",
+      "gitBytesSha256": "9df8f1ae665d4ad83915b686ee19a0d3a273312723fe415503fbde96b5d58146",
+      "bytes": 8320
+    },
+    {
+      "path": "src/features/crm/read.ts",
+      "existsAtBase": true,
+      "gitBlob": "4e476034bc218aad54aec82e50494828fba4766a",
+      "gitBytesSha256": "136b6f0a8c8fca52721802bc6a22a385261c9d9bf0bcd973edd57b2eed7cfa65",
+      "bytes": 6446
+    },
+    {
+      "path": "src/features/crm/action-state.ts",
+      "existsAtBase": true,
+      "gitBlob": "3e9d2e99d2cd8baf8f90eac8a17c206aa5ae3e63",
+      "gitBytesSha256": "069d690d360fbf62059035f2e2e3ca65c5730b4c6d12f88abf91687637babde7",
+      "bytes": 2760
+    },
+    {
+      "path": "src/features/crm/form-parsing.ts",
+      "existsAtBase": true,
+      "gitBlob": "26cdd36a07bf5cb4776a45f2a18ef7935f07a22b",
+      "gitBytesSha256": "c80af542ef28a0eb2cbf51aae629679dfccee1833120cb633c523010e0f7b880",
+      "bytes": 9653
+    }
+  ]
+}

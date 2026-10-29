@@ -1,0 +1,37 @@
+{
+  "domain": "reliability",
+  "execution": "sequential-worker-step",
+  "ran": true,
+  "source_sha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Duplicate guard/explicit retry/unknown reconciliation",
+      "status": "PASS",
+      "description": "Actual caller and real SDK/browser evidence back known bounded behavior",
+      "evidence": [
+        "tests/unit/auth/login-submission.test.ts",
+        "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Operational error rate/burn-in/MTTR",
+      "status": "CONCERNS",
+      "description": "Threshold and applicable long-term evidence UNKNOWN; existing browser retry remains disclosed",
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json"
+      ],
+      "recommendations": [
+        "Retain UNKNOWN/CONCERNS and route applicable release evidence to existing owners; no invented threshold or new program."
+      ]
+    }
+  ],
+  "compliance": {
+    "release_approval": "not-assessed",
+    "provider_issuance_guarantee": "not-claimed"
+  },
+  "priority_actions": [],
+  "summary": "Bounded evidence audit; no new scan/runtime execution or compliance certification."
+}

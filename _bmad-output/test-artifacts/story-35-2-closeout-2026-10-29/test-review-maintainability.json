@@ -1,0 +1,92 @@
+{
+  "dimension": "maintainability",
+  "ran": true,
+  "execution": "sequential-worker-step",
+  "score": 80,
+  "max_score": 100,
+  "grade": "B",
+  "violations": [
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 69,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 76,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 83,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 96,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 112,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 106,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 304,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 326,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 418,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 460,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    }
+  ],
+  "recommendations": [],
+  "summary": "Literal installed test-quality registry applied; no source edits or new execution. Behavioral trace is separate."
+}

@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "base": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "scope": "Clone-reproducible staged content identities, not a new product or test execution",
+  "newArtifacts": [
+    {
+      "path": "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+      "rawAndGitSha256": "7a62c0897ccede671148c234144db507d32e8c6b6fb7c4c519ded88c7d8bc5cf",
+      "gitBlob": "4171040ebeb11ee68d59e0b1ae30ebdfdfd7ba64",
+      "size": 10463
+    },
+    {
+      "path": "_bmad-output/auto-bmad/history/spec-design-35-2-35-2/pre-closeout-2026-10-29.yaml",
+      "rawAndGitSha256": "cefb7f7e5faf62e512583380732055d9addaebba0b943caaacdffdde0f870dbd",
+      "gitBlob": "a313c217444ffdeba12b4ebf1262a134e6e397a6",
+      "size": 6046
+    },
+    {
+      "path": "_bmad-output/auto-bmad/reports/spec-design-35-2-35-2.md",
+      "rawAndGitSha256": "cceae26548d3ae2fcd43522b5aa01bca04e95ccfb4c6e68c8b83b64868a46884",
+      "gitBlob": "df67d038e4fc80d735088a8903747e8444a1ad0b",
+      "size": 4006
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-3-record-inputs-and-tables.md",
+      "rawAndGitSha256": "d70ddd6e3291fc42a0e20e6aeb6f5a2d4df62d619bad0b40588c317be35fe445",
+      "gitBlob": "ba9cb682b6794b6ac37a045a440be2f1957b8ff0",
+      "size": 13360
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/base-and-consumers.json",
+      "rawAndGitSha256": "3de0415979ee7d7a6130ba76db15a6a24a5d82917ff614559900a0f1a5b245e5",
+      "gitBlob": "ca9d7ef7752d99cd5d662dd15fbdb97909a9eab0",
+      "size": 142019
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/route-allocation.md",
+      "rawAndGitSha256": "c1bc67657d279838ee53fef44236a7cf55570ae449ca386b41f087b8090db6cb",
+      "gitBlob": "3496a0199d0221482f56527e301d9bb4302803f1",
+      "size": 5100
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/story-index.json",
+      "rawAndGitSha256": "36d2abaffaddbc84ac3f1b13ec72e93dd53b7140200b93c10347e417a90f93d4",
+      "gitBlob": "c24e24044b7047be8ae3426990d90afc81b53327",
+      "size": 6218
+    },
+    {
+      "path": "_bmad-output/specs/spec-design-35-2/RETROSPECTIVE.md",
+      "rawAndGitSha256": "4b794f2e3cbda9bdadfa3f80c91e93f330a17437de7b9604f8bf41a254c89fe2",
+      "gitBlob": "e4805698f96bca5c55d1d1e46fe32a398502a4c1",
+      "size": 12216
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-3.md",
+      "rawAndGitSha256": "d354e22692446c6f3413abded4fdc7fb07dfa2bf8d4da6924373ca29996094fa",
+      "gitBlob": "3ac489f3674c692ece6b8555fe8419a866c240ae",
+      "size": 13696
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/automate-api.json",
+      "rawAndGitSha256": "17138ae938533e734ce9c4fecb59345e11aa4e0c87c53e7c65afe411a409e294",
+      "gitBlob": "1d83acced70c83c7f7b2d1159ef9f0c790d7cf96",
+      "size": 755
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/automate-e2e.json",
+      "rawAndGitSha256": "e0a7c74a2834a32b4f9f6c7016663597bf9651b586aaca349f8f2213cd4b3cbe",
+      "gitBlob": "75890b8544bde7e383cc2fb7202305b1ae0d9ad8",
+      "size": 717
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/automation-summary.md",
+      "rawAndGitSha256": "bdb45a6fa63deb613367c1900aa5898f61b9ad71202c6bb702107980e9377c2f",
+      "gitBlob": "9145dd90f6db9a4751f02cac9ae4eb34b8ca86b6",
+      "size": 6415
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/build-receipts.py",
+      "rawAndGitSha256": "eaf2188ec94fcc7b89b1e3565e824873f3f2193a250142e00dcbb1c98debb417",
+      "gitBlob": "aa6cd6ef70bf6e9f2c96f4e235d8d240a95dbeb5",
+      "size": 22025
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/convention-baseline.json",
+      "rawAndGitSha256": "daa71ae8947aec21beca1a6ba22271e2434e31dc4ee285a6f02051815f81cdf8",
+      "gitBlob": "fbed996cea24bb87aa2bc7b22c658c44822f52f6",
+      "size": 4295
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/coverage-matrix.json",
+      "rawAndGitSha256": "9511e946cd41f7cd0e5b540ac660aa78ef683516318bbfff640345e68d059d24",
+      "gitBlob": "0e13ac6f4c153f36082faf1afc4d4c2d9f973a3a",
+      "size": 54716
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/e2e-trace-summary.json",
+      "rawAndGitSha256": "d547549952a11bfec7775b63c3a68905ec76a19b9a1e4362db245f1e0f35dad1",
+      "gitBlob": "5b4f927325bd4791eef030f6f81d47f5c58a012b",
+      "size": 3579
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/font-byte-check.json",
+      "rawAndGitSha256": "36d2db3574d8632794eaa9e13cbfe1c4d60e5e065887c31126377c580cdef692",
+      "gitBlob": "71ccce7b7f0edcdc3533da4b67ab28736cc2ab2b",
+      "size": 956
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/gate-decision.json",
+      "rawAndGitSha256": "8dddf849c11b50fd81672b97dc4f54516fb02b6937a53b11b7dbd71a1c6a49ac",
+      "gitBlob": "e3299b1f6a45bc20e4ca007a86d114a97b914ae4",
+      "size": 844
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/input-provenance.json",
+      "rawAndGitSha256": "2f413750ad54235c97805dc4c0554f27f73bbad96217d89fa3cba09a744c78a9",
+      "gitBlob": "42a327ce322fd39af34518f7fa36dab4cee65bf5",
+      "size": 1848
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/nfr-assessment.md",
+      "rawAndGitSha256": "ba43003937699333dee081042557503412115517193ed2b68a88245b3eaccdae",
+      "gitBlob": "d489da1b7ed7d13096aa6c725304cc3800611b08",
+      "size": 6561
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/nfr-maintainability.json",
+      "rawAndGitSha256": "00ed394216319fa60f2953ac99017862304c696c2fc992f8ebc3531339a32898",
+      "gitBlob": "e2b2bc6468127af94337e4884f9d81932f0cb0d2",
+      "size": 1486
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/nfr-performance.json",
+      "rawAndGitSha256": "2e1177ee2a07ea55359b27ebbf99c90654416f0dc416bf69c78d619eacf35642",
+      "gitBlob": "7d93e9143fbbcd4c2fafbdd47a0f53aedaaef429",
+      "size": 1021
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/nfr-reliability.json",
+      "rawAndGitSha256": "17f3e27e8bf5a97b1fbefe7050328a6cabbdeefac3aeac433c88ac0946c08f43",
+      "gitBlob": "e701bec17f1588d4812097fa3743e5a53761fc45",
+      "size": 1394
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/nfr-security.json",
+      "rawAndGitSha256": "9b845d9bc21b784710af8b7db6fd8e3f8c3aecc50dc0ba39e41044a53e488081",
+      "gitBlob": "a265305c6cff4a9b6720c2bf0a978dc913207096",
+      "size": 1252
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/nfr-summary.json",
+      "rawAndGitSha256": "b3d2ff045bc076e474ba6b1eca268574126dcc6c697cb4e690146326081b9f41",
+      "gitBlob": "1495f1cdb6154601ad862f365c00c6aed04ddb17",
+      "size": 324
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/output-manifest.json",
+      "rawAndGitSha256": "49d5083170b899bc50a0dcabff7d128feb9063ea4150110b5d0c4100942dad8c",
+      "gitBlob": "ebafee282ea68d489c515363d68826c0476bcc40",
+      "size": 3582
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/phase6-automate-result.json",
+      "rawAndGitSha256": "386ed47ae242d833f42a214ff47ea3dcd1ca356e54f1fa2687899403d7e04329",
+      "gitBlob": "04270f9d5efaf10e8ef1dba64422c28c26ad9d62",
+      "size": 2738
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/phase8-tea-result.json",
+      "rawAndGitSha256": "8f3688732b405cad86e40df8cd73d65080f19bf419d77fa3892ccec1c2814b2c",
+      "gitBlob": "d6a2a6675b16720718633ad398fd6212b8cf25b0",
+      "size": 3685
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/test-review-determinism.json",
+      "rawAndGitSha256": "0206d4d977d21dd4350072020fd074bd2302f77fcef37e7d9c94005cd73947ec",
+      "gitBlob": "927aac439454ccd8ad84bad725b6b1c150677a8d",
+      "size": 1909
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/test-review-isolation.json",
+      "rawAndGitSha256": "5f6556b6d913b13ff088e1dc067a1987e33adef68d68ff9faf46eff41765739c",
+      "gitBlob": "7b9b1b5e7a9af9352c42f076ea7e965f7dbbe43b",
+      "size": 760
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/test-review-maintainability.json",
+      "rawAndGitSha256": "0dd904d59c878fa503681da31f9f135696abab55a662adfc0efe3511072f74ea",
+      "gitBlob": "0cfd1b6fb501e2e6ab06ae01fa2a705564514c03",
+      "size": 5708
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/test-review-performance.json",
+      "rawAndGitSha256": "fd129bee339ffe2881292d9833c6bc6135a13e43005a901fa8b0718cc7fefa22",
+      "gitBlob": "b1ce5651bd1f0bda226d2e554f0fe6e4c5e36a66",
+      "size": 976
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/test-review-summary.json",
+      "rawAndGitSha256": "822caf351a61c0b82e0a24135acdc525959ae3dbc4d922fb55f929fc09a37602",
+      "gitBlob": "ceda7c71540249b8e5fd17a1e152b1d81c81cb77",
+      "size": 9165
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/test-review.md",
+      "rawAndGitSha256": "d47b41b957a1d108311bb74a4ec2ef63d9c49d9098fd25b6c9cd4ac46198c275",
+      "gitBlob": "cfa9b2c468fce8aa4c37aac5c695db25472de459",
+      "size": 11127
+    },
+    {
+      "path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/traceability-matrix.md",
+      "rawAndGitSha256": "9fe8929ce8b540117a456f5f5cccf436a9d0e8bbcd86994335d4c9220a15615d",
+      "gitBlob": "e1dd8167cbcea9ce7f5fef9dd902b4a07f1855a7",
+      "size": 7839
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-2026-10-29/adapter-before-closeout.md",
+      "rawAndGitSha256": "bd7d7f8c81993dd662838dabd202e944ba8bd5f3206e0a42184ac6ae0ca08437",
+      "gitBlob": "8cd11ac741bc52991fad14f724c6b7afc721557e",
+      "size": 49495
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-2026-10-29/author-done-independent-review.json",
+      "rawAndGitSha256": "1ae4ed31843a661b50b0a3b525c9646d86e6bac76a07e24266701f58a6d6268a",
+      "gitBlob": "057c3a1dfaff1c71130a55dd1728c45752f14234",
+      "size": 2979
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-2026-10-29/blocker-resolution.json",
+      "rawAndGitSha256": "13c4fd2cc5fe682e2de31c452bd3a81db3ccd73a73e5aca046149589d193d805",
+      "gitBlob": "a55acfba85a6f01afe14556e43eec4861e9301d7",
+      "size": 1785
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-2026-10-29/deferred-scope-review.json",
+      "rawAndGitSha256": "36182d6035f0ecc63fb35a0662d926ebefb331a37a7623b5d0d80331077dee85",
+      "gitBlob": "4ba5356d62b2c1b2734e107c38f20d923d640f6c",
+      "size": 1995
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-2026-10-29/final-process-independent-review.json",
+      "rawAndGitSha256": "abfc7c657df340dceb6eb112e7878c746e33b5105cfd0393120ff7bd2feae529",
+      "gitBlob": "29884ee21794b3e6761262efa8259155f3659c82",
+      "size": 6520
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-2026-10-29/postwrite-independent-verification.json",
+      "rawAndGitSha256": "962c65074960eeb759cd5ac5f35173fedad1ae19d118af844a6a630a06705861",
+      "gitBlob": "c1752d212f18ddaf5e74cf57aa1f57215da075f6",
+      "size": 2806
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-2026-10-29/preservation.json",
+      "rawAndGitSha256": "6960de2cdd1ef7723f26ee20e56c1c35f71cdf0efe2136340b2f7cf2f4a652e2",
+      "gitBlob": "857b5674f53dc993377f6a938b0ef834fcd2eb17",
+      "size": 4650
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-retro-routing-2026-10-29.json",
+      "rawAndGitSha256": "96fd3b029069353e83faeec56184e7840616f930f8d5e5b3c1f86951715b8da8",
+      "gitBlob": "81b8cbf12c50a156ad27da6183ddefbed218e4c1",
+      "size": 238
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-review-routing-2026-10-29.json",
+      "rawAndGitSha256": "53e714c2ec21f96548d387b423a0112f232b39cc15d37830cf82bea9099955c8",
+      "gitBlob": "3d388c859e8bb0f747d4064bb85ddaa72f473216",
+      "size": 264
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-tea-routing-2026-10-29.json",
+      "rawAndGitSha256": "9cb9e23ec0887626b0ba780086a6236b1569c4e4ea1f9125c5c4cfffc7c21bcd",
+      "gitBlob": "c4ea801ec02e119be0418baec68c1edca37ca243",
+      "size": 252
+    },
+    {
+      "path": "docs/quality/story-35-2-process-closeout-routing-2026-10-29.json",
+      "rawAndGitSha256": "5bde970694522750f019abce45d5f7f4b8d2e1b8ef342d5970f95a715d7b6587",
+      "gitBlob": "a72f9a640cc1a8914c2ae5ab9c5944072bde72aa",
+      "size": 1167
+    },
+    {
+      "path": "docs/quality/story-35-3-admission-2026-10-29.json",
+      "rawAndGitSha256": "193b86d20e579dc7bf7e6d5a4886cbc059975fdb97aebcf0ed2319a39d4db565",
+      "gitBlob": "c5d13c5b08b5c6ed20c2cd1e5efc6f89bf89cec4",
+      "size": 4019
+    },
+    {
+      "path": "docs/quality/story-35-3-admission-2026-10-29.md",
+      "rawAndGitSha256": "eba805347f9bfbb09e5323391ef8a151170fe6c2c8ddfa6d6fbedaaf5ea3368d",
+      "gitBlob": "2de8bd91b07384ebdba5478e9cd61215e05f228e",
+      "size": 16354
+    },
+    {
+      "path": "docs/quality/story-35-3-admission-routing-2026-10-29.json",
+      "rawAndGitSha256": "d657f21456a243a4b06382d447850682476f74339cf13dc7af9d080be4753500",
+      "gitBlob": "68dc24f792b07f2e2ea5c23a3f5a74d5cc9e12ce",
+      "size": 223
+    },
+    {
+      "path": "docs/quality/story-35-3-source-integration-2026-10-29.json",
+      "rawAndGitSha256": "33682cd5b4269e813c243e0f78fc322f26bd74257ffb63231879b2af315f378a",
+      "gitBlob": "0739fcac6fdcd95141b8b702219953dfcaba29e4",
+      "size": 2001
+    }
+  ],
+  "existingCanonicalText": [
+    {
+      "path": "_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md",
+      "workingCopySha256": "14d36ff67cf51ea65a7fca86d5dec32b5b035cfc4ae4c6df76584cde0c93e075",
+      "canonicalGitSha256": "ea11806a0c9c24a7c882e6d80efbe76f7efc8d8071caeeb9779e3be626e739e1",
+      "gitBlob": "83992ccd6c76421e2c5c1b100704ca334e136893",
+      "policy": "Original text normalization retained. Prior author/review working-copy hashes remain historical raw audit-point facts; this Git hash identifies the committed LF representation."
+    },
+    {
+      "path": "_bmad-output/auto-bmad/state/spec-design-35-2-35-2.yaml",
+      "workingCopySha256": "e587c64df24b52bff2c3bf02ab15eeeac6ee81f01b1f2d7054934bf5bbe0e583",
+      "canonicalGitSha256": "86ad5a4019f66aeb2ce92ad2c388db9af654473a755274ff3cd90926190d4e82",
+      "gitBlob": "ec88da0278e6bb420cc866b70dfb9c9fe3c7ea5e",
+      "policy": "Original text normalization retained. Prior author/review working-copy hashes remain historical raw audit-point facts; this Git hash identifies the committed LF representation."
+    },
+    {
+      "path": "docs/quality/frontend-next-admission.md",
+      "workingCopySha256": "290e8d6c6eeea821bbbb2798ceb0740b117d12427416a20166162514a0842223",
+      "canonicalGitSha256": "d3d101fa7f8e3fec0493906f716a3fde188f1c562dd21a16a6b452dbce6c1a19",
+      "gitBlob": "8d62d78a8e718663a17d32564f2308cdac93effc",
+      "policy": "Original text normalization retained. Prior author/review working-copy hashes remain historical raw audit-point facts; this Git hash identifies the committed LF representation."
+    }
+  ],
+  "historicalReferences": "Earlier review or TEA input-point hashes intentionally identify those earlier audit states; later author/finalization edits are represented by their own records, never by rewriting historical hashes.",
+  "selfExcluded": true
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-staged-byte-integrity-review",
+  "date": "2026-10-29",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "verdict": "PASS",
+  "scope": "Poststaging content-addressed artifact check only; no broad product/process re-review",
+  "stagedProvenancePath": "docs/quality/story-35-2-closeout-2026-10-29/staged-byte-provenance.json",
+  "stagedProvenanceSha256": "a3f207215f64ca2ea78749a9094864439eb30b91841d1bfcd4edb8eeda889104",
+  "stagedAttributesSha256": "7181e7b88247d15bbf68a3fce180d9e272101ab188b00c17537ac79355c2b98c",
+  "stagedInventorySha256": "2fda9e6fdbd418f5d3b367eab846513a17c1f9c2a5ee96e1387c8bffd5233f03",
+  "checks": {
+    "teaOutputManifest": {
+      "count": 25,
+      "stagedSha256Mismatches": 0
+    },
+    "newArtifacts": {
+      "count": 50,
+      "rawWorkingVsStagedShaBlobSizeMismatches": 0
+    },
+    "existingCanonicalText": {
+      "count": 3,
+      "mappingMismatches": 0,
+      "paths": [
+        "_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md",
+        "_bmad-output/auto-bmad/state/spec-design-35-2-35-2.yaml",
+        "docs/quality/frontend-next-admission.md"
+      ],
+      "policy": "Original LF Git text normalization retained; raw working/auditpoint identities are explicitly distinguished"
+    },
+    "approvedRawSourcePins": {
+      "count": 5,
+      "stagedShaBlobMismatches": 0
+    },
+    "attributes": "Exactnewfiles/datescoped ownedartifact/history directories only; -text preserves hashboundbytes; cr-at-eol allows preservedCRLF without broader whitespacecheck removal",
+    "whitespaceVerification": "Temporary owned unstaged trailing-space probe in datedartifact directory was detected by gitdiff--no-index--check and removed in finally; no Git mutation",
+    "gitDiffCheckExitCodes": [
+      0,
+      0
+    ],
+    "currentProofReferences": "Currentnewartifact hashes now reproduce from cloneGitbytes. Earlierauditpoint hashes and preterminalstate are explicitlyhistorical/superseded, not rewritten or claimedcurrent; privatepayloadrefs remainprivateauditinputs"
+  },
+  "buildReceiptsRationale": "build-receipts.py is retained author-owned process-audit generator/provenance under datedtest-artifacts. It writes machinecompanions from boundedhuman-reviewed analysis; no runtimeapp/framework/dependency/test execution, network, resource, Git or workflowstate hook is introduced. Rerun is not a byteidentical historicalexecution attestation.",
+  "limits": [
+    "Stagedprovenance snapshot excludes itself; thislaterindependentreceipt is likewise outsideits50-row snapshot and may be stagedwithoutrecursivehashupdates",
+    "No primarysource/workingartifact normalization, app/test edits, Git/state/resource/remote mutations by reviewer",
+    "ExistingprocessPASS/terminalcloseout review remains valid; processPRCI/freshCoordinatorreview/integration stillpending"
+  ]
+}

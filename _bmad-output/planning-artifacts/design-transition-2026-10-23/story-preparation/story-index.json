@@ -1,0 +1,173 @@
+[
+  {
+    "id": "35.1",
+    "key": "35-1-authority-and-base-contract",
+    "slice": "DT-0",
+    "path": "_bmad-output/implementation-artifacts/spec-35-1-authority-and-base-contract.md",
+    "dependencies": "Approved DT package; independent of E15 integration",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.2",
+    "key": "35-2-tokens-font-and-real-login",
+    "slice": "DT-1a",
+    "path": "_bmad-output/implementation-artifacts/spec-35-2-tokens-font-and-real-login.md",
+    "dependencies": "35.1; E15 global-style/root-layout reconciliation",
+    "blockers": "B-BASE B-SHARED B-FONT B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.3",
+    "key": "35-3-record-inputs-and-tables",
+    "slice": "DT-1b",
+    "path": "_bmad-output/implementation-artifacts/spec-35-3-record-inputs-and-tables.md",
+    "dependencies": "35.2; shared primitive ownership reconciliation",
+    "blockers": "B-SHARED B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.4",
+    "key": "35-4-dialogs-feedback-and-selected-files",
+    "slice": "DT-1c",
+    "path": "_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md",
+    "dependencies": "35.3; shared dialogs/E20 selected-link reconciliation",
+    "blockers": "B-SHARED B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.5",
+    "key": "35-5-authorized-responsive-shell",
+    "slice": "DT-1d",
+    "path": "_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md",
+    "dependencies": "35.4; E15 shell/nav/registry reconciliation",
+    "blockers": "B-SHARED B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.6",
+    "key": "35-6-crm-record-journeys",
+    "slice": "DT-2a",
+    "path": "_bmad-output/implementation-artifacts/spec-35-6-crm-record-journeys.md",
+    "dependencies": "35.5; E20 integrated context links",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.7",
+    "key": "35-7-settings-and-manual-pricing",
+    "slice": "DT-2b",
+    "path": "_bmad-output/implementation-artifacts/spec-35-7-settings-and-manual-pricing.md",
+    "dependencies": "35.6",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.8",
+    "key": "35-8-calculation-editor-and-review",
+    "slice": "DT-3a",
+    "path": "_bmad-output/implementation-artifacts/spec-35-8-calculation-editor-and-review.md",
+    "dependencies": "35.7",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.9",
+    "key": "35-9-quote-pdf-and-manual-acceptance",
+    "slice": "DT-3b",
+    "path": "_bmad-output/implementation-artifacts/spec-35-9-quote-pdf-and-manual-acceptance.md",
+    "dependencies": "35.8; current E10/ADR-B008 authority",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 8
+  },
+  {
+    "id": "35.10",
+    "key": "35-10-integrated-job-workspace",
+    "slice": "DT-4a",
+    "path": "_bmad-output/implementation-artifacts/spec-35-10-integrated-job-workspace.md",
+    "dependencies": "35.9; integrated E16",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.11",
+    "key": "35-11-integrated-documents-and-context",
+    "slice": "DT-4b",
+    "path": "_bmad-output/implementation-artifacts/spec-35-11-integrated-documents-and-context.md",
+    "dependencies": "35.10; integrated E20",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.12",
+    "key": "35-12-integrated-scheduling-views",
+    "slice": "DT-5a",
+    "path": "_bmad-output/implementation-artifacts/spec-35-12-integrated-scheduling-views.md",
+    "dependencies": "35.11 AND DT-B15 actual integrated E15/evidence/reconciled owner",
+    "blockers": "B-B15 B-SHARED B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.13",
+    "key": "35-13-integrated-time-min-dag-and-profiles",
+    "slice": "DT-5b",
+    "path": "_bmad-output/implementation-artifacts/spec-35-13-integrated-time-min-dag-and-profiles.md",
+    "dependencies": "35.12 AND DT-B15 actual E15 submitted-time/Min dag delivery",
+    "blockers": "B-B15 B-SHARED B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.14",
+    "key": "35-14-live-dashboard-pipeline",
+    "slice": "DT-6a",
+    "path": "_bmad-output/implementation-artifacts/spec-35-14-live-dashboard-pipeline.md",
+    "dependencies": "35.13 proposed order; independent preparation can continue without DT-B15",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.15",
+    "key": "35-15-notification-center-and-preferences",
+    "slice": "DT-6b",
+    "path": "_bmad-output/implementation-artifacts/spec-35-15-notification-center-and-preferences.md",
+    "dependencies": "35.14",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.16",
+    "key": "35-16-users-roles-and-effective-permissions",
+    "slice": "DT-6c",
+    "path": "_bmad-output/implementation-artifacts/spec-35-16-users-roles-and-effective-permissions.md",
+    "dependencies": "35.15; resource/profile visual edits remain with 35.13/E15",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.17",
+    "key": "35-17-first-admin-onboarding",
+    "slice": "DT-6d",
+    "path": "_bmad-output/implementation-artifacts/spec-35-17-first-admin-onboarding.md",
+    "dependencies": "35.16",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.18",
+    "key": "35-18-operator-console-presentation",
+    "slice": "DT-6e",
+    "path": "_bmad-output/implementation-artifacts/spec-35-18-operator-console-presentation.md",
+    "dependencies": "35.17; ADR-B010 enablement remains gated",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  },
+  {
+    "id": "35.19",
+    "key": "35-19-auth-and-existing-public-feedback",
+    "slice": "DT-6f",
+    "path": "_bmad-output/implementation-artifacts/spec-35-19-auth-and-existing-public-feedback.md",
+    "dependencies": "35.18",
+    "blockers": "B-BASE B-TEST B-APPROVAL",
+    "ac_count": 7
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "dimension": "isolation",
+  "ran": true,
+  "execution": "sequential-worker-step",
+  "score": 95,
+  "max_score": 100,
+  "grade": "A",
+  "violations": [
+    {
+      "file": "tests/unit/auth/login-submission.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "description": "Nine handler instances are top-level with no describe/context group, matching the literal ungrouped-suite row; their names already identify story and scenario.",
+      "suggestion": "If separately authorized, add one descriptive suite group without changing behavior."
+    }
+  ],
+  "recommendations": [],
+  "summary": "Literal installed test-quality registry applied; no source edits or new execution. Behavioral trace is separate."
+}

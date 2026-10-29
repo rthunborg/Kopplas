@@ -1,0 +1,20 @@
+{
+  "dimension": "performance",
+  "ran": true,
+  "execution": "sequential-worker-step",
+  "score": 95,
+  "max_score": 100,
+  "grade": "A",
+  "violations": [
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 60,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "description": "The shared login helper and subsequent content reads register hydration/data assertions after page.goto; no data-specific signal is registered before that navigation. Submit-time Auth interception is correctly before submit, and existing server/locator checks execute.",
+      "suggestion": "If separately authorized, register the relevant existing navigation/data readiness signal before the action; preserve real-cookie authority and avoid stubbing away the provider."
+    }
+  ],
+  "recommendations": [],
+  "summary": "Literal installed test-quality registry applied; no source edits or new execution. Behavioral trace is separate."
+}

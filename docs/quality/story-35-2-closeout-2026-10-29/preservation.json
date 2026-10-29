@@ -1,0 +1,156 @@
+{
+  "baseRevision": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "adapterPath": "_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md",
+  "adapterGitBlob": "8cd11ac741bc52991fad14f724c6b7afc721557e",
+  "adapterGitBlobSHA256": "bd7d7f8c81993dd662838dabd202e944ba8bd5f3206e0a42184ac6ae0ca08437",
+  "adapterWorkingBytesSHA256": "925a9dee4d88507c80ddd4feaedb0f4040399d50616f1ffef8bc32b8cabbb51b",
+  "immutableIntentSHA256": "b33332988fb3982ab3867bdd442bc1b1a2945741b6453271ac6fc28630b193f0",
+  "immutableCanonicalSuffixSHA256": "a9712b2b56437c09b45c060e6110de69d397dff8a8ca575815e5261104ca7c27",
+  "snapshotPath": "docs/quality/story-35-2-closeout-2026-10-29/adapter-before-closeout.md",
+  "currentAuthorStatus": "done",
+  "intentUnchanged": true,
+  "canonicalSuffixUnchanged": true,
+  "suggestedReviewOrderCount": 1,
+  "reviewStops": [
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "line": 19,
+      "anchor": "LoginPage",
+      "matches": true
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "line": 99,
+      "anchor": "method=\"post\"",
+      "matches": true
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "line": 137,
+      "anchor": "login-error",
+      "matches": true
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "line": 37,
+      "anchor": "if (inFlight.current) return;",
+      "matches": true
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "line": 55,
+      "anchor": "const rejected",
+      "matches": true
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "line": 79,
+      "anchor": "router.refresh();",
+      "matches": true
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "line": 146,
+      "anchor": "href=\"/\"",
+      "matches": true
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "line": 5,
+      "anchor": "const inter = localFont({",
+      "matches": true
+    },
+    {
+      "path": "src/app/globals.css",
+      "line": 4,
+      "anchor": "@theme inline",
+      "matches": true
+    },
+    {
+      "path": "src/app/globals.css",
+      "line": 154,
+      "anchor": "prefers-reduced-motion",
+      "matches": true
+    },
+    {
+      "path": ".gitattributes",
+      "line": 35,
+      "anchor": "/public/licenses/inter/OFL.txt -text",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/auth/login-submission.test.ts",
+      "line": 95,
+      "anchor": "E35-2-T-loading/submitting/confirmed",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/auth/login-submission.test.ts",
+      "line": 125,
+      "anchor": "E35-2-T-validation/denied/connection-required/error-retry",
+      "matches": true
+    },
+    {
+      "path": "tests/unit/auth/login-submission.test.ts",
+      "line": 182,
+      "anchor": "E35-2-T-unknown",
+      "matches": true
+    },
+    {
+      "path": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 228,
+      "anchor": "E35-2-T-AC7",
+      "matches": true
+    },
+    {
+      "path": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 145,
+      "anchor": "native submission uses POST",
+      "matches": true
+    },
+    {
+      "path": "ops/test/kong.yml",
+      "line": 11,
+      "anchor": "exposed_headers",
+      "matches": true
+    },
+    {
+      "path": "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "line": 39,
+      "anchor": "expectedLanding",
+      "matches": true
+    },
+    {
+      "path": "src/app/page.tsx",
+      "line": 15,
+      "anchor": "resolveTenantContext",
+      "matches": true
+    },
+    {
+      "path": "tests/e2e/my-day.e2e.spec.ts",
+      "line": 659,
+      "anchor": "const record: HeldTerminal",
+      "matches": true
+    },
+    {
+      "path": "tests/e2e/my-day.e2e.spec.ts",
+      "line": 770,
+      "anchor": "Only a completed transport after release",
+      "matches": true
+    }
+  ],
+  "currentAdapterWorkingSHA256": "14d36ff67cf51ea65a7fca86d5dec32b5b035cfc4ae4c6df76584cde0c93e075",
+  "authorReaderResult": {
+    "status": "done",
+    "autoRunResult": "done",
+    "blockingCondition": null,
+    "parseWarnings": []
+  },
+  "processChecks": {
+    "completionWrapperBaseline": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+    "frontendApplicability": "not-applicable; complete diff and untracked inventory contain no frontend-bearing paths",
+    "canonicalDeliverySchema": "passed; approval_granted=false",
+    "newProductTestsExecuted": false,
+    "canonicalStateWritesByAuthor": false
+  }
+}

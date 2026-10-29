@@ -1,0 +1,105 @@
+{
+  "corpusSize": 556,
+  "sampled": 40,
+  "sample_files": [
+    "tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts",
+    "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+    "tests/e2e/auth/auth-mail-callback.e2e.spec.ts",
+    "tests/e2e/auth/operator-console.atdd.e2e.spec.ts",
+    "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+    "tests/e2e/auth/role-catalogue-contract.e2e.spec.ts",
+    "tests/e2e/booking-editor.e2e.spec.ts",
+    "tests/e2e/booking-series.e2e.spec.ts",
+    "tests/e2e/calendar-feed.e2e.spec.ts",
+    "tests/e2e/conflict-resolver.e2e.spec.ts",
+    "tests/e2e/my-day.e2e.spec.ts",
+    "tests/e2e/resources-person-profile.e2e.spec.ts",
+    "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+    "tests/e2e/time-reports.e2e.spec.ts",
+    "tests/unit/quote-send-diagnostics.test.ts",
+    "tests/unit/resolve-tenant-context-core.test.ts",
+    "tests/unit/security-headers.test.ts",
+    "tests/e2e/calculations/calculation-readiness.e2e.spec.ts",
+    "tests/e2e/calculations/calculation-source-selection.e2e.spec.ts",
+    "tests/e2e/calculations/calculations.e2e.spec.ts",
+    "tests/e2e/calculations/tax-answer-reconciliation.e2e.spec.ts",
+    "tests/e2e/crm/customers.e2e.spec.ts",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+    "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    "tests/e2e/files/documents.e2e.spec.ts",
+    "tests/e2e/files/entity-file-panel.e2e.spec.ts",
+    "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+    "tests/e2e/files/file-index-scope.e2e.spec.ts",
+    "tests/e2e/files/file-lock-panel.e2e.spec.ts",
+    "tests/e2e/jobs/job-accepted-lock.e2e.spec.ts",
+    "tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts",
+    "tests/e2e/jobs/job-members.e2e.spec.ts",
+    "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+    "tests/e2e/jobs/job-traceability.e2e.spec.ts",
+    "tests/e2e/jobs/job-upgrade.e2e.spec.ts",
+    "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+    "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+    "tests/e2e/jobs/work-orders.e2e.spec.ts",
+    "tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts"
+  ],
+  "conventions": {
+    "priorityMarkers": {
+      "adopted": 27,
+      "sampled": 40,
+      "status": "established",
+      "measurement": "\\[P[0-3]\\]",
+      "form": "\\[P[0-3]\\]"
+    },
+    "testIds": {
+      "adopted": 31,
+      "sampled": 40,
+      "status": "established",
+      "measurement": "getByTestId|data-testid",
+      "form": "getByTestId|data-testid"
+    },
+    "networkFirst": {
+      "adopted": 17,
+      "sampled": 40,
+      "status": "emerging",
+      "measurement": "interceptNetworkCall|page\\.route|waitForResponse",
+      "form": "interceptNetworkCall|page\\.route|waitForResponse"
+    },
+    "dataFactories": {
+      "adopted": 20,
+      "sampled": 40,
+      "status": "established",
+      "measurement": "(?:create|build)\\w*(?:Fixture|Factory)|factories/|factory",
+      "form": "(?:create|build)\\w*(?:Fixture|Factory)|factories/|factory"
+    },
+    "fixtures": {
+      "adopted": 7,
+      "sampled": 40,
+      "status": "emerging",
+      "measurement": "guarded-test|merged-fixtures|test\\.extend|fixtures/",
+      "form": "guarded-test|merged-fixtures|test\\.extend|fixtures/"
+    },
+    "playwrightUtils": {
+      "adopted": 3,
+      "sampled": 40,
+      "status": "emerging",
+      "measurement": "@seontechnologies/playwright-utils",
+      "form": "@seontechnologies/playwright-utils"
+    },
+    "bddNaming": {
+      "adopted": 40,
+      "sampled": 40,
+      "status": "established",
+      "measurement": "\\b(?:when|after|without|rejects?|returns?|preserves?|denies?|blocks?|can |cannot |requires?|does not|never |allows?|renders?)\\b",
+      "form": "behavior words in test descriptions (mechanical signal, manually read names)"
+    },
+    "assertionStyle": {
+      "adopted": 40,
+      "sampled": 40,
+      "status": "established",
+      "measurement": "\\bexpect\\(|\\bassert\\.",
+      "form": "\\bexpect\\(|\\bassert\\."
+    }
+  },
+  "method": "closest directory-distance first, lexical tie-break; actual file content regex scan; review files excluded"
+}

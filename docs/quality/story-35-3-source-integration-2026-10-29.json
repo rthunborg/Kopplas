@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "base": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "sourceOwner": "Coordinator",
+  "sourceWorktree": "C:/DEV/Kopplas",
+  "approvalScope": "Existing DT planning/preparation source snapshots only; no individual35.3 implementation approval",
+  "integrationAuthorization": "Coordinator verified five exact hashes and retained ownership, then approved bounded byte-preserving import under human process-closeout authorization",
+  "historicalBindings": "Imported base-and-consumers and route allocation retain historical facts; current admission facts are bound separately without rewriting these snapshots",
+  "files": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-3-record-inputs-and-tables.md",
+      "rawSha256": "d70ddd6e3291fc42a0e20e6aeb6f5a2d4df62d619bad0b40588c317be35fe445",
+      "gitBlob": "ba9cb682b6794b6ac37a045a440be2f1957b8ff0"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-3.md",
+      "rawSha256": "d354e22692446c6f3413abded4fdc7fb07dfa2bf8d4da6924373ca29996094fa",
+      "gitBlob": "3ac489f3674c692ece6b8555fe8419a866c240ae"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/route-allocation.md",
+      "rawSha256": "c1bc67657d279838ee53fef44236a7cf55570ae449ca386b41f087b8090db6cb",
+      "gitBlob": "3496a0199d0221482f56527e301d9bb4302803f1"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/base-and-consumers.json",
+      "rawSha256": "3de0415979ee7d7a6130ba76db15a6a24a5d82917ff614559900a0f1a5b245e5",
+      "gitBlob": "ca9d7ef7752d99cd5d662dd15fbdb97909a9eab0"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/story-index.json",
+      "rawSha256": "36d2abaffaddbc84ac3f1b13ec72e93dd53b7140200b93c10347e417a90f93d4",
+      "gitBlob": "c24e24044b7047be8ae3426990d90afc81b53327"
+    }
+  ]
+}

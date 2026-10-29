@@ -1,0 +1,27 @@
+{
+  "domain": "performance",
+  "execution": "sequential-worker-step",
+  "ran": true,
+  "source_sha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Latency/load/scalability/availability",
+      "status": "CONCERNS",
+      "description": "Threshold and current load/operational evidence UNKNOWN; functional browser success is not SLO measurement",
+      "evidence": [
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md",
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json"
+      ],
+      "recommendations": [
+        "Retain UNKNOWN/CONCERNS and route applicable release evidence to existing owners; no invented threshold or new program."
+      ]
+    }
+  ],
+  "compliance": {
+    "release_approval": "not-assessed",
+    "provider_issuance_guarantee": "not-claimed"
+  },
+  "priority_actions": [],
+  "summary": "Bounded evidence audit; no new scan/runtime execution or compliance certification."
+}
