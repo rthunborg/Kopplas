@@ -490,6 +490,36 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     expect(after[0].audits).toBe(before[0].audits + 1);
   });
 
+  test("B03 R3 offline archive: zero dispatch and no hint until one explicit confirmed retry after reconnect",async({page,context}) => {
+    await signIn(page,fixture.adminA.email,fixture.adminA.password);
+    const marker=`35.3 offline archive ${crypto.randomUUID()}`,created=await openCustomerCreate(page,marker);
+    await created.getByRole("button",{name:"Spara",exact:true}).click(); await expect(created).toHaveCount(0);
+    const before=await customerSnapshot(marker); expect(before).toHaveLength(1);
+    await page.getByRole("link",{name:marker,exact:true}).click();
+    await page.getByRole("button",{name:"Arkivera kund",exact:true}).click();
+    const hintBefore=await page.evaluate(()=>Object.entries(sessionStorage)); expect(hintBefore).toEqual([]);
+    let attempts=0;
+    const count=(request:BrowserRequest)=>{if(request.method()==="POST"&&request.headers()["next-action"]) attempts++;};
+    page.on("request",count);
+    try {
+      await context.setOffline(true); expect(await page.evaluate(()=>navigator.onLine)).toBe(false);
+      await page.getByRole("button",{name:"Arkivera kund",exact:true}).click();
+      await expect(page.getByRole("alert")).toHaveText("Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten.");
+      expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
+      expect(await customerSnapshot(marker)).toEqual(before);
+      await captureRecordState(page,"customer-archive-connection-required");
+      await context.setOffline(false); expect(await page.evaluate(()=>navigator.onLine)).toBe(true);
+      await expect(page.getByRole("button",{name:"Arkivera kund",exact:true})).toBeEnabled();
+      expect(attempts).toBe(0); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
+      expect(await customerSnapshot(marker)).toEqual(before);
+      await page.getByRole("button",{name:"Arkivera kund",exact:true}).click();
+      await expect(page).toHaveURL(/\/customers$/);
+      expect(attempts).toBe(1); expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hintBefore);
+      const after=await customerSnapshot(marker); expect(after).toHaveLength(1);
+      expect(after[0].id).toBe(before[0].id); expect(after[0].archived_at).not.toBeNull(); expect(after[0].audits).toBe(before[0].audits+1);
+    } finally {await context.setOffline(false); page.off("request",count);}
+  });
+
   test("B03 R1 archive: pending edit exclusion and requested Back history survive one real archive",async({page}) => {
     await signIn(page,fixture.adminA.email,fixture.adminA.password);
     const marker=`35.3 archive history ${crypto.randomUUID()}`,created=await openCustomerCreate(page,marker);
@@ -531,7 +561,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     } finally {await gate.dispose();}
   });
 
-  test("B03 R1 archive: lost real response blocks replay through reopen and remount",async({page}) => {
+  test("B03 R1 archive: lost real response blocks replay through reopen and remount",async({page,context}) => {
     await signIn(page,fixture.adminA.email,fixture.adminA.password);
     const marker=`35.3 archive lost ${crypto.randomUUID()}`,created=await openCustomerCreate(page,marker);
     await created.getByRole("button",{name:"Spara",exact:true}).click(); await expect(created).toHaveCount(0);
@@ -547,12 +577,18 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
       await expect(page.getByRole("button",{name:"Arkivera kund",exact:true})).toBeDisabled();
       const hint=await page.evaluate(()=>Object.entries(sessionStorage)); expect(hint).toHaveLength(1);
       expect(JSON.stringify(hint)).not.toContain(id); expect(JSON.stringify(hint)).not.toContain(marker);
+      await context.setOffline(true); expect(await page.evaluate(()=>navigator.onLine)).toBe(false);
+      await expect(page.getByRole("button",{name:"Arkivera kund",exact:true})).toBeDisabled();
+      expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
+      await context.setOffline(false); expect(await page.evaluate(()=>navigator.onLine)).toBe(true);
+      await expect(page.getByRole("button",{name:"Arkivera kund",exact:true})).toBeDisabled();
+      expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
       await page.reload();
       const reopened=await openCustomerEditor(page,id,false);
       await expect(reopened.getByRole("button",{name:"Spara",exact:true})).toBeDisabled();
       expect(await page.evaluate(()=>Object.entries(sessionStorage))).toEqual(hint);
       expect(gate.attempts()).toBe(1); const row=(await customerSnapshot(marker))[0]; expect(row.archived_at).not.toBeNull(); expect(row.audits).toBe(2);
-    } finally {await gate.dispose();}
+    } finally {await context.setOffline(false); await gate.dispose();}
   });
 
   test("B03 R1 archive: unavailable storage prevents dispatch and preserves the whole snapshot",async({page}) => {

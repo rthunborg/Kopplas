@@ -201,7 +201,7 @@ Completed targeted independent Sol High fix/regression review: PASS / No finding
 
 ## Suggested Review Order
 
-Author: the35.3 implementation/fix author (Sol High), incorporating the recorded Low delegate's written visual choices. Refreshed after actual targeted Round2 PASS and the explicitly authorized post-review capture-infrastructure-only flag against the current uncommitted worktree above build baseline `dbb18f9cbb06c4f684adb8f8b716bedc94b00a96`; this guide grants no approval.
+Author: the35.3 implementation/fix author (Sol High), incorporating the recorded Low delegate's written visual choices. Refreshed for the bounded final Round3 offline-archive finding fix above checkpoint `2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447`. Three broad product rounds are already completed; only the same independent High reviewer's targeted fix/regression validation remains. This guide grants no approval; new runtime evidence is pending.
 
 ### Start with customer identity and written presentation
 
@@ -226,9 +226,17 @@ The approved thirteen-fact comparison runs under the authorized tenant-and-ID ro
 A parent-owned capability survives same-view child removal, while each layout connection captures a new generation. Customer edit admission remains blocked through matching archive success/navigation. A separately captured entry/departure intent prevents the callback from overriding requested history. The original unmounted/new-draft allegation was withdrawn after runtime qualification; actual Back URL/history/settled DOM and exactly-one archive assertions cover distinct observedP13.
 
 - `src/components/crm/CustomerDetail.tsx:77` — `const archiveView=`: captures dispatch ownership above the removable archive child.
-- `src/components/crm/ArchiveButton.tsx:88` — `const continueNavigation=`: separates destination intent from live result ownership.
+- `src/components/crm/ArchiveButton.tsx:90` — `const continueNavigation=`: separates destination intent from live result ownership.
 - `src/components/crm/customer-presentation.ts:168` — `export function customerSubmissionSafety`: fails closed on unresolved or unavailable storage.
-- `tests/e2e/crm/customers.e2e.spec.ts:493` — `B03 R1 archive: pending edit exclusion`: proves requested history/settled DOM and exactly-one archive.
+- `tests/e2e/crm/customers.e2e.spec.ts:523` — `B03 R1 archive: pending edit exclusion`: proves requested history/settled DOM and exactly-one archive.
+
+### Reject known-offline archive before dispatch admission
+
+The customer archive confirmation checks the current connection before acquiring any unresolved-dispatch hint or invoking its action. It retains confirmation and shows an explicit Archive retry after reconnection; reconnecting itself performs no action. Existing unresolved hints and attempted-dispatch unknown outcomes remain conservative. Facility/contact callers retain their inherited behavior because this branch is customer-only.
+
+- `src/components/crm/ArchiveButton.tsx:78` — `if(!navigator.onLine)`: rejects known-unsent customer archive before hint admission (AC6).
+- `tests/e2e/crm/customers.e2e.spec.ts:493` — `B03 R3 offline archive`: asserts zero dispatch/no hint, then one explicit confirmed retry.
+- `_bmad-output/test-artifacts/design-35-3/round3-offline-archive-fix.json:4` — `"finding"`: distinguishes static proof from pending runtime and review.
 
 ### Preserve drafts until explicit abandonment and checked review
 
@@ -241,12 +249,14 @@ The High reconciliation requires explicit Discard consent before a checked refre
 
 ### Read actual assertions and incomplete gate evidence
 
-AC1/2 map to B01; AC3 to B02/B03 and33realDB assertions; AC4 to B08 enlargement/reflow/occlusion proxies and computed composites; AC5 to B04/B06/B07; AC6/7 to B05/B06/B09 and real authority/concurrency/audit tests. B10 preserves inherited facility/contact, calculation Field and file-index SelectField hooks without upload. The exact supplemental60PNG receipt/full15consumer map and current44PNG inventory above remain source-bound previews, not conditional error/business-flow proof. Synthetic503 HTML is not actual CustomerList.loadError UI. Round2 verified all104 hashes but did not confer formal visual acceptance. Current final target1/1, desktop32/32, phone32/32 and focusedDB33/33 pass with zero skips; pre-Round1 Node121/121 reuse is limited to unchanged helpers. Targeted independent Round2 PASS is executed evidence atf962, with reviewer scope/limits in its receipt. The post-review capture-only flag has separate B01×2/exact-PNG proof and source manifest; it is not included in that Round2 pass. Fresh Coordinator Round3 is pending. Native local full-suite failures remain development blockers; historical schema rejection is only a diagnostic.
+Historical precheckpoint author evidence (retained; not proof of the new offline fix): AC1/2 map to B01; AC3 to B02/B03 and33realDB assertions; AC4 to B08 enlargement/reflow/occlusion proxies and computed composites; AC5 to B04/B06/B07; AC6/7 to B05/B06/B09 and real authority/concurrency/audit tests. B10 preserves inherited facility/contact, calculation Field and file-index SelectField hooks without upload. The exact supplemental60PNG receipt/full15consumer map and current44PNG inventory above remain source-bound previews, not conditional error/business-flow proof. Synthetic503 HTML is not actual CustomerList.loadError UI. Round2 verified all104 hashes but did not confer formal visual acceptance. Current final target1/1, desktop32/32, phone32/32 and focusedDB33/33 pass with zero skips; pre-Round1 Node121/121 reuse is limited to unchanged helpers. Targeted independent Round2 PASS is executed evidence atf962, with reviewer scope/limits in its receipt. The post-review capture-only flag has separate B01×2/exact-PNG proof and source manifest; it is not included in that Round2 pass. Fresh Coordinator Round3 is pending. Native local full-suite failures remain development blockers; historical schema rejection is only a diagnostic.
 
-- `tests/e2e/crm/customers.e2e.spec.ts:634` — `B06 E35-3-T-stale/late-result/confirmed`: proves consent/offline/checked read/save and genuine503 native fallback.
-- `tests/e2e/crm/customers.e2e.spec.ts:879` — `B08 E35-3-T-AC4`: labels CSS zoom/visible-viewport proxies and measures rendered composites.
+- `tests/e2e/crm/customers.e2e.spec.ts:670` — `B06 E35-3-T-stale/late-result/confirmed`: proves consent/offline/checked read/save and genuine503 native fallback.
+- `tests/e2e/crm/customers.e2e.spec.ts:915` — `B08 E35-3-T-AC4`: labels CSS zoom/visible-viewport proxies and measures rendered composites.
 - `_bmad-output/test-artifacts/design-35-3/author-verification.json:6` — `"development_complete": false`: retains exact commands/counts and unresolved development gates.
 - `_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json:37` — `"independent_review"`: keeps the incomplete record incapable of claiming completion.
+
+Current finding-fix evidence: TypeScript and scoped ESLint passed; fresh build/browser execution and the same independent High reviewer's targeted validation remain pending. The Round3 fix receipt above records actual commands and scope. The old2833 captures/CI are historical and require fresh candidate binding. Development/release remain blocked; no earlier receipt is rewritten as current proof.
 
 Evidence limits: controlled transport/503 pages are synthetic faults around actual isolated commands, not production outage proof. Other browser/device behavior, physical OS keyboard, screen-reader/daylight, cross-tab/restart recovery and exhaustive visual comparison remain unexecuted release work. Original unmountedABA is not established and its classification is withdrawn, never passed. Fresh Coordinator Round3, exact-head fullCI/direct physical recovery, formal viewport images/controller and owner initial visual acceptance remain required and unproved here. Existing fullPage previews can exceed viewport; root formal replay will use fullPage:false plus separate scrolled footer frames, not executed here.
 

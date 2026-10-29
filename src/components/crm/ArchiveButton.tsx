@@ -74,6 +74,8 @@ export function ArchiveButton({
     if(flight.current||unknown||kind==="customer"&&["UNAUTHENTICATED","TENANT_MEMBERSHIP_REQUIRED","TENANT_ACCESS_DENIED","PERMISSION_DENIED"].includes(previous.code??"")) return previous;
     let ownsHint=false;
     if(kind==="customer") {
+      // A known-unsent attempt must not acquire the unresolved-dispatch hint.
+      if(!navigator.onLine) return { ...CRM_ACTION_INITIAL,status: "error",formError: "Anslutning krävs. Arkiveringen är inte skickad. Försök igen med Arkivera när du är ansluten." };
       try { ownsHint=beginCustomerSubmission(window.sessionStorage); } catch { /* Block unsafe dispatch. */ }
       if(!ownsHint) { setBlocked(true); return previous; }
     }

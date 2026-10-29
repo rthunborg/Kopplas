@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "finding": "Final Coordinator Round3 P2: known-offline archive confirmation acquired the unresolved customer-dispatch hint before any possible dispatch",
+  "route": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Submission dispatch and unresolved-outcome integrity",
+    "beforeDispatchRecord": "tmp/private/story35-3/round3-offline-archive-route.json"
+  },
+  "status": "implemented; static checks passed; fresh production build and browser execution pending root-owned resources",
+  "development_complete": false,
+  "release_ready": false,
+  "previousCandidate": "2833fcadaa57b58ffcbd66ecd5ae6a1d2a252447",
+  "candidate": {
+    "kind": "uncommitted bounded fix above previousCandidate",
+    "sourceFiles": [
+      {
+        "path": "src/components/crm/ArchiveButton.tsx",
+        "sha256": "cd2aa9c49d3ffd3f3f66123306824900b1f2083bb44c701af9a79ddc83ec94e5"
+      },
+      {
+        "path": "tests/e2e/crm/customers.e2e.spec.ts",
+        "sha256": "cec20f2f760bb4b8176d3c24555eea6e271515488f8551494d1bea301a4b4045"
+      }
+    ]
+  },
+  "change": "Customer-only known-offline return precedes beginCustomerSubmission, live-view capture and server action; durable connection feedback names the explicit Archive retry after reconnect. No automatic retry or hint mutation occurs on this branch.",
+  "preservedBoundaries": [
+    "An existing unresolved hint is not cleared or replaced by the offline branch.",
+    "Unknown outcomes after attempted dispatch retain their conservative block.",
+    "Facility/contact action selection, request fields, callback and inherited error behavior remain unchanged because the guard is inside kind === customer.",
+    "Server authorization, transactional update, migration and all other production files are unchanged."
+  ],
+  "coverage": {
+    "newTest": "B03 R3 offline archive: zero dispatch and no hint until one explicit confirmed retry after reconnect",
+    "assertions": [
+      "Actual context.setOffline(true), navigator.onLine false, real archive confirmation, zero next-action requests, unchanged storage and physical customer/audit snapshot",
+      "Reconnection alone causes no action; one explicit Archive click confirms same customer archive with exactly one additional audit and cleared own hint"
+    ],
+    "extendedExistingTest": "B03 R1 archive: lost real response blocks replay through reopen and remount",
+    "extension": "Actual unresolved hint retained and Archive remains disabled across offline/reconnect; existing one-attempt/physical archive/remount assertions remain."
+  },
+  "staticChecks": [
+    {
+      "name": "typecheck",
+      "command": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "nativeExitCode": 0,
+      "startedUtc": "2026-10-29T16:42:29.787Z",
+      "finishedUtc": "2026-10-29T16:42:32.407Z",
+      "log": "tmp/private/story35-3/round3-offline-archive/typecheck.log"
+    },
+    {
+      "name": "scoped-eslint",
+      "command": [
+        "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        "src/components/crm/ArchiveButton.tsx",
+        "tests/e2e/crm/customers.e2e.spec.ts"
+      ],
+      "nativeExitCode": 0,
+      "startedUtc": "2026-10-29T16:42:32.407Z",
+      "finishedUtc": "2026-10-29T16:42:34.198Z",
+      "log": "tmp/private/story35-3/round3-offline-archive/scoped-eslint.log"
+    },
+    {
+      "name": "review-order",
+      "command": [
+        "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe",
+        "scripts/verify/check-review-order.mjs",
+        "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md"
+      ],
+      "nativeExitCode": 0,
+      "refsCount": 23,
+      "errors": []
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "nativeExitCode": 0
+    }
+  ],
+  "runtime": {
+    "executed": false,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "reason": "Root resource guard reports HOOK_CONTEXT_UNAVAILABLE until a direct owner continuation; no service/browser launch attempted by this author.",
+    "requiredNext": [
+      "Root verifies/reopens its owned loopback Supabase stack (API55421/DB55422), current ledger and managed Chrome CDP59453.",
+      "Fresh production build of this fix using qualified private runtime env; root managed Next start at127.0.0.1:3100.",
+      "Run focused B03 archive cases plus existing B05 known-offline create and B10 inherited-consumer regression at1440x900 and360x640, using canonical fixture setup/teardown and connect-only CDP with webServer undefined.",
+      "Refresh candidate-bound visual evidence and native exact-head CI under root ownership; old2833 formal bindings are superseded for this changed candidate."
+    ],
+    "existingQualifiedRuntimeEnv": "C:/DEV/K35-implementation/.env.story35-2-runtime.local",
+    "existingTestEnv": "tmp/private/story35-3/tests.local.env",
+    "requiredPublicEndpoints": {
+      "NEXT_PUBLIC_SUPABASE_URL": "http://127.0.0.1:55421",
+      "NEXT_PUBLIC_APP_URL": "http://127.0.0.1:3100",
+      "E2E_CDP_ENDPOINT": "http://127.0.0.1:59453"
+    },
+    "testCommandTemplate": "C:/Users/Rasmus/AppData/Local/nvm/v22.23.2/node.exe node_modules/@playwright/test/cli.js test tests/e2e/crm/customers.e2e.spec.ts --config=<new isolated private connect-only config> --grep \"B03|B05 R1 offline|B10\"",
+    "testCommandNotExecuted": true
+  },
+  "independentReview": {
+    "roundsCompleted": 3,
+    "status": "targeted fix/regression validation pending same external Sol High reviewer; no fourth broad review",
+    "reviewerChatId": "01a18883-8b1a-7a91-b397-19d9bf7168de",
+    "coordinatorOwnsExactNewHeadDispatch": true
+  },
+  "historicalEvidence": "R1/R2/original2833 receipts and images retained unchanged; none is relabeled as proof of this fix.",
+  "createdUtc": "2026-10-29T16:43:10.316Z"
+}
