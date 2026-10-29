@@ -9,10 +9,10 @@ spec_folder: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3"
 story_id: 35-3
 branch: codex/story-35-3-record-inputs-and-tables
 status: in-progress
-updated_at: "2026-10-29T12:43:46Z"
+updated_at: "2026-10-29T12:50:30Z"
 started_at: "2026-10-29T12:23:26Z"
 completed_at: null
-active_seconds: 1184
+active_seconds: 1548
 timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [f6b23d7, 64a8e3a]
+commits: [f6b23d7, 64a8e3a, 0740f04a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -81,7 +81,7 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "Phase 3: independently confirmed stale-authority prerequisite exceeds the seven CRM presentation paths. Coordinator must allocate the minimal checked-baseline/atomic-conflict prerequisite or record an authoritative canonical disposition before resume."
+  - "Phase 3: authorize the exact expanded customer-update-only allocation in docs/quality/story-35-3-stale-authority-prerequisite-plan-2026-10-29.md, then implement and verify that prerequisite before resume. Canonical stale-write requirement remains unchanged."
 overrides:
   merge: "not authorized; stop at single-story checkpoint"
   epic: "35.3 only; no whole-E35 enrollment"
