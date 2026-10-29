@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "candidateSha": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "run": 40919281738,
+  "conclusion": "SUCCESS",
+  "qualificationSource": "Coordinator terminal actual qualification, received in owner chat; no duplicate artifact download",
+  "database": {
+    "jobId": 123609102495,
+    "conclusion": "SUCCESS",
+    "completedUtc": "2026-10-29T17:33:39Z",
+    "total": 2215,
+    "passed": 2163,
+    "failed": 0,
+    "pending": 52,
+    "todo": 0,
+    "artifactId": 12919330946,
+    "zipBytes": 114386,
+    "zipSha256": "22b4ada7fea30b517ef86cfcc81b97e4ba008f8ae1ea0bed1bc9dacce4a1fda7",
+    "pendingIsCoverage": false,
+    "cleanup": "Job-local stack stop succeeded; no global key deletion claim"
+  },
+  "browser": {
+    "passed": 74,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "recovery": {
+    "passed": 1,
+    "failed": 0,
+    "pending": 0
+  },
+  "visual": {
+    "commentId": 6504043561,
+    "author": "rthunborg",
+    "digest": "bd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce",
+    "hostedCheck": "SUCCESS",
+    "commitStatus": "SUCCESS"
+  },
+  "boundary": "No merge or deployment"
+}
