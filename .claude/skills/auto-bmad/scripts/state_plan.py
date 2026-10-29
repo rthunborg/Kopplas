@@ -79,6 +79,7 @@ import json
 import os
 import re
 import sys
+from pathlib import Path
 
 # Top-level scalar fields (no leading indentation), value optionally quoted and
 # optionally trailed by a comment.
@@ -473,6 +474,22 @@ def build_finalize_result(state_dir: str, story_key: str, ci_status=None, no_pr_
     if not os.path.isfile(path):
         result["error"] = f"state file not found: {path}"
         return result, 1
+
+    # New sequential route cannot use the legacy early-done predicate. Keep the
+    # normal delivery/frontend wrapper in place; this adds merge/integration state.
+    import importlib.util
+    writer_spec = importlib.util.spec_from_file_location("auto_bmad_state_writer", Path(__file__).with_name("state_update.py"))
+    writer = importlib.util.module_from_spec(writer_spec)
+    writer_spec.loader.exec_module(writer)
+    try:
+        strategy_errors = writer._strategy_transition_errors(writer.load_state(Path(path)), {"status": "done"})
+    except (OSError, UnicodeError, ValueError) as exc:
+        result["error"] = f"state file unreadable: {path} ({exc})"
+        return result, 1
+    if strategy_errors:
+        result["draft"] = True
+        result["reasons"] = strategy_errors
+        return result, 0
 
     fields = read_finalize_fields(path)
     if fields["read_error"]:

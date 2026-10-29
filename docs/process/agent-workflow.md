@@ -128,3 +128,12 @@ Implementation requires an approved story or ADR-backed task. Within authorized 
 ## Development completion — owner decision 2026-10-19
 
 Follow [development completion and release validation](development-completion-policy.md) for ordinary gates, truthful release deferrals, bounded attempts, named blockers, compact progress and review reuse. This supersedes older exhaustive routine completion requirements; existing ownership and approval boundaries remain.
+
+### Sequential epic publication exception — 2026-10-28
+
+The one-final-epic-PR rule above remains for backend-only fresh epics and legacy
+runs. Fresh ordinary sequential epics with any approved UI scope automatically
+use an isolated main-target PR per story, including backend prerequisites, under
+[the strategy protocol](../../.agents/skills/auto-bmad/references/sequential-pr-strategy.md).
+This changes no single-story or explicit parallel route and never hot-upgrades
+an existing run. Publication is distinct from acceptance, merge and completion.

@@ -137,3 +137,12 @@ is insufficient. For larger sets, embed the primary desktop/mobile views and
 provide exact links to the remaining acceptance images. Refresh the images after
 visual fixes, disclose missing evidence, and distinguish preliminary feedback
 from formal acceptance. Never ask the owner to locate the images themselves.
+
+## Sequential Auto-BMAD publication — owner decision 2026-10-28
+
+Fresh ordinary sequential epics assess approved actual visible scope once: any
+UI selects isolated main-target PRs for every story; no UI retains the epic PR.
+Existing anchors, 35.2, single-story and explicit parallel routes remain unchanged.
+Follow `.agents/skills/auto-bmad/references/sequential-pr-strategy.md`; keep source
+order/checkpoints, qualified merged dependencies, current-head gates and merge
+authorization. Pending review/visual/merge is resumable and never epic completion.

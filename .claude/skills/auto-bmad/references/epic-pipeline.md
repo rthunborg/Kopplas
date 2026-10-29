@@ -150,3 +150,14 @@ Commit once: `docs(epic-{e}): gate, deferred-work reconcile + archive, retrospec
 ## Run instructions in epic mode
 Interpretation and echo: `SKILL.md` → "Run instructions"; the epic delta is E0 step 0.
 Whatever applies rides in the anchor's `overrides` and in each per-story `init` payload.
+
+## Fresh sequential strategy dispatch — 2026-10-28
+
+Before legacy E0 adoption/branch assumptions, read
+`references/sequential-pr-strategy.md`. For fresh ordinary sequential epics,
+assess approved actual visible scope once and persist the selected strategy in
+E1. Any UI uses one isolated main-target story PR per required story; no UI uses
+the legacy epic PR. Existing anchors without a strategy, single-story requests
+and explicit parallel runs keep their existing behavior. For `story-pr`, that
+reference supersedes conflicting E5/E8/E_final/early-done/stop-on-pending and
+branch-deletion instructions below; legacy paths below are unchanged.
