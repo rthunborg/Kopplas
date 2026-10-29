@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "kind": "Retained external targeted review delivery",
+  "reviewerChat": "01a18883-8b1a-7a91-b397-19d9bf7168de",
+  "requestingChat": "01a1819b-c72b-7653-aac9-77bb5e554210",
+  "coordinatorChat": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "candidateSha": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "broadRoundsCompleted": 3,
+  "scope": "Targeted final Round3 P2 fix, locator correction and consequential regression validation only",
+  "verdict": "PASS / no findings",
+  "finding": "Known-offline customer archive must return before unresolved-hint admission/action dispatch",
+  "sourceQualification": "Static1044 fix PASS, final2b594338 locator/receipt delta PASS",
+  "runtimeQualification": "Reviewer inspected actual production build and desktop7/phone7 reports, raw report hashes and teardown receipts; no reviewer rerun",
+  "runtimeReceipt": "round3-offline-archive/runtime-2b594338/focused-runtime-receipt.json",
+  "currentPrHeadVerifiedByRoot": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "limits": [
+    "CI and refreshed formal evidence separately pending at review delivery",
+    "No visual acceptance or development/release/merge/deployment approval"
+  ],
+  "mutationsByReviewer": "none"
+}

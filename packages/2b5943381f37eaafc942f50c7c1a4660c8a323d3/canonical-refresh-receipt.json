@@ -1,0 +1,56 @@
+{
+  "candidateSha": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "buildId": "OZsZydqYkx457_h5L8cI2",
+  "gitClean": true,
+  "runs": [
+    {
+      "mode": "desktop",
+      "stats": {
+        "startTime": "2026-10-29T17:12:49.139Z",
+        "duration": 70407.52799999999,
+        "expected": 33,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "native": {
+        "exitCode": 0,
+        "signal": null,
+        "command": [
+          "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+          "node_modules/@playwright/test/cli.js",
+          "test",
+          "tests/e2e/crm/customers.e2e.spec.ts",
+          "--config=tmp/private/story35-3/formal-2b594338/capture.config.ts"
+        ],
+        "finishedUtc": "2026-10-29T17:13:59.560Z"
+      }
+    },
+    {
+      "mode": "phone",
+      "stats": {
+        "startTime": "2026-10-29T17:14:02.965Z",
+        "duration": 57280.557,
+        "expected": 33,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "native": {
+        "exitCode": 0,
+        "signal": null,
+        "command": [
+          "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+          "node_modules/@playwright/test/cli.js",
+          "test",
+          "tests/e2e/crm/customers.e2e.spec.ts",
+          "--config=tmp/private/story35-3/formal-2b594338/capture.config.ts"
+        ],
+        "finishedUtc": "2026-10-29T17:15:00.260Z"
+      }
+    }
+  ],
+  "canonicalFixtureAbsentAfter": true,
+  "purpose": "Fresh exact-head canonical state capture refresh, no broad code review",
+  "finishedUtc": "2026-10-29T17:15:29.580Z"
+}

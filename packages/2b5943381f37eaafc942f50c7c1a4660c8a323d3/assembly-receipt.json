@@ -1,0 +1,13 @@
+{
+  "status": "assembled-unaccepted",
+  "schemaCoverageAndBytes": "structurally-valid",
+  "candidateSha": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "imageCommit": "93701d60fddea109b65f53246426b7bac1b55f59",
+  "evidenceDigest": "bd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce",
+  "captureCount": 62,
+  "surfaceCount": 18,
+  "feedbackScopeDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "commentBytes": 55054,
+  "formalAcceptance": "PENDING genuine authenticated owner initial-reference/visual acceptance; API publication/head/source/feedback rechecks still required",
+  "writes": "local ignored packet outputs only; no Git/API/provider/status/resource operations"
+}

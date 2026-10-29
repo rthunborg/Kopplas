@@ -1,0 +1,370 @@
+[
+  {
+    "path": ".gitattributes",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "AGENTS.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/auto-bmad/preparation/35-3-admission-review-route.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/auto-bmad/preparation/35-3-tea-triage-route.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/auto-bmad/reports/spec-design-35-3-35-3.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/auto-bmad/state/spec-design-35-3-35-3.yaml",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/SPEC.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/archive-runtime-reconciliation.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/build-author-route.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/contract-assessment-route.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/contract-assessment.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/product-review-round2-route.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/product-review-route.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/refresh-contract-reconciliation.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/refresh-reconciliation-route.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/source-binding.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/stories.yaml",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/atdd-api-generation-35-3.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/atdd-checklist-35-3-record-inputs-and-tables.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/atdd-e2e-generation-35-3.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/atdd-red-evidence-35-3.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/author-verification.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/build-auto-final-files.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/build-auto-halt-evidence.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/build-auto-static-evidence.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/customer-loaderror-capture-assessment.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/product-review-round1-external.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/product-review-round1.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/product-review-round2.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/round3-offline-archive-fix.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/shared-consumer-impact.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/test-design-epic-35-3.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/test-design-progress-epic-35-3.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad-output/test-artifacts/design-35-3/test-design-spec-design-35-3.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "_bmad/custom/bmad-build-auto.toml",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-admission-review-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-blocker-review-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-blocker-review-route-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-migration-reservation-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-operative-approval-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-ownership-and-bindings-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-prerequisite-approval-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-prerequisite-plan-route-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-stale-authority-prerequisite-plan-2026-10-29.md",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "docs/quality/story-35-3-ui-plan-route-2026-10-29.json",
+    "category": "non-rendered public metadata/tooling; retained in complete inventory",
+    "surfaces": []
+  },
+  {
+    "path": "src/components/crm/ArchiveButton.tsx",
+    "category": "rendered CRM presentation",
+    "surfaces": [
+      "customer-detail"
+    ]
+  },
+  {
+    "path": "src/components/crm/CustomerDetail.tsx",
+    "category": "rendered CRM presentation",
+    "surfaces": [
+      "customer-detail"
+    ]
+  },
+  {
+    "path": "src/components/crm/CustomerDialog.tsx",
+    "category": "rendered CRM presentation",
+    "surfaces": [
+      "customer-create",
+      "customer-edit",
+      "inherited-contactdialog",
+      "inherited-facilitydialog"
+    ]
+  },
+  {
+    "path": "src/components/crm/CustomerList.tsx",
+    "category": "rendered CRM presentation",
+    "surfaces": [
+      "customers-list"
+    ]
+  },
+  {
+    "path": "src/components/crm/CustomerTypeBadge.tsx",
+    "category": "rendered CRM presentation",
+    "surfaces": [
+      "customers-list",
+      "customer-detail"
+    ]
+  },
+  {
+    "path": "src/components/crm/FormField.tsx",
+    "category": "rendered CRM presentation",
+    "surfaces": [
+      "customers-list",
+      "customer-create",
+      "customer-edit",
+      "inherited-calculationlist",
+      "inherited-taxsettingspanel",
+      "inherited-calculationeditor",
+      "inherited-workroleseditor",
+      "inherited-sectioneditor",
+      "inherited-articleseditor",
+      "inherited-roweditor",
+      "inherited-contactdialog",
+      "inherited-facilitydialog",
+      "inherited-quotetermseditor",
+      "inherited-jobcardform",
+      "inherited-companysettingsform",
+      "inherited-joblist",
+      "inherited-fileindexupload"
+    ]
+  },
+  {
+    "path": "src/components/crm/customer-presentation.ts",
+    "category": "rendered CRM presentation",
+    "surfaces": [
+      "customers-list",
+      "customer-detail"
+    ]
+  },
+  {
+    "path": "src/features/crm/form-parsing.ts",
+    "category": "headless frontend-bearing customer.update contract",
+    "surfaces": [
+      "customer-edit"
+    ]
+  },
+  {
+    "path": "src/server/commands/crm/crm-db.ts",
+    "category": "headless frontend-bearing customer.update contract",
+    "surfaces": [
+      "customer-edit"
+    ]
+  },
+  {
+    "path": "src/server/commands/crm/customers.ts",
+    "category": "headless frontend-bearing customer.update contract",
+    "surfaces": [
+      "customer-edit"
+    ]
+  },
+  {
+    "path": "src/server/commands/crm/validation.ts",
+    "category": "headless frontend-bearing customer.update contract",
+    "surfaces": [
+      "customer-edit"
+    ]
+  },
+  {
+    "path": "supabase/migrations/20261029132339_customer_update_expected_facts.sql",
+    "category": "forward customer.update authority migration; rendered effects represented by customer edit",
+    "surfaces": []
+  },
+  {
+    "path": "tests/e2e/crm/customers.e2e.spec.ts",
+    "category": "test execution source; no independent rendered surface",
+    "surfaces": []
+  },
+  {
+    "path": "tests/integration/commands/crm-customer-commands.int.test.ts",
+    "category": "test execution source; no independent rendered surface",
+    "surfaces": []
+  },
+  {
+    "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+    "category": "test execution source; no independent rendered surface",
+    "surfaces": []
+  },
+  {
+    "path": "tests/unit/components/crm/customer-presentation.test.ts",
+    "category": "test execution source; no independent rendered surface",
+    "surfaces": []
+  },
+  {
+    "path": "tests/unit/features/crm/form-parsing.test.ts",
+    "category": "test execution source; no independent rendered surface",
+    "surfaces": []
+  },
+  {
+    "path": "tests/unit/server/commands/crm-validation.test.ts",
+    "category": "test execution source; no independent rendered surface",
+    "surfaces": []
+  }
+]

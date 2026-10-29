@@ -1,0 +1,49 @@
+{
+  "candidateSha": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "gitClean": true,
+  "buildId": "OZsZydqYkx457_h5L8cI2",
+  "buildReceipt": "tmp/private/story35-3/round3-offline-archive/runtime-2b594338/build-receipt.json",
+  "focusedGrep": "B03|B05 R1 offline|B10",
+  "runs": [
+    {
+      "viewport": "desktop",
+      "geometry": {
+        "width": 1440,
+        "height": 900
+      },
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retries": 0,
+      "nativeExitCode": 0,
+      "canonicalFixtureAbsentAfter": true,
+      "report": "tmp/private/story35-3/round3-offline-archive/runtime-2b594338/desktop/run.json",
+      "reportSha256": "cc578f8c779a9ae8c1eb741b3ecc23b0fc7f4e9797cdb04b83b6646576e164b7",
+      "nativeReceipt": "tmp/private/story35-3/round3-offline-archive/runtime-2b594338/desktop/native-exit.json",
+      "durationMs": 19429.44
+    },
+    {
+      "viewport": "phone",
+      "geometry": {
+        "width": 360,
+        "height": 640
+      },
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retries": 0,
+      "nativeExitCode": 0,
+      "canonicalFixtureAbsentAfter": true,
+      "report": "tmp/private/story35-3/round3-offline-archive/runtime-2b594338/phone/run.json",
+      "reportSha256": "b0be00826236cd15f5a9e735615af284459edf2d8d17289ad79d03f288fd09c4",
+      "nativeReceipt": "tmp/private/story35-3/round3-offline-archive/runtime-2b594338/phone/native-exit.json",
+      "durationMs": 18147.806999999997
+    }
+  ],
+  "claim": "Focused Round3 fix/runtime regression proof; no broad review or story/release completion claim",
+  "previousFailedAttemptPreserved": "tmp/private/story35-3/round3-offline-archive/runtime-1044bb4c/desktop/run.json",
+  "trackedWritesDuringRuntime": false,
+  "createdUtc": "2026-10-29T17:12:08.618Z"
+}

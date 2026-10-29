@@ -1,0 +1,114 @@
+{
+  "candidateSha": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "nodeExecutable": "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+  "command": [
+    "C:\\Users\\Rasmus\\AppData\\Local\\nvm\\v22.23.2\\node.exe",
+    "node_modules/next/dist/bin/next",
+    "build"
+  ],
+  "formalEnvPath": "tmp/private/story35-3/formal-2833fcad/formal-runtime.local.env",
+  "formalEnvSha256": "84ccd876d9bfd1bd3c13c5015a741f2fa760602d1104b7797f281db3cbc94699",
+  "publicEndpoints": {
+    "NEXT_PUBLIC_SUPABASE_URL": "http://127.0.0.1:37921",
+    "NEXT_PUBLIC_APP_URL": "http://127.0.0.1:3100"
+  },
+  "startedUtc": "2026-10-29T17:10:46.588Z",
+  "finishedUtc": "2026-10-29T17:10:54.109Z",
+  "nativeExitCode": 0,
+  "signal": null,
+  "buildId": "OZsZydqYkx457_h5L8cI2",
+  "gitCleanBefore": true,
+  "gitCleanAfter": true,
+  "sourceFiles": [
+    {
+      "path": "src/components/crm/ArchiveButton.tsx",
+      "rawSha256": "cd2aa9c49d3ffd3f3f66123306824900b1f2083bb44c701af9a79ddc83ec94e5",
+      "gitBlob": "06d3899495419047be86cfe2e009296cb2bc5cdf"
+    },
+    {
+      "path": "src/components/crm/CustomerDetail.tsx",
+      "rawSha256": "a9af5efb2be72ef100202a92cd70d3bd7cc6d9a996e54981795a203cffcd6426",
+      "gitBlob": "65739c58b35f5b07da422386ba0c500ce11373aa"
+    },
+    {
+      "path": "src/components/crm/CustomerDialog.tsx",
+      "rawSha256": "f1cb3b42d400adb0ba43bf2bcae0c8e5baba981f06ae9ecc4dea906b2cd8ab6f",
+      "gitBlob": "a6a3fe3b746558c972daac8fbcb318617695a817"
+    },
+    {
+      "path": "src/components/crm/CustomerList.tsx",
+      "rawSha256": "97a36a71e23f3d220acdfaceaf2dc4404f39616e9e8d4bba5514e529dd076eb2",
+      "gitBlob": "9a5a7b2ba97a3bab7efaf26e039674e475607d25"
+    },
+    {
+      "path": "src/components/crm/CustomerTypeBadge.tsx",
+      "rawSha256": "db0244c868c9d0e541ce19759741b747e34e85e7193e73c001909296a0f288e1",
+      "gitBlob": "141db8202ea0055e14024876ae9e79bd2c1d44ef"
+    },
+    {
+      "path": "src/components/crm/FormField.tsx",
+      "rawSha256": "6920a4a9c9c766d6effa0131a6fb0b4ee4dac6eef3e28181d4c9fa119a464fef",
+      "gitBlob": "c6a3cd3709b13687f746c322b034ad203bf2d217"
+    },
+    {
+      "path": "src/components/crm/customer-presentation.ts",
+      "rawSha256": "87401e5638a6a0b838ff72321e4b7847a2ce9a5e81cbebfa4e2c76fe353001a9",
+      "gitBlob": "8e65363a72789df1b93520b6abe589151e50194e"
+    },
+    {
+      "path": "src/features/crm/form-parsing.ts",
+      "rawSha256": "f70c75154ac2404076471b2b999d213ac3efc9f647adb694f76038a83d2cd090",
+      "gitBlob": "5e0ed4e9bd9e853a2f3ac8508af5fd70b06415f4"
+    },
+    {
+      "path": "src/server/commands/crm/crm-db.ts",
+      "rawSha256": "9054b5ef9d9a346f590d26a975919a0779a935b8f3ad5f82776a0f85b54b80d5",
+      "gitBlob": "74be8a7079522831aeae2bc551d175cbc6698ac9"
+    },
+    {
+      "path": "src/server/commands/crm/customers.ts",
+      "rawSha256": "a4cf06db6fe8a21d3b19f5dca06d5523a7b3448f43341bd259a0a78e4d190de3",
+      "gitBlob": "1c25ec51c4b9fc8dd5a985619ff7ee1ad6b4df2c"
+    },
+    {
+      "path": "src/server/commands/crm/validation.ts",
+      "rawSha256": "7e51f29b4b037d5aaa3bada70ea60b3428f89a066fc7f489b2efe6cb92962e89",
+      "gitBlob": "b9c79bc39002463139642edbeac08f51b555523a"
+    },
+    {
+      "path": "supabase/migrations/20261029132339_customer_update_expected_facts.sql",
+      "rawSha256": "66cf420060c4ad722e10f94dcb551820cc0c5c8fba0a2bbec9c1327174ac4768",
+      "gitBlob": "a6615143a402486e857f9bd2120570811cda0fef"
+    },
+    {
+      "path": "tests/e2e/crm/customers.e2e.spec.ts",
+      "rawSha256": "8e34b146921c9ab3ac765c1b216a50b0fe8b7552079be7b71d1ea4c0d60a7c75",
+      "gitBlob": "c71fd388cc2258366f3cfebc6c4802b57183bebd"
+    },
+    {
+      "path": "tests/integration/commands/crm-customer-commands.int.test.ts",
+      "rawSha256": "5dbcf0f73701d30d73c7b941cb5f666e1de922c6ff6de5e9f2db879dafde3db4",
+      "gitBlob": "70100d90e61bbdd3eea21aa08d0a4530d929e8ce"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "rawSha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2",
+      "gitBlob": "68be2622bf3271570574c60bd08a91346965b8e4"
+    },
+    {
+      "path": "tests/unit/components/crm/customer-presentation.test.ts",
+      "rawSha256": "c431d2501812ad992fcebaff313cdc521734311da674404096f2dc54cfbb7c62",
+      "gitBlob": "018f759c9deb38c1b305fed13856679bec9dc917"
+    },
+    {
+      "path": "tests/unit/features/crm/form-parsing.test.ts",
+      "rawSha256": "41c349be126ea95cb0c59c97e60aea6637b5bb3f379d15f2755125d96f86e0c4",
+      "gitBlob": "2194186981d8a32127bd929140fef3bfb38ef2fd"
+    },
+    {
+      "path": "tests/unit/server/commands/crm-validation.test.ts",
+      "rawSha256": "fb912cc8aa03ac08c02958ddeb737ba8447ed34f4b5e435735e7baac01200fcf",
+      "gitBlob": "edcb856455e8421b2e995d1aa037a82c76cc8422"
+    }
+  ]
+}
