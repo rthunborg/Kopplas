@@ -1,0 +1,1606 @@
+{
+  "phase": "PHASE_1_COMPLETE",
+  "generated_at": "2026-10-29T10:40:58.058520+00:00",
+  "trace_target": {
+    "type": "story",
+    "id": "35.2",
+    "label": "single-story legacy adapter"
+  },
+  "collection_mode": "source-and-qualified-execution",
+  "collection_status": "COLLECTED",
+  "allow_gate": true,
+  "coverage_basis": "acceptance_criteria",
+  "summary_confidence": "high",
+  "source_sha": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "execution_evidence_source_sha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "_bmad-output/test-artifacts/test-design-spec-design-35-2.md",
+      "_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md"
+    ],
+    "synthetic": false,
+    "external_pointer_status": "not_used"
+  },
+  "requirements": [
+    {
+      "id": "E35-2-AC1",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-foundation-360",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-foundation-1440",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-AC2",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-pending",
+          "title": "one active form attempt then refresh before root replace",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 95,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-foundation-360",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-360",
+          "title": "delayed real Auth rejects duplicate form submissions at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-foundation-1440",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-1440",
+          "title": "delayed real Auth rejects duplicate form submissions at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-AC3",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-pending",
+          "title": "one active form attempt then refresh before root replace",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 95,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-invalid",
+          "title": "invalid retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-validation",
+          "title": "validation retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-rate-limit",
+          "title": "rate-limit retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-connection",
+          "title": "connection retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-returned-transport",
+          "title": "returned-transport retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-transport-with-rejection-code",
+          "title": "transport-with-rejection-code retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-unknown-provider",
+          "title": "unknown-provider retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-unknown",
+          "title": "response loss claims neither confirmed login nor invalid credentials and never auto-retries",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 182,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-360",
+          "title": "delayed real Auth rejects duplicate form submissions at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-360",
+          "title": "actual SDK transport failure retains input until explicit retry at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-1440",
+          "title": "delayed real Auth rejects duplicate form submissions at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-1440",
+          "title": "actual SDK transport failure retains input until explicit retry at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-AC4",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-foundation-360",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-foundation-1440",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-AC5",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-foundation-360",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-foundation-1440",
+          "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 296,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-AC6",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-pending",
+          "title": "one active form attempt then refresh before root replace",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 95,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-invalid",
+          "title": "invalid retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-validation",
+          "title": "validation retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-rate-limit",
+          "title": "rate-limit retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-connection",
+          "title": "connection retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-returned-transport",
+          "title": "returned-transport retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-transport-with-rejection-code",
+          "title": "transport-with-rejection-code retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-unknown-provider",
+          "title": "unknown-provider retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-unknown",
+          "title": "response loss claims neither confirmed login nor invalid credentials and never auto-retries",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 182,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-360",
+          "title": "delayed real Auth rejects duplicate form submissions at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-360",
+          "title": "actual SDK transport failure retains input until explicit retry at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-1440",
+          "title": "delayed real Auth rejects duplicate form submissions at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-1440",
+          "title": "actual SDK transport failure retains input until explicit retry at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-AC7",
+      "priority": "P0",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "inherited-anonymous",
+          "title": "an anonymous visitor to a protected route is redirected to login",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 69,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "inherited-admin",
+          "title": "tenant_admin signs in and lands in app shell",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 76,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "inherited-context",
+          "title": "top bar displays resolved tenant/company and current user",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 83,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "inherited-orphan",
+          "title": "no active membership receives safe no-access and zero tenant data",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 96,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "inherited-logout",
+          "title": "sign out re-protects routes",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 112,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-native-post",
+          "title": "native submission uses POST without credentials in the URL",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 145,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-loading",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-pending",
+          "title": "one active form attempt then refresh before root replace",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 95,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-360",
+          "title": "delayed real Auth rejects duplicate form submissions at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-1440",
+          "title": "delayed real Auth rejects duplicate form submissions at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-loaded",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "inherited-context",
+          "title": "top bar displays resolved tenant/company and current user",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 83,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-validation",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-invalid",
+          "title": "invalid retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-validation",
+          "title": "validation retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-denied",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "inherited-orphan",
+          "title": "no active membership receives safe no-access and zero tenant data",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 96,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-connection-required",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-connection",
+          "title": "connection retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-returned-transport",
+          "title": "returned-transport retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-transport-with-rejection-code",
+          "title": "transport-with-rejection-code retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-360",
+          "title": "actual SDK transport failure retains input until explicit retry at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-1440",
+          "title": "actual SDK transport failure retains input until explicit retry at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-submitting",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-pending",
+          "title": "one active form attempt then refresh before root replace",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 95,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-360",
+          "title": "delayed real Auth rejects duplicate form submissions at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-1440",
+          "title": "delayed real Auth rejects duplicate form submissions at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-error-retry",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-invalid",
+          "title": "invalid retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-validation",
+          "title": "validation retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-rate-limit",
+          "title": "rate-limit retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-returned-transport",
+          "title": "returned-transport retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-transport-with-rejection-code",
+          "title": "transport-with-rejection-code retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-360",
+          "title": "actual SDK transport failure retains input until explicit retry at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-1440",
+          "title": "actual SDK transport failure retains input until explicit retry at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-unknown",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-returned-transport",
+          "title": "returned-transport retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-transport-with-rejection-code",
+          "title": "transport-with-rejection-code retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-unknown-provider",
+          "title": "unknown-provider retains input and permits explicit recovery",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 125,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-handler-unknown",
+          "title": "response loss claims neither confirmed login nor invalid credentials and never auto-retries",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 182,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-360",
+          "title": "actual SDK transport failure retains input until explicit retry at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-transport-1440",
+          "title": "actual SDK transport failure retains input until explicit retry at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 433,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    },
+    {
+      "id": "E35-2-STATE-confirmed",
+      "priority": "P1",
+      "coverage": "FULL",
+      "tests": [
+        {
+          "id": "35.2-handler-pending",
+          "title": "one active form attempt then refresh before root replace",
+          "file": "tests/unit/auth/login-submission.test.ts",
+          "line": 95,
+          "level": "unit",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "inherited-admin",
+          "title": "tenant_admin signs in and lands in app shell",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 76,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "inherited-context",
+          "title": "top bar displays resolved tenant/company and current user",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 83,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-360",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-360",
+          "title": "delayed real Auth rejects duplicate form submissions at 360x640",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-real-login-1440",
+          "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 228,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        },
+        {
+          "id": "35.2-pending-1440",
+          "title": "delayed real Auth rejects duplicate form submissions at 1440x900",
+          "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+          "line": 394,
+          "level": "e2e",
+          "status": "active",
+          "skipped": false,
+          "pending": false,
+          "fixme": false
+        }
+      ],
+      "evidence": [
+        "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+        "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+      ],
+      "basis": "bounded development oracle; separate release obligations retained"
+    }
+  ],
+  "coverage_statistics": {
+    "total_requirements": 16,
+    "fully_covered": 16,
+    "partially_covered": 0,
+    "uncovered": 0,
+    "overall_coverage_percentage": 100,
+    "priority_breakdown": {
+      "P0": {
+        "total": 1,
+        "covered": 1,
+        "percentage": 100
+      },
+      "P1": {
+        "total": 15,
+        "covered": 15,
+        "percentage": 100
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "percentage": 100
+      }
+    }
+  },
+  "gap_analysis": {
+    "critical_gaps": [],
+    "high_gaps": [],
+    "medium_gaps": [],
+    "low_gaps": [],
+    "partial_coverage_items": [],
+    "unit_only_items": []
+  },
+  "coverage_heuristics": {
+    "counts": {
+      "endpoints_without_tests": 0,
+      "auth_missing_negative_paths": 0,
+      "happy_path_only_criteria": 0,
+      "ui_journeys_without_e2e": 0,
+      "ui_states_missing_coverage": 0
+    }
+  },
+  "live_evidence": {
+    "present": false,
+    "freshness": "not_present",
+    "counted": 0,
+    "requirements_live_only": 0,
+    "current_source_sha": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+    "recorded_source_sha": "",
+    "results_file": ""
+  },
+  "live_records": [],
+  "test_inventory": {
+    "summary": {
+      "files": 2,
+      "cases": 23,
+      "skipped_cases": 0,
+      "fixme_cases": 0,
+      "pending_cases": 0,
+      "by_level": {
+        "e2e": {
+          "tests": 14,
+          "criteria_covered": 16
+        },
+        "api": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "component": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "unit": {
+          "tests": 9,
+          "criteria_covered": 10
+        },
+        "live": {
+          "tests": 0,
+          "criteria_covered": 0
+        },
+        "other": {
+          "tests": 0,
+          "criteria_covered": 0
+        }
+      }
+    },
+    "tests": [
+      {
+        "id": "35.2-handler-pending",
+        "title": "one active form attempt then refresh before root replace",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 95,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-invalid",
+        "title": "invalid retains input and permits explicit recovery",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 125,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-validation",
+        "title": "validation retains input and permits explicit recovery",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 125,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-rate-limit",
+        "title": "rate-limit retains input and permits explicit recovery",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 125,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-connection",
+        "title": "connection retains input and permits explicit recovery",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 125,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-returned-transport",
+        "title": "returned-transport retains input and permits explicit recovery",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 125,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-transport-with-rejection-code",
+        "title": "transport-with-rejection-code retains input and permits explicit recovery",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 125,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-unknown-provider",
+        "title": "unknown-provider retains input and permits explicit recovery",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 125,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-handler-unknown",
+        "title": "response loss claims neither confirmed login nor invalid credentials and never auto-retries",
+        "file": "tests/unit/auth/login-submission.test.ts",
+        "line": 182,
+        "level": "unit",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "inherited-anonymous",
+        "title": "an anonymous visitor to a protected route is redirected to login",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 69,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "inherited-admin",
+        "title": "tenant_admin signs in and lands in app shell",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 76,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "inherited-context",
+        "title": "top bar displays resolved tenant/company and current user",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 83,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "inherited-orphan",
+        "title": "no active membership receives safe no-access and zero tenant data",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 96,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "inherited-logout",
+        "title": "sign out re-protects routes",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 112,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-native-post",
+        "title": "native submission uses POST without credentials in the URL",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 145,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-real-login-360",
+        "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 360x640",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 228,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-foundation-360",
+        "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 360x640",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 296,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-pending-360",
+        "title": "delayed real Auth rejects duplicate form submissions at 360x640",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 394,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-transport-360",
+        "title": "actual SDK transport failure retains input until explicit retry at 360x640",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 433,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-real-login-1440",
+        "title": "invalid then corrected keyboard sign-in confirms current tenant/user at 1440x900",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 228,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-foundation-1440",
+        "title": "plain wordmark, local font, readable keyboard focus and enlarged reflow at 1440x900",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 296,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-pending-1440",
+        "title": "delayed real Auth rejects duplicate form submissions at 1440x900",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 394,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      },
+      {
+        "id": "35.2-transport-1440",
+        "title": "actual SDK transport failure retains input until explicit retry at 1440x900",
+        "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "line": 433,
+        "level": "e2e",
+        "status": "active",
+        "skipped": false,
+        "pending": false,
+        "fixme": false
+      }
+    ],
+    "blockers": []
+  },
+  "blockers": [],
+  "recommendations": [
+    "Retain separate REL-1/2/3 release work and release_ready=false.",
+    "Retain advisory NFR/test-quality findings and existing browser retry/pending inventory."
+  ]
+}

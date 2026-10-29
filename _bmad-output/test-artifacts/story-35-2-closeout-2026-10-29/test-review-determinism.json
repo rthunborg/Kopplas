@@ -1,0 +1,36 @@
+{
+  "dimension": "determinism",
+  "ran": true,
+  "execution": "sequential-worker-step",
+  "score": 70,
+  "max_score": 100,
+  "grade": "C",
+  "violations": [
+    {
+      "file": "tests/unit/auth/login-submission.test.ts",
+      "line": 151,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Expected message/disabled/retry assertions are selected by deterministic failure fixture; the literal registry bans conditional expectation selection. All seven fixture variants execute; no observed product result skips an assertion.",
+      "suggestion": "If separately authorized, express explicit expectations per fixture in table data or separate case bodies; preserve all variants and actual assertions."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 268,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Phone target geometry assertions run only for the statically declared 360px case. Both declared viewports execute; selection is by input, not observed UI state.",
+      "suggestion": "If separately authorized, split the phone-specific assertion into an explicitly named parameterized case without weakening geometry coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 380,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Reduced-height reachability assertions are selected only for the fixed 360px viewport. This is deterministic scope selection, not a conditional pass based on product output.",
+      "suggestion": "If separately authorized, give the phone reduced-height scenario its own explicit case while preserving both existing viewports."
+    }
+  ],
+  "recommendations": [],
+  "summary": "Literal installed test-quality registry applied; no source edits or new execution. Behavioral trace is separate."
+}

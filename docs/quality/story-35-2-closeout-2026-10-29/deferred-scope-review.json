@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-scoped-deferred-reconcile-archive-review",
+  "date": "2026-10-29",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "scope": "Only single35.2/spec-design-35-2 canonical closeout; no global ledger reassessment or ownership takeover",
+  "ledgerPath": "_bmad-output/implementation-artifacts/deferred-work.md",
+  "ledgerSha256": "c7b5f49918a3ac7dad0ba3f895dca7db82aac16e414b50a51c1a1b8edd313c87",
+  "planLedgerSha256": "c7b5f49918a3ac7dad0ba3f895dca7db82aac16e414b50a51c1a1b8edd313c87",
+  "globalEntriesObserved": 192,
+  "ownedMatchRule": "Read-only installed plan; ownership match in heading or source_spec by35.2/35-2/spec-design-35-2 boundary; content mention alone is not authority",
+  "ownedEntryIds": [],
+  "ownedEntries": 0,
+  "adapterDeferredEmpty": true,
+  "contentOnlyMentionIds": [],
+  "reconcileDisposition": "Completed scoped ownership assessment: no owned deferred entries to reconcile",
+  "archiveDisposition": "No owned archive selection; zero moved and zero writes appropriate; no global resolution claimed",
+  "archiveCommandExecuted": false,
+  "moved": 0,
+  "ledgerWrites": 0,
+  "archiveWrites": 0,
+  "ledgerUnchanged": true,
+  "archivePath": "_bmad-output/implementation-artifacts/deferred-work-resolved.md",
+  "archiveSha256": "724842f812082d11cf6a0bd7775123b7405a65fc719207d300eff15720ff18f6",
+  "archiveUnchanged": true,
+  "legacyItemNote": {
+    "entryId": 0,
+    "heading": "## Deferred from: code review of 1-2-establish-ci-and-quality-gate-baseline (2026-06-15)",
+    "sourceSpec": null,
+    "status": "Any legacy font-hermetic relationship is a future Coordinator proposal only; no ownership, resolution or mutation asserted here"
+  },
+  "verdict": "PASS",
+  "limits": [
+    "Remaining192 global ledger entries are not reassessed or marked resolved",
+    "No archive invocation with an empty/global selection",
+    "No source/Git/state/resource/remote mutations performed; this scoped review receipt is the only write"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "scope": "story 35.2 bounded TEA closeout",
+  "files": [
+    {
+      "path": "automate-api.json",
+      "sha256": "17138ae938533e734ce9c4fecb59345e11aa4e0c87c53e7c65afe411a409e294"
+    },
+    {
+      "path": "automate-e2e.json",
+      "sha256": "e0a7c74a2834a32b4f9f6c7016663597bf9651b586aaca349f8f2213cd4b3cbe"
+    },
+    {
+      "path": "automation-summary.md",
+      "sha256": "bdb45a6fa63deb613367c1900aa5898f61b9ad71202c6bb702107980e9377c2f"
+    },
+    {
+      "path": "build-receipts.py",
+      "sha256": "eaf2188ec94fcc7b89b1e3565e824873f3f2193a250142e00dcbb1c98debb417"
+    },
+    {
+      "path": "convention-baseline.json",
+      "sha256": "daa71ae8947aec21beca1a6ba22271e2434e31dc4ee285a6f02051815f81cdf8"
+    },
+    {
+      "path": "coverage-matrix.json",
+      "sha256": "9511e946cd41f7cd0e5b540ac660aa78ef683516318bbfff640345e68d059d24"
+    },
+    {
+      "path": "e2e-trace-summary.json",
+      "sha256": "d547549952a11bfec7775b63c3a68905ec76a19b9a1e4362db245f1e0f35dad1"
+    },
+    {
+      "path": "font-byte-check.json",
+      "sha256": "36d2db3574d8632794eaa9e13cbfe1c4d60e5e065887c31126377c580cdef692"
+    },
+    {
+      "path": "gate-decision.json",
+      "sha256": "8dddf849c11b50fd81672b97dc4f54516fb02b6937a53b11b7dbd71a1c6a49ac"
+    },
+    {
+      "path": "input-provenance.json",
+      "sha256": "2f413750ad54235c97805dc4c0554f27f73bbad96217d89fa3cba09a744c78a9"
+    },
+    {
+      "path": "nfr-assessment.md",
+      "sha256": "ba43003937699333dee081042557503412115517193ed2b68a88245b3eaccdae"
+    },
+    {
+      "path": "nfr-maintainability.json",
+      "sha256": "00ed394216319fa60f2953ac99017862304c696c2fc992f8ebc3531339a32898"
+    },
+    {
+      "path": "nfr-performance.json",
+      "sha256": "2e1177ee2a07ea55359b27ebbf99c90654416f0dc416bf69c78d619eacf35642"
+    },
+    {
+      "path": "nfr-reliability.json",
+      "sha256": "17f3e27e8bf5a97b1fbefe7050328a6cabbdeefac3aeac433c88ac0946c08f43"
+    },
+    {
+      "path": "nfr-security.json",
+      "sha256": "9b845d9bc21b784710af8b7db6fd8e3f8c3aecc50dc0ba39e41044a53e488081"
+    },
+    {
+      "path": "nfr-summary.json",
+      "sha256": "b3d2ff045bc076e474ba6b1eca268574126dcc6c697cb4e690146326081b9f41"
+    },
+    {
+      "path": "phase6-automate-result.json",
+      "sha256": "386ed47ae242d833f42a214ff47ea3dcd1ca356e54f1fa2687899403d7e04329"
+    },
+    {
+      "path": "phase8-tea-result.json",
+      "sha256": "8f3688732b405cad86e40df8cd73d65080f19bf419d77fa3892ccec1c2814b2c"
+    },
+    {
+      "path": "test-review-determinism.json",
+      "sha256": "0206d4d977d21dd4350072020fd074bd2302f77fcef37e7d9c94005cd73947ec"
+    },
+    {
+      "path": "test-review-isolation.json",
+      "sha256": "5f6556b6d913b13ff088e1dc067a1987e33adef68d68ff9faf46eff41765739c"
+    },
+    {
+      "path": "test-review-maintainability.json",
+      "sha256": "0dd904d59c878fa503681da31f9f135696abab55a662adfc0efe3511072f74ea"
+    },
+    {
+      "path": "test-review-performance.json",
+      "sha256": "fd129bee339ffe2881292d9833c6bc6135a13e43005a901fa8b0718cc7fefa22"
+    },
+    {
+      "path": "test-review-summary.json",
+      "sha256": "822caf351a61c0b82e0a24135acdc525959ae3dbc4d922fb55f929fc09a37602"
+    },
+    {
+      "path": "test-review.md",
+      "sha256": "d47b41b957a1d108311bb74a4ec2ef63d9c49d9098fd25b6c9cd4ac46198c275"
+    },
+    {
+      "path": "traceability-matrix.md",
+      "sha256": "9fe8929ce8b540117a456f5f5cccf436a9d0e8bbcd86994335d4c9220a15615d"
+    }
+  ],
+  "release_ready": false
+}

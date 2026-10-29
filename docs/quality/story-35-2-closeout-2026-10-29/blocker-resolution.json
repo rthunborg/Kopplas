@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-29",
+  "acceptedHead": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+  "mergedMain": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "historicalState": "_bmad-output/auto-bmad/history/spec-design-35-2-35-2/pre-closeout-2026-10-29.yaml",
+  "resolvedBlockers": [
+    {
+      "prior": "Trusted main EXPERIENCE/policy raw-byte mismatch: prepared source-only bootstrap b01bd9db, no main integration authorized here",
+      "resolution": "Source prerequisite PR116 merged143d28ba; current main8f9 and acceptedf598 trustedDESIGN/EXPERIENCE/inventory bytes verified by freshindependentreview and accepted nativevisual gate.",
+      "evidence": "https://github.com/rthunborg/Kopplas/pull/116"
+    },
+    {
+      "prior": "Final current-head minimum18 core capture/reference package and formal whole-package visual acceptance pending; shown idle views approved",
+      "resolution": "18current actuals/18references independentlyreviewed; genuineownercomment6493666971 accepts exactf598/digest3bbc; currentnativevisualchecks successful. Historicaldigest/mapping failures retained.",
+      "evidence": "https://github.com/rthunborg/Kopplas/pull/115#issuecomment-6493666971"
+    },
+    {
+      "prior": "Final-head native CI pending for changed E09 test; all prior earned cases/skips/history retained",
+      "resolution": "Exactacceptedheadf598 CI40846238540 succeeded allrequiredjobs beforemerge8f9. Actual3744unit/2146integration/52pending/separatestorage1/browser73expected1flaky0unexpected retained; norepeatclaimed.",
+      "evidence": "https://github.com/rthunborg/Kopplas/actions/runs/40846238540"
+    }
+  ],
+  "remainingReleaseValidation": "Retained in canonical delivery and adapter-only retrospective; release_ready=false"
+}

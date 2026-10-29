@@ -5,46 +5,49 @@ epic_num: null
 story_num: null
 story_suffix: null
 story_source: stories
-spec_folder: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2"
+spec_folder: "C:/DEV/K35-closeout/_bmad-output/specs/spec-design-35-2"
 story_id: 35-2
 branch: codex/story-35-2-foundations-login
-status: in-progress
-updated_at: "2026-10-28T13:10:36Z"
+status: done
+updated_at: "2026-10-29T10:46:42Z"
 started_at: "2026-10-28T09:15:07Z"
-completed_at: null
+completed_at: "2026-10-29T10:46:42Z"
 active_seconds: 8023
 timing_anchor: 1793189191
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: build
-selected_role: build-delegate
+selected_phase: final_convergence
+selected_role: final-convergence
 selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: low
+selected_effort: high
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Resume existing 35.2 evidence/build coordinator after verified shown-view approval; actual auth/security diagnosis is separately routed High with independent High review"
+escalation_reason: "Automatic sensitive-task escalation: critical-conflict"
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Retain persisted low effort for the in-flight task\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Resume existing 35.2 evidence/build coordinator after verified shown-view approval; actual auth/security diagnosis is separately routed High with independent High review\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"retrospective\",\"profile\":\"default\",\"role\":\"retrospective-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: critical-conflict\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"final_convergence\",\"profile\":\"standard\",\"role\":\"final-convergence\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Real login is authentication-facing under TEA rubric; preserve existing authority. No long-epic advisory for one-story folder."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2, 3, 4]
-spec_path: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md"
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+spec_path: "C:/DEV/K35-closeout/_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md"
 spec_approved: true
 build:
-  status: blocked
-  blocking_condition: "Remaining gates: exact final-head CI for the reviewed E09 observer, minimum 18 core actual/reference capture pairs and full-package authenticated visual protocol, plus coherent source/pin integration on trusted main. Native 5dc unit/integration/recovery evidence and latest strict local E09 pass are earned; earlier E09 transport failure remains recorded. Generic story/font and shown idle-login approvals are not pending."
-  followup_review_recommended: true
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
   warnings: [oversized]
@@ -60,33 +63,30 @@ legacy_convergence_unverified: false
 legacy_artifact_path: null
 commits: [e1f02d48, d5fc62a8, 5f58e05d, 5b167f1b, 01c4b149, be4cb52f, a0912945, 5dc23d40, 22ad29f3, 70553d4b, 5913f3a5, 188c3023, 1e969651, c6af1ec2, 9974943d]
 phase8_steps:
-  trace_gate: null
-  nfr: null
-  test_review: null
-  reconcile: null
-  archive: null
-  retro: null
-gate_decision: null
+  trace_gate: done
+  nfr: done
+  test_review: done
+  reconcile: done
+  archive: done
+  retro: done
+gate_decision: PASS
 gate_iterations: 0
 deferred_work_archived: 0
 retro:
-  doc: null
-  verdict: null
-  open_action_items: 0
+  doc: "C:/DEV/K35-closeout/_bmad-output/specs/spec-design-35-2/RETROSPECTIVE.md"
+  verdict: accepted-with-open-items
+  open_action_items: null
 bmad_status_flipped_at: null
 pr_url: "https://github.com/rthunborg/Kopplas/pull/115"
-ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40680525867"
-ci_status: failed
-pr_merged: false
-merge_method: null
-merge_commit: null
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40846238540"
+ci_status: passed
+pr_merged: true
+merge_method: merge
+merge_commit: 8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers:
-  - "Trusted main EXPERIENCE/policy raw-byte mismatch: prepared source-only bootstrap b01bd9db, no main integration authorized here"
-  - "Final current-head minimum18 core capture/reference package and formal whole-package visual acceptance pending; shown idle views approved"
-  - "Final-head native CI pending for changed E09 test; all prior earned cases/skips/history retained"
+blockers: []
 overrides:
   approval_record: docs/quality/story-35-2-approved-admission-2026-10-28.json
   approved_candidate: 65be26c5e6e2923ea0298160f4da54a987bed0fe

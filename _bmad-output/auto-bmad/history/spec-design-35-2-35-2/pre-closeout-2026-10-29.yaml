@@ -1,0 +1,109 @@
+# auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
+# see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
+story_key: spec-design-35-2-35-2
+epic_num: null
+story_num: null
+story_suffix: null
+story_source: stories
+spec_folder: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2"
+story_id: 35-2
+branch: codex/story-35-2-foundations-login
+status: in-progress
+updated_at: "2026-10-28T13:10:36Z"
+started_at: "2026-10-28T09:15:07Z"
+completed_at: null
+active_seconds: 8023
+timing_anchor: 1793189191
+is_first_in_epic: true
+is_last_in_epic: true
+git_mode: remote
+base_branch: main
+selected_phase: build
+selected_role: build-delegate
+selected_profile: standard
+selected_model: gpt-6.1-sol
+selected_effort: low
+selected_host: codex
+selected_tier: subagents
+selected_route: subagent
+escalation_reason: "Resume existing 35.2 evidence/build coordinator after verified shown-view approval; actual auth/security diagnosis is separately routed High with independent High review"
+routing_ledger:
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Retain persisted low effort for the in-flight task\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Resume existing 35.2 evidence/build coordinator after verified shown-view approval; actual auth/security diagnosis is separately routed High with independent High review\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+tea_risk: high
+tea_selected: [atdd, automate]
+tea_rationale: "Real login is authentication-facing under TEA rubric; preserve existing authority. No long-epic advisory for one-story folder."
+epic_story_count: 1
+stories_after_in_epic: 0
+completed_phases: [0, 1, 2, 3, 4]
+spec_path: "C:/DEV/K35-implementation/_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md"
+spec_approved: true
+build:
+  status: blocked
+  blocking_condition: "Remaining gates: exact final-head CI for the reviewed E09 observer, minimum 18 core actual/reference capture pairs and full-package authenticated visual protocol, plus coherent source/pin integration on trusted main. Native 5dc unit/integration/recovery evidence and latest strict local E09 pass are earned; earlier E09 transport failure remains recorded. Generic story/font and shown idle-login approvals are not pending."
+  followup_review_recommended: true
+  review_loop_iteration: 0
+  deferred_count: 0
+  warnings: [oversized]
+followup_passes: 0
+hitl_halt: null
+review_unverified: false
+story_trace: null
+legacy_review_resume: false
+legacy_review_iteration: null
+legacy_review_loop_done: false
+legacy_external_review_iterations: null
+legacy_convergence_unverified: false
+legacy_artifact_path: null
+commits: [e1f02d48, d5fc62a8, 5f58e05d, 5b167f1b, 01c4b149, be4cb52f, a0912945, 5dc23d40, 22ad29f3, 70553d4b, 5913f3a5, 188c3023, 1e969651, c6af1ec2, 9974943d]
+phase8_steps:
+  trace_gate: null
+  nfr: null
+  test_review: null
+  reconcile: null
+  archive: null
+  retro: null
+gate_decision: null
+gate_iterations: 0
+deferred_work_archived: 0
+retro:
+  doc: null
+  verdict: null
+  open_action_items: 0
+bmad_status_flipped_at: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/115"
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/40680525867"
+ci_status: failed
+pr_merged: false
+merge_method: null
+merge_commit: null
+branch_deleted: false
+open_questions: []
+deferred_work: []
+blockers:
+  - "Trusted main EXPERIENCE/policy raw-byte mismatch: prepared source-only bootstrap b01bd9db, no main integration authorized here"
+  - "Final current-head minimum18 core capture/reference package and formal whole-package visual acceptance pending; shown idle views approved"
+  - "Final-head native CI pending for changed E09 test; all prior earned cases/skips/history retained"
+overrides:
+  approval_record: docs/quality/story-35-2-approved-admission-2026-10-28.json
+  approved_candidate: 65be26c5e6e2923ea0298160f4da54a987bed0fe
+  offer_merge: false
+  single_story_only: true
+  allocated_branch: codex/story-35-2-foundations-login
+  owner_visual_checkpoint: true
+  login_shown_views_approval: docs/quality/story-35-2-login-visual-approval-2026-10-28.json
+  resume_routing: docs/quality/story-35-2-resume-routing-2026-10-28.json
+  login_approved_capture_head: 5dc23d40bd672d476b80ccfeff1d1a6dad56ba74
+  native_earned_verification: "3744 unit passes;2146 integration passes/52 explicit skips; recovery passed at5dc/40680525867"
+  minimum_core_capture_count: 18
+  exploratory_reference_archive: codex/story-35-2-reference-exploration
+  trusted_source_packet: docs/quality/story-35-2-trusted-source-bootstrap-2026-10-28.json
+  latest_e09_local_pass: 1e969651c998708e7f471ce0b968427771220632
+constraints:
+  - No merge/deploy/dbpush/global tracking/wholeE35
+  - Official Inter v4.1 exact approved bytes
+  - "Root managed resources remain guard-owned; direct Continue reopened current actor"
+  - "Two shown idle login views approved at5dc; unseen states/full exact-head protocol not waived"

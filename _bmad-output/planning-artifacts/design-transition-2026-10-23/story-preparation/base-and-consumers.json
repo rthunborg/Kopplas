@@ -1,0 +1,3905 @@
+{
+  "observed_date": "2026-10-23",
+  "checkout_head": "bbf7cef7515da7d3cd1d39a70cb73eab1856d3ad",
+  "integrated_source_base": "99104d0ffa0360cf7d4ce4de174789c4a4605224",
+  "remote_main_observed": "0ae48a243fce47cb42e0998aae319f00c796dc85",
+  "remote_object_present": false,
+  "input_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "e50b9bbc71c55a3e1bb11f73efc1a9c1ead397c8c07a8852d5e2e3e893f6a2b3"
+    },
+    {
+      "path": "_bmad-output/project-context.md",
+      "sha256": "cc5262e26bcb23b5e5700f4bc76de5fba1c74f108dfb64ffa5e88d3facad54bd"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/prd-phase-b.md",
+      "sha256": "fcc184a49f8d574fc0e4cbd03b0fe5453604eedec4074bc773bfde0f2701560c"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/architecture-phase-b.md",
+      "sha256": "ba7378e3203064177aed4585979a1820ca7accda364bb23d6ccdd1283638f1b5"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/epics-phase-b.md",
+      "sha256": "da23fbfb33f5c8728cc1e06acb646f61d16d59c7128fa35caf21dd6d7faae5f6"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+      "sha256": "feaeed31b8a481b36dd33f0be27050782565ce9eebcc4d866e92281f1e6c1350"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/sprint-change-proposal-2026-10-23-design-transition.md",
+      "sha256": "0f2fdfc6da872e5a62b6d738ae13bf482e4dd4d081466635472d13861001d943"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/.memlog.md",
+      "sha256": "40ac01536369a2622e2bc74f68178380cd4cbbe4a70970d6075288f7c44fe141"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+      "sha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+      "sha256": "acb38e58b7ada2bba7165bc8ba4339dc29583ca2fbcd66304e2c04f13323cd58"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/next-session-course-correction.md",
+      "sha256": "bfeb1a17d2b0917a7c8a48636034f480cb8752d0923473371e8a818977df2497"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/README.md",
+      "sha256": "858a393ebeb78a9cf07496d05a8557b971737f965cc12a6a05637d1e765ee9e6"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/reconcile-handoff-v1.md",
+      "sha256": "dfdffb23983e968a4c7672f688da47b0130f07e7a43f53f47bb979eba47f546e"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/review-rubric.md",
+      "sha256": "a18317dfbdafd293844fe2c7fdcf0e32233fe38154b540736946a989a226ff01"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+      "sha256": "d18fc8991dde821b3f59f19e2bb7c7bfca051e61beafc27b6374045c341931af"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+      "sha256": "826829352f46eee6b4f01c66e624c6acce0f1158cde459312ffa0584015bcacb"
+    },
+    {
+      "path": "docs/design/claude-design/v1/inventory.sha256.json",
+      "sha256": "f11112d198c8db06863ccc3a84e2dec971222b3b7dc39d46b813b361fefe2af5"
+    }
+  ],
+  "consumers": [
+    {
+      "path": "src/app/(app)/(notification-settings)/settings/notifications/page.tsx",
+      "sha256": "cd4ad1251b9267a6ab0c808032f120706bfe178a29ce1e67c6c4301d07fa13ae",
+      "exports": [],
+      "imports": [
+        "@/components/notifications/NotificationPreferences"
+      ]
+    },
+    {
+      "path": "src/app/(app)/admin/users/[membershipId]/page.tsx",
+      "sha256": "e048e1163598bbe20ec80da895540eb69cf538ffe4f4a300e83bc2b64f91d9d8",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/app-shell/RouteAccessBoundary",
+        "@/components/admin-users/UserDetailPanel",
+        "@/features/admin-users/read",
+        "@/features/resources/read",
+        "@/server/resources/e2e-save-failure"
+      ]
+    },
+    {
+      "path": "src/app/(app)/admin/users/page.tsx",
+      "sha256": "09f5ebb2fe4f8695b7bfd54ace9fe91996fe21863d16c7f1c31902e7fd5c2e99",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/components/app-shell/RouteAccessBoundary",
+        "@/components/admin-users/UsersPage",
+        "@/features/admin-users/read"
+      ]
+    },
+    {
+      "path": "src/app/(app)/calculations/[calculationId]/page.tsx",
+      "sha256": "40b816a16e6e594c0605d801860d3e416f849d721f46581282da97e5ef1c8856",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/components/documents/EntityDocumentsLink",
+        "@/server/read-models/document-context",
+        "next/link",
+        "@/components/calculations/CalculationEditor",
+        "@/components/files/EntityFilePanel",
+        "@/features/calculations/read",
+        "@/features/files/read",
+        "@/features/pricing/read",
+        "@/features/settings/read",
+        "@/features/calculations/source-options",
+        "@/features/calculations/vat-posture",
+        "@/server/commands/quotes/review-token",
+        "@/lib/datetime/business-date"
+      ]
+    },
+    {
+      "path": "src/app/(app)/calculations/page.tsx",
+      "sha256": "1aa3e10312614f26969447e0ea15b6c4eb1ed9ce845cf2aa2f4bc23133426951",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/components/calculations/CalculationList",
+        "@/features/calculations/read",
+        "@/features/crm/read"
+      ]
+    },
+    {
+      "path": "src/app/(app)/customers/[customerId]/page.tsx",
+      "sha256": "4fb3ddad314c09dbc5ee8e7d650c7088eee59669a316c4586a4aa985ceb3fc9e",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/components/documents/EntityDocumentsLink",
+        "@/server/read-models/document-context",
+        "next/link",
+        "@/components/crm/CustomerDetail",
+        "@/components/files/EntityFilePanel",
+        "@/features/crm/read",
+        "@/features/files/read",
+        "@/components/resources/BookingEntry",
+        "@/features/resources/bookings-read"
+      ]
+    },
+    {
+      "path": "src/app/(app)/customers/page.tsx",
+      "sha256": "c14f4e0393c3f8427a97444adb327b3781faa5349e59723b3b2eb554117c4c54",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/components/crm/CustomerList",
+        "@/features/crm/read"
+      ]
+    },
+    {
+      "path": "src/app/(app)/dashboard/page.tsx",
+      "sha256": "241b23ab18f121ddcfa2b8f3793d433d6459d5fdaf85bd14fde862596e5fa7d3",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "react",
+        "@/components/dashboard/DashboardGrid",
+        "@/components/dashboard/QuotePipelineWidget",
+        "@/server/read-models/dashboard",
+        "@/scope/widget-registry",
+        "@/server/auth/resolve-tenant-context",
+        "@/components/onboarding/OnboardingChecklist",
+        "@/components/onboarding/OnboardingReminder",
+        "@/server/read-models/onboarding-checklist"
+      ]
+    },
+    {
+      "path": "src/app/(app)/files/page.tsx",
+      "sha256": "bb4e59d032c08a3aa47c8fd95e0f8f60ef9ad7908ebbb260d18deab52c5a85f1",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "react",
+        "node:crypto",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/commands/documents/lifecycle",
+        "@/components/documents/DocumentFilters",
+        "@/server/read-models/documents",
+        "@/features/documents/filters",
+        "@/features/crm/read",
+        "@/features/calculations/read",
+        "@/features/jobs/read"
+      ]
+    },
+    {
+      "path": "src/app/(app)/jobs/[jobId]/page.tsx",
+      "sha256": "04fec2b82cdffb7df1286062e4201c3c1f7dffe6c7cd0839482bbc8d2e946784",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "next/navigation",
+        "react",
+        "@/components/jobs/JobDetailView",
+        "@/components/jobs/JobWorkspaceShell",
+        "@/components/jobs/JobWorkspaceSchedule",
+        "@/components/jobs/JobEventsPanel",
+        "@/components/jobs/JobUpgradeDialog",
+        "@/components/jobs/JobWorkOrdersPanel",
+        "@/components/files/EntityFilePanel",
+        "@/components/documents/EntityDocumentsLink",
+        "@/server/read-models/document-context",
+        "@/features/files/read",
+        "@/server/read-models/job-workspace",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix"
+      ]
+    },
+    {
+      "path": "src/app/(app)/jobs/page.tsx",
+      "sha256": "f9821132f23a5157b75ff1efc13435c35084b3d5abcf3b18dca4daed0e14dbf4",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/jobs/JobList",
+        "@/features/jobs/read",
+        "@/server/read-models/my-jobs",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix",
+        "@/components/resources/BookingEntry",
+        "@/features/resources/bookings-read"
+      ]
+    },
+    {
+      "path": "src/app/(app)/notifications/page.tsx",
+      "sha256": "ef100131567620541c7ab898e4413f71a9c9acb404b080406ab6c91c0737c178",
+      "exports": [],
+      "imports": [
+        "@/server/notifications/read-model",
+        "@/components/notifications/NotificationsCenter",
+        "@/components/notifications/EmailOutboxQueue",
+        "@/server/read-models/email-outbox"
+      ]
+    },
+    {
+      "path": "src/app/(app)/quotes/[quoteId]/page.tsx",
+      "sha256": "b94cb0b5e89757f1b688aa691120a7cbfd2635d1bcd9b723f5445301d0d2427d",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/quotes/QuoteDetailView",
+        "@/features/quotes/read",
+        "@/features/files/acceptance-panel",
+        "@/features/files/quote-files-panel"
+      ]
+    },
+    {
+      "path": "src/app/(app)/quotes/[quoteId]/versions/[versionId]/page.tsx",
+      "sha256": "ae0f890d56ce78f5dd2a1d5d50b5bef07e8579d5c1878a87b3d5d69aa2e4f93c",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/quotes/QuoteDetailView",
+        "@/features/quotes/read",
+        "@/features/files/acceptance-panel"
+      ]
+    },
+    {
+      "path": "src/app/(app)/quotes/page.tsx",
+      "sha256": "d7379a63d3c5b318bb0e666693a9401a472920ec1494134ecde8f9ac8b50a92e",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/components/quotes/QuoteList",
+        "@/features/quotes/read",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix"
+      ]
+    },
+    {
+      "path": "src/app/(app)/settings/company/page.tsx",
+      "sha256": "3d9d4300fab0e9014eb56d07be129e0b5018c33d9581cacb282030bb70974348",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/settings/CompanySettingsForm",
+        "@/features/settings/read",
+        "@/features/settings/vat-display"
+      ]
+    },
+    {
+      "path": "src/app/(app)/settings/page.tsx",
+      "sha256": "20cc24f317fd54d1f94a1fe3bbb13008745ff5e89167104089b9f208c92ff50a",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link"
+      ]
+    },
+    {
+      "path": "src/app/(app)/settings/pricing/page.tsx",
+      "sha256": "066eb3c00d6c5f640d78aa9b4e737958d2cbb97cd6fffb835f50117803aa9d60",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/pricing/WorkRolesEditor",
+        "@/components/pricing/ArticlesEditor",
+        "@/features/pricing/read"
+      ]
+    },
+    {
+      "path": "src/app/(app)/settings/quote-terms/page.tsx",
+      "sha256": "2683530609b048423fdc19b456f26844541c4e15ebe5cf503a0c2672e036d4e4",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/settings/QuoteTermsEditor",
+        "@/features/settings/read"
+      ]
+    },
+    {
+      "path": "src/app/(auth)/invite/accept/page.tsx",
+      "sha256": "f8bef43cd797a883452ac62b62042f0d9b5b22b415c7783f95cadd48b972378d",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "next/link",
+        "@/components/admin-users/InviteAcceptanceForm"
+      ]
+    },
+    {
+      "path": "src/app/(auth)/login/page.tsx",
+      "sha256": "8975d2bf0891056701f5efc6aba2aa18dcf3c8bdaf8afcb515644b8218dcaf7d",
+      "exports": [],
+      "imports": [
+        "next/navigation",
+        "react",
+        "@/server/db/supabase-browser-client"
+      ]
+    },
+    {
+      "path": "src/app/(auth)/password/update/page.tsx",
+      "sha256": "a20b91b99e1ba71006ff5282b297d2950c7c134e8dbef3fbea3f9c2085a382b8",
+      "exports": [],
+      "imports": [
+        "react",
+        "@/server/db/supabase-browser-client"
+      ]
+    },
+    {
+      "path": "src/app/(public)/unsubscribe/[token]/route.ts",
+      "sha256": "1a8b16301e01000a8f85294e5bb4e148811c08423266878bbcea1ffe26eb41dd",
+      "exports": [
+        "GET",
+        "POST"
+      ],
+      "imports": [
+        "@/server/email/unsubscribe"
+      ]
+    },
+    {
+      "path": "src/app/api/jobs/run/route.ts",
+      "sha256": "69ae520e24dbf912ecb34b8cec139efa8039793b6a8777582b318d52706f63fc",
+      "exports": [
+        "DEFAULT_RUN_BUDGET_MS",
+        "handleJobsRunRequest",
+        "GET",
+        "POST"
+      ],
+      "imports": [
+        "node:crypto",
+        "@supabase/supabase-js",
+        "@/server/jobs/service-client",
+        "@/server/jobs/producers",
+        "@/server/jobs/runner",
+        "@/server/jobs/auth",
+        "@/server/notifications/follow-up-producer",
+        "@/server/email/outbox",
+        "@/lib/datetime/business-date",
+        "@/server/jobs/cursor-read"
+      ]
+    },
+    {
+      "path": "src/app/api/notifications/[id]/read/route.ts",
+      "sha256": "76c2ce51de5876f9a61d6fff9732d7533ee00bb2adbafa13c04f62954b16dacf",
+      "exports": [
+        "POST"
+      ],
+      "imports": [
+        "next/server",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context"
+      ]
+    },
+    {
+      "path": "src/app/api/notifications/preferences/route.ts",
+      "sha256": "e53823c3b7a4532d906a56ab51a9d8d5468f8de9fe83a0522b88047e43559866",
+      "exports": [
+        "GET",
+        "PUT"
+      ],
+      "imports": [
+        "next/server",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/notifications/registry"
+      ]
+    },
+    {
+      "path": "src/app/api/notifications/read-all/route.ts",
+      "sha256": "e22344ef18ad28363b9fca719d26d16d61c8f04226f482b91768497ce21e13b3",
+      "exports": [
+        "POST"
+      ],
+      "imports": [
+        "next/server",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context"
+      ]
+    },
+    {
+      "path": "src/app/api/notifications/route.ts",
+      "sha256": "e5420cf347f1cc217f881027a2a20f016cd1d62a868049866609f2cb5e14dbea",
+      "exports": [
+        "GET"
+      ],
+      "imports": [
+        "next/server",
+        "@/server/notifications/read-model"
+      ]
+    },
+    {
+      "path": "src/app/api/quotes/[quoteVersionId]/delivery-recipients/route.ts",
+      "sha256": "0573981539270726401cec66ebefed11c5d10e98c50feaa2361741fe70fa4e06",
+      "exports": [
+        "GET"
+      ],
+      "imports": [
+        "next/server",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix",
+        "@/server/db/supabase-server-client"
+      ]
+    },
+    {
+      "path": "src/app/auth/invite/complete/page.tsx",
+      "sha256": "bbceec6b5fc518aa5f9e6662968fa4ee43e24e4fbd8bf3a1c72fcda8743d9557",
+      "exports": [],
+      "imports": [
+        "react",
+        "next/navigation",
+        "@/features/admin-users/auth-email-callback",
+        "@/server/db/supabase-browser-client"
+      ]
+    },
+    {
+      "path": "src/app/auth/invite/confirm/route.ts",
+      "sha256": "670b65bd64310eda97d07e3e9c6943d68ec54814db1aaf9c139ce9d0df525f4b",
+      "exports": [
+        "GET"
+      ],
+      "imports": [
+        "next/server",
+        "@/server/db/supabase-server-client",
+        "@/features/admin-users/auth-email-callback"
+      ]
+    },
+    {
+      "path": "src/app/operator/[tenantId]/page.tsx",
+      "sha256": "b9e1c04fcfaa0e18a4cbf1d58e687afb50a9f64260a38b5263fede38954fd6cd",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/features/operator-console/wizard-state",
+        "@/server/read-models/operator-console",
+        "@/server/auth/resolve-platform-operator",
+        "@/components/operator-console/HandoffRecovery"
+      ]
+    },
+    {
+      "path": "src/app/operator/page.tsx",
+      "sha256": "9cace523e4e26163f2f7a295ad786804dfc47b1e0171785633b5509f22f13c7f",
+      "exports": [
+        "dynamic"
+      ],
+      "imports": [
+        "@/components/operator-console/OperatorConsole",
+        "@/server/read-models/operator-console",
+        "@/server/auth/resolve-platform-operator"
+      ]
+    },
+    {
+      "path": "src/app/page.tsx",
+      "sha256": "12810f2fab3619230e87a40e7af192af2eb385d2516d9c323b9b6380c868cb37",
+      "exports": [],
+      "imports": [
+        "next/navigation",
+        "@/components/app-shell/NoTenantAccess",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/auth/tenant-context",
+        "@/server/authz/phase-a-surface"
+      ]
+    },
+    {
+      "path": "src/components/app-shell/AppShell.tsx",
+      "sha256": "165086797092cefd976eb9f8463a6a0b58ea6c38546c920e600ec3c2943cdc4d",
+      "exports": [
+        "AppShellContext",
+        "AppShell"
+      ],
+      "imports": [
+        "next/link",
+        "next/navigation",
+        "react",
+        "./nav-items",
+        "./NavIcon",
+        "./SignOutButton",
+        "@/components/notifications/NotificationBell"
+      ]
+    },
+    {
+      "path": "src/components/app-shell/nav-items.ts",
+      "sha256": "c25b7fccf6cde909a69d410454139203e9c7e253c882d8bdcdbf8a11eb76e15d",
+      "exports": [
+        "NavItem",
+        "navItems"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/features/admin-users/actions.ts",
+      "sha256": "bb6304aee83f9b0819f6ac05e734b3307b1818f29365cd0317f1b948cd6ebf8e",
+      "exports": [
+        "InvitationAcceptanceActionState",
+        "inviteAdminUserAction",
+        "acceptAdminInvitationAction",
+        "lifecycleAdminUserAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/commands/admin-users/invite",
+        "@/server/commands/admin-users/accept-invitation",
+        "@/server/commands/admin-users/lifecycle",
+        "@/server/commands/admin-users/invite",
+        "./action-state"
+      ]
+    },
+    {
+      "path": "src/features/admin-users/read-model.ts",
+      "sha256": "e997101a8ace165577a4d0f4a217367828ef04ae88f0b63498ac222bbaba5faf",
+      "exports": [
+        "AdminUserRow",
+        "AdminUsersReadClient",
+        "readAdminUsersForTenant"
+      ],
+      "imports": [
+        "@/server/read-models/pagination"
+      ]
+    },
+    {
+      "path": "src/features/calculations/actions.ts",
+      "sha256": "cc3bfbf50ace96ac7035a6e4bb51fd90d857ff0e86d3aa11576f840c45b72928",
+      "exports": [
+        "createCalculationAction",
+        "updateCalculationAction",
+        "updateTaxInputAction",
+        "archiveCalculationAction",
+        "createSectionAction",
+        "updateSectionAction",
+        "archiveSectionAction",
+        "createRowAction",
+        "updateRowAction",
+        "archiveRowAction",
+        "reorderSectionsAction",
+        "reorderRowsAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/calculations",
+        "./action-state",
+        "./form-parsing"
+      ]
+    },
+    {
+      "path": "src/features/crm/actions.ts",
+      "sha256": "9df8f1ae665d4ad83915b686ee19a0d3a273312723fe415503fbde96b5d58146",
+      "exports": [
+        "createCustomerAction",
+        "updateCustomerAction",
+        "archiveCustomerAction",
+        "createFacilityAction",
+        "updateFacilityAction",
+        "archiveFacilityAction",
+        "createContactAction",
+        "updateContactAction",
+        "archiveContactAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/crm/contacts",
+        "@/server/commands/crm/customers",
+        "@/server/commands/crm/facilities",
+        "./action-state",
+        "./form-parsing"
+      ]
+    },
+    {
+      "path": "src/features/documents/actions.ts",
+      "sha256": "8da4b84d97df6b4c2b3ef15355973160be3e0b1d3ad9c2275b714b3b58ea40e1",
+      "exports": [
+        "createDocumentSignedAccessAction"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/documents/signed-access",
+        "@/server/commands/command-errors",
+        "@/lib/result/result"
+      ]
+    },
+    {
+      "path": "src/features/files/actions.ts",
+      "sha256": "b0bf75011f4984653ab3683a092a880899ad8e11ddabb5ce916fe590ea2ab7c6",
+      "exports": [
+        "uploadFileAction",
+        "previewEntityFileAction",
+        "archiveFileAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/files",
+        "@/server/storage/upload-error-classifier",
+        "./form-parsing",
+        "./revalidate-route",
+        "./signed-access-state",
+        "./upload-action-state",
+        "./archive-action-state"
+      ]
+    },
+    {
+      "path": "src/features/jobs/actions.ts",
+      "sha256": "c72fd9bb618ee0be13e435614eb144107ecdca5ea089b66d3251978c923b9f9b",
+      "exports": [
+        "updateJobAction",
+        "createJobAction",
+        "previewJobEvidenceAction",
+        "saveJobCardAction",
+        "assignJobMemberAction",
+        "removeJobMemberAction",
+        "setJobLeadAction",
+        "updateJobPlanDatesAction",
+        "refetchJobMembersAction",
+        "createWorkOrderAction",
+        "updateWorkOrderAction",
+        "setWorkOrderAssigneesAction",
+        "setWorkOrderStatusAction",
+        "setWorkOrderDependenciesAction",
+        "setJobWorkOrderDependenciesAction",
+        "refetchJobWorkOrdersAction",
+        "upgradeJobToProjektAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/jobs",
+        "@/server/commands/files",
+        "./action-state",
+        "./evidence-preview-state",
+        "@/server/commands/jobs/save-job-card",
+        "@/server/commands/jobs/job-members",
+        "@/server/commands/jobs/job-plan-dates",
+        "@/server/read-models/job-members",
+        "@/server/commands/jobs/work-orders",
+        "@/server/read-models/job-work-orders"
+      ]
+    },
+    {
+      "path": "src/features/onboarding/actions.ts",
+      "sha256": "06ab5e032eff7bd0b6a32c77c176be6c4b4a55b367df55b20673465ed13e736a",
+      "exports": [
+        "setOnboardingChecklistDismissed"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "./action-state"
+      ]
+    },
+    {
+      "path": "src/features/operator-console/actions.ts",
+      "sha256": "753fcbba09a5356eb90af9139301e455c1b74c43b8c28a09b1ee8176ea76368d",
+      "exports": [
+        "OperatorPreviewState",
+        "OperatorRecoveryState",
+        "previewOperatorProvisioningAction",
+        "approveOperatorProvisioningAction",
+        "reconcileOperatorFirstAdminInviteAction",
+        "retryReconciledOperatorFirstAdminInviteAction",
+        "retryOperatorFirstAdminInviteForTenantAction",
+        "previewOperatorInviteRenewalAction",
+        "approveOperatorInviteRenewalAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/commands/provisioning/provision-tenant",
+        "@/server/auth/resolve-platform-operator",
+        "@/server/provisioning/operator-preview-grant",
+        "@/server/provisioning/operator-reconciliation-grant",
+        "./projection",
+        "./action-state",
+        "./provisioning-request"
+      ]
+    },
+    {
+      "path": "src/features/operator-console/projection.ts",
+      "sha256": "e359a3e6576701b64ac1f645e6642d831a584353be61a43c050f9429a6bcaf2c",
+      "exports": [
+        "OperatorConsoleRow",
+        "projectConsoleRow",
+        "projectProvisioningConfirmation"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/features/pricing/actions.ts",
+      "sha256": "30959433149d8e2d2f34730195a4353eed0d5e989eaa107eaf8cb3657c5ec821",
+      "exports": [
+        "saveWorkRoleAction",
+        "archiveWorkRoleAction",
+        "reactivateWorkRoleAction",
+        "saveArticleAction",
+        "archiveArticleAction",
+        "reactivateArticleAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/pricing/work-roles",
+        "@/server/commands/pricing/articles",
+        "./action-state",
+        "./form-parsing"
+      ]
+    },
+    {
+      "path": "src/features/quotes/actions.ts",
+      "sha256": "33db97dcf5ba73d84a76cfcf241db559f5580ce43dca663fcd6ee0a8f1d0c978",
+      "exports": [
+        "updateDraftQuoteVersionAction",
+        "generateQuotePdfAction",
+        "markQuoteVersionSentAction",
+        "correctPendingQuoteDeliveryRecipientAction",
+        "createNewQuoteVersionAction",
+        "markQuoteVersionLostAction",
+        "planQuoteFollowUpAction",
+        "completeQuoteFollowUpAction",
+        "annotateQuoteFollowUpAction",
+        "captureQuoteAcceptanceAction",
+        "createQuoteVersionFromCalculationAction",
+        "createReviewedQuoteVersionFromCalculationAction",
+        "previewQuotePdfAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/quotes",
+        "@/server/commands/quotes/quote-db",
+        "@/server/commands/quotes/validation",
+        "@/features/calculations/money-input",
+        "./acceptance-action-state",
+        "./action-state",
+        "./pdf-action-state",
+        "./mark-sent-action-state",
+        "./lost-action-state",
+        "./lost-follow-up-retry",
+        "./follow-up-action-state",
+        "./new-version-action-state",
+        "./create-quote-action-state"
+      ]
+    },
+    {
+      "path": "src/features/resources/actions.ts",
+      "sha256": "314a4a1ff4f68999120a335f7c20a083c612d81ab9d718ba421a929098f7f271",
+      "exports": [
+        "ResourceActionState",
+        "saveResourceProfileAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/resources/profile-form",
+        "@/features/resources/work-hours",
+        "@/features/resources/capacity-inputs",
+        "@/features/resources/schedule-form-merge",
+        "@/features/resources/resource-form-inputs",
+        "@/server/resources/e2e-save-failure"
+      ]
+    },
+    {
+      "path": "src/features/resources/booking-actions.ts",
+      "sha256": "f01767d50339ccb9fabbfba866c40ddf516e3624d0345b62a20a49e6d276fa25",
+      "exports": [
+        "previewBookingAction",
+        "saveBookingAction",
+        "reloadBookingEditorOptionsAction"
+      ],
+      "imports": [
+        "node:crypto",
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/bookings/create-booking",
+        "@/server/commands/bookings/update-booking",
+        "@/server/commands/bookings/validation",
+        "@/server/bookings/editor-preview",
+        "@/server/bookings/candidate-references",
+        "@/server/bookings/conflict-facts",
+        "./booking-action-state",
+        "./bookings-read",
+        "./booking-transport"
+      ]
+    },
+    {
+      "path": "src/features/resources/bookings-read.ts",
+      "sha256": "3fd9542259e6fa84f0fa48b06478b02c41059574c4d1cbaa31dbb05075944f53",
+      "exports": [
+        "bookingPersonLabel",
+        "readBookingPeople",
+        "openBookingConflictCounts",
+        "readBookingHost",
+        "readBookingEditorDefault",
+        "readBookingEditorOptions"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix",
+        "node:crypto",
+        "@/features/scheduling/time-zone",
+        "./booking-action-state"
+      ]
+    },
+    {
+      "path": "src/features/settings/actions.ts",
+      "sha256": "2a10ee991927d2934b2f455b64e8d3a97dd726a94e8d37dfb5917a76b5353dbc",
+      "exports": [
+        "saveCompanySettingsAction",
+        "saveQuoteTermsAction",
+        "approveTermsAction"
+      ],
+      "imports": [
+        "next/cache",
+        "@/server/db/supabase-server-client",
+        "@/server/commands/envelope",
+        "@/server/commands/command-errors",
+        "@/server/commands/settings/company-settings",
+        "@/server/commands/settings/quote-terms",
+        "@/server/commands/settings/company-settings",
+        "./action-state",
+        "./form-parsing"
+      ]
+    },
+    {
+      "path": "src/scope/manifest.ts",
+      "sha256": "6f52dcedc9c4eca4a3fcb915488cc8bae05f8bcf0933f51c5d057d8991e6211f",
+      "exports": [
+        "SCOPE_MANIFEST"
+      ],
+      "imports": [
+        "./manifest-schema"
+      ]
+    },
+    {
+      "path": "src/scope/widget-registry.ts",
+      "sha256": "e776fe1675baa24491e252c62780e45f4448919c34293c4ab4ad38f07d696ee2",
+      "exports": [
+        "WIDGET_REGISTRY",
+        "eligibleWidgets"
+      ],
+      "imports": [
+        "./manifest",
+        "./manifest-schema",
+        "@/server/authz/permission-matrix",
+        "@/server/read-models/quote-pipeline",
+        "@/server/read-models/entitlements",
+        "@/server/read-models/quote-pipeline-aggregate",
+        "@/server/read-models/dashboard"
+      ]
+    },
+    {
+      "path": "src/server/read-models/dashboard.ts",
+      "sha256": "63d61c1143e07944dd222dffb0ba048fccf03e5e4ada05304d2e876e4a08e88f",
+      "exports": [
+        "DashboardDescriptor",
+        "DashboardPipelineResult",
+        "DashboardWidget",
+        "DashboardDeps",
+        "readDashboard"
+      ],
+      "imports": [
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/roles",
+        "@/server/authz/permission-matrix",
+        "@/scope/widget-registry",
+        "./quote-pipeline",
+        "./entitlements"
+      ]
+    },
+    {
+      "path": "src/server/read-models/document-context.ts",
+      "sha256": "eac180cf5cbd46fab55568218e09fbdf809001975b267fef31be17ef2a5aca8a",
+      "exports": [
+        "DocumentContextResult",
+        "DocumentContextDeps",
+        "readDocumentContext",
+        "readEntityDocumentsLink"
+      ],
+      "imports": [
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/roles",
+        "@/server/authz/permission-matrix",
+        "@/server/db/supabase-server-client",
+        "./document-sources",
+        "@/features/documents/context-navigation"
+      ]
+    },
+    {
+      "path": "src/server/read-models/document-sources.ts",
+      "sha256": "65759cb205b9261f2f4de734105beba30e29def80985dc29a7d4d586c0796b1c",
+      "exports": [
+        "DocumentFile",
+        "DocumentCandidate",
+        "DocumentSourceData",
+        "DocumentSourceResult",
+        "DOCUMENT_SOURCE_REGISTRY",
+        "assertDocumentSourceRegistryCoherence",
+        "DocumentSourceDeps",
+        "readDocumentSource",
+        "resolveDocumentSource"
+      ],
+      "imports": [
+        "node:assert/strict",
+        "@/scope/manifest",
+        "@/scope/manifest-schema",
+        "@/server/authz/permission-matrix",
+        "@/server/db/supabase-server-client",
+        "@/server/storage/signed-access"
+      ]
+    },
+    {
+      "path": "src/server/read-models/documents.ts",
+      "sha256": "2dc440b1af3912b9fc155f63464c242526f3fb07bba3cde88266907962b8333f",
+      "exports": [
+        "DocumentRow",
+        "DocumentFacets",
+        "DocumentsReadResult",
+        "DocumentsDeps",
+        "readDocuments"
+      ],
+      "imports": [
+        "node:crypto",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix",
+        "@/server/authz/roles",
+        "@/server/db/supabase-server-client",
+        "@/server/quote-pdf/attestation",
+        "@/features/files/file-index",
+        "@/features/documents/filters",
+        "./document-sources",
+        "@/server/storage/signed-access",
+        "./document-context",
+        "@/features/documents/context-navigation"
+      ]
+    },
+    {
+      "path": "src/server/read-models/email-outbox.ts",
+      "sha256": "ba01cb217a0d9c7f4243011f54b43c5f49de5327cf3a2bbbf2273cd45e7215c7",
+      "exports": [
+        "EmailOutboxQueueItem",
+        "readEmailOutboxQueue"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix"
+      ]
+    },
+    {
+      "path": "src/server/read-models/entitlements.ts",
+      "sha256": "d254e21676320e48494d5766ce1423cc50a8b01cc745f32d933535919587cae2",
+      "exports": [
+        "FieldPath",
+        "PipelineData",
+        "PipelineDescriptor",
+        "EntitlementInput",
+        "projectWithEntitlements"
+      ],
+      "imports": [
+        "./quote-pipeline-aggregate",
+        "@/server/authz/permission-matrix"
+      ]
+    },
+    {
+      "path": "src/server/read-models/job-events.ts",
+      "sha256": "526f235da2add995d97c67a01bb943752333da83276a1dd15e5ec8ad747f9ce5",
+      "exports": [
+        "SafeJobEvent",
+        "JobEventsReadResult",
+        "JobEventsClient",
+        "readJobEvents"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/read-models/job-members.ts",
+      "sha256": "71d88cd3d4918afc09557b56ba27224c4596ede15f320c6d38b82ff344ac9c87",
+      "exports": [
+        "JobMembersProjection",
+        "readJobMembers",
+        "JOB_MEMBERS_READ_FAILED",
+        "JobMembersReadResult",
+        "readJobMembersForPage",
+        "JobLeadAdmissionResult",
+        "readJobLeadAdmission"
+      ],
+      "imports": [
+        "./my-jobs"
+      ]
+    },
+    {
+      "path": "src/server/read-models/job-semantics.ts",
+      "sha256": "92219783c44716a8a47dbe7f3c13e1029b50d158f32d68a70b5ad69fddb82560",
+      "exports": [
+        "readJobSemantics"
+      ],
+      "imports": [
+        "@/server/auth/resolve-tenant-context",
+        "./my-jobs",
+        "@/features/jobs/job-card-domain",
+        "./job-members",
+        "./job-work-orders"
+      ]
+    },
+    {
+      "path": "src/server/read-models/job-work-orders.ts",
+      "sha256": "d2c2c2543a8b012c64a21185beee47334ab4c754d460eff8faa1f3d5d09dbdf5",
+      "exports": [
+        "WorkOrderStatus",
+        "WorkOrderEndpoint",
+        "WorkOrderRow",
+        "WorkOrderDependencyWarning",
+        "JobWorkOrdersProjection",
+        "readJobWorkOrders",
+        "JobWorkOrdersReadResult",
+        "readJobWorkOrdersForPage"
+      ],
+      "imports": [
+        "./my-jobs"
+      ]
+    },
+    {
+      "path": "src/server/read-models/job-workspace.ts",
+      "sha256": "b1f27da6dda5cdd4f5b6731c15bb53f2762d0b001c91e393b06255643c39a56a",
+      "exports": [
+        "AssignmentLabel",
+        "JobWorkspaceHeader",
+        "projectJobWorkspaceHeader",
+        "JobWorkspace",
+        "JobWorkspaceReadResult",
+        "readJobWorkspace"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/features/jobs/types",
+        "@/features/resources/booking-action-state",
+        "@/features/jobs/job-workspace-domain",
+        "@/scope/manifest",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix",
+        "./job-members",
+        "./job-work-orders",
+        "./my-jobs",
+        "./job-events"
+      ]
+    },
+    {
+      "path": "src/server/read-models/my-jobs.ts",
+      "sha256": "c104fd9638163f079c2e58ee5e9ef595e7d47d8f5ff7098d44ea472d99a0567b",
+      "exports": [
+        "JobCardOptions",
+        "JobCardRpcClient",
+        "readMyJobs",
+        "readJobCardOptions"
+      ],
+      "imports": [
+        "@/server/auth/resolve-tenant-context",
+        "@/features/jobs/types"
+      ]
+    },
+    {
+      "path": "src/server/read-models/onboarding-checklist.ts",
+      "sha256": "68ed3b312b9866a9785739053bfcdc07624e85012ee871ca484c759ed459eb4e",
+      "exports": [
+        "OnboardingChecklistReadResult",
+        "readOnboardingChecklist"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/features/onboarding/checklist-state"
+      ]
+    },
+    {
+      "path": "src/server/read-models/operator-console.ts",
+      "sha256": "a9115cbbf54e81ed0c49229a4e2458a07eb48062ba9f64a8c190ca20a9a03c14",
+      "exports": [
+        "OperatorConsoleResult",
+        "readOperatorConsole",
+        "readOperatorConsoleResumeState",
+        "operatorConsoleTestHooks"
+      ],
+      "imports": [
+        "@/server/auth/resolve-platform-operator",
+        "@/server/db/supabase-server-client",
+        "@/features/operator-console/projection",
+        "@/features/operator-console/projection"
+      ]
+    },
+    {
+      "path": "src/server/read-models/pagination.ts",
+      "sha256": "b6fb921cab7bcdd3718d97c0f43c17d547cc2bc03d4dec86d35b5625aebe3edc",
+      "exports": [
+        "RLS_PAGE_SIZE",
+        "RLS_ID_BATCH_SIZE",
+        "PageResult",
+        "AllPagesResult",
+        "readAllPages",
+        "chunkValues"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/read-models/quote-pipeline-aggregate.ts",
+      "sha256": "ad4b0fb000af7c188d967b759acf260079f0934de7d381907a49cd6d06ed16ea",
+      "exports": [
+        "PipelineEventRow",
+        "AcceptedVersionRow",
+        "FollowUpRow",
+        "PipelinePeriod",
+        "PipelineAggregate",
+        "AggregateInput",
+        "aggregateQuotePipeline",
+        "resolvePipelinePeriod"
+      ],
+      "imports": [
+        "@/features/quotes/follow-up-dates",
+        "@/features/quotes/terminal-status",
+        "@/lib/money"
+      ]
+    },
+    {
+      "path": "src/server/read-models/quote-pipeline.ts",
+      "sha256": "ed7d29e9c36dc269864d922fa4cd684458c3fab9a6fdc2ec8747f704faa4ecd2",
+      "exports": [
+        "QuotePipelineDeps",
+        "QuotePipelineResult",
+        "readQuotePipelineResult",
+        "readQuotePipeline"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "./quote-pipeline-aggregate",
+        "./entitlements",
+        "./pagination"
+      ]
+    },
+    {
+      "path": "src/components/notifications/notification-presentation.ts",
+      "sha256": "3ee8321cd676ca47f6d34767694bca67ee155cb88304e6e6ebbb89e599bb73ba",
+      "exports": [
+        "NotificationPresentationItem",
+        "NotificationScanPresentationStatus",
+        "NotificationFilters",
+        "formatUnreadNotificationCount",
+        "sortLatestNotificationItems",
+        "filterNotificationItems",
+        "formatNotificationScanStatus"
+      ],
+      "imports": [
+        "@/lib/datetime/business-date"
+      ]
+    },
+    {
+      "path": "src/features/admin-users/read.ts",
+      "sha256": "84038fbee1dbaa4d47396da164dbaf9cdfbcbd2eeea1da0d9a0f6e0576579043",
+      "exports": [
+        "AdminUsersRoleSurface",
+        "roleCatalogueForAdminUsers",
+        "readAdminUsers",
+        "readAdminUsersRoleSurface",
+        "AdminUserDetail",
+        "readAdminUserDetail"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/role-catalogue",
+        "@/server/authz/roles",
+        "./read-model",
+        "./read-model"
+      ]
+    },
+    {
+      "path": "src/features/calculations/read.ts",
+      "sha256": "3af242fc3a85d8c5d46f9b1bc78cba067f9c2e06d12035e6b24324a7547156ff",
+      "exports": [
+        "CalcStatus",
+        "CalculationListRow",
+        "CalculationListReadResult",
+        "readCalculationList",
+        "CalculationHeaderRow",
+        "CalculationRowRow",
+        "CalculationSectionRow",
+        "CalculationCustomerContext",
+        "CalculationDetail",
+        "CalculationDetailReadResult",
+        "readCalculationDetail"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/lib/money"
+      ]
+    },
+    {
+      "path": "src/features/crm/read.ts",
+      "sha256": "136b6f0a8c8fca52721802bc6a22a385261c9d9bf0bcd973edd57b2eed7cfa65",
+      "exports": [
+        "CustomerListReadResult",
+        "readCustomerList",
+        "CustomerDetailRow",
+        "FacilityRow",
+        "ContactRow",
+        "CustomerDetailReadResult",
+        "readCustomerDetail"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/components/crm/customer-presentation"
+      ]
+    },
+    {
+      "path": "src/features/files/read.ts",
+      "sha256": "24ac0995089f807ca530fbc559cd651eae59acf6fc2cd2961f9fe8bb80ccae86",
+      "exports": [
+        "EntityFileRow",
+        "EntityFilesReadResult",
+        "FileIndexReadResult",
+        "readEntityFiles",
+        "FileIndexReadClient",
+        "readFileIndex"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/commands/files/validation",
+        "./file-index",
+        "./file-index"
+      ]
+    },
+    {
+      "path": "src/features/jobs/read.ts",
+      "sha256": "5be3e38c93607ec128990c01887a9e9dee9b2504e699413dcdd903e725eca470",
+      "exports": [
+        "JobReadClient",
+        "readJobList",
+        "readJobDetail",
+        "readJobDetailForPage"
+      ],
+      "imports": [
+        "@/server/auth/resolve-tenant-context",
+        "@/server/db/supabase-server-client",
+        "./dependency-warnings",
+        "./types",
+        "./types",
+        "./types"
+      ]
+    },
+    {
+      "path": "src/features/pricing/read.ts",
+      "sha256": "eaf6fdef35df6efa7f11d6e08dd351686cf02aa711d556a3ca6d3b81fc3dcb9b",
+      "exports": [
+        "WorkRoleRow",
+        "WorkRolesReadResult",
+        "readWorkRoles",
+        "readArchivedWorkRoles",
+        "ArticleRow",
+        "ArticlesReadResult",
+        "readArticles",
+        "readArchivedArticles"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client"
+      ]
+    },
+    {
+      "path": "src/features/quotes/read.ts",
+      "sha256": "8355fb56728157cbf2b8225fa9e8e5479ecd21d1d3b683e7c2d029ba3d4beedc",
+      "exports": [
+        "QuoteLostReasonRow",
+        "QuoteListRow",
+        "QuoteListReadResult",
+        "QuoteListReadDeps",
+        "QuoteDetailReadDeps",
+        "readQuoteList",
+        "QuoteHeaderRow",
+        "QuoteVersionRow",
+        "QuoteVersionLineRow",
+        "QuoteVersionAttachmentRow",
+        "QuoteCarryForwardAttachmentRow",
+        "QuoteFollowUpDetailRow",
+        "QuoteEventRow",
+        "QuoteDetail",
+        "QuoteDetailReadResult",
+        "readQuoteDetail"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/lib/money",
+        "@/lib/quote-snapshot",
+        "@/server/storage/lifecycle",
+        "./timeline",
+        "./terminal-status",
+        "./follow-up-dates",
+        "@/server/read-models/pagination"
+      ]
+    },
+    {
+      "path": "src/features/resources/read.ts",
+      "sha256": "62104a3687348fe05fb9d2c63d032029fb500ad2b6c4be485c0aae331ad491ab",
+      "exports": [
+        "ResourceProfileRead",
+        "ResourceReadResult",
+        "readResourceForMembership"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "./schedule-read"
+      ]
+    },
+    {
+      "path": "src/features/settings/read.ts",
+      "sha256": "e845619feb93e69068d466efa32d9ddcb037de24f5b4ed7cf8b91c111d5e39cc",
+      "exports": [
+        "CompanySettingsRow",
+        "CompanySettingsReadResult",
+        "readCompanySettings",
+        "COMPANY_SETTINGS_DEFAULT_VAT_RATE_BP",
+        "QuoteTermsRow",
+        "QuoteTermsReadResult",
+        "readQuoteTerms"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/commands/settings/validation"
+      ]
+    },
+    {
+      "path": "src/server/notifications/follow-up-producer.ts",
+      "sha256": "3341fce2380385319b116513a049f991bc765b39be4f7d53c9d09f382934eeed",
+      "exports": [
+        "FOLLOW_UP_SCAN_BATCH_SIZE",
+        "FOLLOW_UP_RECIPIENT_BATCH_SIZE",
+        "emitDueFollowUpNotifications"
+      ],
+      "imports": [
+        "@supabase/supabase-js",
+        "@/server/authz/permission-matrix",
+        "@/server/read-models/pagination"
+      ]
+    },
+    {
+      "path": "src/server/notifications/read-model.ts",
+      "sha256": "d667a1c8e0ebde9812bb3cb430cbb12aeec41a37bc124cf90c07010d75d40f4a",
+      "exports": [
+        "NotificationItem",
+        "NotificationScanStatus",
+        "readPersonalNotifications"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/authz/permission-matrix"
+      ]
+    },
+    {
+      "path": "src/server/notifications/registry.ts",
+      "sha256": "2095a72f96aa91a432afdf2449598e82f52919a502fef9493e1f3e8ce9b2156f",
+      "exports": [
+        "NOTIFICATION_CATEGORIES",
+        "NotificationCategory",
+        "NotificationChannel",
+        "activeNotificationCategories",
+        "notificationCategory",
+        "activeNotificationPreferenceCategories",
+        "notificationPreferenceCategory"
+      ],
+      "imports": [
+        "@/scope/manifest"
+      ]
+    },
+    {
+      "path": "src/lib/money/domain.ts",
+      "sha256": "6cbfad4e8860c43458e4c01132c861cdebd8da2e826c9628a7f9ff3349fa195f",
+      "exports": [
+        "VAT_TYPES",
+        "VatType",
+        "DOCUMENT_VAT_POSTURES",
+        "DocumentVatPosture",
+        "CUSTOMER_ELIGIBILITY_POSTURES",
+        "CustomerEligibilityPosture",
+        "DEDUCTION_CLASSIFICATIONS",
+        "DeductionClassification",
+        "GREEN_CATEGORIES",
+        "GreenCategory",
+        "TAX_SUMMARY_CATEGORIES",
+        "TaxSummaryCategory",
+        "GREEN_BASIS_METHODS",
+        "GreenBasisMethod",
+        "TAX_DEDUCTION_CHOICES",
+        "TaxDeductionChoice",
+        "TaxPersonAllowanceSlot",
+        "isCanonicalTaxPersonSlot",
+        "FixedPriceCategorySplitOre",
+        "FixedPriceRowIds",
+        "isCanonicalFixedPriceRowId",
+        "TaxInputSnapshotV2",
+        "isVatType",
+        "isDocumentVatPosture",
+        "isCustomerEligibilityPosture",
+        "isDeductionClassification",
+        "isGreenCategory",
+        "isTaxSummaryCategory",
+        "isDeductionClassificationCompatibleWithSummaryCategory",
+        "isGreenBasisMethod",
+        "isTaxDeductionChoice"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/lib/money/index.ts",
+      "sha256": "da9988c9989588344538650d31b787dac20e1ce4cae3aba2764b21370750608e",
+      "exports": [],
+      "imports": [
+        "./domain",
+        "./domain",
+        "./tax-input",
+        "./tax-input",
+        "./tax-policy",
+        "./tax-answer",
+        "./tax-answer",
+        "./tax-policy",
+        "./ore",
+        "./ore",
+        "./vat",
+        "./vat",
+        "./tax",
+        "./tax"
+      ]
+    },
+    {
+      "path": "src/lib/money/ore.ts",
+      "sha256": "27e00b46d6e54bdff58e18c75493e0c3313f1e350fcea418dca6c3917ad7894a",
+      "exports": [
+        "MoneyErrorCode",
+        "OreResult",
+        "ORE_AMOUNT_MAX",
+        "isOreAmount",
+        "isQuantity",
+        "validateQuantity",
+        "roundToOre",
+        "lineNetOre",
+        "sumOre",
+        "formatOreAsKronor"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/lib/money/tax-answer.ts",
+      "sha256": "09abd93f4759ba654eec65836e9347b3d48ac9dabca07cfdb46fbfd11a4180c4",
+      "exports": [
+        "ResolvedTaxPolicySnapshot",
+        "FrozenPersonClaimAllocation",
+        "RotTaxAnswer",
+        "GreenCategoryTaxAnswer",
+        "GreenTaxAnswer",
+        "TaxSummaryBucket",
+        "TaxAnswerSnapshotV2",
+        "BuildTaxAnswerInput",
+        "buildTaxAnswerSnapshotV2"
+      ],
+      "imports": [
+        "./domain",
+        "./ore",
+        "./tax-policy"
+      ]
+    },
+    {
+      "path": "src/lib/money/tax-input.ts",
+      "sha256": "2d5a58dac25d051922d9f9e332ef5d76b25fb5f8671b6262061f847cf100e1c0",
+      "exports": [
+        "TaxInputValidationErrorCode",
+        "TaxInputValidationResult",
+        "isIsoCalendarDate",
+        "normalizeBuyerVatNumber",
+        "isValidBuyerVatNumber",
+        "parseTaxInputSnapshot"
+      ],
+      "imports": [
+        "./domain",
+        "./ore"
+      ]
+    },
+    {
+      "path": "src/lib/money/tax-policy.ts",
+      "sha256": "aac7c64c076c316dbde0540492af76a93674497f01174d10a24580b29044326d",
+      "exports": [
+        "TaxPolicyWindow",
+        "VatPolicy",
+        "RotPolicy",
+        "GreenPolicy",
+        "TaxPolicy",
+        "TAX_POLICY_2026",
+        "TAX_POLICY_REGISTRY",
+        "TaxPolicyResolutionErrorCode",
+        "TaxPolicyResolutionResult",
+        "ResolveTaxPolicyInput",
+        "resolveTaxPolicy",
+        "GreenSchemeCategoryAmounts",
+        "GreenSchemeAmounts",
+        "calculateGreenSchemeAmounts",
+        "DocumentVatRowInput",
+        "DocumentVatCategory",
+        "DocumentVatAggregate",
+        "TaxAnswerResult",
+        "calculateCategoryVatOre",
+        "isCoherentVatTypeRate",
+        "aggregateDocumentVat",
+        "VatAllocationBucket",
+        "allocateCategoryVatByDeductionClassification",
+        "ReconciledDocumentTotals",
+        "computeReconciledDocumentTotals",
+        "truncateClaimToWholeSekOre",
+        "PersonAllowanceSlot",
+        "PersonClaimAllocation",
+        "allocateWholeSekClaimByPerson",
+        "ClassifiedDeductionPart",
+        "estimateClassifiedDeductions"
+      ],
+      "imports": [
+        "./domain",
+        "./ore",
+        "./vat"
+      ]
+    },
+    {
+      "path": "src/lib/money/tax.ts",
+      "sha256": "b16825d59e5f7c7fb0b2dae799934e3f065398d8b3b4a86402fb931e68716157",
+      "exports": [
+        "DeductionType",
+        "EligibilityPosture",
+        "DeductionWarning",
+        "DeductionWarningCode",
+        "DeductionProfile",
+        "ROT_PROFILE_UNAPPROVED",
+        "GRON_TEKNIK_PROFILE_UNAPPROVED",
+        "TaxAssumptionSnapshot",
+        "TaxAssumptionResult",
+        "TaxAssumptionSource",
+        "TaxAssumptionBuildOptions",
+        "buildTaxAssumptionSnapshot",
+        "DeductionInput",
+        "DeductionEstimate",
+        "DeductionResult",
+        "estimateDeduction"
+      ],
+      "imports": [
+        "./ore",
+        "./vat"
+      ]
+    },
+    {
+      "path": "src/lib/money/vat.ts",
+      "sha256": "1da91874a42cc1d57197d9833167509ab5753b53b5144a65d308367a46f6c4ce",
+      "exports": [
+        "VAT_RATE_BP_MIN",
+        "VAT_RATE_BP_MAX",
+        "isVatRateBp",
+        "VatDisplayMode",
+        "lineVatOre",
+        "sumVatOre",
+        "VatBreakdown",
+        "VatBreakdownResult",
+        "vatBreakdown",
+        "VatDisplayPosture",
+        "VatDisplayView",
+        "selectVatDisplay",
+        "VatAssumptionSource",
+        "VatAssumptionBuildOptions",
+        "VatAssumptionSnapshot",
+        "VatAssumptionResult",
+        "buildVatAssumptionSnapshot"
+      ],
+      "imports": [
+        "./ore"
+      ]
+    },
+    {
+      "path": "src/server/authz/job-access.ts",
+      "sha256": "3249d3e8b576331b2598d64200129643afe562040b72c9a4dd00c9c1d0783e89",
+      "exports": [
+        "TrustedJobFacts",
+        "jobAccess",
+        "resolveJobRouteAdmission"
+      ],
+      "imports": [
+        "./permission-matrix"
+      ]
+    },
+    {
+      "path": "src/server/authz/job-command-scope.ts",
+      "sha256": "e13c93d596bbfa4240239e619055dd7bb60da4941fb3eb1c7cbcf51d75a6a434",
+      "exports": [
+        "isJobScopedCommand"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/authz/permission-matrix.ts",
+      "sha256": "b70b22ede7571c9f77e2b9d0f9aa1ee652017eec1466b33f0fb2b373d0e45818",
+      "exports": [
+        "PERMISSION_MATRIX",
+        "SENSITIVE_FIELD_MATRIX",
+        "CapabilityResolution",
+        "resolveCapability",
+        "resolveSensitiveFieldEntitlement",
+        "permissionMatrixModuleIds"
+      ],
+      "imports": [
+        "./roles"
+      ]
+    },
+    {
+      "path": "src/server/authz/phase-a-surface.ts",
+      "sha256": "fc6c21df5ae29138baca7aebded6a93bd7265c060b89ac98dca3c3a12aae883e",
+      "exports": [
+        "resolvePhaseANavigation",
+        "resolveLandingRoute",
+        "canAccessPhaseARoute"
+      ],
+      "imports": [
+        "@/components/app-shell/nav-items",
+        "@/scope/manifest",
+        "./permission-matrix",
+        "./roles"
+      ]
+    },
+    {
+      "path": "src/server/authz/require-capability.ts",
+      "sha256": "214a2ef77110b5e33f43db0c0f76841521c20e03447be6cc55e26777fde715e2",
+      "exports": [
+        "requireCapability"
+      ],
+      "imports": [
+        "@/lib/result/result",
+        "@/server/commands/command-errors",
+        "./permission-matrix"
+      ]
+    },
+    {
+      "path": "src/server/authz/role-catalogue.ts",
+      "sha256": "5121187518761eae746912c42ef84425364aeadec37727588d41832a0f7fc2b2",
+      "exports": [
+        "RoleCatalogueGrant",
+        "EffectivePermissionGrant",
+        "RoleCatalogueCard",
+        "RoleCatalogue",
+        "buildRoleCatalogue",
+        "buildEffectivePermissions",
+        "resolveMembershipRoles",
+        "effectivePermissionsForMembership"
+      ],
+      "imports": [
+        "@/scope/manifest",
+        "./roles",
+        "./permission-matrix"
+      ]
+    },
+    {
+      "path": "src/server/authz/roles.ts",
+      "sha256": "382010d7e05473b72931800227d4c13665694c9c8abd75d7350cafe27a7ca273",
+      "exports": [
+        "TENANT_ROLES",
+        "TenantRole",
+        "isTenantRole",
+        "normalizeRoles"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/commands/admin-users/accept-invitation.ts",
+      "sha256": "ef14b33fc65808d8d8b2316c02e2ec7f3146451a480b59dc271726027b6173a2",
+      "exports": [
+        "acceptInvitation"
+      ],
+      "imports": [
+        "node:crypto"
+      ]
+    },
+    {
+      "path": "src/server/commands/admin-users/invite.ts",
+      "sha256": "dc9f76c7b781eb52b5a151a81f2be685625f8b446811377b9e9143cf5d7681ca",
+      "exports": [
+        "inviteAdminUser",
+        "resendAdminUserInvitation"
+      ],
+      "imports": [
+        "node:crypto",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/auth/admin-user-service"
+      ]
+    },
+    {
+      "path": "src/server/commands/admin-users/lifecycle.ts",
+      "sha256": "4277bc08f73888cb0415defb3037319aa1ca26575ab20fefa92c6e4b49b72bb2",
+      "exports": [
+        "changeMembershipLifecycle"
+      ],
+      "imports": [
+        "node:crypto",
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context",
+        "@/server/auth/admin-user-service"
+      ]
+    },
+    {
+      "path": "src/server/commands/admin-users/reconcile.ts",
+      "sha256": "9a753108e03df369f2376fb3b37af1f5934b11a3998633f08434b11b82bfa3ae",
+      "exports": [
+        "reconcileAdminUserOperation"
+      ],
+      "imports": [
+        "@/server/db/supabase-server-client",
+        "@/server/auth/resolve-tenant-context"
+      ]
+    },
+    {
+      "path": "src/server/commands/audit-metadata.ts",
+      "sha256": "1feb6de27147e4c7e6621adb0758de83144453b8ce3b16550cf617dcc4f14915",
+      "exports": [
+        "SanitizedAuditMetadata",
+        "sanitizeAuditMetadata"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/commands/audit.ts",
+      "sha256": "38e8795cdbb5a3048ed84f52e3b57b20363d42caa1fd00f74be269bac1f093d6",
+      "exports": [
+        "AuditDbClient",
+        "WriteAuditEventArgs",
+        "writeAuditEvent"
+      ],
+      "imports": [
+        "./envelope-core",
+        "./audit-metadata",
+        "./correlation"
+      ]
+    },
+    {
+      "path": "src/server/commands/bookings/booking-db.ts",
+      "sha256": "09c676d41794b5dabf49834868f24922158a15fd8aefe3d2b5909d16eea439e6",
+      "exports": [
+        "executeBooking"
+      ],
+      "imports": [
+        "@/features/resources/booking-types",
+        "../envelope",
+        "../command-errors",
+        "@/server/bookings/save-with-conflicts",
+        "@/server/bookings/conflict-facts"
+      ]
+    },
+    {
+      "path": "src/server/commands/bookings/create-booking.ts",
+      "sha256": "34f6c382272dd3622d1ea3167c26515defbf5130c37fdbd9a3aeffaf9289e1da",
+      "exports": [
+        "createBooking"
+      ],
+      "imports": [
+        "@/features/resources/booking-types",
+        "../envelope",
+        "./booking-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/bookings/update-booking.ts",
+      "sha256": "e4d1ec417cd1533839ea94c714a09a1b195d81a5264b2b78ef7fe58b0c0b1691",
+      "exports": [
+        "updateBooking"
+      ],
+      "imports": [
+        "@/features/resources/booking-types",
+        "../envelope",
+        "./booking-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/bookings/validation.ts",
+      "sha256": "0315c4267bdf36d0b493affdab3f754d02eb5dc74109c1f10c9dc002cb225d87",
+      "exports": [
+        "validateCreateBooking",
+        "validateUpdateBooking",
+        "canonicalBookingPayload",
+        "bookingPayload"
+      ],
+      "imports": [
+        "@/features/resources/booking-types",
+        "../envelope-core",
+        "@/features/resources/booking-editor-input"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/calc-db.ts",
+      "sha256": "7946fa1f300992b2ef597bbb43542372dcfc07fdee51676f1ee9f7dcdac22aa9",
+      "exports": [
+        "WriteResult",
+        "CalcWriteClient",
+        "asCalcWriteClient",
+        "CalcLifecycleRpcClient",
+        "asCalcLifecycleRpcClient",
+        "extractCalculationLifecycleId",
+        "loadCalcStatus",
+        "loadRowType",
+        "RowTaxClassificationState",
+        "loadRowTaxClassificationState",
+        "RowOptionState",
+        "loadRowOptionState",
+        "RowVatState",
+        "loadRowVatState",
+        "loadActiveCalculationRowCountForSection",
+        "throwMappedWriteError",
+        "throwMappedReorderError"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/lib/money",
+        "@/features/calculations/limits",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/calculations.ts",
+      "sha256": "cab1cfca28dfd5c1725d2277b4990d58fcaff8e118f9fe22872ddce5ac9e04c7",
+      "exports": [
+        "CalcCommandResult",
+        "createCalculation",
+        "updateCalculation",
+        "archiveCalculation"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "./calc-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/index.ts",
+      "sha256": "3ed5679a1147d6830870a8d52d3a94268a68bfad5ecaf6b5bf27210dc561d28d",
+      "exports": [],
+      "imports": [
+        "./calculations",
+        "./sections",
+        "./rows",
+        "./reorder",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/reorder.ts",
+      "sha256": "73c0a68752d54cc5be6c149f5f854c0a2b2beb94deca8d524733c1ca5c48ed07",
+      "exports": [
+        "reorderRows",
+        "reorderSections"
+      ],
+      "imports": [
+        "../envelope",
+        "./calc-db",
+        "./calculations",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/rows.ts",
+      "sha256": "fb3a0016e8c389ee895bb5215c74e46b97fba270904e76170364c6b7318c28fd",
+      "exports": [
+        "createRow",
+        "updateRow",
+        "archiveRow"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "./calc-db",
+        "./validation",
+        "./sort-order",
+        "@/server/snapshots/resolve-source",
+        "@/lib/snapshots/build",
+        "../envelope-core",
+        "../envelope",
+        "@/lib/money",
+        "@/features/calculations/limits",
+        "@/features/calculations/row-option-transition",
+        "@/features/calculations/row-vat-transition",
+        "./calculations",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/sections.ts",
+      "sha256": "ca3536c401120dd44fbd2f4be73bb2bf4d0e7e9b98be5784822ab4835d99d7c4",
+      "exports": [
+        "createSection",
+        "updateSection",
+        "archiveSection"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "./calc-db",
+        "./sort-order",
+        "./calculations",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/sort-order.ts",
+      "sha256": "f923adc0f8b9064accfacfcefa6ed2a8ab9a5fa35ba7d89fee2ba8275cd6d84a",
+      "exports": [
+        "nextSortOrder"
+      ],
+      "imports": [
+        "../envelope"
+      ]
+    },
+    {
+      "path": "src/server/commands/calculations/validation.ts",
+      "sha256": "99749b589b2adad6591558995f01c2944c34017ccfa9cc7b84f61c8b3719d50f",
+      "exports": [
+        "ROW_TYPES",
+        "RowType",
+        "CALC_STATUSES",
+        "CalcStatus",
+        "LEGAL_TRANSITIONS",
+        "isCalcStatus",
+        "isLegalTransition",
+        "SECTION_DISPLAY_MODES",
+        "SectionDisplayMode",
+        "ROW_SOURCE_KINDS",
+        "RowSourceKind",
+        "TAX_DEDUCTION_CHOICES",
+        "MARKUP_BP_MAX",
+        "isMarkupBp",
+        "CreateCalculationInput",
+        "UpdateCalculationInput",
+        "ArchiveCalcInput",
+        "validateCreateCalculation",
+        "validateUpdateCalculation",
+        "validateArchiveCalc",
+        "CreateSectionInput",
+        "UpdateSectionInput",
+        "validateCreateSection",
+        "validateUpdateSection",
+        "validateArchiveSection",
+        "CreateRowInput",
+        "UpdateRowInput",
+        "isRowType",
+        "taxSummaryCategoryForRowType",
+        "TaxInputSnapshot",
+        "validateTaxInputSnapshot",
+        "kindForRowType",
+        "validateCreateRow",
+        "validateUpdateRow",
+        "validateArchiveRow",
+        "ReorderRowsInput",
+        "ReorderSectionsInput",
+        "validateReorderRows",
+        "validateReorderSections"
+      ],
+      "imports": [
+        "@/lib/money",
+        "../envelope-core"
+      ]
+    },
+    {
+      "path": "src/server/commands/clock.ts",
+      "sha256": "7fa44d258dc136d98c9b26c9a1e6575c9dfdadd576812462f73319424e6b2804",
+      "exports": [
+        "CommandClock",
+        "systemClock"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/commands/command-errors.ts",
+      "sha256": "b29903352fd48f19fb283f6dfd6e3b2f5198b4523099c56702b127870744139e",
+      "exports": [
+        "CommandErrorCode",
+        "CommandError",
+        "isCommandError",
+        "COMMAND_MESSAGES"
+      ],
+      "imports": [
+        "@/server/auth/tenant-context"
+      ]
+    },
+    {
+      "path": "src/server/commands/correlation.ts",
+      "sha256": "ba97badfd6420732258c827c90f9aa2543f4603d88f33822b1e9cb1d75e94082",
+      "exports": [
+        "CorrelationId",
+        "isUuid",
+        "resolveCorrelationId"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/commands/crm/contacts.ts",
+      "sha256": "81dea3cd5ec667ee37be2064fa4726c4bd49444dd6237b4c45827d4a43f8d276",
+      "exports": [
+        "createContact",
+        "updateContact",
+        "archiveContact"
+      ],
+      "imports": [
+        "../envelope",
+        "./crm-db",
+        "./customers",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/crm/crm-db.ts",
+      "sha256": "fc8e5982ab6ab4fb218d82146f2a26798898a505d21b1af2eacd5182e2d89ba4",
+      "exports": [
+        "CreateCustomerWithAuditRpcClient",
+        "asCreateCustomerWithAuditRpcClient",
+        "CrmAuditedMutationRpcName",
+        "CrmAuditedMutationRpcClient",
+        "asCrmAuditedMutationRpcClient",
+        "executeCrmAuditedMutation",
+        "throwMappedWriteError"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors"
+      ]
+    },
+    {
+      "path": "src/server/commands/crm/customers.ts",
+      "sha256": "950f76bab68c895d221714e58563e424e505d1835f6af098e430bebe37370698",
+      "exports": [
+        "CrmCommandResult",
+        "createCustomer",
+        "updateCustomer",
+        "archiveCustomer"
+      ],
+      "imports": [
+        "../envelope",
+        "./crm-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/crm/facilities.ts",
+      "sha256": "b6006639fe2d7f2aa442f705fcd5d4745e3668d0f915bffa166253668f8fd9f8",
+      "exports": [
+        "createFacility",
+        "updateFacility",
+        "archiveFacility"
+      ],
+      "imports": [
+        "../envelope",
+        "./crm-db",
+        "./customers",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/crm/validation.ts",
+      "sha256": "8ef720a5992521e81287992c5a14eeb565ea3d7b776033c4da381fd5e54b2ec4",
+      "exports": [
+        "CUSTOMER_TYPES",
+        "CustomerType",
+        "CreateCustomerInput",
+        "UpdateCustomerInput",
+        "ArchiveInput",
+        "validateCreateCustomer",
+        "validateUpdateCustomer",
+        "validateArchive",
+        "CreateFacilityInput",
+        "UpdateFacilityInput",
+        "validateCreateFacility",
+        "validateUpdateFacility",
+        "CreateContactInput",
+        "UpdateContactInput",
+        "validateCreateContact",
+        "validateUpdateContact"
+      ],
+      "imports": [
+        "../envelope-core"
+      ]
+    },
+    {
+      "path": "src/server/commands/documents/db.ts",
+      "sha256": "68e938fe90988736371923afd9e6c7a6d68409f2127160ee2ddf67ffcbba988d",
+      "exports": [
+        "DocumentAccessSelection",
+        "loadDocumentAccessSelection",
+        "PrepareDocumentSignedAccessArgs",
+        "RecordDocumentSignedAccessArgs",
+        "prepareDocumentSignedAccessAuditAttestation",
+        "recordDocumentSignedAccessAuditAttested",
+        "documentAttestationRpcArgs"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/server/storage/document-signed-access-attestation"
+      ]
+    },
+    {
+      "path": "src/server/commands/documents/lifecycle-db.ts",
+      "sha256": "aca23581fe5296c9750fed5103cd0c6070cf11966faa79d53df4b3cb516566d3",
+      "exports": [
+        "DocumentLifecycleArgs",
+        "DocumentLifecycleResult",
+        "executeDocumentLifecycle"
+      ],
+      "imports": [
+        "../command-errors",
+        "../envelope"
+      ]
+    },
+    {
+      "path": "src/server/commands/documents/lifecycle.ts",
+      "sha256": "dca76a42ef94d90c35384dabde68334005ea380b05073cedf280132095cb28b0",
+      "exports": [
+        "archiveDocument",
+        "restoreDocument",
+        "DocumentOperationIdentity",
+        "executeBoundDocumentLifecycle"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/server/authz/require-capability",
+        "./signed-access",
+        "./lifecycle-db"
+      ]
+    },
+    {
+      "path": "src/server/commands/documents/signed-access.ts",
+      "sha256": "e59be87f90c3ef002cb9e873757dc28e87beb8f84179cc72b5fd3c5058ed28e1",
+      "exports": [
+        "DocumentSignedAccessInput",
+        "DocumentSignedAccessResult",
+        "validateDocumentSignedAccessInput",
+        "createDocumentSignedAccess"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "../envelope-core",
+        "@/server/authz/require-capability",
+        "@/server/read-models/document-sources",
+        "@/server/storage/signed-access",
+        "@/server/storage/signed-access-attestation",
+        "@/server/storage/document-signed-access-attestation",
+        "./db"
+      ]
+    },
+    {
+      "path": "src/server/commands/envelope-core.ts",
+      "sha256": "012e4a95fd15d632dbc9fbe1c305b43eba9355bc6f7454f96fca44fd243aa9cb",
+      "exports": [
+        "ValidationResult",
+        "OwnershipResult",
+        "CommandExecuteContext",
+        "AuditRow",
+        "TenantContextResultLike",
+        "RunCommandCoreInput",
+        "RunCommandResult",
+        "runCommandCore"
+      ],
+      "imports": [
+        "@/lib/result/result",
+        "./command-errors",
+        "./clock",
+        "@/server/auth/tenant-context",
+        "@/server/authz/job-command-scope",
+        "@/server/authz/require-capability"
+      ]
+    },
+    {
+      "path": "src/server/commands/envelope.ts",
+      "sha256": "4b6ff353d9383e446b3abb49d007b27ec36bb993eaec570dedc8d7e62073d26c",
+      "exports": [
+        "COMMAND_CAPABILITIES",
+        "CommandDbClient",
+        "OwnershipTarget",
+        "CommandConfig",
+        "Command",
+        "RunCommandOptions",
+        "defineCommand",
+        "runCommand"
+      ],
+      "imports": [
+        "@/lib/result/result",
+        "./command-errors",
+        "./clock",
+        "./correlation",
+        "./envelope-core",
+        "./audit",
+        "@/server/auth/resolve-tenant-context"
+      ]
+    },
+    {
+      "path": "src/server/commands/files/file-db.ts",
+      "sha256": "fc73c53c00357fe5fb31a6eb5db297924bb16da1cb430b90f9f7ba68d4715252",
+      "exports": [
+        "FileAccessRow",
+        "loadFileForAccess",
+        "ownerTableFor",
+        "ownerRecordVisible",
+        "FileWriteClient",
+        "FileArchiveRow",
+        "isGenericFileArchiveForbidden",
+        "loadFileForArchive",
+        "asFileWriteClient",
+        "FileRpcClient",
+        "asFileRpcClient",
+        "prepareFileSignedAccessAuditAttestation",
+        "recordFileSignedAccessAuditAttested",
+        "archiveFileWithAudit",
+        "createUploadedFileWithAudit",
+        "linkFileWithAudit",
+        "throwMappedFileWriteError"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/server/storage/lifecycle",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/files/files.ts",
+      "sha256": "c8ccd35840bdba284e0463d846962775184b5b38010c3254cc44e6e88899e8f1",
+      "exports": [
+        "SignedFileAccessResult",
+        "createSignedFileAccess",
+        "CreateFileLinkResult",
+        "createFileLink",
+        "UploadFileResult",
+        "uploadFile",
+        "ArchiveFileResult",
+        "archiveFile"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "../envelope",
+        "@/server/storage/lifecycle",
+        "@/server/storage/signed-access",
+        "@/server/storage/signed-access-attestation",
+        "@/server/storage/upload-object",
+        "./file-db",
+        "./validation",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/files/index.ts",
+      "sha256": "c6ffec1504fc0404e71394fc9c382f37bca1d47580c4b6d4c649755d596eb93c",
+      "exports": [],
+      "imports": [
+        "./files",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/files/validation.ts",
+      "sha256": "d3a46d9999956d9abcc2aeb173e34696d09450277a84e9d75f5c1d6ec2a4d138",
+      "exports": [
+        "OWNER_TYPES",
+        "OwnerType",
+        "ACTIVE_OWNER_TYPES",
+        "ActiveOwnerType",
+        "FILE_PURPOSES",
+        "FilePurpose",
+        "isOwnerType",
+        "isActiveOwnerType",
+        "isFilePurpose",
+        "SignedAccessInput",
+        "validateSignedAccess",
+        "CreateFileLinkInput",
+        "validateCreateFileLink",
+        "OWNER_TYPE_PURPOSE",
+        "UploadFileInput",
+        "validateUploadFile",
+        "ArchiveFileInput",
+        "validateArchiveFile"
+      ],
+      "imports": [
+        "../envelope-core",
+        "@/server/storage/upload-policy"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/card-db.ts",
+      "sha256": "279b9076c9712955d138e3c88ec47a7793879978c9c4e163549ea73277cbad1a",
+      "exports": [
+        "jobCardRpc"
+      ],
+      "imports": [
+        "../command-errors",
+        "@/server/bookings/conflict-facts"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/card-facts.ts",
+      "sha256": "3885b687654fe2a9b05969087268f8233e2064e40ec7b0bc0a9796c13a4e9619",
+      "exports": [
+        "JobCardSnapshot",
+        "parseJobCardSnapshot",
+        "deriveJobCardConflicts"
+      ],
+      "imports": [
+        "node:crypto",
+        "@/server/bookings/conflict-facts",
+        "@/server/bookings/conflict-attestation",
+        "@/features/jobs/job-card-domain",
+        "@/features/scheduling/types"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/card-proof.ts",
+      "sha256": "9030582599d7de11104c2166dd1c4dfbc1a446d5367c0ba9ec9c816b6047a464",
+      "exports": [
+        "JOB_CARD_PROOF_DOMAIN",
+        "canonicalJobCardProofBytes",
+        "jobCardKeyFromEnv",
+        "signJobCardOutput"
+      ],
+      "imports": [
+        "node:crypto",
+        "@/server/bookings/conflict-attestation"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/create-job.ts",
+      "sha256": "99e129771db0ed59fee736cf24dd88277ddefcf358bf6e69670530ead3f70dbd",
+      "exports": [
+        "createJob"
+      ],
+      "imports": [
+        "../envelope",
+        "./jobs-audit-db",
+        "./validation",
+        "./jobs"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/index.ts",
+      "sha256": "98a7be309f7c47e60eeaa26306c8ca795b7ff77f424a65ae4d1133c098e57695",
+      "exports": [],
+      "imports": [
+        "./jobs",
+        "./create-job",
+        "./validation",
+        "./save-job-card",
+        "./job-members",
+        "./job-plan-dates",
+        "./work-orders",
+        "./upgrade-job-to-projekt"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/job-members-db.ts",
+      "sha256": "1ee4ed9111859243ccedee06b4587b414a99bcf0448a912f38e87759afa16c7b",
+      "exports": [
+        "jobMemberMutation"
+      ],
+      "imports": [
+        "../command-errors",
+        "../envelope-core",
+        "../envelope",
+        "@/features/jobs/job-members-domain"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/job-members.ts",
+      "sha256": "a404c62b7ee3095011ff2934eb72a78d538926bbca935413d9ca697d997b50c8",
+      "exports": [
+        "assignJobMember",
+        "removeJobMember",
+        "setJobLead"
+      ],
+      "imports": [
+        "../envelope",
+        "@/features/jobs/job-members-domain",
+        "./job-members-db"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/job-plan-dates.ts",
+      "sha256": "4ba2f411b665a57d1cd72763765179d6de969e9fe0fa1b2a1fe1dd59c0d4f6f1",
+      "exports": [
+        "updateJobPlanDates"
+      ],
+      "imports": [
+        "../envelope",
+        "@/features/jobs/job-members-domain",
+        "./job-members-db"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/job-upgrade-db.ts",
+      "sha256": "352a814483f2e9863e18579801890722cc4ff24020386e905beef87fb2e47446",
+      "exports": [
+        "upgradeJobDb"
+      ],
+      "imports": [
+        "../command-errors",
+        "../envelope-core",
+        "../envelope",
+        "@/features/jobs/job-upgrade-domain"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/jobs-audit-db.ts",
+      "sha256": "88e0ca1083849d5bba193f57e783cf7dbb0646f7d324c6d4f1cde6c49dda7f85",
+      "exports": [
+        "JobAuditedRpcName",
+        "executeJobAuditedMutation"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/jobs-db.ts",
+      "sha256": "7ed9806ce53dd329ebfdafa63e35fe7b191d2c1f73e882c070881850ede147af",
+      "exports": [
+        "JobWriteResult",
+        "JobWriteClient",
+        "asJobWriteClient",
+        "loadJobStatus",
+        "throwMappedJobWriteError"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/jobs.ts",
+      "sha256": "68f8251b4b9e81001840b9454292658c03a18a951314f7c724564b9e871a4d47",
+      "exports": [
+        "JobCommandResult",
+        "updateJob"
+      ],
+      "imports": [
+        "../envelope",
+        "./jobs-audit-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/save-job-card.ts",
+      "sha256": "e40a30b13699c0e6d06621255302b8ddc0532afce6d4595f47616adba5d41049",
+      "exports": [
+        "createJobCard",
+        "updateJobCard"
+      ],
+      "imports": [
+        "node:crypto",
+        "../envelope",
+        "../command-errors",
+        "@/features/jobs/job-card-domain",
+        "@/server/bookings/conflict-facts",
+        "./card-db",
+        "./card-facts",
+        "./card-proof"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/upgrade-job-to-projekt.ts",
+      "sha256": "2bb8223a8d634fdcfeb71b17cd77789ae90c9ee1f82b422ee8dabfc087eb2365",
+      "exports": [
+        "upgradeJobToProjekt"
+      ],
+      "imports": [
+        "../envelope",
+        "@/features/jobs/job-upgrade-domain",
+        "./job-upgrade-db"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/validation.ts",
+      "sha256": "4ff87f2417ff469c5b58085c88aaca2e4f2ba7ac988c011692c49d931770358a",
+      "exports": [
+        "JOB_STATUS_VALUES",
+        "JobStatusValue",
+        "UpdateJobInput",
+        "CreateJobInput",
+        "validateCreateJob",
+        "validateUpdateJob"
+      ],
+      "imports": [
+        "../envelope-core"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/work-orders-db.ts",
+      "sha256": "a0e86d81fe704e9d5f8785a36e28df9ca94e62157f6144b55937a094eba76404",
+      "exports": [
+        "WorkOrderRpc",
+        "workOrderMutation"
+      ],
+      "imports": [
+        "../command-errors",
+        "../envelope-core",
+        "../envelope",
+        "@/features/jobs/work-orders-domain"
+      ]
+    },
+    {
+      "path": "src/server/commands/jobs/work-orders.ts",
+      "sha256": "daca607c2108ff51624fc36180e81a26d69a085c550757025e48184b705b1b23",
+      "exports": [
+        "createWorkOrder",
+        "updateWorkOrder",
+        "setWorkOrderAssignees",
+        "setWorkOrderStatus",
+        "setWorkOrderDependencies",
+        "setJobWorkOrderDependencies"
+      ],
+      "imports": [
+        "../envelope",
+        "@/features/jobs/work-orders-domain",
+        "./work-orders-db"
+      ]
+    },
+    {
+      "path": "src/server/commands/pricing/articles.ts",
+      "sha256": "2b693fa6f10ee035c52a10d5edd33ef4d9d3dbdfac6095a113861e07d1d62cb8",
+      "exports": [
+        "upsertArticle",
+        "archiveArticle",
+        "reactivateArticle"
+      ],
+      "imports": [
+        "../envelope",
+        "./pricing-db",
+        "./validation",
+        "./work-roles"
+      ]
+    },
+    {
+      "path": "src/server/commands/pricing/pricing-db.ts",
+      "sha256": "dafbb600ea4d2eb0b2d08b2402cb055ae7c296044be7e849b24fefc25d7f34dd",
+      "exports": [
+        "PricingAuditRpcClient",
+        "asPricingAuditRpcClient"
+      ],
+      "imports": [
+        "../envelope",
+        "../crm/crm-db"
+      ]
+    },
+    {
+      "path": "src/server/commands/pricing/validation.ts",
+      "sha256": "58bae9e11ec3b7fff3051a872f0cba18e76d63aa00b33df5f6e7764c30eed7d5",
+      "exports": [
+        "ORE_AMOUNT_MAX",
+        "isOreAmount",
+        "UpsertWorkRoleInput",
+        "validateUpsertWorkRole",
+        "UpsertArticleInput",
+        "validateUpsertArticle",
+        "ArchiveInput",
+        "validateArchive"
+      ],
+      "imports": [
+        "../envelope-core",
+        "@/lib/money"
+      ]
+    },
+    {
+      "path": "src/server/commands/pricing/work-roles.ts",
+      "sha256": "a71567e0e5198d94c2d890ebdf5ca60081be7edf528fe1954125be8fe47954a9",
+      "exports": [
+        "PricingCommandResult",
+        "upsertWorkRole",
+        "archiveWorkRole",
+        "reactivateWorkRole"
+      ],
+      "imports": [
+        "../envelope",
+        "./pricing-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/provisioning/provision-tenant.ts",
+      "sha256": "1bf76322dae2e5377967888a9ba022eb7fd4e5dbd3de968fd5d6c831e1803a0a",
+      "exports": [
+        "provisionTenant",
+        "previewTenantProvisioning",
+        "previewFirstAdminInviteRenewal",
+        "retryFirstAdminInvite",
+        "reconcileFirstAdminInvite",
+        "provisioningCommandTestHooks"
+      ],
+      "imports": [
+        "node:crypto",
+        "@supabase/supabase-js",
+        "@/server/auth/admin-user-service",
+        "@/server/provisioning/baselines",
+        "@/server/provisioning/attestation",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/provisioning/validation.ts",
+      "sha256": "0741a038e785378f75967492f18482f5c5872650123238bb493bd643667ad127",
+      "exports": [
+        "PROVISIONING_STATES",
+        "MAX_PROVIDER_DISPATCH_ATTEMPTS",
+        "ProvisioningRequest",
+        "ProvisioningPreview",
+        "decodeProvisioningRequest",
+        "normalizeSwedishOrganizationNumber",
+        "canonicalizeProvisioningRequest",
+        "createProvisioningPreview",
+        "canTransitionProvisioning",
+        "canReserveProvisioningDispatch",
+        "canMarkTenantProvisioningReady"
+      ],
+      "imports": [
+        "node:crypto",
+        "@/scope/manifest"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/accept-and-create-job.ts",
+      "sha256": "00c2857f1998b6c11e361e610b9ca083b7184930f032330e2a8c1bfaa62bd319",
+      "exports": [
+        "AcceptQuoteAndCreateJobResult",
+        "buildAcceptAndCreateJobRpcArgs",
+        "acceptQuoteAndCreateJob"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/features/quotes/acceptance-price",
+        "./quote-db",
+        "../files/file-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/accept.ts",
+      "sha256": "3948d8e14676552ca47024982fb0fd701140367afc70c0b8c9e9c95814a91f97",
+      "exports": [
+        "CaptureQuoteAcceptanceResult",
+        "captureQuoteAcceptance"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/features/quotes/acceptance-price",
+        "./quote-db",
+        "../files/file-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/correct-delivery-recipient.ts",
+      "sha256": "af84bfa5306aa7e14712588648984f85c2864b00852d7360e561d9d2ea4f587d",
+      "exports": [
+        "CorrectPendingQuoteDeliveryRecipientResult",
+        "correctPendingQuoteDeliveryRecipient"
+      ],
+      "imports": [
+        "../envelope",
+        "./quote-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/follow-ups.ts",
+      "sha256": "d7a51498be7f8307be4cd54590a8c5c6ad931f9d2e4bfd79ff055bceac4d2570",
+      "exports": [
+        "PlanQuoteFollowUpResult",
+        "CompleteQuoteFollowUpResult",
+        "AnnotateQuoteFollowUpResult",
+        "planQuoteFollowUp",
+        "completeQuoteFollowUp",
+        "annotateQuoteFollowUp"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/features/quotes/follow-up-dates",
+        "./quote-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/generate-pdf.ts",
+      "sha256": "3dd97ef7ccb3c9d1294255cd0c0b781ab451f0436aa024e672be9e00b7c4f0c0",
+      "exports": [
+        "quotePdfDisplayName",
+        "GenerateQuotePdfResult",
+        "generateQuotePdf",
+        "startQuotePdfRenderWithRecovery"
+      ],
+      "imports": [
+        "node:crypto",
+        "../envelope",
+        "../command-errors",
+        "@/server/storage/object-path",
+        "@/server/quote-pdf/render",
+        "@/server/quote-pdf/attestation",
+        "@/lib/quote-pdf",
+        "@/lib/money",
+        "@/lib/quote-snapshot",
+        "@/lib/quote-snapshot",
+        "./quote-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/index.ts",
+      "sha256": "9c794f1d946f0c7bbcc81c4c365648fe72db0a6d69b81716b5d97ce3d8bd68fb",
+      "exports": [],
+      "imports": [
+        "./quotes",
+        "./update-draft",
+        "./generate-pdf",
+        "./mark-sent",
+        "./correct-delivery-recipient",
+        "./new-version",
+        "./lifecycle",
+        "./lost",
+        "./follow-ups",
+        "./accept",
+        "./accept-and-create-job",
+        "./validation",
+        "./quote-pdf-signed-access"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/lifecycle.ts",
+      "sha256": "9cbfb3ecb1480ae9396bf44e470c11d0fe5ae311e52bc99e60b8a552c006c415",
+      "exports": [
+        "MarkQuoteVersionLifecycleResult",
+        "markQuoteVersionLifecycle"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/features/quotes/lifecycle",
+        "./quote-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/lost.ts",
+      "sha256": "6b76a2a5bc462e4828188c91eae1cb0f8e51dcba03e464a11d5ea5ccc49fd462",
+      "exports": [
+        "MarkQuoteVersionLostResult",
+        "markQuoteVersionLost"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/features/quotes/lifecycle",
+        "./quote-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/mark-sent.ts",
+      "sha256": "ae2c77f03ff081bd9ecd5fe37a3a5bf96f7896ac68c8e69ebf786b7850635224",
+      "exports": [
+        "MarkQuoteVersionSentResult",
+        "markQuoteVersionSent"
+      ],
+      "imports": [
+        "node:crypto",
+        "../envelope",
+        "../command-errors",
+        "@/features/quotes/send-gate",
+        "@/server/quote-pdf/attestation",
+        "./quote-db",
+        "./validation",
+        "@/server/email/recovery-attestation",
+        "@/server/storage/quote-pdf-signer",
+        "@/server/storage/signed-access-attestation",
+        "@/server/email/configuration-recovery",
+        "./send-track"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/new-version.ts",
+      "sha256": "c2184b66166dbde1ea29941ac5ef531c778288469a6849ac16a0fa208013ed3b",
+      "exports": [
+        "CreateNewQuoteVersionResult",
+        "isRecoverableLegacyDraftParent",
+        "resolveCarryForwardAttachmentFileIds",
+        "createNewQuoteVersion",
+        "extractNewVersionResult"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "./quote-db",
+        "./snapshot-build",
+        "./quote-successor-source-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/quote-db.ts",
+      "sha256": "f61c9ac6840e5fe71adbb15f836653db8c4f1aa766bc82fbf434ea6685a77b96",
+      "exports": [
+        "CalcHeaderRow",
+        "CalcSectionRow",
+        "CalcRowRow",
+        "CompanyIdentityRow",
+        "QuoteTermsRow",
+        "CustomerContextRow",
+        "loadCalcHeader",
+        "loadCalcSections",
+        "loadCalcRows",
+        "loadCompanyIdentity",
+        "loadQuoteTerms",
+        "loadCustomerDisplay",
+        "loadNameById",
+        "loadQuoteVersionStatus",
+        "QuoteVersionAcceptanceSourceRow",
+        "loadQuoteVersionAcceptanceSource",
+        "QuoteWriteClient",
+        "asQuoteWriteClient",
+        "UpdateDraftQuoteVersionRpcClient",
+        "asUpdateDraftQuoteVersionRpcClient",
+        "QuoteVersionSendGateRow",
+        "loadQuoteVersionSendGate",
+        "QuotePdfSendAttestationChallenge",
+        "extractQuotePdfSendAttestationChallenge",
+        "MarkQuoteVersionSentRpcClient",
+        "asMarkSentRpcClient",
+        "AttachmentFileRow",
+        "loadOwnedAttachmentFile",
+        "loadVisibleAttachmentFileId",
+        "loadEligibleCalculationAttachmentFileIds",
+        "QuoteRpcClient",
+        "asQuoteRpcClient",
+        "QuoteVersionParentRow",
+        "loadQuoteVersionParent",
+        "NewQuoteVersionRpcClient",
+        "asNewQuoteVersionRpcClient",
+        "QuoteLifecycleRpcClient",
+        "asQuoteLifecycleRpcClient",
+        "QuoteLostRpcClient",
+        "asQuoteLostRpcClient",
+        "QuoteVersionAnchorRow",
+        "loadQuoteVersionAnchor",
+        "QuoteFollowUpLifecycleRpcClient",
+        "asQuoteFollowUpLifecycleRpcClient",
+        "QuoteSuccessorSourceRpcClient",
+        "asQuoteSuccessorSourceRpcClient",
+        "extractQuoteFollowUpLifecycleId",
+        "AcceptAndCreateJobRpcArgs",
+        "QuoteReviewAuthorizationRpcClient",
+        "asQuoteReviewAuthorizationRpcClient",
+        "extractQuoteReviewAuthorizationId",
+        "AcceptAndCreateJobRpcClient",
+        "asAcceptAndCreateJobRpcClient",
+        "AcceptAndCreateJobResult",
+        "extractAcceptAndCreateJobResult",
+        "throwMappedQuoteWriteError",
+        "QuoteVersionSnapshotRow",
+        "QuoteVersionLineSnapshotRow",
+        "QuoteVersionAttachmentSnapshotRow",
+        "loadQuoteVersionSnapshot",
+        "loadQuoteVersionLineSnapshots",
+        "loadQuoteVersionAttachmentSnapshots",
+        "QuotePdfWriteClient",
+        "asQuotePdfWriteClient",
+        "QuotePdfCompleteRpcClient",
+        "QuotePdfRenderRpcClient",
+        "QuotePdfLifecycleStateRow",
+        "loadQuotePdfLifecycleState",
+        "asQuotePdfRenderRpcClient",
+        "ExistingPdfLinkRow",
+        "findExistingPdfLink"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/server/storage/lifecycle",
+        "@/lib/quote-snapshot"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/quote-initial-source-db.ts",
+      "sha256": "2be078e66625e70e31022282033d16819bd4753ea104ec4aaa49851e281d8416",
+      "exports": [
+        "QuoteInitialCustomerVisibleSourceRpcClient",
+        "QuoteInitialCustomerVisibleAuthorizationRpcClient",
+        "asQuoteInitialCustomerVisibleSourceRpcClient",
+        "asQuoteInitialCustomerVisibleAuthorizationRpcClient",
+        "QuoteInitialCustomerVisibleSource",
+        "loadQuoteInitialCustomerVisibleSource",
+        "buildQuoteInitialCustomerVisibleReviewDigest"
+      ],
+      "imports": [
+        "../command-errors",
+        "../envelope",
+        "./snapshot-build",
+        "./quote-db",
+        "@/lib/quote-snapshot",
+        "./review-token",
+        "./snapshot-build"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/quote-pdf-signed-access.ts",
+      "sha256": "443101fa433a77f9ae19d3fb42a9e0d881b0b4b92c0cffd0ec34d1a4e1da8481",
+      "exports": [
+        "QuotePdfSignedAccessInput",
+        "QuotePdfSignedAccessResult",
+        "createQuotePdfSignedAccess"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "@/server/storage/signed-access-attestation",
+        "@/server/storage/quote-pdf-signer"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/quote-successor-source-db.ts",
+      "sha256": "29fbaf37f8ecf1d022eb8138aac44fa843dd4452b6a178f4ef246042a3768ff6",
+      "exports": [
+        "QuoteSuccessorCustomerVisibleSource",
+        "QuoteSuccessorCustomerVisibleSourceArgs",
+        "loadQuoteSuccessorCustomerVisibleSource",
+        "buildQuoteSuccessorCustomerVisibleReviewDigest"
+      ],
+      "imports": [
+        "../command-errors",
+        "../envelope",
+        "./review-token",
+        "./quote-db",
+        "./quote-db",
+        "./snapshot-build",
+        "@/lib/quote-snapshot"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/quotes.ts",
+      "sha256": "111d6903dca426e1ff7fc27e07fe6779770e96cd5dc7039a64598b18c89e126c",
+      "exports": [
+        "CreateQuoteVersionResult",
+        "createQuoteVersionFromCalculation"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "./quote-db",
+        "./snapshot-build",
+        "./quote-initial-source-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/review-token.ts",
+      "sha256": "297fb4725714b1ca1f3bb9ea5286f7e6eefd611e0a5afa281702c3d980dd7f37",
+      "exports": [
+        "QuoteReviewSource",
+        "buildQuoteReviewDigest",
+        "buildCustomerVisibleQuoteReviewDigest",
+        "quoteReviewDigestsEqual"
+      ],
+      "imports": [
+        "node:crypto",
+        "@/lib/money"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/send-track.ts",
+      "sha256": "e544909b5cfea6bd2769cb0129cc390eda4a7146a85cd06e4882799037acbd71",
+      "exports": [
+        "quoteSendCustomerDataTrack"
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/server/commands/quotes/snapshot-build.ts",
+      "sha256": "5bdbf1a11d3cf1925316beda204cb16f78b1cb18cb456aeb85b0b90ef56af5bc",
+      "exports": [
+        "QuoteSnapshotBuildParams",
+        "QuoteSnapshotBuildResult",
+        "CustomerVisibleQuoteSnapshotSource",
+        "SnapshotCustomerSource",
+        "buildFreshQuoteSnapshotFromCustomerVisibleSource",
+        "buildFreshQuoteSnapshot",
+        "snapshotToPayload",
+        "linesToPayload",
+        "attachmentsToPayload"
+      ],
+      "imports": [
+        "../command-errors",
+        "@/features/calculations/totals",
+        "@/features/calculations/readiness",
+        "@/features/calculations/vat-posture",
+        "@/lib/datetime/business-date",
+        "@/server/commands/calculations/validation",
+        "@/lib/money",
+        "@/lib/quote-snapshot",
+        "../envelope",
+        "./quote-db",
+        "./review-token"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/update-draft.ts",
+      "sha256": "677d3dee81614f8d7ef31a6a078d0c86f95e57918356efdc82b042d09900e5a4",
+      "exports": [
+        "UpdateDraftQuoteVersionResult",
+        "updateDraftQuoteVersion"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "./quote-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/quotes/validation.ts",
+      "sha256": "f0dabfff954b21bb973f2232d73187704087418cec3bbe6b690133bfd40c1da3",
+      "exports": [
+        "CreateQuoteVersionInput",
+        "validateCreateQuoteVersionFromCalculation",
+        "CreateReviewedQuoteVersionInput",
+        "validateCreateReviewedQuoteVersionFromCalculation",
+        "UpdateDraftQuoteVersionInput",
+        "validateUpdateDraftQuoteVersion",
+        "GenerateQuotePdfInput",
+        "validateGenerateQuotePdf",
+        "MarkQuoteVersionSentInput",
+        "validateMarkQuoteVersionSent",
+        "CorrectPendingQuoteDeliveryRecipientInput",
+        "validateCorrectPendingQuoteDeliveryRecipient",
+        "CreateNewQuoteVersionInput",
+        "validateCreateNewQuoteVersion",
+        "QuoteLifecycleTransition",
+        "MarkQuoteVersionLifecycleInput",
+        "validateMarkQuoteVersionLifecycle",
+        "QuoteLostOutcome",
+        "QuoteLostCategory",
+        "MarkQuoteVersionLostInput",
+        "validateMarkQuoteVersionLost",
+        "CaptureQuoteAcceptanceInput",
+        "validateCaptureQuoteAcceptance",
+        "AcceptQuoteAndCreateJobInput",
+        "validateAcceptQuoteAndCreateJob",
+        "PlanQuoteFollowUpInput",
+        "validatePlanQuoteFollowUp",
+        "CompleteQuoteFollowUpInput",
+        "validateCompleteQuoteFollowUp",
+        "AnnotateQuoteFollowUpInput",
+        "validateAnnotateQuoteFollowUp"
+      ],
+      "imports": [
+        "../envelope-core",
+        "@/lib/money/ore"
+      ]
+    },
+    {
+      "path": "src/server/commands/resources/calendar-days.ts",
+      "sha256": "ff1561138e9fefed8e2c5e8813c28b12fecf47b71307c4aab7eaa201f5f131fc",
+      "exports": [
+        "saveTenantCalendarDay"
+      ],
+      "imports": [
+        "../envelope",
+        "../envelope-core",
+        "@/features/resources/capacity-inputs"
+      ]
+    },
+    {
+      "path": "src/server/commands/resources/person-profiles.ts",
+      "sha256": "6891d56878a322e095e7d9f40c6f4b4d35bd9a7771e91af4c1269fa51b050043",
+      "exports": [
+        "createOrUpdatePersonProfile"
+      ],
+      "imports": [
+        "../envelope",
+        "../envelope-core"
+      ]
+    },
+    {
+      "path": "src/server/commands/resources/profile-form.ts",
+      "sha256": "8a5f570a9a0e3bc2f6b5c74e1fbe8581522cc9d71bab083a0a619a15caf089f7",
+      "exports": [
+        "saveResourceProfileForm"
+      ],
+      "imports": [
+        "../envelope",
+        "../envelope-core",
+        "@/features/resources/capacity-inputs",
+        "@/features/resources/work-hours"
+      ]
+    },
+    {
+      "path": "src/server/commands/resources/work-hours.ts",
+      "sha256": "146f80c85fa1f38a7ab47409d6e2fa07fce32afbf9b6b750b4b083402d2507fb",
+      "exports": [
+        "savePersonWorkHours"
+      ],
+      "imports": [
+        "../envelope",
+        "../envelope-core",
+        "@/features/resources/work-hours"
+      ]
+    },
+    {
+      "path": "src/server/commands/settings/company-settings.ts",
+      "sha256": "7a18dd2f1e7346d3c7fbbf84d98130ec2b932c02a0a27e1c5c5d182cc77e1425",
+      "exports": [
+        "SettingsCommandResult",
+        "updateCompanySettings"
+      ],
+      "imports": [
+        "../envelope",
+        "./settings-db",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/settings/quote-terms.ts",
+      "sha256": "25c4f78b9a4d6a000934b33769d15c21752229ca2e3c3f60b3fee20bb6b80ce9",
+      "exports": [
+        "updateQuoteTerms",
+        "approveQuoteTerms"
+      ],
+      "imports": [
+        "../envelope",
+        "../command-errors",
+        "./settings-db",
+        "./company-settings",
+        "./validation"
+      ]
+    },
+    {
+      "path": "src/server/commands/settings/settings-db.ts",
+      "sha256": "54c94af585d7408afbbd42e9e7ef70731542c3477d17000c3749b6f0e7b710a0",
+      "exports": [
+        "SettingsAuditRpcClient",
+        "asSettingsAuditRpcClient"
+      ],
+      "imports": [
+        "../envelope",
+        "../crm/crm-db"
+      ]
+    },
+    {
+      "path": "src/server/commands/settings/validation.ts",
+      "sha256": "0fdff16dabd10ba9b461f4c15d4200f07a0127ef85515566a31dbfed8eac1560",
+      "exports": [
+        "VAT_DISPLAY_MODES",
+        "VatDisplayMode",
+        "DEFAULT_VAT_RATE_BP",
+        "UpdateCompanySettingsInput",
+        "validateUpdateCompanySettings",
+        "UpdateQuoteTermsInput",
+        "validateUpdateQuoteTerms",
+        "ApproveQuoteTermsInput",
+        "validateApproveQuoteTerms"
+      ],
+      "imports": [
+        "@/lib/money",
+        "../envelope-core"
+      ]
+    }
+  ],
+  "tests_at_integrated_base": [
+    "tests/README.md",
+    "tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts",
+    "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+    "tests/e2e/auth/auth-mail-callback.e2e.spec.ts",
+    "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+    "tests/e2e/auth/operator-console.atdd.e2e.spec.ts",
+    "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+    "tests/e2e/auth/role-catalogue-contract.e2e.spec.ts",
+    "tests/e2e/booking-editor.e2e.spec.ts",
+    "tests/e2e/calculations/calculation-readiness.e2e.spec.ts",
+    "tests/e2e/calculations/calculation-source-selection.e2e.spec.ts",
+    "tests/e2e/calculations/calculations.e2e.spec.ts",
+    "tests/e2e/calculations/tax-answer-reconciliation.e2e.spec.ts",
+    "tests/e2e/ci-duration-budget-reporter.ts",
+    "tests/e2e/crm/customers.e2e.spec.ts",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+    "tests/e2e/dashboard/guarded-test.ts",
+    "tests/e2e/dashboard/playwright.ci.config.ts",
+    "tests/e2e/dashboard/playwright.config.ts",
+    "tests/e2e/dashboard/read-plan.ts",
+    "tests/e2e/dashboard/server-read-proxy.mjs",
+    "tests/e2e/dashboard/setup.ts",
+    "tests/e2e/dashboard/teardown.ts",
+    "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    "tests/e2e/files/documents.e2e.spec.ts",
+    "tests/e2e/files/entity-file-panel.e2e.spec.ts",
+    "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+    "tests/e2e/files/file-index-scope.e2e.spec.ts",
+    "tests/e2e/files/file-lock-panel.e2e.spec.ts",
+    "tests/e2e/global-setup.ts",
+    "tests/e2e/global-teardown.ts",
+    "tests/e2e/jobs/job-accepted-lock.e2e.spec.ts",
+    "tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts",
+    "tests/e2e/jobs/job-members.e2e.spec.ts",
+    "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+    "tests/e2e/jobs/job-traceability.e2e.spec.ts",
+    "tests/e2e/jobs/job-upgrade.e2e.spec.ts",
+    "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+    "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+    "tests/e2e/jobs/work-orders.e2e.spec.ts",
+    "tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts",
+    "tests/e2e/notifications/email-preferences-email-activation.atdd.e2e.spec.ts",
+    "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+    "tests/e2e/notifications/public-unsubscribe-email-activation.atdd.e2e.spec.ts",
+    "tests/e2e/onboarding/first-admin-checklist.e2e.spec.ts",
+    "tests/e2e/pricing/pricing.e2e.spec.ts",
+    "tests/e2e/quotes/quote-accept-create-job.e2e.spec.ts",
+    "tests/e2e/quotes/quote-acceptance-capture.e2e.spec.ts",
+    "tests/e2e/quotes/quote-follow-up-retry-safety.e2e.spec.ts",
+    "tests/e2e/quotes/quote-follow-up.e2e.spec.ts",
+    "tests/e2e/quotes/quote-lost-reason-retry-safety.e2e.spec.ts",
+    "tests/e2e/quotes/quote-lost-reason.e2e.spec.ts",
+    "tests/e2e/quotes/quote-new-version.e2e.spec.ts",
+    "tests/e2e/quotes/quote-pdf-states.e2e.spec.ts",
+    "tests/e2e/quotes/quote-pipeline-consistency.e2e.spec.ts",
+    "tests/e2e/quotes/quote-sent-lock.e2e.spec.ts",
+    "tests/e2e/quotes/quotes.e2e.spec.ts",
+    "tests/e2e/resources-person-profile.e2e.spec.ts",
+    "tests/e2e/retry-fixture-clock.ts",
+    "tests/e2e/seed-epic-12-browser-fixtures.ts",
+    "tests/e2e/seed-quote-file-fixtures.ts",
+    "tests/e2e/settings/settings.e2e.spec.ts",
+    "tests/e2e/support/active-admin-navigation.ts",
+    "tests/e2e/support/booking-editor-atdd.ts",
+    "tests/e2e/support/resource-cdp-attachment.ts",
+    "tests/factories/admin-sql.ts",
+    "tests/factories/audit-events.ts",
+    "tests/factories/platform-operators.ts",
+    "tests/factories/tenants.ts",
+    "tests/factories/tenants/calculations.ts",
+    "tests/factories/tenants/core.ts",
+    "tests/factories/tenants/crm.ts",
+    "tests/factories/tenants/files.ts",
+    "tests/factories/tenants/lifecycle.ts",
+    "tests/factories/tenants/quotes.ts",
+    "tests/factories/tenants/storage.ts",
+    "tests/fixtures/golden/acceptance/tax-answer-v2-acceptance-job.json",
+    "tests/fixtures/golden/calculations/tax-answer-reconciliation-v2.json",
+    "tests/fixtures/golden/files/file-lock-lifecycle.json",
+    "tests/fixtures/golden/lovable/acceptance.json",
+    "tests/fixtures/golden/lovable/accepted-quote-to-job.json",
+    "tests/fixtures/golden/lovable/calculations.json",
+    "tests/fixtures/golden/lovable/crm.json",
+    "tests/fixtures/golden/lovable/files.json",
+    "tests/fixtures/golden/lovable/pdfs.json",
+    "tests/fixtures/golden/lovable/quotes.json",
+    "tests/fixtures/golden/lovable/settings-pricing.json",
+    "tests/fixtures/golden/money/accepted-price-deltas.json",
+    "tests/fixtures/golden/money/calc-rows.json",
+    "tests/fixtures/golden/money/options-tillval.json",
+    "tests/fixtures/golden/money/rot-gron-deductions.json",
+    "tests/fixtures/golden/money/rounding-mode.json",
+    "tests/fixtures/golden/money/tax-answer-reconciliation-v2.json",
+    "tests/fixtures/golden/money/vat-rates.json",
+    "tests/fixtures/golden/quote-pdf/quote-pdf-source.json",
+    "tests/fixtures/golden/quote-pdf/tax-answer-reconciliation-v1-v2.json",
+    "tests/fixtures/golden/quotes/lost-lifecycle.json",
+    "tests/fixtures/golden/scheduling/capacity.json",
+    "tests/fixtures/golden/scheduling/conflicts.json",
+    "tests/fixtures/golden/scheduling/dst.json",
+    "tests/fixtures/golden/scheduling/regressions.json",
+    "tests/fixtures/golden/snapshots/article-source.json",
+    "tests/fixtures/golden/snapshots/quote-version-source.json",
+    "tests/fixtures/golden/snapshots/quote-version-v1-v2.json",
+    "tests/fixtures/golden/snapshots/tax-answer-reconciliation-v1-v2.json",
+    "tests/fixtures/golden/snapshots/work-role-source.json",
+    "tests/integration/commands/accept-quote-and-create-job.int.test.ts",
+    "tests/integration/commands/acceptance-evidence-link.int.test.ts",
+    "tests/integration/commands/accepted-record-lock.int.test.ts",
+    "tests/integration/commands/admin-invitation-retry-flow.test.ts",
+    "tests/integration/commands/admin-user-management.int.test.ts",
+    "tests/integration/commands/audit-actor-on-delete-set-null.int.test.ts",
+    "tests/integration/commands/audit-anon-isolation.int.test.ts",
+    "tests/integration/commands/audit-append-only.int.test.ts",
+    "tests/integration/commands/audit-metadata-hygiene-e2e.int.test.ts",
+    "tests/integration/commands/booking-conflicts.int.test.ts",
+    "tests/integration/commands/booking-editor-review-fixes.int.test.ts",
+    "tests/integration/commands/booking-editor-round2.int.test.ts",
+    "tests/integration/commands/booking-editor.int.test.ts",
+    "tests/integration/commands/bookings-replay-authority.int.test.ts",
+    "tests/integration/commands/bookings.int.test.ts",
+    "tests/integration/commands/calculation-commands.int.test.ts",
+    "tests/integration/commands/calculation-parent-ownership.int.test.ts",
+    "tests/integration/commands/calculation-row-source.int.test.ts",
+    "tests/integration/commands/capture-quote-acceptance.int.test.ts",
+    "tests/integration/commands/create-job.int.test.ts",
+    "tests/integration/commands/create-new-quote-version.int.test.ts",
+    "tests/integration/commands/crm-command-coverage.int.test.ts",
+    "tests/integration/commands/crm-customer-commands.int.test.ts",
+    "tests/integration/commands/crm-parent-ownership.int.test.ts",
+    "tests/integration/commands/disabled-membership-no-access.int.test.ts",
+    "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+    "tests/integration/commands/documents-lifecycle.int.test.ts",
+    "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+    "tests/integration/commands/documents-signed-access.int.test.ts",
+    "tests/integration/commands/envelope-audit-write.int.test.ts",
+    "tests/integration/commands/envelope-failure-modes.int.test.ts",
+    "tests/integration/commands/file-audit-events.int.test.ts",
+    "tests/integration/commands/file-link-lock.int.test.ts",
+    "tests/integration/commands/file-link-ownership.int.test.ts",
+    "tests/integration/commands/file-signed-access-refresh.int.test.ts",
+    "tests/integration/commands/file-signed-access.int.test.ts",
+    "tests/integration/commands/file-upload.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-determinism.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-retry-consistency.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-source-of-truth.int.test.ts",
+    "tests/integration/commands/generate-quote-pdf-storage-privacy.int.test.ts",
+    "tests/integration/commands/job-booking-facts.int.test.ts",
+    "tests/integration/commands/job-members.int.test.ts",
+    "tests/integration/commands/job-scheduling-consumers.int.test.ts",
+    "tests/integration/commands/job-source-of-truth.int.test.ts",
+    "tests/integration/commands/job-upgrade.int.test.ts",
+    "tests/integration/commands/jobs-depth.int.test.ts",
+    "tests/integration/commands/mark-quote-version-lost.int.test.ts",
+    "tests/integration/commands/mark-quote-version-sent.int.test.ts",
+    "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+    "tests/integration/commands/pricing-commands.int.test.ts",
+    "tests/integration/commands/provision-tenant.int.test.ts",
+    "tests/integration/commands/quote-attachment-carry-forward.int.test.ts",
+    "tests/integration/commands/quote-audit-rollback.int.test.ts",
+    "tests/integration/commands/quote-follow-ups.int.test.ts",
+    "tests/integration/commands/quote-initial-non-admin-audit.int.test.ts",
+    "tests/integration/commands/quote-pdf-validity.int.test.ts",
+    "tests/integration/commands/quote-review-authorization.int.test.ts",
+    "tests/integration/commands/quote-successor-non-admin-audit.int.test.ts",
+    "tests/integration/commands/quote-version.int.test.ts",
+    "tests/integration/commands/record-audit-event-search-path.int.test.ts",
+    "tests/integration/commands/resources-boundaries.int.test.ts",
+    "tests/integration/commands/resources.int.test.ts",
+    "tests/integration/commands/server-error-vs-no-access.int.test.ts",
+    "tests/integration/commands/settings-commands.int.test.ts",
+    "tests/integration/commands/tax-answer-acceptance-job.int.test.ts",
+    "tests/integration/commands/tax-answer-reconciliation.int.test.ts",
+    "tests/integration/commands/update-draft-quote-version.int.test.ts",
+    "tests/integration/commands/update-job.int.test.ts",
+    "tests/integration/commands/work-order-files.int.test.ts",
+    "tests/integration/commands/work-orders.int.test.ts",
+    "tests/integration/components/booking-editor.test.ts",
+    "tests/integration/components/buyer-vat-number-fact.test.ts",
+    "tests/integration/components/create-new-version-attachment-selection.test.ts",
+    "tests/integration/components/dialog-pending-close-gate.test.ts",
+    "tests/integration/components/follow-up-error-visibility.test.ts",
+    "tests/integration/components/legacy-draft-recovery.test.ts",
+    "tests/integration/components/tax-settings-fixed-price-authoring.test.ts",
+    "tests/integration/email/email-delivery-activation.atdd.int.test.ts",
+    "tests/integration/email/outbox.atdd.int.test.ts",
+    "tests/integration/email/quote-delivery-attachment.atdd.int.test.ts",
+    "tests/integration/email/quote-delivery-finalization-failure.int.test.ts",
+    "tests/integration/email/quote-delivery-recipient-snapshot.int.test.ts",
+    "tests/integration/factories/cleanup-teardown.int.test.ts",
+    "tests/integration/features/booking-read-actions.test.ts",
+    "tests/integration/features/jobs/job-read-mapping.int.test.ts",
+    "tests/integration/features/jobs/job-workspace.int.test.ts",
+    "tests/integration/features/jobs/my-jobs.int.test.ts",
+    "tests/integration/features/quotes/quote-pipeline-list-filters.int.test.ts",
+    "tests/integration/features/quotes/quote-pipeline-non-scope-guard.int.test.ts",
+    "tests/integration/fixtures/provisioning-cleanup.int.test.ts",
+    "tests/integration/jobs/job-runs.int.test.ts",
+    "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+    "tests/integration/notifications/notifications.atdd.int.test.ts",
+    "tests/integration/ops/recovery-storage-immutability.int.test.ts",
+    "tests/integration/perf/auth-rls-baseline.int.test.ts",
+    "tests/integration/read-models/admin-users-current-tenant.test.ts",
+    "tests/integration/read-models/onboarding-authorization-boundaries.int.test.ts",
+    "tests/integration/read-models/onboarding-checklist.int.test.ts",
+    "tests/integration/read-models/operator-console.int.test.ts",
+    "tests/integration/rls/acceptance-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/admin-user-detail-isolation.rls.test.ts",
+    "tests/integration/rls/admin-user-management.rls.test.ts",
+    "tests/integration/rls/admin-users-current-tenant-counts.rls.test.ts",
+    "tests/integration/rls/anon-path-isolation.rls.test.ts",
+    "tests/integration/rls/approved-public-acl-repair.int.test.ts",
+    "tests/integration/rls/audit-anon-mutation-enrollment.rls.test.ts",
+    "tests/integration/rls/bookings.rls.test.ts",
+    "tests/integration/rls/calc-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/crm-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+    "tests/integration/rls/dashboard-pipeline.rls.test.ts",
+    "tests/integration/rls/documents-context.rls.test.ts",
+    "tests/integration/rls/documents-filter-archive.rls.test.ts",
+    "tests/integration/rls/documents.rls.test.ts",
+    "tests/integration/rls/email-outbox.rls.atdd.int.test.ts",
+    "tests/integration/rls/email-unsubscribe.atdd.rls.test.ts",
+    "tests/integration/rls/epic-12-function-execute-acl.int.test.ts",
+    "tests/integration/rls/factory-isolation.int.test.ts",
+    "tests/integration/rls/file-index-isolation.rls.test.ts",
+    "tests/integration/rls/file-link-lock.rls.test.ts",
+    "tests/integration/rls/file-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/has-tenant-role.rls.test.ts",
+    "tests/integration/rls/helper-semantics.rls.test.ts",
+    "tests/integration/rls/job-members.rls.test.ts",
+    "tests/integration/rls/job-workspace.rls.test.ts",
+    "tests/integration/rls/jobs-depth.rls.test.ts",
+    "tests/integration/rls/membership-integrity.int.test.ts",
+    "tests/integration/rls/membership-roles.rls.test.ts",
+    "tests/integration/rls/membership-self-grant.rls.test.ts",
+    "tests/integration/rls/migration-reset.int.test.ts",
+    "tests/integration/rls/onboarding-checklist.rls.test.ts",
+    "tests/integration/rls/onboarding-migration-reset.int.test.ts",
+    "tests/integration/rls/platform-operators.rls.test.ts",
+    "tests/integration/rls/pricing-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/provisioning-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-follow-ups-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-follow-ups.rls.test.ts",
+    "tests/integration/rls/quote-lost-reasons-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-lost-reasons.rls.test.ts",
+    "tests/integration/rls/quote-pdf-validity-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-pipeline-read-model.rls.test.ts",
+    "tests/integration/rls/quote-review-authorization-migration-reset.int.test.ts",
+    "tests/integration/rls/quote-table-db-hardening.atdd.int.test.ts",
+    "tests/integration/rls/quote-tables-migration-reset.int.test.ts",
+    "tests/integration/rls/resources.rls.test.ts",
+    "tests/integration/rls/rls-inventory-gate.int.test.ts",
+    "tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts",
+    "tests/integration/rls/role-harness.atdd.int.test.ts",
+    "tests/integration/rls/role-storage-grants.int.test.ts",
+    "tests/integration/rls/security-definer-search-path.rls.test.ts",
+    "tests/integration/rls/settings-rls.int.test.ts",
+    "tests/integration/rls/storage-object-isolation.rls.test.ts",
+    "tests/integration/rls/tenant-table-inventory.ts",
+    "tests/integration/rls/work-orders.rls.test.ts",
+    "tests/integration/server/auth/resolve-tenant-context.int.test.ts",
+    "tests/integration/snapshots/source-ownership.int.test.ts",
+    "tests/support/alias-hook.mjs",
+    "tests/support/anonymization-scan.ts",
+    "tests/support/authz/command-enrollment.ts",
+    "tests/support/authz/role-harness.ts",
+    "tests/support/booking-conflict-attestation.ts",
+    "tests/support/booking-conflicts-atdd.ts",
+    "tests/support/booking-editor-atdd.ts",
+    "tests/support/booking-editor-contract.ts",
+    "tests/support/booking-editor-production.ts",
+    "tests/support/bookings-atdd.ts",
+    "tests/support/ci-duration-budget.ts",
+    "tests/support/database-time.ts",
+    "tests/support/effective-table-privileges.ts",
+    "tests/support/global-setup.ts",
+    "tests/support/job-booking-facts-atdd.ts",
+    "tests/support/job-members-atdd.ts",
+    "tests/support/job-semantics-atdd.ts",
+    "tests/support/job-workspace-atdd.ts",
+    "tests/support/jobs-depth-atdd.ts",
+    "tests/support/pdf-text.ts",
+    "tests/support/quote-pdf.ts",
+    "tests/support/quote-review-proof.ts",
+    "tests/support/quote-send-diagnostics.ts",
+    "tests/support/register.mjs",
+    "tests/support/scheduling-atdd.ts",
+    "tests/support/search-path.ts",
+    "tests/support/stack-gate.ts",
+    "tests/support/test-env.ts",
+    "tests/support/work-orders-atdd.ts",
+    "tests/unit/admin-users/accept-invitation.test.ts",
+    "tests/unit/admin-users/admin-user-service.test.ts",
+    "tests/unit/admin-users/auth-email-callback.test.ts",
+    "tests/unit/admin-users/invitation-retry-state.test.ts",
+    "tests/unit/admin-users/read-pagination.test.ts",
+    "tests/unit/components/crm/customer-presentation.test.ts",
+    "tests/unit/components/dashboard/widget-state.test.ts",
+    "tests/unit/components/documents/entity-documents-link.test.ts",
+    "tests/unit/components/files/entity-file-panel-owner-type.test.ts",
+    "tests/unit/components/notifications/notification-presentation.test.ts",
+    "tests/unit/components/quotes/follow-up-tone.test.ts",
+    "tests/unit/components/quotes/lost-reason-labels.test.ts",
+    "tests/unit/components/quotes/status.test.ts",
+    "tests/unit/dependencies/next-image-optimizer.test.ts",
+    "tests/unit/dependencies/next-lint-root-globs.test.ts",
+    "tests/unit/docs/acceptance-gate-report-validators.test.ts",
+    "tests/unit/docs/migration-runbook-validators.test.ts",
+    "tests/unit/docs/sign-off-checklist-model.ts",
+    "tests/unit/docs/sign-off-register-validators.test.ts",
+    "tests/unit/e2e/dashboard-ci-startup.test.ts",
+    "tests/unit/e2e/resource-cdp-attachment.test.ts",
+    "tests/unit/e2e/retry-fixture-clock.test.ts",
+    "tests/unit/e2e/server-read-proxy.test.ts",
+    "tests/unit/features/calculations/action-state.test.ts",
+    "tests/unit/features/calculations/allowance-editor.test.ts",
+    "tests/unit/features/calculations/calc-golden-pack-coverage.test.ts",
+    "tests/unit/features/calculations/calc-golden-pack.test.ts",
+    "tests/unit/features/calculations/form-parsing.test.ts",
+    "tests/unit/features/calculations/limits.test.ts",
+    "tests/unit/features/calculations/money-input.test.ts",
+    "tests/unit/features/calculations/ordering.test.ts",
+    "tests/unit/features/calculations/pre-quote-review.test.ts",
+    "tests/unit/features/calculations/readiness-inclusion.golden.test.ts",
+    "tests/unit/features/calculations/readiness.test.ts",
+    "tests/unit/features/calculations/row-option-transition.test.ts",
+    "tests/unit/features/calculations/row-vat-transition.test.ts",
+    "tests/unit/features/calculations/source-options.test.ts",
+    "tests/unit/features/calculations/source-select.test.ts",
+    "tests/unit/features/calculations/tax-readiness.test.ts",
+    "tests/unit/features/calculations/tax-settings-ui.test.ts",
+    "tests/unit/features/calculations/totals.test.ts",
+    "tests/unit/features/crm/action-state.test.ts",
+    "tests/unit/features/crm/form-parsing.test.ts",
+    "tests/unit/features/documents/context-navigation.test.ts",
+    "tests/unit/features/documents/date-bounds.test.ts",
+    "tests/unit/features/documents/filters.test.ts",
+    "tests/unit/features/documents/preview-state.test.ts",
+    "tests/unit/features/files/archive-action-state.test.ts",
+    "tests/unit/features/files/file-index.test.ts",
+    "tests/unit/features/files/file-lock-lifecycle-golden.test.ts",
+    "tests/unit/features/files/file-lock-predicate.test.ts",
+    "tests/unit/features/files/revalidate-route.test.ts",
+    "tests/unit/features/files/signed-access-state.test.ts",
+    "tests/unit/features/files/signed-link-expiry.test.ts",
+    "tests/unit/features/files/upload-action-state.test.ts",
+    "tests/unit/features/files/upload-form-parsing.test.ts",
+    "tests/unit/features/jobs/dependency-warnings.test.ts",
+    "tests/unit/features/jobs/job-card-validation.test.ts",
+    "tests/unit/features/jobs/job-members-domain.test.ts",
+    "tests/unit/features/jobs/job-scheduling-consumers.test.ts",
+    "tests/unit/features/jobs/job-upgrade-domain.test.ts",
+    "tests/unit/features/jobs/job-workspace-domain.test.ts",
+    "tests/unit/features/jobs/work-order-selection.test.ts",
+    "tests/unit/features/jobs/work-orders-domain.test.ts",
+    "tests/unit/features/pricing/action-state.test.ts",
+    "tests/unit/features/pricing/form-parsing.test.ts",
+    "tests/unit/features/pricing/money-display-edges.test.ts",
+    "tests/unit/features/pricing/money-display.test.ts",
+    "tests/unit/features/quotes/accept-quote-to-job-golden.test.ts",
+    "tests/unit/features/quotes/acceptance-price.test.ts",
+    "tests/unit/features/quotes/acceptance-time.test.ts",
+    "tests/unit/features/quotes/follow-up-action-state.test.ts",
+    "tests/unit/features/quotes/follow-up-dates.test.ts",
+    "tests/unit/features/quotes/follow-up-view.test.ts",
+    "tests/unit/features/quotes/lifecycle-transition.test.ts",
+    "tests/unit/features/quotes/lost-follow-up-retry.test.ts",
+    "tests/unit/features/quotes/lost-transition-coherence.test.ts",
+    "tests/unit/features/quotes/lost-version-golden.test.ts",
+    "tests/unit/features/quotes/send-gate.test.ts",
+    "tests/unit/features/quotes/terminal-status.test.ts",
+    "tests/unit/features/quotes/timeline.test.ts",
+    "tests/unit/features/quotes/view-model.test.ts",
+    "tests/unit/features/resources/booking-attempt-transport.test.ts",
+    "tests/unit/features/resources/booking-editor-input.test.ts",
+    "tests/unit/features/resources/capacity-inputs.test.ts",
+    "tests/unit/features/resources/resource-form-inputs.test.ts",
+    "tests/unit/features/resources/schedule-form-merge.test.ts",
+    "tests/unit/features/resources/schedule-read.test.ts",
+    "tests/unit/features/resources/work-hours.test.ts",
+    "tests/unit/features/scheduling/batch-conflicts.test.ts",
+    "tests/unit/features/scheduling/capacity.golden.test.ts",
+    "tests/unit/features/scheduling/conflicts.test.ts",
+    "tests/unit/features/scheduling/dst.golden.test.ts",
+    "tests/unit/features/scheduling/job-demand-advisory.test.ts",
+    "tests/unit/features/settings/action-state.test.ts",
+    "tests/unit/features/settings/form-parsing.test.ts",
+    "tests/unit/features/settings/vat-display.test.ts",
+    "tests/unit/fixtures/golden/lovable/comparison-support.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-capture-anonymizer-unit.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-capture-script.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-comparison-acceptance-job.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-comparison-calc-quote-pdf.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-comparison-classification-deltas.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-comparison-delta-classification.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-comparison-guards.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-loader-roundtrip.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-pack-support.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-privacy-scan.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-scanner-unit.test.ts",
+    "tests/unit/fixtures/golden/lovable/lovable-shape-guard.test.ts",
+    "tests/unit/guardrails/acceptance-non-scope.test.ts",
+    "tests/unit/guardrails/file-index-non-scope.test.ts",
+    "tests/unit/guardrails/job-non-scope.test.ts",
+    "tests/unit/guardrails/quote-non-scope.test.ts",
+    "tests/unit/guardrails/quote-successor-review-lock-order.test.ts",
+    "tests/unit/lib/datetime/business-date.test.ts",
+    "tests/unit/lib/money/golden-pack-coverage.test.ts",
+    "tests/unit/lib/money/golden-pack.test.ts",
+    "tests/unit/lib/money/ore-edges.test.ts",
+    "tests/unit/lib/money/ore.test.ts",
+    "tests/unit/lib/money/rounding.golden.test.ts",
+    "tests/unit/lib/money/roundtrip.test.ts",
+    "tests/unit/lib/money/tax-answer-reconciliation.atdd.test.ts",
+    "tests/unit/lib/money/tax-answer-reconciliation.golden.atdd.test.ts",
+    "tests/unit/lib/money/tax-policy.test.ts",
+    "tests/unit/lib/money/tax.edges.test.ts",
+    "tests/unit/lib/money/tax.golden.test.ts",
+    "tests/unit/lib/money/tax.test.ts",
+    "tests/unit/lib/money/vat.coverage.test.ts",
+    "tests/unit/lib/money/vat.golden.test.ts",
+    "tests/unit/lib/money/vat.test.ts",
+    "tests/unit/lib/quote-pdf/pdf-text-golden.test.ts",
+    "tests/unit/lib/quote-pdf/tax-answer-v2.test.ts",
+    "tests/unit/lib/quote-pdf/view-model.test.ts",
+    "tests/unit/lib/quote-snapshot/build-edges.test.ts",
+    "tests/unit/lib/quote-snapshot/build.test.ts",
+    "tests/unit/lib/quote-snapshot/golden-pack.test.ts",
+    "tests/unit/lib/quote-snapshot/golden-v1-v2.test.ts",
+    "tests/unit/lib/quote-snapshot/tax-compat.test.ts",
+    "tests/unit/lib/result/result.test.ts",
+    "tests/unit/lib/snapshots/build.test.ts",
+    "tests/unit/lib/snapshots/dispatch.test.ts",
+    "tests/unit/lib/snapshots/golden.test.ts",
+    "tests/unit/nfr/epic-11-pilot-limits.test.ts",
+    "tests/unit/onboarding/checklist-state.test.ts",
+    "tests/unit/onboarding/onboarding-actions.test.ts",
+    "tests/unit/ops/isolated-recovery-storage.test.ts",
+    "tests/unit/ops/pilot-operations.test.ts",
+    "tests/unit/ops/pilot-recovery-drive.test.ts",
+    "tests/unit/ops/probe-availability.test.ts",
+    "tests/unit/ops/recovery-storage-fixture.test.ts",
+    "tests/unit/provisioning/baselines.test.ts",
+    "tests/unit/provisioning/operator-console.test.ts",
+    "tests/unit/provisioning/provisioning-contract.test.ts",
+    "tests/unit/quote-send-diagnostics.test.ts",
+    "tests/unit/resolve-tenant-context-core.test.ts",
+    "tests/unit/rls/inventory-gate-core.test.ts",
+    "tests/unit/scope/booking-editor-scope.test.ts",
+    "tests/unit/scope/governance-rebaseline.test.ts",
+    "tests/unit/scope/manifest-coherence.test.ts",
+    "tests/unit/scope/manifest-derivations.test.ts",
+    "tests/unit/scope/manifest-invariants.test.ts",
+    "tests/unit/scope/manifest-schema-selectors.test.ts",
+    "tests/unit/scope/manifest-shape.test.ts",
+    "tests/unit/scope/resources-activation.atdd.test.ts",
+    "tests/unit/scope/widget-registry.test.ts",
+    "tests/unit/scripts/ci/checkpoint-dispatch.test.ts",
+    "tests/unit/scripts/ci/verify-development.test.ts",
+    "tests/unit/scripts/pr-feedback-app-permissions.test.ts",
+    "tests/unit/scripts/pr-feedback-runtime.test.ts",
+    "tests/unit/scripts/pr-feedback.test.ts",
+    "tests/unit/scripts/verify/bundle-containment.test.ts",
+    "tests/unit/scripts/verify/check-lockfiles.test.ts",
+    "tests/unit/scripts/verify/check-operator-console-isolation.test.ts",
+    "tests/unit/scripts/verify/check-review-order.test.ts",
+    "tests/unit/scripts/verify/ci-native-test-reports.test.ts",
+    "tests/unit/scripts/verify/email-delivery-containment.atdd.test.ts",
+    "tests/unit/scripts/verify/email-provider-containment.atdd.test.ts",
+    "tests/unit/scripts/verify/epic-11-pilot-ci-gate.test.ts",
+    "tests/unit/scripts/verify/integration-test-partitions.test.ts",
+    "tests/unit/scripts/verify/jobs-service-role-containment.test.ts",
+    "tests/unit/scripts/verify/local-supabase-reset.test.ts",
+    "tests/unit/scripts/verify/run-with-time-budget.test.ts",
+    "tests/unit/scripts/verify/service-role-containment.test.ts",
+    "tests/unit/security-headers.test.ts",
+    "tests/unit/server/auth/resolve-tenant-context-claims.test.ts",
+    "tests/unit/server/auth/resolve-tenant-context-core-edges.test.ts",
+    "tests/unit/server/auth/resolve-tenant-context-tenant-name.test.ts",
+    "tests/unit/server/auth/resolve-tenant-context.test.ts",
+    "tests/unit/server/auth/tenant-provisioning-enabled.test.ts",
+    "tests/unit/server/authz/command-enrollment.test.ts",
+    "tests/unit/server/authz/job-access.test.ts",
+    "tests/unit/server/authz/permission-matrix.test.ts",
+    "tests/unit/server/authz/phase-a-surface.test.ts",
+    "tests/unit/server/authz/require-capability.test.ts",
+    "tests/unit/server/authz/role-catalogue.test.ts",
+    "tests/unit/server/authz/role-harness.test.ts",
+    "tests/unit/server/bookings/conflict-attestation.test.ts",
+    "tests/unit/server/bookings/job-facts.test.ts",
+    "tests/unit/server/bookings/job-scheduling-protocol.test.ts",
+    "tests/unit/server/commands/accept-and-create-job-timestamp.test.ts",
+    "tests/unit/server/commands/accept-and-create-job-validation.test.ts",
+    "tests/unit/server/commands/audit-metadata-edges.test.ts",
+    "tests/unit/server/commands/audit-metadata.test.ts",
+    "tests/unit/server/commands/bookings-validation.test.ts",
+    "tests/unit/server/commands/calc-source-validation.test.ts",
+    "tests/unit/server/commands/calc-validation-coverage.test.ts",
+    "tests/unit/server/commands/calc-validation.test.ts",
+    "tests/unit/server/commands/calculation-row-limit-command.test.ts",
+    "tests/unit/server/commands/capture-quote-acceptance-validation.test.ts",
+    "tests/unit/server/commands/command-clock.test.ts",
+    "tests/unit/server/commands/command-errors-acceptance-conflict.test.ts",
+    "tests/unit/server/commands/correlation.test.ts",
+    "tests/unit/server/commands/create-job-validation.test.ts",
+    "tests/unit/server/commands/create-new-quote-version-validation.test.ts",
+    "tests/unit/server/commands/crm-validation.test.ts",
+    "tests/unit/server/commands/documents-lifecycle.test.ts",
+    "tests/unit/server/commands/documents-signed-access.test.ts",
+    "tests/unit/server/commands/eligible-calculation-attachment-file-ids.test.ts",
+    "tests/unit/server/commands/envelope-core-edges.test.ts",
+    "tests/unit/server/commands/envelope-core.test.ts",
+    "tests/unit/server/commands/extract-new-version-result.test.ts",
+    "tests/unit/server/commands/file-validation.test.ts",
+    "tests/unit/server/commands/files/file-write-error-mapping.test.ts",
+    "tests/unit/server/commands/files/generic-archive-artifact.test.ts",
+    "tests/unit/server/commands/files/validate-archive-file.test.ts",
+    "tests/unit/server/commands/files/validate-upload-file.test.ts",
+    "tests/unit/server/commands/follow-up-validation.test.ts",
+    "tests/unit/server/commands/generate-quote-pdf-validation.test.ts",
+    "tests/unit/server/commands/job-card-validation.test.ts",
+    "tests/unit/server/commands/job-write-error-mapping.test.ts",
+    "tests/unit/server/commands/mark-lost-validation.test.ts",
+    "tests/unit/server/commands/mark-quote-version-sent-validation.test.ts",
+    "tests/unit/server/commands/pricing-validation-edges.test.ts",
+    "tests/unit/server/commands/pricing-validation.test.ts",
+    "tests/unit/server/commands/quote-pdf-display-name.test.ts",
+    "tests/unit/server/commands/quote-pdf-start-response-recovery.test.ts",
+    "tests/unit/server/commands/quote-review-authorization-result.test.ts",
+    "tests/unit/server/commands/quote-review-token.test.ts",
+    "tests/unit/server/commands/quote-send-track.test.ts",
+    "tests/unit/server/commands/quote-validation.test.ts",
+    "tests/unit/server/commands/quote-write-error-mapper.test.ts",
+    "tests/unit/server/commands/settings-validation.test.ts",
+    "tests/unit/server/commands/snapshot-payload-serializers.test.ts",
+    "tests/unit/server/commands/tax-input-validation.test.ts",
+    "tests/unit/server/commands/update-draft-quote-validation.test.ts",
+    "tests/unit/server/commands/update-job-validation.test.ts",
+    "tests/unit/server/commands/work-order-file-contract.test.ts",
+    "tests/unit/server/commands/work-orders-db.test.ts",
+    "tests/unit/server/db/supabase-env.test.ts",
+    "tests/unit/server/email/outbox.atdd.test.ts",
+    "tests/unit/server/email/outbox.test.ts",
+    "tests/unit/server/email/provider.atdd.test.ts",
+    "tests/unit/server/email/recovery-attestation.test.ts",
+    "tests/unit/server/email/unsubscribe.test.ts",
+    "tests/unit/server/jobs/cursor-read.test.ts",
+    "tests/unit/server/jobs/producer-registry.test.ts",
+    "tests/unit/server/jobs/route-auth.test.ts",
+    "tests/unit/server/jobs/route.test.ts",
+    "tests/unit/server/jobs/runner.test.ts",
+    "tests/unit/server/notifications/follow-up-producer.test.ts",
+    "tests/unit/server/notifications/registry.test.ts",
+    "tests/unit/server/quote-pdf/attestation.test.ts",
+    "tests/unit/server/quote-pdf/render.test.ts",
+    "tests/unit/server/read-models/dashboard.test.ts",
+    "tests/unit/server/read-models/document-context.test.ts",
+    "tests/unit/server/read-models/document-sources.test.ts",
+    "tests/unit/server/read-models/documents.test.ts",
+    "tests/unit/server/read-models/entitlements.test.ts",
+    "tests/unit/server/read-models/job-events.test.ts",
+    "tests/unit/server/read-models/job-work-orders.test.ts",
+    "tests/unit/server/read-models/job-workspace.test.ts",
+    "tests/unit/server/read-models/my-jobs.test.ts",
+    "tests/unit/server/read-models/pagination.test.ts",
+    "tests/unit/server/read-models/quote-pipeline-aggregate-atdd.test.ts",
+    "tests/unit/server/read-models/quote-pipeline-aggregate.test.ts",
+    "tests/unit/server/read-models/quote-pipeline-result.test.ts",
+    "tests/unit/server/resources/e2e-save-failure.test.ts",
+    "tests/unit/server/snapshots/resolve-source.test.ts",
+    "tests/unit/server/storage/document-signed-access-attestation.test.ts",
+    "tests/unit/server/storage/object-path.test.ts",
+    "tests/unit/server/storage/signed-access-attestation.test.ts",
+    "tests/unit/server/storage/upload-error-classifier.test.ts",
+    "tests/unit/server/storage/upload-object.test.ts",
+    "tests/unit/server/storage/upload-policy.test.ts",
+    "tests/unit/support/ci-duration-budget.test.ts",
+    "tests/unit/support/global-setup.test.ts",
+    "tests/unit/support/test-env.test.ts"
+  ],
+  "specs_at_integrated_base": [
+    "_bmad-output/implementation-artifacts/spec-10-5-quote-table-db-hardening-and-read-model-pagination.md",
+    "_bmad-output/implementation-artifacts/spec-10-6-tax-answer-reconciliation.md",
+    "_bmad-output/implementation-artifacts/spec-10-7-pwa-offline-field-capability.md",
+    "_bmad-output/implementation-artifacts/spec-11-1-role-storage-and-permission-matrix-mechanism.md",
+    "_bmad-output/implementation-artifacts/spec-11-2-non-admin-access-to-the-phase-a-surface-matrix-seed-role-aware-rls-nav-and-landing.md",
+    "_bmad-output/implementation-artifacts/spec-11-3-admin-user-management.md",
+    "_bmad-output/implementation-artifacts/spec-11-3-auth-email-callback-remediation.md",
+    "_bmad-output/implementation-artifacts/spec-11-3-invitation-identity-binding-remediation.md",
+    "_bmad-output/implementation-artifacts/spec-11-3-invitation-lifecycle-remediation.md",
+    "_bmad-output/implementation-artifacts/spec-11-3-password-reset-retry-remediation.md",
+    "_bmad-output/implementation-artifacts/spec-11-4-roles-surface-effective-permissions-and-the-per-role-test-harness.md",
+    "_bmad-output/implementation-artifacts/spec-11-pilot-performance-ci-limits.md",
+    "_bmad-output/implementation-artifacts/spec-12-1-platform-operator-identity-and-the-provision-tenant-command.md",
+    "_bmad-output/implementation-artifacts/spec-12-2-operator-console.md",
+    "_bmad-output/implementation-artifacts/spec-12-3-first-admin-onboarding-checklist.md",
+    "_bmad-output/implementation-artifacts/spec-13-1-authenticated-background-runner-and-producer-registry.md",
+    "_bmad-output/implementation-artifacts/spec-13-2-in-app-notifications-bell-center-and-preferences.md",
+    "_bmad-output/implementation-artifacts/spec-13-3-email-outbox-pipeline-queued-non-sending.md",
+    "_bmad-output/implementation-artifacts/spec-13-4-email-sending-activation.md",
+    "_bmad-output/implementation-artifacts/spec-14-1-scheduling-activation-person-profiles-and-work-hours.md",
+    "_bmad-output/implementation-artifacts/spec-14-2-bookings-and-assignees-schema-and-transactional-commands.md",
+    "_bmad-output/implementation-artifacts/spec-14-3-deterministic-conflict-engine-detection-core.md",
+    "_bmad-output/implementation-artifacts/spec-14-4-booking-editor-with-live-conflict-warnings-and-audited-override.md",
+    "_bmad-output/implementation-artifacts/spec-16-1-jobs-depth-activation-container-evolution-and-my-jobs.md",
+    "_bmad-output/implementation-artifacts/spec-16-2-job-members-and-per-job-roles-arbetsledare-2.md",
+    "_bmad-output/implementation-artifacts/spec-16-2-job-members-and-per-job-roles-arbetsledare.md",
+    "_bmad-output/implementation-artifacts/spec-16-3-arbetsorder-2.md",
+    "_bmad-output/implementation-artifacts/spec-16-3-arbetsorder.md",
+    "_bmad-output/implementation-artifacts/spec-16-4-projekt-upgrade-and-job-card-semantics-2.md",
+    "_bmad-output/implementation-artifacts/spec-16-4-projekt-upgrade-and-job-card-semantics.md",
+    "_bmad-output/implementation-artifacts/spec-16-5-job-workspace-shell.md",
+    "_bmad-output/implementation-artifacts/spec-19-1-dashboard-framework-and-quote-pipeline.md",
+    "_bmad-output/implementation-artifacts/spec-20-1-documents-activation-and-source-authorized-aggregation.md",
+    "_bmad-output/implementation-artifacts/spec-20-2-search-filters-preview-and-archive-restore.md",
+    "_bmad-output/implementation-artifacts/spec-20-3-entity-panel-links-and-contextual-navigation.md",
+    "_bmad-output/implementation-artifacts/spec-epic-11-cloudflare-monitor-remediation.md",
+    "_bmad-output/implementation-artifacts/spec-epic-11-isolated-recovery-stack.md",
+    "_bmad-output/implementation-artifacts/spec-epic-11-test-maintenance.md",
+    "_bmad-output/implementation-artifacts/spec-fix-backup-db-url-stdin.md",
+    "_bmad-output/implementation-artifacts/spec-list-page-create-entry-points.md",
+    "_bmad-output/implementation-artifacts/spec-next-image-ssrf-maintenance.md",
+    "_bmad-output/implementation-artifacts/spec-pr-45-final-review-corrections.md",
+    "_bmad-output/implementation-artifacts/spec-prereq-integration-gate-privilege-and-reliability.md",
+    "_bmad-output/implementation-artifacts/spec-reusable-checkpoint-ci.md",
+    "_bmad-output/implementation-artifacts/spec-runner-cursor-resilience.md"
+  ]
+}

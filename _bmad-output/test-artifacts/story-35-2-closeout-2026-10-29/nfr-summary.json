@@ -1,0 +1,14 @@
+{
+  "ran": true,
+  "status": "CONCERNS",
+  "advisory": true,
+  "unknown_threshold_rule": "CONCERNS, never PASS",
+  "domain_outputs": [
+    "nfr-security.json",
+    "nfr-performance.json",
+    "nfr-reliability.json",
+    "nfr-maintainability.json"
+  ],
+  "new_production_defects": 0,
+  "release_ready": false
+}

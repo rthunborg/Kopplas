@@ -33,3 +33,24 @@ tests/fixtures/golden/**/*.json  text eol=lf
 
 # Preserve the approved official Inter license bytes on Windows checkouts.
 /public/licenses/inter/OFL.txt -text
+
+# Owner-approved unchanged35.3 planning source bytes; no implementation approval.
+/_bmad-output/implementation-artifacts/spec-35-3-record-inputs-and-tables.md -text whitespace=cr-at-eol
+/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-3.md -text whitespace=cr-at-eol
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/route-allocation.md -text whitespace=cr-at-eol
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/base-and-consumers.json -text whitespace=cr-at-eol
+/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/story-index.json -text whitespace=cr-at-eol
+
+# New content-addressed closeout artifacts retain reviewed raw bytes.
+/_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/** -text whitespace=cr-at-eol
+/docs/quality/story-35-2-closeout-2026-10-29/** -text whitespace=cr-at-eol
+/_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json -text whitespace=cr-at-eol
+/_bmad-output/auto-bmad/history/spec-design-35-2-35-2/** -text whitespace=cr-at-eol
+/_bmad-output/auto-bmad/reports/spec-design-35-2-35-2.md -text whitespace=cr-at-eol
+/_bmad-output/specs/spec-design-35-2/RETROSPECTIVE.md -text whitespace=cr-at-eol
+/docs/quality/story-35-3-admission-2026-10-29.md -text whitespace=cr-at-eol
+/docs/quality/story-35-3-admission-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-source-integration-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-2-closeout-*-routing-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-2-process-closeout-routing-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-admission-routing-2026-10-29.json -text whitespace=cr-at-eol

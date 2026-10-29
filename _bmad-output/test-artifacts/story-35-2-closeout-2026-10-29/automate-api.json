@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "subagent": "api-tests",
+  "execution": "sequential-worker-step; no nested agent claimed",
+  "tests": [],
+  "fixture_needs": [],
+  "knowledge_fragments_used": ["test-levels-framework", "test-priorities-matrix", "data-factories", "test-quality", "playwright-utils-mandate"],
+  "playwright_utils_deviations": [],
+  "pactjs_utils_deviations": [],
+  "provider_scrutiny": "not-applicable: no new endpoint or CDC boundary in admitted story",
+  "provider_files_read": ["src/app/(auth)/login/page.tsx", "tests/unit/auth/login-submission.test.ts"],
+  "test_count": 0,
+  "summary": "No uncovered API target. Existing checked server authority and real Auth integration are reused. No new permission/session contract or duplicate API tests."
+}

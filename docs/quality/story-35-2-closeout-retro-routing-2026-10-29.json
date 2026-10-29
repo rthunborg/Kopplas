@@ -1,0 +1,1 @@
+{"phase": "retrospective", "role": "retrospective-delegate", "profile": "default", "model": "gpt-6.1-sol", "effort": "low", "host": "codex", "tier": "subagents", "route": "subagent", "escalation_reason": "Ordinary task uses Low effort"}

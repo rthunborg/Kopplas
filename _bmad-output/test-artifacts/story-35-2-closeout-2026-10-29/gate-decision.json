@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-10-29T10:40:58.058520+00:00",
+  "repo": "Kopplas",
+  "target": {
+    "type": "story",
+    "id": "35.2",
+    "label": "single-story legacy adapter"
+  },
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "PASS",
+  "rationale": "Formal bounded development oracle: P0 1/1, P1 15/15, overall 16/16 FULL; no live-only requirements or waiver. Separate release and advisory audit concerns remain.",
+  "p0_status": "MET",
+  "p1_status": "MET",
+  "overall_status": "MET",
+  "critical_open": 0,
+  "links": {
+    "trace_report_path": "_bmad-output/test-artifacts/story-35-2-closeout-2026-10-29/traceability-matrix.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "release_ready": false
+}

@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-10-29T10:40:58.058520+00:00",
+  "source_sha": "f598bb18b4322bf55ac89db6db69a41f3eb6bfd8",
+  "merged_source_sha": "8f9bcf8d2a0cd8a2b65fa7ad6c1fd7e236b85ff9",
+  "inputs": [
+    {
+      "path": "tests/unit/auth/login-submission.test.ts",
+      "sha256": "4894c23cd707edf8fed232877e4426216db78b90dde5e1d986f1060a1f0c5485"
+    },
+    {
+      "path": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "sha256": "9aa0f9e6b2b6a61a68ea8b94d28ba592fde069a28f7713d9c1aa88c32a60d5bd"
+    },
+    {
+      "path": "playwright.config.ts",
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+    },
+    {
+      "path": "package.json",
+      "sha256": "e3af9ff0fd9b23336337fad233ef0fd9b9d1c71ffc0c302d8ec7381fabb544fc"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/test-design-spec-design-35-2.md",
+      "sha256": "9a4ec9a962ce794dbc934e3a0e4ac51505cce41b28af7f379957a04930a85cb2"
+    },
+    {
+      "path": "_bmad-output/specs/spec-design-35-2/SPEC.md",
+      "sha256": "5ee76b008f2230100fbbb9900f4654290fce0b02187b8d4f2b7e9762b19b493b"
+    },
+    {
+      "path": "_bmad-output/specs/spec-design-35-2/source-binding.json",
+      "sha256": "144d77f2c744b1cd8a48fe8060d5f2b20bd0f18926c4eaaa30ec380111dee358"
+    },
+    {
+      "path": "docs/quality/story-35-2-closeout-tea-routing-2026-10-29.json",
+      "sha256": "9cb9e23ec0887626b0ba780086a6236b1569c4e4ea1f9125c5c4cfffc7c21bcd"
+    },
+    {
+      "path": "_bmad-output/auto-bmad/delivery/spec-design-35-2-35-2.json",
+      "sha256": "6469c5bd010cc508342f87d6df3c874073935f63c139ee1eb259fb0715ac2dc0"
+    }
+  ],
+  "note": "Hashes describe the file bytes read at this audit point. Adapter/delivery may receive later author-only closeout additions; product source identity remains separate."
+}

@@ -1,0 +1,158 @@
+{
+  "ran": true,
+  "overall_score": 71,
+  "overall_grade": "C",
+  "recommendation": "Request Changes",
+  "advisory": true,
+  "violations_summary": {
+    "total": 15,
+    "CRITICAL": 0,
+    "HIGH": 3,
+    "MEDIUM": 2,
+    "LOW": 10
+  },
+  "bonuses": {
+    "excellentBdd": 0,
+    "comprehensiveFixtures": 0,
+    "dataFactories": 0,
+    "networkFirst": 0,
+    "perfectIsolation": 0,
+    "allTestIds": 0
+  },
+  "all_violations": [
+    {
+      "file": "tests/unit/auth/login-submission.test.ts",
+      "line": 151,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Expected message/disabled/retry assertions are selected by deterministic failure fixture; the literal registry bans conditional expectation selection. All seven fixture variants execute; no observed product result skips an assertion.",
+      "suggestion": "If separately authorized, express explicit expectations per fixture in table data or separate case bodies; preserve all variants and actual assertions."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 268,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Phone target geometry assertions run only for the statically declared 360px case. Both declared viewports execute; selection is by input, not observed UI state.",
+      "suggestion": "If separately authorized, split the phone-specific assertion into an explicitly named parameterized case without weakening geometry coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 380,
+      "row": "H3",
+      "severity": "HIGH",
+      "description": "Reduced-height reachability assertions are selected only for the fixed 360px viewport. This is deterministic scope selection, not a conditional pass based on product output.",
+      "suggestion": "If separately authorized, give the phone reduced-height scenario its own explicit case while preserving both existing viewports."
+    },
+    {
+      "file": "tests/unit/auth/login-submission.test.ts",
+      "line": 1,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "description": "Nine handler instances are top-level with no describe/context group, matching the literal ungrouped-suite row; their names already identify story and scenario.",
+      "suggestion": "If separately authorized, add one descriptive suite group without changing behavior."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 69,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 76,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 83,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 96,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 112,
+      "row": "L2",
+      "severity": "LOW",
+      "description": "Inherited Story 2.1 test name has no [P0-P3] marker; measured neighborhood priorityMarkers convention is established (27/40). This is preserved existing source, not a new product defect.",
+      "suggestion": "If separately authorized, annotate inherited priorities without changing assertions or scope."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 106,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 304,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 326,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 418,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 460,
+      "row": "L3",
+      "severity": "LOW",
+      "description": "Lookup uses a bare semantic tag or getByText rather than test-id/role/label; measured testIds convention is established (31/40). Labels/roles are otherwise extensively used; raw form lookup deliberately targets native requestSubmit coverage.",
+      "suggestion": "If separately authorized, evaluate stable semantic/test-id lookup without adding a production hook solely for the rubric or losing native-submit coverage."
+    },
+    {
+      "file": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "line": 60,
+      "row": "M1",
+      "severity": "MEDIUM",
+      "description": "The shared login helper and subsequent content reads register hydration/data assertions after page.goto; no data-specific signal is registered before that navigation. Submit-time Auth interception is correctly before submit, and existing server/locator checks execute.",
+      "suggestion": "If separately authorized, register the relevant existing navigation/data readiness signal before the action; preserve real-cookie authority and avoid stubbing away the provider."
+    }
+  ],
+  "convention_baseline": "convention-baseline.json",
+  "context_basis": "pr_diff",
+  "review_files": [
+    "tests/unit/auth/login-submission.test.ts",
+    "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts"
+  ],
+  "excluded_files": [],
+  "limits": [
+    "Literal H3 findings are deterministic input/viewport selection, not demonstrated result-dependent assertion avoidance.",
+    "Inherited marker/selector/grouping findings are test structure, not introduced production defects.",
+    "No runtime duration is measured in this audit; current CI counts are reused.",
+    "No test edits authorized in process-only closeout."
+  ],
+  "release_ready": false
+}
