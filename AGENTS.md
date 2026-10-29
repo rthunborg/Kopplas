@@ -124,6 +124,20 @@ Kopplas is a multi-tenant application for electrical contractors, built with Nex
 - The label does not bypass the remediation policy, required reviews, checks,
   or separate authorization to merge or deploy.
 
+## Manual visual acceptance — owner decision 2026-10-28
+
+Whenever an agent requests manual visual review or acceptance, its final chat
+message must end with the relevant images embedded using Markdown. Label each
+image with the screen, state, viewport and candidate revision; distinguish
+implemented captures from design references and controlled/synthetic states.
+Use absolute local image paths in Codex and durable revision-bound image links
+for PR evidence. If embedding is unavailable, provide exact clickable image
+links in that same message and explain the limitation. A PR or folder link alone
+is insufficient. For larger sets, embed the primary desktop/mobile views and
+provide exact links to the remaining acceptance images. Refresh the images after
+visual fixes, disclose missing evidence, and distinguish preliminary feedback
+from formal acceptance. Never ask the owner to locate the images themselves.
+
 ## Sequential Auto-BMAD publication — owner decision 2026-10-28
 
 Fresh ordinary sequential epics assess approved actual visible scope once: any

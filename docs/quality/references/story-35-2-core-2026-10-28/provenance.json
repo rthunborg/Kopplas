@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "classification": "Authored static requirements compositions; not observed provider/application states or candidate self-baselines",
+  "sourceRevision": "188c302314111b4773681fe67e9078f12d6239e1",
+  "authority": {
+    "approvalRecord": {
+      "file": "docs/quality/story-35-2-login-visual-approval-2026-10-28.json",
+      "sha256": "50f4ca5b868cc1cbdd307f716331f4f67888adcd7db55bb74dc9163b8408694c"
+    },
+    "approvedIdleImages": [
+      {
+        "id": "login-idle-360",
+        "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-idle-360.png",
+        "sha256": "e44cab93a434a5ec1a19b69ab0cae97f9827761072e07112b3cdf10aa3762775",
+        "width": 360,
+        "height": 640,
+        "state": "finished-idle",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        }
+      },
+      {
+        "id": "login-idle-1440",
+        "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-idle-1440.png",
+        "sha256": "10d1eec17435769445a6baffcb8bf2f0d5ec7db345d2e0f0bcd657189318666f",
+        "width": 1440,
+        "height": 900,
+        "state": "finished-idle",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    ],
+    "writtenRules": [
+      {
+        "file": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+        "sha256": "d73d7fd80809c05350b4d403ed526812f831417a28dcbf23edd44317260673e6",
+        "role": "DESIGN visual tokens/layout; EXPERIENCE submitting/failure honesty and state accessibility"
+      },
+      {
+        "file": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+        "sha256": "f1eb82ae69f92ffb04b7a6aa9147e77d9f62be6fc4b45b4d6cf60ad33791c1d6",
+        "role": "DESIGN visual tokens/layout; EXPERIENCE submitting/failure honesty and state accessibility"
+      }
+    ]
+  },
+  "derivation": "Approved idle wordmark/title/introduction, constrained form, labels and full-width action; written state rules produce loading locked submit/no error and generic invalid credentials with normal retry action. Existing login page read for copy only, not visual baseline.",
+  "presentationCopyInput": {
+    "file": "src/app/(auth)/login/page.tsx",
+    "sha256": "a699c4bf618d518d2d68cfb74f557d6330a76f50b6fcf45ec2b03a50dbee55a0",
+    "role": "Existing safe Swedish invalid-credentials/pending copy only"
+  },
+  "font": {
+    "file": "src/app/fonts/InterVariable.ttf",
+    "sha256": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
+    "format": "TrueType variable font (.ttf), not WOFF2",
+    "copyCreated": false,
+    "licenseFile": "public/licenses/inter/OFL.txt",
+    "licenseSha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+  },
+  "inputs": [
+    {
+      "file": "docs/quality/references/story-35-2-core-2026-10-28/loading.html",
+      "sha256": "e34157bc2edc6e524efb9a72ee73cbbb26deae107c4ce6fc73308865767459fc"
+    },
+    {
+      "file": "docs/quality/references/story-35-2-core-2026-10-28/error.html",
+      "sha256": "3e53694c81a071ce21e155747c3d635315cd02d82b352623184ba71affa7cf5e"
+    },
+    {
+      "file": "docs/quality/references/story-35-2-core-2026-10-28/reference.css",
+      "sha256": "b20dd2b3f43236783fc6b66b4eeb88d83a5dd6c1f5d83d316a35f42644dbee08"
+    }
+  ],
+  "states": {
+    "loading": "Pending, locked submit, no error; no successful authentication or provider observation claimed",
+    "error": "Generic invalid-credential text, retained fictional example.invalid input, normal submit action; no provider call"
+  },
+  "viewports": [
+    {
+      "width": 360,
+      "height": 640
+    },
+    {
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "acceptance": false,
+  "independentReview": "pending targeted source/raster/PII review",
+  "limits": [
+    "Only idle composition was owner-approved; these authored states do not broaden that approval.",
+    "No metadata labels in screenshot viewport; classification retained here and private raster receipt.",
+    "No auth/provider/backend/fixture or production changes."
+  ],
+  "sourceRevisionBindings": [
+    {
+      "file": "src/app/(auth)/login/page.tsx",
+      "gitBlobSha256": "efc0b8e8b839d6228cd7fec1609296796b627763c1c9b84c7e6ba67199073b25",
+      "workingFileSha256": "a699c4bf618d518d2d68cfb74f557d6330a76f50b6fcf45ec2b03a50dbee55a0",
+      "sameContentAfterLFNormalization": true
+    },
+    {
+      "file": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+      "gitBlobSha256": "5c7c2365ad28626e2eed3228bf5f09c13aedb973c6a94ef10afd8a683e4d46db",
+      "workingFileSha256": "d73d7fd80809c05350b4d403ed526812f831417a28dcbf23edd44317260673e6",
+      "sameContentAfterLFNormalization": true
+    },
+    {
+      "file": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+      "gitBlobSha256": "cf36a61123676e175dd8e26678bf7da98bb666dc076bb50e34f3f432db1e54d8",
+      "workingFileSha256": "f1eb82ae69f92ffb04b7a6aa9147e77d9f62be6fc4b45b4d6cf60ad33791c1d6",
+      "sameContentAfterLFNormalization": true
+    },
+    {
+      "file": "docs/quality/story-35-2-login-visual-approval-2026-10-28.json",
+      "gitBlobSha256": "8e83b29c5716cf06ff140b07abaa06c22c30c8110e3d14c85a0074b4c1a7c5cf",
+      "workingFileSha256": "50f4ca5b868cc1cbdd307f716331f4f67888adcd7db55bb74dc9163b8408694c",
+      "sameContentAfterLFNormalization": true
+    }
+  ],
+  "cssRoles": {
+    "page": "white",
+    "primaryText/action": "ink",
+    "secondaryText": "text-secondary",
+    "fieldFill": "sunken",
+    "disabledFill": "active",
+    "disabledText": "text-disabled",
+    "errorFill/Text": "risk-surface/risk-text",
+    "fontRoles": "body15/400,label13/500,heading20/500,title30/500",
+    "spacing": "16px gutters,24px form gap to intro,16px field groups,8px label gaps,12px field padding,32px wordmark gap",
+    "radius": "8px control/card"
+  }
+}

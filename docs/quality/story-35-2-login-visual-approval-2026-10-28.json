@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "decision": "approved-shown-login-visual-composition",
+  "date": "2026-10-28",
+  "owner": "Rasmus",
+  "sourceThreadId": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "sourceTurnId": "01a18266-1522-7d62-98ef-31d2dd72479c",
+  "sourceHumanMessageId": "01a18266-198a-79d2-bc63-a98ae07a4280",
+  "verbatim": "Alright, looks great. Approved, please proceed the other session.",
+  "capturedCandidate": "5dc23d40bd672d476b80ccfeff1d1a6dad56ba74",
+  "evidenceCommit": "991cd020aa6887a1c10f0e001cc0b9878e2be636",
+  "views": [
+    {
+      "id": "login-idle-360",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-idle-360.png",
+      "sha256": "e44cab93a434a5ec1a19b69ab0cae97f9827761072e07112b3cdf10aa3762775",
+      "width": 360,
+      "height": 640,
+      "state": "finished-idle",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      }
+    },
+    {
+      "id": "login-idle-1440",
+      "path": "screenshots/5dc23d40bd672d476b80ccfeff1d1a6dad56ba74/login-idle-1440.png",
+      "sha256": "10d1eec17435769445a6baffcb8bf2f0d5ec7db345d2e0f0bcd657189318666f",
+      "width": 1440,
+      "height": 900,
+      "state": "finished-idle",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "scope": "Only the two shown desktop/mobile idle login compositions",
+  "notApproved": [
+    "Unseen states",
+    "Controlled authentication states linked but not shown",
+    "Inherited surfaces",
+    "Missing reference rasters",
+    "CI waivers",
+    "Complete current-head visual evidence package",
+    "Merge or deployment"
+  ],
+  "continuation": "Resume individually approved story 35.2 and resolve concrete CI/reference/success-state evidence gaps; preserve auth contracts and initial font/story approvals",
+  "formalProtocolAcceptance": "Not posted or impersonated by an agent",
+  "reviewRule": "Show exact revision-bound images or image links whenever requesting manual visual acceptance"
+}

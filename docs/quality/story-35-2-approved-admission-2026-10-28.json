@@ -1,0 +1,52 @@
+{
+  "story": "35.2",
+  "executionId": "35-2",
+  "trackingKey": "35-2-tokens-font-and-real-login",
+  "approvedCandidate": "65be26c5e6e2923ea0298160f4da54a987bed0fe",
+  "specSha256": "ee7bc75184a16d3c6f46623321882f490986deadb81bc9a0dd92e0ba42eb6ff0",
+  "testSha256": "b5da79654364f05ddf7b1fdc2263f1c757e620638741db499538a66206a55eae",
+  "ownerApproval": {
+    "thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "turn": "01a181c3-0df4-7cf2-b8de-54a31e81b363",
+    "userMessage": "01a181c3-1173-7e43-9025-13585f376cad",
+    "text": "Approved. Proceed",
+    "scope": "Individually approve35.2 and verified official Interv4.1; read_thread verified actual human reply after explicit two-decision request"
+  },
+  "allocation": {
+    "ownerChat": "01a1819b-c72b-7653-aac9-77bb5e554210",
+    "worktree": "C:/DEV/K35-implementation",
+    "branch": "codex/story-35-2-foundations-login",
+    "source": "Coordinator explicit allocation",
+    "paths": [
+      "src/app/layout.tsx",
+      "src/app/globals.css",
+      "src/app/(auth)/login/page.tsx",
+      "src/app/fonts/",
+      "public/licenses/inter/"
+    ],
+    "inherited": [
+      "auth",
+      "app",
+      "operator",
+      "public HTML",
+      "records",
+      "jobs",
+      "files/documents",
+      "booking dialogs",
+      "scheduling",
+      "time/Min dag",
+      "profiles/calendar settings"
+    ],
+    "limits": "No authorization/domain changes; primitive edits need exact path allocation first; no ICS styling"
+  },
+  "font": {
+    "release": "Inter v4.1",
+    "roman": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
+    "italic": "d6f1f6a172d9e588438db9f986fd5cfad7b30f644374080a8a9d4d91e344586f",
+    "license": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+  },
+  "initialOwnerVisualAcceptance": "required after actual rendering; pending",
+  "noMerge": true,
+  "noDeployment": true,
+  "singleStoryOnly": true
+}

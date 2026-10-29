@@ -635,6 +635,34 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
       const oldFetched = barrier<void>(), releaseOld = barrier<void>(), oldDelivered = barrier<void>();
       let armed = false, held = false;
       let heldRequest: Request | undefined;
+      type HeldTerminal = { event: "finished" | "failed"; phase: "before-release" | "after-release";
+        category: "none" | "aborted" | "content-length" | "decoding" | "connection" | "other" };
+      const oldTerminal = barrier<HeldTerminal>();
+      let terminalEvent: HeldTerminal["event"] | "pending" = "pending";
+      let oldReleased = false;
+      const failureCategory = (request: Request): HeldTerminal["category"] => {
+        switch (request.failure()?.errorText) {
+          case "net::ERR_ABORTED": return "aborted";
+          case "net::ERR_CONTENT_LENGTH_MISMATCH": return "content-length";
+          case "net::ERR_CONTENT_DECODING_FAILED": return "decoding";
+          case "net::ERR_CONNECTION_ABORTED":
+          case "net::ERR_CONNECTION_CLOSED":
+          case "net::ERR_CONNECTION_FAILED":
+          case "net::ERR_CONNECTION_REFUSED":
+          case "net::ERR_CONNECTION_RESET": return "connection";
+          default: return "other";
+        }
+      };
+      const observeTerminal = (request: Request, event: HeldTerminal["event"]) => {
+        if (request !== heldRequest || terminalEvent !== "pending") return;
+        terminalEvent = event;
+        const record: HeldTerminal = { event, phase: oldReleased ? "after-release" : "before-release",
+          category: event === "finished" ? "none" : failureCategory(request) };
+        test.info().annotations.push({ type: "my-day-held-read-terminal", description: JSON.stringify(record) });
+        oldTerminal.resolve(record);
+      };
+      const onFinished = (request: Request) => observeTerminal(request, "finished");
+      const onFailed = (request: Request) => observeTerminal(request, "failed");
       const attempts: FilingAttempt[] = [];
       const before = await f.snapshot();
       const handler = async (route: Route) => {
@@ -645,12 +673,27 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         }
         if (!armed || held || !isDayRead(request)) { await route.fallback(); return; }
         held = true; heldRequest = request;
+        // Observe this exact request before navigation can settle or cancel it.
+        // Retain only lifecycle enums, never request data or raw failure text.
+        page.on("requestfinished", onFinished);
+        page.on("requestfailed", onFailed);
         try {
           // Only delay an actual completed A projection; do not fabricate the
           // response or keep a server transaction/command in flight.
           const response = await route.fetch();
           expect(response.ok()).toBe(true);
           expect(await response.text()).toContain(f.ownBooking);
+          const responseHeaders = response.headers();
+          const contentLength = responseHeaders["content-length"];
+          const contentEncoding = responseHeaders["content-encoding"]?.trim().toLowerCase();
+          const fulfillmentBody = await response.body();
+          const lengthMatch = contentLength !== undefined && /^[0-9]{1,20}$/.test(contentLength)
+            ? BigInt(contentLength) === BigInt(fulfillmentBody.length) ? "matches" : "differs" : "unknown";
+          const encoding = contentEncoding === undefined || contentEncoding === "identity" ? "identity"
+            : contentEncoding === "gzip" || contentEncoding === "br" || contentEncoding === "deflate" ? contentEncoding : "other";
+          test.info().annotations.push({ type: "my-day-held-read-framing", description: JSON.stringify({
+            hasContentLength: contentLength !== undefined, contentLengthMatchesBody: lengthMatch, retainedContentEncoding: encoding,
+          }) });
           oldFetched.resolve(undefined);
           await releaseOld.promise;
           await route.fulfill({ response });
@@ -708,12 +751,13 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(bookingCard(page, bookingB)).toContainText(markerB);
         await expect(bookingCard(page, f.ownBooking)).toHaveCount(0);
         await expect(form).toHaveCount(0);
-        const finishedOld = page.waitForEvent("requestfinished", request => request === heldRequest);
+        oldReleased = true;
         releaseOld.resolve(undefined);
         await oldDelivered.promise;
-        await finishedOld;
+        await expect.poll(() => terminalEvent, { message: "Held A read must reach a terminal transport event" }).not.toBe("pending");
+        const terminal = await oldTerminal.promise;
         // Allow the real Flight decode and React commit to settle after the
-        // transport finishes; no artificial response/state or elapsed-time guess.
+        // transport settles; retain isolation evidence even if transport failed.
         await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
         await expect(bookingCard(page, bookingB)).toContainText(markerB);
         await expect(agenda(page).getByRole("article")).toHaveCount(1);
@@ -723,7 +767,10 @@ test.describe("15.6 Min dag essential production-server journeys", () => {
         await expect(page.getByTestId(`time-report-entry-${reportBooking}`)).toHaveCount(0);
         expect(attempts).toHaveLength(1);
         expect(await f.snapshot()).toEqual(durable);
+        expect(terminal, "Only a completed transport after release proves a delivered late response").toEqual({ event: "finished", phase: "after-release", category: "none" });
       } finally {
+        page.off("requestfinished", onFinished);
+        page.off("requestfailed", onFailed);
         releaseOld.resolve(undefined);
         try { await page.unroute("**/*", handler); }
         finally {

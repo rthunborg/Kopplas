@@ -1,0 +1,40 @@
+{
+  "executionId": "35-2",
+  "trackingKey": "35-2-tokens-font-and-real-login",
+  "approvedCandidate": "65be26c5e6e2923ea0298160f4da54a987bed0fe",
+  "ownerApproval": {
+    "thread": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "turn": "01a181c3-0df4-7cf2-b8de-54a31e81b363",
+    "userMessage": "01a181c3-1173-7e43-9025-13585f376cad",
+    "text": "Approved. Proceed",
+    "scope": "Individually approve35.2 and verified official Interv4.1; read_thread verified actual human reply after explicit two-decision request"
+  },
+  "sourceFiles": {
+    "_bmad-output/implementation-artifacts/spec-35-2-tokens-font-and-real-login.md": "ee7bc75184a16d3c6f46623321882f490986deadb81bc9a0dd92e0ba42eb6ff0",
+    "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-2.md": "b5da79654364f05ddf7b1fdc2263f1c757e620638741db499538a66206a55eae",
+    "docs/quality/story-35-2-approved-admission-2026-10-28.json": "e37effdc2cf7716baf0ae1504278d7b051b9695df1fe9598b443550e590b0515",
+    "docs/quality/story-35-2-admission-2026-10-28.md": "b6c1c8958860412a6cb6c632a15d182049177c99646c58481d8f49bcd92c4568",
+    "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md": "d73d7fd80809c05350b4d403ed526812f831417a28dcbf23edd44317260673e6",
+    "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md": "f1eb82ae69f92ffb04b7a6aa9147e77d9f62be6fc4b45b4d6cf60ad33791c1d6",
+    "docs/design/claude-design/v1/handoff/Verksamhetssystem.dc.html": "553cbc083b1a31f4110e0a5f8446fae0ed8dc8f190cdf728c2a7494c17e715a1",
+    "docs/design/claude-design/v1/handoff/F\u00e4ltvy.dc.html": "bcf7b1db89eeb1ab50c5fd643fe3fc4f362324241175cf98565471dd5b8b0e50"
+  },
+  "readOnlyConsumerBaseline": {
+    "src/app/layout.tsx": "194eb7f66f7e20763e0633531e42cd620ffd10ff18abfc3387b94eb6ae797ef2",
+    "src/app/globals.css": "6ea4098db934e1c740fac5d9b0e7a16edca7c7cb47b410b628d4a73fa107e553",
+    "src/app/(auth)/login/page.tsx": "8999b50f5610e2ef51aaa353d743ea38eaea7541d3dd879cb1806cc3ee2d2a97",
+    "src/app/(app)/layout.tsx": "91ccf3946e62bbc33c9c00f2fda2064df8ba9fcec22e0c72d0d31cd943eafd58",
+    "src/app/operator/layout.tsx": "cede610ae736fa670486c3759b4ac533b436ee267f43bb967305711ad1e27273",
+    "src/app/(public)/layout.tsx": "3b98010900f13aa151ca1459b844faaaeb5fe82cdd32a3f1c82d1794e233c68b",
+    "src/components/app-shell/AppShell.tsx": "ccc09d93ee141abaeeaab6904c0539f6918d5b9c1b83b239c3950a3ac5d9d0e3",
+    "src/app/(app)/jobs/page.tsx": "67c9885e592267a45b121471300a817502a086ea7e2a585e6d0a218bdb74cd91",
+    "src/app/(app)/files/page.tsx": "697953305325509d6513f285d1146fad57e2b759788d823a1ced0b376e9c2301",
+    "src/components/documents/DocumentPreviewPane.tsx": "007ce8797f5fe44fb2fb73e2816176326bd1701139e993a5660c3699cca46b15",
+    "src/components/resources/BookingEditor.tsx": "f75b9882eacd16944f68f40aceea7f3f39e6608026796d6142f676b1c4745790",
+    "src/components/scheduling/SchedulingWorkspace.tsx": "1ee89cbf2c1680bbe78b07e93bb290fb28c02731a7211888a3bd5540f79c2701",
+    "src/components/time-reports/TimeReportWorkspace.tsx": "48ecc1aa5ff2a549c4e5c2536fc910ab92c9ebff57527c4ded20bacfbac4f2dd",
+    "src/components/my-day/MyDayWorkspace.tsx": "d470f32c941f3baee54cd8f729b6c1bb0c2d20d9e7583c1f73f5ee3ceefe8974",
+    "src/app/(app)/(calendar-settings)/settings/calendar/page.tsx": "a2290736c01b3d7703e3f7397ba0960c31a26d43fc6729f69e4912dfda978598"
+  },
+  "baselineMeaning": "Inspected before product edits; inherited paths are not write allocations. Canonical source status remains immutable historical preparation metadata."
+}

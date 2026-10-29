@@ -1,10 +1,172 @@
 @import "tailwindcss";
 
+/* DESIGN.md is the written authority; numeric Tailwind spacing stays inherited. */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-ds-11: 11px;
+  --text-ds-12: 12px;
+  --text-ds-13: 13px;
+  --text-ds-14: 14px;
+  --text-ds-15: 15px;
+  --text-ds-17: 17px;
+  --text-ds-20: 20px;
+  --text-ds-24: 24px;
+  --text-ds-30: 30px;
+  --text-ds-38: 38px;
+  --text-ds-52: 52px;
+  --text-ds-72: 72px;
+  --text-ds-104: 104px;
+  --color-white: #ffffff;
+  --color-n-025: #fafafa;
+  --color-n-050: #f5f5f6;
+  --color-n-100: #eeeeef;
+  --color-n-150: #e4e4e6;
+  --color-n-200: #d6d6d9;
+  --color-n-300: #b9b9bd;
+  --color-n-400: #95959b;
+  --color-n-500: #74747a;
+  --color-n-600: #57575c;
+  --color-n-700: #3d3d41;
+  --color-n-800: #26262a;
+  --color-n-900: #17171a;
+  --color-ink: #0d0d0f;
+  --color-black: #000000;
+  --color-page: #ffffff;
+  --color-card: #ffffff;
+  --color-sunken: #f5f5f6;
+  --color-inset: #fafafa;
+  --color-hover: #f5f5f6;
+  --color-active: #eeeeef;
+  --color-selected: #f5f5f6;
+  --color-text-primary: #0d0d0f;
+  --color-text-secondary: #3d3d41;
+  --color-text-tertiary: #57575c;
+  --color-text-disabled: #57575c;
+  --color-border-subtle: #e4e4e6;
+  --color-border-default: #d6d6d9;
+  --color-border-strong: #95959b;
+  --color-signal-050: #fffbe6;
+  --color-signal-200: #ffeda1;
+  --color-signal: #ffd21f;
+  --color-signal-hover: #f5c000;
+  --color-signal-600: #c99a00;
+  --color-signal-700: #8a6900;
+  --color-ok-surface: #eef7f1;
+  --color-ok-dot: #137a43;
+  --color-ok-text: #0c5730;
+  --color-warn-surface: #fdf4e7;
+  --color-warn-dot: #a86a12;
+  --color-warn-text: #7a4c0a;
+  --color-risk-surface: #fdf0ef;
+  --color-risk-dot: #b3261e;
+  --color-risk-text: #8a1c16;
+  --color-info-surface: #eff2fb;
+  --color-info-dot: #2f4bd1;
+  --color-info-text: #22389c;
+  --color-inverse-surface: #0d0d0f;
+  --color-inverse-raised: #17171a;
+  --color-inverse-text: #ffffff;
+  --color-inverse-muted: #95959b;
+  --color-scrim: #0d0d0f7a;
+  --color-glass: #ffffffb8;
+  --text-body: 15px;
+  --text-body--line-height: 1.45;
+  --text-body--letter-spacing: -0.005em;
+  --text-body-prose: 17px;
+  --text-body-prose--line-height: 1.6;
+  --text-body-prose--letter-spacing: -0.005em;
+  --text-title: 30px;
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.018em;
+  --text-heading: 20px;
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.018em;
+  --text-section: 15px;
+  --text-section--line-height: 1.2;
+  --text-section--letter-spacing: -0.018em;
+  --text-label: 13px;
+  --text-label--line-height: 1.45;
+  --text-label--letter-spacing: 0.01em;
+  --text-table: 13px;
+  --text-table--line-height: 1.45;
+  --text-table--letter-spacing: -0.005em;
+  --text-caption: 12px;
+  --text-caption--line-height: 1.45;
+  --text-caption--letter-spacing: -0.005em;
+  --text-micro: 11px;
+  --text-micro--line-height: 1.45;
+  --text-micro--letter-spacing: 0.09em;
+  --text-metric: 38px;
+  --text-metric--line-height: 1.2;
+  --text-metric--letter-spacing: -0.025em;
+  --text-display: 72px;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --spacing-ds-0: 0px;
+  --spacing-ds-1: 2px;
+  --spacing-ds-2: 4px;
+  --spacing-ds-3: 6px;
+  --spacing-ds-4: 8px;
+  --spacing-ds-5: 12px;
+  --spacing-ds-6: 16px;
+  --spacing-ds-7: 20px;
+  --spacing-ds-8: 24px;
+  --spacing-ds-9: 32px;
+  --spacing-ds-10: 40px;
+  --spacing-ds-11: 56px;
+  --spacing-ds-12: 72px;
+  --spacing-ds-13: 96px;
+  --spacing-ds-14: 128px;
+  --spacing-ds-15: 176px;
+  --spacing-gutter: 24px;
+  --spacing-gutter-field: 16px;
+  --spacing-gutter-marketing: 32px;
+  --spacing-sidebar: 248px;
+  --spacing-topbar: 56px;
+  --spacing-page-max: 1240px;
+  --spacing-prose-max: 660px;
+  --spacing-control-sm: 28px;
+  --spacing-control-md: 34px;
+  --spacing-control-lg: 44px;
+  --spacing-row-block: 14px;
+  --spacing-row-inline: 16px;
+  --radius-control: 8px;
+  --radius-chip: 8px;
+  --radius-card: 8px;
+  --radius-sheet: 12px;
+  --shadow-popover: 0 4px 12px -2px rgb(13 13 15 / .08), 0 1px 2px rgb(13 13 15 / .04);
+  --shadow-sheet: 0 16px 40px -8px rgb(13 13 15 / .14), 0 2px 6px rgb(13 13 15 / .05);
+  --ease-standard: cubic-bezier(.2, 0, .2, 1);
+  --ease-entrance: cubic-bezier(.16, 1, .3, 1);
+  --ease-inward: cubic-bezier(.6, 0, 1, 1);
+}
+
+/* Duration aliases are opt-in; existing consumer motion is not replaced. */
+:root {
+  --duration-instant: 80ms;
+  --duration-feedback: 140ms;
+  --duration-panel: 220ms;
+  --duration-sheet: 420ms;
+  --duration-reveal: 700ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-feedback: 0ms;
+    --duration-panel: 0ms;
+    --duration-sheet: 0ms;
+    --duration-reveal: 0ms;
+  }
 }
 
 body {
-  background: #ffffff;
-  color: #171717;
+  background: var(--color-page);
+  color: var(--color-text-primary);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
 }
+
+/* Existing tabular-nums remains the opt-in affordance for money/tables/metrics. */

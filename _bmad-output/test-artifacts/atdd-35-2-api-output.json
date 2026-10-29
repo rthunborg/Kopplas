@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "subagent": "atdd-api-tests",
+  "story": "35-2-tokens-font-and-real-login",
+  "tests": [],
+  "fixture_needs": [],
+  "knowledge_fragments_used": [],
+  "test_count": 0,
+  "tdd_phase": "RED",
+  "provider_scrutiny": "not_applicable",
+  "api_scope": {
+    "applicability": "not_applicable",
+    "new_or_changed_endpoints": [],
+    "new_or_changed_rpc_or_schema": [],
+    "new_or_changed_service_contracts": [],
+    "new_or_changed_auth_session_protocols": [],
+    "rationale": "Story 35.2 changes semantic tokens, local font binding and the existing credential form presentation. The story expressly prohibits new endpoints, auth/session protocols and receipts; the High test design assigns deterministic login-state checks to the actual form caller seam and session/authority checks to existing real-cookie E2E, resolver unit and database integration suites. There is no story-owned API contract to scaffold. Creating endpoint tests merely to populate this worker template would invent scope."
+  },
+  "existing_authority_and_reuse": [
+    {
+      "source": "src/app/(auth)/login/page.tsx",
+      "seam": "LoginPage.handleSubmit -> createSupabaseBrowserClient().auth.signInWithPassword",
+      "role": "Existing browser submission seam for delay, invalid credentials, rejection, explicit recovery, duplicate-attempt observation and refresh-before-replace assertions. These are caller/E2E responsibilities, not a new application endpoint."
+    },
+    {
+      "source": "src/server/db/supabase-browser-client.ts",
+      "role": "Existing browser-safe public configuration and cookie-persistent Auth client remain the client boundary. No service-role client or new auth transport is introduced."
+    },
+    {
+      "source": "src/app/page.tsx",
+      "seam": "resolveTenantContext -> resolveLandingRoute",
+      "role": "Existing server root resolves cookie-bound user/tenant authority and role landing after successful sign-in; ordinary server navigation/reload remains the reconciliation authority for an ambiguous outcome."
+    },
+    {
+      "source": "src/app/(app)/layout.tsx",
+      "role": "Existing protected layout rechecks server tenant context and shell access. Styling cannot grant access."
+    },
+    {
+      "source": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "role": "Reuse/extend real-cookie login and logout outcomes through the E2E worker; mocks alone cannot prove session issuance, server context or response-loss reconciliation."
+    },
+    {
+      "source": "tests/unit/server/auth/resolve-tenant-context.test.ts",
+      "role": "Reuse existing server authority assertions; do not duplicate them as invented API tests."
+    },
+    {
+      "source": "tests/integration/server/auth/resolve-tenant-context.int.test.ts",
+      "role": "Reuse existing database-backed authority assertions with required execution evidence during implementation verification."
+    }
+  ],
+  "utility_gates": {
+    "use_playwright_utils": true,
+    "playwright_utils_installed": false,
+    "playwright_utils_result": "No generated API code or unresolved utility import; existing installed project patterns remain the fallback if applicable tests are later needed.",
+    "use_pactjs_utils": true,
+    "pactjs_utils_installed": false,
+    "pact_relevance_gate": "closed",
+    "pact_mcp_reachable": false,
+    "pact_mcp_probe_source": "Parent tool-list probe; SmartBear MCP tools unavailable. Not probed again by this worker.",
+    "pact_fallback_source": "Existing source seams and the approved Story 35.2 High test design, rather than broker provider states.",
+    "pact_result": "No consumer/provider contract change and no installed Pact utility package; no Pact scaffold is applicable."
+  },
+  "scope_sources": [
+    "_bmad-output/specs/spec-design-35-2/stories/35-2-tokens-font-and-real-login.md",
+    "_bmad-output/test-artifacts/test-design-spec-design-35-2.md"
+  ],
+  "evidence_limits": [
+    "Read the complete installed step-04a worker instructions, current story and High test design. Source seam details here are bound by those supplied documents; this worker did not execute or independently re-probe their runtime behavior.",
+    "No tests, browser actions, network/provider calls or resources were run. No functional, session, visual or acceptance pass is claimed.",
+    "Zero API scaffolds does not remove the story's seven AC and nine owned-state traceability bindings or required existing authority regressions; those remain assigned to their appropriate caller, E2E, source, asset and verification lanes."
+  ],
+  "summary": "API/contract scaffolding is N/A for Story 35.2: zero endpoints or contracts introduced or changed, zero API tests and zero fixture needs. RED-phase worker output records bounded scope without inventing endpoint coverage."
+}

@@ -30,3 +30,6 @@ tests/fixtures/golden/**/*.json  text eol=lf
 /_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/spec-hashes.json -text
 /_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-2.md -text
 /_bmad-output/planning-artifacts/design-transition-2026-10-23/reconciliation-2026-10-28/** -text
+
+# Preserve the approved official Inter license bytes on Windows checkouts.
+/public/licenses/inter/OFL.txt -text

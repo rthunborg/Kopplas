@@ -1,0 +1,146 @@
+{
+  "date": "2026-10-26",
+  "changed_existing": [
+    {
+      "path": "_bmad-output/planning-artifacts/architecture-phase-b.md",
+      "before_sha256": "ba7378e3203064177aed4585979a1820ca7accda364bb23d6ccdd1283638f1b5",
+      "after_sha256": "a39adde83a9d2635654fd4d23674c5faf007dd1d0a02176d6390f854f3bab553"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/epics-phase-b.md",
+      "before_sha256": "f5733951942147534c07ff57c8b2d0162c67dd77b80251b687feec2afae60151",
+      "after_sha256": "eaad712983c048eb92a1be578d6562d72b1ea3e49f0785c2824e9292319568cf"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/owner-signoff-questions.md",
+      "before_sha256": "b581f95862f97df8eb4b0993b6ca052c60d342951136ce64f2e5b1fac2389dda",
+      "after_sha256": "b1e5e7c1c753c381e20d4054d08e1f2528034dc455046e9b823ea38d33f8e89c"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/prd-phase-b.md",
+      "before_sha256": "fcc184a49f8d574fc0e4cbd03b0fe5453604eedec4074bc773bfde0f2701560c",
+      "after_sha256": "55da08545dd3ffd65860a42577d24ce51077485ba25799be121f7f8bb5c6476c"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-design-specification-phase-b.md",
+      "before_sha256": "feaeed31b8a481b36dd33f0be27050782565ce9eebcc4d866e92281f1e6c1350",
+      "after_sha256": "d50f5fa9248dc16298bc8b2e41b4044c9b815727db4b862e1bac8ee42ea2eb4f"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+      "before_sha256": "acb38e58b7ada2bba7165bc8ba4339dc29583ca2fbcd66304e2c04f13323cd58",
+      "after_sha256": "c9a7d8ebf4eb4a58eca4ad8403829f85c0d2bd2e8249652f731c57db4784a25d"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+      "before_sha256": "d18fc8991dde821b3f59f19e2bb7c7bfca051e61beafc27b6374045c341931af",
+      "after_sha256": "f20929ccbd71989acfa17447111730325fdb1ae3bb93ab3fca6bf3523ec12387"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/decision-register.md",
+      "before_sha256": "db5f382beab6159a060fa4ea94dae7f30f736dad0030c2cc7237c8320dceab87",
+      "after_sha256": "b2c8106c22db386de2ba0682f0d6e5475babcc98a3bfb783a3adc524af61bdff"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md",
+      "before_sha256": "4c0a369903ae7045cff4db1b3f3c2c4de88d558c77eaac2e27e7ad8c6114902e",
+      "after_sha256": "d58dd816ad0490d8e28f4a61d9d85c67eff783ca3fef9af851c5c49bf38e19d9"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.json",
+      "before_sha256": "41790249c368faf682e926e88f87425995b945093a0a5541749e2c7b9b753711",
+      "after_sha256": "1a0dc7dde4552ebed53192ade14f513d097eeae2c0e425c50de221e2b17575f7"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md",
+      "before_sha256": "ef68c991f91055fd165ab3ff1432b6128e31aef29136904f49221d415d58aadd",
+      "after_sha256": "4465c62f14e03ee304fee769797a24df60224a5ff13e94a5b03babd8044801f3"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md",
+      "before_sha256": "4569630c266864c1a95864522ee7a43bb9f197d65cfed7245d3d0f19610c4125",
+      "after_sha256": "88d8dd91810f9be24c6da437cfa9c9418b761042bc9e1ae0f54c6e7cc5ee4a76"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/feature-index.json",
+      "before_sha256": "edd0da593df3b0b9c6b5efb776d8c2d8a77cc5cfde6679d3267109f38578edb1",
+      "after_sha256": "bad2eb64c11f3fe02270f2e08cd8f142f09447706e40d7de2e5b11934153afc5"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/prompt-4-handoff.md",
+      "before_sha256": "22dba51bc2cf3feda555639dffc584c0bc04ae661128598f32aec23804209c51",
+      "after_sha256": "105a938989ae34b9920a8891bf1e43fef0e9046a25ffda8aaef612d77ae3678d"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/README.md",
+      "before_sha256": "6f27b7fc998e298bbb183bfcc24361de676d0f7d783e6a56bca9add6fb01081d",
+      "after_sha256": "7974c5e61b60492ea2a1da81986478adf54acf4925b14acf30e2502b3eb5bfe4"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/sensitive-assessment.md",
+      "before_sha256": "60cc0f434d5a8ac145a38b76d1c695294befb23999831218698abba40668b02f",
+      "after_sha256": "3a491bbaa04dafe917a544736d30f97bb3ce2fe99b5c7950eb78e141d7be48ef"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/spec-hashes.json",
+      "before_sha256": "680f9901777fff21035e0d126865a2050f19cd17c8d134d487900c361eb327fd",
+      "after_sha256": "9a004673a4ef752fa02b6356991dc8a3166ffd7483b03a5ec3c0873bc8444438"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-1-material-usage-and-requests.md",
+      "before_sha256": "49addccb6f3ad7b60eb3fec361fab55aab95d3607e78484d8baf5503629c8d71",
+      "after_sha256": "748f4b09afecf3ef8a439301353ba91aa189ac51f2e832a22f918c07ba1b0d6d"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-2-projekt-payment-plan.md",
+      "before_sha256": "bfb676a8e22e52ff4da1e2f6c8554553d2d80563f981bf049b2b4315dda2c1b0",
+      "after_sha256": "50cfe185219e409a2f18df02511789fd51e18e64611df1e2ab13f7d6885798bd"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-3-job-economy-rollup.md",
+      "before_sha256": "0562af784338e70e943d7d48f1d436c2976ffdfef232df75dcf2c7d7ff5125fe",
+      "after_sha256": "041c8668c63da36cd26c656598b12f5890de672f7952d74167be4d2dfe53c499"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-17-4-jobs-money-goldens-and-billing-seam.md",
+      "before_sha256": "efba8503826332cf9537b8b57fad4baa564c7928df95522b971a12372e207871",
+      "after_sha256": "cfde1f0e712f7e3de9bcd84c4f1ba74a87f52e0503cafcb67c687a1f626c8c46"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-1-diary-and-photo-capture.md",
+      "before_sha256": "919a63f4f5d0a763e03db6149cbcb2d616f7ae95da0011d0da6c0fcaf2eae287",
+      "after_sha256": "3614bb112b4b0ff227445484bd0c780395ebfb1e8883dc2f33e34b2c3e4845b9"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-2-deviation-risk-and-member-chat.md",
+      "before_sha256": "2c91c0247f13b92af283d0ae799310211d76b236013117971064ddf4f51b4d88",
+      "after_sha256": "68bd5cbbf61f72b746dddbcedf79fd22dfe56d5d92ec7525211b5450c309fbdf"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-3-job-reports-and-exports.md",
+      "before_sha256": "4a75519f3407bcebd8fefd52208307ffbb1beb1db0cf5930773e067f4543fa1c",
+      "after_sha256": "0eb89261d727f48cc0c8eb8afc0e6cff042f10202c93c917a2f2b9ed9e28c9b8"
+    },
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-18-4-authoritative-job-completion.md",
+      "before_sha256": "775ffad88b27b7f9b2af0fda5ab91a109645bb5d7f738c2d74d50b3ed396e6a0",
+      "after_sha256": "25514bd82b01b0d63538e7497f0f1d04133ede655dfa1403361bd15857df4719"
+    }
+  ],
+  "new_application_files": [
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/README.md",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/before-hashes.json",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-artifacts.json",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-specs.json",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-specs.md",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/independent-review.md",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/output-hashes.json",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/routing.md",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-hashes.json",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-observations.json",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/validation.json"
+  ],
+  "snapshot_history": "history/ contains exact pre-amendment content; before-hashes.json preserves broader identity baseline"
+}

@@ -1,0 +1,200 @@
+{
+  "base": "734d89981f287d128f176ceb7093244ef95fce82",
+  "canonical_path": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md",
+  "before_raw_sha256": "bf8dc746ed35971d889152601e989ce177a8b7bf4701fc17e4667f44780a02bf",
+  "approved_local_raw_sha256": "c9a7d8ebf4eb4a58eca4ad8403829f85c0d2bd2e8249652f731c57db4784a25d",
+  "after_raw_sha256": "cf36a61123676e175dd8e26678bf7da98bb666dc076bb50e34f3f432db1e54d8",
+  "inventory_git_raw_sha256": "71cccdc4666d2ad07117df171f0e68d3e1082b85e6d2d3e534572a54ac467172",
+  "inventory_local_raw_sha256": "f11112d198c8db06863ccc3a84e2dec971222b3b7dc39d46b813b361fefe2af5",
+  "inventory_semantically_equal": true,
+  "dependencies": [
+    {
+      "reference": "DESIGN.md",
+      "target": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/DESIGN.md",
+      "present_on_main": true
+    },
+    {
+      "reference": "validation-report.md",
+      "target": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+      "present_on_main": true
+    },
+    {
+      "reference": "screen-state-crosswalk.md",
+      "target": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/screen-state-crosswalk.md",
+      "present_on_main": true
+    },
+    {
+      "reference": "../../../../docs/design/claude-design/v1/handoff/Verksamhetssystem.dc.html",
+      "target": "docs/design/claude-design/v1/handoff/Verksamhetssystem.dc.html",
+      "present_on_main": true
+    },
+    {
+      "reference": "../../../../docs/design/claude-design/v1/handoff/F\u00e4ltvy.dc.html",
+      "target": "docs/design/claude-design/v1/handoff/F\u00e4ltvy.dc.html",
+      "present_on_main": true
+    },
+    {
+      "reference": "validation-report.md",
+      "target": "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/validation-report.md",
+      "present_on_main": true
+    },
+    {
+      "reference": "../../design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md",
+      "target": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md",
+      "present_on_main": false
+    },
+    {
+      "reference": "../../design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md",
+      "target": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md",
+      "present_on_main": false
+    },
+    {
+      "reference": "../../design-transition-2026-10-23/story-preparation/applicability.md",
+      "target": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md",
+      "present_on_main": false
+    },
+    {
+      "reference": "../../design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md",
+      "target": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md",
+      "present_on_main": false
+    }
+  ],
+  "applied": false,
+  "approval_scope": "existing approved documentary policy and E15 dependency disposition only; no new implementation approval",
+  "missing_main_dependency_snapshots": [
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md",
+      "sha256": "d58dd816ad0490d8e28f4a61d9d85c67eff783ca3fef9af851c5c49bf38e19d9",
+      "snapshot": "dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md",
+      "purpose": "exact approved local dependency copy; not integrated or implementation admission"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md",
+      "sha256": "c6a49e307e3ca824e5815f841c8bbadd1c0291ce703d434f7c6ec685dd8f8517",
+      "snapshot": "dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md",
+      "purpose": "exact approved local dependency copy; not integrated or implementation admission"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md",
+      "sha256": "4465c62f14e03ee304fee769797a24df60224a5ff13e94a5b03babd8044801f3",
+      "snapshot": "dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md",
+      "purpose": "exact approved local dependency copy; not integrated or implementation admission"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md",
+      "sha256": "a28eb1e11a900069faa91a60d7f772cd912d06ea736e0c2be76a49df5508f6d6",
+      "snapshot": "dependency-overlay/_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md",
+      "purpose": "exact approved local dependency copy; not integrated or implementation admission"
+    }
+  ],
+  "closure_summary": {
+    "normative_snapshots": 17,
+    "missing_normative": 0,
+    "historical_references": "unchanged attributed history/evidence; not recursively promoted to current normative inputs; original application source/output registers retained with own identities",
+    "scope": "accepted EXPERIENCE appendix and35.2 documentary binding only; E17/E18 implementation not admitted"
+  },
+  "bounded_normative_dependency_manifest": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-2-tokens-font-and-real-login.md",
+      "main_present": false,
+      "local_raw_sha256": "ee7bc75184a16d3c6f46623321882f490986deadb81bc9a0dd92e0ba42eb6ff0",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/architecture-phase-b.md",
+      "main_present": true,
+      "local_raw_sha256": "a39adde83a9d2635654fd4d23674c5faf007dd1d0a02176d6390f854f3bab553",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/README.md",
+      "main_present": false,
+      "local_raw_sha256": "6443b0f84107f5e0e892c6cc92722306784dd29b523cf8fa494a86c4899f985d",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-artifacts.json",
+      "main_present": false,
+      "local_raw_sha256": "5763264a11be318ac6bd6e4dd34825f48eb6534e1fcefdaedeae744add2bc0d8",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/changed-specs.json",
+      "main_present": false,
+      "local_raw_sha256": "c2683949431ff8f24c51afd97b3611176dbb09bac7784275004bd236a064c9b2",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/contracts-and-gates.md",
+      "main_present": false,
+      "local_raw_sha256": "c6a49e307e3ca824e5815f841c8bbadd1c0291ce703d434f7c6ec685dd8f8517",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/output-hashes.json",
+      "main_present": false,
+      "local_raw_sha256": "b1fa9abff1ad6e48bfdd12c57272c0d50dded41c530a35e417f918c236e6941f",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/prompt-4-update-instructions.md",
+      "main_present": false,
+      "local_raw_sha256": "a28eb1e11a900069faa91a60d7f772cd912d06ea736e0c2be76a49df5508f6d6",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/routing.md",
+      "main_present": false,
+      "local_raw_sha256": "21332e217329d76c6db182c38208c02844bfa5986a7ade9f84389dbb323ccb38",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-hashes.json",
+      "main_present": false,
+      "local_raw_sha256": "167b05e44d5ced0785800c91d9bc699e4a462bea92e9185ff94f06bd885c8862",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/application/source-observations.json",
+      "main_present": false,
+      "local_raw_sha256": "f7c2ed9a0c0cd6c3a601de2a50016ee4da9e439a8773502c217d2c976c60e313",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/decision-resolution-2026-10-26/owner-decisions.md",
+      "main_present": false,
+      "local_raw_sha256": "d58dd816ad0490d8e28f4a61d9d85c67eff783ca3fef9af851c5c49bf38e19d9",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.json",
+      "main_present": false,
+      "local_raw_sha256": "1a0dc7dde4552ebed53192ade14f513d097eeae2c0e425c50de221e2b17575f7",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/applicability.md",
+      "main_present": false,
+      "local_raw_sha256": "4465c62f14e03ee304fee769797a24df60224a5ff13e94a5b03babd8044801f3",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md",
+      "main_present": false,
+      "local_raw_sha256": "88d8dd91810f9be24c6da437cfa9c9418b761042bc9e1ae0f54c6e7cc5ee4a76",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/spec-hashes.json",
+      "main_present": false,
+      "local_raw_sha256": "9a004673a4ef752fa02b6356991dc8a3166ffd7483b03a5ec3c0873bc8444438",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-2.md",
+      "main_present": false,
+      "local_raw_sha256": "b5da79654364f05ddf7b1fdc2263f1c757e620638741db499538a66206a55eae",
+      "disposition": "exact approved documentary overlay input; preserve original approval scope; snapshot not merged"
+    }
+  ]
+}

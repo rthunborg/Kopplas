@@ -1,0 +1,12 @@
+# Story35.2 resource boundary — 2026-10-28
+
+The root's trusted guard Start for documented installed Chrome returned native failure and `HOOK_CONTEXT_UNAVAILABLE: No current root turn actor is open` during the Coordinator-triggered cross-chat wake-up. No resource ID/backend start was returned. No retry, invented context, copied child context, raw browser/server launch, or actor activation/administrative workaround is authorized or attempted.
+
+Ordinary bounded commands, edits and tests may continue. New guarded browser/server/database resources must wait for a direct human turn with current trusted lifecycle context. This is an operational hook-state requirement, not another design/font/story approval. Capture and rendered/browser/integration evidence remain unexecuted where they depend on managed resources. Do not mark them passed or mark the story accepted.
+
+Allocated worktree C:/DEV/K35-implementation is new and based on approved65be26c5. Remote main rechecked734d8998. Actual chat inventory only this Kopplas chat active; existing owners' idle/notLoaded states do not release scope. The Coordinator's explicit bounded allocation supplies ownership of the named root/global/login/font paths; inherited consumers remain regression obligations. No in-flight epic anchors were found by supported state_plan epic read; historical records were not modified or resumed.
+
+## Resolved after direct owner continuation
+
+The owner directly replied Continue in this chat, and a fresh trusted hook context was supplied. A single new Start using documented installed Chrome succeeded: resource6c0efc86-8dfc-4f90-a0f1-8e4dc6e0bf09, active/verified. The uniquely matching guard-profile process PID3648, its DevToolsActivePort browser identity, and loopback listener ownership were checked before CDP attachment at http://127.0.0.1:50945 (Chrome156.0.8078.48). Root owns lifecycle; delegates may use this endpoint without closing browser or launching their own process. Stop is required after remaining capture work. Prior refusal remains historical, no bypass occurred. Browser availability does not establish any capture or product test passed.
+After source-reference capture completed, root requested Stop for browser6c0efc86-8dfc-4f90-a0f1-8e4dc6e0bf09. Native0/ok=true/stop_requested/verified=false is an accepted stop request, not confirmed shutdown; no shutdown polling. Saved profile retained. Revalidate/reuse on demand before actual app capture; old CDP endpoint is no longer usable by assumption.
