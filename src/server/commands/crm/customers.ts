@@ -90,6 +90,7 @@ export const updateCustomer = defineCommand<UpdateCustomerInput, CrmCommandResul
         p_correlation_id: ctx.correlationId,
         p_customer_id: ctx.input.id,
         p_patch: buildCustomerPatch(ctx.input),
+        p_expected_customer: ctx.input.expected_customer,
       },
     );
     return { targetId };

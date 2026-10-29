@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "count": 15,
+  "method": "TypeScript import declarations; comment-only ReadinessSummary reference excluded",
+  "checkboxField": {
+    "consumer": "ContactDialog",
+    "import": "src/components/crm/ContactDialog.tsx:17",
+    "render": "src/components/crm/ContactDialog.tsx:151",
+    "evidence": "B10 plus supplemental ContactDialog checkbox-visible captures at both viewports; no toggle/defaultChecked/persistence assertion.",
+    "classification": "affected inherited consumer; existing signature/association preserved",
+    "limits": "Rendered coverage does not prove every checkbox transition; no N/A or out-of-scope disposition"
+  },
+  "sharedDialogActions": {
+    "callers": [
+      "FacilityDialog",
+      "ContactDialog"
+    ],
+    "evidence": "B10 actual labels/summary/cancel/focus; pending Cancel now guarded by existing prop"
+  },
+  "sharedArchiveButton": {
+    "callers": [
+      "CustomerDetail customer",
+      "FacilitiesSection facility",
+      "ContactsSection contact"
+    ],
+    "evidence": "B03 customer cancel/soft archive/matching navigation; B10 renders compact inherited affordances; facility/contact archive command bodies unchanged",
+    "limits": "No new facility/contact archive domain-mutation test is claimed"
+  },
+  "consumers": [
+    {
+      "component": "CalculationList",
+      "path": "src/components/calculations/CalculationList.tsx",
+      "routes": [
+        "/calculations"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 4 PNGs at desktop1440x900 and phone360x640; Kund, Titel actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "TaxSettingsPanel",
+      "path": "src/components/calculations/TaxSettingsPanel.tsx",
+      "routes": [
+        "/calculations/[calculationId]"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 4 PNGs at desktop1440x900 and phone360x640; Momshantering, Skatteavdrag actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "CalculationEditor",
+      "path": "src/components/calculations/CalculationEditor.tsx",
+      "routes": [
+        "/calculations/[calculationId]"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "B10 current seeded calculation route capture; title Field asserted; nested calculation consumers rendered, no mutation assertion",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered evidence is not an exhaustive feature-flow or money/settings command regression"
+    },
+    {
+      "component": "WorkRolesEditor",
+      "path": "src/components/pricing/WorkRolesEditor.tsx",
+      "routes": [
+        "/settings/pricing"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 6 PNGs at desktop1440x900 and phone360x640; Benämning, Kostnad (kr/tim), Pris (kr/tim) actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "SectionEditor",
+      "path": "src/components/calculations/SectionEditor.tsx",
+      "routes": [
+        "/calculations/[calculationId]"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 4 PNGs at desktop1440x900 and phone360x640; Sektionstitel, Visningsläge actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "ArticlesEditor",
+      "path": "src/components/pricing/ArticlesEditor.tsx",
+      "routes": [
+        "/settings/pricing"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 8 PNGs at desktop1440x900 and phone360x640; Artikelnamn, Artikelnummer, Enhet, Enhetspris (kr) actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "RowEditor",
+      "path": "src/components/calculations/RowEditor.tsx",
+      "routes": [
+        "/calculations/[calculationId]"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 8 PNGs at desktop1440x900 and phone360x640; Antal, Enhet, Pris (kr), Radtyp actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "CustomerDialog",
+      "path": "src/components/crm/CustomerDialog.tsx",
+      "routes": [
+        "/customers",
+        "/customers/[customerId]"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "FormWarning",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "B02/B06/B07 create/edit/validation/decision at desktop and phone",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered evidence is not an exhaustive feature-flow or money/settings command regression"
+    },
+    {
+      "component": "ContactDialog",
+      "path": "src/components/crm/ContactDialog.tsx",
+      "routes": [
+        "/customers",
+        "/customers/[customerId]"
+      ],
+      "imports": [
+        "CheckboxField",
+        "FormErrorSummary",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 2 PNGs at desktop1440x900 and phone360x640; Primär kontakt actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "FacilityDialog",
+      "path": "src/components/crm/FacilityDialog.tsx",
+      "routes": [
+        "/customers",
+        "/customers/[customerId]"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "B10 labels, validation association, summary, cancellation and focus at desktop and phone",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered evidence is not an exhaustive feature-flow or money/settings command regression"
+    },
+    {
+      "component": "QuoteTermsEditor",
+      "path": "src/components/settings/QuoteTermsEditor.tsx",
+      "routes": [
+        "/settings/quote-terms"
+      ],
+      "imports": [
+        "FormErrorSummary"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 2 PNGs at desktop1440x900 and phone360x640; Offertvillkor actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "JobCardForm",
+      "path": "src/components/jobs/JobCardForm.tsx",
+      "routes": [
+        "/jobs",
+        "/jobs/[jobId]"
+      ],
+      "imports": [
+        "TextField",
+        "SelectField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 8 PNGs at desktop1440x900 and phone360x640; Kontakt, Prioritet, Titel, Uppskattad tid (minuter) actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "CompanySettingsForm",
+      "path": "src/components/settings/CompanySettingsForm.tsx",
+      "routes": [
+        "/settings/company"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 8 PNGs at desktop1440x900 and phone360x640; Företagsnamn, Momssats, Organisationsnummer, Standardvisning av moms actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "JobList",
+      "path": "src/components/jobs/JobList.tsx",
+      "routes": [
+        "/jobs"
+      ],
+      "imports": [
+        "FormErrorSummary",
+        "SelectField",
+        "TextField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "Root supplemental source-bound preview: 6 PNGs at desktop1440x900 and phone360x640; Kund, Planerat startdatum, Titel actually opened/visible/bounds-asserted. See supplementalPreview receipt.",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered control coverage only; conditional FormErrorSummary/error branches, checkbox toggle/persistence, business save/upload/money/tax/feature-command coverage not claimed. Formal checkpoint-bound replay/acceptance pending."
+    },
+    {
+      "component": "FileIndexUpload",
+      "path": "src/components/files/FileIndexUpload.tsx",
+      "routes": [
+        "/files"
+      ],
+      "imports": [
+        "SelectField"
+      ],
+      "classification": "inherited regression; consumer body remains read-only except owned CustomerDialog",
+      "renderEvidence": "B10 owner type/owner selection + derived purpose through SelectField onChange/testId; no upload",
+      "preservedContract": "Original props/ref/defaultValue/onChange/testId/useId and message-only summary callers preserved; feature authorization, parsing, domain and actions unchanged",
+      "limits": "Rendered evidence is not an exhaustive feature-flow or money/settings command regression"
+    }
+  ],
+  "supplementalPreview": {
+    "receipt": "tmp/private/story35-3/inherited-consumer-previews/live-capture-receipt.json",
+    "sha256": "e2e1fe967ffa0a6f0690a0ebe7d965936b45ed0f29c9f0eecb620767814f9850",
+    "imageCount": 60,
+    "hashesVerifiedByReceipt": 60,
+    "authorReverifiedReceipt": true,
+    "viewports": [
+      "1440x900",
+      "360x640"
+    ],
+    "consumerCount": 11,
+    "unionConsumerCount": 15,
+    "actuallyViewedByCaptureDelegate": 24,
+    "status": "SOURCEBOUND PREVIEW preceding Round1 fixes; formal head replay pending",
+    "remainingGaps": [
+      "This supplemental run covers 11 consumers; existing CustomerDialog/FacilityDialog/CalculationEditor/FileIndexUpload evidence was not duplicated. It does not independently recertify all 15 consumers.",
+      "Conditional FormErrorSummary/error branches not triggered; QuoteTermsEditor summary itself absent in loaded state and remains unexercised.",
+      "No checkbox toggle/persistence, submit/save/upload, money/tax behavior or feature-command verification.",
+      "Only 24 of 60 PNGs manually viewed; all 60 have executed label/visibility/in-viewport/PNG-dimension assertions and verified hashes.",
+      "Formal full-head rerun and owner visual acceptance pending."
+    ],
+    "imageDirectory": "tmp/private/story35-3/inherited-consumer-previews/fix5-live-attempt2",
+    "actualAuthorHashReverification": 60
+  }
+}

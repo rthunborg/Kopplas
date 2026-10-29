@@ -19,7 +19,7 @@
  *   - duplicate-like warning → surfaced in the create dialog (non-blocking advisory).
  */
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import Link, { useLinkStatus } from "next/link";
 import { CustomerDialog } from "./CustomerDialog";
 import { CustomerTypeBadge } from "./CustomerTypeBadge";
 import {
@@ -50,6 +50,8 @@ export function CustomerList({
   const [query, setQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [createOpen, setCreateOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [sort, setSort] = useState("name-asc");
 
   const items = useMemo<CustomerListItem[]>(
     () => rows.map(toCustomerListItem),
@@ -61,8 +63,11 @@ export function CustomerList({
       (it) =>
         (typeFilter === "all" || it.type === typeFilter) &&
         matchesQuery(it, query),
-    );
-  }, [items, query, typeFilter]);
+    ).sort((a, b) => {
+      const direction = sort === "name-desc" ? -1 : 1;
+      return direction * a.displayName.localeCompare(b.displayName, "sv") || a.id.localeCompare(b.id);
+    });
+  }, [items, query, typeFilter, sort]);
 
   // ── FAILED state ──────────────────────────────────────────────────────────────
   if (loadError) {
@@ -72,16 +77,16 @@ export function CustomerList({
         <div
           role="alert"
           data-testid="customers-failed"
-          className="mt-6 rounded-lg border border-red-300 bg-red-50 p-6"
+          className="mt-6 rounded-card border border-risk-text bg-risk-surface p-6"
         >
-          <p className="flex items-center gap-2 text-sm font-medium text-red-800">
+          <p className="flex items-center gap-2 text-body font-medium text-risk-text">
             <ErrorIcon />
             Kundlistan kunde inte läsas in.
           </p>
-          <p className="mt-1 text-sm text-red-700">{loadError}</p>
+          <p className="mt-1 text-body text-risk-text">{loadError}</p>
           <Link
             href="/customers"
-            className="mt-4 inline-flex rounded-md border border-red-300 bg-white px-3 py-1.5 text-sm font-medium text-red-800 hover:bg-red-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+            className="mt-4 inline-flex min-h-control-lg items-center rounded-control border border-risk-text bg-card px-3 py-1.5 text-body font-medium text-risk-text hover:bg-risk-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
           >
             Försök igen
           </Link>
@@ -98,9 +103,9 @@ export function CustomerList({
       <ListHeader onCreate={() => setCreateOpen(true)} />
 
       {!isEmpty && (
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end">
-          <div className="flex flex-1 flex-col gap-1">
-            <label htmlFor="customer-search" className="text-sm font-medium text-zinc-800">
+        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+          <div className="flex min-w-0 flex-1 flex-col gap-1">
+            <label htmlFor="customer-search" className="text-label font-medium text-text-secondary">
               Sök kund
             </label>
             <input
@@ -109,18 +114,18 @@ export function CustomerList({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Namn, e-post, telefon, ort eller org.nr"
-              className="rounded-md border border-zinc-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="min-h-control-lg rounded-control border-0 bg-sunken px-3 py-2 text-body text-text-primary placeholder:text-text-tertiary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label htmlFor="customer-type-filter" className="text-sm font-medium text-zinc-800">
+            <label htmlFor="customer-type-filter" className="text-label font-medium text-text-secondary">
               Filtrera typ
             </label>
             <select
               id="customer-type-filter"
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="min-h-control-lg rounded-control border-0 bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink"
             >
               {TYPE_FILTERS.map((f) => (
                 <option key={f.value} value={f.value}>
@@ -129,6 +134,14 @@ export function CustomerList({
               ))}
             </select>
           </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="customer-sort" className="text-label font-medium text-text-secondary">Sortera kunder</label>
+            <select id="customer-sort" value={sort} onChange={(e) => setSort(e.target.value)} className="min-h-control-lg rounded-control border-0 bg-sunken px-3 py-2 text-body text-text-primary focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-ink">
+              <option value="name-asc">Namn stigande A–Ö</option>
+              <option value="name-desc">Namn fallande Ö–A</option>
+            </select>
+          </div>
+          <button type="button" onClick={() => { setQuery(""); setTypeFilter("all"); }} className="min-h-control-lg rounded-control border border-border-strong bg-card px-3 text-label font-medium text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Återställ filter</button>
         </div>
       )}
 
@@ -136,16 +149,16 @@ export function CustomerList({
       {isEmpty && (
         <div
           data-testid="customers-empty"
-          className="mt-6 rounded-lg border border-dashed border-zinc-300 bg-white p-8 text-center"
+          className="mt-6 rounded-card border border-dashed border-border-strong bg-card px-ds-8 py-ds-12 text-center"
         >
-          <p className="text-sm font-medium text-zinc-900">Inga kunder ännu</p>
-          <p className="mt-1 text-sm text-zinc-600">
+          <p className="text-ds-17 font-medium text-text-primary">Inga kunder ännu</p>
+          <p className="mx-auto mt-1 max-w-80 text-table text-text-secondary">
             Skapa din första kund för att komma igång.
           </p>
           <button
             type="button"
             onClick={() => setCreateOpen(true)}
-            className="mt-4 inline-flex rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            className="mt-4 inline-flex min-h-control-lg items-center rounded-control bg-ink px-4 py-2 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
           >
             Ny kund
           </button>
@@ -156,10 +169,10 @@ export function CustomerList({
       {isNoResults && (
         <div
           data-testid="customers-no-results"
-          className="mt-6 rounded-lg border border-dashed border-zinc-300 bg-white p-8 text-center"
+          className="mt-6 rounded-card border border-dashed border-border-strong bg-card px-ds-8 py-ds-12 text-center"
         >
-          <p className="text-sm font-medium text-zinc-900">Inga träffar</p>
-          <p className="mt-1 text-sm text-zinc-600">
+          <p className="text-ds-17 font-medium text-text-primary">Inga träffar</p>
+          <p className="mx-auto mt-1 max-w-80 text-table text-text-secondary">
             Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.
           </p>
         </div>
@@ -167,42 +180,47 @@ export function CustomerList({
 
       {/* ── POPULATED list ── */}
       {!isEmpty && !isNoResults && (
-        <div className="mt-6 overflow-x-auto rounded-lg border border-zinc-200 bg-white">
-          <table className="min-w-full divide-y divide-zinc-200 text-sm">
+        <div role="region" aria-label="Kundlista, rulla i sidled för fler kolumner" tabIndex={0} className="mt-6 overflow-x-auto rounded-card border border-border-subtle bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+          <table className="min-w-full divide-y divide-border-subtle text-table tabular-nums">
             <caption className="sr-only">Kundlista</caption>
-            <thead className="bg-zinc-50 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
+            <thead className="bg-sunken text-left text-micro font-medium uppercase text-text-tertiary">
               <tr>
-                <th scope="col" className="px-4 py-3">Kund</th>
-                <th scope="col" className="px-4 py-3">Typ</th>
-                <th scope="col" className="px-4 py-3">Org.nr</th>
-                <th scope="col" className="px-4 py-3">Ort</th>
-                <th scope="col" className="px-4 py-3">Status</th>
+                <th scope="col" className="px-row-inline py-row-block">Välj</th>
+                <th scope="col" aria-sort={sort === "name-asc" ? "ascending" : "descending"} className="px-row-inline py-row-block">Kund</th>
+                <th scope="col" className="px-row-inline py-row-block">Typ</th>
+                <th scope="col" className="px-row-inline py-row-block">Org.nr</th>
+                <th scope="col" className="px-row-inline py-row-block">Ort</th>
+                <th scope="col" className="px-row-inline py-row-block">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100" data-testid="customers-table-body">
+            <tbody className="divide-y divide-border-subtle" data-testid="customers-table-body">
               {filtered.map((it) => (
-                <tr key={it.id} className="hover:bg-zinc-50">
-                  <td className="px-4 py-3">
+                <tr key={it.id} data-selected={selectedId === it.id ? "true" : "false"} className={selectedId === it.id ? "bg-selected" : "hover:bg-hover"}>
+                  <td className="relative px-row-inline py-row-block">
+                    {selectedId === it.id && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-ds-1 bg-ink" />}
+                    <input type="checkbox" aria-label={`Välj ${it.displayName}`} checked={selectedId === it.id} onChange={() => setSelectedId(selectedId === it.id ? null : it.id)} className="min-h-control-lg min-w-control-lg accent-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink" />
+                  </td>
+                  <td className="px-row-inline py-row-block">
                     <Link
                       href={`/customers/${it.id}`}
-                      className="font-medium text-blue-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                      className="inline-flex min-h-control-lg items-center font-medium text-text-primary underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                     >
-                      {it.displayName}
+                      <CustomerNavigationLabel name={it.displayName} />
                     </Link>
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-row-inline py-row-block">
                     <CustomerTypeBadge type={it.type} />
                   </td>
-                  <td className="px-4 py-3 text-zinc-700">{it.identifier ?? "—"}</td>
-                  <td className="px-4 py-3 text-zinc-700">{it.city ?? "—"}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-row-inline py-row-block text-text-secondary">{it.identifier ?? "—"}</td>
+                  <td className="px-row-inline py-row-block text-text-secondary">{it.city ?? "—"}</td>
+                  <td className="px-row-inline py-row-block">
                     {it.isArchived ? (
-                      <span className="inline-flex items-center gap-1 text-xs text-zinc-500">
-                        <ArchivedIcon /> Arkiverad
+                      <span className="inline-flex items-center gap-ds-3 text-ds-14 text-text-primary">
+                        <span aria-hidden="true" className="size-ds-3 shrink-0 rounded-full bg-text-tertiary" /> Arkiverad
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 text-xs text-emerald-700">
-                        <ActiveIcon /> Aktiv
+                      <span className="inline-flex items-center gap-ds-3 text-ds-14 text-text-primary">
+                        <span aria-hidden="true" className="size-ds-3 shrink-0 rounded-full bg-signal" /> Aktiv
                       </span>
                     )}
                   </td>
@@ -226,12 +244,12 @@ export function CustomerList({
 function ListHeader({ onCreate }: { onCreate: () => void }) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <h1 className="text-2xl font-semibold text-zinc-900">Kunder</h1>
+      <h1 className="text-title font-medium text-text-primary">Kunder</h1>
       <button
         type="button"
         onClick={onCreate}
         data-testid="new-customer-button"
-        className="inline-flex items-center gap-2 rounded-md bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+        className="inline-flex min-h-control-lg items-center gap-2 rounded-control bg-ink px-4 py-2 text-body font-medium text-white hover:bg-n-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
       >
         <PlusIcon /> Ny kund
       </button>
@@ -253,17 +271,7 @@ function ErrorIcon() {
     </svg>
   );
 }
-function ArchivedIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="size-3.5">
-      <path d="M3.75 6.75h16.5M4.5 6.75 5.4 18a1.5 1.5 0 0 0 1.5 1.35h10.2a1.5 1.5 0 0 0 1.5-1.35l.9-11.25M9.75 10.5h4.5" />
-    </svg>
-  );
-}
-function ActiveIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="size-3.5">
-      <path d="m4.5 12.75 6 6 9-13.5" />
-    </svg>
-  );
+function CustomerNavigationLabel({name}: {readonly name: string}) {
+  const {pending} = useLinkStatus();
+  return <>{name}{pending && <span role="status" className="ml-2 text-caption text-text-tertiary">Laddar kund…</span>}</>;
 }

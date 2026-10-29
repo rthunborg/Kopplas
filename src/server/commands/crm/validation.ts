@@ -101,6 +101,7 @@ export interface CreateCustomerInput {
 /** Validated `updateCustomer` input — `id` + the mutable fields (all optional). */
 export interface UpdateCustomerInput {
   readonly id: string;
+  readonly expected_customer: ExpectedCustomerFacts;
   readonly display_name?: string;
   readonly personnummer?: string;
   readonly org_nr?: string;
@@ -111,6 +112,40 @@ export interface UpdateCustomerInput {
   readonly address_line2?: string;
   readonly postal_code?: string;
   readonly city?: string;
+}
+
+/** Original checked detail facts, comparison input only; never an authorization grant. */
+export interface ExpectedCustomerFacts {
+  readonly id: string;
+  readonly customer_type: CustomerType;
+  readonly display_name: string;
+  readonly personnummer: string | null;
+  readonly org_nr: string | null;
+  readonly contact_name: string | null;
+  readonly email: string | null;
+  readonly phone: string | null;
+  readonly address_line1: string | null;
+  readonly address_line2: string | null;
+  readonly postal_code: string | null;
+  readonly city: string | null;
+  readonly archived_at: string | null;
+}
+
+const EXPECTED_KEYS = ["id", "customer_type", "display_name", "personnummer", "org_nr",
+  "contact_name", "email", "phone", "address_line1", "address_line2", "postal_code", "city", "archived_at"] as const;
+
+export function isExpectedCustomerFacts(raw: unknown, target: string): raw is ExpectedCustomerFacts {
+  if (!isRecord(raw) || Array.isArray(raw)) return false;
+  const keys = Object.keys(raw);
+  if (keys.length !== EXPECTED_KEYS.length || EXPECTED_KEYS.some((key) => !Object.hasOwn(raw, key))) return false;
+  if (!isUuidLike(raw.id) || raw.id.toLowerCase() !== target.toLowerCase()) return false;
+  if (!(CUSTOMER_TYPES as readonly unknown[]).includes(raw.customer_type) || typeof raw.display_name !== "string") return false;
+  for (const key of EXPECTED_KEYS.slice(3)) {
+    if (raw[key] !== null && typeof raw[key] !== "string") return false;
+  }
+  if (raw.archived_at !== null && (typeof raw.archived_at !== "string" || !Number.isFinite(Date.parse(raw.archived_at)))) return false;
+  try { return new TextEncoder().encode(JSON.stringify(raw)).byteLength <= 16 * 1024; }
+  catch { return false; }
 }
 
 /** Validated `{ id }` input shared by the archive commands. */
@@ -187,6 +222,7 @@ export function validateUpdateCustomer(
 ): ValidationResult<UpdateCustomerInput> {
   if (!isRecord(raw)) return fail;
   if (!isUuidLike(raw.id)) return fail;
+  if (!isExpectedCustomerFacts(raw.expected_customer, raw.id)) return fail;
 
   // display_name, when supplied, must be non-empty.
   if (isPresent(raw.display_name) && !isNonEmptyText(raw.display_name)) {
@@ -208,6 +244,7 @@ export function validateUpdateCustomer(
 
   const value: UpdateCustomerInput = {
     id: raw.id as string,
+    expected_customer: raw.expected_customer,
     display_name: isPresent(raw.display_name)
       ? (raw.display_name as string).trim()
       : undefined,

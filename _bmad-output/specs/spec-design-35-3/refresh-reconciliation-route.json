@@ -1,0 +1,24 @@
+{
+  "phase": "critical-conflict-reconciliation",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "reason": "Reconcile R1-P04 recovery expectation with immutable stale/draft/discard contract and observed Next16.4.1 MPA fallback; no new review round or API authorization",
+  "status": "route-recorded-before-written-decision",
+  "recordedUtc": "2026-10-29T14:54:46.096739+00:00",
+  "authority": "Existing explicit High Build Auto delegate; parent requires exact source reconciliation within existing allocation",
+  "inputs": [
+    "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-3.md:53",
+    "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md:148",
+    "docs/quality/story-35-3-stale-authority-prerequisite-plan-2026-10-29.md:62",
+    "docs/quality/story-35-3-stale-authority-prerequisite-plan-2026-10-29.md:90",
+    "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23/EXPERIENCE.md:105",
+    "node_modules/next/dist/client/components/router-reducer/fetch-server-response.js:135",
+    "node_modules/next/dist/client/components/app-router.js:243"
+  ],
+  "archiveBoundaryReconciliation": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Production-reachability triage of original R1-P02 against actual installed Next transition/admission behavior; no new product review round",
+    "recordedUtc": "2026-10-29T15:13:10.313297+00:00"
+  }
+}

@@ -2,13 +2,13 @@
 title: "Story 35.3: Record Inputs And Tables"
 type: feature
 created: "2026-10-29"
-status: ready-for-dev
+status: blocked
 review_loop_iteration: 0
-followup_review_recommended: false
+followup_review_recommended: true
 warnings: [oversized]
 deferred: []
 tracking_key: 35-3-record-inputs-and-tables
-baseline_revision: 431c27f63183dc0dde0eea44da1427f78adf74c4
+baseline_revision: dbb18f9cbb06c4f684adb8f8b716bedc94b00a96
 context:
   - docs/process/review-order.md
   - docs/quality/story-35-3-operative-approval-2026-10-29.json
@@ -125,7 +125,7 @@ Twenty ordered tasks form the current plan. All remain unchecked; implementation
 
 2026-10-29 — Actual installed Build Auto step-02 resume after committed prerequisite approval. Added the exact approved customer.update baseline/SQL/command/tests and concrete G01/G03/G04 planning bindings. Preserve frozen intent/canonical bytes/raw pins and the historical blocked result. Operative amendment resolves the old allocation block without weakening any canonical outcome. No implementation/coverage is asserted.
 
-## Review Triage Log
+## Historical planning triage log
 
 No product code review or implementation occurred. The separately recorded High read-only contract assessment is planning evidence, not a broad PR review round or runtime proof.
 
@@ -165,6 +165,91 @@ Required actual customer and affected shared-consumer images are production-serv
 
 After blocker resolution and authorized implementation, follow existing Phase2 plan: focused Node tests for actual helper behavior; `pnpm exec playwright test tests/e2e/crm/customers.e2e.spec.ts` against configured production server at 360×640 and desktop; applicable lint/typecheck/build/lock/audit/containment/golden gates; required full `SUPABASE_TEST_REQUIRED=1` integration/RLS and recovery-storage evidence with executed/failed/skipped counts. No `next dev`. Actual changed UI and representative shared consumers require exact-head captures, contrast/accessibility assertions, authenticated reference/visual acceptance and `node scripts/quality/frontend-controller.mjs local --base 431c27f63183dc0dde0eea44da1427f78adf74c4` before completion. Completion helper mutations use the project wrapper. Final author trail is written only after implementation; no empty final trail is manufactured now. E35-3-REL-1 UI, REL-2 QA/accessibility and REL-3 Coordinator remain later named-owner obligations in existing ledgers; `release_ready=false`.
 
+## Implementation author record — 2026-10-29
+
+Author route: gpt-6.1-sol High for original-facts authority, transactional integrity, uncertainty and Round1 fixes. Ordinary presentation was delegated to Sol Low in disjoint allocated files; the Round1 delegate owned only CustomerList's written StatusIndicator/EmptyState anatomy. Root retains Git, publication, resources, state and review coordination. Development completion and release readiness remain false.
+
+The single CLI-generated `supabase/migrations/20261029132339_customer_update_expected_facts.sql` was reserved before its body was written. Prior119 migration bytes remain unchanged. Its new transaction was applied only to the independently qualified owned loopback stack after exact prior119 ledger verification; no local migration-history write, production application, reset or deployment occurred. Backend code and SQL were not widened for Round1.
+
+Native sorting/filtering/selection retain stable customer identity and independent detail links. Shared fields preserve caller associations and hooks. The customer safety hint is origin-wide, per-tab and payload-free; only the originating live definite attempt may clear it. Unknown/pre-existing hints have no lookup or manual reset. Archive completion now captures the parent's live layout-connection generation at dispatch, including retained-view reconnection; pathname equality is not liveness. Edit admission stays blocked through matching success/navigation, while inherited facility/contact defaults remain unchanged.
+
+Round1 conflict recovery follows the written [High reconciliation](../refresh-contract-reconciliation.md), whose authority is explicit G03 Discard and the pinned draft/stale requirements; an earlier coordinator attribution to approved Design Notes was corrected. Cancel and known offline preserve draft/baseline/history with zero read dispatch. Loading requires explicit Discard consent and discloses the native page/browser retry limit after abandonment. Pending fields prevent new edits; only a delivered checked read establishes new baseline facts. Transition completion alone is not authority. No new read/API/action, Flight parser, payload storage or reconciliation receipt was introduced. Generic abandonment still uses an inert decision so Save-and-continue includes successful controls.
+
+Current Round1 focused required integration passed **33/33, zero skipped**, including independent legal changes to all eleven mutable facts, immutable-type comparison/patch rejection, whole-row/no-audit stale assertions, real RPC overloads, concurrency, authority and rollback. The first new test run was32pass/1fail because its archive fixture used the Seller editor; correct archive denial was preserved and the fixture actor changed to the entitled administrator. Combined production build, scoped lint/typecheck and diff check passed; logs and exact limits are in [author-verification.json](../../../test-artifacts/design-35-3/author-verification.json).
+
+All failed attempts remain preserved: initial5pass/3fail, traversal/reflow1pass/1fail, combined6pass/2fail, corrected-binding1pass/1fail, and requested-history0pass/1fail. The original unmounted-A/new-draft R1-P02 production claim was [withdrawn after actual runtime qualification](../archive-runtime-reconciliation.md); an unsafe general pathname predicate was removed, but no actual unmounted ABA pass or universal router guarantee is claimed. The revised outer regression exposed distinct R1-P13: a matching archive callback overrode requested Dashboard history with Kunder. Dispatch-bound entry/departure observation now gates only that continuation, separately from originating live result ownership; it never prevents navigation or repairs history.
+
+Final frozen source `f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f` passed the history target **1/1**, full desktop **32/32** (61.856s) and full360×640 **32/32** (52.500s), all zero failed/skipped/flaky. All18 source/test/SQL hashes were reverified unchanged after those runs. The original delayed A-read/B-selection case remains intact and passed. B06 proves Cancel/offline zero-read draft/baseline/history retention, explicit Discard, protected pending fields, delivered checked read, separate save and genuine503/native fallback without mutation or saved claim. B03 separately proves real archive lost-response/storage/replay protections. Twelve computed composite samples pass bounded text/focus assertions: field/selection17.820, destructive9.299, error8.363 and focus17.820; disabled text6.594 exceeds the owner-required4.5, as Round2 verified; no exemption or waiver is used. Historical raw probe labels remain unchanged. Controlled200%CSSzoom at300px effective form width and reduced360×320 visible viewport pass as proxies, not physical OS keyboard/device execution. Forty-four fresh previewPNGs include eight primary desktop/phone loaded list/detail/create/edit views. They are fullPage previews and may exceed viewport. Controlled503 HTML proves a synthetic fault/native fallback, NOT actual CustomerList.loadError UI; that actual error frame remains for root formal replay. Earlier image bytes/labels remain unchanged.
+
+Historical pre-Round1 evidence is retained: focused Node121/121, focusedDB21/21, desktop28/28, phone28/28 and primary desktop4/4, all zero skipped, plus24/24 presentation unit after owned whitespace cleanup. It does not silently qualify changed Round1 flows. Full local units remain3777pass/2fail/1skip (unchanged Windows CRLF calendar assertions, Linux-xattr skip). First fullDB native2170total/1916pass/164fail/76pending and budget2 retry2140total/2029pass/45fail/52pending remain failed; each has14 per-assertion pending tests. No third broad localDB retry, historical SQL normalization or unrelated repair occurred. Separate physical recovery was not executed locally; its standard integration skip is not proof.
+
+Configured independent Round1 completed all six layers and initially requested twelve patches. Its originalP02 production-defect claim was withdrawn; distinct observedP13 was added and preserved separately. The actionable fixes and written High decisions are implemented/essential-tested and independently confirmed by targeted Sol High Round2 PASS/No findings. The external PATH shim failednative1; the same payload/SolHigh/read-only review repaired only executable resolution to the verified bundled native executable and passednative0. Findings and reconciliation are preserved. [Targeted Round2](../../../test-artifacts/design-35-3/product-review-round2.json) actually completed PASS/No findings, verifying all20 stops,18raw/6normalized source hashes, targeted diff hash,44+60preview hashes and native33DB/32desktop/32phone/1history reports. It did not rerun services/browser and grants no overall readiness pass; fresh Coordinator Round3 remains pending. The [full15-consumer map](../../../test-artifacts/design-35-3/shared-consumer-impact.json) links root's [exact supplemental60PNG receipt](../../../../tmp/private/story35-3/inherited-consumer-previews/live-capture-receipt.json) for11consumers across both viewports, with all60 hashes reverified by this author and Round2; its union with the existing four consumers is15. The [current44-image inventory](../../../../tmp/private/story35-3/capture-inventory-round1-navigation.json) separately retains its exact source binding. Conditional errors and business save/upload/money/tax flows are not claimed. All prior and current captures remain source-bound previews; older PNG/JSONL bytes and candidate labels are preserved.
+
+Fresh Coordinator Round3, exact-head native full CI/database/direct physical recovery, formal checkpoint-bound viewport images/controller and authenticated owner initial new-composition acceptance remain development gates. Root formal replay will use fullPage:false and separate scrolled footer frames after checkpoint; it has not run here. The incomplete delivery record retains its historical schema rejection; that native diagnostic is not project completion-gate/frontend readiness proof. This metadata reconciliation invokes no delivery check or transition/finalization helper; any future attempt must use the project completion-gate wrapper before helper execution. Exhaustive REL-1 device/visual/reflow/contrast, REL-2 manual/physical keyboard/screen-reader/daylight and REL-3 PhaseB consolidation remain separately owned release work. `release_ready=false`.
+
+Post-Round2 capture-infrastructure TESTONLY delta (root explicitly authorized): `captureRecordState` now opts into viewport-only native screenshots with `E35_CAPTURE_VIEWPORT_ONLY=1`; default fullPage:true and all functional assertions remain unchanged. Separate final18-path source digest `5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545` is in `tmp/private/story35-3/source-manifest-post-r2-capture.json`; all11 production paths and SQL hashes match reviewedf962. This flag was not Round2 reviewed. Existing B01 alone passed1/1 at each viewport, with eight raw PNG headers/hashes proving exact1440×900 and360×640; scoped lint/typecheck passed. [Bounded capture proof](../../../../tmp/private/story35-3/post-r2-viewport-capture-proof.json) links the fresh `post-r2-viewport-only-captures` directory. Original32desktop/32phone/33DB/1history counts remain bound to f962; no full functional rerun or new broad review is claimed. These eight images are additional PREVIEWs, not retroactive qualification of the original44+60 PNGs. Root owns later formal full-head protocol and separate scrolled footer frames; actual CustomerList.loadError remains distinct from synthetic503 fault proof. Fresh Coordinator Round3 must bind the actual final head including this flag.
+
+## Review Findings
+
+**Round 1 of 3**
+
+Completed the actual configured six layers. Original PATH external attempt failed; same-payload native executable High/read-only repair passed. Actual fixes, originalP02 withdrawal and distinct observedP13 are preserved in product-review-round1.json and written High reconciliations.
+
+**Round 2 of 3**
+
+Completed targeted independent Sol High fix/regression review: PASS / No findings, 20 author stops verified. The later opt-in test-capture flag is a disclosed post-Round2 infrastructure-only delta with bounded static/B01 viewport proof; all11 production files and SQL unchanged. Fresh Coordinator Round3 must bind the actual final Git head. No broad fourth pass is authorized; no development/readiness/acceptance claim is made.
+
+## Suggested Review Order
+
+Author: the35.3 implementation/fix author (Sol High), incorporating the recorded Low delegate's written visual choices. Refreshed after actual targeted Round2 PASS and the explicitly authorized post-review capture-infrastructure-only flag against the current uncommitted worktree above build baseline `dbb18f9cbb06c4f684adb8f8b716bedc94b00a96`; this guide grants no approval.
+
+### Start with customer identity and written presentation
+
+Native controls separate selection from navigation and preserve selected identity across sorting/filtering. Written status/empty anatomy uses foundation tokens; shared field changes preserve existing associations and hooks.
+
+- `src/components/crm/CustomerList.tsx:41` — `export function CustomerList`: binds checked rows to the journey.
+- `src/components/crm/CustomerList.tsx:218` — `gap-ds-3 text-ds-14`: shows visible status words beside decorative6px dots.
+- `src/components/crm/FormField.tsx:166` — `export function FormErrorSummary`: links errors to actual named controls.
+- `tests/e2e/crm/customers.e2e.spec.ts:432` — `const renderedOrder`: asserts fixture identities in both rendered sort directions (AC1/2).
+
+### Follow original facts through the atomic update boundary
+
+The approved thirteen-fact comparison runs under the authorized tenant-and-ID row lock before existing patch/audit. It adds no version/receipt/ABA guarantee; the old signature fails closed and exact update PT409 uses the existing conflict code. Real stale tests legally vary each mutable fact, retain immutable identity/type negatives and compare the whole stored row with zero attempted audit.
+
+- `src/features/crm/form-parsing.ts:134` — `form.get("expected_customer")`: keeps original JSON separate from echoed edits.
+- `supabase/migrations/20261029132339_customer_update_expected_facts.sql:56` — `select * into v_current`: locks and compares before the mutation.
+- `src/server/commands/crm/crm-db.ts:92` — `COMMAND_CONFLICT`: keeps conflict mapping operation-local.
+- `tests/integration/commands/crm-customer-commands.int.test.ts:305` — `actual RPC rejects independently stale`: proves each fact blocks whole-row overwrite/no-audit (AC3/6/7).
+
+### Bind archive outcomes to the originating live view
+
+A parent-owned capability survives same-view child removal, while each layout connection captures a new generation. Customer edit admission remains blocked through matching archive success/navigation. A separately captured entry/departure intent prevents the callback from overriding requested history. The original unmounted/new-draft allegation was withdrawn after runtime qualification; actual Back URL/history/settled DOM and exactly-one archive assertions cover distinct observedP13.
+
+- `src/components/crm/CustomerDetail.tsx:77` — `const archiveView=`: captures dispatch ownership above the removable archive child.
+- `src/components/crm/ArchiveButton.tsx:88` — `const continueNavigation=`: separates destination intent from live result ownership.
+- `src/components/crm/customer-presentation.ts:168` — `export function customerSubmissionSafety`: fails closed on unresolved or unavailable storage.
+- `tests/e2e/crm/customers.e2e.spec.ts:493` — `B03 R1 archive: pending edit exclusion`: proves requested history/settled DOM and exactly-one archive.
+
+### Preserve drafts until explicit abandonment and checked review
+
+The High reconciliation requires explicit Discard consent before a checked refresh; Cancel/offline retain input and baseline. After consent, native failure/retry limits are disclosed and new edits remain protected. Only delivered checked defaults advance the baseline; the safety hint is independent. Generic save/discard/cancel and precommit navigation retain their existing authority.
+
+- `src/components/crm/CustomerDialog.tsx:143` — `if(refreshPending) refreshStarted.current=true`: requires completed transition plus new checked-read identity.
+- `src/components/crm/CustomerDialog.tsx:165` — `const refreshCheckedFacts=`: rechecks admission/connectivity before explicit abandonment.
+- `src/components/crm/CustomerDialog.tsx:286` — `inert={Boolean(decision)||refreshConsent}`: keeps decision controls from omitting save fields.
+- `src/components/crm/CustomerDialog.tsx:414` — `function DirtyDecision`: owns consent disclosure and focused cancel/discard/save choices.
+
+### Read actual assertions and incomplete gate evidence
+
+AC1/2 map to B01; AC3 to B02/B03 and33realDB assertions; AC4 to B08 enlargement/reflow/occlusion proxies and computed composites; AC5 to B04/B06/B07; AC6/7 to B05/B06/B09 and real authority/concurrency/audit tests. B10 preserves inherited facility/contact, calculation Field and file-index SelectField hooks without upload. The exact supplemental60PNG receipt/full15consumer map and current44PNG inventory above remain source-bound previews, not conditional error/business-flow proof. Synthetic503 HTML is not actual CustomerList.loadError UI. Round2 verified all104 hashes but did not confer formal visual acceptance. Current final target1/1, desktop32/32, phone32/32 and focusedDB33/33 pass with zero skips; pre-Round1 Node121/121 reuse is limited to unchanged helpers. Targeted independent Round2 PASS is executed evidence atf962, with reviewer scope/limits in its receipt. The post-review capture-only flag has separate B01×2/exact-PNG proof and source manifest; it is not included in that Round2 pass. Fresh Coordinator Round3 is pending. Native local full-suite failures remain development blockers; historical schema rejection is only a diagnostic.
+
+- `tests/e2e/crm/customers.e2e.spec.ts:634` — `B06 E35-3-T-stale/late-result/confirmed`: proves consent/offline/checked read/save and genuine503 native fallback.
+- `tests/e2e/crm/customers.e2e.spec.ts:879` — `B08 E35-3-T-AC4`: labels CSS zoom/visible-viewport proxies and measures rendered composites.
+- `_bmad-output/test-artifacts/design-35-3/author-verification.json:6` — `"development_complete": false`: retains exact commands/counts and unresolved development gates.
+- `_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json:37` — `"independent_review"`: keeps the incomplete record incapable of claiming completion.
+
+Evidence limits: controlled transport/503 pages are synthetic faults around actual isolated commands, not production outage proof. Other browser/device behavior, physical OS keyboard, screen-reader/daylight, cross-tab/restart recovery and exhaustive visual comparison remain unexecuted release work. Original unmountedABA is not established and its classification is withdrawn, never passed. Fresh Coordinator Round3, exact-head fullCI/direct physical recovery, formal viewport images/controller and owner initial visual acceptance remain required and unproved here. Existing fullPage previews can exceed viewport; root formal replay will use fullPage:false plus separate scrolled footer frames, not executed here.
+
 ## Historical planning result — blocked, retained from 2026-10-29
 
 Status: blocked
@@ -175,6 +260,26 @@ Planning HALT after step-02. Ten ordered adapter planning tasks recorded; none i
 G01 safe unknown blocking is possible but completed identity-bound create reconciliation is unavailable; SERVER_ERROR alone does not prove rollback. G03 dirty-close/busy fits owned caller; exact route/history precommit protection remains unbound. G04 actual transport fixture binding remains future verification work. No AC is waived or replaced by local generation semantics. No implementation/test/immutable source change, runtime coverage, visual acceptance, development completion or release readiness is asserted. Completion hook preserves this blocked planning result and does not manufacture an author trail.
 
 ## Auto Run Result
+
+Status: blocked
+Blocking condition: Required exact-head native CI and direct recovery-Storage proof, fresh Coordinator Round3, formal current-head viewport captures/frontend controller and authenticated owner initial composition acceptance remain pending. The executable frontend gate rejects the uncommitted candidate; no done/finalization helper or commit is authorized by this result.
+
+Implemented the individually approved customer record journey and complete original-facts customer.update prerequisite. Actor/tenant checks, required six-argument RPC, fail-closed old signature, locked comparison/write/audit and existing lifecycle remain intact. Customer selection/navigation, protected drafts, uncertainty, explicit Discard/read recovery and current navigation continuation have actual bounded evidence. No legacy evidence, new API/read action, payload storage, global guard or additional migration was introduced.
+
+Files changed and one-line purposes: see [absolute-path file manifest](../../../test-artifacts/design-35-3/build-auto-final-files.json). Migration is `supabase/migrations/20261029132339_customer_update_expected_facts.sql`; prior119 immutable migrations remain unchanged. Build baseline is `dbb18f9cbb06c4f684adb8f8b716bedc94b00a96`; product/visual baseline remains `431c27f63183dc0dde0eea44da1427f78adf74c4`.
+
+Review: Round1 final12 patches addressed (high2, medium8, low2),0 deferred,8 rejected/withdrawn claims with reasons. Original12/high3 -> P02 withdrawal -> distinct observedP13 history remains visible. Targeted Round2 PASS / No findings. Follow-up recommendation=true from actual patched high findings and score26 (3*8+2); next fresh Coordinator review is Round3 within the cap.
+
+Actual verification: focused unit121/0/0 and final presentation24/0/0; focused required DB33/0/0; actual production desktop32/0/0, phone32/0/0 and history1/0/0; build/typecheck/scopedlint/diff and20 review stops passed. Post-Round2 capture-only flag has scoped lint/typecheck and B01 desktop1/0/0 +phone1/0/0, eight actual PNGs at exact1440x900/360x640. Round2 reviewed digest `f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f`; final test-only capture digest `5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545`. Production11+SQL unchanged across that final delta.
+
+Local full unit remains FAILED3777pass/2fail/1Linux-xattrskip; unchanged calendar test/runtime/historical SQL blob provenance is recorded. Bounded full DB retry remains FAILED2029pass/45fail/52nativepending, with14 assertion-pending/52skipped; native exact-head CI must qualify the required lane. The separate physical recovery-Storage proof did not run locally. These are development blockers, not deferred polish.
+
+Rendered contrast samples and controlled enlargement/occlusion proxies passed with stated limits; they do not prove physical OS keyboard/device behavior. Prior44+60 images remain source-bound previews; synthetic503 HTML is fault proof, not actualCustomerList.loadError UI. Formal exact-viewport replay, the existing subject-scoped read-proxy qualification, current-head package/controller and owner initial acceptance remain root-owned gates. Incomplete delivery record is [here](../../../auto-bmad/delivery/spec-design-35-3-35-3.json); no schema/preview result substitutes for those gates.
+
+Residual risks: unexecuted final-head CI/physical recovery/formal visual acceptance and fresh final review. E35-3-REL-1/2/3 remain named release work in delivery; review-deferred count0, release_ready=false, development_complete=false. Root owns Git/publication, all managed runtimes and their Stop requests. This HALT preserves resumable blocked state, not completed implementation or release approval.
+
+### Retained planning result (verbatim, historical)
+
 
 Status: ready-for-dev
 
@@ -189,6 +294,36 @@ The plan meets actionable/logical/testable/surface-anchored/complete/sufficient/
 [The dated prerequisite approval](../../../../docs/quality/story-35-3-prerequisite-approval-2026-10-29.json) and [SPEC operative amendment](../SPEC.md#operative-prerequisite-approval-amendment--2026-10-29) supersede the historical approval/allocation block only within their exact customer.update scope. The frozen plan is approved; this project has never been released and has no older callers. Preserve the original seven/two allocation and add only the four backend/four test paths plus one future root-reserved CLI-generated forward migration specified there. Existing checked reads/actions/action-state remain read-only. Canonical obligations are unchanged.
 
 Frontmatter blocked → draft is the supported recovery for the prior planning-time block, permitting separate folder+ID re-planning after root commits the metadata. This dated note does not rewrite the Auto Run Result above or assert that the source prerequisite exists, the stale runtime obligation passes, planning is complete or state blockers have cleared. Earlier blocked/read-only wording remains a historical description of that planning exit; the new approved amendment controls the next plan. Root clears state blockers only after actual successful re-planning. Halt the next dispatch after planning; no product, tests or migration are written in this bridge. Standing qualified production migration authority is in AGENTS.md; no SQL is applied now. Development complete=false and release_ready=false.
+
+## Review Triage Log
+
+### 2026-10-29 — Review pass (Round1, configured six layers)
+- intent_gap: 0
+- bad_spec: 0
+- patch: 12: (high2, medium8, low2)
+- defer: 0
+- reject: 8
+- addressed_findings:
+  - `[high]` `[patch]` R1-P01: customer edit admission remains blocked through matching archive/navigation.
+  - `[high]` `[patch]` R1-P03: fresh-read/reset cannot discard new values entered during recovery.
+  - `[medium]` `[patch]` R1-P04: explicit Discard consent, offline protection and honest supported read-failure limits; original stronger claim and exact source reconciliation retained.
+  - `[medium]` `[patch]` R1-P05/P06/P07/P08: archive uncertainty, offline zero-dispatch/reconnect, independent original-fact stale cases and actual rendered order now asserted.
+  - `[low]` `[patch]` R1-P09/P10: written StatusIndicator and EmptyState anatomy.
+  - `[medium]` `[patch]` R1-P11/P12: controlled enlargement/occlusion and measured composites, with physical-device limits.
+  - `[medium]` `[patch]` R1-P13: actual late archive continuation preserves the requested navigation entry/intent and history; observed caller and proof retained.
+
+Original R1-P02 unmounted/new-draft production classification was withdrawn after actual framework qualification, not counted as a proven ABA fix. The origin guard remains; failed probes and the separate observedP13 are retained. See product-review-round1.json for exact claims, dispositions and evidence. No canonical/pinned contract was waived.
+
+### 2026-10-29 — Review pass (Round2, targeted fixes only)
+- intent_gap: 0
+- bad_spec: 0
+- patch: 0
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - none
+
+Targeted independent High verdict PASS / No findings; actual source/assertions/native reports and20 reference stops checked. This is not overall readiness or formal image acceptance. The post-Round2 opt-in capture-only flag is separately disclosed and awaits final-head Coordinator Round3.
 
 <!-- canonical-body-copy: spec-35-3-record-inputs-and-tables.md -->
 

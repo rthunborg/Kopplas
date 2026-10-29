@@ -13,7 +13,7 @@
  * mutations go through the server actions → 3.1 envelope commands; this component is
  * presentation + interaction only, never the security boundary.
  */
-import { useState, type ReactNode } from "react";
+import { useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { CustomerDialog, type CustomerEditDefaults } from "./CustomerDialog";
 import { CustomerTypeBadge } from "./CustomerTypeBadge";
@@ -30,6 +30,10 @@ import type {
   CustomerDetailRow,
   FacilityRow,
 } from "@/features/crm/read";
+
+function currentNavigationEntryKey() {
+  return (window as unknown as {navigation?:{currentEntry?:{key:string}}}).navigation?.currentEntry?.key;
+}
 
 /**
  * The Phase-A related areas whose owning story does not exist yet (honest empties). "Filer"
@@ -66,10 +70,38 @@ export function CustomerDetail({
   const router = useRouter();
   const [editOpen, setEditOpen] = useState(false);
   const [revealPnr, setRevealPnr] = useState(false);
+  const [archivePending,setArchivePending]=useState(false);
+  const liveArchiveGeneration=useRef<symbol|null>(null);
+  const departureIntent=useRef(0);
+  // A new mount or target has a new capability, even when the URL later returns to A.
+  const archiveView=useMemo(() => ({capture: () => {
+    const token=liveArchiveGeneration.current;
+    const intent=departureIntent.current,href=window.location.href,entry=currentNavigationEntryKey();
+    return {isCurrent: () => token!==null&&liveArchiveGeneration.current===token,
+      // Entry/URL compare continuation intent only; neither is view-liveness authority.
+      canContinue: () => departureIntent.current===intent&&window.location.href===href&&currentNavigationEntryKey()===entry,
+      setPending: (pending: boolean) => { if(token!==null&&liveArchiveGeneration.current===token) setArchivePending(pending); }};
+  }}),[]);
+  useLayoutEffect(() => {
+    // Next may retain the component while disconnecting its layout effects during traversal.
+    const token=Symbol(customer.id); liveArchiveGeneration.current=token;
+    queueMicrotask(() => { if(liveArchiveGeneration.current===token) setArchivePending(false); });
+    const departed=() => {departureIntent.current++;};
+    const clicked=(event:MouseEvent) => {
+      const anchor=(event.target as Element)?.closest?.("a[href]") as HTMLAnchorElement|null;
+      if(!anchor||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey
+        ||anchor.target&&anchor.target!=="_self"||anchor.hasAttribute("download")||anchor.origin!==location.origin) return;
+      if(anchor.pathname!==location.pathname||anchor.search!==location.search) departed();
+    };
+    // Observe component-owned departure intent; never prevent navigation or rewrite history.
+    document.addEventListener("click",clicked,true); window.addEventListener("popstate",departed);
+    return () => {liveArchiveGeneration.current=null;document.removeEventListener("click",clicked,true);window.removeEventListener("popstate",departed);};
+  },[customer.id]);
 
   const isPrivate = customer.customer_type === "private";
 
-  const editDefaults: CustomerEditDefaults = {
+  // Only a checked server read supplies a new object; client-only renders keep its identity.
+  const editDefaults: CustomerEditDefaults = useMemo(() => ({
     id: customer.id,
     customer_type: (customer.customer_type as CustomerEditDefaults["customer_type"]) ?? "company",
     display_name: customer.display_name,
@@ -82,7 +114,8 @@ export function CustomerDetail({
     address_line2: customer.address_line2,
     postal_code: customer.postal_code,
     city: customer.city,
-  };
+    archived_at: customer.archived_at,
+  }),[customer]);
 
   const facilityOptions: FacilityOption[] = facilities.map((f) => ({
     id: f.id,
@@ -93,23 +126,24 @@ export function CustomerDetail({
     <section className="mx-auto max-w-4xl">
       {/* Header: name + type badge + edit. */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-semibold text-zinc-900">
+        <div className="flex min-w-0 flex-wrap items-center gap-3">
+          <h1 className="break-words text-title font-medium text-text-primary">
             {customer.display_name}
           </h1>
           <CustomerTypeBadge type={customer.customer_type} />
           {customer.archived_at && (
-            <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600">
+            <span className="rounded-chip bg-sunken px-2 py-0.5 text-caption text-text-tertiary">
               Arkiverad
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
-            onClick={() => setEditOpen(true)}
+            onClick={() => { if(!archivePending) setEditOpen(true); }}
+            disabled={archivePending}
             data-testid="edit-customer-button"
-            className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            className="min-h-control-lg rounded-control border border-border-strong px-3 py-1.5 text-body font-medium text-text-secondary hover:bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
           >
             Redigera
           </button>
@@ -117,6 +151,7 @@ export function CustomerDetail({
             <ArchiveButton
               kind="customer"
               id={customer.id}
+              customerView={archiveView}
               label="Arkivera kund"
               confirmMessage="Arkivera den här kunden? Den tas bort från den aktiva listan."
               onArchived={() => router.push("/customers")}
@@ -126,10 +161,10 @@ export function CustomerDetail({
       </div>
 
       {/* Summary card. */}
-      <dl className="mt-6 grid grid-cols-1 gap-4 rounded-lg border border-zinc-200 bg-white p-6 sm:grid-cols-2">
+      <dl className="mt-6 grid grid-cols-1 gap-4 rounded-card border border-border-subtle bg-card p-6 sm:grid-cols-2">
         {isPrivate ? (
           <Field label="Personnummer">
-            <span className="flex items-center gap-2">
+            <span className="flex flex-wrap items-center gap-2">
               <span data-testid="customer-personnummer">
                 {revealPnr
                   ? customer.personnummer ?? "—"
@@ -139,7 +174,7 @@ export function CustomerDetail({
                 <button
                   type="button"
                   onClick={() => setRevealPnr((r) => !r)}
-                  className="text-xs font-medium text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                  className="inline-flex min-h-control-lg min-w-control-lg items-center justify-center rounded-control text-label font-medium text-text-primary underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                 >
                   {revealPnr ? "Dölj" : "Visa"}
                 </button>
@@ -220,10 +255,10 @@ function Field({
 }) {
   return (
     <div>
-      <dt className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+      <dt className="text-label font-medium text-text-tertiary">
         {label}
       </dt>
-      <dd className="mt-0.5 text-sm text-zinc-900">{children}</dd>
+      <dd className="mt-1 break-words text-body text-text-primary">{children}</dd>
     </div>
   );
 }

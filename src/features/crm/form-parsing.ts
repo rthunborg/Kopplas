@@ -17,6 +17,7 @@
 import {
   CUSTOMER_TYPES,
   type CustomerType,
+  isExpectedCustomerFacts,
 } from "@/server/commands/crm/validation";
 
 /** A parsed form: the raw command input + any client-detected field messages. */
@@ -129,6 +130,14 @@ export function parseUpdateCustomerForm(form: FormData): ParsedForm {
   const values = collectValues(form, ["id", ...CUSTOMER_FIELDS]);
 
   if (!id) fieldErrors.id = REQUIRED_MSG;
+  let expectedCustomer: unknown;
+  const original = form.get("expected_customer");
+  if (typeof original === "string" && new TextEncoder().encode(original).byteLength <= 16 * 1024) {
+    try { expectedCustomer = JSON.parse(original); } catch { /* Invalid original facts fail closed. */ }
+  }
+  if (!id || !isExpectedCustomerFacts(expectedCustomer, id)) {
+    fieldErrors.expected_customer = "Kundens ursprungliga uppgifter saknas. Läs in kunden på nytt.";
+  }
   const displayName = field(form, "display_name");
   // display_name is optional on update, but if the field is present-and-blank the
   // user likely cleared a required value — surface it next to the field.
@@ -138,6 +147,7 @@ export function parseUpdateCustomerForm(form: FormData): ParsedForm {
 
   const input: Record<string, unknown> = {
     id,
+    expected_customer: expectedCustomer,
     display_name: displayName,
     personnummer: field(form, "personnummer"),
     org_nr: field(form, "org_nr"),

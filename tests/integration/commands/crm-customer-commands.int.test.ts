@@ -299,6 +299,47 @@ async function seedEditableCustomer(): Promise<string> {
 }
 
 describe("35.3 E35-3-T-stale customer expected-facts authority (active RED)", () => {
+  for (const [fact,value] of Object.entries({display_name:"Changed name",org_nr:"556677-8800",personnummer:"19800101-1234",
+    contact_name:"Changed contact",email:"changed@example.test",phone:"+46709999999",address_line1:"Changed street 1",
+    address_line2:"Changed floor 2",postal_code:"12345",city:"Changed city",archived_at:"archive"})) {
+    it(`[P0] actual RPC rejects independently stale ${fact} without changing any row column or audit`, async (testCtx) => {
+      if (skipUnlessStack(testCtx, stackUp)) return;
+      let id: string;
+      if(fact==="personnummer") {
+        const created=await runCommand(createCustomer,{client:a as never,input:{customer_type:"private",display_name:`35.3 private ${crypto.randomUUID()}`,personnummer:"19700101-1234"},correlationId:crypto.randomUUID()});
+        expect(created.ok).toBe(true); if(!created.ok) throw new Error("private setup failed"); id=created.data.targetId;
+      } else id=await seedEditableCustomer();
+      const baseline=await checkedFacts(a,id);
+      if(fact==="archived_at") {
+        // Only the entitled tenant administrator can archive; editorB is a Seller.
+        expect(await runCommand(archiveCustomer,{client:a as never,input:{id},correlationId:crypto.randomUUID()})).toMatchObject({ok:true});
+      } else {
+        expect(await runCommand(updateCustomer,{client:editorB as never,input:{id,expected_customer:baseline,[fact]:value},correlationId:crypto.randomUUID()})).toMatchObject({ok:true});
+      }
+      const entireRow=await adminSelectCrmRowById("customers",id), correlationId=crypto.randomUUID();
+      expect((await checkedFacts(a,id))[fact]).not.toEqual(baseline[fact]);
+      const stale=await a.rpc("update_customer_with_audit",{p_tenant_id:fixture.tenantA.id,p_actor_user_id:fixture.adminA.id,
+        p_customer_id:id,p_correlation_id:correlationId,p_patch:{city:"Must not write"},p_expected_customer:baseline});
+      expect(stale.error?.code).toBe("PT409"); expect(stale.data).toBeNull();
+      expect(await adminSelectCrmRowById("customers",id)).toEqual(entireRow);
+      expect(await adminSelectAuditEvents({correlationId})).toEqual([]);
+    });
+  }
+
+  it("[P0] immutable customer type still participates in comparison and cannot be patched",async(testCtx) => {
+    if(skipUnlessStack(testCtx,stackUp)) return;
+    const id=await seedEditableCustomer(),baseline=await checkedFacts(a,id),entireRow=await adminSelectCrmRowById("customers",id);
+    for(const [p_patch,p_expected_customer,code] of [
+      [{city:"Must not write"},{...baseline,customer_type:"brf"},"PT409"],
+      [{customer_type:"brf"},baseline,"23514"],
+    ] as const) {
+      const correlationId=crypto.randomUUID();
+      const result=await a.rpc("update_customer_with_audit",{p_tenant_id:fixture.tenantA.id,p_actor_user_id:fixture.adminA.id,
+        p_customer_id:id,p_correlation_id:correlationId,p_patch,p_expected_customer});
+      expect(result.error?.code).toBe(code); expect(result.data).toBeNull();
+      expect(await adminSelectCrmRowById("customers",id)).toEqual(entireRow); expect(await adminSelectAuditEvents({correlationId})).toEqual([]);
+    }
+  });
   it("[P0] two entitled editors: stale A cannot overwrite B; explicit fresh review can save", async (testCtx) => {
     if (skipUnlessStack(testCtx, stackUp)) return;
     const id = await seedEditableCustomer();

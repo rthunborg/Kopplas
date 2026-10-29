@@ -249,3 +249,39 @@ test("findDuplicateLikeNames: a whitespace-only candidate matches nothing", () =
 test("findDuplicateLikeNames: an empty existing list yields no matches", () => {
   assert.deepEqual(findDuplicateLikeNames("Acme AB", []), []);
 });
+
+// 35.3 payload-free hint boundaries; these are storage failures, not recovery receipts.
+import { CUSTOMER_SAFETY_KEY, beginCustomerSubmission, customerSubmissionSafety, finishCustomerSubmission } from "@/components/crm/customer-presentation";
+function safetyStore() {
+  const values = new Map<string,string>();
+  return { values, getItem: (key:string) => values.get(key) ?? null,
+    setItem: (key:string,value:string) => { values.set(key,value); }, removeItem: (key:string) => { values.delete(key); } };
+}
+test("35.3 E35-3-T-unknown: a verified payload-free hint blocks replay through remount until its owner finishes", () => {
+  const storage = safetyStore();
+  assert.equal(customerSubmissionSafety(storage), "clear");
+  assert.equal(beginCustomerSubmission(storage), true);
+  assert.equal(customerSubmissionSafety(storage), "unconfirmed");
+  assert.equal(beginCustomerSubmission(storage), false);
+  assert.deepEqual(JSON.parse(storage.values.get(CUSTOMER_SAFETY_KEY)!), {v:1,pending:true});
+  assert.equal(finishCustomerSubmission(storage), true);
+  assert.equal(customerSubmissionSafety(storage), "clear");
+});
+test("35.3 E35-3-T-unknown: corrupt, missing-owned and inaccessible hint cannot clear an unresolved attempt", () => {
+  const storage = safetyStore();
+  assert.equal(finishCustomerSubmission(storage), false);
+  storage.values.set(CUSTOMER_SAFETY_KEY, "{corrupt");
+  assert.equal(customerSubmissionSafety(storage), "unconfirmed");
+  assert.equal(beginCustomerSubmission(storage), false);
+  assert.equal(finishCustomerSubmission(storage), false);
+  const inaccessible = {getItem: () => { throw new Error("denied"); }, setItem: () => { throw new Error("denied"); }, removeItem: () => { throw new Error("denied"); }};
+  assert.equal(customerSubmissionSafety(inaccessible), "unavailable");
+  assert.equal(beginCustomerSubmission(inaccessible), false);
+  assert.equal(finishCustomerSubmission(inaccessible), false);
+});
+test("35.3 E35-3-T-unknown: silent storage write or delete failure never admits an unverified transition", () => {
+  assert.equal(beginCustomerSubmission({getItem:()=>null,setItem:()=>{},removeItem:()=>{}}),false);
+  const storage = safetyStore(); beginCustomerSubmission(storage);
+  assert.equal(finishCustomerSubmission({...storage,removeItem:()=>{}}),false);
+  assert.equal(customerSubmissionSafety(storage),"unconfirmed");
+});
