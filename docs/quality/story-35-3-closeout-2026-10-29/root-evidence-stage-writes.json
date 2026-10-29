@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "baseline": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "admissionSha256": "ba3301dd125566803b236e8b6b08fd587817eb55e6ba5b92f804d0765199ca66",
+  "commands": [
+    {
+      "index": 0,
+      "nativeExit": 0,
+      "receiptSha256": "70495defb273d5797be83dba47c1003161614eb650e56ba18ba9f90616930f5a"
+    },
+    {
+      "index": 1,
+      "nativeExit": 0,
+      "receiptSha256": "f20fef0765e8d3a8eb36d4f0082fe0895c766d4b901835e5cf4a3592f81350ea"
+    },
+    {
+      "index": 2,
+      "nativeExit": 0,
+      "receiptSha256": "e8b11240f8da76fd959d1f88e87b4cc67fff2b633c225892f6341cd1754269ee"
+    },
+    {
+      "index": 3,
+      "nativeExit": 0,
+      "receiptSha256": "946a617daed814ac78d173195f472d8b85d31a5acf4e97573d4651a022beb2f2"
+    },
+    {
+      "index": 4,
+      "nativeExit": 0,
+      "receiptSha256": "be7656f8be48d7a6b5f7592acc04ea77623e268a5466808e1cd467986653d620"
+    },
+    {
+      "index": 5,
+      "nativeExit": 0,
+      "receiptSha256": "e4c734de28dfba6f3e88e146d40a3891e8c85f5a2943f767822d4c70a3e17311"
+    },
+    {
+      "index": 6,
+      "nativeExit": 0,
+      "receiptSha256": "3308d41ffb1244ad925c93ae37efbd2d4bd02aec6a6dda65cd90cfb1cdff3d4e"
+    }
+  ],
+  "finalizePlan": {
+    "mode": "finalize",
+    "state_dir": "C:/DEV/K35-records/_bmad-output/auto-bmad/state",
+    "story_key": "spec-design-35-3-35-3",
+    "story_source": "stories",
+    "file": "C:/DEV/K35-records/_bmad-output/auto-bmad/state\\spec-design-35-3-35-3.yaml",
+    "blockers": [],
+    "blocker_count": 0,
+    "gate_decision": "PASS",
+    "ci_status": "passed",
+    "ci_status_source": "arg",
+    "no_pr_draft": false,
+    "clauses": {
+      "blocker": false,
+      "review_unverified": false,
+      "gate_waived": false,
+      "ci_failed_or_timeout": false
+    },
+    "draft": false,
+    "clean_completion": true,
+    "flip_bmad_status": false,
+    "reasons": [
+      "stories mode: no BMAD-status flip (build-auto owns the story-file status)"
+    ],
+    "error": null
+  },
+  "currentStateSha256": "94578f5cd1443335ca1cdbee1abbe96cf1d5ab00efe2062545638d68f516af51",
+  "status": "Evidence-stage writes complete; no phase9 or terminal status write yet",
+  "release_ready": false
+}

@@ -1,0 +1,735 @@
+{
+  "corpusSize": 556,
+  "sampled": 40,
+  "sampling": "closest directory distance, lexical ties; review set excluded",
+  "conventions": {
+    "priorityMarkers": {
+      "adopted": 33,
+      "sampled": 40,
+      "status": "established",
+      "form": "P0-P3 marker in AST-parsed test/it title"
+    },
+    "testIds": {
+      "adopted": 31,
+      "sampled": 40,
+      "status": "established",
+      "form": "getByTestId|data-testid"
+    },
+    "networkFirst": {
+      "adopted": 20,
+      "sampled": 40,
+      "status": "established",
+      "form": "page\\.route\\(|waitForResponse\\("
+    },
+    "playwrightUtils": {
+      "adopted": 0,
+      "sampled": 40,
+      "status": "absent",
+      "form": "real import of @seontechnologies/playwright-utils"
+    },
+    "dataFactories": {
+      "adopted": 15,
+      "sampled": 40,
+      "status": "emerging",
+      "form": "factory/factories import"
+    },
+    "fixtures": {
+      "adopted": 0,
+      "sampled": 40,
+      "status": "absent",
+      "form": "fixture import or base/test.extend"
+    },
+    "assertionStyle": {
+      "adopted": 40,
+      "sampled": 40,
+      "status": "established",
+      "form": "40/40 sampled files use assert or expect; reviewed files each consistently use their runner dialect, no mixed-dialect deduction"
+    },
+    "bddNaming": {
+      "adopted": 40,
+      "sampled": 40,
+      "status": "established",
+      "form": "Manually inspected first two AST-parsed test titles per sampled file (one where only one exists): user-visible behavior/actor/outcome phrases"
+    }
+  },
+  "files": [
+    {
+      "path": "tests/e2e/booking-editor.e2e.spec.ts",
+      "sha256": "6e97c1a599570331f90ddc4bc4a9523e44fe5e31b6f37509376ae3411fd11d97",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"Round2 archived role clears explicitly and failed options retry retains the mounted draft\"",
+        "\"Round2 facility-only contact choice and same-customer facility change retain compatible links\""
+      ]
+    },
+    {
+      "path": "tests/e2e/booking-series.e2e.spec.ts",
+      "sha256": "8613c8c6fcd0a3db6cd4609858f094ea673268bd04f4670415e0eefe2d49e7f2",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 15.2-E2E-001 AC4 AC5 AC8 create, reload, edit/cancel exceptions, split, reload keeps real identities\"",
+        "\"[P0] 15.2-E2E-002 AC2 AC8 first ten have glyphs while complete warning review includes occurrence twelve\""
+      ]
+    },
+    {
+      "path": "tests/e2e/calendar-feed.e2e.spec.ts",
+      "sha256": "854d531ed2a8522156c53c310a311fd96d0b525a7427636704478a6198052919",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 15.5-E2E-001 [AC1 AC3 AC4 AC6 AC7 AC9] Planering → own issue → anonymous feed → physical last-use → rotate/revoke\"",
+        "`[P1] 15.5-E2E-${variant.id} [AC1 AC6] actual ${variant.host} ${variant.scenario} exposes one keyboard subscription link`"
+      ]
+    },
+    {
+      "path": "tests/e2e/conflict-resolver.e2e.spec.ts",
+      "sha256": "0be871c84495e5516e5647d925b9ecbf0cfab1bfb092edabc222eee15986580a",
+      "signals": {
+        "priorityMarkers": false,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"15.3-E2E-001 chip → complete detail → selective acceptance → reload/history/notification\"",
+        "\"15.3-E2E-002 common current-segment fix preserves stable exception and cancelled tombstone rows\""
+      ]
+    },
+    {
+      "path": "tests/e2e/my-day.e2e.spec.ts",
+      "sha256": "69546f87a9669732fbd5cc154251766479c2578ec0a5cb7026bd246bd3f468b9",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 15.6-E01 pure Montör lands on today's phone agenda, ordered own cards, explicit map click and same-job workspace\"",
+        "\"[P0] 15.6-E02 exact inline prefill, unknown committed response, frozen same attempt and one durable own report\""
+      ]
+    },
+    {
+      "path": "tests/e2e/resources-person-profile.e2e.spec.ts",
+      "sha256": "ec7199696e90ef685061449da5f1dfb7308b89d54ecf6bef738df3597b05aa4c",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] admin persists a same-tenant role and schedule inputs in the existing user-detail route, then reloads server state\"",
+        "\"[P1] admin sees a deactivated profile as Inaktiverad without booking or reassignment affordances\""
+      ]
+    },
+    {
+      "path": "tests/e2e/scheduling-views.atdd.e2e.spec.ts",
+      "sha256": "8fb6f6b48e34040c64460c58bdc32f2f65e653e3ee74a18f2ef4f8b9ffb8b7fe",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "`[P0] 15.1-E2E-${id} AC4 actual ${host} ${gesture} persists selected person/start/end`",
+        "`[P0] 15.1-E2E-005 AC5 ${host} keyboard and interval dialog cancel without writes and return focus`"
+      ]
+    },
+    {
+      "path": "tests/e2e/time-reports.e2e.spec.ts",
+      "sha256": "1358e575839201589a7c290a64866e8234581d0b6d36dc0c43fd01ca50f80de9",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 15.4-E2E-001 own booking editable prefill → filed report → persisted own week\"",
+        "\"[P0] 15.4-E2E-002 no-profile standalone at 360×640 retains its attempt through lost commit, revoked denial and restored retry\""
+      ]
+    },
+    {
+      "path": "tests/e2e/auth/admin-user-management-roles.atdd.e2e.spec.ts",
+      "sha256": "fdfc51ffccb435ab8439e83681077186a62c33e407b9d85cc3b095d2f30c6874",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P1] Admin can inspect the five role cards and active-member presentation\"",
+        "\"[P1] Admin can open a multi-role member's effective permissions viewer\""
+      ]
+    },
+    {
+      "path": "tests/e2e/auth/admin-user-management.atdd.e2e.spec.ts",
+      "sha256": "086ea7d14f41bf4fffb8ed88e648ed299ce4142369711d8b0d6db17609b5dbfe",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] Admin can reach Användare & roller and inspect membership history\"",
+        "\"[P1] Non-Admin receives neither Users navigation nor the Admin users direct route\""
+      ]
+    },
+    {
+      "path": "tests/e2e/auth/auth-mail-callback.e2e.spec.ts",
+      "sha256": "98a243f3a6982d8ad41223b6d5560f26a8f4965878e80200624cc67ca9dfa193",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] local Auth invitation establishes a session then activates the matching membership\"",
+        "\"[P0] local Auth recovery email establishes a recovery session and persists the new password\""
+      ]
+    },
+    {
+      "path": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+      "sha256": "9aa0f9e6b2b6a61a68ea8b94d28ba592fde069a28f7713d9c1aa88c32a60d5bd",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"AC3: an anonymous visitor to a protected (app) route is redirected to /login\"",
+        "\"AC1: a tenant_admin can sign in with email + password and lands in the (app) shell\""
+      ]
+    },
+    {
+      "path": "tests/e2e/auth/operator-console.atdd.e2e.spec.ts",
+      "sha256": "1aab8e0559607488908f46c85e4e055b28ca4d2e74c3104c8bfc4caace3f5b12",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P1] 12.2-E2E-001 allow-listed operators reach isolated /operator with no tenant navigation\"",
+        "\"[P1] 12.2-E2E-001 tenant Admin and anonymous direct routes render one generic no-data denial\""
+      ]
+    },
+    {
+      "path": "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+      "sha256": "c73c9f7c936e3f32aec1f5c75dcb8cb06c460a410455843bba2c07cc085fc06c",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] Säljare receives only matrix-granted server navigation and lands on dashboard\"",
+        "\"[P0] Montör direct navigation to active but ungranted settings has one generic denial and no data\""
+      ]
+    },
+    {
+      "path": "tests/e2e/auth/role-catalogue-contract.e2e.spec.ts",
+      "sha256": "91577f87f2bd9e1a6d642234ee4c8f514a1c69a3aac1fd2439365b23485b7d51",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P1] Admin can inspect every role's Swedish catalogue card, wave, and sensitive entitlement\""
+      ]
+    },
+    {
+      "path": "tests/e2e/calculations/calculation-readiness.e2e.spec.ts",
+      "sha256": "5abb41f4f14fc4d38dda70940195cd97bead08c57460bda94ba773f02a581ff8",
+      "signals": {
+        "priorityMarkers": false,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"5.4-E2E-01 (AC1/AC2): a BLOCKER calc GATES the create-quote affordance; warnings stay visible\"",
+        "\"5.4-E2E-01 (AC1/AC2): a HEALTHY calc (no blocker) ENABLES the create-quote affordance\""
+      ]
+    },
+    {
+      "path": "tests/e2e/calculations/calculation-source-selection.e2e.spec.ts",
+      "sha256": "7d67a0bd49554b334aadd3b3cbad3dd4945edce80977ff137f20b5febd45e734",
+      "signals": {
+        "priorityMarkers": false,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"5.3-E2E-01 (AC1/AC6): selecting a WORK ROLE on a labor row prefills the price + shows provenance\"",
+        "\"5.3-E2E-02 (AC2/AC6): selecting an ARTICLE on a material row prefills + shows provenance\""
+      ]
+    },
+    {
+      "path": "tests/e2e/calculations/calculations.e2e.spec.ts",
+      "sha256": "d79d2c045db6da18bbd1506de76ae2bd5718c8f9c7389118637687c6f6824c45",
+      "signals": {
+        "priorityMarkers": false,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"AC5: an anonymous visit to /calculations redirects to /login\"",
+        "\"AC5: an anonymous visit to /calculations/[id] redirects to /login\""
+      ]
+    },
+    {
+      "path": "tests/e2e/calculations/tax-answer-reconciliation.e2e.spec.ts",
+      "sha256": "14c0a0cc4b040224917596fcd95e69727cf6458b448225118b9f456df1d9275c",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[10.6-E2E-01][P1][AC3] explicit reverse charge rejects incomplete input, then PDF truth reconciles\"",
+        "\"[10.6-E2E-02][P1][AC2] visibility, invoice inclusion, and classification remain independent\""
+      ]
+    },
+    {
+      "path": "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+      "sha256": "1c7e72471e57b85cf5ed1b7c925bba076423c019d09ca926472016dd780d2051",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P1] 19.1-E2E-002 source counts, adjusted commitment, dates, rate and read time [AC3,9]\"",
+        "\"[P0] 19.1-E2E-003 seller amount absent in initial HTML, RSC, DOM/attributes [AC4]\""
+      ]
+    },
+    {
+      "path": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+      "sha256": "1c5105705b8fb7c2ff8902dd394e37bed1338c1abb2bf9fee74d388890391e39",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P1][AC1,5,7] sent wrapper stays null for draft/empty; no fabricated version panel\"",
+        "\"[P0][AC2,7] zero-link contact becomes unavailable when live facility ancestry is revoked\""
+      ]
+    },
+    {
+      "path": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+      "sha256": "13d428be4380b25ab5de6b581a9ec81ff2282547938795cbf648aa5be4f2926d",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0][AC3,7] uncertain no-op cannot enter directly or before current read and original retry requires confirmation\"",
+        "\"[P0][AC3,8] pending restore survives filter changes without overlapping action or stale feedback\""
+      ]
+    },
+    {
+      "path": "tests/e2e/files/documents.e2e.spec.ts",
+      "sha256": "a0ef189063059f02edd292c643a6d9dbfe220771791118760fcab537ac255ba6",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "`[P1][AC1,9] ${role} follows the single Dokument navigation to the usable destination`",
+        "`[P0][AC1,9] ${role} has neither Dokument navigation nor direct-route access`"
+      ]
+    },
+    {
+      "path": "tests/e2e/files/entity-file-panel.e2e.spec.ts",
+      "sha256": "0e1ee1712928936dc52f170594b782901f464cf8a139a30c74097d46a6a89531",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[8.2-E2E-01][P1/AC1/R-803] the panel shows allowed types, size expectation, owner, purpose — and NO raw-path field\"",
+        "\"[8.2-E2E-01][P1/AC5] the panel lists the entity's existing linked files (own-tenant)\""
+      ]
+    },
+    {
+      "path": "tests/e2e/files/entity-file-preview.e2e.spec.ts",
+      "sha256": "0003ed695c6def6cf60dd547ad30d272837fac4480defd0651269516acaba960",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[8.3-E2E-01][P1/AC1/R-810] NO raw object_path / bucket_id text ever appears in the panel DOM\"",
+        "\"[8.3-E2E-02][P1/AC1] clicking a listed file's preview mints a time-limited signed link\""
+      ]
+    },
+    {
+      "path": "tests/e2e/files/file-index-scope.e2e.spec.ts",
+      "sha256": "bfa9d719189705b9f3b44f71fb87167ddacd57eff3c72f834d2974ad15483c14",
+      "signals": {
+        "priorityMarkers": false,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"8.5-E2E-01 (AC1): the /files index renders the limited index root\"",
+        "\"8.5-E2E-01 (AC1/R-816): NO deferred-module / document-center label appears on the index\""
+      ]
+    },
+    {
+      "path": "tests/e2e/files/file-lock-panel.e2e.spec.ts",
+      "sha256": "c035fe42bab5c527709b0a4eacf87d10848d24549e22c9a3eb091dd32d91420b",
+      "signals": {
+        "priorityMarkers": false,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"8.4-E2E-01 (AC1): a SENT quote's locked PDF/attachment shows a lock notice and NO replace/delete affordance\"",
+        "\"8.4-E2E-01 (AC3): the ONLY destructive affordance on a locked file is archive-only\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/job-accepted-lock.e2e.spec.ts",
+      "sha256": "b20f7642d70e9baff03f973ac5f36c9fc610b972516dfaae98c47954bd3ba80a",
+      "signals": {
+        "priorityMarkers": false,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"7.4-E2E-01 (AC1): the accepted job detail explains that corrections require an approved audited workflow\"",
+        "\"7.4-E2E-01 (AC1): NO silent edit affordance renders for any immutable commitment field\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/job-list-deferred-surface.e2e.spec.ts",
+      "sha256": "3f8df2b0cc0e21e3c1357700aad5352b708b2027a0c5ffd358b32dbd1d5f5476",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P1] 7.3-E2E-03: the /jobs list renders rows that link to /jobs/[jobId] and exposes customer / status / planned-date / source-quote filters\"",
+        "\"[P1] 7.3-E2E-03: filtering by status narrows the visible rows (thin-index filter behavior)\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/job-members.e2e.spec.ts",
+      "sha256": "4ef6be0ddc656e43a6dc5b1fe7e2513a06b1aba4a10fa9ad011bc0b72f22a460",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 16.2-E01 manager archives/reactivates the same project member and selects/replaces/clears one order lead with stale refetch\"",
+        "\"[P0] 16.2-E02 phone lead manages ordinary crew/dates only; a lost real save response retries once, and stale dates require refetch\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/job-scheduling-consumers.e2e.spec.ts",
+      "sha256": "dfae421b82e757bc43e7867931949c39b7f9bb6a6eb52c55d58cbdca265bdae5",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 16.4-Consumer-E01 actual job entry defaults D120 elapsed; job changes refresh only untouched defaults, and explicit/edit intervals plus distinct hints persist\"",
+        "\"[P0] 16.4-Consumer-E02 actual capacity advice counts candidate once; preview/save/reload stays advisory and stale responses retain the newer draft\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/job-traceability.e2e.spec.ts",
+      "sha256": "ae6e5af2b3056929d36aaf6c9c73c1c01ac479607cbf58320262acdcae24af48",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P1] 7.3-E2E-01: the detail surfaces the full source-traceability block (version link, evidence, accepted price + source total, customer, planned dates, files, events)\"",
+        "\"[P1] 7.3-E2E-01: the immutable source refs are DISPLAY-ONLY — NO edit control renders for version / acceptance / customer / accepted price / source total / evidence\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/job-upgrade.e2e.spec.ts",
+      "sha256": "ffe63c91231208225f28d1d53162ac343a653213fb746e210339752f4e19afc2",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 16.4-Upgrade-E01 manager uses full card on both kinds; same-ID upgrade preserves accepted source and every child\"",
+        "\"[P0] 16.4-Upgrade-E02 current lead gains no manager grant; phone response-loss retry keeps state and commits once\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "sha256": "a2e14c184329c27ea126659e031af852bcde7c404c17a66e4668f9ce2afa9e59",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 16.5-E01 manager desktop keeps real header/overview and all five consumers, shared job file and server-confirmed edit across reload\"",
+        "\"[P0] 16.5-E02 phone current member reads own booking subset, denied files fall back, and private PL/money/event payloads stay absent\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+      "sha256": "f3432969a1930ff439544b3e3afbcd42271341c8aade85818169811dcc0bce8d",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": true,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 16.1-E01 My Jobs is the actual duplicate-free member/assignee union; direct denial and money-safe assigned detail agree\"",
+        "\"[P1] 16.1-E02 phone progressive identity, scheduling and child save retains unsent input after failure; explicit retry persists across reload\""
+      ]
+    },
+    {
+      "path": "tests/e2e/jobs/work-orders.e2e.spec.ts",
+      "sha256": "cb32ab0a425de266d60b72186fa7701fb8fdc7a9fe087af3eedb2e141918c58f",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] 16.3-E01 manager creates and edits own dates/plural assignees, reloads and opens an own shared file\"",
+        "\"[P1] 16.3-E02 phone lead progresses status; lost-response/stale retries retain newer draft and cannot reopen\""
+      ]
+    },
+    {
+      "path": "tests/e2e/notifications/email-outbox.atdd.e2e.spec.ts",
+      "sha256": "caf869fc8554f6ad2ed369b503c4f0f949daf7b2ab284181b3f76399fe2136be",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": true,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] Admin sees truthful queued, retry, failed, and suppressed outbox states without delivery activation\"",
+        "\"[P0] Admin queue projection withholds recipient, template body, and raw failure detail\""
+      ]
+    },
+    {
+      "path": "tests/e2e/notifications/email-preferences-email-activation.atdd.e2e.spec.ts",
+      "sha256": "140185db63502134f8da232183844bfaf483201010f66db29d680f9221b0bf42",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": false,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] quote delivery has no ineffective personal preference controls\""
+      ]
+    },
+    {
+      "path": "tests/e2e/notifications/notifications.atdd.e2e.spec.ts",
+      "sha256": "a8a0ac32901c4341e89bcf46d2207dc0e52a6ccdb4058461a9955bdafba7c05c",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "`[P0] ${roleName} sees the personal bell with a capped 9+ unread count`",
+        "\"[P0] Bell popover lists the latest personal notifications and opens the personal center\""
+      ]
+    },
+    {
+      "path": "tests/e2e/notifications/public-unsubscribe-email-activation.atdd.e2e.spec.ts",
+      "sha256": "f92893791167e74e7e34fd9fe5ddafd826dba6b0e70b26ebb6cba9b18d5c0eec",
+      "signals": {
+        "priorityMarkers": true,
+        "testIds": false,
+        "networkFirst": true,
+        "playwrightUtils": false,
+        "dataFactories": false,
+        "fixtures": false,
+        "assertionStyle": true
+      },
+      "sampleTestNames": [
+        "\"[P0] an anonymous recipient can unsubscribe through a valid scoped token without loading the authenticated shell\"",
+        "\"[P1] unknown and revoked public tokens receive one uniform inactive response with no tenant or recipient disclosure\""
+      ]
+    }
+  ]
+}

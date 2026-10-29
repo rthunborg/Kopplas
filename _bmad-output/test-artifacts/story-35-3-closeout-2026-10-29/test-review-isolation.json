@@ -1,0 +1,25 @@
+{
+  "dimension": "isolation",
+  "execution": "sequential static evidence audit; no new product test run",
+  "score": 100,
+  "violations": [],
+  "notes": [
+    "No H4 invariant established: canonical fixture is read as immutable identity, created test records are uniquely named; isolated membership fixture has finally cleanup. No parallel-safety pass claimed."
+  ],
+  "sourceManifests": [
+    {
+      "file": "tests/e2e/crm/customers.e2e.spec.ts",
+      "sha256": "8e34b146921c9ab3ac765c1b216a50b0fe8b7552079be7b71d1ea4c0d60a7c75",
+      "bytes": 67185,
+      "lines": 1009,
+      "testDeclarationCount": 31
+    },
+    {
+      "file": "tests/unit/components/crm/customer-presentation.test.ts",
+      "sha256": "c431d2501812ad992fcebaff313cdc521734311da674404096f2dc54cfbb7c62",
+      "bytes": 12427,
+      "lines": 287,
+      "testDeclarationCount": 24
+    }
+  ]
+}

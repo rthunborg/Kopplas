@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "kind": "Independent Sol High sensitive evidence qualification",
+  "createdUtc": "2026-10-29 18:01:25 UTC",
+  "reviewer": "/root/admission_review_35_3",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "routes": [
+    "docs/quality/story-35-3-production-migration-review-route-2026-10-29.json",
+    "docs/quality/story-35-3-nfr-review-route-2026-10-29.json"
+  ],
+  "mergedRevision": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "executionEvidenceRevision": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "revisionQualification": "Read-only git diff between accepted runtime revision and merge is empty for src, tests and supabase/migrations. Existing qualified review/test evidence is reused for unchanged implementation; no fourth broad product review or new tests.",
+  "production": {
+    "outcome": "PASS",
+    "operation": "One operator-owned admitted db push; native exit0; no retry",
+    "projectRef": "wmqmzznmwpheswjjozhq",
+    "migration": "20261029132339_customer_update_expected_facts.sql",
+    "sourceGitBlob": "a6615143a402486e857f9bd2120570811cda0fef",
+    "sourceSha256GitLf": "371c069e5fb57bca76f998fa0b11fa338ac52fc74b53ea752dfc06ce581fabdc",
+    "workingRawCrLfSha256": "66cf420060c4ad722e10f94dcb551820cc0c5c8fba0a2bbec9c1327174ac4768",
+    "rawRepresentation": "Original working raw CRLF retained; LF-normalized copy exactly equals merged Git bytes.",
+    "observedAt": "2026-10-29T17:59:15.769921+00:00",
+    "postgresVersion": "17.6",
+    "checks": {
+      "ledger120": true,
+      "previous119Exact": true,
+      "onlyNewVersion": true,
+      "sameNativeRole": true,
+      "sameMemberships": true,
+      "sameCustomerPrivileges": true,
+      "exactlyTwoOverloads": true,
+      "bodiesAndRequiredNames": true,
+      "narrowFunctionSecurity": true,
+      "functionSourceSha256Exact": true,
+      "allPrior119GitBlobsUnchanged": true,
+      "noPendingRepoMigration": true
+    },
+    "ledger": {
+      "before": 119,
+      "after": 120,
+      "onlyNew": {
+        "version": "20261029132339",
+        "name": "customer_update_expected_facts"
+      }
+    },
+    "functions": [
+      {
+        "arguments": "p_tenant_id uuid, p_actor_user_id uuid, p_correlation_id uuid, p_customer_id uuid, p_patch jsonb",
+        "requiredArguments": 5,
+        "defaults": 0,
+        "owner": "postgres",
+        "securityDefiner": true,
+        "settings": [
+          "search_path=\"\""
+        ],
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "anonExecute": false,
+        "authenticatedExecute": true,
+        "serviceRoleExecute": false,
+        "bodySha256Lf": "b2075877b393e3cfce6b13a2c3153f4dceb11a5350671ed925b935ccc3fc0e42"
+      },
+      {
+        "arguments": "p_tenant_id uuid, p_actor_user_id uuid, p_correlation_id uuid, p_customer_id uuid, p_patch jsonb, p_expected_customer jsonb",
+        "requiredArguments": 6,
+        "defaults": 0,
+        "owner": "postgres",
+        "securityDefiner": true,
+        "settings": [
+          "search_path=\"\""
+        ],
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "anonExecute": false,
+        "authenticatedExecute": true,
+        "serviceRoleExecute": false,
+        "bodySha256Lf": "2b2620a96d2a17fa916f30650d80fe719045984154e6b883c6352b5437e3ee71"
+      }
+    ],
+    "roleEffect": "Existing cli_login_postgres OID17989 and all noncredential attributes/memberships unchanged; native temporary expiry renewed. No credential values/hashes queried. Earlier auth-boundary stop preserved; clarified native renewal was qualified before dryrun/apply.",
+    "dataEffects": "Reviewer used catalog/ledger SELECT only; no production tenant/RPC tests or writes. Approved migration only installs function bodies/ACL and schema-cache notification; no tenant-data execution.",
+    "operationReceipt": "docs/quality/story-35-3-production-migration-2026-10-29.json",
+    "operatorPrivateSources": [
+      "tmp/private/story35-3/production-closeout/apply-receipt.json",
+      "tmp/private/story35-3/production-closeout/writeonce-apply-intent.json",
+      "tmp/private/story35-3/production-closeout/post-auth-comparison.json"
+    ],
+    "limits": "Catalog/source/privilege verification establishes deployed compatibility with the reviewed required-six-argument caller and intentional checked fail-closed five-argument entry. No production mutation smoke, schema-wide drift certification, global advisor clearance, deployment or release approval."
+  },
+  "evidence": {
+    "provenance": "All17 entries of current input-provenance.json independently hash-checked with zero mismatches. Inspected existing assertion sites and native report results, no new execution.",
+    "source": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/input-provenance.json",
+    "reviews": [
+      "_bmad-output/test-artifacts/design-35-3/product-review-round1.json",
+      "_bmad-output/test-artifacts/design-35-3/product-review-round2.json",
+      "tmp/private/story35-3/round3-offline-archive/targeted-review-delivery.json"
+    ],
+    "focusedDatabase": {
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "provenance": "Existing independently qualified Round2 report; not inferred as exact final CI per-suite count. Backend/test/migration Git blobs unchanged through merge."
+    },
+    "focusedFinalBrowser": {
+      "desktopPassed": 7,
+      "phonePassed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "source": "tmp/private/story35-3/round3-offline-archive/runtime-2b594338/focused-runtime-receipt.json"
+    },
+    "formalFinalBrowser": {
+      "desktopPassed": 33,
+      "phonePassed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "source": "tmp/private/story35-3/formal-2b594338/formal-final-receipt.json",
+      "rawReports": [
+        "tmp/private/story35-3/formal-2b594338/desktop/run.json",
+        "tmp/private/story35-3/formal-2b594338/phone/run.json"
+      ],
+      "qualification": "All33 native specs per viewport ok; resolved before-forward and lose-response cases each executed."
+    },
+    "nativeCi": {
+      "run": 40919281738,
+      "head": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+      "conclusion": "SUCCESS",
+      "browser": {
+        "passed": 74,
+        "failed": 0,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "database": {
+        "passed": 2163,
+        "failed": 0,
+        "pending": 52,
+        "pendingIsCoverage": false,
+        "jobId": 123609102495,
+        "artifactId": 12919330946,
+        "artifactZipSha256": "22b4ada7fea30b517ef86cfcc81b97e4ba008f8ae1ea0bed1bc9dacce4a1fda7",
+        "provenance": "Coordinator terminal native-artifact qualification retained in terminal-and-owner-acceptance.json; reviewer did not duplicate download or invent final per-suite counts."
+      },
+      "recovery": {
+        "passed": 1,
+        "failed": 0,
+        "pending": 0
+      },
+      "source": "tmp/private/story35-3/formal-2b594338/ci-native/terminal-and-owner-acceptance.json"
+    },
+    "visual": {
+      "genuineOwnerComment": 6504043561,
+      "head": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+      "digest": "bd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce",
+      "controllerNativeExit": 0,
+      "source": "tmp/private/story35-3/frontend-packet/controller-owner-acceptance-receipt.json"
+    }
+  },
+  "sensitiveNfr": {
+    "securityAndPrivacy": "PASS for changed customer authority/projection/local safety-hint scope. Actual tenant/actor/revocation/direct-DML denial and no-private-error/no-payload-hint assertions retained; no full GDPR/security-program claim.",
+    "transactionalIntegrity": "PASS for customer.update: all13 original facts, required bounded baseline, tenant+ID lock, one whole concurrent winner/one conflict, no stale row/audit, bound single audit, forced-audit rollback, exact old-five fail-closed and new-six authority tests.",
+    "reliability": "PASS for bounded connected Chromium customer journeys: unknown outcome blocks replay through reopen/remount; known offline zero dispatch/no hint then explicit retry; genuine committed response-loss remains unconfirmed; refresh requires explicit Discard consent and checked fresh delivered detail.",
+    "compatibility": "PASS for deployed merged migration and reviewed caller. Native catalog confirms exact function sources, names, required arguments, ACL and preserved customer RLS.",
+    "performance": "NOT ASSESSED for longer operational SLO/load; no performance pass inferred from aggregate test duration.",
+    "maintainability": "Raw structural test-quality Request Changes /0/F remains advisory and unchanged; no overall NFR PASS is asserted.",
+    "claimBoundary": "R1-P02 unmounted A-away-A exploit remains WITHDRAWN. Actual tested Back-intent path retains A DOM while URL/history changes; matching result honors requested Dashboard entry and does not override it. No new-view/universal ABA claim."
+  },
+  "traceQualification": {
+    "disposition": "Ten sensitive PARTIAL placeholders may become FULL for bounded development requirements, using this qualification plus actual execution bindings; original proposed matrix preserved by closeout owner.",
+    "qualifiedIds": [
+      "E35-3-AC3",
+      "E35-3-AC5",
+      "E35-3-AC6",
+      "E35-3-AC7",
+      "E35-3-STATE-denied",
+      "E35-3-STATE-revoked",
+      "E35-3-STATE-unknown",
+      "E35-3-STATE-stale",
+      "E35-3-STATE-confirmed",
+      "E35-3-STATE-late-result"
+    ],
+    "basis": {
+      "E35-3-AC3": "B02/B03/B04/B05/B06 executed; validation/draft, matching confirmed save/archive, pending and explicit refresh semantics plus atomic authority integration.",
+      "E35-3-AC5": "B04/B06/B07/B10 executed: busy close/focus/inherited hooks, dirty traversal cancellation and delayed A read/current B identity within configured Chromium scope.",
+      "E35-3-AC6": "All16 current applies-state mappings assessed with executed runtime and actual authority tests; inherited rows regression-only; no N/A feature expansion.",
+      "E35-3-AC7": "Existing unchanged checked reads/actions, scoped expected-facts authority, projection/privacy, inherited consumers and deployed catalog source/ACL evidence. File/money/booking bodies unchanged, no all-business coverage claim.",
+      "E35-3-STATE-denied": "B09 foreign detail hides fixture identity; authority integration rejects foreign actor/tenant with no audit and no error leakage.",
+      "E35-3-STATE-revoked": "B09 live revocation retains unsent input/no row; integration rejects revoked editor without audit.",
+      "E35-3-STATE-unknown": "B03 real committed response loss plus B05 separately executed before-forward/lose-response and unavailable/corrupt storage: hints omit sensitive payload, block replay across remount.",
+      "E35-3-STATE-stale": "Independent original-fact integration cases, real two-editor browser conflict, whole-row/no-audit rejection, explicit fresh review establishes baseline only after delivered checked detail.",
+      "E35-3-STATE-confirmed": "Real saved/soft-archived rows and exact audit assertions; no timeout/transport-only confirmation.",
+      "E35-3-STATE-late-result": "B06 delayed A read cannot replace current B, matching live attempt/Back-intent guards and targeted review. Withdrawn unmounted/new-draft ABA excluded."
+    },
+    "requiredDevelopmentEvidenceGapIdentified": false,
+    "gateMutationByReviewer": false,
+    "limits": [
+      "FULL means sufficient evidence for approved bounded development requirement, not exhaustive release coverage.",
+      "52 pending DB cases excluded from executed coverage.",
+      "Controlled503 document fallback is a native failure proxy after explicit abandonment, not CustomerList actual error proof; formal actual list error uses root-owned actor-specific proxy400 and postclear200.",
+      "Controlled zoom/reduced viewport are not physical OS keyboard/device proof.",
+      "No universal browser/navigation/ABA, all-file/business mutation, full-device, daylong performance or operational SLO claim."
+    ]
+  },
+  "structuralAdvisory": {
+    "recommendation": "Request Changes",
+    "score": 0,
+    "grade": "F",
+    "counts": {
+      "critical": 0,
+      "high": 5,
+      "medium": 3,
+      "low": 74
+    },
+    "source": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/test-review.md",
+    "targetedDisposition": "The outline branch selects explicit text versus nontext measurements. Transport-mode row-count and create/archive audit-count expectations select externally arranged scenarios; actual native cases execute both modes and independent row/audit assertions, rather than derive correctness from production output. File length, grouping, fixtures, naming/priority/readiness style deductions remain truthful advisory quality observations. These reported sites establish no uncovered consequential development requirement; no rewrite, refactor or raw-verdict override authorized.",
+    "policy": "NFR/test-review are advisory under project auto-bmad pipeline; development trace still requires actual sufficient AC evidence."
+  },
+  "conclusion": "PASS for independent production operation postverify and bounded sensitive development evidence qualification. No concrete required development coverage gap identified in reviewed scope; closeout owner must run supported completion gates separately.",
+  "release_ready": false,
+  "deferredRelease": [
+    "Physical keyboard/device/reflow and daylight qualification",
+    "Longer operational SLO/load and release recovery validation",
+    "Other-browser navigation and full shared-consumer conditional/business-flow release matrix",
+    "Existing final Phase B release checkpoint and explicit release/deployment approval"
+  ],
+  "mutations": "One sanitized qualification receipt only; no source/test/spec/Git/provider/schema/tenant/state/resource changes by reviewer. No new test or review round."
+}

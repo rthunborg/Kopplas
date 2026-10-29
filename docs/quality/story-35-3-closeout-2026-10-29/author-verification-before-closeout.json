@@ -1,0 +1,584 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "authorRoute": "gpt-6.1-sol High; initial four ordinary presentation files Sol Low; Round1 Low delegate exclusively CustomerList written anatomy",
+  "status": "Metadata/trail reconciled after narrow POST-Round2 capture-infrastructure test-only flag; targeted review PASS remains f962, final Coordinator/nativeCI/formal owner gates pending",
+  "development_complete": false,
+  "release_ready": false,
+  "baseline": "431c27f63183dc0dde0eea44da1427f78adf74c4",
+  "buildBaseline": "dbb18f9cbb06c4f684adb8f8b716bedc94b00a96",
+  "candidate": {
+    "kind": "POST-Round2 capture-infrastructure TESTONLY delta; uncommitted preview, not Round2 reviewed flag",
+    "sourceDigest": "5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545",
+    "manifest": "tmp/private/story35-3/source-manifest-post-r2-capture.json",
+    "files": 18,
+    "reviewedRound2SourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+    "onlyChangedPath": "tests/e2e/crm/customers.e2e.spec.ts",
+    "production11AndSqlUnchanged": true
+  },
+  "commands": [
+    {
+      "name": "required focused DB/RLS",
+      "command": "node --env-file=tmp/private/story35-3/tests.local.env node_modules/vitest/vitest.mjs run tests/integration/commands/crm-customer-commands.int.test.ts tests/integration/commands/non-admin-audit-authority.int.test.ts --maxWorkers=2 --reporter=default --reporter=json --outputFile=tmp/private/story35-3/round1-focused-integration-final.json",
+      "status": "passed",
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/round1-focused-integration-final.json",
+      "limits": "SUPABASE_TEST_REQUIRED=1, actual qualified loopback RPC/DB; backend/SQL unchanged after this run."
+    },
+    {
+      "name": "final production build",
+      "command": "node tmp/private/story35-3/round1-build.cjs (process.loadEnvFile qualified runtime env, clean Node Next build child)",
+      "status": "passed",
+      "evidence": "tmp/private/story35-3/round1-navigation-build.log"
+    },
+    {
+      "name": "final static",
+      "command": "pnpm exec tsc --noEmit; scoped ESLint allocated changed files; git diff --check; strict UTF8/hash verification all18 allocated paths",
+      "status": "passed",
+      "evidence": "tmp/private/story35-3/round1-navigation-typecheck.log, round1-navigation-lint.log, round1-navigation-diff-check.log, source-manifest-round1-navigation.json"
+    },
+    {
+      "name": "final production CRM targeted",
+      "command": "node --env-file=tmp/private/story35-3/tests.local.env node_modules/@playwright/test/cli.js test tests/e2e/crm/customers.e2e.spec.ts --config=tmp/private/story35-3/playwright.runtime.config.ts --grep=B03 R1 archive: pending edit",
+      "status": "passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/round1-navigation-targeted.json",
+      "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+      "limits": "Root-owned Next production3100/CDP59453 attach only. E35_PHONE=1 for phone360x640; desktop1440x900, B08 explicit360 and controlled proxies. No browser/server auto-launch."
+    },
+    {
+      "name": "final production CRM desktop",
+      "command": "node --env-file=tmp/private/story35-3/tests.local.env node_modules/@playwright/test/cli.js test tests/e2e/crm/customers.e2e.spec.ts --config=tmp/private/story35-3/playwright.runtime.config.ts",
+      "status": "passed",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/round1-navigation-desktop.json",
+      "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+      "limits": "Root-owned Next production3100/CDP59453 attach only. E35_PHONE=1 for phone360x640; desktop1440x900, B08 explicit360 and controlled proxies. No browser/server auto-launch."
+    },
+    {
+      "name": "final production CRM phone",
+      "command": "node --env-file=tmp/private/story35-3/tests.local.env node_modules/@playwright/test/cli.js test tests/e2e/crm/customers.e2e.spec.ts --config=tmp/private/story35-3/playwright.runtime.config.ts",
+      "status": "passed",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/round1-navigation-phone.json",
+      "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+      "limits": "Root-owned Next production3100/CDP59453 attach only. E35_PHONE=1 for phone360x640; desktop1440x900, B08 explicit360 and controlled proxies. No browser/server auto-launch."
+    },
+    {
+      "name": "unchanged focused Node unit reuse",
+      "status": "passed",
+      "passed": 121,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/focused-unit.log",
+      "limits": "Executed before Round1. Relevant parser/validator/customer-presentation helpers and unit tests unchanged; no new full unit pass claimed."
+    }
+  ],
+  "staticEvidence": "_bmad-output/test-artifacts/design-35-3/build-auto-static-evidence.json",
+  "sourceUtf8": {
+    "files": 18,
+    "strict": true,
+    "replacementCodepoints": 0
+  },
+  "reviewTrail": {
+    "path": "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+    "sections": 1,
+    "referenceChecker": "20-stop post-capture-flag reference check: tmp/private/story35-3/post-r2-capture-review-order.log"
+  },
+  "previews": {
+    "inventory": "tmp/private/story35-3/capture-inventory-round1-navigation.json",
+    "count": 44,
+    "sourceBoundOnly": true,
+    "formalCurrentHeadAcceptance": false,
+    "primaryCount": 8,
+    "primaryPaths": [
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/desktop/customers-loaded-1440x900.png",
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/desktop/customer-detail-loaded-1440x900.png",
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/desktop/customer-create-draft-1440x900.png",
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/desktop/customer-edit-loaded-1440x900.png",
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/phone/customers-loaded-360x640.png",
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/phone/customer-detail-loaded-360x640.png",
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/phone/customer-create-draft-360x640.png",
+      "C:/DEV/K35-records/tmp/private/story35-3/post-review1-navigation-captures/phone/customer-edit-loaded-360x640.png"
+    ],
+    "limits": [
+      "Source/test/SQL bytes verified against18-entry manifest after runs; formal Git checkpoint head does not yet exist.",
+      "FullPage PNG dimensions may exceed viewport; viewport and actual PNG dimensions separately recorded.",
+      "Controlled503 document is synthetic test HTML, not application error UI; CSS zoom/visible viewport are controlled proxies, not physical OS keyboard/device tests.",
+      "No dedicated archive-unknown screenshot was taken; actual warning/storage/replay behavior is asserted in executed B03. Existing inherited60 PNGs have separate fix5 source provenance.",
+      "No current independent image inspection or owner initial acceptance claimed; older14-image advisory is historical and not acceptance.",
+      "Targeted Round2 verified all44 preview hashes and60 supplemental hashes; this is not formal image acceptance.",
+      "Synthetic503 HTML proves controlled fault/native fallback only; it is NOT CustomerList.loadError UI and does not cover that actual app error frame.",
+      "Current44 PNGs remain fullPage previews and may exceed viewport. Pending root formal replay uses fullPage:false plus separate scrolled footer frames after checkpoint; not executed by this reconciliation."
+    ]
+  },
+  "sharedConsumerImpact": "_bmad-output/test-artifacts/design-35-3/shared-consumer-impact.json",
+  "remaining": [
+    {
+      "gate": "fresh Coordinator Round3 review",
+      "owner": "root/Coordinator",
+      "status": "pending",
+      "evidence": "_bmad-output/test-artifacts/design-35-3/product-review-round2.json passes targeted Round2 scope only; no fresh Coordinator verdict yet."
+    },
+    {
+      "gate": "exact-head CI full unit/database/integrity/auth smoke",
+      "owner": "root/Coordinator",
+      "status": "pending"
+    },
+    {
+      "gate": "synthetic physical recovery-Storage proof",
+      "owner": "root exact-head CI recovery-storage-loader",
+      "status": "pending",
+      "local": "not executed; skipped integration case is not proof"
+    },
+    {
+      "gate": "final current-head images/frontend controller/owner new-composition acceptance",
+      "owner": "root and owner",
+      "status": "pending"
+    },
+    {
+      "gate": "formal current-head replay of affected shared controls",
+      "owner": "root packet/verification owner",
+      "status": "pending",
+      "evidence": "Union15 actual rendered consumers in shared-consumer-impact.json; supplemental60 PNG source-bound preview, not N/A. Conditional error and business mutations remain unclaimed."
+    }
+  ],
+  "release": [
+    {
+      "item": "E35-3-REL-1 visual/device/composite/reflow",
+      "owner": "UI owner; named assignment retained for Coordinator",
+      "status": "deferred"
+    },
+    {
+      "item": "E35-3-REL-2 manual/keyboard/screen-reader/daylight",
+      "owner": "QA/accessibility owner; named assignment retained for Coordinator",
+      "status": "deferred"
+    },
+    {
+      "item": "E35-3-REL-3 final Phase B consolidation",
+      "owner": "Coordinator",
+      "status": "deferred"
+    }
+  ],
+  "resources": "Root owns and stops all managed resources; author launched none",
+  "publication": "No commit/push/PR/merge/deployment/production migration by author",
+  "round1": {
+    "review": "_bmad-output/test-artifacts/design-35-3/product-review-round1.json",
+    "reviewStatus": "Historical Round1 changes_requested retained; actual targeted Round2 PASS/No findings. Fresh Coordinator Round3 remains pending.",
+    "sourceManifest": "tmp/private/story35-3/source-manifest-round1-navigation.json",
+    "build": "tmp/private/story35-3/round1-build-loadedenv.log exit0; superseded on any later product fix",
+    "focusedDB": {
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/round1-focused-integration-final.json"
+    },
+    "initialFocusedDB": {
+      "passed": 32,
+      "failed": 1,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/round1-focused-integration.json",
+      "cause": "New archived_at fixture used Seller editorB, whose archive denial is correct. Corrected test actor to entitled admin."
+    },
+    "browserAttempts": [
+      {
+        "passed": 5,
+        "failed": 3,
+        "skipped": 0,
+        "evidence": "tmp/private/story35-3/round1-e2e-targeted.json"
+      },
+      {
+        "passed": 1,
+        "failed": 1,
+        "skipped": 0,
+        "evidence": "tmp/private/story35-3/round1-e2e-traversal-reflow.json"
+      },
+      {
+        "passed": 6,
+        "failed": 2,
+        "skipped": 0,
+        "evidence": "tmp/private/story35-3/round1-combined-targeted.json",
+        "diagnosis": "ABA restore URL was not actual away DOM; genuine503 fallback occurred but controlled page lacked UTF8 charset."
+      },
+      {
+        "passed": 1,
+        "failed": 1,
+        "skipped": 0,
+        "evidence": "tmp/private/story35-3/round1-combined-bindings.json",
+        "diagnosis": "Complete B06 consent/offline/checked read/save/native503 fallback passed. Back/Forward ABA cannot establish away DOM while useActionState response held; old view stays edit-disabled. No false actual-ABA coverage claim."
+      },
+      {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "evidence": "tmp/private/story35-3/round1-archive-history.json",
+        "diagnosis": "Distinct reachable R1-P13: matching archive callback overrode requested Dashboard history with Kunder DOM. Reported before product fix."
+      }
+    ],
+    "refreshDiagnostic": "tmp/private/story35-3/round1-refresh-diagnostic.json",
+    "pending": "Fresh Coordinator Round3, native exact-head full CI and direct physical recovery, formal checkpoint-bound viewport images/controller and authenticated owner initial composition acceptance.",
+    "combinedBuild": "tmp/private/story35-3/round1-combined-build.log exit0",
+    "combinedManifest": "tmp/private/story35-3/source-manifest-round1-combined.json",
+    "sourceAndTestBindingLimit": "No source/test/SQL bytes changed after final f96246... manifest and final targeted+desktop+phone runs; all18 file hashes reverified.",
+    "refreshContractReconciliation": "_bmad-output/specs/spec-design-35-3/refresh-contract-reconciliation.md",
+    "combinedManifestBeforeP13": "tmp/private/story35-3/source-manifest-round1-combined.json",
+    "finalBuild": "tmp/private/story35-3/round1-navigation-build.log exit0",
+    "finalScopedLint": "tmp/private/story35-3/round1-navigation-lint.log exit0",
+    "finalTypecheck": "tmp/private/story35-3/round1-navigation-typecheck.log exit0",
+    "finalDiffCheck": "tmp/private/story35-3/round1-navigation-diff-check.log exit0",
+    "archiveReconciliation": "_bmad-output/specs/spec-design-35-3/archive-runtime-reconciliation.md",
+    "withdrawnClaim": {
+      "id": "R1-P02",
+      "disposition": "Original unmounted-A/new-draft production defect withdrawn after actual reachable-path qualification; origin guard retained as defense; no actual ABA pass claimed."
+    },
+    "finalBrowser": {
+      "targeted": {
+        "report": "tmp/private/story35-3/round1-navigation-targeted.json",
+        "native": {
+          "startTime": "2026-10-29T15:23:52.775Z",
+          "duration": 6788.441,
+          "expected": 1,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f"
+      },
+      "desktop": {
+        "report": "tmp/private/story35-3/round1-navigation-desktop.json",
+        "native": {
+          "startTime": "2026-10-29T15:24:13.318Z",
+          "duration": 61855.721,
+          "expected": 32,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f"
+      },
+      "phone": {
+        "report": "tmp/private/story35-3/round1-navigation-phone.json",
+        "native": {
+          "startTime": "2026-10-29T15:25:23.399Z",
+          "duration": 52500.157999999996,
+          "expected": 32,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f"
+      }
+    }
+  },
+  "supplementalPreview": {
+    "receipt": "tmp/private/story35-3/inherited-consumer-previews/live-capture-receipt.json",
+    "sha256": "e2e1fe967ffa0a6f0690a0ebe7d965936b45ed0f29c9f0eecb620767814f9850",
+    "hashesAuthorReverified": 60,
+    "consumers": 11,
+    "unionConsumers": 15,
+    "currentHeadAcceptance": false,
+    "limits": "Sourcebound fix5 preview preceding Round1 changes; no conditional summary/business-mutation proof; formal head replay/owner acceptance pending.",
+    "imageDirectory": "tmp/private/story35-3/inherited-consumer-previews/fix5-live-attempt2",
+    "full15ConsumerMap": "_bmad-output/test-artifacts/design-35-3/shared-consumer-impact.json",
+    "round2HashVerification": "All60 supplemental hashes reverified by independent targeted Round2; preview/conditional error/business-mutation limits unchanged."
+  },
+  "deliverySchemaDiagnostic": {
+    "record": "_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json",
+    "nativeValidatorLog": "tmp/private/story35-3/round1-delivery-schema-final.log",
+    "outcome": "Historical native schema-only rejection retained; NOT project completion-gate/frontend proof. This metadata reconciliation attempts no delivery/status/finalization helper or new validation. Any future transition must use project completion-gate wrapper before helper."
+  },
+  "previousAuthorCandidate": {
+    "kind": "uncommitted source-bound preview",
+    "sourceDigest": "28846cf93e27d866953d0bb1ddda2d23caad60ac712df3fed267aaf499dea7f4",
+    "productSourceDigest": "8e7897628b539f116fa23e2fb81b98d875948c046ab7572b69c2e09092d71bcc",
+    "manifest": "tmp/private/story35-3/source-manifest-handoff.json",
+    "productUnchangedAcrossPhoneFixtureAdaptation": true,
+    "capturedPreviewSourceDigest": "7288268d41ebe99c7184b9faf733b1081ac72a6dbf433767216b2a2fde207d7f",
+    "postCaptureWhitespace": [
+      {
+        "path": "src/components/crm/ArchiveButton.tsx",
+        "beforeSha256": "ec4e9498efdfc8cf64a290d3660a6eb0ddf75dda46a0246d50b6061bcdb7994e",
+        "afterSha256": "df73fa4ced70ba087b1374b84aa28e269e1964380af76c10a66cffeb00ad8aff",
+        "scope": "owned whitespace-only cleanup after preview capture"
+      },
+      {
+        "path": "tests/unit/components/crm/customer-presentation.test.ts",
+        "beforeSha256": "090df7f9bb0e8296c848a31e18e5a2a66650abe49259904d28fe0a8e3f89f61e",
+        "afterSha256": "c431d2501812ad992fcebaff313cdc521734311da674404096f2dc54cfbb7c62",
+        "scope": "owned whitespace-only cleanup after preview capture"
+      }
+    ],
+    "capturedPreviewProductSourceDigest": "a70ccc111dc524f1101f1af0050d1377a6d1a78e7e15bdfc024f2fd50b2ce3c2"
+  },
+  "historicalPreRound1Previews": {
+    "inventory": "tmp/private/story35-3/capture-inventory.json",
+    "count": 37,
+    "sourceBoundOnly": true,
+    "formalCurrentHeadAcceptance": false,
+    "limits": "Preview images retain captured pre-cleanup source labels; current author handoff differs only in listed owned whitespace. Root refreshes formal current-head images after checkpoint."
+  },
+  "renderedContrast": {
+    "evidence": "tmp/private/story35-3/rendered-contrast-round1-navigation.json",
+    "samples": 12,
+    "limits": [
+      "Computed solid sRGB foreground/ancestor-alpha background composites, not rendered-pixel/device audit.",
+      "Field/focus/error samples at360x640; selection/destructive/disabled at1440x900 and360x640.",
+      "CSSzoom200percent at600x1280/300px effective form width and reduced360x320 viewport are controlled enlargement/occlusion proxies, not physical OS keyboard/device qualification."
+    ],
+    "disabledTextReconciliation": "Actual disabled text ratio6.594 exceeds owner-required4.5; Round2 explicitly verified this. Earlier raw test labels said inactive exemption, but no exemption/waiver is accepted or used. Raw captured labels/JSONL/PNGs remain unchanged."
+  },
+  "historicalBrowserNativeStats": {
+    "e2e-first.json": {
+      "startTime": "2026-10-29T13:34:29.449Z",
+      "duration": 167604.31,
+      "expected": 21,
+      "skipped": 0,
+      "unexpected": 7,
+      "flaky": 0
+    },
+    "e2e-fix1.json": {
+      "startTime": "2026-10-29T13:41:17.206Z",
+      "duration": 39949.543000000005,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "e2e-fix2.json": {
+      "startTime": "2026-10-29T13:46:58.407Z",
+      "duration": 19876.885000000002,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "e2e-fix3-targeted.json": {
+      "startTime": "2026-10-29T13:51:12.015Z",
+      "duration": 5393.8589999999995,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "e2e-frozen-full.json": {
+      "startTime": "2026-10-29T13:59:25.094Z",
+      "duration": 68478.613,
+      "expected": 28,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "e2e-frozen-phone-final.json": {
+      "startTime": "2026-10-29T14:06:10.078Z",
+      "duration": 46551.895,
+      "expected": 28,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "e2e-frozen-phone-first.json": {
+      "startTime": "2026-10-29T14:01:33.514Z",
+      "duration": 77690.61099999999,
+      "expected": 26,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    }
+  },
+  "preRound1Commands": [
+    {
+      "name": "focused unit",
+      "command": "node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/crm/form-parsing.test.ts tests/unit/server/commands/crm-validation.test.ts tests/unit/components/crm/customer-presentation.test.ts",
+      "status": "passed",
+      "passed": 121,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/focused-unit.log",
+      "limit": "No post-pass validator/helper behavior change; subsequent changes were UI/test fixture bindings"
+    },
+    {
+      "name": "focused required integration",
+      "command": "SUPABASE_TEST_REQUIRED=1 pnpm exec vitest run tests/integration/commands/crm-customer-commands.int.test.ts tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "status": "passed",
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/focused-integration.json",
+      "limit": "Actual loopback PostgREST/DB; no production/demo; unchanged backend afterward"
+    },
+    {
+      "name": "production build",
+      "command": "pnpm build with qualified local runtime env",
+      "status": "passed",
+      "evidence": "tmp/private/story35-3/build-decision-inert.log"
+    },
+    {
+      "name": "frozen product desktop CRM",
+      "command": "pnpm exec playwright test tests/e2e/crm/customers.e2e.spec.ts --config=tmp/private/story35-3/playwright.runtime.config.ts",
+      "status": "passed",
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/e2e-frozen-full.json",
+      "limit": "1440x900; B08 explicitly360x640. Later test-only mobile drawer/capture bindings leave product bytes unchanged."
+    },
+    {
+      "name": "phone CRM",
+      "command": "E35_PHONE=1 same CRM command/config; root-owned browser CDP attachment and managed production server",
+      "status": "passed",
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/e2e-frozen-phone-final.json",
+      "viewport": "360x640"
+    },
+    {
+      "name": "primary desktop capture refresh",
+      "command": "same CRM command/config --grep=B0[126]",
+      "status": "passed",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/e2e-primary-desktop.log",
+      "viewport": "1440x900"
+    },
+    {
+      "name": "full local integration first attempt",
+      "status": "failed",
+      "native": {
+        "total": 2170,
+        "passed": 1916,
+        "failed": 164,
+        "pending": 76,
+        "todo": 0
+      },
+      "assertions": {
+        "passed": 1916,
+        "failed": 164,
+        "pending": 14,
+        "skipped": 76
+      },
+      "evidence": "tmp/private/story35-3/full-integration.json"
+    },
+    {
+      "name": "qualified budget2 integration retry",
+      "command": "SUPABASE_TEST_REQUIRED=1 pnpm run test:int --maxWorkers=2 --reporter=default --reporter=json --outputFile=tmp/private/story35-3/full-integration-budget2.json",
+      "status": "failed",
+      "native": {
+        "total": 2140,
+        "passed": 2029,
+        "failed": 45,
+        "pending": 52,
+        "todo": 0
+      },
+      "assertions": {
+        "passed": 2029,
+        "failed": 45,
+        "pending": 14,
+        "skipped": 52
+      },
+      "elapsedSeconds": 721.2240939941406,
+      "evidence": "tmp/private/story35-3/full-integration-budget2.json",
+      "limits": [
+        "All43 prior qualified35.2 failure names recur; two additional unchanged job-member/job-depth cases report STACK_TRACE_ERROR",
+        "Missing editor-fault seed, inherited ACL expectations and absent CI-only calendar fixture remain failures",
+        "No third broad retry or unrelated ACL/history repair"
+      ]
+    },
+    {
+      "name": "owned whitespace cleanup validation",
+      "command": "git diff --check; focused customer-presentation Node suite",
+      "status": "passed",
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "tmp/private/story35-3/diff-check.log and presentation-unit-final.log"
+    }
+  ],
+  "immutabilityFinal": {
+    "evidence": "tmp/private/story35-3/round1-immutability-final.json",
+    "priorMigrationGitBlobs": 119,
+    "rawSourcePins": 9,
+    "completeCanonicalBodyUnchanged": true
+  },
+  "round2Review": {
+    "status": "passed",
+    "scope": "targeted known-fix and consequential regression review only",
+    "verdict": "No findings. PASS for targeted Round2 fix scope only.",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "receipt": "_bmad-output/test-artifacts/design-35-3/product-review-round2.json",
+    "receiptSha256": "81403411d1fada1857e46fc483518015cf03622b19305bd1742cc7077d41d882",
+    "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+    "verified": [
+      "R1P01/P03/P04/P13 resolved: edit mutex, dispatch-bound live generation and navigation intent, explicit Discard/read semantics, no baseline advancement without checked detail",
+      "R1P05-P12 consequential assertions/evidence addressed; disabled text6.594 satisfies owner4.5, no exemption waiver",
+      "OriginalP02 withdrawn with runtime limits; no claimed unobserved ABA pass",
+      "Canonical/G03/frozen-plan/EXPERIENCE reconciliation citations support implementation; no new API/read action/payload storage/navigation suppression/history repair/server authority",
+      "Exactly one SuggestedReviewOrder and all20 current literal stops",
+      "All18rawsourcehashes,6normalizedtargethashes,targeteddiffhash,44newpreviewhashes,60supplementalhashes matched",
+      "Actual native reports/asserions33DB/0/0,32desktop/0/0,32phone/0/0,history1/0/0 inspected"
+    ],
+    "limits": [
+      "Reviewer inspected source/assertions/native evidence; did not rerun services/browser",
+      "Uncommitted source-bound previews only; synthetic503 HTML distinct from actual app UI",
+      "Zoom/occlusion controlled proxies, not physicalOSkeyboard",
+      "Supplemental consumers do not prove conditional-error/business-mutation flows",
+      "Full exact-head nativeCI/directphysicalrecovery/formalheadimages/controller/ownerinitialacceptance/freshCoordinatorreview pending"
+    ],
+    "overallIndependentReadiness": "pending fresh Coordinator Round3; no overall readiness pass"
+  },
+  "reviewedFunctionalCandidate": {
+    "kind": "Round1 final uncommitted source-bound preview; no final checkpoint head",
+    "sourceDigest": "f96246a0ac1f7ea35ab9b95ecd4941c05d8dedde1ab9a9915ff071c8d377ea3f",
+    "manifest": "tmp/private/story35-3/source-manifest-round1-navigation.json",
+    "files": 18,
+    "sameFrozenSourceThroughoutFinalTargetDesktopPhone": true
+  },
+  "postRound2CaptureInfrastructure": {
+    "proof": "tmp/private/story35-3/post-r2-viewport-capture-proof.json",
+    "captureDirectory": "tmp/private/story35-3/post-r2-viewport-only-captures",
+    "sourceDigest": "5e3cca0209fd133724586a2156c7ab736a5aa9c9f4df6955486ef8fed4818545",
+    "flag": "E35_CAPTURE_VIEWPORT_ONLY=1",
+    "defaultUnchanged": true,
+    "functionalAssertionsUnchanged": true,
+    "native": {
+      "desktop": {
+        "startTime": "2026-10-29T15:51:58.373Z",
+        "duration": 4197.326,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "phone": {
+        "startTime": "2026-10-29T15:52:07.921Z",
+        "duration": 3144.23,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "exactPngs": 8,
+    "desktopPngDimensions": "1440x900",
+    "phonePngDimensions": "360x640",
+    "no32FunctionalRerun": "Root explicitly authorized bounded B01 only. Historical32/32/33/1 counts remain bound to f962 reviewed snapshot; production11+SQL hashes unchanged.",
+    "scopedLint": "tmp/private/story35-3/post-r2-capture-lint.log exit0",
+    "typecheck": "tmp/private/story35-3/post-r2-capture-typecheck.log exit0",
+    "limits": [
+      "This flag was not in the f962 Round2 review snapshot; fresh Coordinator Round3 must bind actual final head.",
+      "B01 covers loaded/selection/no-match/detail only; root later owns separate scrolled footer frames and formal protocol.",
+      "Original44+60 PNGs and labels remain unchanged source-bound previews.",
+      "Synthetic503 fault HTML remains distinct from actual CustomerList.loadError; no new error frame produced here."
+    ]
+  }
+}

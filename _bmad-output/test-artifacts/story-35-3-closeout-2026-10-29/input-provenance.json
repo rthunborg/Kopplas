@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-29T17:57:06.363Z",
+  "acceptedProductRevision": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "mergedRevision": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "inputs": [
+    {
+      "path": "tests/e2e/crm/customers.e2e.spec.ts",
+      "bytes": 67185,
+      "lines": 1010,
+      "sha256": "8e34b146921c9ab3ac765c1b216a50b0fe8b7552079be7b71d1ea4c0d60a7c75"
+    },
+    {
+      "path": "tests/unit/components/crm/customer-presentation.test.ts",
+      "bytes": 12427,
+      "lines": 288,
+      "sha256": "c431d2501812ad992fcebaff313cdc521734311da674404096f2dc54cfbb7c62"
+    },
+    {
+      "path": "tests/unit/features/crm/form-parsing.test.ts",
+      "bytes": 15322,
+      "lines": 359,
+      "sha256": "41c349be126ea95cb0c59c97e60aea6637b5bb3f379d15f2755125d96f86e0c4"
+    },
+    {
+      "path": "tests/unit/server/commands/crm-validation.test.ts",
+      "bytes": 26375,
+      "lines": 662,
+      "sha256": "fb912cc8aa03ac08c02958ddeb737ba8447ed34f4b5e435735e7baac01200fcf"
+    },
+    {
+      "path": "tests/integration/commands/crm-customer-commands.int.test.ts",
+      "bytes": 25373,
+      "lines": 473,
+      "sha256": "5dbcf0f73701d30d73c7b941cb5f666e1de922c6ff6de5e9f2db879dafde3db4"
+    },
+    {
+      "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+      "bytes": 19260,
+      "lines": 496,
+      "sha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2"
+    },
+    {
+      "path": "tmp/private/story35-3/formal-2b594338/formal-final-receipt.json",
+      "bytes": 4299,
+      "lines": 112,
+      "sha256": "245d80d0b29027409e0200f05515d1099d91ba86e93aca96e556708d6177aaa8"
+    },
+    {
+      "path": "tmp/private/story35-3/formal-2b594338/ci-native/terminal-and-owner-acceptance.json",
+      "bytes": 1181,
+      "lines": 42,
+      "sha256": "c4f3b662162507e6a46482b14b3c946c2734267e438b7f585b882578d126f94f"
+    },
+    {
+      "path": "tmp/private/story35-3/frontend-packet/controller-owner-acceptance-receipt.json",
+      "bytes": 6881,
+      "lines": 9,
+      "sha256": "5101f1d458a2109c6c6eb8a3002255b1708c5f1b4a09f43b7c9e80e9d225b513"
+    },
+    {
+      "path": "tmp/private/story35-3/inherited-consumer-previews/formal-2b594338/formal-capture-receipt.json",
+      "bytes": 141500,
+      "lines": 2836,
+      "sha256": "381da17a424b79c6d2c6efe852fce1d047256f22d15f1f6dc72ea9a70a59ae61"
+    },
+    {
+      "path": "tmp/private/story35-3/round3-offline-archive/targeted-review-delivery.json",
+      "bytes": 1248,
+      "lines": 22,
+      "sha256": "fa3abad9bb98fa5c1eb9b1fc22d49cb2e9e07d9660bffa5ad59276d9f1f6e449"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/design-35-3/product-review-round1.json",
+      "bytes": 11794,
+      "lines": 217,
+      "sha256": "8bbb248e26cc0955446e90c919defd5c33113ac9a5fe22a285e8046cef78fd79"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/design-35-3/product-review-round2.json",
+      "bytes": 2087,
+      "lines": 35,
+      "sha256": "81403411d1fada1857e46fc483518015cf03622b19305bd1742cc7077d41d882"
+    },
+    {
+      "path": "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+      "bytes": 77781,
+      "lines": 451,
+      "sha256": "b6f884865097fea885057be901b0b3e58fbf0e2c9c6c452fa398490a7878aab7"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/design-35-3/test-design-epic-35-3.md",
+      "bytes": 37712,
+      "lines": 229,
+      "sha256": "64d11d18421696128b3002bed395455fd1785758c7229046329579b6f8c92ec3"
+    },
+    {
+      "path": "_bmad/tea/config.yaml",
+      "bytes": 791,
+      "lines": 27,
+      "sha256": "a57277d4cbeb851949599d9da407daae98a0d6bdb45e2506aaffb5c753f31fd6"
+    },
+    {
+      "path": "playwright.config.ts",
+      "bytes": 4872,
+      "lines": 93,
+      "sha256": "5cf81238d605297d3cc5a74f2dcde9e07f24880357bd49d27e071059a6d70706"
+    }
+  ],
+  "execution": "Read-only local source and existing evidence inspection; no new test execution or remote read",
+  "workflowResolver": {
+    "automate": 0,
+    "trace": 0,
+    "testReview": 0,
+    "activationFacts": []
+  },
+  "testInventory": {
+    "staticE2eDeclarations": 31,
+    "parameterizedDeclarations": 2,
+    "actualCanonicalCasesPerViewport": 33,
+    "actualNativeWholeBrowserCases": 74,
+    "countsAreNotAdditive": true
+  },
+  "limits": [
+    "Sensitive test files are fingerprinted/indexed as existing High-reviewed evidence only; Low did not adjudicate authorization/transactional sufficiency.",
+    "Production qualification pending; CI is isolated evidence and never production migration proof."
+  ]
+}

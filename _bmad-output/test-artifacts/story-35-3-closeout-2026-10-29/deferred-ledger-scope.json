@@ -1,0 +1,10 @@
+{
+  "nativeExitCode": 0,
+  "command": "python .agents/skills/auto-bmad/scripts/deferred_ledger.py plan --ledger _bmad-output/implementation-artifacts/deferred-work.md",
+  "ledgerPresent": true,
+  "ledgerSha256": "c7b5f49918a3ac7dad0ba3f895dca7db82aac16e414b50a51c1a1b8edd313c87",
+  "totalEntries": 192,
+  "owned35_3Entries": [],
+  "noMutation": true,
+  "disposition": "Zero owned entries; no reconciliation/archive write required; global ledger unchanged"
+}

@@ -1,0 +1,18 @@
+{
+  "purpose": "Narrow Git byte-preservation packaging qualification before process commit",
+  "route": {
+    "phase": "followup_review",
+    "role": "primary-reviewer",
+    "profile": "standard",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "host": "codex",
+    "tier": "subagents",
+    "route": "subagent",
+    "escalation_reason": "Automatic sensitive-task escalation: transactional-integrity"
+  },
+  "owner": "admission_review_35_3",
+  "scope": "Append only35.3content-addressedmetadata/history attributes; no app/source authority changes",
+  "precedent": "Existing35.2 closeout gitattributes",
+  "verification": "Actual stagedGitblob bytes equal reviewedrawbytes beforepublication"
+}

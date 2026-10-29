@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "mode": "bounded existing-evidence review",
+  "tests": [],
+  "testsGenerated": 0,
+  "fixtureNeeds": [],
+  "newSuiteExecutions": 0,
+  "decision": "No additional ordinary API test generation proposed; existing parser/validator/command/RLS CI evidence is routed to High for sensitive sufficiency.",
+  "sensitiveJudgment": "not performed by Low",
+  "productionQualification": "pending"
+}

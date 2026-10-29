@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "story": "35.3",
   "authorRoute": "gpt-6.1-sol High; initial four ordinary presentation files Sol Low; Round1 Low delegate exclusively CustomerList written anatomy",
-  "status": "Metadata/trail reconciled after narrow POST-Round2 capture-infrastructure test-only flag; targeted review PASS remains f962, final Coordinator/nativeCI/formal owner gates pending",
-  "development_complete": false,
+  "status": "Development complete after actual independent High author/delivery eligibility and supported root wrapper admission; release_ready=false",
+  "development_complete": true,
   "release_ready": false,
   "baseline": "431c27f63183dc0dde0eea44da1427f78adf74c4",
   "buildBaseline": "dbb18f9cbb06c4f684adb8f8b716bedc94b00a96",
@@ -580,5 +580,61 @@
       "Original44+60 PNGs and labels remain unchanged source-bound previews.",
       "Synthetic503 fault HTML remains distinct from actual CustomerList.loadError; no new error frame produced here."
     ]
+  },
+  "currentCloseout": {
+    "acceptedProductRevision": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+    "mergedRevision": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+    "production": "docs/quality/story-35-3-production-migration-2026-10-29.json",
+    "sensitiveQualification": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+    "nativeCiRun": 40919281738,
+    "ownerAcceptance": {
+      "commentId": 6504043561,
+      "digest": "bd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce",
+      "mode": "owner-manual",
+      "configuredImageReview": "unavailable, not fabricatedPASS"
+    },
+    "nativeCounts": {
+      "dbPassed": 2163,
+      "dbFailed": 0,
+      "dbPending": 52,
+      "browserPassed": 74,
+      "browserFailed": 0,
+      "browserSkipped": 0,
+      "recoveryPassed": 1,
+      "recoveryFailed": 0,
+      "recoveryPending": 0
+    },
+    "currentLocalBrowser": {
+      "focusedDesktop": 7,
+      "focusedPhone": 7,
+      "canonicalDesktop": 33,
+      "canonicalPhone": 33,
+      "inherited": 2,
+      "extras": 1,
+      "failed": 0,
+      "skipped": 0,
+      "retries": 0
+    },
+    "independentProductReview": "Three completed broadrounds; targeted finalP2fix/locator/regressionPASS; no fourth broadreview",
+    "advisoryTestQuality": "RequestChanges0/F retained; High found no uncovered consequentialdevelopmentrequirement. No overallNFR/performance/devicePASS.",
+    "status": "done — development completion only; root-authorized after actual eligibility and wrapper PASS",
+    "historicalRawSnapshot": "docs/quality/story-35-3-closeout-2026-10-29/author-verification-before-closeout.json",
+    "development_complete": true,
+    "release_ready": false,
+    "independentEligibility": {
+      "path": "docs/quality/story-35-3-closeout-2026-10-29/independent-author-delivery-eligibility.json",
+      "sha256": "94e872b46bc1eda0d69582ec185ad5d973f71dee7f465a3d7efec42bf7538349",
+      "status": "PASS"
+    },
+    "rootWrapper": {
+      "path": "docs/quality/story-35-3-closeout-2026-10-29/root-wrapper-admission.json",
+      "sha256": "1bded2f49098a3643be2fb1ca577933c70a34761ae486f11119c524cbdca7520",
+      "nativeExit": 0,
+      "deliveryRawSha256": "df87301f15d50401a1acae1d62fc649638311dd520298192de55e88bd62a488f",
+      "development_complete": true,
+      "approval_granted": false
+    },
+    "followupProductReviewRecommended": false,
+    "transitionAuthority": "Explicit root grant after actual pre-transition wrapper PASS; aggregate state/finalize remains root-owned"
   }
 }

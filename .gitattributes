@@ -60,3 +60,17 @@ tests/fixtures/golden/**/*.json  text eol=lf
 /docs/quality/story-35-3-operative-approval-2026-10-29.json -text whitespace=cr-at-eol
 /docs/quality/story-35-3-admission-review-2026-10-29.json -text whitespace=cr-at-eol
 /docs/quality/story-35-3-ownership-and-bindings-2026-10-29.json -text whitespace=cr-at-eol
+
+# Story35.3 content-addressed closeout and preserved history retain reviewed bytes.
+/_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/** -text whitespace=cr-at-eol
+/docs/quality/story-35-3-closeout-2026-10-29/** -text whitespace=cr-at-eol
+/_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json -text whitespace=cr-at-eol
+/_bmad-output/auto-bmad/history/spec-design-35-3-35-3/** -text whitespace=cr-at-eol
+/_bmad-output/auto-bmad/reports/spec-design-35-3-35-3.md -text whitespace=cr-at-eol
+/_bmad-output/auto-bmad/state/spec-design-35-3-35-3.yaml -text whitespace=cr-at-eol
+/_bmad-output/specs/spec-design-35-3/RETROSPECTIVE.md -text whitespace=cr-at-eol
+/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md -text whitespace=cr-at-eol
+/_bmad-output/test-artifacts/design-35-3/author-verification.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-*-route-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-production-apply-admission-2026-10-29.json -text whitespace=cr-at-eol
+/docs/quality/story-35-3-production-migration-2026-10-29.json -text whitespace=cr-at-eol

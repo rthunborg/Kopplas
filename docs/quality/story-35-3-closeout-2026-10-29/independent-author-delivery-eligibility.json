@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "story": "35.3",
+  "kind": "Independent author and delivery closeout eligibility",
+  "createdUtc": "2026-10-29 18:06:29 UTC",
+  "reviewer": "/root/admission_review_35_3",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "route": "docs/quality/story-35-3-author-eligibility-review-route-2026-10-29.json",
+  "verdict": "PASS",
+  "scope": "Current metadata/provenance/protected history only; no fourth broad product review, new tests, production commands or completion transition.",
+  "acceptedProductRevision": "2b5943381f37eaafc942f50c7c1a4660c8a323d3",
+  "mergedRevision": "5857cfb757086a26eb8d9a728a1472e58179ecd1",
+  "reviewedCurrentBytes": [
+    {
+      "path": "_bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json",
+      "rawSha256": "9e46e5927f8bb3aca0290b73717dc7f8fad44c05a9699f5d3f0682c74125d2ea"
+    },
+    {
+      "path": "_bmad-output/test-artifacts/design-35-3/author-verification.json",
+      "rawSha256": "dbed6ac0b385ab6c0a404ec2eeeb0d1ee3c8faeba90c67d2aa94c4392bcc7d46"
+    },
+    {
+      "path": "_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md",
+      "rawSha256": "8abb87deb4f71c255e76f12fb6653fddf8ff4ef55ddc75e08ed333afdcce4ded"
+    }
+  ],
+  "checks": {
+    "currentFactsMatchQualifiedReceipts": true,
+    "nativeCi": {
+      "run": 40919281738,
+      "database": {
+        "passed": 2163,
+        "failed": 0,
+        "pending": 52,
+        "pendingIsCoverage": false
+      },
+      "browser": {
+        "passed": 74,
+        "failed": 0,
+        "skipped": 0
+      },
+      "recovery": {
+        "passed": 1,
+        "failed": 0,
+        "pending": 0
+      }
+    },
+    "ownerVisual": {
+      "commentId": 6504043561,
+      "digest": "bd2710208089ebfebef0779899540dd8a3064595bbd86e52147156ba0e2c12ce",
+      "mode": "owner-manual",
+      "configuredImageReview": "unavailable, never claimed passed"
+    },
+    "production": {
+      "actualApplyNativeExit": 0,
+      "ledger": 120,
+      "previous119Unchanged": true,
+      "independentPostverify": "PASS",
+      "source": "docs/quality/story-35-3-production-migration-2026-10-29.json"
+    },
+    "sensitiveQualification": {
+      "path": "_bmad-output/test-artifacts/story-35-3-closeout-2026-10-29/sensitive-evidence-qualification.json",
+      "rawSha256": "0d257fd836cfbcfaf6027db142966833318d9145ea2d32411d1822238ef1e081",
+      "qualification": "13 ordinary mapped nodes plus10 High-qualified sensitive nodes; bounded development only; no overall NFR/performance/device PASS"
+    },
+    "currentDownstreamQualificationHashesCorrect": true,
+    "rawHistoricalSnapshots": {
+      "count": 4,
+      "allMatch": true,
+      "registry": "docs/quality/story-35-3-closeout-2026-10-29/preservation.json"
+    },
+    "frozenIntentRawSha256": "dfe7058d81adc7353fe611ac1b245b298eed688f0fd128d12e432ca6e275f821",
+    "canonicalSuffixRawSha256": "86cf050f4fae48cf3a5a904bbffdf025589d80d92961f18430652f7f0ac3214b",
+    "historicalPlanningPrefixVerbatim": true,
+    "historicalAuthorFieldsUnchangedExceptCurrentStatus": true,
+    "suggestedReviewOrder": {
+      "headingCount": 1,
+      "actualReferencesChecked": 24,
+      "missingOrWrongLiteralReferences": 0,
+      "highConclusionReference": "sensitive-evidence-qualification.json:219"
+    },
+    "allThreeOriginalReleaseItemOwnerStatusNextActionsUnchanged": true,
+    "historicalFailedBlockedAttemptsPreserved": true,
+    "withdrawnUnmountedAbaClaimStillWithdrawn": true,
+    "noUniversalNavigationAbaOrReleaseClaim": true,
+    "rawStructuralAdvisory": {
+      "recommendation": "Request Changes",
+      "score": 0,
+      "grade": "F",
+      "preserved": true
+    }
+  },
+  "initialRefusal": {
+    "disposition": "Actual first bytes refused; bounded author repair independently verified before current PASS. No retroactive PASS.",
+    "defects": [
+      "Dated section inserted into inline historical SRO mention; malformed historical paragraph and duplicate heading prefix.",
+      "SRO referenced nested native-CI conclusion instead of global High qualification conclusion."
+    ],
+    "preservedSource": "tmp/private/story35-3/process-closeout/author-eligibility-refusal-and-repair.json",
+    "refusedAdapterRawSha256": "84fc4d5772b7b82ac71775628eab66a7a705d1c268dc7e1920f952fb0b01c1d2",
+    "repairs": "Original planning prefix restored verbatim; unchanged dated proposal moved before actual SRO; one heading and24 exact references verified. REL1 current evidence clarified without changing original owner/status/next action."
+  },
+  "proposedTerminalEdits": {
+    "eligibilityOnlyNow": "Author may change delivery independent_review to passed for this independent eligibility and cite this receipt, while clearly retaining root completion-wrapper pending. This does not itself authorize done.",
+    "afterRootWrapperPassAndRootGrant": [
+      "Reconcile only current execution/frontmatter status to done and current development_complete fields to true for development completion.",
+      "Replace current pending eligibility/wrapper prose with actual receipt and actual successful wrapper evidence; never fabricate a wrapper result.",
+      "Retain historical planning status, original intent/canonical suffix, raw snapshots, review history, failed attempts, advisory Request Changes0/F and all release obligations.",
+      "Keep release_ready=false; refresh actual SRO references if terminal metadata edits shift cited lines."
+    ],
+    "notAuthorized": "No product/source/test/spec-intent changes, status helper invocation by reviewer, Git/provider/production writes, additional broad review, release approval or deployment."
+  },
+  "currentTransitionState": {
+    "storyStatus": "blocked",
+    "authorDevelopmentComplete": false,
+    "deliveryIndependentReview": "pending",
+    "allDevelopmentChecksRecordedPassed": true,
+    "rootCompletionWrapper": "not run by reviewer; still required",
+    "reviewerFlippedStatus": false
+  },
+  "blockers": [],
+  "release_ready": false,
+  "conclusion": "Current repaired author/delivery proposal is eligible for supported root completion-gate admission. Actual done/finalization remains conditional on successful root wrapper and explicit root grant; reviewer performed no transition."
+}
