@@ -9,32 +9,33 @@ spec_folder: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3"
 story_id: 35-3
 branch: codex/story-35-3-record-inputs-and-tables
 status: in-progress
-updated_at: "2026-10-29T12:23:27Z"
+updated_at: "2026-10-29T12:34:20Z"
 started_at: "2026-10-29T12:23:26Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1793276607
+active_seconds: 643
+timing_anchor: 1793277260
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: tea_epic
-selected_role: tea-delegate
+selected_phase: build
+selected_role: build-delegate
 selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: high
+selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: transactional-integrity"
+escalation_reason: Ordinary task uses Low effort
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: transactional-integrity\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: "Late-result and stale/unknown outcome presentation must preserve record identity across delayed responses; high test risk from concurrency, not a newly authorized sensitive contract change."
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1]
+completed_phases: [0, 1, 2]
 spec_path: "C:/DEV/K35-records/_bmad-output/specs/spec-design-35-3/stories/35-3-record-inputs-and-tables.md"
 spec_approved: true
 build:
@@ -54,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: []
+commits: [f6b23d7]
 phase8_steps:
   trace_gate: null
   nfr: null
