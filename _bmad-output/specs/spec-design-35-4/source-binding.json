@@ -1,0 +1,36 @@
+{
+  "story_id": "35-4",
+  "approved_base": "07d24236961ae14619411c1c05fc199de568dde7",
+  "branch": "codex/story-35-4-dialogs-feedback-files",
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/2856/Kopplas",
+  "owner_chat": "01a18c3f-da26-7ef2-be95-be71569284b7",
+  "approval_relay_chat": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "approval_quote": "Sounds like a plan, lets finish35.4and35.5sequentially… I approve35.4onaboveallocation. Pleaseinitiate developmentinnewfreshsession",
+  "approval_provenance": "Actual owner approval relayed by Coordinator to root and this adapter delegate; no message ID invented.",
+  "canonical_spec": {
+    "path": "_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md",
+    "sha256": "cf45a9e55d12824979877f81d1045aa000d11a2476de6ab2e69fed577a2e3aba"
+  },
+  "test_slice": {
+    "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-4.md",
+    "sha256": "99a3111dc8b3151dd74046caa33c72eadf2bd6c65e70f806f45dde79308a09b7"
+  },
+  "body_copy_method": "UTF-8 decoded canonical source; CRLF normalized to LF; frontmatter removed; canonical body preserved verbatim thereafter. Resolve copied relative links against canonical source directory.",
+  "production_write_paths": [
+    "src/components/documents/DocumentFilters.tsx",
+    "src/components/documents/DocumentPreviewPane.tsx",
+    "src/components/documents/DocumentLifecycleActions.tsx",
+    "src/components/jobs/JobEventsPanel.tsx"
+  ],
+  "test_write_paths": [
+    "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    "tests/e2e/jobs/job-workspace.e2e.spec.ts"
+  ],
+  "tea_risk": "high",
+  "tea_selected": [
+    "atdd",
+    "automate"
+  ],
+  "tea_rationale": "Selected-source authorization and late-result/lifecycle concurrency regression obligations trigger High TEA risk despite presentation-only production allocation.",
+  "release_ready": false
+}
