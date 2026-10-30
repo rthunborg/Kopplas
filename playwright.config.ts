@@ -13,6 +13,8 @@
  * - Serial (`workers: 1`) — the specs share one seeded fixture and exercise login/logout.
  */
 import { defineConfig, devices } from "@playwright/test";
+import { randomUUID } from "node:crypto";
+import { resolve } from "node:path";
 import {
   LOCAL_SUPABASE_URL,
   LOCAL_SUPABASE_ANON_KEY,
@@ -27,6 +29,12 @@ import {
 
 const PORT = Number(process.env.E2E_PORT ?? 3100);
 const BASE_URL = `http://127.0.0.1:${PORT}`;
+// Private runner-to-next-start control, shared with workers through their inherited
+// environment. The nonce rejects a retained control file from an earlier run.
+const JOB_EVENTS_CONTROL = resolve("test-results/private/job-events-fetch-fault.json");
+const JOB_EVENTS_RUN_ID = process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID ?? randomUUID();
+process.env.E2E_JOB_EVENTS_FETCH_FAULT_CONTROL = JOB_EVENTS_CONTROL;
+process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID = JOB_EVENTS_RUN_ID;
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -59,13 +67,16 @@ export default defineConfig({
     // Invoke Next via `node` + its JS bin (not `pnpm exec`/`npx`): Playwright spawns the
     // webServer through a shell whose PATH may lack the pnpm/npx shims (notably Windows);
     // `node` is always present. NEXT_PUBLIC_* (set below) are inlined at build time.
-    command: `node node_modules/next/dist/bin/next build && node node_modules/next/dist/bin/next start --port ${PORT}`,
+    command: `node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start --port ${PORT}`,
     url: BASE_URL,
     timeout: 240_000,
-    reuseExistingServer: !process.env.CI,
+    // A pre-existing server cannot prove it loaded this run-bound preload.
+    reuseExistingServer: false,
     env: {
       NEXT_PUBLIC_SUPABASE_URL: LOCAL_SUPABASE_URL,
       NEXT_PUBLIC_SUPABASE_ANON_KEY: LOCAL_SUPABASE_ANON_KEY,
+      E2E_JOB_EVENTS_FETCH_FAULT_CONTROL: JOB_EVENTS_CONTROL,
+      E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID: JOB_EVENTS_RUN_ID,
       // Admin email links must return to this actual production-mode test host.
       // The local Auth redirect allow-list has matching 3000 and 3100 entries.
       NEXT_PUBLIC_APP_URL: BASE_URL,

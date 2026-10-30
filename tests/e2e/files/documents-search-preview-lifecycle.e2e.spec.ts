@@ -30,6 +30,24 @@ const pane = (page: Page) => page.getByTestId("documents-preview-pane");
 const downloadLink = (page: Page) => pane(page).getByRole("link", { name: "Ladda ned", exact: true });
 const isAction = (request: Request) => new URL(request.url()).pathname === "/files" && request.method() === "POST" && !!request.headers()["next-action"];
 const actionResponse = (page: Page) => page.waitForResponse(response => isAction(response.request()));
+/** Attach actual production-page bytes only after a meaningful state assertion.
+ * JSONReporter embeds Buffer bodies in general-browser.json; no capture is a pass by itself.
+ */
+async function attachDocumentsState(page: Page, state: string, mode: "actual" | "controlled-transport" | "controlled-clock" = "actual") {
+  const viewport = page.viewportSize();
+  const name = `35-4-documents-${state}-${viewport?.width}x${viewport?.height}-${mode}`;
+  await test.info().attach(`${name}.png`, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+  await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
+    state, mode, viewport, test: test.info().titlePath, workflowSha: process.env.GITHUB_SHA || null,
+    candidateSha: null,
+    candidateIdentity: process.env.GITHUB_SHA ? "requires exact workflow checkout verification" : "local-uncommitted",
+    rendering: "actual production page; next start via configured production webServer",
+    fixture: "synthetic test-owned Documents records and real stored bytes",
+    route: new URL(page.url()).pathname,
+    command: "pnpm exec playwright test tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    commandBinding: "suite reproduction command; bind exact executed invocation from the CI runner log",
+  })), contentType: "application/json" });
+}
 async function hydrated(control: Locator): Promise<void> {
   await control.waitFor({ state: "visible" });
   let current: { connected: boolean; reactMarker: boolean } | null = null;
@@ -161,6 +179,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           await route.fetch(); await adminQuery("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [file.fileId]); await route.abort("failed");
         });
         await row(page, file.name).getByRole("button", { name: "Återställ", exact: true }).click(); await expect(page.getByTestId("documents-lifecycle-error")).toBeVisible();
+        await attachDocumentsState(page, "lifecycle-unknown-response-refresh-required", "controlled-transport");
         const direct = row(page, file.name).getByRole("button", { name: "Återställ", exact: true }); await expect(direct).toBeDisabled(); await direct.evaluate(element => (element as HTMLButtonElement).click()); expect(requests).toHaveLength(1);
         await page.unroute(FILES_ROUTE); const read = await gateRead(page);
         try {
@@ -272,6 +291,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const dialog = page.getByRole("dialog", { name: "Arkivera dokument", exact: true });
         await expect(dialog).toBeVisible();
         await expect(dialog).toContainText(file.name);
+        await attachDocumentsState(page, "archive-confirmation");
         // Then each actual dialog action remains visible and touch-operable, without horizontal clipping.
         const controls = dialog.getByRole("button");
         expect(await controls.count()).toBeGreaterThan(0);
@@ -301,11 +321,13 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(tooltip).toContainText("alla kopplingar");
         await page.mouse.move(0, 0); await expect(tooltip).toBeHidden();
         await archive.focus(); await expect(tooltip).toBeVisible();
+        await attachDocumentsState(page, "archive-tooltip-keyboard-focus");
         await page.keyboard.press("Escape"); await expect(tooltip).toBeHidden(); await expect(archive).toBeFocused();
         expect(await audits(first.fileId)).toHaveLength(0);
         expect((await confirmArchive(page, first.name)).ok()).toBe(true);
         const toast = page.getByTestId("documents-lifecycle-success"), undo = page.getByTestId("documents-archive-undo");
         await expect(toast).toContainText("Arkiverad"); await expect(undo).toBeVisible();
+        await attachDocumentsState(page, "archive-confirmed-toast-and-independent-undo");
         await toast.getByRole("button", { name: "Stäng bekräftelse", exact: true }).click();
         await expect(toast).toHaveCount(0); await expect(undo).toBeVisible();
         expect((await state(first.fileId)).lifecycle_state).toBe("archived"); expect(await audits(first.fileId)).toHaveLength(1);
@@ -323,7 +345,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const file = await seedFile(seed, "20.2-dialog-" + crypto.randomUUID() + ".png", "image/png"); await open(page, { q: file.name }); const invoker = row(page, file.name).getByRole("button", { name: "Arkivera", exact: true }); await invoker.click(); const dialog = page.getByRole("dialog");
         await expect(dialog.getByRole("button", { name: "Arkivera", exact: true })).toBeFocused(); await page.keyboard.press("Shift+Tab"); await page.keyboard.press("Shift+Tab"); await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeFocused(); await page.keyboard.press("Escape"); await expect(invoker).toBeFocused(); expect(await audits(file.fileId)).toHaveLength(0);
         await invoker.click(); await expect(page.getByTestId("file-index").locator('[inert]')).toHaveCount(1); const gate = await gateAction(page);
-        try { const response = actionResponse(page); await dialog.getByRole("button", { name: "Arkivera", exact: true }).click(); await gate.started; await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeDisabled(); await page.keyboard.press("Escape"); await expect(dialog).toBeVisible(); gate.release(); expect((await response).ok()).toBe(true); await expect(dialog).toHaveCount(0); expect(await audits(file.fileId)).toHaveLength(1); } finally { await gate.dispose(); }
+        try { const response = actionResponse(page); await dialog.getByRole("button", { name: "Arkivera", exact: true }).click(); await gate.started; await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeDisabled(); await page.keyboard.press("Escape"); await expect(dialog).toBeVisible(); await attachDocumentsState(page, "archive-confirmation-busy-dismissal-blocked", "controlled-transport"); gate.release(); expect((await response).ok()).toBe(true); await expect(dialog).toHaveCount(0); expect(await audits(file.fileId)).toHaveLength(1); } finally { await gate.dispose(); }
       });
     });
     for (const mime of ["image/png", "application/pdf"]) test("[P1][AC2] actual " + mime + " media failure offers explicit retry and authorized download", ERROR_RED, async ({ page }) => {
@@ -391,6 +413,8 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(page).toHaveURL(url => url.searchParams.get("q")?.toLowerCase() === `${marker}%_[a]`); await expect(row(page, included.name)).toHaveCount(1);
         await search.fill("image/png"); await expect(row(page, included.name)).toHaveCount(1);
         await search.fill(`not-present-${crypto.randomUUID()}`); await expect(page.getByTestId("file-index-empty")).toBeVisible();
+        await page.getByTestId("file-index-empty").scrollIntoViewIfNeeded();
+        await attachDocumentsState(page, "authorized-filter-no-match");
         await expect(page.getByTestId("documents-result-count")).toHaveText("0");
         await expect(page.getByLabel("Modul", { exact: true })).toHaveValue("crm"); await expect(page.getByLabel("Typ", { exact: true })).toHaveValue("customer"); await expect(page.getByLabel("Syfte", { exact: true })).toHaveValue("crm_document");
         await expect(page.getByTestId("file-index-error")).toHaveCount(0);
@@ -432,6 +456,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         try {
           const first = select(page, a.name); await gate.started;
           await expect(pane(page).getByTestId("documents-preview-loading")).toBeVisible(); await expect(downloadLink(page)).toHaveCount(0);
+          await attachDocumentsState(page, "selected-preview-signing-loading", "controlled-transport");
           nextGate = await gateAction(page);
           const second = select(page, b.name);
           // Next actions may queue: selection must change immediately even when
@@ -448,6 +473,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           const selectedHref = await downloadLink(page).getAttribute("href"); expect(selectedHref).toMatch(/^https?:\/\//);
           await expect(downloadLink(page)).toHaveAttribute("href", selectedHref!); await expect(pane(page)).not.toContainText(a.name);
           const bytes = await page.request.get(selectedHref!); expect(bytes.ok()).toBe(true); expect(await bytes.body()).toEqual(b.body);
+          await attachDocumentsState(page, "new-selected-image-after-old-response", "controlled-transport");
         } finally { if (nextGate) await nextGate.dispose(); await gate.dispose(); }
       });
     });
@@ -474,10 +500,12 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const file = await seedFile(seed, `20.2-expiry-${crypto.randomUUID()}.png`, "image/png"); await open(page); await page.clock.install({ time: new Date() });
         expect((await select(page, file.name)).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible(); await page.clock.fastForward(86_401_000);
         await expect(pane(page).getByText("Åtkomsten har gått ut", { exact: true })).toBeVisible(); await expect(downloadLink(page)).toHaveCount(0); await expect(pane(page).getByRole("img")).toHaveCount(0);
+        await attachDocumentsState(page, "selected-preview-expired-no-bearer", "controlled-clock");
         const renewal = pane(page).getByRole("button", { name: "Förnya åtkomst", exact: true }); await renewal.focus(); await expect(renewal).toBeFocused(); await page.clock.setFixedTime(new Date());
         const response = actionResponse(page); await renewal.press("Enter"); expect((await response).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible();
         const href = await downloadLink(page).getAttribute("href"); expect(href).toMatch(/^https?:\/\//);
         const bytes = await page.request.get(href!); expect(bytes.ok()).toBe(true); expect(await bytes.body()).toEqual(file.body);
+        await attachDocumentsState(page, "selected-preview-authorized-renewal");
       });
     });
     // RED: activate after supported PDF embedding and authorized download land.
@@ -556,8 +584,10 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           await pane(page).getByRole("button", { name: "Förnya åtkomst", exact: true }).click(); await expect(pane(page).getByRole("button", { name: "Försök igen", exact: true })).toBeVisible();
           await expect(downloadLink(page)).toHaveCount(0); await expect(pane(page).getByRole("img")).toHaveCount(0);
           await page.clock.install({ time: new Date() }); await page.clock.runFor(10_000); expect(attempts).toBe(1);
+          await attachDocumentsState(page, "selected-preview-persistent-failure-explicit-retry", "controlled-transport");
         } finally { await page.unroute(FILES_ROUTE); }
         const response = actionResponse(page); await pane(page).getByRole("button", { name: "Försök igen", exact: true }).click(); expect((await response).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible();
+        await attachDocumentsState(page, "selected-preview-retry-authorized-result");
       });
     });
     // RED: activate after confirmation, checked archive pending/success and metadata-only mode.
@@ -818,6 +848,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         // E35-4-T-AC2/AC4/AC5: real sheet name, modal isolation and keyboard trap.
         const sheet = page.getByRole("dialog", { name: "Förhandsvisning", exact: true });
         await expect(sheet).toHaveAttribute("aria-modal", "true");
+        await attachDocumentsState(page, "selected-preview-named-sheet-keyboard-entry");
         const refresh = sheet.getByRole("button", { name: "Förnya åtkomst", exact: true });
         await refresh.focus(); await page.keyboard.press("Tab");
         await expect(sheet.getByRole("button", { name: "Stäng", exact: true })).toBeFocused();

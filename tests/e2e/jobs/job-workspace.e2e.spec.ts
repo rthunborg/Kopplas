@@ -24,6 +24,48 @@ import { saveCard, upgradeInput, upgradeJob, jobSemanticsSnapshot } from "../../
 import { createWorkOrder, readWorkOrders } from "../../support/work-orders-atdd";
 import { seedMember, readMembers } from "../../support/job-members-atdd";
 import { bookingCommand, bookingInput } from "../../support/bookings-atdd";
+import { runCommand } from "@/server/commands/envelope";
+import { updateJob } from "@/server/commands/jobs";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { adminQuery } from "../../factories/admin-sql";
+
+/** Actual production-page PNG Buffer attachments are embedded by JSONReporter.
+ * Controlled transport never substitutes route payloads or fabricates success.
+ */
+async function attachJobsState(page: Page, state: string, mode: "actual" | "controlled-transport" | "controlled-persisted-state" = "actual") {
+  const viewport = page.viewportSize();
+  const name = `35-4-jobs-${state}-${viewport?.width}x${viewport?.height}-${mode}`;
+  await test.info().attach(`${name}.png`, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+  await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
+    state, mode, viewport, test: test.info().titlePath,
+    workflowSha: process.env.GITHUB_SHA || null, candidateSha: null,
+    candidateIdentity: process.env.GITHUB_SHA ? "requires exact workflow checkout verification" : "local-uncommitted",
+    rendering: "actual production page; next start via configured production webServer",
+    fixture: mode === "controlled-persisted-state"
+      ? "defensive schema-permitted standalone parent; NULL source refs and genuinely absent events; not ordinary command creation"
+      : "synthetic test-owned Jobs records; checked normal-JWT commands and DB-owned event identity/time",
+    route: new URL(page.url()).pathname,
+    command: "pnpm exec playwright test tests/e2e/jobs/job-workspace.e2e.spec.ts",
+  })), contentType: "application/json" });
+}
+
+/** Same run-bound control contract as the next-start-only preload. IDs only;
+ * atomic replace avoids partially parsed state, and restrictive POSIX modes apply
+ * where supported (Windows retains the user's test-results directory ACL).
+ */
+async function setJobEventsTransportFault(jobId: string, actorUserId: string, armed: boolean) {
+  const control = process.env.E2E_JOB_EVENTS_FETCH_FAULT_CONTROL;
+  const runId = process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID;
+  if (control !== resolve("test-results/private/job-events-fetch-fault.json") || !runId) {
+    throw new Error("Run-bound safe-events startup adapter is required");
+  }
+  await mkdir(dirname(control), {recursive: true, mode: 0o700});
+  const temporary = `${control}.${runId}.tmp`;
+  await writeFile(temporary, JSON.stringify({schemaVersion: 1, runId, armed, jobId, actorUserId}), {mode: 0o600});
+  await rename(temporary, control);
+  expect(JSON.parse(await readFile(control, "utf8"))).toEqual({schemaVersion: 1, runId, armed, jobId, actorUserId});
+}
 
 type TabName = "Översikt" | "Arbetsorder" | "Schema" | "Filer" | "Händelser";
 // playwright-utils deviation: existing bounded hydration predicate; no fixed waits.
@@ -430,6 +472,8 @@ test.describe("Story 16.5 essential job workspace", () => {
         if (protectedLeave) await expect(orderTab).toHaveAttribute("aria-selected", "true");
         else await selectTab(page, "Arbetsorder"); // retained island path must preserve entered value
         await expect(draft).toHaveValue("Unsent workspace draft");
+        await draft.scrollIntoViewIfNeeded();
+        await attachJobsState(page, "inherited-work-order-retained-unsent-input");
         // Explicitly abandon only after proving protection/preservation, before a separate card draft.
         const acceptLeave = async (dialog: Dialog) => { await dialog.accept(); };
         page.on("dialog", acceptLeave);
@@ -455,6 +499,8 @@ test.describe("Story 16.5 essential job workspace", () => {
           await unload.dismiss();
           await reload;
           await expect(card.getByRole("textbox", {name: "Titel", exact: true})).toHaveValue(changed);
+          await card.getByRole("textbox", {name: "Titel", exact: true}).scrollIntoViewIfNeeded();
+          await attachJobsState(page, "inherited-card-retained-after-cancelled-refresh");
           await page.setViewportSize({width: 1280, height: 900});
           await cardHistoryStage(page, "before-back");
           const backPrompt = page.waitForEvent("dialog");
@@ -466,6 +512,8 @@ test.describe("Story 16.5 essential job workspace", () => {
           await away;
           await expect(card.getByRole("textbox", {name: "Titel", exact: true})).toHaveValue(changed);
           expect(new URL(page.url()).pathname).toBe(`/jobs/${jobId}`);
+          await card.getByRole("textbox", {name: "Titel", exact: true}).scrollIntoViewIfNeeded();
+          await attachJobsState(page, "inherited-card-retained-after-cancelled-back");
           const exitPrompt = page.waitForEvent("dialog");
           const leave = page.getByRole("navigation", {name: "Huvudnavigation", exact: true}).getByRole("link", {name: "Jobb/Order", exact: true}).click();
           const exit = await exitPrompt;
@@ -690,9 +738,15 @@ test.describe("Story 35.4 representative AuditTrail", () => {
     test(`[P1][E35-4-T-AC1,AC4,AC6,AC7] safe compact and full AuditTrail retain Swedish labels and exact Stockholm times at ${viewport.width}x${viewport.height}`, async ({resourcePage: page}) => {
       await withWorkspaceFixture(async f => {
         const jobId = f.jobs.both.id;
+        // Genuine checked transitions append DB-owned events; no direct history INSERT.
+        for (const status of ["in_progress", "done", "cancelled"] as const) {
+          const updated = await runCommand(updateJob, { client: f.fx.plannerClient as never,
+            input: { id: jobId, status }, correlationId: crypto.randomUUID() });
+          expect(updated.ok).toBe(true);
+        }
         const events = await readWorkspaceEvents(f.fx.plannerClient, jobId);
         expect(events.error).toBeNull();
-        expect(events.rows.length).toBeGreaterThan(0);
+        expect(events.rows.length).toBeGreaterThan(3);
         const labels: Record<string, string> = {
           created: "Skapad", in_progress: "Pågår", done: "Klar", cancelled: "Avbruten",
           upgraded_to_projekt: "Uppgraderad till projekt",
@@ -710,12 +764,133 @@ test.describe("Story 35.4 representative AuditTrail", () => {
         await page.setViewportSize(viewport);
         await signIn(page, f.credentials.manager);
         await page.goto(`/jobs/${jobId}`);
-        await assertRows(page.getByTestId("job-recent-events"), events.rows.slice(-3));
+        const compact = page.getByTestId("job-recent-events");
+        await assertRows(compact, events.rows.slice(-3));
+        await expect(compact.locator(`time[datetime="${events.rows[0].occurredAt}"]`)).toHaveCount(0);
+        await compact.scrollIntoViewIfNeeded();
+        await attachJobsState(page, "audit-compact-latest-three");
         await selectTab(page, "Händelser");
         const full = page.getByTestId("job-event-history");
         await assertRows(full, events.rows);
         for (const event of events.rows) {
           await expect(full.getByTestId(`job-event-${event.id}`)).toBeVisible();
+        }
+        await full.scrollIntoViewIfNeeded();
+        await attachJobsState(page, "audit-full-history");
+      });
+    });
+    test(`[P1][E35-4-T-AC1,AC4,AC6,AC7] defensive persisted standalone job renders genuine empty AuditTrail at ${viewport.width}x${viewport.height}`, async ({resourcePage: page}) => {
+      await withWorkspaceFixture(async f => {
+        // Controlled defensive persisted state, NOT ordinary createJob behavior:
+        // createJob atomically appends `created`. The schema permits a standalone
+        // parent with both source refs NULL. Never delete/rewrite existing history.
+        const jobId = crypto.randomUUID(), title = `Defensive empty history ${jobId}`;
+        const tenantId = f.fx.base.tenantA.id;
+        try {
+        const [parent] = await adminQuery<{id: string; quote_acceptance_id: null; quote_version_id: null}>(
+          `insert into public.jobs(id,tenant_id,customer_id,facility_id,contact_id,title,
+            quote_acceptance_id,quote_version_id,planned_start_date,planned_end_date)
+           values($1,$2,$3,$4,$5,$6,NULL,NULL,'2026-10-12','2026-10-12')
+           returning id,quote_acceptance_id,quote_version_id`,
+          [jobId, tenantId, f.identity.customerId, f.identity.facilityId, f.identity.contactId, title]);
+        expect(parent).toEqual({id: jobId, quote_acceptance_id: null, quote_version_id: null});
+        const before = await readWorkspaceEvents(f.fx.plannerClient, jobId);
+        expect(before).toEqual({rows: [], error: null});
+        const [{count}] = await adminQuery<{count: number}>(
+          "select count(*)::int count from public.job_events where tenant_id=$1 and job_id=$2", [tenantId, jobId]);
+        expect(count).toBe(0);
+        await page.setViewportSize(viewport);
+        await signIn(page, f.credentials.manager);
+        await page.goto(`/jobs/${jobId}`);
+        await identity(page, jobId, title);
+        const compact = page.getByTestId("job-recent-events");
+        await expect(compact.getByText("Inga händelser.", {exact: true})).toBeVisible();
+        await expect(compact.getByRole("listitem")).toHaveCount(0);
+        await expect(compact.getByRole("alert")).toHaveCount(0);
+        await expect(compact.getByRole("button", {name: "Försök igen", exact: true})).toHaveCount(0);
+        await compact.scrollIntoViewIfNeeded();
+        await attachJobsState(page, "audit-empty-compact-defensive-persisted-parent", "controlled-persisted-state");
+        await selectTab(page, "Händelser");
+        const full = page.getByTestId("job-event-history");
+        await expect(full.getByText("Inga händelser.", {exact: true})).toBeVisible();
+        await expect(full.getByRole("listitem")).toHaveCount(0);
+        await expect(full.getByRole("alert")).toHaveCount(0);
+        await expect(full.getByRole("button", {name: "Försök igen", exact: true})).toHaveCount(0);
+        await full.scrollIntoViewIfNeeded();
+        await attachJobsState(page, "audit-empty-full-defensive-persisted-parent", "controlled-persisted-state");
+        expect(await readWorkspaceEvents(f.fx.plannerClient, jobId)).toEqual(before);
+        } finally {
+          // Explicitly remove only our new empty parent, even after an assertion
+          // fails. Existing fixture disposal still owns its whole tenant fixture.
+          // No event INSERT, DELETE, UPDATE or enforcement change is performed.
+          await adminQuery(`delete from public.jobs j where j.tenant_id=$1 and j.id=$2
+            and j.quote_acceptance_id is null and j.quote_version_id is null
+            and not exists(select 1 from public.job_events e where e.tenant_id=$1 and e.job_id=$2)`, [tenantId, jobId]);
+          const [{count}] = await adminQuery<{count: number}>(
+            "select count(*)::int count from public.jobs where tenant_id=$1 and id=$2", [tenantId, jobId]);
+          expect(count).toBe(0);
+        }
+      });
+    });
+    test(`[P1][E35-4-T-AC1,AC4,AC6,AC7] real safe-events transport failure persists through retry then recovers unchanged history at ${viewport.width}x${viewport.height}`, async ({resourcePage: page}) => {
+      await withWorkspaceFixture(async f => {
+        const jobId = f.jobs.both.id, title = `Retry history ${jobId}`;
+        const actorUserId = f.credentials.manager.id;
+        await saveCard(f, jobId, {title});
+        const before = await readWorkspaceEvents(f.fx.plannerClient, jobId);
+        expect(before.error).toBeNull();
+        expect(before.rows.length).toBeGreaterThan(0);
+        await page.setViewportSize(viewport);
+        await signIn(page, f.credentials.manager);
+        try {
+          await setJobEventsTransportFault(jobId, actorUserId, true);
+          await page.goto(`/jobs/${jobId}`);
+          await identity(page, jobId, title);
+          const compact = page.getByTestId("job-recent-events");
+          await expect(compact.getByRole("alert")).toHaveText("Händelserna kunde inte hämtas. Försök igen.");
+          await expect(compact.getByText("Inga händelser.", {exact: true})).toHaveCount(0);
+          await expect(compact.getByRole("listitem")).toHaveCount(0);
+          await compact.scrollIntoViewIfNeeded();
+          await attachJobsState(page, "audit-error-compact-armed", "controlled-transport");
+          // Still armed across a full real page read; no stale client panel or
+          // one-shot failure can satisfy the persistence/retry observations.
+          await page.reload();
+          await identity(page, jobId, title);
+          await selectTab(page, "Händelser");
+          const full = page.getByTestId("job-event-history");
+          const retry = full.getByRole("button", {name: "Försök igen", exact: true});
+          await expect(full.getByRole("alert")).toHaveText("Händelserna kunde inte hämtas. Försök igen.");
+          await expect(retry).toBeEnabled();
+          const bounds = await retry.boundingBox();
+          expect(bounds?.height).toBeGreaterThanOrEqual(44);
+          const refreshed = page.waitForResponse(reply => reply.request().method() === "GET"
+            && reply.request().headers().rsc === "1" && new URL(reply.url()).pathname === `/jobs/${jobId}`);
+          await retry.click();
+          const failedRefresh = await refreshed;
+          expect(failedRefresh.ok()).toBe(true);
+          // Observe the actual refresh response; never supply/fabricate RSC.
+          expect(await failedRefresh.text()).toContain("Händelserna kunde inte hämtas. Försök igen.");
+          await expect(full.getByRole("alert")).toHaveText("Händelserna kunde inte hämtas. Försök igen.");
+          await expect(full.getByText("Inga händelser.", {exact: true})).toHaveCount(0);
+          await expect(full.getByRole("listitem")).toHaveCount(0);
+          await identity(page, jobId, title);
+          await full.scrollIntoViewIfNeeded();
+          await attachJobsState(page, "audit-error-full-retry-still-armed", "controlled-transport");
+          await setJobEventsTransportFault(jobId, actorUserId, false);
+          await retry.click();
+          await expect(full.getByRole("alert")).toHaveCount(0);
+          await expect(full.getByRole("listitem")).toHaveCount(before.rows.length);
+          for (const event of before.rows) {
+            const row = full.getByTestId(`job-event-${event.id}`);
+            await expect(row).toBeVisible();
+            await expect(row.locator("time")).toHaveAttribute("datetime", event.occurredAt);
+          }
+          await identity(page, jobId, title);
+          expect(await readWorkspaceEvents(f.fx.plannerClient, jobId)).toEqual(before);
+          await full.scrollIntoViewIfNeeded();
+          await attachJobsState(page, "audit-retry-recovered-same-real-history");
+        } finally {
+          await setJobEventsTransportFault(jobId, actorUserId, false);
         }
       });
     });

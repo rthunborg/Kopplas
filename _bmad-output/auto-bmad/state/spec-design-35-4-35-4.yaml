@@ -9,11 +9,11 @@ spec_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas\\_bmad-output\
 story_id: 35-4
 branch: codex/story-35-4-dialogs-feedback-files
 status: in-progress
-updated_at: "2026-10-30T10:47:47Z"
+updated_at: "2026-10-30T10:52:24Z"
 started_at: "2026-10-30T10:01:38Z"
 completed_at: null
 active_seconds: 2768
-timing_anchor: null
+timing_anchor: 1793357482
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -93,4 +93,5 @@ overrides:
   merge: "Disabled; Coordinator final integration disposition required"
   visual: Initial owner acceptance required after production-server rendering
   approval: "Coordinator relayed explicit Rasmus approval for four production and two existing browser-test paths; owner01a18c3f-da26-7ef2-be95-be71569284b7"
+  owner_test_amendment: "Human approved bounded test amendment via async reply: controlled persisted empty-history fixture in owned Jobs test; tests/support/job-events-fetch-fault.cjs plus playwright.config.ts startup wiring only, exact fixture safe-projection request, pass-through/no fabricated responses, finally teardown; independent High review required. Production readers/routes unchanged."
 constraints: []
