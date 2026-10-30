@@ -74,8 +74,20 @@
     "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
     "scope": "Only the dedicated focused validation workflow, the shared Documents unsupported-format remote-saveAs compatibility case, and explicit known sole-installer /my-day landing in shared Documents/context signIn callers. Preserve other roles, all denial/content/navigation/owner/bytes assertions and timeouts; no product/auth/routing changes.",
     "workflow_path": ".github/workflows/story-35-4-validation.yml",
-    "workflow_expected_sha256": "0ecd507bcfe40b3b119d9214b7cfadc19f334d1c432a81f8ac6c0562b058fa3a",
+    "workflow_expected_sha256": "c52aac68b235fcd99197d08b11cc05826342a711331592410e507ced9866e641",
     "implementation_route": "Shared test fixes: gpt-6.1-sol low. Dedicated workflow/parser: separate context-free gpt-6.1-sol high author.",
-    "review_reuse_requirement": "Workflow distinct High review /root/focused_ci_review reported No findings on 11abc; root may reuse only after verifying exact approved workflow bytes and unchanged relevant dependencies. Latest two shared-test fixes receive targeted independent Low review."
+    "review_reuse_requirement": "Workflow distinct High review /root/focused_ci_review reported No findings on 11abc; root may reuse only after verifying exact approved workflow bytes and unchanged relevant dependencies. Latest two shared-test fixes receive targeted independent Low review.",
+    "workflow_original_approved_sha256": "0ecd507bcfe40b3b119d9214b7cfadc19f334d1c432a81f8ac6c0562b058fa3a",
+    "workflow_hash_policy": "Current workflow_expected_sha256 is canonical UTF-8 LF. Original owner-approved hash/review are historical and do not cover changed context/export/upload lines.",
+    "hosted_context_correction": {
+      "date": "2026-10-30",
+      "failed_revision": "436032987d858e9123373410a153e40aee69dec4",
+      "failed_run_id": "41065800967",
+      "failure_evidence": "Immutable hosted run failed before jobs/fallback run-name; exact hosted annotation was not recovered after bounded routes. Official-checksum-verified actionlint 1.7.12 independently proved runner context unavailable at jobs.env (old line 29:32).",
+      "high_author_change": "Removed job-level runner.temp evidence env. First admission exports RUNNER_TEMP/story-35-4-evidence and persists it via GITHUB_ENV. Always-upload evidence path uses direct runner.temp/story-35-4-evidence/ so an early checkout failure cannot expand to root; browser runtime path remains direct runner.temp.",
+      "review": "Distinct targeted independent Sol High review returned No findings after resolving the early-failure upload-path issue. This review covers the new lines separately from historical original-workflow full review reuse.",
+      "verification": "Root reports actionlint, YAML, nine Bash blocks, embedded JS and parsed-YAML bounded-upload-path checks exited 0. Canonical-LF workflow hash independently verified by metadata author. No new hosted validation/runtime pass is claimed.",
+      "runtime_status": "pending"
+    }
   }
 }

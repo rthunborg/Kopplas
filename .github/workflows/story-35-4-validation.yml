@@ -26,7 +26,6 @@ jobs:
       BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET: local-test-only-booking-conflict-attestation-secret-v1
       PLAYWRIGHT_JSON_OUTPUT_FILE: ${{ github.workspace }}/test-results/general-browser.json
       PLAYWRIGHT_HTML_OUTPUT_DIR: ${{ github.workspace }}/playwright-report
-      STORY_35_4_EVIDENCE: ${{ runner.temp }}/story-35-4-evidence
     steps:
       - name: Checkout immutable push revision
         uses: actions/checkout@v4
@@ -46,6 +45,8 @@ jobs:
             9c9e10a502092606f039a1dd96728f442290fc12cbdd35095c7180966ce23317 .github/workflows/ci.yml \
             b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f scripts/ci/checkpoint-dispatch.mjs \
             | sha256sum --check --strict
+          export STORY_35_4_EVIDENCE="$RUNNER_TEMP/story-35-4-evidence"
+          printf 'STORY_35_4_EVIDENCE=%s\n' "$STORY_35_4_EVIDENCE" >> "$GITHUB_ENV"
           mkdir -p "$STORY_35_4_EVIDENCE"
           node --input-type=module <<'NODE'
           import { writeFileSync, readFileSync } from 'node:fs';
@@ -256,7 +257,7 @@ jobs:
         with:
           name: story-35-4-provenance
           path: |
-            ${{ env.STORY_35_4_EVIDENCE }}/
+            ${{ runner.temp }}/story-35-4-evidence/
             ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
           retention-days: 7
           if-no-files-found: error
