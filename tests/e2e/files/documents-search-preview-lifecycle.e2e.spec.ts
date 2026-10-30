@@ -114,7 +114,7 @@ async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "
       })).toBe(true);
       expect(dependencyErrors).toEqual([]); expect(scriptErrors).toEqual([]);
       const markers = family === "feedback" ? [referencePage.getByText("3 tidrapporter väntar på attest", { exact: true }), referencePage.getByText("Fakturan skickad · 284 500 kr", { exact: true }), referencePage.getByRole("tooltip"), referencePage.getByRole("dialog")]
-        : family === "audit-trail" ? [referencePage.locator("#root ol li").first(), referencePage.locator("#root ol li").last()]
+        : family === "audit-trail" ? [referencePage.locator("#root > .col > div:last-child > ol > li").first(), referencePage.locator("#root > .col > div:last-child > ol > li").last()]
         : family === "side-sheet" ? [referencePage.locator(".ref-sheet"), referencePage.getByRole("button", { name: "Förnya åtkomst", exact: true })] : [referencePage.locator(".ref-chip")];
       for (const marker of markers) {
         await expect(marker).toBeVisible();
@@ -153,7 +153,7 @@ async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "
         await expect(referencePage.getByRole("tooltip")).toHaveCSS("opacity", "1");
       } else {
         await expect(referencePage.getByText("Tid rapporterad · 8 h", { exact: true })).toBeVisible();
-        await expect(referencePage.locator("#root ol li")).toHaveCount(2);
+        await expect(referencePage.locator("#root > .col > div:last-child > ol > li")).toHaveCount(2);
       }
       await capture(card.family, "immutable-html", sourceHashes([card.file, ...styles, "_ds_bundle.js"]),
         "Exact admitted card bytes plus appended, disclosed family-isolation/label CSS; original component JSX/content and archived assets unchanged. Feedback reserves 240px for its original scaled modal and left-aligns its tooltip within the phone viewport; audit hides unrelated table/phase/progress samples.",

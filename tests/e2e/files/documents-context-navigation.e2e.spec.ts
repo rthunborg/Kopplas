@@ -91,11 +91,24 @@ async function signIn(page: Page, credentials: Credentials, expectedLanding: "/d
 }
 /** Pick by the observed exact tuple, not order/CSS; CRM contains three real anchors. */
 async function entry(page: Page, source: Source): Promise<Locator> {
+  await openSourcePanel(page, source);
   for (const anchor of await page.getByRole("link", { name: LINK_NAME, exact: true }).all()) {
     const value = await anchor.getAttribute("href");
     if (value && tupleMatches(new URL(value, page.url()), source)) return anchor;
   }
   throw new Error("Expected real panel entry for " + source.ownerType + " source");
+}
+/** Existing Jobs file panel is mounted in the real Filer tab, not Översikt. */
+async function openSourcePanel(page: Page, source: Source): Promise<void> {
+  if (source.ownerType !== "job") return;
+  const files = page.getByRole("tab", { name: "Filer", exact: true });
+  if (!await files.isVisible()) {
+    const more = page.getByRole("button", { name: "Mer", exact: true });
+    await hydrated(more); await more.click();
+  }
+  await hydrated(files);
+  if (await files.getAttribute("aria-selected") !== "true") await files.click();
+  await expect(files).toHaveAttribute("aria-selected", "true");
 }
 function source(seed: Seed, owner: Owner): Source {
   const value = seed.sources[owner];
@@ -295,6 +308,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
         const ref = source(seed, owner);
         const fileName = created?.name ?? (await adminQuery<{ display_name: string }>("select display_name from public.files where id=$1", [seed.base.acceptedAcceptance.evidenceFileId]))[0].display_name;
         await signIn(page, seed.base.adminA); await page.goto(ref.route);
+        await openSourcePanel(page, ref);
         const panel = page.getByTestId(ref.panelId);
         await expect(panel).toBeVisible();
         await expect(panel).toContainText(fileName);
@@ -317,7 +331,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
         await contextReturn(page).click();
         await expect(page).toHaveURL(url => url.pathname === ref.returnHref);
         if (owner === "quote_version") await expect(page.getByTestId("quote-version-snapshot")).toBeVisible();
-        else await expect(page.getByTestId(ref.panelId)).toBeVisible();
+        else { await openSourcePanel(page, ref); await expect(page.getByTestId(ref.panelId)).toBeVisible(); }
       });
     });
   }
@@ -336,6 +350,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
           if (casing === "mixed-case") expect(requested).not.toBe(ref.ownerId.toUpperCase());
           await signIn(page, seed.base.adminA);
           await page.goto(ref.route.replace(ref.ownerId, requested));
+          await openSourcePanel(page, ref);
           await expect(page.getByTestId(ref.panelId)).toContainText(file.name);
           const anchor = await entry(page, ref);
           await expect(anchor).toHaveAttribute("href", href(ref));
@@ -346,6 +361,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
           expect(await selectedIdentity(documentRow(page, file.name))).toEqual({ fileId: file.id, linkId: file.linkId });
           await contextReturn(page).click();
           await expect(page).toHaveURL(new URL(ref.returnHref, page.url()).href);
+          await openSourcePanel(page, ref);
           await expect(page.getByTestId(ref.panelId)).toContainText(file.name);
         });
       });
@@ -731,6 +747,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
           const signedHref = await download(page).getAttribute("href");
           const stored = await page.request.get(signedHref!); expect(stored.ok()).toBe(true);
           evidenceAccess = { href: signedHref!, bytes: await stored.body() };
+          await preview(page).getByTestId("documents-preview-back").click();
         }
         await contextReturn(page).click();
         try {

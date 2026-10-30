@@ -863,17 +863,31 @@ test.describe("Story 35.4 representative AuditTrail", () => {
           await expect(retry).toBeEnabled();
           const bounds = await retry.boundingBox();
           expect(bounds?.height).toBeGreaterThanOrEqual(44);
+          // A completed response alone cannot prove React adopted a refresh when
+          // the error text is unchanged. Persist a new title through this actor's
+          // normal checked command; title-only updates do not append job events.
+          const refreshedTitle = `Retry adopted ${jobId} ${crypto.randomUUID()}`;
+          const updated = await runCommand(updateJob, {client: f.fx.plannerClient as never,
+            input: {id: jobId, title: refreshedTitle}, correlationId: crypto.randomUUID()});
+          expect(updated).toMatchObject({ok: true, data: {targetId: jobId}});
+          expect(await readWorkspaceEvents(f.fx.plannerClient, jobId)).toEqual(before);
+          await identity(page, jobId, title);
+          await expect(page.getByTestId("job-workspace-header").getByRole("heading", {name: refreshedTitle, exact: true})).toHaveCount(0);
+          const currentRoute = new URL(page.url());
           const refreshed = page.waitForResponse(reply => reply.request().method() === "GET"
-            && reply.request().headers().rsc === "1" && new URL(reply.url()).pathname === `/jobs/${jobId}`);
+            && reply.request().headers().rsc === "1" && new URL(reply.url()).pathname === `/jobs/${jobId}`
+            && new URL(reply.url()).searchParams.get("tab") === currentRoute.searchParams.get("tab"));
           await retry.click();
           const failedRefresh = await refreshed;
           expect(failedRefresh.ok()).toBe(true);
-          // Observe the actual refresh response; never supply/fabricate RSC.
-          expect(await failedRefresh.text()).toContain("Händelserna kunde inte hämtas. Försök igen.");
+          // CDP may discard streamed RSC bytes. The new server-checked title below
+          // proves this response was adopted before asserting the persistent error.
+          expect(failedRefresh.headers()["content-type"]).toContain("text/x-component");
+          expect(await failedRefresh.finished()).toBeNull();
+          await identity(page, jobId, refreshedTitle);
           await expect(full.getByRole("alert")).toHaveText("Händelserna kunde inte hämtas. Försök igen.");
           await expect(full.getByText("Inga händelser.", {exact: true})).toHaveCount(0);
           await expect(full.getByRole("listitem")).toHaveCount(0);
-          await identity(page, jobId, title);
           await full.scrollIntoViewIfNeeded();
           await attachJobsState(page, "audit-error-full-retry-still-armed", "controlled-transport");
           await setJobEventsTransportFault(jobId, actorUserId, false);
@@ -885,7 +899,7 @@ test.describe("Story 35.4 representative AuditTrail", () => {
             await expect(row).toBeVisible();
             await expect(row.locator("time")).toHaveAttribute("datetime", event.occurredAt);
           }
-          await identity(page, jobId, title);
+          await identity(page, jobId, refreshedTitle);
           expect(await readWorkspaceEvents(f.fx.plannerClient, jobId)).toEqual(before);
           await full.scrollIntoViewIfNeeded();
           await attachJobsState(page, "audit-retry-recovered-same-real-history");
