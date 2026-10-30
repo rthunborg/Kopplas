@@ -2,11 +2,17 @@
 title: "Story 35.4: Dialogs Feedback And Selected Files"
 type: feature
 created: 2026-10-30
-status: draft
+status: ready-for-dev
+warnings: [oversized]
+review_loop_iteration: 0
+followup_review_recommended: false
+deferred: []
 baseline_revision: 07d24236961ae14619411c1c05fc199de568dde7
 context:
   - ../SPEC.md
   - ../source-binding.json
+  - ../../../test-artifacts/test-design-spec-design-35-4.md
+  - '{project-root}/docs/process/review-order.md'
   - ../../../implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md
   - ../../../test-artifacts/dt-2026-10-23-test-design/slice-35-4.md
 ---
@@ -131,3 +137,101 @@ Planning scaffold only. Implementation/fix author replaces it with exactly one f
 ## Dev Agent Record
 
 Preparation route: gpt-6.1-sol / low; sensitive assessment separately recorded. Implementation/model/file list/completion/verification: not started. No historical evidence rewritten.
+
+## Build-auto planning contract — 2026-10-30
+
+The canonical body above is preserved verbatim as historical approved intent. This operative execution plan translates it without changing AC1–AC7, applicability or source pins. Planning inspected current HEAD `08c7f443cc69203d2228b34d9cf10f13a6d2dd24`; approved product base remains source-binding.json's `07d24236961ae14619411c1c05fc199de568dde7`. Branch matches the single-story epic adapter; metadata refresh and clean-tree check succeeded before writing. No sibling stories exist in this adapter.
+
+<intent-contract>
+
+## Intent
+
+**Problem:** Existing Documents presentation and the approved JobEventsPanel representative need the accepted DT-1c composition and accessible, honest state feedback through current real consumers.
+
+**Approach:** Adapt only the four allocated production consumers and strengthen the two existing browser suites. Preserve the canonical seven ACs and all original state/test identities; use the focused High test design for atomic observations and inherited regression coverage.
+
+## Boundaries & Constraints
+
+**Always:** Exact allocation in source-binding.json; current selected-link identity and signing, retained callable/reconciliation, independent outcomes, existing route authority, safe events projection, Swedish content and Stockholm time. Read the preserved canonical applicability table and focused test design together. Current frontend/development gates apply.
+
+**Block If:** An unallocated edit, new authority/transaction/navigation contract, fabricated event fields/history, or unavailable lawful evidence seam is necessary. Report precise owner/evidence/next action/resume condition to Coordinator. Missing runtime/visual evidence blocks completion, never becomes PASS.
+
+**Never:** 35.5, new upload/editor/endpoint/history flow, shared Dialog/server/auth/RLS/schema/route/font changes, public fallback, sample success, broad readiness recensus or owner reapproval of this operative allocation.
+
+## I/O & Edge-Case Matrix
+
+| Scenario | Input / State | Expected Output / Behavior | Error Handling |
+| --- | --- | --- | --- |
+| Selected access | Active link/file pair; two links may share bytes | Sign/refresh only selected pair; close restores origin/focus | Denied/expired response clears bearer access; no alternate-link fallback |
+| Late completion | A request finishes after B selection/filter change | B identity/media/error remains current | Ignore A for current surface |
+| Lifecycle | Pending, failed or uncertain bound operation | Preserve original callable; confirmed result alone reports success | Reread and explicit current confirmation before consequential retry |
+| Feedback | Preview, upload and lifecycle coexist | Independent persistent failures and supplementary transient feedback | Toast expiry never clears reconciliation or required failure |
+| AuditTrail | Safe existing rows, compact/full, empty/error | Stable IDs, safe labels, exact timestamp and Stockholm display | Persistent real error/retry; no invented actor/meta/history |
+
+</intent-contract>
+
+## Code Map
+
+All paths below are repository-relative; resolve against this worktree, never the historical copied-link directory.
+
+- `src/components/documents/DocumentFilters.tsx:31` — `DocumentsWorkspace` owns actual /files composition; selection/signing at 89, retained lifecycle at 100, explicit reread/current eligibility at 130–147, independent feedback at 172–185, current origin link at 164, existing confirmations at 197–205. Reuse handlers rather than introducing replacement authority.
+- `src/components/documents/DocumentPreviewPane.tsx:4` — `DocumentPreviewPane` owns selected file/name, back focus and state; `DocumentMedia` at 24 validates actual PDF bytes and aborts/revokes on cleanup. Preserve MIME/download and failure/retry distinctions.
+- `src/components/documents/DocumentLifecycleActions.tsx:2` — permission/pending presentation delegates existing callbacks; no local permission decision.
+- `src/components/jobs/JobEventsPanel.tsx:6` — `JobEventsPanel` uses last three compact rows, safe labels, persistent error/retry and genuine empty at 8–14. Only `id,eventType,occurredAt` enter this presentation.
+- `src/components/crm/Dialog.tsx` — read-only existing named/focus/busy/close `variant="dialog"|"sheet"` API. Compose an existing sheet for selected preview where appropriate; no new editor or shared primitive.
+- `src/features/documents/actions.ts`, `src/features/documents/filters.ts`, `src/server/commands/documents/lifecycle.ts` — read-only checked action/reducer/domain authorities; preserve signatures, identity and downstream checks. Generic FilePreviewRow remains a different signing boundary.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:150` — existing real transport/DB fixture lane: uncertain identity at 150–226, modal focus at 259, expiry at 409, selected denial at 476, lifecycle persistence at 501, lost response at 567, late A/B at 365 and keyboard return at 749. Existing RED annotations are not evidence of skip or pass; inspect runner outcome and keep annotations honest when touching cases.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:175` — E01 actual desktop overview/events and E02 phone/privacy at 307; inherited E03 drafts/failure at 376 and E04/E05 child/history/late navigation at 516/613. Keep original IDs and add explicit E35 mapping.
+
+## Tasks & Acceptance
+
+Execute in dependency order; only the following six implementation files are writable. Local helpers must remain inside these files. Every task remains unchecked because implementation has not started.
+
+- [ ] `src/components/documents/DocumentFilters.tsx` — adapt workspace Banner/Toast, actual relationship ConnectionChip, supplementary Tooltip, existing confirmations and selected-preview sheet composition using existing Dialog; retain all current signing, filter, lifecycle and navigation identity handlers. Required errors/reconciliation stay persistent and independent; show actual selected name/all-link effect and restore trigger/origin.
+- [ ] `src/components/documents/DocumentPreviewPane.tsx` — adapt selected detail/loading/expiry/error/refresh/media presentation to the composition while preserving cleanup, authorized download and selected identity; phone controls ≥44px, reachable at enlargement/keyboard. Keep callback contracts compatible within allocated consumers.
+- [ ] `src/components/documents/DocumentLifecycleActions.tsx` — align existing archive/restore controls, labels, pending/unavailable and focus with accepted design without changing eligibility or callbacks.
+- [ ] `src/components/jobs/JobEventsPanel.tsx` — adapt existing compact/full AuditTrail, genuine empty and persistent retry using current safe rows/labels/Stockholm timestamps; no actor enrichment or unrelated Jobs migration.
+- [ ] `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts` — add meaningful E35 assertions at existing real action/fixture seams for matrix cases, persistent versus transient feedback, selected-source expiry/denial, A/B lateness, named busy dialogs, origin/focus and phone target/reflow. Preserve original IDs and invariant assertions; do not mock business outcomes or add a harness.
+- [ ] `tests/e2e/jobs/job-workspace.e2e.spec.ts` — strengthen E01/E02 actual safe-row compact/full/time/privacy assertions, preserve E03–E05 affected draft/navigation behavior, and resolve lawful existing test-owned empty/error capture seam before claiming those rendered states. If unavailable within this allocation, report exact frontend evidence blocker; never mutate protected history or fabricate RSC wire responses.
+
+The following Given/When/Then observations are bindings to canonical ACs, not replacement criteria:
+
+- **E35-4-AC1 / T-AC1:** Given current real Documents/Jobs consumers, when the adapted surfaces render and feedback changes, then sheet/banner/toast/tooltip/relationship/AuditTrail serve their actual roles and required failures remain persistent.
+- **E35-4-AC2 / T-AC2:** Given a selected link/file pair, when preview expires, refreshes and closes, then current selected authority is rechecked and origin/focus restored without alternative-source signing.
+- **E35-4-AC3 / T-AC3:** Given actual affected unsent input and selection B, when abandonment is cancelled or old A completes, then input/history/B remain protected and independent file outcomes remain distinct.
+- **E35-4-AC4 / T-AC4:** Given connected Swedish real records at desktop and 360×640, when keyboard/touch/enlargement/virtual keyboard are used, then ≥44px actions, labels and persistent errors remain accessible and persistence is server-confirmed.
+- **E35-4-AC5 / T-AC5:** Given an actual adapted dialog/sheet, when opened, traversed, busy or dismissed, then accessible name/trap/dismiss protection/trigger restoration survive; existing motion respects reduced motion.
+- **E35-4-AC6 / T-AC6:** Given each canonical Applies state at its actual caller, when feedback renders or retries, then denied/empty/unsent/unknown/confirmed stay distinct and uncertainty reconciles before consequential retry; inherited/N/A do not create new flows.
+- **E35-4-AC7 / T-AC7:** Given current checked domain boundaries, when the presentation changes, then authority/provenance/money/locks/facts remain unchanged and required executed evidence is distinguished from release work.
+
+## Spec Change Log
+
+No review-loop amendments. Planning additions preserve canonical body and original source-binding.
+
+## Review Triage Log
+
+No implementation review performed.
+
+## Design Notes
+
+Concrete local composition is agent-owned within allocation. Use existing Dialog sheet API for selected preview and existing confirmation API; keep ownership of selection and callbacks in DocumentsWorkspace. ConnectionChip uses already projected context label/destination/origin only; never synthesize an unprojected per-row URL. Use current design tokens and read-only DESIGN/EXPERIENCE/annex. Independent upload errors and lifecycle/preview state cannot be collapsed into one receipt. No final Suggested Review Order is authored before implementation; implementation author must provide it after verified code exists.
+
+## Verification
+
+Planning evidence: current four consumers and two test seams inspected; source/hash/body/AC identity checks required before halt. This is source inspection, not runtime coverage. Focused High test design: `_bmad-output/test-artifacts/test-design-spec-design-35-4.md`; preserve its full canonical state table and P0/P1 mapping.
+
+Later implementation runs `pnpm run verify:development`, `pnpm audit --audit-level=high`, required full isolated `pnpm run test:int` with `SUPABASE_TEST_REQUIRED=1`, direct recovery/storage integrity, and both allocated browser suites through configured production server plus applicable essential unchanged consumer smoke. Use actual package/CI commands and guard-owned isolated resources, never demo/production or next dev. Record native exit codes, revision and executed/failed/skipped counts. Required suites cannot be counted passed if skipped.
+
+Before completion run candidate-bound frontend gate and `node scripts/quality/frontend-controller.mjs local --base 07d24236961ae14619411c1c05fc199de568dde7`; use completion-gate wrapper for delivery/status/finalization helpers. Real production UI desktop/360×640, relevant states, independent image review and initial owner visual acceptance remain mandatory. Missing Jobs empty/error seam is a concrete execution evidence risk, not a new intent decision or permission to weaken acceptance. Existing focused plan gives lawful resolution/block route.
+
+Keep REL-1/REL-2/REL-3 ownership and exact deferred ledger/candidate binding with Coordinator; exhaustive device/manual release obligations remain pending, `release_ready=false`. No app/build/unit/integration/browser/visual checks ran during this planning stop. No service started; no merge/deployment requested.
+### Planning route and sensitive preservation assessment
+
+Ordinary planning: gpt-6.1-sol Low. Before sensitive judgment, dispatched distinct synchronous context-free gpt-6.1-sol High delegate `sensitive_plan_check` for selected-source tokens and lifecycle/late-result concurrency. It returned no unresolved intent/authority decision blocking ready-for-dev. Confirmed exact pair signing, reducer identity/expiry, retained callable/current reread/confirmation, Dialog focus/busy behavior and safe event projection. No files/services/git writes by reviewer. This assessment does not replace later independent sensitive implementation review.
+
+## Auto Run Result
+
+Status: ready-for-dev
+Blocking condition: none
+HALT: ready-for-dev — requested halt after planning.
+Planning only; implementation and all runtime/visual gates remain pending. Canonical source/test SHA-256 pins and verbatim normalized canonical body checked successfully; seven AC identities retained. Readiness self-review: six exact file actions are dependency-ordered, Given/When/Then bindings observe actual outer surfaces, no placeholders or unresolved intent decisions. Known execution evidence risk has explicit Coordinator/block route. No final implementation review trail is manufactured on this planning exit.
