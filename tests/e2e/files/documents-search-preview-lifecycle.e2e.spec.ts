@@ -256,6 +256,35 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         } finally { await read.dispose(); }
       });
     });
+    // E35-4-T-AC4 / E35-4-T-AC5 / E35-4-STATE-focus-dialog.
+    // RED: activate with 35.4 dialog presentation; existing E20 test below owns trap/busy semantics.
+    test.skip("[P1][E35-4-T-AC4,E35-4-T-AC5] named archive confirmation keeps 44px targets and visible actions", async ({ page }) => {
+      await withSeed(async seed => {
+        // Given an actual selected test-owned document, using the existing checked archive flow.
+        const file = await seedFile(seed, `35.4-dialog-${crypto.randomUUID()}.png`, "image/png");
+        await open(page, { q: file.name });
+        const invoker = row(page, file.name).getByRole("button", { name: "Arkivera", exact: true });
+        await invoker.click();
+        // When confirmation opens at the enclosing desktop/connected-phone viewport.
+        const dialog = page.getByRole("dialog", { name: "Arkivera dokument", exact: true });
+        await expect(dialog).toBeVisible();
+        // Then each actual dialog action remains visible and touch-operable, without horizontal clipping.
+        const controls = dialog.getByRole("button");
+        expect(await controls.count()).toBeGreaterThan(0);
+        for (const control of await controls.all()) {
+          await expect(control).toBeInViewport();
+          const box = await control.boundingBox();
+          expect(box).not.toBeNull();
+          expect(box!.width).toBeGreaterThanOrEqual(44);
+          expect(box!.height).toBeGreaterThanOrEqual(44);
+          expect(box!.x).toBeGreaterThanOrEqual(0);
+          expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width);
+        }
+        await dialog.getByRole("button", { name: "Avbryt", exact: true }).click();
+        await expect(dialog).toHaveCount(0);
+        await expect(invoker).toBeFocused();
+      });
+    });
     test("[P1][AC8] archive modal contains keyboard focus background and busy dismissal", RED, async ({ page }) => {
       await withSeed(async seed => {
         const file = await seedFile(seed, "20.2-dialog-" + crypto.randomUUID() + ".png", "image/png"); await open(page, { q: file.name }); const invoker = row(page, file.name).getByRole("button", { name: "Arkivera", exact: true }); await invoker.click(); const dialog = page.getByRole("dialog");

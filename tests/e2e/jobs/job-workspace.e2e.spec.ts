@@ -681,3 +681,43 @@ test.describe("Story 16.5 essential job workspace", () => {
       }
     });
   });});
+// E35-4-T-AC1 / E35-4-T-AC4 / E35-4-T-AC6 / E35-4-T-AC7;
+// E35-4-STATE-loaded. E01/E02 retain route/privacy/navigation coverage.
+// ATDD scaffold: current candidate rendering is unexecuted, so RED is not a failure claim.
+// No synthetic event actors, metadata or history; only the existing safe read projection.
+test.describe("Story 35.4 representative AuditTrail", () => {
+  for (const viewport of [{width: 1280, height: 900}, {width: 360, height: 640}]) {
+    test.skip(`[P1][E35-4-T-AC1,AC4,AC6,AC7] safe compact and full AuditTrail retain Swedish labels and exact Stockholm times at ${viewport.width}x${viewport.height}`, async ({resourcePage: page}) => {
+      await withWorkspaceFixture(async f => {
+        const jobId = f.jobs.both.id;
+        const events = await readWorkspaceEvents(f.fx.plannerClient, jobId);
+        expect(events.error).toBeNull();
+        expect(events.rows.length).toBeGreaterThan(0);
+        const labels: Record<string, string> = {
+          created: "Skapad", in_progress: "Pågår", done: "Klar", cancelled: "Avbruten",
+          upgraded_to_projekt: "Uppgraderad till projekt",
+        };
+        const assertRows = async (panel: Locator, expected: typeof events.rows) => {
+          await expect(panel.getByRole("listitem")).toHaveCount(expected.length);
+          for (const [index, event] of expected.entries()) {
+            const row = panel.getByRole("listitem").nth(index);
+            await expect(row).toContainText(labels[event.eventType] ?? "Jobbet uppdaterades");
+            const time = row.locator("time");
+            await expect(time).toHaveAttribute("datetime", event.occurredAt);
+            await expect(time).toHaveText(new Date(event.occurredAt).toLocaleString("sv-SE", {timeZone: "Europe/Stockholm"}));
+          }
+        };
+        await page.setViewportSize(viewport);
+        await signIn(page, f.credentials.manager);
+        await page.goto(`/jobs/${jobId}`);
+        await assertRows(page.getByTestId("job-recent-events"), events.rows.slice(-3));
+        await selectTab(page, "Händelser");
+        const full = page.getByTestId("job-event-history");
+        await assertRows(full, events.rows);
+        for (const event of events.rows) {
+          await expect(full.getByTestId(`job-event-${event.id}`)).toBeVisible();
+        }
+      });
+    });
+  }
+});

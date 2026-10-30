@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "subagent": "atdd-e2e-tests",
+  "test_count": 2,
+  "tdd_phase": "RED",
+  "tests": [
+    {
+      "file": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+      "expected_to_fail": "unverified; existing behavior may already satisfy these assertions",
+      "priority_coverage": {
+        "P1": 2,
+        "P3": 0,
+        "P0": 0,
+        "P2": 0
+      },
+      "acceptance_criteria_covered": [
+        "E35-4-T-AC1",
+        "E35-4-T-AC4",
+        "E35-4-T-AC6",
+        "E35-4-T-AC7"
+      ],
+      "description": "Skipped desktop/phone safe compact/full AuditTrail projection formatting"
+    }
+  ],
+  "fixture_needs": [],
+  "reused_coverage": [
+    "16.5-E01/E02 actual route and payload privacy",
+    "16.5-E03/E04/E05 dirty navigation and late completion"
+  ],
+  "playwright_utils_deviations": [
+    "Package absent; preserve existing resourcePage and fixture helpers; no endpoint interception introduced"
+  ],
+  "checks": [
+    "Source inspection only; no test execution"
+  ],
+  "blockers": [
+    "Rendered Jobs empty/error/retry remains without lawful existing fixture seam; not covered by loaded-state scaffolds"
+  ]
+}
