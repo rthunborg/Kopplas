@@ -9,7 +9,7 @@ spec_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas\\_bmad-output\
 story_id: 35-4
 branch: codex/story-35-4-dialogs-feedback-files
 status: in-progress
-updated_at: "2026-10-30T10:52:24Z"
+updated_at: "2026-10-30T11:14:43Z"
 started_at: "2026-10-30T10:01:38Z"
 completed_at: null
 active_seconds: 2768
@@ -94,4 +94,5 @@ overrides:
   visual: Initial owner acceptance required after production-server rendering
   approval: "Coordinator relayed explicit Rasmus approval for four production and two existing browser-test paths; owner01a18c3f-da26-7ef2-be95-be71569284b7"
   owner_test_amendment: "Human approved bounded test amendment via async reply: controlled persisted empty-history fixture in owned Jobs test; tests/support/job-events-fetch-fault.cjs plus playwright.config.ts startup wiring only, exact fixture safe-projection request, pass-through/no fabricated responses, finally teardown; independent High review required. Production readers/routes unchanged."
-constraints: []
+constraints:
+  - "Human async approval: narrow test-only correction in tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts; respect existing montor /my-day login landing then explicitly navigate /dashboard; no product routing/permissions/assertion changes."

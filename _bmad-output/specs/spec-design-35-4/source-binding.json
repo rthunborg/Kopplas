@@ -26,7 +26,8 @@
     "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
     "tests/e2e/jobs/job-workspace.e2e.spec.ts",
     "tests/support/job-events-fetch-fault.cjs",
-    "playwright.config.ts"
+    "playwright.config.ts",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts"
   ],
   "tea_risk": "high",
   "tea_selected": [
@@ -41,5 +42,12 @@
     "approval_provenance": "Actual human answer received by root async; root recorded overrides.owner_test_amendment and explicitly relayed authorization to build delegate. No message ID invented.",
     "scope": "Test-only startup transport-fault adapter, Playwright startup wiring, and isolated schema-permitted persisted empty-history parent in the existing Jobs test. No production reader, route, SQL/schema, auth/RLS change; no event-history deletion/rewrite or fabricated response.",
     "implementation_route": "gpt-6.1-sol high context-free sensitive delegate; distinct independent High review required."
+  },
+  "dashboard_test_correction": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve test-only correction",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only the existing Dashboard test login helper and exact sole-Montor fixture call: assert its known /my-day landing then explicitly navigate /dashboard before unchanged role/content assertions. No product, login, Phase A surface, config or other test edits.",
+    "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
   }
 }
