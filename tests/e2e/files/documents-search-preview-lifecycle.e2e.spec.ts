@@ -417,6 +417,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           await expect(page.getByTestId("documents-result-count")).not.toBeVisible(); await expect(page.getByLabel("Antal per filter")).not.toBeVisible();
           await expect(moduleOption).toHaveText("Kunder"); await expect(purposeOption).toHaveText("Kunddokument");
           for (const label of ["Modul", "Syfte"]) expect(await page.getByLabel(label, { exact: true }).locator("option").allTextContents()).not.toEqual(expect.arrayContaining([expect.stringMatching(/\(\d+\)/)]));
+          await page.getByTestId("documents-projection-loading").scrollIntoViewIfNeeded();
           await attachDocumentsState(page, "workspace-projection-loading-hidden-stale-counts", "controlled-transport");
           read.release(); await expect(row(page, archived.name)).toBeVisible(); await expect(row(page, active.name)).toHaveCount(0);
           await expect(moduleOption).toHaveText("Kunder (1)"); await expect(purposeOption).toHaveText("Kunddokument (1)");

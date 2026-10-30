@@ -116,5 +116,23 @@
     },
     "verification": "Scoped ESLint/type and four-file collection exited 0 (182 tests; corrected runtime=0). Exact on-disk regex literals and replacement template executed offline against actual prompt/data.card: extraction/replacement, final script closing tags, single Babel render and TSX parse all passed. Independent Low review retracted escaped-display finding and returned final No findings.",
     "runtime_status": "pending; planned counts are not images, accepted comparisons or a frontend gate pass"
+  },
+  "trace_backed_retry_framing_fix": {
+    "date": "2026-10-30",
+    "scope": "High author removes only the Jobs response.finished end wait/comment while retaining the unique checked-title React commit barrier. Low author scrolls existing document projection-loading status into view immediately before its existing capture. No fixture/assertion/count/timeout/product/adapter/config/workflow change.",
+    "prior_candidate": "cad0bb23796cc462252bd4fa4d4f825780f18fb8",
+    "prior_run_id": "41075621773",
+    "html_sha256": "b7964c1ac4c13434fb07fc395d6084ec728c5e344b46334a34415d1361f850ae",
+    "trace": "data/6ce531029507ab0d21a8c26b5917f24436f5a3eb.zip: test.trace/0-trace.trace",
+    "context": "data/11e1078998bdb70c319b44c103a0186e69bcbfd4.md",
+    "cause": "High trace diagnosis: former line886 waited for network receive/end=-1 despite the unique new title and persistent error already rendered; HTTP200/content-type had passed. This is a transport-end wait incompatibility, not failure of the persisted-title commit barrier.",
+    "reviews": "Distinct targeted High Jobs review No findings; targeted Low framing review No findings. Title/route/tab/status/type/error/history/recovery/finally remain intact.",
+    "checks": "Scoped framing lint/type and four-file collection passed (182 tests); High author separately reported scoped lint/type/11-test collection passed. Corrected runtime unexecuted.",
+    "runtime_status": "pending",
+    "planned_images": {
+      "actual": 47,
+      "reference": 13,
+      "total": 60
+    }
   }
 }

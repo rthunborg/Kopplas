@@ -880,10 +880,9 @@ test.describe("Story 35.4 representative AuditTrail", () => {
           await retry.click();
           const failedRefresh = await refreshed;
           expect(failedRefresh.ok()).toBe(true);
-          // CDP may discard streamed RSC bytes. The new server-checked title below
-          // proves this response was adopted before asserting the persistent error.
+          // A streamed RSC response can remain unfinished after React adopts it.
+          // The new server-checked title proves adoption before checking the error.
           expect(failedRefresh.headers()["content-type"]).toContain("text/x-component");
-          expect(await failedRefresh.finished()).toBeNull();
           await identity(page, jobId, refreshedTitle);
           await expect(full.getByRole("alert")).toHaveText("Händelserna kunde inte hämtas. Försök igen.");
           await expect(full.getByText("Inga händelser.", {exact: true})).toHaveCount(0);
