@@ -66,6 +66,9 @@ async function open(page: Page, query: Record<string, string> = {}): Promise<voi
   await signIn(page); await page.goto(`/files?${new URLSearchParams(query)}`);
 }
 async function select(page: Page, name: string): Promise<Response> {
+  // The selected preview is now a modal sheet. Close before choosing another row;
+  // delayed real signing replies still race the subsequent selected identity.
+  if (await pane(page).isVisible()) await pane(page).getByTestId("documents-preview-back").click();
   const control = row(page, name).getByRole("button", { name: "Förhandsvisa", exact: true }); await hydrated(control);
   const response = actionResponse(page); await control.click(); return response;
 }
@@ -257,8 +260,8 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
       });
     });
     // E35-4-T-AC4 / E35-4-T-AC5 / E35-4-STATE-focus-dialog.
-    // RED: activate with 35.4 dialog presentation; existing E20 test below owns trap/busy semantics.
-    test.skip("[P1][E35-4-T-AC4,E35-4-T-AC5] named archive confirmation keeps 44px targets and visible actions", async ({ page }) => {
+    // Existing E20 test below also owns pending/busy dismissal semantics.
+    test("[P1][E35-4-T-AC4,E35-4-T-AC5] named archive confirmation keeps 44px targets and visible actions", async ({ page }) => {
       await withSeed(async seed => {
         // Given an actual selected test-owned document, using the existing checked archive flow.
         const file = await seedFile(seed, `35.4-dialog-${crypto.randomUUID()}.png`, "image/png");
@@ -268,6 +271,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         // When confirmation opens at the enclosing desktop/connected-phone viewport.
         const dialog = page.getByRole("dialog", { name: "Arkivera dokument", exact: true });
         await expect(dialog).toBeVisible();
+        await expect(dialog).toContainText(file.name);
         // Then each actual dialog action remains visible and touch-operable, without horizontal clipping.
         const controls = dialog.getByRole("button");
         expect(await controls.count()).toBeGreaterThan(0);
@@ -283,6 +287,35 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await dialog.getByRole("button", { name: "Avbryt", exact: true }).click();
         await expect(dialog).toHaveCount(0);
         await expect(invoker).toBeFocused();
+      });
+    });
+    test("[P1][E35-4-T-AC1,AC6] tooltip dismissal and toast expiry leave independent Undo and persisted archive intact", async ({ page }) => {
+      await withSeed(async seed => {
+        const marker = `35.4-feedback-${crypto.randomUUID()}`;
+        const first = await seedFile(seed, `${marker}-A.png`, "image/png");
+        const second = await seedFile(seed, `${marker}-B.png`, "image/png");
+        await open(page, { q: marker }); await page.clock.install({ time: new Date() });
+        const archive = row(page, first.name).getByRole("button", { name: "Arkivera", exact: true });
+        const tooltip = row(page, first.name).getByRole("tooltip");
+        await archive.hover(); await expect(tooltip).toBeVisible();
+        await expect(tooltip).toContainText("alla kopplingar");
+        await page.mouse.move(0, 0); await expect(tooltip).toBeHidden();
+        await archive.focus(); await expect(tooltip).toBeVisible();
+        await page.keyboard.press("Escape"); await expect(tooltip).toBeHidden(); await expect(archive).toBeFocused();
+        expect(await audits(first.fileId)).toHaveLength(0);
+        expect((await confirmArchive(page, first.name)).ok()).toBe(true);
+        const toast = page.getByTestId("documents-lifecycle-success"), undo = page.getByTestId("documents-archive-undo");
+        await expect(toast).toContainText("Arkiverad"); await expect(undo).toBeVisible();
+        await toast.getByRole("button", { name: "Stäng bekräftelse", exact: true }).click();
+        await expect(toast).toHaveCount(0); await expect(undo).toBeVisible();
+        expect((await state(first.fileId)).lifecycle_state).toBe("archived"); expect(await audits(first.fileId)).toHaveLength(1);
+        expect((await confirmArchive(page, second.name)).ok()).toBe(true);
+        await expect(toast).toBeVisible(); await expect(undo).toBeVisible();
+        await page.clock.fastForward(5_001);
+        await expect(toast).toHaveCount(0); await expect(undo).toBeVisible();
+        expect((await state(second.fileId)).lifecycle_state).toBe("archived"); expect(await audits(second.fileId)).toHaveLength(1);
+        await page.clock.fastForward(5_000); await expect(undo).toHaveCount(0);
+        expect(await audits(second.fileId)).toHaveLength(1);
       });
     });
     test("[P1][AC8] archive modal contains keyboard focus background and busy dismissal", RED, async ({ page }) => {
@@ -426,6 +459,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const gate = await gateAction(page, "after");
         try {
           const response = actionResponse(page); await pane(page).getByRole("button", { name: "Förnya åtkomst", exact: true }).click(); await gate.started;
+          await pane(page).getByTestId("documents-preview-back").click();
           await page.getByLabel("Sök dokument", { exact: true }).fill(`absent-${crypto.randomUUID()}`);
           await expect(downloadLink(page)).toHaveCount(0); await expect(pane(page).getByRole("img")).toHaveCount(0); await expect(pane(page).getByRole("alert")).toHaveCount(0);
           gate.release(); expect((await response).ok()).toBe(true); await expect(page.getByTestId("file-index-empty")).toBeVisible(); await expect(downloadLink(page)).toHaveCount(0);
@@ -531,6 +565,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
       await withSeed(async seed => {
         const file = await seedFile(seed, `20.2-archive-${crypto.randomUUID()}.png`, "image/png"); const originalLinks = await links(file.fileId);
         await open(page); expect((await select(page, file.name)).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible();
+        await pane(page).getByTestId("documents-preview-back").click();
         await row(page, file.name).getByRole("button", { name: "Arkivera", exact: true }).click();
         const dialog = page.getByRole("dialog"); await expect(dialog).toContainText("Filen arkiveras för alla sina kopplingar"); await expect(dialog).not.toContainText(seed.hiddenOwnerId);
         const gate = await gateAction(page);
@@ -780,11 +815,25 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const file = await seedFile(seed, `20.2-focus-${crypto.randomUUID()}.png`, "image/png"); await open(page, { q: file.name, module: "crm", ownerType: "customer", purpose: "crm_document" });
         const preview = row(page, file.name).getByRole("button", { name: "Förhandsvisa", exact: true }); await hydrated(preview); await preview.focus(); await expect(preview).toBeFocused();
         const response = actionResponse(page); await preview.press("Enter"); expect((await response).ok()).toBe(true); await expect(pane(page)).toBeVisible();
-        const back = pane(page).getByTestId("documents-preview-back"); await expect(back).toBeInViewport(); await expect(back).toBeFocused(); await back.press("Enter");
+        // E35-4-T-AC2/AC4/AC5: real sheet name, modal isolation and keyboard trap.
+        const sheet = page.getByRole("dialog", { name: "Förhandsvisning", exact: true });
+        await expect(sheet).toHaveAttribute("aria-modal", "true");
+        const refresh = sheet.getByRole("button", { name: "Förnya åtkomst", exact: true });
+        await refresh.focus(); await page.keyboard.press("Tab");
+        await expect(sheet.getByRole("button", { name: "Stäng", exact: true })).toBeFocused();
+        await page.keyboard.press("Shift+Tab"); await expect(refresh).toBeFocused();
+        for (const action of await sheet.getByRole("button").all()) {
+          const bounds = await action.boundingBox(); expect(bounds).not.toBeNull();
+          expect(bounds!.height).toBeGreaterThanOrEqual(44); expect(bounds!.width).toBeGreaterThanOrEqual(44);
+        }
+        await pane(page).getByTestId("documents-preview-back").focus();
+        const back = pane(page).getByTestId("documents-preview-back"); await expect(back).toBeInViewport(); await expect(back).toBeFocused(); await back.click();
         await expect(preview).toBeFocused(); await expect(preview).toBeInViewport(); await expect(page.getByLabel("Sök dokument", { exact: true })).toHaveValue(file.name);
         await expect(page.getByLabel("Modul", { exact: true })).toHaveValue("crm"); await expect(page.getByLabel("Typ", { exact: true })).toHaveValue("customer"); await expect(page.getByLabel("Syfte", { exact: true })).toHaveValue("crm_document");
         await expect(page).toHaveURL(url => url.searchParams.get("q") === file.name && url.searchParams.get("ownerType") === "customer");
         await expect(page.getByRole("button", { name: "Ladda upp fil", exact: true }).first()).toBeInViewport();
+        expect((await select(page, file.name)).ok()).toBe(true);
+        await page.keyboard.press("Escape"); await expect(sheet).toHaveCount(0); await expect(preview).toBeFocused();
       });
     });
     // RED: activate after new filter/preview composition retains owner-required shipped upload.

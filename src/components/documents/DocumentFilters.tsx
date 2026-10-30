@@ -12,15 +12,18 @@ import { DocumentLifecycleActions } from "./DocumentLifecycleActions";
 import { Dialog } from "@/components/crm/Dialog";
 const moduleLabels: Record<string, string> = { crm: "Kunder", calculations: "Kalkyler", quotes: "Offerter", jobs: "Jobb" };
 const purposeLabels: Record<string, string> = { crm_document: "Kunddokument", calculation_attachment: "Kalkylbilaga", quote_attachment_snapshot: "Offertbilaga", quote_pdf: "Offert-PDF", acceptance_evidence: "Acceptansunderlag", job_evidence: "Jobbunderlag" };
-const control = "min-w-0 rounded-md border border-zinc-300 bg-white px-2 py-2 text-sm focus-visible:ring-2 focus-visible:ring-blue-600";
+const control = "min-h-11 min-w-0 rounded-control border border-border-strong bg-white px-3 py-2 text-label font-medium text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:bg-inset disabled:text-text-disabled";
+const field = "min-h-11 min-w-0 rounded-control border-0 bg-sunken px-3 py-2 text-label text-text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ink disabled:bg-inset disabled:text-text-disabled";
+const banner = "space-y-2 rounded-control bg-risk-surface px-4 py-3 text-label text-risk-text";
+const warning = "space-y-2 rounded-control bg-warn-surface px-4 py-3 text-label text-warn-text";
 export function DocumentFilters({ filters, facets, showCounts = true, onChange }: { readonly filters: Filters; readonly facets: DocumentFacets; readonly showCounts?: boolean; readonly onChange: (patch: Partial<Filters>) => void }) {
   return <div className="grid grid-cols-2 gap-2 lg:grid-cols-6">
-    <label className="col-span-2 flex min-w-0 flex-col gap-1 text-sm lg:col-span-1">Sök dokument<input data-testid="file-index-search" type="search" value={filters.q ?? ""} onChange={e => onChange({ q: e.target.value })} className={control} /></label>
-    {(["module", "ownerType", "purpose"] as const).map(facet => <label key={facet} className="flex min-w-0 flex-col gap-1 text-sm">{facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"}<select disabled={!!filters.ownerId && facet !== "purpose"} aria-label={facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"} data-testid={facet === "ownerType" ? "file-index-category-filter" : undefined} value={filters[facet] ?? ""} onChange={e => onChange({ [facet]: e.target.value || undefined })} className={control}>
+    <label className="col-span-2 flex min-w-0 flex-col gap-1 text-label lg:col-span-1">Sök dokument<input data-testid="file-index-search" type="search" value={filters.q ?? ""} onChange={e => onChange({ q: e.target.value })} className={field} /></label>
+    {(["module", "ownerType", "purpose"] as const).map(facet => <label key={facet} className="flex min-w-0 flex-col gap-1 text-label">{facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"}<select disabled={!!filters.ownerId && facet !== "purpose"} aria-label={facet === "module" ? "Modul" : facet === "ownerType" ? "Typ" : "Syfte"} data-testid={facet === "ownerType" ? "file-index-category-filter" : undefined} value={filters[facet] ?? ""} onChange={e => onChange({ [facet]: e.target.value || undefined })} className={field}>
       <option value="">{facet === "ownerType" ? "Alla kategorier" : "Alla"}</option>{(facet === "ownerType" ? [...facets[facet]].sort((a, b) => OWNER_CATEGORY_ORDER.indexOf(a.value) - OWNER_CATEGORY_ORDER.indexOf(b.value)) : facets[facet]).map(({ value, count }) => <option key={value} value={value}>{facet === "module" ? moduleLabels[value] : facet === "ownerType" ? ownerCategoryLabel(value) : purposeLabels[value]}{showCounts && facet !== "ownerType" ? ` (${count})` : ""}</option>)}
     </select></label>)}
-    <label className="flex min-w-0 flex-col gap-1 text-sm">Från<input type="date" value={filters.from ?? ""} onChange={e => onChange({ from: e.target.value || undefined })} className={control} /></label>
-    <label className="flex min-w-0 flex-col gap-1 text-sm">Till<input type="date" value={filters.to ?? ""} onChange={e => onChange({ to: e.target.value || undefined })} className={control} /></label>
+    <label className="flex min-w-0 flex-col gap-1 text-label">Från<input type="date" value={filters.from ?? ""} onChange={e => onChange({ from: e.target.value || undefined })} className={field} /></label>
+    <label className="flex min-w-0 flex-col gap-1 text-label">Till<input type="date" value={filters.to ?? ""} onChange={e => onChange({ to: e.target.value || undefined })} className={field} /></label>
     <div className="col-span-2 flex gap-2 lg:col-span-6">{(["active", "archived"] as const).map(mode => <button key={mode} type="button" aria-pressed={filters.mode === mode} onClick={() => onChange({ mode })} className={control}>{mode === "active" ? "Aktiva" : "Arkiverade"}</button>)}</div>
   </div>;
 }
@@ -39,6 +42,18 @@ export function DocumentsWorkspace({ authorityIdentity, documentContext, actions
   const [preview, dispatch] = useReducer(documentPreviewReducer, DOCUMENT_PREVIEW_INITIAL);
   const sequence = useRef(0), focusedRow = useRef<HTMLButtonElement | null>(null);
   const [selectedRow, setSelectedRow] = useState<DocumentRow | null>(null);
+  const restorePreviewFocus = useRef(false);
+  useEffect(() => {
+    if (selectedRow || !restorePreviewFocus.current) return;
+    restorePreviewFocus.current = false;
+    // The list was inert while the sheet was open. Restore the explicit trigger
+    // after that DOM update and the shared Dialog's own focus cleanup complete.
+    const frame = requestAnimationFrame(() => {
+      if (!focusedRow.current?.isConnected) return;
+      focusedRow.current.focus(); focusedRow.current.scrollIntoView({ block: "center" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [selectedRow]);
   const activeMutation = useRef<{ action: LifecycleAction; attempt: number } | null>(null);
   const mutationSequence = useRef(0);
   const [recentArchive, setRecentArchive] = useState<{ row: DocumentRow; until: number } | null>(null);
@@ -49,6 +64,12 @@ export function DocumentsWorkspace({ authorityIdentity, documentContext, actions
   const [retainedOperations, setRetainedOperations] = useState<PendingOperation[]>([]);
   const [retryConfirmation, setRetryConfirmation] = useState<PendingOperation | null>(null);
   const [lifecycle, setLifecycle] = useState<{ status: "idle" | "pending" | "success" | "error"; message?: string; binding?: string }>({ status: "idle" });
+  const [toastVisible, setToastVisible] = useState(false);
+  useEffect(() => {
+    if (lifecycle.status !== "success") return;
+    const timer = setTimeout(() => setToastVisible(false), 5_000);
+    return () => clearTimeout(timer);
+  }, [lifecycle]);
   const resetPreview = useCallback(() => { sequence.current++; dispatch({ type: "clear" }); setSelectedRow(null); }, []);
   useEffect(() => {
     const restored = (event: PageTransitionEvent) => { if (event.persisted) resetPreview(); };
@@ -122,7 +143,7 @@ export function DocumentsWorkspace({ authorityIdentity, documentContext, actions
         setLifecycle({ status: "error", binding: serverBinding, message: result.code === "COMMAND_CONFLICT" ? "Åtgärden har redan hanterats och dokumentets tillstånd har ändrats. Läs in aktuella dokument." : "Åtgärden kunde inte bekräftas. Läs in aktuella dokument och försök igen." }); return;
       }
       setRetainedOperations(current => current.filter(operation => operation.action !== action));
-      setLifecycle({ status: "success", binding: serverBinding, message: operation === "archive" ? "Arkiverad" : "Återställd" });
+      setLifecycle({ status: "success", binding: serverBinding, message: operation === "archive" ? "Arkiverad" : "Återställd" }); setToastVisible(true);
       setUndoExpired(false); setRecentArchive(operation === "archive" && result.data.changed ? { row, until: currentDocumentTime() + 10_000 } : null); router.refresh();
     } catch { if (activeMutation.current?.attempt === attempt) setLifecycle({ status: "error", binding: serverBinding, message: "Åtgärden kunde inte bekräftas. Läs in aktuella dokument och försök igen." }); }
     finally { if (activeMutation.current?.attempt === attempt) { activeMutation.current = null; setUndoConfirmation(false); setConfirmation(null); setRetryConfirmation(null); } }
@@ -145,7 +166,7 @@ export function DocumentsWorkspace({ authorityIdentity, documentContext, actions
   const unresolvedRead = retainedOperations.some(operation => !currentReadCompleted(operation));
   const lifecycleBlocked = lifecycle.status === "pending" || unresolvedRead || draftBinding !== serverBinding;
   const retryDialogOpen = !!retryConfirmation && (lifecycle.status === "pending" || mayRetry(retryConfirmation));
-  const modalOpen = !!confirmation || retryDialogOpen;
+  const modalOpen = !!confirmation || retryDialogOpen || !!selectedRow;
   // Eligibility can change without an action reply. Drop only a closed, nonbusy confirmation, never its retained callable.
   if (retryConfirmation && !retryDialogOpen) setRetryConfirmation(null);
   const undoRow = recentArchive ? undoRows.find(row => row.fileId === recentArchive.row.fileId && row.linkId === recentArchive.row.linkId && row.canRestore) : undefined;
@@ -158,48 +179,50 @@ export function DocumentsWorkspace({ authorityIdentity, documentContext, actions
     }, Math.max(0, recentArchive.until - currentDocumentTime())); return () => clearTimeout(timer);
   }, [recentArchive, undoConfirmation]);
   const nextParams = documentFilterParams({ ...initialFilters, cursor: nextCursor ?? undefined });
-  return <section data-testid="file-index" aria-labelledby="documents-heading" className="flex max-h-[calc(100dvh-12rem)] flex-col [&>*]:shrink-0 gap-3 overflow-y-auto p-3 md:p-6 lg:max-h-none lg:overflow-visible">
+  return <section data-testid="file-index" aria-labelledby="documents-heading" className="flex max-h-[calc(100dvh-12rem)] flex-col [&>*]:shrink-0 gap-4 overflow-y-auto p-4 text-text-primary md:p-6 lg:max-h-none lg:overflow-visible [&_[role=dialog]]:rounded-sheet [&_[role=dialog]]:shadow-sheet [&_[role=dialog]]:text-text-primary [&_[role=dialog]_h2]:text-ds-17 [&_[role=dialog]_h2]:font-medium [&_[role=dialog]_h2]:text-text-primary [&_[role=dialog]_button]:text-text-primary [&_[role=dialog]_button]:focus-visible:outline-2 [&_[role=dialog]_button]:focus-visible:outline-offset-2 [&_[role=dialog]_button]:focus-visible:outline-ink [&_[role=dialog]_button]:disabled:opacity-100 [&_[role=dialog]_button]:disabled:text-text-disabled [&_button[aria-label='Stäng_dialogruta']]:bg-scrim [&_[role=dialog]_button]:focus-visible:ring-0">
     <div inert={modalOpen} className="flex flex-col gap-3 [&>*]:shrink-0">
-    <div className="sticky top-0 z-10 [&:has([aria-expanded=true])]:static flex flex-wrap items-center justify-between gap-2 bg-white py-2"><h1 id="documents-heading" className="text-2xl font-semibold text-zinc-900">Dokument</h1>{!initialFilters.ownerId || documentContext?.state === "available" ? <FileIndexUpload ownerOptions={uploadOwnerOptions} optionsLoadError={uploadOptionsLoadError} onUploadSuccess={uploadSuccess} /> : null}</div>
-    {documentContext?.state === "available" ? <div className="flex min-w-0 flex-col gap-2"><h2 data-testid="documents-context-heading" className="break-words text-lg font-semibold">{documentContext.data.ownerLabel}</h2><a data-testid="documents-context-return" href={documentContext.data.contextReturnHref} className="rounded text-sm text-blue-700 underline focus-visible:ring-2 focus-visible:ring-blue-600">Tillbaka till posten</a></div> : null}
-    {loadError ? <div data-testid="file-index-error"><p role="alert" className="text-red-800">{loadError}</p>{(!initialFilters.ownerId || loadError.includes("Försök igen")) ? <button type="button" onClick={retryRead} className={control}>Försök igen</button> : null}{initialFilters.ownerId ? <a href="/files" data-testid="documents-context-root" className="block text-blue-700 underline">Visa alla tillgängliga dokument</a> : null}</div> : <>
+    <div className="sticky top-0 z-10 [&:has([aria-expanded=true])]:static flex flex-wrap items-center justify-between gap-2 bg-white py-2"><h1 id="documents-heading" className="text-title font-medium">Dokument</h1>{!initialFilters.ownerId || documentContext?.state === "available" ? <FileIndexUpload ownerOptions={uploadOwnerOptions} optionsLoadError={uploadOptionsLoadError} onUploadSuccess={uploadSuccess} /> : null}</div>
+    {documentContext?.state === "available" ? <div className="flex min-w-0 flex-col items-start gap-2"><h2 data-testid="documents-context-heading" className="break-words text-heading font-medium">{documentContext.data.ownerLabel}</h2><a data-testid="documents-context-return" href={documentContext.data.contextReturnHref} className="flex min-h-11 max-w-full items-center gap-2 rounded-chip border border-border-default bg-sunken px-3 py-2 text-label text-text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4 shrink-0"><path d="m10 7-5 5 5 5M5 12h14" /></svg><span className="min-w-0 break-words">Tillbaka till posten<span className="block text-caption text-text-secondary">{documentContext.data.ownerLabel}</span></span></a></div> : null}
+    {loadError ? <div data-testid="file-index-error" className={banner}><p role="alert">{loadError}</p>{(!initialFilters.ownerId || loadError.includes("Försök igen")) ? <button type="button" onClick={retryRead} className={control}>Försök igen</button> : null}{initialFilters.ownerId ? <a href="/files" data-testid="documents-context-root" className="flex min-h-11 items-center text-text-primary underline">Visa alla tillgängliga dokument</a> : null}</div> : <>
       <DocumentFilters filters={filters} facets={facets} showCounts={draftBinding === serverBinding} onChange={changeFilters} />
       {draftBinding !== serverBinding ? <p role="status" data-testid="documents-projection-loading">Läser in dokument…</p> : null}
       <div hidden={draftBinding !== serverBinding}>
-      <p className="text-sm text-zinc-600">Dokument: <span data-testid="documents-result-count">{total}</span></p>
-      <div className="flex flex-wrap gap-2 text-xs text-zinc-600" aria-label="Antal per filter">{(["module", "ownerType", "purpose"] as const).flatMap(f => facets[f].map(item => <span key={`${f}:${item.value}`}>{f === "module" ? moduleLabels[item.value] : f === "ownerType" ? ownerCategoryLabel(item.value) : purposeLabels[item.value]}: <span data-testid={`documents-facet-count-${f}-${item.value}`}>{item.count}</span></span>))}</div>
+      <p className="text-label text-text-secondary">Dokument: <span data-testid="documents-result-count">{total}</span></p>
+      <div className="flex flex-wrap gap-2 text-caption text-text-secondary" aria-label="Antal per filter">{(["module", "ownerType", "purpose"] as const).flatMap(f => facets[f].map(item => <span key={`${f}:${item.value}`}>{f === "module" ? moduleLabels[item.value] : f === "ownerType" ? ownerCategoryLabel(item.value) : purposeLabels[item.value]}: <span data-testid={`documents-facet-count-${f}-${item.value}`}>{item.count}</span></span>))}</div>
       </div>
       {lifecycle.status === "pending" ? <p role="status" data-testid="documents-lifecycle-pending">Sparar…</p> : null}
-      {lifecycle.status === "success" && lifecycle.binding === serverBinding && draftBinding === serverBinding ? <p role="status" data-testid="documents-lifecycle-success">{lifecycle.message}</p> : null}
-      {lifecycle.status === "error" && lifecycle.binding === serverBinding && draftBinding === serverBinding ? <div data-testid="documents-lifecycle-error"><p role="alert">{lifecycle.message}</p><button type="button" onClick={retryRead} className={control}>Försök igen</button></div> : null}
-      {unresolvedRead && lifecycle.status !== "pending" ? <div data-testid="documents-operation-refresh-required" className="rounded border border-amber-300 p-3 text-sm">
+      {lifecycle.status === "success" && lifecycle.binding === serverBinding && draftBinding === serverBinding && toastVisible ? <div role="status" data-testid="documents-lifecycle-success" className="fixed bottom-4 left-4 right-4 z-40 mx-auto flex w-fit max-w-[calc(100%-2rem)] items-center gap-3 rounded-control bg-inverse-surface px-4 py-3 text-label text-inverse-text shadow-sheet"><span>{lifecycle.message}</span><button type="button" aria-label="Stäng bekräftelse" onClick={() => setToastVisible(false)} className="min-h-11 rounded-control px-3 text-inverse-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Stäng</button></div> : null}
+      {lifecycle.status === "error" && lifecycle.binding === serverBinding && draftBinding === serverBinding ? <div data-testid="documents-lifecycle-error" className={banner}><p role="alert">{lifecycle.message}</p><button type="button" onClick={retryRead} className={control}>Försök igen</button></div> : null}
+      {unresolvedRead && lifecycle.status !== "pending" ? <div data-testid="documents-operation-refresh-required" className={warning}>
         <p role="alert">Den tidigare åtgärdens svar kunde inte bekräftas. Läs in aktuella dokument före nästa åtgärd.</p>
         <button type="button" onClick={retryRead} className={control}>Läs in aktuella dokument</button>
       </div> : null}
-      {retainedOperations.filter(operation => currentReadCompleted(operation)).map((operation, index) => <div key={index} data-testid="documents-operation-uncertain" className="rounded border border-amber-300 p-3 text-sm">
+      {retainedOperations.filter(operation => currentReadCompleted(operation)).map((operation, index) => <div key={index} data-testid="documents-operation-uncertain" className={warning}>
         <p>Den tidigare åtgärdens svar kunde inte bekräftas. Aktuella dokument har lästs in.</p>
         {mayRetry(operation) ? <button type="button" disabled={lifecycle.status === "pending"} onClick={() => { if (!activeMutation.current && mayRetry(operation)) setRetryConfirmation(operation); }} className={control}>Bekräfta tidigare åtgärd</button> : <p>Den tidigare åtgärden är inte tillgänglig i detta tillstånd.</p>}
         <button type="button" disabled={lifecycle.status === "pending"} onClick={() => { if (activeMutation.current) return; setRetainedOperations(current => current.filter(candidate => candidate.action !== operation.action)); setRetryConfirmation(null); }} className={control}>Avsluta tidigare åtgärd</button>
       </div>)}
       {undoExpired ? <p role="status" data-testid="documents-undo-expired">Tiden för att ångra har gått ut. Läs in aktuella dokument.</p> : null}
       {undoRow && !lifecycleBlocked ? <button data-testid="documents-archive-undo" type="button" className={control} onClick={() => { setUndoConfirmation(true); setUndoExpired(false); setConfirmationOperation("restore"); setConfirmation(undoRow); }}>Ångra arkivering</button> : null}
-      <div className={draftBinding !== serverBinding ? "hidden" : "grid items-start gap-3 lg:grid-cols-2"}>
-        <div className="min-w-0">{rows.length === 0 ? <p data-testid="file-index-empty" className="text-sm text-zinc-600"><span data-testid={documentContext?.state === "available" && !filters.q && !filters.purpose && !filters.from && !filters.to ? "documents-context-empty" : undefined}>{total === 0 && draftBinding === documentFilterIdentity({ mode: filters.mode }) ? "Inga tillgängliga dokument." : documentContext?.state === "available" && !filters.q && !filters.purpose && !filters.from && !filters.to ? "Inga tillgängliga dokument i denna kontext." : "Inga dokument matchar filtren."}</span></p> : <ul className="flex flex-col gap-2">{rows.map(row => <li key={row.linkId} data-testid="file-index-row" className="flex min-w-0 flex-col gap-1 rounded-md border border-zinc-200 p-3">
-          <input type="hidden" name="file_id" value={row.fileId} /><input type="hidden" name="link_id" value={row.linkId} /><div className="flex items-start justify-between gap-2"><span className="break-words text-sm font-medium text-zinc-900">{row.displayName}</span><span data-testid="file-index-row-category" className="shrink-0 text-xs text-zinc-600">{ownerCategoryLabel(row.ownerType)}</span></div>
-          <p className="text-xs text-zinc-600">{row.mimeType ?? "Okänd typ"} · <span data-testid="file-index-size">{formatDocumentSize(row.sizeBytes)}</span> · {new Date(row.createdAt).toLocaleDateString("sv-SE", { timeZone: "Europe/Stockholm" })}</p><p className="text-sm text-zinc-600">{row.ownerLabel}</p>
-          {row.locked ? <p role="note" className="text-xs text-amber-800">Dokumentet är låst som underlag och kan inte ersättas.</p> : null}
+      <div className={draftBinding !== serverBinding ? "hidden" : "min-w-0"}>
+        <div className="min-w-0">{rows.length === 0 ? <p data-testid="file-index-empty" className="text-label text-text-secondary"><span data-testid={documentContext?.state === "available" && !filters.q && !filters.purpose && !filters.from && !filters.to ? "documents-context-empty" : undefined}>{total === 0 && draftBinding === documentFilterIdentity({ mode: filters.mode }) ? "Inga tillgängliga dokument." : documentContext?.state === "available" && !filters.q && !filters.purpose && !filters.from && !filters.to ? "Inga tillgängliga dokument i denna kontext." : "Inga dokument matchar filtren."}</span></p> : <ul className="flex flex-col gap-2">{rows.map(row => <li key={row.linkId} data-testid="file-index-row" className="flex min-w-0 flex-col gap-1 rounded-card border border-border-default p-3">
+          <input type="hidden" name="file_id" value={row.fileId} /><input type="hidden" name="link_id" value={row.linkId} /><div className="flex items-start justify-between gap-2"><span className="break-words text-label font-medium text-text-primary">{row.displayName}</span><span data-testid="file-index-row-category" className="shrink-0 text-caption text-text-secondary">{ownerCategoryLabel(row.ownerType)}</span></div>
+          <p className="text-caption text-text-secondary">{row.mimeType ?? "Okänd typ"} · <span data-testid="file-index-size">{formatDocumentSize(row.sizeBytes)}</span> · {new Date(row.createdAt).toLocaleDateString("sv-SE", { timeZone: "Europe/Stockholm" })}</p><p className="text-label text-text-secondary">{row.ownerLabel}</p>
+          {row.locked ? <p role="note" className="text-caption text-warn-text">Dokumentet är låst som underlag och kan inte ersättas.</p> : null}
           <div className="flex flex-wrap gap-2">{initialFilters.mode === "active" && !row.archived ? <button type="button" data-testid="file-index-preview-button" onClick={e => void open(row, e.currentTarget)} className={control}>Förhandsvisa</button> : null}<DocumentLifecycleActions archived={initialFilters.mode === "archived"} canArchive={row.canArchive === true} canRestore={row.canRestore === true} pending={lifecycleBlocked} onArchive={() => { if (!lifecycleBlocked && !activeMutation.current) { setConfirmationOperation("archive"); setConfirmation(row); } }} onRestore={() => { if (lifecycleBlocked || activeMutation.current) return; if (retainedOperations.length) { setConfirmationOperation("restore"); setConfirmation(row); } else void mutate(row, "restore"); }} /></div>
-        </li>)}</ul>}{nextCursor && draftBinding === serverBinding ? <a href={`/files?${nextParams}`} data-testid="documents-next-page" className="my-3 block text-blue-700 underline">Visa fler dokument</a> : null}</div>
-        <div className={selectedRow ? "order-first lg:order-last" : "lg:order-last"}><DocumentPreviewPane state={preview} file={selectedRow} onRefresh={() => { if (selectedRow) void open(selectedRow); }} onBack={() => { resetPreview(); focusedRow.current?.focus(); focusedRow.current?.scrollIntoView({ block: "center" }); }} /></div>
+        </li>)}</ul>}{nextCursor && draftBinding === serverBinding ? <a href={`/files?${nextParams}`} data-testid="documents-next-page" className="my-3 block text-text-primary underline">Visa fler dokument</a> : null}</div>
       </div>
     </>}
     </div>
+    <DocumentPreviewPane state={preview} file={selectedRow} onRefresh={() => { if (selectedRow) void open(selectedRow); }} onBack={() => { restorePreviewFocus.current = true; resetPreview(); }} />
     <Dialog open={retryDialogOpen} title="Bekräfta tidigare åtgärd" busy={lifecycle.status === "pending"} onClose={() => setRetryConfirmation(null)}>
+      <p className="break-words text-label font-medium">{retryConfirmation?.row.displayName}</p>
       <p className="my-3">{retryConfirmation?.operation === "archive" ? "Filen arkiveras för alla sina kopplingar" : "Återställ filen enligt aktuellt tillstånd"}</p>
       <button type="button" disabled={lifecycle.status === "pending"} onClick={() => { if (retryConfirmation) void mutate(retryConfirmation.row, retryConfirmation.operation, retryConfirmation, true); }} className={control}>{retryConfirmation?.operation === "archive" ? "Arkivera" : "Återställ"}</button>
       <button type="button" disabled={lifecycle.status === "pending"} onClick={() => setRetryConfirmation(null)} className={control}>Avbryt</button>
     </Dialog>
     <Dialog open={!!confirmation} title={confirmationOperation === "archive" ? "Arkivera dokument" : "Bekräfta ny återställning"} busy={lifecycle.status === "pending"} onClose={() => { setUndoConfirmation(false); setConfirmation(null); }}>
+      <p className="break-words text-label font-medium">{confirmation?.displayName}</p>
       <p className="my-3">{confirmationOperation === "archive" ? "Filen arkiveras för alla sina kopplingar" : "Återställ filen enligt aktuellt tillstånd"}</p>
       <button type="button" disabled={lifecycle.status === "pending"} onClick={() => { if (confirmation) void mutate(confirmation, confirmationOperation, undefined, true); }} className={control}>{confirmationOperation === "archive" ? "Arkivera" : "Återställ"}</button>
       <button type="button" disabled={lifecycle.status === "pending"} onClick={() => { setUndoConfirmation(false); setConfirmation(null); }} className={control}>Avbryt</button>

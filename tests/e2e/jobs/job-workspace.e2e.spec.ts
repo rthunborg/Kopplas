@@ -683,11 +683,11 @@ test.describe("Story 16.5 essential job workspace", () => {
   });});
 // E35-4-T-AC1 / E35-4-T-AC4 / E35-4-T-AC6 / E35-4-T-AC7;
 // E35-4-STATE-loaded. E01/E02 retain route/privacy/navigation coverage.
-// ATDD scaffold: current candidate rendering is unexecuted, so RED is not a failure claim.
+// Activated against the 35.4 presentation; runtime result must still be recorded separately.
 // No synthetic event actors, metadata or history; only the existing safe read projection.
 test.describe("Story 35.4 representative AuditTrail", () => {
   for (const viewport of [{width: 1280, height: 900}, {width: 360, height: 640}]) {
-    test.skip(`[P1][E35-4-T-AC1,AC4,AC6,AC7] safe compact and full AuditTrail retain Swedish labels and exact Stockholm times at ${viewport.width}x${viewport.height}`, async ({resourcePage: page}) => {
+    test(`[P1][E35-4-T-AC1,AC4,AC6,AC7] safe compact and full AuditTrail retain Swedish labels and exact Stockholm times at ${viewport.width}x${viewport.height}`, async ({resourcePage: page}) => {
       await withWorkspaceFixture(async f => {
         const jobId = f.jobs.both.id;
         const events = await readWorkspaceEvents(f.fx.plannerClient, jobId);

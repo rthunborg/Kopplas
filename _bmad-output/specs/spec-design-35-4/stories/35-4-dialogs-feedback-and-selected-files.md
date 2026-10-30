@@ -2,12 +2,12 @@
 title: "Story 35.4: Dialogs Feedback And Selected Files"
 type: feature
 created: 2026-10-30
-status: ready-for-dev
+status: blocked
 warnings: [oversized]
 review_loop_iteration: 0
-followup_review_recommended: false
+followup_review_recommended: true
 deferred: []
-baseline_revision: 07d24236961ae14619411c1c05fc199de568dde7
+baseline_revision: fdcb6b5b21a7828cd79e3be8c1d0aa0aaaafde76
 context:
   - ../SPEC.md
   - ../source-binding.json
@@ -229,9 +229,60 @@ Keep REL-1/REL-2/REL-3 ownership and exact deferred ledger/candidate binding wit
 
 Ordinary planning: gpt-6.1-sol Low. Before sensitive judgment, dispatched distinct synchronous context-free gpt-6.1-sol High delegate `sensitive_plan_check` for selected-source tokens and lifecycle/late-result concurrency. It returned no unresolved intent/authority decision blocking ready-for-dev. Confirmed exact pair signing, reducer identity/expiry, retained callable/current reread/confirmation, Dialog focus/busy behavior and safe event projection. No files/services/git writes by reviewer. This assessment does not replace later independent sensitive implementation review.
 
-## Auto Run Result
+## Historical planning run result
 
 Status: ready-for-dev
 Blocking condition: none
 HALT: ready-for-dev — requested halt after planning.
 Planning only; implementation and all runtime/visual gates remain pending. Canonical source/test SHA-256 pins and verbatim normalized canonical body checked successfully; seven AC identities retained. Readiness self-review: six exact file actions are dependency-ordered, Given/When/Then bindings observe actual outer surfaces, no placeholders or unresolved intent decisions. Known execution evidence risk has explicit Coordinator/block route. No final implementation review trail is manufactured on this planning exit.
+## Suggested Review Order
+
+Author: implementation_author (Sol Low), the author of this implementation and its browser-test changes.
+Refreshed against the final scoped working tree over `fdcb6b5b21a7828cd79e3be8c1d0aa0aaaafde76` on 2026-10-30. This is a blocked candidate handoff: implementation verification failed; development completion is not claimed.
+
+### Selected preview and existing confirmation
+
+The operative Design Notes select the existing modal Dialog sheet API. The preview sits outside the inert workspace so the selected file remains operable while background rows/filters are protected; callers close the sheet before selecting another row or changing a filter. Shared Dialog, checked signing, reducer, media validation and lifecycle closures remain unchanged. Follow-up review identified a reachable focus race: the list becomes inert before the shared Dialog captures focus, and synchronous close attempted focus while still inert. The explicit selected trigger now restores in a scheduled frame after the selectedRow-null DOM update and Dialog cleanup; the same real journey asserts pointer-close and Escape restoration.
+
+- `src/components/documents/DocumentFilters.tsx:169` — `modalOpen`: includes the selected preview in background isolation.
+- `src/components/documents/DocumentFilters.tsx:45` — `restorePreviewFocus`: explicit post-inert trigger restoration after preview close.
+- `src/components/documents/DocumentFilters.tsx:217` — `DocumentPreviewPane`: keeps selection and callbacks in the workspace.
+- `src/components/documents/DocumentPreviewPane.tsx:12` — `variant="sheet"`: reuses naming, focus trap, dismissal and trigger restoration.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:813` — `keyboard list-detail-back`: AC2/AC4/AC5 sheet, target size, trap, Escape and filter/focus assertions.
+
+### Independent feedback and safe relationship/event presentation
+
+Token-based banners retain required failure/reconciliation feedback. Only confirmed lifecycle success creates the supplementary five-second dismissible toast; its timer does not alter retained operations or undo authority. The relationship chip uses the existing projected context return URL/label; no per-row route is invented. Tooltip text repeats the archive confirmation consequence. AuditTrail renders only the existing event IDs, labels and Stockholm timestamps, reflowing its time gutter on phones.
+
+- `src/components/documents/DocumentFilters.tsx:194` — `toastVisible`: supplementary success is separate from persistent error/reconciliation branches.
+- `src/components/documents/DocumentFilters.tsx:200` — `retainedOperations.filter`: preserves original-callable recovery independently of toast expiry.
+- `src/components/documents/DocumentLifecycleActions.tsx:3` — `DocumentLifecycleActions`: existing permission projection and callbacks, with supplementary hover/focus/Escape tooltip.
+- `src/components/jobs/JobEventsPanel.tsx:6` — `JobEventsPanel`: compact/full safe rows, persistent error/retry and genuine empty presentation.
+
+### Evidence and limits
+
+AC2/AC3/AC6/AC7 deterministic identity, expiry and denial behavior is covered by the unchanged preview reducer tests; safe projection and distinct empty/error read results are covered by the unchanged Jobs reader tests. Activated browser assertions cover real compact/full rows and exact Stockholm time; existing delayed-response, stored-byte, audit/persistence and dirty-navigation assertions remain intact. Their modal journeys explicitly close the preview before background interaction. The follow-up feedback case asserts tooltip hover/focus/Escape and both manual toast dismissal and five-second expiry independently from ten-second Undo, with unchanged persisted archive/audit observations. Those browser assertions are source changes, not executed coverage yet.
+
+- `tests/unit/features/documents/preview-state.test.ts:15` — `selection switch immediately`: late-result identity and clearing invariants.
+- `tests/unit/server/read-models/job-events.test.ts:9` — `16.5-UNIT-EVENTS-01`: safe projection structurally omits private fields.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:264` — `named archive confirmation`: AC4/AC5 identity, visible actions and minimum targets.
+- `tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts:292` — `tooltip dismissal and toast expiry`: AC1/AC6 feedback and independent Undo/persistence assertions.
+- `tests/e2e/jobs/job-workspace.e2e.spec.ts:690` — `safe compact and full AuditTrail`: AC1/AC4/AC6/AC7 real route rows and exact timestamps.
+
+Executed in this working tree: `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/features/documents/preview-state.test.ts tests/unit/server/read-models/job-events.test.ts` exited 0: 11 passed, 0 failed, 0 skipped. `git diff --check` exited 0. Canonical spec/slice SHA-256 pins match source-binding; approved base is an ancestor of the current branch. Follow-up scoped `pnpm exec eslint` over the four allocated TSX and two allocated browser test paths exited 0 with 0 errors and one existing Next image-element warning. React checklist source inspection retained direct imports, conditional PDF loading, event-driven tooltip state and cleaned-up toast timer; this is not independent review or browser evidence.
+
+Coordinator-reported verification on this scoped working tree: production build, bundle containment, latest typecheck and full lint exited 0 (lint: 31 warnings); audit exited 0 with 3 moderate advisories. Focused BMAD checks passed after the required escalation resolved sandbox temporary-file denial: `pnpm run test:bmad-focused` 2/2 and `pnpm run test:auto-bmad-focused` 26+10+5 = 41 passed, native exit 0. `verify:development` failed its unit lane: first 3,741 passed/37 failed/2 skipped; bounded retained-log second run 3,777 passed/2 failed/1 skipped (3,780 total). The two retained failures are unchanged `tests/unit/scripts/ci/with-calendar-feed-runtime.test.ts` at lines 1992 (CRLF/LF body comparison) and 2237 (undefined split); no unchanged-baseline passing run is claimed, and no unrelated fix was applied. Playwright `--list` exited 0 with 87 tests across the two allocated files; actual browser execution was 0. Independent High sensitive review reported no findings. Low source follow-up confirmed the focus fix and the tooltip/toast source-coverage gaps resolved; assertions remain unexecuted browser coverage.
+
+Limits: units exercise deterministic/source seams, not rendered UI or production authority. Full isolated integration/RLS with `SUPABASE_TEST_REQUIRED=1`, direct recovery/storage integrity, browser execution/shared-consumer smoke, candidate images and initial owner visual acceptance have zero current-run evidence. The frontend controller exited 1 for the dirty candidate; this is not a frontend gate pass. Jobs rendered empty/error/retry still requires a lawful test-owned seam or Coordinator allocation/blocker; unit empty/error coverage does not satisfy that rendered gate. No managed service was launched by this author. The coordinating agent reports guard DOCKER_UNAVAILABLE (missing Docker Desktop Linux pipe), for lifecycle `93030c01-d8dd-43dd-aa72-acad86b045ec`, recoveryRoute `inspect_only`; Stop acknowledged `stopped`, verified true. Database/browser/capture evidence is blocked pending owner/runtime availability. Native PDF remains an iframe viewer: keys inside its nested browser document do not bubble to the parent Dialog. Its useful native PDF/download behavior is preserved; surrounding Back/header close and keyboard traversal remain available, but iframe-interior Escape is not claimed and needs runtime/manual qualification. Coordinator owns remaining development evidence and REL-1/REL-2/REL-3 candidate/owner reconciliation; exhaustive release validation remains deferred and `release_ready=false`. No merge/deployment or development-complete claim.
+## Auto Run Result
+
+status: blocked
+Blocking condition: implementation verification failed.
+Candidate: scoped working tree over `fdcb6b5b21a7828cd79e3be8c1d0aa0aaaafde76`; four production and two test implementation paths remain the exact source-binding allocation. Canonical source and test-slice hashes are unchanged; original AC1–AC7 and historical preparation/planning results remain preserved.
+
+Triage: 3 medium patch items (reachable focus restoration plus tooltip and toast assertion coverage), 1 rejected native-PDF nested-context item retained as an explicit browser limitation, 0 deferred findings, 0 intent gaps and 0 bad-spec findings. Follow-up recommended=true (score 9); source follow-ups are resolved, required runtime/verification work remains pending. Native PDF behavior is preserved rather than replaced with a new framework.
+
+Blocker owner: Coordinator/runtime owner for isolated Docker availability and lawful Jobs rendered empty/error seam; implementation/verification owner for the retained required-unit failures. Evidence: `verify:development` failed the unit lane after bounded recovery; Docker guard returned DOCKER_UNAVAILABLE/inspect_only; DB/RLS/recovery/browser/capture executions=0; owner visual acceptance pending. Next action: reconcile the two unchanged unit failures with exact evidence, restore a lawful isolated runtime, execute required DB/recovery/browser and candidate visual gates, then obtain owner acceptance. Resume condition: retained unit blockers reconciled and isolated runtime available; do not count collection, source review or historical acceptance as execution.
+
+`release_ready=false`; REL-1/REL-2/REL-3 retain their existing Coordinator-owned candidate/owner reconciliation and release ledger obligations. Candidate checkpoint is authorized for the skill workflow; this build delegate owns the bounded local checkpoint commit; the root owns push/PR/hosted-CI follow-up. This author made no commit, merge or deployment and claims neither development completion nor release readiness.
+Hosted continuation: use existing scripts/ci/checkpoint-dispatch.mjs with the exact pushed candidate and --release-validation true. Ordinary test:smoke includes Jobs workspace but omits Documents search/preview/lifecycle; the existing exhaustive option covers both owned suites and dashboard diagnostics. Required db and recovery-storage-loader jobs provide isolated integration/RLS and Storage evidence. No workflow changes or hosted pass are claimed. If local runtime resumes, first inspect retained lifecycle93030c01-d8dd-43dd-aa72-acad86b045ec under recoveryRoute inspect_only; never blindly relaunch.
