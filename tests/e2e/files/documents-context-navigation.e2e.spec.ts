@@ -54,6 +54,20 @@ const preview = (page: Page) => page.getByTestId("documents-preview-pane");
 const download = (page: Page) => preview(page).getByRole("link", { name: "Ladda ned", exact: true });
 const contextHeading = (page: Page) => page.getByTestId("documents-context-heading");
 const contextReturn = (page: Page) => page.getByTestId("documents-context-return");
+async function attachContextRelationshipState(page: Page) {
+  const viewport = page.viewportSize(), name = `35-4-documents-context-return-${viewport?.width}x${viewport?.height}-actual`;
+  await test.info().attach(`${name}.png`, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+  await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
+    kind: "production-actual", family: "connection-chip", state: "owner-context-return-focused", mode: "actual", viewport,
+    test: test.info().titlePath, workflowSha: process.env.GITHUB_SHA || null, candidateSha: null,
+    candidateIdentity: process.env.GITHUB_SHA ? "requires exact workflow checkout verification" : "local-uncommitted",
+    rendering: "actual production page; next start via configured production webServer",
+    fixture: "existing synthetic test-owned context-navigation records; actual owner label and checked return href",
+    route: new URL(page.url()).pathname,
+    command: "pnpm exec playwright test tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    commandBinding: "suite reproduction; exact executed invocation and checkout require CI runner binding",
+  })), contentType: "application/json" });
+}
 
 function href(source: Source, extra: Record<string, string> = {}): string {
   return "/files?" + new URLSearchParams({ module: source.module, ownerType: source.ownerType, ownerId: source.ownerId, ...extra });
@@ -66,22 +80,35 @@ async function hydrated(control: Locator): Promise<void> {
   await control.waitFor({ state: "visible" });
   await expect.poll(() => control.evaluate(element => element.isConnected && Object.keys(element).some(key => key.startsWith("__react"))), { timeout: 15_000 }).toBe(true);
 }
-async function signIn(page: Page, credentials: Credentials): Promise<void> {
+async function signIn(page: Page, credentials: Credentials, expectedLanding: "/dashboard" | "/my-day" = "/dashboard"): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in", exact: true });
   await hydrated(submit);
   await page.getByLabel("E-post", { exact: true }).fill(credentials.email);
   await page.getByLabel("Lösenord", { exact: true }).fill(credentials.password);
   await submit.click();
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL(expectedLanding === "/my-day" ? /\/my-day$/ : /\/dashboard$/);
 }
 /** Pick by the observed exact tuple, not order/CSS; CRM contains three real anchors. */
 async function entry(page: Page, source: Source): Promise<Locator> {
+  await openSourcePanel(page, source);
   for (const anchor of await page.getByRole("link", { name: LINK_NAME, exact: true }).all()) {
     const value = await anchor.getAttribute("href");
     if (value && tupleMatches(new URL(value, page.url()), source)) return anchor;
   }
   throw new Error("Expected real panel entry for " + source.ownerType + " source");
+}
+/** Existing Jobs file panel is mounted in the real Filer tab, not Översikt. */
+async function openSourcePanel(page: Page, source: Source): Promise<void> {
+  if (source.ownerType !== "job") return;
+  const files = page.getByRole("tab", { name: "Filer", exact: true });
+  if (!await files.isVisible()) {
+    const more = page.getByRole("button", { name: "Mer", exact: true });
+    await hydrated(more); await more.click();
+  }
+  await hydrated(files);
+  if (await files.getAttribute("aria-selected") !== "true") await files.click();
+  await expect(files).toHaveAttribute("aria-selected", "true");
 }
 function source(seed: Seed, owner: Owner): Source {
   const value = seed.sources[owner];
@@ -281,6 +308,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
         const ref = source(seed, owner);
         const fileName = created?.name ?? (await adminQuery<{ display_name: string }>("select display_name from public.files where id=$1", [seed.base.acceptedAcceptance.evidenceFileId]))[0].display_name;
         await signIn(page, seed.base.adminA); await page.goto(ref.route);
+        await openSourcePanel(page, ref);
         const panel = page.getByTestId(ref.panelId);
         await expect(panel).toBeVisible();
         await expect(panel).toContainText(fileName);
@@ -303,7 +331,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
         await contextReturn(page).click();
         await expect(page).toHaveURL(url => url.pathname === ref.returnHref);
         if (owner === "quote_version") await expect(page.getByTestId("quote-version-snapshot")).toBeVisible();
-        else await expect(page.getByTestId(ref.panelId)).toBeVisible();
+        else { await openSourcePanel(page, ref); await expect(page.getByTestId(ref.panelId)).toBeVisible(); }
       });
     });
   }
@@ -322,6 +350,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
           if (casing === "mixed-case") expect(requested).not.toBe(ref.ownerId.toUpperCase());
           await signIn(page, seed.base.adminA);
           await page.goto(ref.route.replace(ref.ownerId, requested));
+          await openSourcePanel(page, ref);
           await expect(page.getByTestId(ref.panelId)).toContainText(file.name);
           const anchor = await entry(page, ref);
           await expect(anchor).toHaveAttribute("href", href(ref));
@@ -332,6 +361,7 @@ test.describe("Story 20.3 real entity insertion routes — context navigation", 
           expect(await selectedIdentity(documentRow(page, file.name))).toEqual({ fileId: file.id, linkId: file.linkId });
           await contextReturn(page).click();
           await expect(page).toHaveURL(new URL(ref.returnHref, page.url()).href);
+          await openSourcePanel(page, ref);
           await expect(page.getByTestId(ref.panelId)).toContainText(file.name);
         });
       });
@@ -373,7 +403,7 @@ test.describe("Story 20.3 context authority — context navigation", () => {
     test("[P0][AC1,2,7] " + role + " cannot gain center entry or source labels from query intent", ERROR_RED, async ({ page }) => {
       await withSeed(async seed => {
         const file = await seedFile(seed, source(seed, "customer"), "denied-role");
-        await signIn(page, seed.base.notifications[role]);
+        await signIn(page, seed.base.notifications[role], role === "installer" ? "/my-day" : "/dashboard");
         await page.goto(source(seed, "customer").route);
         await expect(page.getByRole("link", { name: LINK_NAME, exact: true })).toHaveCount(0);
         await page.goto(href(source(seed, "customer")));
@@ -581,6 +611,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
         await expect(documentRow(page, initial.name)).toHaveCount(1);
         expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
         const previousSignedHref = (await download(page).getAttribute("href"))!;
+        await preview(page).getByTestId("documents-preview-back").click();
         const form = await openPicker(page);
         await expect(form.getByTestId("file-index-upload-owner")).toHaveValue("");
         await form.getByTestId("file-index-upload-owner-type").selectOption(owner);
@@ -609,6 +640,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
       await page.goto(href(original, { q: initial.name, purpose: original.purpose, from: "2020-01-01", to: "2099-12-31", mode: "active" }));
       expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
       const previousSignedHref = (await download(page).getAttribute("href"))!;
+      await preview(page).getByTestId("documents-preview-back").click();
       await page.getByRole("button", { name: "Arkiverade", exact: true }).click();
       await expect(page).toHaveURL(url => tupleMatches(url, original) && url.searchParams.get("mode") === "archived" && url.searchParams.get("q") === initial.name);
       await expect(page.getByTestId("file-index-empty")).toBeVisible();
@@ -644,6 +676,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
       const initial = seed.files.find(file => file.id === selected.fileId)!;
       expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
       const previousSignedHref = (await download(page).getAttribute("href"))!;
+      await preview(page).getByTestId("documents-preview-back").click();
       const uploaded = await uploadFromPicker(page, seed, await openPicker(page), ref);
       await expectContextUploadReset(page, ref, previousSignedHref);
       await expect(page.getByTestId("documents-result-count")).toHaveText("52");
@@ -714,6 +747,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
           const signedHref = await download(page).getAttribute("href");
           const stored = await page.request.get(signedHref!); expect(stored.ok()).toBe(true);
           evidenceAccess = { href: signedHref!, bytes: await stored.body() };
+          await preview(page).getByTestId("documents-preview-back").click();
         }
         await contextReturn(page).click();
         try {
@@ -801,6 +835,8 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(search).toHaveValue(file.name); await expect(download(page)).toHaveCount(0);
         const back = contextReturn(page); await expect(back).toHaveAttribute("href", ref.returnHref);
         await back.scrollIntoViewIfNeeded(); await back.focus(); await expect(back).toBeFocused(); await expect(back).toBeInViewport();
+        await expect(contextHeading(page)).toContainText(ref.label); await expect(back).toContainText(ref.label);
+        await attachContextRelationshipState(page);
         await back.press("Enter"); await expect(page).toHaveURL(url => url.pathname === ref.returnHref);
         await expect(page.getByTestId(ref.panelId)).toBeVisible();
       });
@@ -814,6 +850,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         expect((await select(page, file)).ok()).toBe(true); await expect(download(page)).toBeVisible();
         const signedUrl = await download(page).getAttribute("href");
         expect(signedUrl).toMatch(/^https?:\/\//);
+        await preview(page).getByTestId("documents-preview-back").click();
         const search = page.getByLabel("Sök dokument", { exact: true }); await hydrated(search); await search.fill("absent-" + crypto.randomUUID());
         await expect(download(page)).toHaveCount(0); await expect(search).toBeFocused();
         await expect(page.getByTestId("file-index-empty")).toBeVisible();

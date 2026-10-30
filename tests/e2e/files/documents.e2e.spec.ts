@@ -8,7 +8,7 @@
  */
 import type { Locator, Page } from "@playwright/test";
 import { test, expect } from "../dashboard/guarded-test";
-import { readFileSync } from "node:fs";
+import { readFileSync, rmSync } from "node:fs";
 import path from "node:path";
 import { adminQuery, adminSession, closeAdminPool } from "../../factories/admin-sql";
 import { adminInsertFile, adminInsertFileLink } from "../../factories/tenants";
@@ -47,7 +47,7 @@ async function waitForHydrated(locator: Locator): Promise<void> {
   } catch (error) { await test.info().attach("documents-hydration-current-node", { body: Buffer.from(JSON.stringify(current)), contentType: "application/json" }); throw error; }
 }
 
-async function signIn(page: Page, credentials: Credentials): Promise<void> {
+async function signIn(page: Page, credentials: Credentials, expectedLanding: "/dashboard" | "/my-day" = "/dashboard"): Promise<void> {
   const events: { at: string; path: string; method: string; status?: number; code?: string; failure?: string }[] = [];
   const observed = (request: import("@playwright/test").Request) => { const path = new URL(request.url()).pathname; return path === "/auth/v1/token" && request.method() === "POST" || path.startsWith("/_next/static/") && path.endsWith(".js") && request.method() === "GET"; };
   const response = (reply: import("@playwright/test").Response) => {
@@ -63,7 +63,7 @@ async function signIn(page: Page, credentials: Credentials): Promise<void> {
     const submit = page.getByRole("button", { name: "Logga in", exact: true }); await waitForHydrated(submit);
     await page.getByLabel("E-post", { exact: true }).fill(credentials.email);
     await page.getByLabel("Lösenord", { exact: true }).fill(credentials.password); await submit.click();
-    await expect(page).toHaveURL(/\/dashboard$/);
+    await expect(page).toHaveURL(expectedLanding === "/my-day" ? /\/my-day$/ : /\/dashboard$/);
   } catch (error) { await test.info().attach("documents-login-token-transport", { body: Buffer.from(JSON.stringify({ events, pageErrors })), contentType: "application/json" }); throw error; }
   finally { page.off("response", response); page.off("requestfailed", failed); page.off("pageerror", pageError); }
 }
@@ -156,7 +156,7 @@ for (const viewport of [
 
     for (const role of ["installer", "salesperson", "finance"] as const) {
       test(`[P0][AC1,9] ${role} has neither Dokument navigation nor direct-route access`, async ({ page }) => {
-        await signIn(page, fixture().notifications[role]);
+        await signIn(page, fixture().notifications[role], role === "installer" ? "/my-day" : "/dashboard");
         await expect(page.getByRole("link", { name: "Dokument", exact: true })).toHaveCount(0);
         await page.goto("/files");
         await expect(page.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible();
@@ -627,9 +627,9 @@ for (const viewport of [
       const download = await downloadPromise;
       expect(await download.failure()).toBeNull();
       expect(download.suggestedFilename()).toBe(name);
-      const downloadedPath = await download.path();
-      expect(downloadedPath).not.toBeNull();
-      expect(readFileSync(downloadedPath!, "utf8")).toBe(body);
+      const downloadedPath = test.info().outputPath(`saved-download-${crypto.randomUUID()}.doc`);
+      try { await download.saveAs(downloadedPath); expect(readFileSync(downloadedPath)).toEqual(Buffer.from(body)); }
+      finally { rmSync(downloadedPath, { force: true }); } // Only this test-owned saved copy.
     });
 
     test("[P0][AC3,7] the next open and route read use current membership rather than the signed-in session", async ({ page }) => {

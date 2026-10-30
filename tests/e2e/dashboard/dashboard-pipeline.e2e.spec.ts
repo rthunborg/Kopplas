@@ -43,14 +43,16 @@ async function hydrated(locator: Locator) {
     tick();
   }));
 }
-async function login(page: Page, user: User) {
+async function login(page: Page, user: User, expectedLanding: "/dashboard" | "/my-day" = "/dashboard") {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in", exact: true });
   await hydrated(submit);
   await page.getByLabel("E-post").fill(user.email);
   await page.getByLabel("Lösenord").fill(user.password);
   await submit.click();
-  await page.waitForURL(/\/dashboard$/, { waitUntil: "commit" });
+  await page.waitForURL(expectedLanding === "/my-day" ? /\/my-day$/ : /\/dashboard$/, { waitUntil: "commit" });
+  // The known sole-Montör fixture lands on Min dag; this suite then inspects Dashboard.
+  if (expectedLanding === "/my-day") await page.goto("/dashboard");
 }
 const card = (page: Page) => page.getByRole("region", { name: "Offertpipeline", exact: true });
 async function source(data: Scenario) {
@@ -123,7 +125,7 @@ test.describe("19.1-E2E-001 current roles and live card set", () => {
     // Contract: new eligibility contract; uses EXISTING per-run role fixtures.
     test("[P0] " + role + " has no pipeline, skeleton, false totals or deep link [AC2]", async ({ page }) => {
       const f = fixture();
-      await login(page, role === "montor" ? f.roleAware.montor : f.notifications.finance);
+      await login(page, role === "montor" ? f.roleAware.montor : f.notifications.finance, role === "montor" ? "/my-day" : "/dashboard");
       await expect(page).toHaveURL(/\/dashboard$/);
       await expect(page.getByRole("heading", { name: "Dashboard", exact: true })).toBeVisible();
       await expect(page.getByText("Detta är din operativa startvy.", { exact: false })).toBeVisible();

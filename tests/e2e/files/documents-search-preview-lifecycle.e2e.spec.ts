@@ -11,7 +11,8 @@
  */
 import type { Locator, Page, Request, Response, APIResponse } from "@playwright/test";
 import { test, expect } from "../dashboard/guarded-test";
-import { readFileSync } from "node:fs";
+import { readFileSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { adminQuery, adminSession, closeAdminPool } from "../../factories/admin-sql";
@@ -30,6 +31,164 @@ const pane = (page: Page) => page.getByTestId("documents-preview-pane");
 const downloadLink = (page: Page) => pane(page).getByRole("link", { name: "Ladda ned", exact: true });
 const isAction = (request: Request) => new URL(request.url()).pathname === "/files" && request.method() === "POST" && !!request.headers()["next-action"];
 const actionResponse = (page: Page) => page.waitForResponse(response => isAction(response.request()));
+/** Attach actual production-page bytes only after a meaningful state assertion.
+ * JSONReporter embeds Buffer bodies in general-browser.json; no capture is a pass by itself.
+ */
+async function attachDocumentsState(page: Page, state: string, mode: "actual" | "controlled-transport" | "controlled-clock" = "actual") {
+  const viewport = page.viewportSize();
+  const name = `35-4-documents-${state}-${viewport?.width}x${viewport?.height}-${mode}`;
+  await test.info().attach(`${name}.png`, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+  await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
+    state, mode, viewport, test: test.info().titlePath, workflowSha: process.env.GITHUB_SHA || null,
+    candidateSha: null,
+    candidateIdentity: process.env.GITHUB_SHA ? "requires exact workflow checkout verification" : "local-uncommitted",
+    rendering: "actual production page; next start via configured production webServer",
+    fixture: "synthetic test-owned Documents records and real stored bytes",
+    route: new URL(page.url()).pathname,
+    command: "pnpm exec playwright test tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    commandBinding: "suite reproduction command; bind exact executed invocation from the CI runner log",
+  })), contentType: "application/json" });
+}
+const referenceRoot = "docs/design/claude-design/v1/handoff/design-system-source";
+const referenceSpines = "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23";
+const referenceDigest = (bytes: Buffer | string) => createHash("sha256").update(bytes).digest("hex");
+/** Independent references run in an unauthenticated context, never against application DOM. */
+async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "audit-trail" | "side-sheet" | "connection-chip") {
+  const browser = page.context().browser();
+  if (!browser) throw new Error("Design references require the existing hosted browser");
+  const styles = ["styles.css", ...["fonts", "colors", "typography", "spacing", "radius", "elevation", "motion", "base"].map(name => `tokens/${name}.css`),
+    "assets/fonts/Inter-Variable.ttf", "assets/fonts/Inter-Italic-Variable.ttf"];
+  const catalog = new Map([...styles, "_ds_bundle.js", "components/feedback/feedback.card.html", "components/data/data.card.html", "components/data/EmptyState.jsx", "components/data/EmptyState.prompt.md"].map(name =>
+    [name, readFileSync(path.join(process.cwd(), referenceRoot, name))]));
+  const cards = [
+    { family: "feedback", file: "components/feedback/feedback.card.html", sha256: "764a87f80d86da9f361baba787796eca1bd22222d7e9624018767a209b38f0ed" },
+    { family: "audit-trail", file: "components/data/data.card.html", sha256: "311aea33ee5ec87604063f8350486a2a6d798ecd7696cfe51bf557c69a848436" },
+  ];
+  for (const card of cards) expect(referenceDigest(catalog.get(card.file)!)).toBe(card.sha256);
+  const design = readFileSync(path.join(process.cwd(), referenceSpines, "DESIGN.md"));
+  const experience = readFileSync(path.join(process.cwd(), referenceSpines, "EXPERIENCE.md"));
+  const color = (name: string) => {
+    const value = new RegExp(`^  ${name}: '(#[a-fA-F0-9]+)'\r?$`, "m").exec(design.toString("utf8"))?.[1];
+    if (!value) throw new Error(`Written DESIGN token missing: ${name}`);
+    return value;
+  };
+  const origin = "https://kopplas-design-reference.invalid";
+  const context = await browser.newContext({ storageState: { cookies: [], origins: [] }, serviceWorkers: "block" });
+  try {
+  const referencePage = await context.newPage();
+  let activeHtml = "", activePath = "";
+  const dependencyErrors: string[] = [], scriptErrors: string[] = [];
+  const externalDependencies: { url: string; integrity: string }[] = [];
+  for (const card of cards) for (const match of catalog.get(card.file)!.toString("utf8").matchAll(/<script src="(https:[^"]+)" integrity="([^"]+)"/g)) {
+    if (!externalDependencies.some(item => item.url === match[1])) externalDependencies.push({ url: match[1], integrity: match[2] });
+  }
+  referencePage.on("pageerror", error => scriptErrors.push(error.message));
+  referencePage.on("console", message => { if (message.type() === "error") scriptErrors.push(message.text()); });
+  referencePage.on("requestfailed", request => {
+    if (externalDependencies.some(item => item.url === request.url()) || ["font", "script", "stylesheet"].includes(request.resourceType())) dependencyErrors.push(request.url());
+  });
+  referencePage.on("response", response => {
+    if (externalDependencies.some(item => item.url === response.url()) && !response.ok()) dependencyErrors.push(response.url());
+  });
+  await context.route("**/*", async route => {
+    const url = new URL(route.request().url());
+    if (url.origin !== origin) {
+      if (externalDependencies.some(item => item.url === url.href)) await route.continue();
+      else await route.abort("blockedbyclient");
+      return;
+    }
+    if (url.pathname === activePath) { await route.fulfill({ status: 200, contentType: "text/html; charset=utf-8", body: activeHtml }); return; }
+    const name = url.pathname.slice(1), body = catalog.get(name);
+    if (!body || ![...styles, "_ds_bundle.js"].includes(name)) { await route.abort("blockedbyclient"); return; }
+    await route.fulfill({ status: 200, body, contentType: name.endsWith(".css") ? "text/css" : name.endsWith(".ttf") ? "font/ttf" : "application/javascript" });
+  });
+  const viewports = [{ width: 1280, height: 800 }, { width: 1280, height: 900 }, { width: 360, height: 640 }];
+  const capture = async (family: string, referenceType: "immutable-html" | "authored-derived", sources: { path: string; sha256: string }[], description: string, sizes = viewports, state: "reference-pattern" | "empty-pattern" = "reference-pattern") => {
+    const wrapper = { description, sha256: referenceDigest(activeHtml) };
+    for (const viewport of sizes) {
+      await referencePage.setViewportSize(viewport);
+      expect(await referencePage.evaluate(async () => {
+        await document.fonts.ready;
+        const loaded = await document.fonts.load('15px "Inter"');
+        return loaded.some(face => face.status === "loaded") && document.fonts.check('15px "Inter"') && getComputedStyle(document.body).fontFamily.includes("Inter");
+      })).toBe(true);
+      expect(dependencyErrors).toEqual([]); expect(scriptErrors).toEqual([]);
+      const markers = state === "empty-pattern" ? [referencePage.getByText("Inga avvikelser. Bra jobbat.", { exact: true })] : family === "feedback" ? [referencePage.getByText("3 tidrapporter väntar på attest", { exact: true }), referencePage.getByText("Fakturan skickad · 284 500 kr", { exact: true }), referencePage.getByRole("tooltip"), referencePage.getByRole("dialog")]
+        : family === "audit-trail" ? [referencePage.locator("#root > .col > div:last-child > ol > li").first(), referencePage.locator("#root > .col > div:last-child > ol > li").last()]
+        : family === "side-sheet" ? [referencePage.locator(".ref-sheet"), referencePage.getByRole("button", { name: "Förnya åtkomst", exact: true })] : [referencePage.locator(".ref-chip")];
+      for (const marker of markers) {
+        await expect(marker).toBeVisible();
+        const box = await marker.boundingBox(); expect(box).not.toBeNull();
+        expect(box!.x).toBeGreaterThanOrEqual(0); expect(box!.y).toBeGreaterThanOrEqual(0);
+        expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width + 0.5);
+        expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height + 0.5);
+      }
+      const name = `35-4-reference-${family}${state === "empty-pattern" ? "-empty-pattern" : ""}-${viewport.width}x${viewport.height}`;
+      await test.info().attach(`${name}.png`, { body: await referencePage.screenshot({ fullPage: false }), contentType: "image/png" });
+      await test.info().attach(`${name}.source.html`, { body: Buffer.from(activeHtml), contentType: "text/html" });
+      await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
+        kind: "design-reference", referenceType, family, viewport, test: test.info().titlePath,
+        workflowSha: process.env.GITHUB_SHA || null, candidateSha: null, state, mode: "design-reference", sources, wrapper,
+        rendering: "DESIGN REFERENCE - not production", externalDependencies: referenceType === "immutable-html" ? externalDependencies : [],
+        command: "pnpm exec playwright test tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+        commandBinding: "suite reproduction; exact executed invocation and checkout require CI runner binding",
+        limits: state === "empty-pattern" ? "Exact historical admitted EmptyState prompt composition/copy, not actual Job history or product copy. Family empty pattern only; no actors, grants or state-specific acceptance inferred."
+          : family === "audit-trail" ? "Historical illustrative source actors/meta; Timeline pattern only. EmptyState is imported but not rendered by this immutable card." : "Family pattern, not a state-specific production screenshot or owner-accepted PNG. Historical source examples confer no application capability.",
+      })), contentType: "application/json" });
+    }
+  };
+  const sourceHashes = (names: readonly string[]) => names.map(name => ({ path: `${referenceRoot}/${name}`, sha256: referenceDigest(catalog.get(name)!) }));
+    for (const card of cards.filter(card => card.family === selectedFamily)) {
+      const isolation = card.family === "feedback"
+        ? "#root>.col>:nth-child(2),#root>.col>:nth-child(3){display:none}#root>.col>:last-child{height:240px!important}#root [role=tooltip]{left:0!important;transform:none!important}"
+        : "#root>.col>:nth-child(-n+2){display:none}#root>.col>:last-child{display:block!important}#root>.col>:last-child>.col{display:none}";
+      activeHtml = catalog.get(card.file)!.toString("utf8").replace("</head>", `<link rel="icon" href="data:,"><style data-reference-wrapper>body::before{content:'DESIGN REFERENCE — historical family pattern';display:block;font-size:11px;margin-bottom:16px}${isolation}</style></head>`);
+      activePath = `/${card.file}`;
+      await referencePage.goto(origin + activePath, { waitUntil: "load" });
+      if (card.family === "feedback") {
+        await expect(referencePage.getByText("3 tidrapporter väntar på attest", { exact: true })).toBeVisible();
+        await expect(referencePage.getByText("Fakturan skickad · 284 500 kr", { exact: true })).toBeVisible();
+        await expect(referencePage.getByRole("dialog")).toBeVisible();
+        await referencePage.getByRole("button", { name: "Attest", exact: true }).focus();
+        await expect(referencePage.getByRole("tooltip")).toBeVisible();
+        await expect(referencePage.getByRole("tooltip")).toHaveCSS("opacity", "1");
+      } else {
+        await expect(referencePage.getByText("Tid rapporterad · 8 h", { exact: true })).toBeVisible();
+        await expect(referencePage.locator("#root > .col > div:last-child > ol > li")).toHaveCount(2);
+      }
+      await capture(card.family, "immutable-html", sourceHashes([card.file, ...styles, "_ds_bundle.js"]),
+        "Exact admitted card bytes plus appended, disclosed family-isolation/label CSS; original component JSX/content and archived assets unchanged. Feedback reserves 240px for its original scaled modal and left-aligns its tooltip within the phone viewport; audit hides unrelated table/phase/progress samples.",
+        card.family === "audit-trail" ? [viewports[1], viewports[2]] : viewports);
+      if (card.family === "audit-trail") {
+        const admittedEmptyMarkup = /```jsx\s*([\s\S]*?)```/.exec(catalog.get("components/data/EmptyState.prompt.md")!.toString("utf8"))?.[1].trim();
+        if (!admittedEmptyMarkup?.startsWith("<EmptyState ")) throw new Error("Admitted EmptyState composition missing");
+        // Only the reference wrapper render changes; immutable card/assets stay untouched.
+        activeHtml = activeHtml.replace(/<script type="text\/babel">[\s\S]*?<\/script>/,
+          `<script type="text/babel">const { EmptyState } = window.KopplaDesignSystem_4b46f2; ReactDOM.createRoot(document.getElementById('root')).render((${admittedEmptyMarkup}));</script>`);
+        activePath = "/reference/audit-trail-empty.html";
+        await referencePage.goto(origin + activePath, { waitUntil: "load" });
+        await expect(referencePage.getByText("Inga avvikelser. Bra jobbat.", { exact: true })).toBeVisible();
+        await expect(referencePage.locator("#root ol li")).toHaveCount(0);
+        await capture("audit-trail", "immutable-html", sourceHashes([card.file, "components/data/EmptyState.jsx", "components/data/EmptyState.prompt.md", ...styles, "_ds_bundle.js"]),
+          "Exact admitted data.card header/SRI/asset shell with wrapper Demo render replaced by the exact JSX from archived EmptyState.prompt.md using the admitted EmptyState export. Historical example copy; no app DOM/self-pair or immutable source edit. Wrapper bytes/hash distinguish this from populated Timeline.",
+          [viewports[1], viewports[2]], "empty-pattern");
+      }
+    }
+    const derivedCss = `html,body{margin:0;font-family:var(--font-core);color:${color("text-primary")};background:${color("page")}}*{box-sizing:border-box}.ref-label{font-size:11px;line-height:1.45;color:${color("text-tertiary")};margin:0 0 16px}.ref-scrim{position:fixed;inset:0;background:${color("scrim")}}.ref-sheet{position:fixed;inset:0 0 0 auto;width:min(100%,520px);padding:24px;border-radius:12px;background:${color("card")};box-shadow:0 16px 40px -8px rgb(13 13 15 / .14),0 2px 6px rgb(13 13 15 / .05)}.ref-header{display:flex;gap:12px;align-items:center;justify-content:space-between}.ref-title{font-size:17px;font-weight:500;letter-spacing:-.018em}.ref-action,.ref-chip{min-height:44px;border:1px solid ${color("border-strong")};border-radius:8px;background:${color("card")};color:${color("text-primary")};font:500 13px var(--font-core);padding:12px 16px}.ref-media{height:240px;margin:24px 0;background:${color("sunken")};border:1px solid ${color("border-default")};border-radius:8px}.ref-chip{display:inline-flex;max-width:100%;align-items:center;gap:8px;background:${color("sunken")};text-decoration:underline;text-underline-offset:4px}.ref-chip svg{width:16px;height:16px;flex:none}.ref-chip span{overflow-wrap:anywhere}.ref-frame{padding:24px}.ref-copy{font-size:13px;line-height:1.45;color:${color("text-secondary")}}@media(max-width:600px){.ref-frame{padding:16px}.ref-sheet{padding:24px}}`;
+    for (const family of ["side-sheet", "connection-chip"].filter(family => family === selectedFamily)) {
+      const content = family === "side-sheet"
+        ? '<div class="ref-scrim"></div><section class="ref-sheet" aria-label="SideSheet reference"><p class="ref-label">AUTHORED DERIVED REFERENCE · SideSheet</p><header class="ref-header"><h1 class="ref-title">Förhandsvisning</h1><button class="ref-action">Stäng</button></header><button class="ref-action">Tillbaka till listan</button><p class="ref-copy">Mönster för valt dokument</p><div class="ref-media" aria-label="Neutral medieyta"></div><button class="ref-action">Förnya åtkomst</button></section>'
+        : '<section class="ref-frame"><p class="ref-label">AUTHORED DERIVED REFERENCE · ConnectionChip</p><p class="ref-copy">Mönster för navigerbar relation</p><a class="ref-chip" href="#reference-only"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h8l4 4v14H6zM14 3v5h4"/></svg><span>Kopplad post</span></a></section>';
+      activeHtml = `<!doctype html><html lang="sv"><head><meta charset="utf-8"><link rel="icon" href="data:,"><link rel="stylesheet" href="/styles.css"><style>${derivedCss}</style></head><body>${content}</body></html>`;
+      activePath = `/reference/${family}.html`;
+      await referencePage.goto(origin + activePath, { waitUntil: "load" });
+      await expect(referencePage.getByText(`AUTHORED DERIVED REFERENCE · ${family === "side-sheet" ? "SideSheet" : "ConnectionChip"}`, { exact: true })).toBeVisible();
+      await expect(referencePage.locator(family === "side-sheet" ? ".ref-sheet .ref-media" : ".ref-chip")).toBeVisible();
+      await capture(family, "authored-derived", [...sourceHashes(styles), { path: `${referenceSpines}/DESIGN.md`, sha256: referenceDigest(design) }, { path: `${referenceSpines}/EXPERIENCE.md`, sha256: referenceDigest(experience) }],
+        "Independent written-rule composition: accepted palette, Inter roles, 24/16px gutters, 44px controls, 12px sheet/8px chip and written elevation. Neutral pattern only; no app DOM/components/classes, business fixture, actor or history imported. Archived styles/font declarations are read-only dependencies.");
+    }
+  } finally { await context.close(); }
+}
 async function hydrated(control: Locator): Promise<void> {
   await control.waitFor({ state: "visible" });
   let current: { connected: boolean; reactMarker: boolean } | null = null;
@@ -66,6 +225,9 @@ async function open(page: Page, query: Record<string, string> = {}): Promise<voi
   await signIn(page); await page.goto(`/files?${new URLSearchParams(query)}`);
 }
 async function select(page: Page, name: string): Promise<Response> {
+  // The selected preview is now a modal sheet. Close before choosing another row;
+  // delayed real signing replies still race the subsequent selected identity.
+  if (await pane(page).isVisible()) await pane(page).getByTestId("documents-preview-back").click();
   const control = row(page, name).getByRole("button", { name: "Förhandsvisa", exact: true }); await hydrated(control);
   const response = actionResponse(page); await control.click(); return response;
 }
@@ -142,6 +304,11 @@ async function confirmArchive(page: Page, name: string): Promise<Response> {
   const dialog = page.getByRole("dialog");
   const response = actionResponse(page); await dialog.getByRole("button", { name: "Arkivera", exact: true }).click(); return response;
 }
+for (const family of ["feedback", "audit-trail", "side-sheet", "connection-chip"] as const) {
+  test(`[P1][E35-4-REFERENCE] independent ${family} family references`, async ({ page }) => {
+    await attachDesignReferences(page, family);
+  });
+}
 test.afterAll(async () => { await closeAdminPool(); });
 for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "connected phone", width: 360, height: 640 }]) {
   test.describe(`Documents 20.2 ATDD RED — ${viewport.name}`, () => {
@@ -158,6 +325,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           await route.fetch(); await adminQuery("update public.files set lifecycle_state='archived',archived_at=now() where id=$1", [file.fileId]); await route.abort("failed");
         });
         await row(page, file.name).getByRole("button", { name: "Återställ", exact: true }).click(); await expect(page.getByTestId("documents-lifecycle-error")).toBeVisible();
+        await attachDocumentsState(page, "lifecycle-unknown-response-refresh-required", "controlled-transport");
         const direct = row(page, file.name).getByRole("button", { name: "Återställ", exact: true }); await expect(direct).toBeDisabled(); await direct.evaluate(element => (element as HTMLButtonElement).click()); expect(requests).toHaveLength(1);
         await page.unroute(FILES_ROUTE); const read = await gateRead(page);
         try {
@@ -249,6 +417,8 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           await expect(page.getByTestId("documents-result-count")).not.toBeVisible(); await expect(page.getByLabel("Antal per filter")).not.toBeVisible();
           await expect(moduleOption).toHaveText("Kunder"); await expect(purposeOption).toHaveText("Kunddokument");
           for (const label of ["Modul", "Syfte"]) expect(await page.getByLabel(label, { exact: true }).locator("option").allTextContents()).not.toEqual(expect.arrayContaining([expect.stringMatching(/\(\d+\)/)]));
+          await page.getByTestId("documents-projection-loading").scrollIntoViewIfNeeded();
+          await attachDocumentsState(page, "workspace-projection-loading-hidden-stale-counts", "controlled-transport");
           read.release(); await expect(row(page, archived.name)).toBeVisible(); await expect(row(page, active.name)).toHaveCount(0);
           await expect(moduleOption).toHaveText("Kunder (1)"); await expect(purposeOption).toHaveText("Kunddokument (1)");
           await expect(page.getByTestId("documents-result-count")).toHaveText("1");
@@ -256,12 +426,74 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         } finally { await read.dispose(); }
       });
     });
+    // E35-4-T-AC4 / E35-4-T-AC5 / E35-4-STATE-focus-dialog.
+    // Existing E20 test below also owns pending/busy dismissal semantics.
+    test("[P1][E35-4-T-AC4,E35-4-T-AC5] named archive confirmation keeps 44px targets and visible actions", async ({ page }) => {
+      await withSeed(async seed => {
+        // Given an actual selected test-owned document, using the existing checked archive flow.
+        const file = await seedFile(seed, `35.4-dialog-${crypto.randomUUID()}.png`, "image/png");
+        await open(page, { q: file.name });
+        const invoker = row(page, file.name).getByRole("button", { name: "Arkivera", exact: true });
+        await invoker.click();
+        // When confirmation opens at the enclosing desktop/connected-phone viewport.
+        const dialog = page.getByRole("dialog", { name: "Arkivera dokument", exact: true });
+        await expect(dialog).toBeVisible();
+        await expect(dialog).toContainText(file.name);
+        await attachDocumentsState(page, "archive-confirmation");
+        // Then each actual dialog action remains visible and touch-operable, without horizontal clipping.
+        const controls = dialog.getByRole("button");
+        expect(await controls.count()).toBeGreaterThan(0);
+        for (const control of await controls.all()) {
+          await expect(control).toBeInViewport();
+          const box = await control.boundingBox();
+          expect(box).not.toBeNull();
+          expect(box!.width).toBeGreaterThanOrEqual(44);
+          expect(box!.height).toBeGreaterThanOrEqual(44);
+          expect(box!.x).toBeGreaterThanOrEqual(0);
+          expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width);
+        }
+        await dialog.getByRole("button", { name: "Avbryt", exact: true }).click();
+        await expect(dialog).toHaveCount(0);
+        await expect(invoker).toBeFocused();
+      });
+    });
+    test("[P1][E35-4-T-AC1,AC6] tooltip dismissal and toast expiry leave independent Undo and persisted archive intact", async ({ page }) => {
+      await withSeed(async seed => {
+        const marker = `35.4-feedback-${crypto.randomUUID()}`;
+        const first = await seedFile(seed, `${marker}-A.png`, "image/png");
+        const second = await seedFile(seed, `${marker}-B.png`, "image/png");
+        await open(page, { q: marker }); await page.clock.install({ time: new Date() });
+        const archive = row(page, first.name).getByRole("button", { name: "Arkivera", exact: true });
+        const tooltip = row(page, first.name).getByRole("tooltip");
+        await archive.hover(); await expect(tooltip).toBeVisible();
+        await expect(tooltip).toContainText("alla kopplingar");
+        await page.mouse.move(0, 0); await expect(tooltip).toBeHidden();
+        await archive.focus(); await expect(tooltip).toBeVisible();
+        await attachDocumentsState(page, "archive-tooltip-keyboard-focus");
+        await page.keyboard.press("Escape"); await expect(tooltip).toBeHidden(); await expect(archive).toBeFocused();
+        expect(await audits(first.fileId)).toHaveLength(0);
+        expect((await confirmArchive(page, first.name)).ok()).toBe(true);
+        const toast = page.getByTestId("documents-lifecycle-success"), undo = page.getByTestId("documents-archive-undo");
+        await expect(toast).toContainText("Arkiverad"); await expect(undo).toBeVisible();
+        await attachDocumentsState(page, "archive-confirmed-toast-and-independent-undo");
+        await toast.getByRole("button", { name: "Stäng bekräftelse", exact: true }).click();
+        await expect(toast).toHaveCount(0); await expect(undo).toBeVisible();
+        expect((await state(first.fileId)).lifecycle_state).toBe("archived"); expect(await audits(first.fileId)).toHaveLength(1);
+        expect((await confirmArchive(page, second.name)).ok()).toBe(true);
+        await expect(toast).toBeVisible(); await expect(undo).toBeVisible();
+        await page.clock.fastForward(5_001);
+        await expect(toast).toHaveCount(0); await expect(undo).toBeVisible();
+        expect((await state(second.fileId)).lifecycle_state).toBe("archived"); expect(await audits(second.fileId)).toHaveLength(1);
+        await page.clock.fastForward(5_000); await expect(undo).toHaveCount(0);
+        expect(await audits(second.fileId)).toHaveLength(1);
+      });
+    });
     test("[P1][AC8] archive modal contains keyboard focus background and busy dismissal", RED, async ({ page }) => {
       await withSeed(async seed => {
         const file = await seedFile(seed, "20.2-dialog-" + crypto.randomUUID() + ".png", "image/png"); await open(page, { q: file.name }); const invoker = row(page, file.name).getByRole("button", { name: "Arkivera", exact: true }); await invoker.click(); const dialog = page.getByRole("dialog");
         await expect(dialog.getByRole("button", { name: "Arkivera", exact: true })).toBeFocused(); await page.keyboard.press("Shift+Tab"); await page.keyboard.press("Shift+Tab"); await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeFocused(); await page.keyboard.press("Escape"); await expect(invoker).toBeFocused(); expect(await audits(file.fileId)).toHaveLength(0);
         await invoker.click(); await expect(page.getByTestId("file-index").locator('[inert]')).toHaveCount(1); const gate = await gateAction(page);
-        try { const response = actionResponse(page); await dialog.getByRole("button", { name: "Arkivera", exact: true }).click(); await gate.started; await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeDisabled(); await page.keyboard.press("Escape"); await expect(dialog).toBeVisible(); gate.release(); expect((await response).ok()).toBe(true); await expect(dialog).toHaveCount(0); expect(await audits(file.fileId)).toHaveLength(1); } finally { await gate.dispose(); }
+        try { const response = actionResponse(page); await dialog.getByRole("button", { name: "Arkivera", exact: true }).click(); await gate.started; await expect(dialog.getByRole("button", { name: "Avbryt", exact: true })).toBeDisabled(); await page.keyboard.press("Escape"); await expect(dialog).toBeVisible(); await attachDocumentsState(page, "archive-confirmation-busy-dismissal-blocked", "controlled-transport"); gate.release(); expect((await response).ok()).toBe(true); await expect(dialog).toHaveCount(0); expect(await audits(file.fileId)).toHaveLength(1); } finally { await gate.dispose(); }
       });
     });
     for (const mime of ["image/png", "application/pdf"]) test("[P1][AC2] actual " + mime + " media failure offers explicit retry and authorized download", ERROR_RED, async ({ page }) => {
@@ -329,6 +561,8 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(page).toHaveURL(url => url.searchParams.get("q")?.toLowerCase() === `${marker}%_[a]`); await expect(row(page, included.name)).toHaveCount(1);
         await search.fill("image/png"); await expect(row(page, included.name)).toHaveCount(1);
         await search.fill(`not-present-${crypto.randomUUID()}`); await expect(page.getByTestId("file-index-empty")).toBeVisible();
+        await page.getByTestId("file-index-empty").scrollIntoViewIfNeeded();
+        await attachDocumentsState(page, "authorized-filter-no-match");
         await expect(page.getByTestId("documents-result-count")).toHaveText("0");
         await expect(page.getByLabel("Modul", { exact: true })).toHaveValue("crm"); await expect(page.getByLabel("Typ", { exact: true })).toHaveValue("customer"); await expect(page.getByLabel("Syfte", { exact: true })).toHaveValue("crm_document");
         await expect(page.getByTestId("file-index-error")).toHaveCount(0);
@@ -370,6 +604,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         try {
           const first = select(page, a.name); await gate.started;
           await expect(pane(page).getByTestId("documents-preview-loading")).toBeVisible(); await expect(downloadLink(page)).toHaveCount(0);
+          await attachDocumentsState(page, "selected-preview-signing-loading", "controlled-transport");
           nextGate = await gateAction(page);
           const second = select(page, b.name);
           // Next actions may queue: selection must change immediately even when
@@ -386,6 +621,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           const selectedHref = await downloadLink(page).getAttribute("href"); expect(selectedHref).toMatch(/^https?:\/\//);
           await expect(downloadLink(page)).toHaveAttribute("href", selectedHref!); await expect(pane(page)).not.toContainText(a.name);
           const bytes = await page.request.get(selectedHref!); expect(bytes.ok()).toBe(true); expect(await bytes.body()).toEqual(b.body);
+          await attachDocumentsState(page, "new-selected-image-after-old-response", "controlled-transport");
         } finally { if (nextGate) await nextGate.dispose(); await gate.dispose(); }
       });
     });
@@ -397,6 +633,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const gate = await gateAction(page, "after");
         try {
           const response = actionResponse(page); await pane(page).getByRole("button", { name: "Förnya åtkomst", exact: true }).click(); await gate.started;
+          await pane(page).getByTestId("documents-preview-back").click();
           await page.getByLabel("Sök dokument", { exact: true }).fill(`absent-${crypto.randomUUID()}`);
           await expect(downloadLink(page)).toHaveCount(0); await expect(pane(page).getByRole("img")).toHaveCount(0); await expect(pane(page).getByRole("alert")).toHaveCount(0);
           gate.release(); expect((await response).ok()).toBe(true); await expect(page.getByTestId("file-index-empty")).toBeVisible(); await expect(downloadLink(page)).toHaveCount(0);
@@ -411,10 +648,12 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const file = await seedFile(seed, `20.2-expiry-${crypto.randomUUID()}.png`, "image/png"); await open(page); await page.clock.install({ time: new Date() });
         expect((await select(page, file.name)).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible(); await page.clock.fastForward(86_401_000);
         await expect(pane(page).getByText("Åtkomsten har gått ut", { exact: true })).toBeVisible(); await expect(downloadLink(page)).toHaveCount(0); await expect(pane(page).getByRole("img")).toHaveCount(0);
+        await attachDocumentsState(page, "selected-preview-expired-no-bearer", "controlled-clock");
         const renewal = pane(page).getByRole("button", { name: "Förnya åtkomst", exact: true }); await renewal.focus(); await expect(renewal).toBeFocused(); await page.clock.setFixedTime(new Date());
         const response = actionResponse(page); await renewal.press("Enter"); expect((await response).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible();
         const href = await downloadLink(page).getAttribute("href"); expect(href).toMatch(/^https?:\/\//);
         const bytes = await page.request.get(href!); expect(bytes.ok()).toBe(true); expect(await bytes.body()).toEqual(file.body);
+        await attachDocumentsState(page, "selected-preview-authorized-renewal");
       });
     });
     // RED: activate after supported PDF embedding and authorized download land.
@@ -469,7 +708,10 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         expect((await select(page, file.name)).ok()).toBe(true); await expect(pane(page).getByRole("img")).toHaveCount(0); await expect(downloadLink(page)).toBeVisible();
         const downloading = page.waitForEvent("download"); await downloadLink(page).click(); const downloaded = await downloading;
         expect(await downloaded.failure()).toBeNull(); expect(downloaded.suggestedFilename()).toBe(file.name);
-        const location = await downloaded.path(); expect(location).not.toBeNull(); expect(readFileSync(location!)).toEqual(file.body);
+        // Remote Playwright connections cannot expose the browser host's artifact path.
+        const location = test.info().outputPath(`saved-download-${crypto.randomUUID()}.doc`);
+        try { await downloaded.saveAs(location); expect(readFileSync(location)).toEqual(file.body); }
+        finally { rmSync(location, { force: true }); } // Only this test-owned saved copy.
       });
     });
     // RED: activate after neutral current-source denial clears a previously successful pane.
@@ -493,8 +735,10 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           await pane(page).getByRole("button", { name: "Förnya åtkomst", exact: true }).click(); await expect(pane(page).getByRole("button", { name: "Försök igen", exact: true })).toBeVisible();
           await expect(downloadLink(page)).toHaveCount(0); await expect(pane(page).getByRole("img")).toHaveCount(0);
           await page.clock.install({ time: new Date() }); await page.clock.runFor(10_000); expect(attempts).toBe(1);
+          await attachDocumentsState(page, "selected-preview-persistent-failure-explicit-retry", "controlled-transport");
         } finally { await page.unroute(FILES_ROUTE); }
         const response = actionResponse(page); await pane(page).getByRole("button", { name: "Försök igen", exact: true }).click(); expect((await response).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible();
+        await attachDocumentsState(page, "selected-preview-retry-authorized-result");
       });
     });
     // RED: activate after confirmation, checked archive pending/success and metadata-only mode.
@@ -502,6 +746,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
       await withSeed(async seed => {
         const file = await seedFile(seed, `20.2-archive-${crypto.randomUUID()}.png`, "image/png"); const originalLinks = await links(file.fileId);
         await open(page); expect((await select(page, file.name)).ok()).toBe(true); await expect(downloadLink(page)).toBeVisible();
+        await pane(page).getByTestId("documents-preview-back").click();
         await row(page, file.name).getByRole("button", { name: "Arkivera", exact: true }).click();
         const dialog = page.getByRole("dialog"); await expect(dialog).toContainText("Filen arkiveras för alla sina kopplingar"); await expect(dialog).not.toContainText(seed.hiddenOwnerId);
         const gate = await gateAction(page);
@@ -751,11 +996,26 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         const file = await seedFile(seed, `20.2-focus-${crypto.randomUUID()}.png`, "image/png"); await open(page, { q: file.name, module: "crm", ownerType: "customer", purpose: "crm_document" });
         const preview = row(page, file.name).getByRole("button", { name: "Förhandsvisa", exact: true }); await hydrated(preview); await preview.focus(); await expect(preview).toBeFocused();
         const response = actionResponse(page); await preview.press("Enter"); expect((await response).ok()).toBe(true); await expect(pane(page)).toBeVisible();
-        const back = pane(page).getByTestId("documents-preview-back"); await expect(back).toBeInViewport(); await expect(back).toBeFocused(); await back.press("Enter");
+        // E35-4-T-AC2/AC4/AC5: real sheet name, modal isolation and keyboard trap.
+        const sheet = page.getByRole("dialog", { name: "Förhandsvisning", exact: true });
+        await expect(sheet).toHaveAttribute("aria-modal", "true");
+        await attachDocumentsState(page, "selected-preview-named-sheet-keyboard-entry");
+        const refresh = sheet.getByRole("button", { name: "Förnya åtkomst", exact: true });
+        await refresh.focus(); await page.keyboard.press("Tab");
+        await expect(sheet.getByRole("button", { name: "Stäng", exact: true })).toBeFocused();
+        await page.keyboard.press("Shift+Tab"); await expect(refresh).toBeFocused();
+        for (const action of await sheet.getByRole("button").all()) {
+          const bounds = await action.boundingBox(); expect(bounds).not.toBeNull();
+          expect(bounds!.height).toBeGreaterThanOrEqual(44); expect(bounds!.width).toBeGreaterThanOrEqual(44);
+        }
+        await pane(page).getByTestId("documents-preview-back").focus();
+        const back = pane(page).getByTestId("documents-preview-back"); await expect(back).toBeInViewport(); await expect(back).toBeFocused(); await back.click();
         await expect(preview).toBeFocused(); await expect(preview).toBeInViewport(); await expect(page.getByLabel("Sök dokument", { exact: true })).toHaveValue(file.name);
         await expect(page.getByLabel("Modul", { exact: true })).toHaveValue("crm"); await expect(page.getByLabel("Typ", { exact: true })).toHaveValue("customer"); await expect(page.getByLabel("Syfte", { exact: true })).toHaveValue("crm_document");
         await expect(page).toHaveURL(url => url.searchParams.get("q") === file.name && url.searchParams.get("ownerType") === "customer");
         await expect(page.getByRole("button", { name: "Ladda upp fil", exact: true }).first()).toBeInViewport();
+        expect((await select(page, file.name)).ok()).toBe(true);
+        await page.keyboard.press("Escape"); await expect(sheet).toHaveCount(0); await expect(preview).toBeFocused();
       });
     });
     // RED: activate after new filter/preview composition retains owner-required shipped upload.

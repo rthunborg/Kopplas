@@ -1,0 +1,138 @@
+{
+  "story_id": "35-4",
+  "approved_base": "07d24236961ae14619411c1c05fc199de568dde7",
+  "branch": "codex/story-35-4-dialogs-feedback-files",
+  "worktree": "C:/Users/Rasmus/.codex/worktrees/2856/Kopplas",
+  "owner_chat": "01a18c3f-da26-7ef2-be95-be71569284b7",
+  "approval_relay_chat": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+  "approval_quote": "Sounds like a plan, lets finish35.4and35.5sequentially… I approve35.4onaboveallocation. Pleaseinitiate developmentinnewfreshsession",
+  "approval_provenance": "Actual owner approval relayed by Coordinator to root and this adapter delegate; no message ID invented.",
+  "canonical_spec": {
+    "path": "_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md",
+    "sha256": "cf45a9e55d12824979877f81d1045aa000d11a2476de6ab2e69fed577a2e3aba"
+  },
+  "test_slice": {
+    "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-4.md",
+    "sha256": "99a3111dc8b3151dd74046caa33c72eadf2bd6c65e70f806f45dde79308a09b7"
+  },
+  "body_copy_method": "UTF-8 decoded canonical source; CRLF normalized to LF; frontmatter removed; canonical body preserved verbatim thereafter. Resolve copied relative links against canonical source directory.",
+  "production_write_paths": [
+    "src/components/documents/DocumentFilters.tsx",
+    "src/components/documents/DocumentPreviewPane.tsx",
+    "src/components/documents/DocumentLifecycleActions.tsx",
+    "src/components/jobs/JobEventsPanel.tsx"
+  ],
+  "test_write_paths": [
+    "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+    "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+    "tests/support/job-events-fetch-fault.cjs",
+    "playwright.config.ts",
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+    "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    "tests/e2e/dashboard/playwright.ci.config.ts",
+    "tests/e2e/files/documents.e2e.spec.ts",
+    ".github/workflows/story-35-4-validation.yml"
+  ],
+  "tea_risk": "high",
+  "tea_selected": [
+    "atdd",
+    "automate"
+  ],
+  "tea_rationale": "Selected-source authorization and late-result/lifecycle concurrency regression obligations trigger High TEA risk despite presentation-only production allocation.",
+  "release_ready": false,
+  "test_amendment": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve bounded test amendment",
+    "approval_provenance": "Actual human answer received by root async; root recorded overrides.owner_test_amendment and explicitly relayed authorization to build delegate. No message ID invented.",
+    "scope": "Test-only startup transport-fault adapter, Playwright startup wiring, and isolated schema-permitted persisted empty-history parent in the existing Jobs test. No production reader, route, SQL/schema, auth/RLS change; no event-history deletion/rewrite or fabricated response.",
+    "implementation_route": "gpt-6.1-sol high context-free sensitive delegate; distinct independent High review required."
+  },
+  "dashboard_test_correction": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve test-only correction",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only the existing Dashboard test login helper and exact sole-Montor fixture call: assert its known /my-day landing then explicitly navigate /dashboard before unchanged role/content assertions. No product, login, Phase A surface, config or other test edits.",
+    "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
+  },
+  "modal_test_compatibility": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve modal test compatibility",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only documents-context-navigation.e2e.spec.ts: explicitly close the existing selected preview before the four approved blocked background picker/upload/mode/search interactions. Preserve all existing identity, owner, bytes, navigation, filter, late-result and security assertions; no unrelated history, login, job fixture or download changes.",
+    "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
+  },
+  "report_path_correction": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve report-path correction",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only tests/e2e/dashboard/playwright.ci.config.ts: bind PLAYWRIGHT_JSON_OUTPUT_FILE at config load to cwd/test-results/dashboard-browser.json using existing path import. Preserve workflows, CLI reporter flags, assertions, timeouts and strict artifact uploads.",
+    "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
+  },
+  "focused_ci_amendment": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve focused CI amendment",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only the dedicated focused validation workflow, the shared Documents unsupported-format remote-saveAs compatibility case, and explicit known sole-installer /my-day landing in shared Documents/context signIn callers. Preserve other roles, all denial/content/navigation/owner/bytes assertions and timeouts; no product/auth/routing changes.",
+    "workflow_path": ".github/workflows/story-35-4-validation.yml",
+    "workflow_expected_sha256": "c52aac68b235fcd99197d08b11cc05826342a711331592410e507ced9866e641",
+    "implementation_route": "Shared test fixes: gpt-6.1-sol low. Dedicated workflow/parser: separate context-free gpt-6.1-sol high author.",
+    "review_reuse_requirement": "Workflow distinct High review /root/focused_ci_review reported No findings on 11abc; root may reuse only after verifying exact approved workflow bytes and unchanged relevant dependencies. Latest two shared-test fixes receive targeted independent Low review.",
+    "workflow_original_approved_sha256": "0ecd507bcfe40b3b119d9214b7cfadc19f334d1c432a81f8ac6c0562b058fa3a",
+    "workflow_hash_policy": "Current workflow_expected_sha256 is canonical UTF-8 LF. Original owner-approved hash/review are historical and do not cover changed context/export/upload lines.",
+    "hosted_context_correction": {
+      "date": "2026-10-30",
+      "failed_revision": "436032987d858e9123373410a153e40aee69dec4",
+      "failed_run_id": "41065800967",
+      "failure_evidence": "Immutable hosted run failed before jobs/fallback run-name; exact hosted annotation was not recovered after bounded routes. Official-checksum-verified actionlint 1.7.12 independently proved runner context unavailable at jobs.env (old line 29:32).",
+      "high_author_change": "Removed job-level runner.temp evidence env. First admission exports RUNNER_TEMP/story-35-4-evidence and persists it via GITHUB_ENV. Always-upload evidence path uses direct runner.temp/story-35-4-evidence/ so an early checkout failure cannot expand to root; browser runtime path remains direct runner.temp.",
+      "review": "Distinct targeted independent Sol High review returned No findings after resolving the early-failure upload-path issue. This review covers the new lines separately from historical original-workflow full review reuse.",
+      "verification": "Root reports actionlint, YAML, nine Bash blocks, embedded JS and parsed-YAML bounded-upload-path checks exited 0. Canonical-LF workflow hash independently verified by metadata author. No new hosted validation/runtime pass is claimed.",
+      "runtime_status": "pending"
+    }
+  },
+  "visual_capture_gap_completion": {
+    "date": "2026-10-30",
+    "authorization_provenance": "Root explicitly authorized bounded capture-quality gap completion within the already-owned selected-document test and its evidence metadata; no new human quote is invented.",
+    "scope": "One projection-loading attachment after existing stale-row/count/facet assertions before read.release, plus two admitted EmptyState references inside the existing audit-trail family test. No product/source card/style/hash change, new fixture/test, timeout or assertion relaxation.",
+    "planned_images": {
+      "actual": 47,
+      "reference": 13,
+      "total": 60,
+      "supplementary_dirty_input_actuals": 3
+    },
+    "empty_reference": {
+      "family": "audit-trail",
+      "state": "empty-pattern",
+      "viewports": [
+        "1280x900",
+        "360x640"
+      ],
+      "composition": "Exact JSX from admitted EmptyState.prompt.md through archived EmptyState export in disclosed data.card SRI/assets wrapper",
+      "component_path": "docs/design/claude-design/v1/handoff/design-system-source/components/data/EmptyState.jsx",
+      "component_sha256": "878143793d8e70733de41b9851c9a5c84afd5ea774b6e29b5ccca2be6dc99757",
+      "prompt_path": "docs/design/claude-design/v1/handoff/design-system-source/components/data/EmptyState.prompt.md",
+      "prompt_sha256": "67f65bf90f1a7609eea3fc63f36ce63f9b11031cde34c43ca5151eca370fb8cc",
+      "wrapper": "Distinct populated/empty wrapper bytes and SHA256 accompany mandatory source.html; exact source identity is not relaxed."
+    },
+    "verification": "Scoped ESLint/type and four-file collection exited 0 (182 tests; corrected runtime=0). Exact on-disk regex literals and replacement template executed offline against actual prompt/data.card: extraction/replacement, final script closing tags, single Babel render and TSX parse all passed. Independent Low review retracted escaped-display finding and returned final No findings.",
+    "runtime_status": "pending; planned counts are not images, accepted comparisons or a frontend gate pass"
+  },
+  "trace_backed_retry_framing_fix": {
+    "date": "2026-10-30",
+    "scope": "High author removes only the Jobs response.finished end wait/comment while retaining the unique checked-title React commit barrier. Low author scrolls existing document projection-loading status into view immediately before its existing capture. No fixture/assertion/count/timeout/product/adapter/config/workflow change.",
+    "prior_candidate": "cad0bb23796cc462252bd4fa4d4f825780f18fb8",
+    "prior_run_id": "41075621773",
+    "html_sha256": "b7964c1ac4c13434fb07fc395d6084ec728c5e344b46334a34415d1361f850ae",
+    "trace": "data/6ce531029507ab0d21a8c26b5917f24436f5a3eb.zip: test.trace/0-trace.trace",
+    "context": "data/11e1078998bdb70c319b44c103a0186e69bcbfd4.md",
+    "cause": "High trace diagnosis: former line886 waited for network receive/end=-1 despite the unique new title and persistent error already rendered; HTTP200/content-type had passed. This is a transport-end wait incompatibility, not failure of the persisted-title commit barrier.",
+    "reviews": "Distinct targeted High Jobs review No findings; targeted Low framing review No findings. Title/route/tab/status/type/error/history/recovery/finally remain intact.",
+    "checks": "Scoped framing lint/type and four-file collection passed (182 tests); High author separately reported scoped lint/type/11-test collection passed. Corrected runtime unexecuted.",
+    "runtime_status": "pending",
+    "planned_images": {
+      "actual": 47,
+      "reference": 13,
+      "total": 60
+    }
+  }
+}

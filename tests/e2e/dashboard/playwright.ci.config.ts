@@ -8,6 +8,9 @@ import {
   assertLocalStack,
 } from "../../support/test-env";
 
+// CLI --reporter=list,json replaces config reporter options; FILE still pins the artifact to cwd.
+process.env.PLAYWRIGHT_JSON_OUTPUT_FILE = path.join(process.cwd(), "test-results/dashboard-browser.json");
+
 // This config owns ephemeral GitHub-runner services. Local agents consume it through guarded resources.
 assertLocalStack();
 const port = Number(process.env.E2E_PORT ?? 3201);

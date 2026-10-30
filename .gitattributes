@@ -74,3 +74,10 @@ tests/fixtures/golden/**/*.json  text eol=lf
 /docs/quality/story-35-3-*-route-2026-10-29.json -text whitespace=cr-at-eol
 /docs/quality/story-35-3-production-apply-admission-2026-10-29.json -text whitespace=cr-at-eol
 /docs/quality/story-35-3-production-migration-2026-10-29.json -text whitespace=cr-at-eol
+
+# Exact unchanged35.4 preparation imports; no implementation admission.
+/_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md -text whitespace=cr-at-eol
+/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-4.md -text whitespace=cr-at-eol
+/_bmad-output/test-artifacts/dt-2026-10-23-test-design/file-and-inheritance-bindings.md -text whitespace=cr-at-eol
+/_bmad-output/test-artifacts/dt-2026-10-23-test-design/input-identity.json -text whitespace=cr-at-eol
+/docs/planning/epic-35-preparation-and-concurrency-2026-10-30.md -text whitespace=cr-at-eol
