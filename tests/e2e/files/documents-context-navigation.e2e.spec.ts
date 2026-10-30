@@ -54,6 +54,20 @@ const preview = (page: Page) => page.getByTestId("documents-preview-pane");
 const download = (page: Page) => preview(page).getByRole("link", { name: "Ladda ned", exact: true });
 const contextHeading = (page: Page) => page.getByTestId("documents-context-heading");
 const contextReturn = (page: Page) => page.getByTestId("documents-context-return");
+async function attachContextRelationshipState(page: Page) {
+  const viewport = page.viewportSize(), name = `35-4-documents-context-return-${viewport?.width}x${viewport?.height}-actual`;
+  await test.info().attach(`${name}.png`, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+  await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
+    kind: "production-actual", family: "connection-chip", state: "owner-context-return-focused", mode: "actual", viewport,
+    test: test.info().titlePath, workflowSha: process.env.GITHUB_SHA || null, candidateSha: null,
+    candidateIdentity: process.env.GITHUB_SHA ? "requires exact workflow checkout verification" : "local-uncommitted",
+    rendering: "actual production page; next start via configured production webServer",
+    fixture: "existing synthetic test-owned context-navigation records; actual owner label and checked return href",
+    route: new URL(page.url()).pathname,
+    command: "pnpm exec playwright test tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    commandBinding: "suite reproduction; exact executed invocation and checkout require CI runner binding",
+  })), contentType: "application/json" });
+}
 
 function href(source: Source, extra: Record<string, string> = {}): string {
   return "/files?" + new URLSearchParams({ module: source.module, ownerType: source.ownerType, ownerId: source.ownerId, ...extra });
@@ -804,6 +818,8 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         await expect(search).toHaveValue(file.name); await expect(download(page)).toHaveCount(0);
         const back = contextReturn(page); await expect(back).toHaveAttribute("href", ref.returnHref);
         await back.scrollIntoViewIfNeeded(); await back.focus(); await expect(back).toBeFocused(); await expect(back).toBeInViewport();
+        await expect(contextHeading(page)).toContainText(ref.label); await expect(back).toContainText(ref.label);
+        await attachContextRelationshipState(page);
         await back.press("Enter"); await expect(page).toHaveURL(url => url.pathname === ref.returnHref);
         await expect(page.getByTestId(ref.panelId)).toBeVisible();
       });

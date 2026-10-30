@@ -11,7 +11,8 @@
  */
 import type { Locator, Page, Request, Response, APIResponse } from "@playwright/test";
 import { test, expect } from "../dashboard/guarded-test";
-import { readFileSync } from "node:fs";
+import { readFileSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { adminQuery, adminSession, closeAdminPool } from "../../factories/admin-sql";
@@ -47,6 +48,131 @@ async function attachDocumentsState(page: Page, state: string, mode: "actual" | 
     command: "pnpm exec playwright test tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
     commandBinding: "suite reproduction command; bind exact executed invocation from the CI runner log",
   })), contentType: "application/json" });
+}
+const referenceRoot = "docs/design/claude-design/v1/handoff/design-system-source";
+const referenceSpines = "_bmad-output/planning-artifacts/ux-designs/ux-Kopplas-2026-10-23";
+const referenceDigest = (bytes: Buffer | string) => createHash("sha256").update(bytes).digest("hex");
+/** Independent references run in an unauthenticated context, never against application DOM. */
+async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "audit-trail" | "side-sheet" | "connection-chip") {
+  const browser = page.context().browser();
+  if (!browser) throw new Error("Design references require the existing hosted browser");
+  const styles = ["styles.css", ...["fonts", "colors", "typography", "spacing", "radius", "elevation", "motion", "base"].map(name => `tokens/${name}.css`),
+    "assets/fonts/Inter-Variable.ttf", "assets/fonts/Inter-Italic-Variable.ttf"];
+  const catalog = new Map([...styles, "_ds_bundle.js", "components/feedback/feedback.card.html", "components/data/data.card.html"].map(name =>
+    [name, readFileSync(path.join(process.cwd(), referenceRoot, name))]));
+  const cards = [
+    { family: "feedback", file: "components/feedback/feedback.card.html", sha256: "764a87f80d86da9f361baba787796eca1bd22222d7e9624018767a209b38f0ed" },
+    { family: "audit-trail", file: "components/data/data.card.html", sha256: "311aea33ee5ec87604063f8350486a2a6d798ecd7696cfe51bf557c69a848436" },
+  ];
+  for (const card of cards) expect(referenceDigest(catalog.get(card.file)!)).toBe(card.sha256);
+  const design = readFileSync(path.join(process.cwd(), referenceSpines, "DESIGN.md"));
+  const experience = readFileSync(path.join(process.cwd(), referenceSpines, "EXPERIENCE.md"));
+  const color = (name: string) => {
+    const value = new RegExp(`^  ${name}: '(#[a-fA-F0-9]+)'\r?$`, "m").exec(design.toString("utf8"))?.[1];
+    if (!value) throw new Error(`Written DESIGN token missing: ${name}`);
+    return value;
+  };
+  const origin = "https://kopplas-design-reference.invalid";
+  const context = await browser.newContext({ storageState: { cookies: [], origins: [] }, serviceWorkers: "block" });
+  try {
+  const referencePage = await context.newPage();
+  let activeHtml = "", activePath = "";
+  const dependencyErrors: string[] = [], scriptErrors: string[] = [];
+  const externalDependencies: { url: string; integrity: string }[] = [];
+  for (const card of cards) for (const match of catalog.get(card.file)!.toString("utf8").matchAll(/<script src="(https:[^"]+)" integrity="([^"]+)"/g)) {
+    if (!externalDependencies.some(item => item.url === match[1])) externalDependencies.push({ url: match[1], integrity: match[2] });
+  }
+  referencePage.on("pageerror", error => scriptErrors.push(error.message));
+  referencePage.on("console", message => { if (message.type() === "error") scriptErrors.push(message.text()); });
+  referencePage.on("requestfailed", request => {
+    if (externalDependencies.some(item => item.url === request.url()) || ["font", "script", "stylesheet"].includes(request.resourceType())) dependencyErrors.push(request.url());
+  });
+  referencePage.on("response", response => {
+    if (externalDependencies.some(item => item.url === response.url()) && !response.ok()) dependencyErrors.push(response.url());
+  });
+  await context.route("**/*", async route => {
+    const url = new URL(route.request().url());
+    if (url.origin !== origin) {
+      if (externalDependencies.some(item => item.url === url.href)) await route.continue();
+      else await route.abort("blockedbyclient");
+      return;
+    }
+    if (url.pathname === activePath) { await route.fulfill({ status: 200, contentType: "text/html; charset=utf-8", body: activeHtml }); return; }
+    const name = url.pathname.slice(1), body = catalog.get(name);
+    if (!body || ![...styles, "_ds_bundle.js"].includes(name)) { await route.abort("blockedbyclient"); return; }
+    await route.fulfill({ status: 200, body, contentType: name.endsWith(".css") ? "text/css" : name.endsWith(".ttf") ? "font/ttf" : "application/javascript" });
+  });
+  const viewports = [{ width: 1280, height: 800 }, { width: 1280, height: 900 }, { width: 360, height: 640 }];
+  const capture = async (family: string, referenceType: "immutable-html" | "authored-derived", sources: { path: string; sha256: string }[], description: string, sizes = viewports) => {
+    const wrapper = { description, sha256: referenceDigest(activeHtml) };
+    for (const viewport of sizes) {
+      await referencePage.setViewportSize(viewport);
+      expect(await referencePage.evaluate(async () => {
+        await document.fonts.ready;
+        const loaded = await document.fonts.load('15px "Inter"');
+        return loaded.some(face => face.status === "loaded") && document.fonts.check('15px "Inter"') && getComputedStyle(document.body).fontFamily.includes("Inter");
+      })).toBe(true);
+      expect(dependencyErrors).toEqual([]); expect(scriptErrors).toEqual([]);
+      const markers = family === "feedback" ? [referencePage.getByText("3 tidrapporter väntar på attest", { exact: true }), referencePage.getByText("Fakturan skickad · 284 500 kr", { exact: true }), referencePage.getByRole("tooltip"), referencePage.getByRole("dialog")]
+        : family === "audit-trail" ? [referencePage.locator("#root ol li").first(), referencePage.locator("#root ol li").last()]
+        : family === "side-sheet" ? [referencePage.locator(".ref-sheet"), referencePage.getByRole("button", { name: "Förnya åtkomst", exact: true })] : [referencePage.locator(".ref-chip")];
+      for (const marker of markers) {
+        await expect(marker).toBeVisible();
+        const box = await marker.boundingBox(); expect(box).not.toBeNull();
+        expect(box!.x).toBeGreaterThanOrEqual(0); expect(box!.y).toBeGreaterThanOrEqual(0);
+        expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width + 0.5);
+        expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height + 0.5);
+      }
+      const name = `35-4-reference-${family}-${viewport.width}x${viewport.height}`;
+      await test.info().attach(`${name}.png`, { body: await referencePage.screenshot({ fullPage: false }), contentType: "image/png" });
+      await test.info().attach(`${name}.source.html`, { body: Buffer.from(activeHtml), contentType: "text/html" });
+      await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
+        kind: "design-reference", referenceType, family, viewport, test: test.info().titlePath,
+        workflowSha: process.env.GITHUB_SHA || null, candidateSha: null, state: "reference-pattern", mode: "design-reference", sources, wrapper,
+        rendering: "DESIGN REFERENCE - not production", externalDependencies: referenceType === "immutable-html" ? externalDependencies : [],
+        command: "pnpm exec playwright test tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+        commandBinding: "suite reproduction; exact executed invocation and checkout require CI runner binding",
+        limits: family === "audit-trail" ? "Historical illustrative source actors/meta; Timeline pattern only. EmptyState is imported but not rendered by this immutable card." : "Family pattern, not a state-specific production screenshot or owner-accepted PNG. Historical source examples confer no application capability.",
+      })), contentType: "application/json" });
+    }
+  };
+  const sourceHashes = (names: readonly string[]) => names.map(name => ({ path: `${referenceRoot}/${name}`, sha256: referenceDigest(catalog.get(name)!) }));
+    for (const card of cards.filter(card => card.family === selectedFamily)) {
+      const isolation = card.family === "feedback"
+        ? "#root>.col>:nth-child(2),#root>.col>:nth-child(3){display:none}#root>.col>:last-child{height:240px!important}#root [role=tooltip]{left:0!important;transform:none!important}"
+        : "#root>.col>:nth-child(-n+2){display:none}#root>.col>:last-child{display:block!important}#root>.col>:last-child>.col{display:none}";
+      activeHtml = catalog.get(card.file)!.toString("utf8").replace("</head>", `<link rel="icon" href="data:,"><style data-reference-wrapper>body::before{content:'DESIGN REFERENCE — historical family pattern';display:block;font-size:11px;margin-bottom:16px}${isolation}</style></head>`);
+      activePath = `/${card.file}`;
+      await referencePage.goto(origin + activePath, { waitUntil: "load" });
+      if (card.family === "feedback") {
+        await expect(referencePage.getByText("3 tidrapporter väntar på attest", { exact: true })).toBeVisible();
+        await expect(referencePage.getByText("Fakturan skickad · 284 500 kr", { exact: true })).toBeVisible();
+        await expect(referencePage.getByRole("dialog")).toBeVisible();
+        await referencePage.getByRole("button", { name: "Attest", exact: true }).focus();
+        await expect(referencePage.getByRole("tooltip")).toBeVisible();
+        await expect(referencePage.getByRole("tooltip")).toHaveCSS("opacity", "1");
+      } else {
+        await expect(referencePage.getByText("Tid rapporterad · 8 h", { exact: true })).toBeVisible();
+        await expect(referencePage.locator("#root ol li")).toHaveCount(2);
+      }
+      await capture(card.family, "immutable-html", sourceHashes([card.file, ...styles, "_ds_bundle.js"]),
+        "Exact admitted card bytes plus appended, disclosed family-isolation/label CSS; original component JSX/content and archived assets unchanged. Feedback reserves 240px for its original scaled modal and left-aligns its tooltip within the phone viewport; audit hides unrelated table/phase/progress samples.",
+        card.family === "audit-trail" ? [viewports[1], viewports[2]] : viewports);
+    }
+    const derivedCss = `html,body{margin:0;font-family:var(--font-core);color:${color("text-primary")};background:${color("page")}}*{box-sizing:border-box}.ref-label{font-size:11px;line-height:1.45;color:${color("text-tertiary")};margin:0 0 16px}.ref-scrim{position:fixed;inset:0;background:${color("scrim")}}.ref-sheet{position:fixed;inset:0 0 0 auto;width:min(100%,520px);padding:24px;border-radius:12px;background:${color("card")};box-shadow:0 16px 40px -8px rgb(13 13 15 / .14),0 2px 6px rgb(13 13 15 / .05)}.ref-header{display:flex;gap:12px;align-items:center;justify-content:space-between}.ref-title{font-size:17px;font-weight:500;letter-spacing:-.018em}.ref-action,.ref-chip{min-height:44px;border:1px solid ${color("border-strong")};border-radius:8px;background:${color("card")};color:${color("text-primary")};font:500 13px var(--font-core);padding:12px 16px}.ref-media{height:240px;margin:24px 0;background:${color("sunken")};border:1px solid ${color("border-default")};border-radius:8px}.ref-chip{display:inline-flex;max-width:100%;align-items:center;gap:8px;background:${color("sunken")};text-decoration:underline;text-underline-offset:4px}.ref-chip svg{width:16px;height:16px;flex:none}.ref-chip span{overflow-wrap:anywhere}.ref-frame{padding:24px}.ref-copy{font-size:13px;line-height:1.45;color:${color("text-secondary")}}@media(max-width:600px){.ref-frame{padding:16px}.ref-sheet{padding:24px}}`;
+    for (const family of ["side-sheet", "connection-chip"].filter(family => family === selectedFamily)) {
+      const content = family === "side-sheet"
+        ? '<div class="ref-scrim"></div><section class="ref-sheet" aria-label="SideSheet reference"><p class="ref-label">AUTHORED DERIVED REFERENCE · SideSheet</p><header class="ref-header"><h1 class="ref-title">Förhandsvisning</h1><button class="ref-action">Stäng</button></header><button class="ref-action">Tillbaka till listan</button><p class="ref-copy">Mönster för valt dokument</p><div class="ref-media" aria-label="Neutral medieyta"></div><button class="ref-action">Förnya åtkomst</button></section>'
+        : '<section class="ref-frame"><p class="ref-label">AUTHORED DERIVED REFERENCE · ConnectionChip</p><p class="ref-copy">Mönster för navigerbar relation</p><a class="ref-chip" href="#reference-only"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h8l4 4v14H6zM14 3v5h4"/></svg><span>Kopplad post</span></a></section>';
+      activeHtml = `<!doctype html><html lang="sv"><head><meta charset="utf-8"><link rel="icon" href="data:,"><link rel="stylesheet" href="/styles.css"><style>${derivedCss}</style></head><body>${content}</body></html>`;
+      activePath = `/reference/${family}.html`;
+      await referencePage.goto(origin + activePath, { waitUntil: "load" });
+      await expect(referencePage.getByText(`AUTHORED DERIVED REFERENCE · ${family === "side-sheet" ? "SideSheet" : "ConnectionChip"}`, { exact: true })).toBeVisible();
+      await expect(referencePage.locator(family === "side-sheet" ? ".ref-sheet .ref-media" : ".ref-chip")).toBeVisible();
+      await capture(family, "authored-derived", [...sourceHashes(styles), { path: `${referenceSpines}/DESIGN.md`, sha256: referenceDigest(design) }, { path: `${referenceSpines}/EXPERIENCE.md`, sha256: referenceDigest(experience) }],
+        "Independent written-rule composition: accepted palette, Inter roles, 24/16px gutters, 44px controls, 12px sheet/8px chip and written elevation. Neutral pattern only; no app DOM/components/classes, business fixture, actor or history imported. Archived styles/font declarations are read-only dependencies.");
+    }
+  } finally { await context.close(); }
 }
 async function hydrated(control: Locator): Promise<void> {
   await control.waitFor({ state: "visible" });
@@ -162,6 +288,11 @@ async function confirmArchive(page: Page, name: string): Promise<Response> {
   await row(page, name).getByRole("button", { name: "Arkivera", exact: true }).click();
   const dialog = page.getByRole("dialog");
   const response = actionResponse(page); await dialog.getByRole("button", { name: "Arkivera", exact: true }).click(); return response;
+}
+for (const family of ["feedback", "audit-trail", "side-sheet", "connection-chip"] as const) {
+  test(`[P1][E35-4-REFERENCE] independent ${family} family references`, async ({ page }) => {
+    await attachDesignReferences(page, family);
+  });
 }
 test.afterAll(async () => { await closeAdminPool(); });
 for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "connected phone", width: 360, height: 640 }]) {
@@ -560,7 +691,10 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         expect((await select(page, file.name)).ok()).toBe(true); await expect(pane(page).getByRole("img")).toHaveCount(0); await expect(downloadLink(page)).toBeVisible();
         const downloading = page.waitForEvent("download"); await downloadLink(page).click(); const downloaded = await downloading;
         expect(await downloaded.failure()).toBeNull(); expect(downloaded.suggestedFilename()).toBe(file.name);
-        const location = await downloaded.path(); expect(location).not.toBeNull(); expect(readFileSync(location!)).toEqual(file.body);
+        // Remote Playwright connections cannot expose the browser host's artifact path.
+        const location = test.info().outputPath(`saved-download-${crypto.randomUUID()}.doc`);
+        try { await downloaded.saveAs(location); expect(readFileSync(location)).toEqual(file.body); }
+        finally { rmSync(location, { force: true }); } // Only this test-owned saved copy.
       });
     });
     // RED: activate after neutral current-source denial clears a previously successful pane.
