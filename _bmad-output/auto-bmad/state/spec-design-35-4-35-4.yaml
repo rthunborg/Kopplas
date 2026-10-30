@@ -9,11 +9,11 @@ spec_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas\\_bmad-output\
 story_id: 35-4
 branch: codex/story-35-4-dialogs-feedback-files
 status: in-progress
-updated_at: "2026-10-30T12:15:42Z"
+updated_at: "2026-10-30T13:44:08Z"
 started_at: "2026-10-30T10:01:38Z"
 completed_at: null
-active_seconds: 2768
-timing_anchor: 1793357482
+active_seconds: 8025
+timing_anchor: 1793367604
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -58,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [c431cb5d, 08c7f443, 69fe2e54, fdcb6b5b, c7dca627, 5fe56848, a6aa7c57, 591dc9d3, 39ee18f2, 11abcafb]
+commits: [c431cb5d, 08c7f443, 69fe2e54, fdcb6b5b, c7dca627, 5fe56848, a6aa7c57, 591dc9d3, 39ee18f2, 11abcafb, 9de04c50]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -84,7 +84,7 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - Focused hosted browser/image acquisition pending owner-approved workflow allocation
+  - Focused hosted browser/image execution pending
   - Initial candidate visual acceptance pending
 overrides:
   adapter_route: "gpt-6.1-sol low; ordinary one-to-one admission metadata"
@@ -97,3 +97,4 @@ constraints:
   - "Human async approval: narrow test-only correction in tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts; respect existing montor /my-day login landing then explicitly navigate /dashboard; no product routing/permissions/assertion changes."
   - "Human async approval: modal compatibility in tests/e2e/files/documents-context-navigation.e2e.spec.ts; close preview before background controls, preserve identity/owner/bytes/navigation/filter assertions."
   - "Human async approval: one-setting absolute native JSON output path in tests/e2e/dashboard/playwright.ci.config.ts; preserve workflow/assertions/timeouts/strict upload checks."
+  - "Human async approval: add .github/workflows/story-35-4-validation.yml for focused182-test lane; correct remote saveAs and existing installer landing expectations in documents.e2e.spec.ts/documents-context-navigation.e2e.spec.ts. Required CI/assertions/timeouts/product behavior unchanged; independent High review precedes publication."

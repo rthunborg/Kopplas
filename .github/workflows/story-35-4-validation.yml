@@ -1,0 +1,271 @@
+# REVIEWABLE DRAFT ONLY. Proposed destination: .github/workflows/story-35-4-validation.yml
+# Installing/pushing this file requires the separate owner approval recorded in proposal.md.
+name: Story 35.4 focused validation
+run-name: story-35-4:${{ github.sha }}
+
+on:
+  push:
+    branches: [codex/story-35-4-dialogs-feedback-files]
+
+permissions:
+  contents: read
+
+# Exact-run isolation; do not cancel a run whose evidence is being collected.
+concurrency:
+  group: story-35-4-${{ github.run_id }}-${{ github.run_attempt }}
+  cancel-in-progress: false
+
+jobs:
+  focused-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SUPABASE_TEST_REQUIRED: "1"
+      SUPABASE_TEST_URL: http://127.0.0.1:54321
+      BOOKING_CONFLICT_ATTESTATION_KEY_ID: test_v1
+      BOOKING_CONFLICT_ATTESTATION_HMAC_SECRET: local-test-only-booking-conflict-attestation-secret-v1
+      PLAYWRIGHT_JSON_OUTPUT_FILE: ${{ github.workspace }}/test-results/general-browser.json
+      PLAYWRIGHT_HTML_OUTPUT_DIR: ${{ github.workspace }}/playwright-report
+      STORY_35_4_EVIDENCE: ${{ runner.temp }}/story-35-4-evidence
+    steps:
+      - name: Checkout immutable push revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Admit exact story branch and unchanged normal CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_EVENT_NAME" = push
+          test "$GITHUB_REF" = refs/heads/codex/story-35-4-dialogs-feedback-files
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          printf '%s  %s\n' \
+            9c9e10a502092606f039a1dd96728f442290fc12cbdd35095c7180966ce23317 .github/workflows/ci.yml \
+            b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f scripts/ci/checkpoint-dispatch.mjs \
+            | sha256sum --check --strict
+          mkdir -p "$STORY_35_4_EVIDENCE"
+          node --input-type=module <<'NODE'
+          import { writeFileSync, readFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          import { join } from 'node:path';
+          const files = [
+            '.github/workflows/story-35-4-validation.yml', '.github/workflows/ci.yml',
+            'scripts/ci/checkpoint-dispatch.mjs', 'scripts/ci/browser-runtime.mjs',
+            'playwright.config.ts', 'tests/support/job-events-fetch-fault.cjs',
+            'tests/support/test-env.ts', 'tests/e2e/global-setup.ts', 'tests/e2e/global-teardown.ts',
+            'pnpm-lock.yaml', '.nvmrc', 'supabase/config.toml', 'supabase/seed.sql',
+            'src/components/documents/DocumentFilters.tsx',
+            'src/components/documents/DocumentPreviewPane.tsx',
+            'src/components/documents/DocumentLifecycleActions.tsx',
+            'src/components/jobs/JobEventsPanel.tsx',
+            'tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts',
+            'tests/e2e/jobs/job-workspace.e2e.spec.ts',
+            'tests/e2e/files/documents-context-navigation.e2e.spec.ts',
+            'tests/e2e/files/documents.e2e.spec.ts',
+          ];
+          const sourceFiles = Object.fromEntries(files.map(file => [file,
+            createHash('sha256').update(readFileSync(file)).digest('hex')]));
+          writeFileSync(join(process.env.STORY_35_4_EVIDENCE, 'source.json'), JSON.stringify({
+            schemaVersion: 1, repository: process.env.GITHUB_REPOSITORY,
+            sha: process.env.GITHUB_SHA, ref: process.env.GITHUB_REF,
+            runId: process.env.GITHUB_RUN_ID, runAttempt: process.env.GITHUB_RUN_ATTEMPT,
+            workflowRef: process.env.GITHUB_WORKFLOW_REF, workflowSha: process.env.GITHUB_WORKFLOW_SHA,
+            workflowPath: '.github/workflows/story-35-4-validation.yml',
+            event: process.env.GITHUB_EVENT_NAME, sourceFiles,
+            limitations: 'Focused development evidence; required normal CI remains independent; release_ready=false',
+          }, null, 2) + '\n');
+          NODE
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Start pinned Playwright browser service
+        timeout-minutes: 6
+        run: node scripts/ci/browser-runtime.mjs start
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.115.0
+
+      - name: Start isolated runner-local Supabase stack
+        run: supabase start
+
+      - name: Migration reset using existing exact-ledger recovery convention
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            echo "::group::supabase db reset (attempt $attempt/3)"
+            if supabase db reset; then
+              echo "::endgroup::"
+              exit 0
+            fi
+            echo "::endgroup::"
+            if node scripts/verify/check-local-supabase-reset.mjs; then
+              echo "db reset completed; recovered from the CLI's final restart error"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then sleep 15; fi
+          done
+          echo "supabase db reset failed after 3 attempts"
+          exit 1
+
+      - name: Run four explicit actual-consumer browser suites
+        id: browser
+        shell: bash
+        env:
+          DEBUG: pw:webserver
+        run: |
+          set -euo pipefail
+          # Keep the configured production build/start, fresh nonce handshake,
+          # retries, workers, test/expect timeouts and global fixtures. Explicit
+          # reporters follow ordinary CI; HTML adds retained failure diagnostics.
+          # No grep, changed testMatch or independent ad-hoc test configuration.
+          date -u +%FT%TZ > "$STORY_35_4_EVIDENCE/invocation-started.txt"
+          printf '%s\n' 'pnpm exec playwright test tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts tests/e2e/jobs/job-workspace.e2e.spec.ts tests/e2e/files/documents-context-navigation.e2e.spec.ts tests/e2e/files/documents.e2e.spec.ts --reporter=list,json,html' > "$STORY_35_4_EVIDENCE/command.txt"
+          set +e
+          pnpm exec playwright test \
+            tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts \
+            tests/e2e/jobs/job-workspace.e2e.spec.ts \
+            tests/e2e/files/documents-context-navigation.e2e.spec.ts \
+            tests/e2e/files/documents.e2e.spec.ts --reporter=list,json,html \
+            2>&1 | tee "$STORY_35_4_EVIDENCE/playwright.log"
+          test_exit=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$test_exit" > "$STORY_35_4_EVIDENCE/playwright-exit-code.txt"
+          date -u +%FT%TZ > "$STORY_35_4_EVIDENCE/invocation-ended.txt"
+          exit "$test_exit"
+
+      - name: Collect exact build and runtime provenance and inspect native attachments
+        if: ${{ always() && steps.browser.outcome != 'skipped' }}
+        shell: bash
+        env:
+          BROWSER_STEP_OUTCOME: ${{ steps.browser.outcome }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
+          import { join } from 'node:path';
+          import { createHash } from 'node:crypto';
+          import { execFileSync } from 'node:child_process';
+          const evidence = process.env.STORY_35_4_EVIDENCE;
+          const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+          const optional = file => existsSync(file) ? readFileSync(file, 'utf8').trim() : null;
+          const identity = file => existsSync(file) ? {path: file, sha256: hash(readFileSync(file))} : null;
+          const browserFile = join(process.env.RUNNER_TEMP, `browser-runtime-${process.env.GITHUB_JOB}.json`);
+          const buildFiles = ['.next/BUILD_ID', '.next/build-manifest.json', '.next/server/app-paths-manifest.json'];
+          const migrationFiles = readdirSync('supabase/migrations').filter(name => name.endsWith('.sql')).sort()
+            .map(name => identity(`supabase/migrations/${name}`));
+          const manifest = {
+            schemaVersion: 1, sha: process.env.GITHUB_SHA,
+            repository: process.env.GITHUB_REPOSITORY, ref: process.env.GITHUB_REF,
+            event: process.env.GITHUB_EVENT_NAME,
+            workflowPath: '.github/workflows/story-35-4-validation.yml',
+            workflowRef: process.env.GITHUB_WORKFLOW_REF, workflowSha: process.env.GITHUB_WORKFLOW_SHA,
+            checkoutShaAfterTests: execFileSync('git', ['rev-parse', 'HEAD'], {encoding: 'utf8'}).trim(),
+            runId: process.env.GITHUB_RUN_ID, runAttempt: process.env.GITHUB_RUN_ATTEMPT,
+            browserStepOutcome: process.env.BROWSER_STEP_OUTCOME,
+            nativeJsonPath: 'test-results/general-browser.json',
+            selectedTests: [
+              'tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts',
+              'tests/e2e/jobs/job-workspace.e2e.spec.ts',
+              'tests/e2e/files/documents-context-navigation.e2e.spec.ts',
+              'tests/e2e/files/documents.e2e.spec.ts',
+            ],
+            invocationStarted: optional(join(evidence, 'invocation-started.txt')),
+            invocationEnded: optional(join(evidence, 'invocation-ended.txt')),
+            exitCode: optional(join(evidence, 'playwright-exit-code.txt')),
+            command: optional(join(evidence, 'command.txt')),
+            productionServerAuthority: 'Unmodified playwright.config.ts webServer builds with next build and starts actual next start with fresh startup adapter nonce; reuseExistingServer=false',
+            buildId: optional('.next/BUILD_ID'), buildFiles: buildFiles.map(identity),
+            browserRuntime: existsSync(browserFile) ? JSON.parse(readFileSync(browserFile, 'utf8')) : null,
+            versions: {node: process.version, pnpm: execFileSync('pnpm', ['--version'], {encoding: 'utf8'}).trim(),
+              supabase: execFileSync('supabase', ['--version'], {encoding: 'utf8'}).trim()},
+            migrations: migrationFiles, nativeJson: identity('test-results/general-browser.json'),
+            buildTimingLimit: 'Invocation times include configured build, server startup, fixture work and tests; no separate build duration is inferred.',
+            completionLimit: 'Missing exit/native JSON or cancelled run is incomplete; failed/retried attachments remain diagnostics, never acceptance.',
+          };
+          let problem = null;
+          try {
+            const native = JSON.parse(readFileSync('test-results/general-browser.json', 'utf8'));
+            const captures = [];
+            const visit = suites => { for (const suite of suites ?? []) {
+              for (const spec of suite.specs ?? []) for (const test of spec.tests ?? []) {
+                for (const [attempt, result] of (test.results ?? []).entries()) {
+                  for (const image of result.attachments ?? []) {
+                    if (!/^35-4-.*\.png$/.test(image.name)) continue;
+                    if (image.contentType !== 'image/png' || typeof image.body !== 'string') throw new Error('Expected native inline PNG Buffer');
+                    const png = Buffer.from(image.body, 'base64');
+                    if (!png.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) throw new Error('Invalid PNG bytes');
+                    const pairs = (result.attachments ?? []).filter(a => a.name === image.name.replace(/\.png$/, '.provenance.json'));
+                    if (pairs.length !== 1 || typeof pairs[0].body !== 'string') throw new Error('Missing paired inline provenance');
+                    const provenance = JSON.parse(Buffer.from(pairs[0].body, 'base64').toString('utf8'));
+                    if (provenance.workflowSha !== process.env.GITHUB_SHA) throw new Error('Capture source SHA mismatch');
+                    captures.push({file: spec.file, title: spec.title, project: test.projectName,
+                      outcome: test.status, attempt, status: result.status, name: image.name,
+                      pngSha256: hash(png), bytes: png.length, provenance});
+                  }
+                }
+              }
+              visit(suite.suites);
+            }};
+            visit(native.suites);
+            manifest.nativeStats = native.stats;
+            manifest.captures = captures;
+            if (!captures.some(c => c.provenance.kind === 'design-reference')
+              || !captures.some(c => c.provenance.kind !== 'design-reference')) throw new Error('Missing actual or reference PNG Buffer captures');
+          } catch (error) { problem = error.message; manifest.evidenceError = problem; }
+          writeFileSync(join(evidence, 'provenance.json'), JSON.stringify(manifest, null, 2) + '\n');
+          if (manifest.checkoutShaAfterTests !== process.env.GITHUB_SHA) throw new Error('Checkout changed');
+          if (problem) throw new Error(problem);
+          NODE
+
+      - name: Upload native general browser JSON with all inline PNG Buffers
+        if: ${{ always() && steps.browser.outcome != 'skipped' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-general-browser
+          path: test-results/general-browser.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload Playwright HTML report
+        if: ${{ always() && steps.browser.outcome != 'skipped' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: story-35-4-playwright-report
+          path: playwright-report/
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload source, logs, build and browser provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: story-35-4-provenance
+          path: |
+            ${{ env.STORY_35_4_EVIDENCE }}/
+            ${{ runner.temp }}/browser-runtime-${{ github.job }}.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Stop owned Playwright browser service
+        if: always()
+        timeout-minutes: 1
+        run: node scripts/ci/browser-runtime.mjs stop
+
+      - name: Stop isolated runner-local Supabase stack
+        if: always()
+        run: supabase stop

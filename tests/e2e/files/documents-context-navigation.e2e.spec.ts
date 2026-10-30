@@ -80,14 +80,14 @@ async function hydrated(control: Locator): Promise<void> {
   await control.waitFor({ state: "visible" });
   await expect.poll(() => control.evaluate(element => element.isConnected && Object.keys(element).some(key => key.startsWith("__react"))), { timeout: 15_000 }).toBe(true);
 }
-async function signIn(page: Page, credentials: Credentials): Promise<void> {
+async function signIn(page: Page, credentials: Credentials, expectedLanding: "/dashboard" | "/my-day" = "/dashboard"): Promise<void> {
   await page.goto("/login");
   const submit = page.getByRole("button", { name: "Logga in", exact: true });
   await hydrated(submit);
   await page.getByLabel("E-post", { exact: true }).fill(credentials.email);
   await page.getByLabel("Lösenord", { exact: true }).fill(credentials.password);
   await submit.click();
-  await expect(page).toHaveURL(/\/dashboard$/);
+  await expect(page).toHaveURL(expectedLanding === "/my-day" ? /\/my-day$/ : /\/dashboard$/);
 }
 /** Pick by the observed exact tuple, not order/CSS; CRM contains three real anchors. */
 async function entry(page: Page, source: Source): Promise<Locator> {
@@ -387,7 +387,7 @@ test.describe("Story 20.3 context authority — context navigation", () => {
     test("[P0][AC1,2,7] " + role + " cannot gain center entry or source labels from query intent", ERROR_RED, async ({ page }) => {
       await withSeed(async seed => {
         const file = await seedFile(seed, source(seed, "customer"), "denied-role");
-        await signIn(page, seed.base.notifications[role]);
+        await signIn(page, seed.base.notifications[role], role === "installer" ? "/my-day" : "/dashboard");
         await page.goto(source(seed, "customer").route);
         await expect(page.getByRole("link", { name: LINK_NAME, exact: true })).toHaveCount(0);
         await page.goto(href(source(seed, "customer")));

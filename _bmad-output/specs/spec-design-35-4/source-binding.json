@@ -29,7 +29,9 @@
     "playwright.config.ts",
     "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
     "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
-    "tests/e2e/dashboard/playwright.ci.config.ts"
+    "tests/e2e/dashboard/playwright.ci.config.ts",
+    "tests/e2e/files/documents.e2e.spec.ts",
+    ".github/workflows/story-35-4-validation.yml"
   ],
   "tea_risk": "high",
   "tea_selected": [
@@ -65,5 +67,15 @@
     "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
     "scope": "Only tests/e2e/dashboard/playwright.ci.config.ts: bind PLAYWRIGHT_JSON_OUTPUT_FILE at config load to cwd/test-results/dashboard-browser.json using existing path import. Preserve workflows, CLI reporter flags, assertions, timeouts and strict artifact uploads.",
     "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
+  },
+  "focused_ci_amendment": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve focused CI amendment",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only the dedicated focused validation workflow, the shared Documents unsupported-format remote-saveAs compatibility case, and explicit known sole-installer /my-day landing in shared Documents/context signIn callers. Preserve other roles, all denial/content/navigation/owner/bytes assertions and timeouts; no product/auth/routing changes.",
+    "workflow_path": ".github/workflows/story-35-4-validation.yml",
+    "workflow_expected_sha256": "0ecd507bcfe40b3b119d9214b7cfadc19f334d1c432a81f8ac6c0562b058fa3a",
+    "implementation_route": "Shared test fixes: gpt-6.1-sol low. Dedicated workflow/parser: separate context-free gpt-6.1-sol high author.",
+    "review_reuse_requirement": "Workflow distinct High review /root/focused_ci_review reported No findings on 11abc; root may reuse only after verifying exact approved workflow bytes and unchanged relevant dependencies. Latest two shared-test fixes receive targeted independent Low review."
   }
 }
