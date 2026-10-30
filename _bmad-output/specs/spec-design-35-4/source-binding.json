@@ -27,7 +27,9 @@
     "tests/e2e/jobs/job-workspace.e2e.spec.ts",
     "tests/support/job-events-fetch-fault.cjs",
     "playwright.config.ts",
-    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts"
+    "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+    "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+    "tests/e2e/dashboard/playwright.ci.config.ts"
   ],
   "tea_risk": "high",
   "tea_selected": [
@@ -48,6 +50,20 @@
     "approval_quote": "Approve test-only correction",
     "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
     "scope": "Only the existing Dashboard test login helper and exact sole-Montor fixture call: assert its known /my-day landing then explicitly navigate /dashboard before unchanged role/content assertions. No product, login, Phase A surface, config or other test edits.",
+    "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
+  },
+  "modal_test_compatibility": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve modal test compatibility",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only documents-context-navigation.e2e.spec.ts: explicitly close the existing selected preview before the four approved blocked background picker/upload/mode/search interactions. Preserve all existing identity, owner, bytes, navigation, filter, late-result and security assertions; no unrelated history, login, job fixture or download changes.",
+    "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
+  },
+  "report_path_correction": {
+    "date": "2026-10-30",
+    "approval_quote": "Approve report-path correction",
+    "approval_provenance": "Actual human approval explicitly relayed by root to the build delegate and implementation author. No message ID invented.",
+    "scope": "Only tests/e2e/dashboard/playwright.ci.config.ts: bind PLAYWRIGHT_JSON_OUTPUT_FILE at config load to cwd/test-results/dashboard-browser.json using existing path import. Preserve workflows, CLI reporter flags, assertions, timeouts and strict artifact uploads.",
     "implementation_route": "gpt-6.1-sol low; targeted independent Low review follows."
   }
 }

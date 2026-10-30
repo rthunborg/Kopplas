@@ -9,7 +9,7 @@ spec_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas\\_bmad-output\
 story_id: 35-4
 branch: codex/story-35-4-dialogs-feedback-files
 status: in-progress
-updated_at: "2026-10-30T11:14:43Z"
+updated_at: "2026-10-30T11:35:56Z"
 started_at: "2026-10-30T10:01:38Z"
 completed_at: null
 active_seconds: 2768
@@ -96,3 +96,5 @@ overrides:
   owner_test_amendment: "Human approved bounded test amendment via async reply: controlled persisted empty-history fixture in owned Jobs test; tests/support/job-events-fetch-fault.cjs plus playwright.config.ts startup wiring only, exact fixture safe-projection request, pass-through/no fabricated responses, finally teardown; independent High review required. Production readers/routes unchanged."
 constraints:
   - "Human async approval: narrow test-only correction in tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts; respect existing montor /my-day login landing then explicitly navigate /dashboard; no product routing/permissions/assertion changes."
+  - "Human async approval: modal compatibility in tests/e2e/files/documents-context-navigation.e2e.spec.ts; close preview before background controls, preserve identity/owner/bytes/navigation/filter assertions."
+  - "Human async approval: one-setting absolute native JSON output path in tests/e2e/dashboard/playwright.ci.config.ts; preserve workflow/assertions/timeouts/strict upload checks."

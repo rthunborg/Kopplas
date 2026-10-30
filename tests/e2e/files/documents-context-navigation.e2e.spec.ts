@@ -581,6 +581,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
         await expect(documentRow(page, initial.name)).toHaveCount(1);
         expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
         const previousSignedHref = (await download(page).getAttribute("href"))!;
+        await preview(page).getByTestId("documents-preview-back").click();
         const form = await openPicker(page);
         await expect(form.getByTestId("file-index-upload-owner")).toHaveValue("");
         await form.getByTestId("file-index-upload-owner-type").selectOption(owner);
@@ -609,6 +610,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
       await page.goto(href(original, { q: initial.name, purpose: original.purpose, from: "2020-01-01", to: "2099-12-31", mode: "active" }));
       expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
       const previousSignedHref = (await download(page).getAttribute("href"))!;
+      await preview(page).getByTestId("documents-preview-back").click();
       await page.getByRole("button", { name: "Arkiverade", exact: true }).click();
       await expect(page).toHaveURL(url => tupleMatches(url, original) && url.searchParams.get("mode") === "archived" && url.searchParams.get("q") === initial.name);
       await expect(page.getByTestId("file-index-empty")).toBeVisible();
@@ -644,6 +646,7 @@ test.describe("Story 20.3 upload owner continuity — context navigation", () =>
       const initial = seed.files.find(file => file.id === selected.fileId)!;
       expect((await select(page, initial)).ok()).toBe(true); await expect(download(page)).toBeVisible();
       const previousSignedHref = (await download(page).getAttribute("href"))!;
+      await preview(page).getByTestId("documents-preview-back").click();
       const uploaded = await uploadFromPicker(page, seed, await openPicker(page), ref);
       await expectContextUploadReset(page, ref, previousSignedHref);
       await expect(page.getByTestId("documents-result-count")).toHaveText("52");
@@ -814,6 +817,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
         expect((await select(page, file)).ok()).toBe(true); await expect(download(page)).toBeVisible();
         const signedUrl = await download(page).getAttribute("href");
         expect(signedUrl).toMatch(/^https?:\/\//);
+        await preview(page).getByTestId("documents-preview-back").click();
         const search = page.getByLabel("Sök dokument", { exact: true }); await hydrated(search); await search.fill("absent-" + crypto.randomUUID());
         await expect(download(page)).toHaveCount(0); await expect(search).toBeFocused();
         await expect(page.getByTestId("file-index-empty")).toBeVisible();
