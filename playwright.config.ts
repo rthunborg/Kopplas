@@ -13,8 +13,6 @@
  * - Serial (`workers: 1`) — the specs share one seeded fixture and exercise login/logout.
  */
 import { defineConfig, devices } from "@playwright/test";
-import { randomUUID } from "node:crypto";
-import { resolve } from "node:path";
 import {
   LOCAL_SUPABASE_URL,
   LOCAL_SUPABASE_ANON_KEY,
@@ -29,12 +27,9 @@ import {
 
 const PORT = Number(process.env.E2E_PORT ?? 3100);
 const BASE_URL = `http://127.0.0.1:${PORT}`;
-// Private runner-to-next-start control, shared with workers through their inherited
-// environment. The nonce rejects a retained control file from an earlier run.
-const JOB_EVENTS_CONTROL = resolve("test-results/private/job-events-fetch-fault.json");
-const JOB_EVENTS_RUN_ID = process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID ?? randomUUID();
-process.env.E2E_JOB_EVENTS_FETCH_FAULT_CONTROL = JOB_EVENTS_CONTROL;
-process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID = JOB_EVENTS_RUN_ID;
+// The preload owns path/nonce initialization; its setup hook binds the actual
+// fresh server boot to this runner before passing that nonce to test workers.
+const JOB_EVENTS_OWNER_PID = String(process.pid);
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -50,7 +45,7 @@ export default defineConfig({
   reporter: process.env.CI
     ? [["html", { open: "never" }], ["list"], ["./tests/e2e/ci-duration-budget-reporter.ts", { label: "Browser tests", maxMs: 800_000 }], ["json", { outputFile: "test-results/general-browser.json" }]]
     : [["list"]],
-  globalSetup: "./tests/e2e/global-setup.ts",
+  globalSetup: ["./tests/support/job-events-fetch-fault.cjs", "./tests/e2e/global-setup.ts"],
   globalTeardown: "./tests/e2e/global-teardown.ts",
   use: {
     baseURL: BASE_URL,
@@ -75,8 +70,8 @@ export default defineConfig({
     env: {
       NEXT_PUBLIC_SUPABASE_URL: LOCAL_SUPABASE_URL,
       NEXT_PUBLIC_SUPABASE_ANON_KEY: LOCAL_SUPABASE_ANON_KEY,
-      E2E_JOB_EVENTS_FETCH_FAULT_CONTROL: JOB_EVENTS_CONTROL,
-      E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID: JOB_EVENTS_RUN_ID,
+      E2E_JOB_EVENTS_FETCH_FAULT_STARTUP: "true",
+      E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID: JOB_EVENTS_OWNER_PID,
       // Admin email links must return to this actual production-mode test host.
       // The local Auth redirect allow-list has matching 3000 and 3100 entries.
       NEXT_PUBLIC_APP_URL: BASE_URL,

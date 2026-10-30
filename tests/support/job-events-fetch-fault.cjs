@@ -1,24 +1,68 @@
 /* Test-runner preload ONLY: fail the real safe-events transport, never invent a reply.
- * playwright.config.ts supplies a run-bound private control path only to next start.
+ * next-start creates a cryptographic boot nonce; the Playwright setup hook binds
+ * that fresh server handshake to its current runner and passes it to workers.
  * JSON contract: {schemaVersion:1, runId, armed:true, jobId, actorUserId}.
  * No JWTs, credentials, payloads or event content are written to disk or logged.
  */
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("node:fs");
 const path = require("node:path");
+const { randomUUID } = require("node:crypto");
 
-const controlFile = process.env.E2E_JOB_EVENTS_FETCH_FAULT_CONTROL;
-const runId = process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID;
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const expectedFile = path.resolve(process.cwd(), "test-results/private/job-events-fetch-fault.json");
-let origin;
-try {
-  const target = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL);
+const handshakeFile = `${expectedFile}.startup.json`;
+function localOrigin(value) {
+  const target = new URL(value);
   if (target.protocol === "http:" && ["127.0.0.1", "localhost", "[::1]"].includes(target.hostname)
-    && !target.username && !target.password && target.pathname === "/" && !target.search && !target.hash) origin = target.origin;
-} catch { /* No configured local test target: leave fetch untouched. */ }
+    && !target.username && !target.password && target.pathname === "/" && !target.search && !target.hash) return target.origin;
+  throw new Error("Safe-events adapter requires the configured loopback test target");
+}
+function readPrivateJson(file) {
+  const stat = fs.lstatSync(file);
+  if (!stat.isFile() || stat.isSymbolicLink() || stat.size > 2048) throw new Error("Invalid safe-events adapter control");
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
 
-if (controlFile === expectedFile && uuid.test(runId ?? "") && origin) {
+// Playwright starts webServer before globalSetup. No reused server is allowed.
+// The hook runs in the runner, before the original fixture setup and workers.
+module.exports = async function configureJobEventsFault(config) {
+  const servers = Array.isArray(config.webServer) ? config.webServer : [config.webServer];
+  const server = servers.find(value => value?.env?.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true"
+    && value.env.E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID === String(process.pid));
+  const boot = readPrivateJson(handshakeFile);
+  const now = Date.now(), runnerStartedAt = Math.floor(now - process.uptime() * 1000);
+  if (!server || server.reuseExistingServer !== false || boot.schemaVersion !== 1 || !uuid.test(boot.runId ?? "")
+    || boot.controlFile !== expectedFile || boot.ownerPid !== process.pid
+    || !Number.isSafeInteger(boot.serverPid) || boot.serverPid <= 0 || boot.serverPid === process.pid
+    || !Number.isSafeInteger(boot.startedAt) || boot.startedAt < runnerStartedAt || boot.startedAt > now
+    || boot.origin !== localOrigin(server.env.NEXT_PUBLIC_SUPABASE_URL)
+    || boot.applicationUrl !== localOrigin(server.url)) {
+    throw new Error("Safe-events adapter requires this runner's fresh server handshake");
+  }
+  process.kill(boot.serverPid, 0); // Existence check only; never adopt or stop it.
+  process.env.E2E_JOB_EVENTS_FETCH_FAULT_CONTROL = expectedFile;
+  process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID = boot.runId;
+};
+
+if (process.env.E2E_JOB_EVENTS_FETCH_FAULT_STARTUP === "true") {
+  const ownerPid = Number(process.env.E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID);
+  if (!Number.isSafeInteger(ownerPid) || ownerPid <= 0 || ownerPid === process.pid) throw new Error("Safe-events adapter runner identity missing");
+  process.kill(ownerPid, 0);
+  const origin = localOrigin(process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const applicationUrl = localOrigin(process.env.NEXT_PUBLIC_APP_URL);
+  const portIndex = process.argv.indexOf("--port");
+  if (path.resolve(process.argv[1] ?? "") !== path.resolve(process.cwd(), "node_modules/next/dist/bin/next")
+    || process.argv[2] !== "start" || portIndex < 0
+    || process.argv[portIndex + 1] !== (new URL(applicationUrl).port || "80")) throw new Error("Safe-events adapter requires the configured next-start process");
+  const controlFile = expectedFile, runId = randomUUID();
+  const directory = path.dirname(expectedFile);
+  fs.mkdirSync(directory, {recursive: true, mode: 0o700});
+  if (fs.lstatSync(directory).isSymbolicLink()) throw new Error("Invalid safe-events adapter directory");
+  const temporary = `${handshakeFile}.${process.pid}.tmp`;
+  fs.writeFileSync(temporary, JSON.stringify({schemaVersion: 1, runId, controlFile,
+    ownerPid, serverPid: process.pid, startedAt: Date.now(), origin, applicationUrl}), {flag: "wx", mode: 0o600});
+  fs.renameSync(temporary, handshakeFile);
   const realFetch = globalThis.fetch;
   globalThis.fetch = async function jobEventsFetchFault(input, init) {
     let shouldFail = false;
