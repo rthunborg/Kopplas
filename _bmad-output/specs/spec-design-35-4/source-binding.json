@@ -89,5 +89,32 @@
       "verification": "Root reports actionlint, YAML, nine Bash blocks, embedded JS and parsed-YAML bounded-upload-path checks exited 0. Canonical-LF workflow hash independently verified by metadata author. No new hosted validation/runtime pass is claimed.",
       "runtime_status": "pending"
     }
+  },
+  "visual_capture_gap_completion": {
+    "date": "2026-10-30",
+    "authorization_provenance": "Root explicitly authorized bounded capture-quality gap completion within the already-owned selected-document test and its evidence metadata; no new human quote is invented.",
+    "scope": "One projection-loading attachment after existing stale-row/count/facet assertions before read.release, plus two admitted EmptyState references inside the existing audit-trail family test. No product/source card/style/hash change, new fixture/test, timeout or assertion relaxation.",
+    "planned_images": {
+      "actual": 47,
+      "reference": 13,
+      "total": 60,
+      "supplementary_dirty_input_actuals": 3
+    },
+    "empty_reference": {
+      "family": "audit-trail",
+      "state": "empty-pattern",
+      "viewports": [
+        "1280x900",
+        "360x640"
+      ],
+      "composition": "Exact JSX from admitted EmptyState.prompt.md through archived EmptyState export in disclosed data.card SRI/assets wrapper",
+      "component_path": "docs/design/claude-design/v1/handoff/design-system-source/components/data/EmptyState.jsx",
+      "component_sha256": "878143793d8e70733de41b9851c9a5c84afd5ea774b6e29b5ccca2be6dc99757",
+      "prompt_path": "docs/design/claude-design/v1/handoff/design-system-source/components/data/EmptyState.prompt.md",
+      "prompt_sha256": "67f65bf90f1a7609eea3fc63f36ce63f9b11031cde34c43ca5151eca370fb8cc",
+      "wrapper": "Distinct populated/empty wrapper bytes and SHA256 accompany mandatory source.html; exact source identity is not relaxed."
+    },
+    "verification": "Scoped ESLint/type and four-file collection exited 0 (182 tests; corrected runtime=0). Exact on-disk regex literals and replacement template executed offline against actual prompt/data.card: extraction/replacement, final script closing tags, single Babel render and TSX parse all passed. Independent Low review retracted escaped-display finding and returned final No findings.",
+    "runtime_status": "pending; planned counts are not images, accepted comparisons or a frontend gate pass"
   }
 }

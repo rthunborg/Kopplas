@@ -58,7 +58,7 @@ async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "
   if (!browser) throw new Error("Design references require the existing hosted browser");
   const styles = ["styles.css", ...["fonts", "colors", "typography", "spacing", "radius", "elevation", "motion", "base"].map(name => `tokens/${name}.css`),
     "assets/fonts/Inter-Variable.ttf", "assets/fonts/Inter-Italic-Variable.ttf"];
-  const catalog = new Map([...styles, "_ds_bundle.js", "components/feedback/feedback.card.html", "components/data/data.card.html"].map(name =>
+  const catalog = new Map([...styles, "_ds_bundle.js", "components/feedback/feedback.card.html", "components/data/data.card.html", "components/data/EmptyState.jsx", "components/data/EmptyState.prompt.md"].map(name =>
     [name, readFileSync(path.join(process.cwd(), referenceRoot, name))]));
   const cards = [
     { family: "feedback", file: "components/feedback/feedback.card.html", sha256: "764a87f80d86da9f361baba787796eca1bd22222d7e9624018767a209b38f0ed" },
@@ -103,7 +103,7 @@ async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "
     await route.fulfill({ status: 200, body, contentType: name.endsWith(".css") ? "text/css" : name.endsWith(".ttf") ? "font/ttf" : "application/javascript" });
   });
   const viewports = [{ width: 1280, height: 800 }, { width: 1280, height: 900 }, { width: 360, height: 640 }];
-  const capture = async (family: string, referenceType: "immutable-html" | "authored-derived", sources: { path: string; sha256: string }[], description: string, sizes = viewports) => {
+  const capture = async (family: string, referenceType: "immutable-html" | "authored-derived", sources: { path: string; sha256: string }[], description: string, sizes = viewports, state: "reference-pattern" | "empty-pattern" = "reference-pattern") => {
     const wrapper = { description, sha256: referenceDigest(activeHtml) };
     for (const viewport of sizes) {
       await referencePage.setViewportSize(viewport);
@@ -113,7 +113,7 @@ async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "
         return loaded.some(face => face.status === "loaded") && document.fonts.check('15px "Inter"') && getComputedStyle(document.body).fontFamily.includes("Inter");
       })).toBe(true);
       expect(dependencyErrors).toEqual([]); expect(scriptErrors).toEqual([]);
-      const markers = family === "feedback" ? [referencePage.getByText("3 tidrapporter väntar på attest", { exact: true }), referencePage.getByText("Fakturan skickad · 284 500 kr", { exact: true }), referencePage.getByRole("tooltip"), referencePage.getByRole("dialog")]
+      const markers = state === "empty-pattern" ? [referencePage.getByText("Inga avvikelser. Bra jobbat.", { exact: true })] : family === "feedback" ? [referencePage.getByText("3 tidrapporter väntar på attest", { exact: true }), referencePage.getByText("Fakturan skickad · 284 500 kr", { exact: true }), referencePage.getByRole("tooltip"), referencePage.getByRole("dialog")]
         : family === "audit-trail" ? [referencePage.locator("#root > .col > div:last-child > ol > li").first(), referencePage.locator("#root > .col > div:last-child > ol > li").last()]
         : family === "side-sheet" ? [referencePage.locator(".ref-sheet"), referencePage.getByRole("button", { name: "Förnya åtkomst", exact: true })] : [referencePage.locator(".ref-chip")];
       for (const marker of markers) {
@@ -123,16 +123,17 @@ async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "
         expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width + 0.5);
         expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height + 0.5);
       }
-      const name = `35-4-reference-${family}-${viewport.width}x${viewport.height}`;
+      const name = `35-4-reference-${family}${state === "empty-pattern" ? "-empty-pattern" : ""}-${viewport.width}x${viewport.height}`;
       await test.info().attach(`${name}.png`, { body: await referencePage.screenshot({ fullPage: false }), contentType: "image/png" });
       await test.info().attach(`${name}.source.html`, { body: Buffer.from(activeHtml), contentType: "text/html" });
       await test.info().attach(`${name}.provenance.json`, { body: Buffer.from(JSON.stringify({
         kind: "design-reference", referenceType, family, viewport, test: test.info().titlePath,
-        workflowSha: process.env.GITHUB_SHA || null, candidateSha: null, state: "reference-pattern", mode: "design-reference", sources, wrapper,
+        workflowSha: process.env.GITHUB_SHA || null, candidateSha: null, state, mode: "design-reference", sources, wrapper,
         rendering: "DESIGN REFERENCE - not production", externalDependencies: referenceType === "immutable-html" ? externalDependencies : [],
         command: "pnpm exec playwright test tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
         commandBinding: "suite reproduction; exact executed invocation and checkout require CI runner binding",
-        limits: family === "audit-trail" ? "Historical illustrative source actors/meta; Timeline pattern only. EmptyState is imported but not rendered by this immutable card." : "Family pattern, not a state-specific production screenshot or owner-accepted PNG. Historical source examples confer no application capability.",
+        limits: state === "empty-pattern" ? "Exact historical admitted EmptyState prompt composition/copy, not actual Job history or product copy. Family empty pattern only; no actors, grants or state-specific acceptance inferred."
+          : family === "audit-trail" ? "Historical illustrative source actors/meta; Timeline pattern only. EmptyState is imported but not rendered by this immutable card." : "Family pattern, not a state-specific production screenshot or owner-accepted PNG. Historical source examples confer no application capability.",
       })), contentType: "application/json" });
     }
   };
@@ -158,6 +159,20 @@ async function attachDesignReferences(page: Page, selectedFamily: "feedback" | "
       await capture(card.family, "immutable-html", sourceHashes([card.file, ...styles, "_ds_bundle.js"]),
         "Exact admitted card bytes plus appended, disclosed family-isolation/label CSS; original component JSX/content and archived assets unchanged. Feedback reserves 240px for its original scaled modal and left-aligns its tooltip within the phone viewport; audit hides unrelated table/phase/progress samples.",
         card.family === "audit-trail" ? [viewports[1], viewports[2]] : viewports);
+      if (card.family === "audit-trail") {
+        const admittedEmptyMarkup = /```jsx\s*([\s\S]*?)```/.exec(catalog.get("components/data/EmptyState.prompt.md")!.toString("utf8"))?.[1].trim();
+        if (!admittedEmptyMarkup?.startsWith("<EmptyState ")) throw new Error("Admitted EmptyState composition missing");
+        // Only the reference wrapper render changes; immutable card/assets stay untouched.
+        activeHtml = activeHtml.replace(/<script type="text\/babel">[\s\S]*?<\/script>/,
+          `<script type="text/babel">const { EmptyState } = window.KopplaDesignSystem_4b46f2; ReactDOM.createRoot(document.getElementById('root')).render((${admittedEmptyMarkup}));</script>`);
+        activePath = "/reference/audit-trail-empty.html";
+        await referencePage.goto(origin + activePath, { waitUntil: "load" });
+        await expect(referencePage.getByText("Inga avvikelser. Bra jobbat.", { exact: true })).toBeVisible();
+        await expect(referencePage.locator("#root ol li")).toHaveCount(0);
+        await capture("audit-trail", "immutable-html", sourceHashes([card.file, "components/data/EmptyState.jsx", "components/data/EmptyState.prompt.md", ...styles, "_ds_bundle.js"]),
+          "Exact admitted data.card header/SRI/asset shell with wrapper Demo render replaced by the exact JSX from archived EmptyState.prompt.md using the admitted EmptyState export. Historical example copy; no app DOM/self-pair or immutable source edit. Wrapper bytes/hash distinguish this from populated Timeline.",
+          [viewports[1], viewports[2]], "empty-pattern");
+      }
     }
     const derivedCss = `html,body{margin:0;font-family:var(--font-core);color:${color("text-primary")};background:${color("page")}}*{box-sizing:border-box}.ref-label{font-size:11px;line-height:1.45;color:${color("text-tertiary")};margin:0 0 16px}.ref-scrim{position:fixed;inset:0;background:${color("scrim")}}.ref-sheet{position:fixed;inset:0 0 0 auto;width:min(100%,520px);padding:24px;border-radius:12px;background:${color("card")};box-shadow:0 16px 40px -8px rgb(13 13 15 / .14),0 2px 6px rgb(13 13 15 / .05)}.ref-header{display:flex;gap:12px;align-items:center;justify-content:space-between}.ref-title{font-size:17px;font-weight:500;letter-spacing:-.018em}.ref-action,.ref-chip{min-height:44px;border:1px solid ${color("border-strong")};border-radius:8px;background:${color("card")};color:${color("text-primary")};font:500 13px var(--font-core);padding:12px 16px}.ref-media{height:240px;margin:24px 0;background:${color("sunken")};border:1px solid ${color("border-default")};border-radius:8px}.ref-chip{display:inline-flex;max-width:100%;align-items:center;gap:8px;background:${color("sunken")};text-decoration:underline;text-underline-offset:4px}.ref-chip svg{width:16px;height:16px;flex:none}.ref-chip span{overflow-wrap:anywhere}.ref-frame{padding:24px}.ref-copy{font-size:13px;line-height:1.45;color:${color("text-secondary")}}@media(max-width:600px){.ref-frame{padding:16px}.ref-sheet{padding:24px}}`;
     for (const family of ["side-sheet", "connection-chip"].filter(family => family === selectedFamily)) {
@@ -402,6 +417,7 @@ for (const viewport of [{ name: "desktop", width: 1280, height: 800 }, { name: "
           await expect(page.getByTestId("documents-result-count")).not.toBeVisible(); await expect(page.getByLabel("Antal per filter")).not.toBeVisible();
           await expect(moduleOption).toHaveText("Kunder"); await expect(purposeOption).toHaveText("Kunddokument");
           for (const label of ["Modul", "Syfte"]) expect(await page.getByLabel(label, { exact: true }).locator("option").allTextContents()).not.toEqual(expect.arrayContaining([expect.stringMatching(/\(\d+\)/)]));
+          await attachDocumentsState(page, "workspace-projection-loading-hidden-stale-counts", "controlled-transport");
           read.release(); await expect(row(page, archived.name)).toBeVisible(); await expect(row(page, active.name)).toHaveCount(0);
           await expect(moduleOption).toHaveText("Kunder (1)"); await expect(purposeOption).toHaveText("Kunddokument (1)");
           await expect(page.getByTestId("documents-result-count")).toHaveText("1");
