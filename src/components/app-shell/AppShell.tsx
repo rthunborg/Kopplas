@@ -72,7 +72,7 @@ function NavLinks({
   return (
     <div className="space-y-4">
       {sections.map((section, index) => <section key={`${section.label}-${index}`} aria-label={section.label}>
-        <h2 className={`px-3 pb-2 text-micro font-medium uppercase text-text-tertiary ${variant === "sidebar" ? "hidden lg:block" : "block"}`}>{section.label}</h2>
+        <p className={`px-3 pb-2 text-micro font-medium uppercase text-text-tertiary ${variant === "sidebar" ? "hidden lg:block" : "block"}`}>{section.label}</p>
         <ul className="flex flex-col gap-1">
       {section.items.map((item) => {
         const active = isActive(pathname, item.href);

@@ -142,6 +142,16 @@ Later implementation follows current required CI/completion policy: applicable t
 2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
 
 ## Review Triage Log
+### 2026-11-01 — Targeted inherited heading-role contract correction
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Changed navigation group micro-labels from h2 to paragraph while preserving their named sections, exact text/classes and DTO order. The new desktop Dokument heading had deterministically duplicated the existing Documents page h1 and violated unchanged exact-heading callers.
+
+Independent Sol High source confirmation checked the actual Documents h1 and inherited exact-heading callers, approved DESIGN structure requirement and final named-section semantics. Product SHA-256 `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647`; tests unchanged at `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`. Typecheck/focused lint native 0; current root-bridged product build native 0, compile 1.757s/TypeScript 3.0s/12 static pages. Latest pass one medium patch, score 3, follow-up recommendation false. Broad review count remains one. The cancelled original general log showed partial failures and individual E03/E04/E05 passes but no error frames or aggregate PASS; the precise runtime failure stop is unconfirmed. This correction rests on deterministic source/caller proof, not an invented runtime error. The superseded f112 checkpoint was root-cancelled with no pending-gate acceptance credit. Corrected next-candidate runtime and authenticated visual acceptance remain pending.
 ### 2026-11-01 — Recovered original external finding and targeted fix
 - intent_gap: 0
 - bad_spec: 0
@@ -183,6 +193,9 @@ Five context-free internal Sol High layers completed. Security returned `No find
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+### Current corrected label candidate — 2026-11-01
+
+Status: in-review. A bounded independent High source check confirmed the new desktop navigation h2 duplicated the existing Documents page h1 and unchanged exact-heading callers; the group label now remains a paragraph inside its existing named section, with appearance/order unchanged and no inherited test weakening. Current product SHA-256 `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647`; test SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`. Independent targeted source/trail confirmation, typecheck/lint and current product build pass; current runtime remains pending. The f112 checkpoint was root-cancelled as superseded; no unfinished gate or current-head acceptance is claimed. The original cancelled general log contains partial progress rather than diagnostic error frames or an aggregate verdict. Latest patch one medium/score 3, follow-up recommendation false, deferred findings 0. Required exact-head runtime and authenticated frontend acceptance still block development completion. Release ready remains false.
 ### Current corrected candidate after recovered external finding — 2026-11-01
 
 Status: in-review. Original external result availability is resolved by recovery of its genuine saved output; the wrapper failure remains historical evidence, and no reviewer was rerun. All original substantive source findings and bounded runtime-test fixes have targeted independent High confirmation. Current corrected files are AppShell SHA-256 `e3a96ae4f8d2fe632b78a8f14d9105bee8022f0f2336d2e57796ec144a967dc1` and allocated test SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`. Final typecheck/lint and current product build pass; the author trail resolves 12 verified stops. Latest pass patched one medium finding, score 3, so follow-up recommendation false; earlier targeted follow-up recommendations have been fulfilled. Deferred review findings: 0. Corrected exact-head CI, actual final captures/geometry, inherited browser evidence and authenticated frontend acceptance remain pending. The first 61db dashboard failures and DB results remain candidate-bound historical evidence, not a corrected-candidate PASS. No development-complete or release-ready claim.
@@ -358,18 +371,26 @@ The bounded fix changes only that existing AppShell wrapper: descendant anchors 
 
 Root subsequently reports the final notification-target product rebuild passed native 0: compilation 1.784s, TypeScript 3.0s, 12/12 static pages. This is the current product-source build receipt; no product change followed it. The current corrected candidate still has zero runtime executions. Root additionally reports the old `61db` database lane at 2,163 passed, 52 pending, 0 failed; those pending cases are not coverage, and old database evidence does not convert its dashboard failures or the corrected candidate into a pass. Independent targeted confirmation and candidate commit remain root-owned and pending.
 
-Development completion is blocked pending corrected runtime/integration evidence, independent targeted confirmation, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
+### Bounded navigation-label semantics correction
+
+Root and the distinct High source assessment authorized one further AppShell-only correction: each navigation section's visible micro-label changes from `h2` to `p`, retaining its exact text, typography, named `section`, supplied DTO items and flattened order. Static source established that the shell's new `Dokument` h2 and the existing Documents page h1 both matched inherited unscoped exact heading callers at desktop 1280px. Existing `tests/e2e/files/documents.e2e.spec.ts` lines 74/148/181 and `documents-context-navigation.e2e.spec.ts` line 326 demonstrate that caller contract. No selector was weakened and no domain heading or destination consumer was changed. DESIGN requires named section structure and a micro-label, not heading semantics for the navigation label.
+
+This is a source-proven collision, not an observed runtime stop: the cancelled old log contained no corresponding error frame, and root superseded the `f112` CI without earning its unfinished gates. Earlier partial runtime and failed `61db` receipts remain immutable historical evidence; neither proves this correction. Post-fix project typecheck (`--incremental false`) and focused ESLint passed native 0. Root's current minimal-label product rebuild subsequently passed native 0: compilation 1.757s, TypeScript 3.0s and 12/12 static pages. That is the current source build receipt; tests remain unchanged at SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`. Independent High targeted confirmation and current runtime remain pending. No local resource was launched and no test/product path outside AppShell was edited for this fix.
+
+Root subsequently received independent High targeted confirmation for the minimal-label correction: no consequential regression or unresolved finding; named sections, unchanged text/classes and DTO order remain. The reviewer verified the existing Documents h1/fallback and exact unscoped heading callers against product SHA-256 `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647`. This supersedes the earlier pending targeted-confirmation statement for this correction only; it is source review, not runtime proof. Current product build remains passed at compilation 1.757s/TypeScript 3.0s/12 static pages.
+
+Development completion is blocked pending corrected runtime/integration evidence, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
 
 ## Suggested Review Order
 
 Author: `/root/build/author` (presentation and trail), with sensitive-test decisions by `/root/build/sensitive_author`.
-Refreshed after the recovered-original-review notification-target fix batch against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`.
+Refreshed after the source-proven navigation-label semantics fix against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 remains `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`.
 
 ### Responsive presentation preserves supplied navigation
 
-Contiguous sections group only received items and retain their original flattened order and ordinary destinations. Existing tokens supply the accepted geometry; utility panels follow the row's `lg` breakpoint, the header grows for failure alerts, and actual notification anchors gain the same 44px target floor as buttons.
+Contiguous named sections group only received items, retaining order and ordinary destinations; visible micro-labels use paragraphs to avoid competing with domain headings. Existing tokens supply geometry, the header grows for failure alerts, and actual notification anchors gain the same 44px target floor as buttons.
 
-- `src/components/app-shell/AppShell.tsx:82` — `href={item.href}`: preserves the supplied ordinary anchor destination.
+- `src/components/app-shell/AppShell.tsx:75` — `<p className=`: preserves visible grouping without a duplicate domain heading.
 - `src/components/app-shell/AppShell.tsx:263` — `min-h-14`: retains healthy geometry and permits error growth.
 - `src/components/app-shell/AppShell.tsx:298` — `[&_a]:min-h-11`: sizes notification anchors without changing their handlers.
 - `src/components/app-shell/AppShell.tsx:303` — `lg:right-0`: anchors profile to the responsive utility row.
