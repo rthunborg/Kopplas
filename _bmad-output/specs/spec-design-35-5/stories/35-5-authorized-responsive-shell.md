@@ -439,12 +439,34 @@ The separate proposed original-capture expansion is BLOCKED and unapplied. Autom
 
 Root subsequently reports the current gap-adjusted product build passed native 0: compilation 1.819s, TypeScript 3.0s and 12/12 static pages. This supersedes the earlier pending-rebuild checkpoint; source `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df` and test `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd` remain unchanged. Independent High final trail correction verification found no remaining finding. Corrected runtime is still pending, and the rejected capture expansion still requires direct human authorization with no automatic retry.
 
+### Direct authorization and implemented owned-original capture custody
+
+The rejected/unapplied capture statements above are historical checkpoints. The human subsequently authorized the exact twelve-case, thirty-one-frame proposal. The High capture author independently read the actual root chat `01a1970a-d2cd-7d22-a7ec-e322e6be3d2f`, turn `01a19811-339d-7a01-b357-05e3799ab8eb`, human user message `01a19811-3dfd-7551-86cb-42b0bf92208f`: “You are authorized, please proceed”. The renewed guarded patch was accepted after that trusted-source check; prior rejections remain preserved. The saved proposal is `../evidence/original-capture-permission-proposal.json`, SHA-256 `fe69f430938300db5a648e9ab5d7589e62f79344ab06b267cbbcd6142453820f`.
+
+`/root/build/sensitive_author`, gpt-6.1-sol High, appended only bounded cases to the allocated role suite. Existing fifteen cases, including the original five authority tests, assertions and timeouts remain unchanged. The appended describe scopes retries to zero and disables trace, video and automatic screenshots; no global concurrency/configuration or application behavior changes. Each case creates its own ten unique synthetic Auth identities, uses only its own browser context, and keeps original viewport PNG Buffers in memory. It closes the owned context, attempts strict redacted `deleteAuthUser` for every unique owned ID, inspects all ten results, then awaits the paired tenant cleanup. Only the single post-cleanup attachment site releases images when every assertion and strict deletion succeeded, cleanup completed, and no test/deadline error exists. Failure clears the buffers and reports only a fixed stage code without the original assertion/API cause or identity. The strict helper's returned/thrown Auth error checks establish the deletion boundary; the paired helper remains best-effort tenant cleanup, not stronger deletion proof. No issued-JWT invalidation is claimed. Incomplete fixture creation or cleanup earns no original image publication.
+
+The executable capture inventory is below. These are planned runtime outputs of implemented cases, not images already produced or accepted. Desktop originals use 1280×800 except the real signed-out blank-login frame, which uses the inspected PR115 reference geometry 1440×900; phone originals use 360×640. No existing image is unmasked, rescaled or rewritten.
+
+| Family | Cases | Full-viewport originals | States / actual existing consumers |
+| --- | ---: | ---: | --- |
+| Owned administrator shell | 2 | 5 | Loaded desktop/phone, profile open desktop/phone, full phone drawer |
+| Existing record embeddings | 2 | 6 | Real empty `/customers`, `/files`, `/jobs` |
+| Existing connected embeddings | 2 | 6 | Real empty `/scheduling`, `/my-day`; actual `/settings/notifications` defaults after successful GET |
+| Mounted notification dialog | 2 | 6 | Genuine empty, actual owned synthetic row, controlled undispatched local GET failure |
+| Owned seller sign-out | 2 | 4 | Controlled undispatched 500 with fresh server-confirmed identity, same-command real retry and blank login |
+| Actual owned revocation | 2 | 4 | Stale-href server denial after the exact inherited role mutation, fresh reduced authorized projection |
+| Total | 12 | 31 | Maximum 120 newly owned Auth identities, with no automatic retries |
+
+Bell population reuses the approved local guarded-admin notification columns/category/current-UTC-date pattern from `global-setup.ts:996–1010`, with a real owned customer/quote and own recipient. Its text explicitly identifies synthetic review data; no global identity or dangling quote link is borrowed. Revocation reuses the exact previously approved two fixture statements and isolated tenant/user/`montor`/`active` inputs. All four old/new statement comparisons match their source: update SHA-256 `adc40d7dc573fd7a1f27c5ac305397099045dd3ae6402669ca4e4b4665ae022c`, delete SHA-256 `052bde4fe820b8cc9a2cf11443a5d0db196e8cd8a880c50422ced975c4fde0d5`. Real server denial and fresh projection remain the authority; native-popup and same-tab-prefetch behavior are not claimed.
+
+Current test SHA-256 is `50bfeec8e8271c1fe8e578bb50f5bda5ae4db33a33f7e066eb1964d5e9fab84f`. Nonincremental project typecheck and focused allocated-test ESLint passed native 0. Source/AST integrity checks passed native 0: the fifteen-case prefix equals the verified `fd95f395fd06ff169b16b7ac08f5b5e66feba6ec` baseline after line-ending normalization, 27 active cases are defined, twelve are new, zero skips/focus markers and zero parse diagnostics. These are static counts, not executed/skipped browser counts. New capture runtime executions and produced original frames remain zero. Distinct targeted High review, current hosted execution, successful owned browser/Supabase stop steps before evidence-branch publication, and owner initial visual acceptance remain pending; this authorization does not grant visual acceptance, merge or release readiness.
+
 Development completion is blocked pending corrected required runtime/integration evidence, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
 
 ## Suggested Review Order
 
-Author: `/root/build/author` (presentation and trail), with sensitive-test decisions by `/root/build/sensitive_author`.
-Refreshed after the required General phone-height regression fix against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current AppShell SHA-256 `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`. Existing test SHA-256 is unchanged at `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`; the proposed capture expansion was rejected, is unapplied and has no authorized automatic retry.
+Author: `/root/build/author` (presentation and earlier trail), with sensitive-test and current owned-capture decisions/trail by `/root/build/sensitive_author`.
+Refreshed after the direct-human-authorized owned-capture append over the verified `fd95f395fd06ff169b16b7ac08f5b5e66feba6ec` baseline. Current AppShell SHA-256 remains `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`; current test SHA-256 is `50bfeec8e8271c1fe8e578bb50f5bda5ae4db33a33f7e066eb1964d5e9fab84f`. Historic rejection receipts remain intact; the renewed authorized append is now implemented, with no new runtime or visual-acceptance claim.
 
 ### Responsive presentation preserves supplied navigation
 
@@ -464,6 +486,15 @@ Reuse the existing named modal lifecycle, focus trap, explicit restoration and r
 - `src/components/app-shell/AppShell.tsx:358` — `aria-modal="true"`: preserves named modal composition.
 - `src/components/jobs/JobCardForm.tsx:103` — `document.addEventListener`: unchanged capture-phase protected-link guard.
 
+### Owned originals require strict identity retirement
+
+The new twelve cases own their synthetic identities and contexts; memory-only PNGs are withheld on any failed assertion or cleanup gate. All ten strict redacted Auth deletions precede the one attachment site; best-effort tenant cleanup and Auth deletion are distinguished, and only the new describe disables retries.
+
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:591` — `withRetiredOwnedCaptures`: owns context, identities, in-memory frames and failure handling.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:645` — `deleteAuthUser`: attempts every owned strict deletion and checks all results.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:666` — `testInfo.attach`: releases originals only after successful custody gates.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:673` — `retries: 0`: bounds the twelve-case fixture population without changing old cases.
+
 ### Assertions and evidence have explicit limits
 
 AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, target reachability and drawer focus. The High-authored rejection test checks a definite undispatched local Auth failure, fresh server identity, then explicit real retry; its matcher/query and SDK outcomes still need execution.
@@ -473,4 +504,4 @@ AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, ta
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:415` — `E35-5-T-revoked`: binds isolated current server authority.
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:469` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
 
-Evidence: the author records 12 passed unit assertions, static checks and root-relayed current product build. Preserved `61db` results were superseded only by the actual later `61d21543` receipt: dashboard 66 expected/1 unexpected/0 skipped, role suite 14 passed/1 failed, including passed focus and both real sign-out retries. The new fresh-document revocation test has no runtime evidence yet. Six masked PNGs from the failed candidate provide preliminary transport/inspection only, not current visual acceptance. The main mask can cover lower drawer content; the supplementary crop is not full-viewport evidence. Current full integration/RLS, exact-head CI, targeted confirmation of the test change and initial visual acceptance remain pending; no development-complete or release-ready claim. Unexecuted source-bound inherited tests are not reported as passed.
+Evidence: earlier author unit/build and historical `61db`/`61d21543` runtime receipts remain as recorded above, without transfer to the current candidate. The new twelve-case append passed nonincremental project typecheck, focused ESLint and static integrity checks (native 0); it has zero browser executions and zero produced original frames. Earlier six masked PNGs establish preliminary transport/inspection only, and their main mask can conceal lower drawer content. The implemented new full-viewport capture inventory is 31 originals, released only after strict custody gates, including desktop blank login at 1440×900; no old image is unmasked or rescaled. Distinct targeted High review, current hosted browser/integration/RLS evidence, exact-head CI and initial visual acceptance remain pending. No development-complete or release-ready claim; unexecuted inherited tests are not reported as passed.
