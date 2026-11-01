@@ -565,7 +565,8 @@ type ConnectedCaptureStep = "entry" | "response" | "identity" | "heading" | "emp
 type OwnedCaptureStage = "fixture" | "context" | "login" | "loaded" | "profile" | "representatives"
   | "bell-empty" | "bell-seed" | "bell-populated" | "bell-error" | "logout-rejection" | "logout-session"
   | "logout-retry" | "login-blank" | "revocation" | "denied" | "reduced-nav" | "context-close"
-  | "auth-delete" | "fixture-cleanup" | "publish" | `connected-${ConnectedCaptureRoute}-${ConnectedCaptureStep}`;
+  | "auth-delete" | "fixture-cleanup" | "publish" | "profile-admission" | "profile-cleanup"
+  | `connected-${ConnectedCaptureRoute}-${ConnectedCaptureStep}`;
 type OwnedCaptureErrorClass = "none" | "assertion" | "timeout" | "type" | "range" | "error" | "other" | "unknown" | "gate";
 type OwnedCaptureScope = {
   fixture: OwnedShellFixture;
@@ -573,6 +574,7 @@ type OwnedCaptureScope = {
   page: Page;
   origin: string;
   stage: (stage: OwnedCaptureStage) => void;
+  admitOwnAdminProfile: () => Promise<void>;
   capture: (page: Page, state: string, viewport?: CaptureViewport) => Promise<void>;
 };
 
@@ -621,6 +623,8 @@ async function withRetiredOwnedCaptures(
   let owned: OwnedShellFixture | undefined;
   let context: import("@playwright/test").BrowserContext | undefined;
   let ownedIds: string[] = [];
+  let ownedProfileId: string | undefined;
+  let ownProfileCleanupPassed = true;
   let stage: OwnedCaptureStage = "fixture";
   let failed: OwnedCaptureStage | undefined;
   let errorClass: OwnedCaptureErrorClass = "none";
@@ -640,7 +644,21 @@ async function withRetiredOwnedCaptures(
     context = await browser.newContext({ baseURL: app.origin, viewport, deviceScaleFactor: 1 });
     const page = await context.newPage();
     const ownedContext = context;
-    await run({ fixture: owned, context, page, origin: app.origin, stage: next => { stage = next; }, capture: async (target, state, geometry = viewport) => {
+    const ownedFixture = owned;
+    await run({ fixture: owned, context, page, origin: app.origin, stage: next => { stage = next; }, admitOwnAdminProfile: async () => {
+      stage = "profile-admission";
+      if (ownedProfileId) throw new Error("Only one owned profile is admitted");
+      const { adminQuery } = await import("../../factories/admin-sql");
+      const tenantId = ownedFixture.base.tenantA.id, user = ownedFixture.base.adminA;
+      // Exact existing bookings-atdd.ts:194–198 seedProfile query pattern.
+      const [membership] = await adminQuery<{ id: string }>(
+        "select id from public.tenant_memberships where tenant_id=$1 and user_id=$2", [tenantId, user.id]);
+      if (!membership) throw new Error("Owned membership required");
+      const id = crypto.randomUUID();
+      ownedProfileId = id; // Register before dispatch, including an uncertain insert failure.
+      ownProfileCleanupPassed = false;
+      await adminQuery("insert into public.person_profiles(id,tenant_id,membership_id) values($1,$2,$3)", [id, tenantId, membership.id]);
+    }, capture: async (target, state, geometry = viewport) => {
       if (target.context() !== ownedContext || new URL(target.url()).origin !== app.origin)
         throw new Error("Owned capture context required");
       const ordinaryGeometry = geometry.width === viewport.width && geometry.height === viewport.height;
@@ -665,6 +683,18 @@ async function withRetiredOwnedCaptures(
       }
     }
     if (owned && core) {
+      if (ownedProfileId) {
+        try {
+          // Membership FK is RESTRICT: remove only this registered own profile
+          // after context closure and BEFORE attempting all ten strict Auth deletes.
+          // Exact existing my-day.e2e.spec.ts:780 tenant+profile cleanup pattern.
+          const { adminQuery } = await import("../../factories/admin-sql");
+          await adminQuery("delete from public.person_profiles where tenant_id=$1 and id=$2", [owned.base.tenantA.id, ownedProfileId]);
+          ownProfileCleanupPassed = true;
+        } catch (failure) {
+          if (!failed) { failed = "profile-cleanup"; errorClass = ownedCaptureErrorClass(failure); }
+        }
+      }
       // Existing strict helper checks returned/thrown Auth errors, in redacted mode.
       // Attempt ALL unique owned IDs and inspect every result before publication.
       const deleted = await Promise.allSettled(ownedIds.map(id => core!.deleteAuthUser(id, "redacted")));
@@ -680,6 +710,7 @@ async function withRetiredOwnedCaptures(
       }
     }
   }
+  if (!ownProfileCleanupPassed) failed ??= "profile-cleanup";
   if (!authDeleted) failed ??= "auth-delete";
   if (!cleanupCompleted) failed ??= "fixture-cleanup";
   if (testInfo.errors.length > 0 || Date.now() >= publicationDeadline) failed ??= "publish";
@@ -769,6 +800,9 @@ test.describe("Story 35.5 owned originals — release only after strict Auth del
           { code: "my-day", href: "/my-day", heading: "Min dag", empty: "inga bokningar ännu", state: "my-day-real-empty" },
           { code: "preferences", href: "/settings/notifications", heading: "Notisinställningar", empty: null, state: "notification-preferences-real-defaults" },
         ] as const) {
+          // read_my_day requires a linked active own profile even for an empty day.
+          // Admit only this existing owned admin, with no additional Auth identity.
+          if (destination.code === "my-day") await scope.admitOwnAdminProfile();
           scope.stage(`connected-${destination.code}-entry`);
           const preferencesRead = destination.href === "/settings/notifications" ? page.waitForResponse(response =>
             response.request().method() === "GET" && new URL(response.url()).origin === scope.origin
