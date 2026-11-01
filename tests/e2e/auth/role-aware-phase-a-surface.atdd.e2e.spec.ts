@@ -427,17 +427,22 @@ test.describe("Story 35.5 authorized responsive shell", () => {
       await expect(page.getByTestId("current-user")).toHaveText(user.email);
       const staleLink = page.getByRole("navigation", { name: "Huvudnavigation" }).getByRole("link", { name: "Kunder", exact: true });
       await expect(staleLink).toHaveAttribute("href", "/customers");
+      const staleHref = await staleLink.getAttribute("href");
+      expect(staleHref).toBe("/customers");
       // Exact existing setRoles fixture semantics (time-reports-atdd.ts:98–102),
       // without importing its unrelated application-command dependency graph.
       // The original call's supplemental default is [], so its insert loop is empty.
       const tenantId = isolated.base.tenantA.id, userId = user.id, primary = "montor", status = "active";
       await adminQuery("update public.tenant_memberships set role=$3,status=$4 where tenant_id=$1 and user_id=$2", [tenantId, userId, primary, status]);
       await adminQuery("delete from public.membership_roles where tenant_id=$1 and membership_id in(select id from public.tenant_memberships where tenant_id=$1 and user_id=$2)", [tenantId, userId]);
-      // Native modified anchor opens a fresh server request, avoiding prefetched RSC
-      // becoming false authority evidence. No synthetic denial or shared user mutation.
-      const opened = page.waitForEvent("popup");
-      await staleLink.click({ modifiers: ["ControlOrMeta"] });
-      deniedPage = await opened;
+      await expect(staleLink).toHaveAttribute("href", staleHref!);
+      // Request the exact rendered stale destination as a fresh real document in
+      // the same cookie context. This tests current server authority independently
+      // of native popup delivery and does not certify same-tab prefetched navigation.
+      deniedPage = await context.newPage();
+      const deniedResponse = await deniedPage.goto(staleHref!, { waitUntil: "domcontentloaded" });
+      expect(deniedResponse?.request().isNavigationRequest()).toBe(true);
+      expect(deniedResponse?.request().resourceType()).toBe("document");
       await expect(deniedPage).toHaveURL(url => url.pathname === "/customers");
       await expect(deniedPage.getByRole("heading", { name: "Ingen åtkomst", exact: true })).toBeVisible();
       await expect(deniedPage.getByRole("alert").filter({ hasText: "Ingen åtkomst" })).toHaveCount(1);

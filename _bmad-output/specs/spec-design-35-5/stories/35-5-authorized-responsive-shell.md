@@ -142,6 +142,16 @@ Later implementation follows current required CI/completion policy: applicable t
 2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
 
 ## Review Triage Log
+### 2026-11-01 — Targeted stale-link navigation mechanism repair
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Replaced the unsupported native-popup assumption with a fresh same-cookie protected document request using the exact actual rendered href asserted before and after isolated revocation; all denial, data-withholding, absent-link and fresh-role projection assertions remain.
+
+Native 61d215432e60638cf313548a9b4e291957e20a9d dashboard results are 66 expected/1 unexpected/0 skipped/0 flaky; allocated role tests 14 expected/1 unexpected. The sole failure was popup event timeout, not an observed authorization bypass or denial outcome. Focus and both mounted SignOutButton failure/retry flows now passed on that candidate, and six actual masked PNG Buffer attachments were retained. Independent High source/trail confirmation verified the unchanged original five tests, exact isolated fixture mutations and cleanup, real fresh navigation/document assertions and no mock/timeout/query/privacy expansion. New test SHA-256 `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`; product remains `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647`, so current passing product build remains applicable. Typecheck/lint native 0; corrected mechanism runtime pending. Latest pass one medium patch/score 3, follow-up recommendation false. Broad review count remains one. No native-popup, same-tab-prefetch, final current-head CI or visual-acceptance claim.
 ### 2026-11-01 — Targeted inherited heading-role contract correction
 - intent_gap: 0
 - bad_spec: 0
@@ -193,6 +203,9 @@ Five context-free internal Sol High layers completed. Security returned `No find
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+### Current stale-link mechanism candidate — 2026-11-01
+
+Status: in-review. The approved AC3 invariant now uses the actual stale rendered href and a real fresh protected document request instead of depending on a native popup event. Independent High targeted source/trail confirmation passed; all original authority assertions remain. Product source is unchanged and its latest build remains applicable. Typecheck/lint pass; current corrected test SHA-256 `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`. The prior 61d21543 candidate passed 14/15 role tests, including focus and both actual mounted sign-out failure/retry flows; its six masked images are preliminary failed-candidate evidence only. The new mechanism has no runtime result yet. Latest pass one medium/score 3, follow-up false, deferred findings 0; required current-head CI and authenticated frontend acceptance remain pending. No development-complete or release-ready claim.
 ### Current corrected label candidate — 2026-11-01
 
 Status: in-review. A bounded independent High source check confirmed the new desktop navigation h2 duplicated the existing Documents page h1 and unchanged exact-heading callers; the group label now remains a paragraph inside its existing named section, with appearance/order unchanged and no inherited test weakening. Current product SHA-256 `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647`; test SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`. Independent targeted source/trail confirmation, typecheck/lint and current product build pass; current runtime remains pending. The f112 checkpoint was root-cancelled as superseded; no unfinished gate or current-head acceptance is claimed. The original cancelled general log contains partial progress rather than diagnostic error frames or an aggregate verdict. Latest patch one medium/score 3, follow-up recommendation false, deferred findings 0. Required exact-head runtime and authenticated frontend acceptance still block development completion. Release ready remains false.
@@ -379,12 +392,20 @@ This is a source-proven collision, not an observed runtime stop: the cancelled o
 
 Root subsequently received independent High targeted confirmation for the minimal-label correction: no consequential regression or unresolved finding; named sections, unchanged text/classes and DTO order remain. The reviewer verified the existing Documents h1/fallback and exact unscoped heading callers against product SHA-256 `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647`. This supersedes the earlier pending targeted-confirmation statement for this correction only; it is source review, not runtime proof. Current product build remains passed at compilation 1.757s/TypeScript 3.0s/12 static pages.
 
-Development completion is blocked pending corrected runtime/integration evidence, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
+### Subsequent `61d21543` execution and stale-link test recovery
+
+Root reports the immutable `61d21543` dashboard receipt: 66 expected, 1 unexpected, 0 skipped; allocated role suite 14 passed, 1 failed. Focus and both actual sign-out rejection/explicit-real-retry flows passed on that candidate. Only the revoked case failed, while waiting for native modified-click popup delivery; that failure does not prove a server-authority bypass. Six actual masked PNG attachments, including rendered sign-out failure, establish preliminary transport and source-reported no-mismatch inspection on the failed candidate, not current-head visual acceptance or full-content coverage. Keep this receipt and all older failures intact.
+
+Root approved the existing AC3 contract—rendered stale href, current server denial and fresh authorized projection—without introducing a native-popup delivery contract. The distinct High author changed only the allocated revoked test: capture and assert the actual stale href before revocation, retain the exact inherited fixture mutation, assert that rendered href again afterwards, then open a fresh page in the same cookie context and navigate to that exact href. Real navigation/document response assertions plus all original generic-denial, no-data, no-`Kunder` and independent fresh Montör projection assertions remain. Timeouts, authority expectations and queries were not weakened or expanded. This fresh-document mechanism does not certify native-popup behavior or same-tab prefetched navigation.
+
+The corrected allocated test SHA-256 is `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`; High-author project typecheck (`--incremental false`) and focused ESLint passed native 0. Its new stale-link mechanism has zero runtime executions and independent targeted review remains pending. Product SHA-256 `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647` is unchanged; the current 1.757s compilation/3.0s TypeScript/12-page build remains applicable. No production edit or rebuild was needed for this test-only recovery.
+
+Development completion is blocked pending corrected runtime/integration evidence, independent targeted confirmation of the new test mechanism, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
 
 ## Suggested Review Order
 
 Author: `/root/build/author` (presentation and trail), with sensitive-test decisions by `/root/build/sensitive_author`.
-Refreshed after the source-proven navigation-label semantics fix against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 remains `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`.
+Refreshed after the `61d21543` stale-link test recovery against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`.
 
 ### Responsive presentation preserves supplied navigation
 
@@ -411,6 +432,6 @@ AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, ta
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:131` — `assertNavOrder`: checks complete href order and a single current destination.
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:302` — `E35-5-T-focus-dialog`: binds focus, close, resize and reduced motion.
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:415` — `E35-5-T-revoked`: binds isolated current server authority.
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:464` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:469` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
 
-Evidence: the author records 12 passed unit assertions, static checks and root-relayed production build. Root's immutable `61db` runtime receipt records dashboard 63 expected/4 unexpected/0 skipped/flaky, including allocated role suite 11 passed/4 failed/0 skipped. The bounded test fixes below have no runtime evidence yet. Four masked PNGs from that failed candidate establish preliminary transport only, not candidate visual acceptance. The main mask can cover overlapping lower drawer content; the supplementary element crop is not full-viewport evidence. Full integration/RLS, current exact-head CI, independent targeted confirmation and initial visual acceptance remain pending; no development-complete or release-ready claim. Unexecuted source-bound inherited tests are not reported as passed.
+Evidence: the author records 12 passed unit assertions, static checks and root-relayed current product build. Preserved `61db` results were superseded only by the actual later `61d21543` receipt: dashboard 66 expected/1 unexpected/0 skipped, role suite 14 passed/1 failed, including passed focus and both real sign-out retries. The new fresh-document revocation test has no runtime evidence yet. Six masked PNGs from the failed candidate provide preliminary transport/inspection only, not current visual acceptance. The main mask can cover lower drawer content; the supplementary crop is not full-viewport evidence. Current full integration/RLS, exact-head CI, targeted confirmation of the test change and initial visual acceptance remain pending; no development-complete or release-ready claim. Unexecuted source-bound inherited tests are not reported as passed.
