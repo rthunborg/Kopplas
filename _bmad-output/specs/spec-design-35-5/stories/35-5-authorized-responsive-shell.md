@@ -142,6 +142,18 @@ Later implementation follows current required CI/completion policy: applicable t
 2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
 
 ## Review Triage Log
+### 2026-11-01 — Consequential runtime-fix review (same broad round)
+- intent_gap: 0
+- bad_spec: 0
+- patch: 3: (high 0, medium 3, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Negative focus assertion now resolves the same hidden hamburger after desktop resize; positive focus checks remain.
+  - `[medium]` `[patch]` Revocation fixture avoids the unsupported transitive app-alias import by reusing the exact existing setRoles adminQuery statements and isolated bindings; independent High review confirmed full-statement equality and hashes.
+  - `[medium]` `[patch]` Logout fault interception binds to the actual successful strict-loopback browser Auth login origin, preserving the real session/failure/retry proof and all timeout bounds.
+
+Independent Sol High consequential source review found no unresolved regression. Existing full update/delete statement hashes independently match `adc40d7dc573fd7a1f27c5ac305397099045dd3ae6402669ca4e4b4665ae022c` and `052bde4fe820b8cc9a2cf11443a5d0db196e8cd8a880c50422ced975c4fde0d5`; isolated tenant/user, montor/active, empty supplemental roles and paired cleanup are preserved. No new authority query design or sign-out SQL was introduced. Follow-up recommendation remains true (three medium patches, score 9). Original candidate 61db68a28b7ccc9050e92857ef291ca0bd212f0f runtime receipt remains immutable: dashboard 63 expected/4 unexpected/0 skipped/0 flaky, allocated role tests 11 expected/4 unexpected. The corrected candidate has no runtime result yet; static typecheck/lint passed, product source unchanged, prior product build remains applicable. This is a targeted consequential follow-up, not a new broad review pass. External prescribed layer remains unavailable.
 ### 2026-11-01 — Review pass 1
 - intent_gap: 0
 - bad_spec: 0
@@ -161,6 +173,9 @@ Five context-free internal Sol High layers completed. Security returned `No find
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+### Corrected runtime candidate — 2026-11-01
+
+Status: in-review. The first actual hosted dashboard execution at 61db68a28b7ccc9050e92857ef291ca0bd212f0f failed four allocated assertions (dashboard 63 expected/4 unexpected/0 skipped/0 flaky; allocated 11 expected/4 unexpected). Those immutable failures drove three bounded test-only corrections, independently reviewed at Sol High: hidden-control negative-focus selection, exact existing fixture-mutation reuse without the unsupported alias import, and actual local browser Auth origin observation for logout interception. Original five authority tests remain exact. Product source is unchanged, so the settled product build remains applicable; final corrected typecheck/lint are native 0. Corrected runtime, full required CI and frontend acceptance are still pending. Four inline masked PNG bodies were retained by the failed original run, proving transport at that candidate only; they are not final acceptance images. Follow-up recommendation true, three medium patches/score 9, deferred findings 0. No development-complete, release-ready, external-review PASS or final visual claim.
 ### Current implementation candidate — 2026-11-01
 
 Status: in-review. Implemented shell-only presentation over the unchanged server-filtered DTO and activated ten allocated acceptance journeys while preserving the original five authority tests. Three changed tracked paths: this story (process/evidence), AppShell.tsx (responsive semantic-token composition), and the existing role-aware browser suite (real assertions and safely masked capture attachments). No new product async state, authority/session contract, dependency, harness or workflow.
@@ -298,7 +313,7 @@ Preparation route: gpt-6.1-sol / low; sensitive assessment separately recorded. 
 
 Implementation author: `/root/build/author`, gpt-6.1-sol Low, ordinary shell presentation. Distinct `/root/build/sensitive_author`, gpt-6.1-sol High, owns allocated authority/session test activation and its sensitive decisions. Independent review is separate and pending. The historical planning exit and canonical body above are provenance, not current implementation or runtime results.
 
-Root verified the implementation-start baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; evidence below applies to the modified working tree over that baseline, not yet a committed/exact-head accepted candidate. Product changes are restricted to `src/components/app-shell/AppShell.tsx`; tests to `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts`.
+Root verified the implementation-start baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; historical author checks below apply to the working tree over that baseline. Root subsequently executed the candidate identified as `61db` in its immutable runtime receipt; that failed candidate is not an accepted current head. Product changes are restricted to `src/components/app-shell/AppShell.tsx`; tests to `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts`.
 
 Recorded author choices: navigation sections are contiguous presentation runs over the supplied DTO, so no filter, sort, imported authority registry or extra link can change its flattened order. The medium icon rail and ordinary Link event path remain. The existing drawer lifecycle is reused rather than introducing a second dialog or router contract. Shell-local wrappers give existing utility consumers reachable phone targets without editing their session/notification implementations. Phone identity wraps into its own row; desktop retains compact identity. Existing semantic tokens supply the white canvas, sunken 248px sidebar, healthy 56px desktop header, ink marker, gutters, typography and motion timing.
 
@@ -312,12 +327,22 @@ A subsequent, separately accepted single safer attempt adds a supplemental scree
 
 The five owned state identities bind as follows: loaded → four role/viewport `E35-5-T-loaded` cases; denied (`E35-5-STATE-denied` / `E35-5-T-denied`) → unchanged original `[P0] Montör direct navigation to active but ungranted settings has one generic denial and no data`; revoked → isolated `E35-5-T-revoked`; focus-dialog → `E35-5-T-focus-dialog`; error-retry → desktop/phone `E35-5-T-error-retry`. Numbered AC1–AC7 remain literal in the allocated assertions. These are executable bindings awaiting runtime, not passed state claims. Inherited Jobs `16.5-E03/E04/E05` are not executed or claimed here. The executed source-owner `16.2-AUTHZ-004` checks sanitized unavailable admission at its unit seam, not a shell-owned unavailable state. Unbound loading/connection-required inherited rows earn no coverage.
 
-Development completion is blocked pending actual runtime/integration evidence, independent review, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
+### Subsequent runtime receipt and bounded test-only recovery
+
+The earlier zero-runtime/no-image paragraphs above preserve their author checkpoints; root's subsequent immutable `61db` execution supersedes those current-state limits only where recorded here. Root reports dashboard 63 expected, 4 unexpected, 0 skipped/flaky; the allocated role suite executed 15 cases, with 11 passed, 4 failed and 0 skipped. Four actual masked PNGs from that failed candidate provide preliminary image-transport evidence only. Preserve the original failed receipt; neither those images nor unrelated successful cases prove the corrected candidate or initial visual acceptance.
+
+The four failures identified test seams: the resized hamburger's role locator excluded the now-hidden element; the broad role-helper import failed through an unrelated alias dependency before isolated fixture execution; desktop/phone logout faults matched upstream Auth port 54321 while the actual browser client used the local proxy on 37921. No product defect or AppShell change was established by these failures.
+
+The High author applied only bounded allocated-suite corrections, with root-approved reuse of existing fixture semantics: assert the same hidden hamburger using `includeHidden: true`, hidden state and absent focus; import existing `adminQuery` directly and reuse the exact two `setRoles` fixture statements with the same isolated tenant/user, `montor`, `active` and empty supplemental-role default; observe only URL/status of the actual successful password-login response, require a loopback origin, then bind the unchanged strict POST `/auth/v1/logout` matcher to that actual origin. No login body/headers are read or exported, no new query design or sign-out SQL was added, and all failure/session/explicit-real-retry assertions remain. High verified exact inherited statement equality: update SHA-256 `adc40d7dc573fd7a1f27c5ac305397099045dd3ae6402669ca4e4b4665ae022c`; delete SHA-256 `052bde4fe820b8cc9a2cf11443a5d0db196e8cd8a880c50422ced975c4fde0d5`. These are source-provenance checks, not executed revocation outcomes.
+
+Final corrected test SHA-256 is `895ecf076603697d07c4a20441a261ac8491f4c0e9a816dca0bf676b0e089d52`; the High author reports nonincremental project typecheck and focused ESLint native 0, with the original five-case block preserved exactly against `61db`. Current fix runtime count is zero; independent High targeted verification is pending. Product code is unchanged from the settled successful build, so no product rebuild is required for this test-only batch. Actual matcher/query, SDK rejection/session preservation, revocation and resized-focus outcomes must be rerun rather than inferred from static checks.
+
+Development completion is blocked pending corrected runtime/integration evidence, independent targeted confirmation, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
 
 ## Suggested Review Order
 
 Author: `/root/build/author` (presentation and trail), with sensitive-test decisions by `/root/build/sensitive_author`.
-Refreshed after the round-one presentation fix batch against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`.
+Refreshed after the `61db` failed-runtime test-fix batch against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 `895ecf076603697d07c4a20441a261ac8491f4c0e9a816dca0bf676b0e089d52`.
 
 ### Responsive presentation preserves supplied navigation
 
@@ -341,9 +366,9 @@ Reuse the existing named modal lifecycle, focus trap, explicit restoration and r
 
 AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, target reachability and drawer focus. The High-authored rejection test checks a definite undispatched local Auth failure, fresh server identity, then explicit real retry; its matcher/query and SDK outcomes still need execution.
 
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:132` — `assertNavOrder`: checks complete href order and a single current destination.
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:294` — `E35-5-T-focus-dialog`: binds focus, close, resize and reduced motion.
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:404` — `E35-5-T-revoked`: binds isolated current server authority.
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:448` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:131` — `assertNavOrder`: checks complete href order and a single current destination.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:293` — `E35-5-T-focus-dialog`: binds focus, close, resize and reduced motion.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:406` — `E35-5-T-revoked`: binds isolated current server authority.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:455` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
 
-Evidence: current implementation evidence immediately above records 12 executed unit assertions, focused lint/containment/lock checks and root-relayed production build. Limits: no local runtime, DB/RLS, browser/screenshot, independent review, exact-head CI or initial visual acceptance yet; no development-complete or release-ready claim. The main-content screenshot mask can also cover an overlapping lower phone drawer, so masked captures cannot certify complete drawer appearance or full content; actual navigation/focus assertions remain separate and unexecuted. Source-bound inherited tests are not reported as executed.
+Evidence: the author records 12 passed unit assertions, static checks and root-relayed production build. Root's immutable `61db` runtime receipt records dashboard 63 expected/4 unexpected/0 skipped/flaky, including allocated role suite 11 passed/4 failed/0 skipped. The bounded test fixes below have no runtime evidence yet. Four masked PNGs from that failed candidate establish preliminary transport only, not candidate visual acceptance. The main mask can cover overlapping lower drawer content; the supplementary element crop is not full-viewport evidence. Full integration/RLS, current exact-head CI, independent targeted confirmation and initial visual acceptance remain pending; no development-complete or release-ready claim. Unexecuted source-bound inherited tests are not reported as passed.

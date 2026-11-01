@@ -3,7 +3,6 @@ import { expect, test } from "../dashboard/guarded-test";
 import type { Locator, Page, Request, Route, TestInfo } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { LOCAL_SUPABASE_URL } from "../../support/test-env";
 
 type RoleFixture = {
   readonly email: string;
@@ -335,7 +334,10 @@ test.describe("Story 35.5 authorized responsive shell", () => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await expect(drawer).toHaveCount(0);
     await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe(previousOverflow);
-    await expect(trigger).not.toBeFocused();
+    // The same control is now intentionally absent from the accessibility tree.
+    const hiddenTrigger = page.getByRole("button", { name: "Öppna meny", exact: true, includeHidden: true });
+    await expect(hiddenTrigger).toBeHidden();
+    await expect(hiddenTrigger).not.toBeFocused();
     await expect(page.getByRole("navigation", { name: "Huvudnavigation" })).toBeVisible();
     await page.setViewportSize({ width: 360, height: 640 });
     await expect(trigger).toHaveAttribute("aria-expanded", "false");
@@ -404,7 +406,7 @@ test.describe("Story 35.5 authorized responsive shell", () => {
   test("[P0] E35-5-T-AC3 E35-5-T-AC6 E35-5-T-AC7 E35-5-T-revoked rendered Säljare link cannot override current isolated Montör authority", async ({ page, context }) => {
     // Load the local-only factory for this test; never mutate the run-wide fixture.
     const { createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture } = await import("../../factories/tenants/core");
-    const { setRoles } = await import("../../support/time-reports-atdd");
+    const { adminQuery } = await import("../../factories/admin-sql");
     const isolated = await createRoleAwarePhaseAFixture();
     let deniedPage: Page | undefined;
     let fresh: Page | undefined;
@@ -416,7 +418,12 @@ test.describe("Story 35.5 authorized responsive shell", () => {
       await expect(page.getByTestId("current-user")).toHaveText(user.email);
       const staleLink = page.getByRole("navigation", { name: "Huvudnavigation" }).getByRole("link", { name: "Kunder", exact: true });
       await expect(staleLink).toHaveAttribute("href", "/customers");
-      await setRoles(isolated.base.tenantA.id, user.id, "montor");
+      // Exact existing setRoles fixture semantics (time-reports-atdd.ts:98–102),
+      // without importing its unrelated application-command dependency graph.
+      // The original call's supplemental default is [], so its insert loop is empty.
+      const tenantId = isolated.base.tenantA.id, userId = user.id, primary = "montor", status = "active";
+      await adminQuery("update public.tenant_memberships set role=$3,status=$4 where tenant_id=$1 and user_id=$2", [tenantId, userId, primary, status]);
+      await adminQuery("delete from public.membership_roles where tenant_id=$1 and membership_id in(select id from public.tenant_memberships where tenant_id=$1 and user_id=$2)", [tenantId, userId]);
       // Native modified anchor opens a fresh server request, avoiding prefetched RSC
       // becoming false authority evidence. No synthetic denial or shared user mutation.
       const opened = page.waitForEvent("popup");
@@ -447,10 +454,20 @@ test.describe("Story 35.5 authorized responsive shell", () => {
   for (const viewport of SHELL_VIEWPORTS) {
     test(`[P1] E35-5-T-AC3 E35-5-T-AC4 E35-5-T-AC6 E35-5-T-error-retry ${viewport.name} actual sign-out rejection retains server identity and same-command real retry logs out`, async ({ page, context }, testInfo) => {
       await page.setViewportSize(viewport.size);
+      // Observe only URL/status of the actual configured browser Auth request.
+      // The dashboard runner builds against a local proxy rather than its upstream;
+      // both login and sign-out use the existing createSupabaseBrowserClient factory.
+      const passwordLogin = page.waitForResponse(response => {
+        const url = new URL(response.url());
+        return response.request().method() === "POST" && url.pathname === "/auth/v1/token"
+          && url.searchParams.get("grant_type") === "password";
+      });
       await logIn(page, fixture.roleAware.saljare, "/dashboard");
       await assertShellIdentity(page, fixture.roleAware.saljare.email);
       const originalUrl = page.url();
-      const auth = new URL(LOCAL_SUPABASE_URL);
+      const signedIn = await passwordLogin;
+      expect(signedIn.status()).toBe(200);
+      const auth = new URL(signedIn.url());
       expect(["127.0.0.1", "localhost", "[::1]"]).toContain(auth.hostname);
       expect(["http:", "https:"]).toContain(auth.protocol);
       const isLogoutUrl = (url: URL) => url.origin === auth.origin && url.pathname === "/auth/v1/logout";
