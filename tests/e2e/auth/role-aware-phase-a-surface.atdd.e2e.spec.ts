@@ -1,6 +1,6 @@
 /** Story 11.2 browser ATDD against the real server-derived navigation and local role fixture. */
 import { expect, test } from "../dashboard/guarded-test";
-import type { Locator, Page, Request, Route } from "@playwright/test";
+import type { Locator, Page, Request, Route, TestInfo } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { LOCAL_SUPABASE_URL } from "../../support/test-env";
@@ -117,9 +117,9 @@ test.describe("Story 11.2 rollstyrda Phase A-ytor", () => {
 });
 
 /**
- * Story 35.5 RED scaffolds. Source-derived selectors only; no browser validation yet.
- * Implementation author: activate these skips for this task, earn actual evidence,
- * and retain the original five Story 11.2 assertions above unchanged.
+ * Story 35.5 acceptance journeys use the real server-derived role projection.
+ * The original five Story 11.2 authority assertions above remain unchanged.
+ * Execution against the configured local production server is required for coverage.
  * playwright-utils two-gate mandate is inactive: configured true, package absent.
  * Keep the existing guarded test import and local factories; add no harness/dependency.
  */
@@ -128,20 +128,15 @@ const SHELL_VIEWPORTS = [
   { name: "desktop", size: { width: 1280, height: 800 } },
   { name: "phone", size: { width: 360, height: 640 } },
 ] as const;
-const RED = {
-  annotation: [{
-    type: "atdd-red",
-    description: "Unexecuted source-bound RED scaffold; activate in Story 35.5 implementation and verify against the real local production server.",
-  }],
-};
 
 async function assertNavOrder(nav: Locator, expected: readonly string[], current: string): Promise<void> {
   await expect(nav).toBeVisible();
   await expect(nav.getByRole("link")).toHaveCount(expected.length);
   await expect(nav.getByRole("link").evaluateAll(links => links.map(link => link.getAttribute("href"))))
     .resolves.toEqual(expected);
-  await expect(nav.getByRole("link", { current: "page" })).toHaveCount(1);
-  await expect(nav.getByRole("link", { current: "page" })).toHaveAttribute("href", current);
+  const currentPage = nav.locator('a[aria-current="page"]');
+  await expect(currentPage).toHaveCount(1);
+  await expect(currentPage).toHaveAttribute("href", current);
   // Exact complete href equality also denies extra pending/unbuilt destinations.
   expect(await nav.getByRole("link").evaluateAll(links => links.every(link =>
     link.tagName === "A" && Boolean(link.getAttribute("href")) && link.getAttribute("role") !== "button",
@@ -151,7 +146,8 @@ async function assertNavOrder(nav: Locator, expected: readonly string[], current
 async function assertShellIdentity(page: Page, email: string): Promise<void> {
   await expect(page.getByTestId("tenant-context")).toBeVisible();
   await expect(page.getByTestId("tenant-context")).toHaveText(fixture.tenantA.name);
-  // The existing phone design hides this secondary line; exact text is still checked.
+  // The phone shell must retain the real server-resolved identity as text.
+  await expect(page.getByTestId("current-user")).toBeVisible();
   await expect(page.getByTestId("current-user")).toHaveText(email);
 }
 
@@ -167,10 +163,44 @@ async function assertNoHorizontalOverflow(page: Page): Promise<void> {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 }
 
-test.describe("Story 35.5 authorized responsive shell — RED", () => {
+/** Masked synthetic-fixture shell evidence; identity and destination content are omitted. */
+async function attachShellCapture(page: Page, testInfo: TestInfo, name: string): Promise<void> {
+  // All current captures are dashboard shell states. Keep utility popovers closed
+  // so no unmasked notification or profile content can enter the exported image.
+  await expect(page).toHaveURL(url => url.pathname === "/dashboard");
+  await expect(page.getByRole("dialog", { name: "Notiser", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Notisinställningar", exact: true })).toHaveCount(0);
+  const capture = await page.screenshot({
+    fullPage: false,
+    mask: [page.getByTestId("tenant-context"), page.getByTestId("current-user"), page.getByRole("main")],
+    maskColor: "#0d0d0f",
+  });
+  // The existing CI list,json reporter embeds Buffer bytes in general-browser.json.
+  // Playwright applies image masks before these bytes leave the browser; actual
+  // DOM identity/session assertions remain unchanged and no full-content proof is claimed.
+  await testInfo.attach(`masked-synthetic-authenticated-${name}`, { body: capture, contentType: "image/png" });
+}
+
+/** Synthetic text-only enlargement of actual rendered sizes, including px tokens. */
+async function enlargeRenderedText(container: Locator, factor: number): Promise<void> {
+  await container.evaluate((root, scale) => {
+    // Snapshot before changing any ancestor so inherited sizes cannot compound.
+    const text = [root, ...root.querySelectorAll<HTMLElement>("*")]
+      .filter((element): element is HTMLElement => element instanceof HTMLElement
+        && [...element.childNodes].some(node => node.nodeType === Node.TEXT_NODE && Boolean(node.textContent?.trim())))
+      .map(element => ({ element, size: parseFloat(getComputedStyle(element).fontSize) }));
+    for (const { element, size } of text) element.style.fontSize = `${size * scale}px`;
+  }, factor);
+}
+
+async function renderedFontSize(text: Locator): Promise<number> {
+  return text.evaluate(element => parseFloat(getComputedStyle(element).fontSize));
+}
+
+test.describe("Story 35.5 authorized responsive shell", () => {
   for (const viewport of SHELL_VIEWPORTS) {
     for (const role of ["saljare", "montor"] as const) {
-      test.skip(`[P1] E35-5-T-AC1 E35-5-T-AC3 E35-5-T-AC6 E35-5-T-AC7 E35-5-T-loaded ${role} ${viewport.name} retains supplied order, identity and real utility destinations`, RED, async ({ page }) => {
+      test(`[P1] E35-5-T-AC1 E35-5-T-AC3 E35-5-T-AC6 E35-5-T-AC7 E35-5-T-loaded ${role} ${viewport.name} retains supplied order, identity and real utility destinations`, async ({ page }, testInfo) => {
         await page.setViewportSize(viewport.size);
         const credentials = fixture.roleAware[role];
         const landing = role === "montor" ? "/my-day" : "/dashboard";
@@ -200,18 +230,35 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
         await expect(page.getByRole("heading", { name: "Notisinställningar", exact: true })).toBeVisible();
 
         await page.goto(landing);
+        await assertShellIdentity(page, credentials.email);
+        await expect(page.getByRole("main")).toBeVisible();
         if (viewport.name === "phone") {
           const trigger = page.getByRole("button", { name: "Öppna meny", exact: true });
           await waitForHydrated(trigger);
+          if (role === "saljare") await attachShellCapture(page, testInfo, "shell-loaded-phone-360x640");
           await trigger.click();
           const drawer = page.getByRole("dialog", { name: "Huvudmeny", exact: true });
           await expect(drawer).toHaveAttribute("aria-modal", "true");
           await assertNavOrder(drawer.getByRole("navigation", { name: "Huvudnavigation" }), expected, landing);
+          if (role === "saljare") {
+            await attachShellCapture(page, testInfo, "shell-drawer-phone-360x640");
+            // Supplemental element crop of the actual opaque drawer: no main records
+            // enter its bounds. This detail does not satisfy the full-viewport gate.
+            const detail = await drawer.screenshot({
+              mask: [drawer.getByTestId("tenant-context"), drawer.getByTestId("current-user")],
+              maskColor: "#0d0d0f",
+            });
+            await testInfo.attach("masked-synthetic-drawer-detail-captured-at-360x640-not-full-viewport", {
+              body: detail,
+              contentType: "image/png",
+            });
+          }
           // A real ordinary anchor performs navigation; no router/history shim.
           await drawer.getByRole("link", { name: role === "montor" ? "Dashboard" : "Kunder", exact: true }).click();
           await expect(drawer).toHaveCount(0);
         } else {
           await assertNavOrder(page.getByRole("navigation", { name: "Huvudnavigation" }), expected, landing);
+          if (role === "saljare") await attachShellCapture(page, testInfo, "shell-loaded-desktop-1280x800");
           await page.getByRole("navigation", { name: "Huvudnavigation" })
             .getByRole("link", { name: role === "montor" ? "Dashboard" : "Kunder", exact: true }).click();
         }
@@ -228,7 +275,7 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
     }
   }
 
-  test.skip("[P1] E35-5-T-AC2 E35-5-T-AC4 desktop has 248px sidebar, 56px topbar and 24px content gutters", RED, async ({ page }) => {
+  test("[P1] E35-5-T-AC2 E35-5-T-AC4 desktop has 248px sidebar, 56px topbar and 24px content gutters", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await logIn(page, fixture.roleAware.saljare, "/dashboard");
     await assertShellIdentity(page, fixture.roleAware.saljare.email);
@@ -244,7 +291,7 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
     await assertNoHorizontalOverflow(page);
   });
 
-  test.skip("[P1] E35-5-T-AC2 E35-5-T-AC5 E35-5-T-AC6 E35-5-T-focus-dialog phone drawer traps visible focus, restores trigger, cleans resize scroll and reduces actual motion", RED, async ({ page }) => {
+  test("[P1] E35-5-T-AC2 E35-5-T-AC5 E35-5-T-AC6 E35-5-T-focus-dialog phone drawer traps visible focus, restores trigger, cleans resize scroll and reduces actual motion", async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 640 });
     await page.emulateMedia({ reducedMotion: "reduce" });
     await logIn(page, fixture.roleAware.saljare, "/dashboard");
@@ -299,16 +346,27 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
     await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe(previousOverflow);
   });
 
-  test.skip("[P1] E35-5-T-AC4 phone shell reflows enlarged Swedish text and retains reachable 44px owned targets", RED, async ({ page }) => {
+  test("[P1] E35-5-T-AC4 phone shell reflows enlarged Swedish text and retains reachable 44px owned targets", async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 640 });
     await logIn(page, fixture.roleAware.saljare, "/dashboard");
     await waitForHydrated(page.getByRole("button", { name: "Öppna meny", exact: true }));
-    for (const textSize of ["100%", "200%"]) {
-      // Controlled root text enlargement; not native browser zoom or an OS keyboard claim.
-      await page.evaluate(size => { document.documentElement.style.fontSize = size; }, textSize);
+    for (const textScale of [1, 2]) {
+      // Controlled text-only enlargement, including fixed-px tokens. This does not
+      // certify native browser zoom or virtual-keyboard behavior.
+      const representativeText = [
+        page.getByTestId("tenant-context"),
+        page.getByTestId("current-user"),
+        page.getByRole("button", { name: "Profil", exact: true }),
+        page.getByRole("button", { name: "Logga ut", exact: true }),
+      ];
+      const originalSizes = await Promise.all(representativeText.map(renderedFontSize));
+      await enlargeRenderedText(page.getByRole("banner"), textScale);
+      for (const [index, text] of representativeText.entries()) {
+        expect(await renderedFontSize(text)).toBeCloseTo(originalSizes[index] * textScale, 1);
+      }
       await assertShellIdentity(page, fixture.roleAware.saljare.email);
       await assertNoHorizontalOverflow(page);
-      if (textSize === "100%") {
+      if (textScale === 1) {
         await expect(page.getByRole("main")).toHaveCSS("padding-left", "16px");
         await expect(page.getByRole("main")).toHaveCSS("padding-right", "16px");
       }
@@ -324,6 +382,10 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
       }
       await page.getByRole("button", { name: "Öppna meny", exact: true }).click();
       const drawer = page.getByRole("dialog", { name: "Huvudmeny", exact: true });
+      const customerLabel = drawer.getByRole("link", { name: "Kunder", exact: true }).locator("span");
+      const originalDrawerSize = await renderedFontSize(customerLabel);
+      await enlargeRenderedText(drawer, textScale);
+      expect(await renderedFontSize(customerLabel)).toBeCloseTo(originalDrawerSize * textScale, 1);
       await assertPhoneTarget(drawer.getByRole("button", { name: "Stäng meny", exact: true }));
       for (const link of await drawer.getByRole("link").all()) {
         await link.scrollIntoViewIfNeeded();
@@ -339,8 +401,8 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
     // Labeled overflow of wide destination data is owned by that consumer, not certified here.
   });
 
-  test.skip("[P0] E35-5-T-AC3 E35-5-T-AC6 E35-5-T-AC7 E35-5-T-revoked rendered Säljare link cannot override current isolated Montör authority", RED, async ({ page, context }) => {
-    // Dynamic imports avoid introducing factory/service work into skipped collection.
+  test("[P0] E35-5-T-AC3 E35-5-T-AC6 E35-5-T-AC7 E35-5-T-revoked rendered Säljare link cannot override current isolated Montör authority", async ({ page, context }) => {
+    // Load the local-only factory for this test; never mutate the run-wide fixture.
     const { createRoleAwarePhaseAFixture, cleanupRoleAwarePhaseAFixture } = await import("../../factories/tenants/core");
     const { setRoles } = await import("../../support/time-reports-atdd");
     const isolated = await createRoleAwarePhaseAFixture();
@@ -383,7 +445,7 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
   });
 
   for (const viewport of SHELL_VIEWPORTS) {
-    test.skip(`[P1] E35-5-T-AC3 E35-5-T-AC4 E35-5-T-AC6 E35-5-T-error-retry ${viewport.name} actual sign-out rejection retains server identity and same-command real retry logs out`, RED, async ({ page, context }, testInfo) => {
+    test(`[P1] E35-5-T-AC3 E35-5-T-AC4 E35-5-T-AC6 E35-5-T-error-retry ${viewport.name} actual sign-out rejection retains server identity and same-command real retry logs out`, async ({ page, context }, testInfo) => {
       await page.setViewportSize(viewport.size);
       await logIn(page, fixture.roleAware.saljare, "/dashboard");
       await assertShellIdentity(page, fixture.roleAware.saljare.email);
@@ -439,6 +501,7 @@ test.describe("Story 35.5 authorized responsive shell — RED", () => {
         await expect(error).toBeVisible();
         await expect(page).toHaveURL(originalUrl);
         await expect(signOut).toBeEnabled();
+        await attachShellCapture(page, testInfo, `shell-controlled-signout-error-${viewport.name}-${viewport.size.width}x${viewport.size.height}`);
 
         await page.unroute(isLogoutUrl, failBeforeDispatch);
         const realRetry = page.waitForResponse(response => isLogoutRequest(response.request()));

@@ -2,8 +2,10 @@
 title: "Story 35.5: Authorized Responsive Shell"
 type: feature
 created: 2026-11-01
-status: ready-for-dev
+status: in-review
 review_loop_iteration: 0
+followup_review_recommended: true
+baseline_revision: 084bda7cac4315e70a4346d2d0f5549cda6328d6
 warnings: [oversized]
 context:
   - ../SPEC.md
@@ -140,10 +142,34 @@ Later implementation follows current required CI/completion policy: applicable t
 2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
 
 ## Review Triage Log
+### 2026-11-01 — Review pass 1
+- intent_gap: 0
+- bad_spec: 0
+- patch: 6: (high 0, medium 5, low 1)
+- defer: 0
+- reject: 1
+- addressed_findings:
+  - `[medium]` `[patch]` Aligned utility popovers with the lg utility-row breakpoint.
+  - `[medium]` `[patch]` Allowed desktop header growth for the existing sign-out alert while retaining healthy minimum geometry.
+  - `[medium]` `[patch]` Enlarged actual rendered text and checked computed sizes before reachability assertions.
+  - `[medium]` `[patch]` Retained masked screenshot Buffer bodies through the existing JSON reporter; disclosed initial export rejection and accepted lower-risk masks.
+  - `[medium]` `[patch]` Used viewport-sized whole captures and separately labeled the supplemental drawer element detail.
+  - `[low]` `[patch]` Asserted real current-user identity visibility.
+
+Five context-free internal Sol High layers completed. Security returned `No findings.` The external prescribed reviewer command exited 1 with `The system cannot find the file specified.`; no external verdict exists. Its failure remains an explicit review gap, with read-only executable/path diagnosis delegated to root. Ordinary smoke exclusion is rejected as a code defect because the approved existing full `release_validation=true` route is explicitly required; execution remains pending, never passed. The six patch claims are utility-popover breakpoint alignment, failed-sign-out header containment, actual text enlargement, durable inline PNG bodies, exact viewport PNG geometry, and visible phone user identity. Runtime/DB/RLS/Jobs/visual/exact-head evidence remains pending. Raw independent review receipt is retained outside the repository in the current run's temporary review artifact.
 
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+### Current implementation candidate — 2026-11-01
+
+Status: in-review. Implemented shell-only presentation over the unchanged server-filtered DTO and activated ten allocated acceptance journeys while preserving the original five authority tests. Three changed tracked paths: this story (process/evidence), AppShell.tsx (responsive semantic-token composition), and the existing role-aware browser suite (real assertions and safely masked capture attachments). No new product async state, authority/session contract, dependency, harness or workflow.
+
+Review pass 1 addressed five medium and one low patch findings, score `3 × 5 + 1 × 1 = 16`; follow-up review recommended: true. No intent-gap, bad-spec or deferred finding; one proposed ordinary-CI omission defect rejected because the explicitly required existing full release-validation route is the authorized verification path. Five internal independent layers completed; external prescribed layer unavailable (native 1, system cannot find the file specified), never PASS. Narrow independent fix/trail confirmation is recorded separately when returned.
+
+Applicable current static evidence: typecheck and focused ESLint native 0; unchanged focused authorization units 12 passed/0 failed/0 skipped; lockfile and service-role containment native 0; root-bridged settled product build native 0, 12/12 static pages. Original five browser tests preserved, fifteen active, zero skips/fixme/only, zero parse diagnostics. Browser/runtime, required DB/RLS, inherited Jobs/recovery evidence, actual screenshots/PNG geometry, exact-head CI and authenticated frontend acceptance remain unearned. The candidate must use the existing hosted `release_validation=true` CI path because no current root resource-guard actor is open locally. Initial rejected identity-bearing screenshot export and the accepted distinct masked screenshot action are disclosed in the author evidence. Masked images and the supplemental crop have explicitly bounded coverage.
+
+This is reviewable work, not development-complete or release-ready. No push, PR, merge or deployment performed by this delegate. `release_ready=false`.
 
 Status: ready-for-dev
 Normal folder/ID planning completed after the exact owner-approved operative-v2 correction and distinct targeted High actual-delta PASS. No open planning blocker remains. The four retired owned-positive duties remain Inherited only for actual affected existing source-owner behavior; unbound rows earn no coverage. The existing SignOutButton error-retry plan remains unexecuted: matcher/query, installed SDK handling and complete runtime sequence are verification work for implementation, never a planning PASS.
@@ -267,3 +293,57 @@ Planning scaffold only. Implementation/fix author replaces it with exactly one f
 ## Dev Agent Record
 
 Preparation route: gpt-6.1-sol / low; sensitive assessment separately recorded. Implementation/model/file list/completion/verification: not started. No historical evidence rewritten.
+
+## Current implementation evidence — 2026-11-01
+
+Implementation author: `/root/build/author`, gpt-6.1-sol Low, ordinary shell presentation. Distinct `/root/build/sensitive_author`, gpt-6.1-sol High, owns allocated authority/session test activation and its sensitive decisions. Independent review is separate and pending. The historical planning exit and canonical body above are provenance, not current implementation or runtime results.
+
+Root verified the implementation-start baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; evidence below applies to the modified working tree over that baseline, not yet a committed/exact-head accepted candidate. Product changes are restricted to `src/components/app-shell/AppShell.tsx`; tests to `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts`.
+
+Recorded author choices: navigation sections are contiguous presentation runs over the supplied DTO, so no filter, sort, imported authority registry or extra link can change its flattened order. The medium icon rail and ordinary Link event path remain. The existing drawer lifecycle is reused rather than introducing a second dialog or router contract. Shell-local wrappers give existing utility consumers reachable phone targets without editing their session/notification implementations. Phone identity wraps into its own row; desktop retains compact identity. Existing semantic tokens supply the white canvas, sunken 248px sidebar, healthy 56px desktop header, ink marker, gutters, typography and motion timing.
+
+Round-one presentation corrections: utility panels now share the utility row's `lg` alignment breakpoint, retaining left alignment below 1024px rather than clipping left from 640–1023px. Profile is anchored to the row so enlargement does not shift its panel beyond the viewport. The header keeps a 56px minimum rather than a fixed desktop height, allowing the real sign-out failure alert to increase its intrinsic height while preserving healthy geometry. Post-fix nonincremental typecheck and focused ESLint passed native 0. The High author reports AST verification of the unchanged original-five describe block, 15 active cases, zero skipped/focused cases and zero parse diagnostics, followed by final typecheck/ESLint native 0 against test SHA-256 `28d026cb2ed23e64af2b12210eba5814f8c86820729758b280c53fb29d70b9ab`. Runtime count remains zero. Root's settled-product bridge rebuild passed native 0, compilation 1.865s, TypeScript 3.2s and 12/12 static pages; later supplemental capture edits changed only tests.
+
+Executed here: final `pnpm exec tsc --noEmit --incremental false` and focused ESLint on both allocated files passed (native 0); `node --experimental-strip-types --import ./tests/support/register.mjs --test tests/unit/server/authz/phase-a-surface.test.ts tests/unit/server/authz/job-access.test.ts` passed 12, failed 0, skipped 0. `node scripts/verify/check-lockfiles.mjs` and `node scripts/verify/check-service-role-containment.mjs` passed (native 0). Initial incremental typecheck could not write tsbuildinfo and exposed the scaffold's unsupported Playwright `current` selector option; the High author corrected that selector without changing its assertion. Local `pnpm run build` was blocked before compilation by sandbox EPERM creating `.next`; root's bounded bridge subsequently reported native 0, compilation 8.1s, TypeScript 11.9s and 12/12 static pages. This is relayed build evidence, not an independently observed browser result.
+
+Runtime remains unexecuted locally: trusted managed launch returned `HOOK_CONTEXT_UNAVAILABLE` through root. There is no full integration/RLS run, browser pass, screenshot, logout-query/SDK confirmation, protected Jobs regression, frontend acceptance or exact-head CI result from this author run. Existing CI publication/execution is root-owned; no workflow or harness was changed. Review established that the original path-based attachments were not retained by the existing JSON-only CI reporter. Automatic approval review rejected the first remedy because it exported identity-bearing image bytes. One safer, distinct High-authored patch was subsequently accepted and is now applied: viewport-only screenshots mask `tenant-context`, `current-user` and all `main` content before producing PNG Buffer bytes, use the explicit `masked-synthetic-authenticated-` label, and assert dashboard route plus closed notification/profile popovers. The existing JSON reporter can embed these masked Buffer attachments; actual CI artifact retention and decoded dimensions remain unverified. Identity/session assertions remain unchanged, and masked captures can show only shell geometry, drawer and error presentation: they grant no full-content or identity visual credit. No runtime image or visual acceptance is claimed. Text enlargement now doubles computed rendered font sizes, including fixed-pixel tokens, with actual computed-size assertions; it is controlled text-only enlargement, not native zoom or virtual-keyboard evidence. Current-user assertions now require visibility as well as exact identity.
+
+A subsequent, separately accepted single safer attempt adds a supplemental screenshot of the actual opaque drawer element only, with any tenant/current-user descendants masked. The whole-phone three-mask capture and real assertions remain. Its Buffer attachment is explicitly named `masked-synthetic-drawer-detail-captured-at-360x640-not-full-viewport`; this crop excludes main records, can supplement drawer-detail inspection when actually executed, and cannot satisfy the full-viewport visual gate. No image has yet been produced by runtime.
+
+The five owned state identities bind as follows: loaded → four role/viewport `E35-5-T-loaded` cases; denied (`E35-5-STATE-denied` / `E35-5-T-denied`) → unchanged original `[P0] Montör direct navigation to active but ungranted settings has one generic denial and no data`; revoked → isolated `E35-5-T-revoked`; focus-dialog → `E35-5-T-focus-dialog`; error-retry → desktop/phone `E35-5-T-error-retry`. Numbered AC1–AC7 remain literal in the allocated assertions. These are executable bindings awaiting runtime, not passed state claims. Inherited Jobs `16.5-E03/E04/E05` are not executed or claimed here. The executed source-owner `16.2-AUTHZ-004` checks sanitized unavailable admission at its unit seam, not a shell-owned unavailable state. Unbound loading/connection-required inherited rows earn no coverage.
+
+Development completion is blocked pending actual runtime/integration evidence, independent review, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
+
+## Suggested Review Order
+
+Author: `/root/build/author` (presentation and trail), with sensitive-test decisions by `/root/build/sensitive_author`.
+Refreshed after the round-one presentation fix batch against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`.
+
+### Responsive presentation preserves supplied navigation
+
+Contiguous sections group only received items and retain their original flattened order and ordinary destinations. Existing tokens supply the accepted geometry; utility panels follow the row's `lg` breakpoint, and the minimum-height header grows for actual failure alerts.
+
+- `src/components/app-shell/AppShell.tsx:82` — `href={item.href}`: preserves the supplied ordinary anchor destination.
+- `src/components/app-shell/AppShell.tsx:263` — `min-h-14`: retains healthy geometry and permits error growth.
+- `src/components/app-shell/AppShell.tsx:298` — `lg:[&_[role=dialog]]:right-0`: aligns notification panels with the utility breakpoint.
+- `src/components/app-shell/AppShell.tsx:303` — `lg:right-0`: anchors profile to the responsive utility row.
+
+### Existing drawer and downstream decisions remain decisive
+
+Reuse the existing named modal lifecycle, focus trap, explicit restoration and resize scroll cleanup. The shell still supplies ordinary links to downstream capture-phase draft guards; source inspection establishes that reuse, while the Jobs runtime regressions remain pending.
+
+- `src/components/app-shell/AppShell.tsx:156` — `const closeDrawer`: restores the existing trigger.
+- `src/components/app-shell/AppShell.tsx:189` — `const onDrawerKeyDown`: retains Escape and wrapped Tab behavior.
+- `src/components/app-shell/AppShell.tsx:358` — `aria-modal="true"`: preserves named modal composition.
+- `src/components/jobs/JobCardForm.tsx:103` — `document.addEventListener`: unchanged capture-phase protected-link guard.
+
+### Assertions and evidence have explicit limits
+
+AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, target reachability and drawer focus. The High-authored rejection test checks a definite undispatched local Auth failure, fresh server identity, then explicit real retry; its matcher/query and SDK outcomes still need execution.
+
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:132` — `assertNavOrder`: checks complete href order and a single current destination.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:294` — `E35-5-T-focus-dialog`: binds focus, close, resize and reduced motion.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:404` — `E35-5-T-revoked`: binds isolated current server authority.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:448` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
+
+Evidence: current implementation evidence immediately above records 12 executed unit assertions, focused lint/containment/lock checks and root-relayed production build. Limits: no local runtime, DB/RLS, browser/screenshot, independent review, exact-head CI or initial visual acceptance yet; no development-complete or release-ready claim. The main-content screenshot mask can also cover an overlapping lower phone drawer, so masked captures cannot certify complete drawer appearance or full content; actual navigation/focus assertions remain separate and unexecuted. Source-bound inherited tests are not reported as executed.
