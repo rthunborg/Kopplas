@@ -218,7 +218,7 @@ No code-review round executed. Distinct High planning assessment only; independe
 ### Build delegate HALT — blocked capture authorization
 
 Status: blocked
-Blocking condition: automatic approval review rejected the new original-capture fixture mutations and strict deletion of owned Auth users because their authorization was conveyed through agent messages, requiring direct trusted human authorization.
+Blocking condition: actual current-candidate capture execution and complete visual evidence package remain pending; authenticated owner acceptance is required before development completion.
 
 The rejected code was not applied; no new capture fixture mutation, deletion or original export occurred. No automatic retry or workaround is authorized. The concrete process-only proposal is retained at `../evidence/original-capture-permission-proposal.json`: twelve appended bounded cases, thirty-one frames, ten owned Auth users per case (up to 120 across the twelve new cases), strict deletion before attachment and fixed non-sensitive failure handling. The earlier twenty-nine-frame statement was arithmetic error, not implementation.
 
