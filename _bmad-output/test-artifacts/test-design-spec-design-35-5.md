@@ -14,11 +14,11 @@ Date: 2026-11-01. Author: TEA delegate for Rasmus. Status: design completed; imp
 
 ## Executive Summary and inputs
 
-Exactly one approved story, AC1–AC7. Operative admission is `../specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md` and `../specs/spec-design-35-5/source-binding.json`, approved base `ebb1311e`. Frozen source `dt-2026-10-23-test-design/slice-35-5.md`, SHA256 `80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03`, retains its IDs, applicability and historical provenance. Canonical source SHA256 `90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b`. Historical preparation-only blockers are superseded only as expressly stated by operative admission; they are not silently edited.
+Exactly one approved story, AC1–AC7. Operative admission is `../specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md` and `../specs/spec-design-35-5/source-binding.json`, approved base `ebb1311e`. Frozen source `dt-2026-10-23-test-design/slice-35-5.md`, SHA256 `80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03`, retains its v1 IDs, applicability and historical provenance unchanged. Current execution uses only the expressly approved operative-v2 four-row correction below. Canonical source SHA256 `90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b`. Historical preparation-only blockers are superseded only as expressly stated by operative admission; they are not silently edited.
 
 Scope: grouped presentation of the existing server-filtered navigation DTO in `src/components/app-shell/AppShell.tsx`; all new or changed executable assertions go only in `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts`. Other consumers are read-only. Source binding contains the bounded reviewed ownership/post-35.4 reconciliation; no broad census repeated. Route: tea_epic / standard / gpt-6.1-sol Low, supplied by root. No new sensitive authority judgment is made: existing checked server authority and original sensitive expectations are inherited. A new authority/privacy decision must be separately routed to recorded Sol High before proceeding.
 
-Seven AC scenario groups: two P0, five P1; nine owned state subcases overlap those groups and are not nine additional independent test-count claims. Four scoped risks, two high. Runtime executions in this phase: zero.
+Seven AC scenario groups: two P0, five P1; five operative-v2 owned state subcases overlap those groups and are not five additional independent test-count claims. Four v1 owned-positive duties are expressly retired by the approved correction, with original identities retained as inherited regression provenance only. Four scoped risks, two high. Runtime executions in this phase: zero.
 
 ## Not in Scope
 
@@ -48,28 +48,44 @@ P0/P1 express importance, not execution timing. Preserve these parent IDs in tes
 | AC3 / E35-5-T-AC3 | P0 / E2E + inherited authority integration | Preserve role landing and sign-out using current session; stale rendered capability cannot authorize denied navigation/action after revocation; return to the selected child retains identity. No identity chooser, client fallback or broader payload. Use existing checked role/revocation expectations without choosing a new grant. | Existing server/RLS tests retain original IDs; new shell composition evidence required |
 | AC4 / E35-5-T-AC4 | P1 / E2E | Real connected Swedish record journey at 360×640 and desktop; actual owned phone actions ≥44px; touch/keyboard equivalent, overflow labeled, active identity visible. Enlarged text and virtual-keyboard/reflow inspection keep action/error reachable. Assert actual route/result, not screenshot alone. | Essential browser/contrast evidence before completion; exhaustive device/manual matrix deferred |
 | AC5 / E35-5-T-AC5 | P1 / E2E | Actual shell drawer/adapted sheet name, focus containment, Escape/close/restore; existing downstream dirty-navigation and late-result guard preserved. Reduced motion only for actual changed motion. No new dialog/editor to populate a row. | Combine focus assertions with AC2, cite IDs rather than duplicate tests |
-| AC6 / E35-5-T-AC6 | P1 / E2E + inherited regression | Exercise only the owned states below at the existing real consumer seam. Denial differs from empty, retained input remains unsent, failed requests never claim saved success. Preserve existing file consumer authority without adding shell files. | Controlled state evidence must identify mocked boundary; server enforcement needs inherited real proof |
+| AC6 / E35-5-T-AC6 | P1 / E2E + inherited regression | Exercise the five operative-v2 Applies states below at actual existing seams. Error-retry uses the existing mounted SignOutButton's definite undispatched controlled failure, retained server-confirmed current session, then explicit same-command real retry and actual logout outcome. The four corrected rows preserve only actual affected source-owner regression behavior/identities; unbound inherited rows earn no coverage. Denial differs from empty; failed requests never claim success; file authority remains inherited. | Record actual local Auth matcher/query and controlled failure boundary; SDK/runtime unverified until execution. No synthetic success or retired positive-state coverage claim |
 | AC7 / E35-5-T-AC7 | P0 / existing unit/integration + focused shell E2E | Read-only inherited commands, permission projections, integer-öre/tax, ADR-B008 provenance, transaction/facts/proof/stale and file locks remain unchanged. Run applicable required CI/integrity suites and essential shell smoke; no pending/Phase C exposure. | Reuse unchanged reviewed evidence only with verified provenance; no new money/security policy |
 
 The inspected allocated role suite currently has five cases: Säljare server-nav/landing (P0), Montör generic denied settings (P0), Montör no monetary values (P0), Säljare customers without cost/margin (P1), and absent calculation-origin quote creation (P0). These are source inventory, not executed 35.5 coverage. Its current fixture type directly declares only saljare and montor. The frozen family also names tenant_admin/projektledare/ekonomi; bind those only through already available authoritative role-harness fixtures. Do not invent credentials or extend fixture infrastructure. If a required case cannot be expressed within the existing harness and allocated file, record the exact missing seam and seek bounded allocation amendment through root.
 
-## Owned state binding
+## Operative-v2 state binding — approved 2026-11-01
 
-Each row retains `E35-5-STATE-<name>` and `E35-5-T-<name>`; P1 except denied/revoked P0 inherited enforcement. Test at actual existing seam; do not invent a shell endpoint.
+The operative-v2 owned rows are `loaded`, `denied`, `revoked`, `error-retry` and `focus-dialog`; retain their `E35-5-STATE-<name>` / `E35-5-T-<name>` identities. Bind `error-retry` to the approved existing SignOutButton plan; record the controlled failure boundary and actual request/runtime result. Preserve the v1 identities and correction provenance for `loading`, `unavailable`, `connection-required` and `late-result`, now Inherited regression only for actual affected existing source-owner behavior. Unbound inherited rows earn no coverage. This expressly supersedes the four v1 owned-positive obligations; it does not declare them implemented or tested.
 
-| Name | Meaningful outcome |
-| --- | --- |
-| loading | Delayed authoritative read preserves selected identity/structure; no false empty/success |
-| loaded | Current authorized response identity/freshness matches rendered facts; forbidden data absent from browser payload |
-| denied | Generic denial with no private identity/fields or side effect; use existing caller |
-| revoked | Existing revoked caller cannot use stale link/action to bypass current server decision |
-| unavailable | Explain actual unavailable source/module; no working-looking pending destination/sample success |
-| connection-required | Failed connected request retains suitable unsent input with persistent explanation/explicit retry; no queue |
-| error-retry | Definite failure has no success; explicit corrected retry resolves confirmed identity |
-| late-result | Select A then B, resolve A last; A cannot replace B/current navigation and remains attached to A |
-| focus-dialog | Actual named drawer/sheet traps visible focus, closes correctly and restores trigger; motion respects preference |
+Rasmus expressly approved the exact reviewed correction through Coordinator chat `01a1160d-b5b1-7623-a8e8-54ef3dc537ed` on 2026-11-01 and instructed “Please proceed”, as relayed by root. Proposal and exact hashes are recorded in the operative story amendment and author receipt. `review.json` PASS covered the unapplied decision proposal only; targeted High confirmation of this actual amended delta remains pending. Frozen slice/spec/common contract and historical records are unchanged. This material ownership correction changes no product/test allocation, AC/state/test identity or N/A row.
 
-Dirty-navigation, submitting, unknown, confirmed and stale remain inherited regression only when affected. Empty, no-match, validation and locked are N/A. Shell files are N/A; 35.4/35.11 destination/file contracts remain inherited. An Applies label does not authorize creating a missing command or synthetic domain feature: if no existing seam reaches a planned state, report the precise binding limitation before implementation rather than mark it passed or delete the canonical ID.
+| Family | Applies to this slice | Inherited regression | N/A |
+| --- | --- | --- | --- |
+| Common state IDs | loaded, denied, revoked, error-retry, focus-dialog | dirty-navigation, submitting, unknown, confirmed, stale, loading, unavailable, connection-required, late-result | empty, no-match, validation, locked |
+
+P1 except denied/revoked P0 inherited enforcement. Test only actual existing seams; no shell endpoint or async state is invented.
+
+| Name | Classification | Meaningful outcome / source binding |
+| --- | --- | --- |
+| loading | Inherited regression | Preserve only actual affected existing source-owner behavior. No exact inherited binding demonstrated; no coverage claim. Identity preservation alone is not positive loading evidence. |
+| loaded | Applies | Current authorized response identity/freshness matches rendered facts; forbidden data absent from browser payload |
+| denied | Applies | Generic denial with no private identity/fields or side effect; use existing caller |
+| revoked | Applies | Existing revoked caller cannot use stale link/action to bypass current server decision |
+| unavailable | Inherited regression | Preserve actual job-admission unavailable alert/retry in layout/RouteAccessBoundary. Original source regression `tests/unit/server/authz/job-access.test.ts` / `16.2-AUTHZ-004` only if affected; no allocated browser/server RPC-failure trigger or runtime coverage claimed. |
+| connection-required | Inherited regression | Preserve only actual affected existing failure behavior. No exact inherited binding demonstrated; no coverage claim. Generic failure does not prove a connection explanation; no queue or new connection feature. |
+| error-retry | Applies | Actual mounted SignOutButton with existing Säljare fixture: definite controlled local Auth failure before forwarding, retained server-confirmed current identity, explicit same-button real retry and actual login/protected redirect; exact plan below, runtime unexecuted. |
+| late-result | Inherited regression | Preserve actual affected Jobs selected-child guards, original `tests/e2e/jobs/job-workspace.e2e.spec.ts` / `16.5-E04` and `16.5-E05`; no new shell A/B lifecycle and no runtime proof from source presence. |
+| focus-dialog | Applies | Actual named drawer/sheet traps visible focus, closes correctly and restores trigger; motion respects preference |
+
+Dirty-navigation, submitting, unknown, confirmed and stale remain inherited regression only when affected, now joined by the four corrected rows. Empty, no-match, validation and locked are unchanged N/A. Shell files are N/A; 35.4/35.11 destination/file contracts remain inherited. No exact affected inherited source binding means no coverage claim, not editorial N/A. Missing operative Applies seams remain a bounded escalation; no new command, product state, query/product path, dependency or harness is authorized.
+
+### Existing SignOutButton error-retry plan — unexecuted
+
+Use the allocated suite's existing Säljare fixture and actual mounted “Logga ut” command. Intercept only the configured **local** Supabase Auth origin, method `POST`, pathname `/auth/v1/logout`; retain and record the actual query. Return a definite test-controlled non-401/403/404 failure, such as HTTP 500, before forwarding to the backend. This is not response-loss simulation or proof of a real-provider rejection.
+
+Assert persistent exact “Utloggningen misslyckades. Försök igen.”, same URL/tenant/current-user identity, and the enabled same “Logga ut” retry. Independently open a fresh real protected page in the same browser context and server-confirm the same signed-in identity after the failed undispatched attempt. Remove the fault, explicitly retry the same command against real Auth, and assert actual `/login` plus a fresh protected navigation redirect to login. Do not fulfill synthetic success or infer session authority solely from retained client UI.
+
+Actual matcher/query, installed SDK failure/session handling and runtime outcome are **UNVERIFIED until execution**. Preserve `E35-5-STATE-error-retry` / `E35-5-T-error-retry`; no unknown-response or saved-record coverage is claimed.
 
 ## NFR Planning
 
@@ -113,4 +129,4 @@ E35-5-REL-1 visual/device/composite contrast/reflow: UI owner; REL-2 manual/keyb
 
 Epic-level create, single story, sequential output; frozen slice reused directly. Relevant knowledge: risk-governance, probability-impact, test-levels-framework, test-priorities-matrix, nfr-criteria, playwright-utils-mandate. Next/React/Playwright frontend detected from existing source and package. Playwright Utils package absent (same documented 35.4 dependency gate); retain existing guarded fixture and no new utilities/code examples. Pact is irrelevant to this presentation-only slice; no broker call or contract artifacts. Browser exploration deliberately omitted under process-only/no-resource assignment. No browser session created. Resolver attempt encountered sandbox/cwd problems; customization fallback read installed defaults (empty hooks/facts), no team override found; no completion hook action required. No broad census, source review round, runtime or git work performed.
 
-Checklist: scoped prerequisites and canonical ACs loaded; all7 ACs mapped, all9 Applies states retained; N/A excluded and inherited boundaries explicit; unique scored risks with owners/deadlines; NFR thresholds/unknowns/evidence stated; execution/ranges/gates specified; evidence provenance separated; no placeholders or duplicate new test suite. Approval here means completed design under delegated autonomy, not fabricated PM/Tech/QA sign-off. Root may now advance the separate planning/build workflow; no follow-on skill was run here.
+Checklist: scoped prerequisites and canonical ACs loaded; all7 ACs mapped, all5 operative-v2 Applies states retained; four v1 owned-positive duties expressly retired with original identities/provenance preserved; N/A excluded and inherited boundaries explicit; unique scored risks with owners/deadlines; NFR thresholds/unknowns/evidence stated; execution/ranges/gates specified; evidence provenance separated; no placeholders or duplicate new test suite. Approval here means completed design under delegated autonomy, not fabricated PM/Tech/QA sign-off. Root may now advance the separate planning/build workflow; no follow-on skill was run here.

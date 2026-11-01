@@ -19,7 +19,7 @@ Materialize the individually owner-approved Authorized Responsive Shell through 
 ## Constraints
 
 - Exactly one production and one existing test path; authority, canonical order, server/auth/privacy contracts and inherited consumers remain read-only.
-- Preserve the copied canonical body and applicability; resolve historical relative links against the original source directory.
+- Preserve the copied canonical body and frozen v1 applicability byte-for-byte; current execution follows only the expressly approved dated operative-v2 four-row ownership correction in the story adapter. Resolve historical relative links against the original source directory.
 - Dispatch this absolute folder with quoted story ID "35-5". Draft requires planning before implementation.
 - Ordinary presentation is Sol Low. New sensitive auth/navigation/privacy/contract decisions require a distinct recorded Sol High delegate and independent sensitive review.
 - Applicable development, initial candidate visual acceptance and release ownership gates remain mandatory; release_ready=false. No runtime evidence is claimed.

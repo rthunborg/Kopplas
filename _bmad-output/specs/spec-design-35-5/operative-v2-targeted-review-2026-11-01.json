@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-01",
+  "reviewer": "/root/v2_confirmation",
+  "route": {"phase":"security_layer","profile":"critical","model":"gpt-6.1-sol","effort":"high","reason":"Authentication/test-integrity targeted actual-amendment confirmation; root recorded before dispatch"},
+  "outcome": "PASS_ACTUAL_OPERATIVE_V2_AMENDMENT_ONLY",
+  "baseline": {"worktree":"C:/DEV/K35-5-shell","branch":"codex/story-35-5-responsive-shell","head":"5ab99e6e7ff2526334613dc666f263a3249c42f7"},
+  "proposalSHA256": {
+    "C:/DEV/K35-5-preparation/tmp/private/story35-5/state-reconciliation/assessment.md":"393ee844ec828d4d6de7437e5b3e11f9b1b00ea364ea7e5e5810147fa28e2b89",
+    "C:/DEV/K35-5-preparation/tmp/private/story35-5/state-reconciliation/binding.json":"697e8b923783723db43c02c0ecf927eba97026cc5ee47787945598276198f1fc",
+    "C:/DEV/K35-5-preparation/tmp/private/story35-5/state-reconciliation/review.json":"4771093b3da5a9c5280ca8daafce0494060985880830206e3d69ae4b3cdc9ba0"
+  },
+  "reviewedActualSHA256": {
+    "_bmad-output/specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md":"fe8104c6c3a0db1ee29fac9c1e299c28aef04bf514ee0d980a1545e85d8ec4b1",
+    "_bmad-output/test-artifacts/test-design-spec-design-35-5.md":"44bb1b8fce86c3addba6e1d15f905e0cc6c2ca129faeaf1e994fb167d2aec7b2",
+    "_bmad-output/specs/spec-design-35-5/SPEC.md":"3e9b6824b00686f98a15f9d19c752b8e9969f5d427575be34a7f9a4e8e055c05",
+    "_bmad-output/specs/spec-design-35-5/operative-v2-author-receipt-2026-11-01.json":"ef8866cf61bb9d2bad63cdd46f5f4de8a822a1933cf8a97c1d33f756a3c7d9fe"
+  },
+  "confirmed": {
+    "exactApprovedBeforeAfterRepresented":true,
+    "fourOwnedPositiveDutiesExpresslyRetired":["loading","unavailable","connection-required","late-result"],
+    "operativeApplies":["loaded","denied","revoked","error-retry","focus-dialog"],
+    "inheritedLimit":"Only actual affected existing source-owner behavior with original regression identity. Unbound means no coverage; no N/A substitution or positive-state PASS.",
+    "nAUnchanged":["empty","no-match","validation","locked"],
+    "errorRetryPlan":"Mounted real SignOutButton and existing Saljare fixture; configured local Auth origin, POST /auth/v1/logout, preserve and record actual query; definite controlled non401/403/404 failure before forwarding; persistent exact existing alert, same URL/tenant/user and same enabled Logga ut; fresh real protected page server-confirms same signed-in identity; remove fault and same-command real Auth retry; actual login and protected navigation redirect; no synthetic success.",
+    "matcherSDKRuntime":"Explicitly unverified until execution; no runtime pass claimed",
+    "allocationAuthorityUnchanged":true,
+    "noNewProductTestPathsQueriesDependenciesHarness":true,
+    "noImplementationAdmission":true
+  },
+  "protectedCurrentSHA256": {
+    "_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md":"90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b",
+    "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md":"80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md":"88d8dd91810f9be24c6da437cfa9c9418b761042bc9e1ae0f54c6e7cc5ee4a76",
+    "_bmad-output/specs/spec-design-35-5/source-binding.json":"22a0d3663092b65eab79ef9ea6ce3bd11fb429c16afa7094c115f757c36c986c",
+    "src/components/app-shell/AppShell.tsx":"ccc09d93ee141abaeeaab6904c0539f6918d5b9c1b83b239c3950a3ac5d9d0e3",
+    "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts":"c73c9f7c936e3f32aec1f5c75dcb8cb06c460a410455843bba2c07cc085fc06c"
+  },
+  "preservationVerification":"Protected tracked sources equal baseline after CRLF normalization and raw expected hashes match. Historical body from ## Preserved canonical historical body to EOF is byte-identical to baseline; SHA256 a97355eef718724a3cd2453ff0ed7142f9e470f052dd4d30d0e105022c711dd3. Tracked delta contains only three operative docs and root-owned route/timing process state; historical records have no delta.",
+  "consequentialFindings":[],
+  "scope":"Targeted actual amendment only; no broad readiness, census, future implementation or runtime review.",
+  "skillsConsulted":["C:/Users/Rasmus/.agents/skills/supabase/SKILL.md"],
+  "runtimeTestsExecuted":0,
+  "resourcesStarted":false,
+  "productOrTestEdits":false,
+  "gitMutations":false,
+  "implementationAdmission":false,
+  "release_ready":false,
+  "next":"Normal folder/ID planning may resume under existing gates; verify actual matcher/query, SDK handling and full sequence during execution.",
+  "writes":["_bmad-output/specs/spec-design-35-5/operative-v2-targeted-review-2026-11-01.json"]
+}

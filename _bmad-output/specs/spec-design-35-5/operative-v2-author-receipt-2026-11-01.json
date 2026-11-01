@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-01",
+  "author": "/root/operative_v2",
+  "route": {
+    "kind": "architecture_decision",
+    "criticality": "critical",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "reason": "Bounded auth/test-integrity correction; route recorded by root before dispatch"
+  },
+  "outcome": "EXACT_APPROVED_OPERATIVE_V2_CORRECTION_REPRESENTED; TARGETED_HIGH_DELTA_CONFIRMATION_PENDING",
+  "approvalProvenance": {
+    "owner": "Rasmus",
+    "date": "2026-11-01",
+    "coordinatorChat": "01a1160d-b5b1-7623-a8e8-54ef3dc537ed",
+    "scope": "Exact reviewed four-row operative correction; owner instructed Please proceed, relayed by root assignment. No broader authorization inferred."
+  },
+  "reviewedPacket": {
+    "C:\\DEV\\K35-5-preparation\\tmp\\private\\story35-5\\state-reconciliation\\assessment.md": "393ee844ec828d4d6de7437e5b3e11f9b1b00ea364ea7e5e5810147fa28e2b89",
+    "C:\\DEV\\K35-5-preparation\\tmp\\private\\story35-5\\state-reconciliation\\binding.json": "697e8b923783723db43c02c0ecf927eba97026cc5ee47787945598276198f1fc",
+    "C:\\DEV\\K35-5-preparation\\tmp\\private\\story35-5\\state-reconciliation\\review.json": "4771093b3da5a9c5280ca8daafce0494060985880830206e3d69ae4b3cdc9ba0"
+  },
+  "proposalReviewLimit": "review.json PASS was for the unapplied bounded decision proposal only. Independent targeted High confirmation of this actual amended delta remains next, not claimed passed.",
+  "baseline": {
+    "worktree": "C:/DEV/K35-5-shell",
+    "branch": "codex/story-35-5-responsive-shell",
+    "head": "5ab99e6e7ff2526334613dc666f263a3249c42f7",
+    "provenance": "Root-verified clean baseline before root-owned route/timing edits. Delegate git reads could not enter sandbox worktree; no delegate git mutation."
+  },
+  "amendedArtifacts": [
+    {
+      "path": "C:\\DEV\\K35-5-shell\\_bmad-output\\specs\\spec-design-35-5\\stories\\35-5-authorized-responsive-shell.md",
+      "beforeSHA256": "0e1b88fec967e1b34e5de5dca6b0cc5301998362fee32f390863a20a84642326",
+      "afterSHA256": "fe8104c6c3a0db1ee29fac9c1e299c28aef04bf514ee0d980a1545e85d8ec4b1"
+    },
+    {
+      "path": "C:\\DEV\\K35-5-shell\\_bmad-output\\test-artifacts\\test-design-spec-design-35-5.md",
+      "beforeSHA256": "a0c82e62fc81af44fa8b409617d44eeaef69fbaa89317018eb59de7f77172de9",
+      "afterSHA256": "44bb1b8fce86c3addba6e1d15f905e0cc6c2ca129faeaf1e994fb167d2aec7b2"
+    },
+    {
+      "path": "C:\\DEV\\K35-5-shell\\_bmad-output\\specs\\spec-design-35-5\\SPEC.md",
+      "beforeSHA256": "9cf62ccb990fd7d69e9ecc6cdd1b579170601c5484cdd182f280da8da232b174",
+      "afterSHA256": "3e9b6824b00686f98a15f9d19c752b8e9969f5d427575be34a7f9a4e8e055c05"
+    }
+  ],
+  "exactDelta": {
+    "movedFromAppliesToInherited": [
+      "loading",
+      "unavailable",
+      "connection-required",
+      "late-result"
+    ],
+    "ownedPositiveDuties": "Four v1 shell-owned positive duties expressly retired; actual affected existing source-owner regressions only, original identities retained; no binding means no coverage, not editorial N/A.",
+    "operativeApplies": [
+      "loaded",
+      "denied",
+      "revoked",
+      "error-retry",
+      "focus-dialog"
+    ],
+    "inherited": [
+      "dirty-navigation",
+      "submitting",
+      "unknown",
+      "confirmed",
+      "stale",
+      "loading",
+      "unavailable",
+      "connection-required",
+      "late-result"
+    ],
+    "nAUnchanged": [
+      "empty",
+      "no-match",
+      "validation",
+      "locked"
+    ],
+    "errorRetry": "Existing mounted SignOutButton and existing Säljare fixture; local-origin POST /auth/v1/logout only, preserve actual query, definite controlled non-401/403/404 failure before forwarding; persistent exact alert/same URL tenant user/enabled same command; fresh real protected-page server-confirmed same identity; remove fault, same-command real Auth retry, actual login and protected redirect. Matcher/SDK/runtime unverified.",
+    "storyStatus": "blocked -> draft only; root normal folder/ID planning remains"
+  },
+  "protectedSHA256Unchanged": {
+    "_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md": "90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b",
+    "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md": "80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03",
+    "_bmad-output/planning-artifacts/design-transition-2026-10-23/story-preparation/common-contract.md": "88d8dd91810f9be24c6da437cfa9c9418b761042bc9e1ae0f54c6e7cc5ee4a76",
+    "_bmad-output/specs/spec-design-35-5/source-binding.json": "22a0d3663092b65eab79ef9ea6ce3bd11fb429c16afa7094c115f757c36c986c",
+    "src/components/app-shell/AppShell.tsx": "ccc09d93ee141abaeeaab6904c0539f6918d5b9c1b83b239c3950a3ac5d9d0e3",
+    "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts": "c73c9f7c936e3f32aec1f5c75dcb8cb06c460a410455843bba2c07cc085fc06c"
+  },
+  "copiedHistoricalBody": {
+    "byteUnchanged": true,
+    "sha256": "a97355eef718724a3cd2453ff0ed7142f9e470f052dd4d30d0e105022c711dd3"
+  },
+  "checks": [
+    "Exact packet SHA256 verified",
+    "Frozen spec/slice expected SHA256 verified",
+    "Protected before/after hashes equal",
+    "Copied canonical historical body bytes equal",
+    "Exact replacement counts checked",
+    "No concurrent edits overwritten"
+  ],
+  "runtimeTestsExecuted": 0,
+  "productOrTestEdits": false,
+  "resourcesStarted": false,
+  "gitMutations": false,
+  "pipelineRun": false,
+  "implementationAdmission": false,
+  "release_ready": false,
+  "next": "Root dispatches distinct targeted High amended-delta confirmation, then normal folder/ID planning; no duplicate broad assessment."
+}

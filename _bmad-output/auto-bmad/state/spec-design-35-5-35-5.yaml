@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/K35-5-shell/_bmad-output/specs/spec-design-35-5"
 story_id: 35-5
 branch: codex/story-35-5-responsive-shell
 status: in-progress
-updated_at: "2026-11-01T12:27:18Z"
+updated_at: "2026-11-01T13:36:07Z"
 started_at: "2026-11-01T12:19:57Z"
 completed_at: null
 active_seconds: 440
-timing_anchor: null
+timing_anchor: 1793539903
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -30,6 +30,9 @@ escalation_reason: Ordinary task uses Low effort
 routing_ledger:
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Owner-approved operative-v2 correction affects auth lifecycle test integrity; distinct High bounded author required.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"architecture_decision\",\"profile\":\"critical\",\"role\":\"sensitive-contract-amendment-author\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: authentication\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: Authorization/permissions role-aware navigation and preserved authority/session contracts
@@ -39,8 +42,8 @@ completed_phases: [0, 1, 2]
 spec_path: "C:/DEV/K35-5-shell/_bmad-output/specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md"
 spec_approved: false
 build:
-  status: blocked
-  blocking_condition: "intent gap — five frozen Applies state/test rows lack exact actual owned caller/trigger/assertion binding under the two-file presentation allocation"
+  status: draft
+  blocking_condition: null
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -55,7 +58,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [6e9cd1d1, 12a707b2, d098533b]
+commits: [6e9cd1d1, 12a707b2, d098533b, 5ab99e6e]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -80,8 +83,7 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers:
-  - "Bind existing caller, trigger and assertion for loading/unavailable/connection-required/error-retry/late-result (AC6), or approve bounded source/scope correction."
+blockers: []
 overrides:
   individual_story_authorization: Owner approved35.5 exact AppShell and existing role-aware test allocation
   merge_owner: Coordinator01a1160d performs final review and merge
@@ -90,4 +92,7 @@ overrides:
   renderer_attempt_1: "Blocked before planning: uv temporary interpreter metadata Access denied; no story changes. Resume with bounded renderer require_escalated."
   renderer_resolution: "Sandbox-local process TEMP/TMP/UV_CACHE_DIR succeeded; elevated uv rejected and not used"
   coordinator_delivery: "Automatic approval review rejected cross-chat blocker delivery; no retry or indirect workaround"
+  operative_v2_approval: "2026-11-01 Rasmus explicitly approved exact reviewed state ownership correction via Coordinator01a1160d-b5b1-7623-a8e8-54ef3dc537ed: four Applies duties retired to inherited-only actual source behavior, error-retry retained via mounted SignOutButton"
+  resume: "Reuse earned isolation/source/claim/preflight/test-design evidence; planning resumes after bounded actual-delta High confirmation"
+  proposal_packet: "assessment393ee844ec828d4d6de7437e5b3e11f9b1b00ea364ea7e5e5810147fa28e2b89;binding697e8b923783723db43c02c0ecf927eba97026cc5ee47787945598276198f1fc;review4771093b3da5a9c5280ca8daafce0494060985880830206e3d69ae4b3cdc9ba0"
 constraints: []
