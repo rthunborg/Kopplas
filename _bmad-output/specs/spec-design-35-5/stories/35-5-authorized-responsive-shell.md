@@ -2,7 +2,7 @@
 title: "Story 35.5: Authorized Responsive Shell"
 type: feature
 created: 2026-11-01
-status: draft
+status: ready-for-dev
 review_loop_iteration: 0
 warnings: [oversized]
 context:
@@ -26,7 +26,7 @@ Current root ownership clearance and source pins are recorded in source-binding.
 
 Rasmus expressly approved the exact reviewed correction on 2026-11-01 through Coordinator chat `01a1160d-b5b1-7623-a8e8-54ef3dc537ed` and instructed “Please proceed”, as relayed by the root assignment. This is a material retirement of four v1 shell-owned positive obligations, not an editorial interpretation, N/A reclassification, implementation result or runtime PASS. The frozen v1 specification, frozen test slice, common contract and historical evidence remain unchanged.
 
-Exact approved proposal: `C:/DEV/K35-5-preparation/tmp/private/story35-5/state-reconciliation/assessment.md`, SHA256 `393ee844ec828d4d6de7437e5b3e11f9b1b00ea364ea7e5e5810147fa28e2b89`; `binding.json`, SHA256 `697e8b923783723db43c02c0ecf927eba97026cc5ee47787945598276198f1fc`; actual independent-review filename `review.json`, SHA256 `4771093b3da5a9c5280ca8daafce0494060985880830206e3d69ae4b3cdc9ba0`. That review passed an unapplied bounded decision proposal only. Root recorded `architecture_decision / critical / gpt-6.1-sol High` for this auth/test-integrity correction; distinct targeted High confirmation of the actual amended delta remains pending.
+Exact approved proposal: `C:/DEV/K35-5-preparation/tmp/private/story35-5/state-reconciliation/assessment.md`, SHA256 `393ee844ec828d4d6de7437e5b3e11f9b1b00ea364ea7e5e5810147fa28e2b89`; `binding.json`, SHA256 `697e8b923783723db43c02c0ecf927eba97026cc5ee47787945598276198f1fc`; actual independent-review filename `review.json`, SHA256 `4771093b3da5a9c5280ca8daafce0494060985880830206e3d69ae4b3cdc9ba0`. That review passed an unapplied bounded decision proposal only. Root recorded `architecture_decision / critical / gpt-6.1-sol High` for this auth/test-integrity correction; distinct targeted High actual-delta confirmation is now recorded as `PASS_ACTUAL_OPERATIVE_V2_AMENDMENT_ONLY` in `../operative-v2-targeted-review-2026-11-01.json`. That PASS confirms this amendment only; it is not runtime proof.
 
 This operative table supersedes only the Common state IDs cell in the copied v1 body for current execution:
 
@@ -38,7 +38,7 @@ Before v2, `loading`, `unavailable`, `connection-required` and `late-result` wer
 
 ## Operative planning contract — 2026-11-01
 
-This section governs this individually approved execution adapter. The canonical historical body below remains verbatim source evidence: its preparation-only status and prospective multi-path lists are historical, not the current allocation. This correction stops before implementation. **Status: draft — the approved operative-v2 correction is represented; normal folder/ID planning and distinct targeted High delta confirmation remain next.** Four v1 owned-positive obligations are expressly retired only as approved above; no runtime coverage is earned.
+This section governs this individually approved execution adapter. The canonical historical body below remains verbatim source evidence: its preparation-only status and prospective multi-path lists are historical, not the current allocation. This correction stops before implementation. **Status: ready-for-dev — normal folder/ID planning is complete using the approved operative-v2 correction and earned distinct targeted High confirmation. Halt after planning.** Four v1 owned-positive obligations are expressly retired only as approved above; no runtime coverage is earned.
 
 <intent-contract>
 
@@ -82,7 +82,7 @@ All paths below resolve from `C:/DEV/K35-5-shell`; only the first two are implem
 
 ## Tasks & Acceptance
 
-**Execution, after normal planning and targeted High confirmation of this correction:**
+**Execution, on the subsequent implementation dispatch under this completed plan:**
 
 1. `src/components/app-shell/AppShell.tsx` — compose supplied navigation into labeled presentation sections; preserve flattened DTO order, identity, active marker, notification/profile/settings/sign-out destinations and existing links. Apply current accepted semantic tokens, desktop geometry and responsive shell-local sizing. Keep phone targets at least 44px, overflow labeled, keyboard/visible focus, 16px phone/24px desktop content gutters and reduced motion for actual changed motion. Preserve current medium rail behavior unless a verified screen-level composition choice is recorded.
 2. `src/components/app-shell/AppShell.tsx` — retain named drawer composition, opening focus, Tab wrap, Escape/explicit close/restoration, scroll cleanup and resize behavior. Ordinary route anchors must retain downstream dirty-input interception; avoid premature router/history changes. Do not introduce a new editor or dialog contract.
@@ -133,6 +133,8 @@ Later implementation follows current required CI/completion policy: applicable t
 
 ## Spec Change Log
 
+2026-11-01 planning resume: Normal folder+ID dispatch resolved this sole draft. Reused operative-v2 author receipt and distinct targeted High actual-amendment confirmation PASS; no new scope/authority/session decision or repeated broad assessment. Readiness uses the approved five Applies rows and explicit existing SignOutButton failure/retry plan; matcher/query/SDK/runtime still require execution. Preserved this draft's intent-contract and historical body verbatim. Current clean planning baseline supplied by root: `d5ace22bbd5a93df4588dbbb5c743ad47e2a3868`, branch `codex/story-35-5-responsive-shell`; earlier checkpoints below remain historical. Route remains gpt-6.1-sol Low. Halt after planning; no implementation or runtime PASS.
+
 2026-11-01 operative v2: Applied only Rasmus's expressly approved exact four-row ownership correction and source-backed existing SignOutButton plan. Four owned-positive obligations retired; original identities and frozen historical body preserved. Status returns from blocked to draft for normal planning and distinct targeted High delta confirmation. Runtime executions: zero; no implementation admission or PASS.
 
 2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
@@ -143,8 +145,10 @@ No code-review round executed. Distinct High planning assessment only; independe
 
 ## Auto Run Result
 
-Status: draft
-The exact approved operative-v2 correction is represented. Root next runs normal folder/ID planning after distinct targeted High confirmation of the amended delta; this author correction performs no pipeline phase. The error-retry matcher/SDK/runtime sequence remains unexecuted, inherited coverage requires exact affected source-owner bindings, and implementation has not started. No completed-implementation review trail or runtime PASS is manufactured.
+Status: ready-for-dev
+Normal folder/ID planning completed after the exact owner-approved operative-v2 correction and distinct targeted High actual-delta PASS. No open planning blocker remains. The four retired owned-positive duties remain Inherited only for actual affected existing source-owner behavior; unbound rows earn no coverage. The existing SignOutButton error-retry plan remains unexecuted: matcher/query, installed SDK handling and complete runtime sequence are verification work for implementation, never a planning PASS.
+
+Halt after planning. No implementation, product/test changes, service launch, git mutation, development-complete or release-ready claim. `release_ready=false`. The completion hook preserves this planning exit without manufacturing a completed implementation review trail. Exact source/fixture boundaries and current visual/development gates remain in force.
 
 ## Preserved canonical historical body
 
