@@ -31,7 +31,8 @@
     "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
     "tests/e2e/dashboard/playwright.ci.config.ts",
     "tests/e2e/files/documents.e2e.spec.ts",
-    ".github/workflows/story-35-4-validation.yml"
+    ".github/workflows/story-35-4-validation.yml",
+    "tests/e2e/jobs/jobs-depth.e2e.spec.ts"
   ],
   "tea_risk": "high",
   "tea_selected": [
@@ -133,6 +134,37 @@
       "actual": 47,
       "reference": 13,
       "total": 60
+    }
+  },
+  "jobs_depth_pipeline_compatibility_amendment": {
+    "date": "2026-11-01",
+    "approval_quote": "fix pipelines too",
+    "approval_provenance": "Actual human instruction explicitly relayed by root, who authorized this necessary bounded test-only allocation before High code editing. No message ID invented.",
+    "test_path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+    "scope": "Only existing 16.1-E03 raw reply.text transport-body assertion compatibility correction. No product, adapter, configuration, workflow, wrapper, custody, SQL, timeout or other test change.",
+    "evidence": {
+      "run_id": "41079144202",
+      "artifact_id": "12989845844",
+      "zip_sha256": "fba9fa62df55c773885feb5fb96cf79b50c731d06cc27855c74c93e8a8a3702c",
+      "json_sha256": "90c4ef779c9b90e3123bec27993b7b20026c26ff10fb3cd943f8a96be12b292d",
+      "native_counts": {
+        "passed": 79,
+        "failed": 1,
+        "skipped": 0,
+        "flaky": 0
+      },
+      "failure": "Line 337 reply.text fails CDP NoData in both attempts."
+    },
+    "proposal": "High author will use the directly matched response without body read, preserve HTTP ok and require text/x-component. BR409 is a domain code mapped to exact COMMAND_MESSAGES.PREVIEW_STALE, not HTTP409; action transport HTTP200 is correct. Preserve absent-to-exact PREVIEW_STALE rendered UI adoption, fresh preview, retained job ID/description/start/end/work role/assignee, cleared inputs, no success, full DB snapshot and valid retry write exactly once.",
+    "implementation_route": "gpt-6.1-sol high author; distinct targeted independent review follows. This is a before-edit authorization/proposal record, not an implementation or verification claim.",
+    "runtime_status": "Revised runtime unexecuted; 80395 owner visual acceptance remains revision-bound and cannot carry forward to the next candidate. Status blocked; root owns Git/state/CI.",
+    "implementation": "High author removed only the 16.1-E03 streamed RSC body read/substring assertion; directly matched save response requires HTTP ok and text/x-component. Added six retained draft checks for job ID, description, start, end, work role and assignee. Existing absent-to-exact PREVIEW_STALE, cleared review/override, fresh preview, no-success, full persistence snapshot and valid exactly-once retry assertions remain.",
+    "source_sha256_canonical_lf": "88cc45544f2f1627be8fe47845e1ffdaef49ffaa42a5231bc276df68ef9018b1",
+    "verification": "High author reports scoped ESLint exit 0, typecheck exit 0, exact-file Playwright collection exit 0 with 6 tests. Revised browser runtime unexecuted.",
+    "review": {
+      "route": "/test_amendment_high_review",
+      "verdict": "No findings",
+      "scope": "Distinct targeted High review confirms absent-to-exact PREVIEW_STALE plus cleared review establishes UI adoption; full persistence snapshot, fresh preview and exactly-once retry remain."
     }
   }
 }
