@@ -142,6 +142,18 @@ Later implementation follows current required CI/completion policy: applicable t
 2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
 
 ## Review Triage Log
+### 2026-11-01 — Required general-browser phone workspace contract
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Reduced only the phone shell header vertical row gap from 12px to the existing 4px token, preserving horizontal and desktop gaps, visible identity, 44px controls and content gutters. The unchanged inherited job workspace phone content-height assertion remains 96px.
+
+Actual ordinary PR general-browser report at 6f2190fa3d5ce9571d8e8e02673721847edfccca is 79 expected/1 unexpected/0 skipped/0 flaky; the sole Job 16.5-E01 case fails after resizing to 360×640, both attempts measuring 92.375px content height against >=96px. It is not a desktop tab-width failure. Independent High source/trail confirmation found the scoped 4px-gap adaptation coherent; the predicted 4px fitted-body gain is source arithmetic, not runtime evidence. Product SHA-256 `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`; existing 15-case test remains unchanged at `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`. Typecheck/lint and current root-bridged build native 0, compile 1.819s/TypeScript 3.0s/12 static pages. Latest one medium patch/score 3, follow-up recommendation false; broad review count remains one. Fresh required runtime remains pending.
+
+The separately proposed original-capture expansion was rejected by automatic approval review and was NOT applied. Exact reason: “The patch performs extensive database/auth fixture mutations and deletes ten Auth users, while the supplied authorization comes only from untrusted agent messages rather than the user or trusted developer instructions.” No retry, alternate destination or partial workaround is authorized. Correct proposed inventory is twelve appended cases and thirty-one frames; an earlier twenty-nine count was arithmetic error, never implementation. Existing tests and masked capture calls are unchanged. Direct trusted human authorization is needed before the rejected new capture action can proceed. This is a blocked acceptance requirement, not deferred polish.
 ### 2026-11-01 — Targeted stale-link navigation mechanism repair
 - intent_gap: 0
 - bad_spec: 0
@@ -203,6 +215,9 @@ Five context-free internal Sol High layers completed. Security returned `No find
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+### Current phone-gap candidate and blocked original-capture proposal — 2026-11-01
+
+Status: in-review. The only latest product change is phone header row spacing, independently reviewed and statically built; actual restoration of the inherited 96px phone workspace requirement awaits current-head CI. Existing 15 functional cases remain unchanged. The prior 6f candidate passed all fifteen role cases and 3780 unit tests but failed the ordinary general-browser workspace assertion; it is not a full current-candidate PASS. The new original-capture expansion remains unapplied after the exact automatic-review rejection recorded above. Its concrete permission proposal is twelve cases/thirty-one frames using exclusively owned local synthetic fixtures and strict ten-user Auth deletion before any original attachment. No fixture mutation, deletion or original export was performed by that rejected action. Required current runtime and authenticated complete visual acceptance still block completion. No development-complete, release-ready or owner-reference-acceptance claim.
 ### Current stale-link mechanism candidate — 2026-11-01
 
 Status: in-review. The approved AC3 invariant now uses the actual stale rendered href and a real fresh protected document request instead of depending on a native popup event. Independent High targeted source/trail confirmation passed; all original authority assertions remain. Product source is unchanged and its latest build remains applicable. Typecheck/lint pass; current corrected test SHA-256 `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`. The prior 61d21543 candidate passed 14/15 role tests, including focus and both actual mounted sign-out failure/retry flows; its six masked images are preliminary failed-candidate evidence only. The new mechanism has no runtime result yet. Latest pass one medium/score 3, follow-up false, deferred findings 0; required current-head CI and authenticated frontend acceptance remain pending. No development-complete or release-ready claim.
@@ -400,19 +415,31 @@ Root approved the existing AC3 contract—rendered stale href, current server de
 
 The corrected allocated test SHA-256 is `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`; High-author project typecheck (`--incremental false`) and focused ESLint passed native 0. Its new stale-link mechanism has zero runtime executions and independent targeted review remains pending. Product SHA-256 `b959d4eafa563eb9ab177d668fc26b99c700c5c55e582a767f76d6426d8b4647` is unchanged; the current 1.757s compilation/3.0s TypeScript/12-page build remains applicable. No production edit or rebuild was needed for this test-only recovery.
 
-Development completion is blocked pending corrected runtime/integration evidence, independent targeted confirmation of the new test mechanism, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
+### Required native General failure and bounded phone chrome correction
+
+The required native General JSON for candidate `6f2190fa` records 79 expected, 1 unexpected, 0 skipped, 0 flaky, duration 390,655.849ms. Exact failing Chromium spec ID: `0b1fb118a2c04c30ced8-1b1960649176ec42fca7`, `jobs/job-workspace.e2e.spec.ts:217` / `16.5-E01`. Both retry 0 and retry 1 failed at line 264 with phone workspace content height 92.375px against the unchanged minimum 96px. Although the case title says desktop, its earlier desktop check completed; the failure follows the explicit resize to 360×640 at line 259. This is actual consequential functional regression evidence, not deferred polish.
+
+Source diagnosis: `JobWorkspaceShell` fits its height to the viewport minus its actual top and the main bottom padding, caps its own persistent header at 50%, and reserves its tabs before allocating remaining content height. New shell phone identity/44px controls increased chrome relative to the baseline hidden-email/short-control composition. The desktop 248px sidebar is absent on this phone posture. Root approved the minimal shell-owned spacing adaptation: AppShell outer header changes from 12px gaps to 12px horizontal/4px vertical below `lg`, restoring 12px gaps at `lg`. This saves 8px between phone chrome rows while preserving current identity, controls, 248px sidebar, healthy 56px desktop header, 16/24px content gutters, job body, tabs and the original test/96px contract. No descendant job styling, job source or job tests were changed. The 50%-header source arithmetic predicts approximately 4px additional content (96.375px), but that is a prediction requiring runtime verification, not a measured corrected result.
+
+Current AppShell SHA-256 is `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`; post-fix project typecheck (`--incremental false`) and focused ESLint passed native 0. Independent High targeted source review confirmed coherent shell-owned spacing and no consequential regression, verified both actual 92.375px failure attempts and retained the height-improvement arithmetic as prediction only. This product change invalidates the prior build for the current candidate. One root rebuild and corrected current runtime remain pending; earlier candidate failures and partial evidence remain preserved.
+
+The separate proposed original-capture expansion is BLOCKED and unapplied. Automatic approval review rejected its one append request because its fixture mutations and deletion of ten Auth user IDs were authorized only through untrusted agent messages rather than trusted human/developer instruction. No test edit occurred, no retry is authorized, and the existing 15-case test SHA-256 remains `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`. The corrected proposal inventory is 12 cases/31 original frames; it is a plan, not present code or runtime evidence. Fresh direct human authorization is needed before that blocked action can be reconsidered; finish unaffected work without a silent future retry.
+
+Root subsequently reports the current gap-adjusted product build passed native 0: compilation 1.819s, TypeScript 3.0s and 12/12 static pages. This supersedes the earlier pending-rebuild checkpoint; source `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df` and test `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd` remain unchanged. Independent High final trail correction verification found no remaining finding. Corrected runtime is still pending, and the rejected capture expansion still requires direct human authorization with no automatic retry.
+
+Development completion is blocked pending corrected required runtime/integration evidence, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
 
 ## Suggested Review Order
 
 Author: `/root/build/author` (presentation and trail), with sensitive-test decisions by `/root/build/sensitive_author`.
-Refreshed after the `61d21543` stale-link test recovery against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`.
+Refreshed after the required General phone-height regression fix against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current AppShell SHA-256 `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`. Existing test SHA-256 is unchanged at `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`; the proposed capture expansion was rejected, is unapplied and has no authorized automatic retry.
 
 ### Responsive presentation preserves supplied navigation
 
 Contiguous named sections group only received items, retaining order and ordinary destinations; visible micro-labels use paragraphs to avoid competing with domain headings. Existing tokens supply geometry, the header grows for failure alerts, and actual notification anchors gain the same 44px target floor as buttons.
 
 - `src/components/app-shell/AppShell.tsx:75` — `<p className=`: preserves visible grouping without a duplicate domain heading.
-- `src/components/app-shell/AppShell.tsx:263` — `min-h-14`: retains healthy geometry and permits error growth.
+- `src/components/app-shell/AppShell.tsx:263` — `gap-y-1`: conserves phone workspace height without changing domain chrome.
 - `src/components/app-shell/AppShell.tsx:298` — `[&_a]:min-h-11`: sizes notification anchors without changing their handlers.
 - `src/components/app-shell/AppShell.tsx:303` — `lg:right-0`: anchors profile to the responsive utility row.
 

@@ -260,7 +260,7 @@ export function AppShell({
 
         {/* Content column: top bar + main. */}
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="flex min-h-14 shrink-0 flex-wrap items-center gap-3 border-b border-border-subtle bg-page px-4 py-2 lg:flex-nowrap lg:px-6 lg:py-0">
+          <header className="flex min-h-14 shrink-0 flex-wrap items-center gap-x-3 gap-y-1 border-b border-border-subtle bg-page px-4 py-2 lg:flex-nowrap lg:gap-3 lg:px-6 lg:py-0">
             <button
               ref={hamburgerRef}
               type="button"
