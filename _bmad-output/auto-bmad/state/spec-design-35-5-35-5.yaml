@@ -9,7 +9,7 @@ spec_folder: "C:/DEV/K35-5-shell/_bmad-output/specs/spec-design-35-5"
 story_id: 35-5
 branch: codex/story-35-5-responsive-shell
 status: in-progress
-updated_at: "2026-11-01T12:21:53Z"
+updated_at: "2026-11-01T12:22:39Z"
 started_at: "2026-11-01T12:19:57Z"
 completed_at: null
 active_seconds: 115
@@ -86,4 +86,5 @@ overrides:
   merge_owner: Coordinator01a1160d performs final review and merge
   reuse_preparation: "Frozen prep and integrated35.4 binding reused; release_ready=false"
   branch: Explicit short owned worktree from fresh origin/main
+  renderer_attempt_1: "Blocked before planning: uv temporary interpreter metadata Access denied; no story changes. Resume with bounded renderer require_escalated."
 constraints: []
