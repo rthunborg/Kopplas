@@ -671,7 +671,8 @@ async function withRetiredOwnedCaptures(
 
 test.describe("Story 35.5 owned originals — release only after strict Auth deletion", () => {
   test.describe.configure({ retries: 0 });
-  test.use({ trace: "off", video: "off", screenshot: "off" });
+  // Inherit the existing file-level OFF privacy options. Re-declaring these
+  // worker-scoped options inside a describe is rejected during collection.
 
   for (const viewport of SHELL_VIEWPORTS) {
     test(`[P1] E35-5-CAP-owned-shell ${viewport.name} real loaded/profile/drawer originals`, async ({ browser }, testInfo) => {
