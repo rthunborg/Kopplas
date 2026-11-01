@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "subagent": "atdd-api-tests",
+  "story": "35.5",
+  "story_file": "_bmad-output/specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md",
+  "applicability": "not_applicable",
+  "tests": [],
+  "fixture_needs": [],
+  "knowledge_fragments_used": [],
+  "test_count": 0,
+  "tdd_phase": "RED",
+  "provider_scrutiny": "not_applicable",
+  "api_endpoints_introduced": [],
+  "scope_rationale": [
+    "The operative admission allocates presentation changes only to src/components/app-shell/AppShell.tsx and browser assertions only to tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts.",
+    "The shell consumes the existing server-filtered navigation DTO. No endpoint, shell fetch protocol, client capability fallback, expanded payload, new API contract, standalone API test suite or fixture is authorized.",
+    "Existing authorization, tenant resolution, role landing, protected navigation and sign-out semantics are preservation obligations. Their presence does not introduce a new API contract or authorize API scaffolds.",
+    "The existing SignOutButton error-retry journey belongs in the allocated E2E suite. Its local POST /auth/v1/logout interception must fail before forwarding, preserve a server-confirmed signed-in identity, and allow an explicit real retry; no standalone API or Pact test is generated here.",
+    "Operative-v2 retires only the four specified shell-owned positive duties. Inherited states require exact affected source-owner regression bindings and earn no coverage merely from source presence. This N/A API generation decision does not reclassify any story state or waive any owned browser obligation."
+  ],
+  "utility_configuration": {
+    "use_playwright_utils": true,
+    "use_pactjs_utils": true,
+    "configuration_source": "Parent ATDD Step 1 handoff",
+    "playwright_utils_declared_in_package_json": false,
+    "pactjs_utils_declared_in_package_json": false,
+    "package_check": "Read package.json dependencies and devDependencies; neither utility package is declared.",
+    "action": "No imports, dependency changes or utility fixtures generated. Flags do not expand the approved allocation."
+  },
+  "contract_testing": {
+    "relevance_gate_open": false,
+    "consumer_contract_count": 0,
+    "pact_mcp_reachable": false,
+    "pact_probe_source": "Parent's completed tool-list probe found no Pact tools; no repeated probe performed.",
+    "pact_fallback_source": "provider-source",
+    "fallback_used": false,
+    "reason": "No new or modified service-to-service consumer/provider contract is in scope. Pact relevance is false and @seontechnologies/pactjs-utils is absent, so the generation gate is closed. Provider-source fallback would apply only to a relevant contract."
+  },
+  "priority_coverage": { "P0": 0, "P1": 0, "P2": 0, "P3": 0 },
+  "verification": {
+    "tests_run": false,
+    "runtime_coverage_claimed": false,
+    "product_or_spec_files_changed": false,
+    "dependencies_or_fixtures_added": false,
+    "services_launched": false,
+    "git_mutations": false
+  },
+  "summary": "API generation is not applicable to the approved presentation-only shell story. Zero API or consumer-contract scaffolds generated; required shell and session behavior remains allocated to the existing browser suite and applicable unchanged regressions."
+}
