@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-11-01T10:47:55.505295+00:00",
+  "repo": "Kopplas",
+  "target": {
+    "type": "epic",
+    "id": "spec-design-35-4",
+    "label": "35-4 only"
+  },
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "PASS",
+  "rationale": "P0 coverage is 100%, P1 coverage is 100% (target:90%), and overall coverage is 100% (minimum:80%). Applies to Story35.4 development obligations only; 3 release obligations remain deferred, release_ready=false. Current9242 runner/owner evidence is reused with parent-verified identical merged product tree; no new test execution or release approval.",
+  "p0_status": "MET",
+  "p1_status": "MET",
+  "overall_status": "MET",
+  "critical_open": 0,
+  "links": {
+    "trace_report_path": "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas-35-4-closeout\\_bmad-output\\test-artifacts\\35-4-closeout-traceability.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  }
+}

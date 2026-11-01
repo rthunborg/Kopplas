@@ -2,10 +2,10 @@
 title: "Story 35.4: Dialogs Feedback And Selected Files"
 type: feature
 created: 2026-10-30
-status: blocked
+status: done
 warnings: [oversized]
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 deferred: []
 baseline_revision: fdcb6b5b21a7828cd79e3be8c1d0aa0aaaafde76
 context:
@@ -238,7 +238,7 @@ Planning only; implementation and all runtime/visual gates remain pending. Canon
 ## Suggested Review Order
 
 Author: implementation_author (Sol Low), the author of the presentation, Documents tests and initial compact/full Jobs test changes. Approved test-infrastructure/empty/error amendment rationale below is supplied by its distinct context-free Sol High implementation author through the coordinator; this section preserves that attribution.
-Refreshed against the trace-backed retry/framing working tree over checkpoint `cad0bb23796cc462252bd4fa4d4f825780f18fb8` on 2026-10-30. This is a blocked candidate handoff: implementation verification failed; development completion is not claimed.
+Operative refresh — 2026-11-01: development done for tested/accepted `9242c43ec2fed71ae48e788fd052ce81969b058c`, merged as `232ceb9d6d17200fcd4e2906b48a51222268f393` with root-verified identical product tree. Canonical delivery record validates development completion; this is not full Auto-BMAD or release completion. Existing rationale/stops below remain the author trail; earlier pending/blocked evidence paragraphs describe their dated checkpoints, superseded for current development disposition by the operative evidence summary below.
 
 ### Selected preview and existing confirmation
 
@@ -344,7 +344,17 @@ Actual human `fix pipelines too`, relayed by root on 2026-11-01, allocated only 
 
 High author reports scoped ESLint/typecheck exit 0 and exact-file collection exit 0 (6 tests); canonical-LF source SHA256 is `88cc45544f2f1627be8fe47845e1ffdaef49ffaa42a5231bc276df68ef9018b1`. Distinct targeted High reviewer `/test_amendment_high_review` returned final No findings, confirming UI adoption, full snapshot, fresh preview and exactly-once retry invariants. Revised runtime is unexecuted; source review and collection are not browser proof. Owner visual acceptance at 80395 remains valid only for that revision and cannot carry forward to a new head. Canonical spec/body/hash pins remain unchanged, status stays blocked, and root owns Git/state/CI.
 
-### Evidence and limits
+### Operative development evidence — 2026-11-01
+
+Final scoped closeout: named headless stories-mode RETROSPECTIVE.md records accepted-with-open-items, declared criteria, pending_stories=[]. Actual trace PASS7/7 uncovered0; High NFR CONCERNS advisory unknown performance targets/measurement and test-review NOT_SCORED bounded reuse/H5 test-size advisory remain disclosed. Ledger195–197 are three OPEN release items, original195-entry prefix preserved, archive0. The pre-terminal completion wrapper exited0 at merged232; no new product/test/runtime or broad review occurred. Root owns final aggregate bookkeeping; release_ready=false.
+
+Review the existing source stops above with the canonical delivery record and post-dev evidence reconciliation. No new product/test change is made by closeout. All AC1–AC7/canonical body/hash pins remain unchanged; prior failed receipts and numeric review-loop fields remain historical. Existing independent High authority/fault/marker reviews and targeted Low presentation/test reviews are reused only for unchanged diff/dependencies. The latest High-authored Jobs-depth16.1-E03 correction has distinct /test_amendment_high_review final No findings; its absent-to-exact PREVIEW_STALE/reset-review barrier, full DB snapshot, fresh preview and exactly-once retry are now exercised by normal browser CI. No additional broad review was invoked; follow-up recommendation is false because the actual final reviewed changes have no unresolved finding, not because a new pass ran.
+
+Current root-qualified normal CI41296065573 succeeded: integration2163 passed/0 failed/52 explicit qualified skips (37 RED command,14 RED RLS,1 storage opt-in;0 service-unavailable); normal browser80 clean including16.1-E03 attempt0; dedicated storage1 passed/0 skipped. Focused41296060468 passed182/0/0/0 and produced47 actual+13 references, with3 supplementary dirty-input frames outside44 primary pairs. Existing independent image review No findings; actual9242 owner acceptance6556809093 and controller124823596903 SUCCESS satisfy the candidate visual gate. Published package comment6556661919 retains digest b443c2d7e5753a73f066aacaacd24ac8ef9c5317096a00859e885a27848ad8d0 and evidence commit d8c7976c978f002377cc4ea295de0ce4dba2e91e. Skips remain unexecuted; source/collection is not substituted for runtime. Root verifies merged232 product tree identical to accepted9242.
+
+The pre-write completion-gate wrapper at merged232 exited0: complete process-only inventory is frontend-not-applicable; canonical delivery returned ok=true/development_complete=true/approval_granted=false. This metadata gate does not replace9242's actual visual gate. Release_ready=false: PDF iframe-interior Escape, nonselected exhaustive/manual/device/accessibility scope and Phase B consolidation remain owned deferred release validation in delivery JSON. P6 bounded reconciliation is recorded separately; formal P7 route/HITL/counters and aggregate P8 markers remain root-owned. Current named trace/NFR/test-review/reconcile/retro artifacts now record their actual bounded outcomes; no aggregate completion is claimed.
+
+### Historical evidence and limits
 
 AC2/AC3/AC6/AC7 deterministic identity, expiry and denial behavior is covered by the unchanged preview reducer tests; safe projection and distinct empty/error read results are covered by the unchanged Jobs reader tests. Activated browser assertions cover real compact/full rows and exact Stockholm time; existing delayed-response, stored-byte, audit/persistence and dirty-navigation assertions remain intact. Their modal journeys explicitly close the preview before background interaction. The follow-up feedback case asserts tooltip hover/focus/Escape and both manual toast dismissal and five-second expiry independently from ten-second Undo, with unchanged persisted archive/audit observations. Those browser assertions are source changes, not executed coverage yet.
 
@@ -393,7 +403,7 @@ Limits: units exercise deterministic/source seams, not rendered UI or production
 
 Bounded remediation checks by this author: Documents-only eslint exited 0 without warnings/errors; Documents Playwright --list exited 0 with 80 tests/1 file and execution=0; pnpm exec tsc --noEmit exited 0 during remediation. High worker reports Jobs collection 11 tests and scoped tsc/eslint/syntax/diff exit 0 before its final cleanup guard adjustment. The coordinator subsequently reports final tsc and scoped ESLint over config, adapter and both tests exited 0, covering the final source amendment; runtime remains unexecuted. Earlier build/full-unit/audit evidence above belongs to its prior checkpoint and has not been relabeled as execution of this amendment. The two suites now collect 91 tests in aggregate; all browser execution remains pending.
 
-## Auto Run Result
+## Historical Auto Run Result — earlier blocked checkpoints
 
 status: blocked
 Blocking condition: implementation verification failed.
@@ -426,3 +436,13 @@ Trace-backed retry/framing reconciliation — 2026-10-30: exact old cad0 HTML/tr
 Pipeline compatibility amendment before edit — 2026-11-01: actual human `fix pipelines too`, explicitly relayed by root, authorizes only `tests/e2e/jobs/jobs-depth.e2e.spec.ts` existing 16.1-E03 compatibility fix and this binding/trail metadata. Root-authenticated failed PR run 41079144202 artifact 12989845844 (ZIP SHA256 `fba9fa62df55c773885feb5fb96cf79b50c731d06cc27855c74c93e8a8a3702c`, native JSON SHA256 `90c4ef779c9b90e3123bec27993b7b20026c26ff10fb3cd943f8a96be12b292d`) reports 79 passed, 1 failed, 0 skipped/flaky: line337 reply.text fails CDP NoData in both attempts. Before any High edit, source-binding allocates this exact path and records the proposal: directly matched response, no body read, HTTP ok plus text/x-component; absent-to-exact COMMAND_MESSAGES.PREVIEW_STALE UI adoption and existing fresh-preview, retained job ID/description/start/end/work role/assignee, cleared-input/no-success/full-DB-snapshot/valid-retry-once invariants remain. BR409 is the domain code, not an HTTP409 response; action HTTP200 is correct. High author and distinct targeted review own the upcoming source decision. This record claims no implementation/check/runtime pass. Current visual acceptance belongs only to 80395; a new head requires its own evidence and cannot inherit acceptance. Canonical body/hash pins and blocked status remain unchanged; no other tracked/root-state/code/Git changes are authorized to this metadata author. Final author review-order stops/evidence will be refreshed after the fix and review.
 
 Jobs-depth final amendment reconciliation — 2026-11-01: the attributed High author completed only the approved 16.1-E03 test transport correction and six retained-draft checks. Distinct targeted High /test_amendment_high_review returned final No findings; scoped lint/type and six-test collection passed as recorded in the same Suggested Review Order. Revised runtime remains unexecuted; 80395 owner visual acceptance does not transfer to the next head. Canonical pins and blocked status remain unchanged. Root owns candidate commit, state and CI; this author refreshed only source-binding and story metadata.
+
+
+## Auto Run Result
+
+Status: done
+Blocking condition: none
+
+Development completion only — 2026-11-01. Canonical delivery record `_bmad-output/auto-bmad/delivery/spec-design-35-4-35-4.json` passed the pre-write completion wrapper at merged232; accepted9242 evidence and root-verified identical merged product tree support this operative result. Independent final targeted reviews returned No findings; no further source review is recommended. Historical review_loop_iteration remains unchanged and no followup_passes/HITL counters are invented.
+
+Release_ready=false. Exhaustive/manual/PDF nested-viewer qualification and Phase B release consolidation remain deferred with owners/actions. Full Auto-BMAD P7/P8/finalization completion is not claimed; named bounded P8 artifact outcomes are recorded in the final SRO refresh and retrospective. Root owns state/report/timing/Git and remaining formal pipeline reconciliation. All earlier blocked entries above remain historical; canonical AC/body/hash pins are preserved.

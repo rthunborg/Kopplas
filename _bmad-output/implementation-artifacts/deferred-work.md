@@ -546,3 +546,22 @@ existing AC, recorded so it is not re-triaged a third time.
   summary: E35-3-REL-3 — operational qualification and final Phase B release consolidation/approval
   evidence: Status: deferred; release_ready=false. Owner: Coordinator. The actual scoped security/transactional/deployed compatibility qualification is development evidence, not a longer SLO/load/recovery or full release pass. NFR remains CONCERNS; raw structural test-quality Request Changes, 0/F remains advisory and unchanged. Existing E16/E20 and final Phase B checkpoint obligations remain. Next action: consolidate this story's release evidence with the existing Phase B checkpoint, assign operational validation owners/candidate, execute applicable outstanding checks and obtain separate release approval. This does not authorize deployment, migration, whole-E35 completion or another story.
   location: _bmad-output/auto-bmad/delivery/spec-design-35-3-35-3.json#/deferred_release_validation/2
+
+
+## Deferred from: Story 35.4 release validation (2026-11-01)
+
+- source_spec: `35-4-dialogs-feedback-and-selected-files.md`
+  summary: PDF iframe-interior Escape qualification
+  evidence: Status: deferred (OPEN), not passing coverage. Scope: PDF iframe-interior Escape qualification. Owner: QA/accessibility owner; Coordinator assigns named person at release checkpoint. Native PDF nested browser document does not bubble Escape; surrounding Back/header close and traversal retained. No iframe-interior Escape pass claimed. Accepted9242/identical merged232 development evidence and root-provided trace PASS7/7, uncovered0 do not complete this release obligation. Next action: Qualify native viewer keyboard/screen-reader behavior on release-supported browsers and record outcome/required action.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-4-35-4.json#/deferred_release_validation/0
+
+- source_spec: `35-4-dialogs-feedback-and-selected-files.md`
+  summary: Nonselected exhaustive visual/device/manual validation (REL-1/REL-2); inherited Dashboard/shared-consumer variants outside selected 35.4 coverage
+  evidence: Status: deferred (OPEN), not passing coverage. Scope: Nonselected exhaustive visual/device/manual validation (REL-1/REL-2); inherited Dashboard/shared-consumer variants outside selected 35.4 coverage. Owner: UI owner and QA/accessibility owner; Coordinator assigns named people. 9242 selected desktop/360x640 automated captures and owner acceptance passed; exhaustive composite contrast/reflow, screen-reader/daylight/manual matrix was not executed by this closeout. Accepted9242/identical merged232 development evidence and root-provided trace PASS7/7, uncovered0 do not complete this release obligation. Next action: Schedule remaining matrix in deferred release ledger with exact candidate and recorded results.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-4-35-4.json#/deferred_release_validation/1
+
+- source_spec: `35-4-dialogs-feedback-and-selected-files.md`
+  summary: Phase B final consolidation (REL-3)
+  evidence: Status: deferred (OPEN), not passing coverage. Scope: Phase B final consolidation (REL-3). Owner: Coordinator. Phase B release validation/stabilization checkpoint remains separate; no full-release approval claimed. Accepted9242/identical merged232 development evidence and root-provided trace PASS7/7, uncovered0 do not complete this release obligation. Next action: Consolidate all approved Phase B deferred checks and existing E16/E20 caveats, obtain actual release validation and approval.
+  qualification: NFR advisory CONCERNS includes unknown performance SLO/targets and unperformed NFR measurement; neither is passed or a newly identified required 35.4 functional blocker. Test review is NOT_SCORED under bounded evidence-reuse override, not a fresh quality score. Next action: Phase B Coordinator assigns applicable measurement owners/candidate, establishes approved SLO/targets and obtains actual NFR evidence before any performance/release qualification claim.
+  location: _bmad-output/auto-bmad/delivery/spec-design-35-4-35-4.json#/deferred_release_validation/2
