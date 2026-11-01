@@ -560,10 +560,13 @@ test.describe("Story 35.5 authorized responsive shell", () => {
 
 type OwnedShellFixture = Awaited<ReturnType<typeof import("../../factories/tenants/core").createRoleAwarePhaseAFixture>>;
 type CaptureViewport = { readonly width: number; readonly height: number };
+type ConnectedCaptureRoute = "scheduling" | "my-day" | "preferences";
+type ConnectedCaptureStep = "entry" | "response" | "identity" | "heading" | "empty-defaults" | "alert" | "capture";
 type OwnedCaptureStage = "fixture" | "context" | "login" | "loaded" | "profile" | "representatives"
   | "bell-empty" | "bell-seed" | "bell-populated" | "bell-error" | "logout-rejection" | "logout-session"
   | "logout-retry" | "login-blank" | "revocation" | "denied" | "reduced-nav" | "context-close"
-  | "auth-delete" | "fixture-cleanup" | "publish";
+  | "auth-delete" | "fixture-cleanup" | "publish" | `connected-${ConnectedCaptureRoute}-${ConnectedCaptureStep}`;
+type OwnedCaptureErrorClass = "none" | "assertion" | "timeout" | "type" | "range" | "error" | "other" | "unknown" | "gate";
 type OwnedCaptureScope = {
   fixture: OwnedShellFixture;
   context: import("@playwright/test").BrowserContext;
@@ -578,6 +581,24 @@ async function assertOwnedShellIdentity(page: Page, owned: OwnedShellFixture, em
   await expect(page.getByTestId("tenant-context")).toHaveText(owned.base.tenantA.name);
   await expect(page.getByTestId("current-user")).toBeVisible();
   await expect(page.getByTestId("current-user")).toHaveText(email);
+}
+
+/** Classify only fixed structural tags, without reading messages, causes or matcher values. */
+function ownedCaptureErrorClass(failure: unknown): OwnedCaptureErrorClass {
+  try {
+    if ((typeof failure !== "object" || failure === null) && typeof failure !== "function") return "unknown";
+    if (Object.getOwnPropertyDescriptor(failure, "matcherResult")) return "assertion";
+    const ownName = Object.getOwnPropertyDescriptor(failure, "name");
+    const prototype = Object.getPrototypeOf(failure);
+    const inheritedName = prototype ? Object.getOwnPropertyDescriptor(prototype, "name") : undefined;
+    const name = ownName && Object.hasOwn(ownName, "value") ? ownName.value
+      : inheritedName && Object.hasOwn(inheritedName, "value") ? inheritedName.value : undefined;
+    if (name === "TimeoutError") return "timeout";
+    if (name === "TypeError") return "type";
+    if (name === "RangeError") return "range";
+    if (name === "Error") return "error";
+    return typeof name === "string" ? "other" : "unknown";
+  } catch { return "unknown"; }
 }
 
 /**
@@ -602,6 +623,7 @@ async function withRetiredOwnedCaptures(
   let ownedIds: string[] = [];
   let stage: OwnedCaptureStage = "fixture";
   let failed: OwnedCaptureStage | undefined;
+  let errorClass: OwnedCaptureErrorClass = "none";
   let authDeleted = false, cleanupCompleted = false;
   const publicationDeadline = Date.now() + testInfo.timeout - 5_000;
   try {
@@ -631,35 +653,42 @@ async function withRetiredOwnedCaptures(
       frames.push({ state, viewport: geometry, body });
     } });
     if (frames.length !== expectedFrames) throw new Error("Owned capture inventory incomplete");
-  } catch {
+  } catch (failure) {
     // No original error/cause, expected email, generated suffix, API body or header
-    // may escape. Only the fixed stage vocabulary is reported after cleanup.
+    // may escape. Only fixed stage/class tags and the completed-frame count are reported.
     failed = stage;
+    errorClass = ownedCaptureErrorClass(failure);
   } finally {
     if (context) {
-      try { await context.close(); } catch { failed ??= "context-close"; }
+      try { await context.close(); } catch (failure) {
+        if (!failed) { failed = "context-close"; errorClass = ownedCaptureErrorClass(failure); }
+      }
     }
     if (owned && core) {
       // Existing strict helper checks returned/thrown Auth errors, in redacted mode.
       // Attempt ALL unique owned IDs and inspect every result before publication.
       const deleted = await Promise.allSettled(ownedIds.map(id => core!.deleteAuthUser(id, "redacted")));
       authDeleted = ownedIds.length === 10 && deleted.every(result => result.status === "fulfilled");
-      if (!authDeleted) failed ??= "auth-delete";
+      if (!authDeleted && !failed) { failed = "auth-delete"; errorClass = "gate"; }
       try {
         // Paired best-effort tenant cleanup is additional cleanup, never proof of
         // the strict Auth deletion above or a stronger tenant-deletion guarantee.
         await core.cleanupRoleAwarePhaseAFixture(owned);
         cleanupCompleted = true;
-      } catch { failed ??= "fixture-cleanup"; }
+      } catch (failure) {
+        if (!failed) { failed = "fixture-cleanup"; errorClass = ownedCaptureErrorClass(failure); }
+      }
     }
   }
   if (!authDeleted) failed ??= "auth-delete";
   if (!cleanupCompleted) failed ??= "fixture-cleanup";
   if (testInfo.errors.length > 0 || Date.now() >= publicationDeadline) failed ??= "publish";
   if (failed) {
+    const completedFrames = frames.length;
+    if (errorClass === "none") errorClass = "gate";
     for (const frame of frames) frame.body.fill(0);
     frames.length = 0;
-    throw new Error(`Owned shell capture withheld [stage=${failed};auth-delete=${authDeleted ? "passed" : "failed"};cleanup=${cleanupCompleted ? "completed" : "incomplete"}]`);
+    throw new Error(`Owned shell capture withheld [stage=${failed};error-class=${errorClass};completed-frames=${completedFrames};auth-delete=${authDeleted ? "passed" : "failed"};cleanup=${cleanupCompleted ? "completed" : "incomplete"}]`);
   }
   // The ONLY new attachment site: all assertions, owned-context close, ten strict
   // Auth deletions and paired cleanup completed before any original leaves memory.
@@ -736,22 +765,31 @@ test.describe("Story 35.5 owned originals — release only after strict Auth del
         await logIn(page, owned.base.adminA, "/dashboard");
         scope.stage("representatives");
         for (const destination of [
-          { href: "/scheduling", heading: "Planering", empty: "Inga bokningar matchar perioden och filtren.", state: "scheduling-real-empty" },
-          { href: "/my-day", heading: "Min dag", empty: "inga bokningar ännu", state: "my-day-real-empty" },
-          { href: "/settings/notifications", heading: "Notisinställningar", empty: null, state: "notification-preferences-real-defaults" },
-        ]) {
+          { code: "scheduling", href: "/scheduling", heading: "Planering", empty: "Inga bokningar matchar perioden och filtren.", state: "scheduling-real-empty" },
+          { code: "my-day", href: "/my-day", heading: "Min dag", empty: "inga bokningar ännu", state: "my-day-real-empty" },
+          { code: "preferences", href: "/settings/notifications", heading: "Notisinställningar", empty: null, state: "notification-preferences-real-defaults" },
+        ] as const) {
+          scope.stage(`connected-${destination.code}-entry`);
           const preferencesRead = destination.href === "/settings/notifications" ? page.waitForResponse(response =>
             response.request().method() === "GET" && new URL(response.url()).origin === scope.origin
             && new URL(response.url()).pathname === "/api/notifications/preferences") : undefined;
           await page.goto(destination.href, { waitUntil: "domcontentloaded" });
-          if (preferencesRead) expect((await preferencesRead).status()).toBe(200);
+          if (preferencesRead) {
+            scope.stage(`connected-${destination.code}-response`);
+            expect((await preferencesRead).status()).toBe(200);
+          }
           await expect(page).toHaveURL(url => url.pathname === destination.href);
+          scope.stage(`connected-${destination.code}-identity`);
           await assertOwnedShellIdentity(page, owned, owned.base.adminA.email);
           const main = page.locator("#main-content");
+          scope.stage(`connected-${destination.code}-heading`);
           await expect(main.getByRole("heading", { name: destination.heading, exact: true, level: 1 })).toBeVisible();
+          scope.stage(`connected-${destination.code}-empty-defaults`);
           if (destination.empty) await expect(main.getByText(destination.empty, { exact: true })).toBeVisible();
           else await expect(main.getByRole("group", { name: "Notiskategorier", exact: true })).toBeVisible();
+          scope.stage(`connected-${destination.code}-alert`);
           await expect(main.getByRole("alert")).toHaveCount(0);
+          scope.stage(`connected-${destination.code}-capture`);
           await scope.capture(page, destination.state);
         }
       });
