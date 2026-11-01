@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "subagent": "atdd-api-tests",
+  "story_id": "35-4",
+  "tdd_phase": "RED",
+  "tests": [],
+  "test_count": 0,
+  "fixture_needs": [],
+  "provider_scrutiny": "not-applicable-no-new-or-changed-api",
+  "summary": "No new API or Pact scaffolds: approved presentation-only allocation preserves checked actions and authority. Reuse existing invariant suites without duplicate assertions.",
+  "reused_suites": [
+    {
+      "file": "tests/integration/commands/documents-signed-access.int.test.ts",
+      "status": "source-exists-not-executed",
+      "reason": "Selected link/file signing and denial, no alternate-source fallback"
+    },
+    {
+      "file": "tests/integration/commands/documents-signed-access-lock-races.int.test.ts",
+      "status": "source-exists-not-executed",
+      "reason": "Current source eligibility and signing lock/race authority"
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle.int.test.ts",
+      "status": "source-exists-not-executed",
+      "reason": "Bound archive/restore, idempotency, all-link and transaction behavior"
+    },
+    {
+      "file": "tests/integration/commands/documents-lifecycle-lock-races.int.test.ts",
+      "status": "source-exists-not-executed",
+      "reason": "Archive/restore concurrency and lock invariants"
+    },
+    {
+      "file": "tests/integration/rls/documents-context.rls.test.ts",
+      "status": "source-exists-not-executed",
+      "reason": "Tenant/source context entitlement enforced below presentation"
+    },
+    {
+      "file": "tests/unit/features/documents/preview-state.test.ts",
+      "status": "source-exists-not-executed",
+      "reason": "Late-result identity, expiry and denial URL clearing"
+    },
+    {
+      "file": "tests/unit/server/read-models/job-events.test.ts",
+      "status": "source-exists-not-executed",
+      "reason": "Safe event projection and empty-versus-error read-model semantics"
+    }
+  ],
+  "pact": {
+    "relevant": false,
+    "pact_mcp_reachable": false,
+    "reason": "No service contract introduced; inherited focused design records no available SmartBear tools. No broker call performed."
+  },
+  "playwright_utils": {
+    "configured": true,
+    "package_installed": false,
+    "action": "No generated code or fixture imports; preserve existing project framework."
+  },
+  "checks": [
+    "All seven reused suite paths exist"
+  ],
+  "execution": "No tests, browsers, services, application code or API contracts changed or run",
+  "blockers": []
+}

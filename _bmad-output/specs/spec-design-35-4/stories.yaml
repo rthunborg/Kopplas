@@ -1,0 +1,4 @@
+- id: "35-4"
+  title: "Dialogs Feedback And Selected Files"
+  description: "Implement only individually approved Story 35.4 DT-1c under SPEC.md and source-binding.json: existing Documents presentation and JobEventsPanel representative AuditTrail. Preserve canonical AC/state/test identities, selected-source and lifecycle guards, with exactly four production and two existing test write paths."
+  done_checkpoint: true

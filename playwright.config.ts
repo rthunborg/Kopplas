@@ -27,6 +27,9 @@ import {
 
 const PORT = Number(process.env.E2E_PORT ?? 3100);
 const BASE_URL = `http://127.0.0.1:${PORT}`;
+// The preload owns path/nonce initialization; its setup hook binds the actual
+// fresh server boot to this runner before passing that nonce to test workers.
+const JOB_EVENTS_OWNER_PID = String(process.pid);
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -42,7 +45,7 @@ export default defineConfig({
   reporter: process.env.CI
     ? [["html", { open: "never" }], ["list"], ["./tests/e2e/ci-duration-budget-reporter.ts", { label: "Browser tests", maxMs: 800_000 }], ["json", { outputFile: "test-results/general-browser.json" }]]
     : [["list"]],
-  globalSetup: "./tests/e2e/global-setup.ts",
+  globalSetup: ["./tests/support/job-events-fetch-fault.cjs", "./tests/e2e/global-setup.ts"],
   globalTeardown: "./tests/e2e/global-teardown.ts",
   use: {
     baseURL: BASE_URL,
@@ -59,13 +62,16 @@ export default defineConfig({
     // Invoke Next via `node` + its JS bin (not `pnpm exec`/`npx`): Playwright spawns the
     // webServer through a shell whose PATH may lack the pnpm/npx shims (notably Windows);
     // `node` is always present. NEXT_PUBLIC_* (set below) are inlined at build time.
-    command: `node node_modules/next/dist/bin/next build && node node_modules/next/dist/bin/next start --port ${PORT}`,
+    command: `node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start --port ${PORT}`,
     url: BASE_URL,
     timeout: 240_000,
-    reuseExistingServer: !process.env.CI,
+    // A pre-existing server cannot prove it loaded this run-bound preload.
+    reuseExistingServer: false,
     env: {
       NEXT_PUBLIC_SUPABASE_URL: LOCAL_SUPABASE_URL,
       NEXT_PUBLIC_SUPABASE_ANON_KEY: LOCAL_SUPABASE_ANON_KEY,
+      E2E_JOB_EVENTS_FETCH_FAULT_STARTUP: "true",
+      E2E_JOB_EVENTS_FETCH_FAULT_OWNER_PID: JOB_EVENTS_OWNER_PID,
       // Admin email links must return to this actual production-mode test host.
       // The local Auth redirect allow-list has matching 3000 and 3100 entries.
       NEXT_PUBLIC_APP_URL: BASE_URL,

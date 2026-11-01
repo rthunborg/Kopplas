@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "status": "preparation-only-individual-approval-pending",
+  "base": "783ab53f5de35c252f8264b56cda8d686068efa4",
+  "primaryWrites": false,
+  "incident": "Primary workflow recovery remains open; isolated documentary writes authorized",
+  "imports": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md",
+      "source": "C:/DEV/Kopplas/_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md",
+      "destination": "C:/DEV/K35-4-preparation/_bmad-output/implementation-artifacts/spec-35-4-dialogs-feedback-and-selected-files.md",
+      "sourceRawSHA256": "cf45a9e55d12824979877f81d1045aa000d11a2476de6ab2e69fed577a2e3aba",
+      "destinationRawSHA256": "cf45a9e55d12824979877f81d1045aa000d11a2476de6ab2e69fed577a2e3aba",
+      "sourceUnchangedAfterCopy": true,
+      "authorization": "Coordinator exact-four-import authorization 2026-10-30",
+      "historicalScopeOnly": false
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-4.md",
+      "source": "C:/DEV/Kopplas/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-4.md",
+      "destination": "C:/DEV/K35-4-preparation/_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-4.md",
+      "sourceRawSHA256": "99a3111dc8b3151dd74046caa33c72eadf2bd6c65e70f806f45dde79308a09b7",
+      "destinationRawSHA256": "99a3111dc8b3151dd74046caa33c72eadf2bd6c65e70f806f45dde79308a09b7",
+      "sourceUnchangedAfterCopy": true,
+      "authorization": "Coordinator exact-four-import authorization 2026-10-30",
+      "historicalScopeOnly": false
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/file-and-inheritance-bindings.md",
+      "source": "C:/DEV/Kopplas/_bmad-output/test-artifacts/dt-2026-10-23-test-design/file-and-inheritance-bindings.md",
+      "destination": "C:/DEV/K35-4-preparation/_bmad-output/test-artifacts/dt-2026-10-23-test-design/file-and-inheritance-bindings.md",
+      "sourceRawSHA256": "c733c64fdc2da6ee613143a0e3eaaadec42dca128e007a6c45fdfe012ca76c90",
+      "destinationRawSHA256": "c733c64fdc2da6ee613143a0e3eaaadec42dca128e007a6c45fdfe012ca76c90",
+      "sourceUnchangedAfterCopy": true,
+      "authorization": "Coordinator exact-four-import authorization 2026-10-30",
+      "historicalScopeOnly": true
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/input-identity.json",
+      "source": "C:/DEV/Kopplas/_bmad-output/test-artifacts/dt-2026-10-23-test-design/input-identity.json",
+      "destination": "C:/DEV/K35-4-preparation/_bmad-output/test-artifacts/dt-2026-10-23-test-design/input-identity.json",
+      "sourceRawSHA256": "64c45ca97cb4c412e532b7b711ce0f2b4bc493a0152ea3d8b9ca69412fb05cef",
+      "destinationRawSHA256": "64c45ca97cb4c412e532b7b711ce0f2b4bc493a0152ea3d8b9ca69412fb05cef",
+      "sourceUnchangedAfterCopy": true,
+      "authorization": "Coordinator exact-four-import authorization 2026-10-30",
+      "historicalScopeOnly": true
+    },
+    {
+      "path": "docs/planning/epic-35-preparation-and-concurrency-2026-10-30.md",
+      "source": "C:/DEV/Kopplas/docs/planning/epic-35-preparation-and-concurrency-2026-10-30.md",
+      "destination": "C:/DEV/K35-4-preparation/docs/planning/epic-35-preparation-and-concurrency-2026-10-30.md",
+      "sourceRawSHA256": "1c163b5fc5eab6bf22b43059ba5a0b28b938496ec10874da4847ffa61a9754c7",
+      "destinationRawSHA256": "1c163b5fc5eab6bf22b43059ba5a0b28b938496ec10874da4847ffa61a9754c7",
+      "sourceUnchangedAfterCopy": true,
+      "authorization": "Coordinator explicit fifth-import authorization 2026-10-30",
+      "historicalScopeOnly": false
+    }
+  ],
+  "gitByteVerification": "For each import, git hash-object --no-filters of destination equals staged index blob; exact attributes preserve raw import bytes",
+  "runtimeEvidence": false,
+  "approvalOrAdapterCreated": false
+}

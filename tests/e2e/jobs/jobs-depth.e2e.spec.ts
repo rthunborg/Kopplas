@@ -333,18 +333,25 @@ test.describe("Story 16.1 essential Jobs depth journeys", () => {
       expect(changed.ok).toBe(true);
       const beforeStaleSave = await f.snapshot();
       await expect(sheet.getByTestId("booking-save-error")).toHaveCount(0);
-      const staleSave = page.waitForResponse((reply) => bookingAction(reply, "save", description))
-        .then(async reply => ({reply, body: await reply.text()}));
+      const staleSave = page.waitForResponse((reply) => bookingAction(reply, "save", description));
       const freshPreview = page.waitForResponse((reply) => bookingAction(reply, "preview", description));
       await sheet.getByTestId("booking-save").click();
       const stale = await staleSave;
-      expect(stale.reply.ok()).toBe(true); // Transport only; both wire and visible domain failure follow.
-      expect(stale.body).toContain("PREVIEW_STALE");
+      expect(stale.ok()).toBe(true); // HTTP 200 is transport success, not an accepted stale save.
+      expect(stale.headers()["content-type"]).toContain("text/x-component");
       expect((await freshPreview).ok()).toBe(true);
+      // CDP can discard streamed RSC bodies. This error was absent before Save;
+      // its exact new message and reset review prove the PREVIEW_STALE UI branch.
       await expect(sheet.getByTestId("booking-save-error")).toHaveText(COMMAND_MESSAGES.PREVIEW_STALE);
       await expect(page.getByTestId("booking-save-status")).toHaveCount(0);
       await expect(sheet.getByTestId("booking-review-current-warnings")).not.toBeChecked();
       await expect(sheet.getByTestId("booking-override-reason")).toHaveValue("");
+      await expect(sheet.getByTestId("booking-job")).toHaveValue(f.jobs.editable.id);
+      await expect(sheet.getByTestId("booking-description")).toHaveValue(description);
+      await expect(sheet.getByTestId("booking-start")).toHaveValue("2026-10-12T09:00");
+      await expect(sheet.getByTestId("booking-end")).toHaveValue("2026-10-12T10:00");
+      await expect(sheet.getByTestId("booking-work-role")).toHaveValue(f.roleId);
+      await expect(sheet.getByTestId(`booking-assignee-option-${f.fx.ownProfile.id}`)).toBeChecked();
       expect(await f.snapshot()).toEqual(beforeStaleSave); // includes outcome/conflicts/audit, not only bookings
       await expect(panel).toContainText("Utanför tillträdestid");
       await sheet.getByTestId("booking-review-current-warnings").check();

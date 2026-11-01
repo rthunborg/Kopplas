@@ -1,26 +1,29 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Dialog } from "@/components/crm/Dialog";
 import type { DocumentPreviewState } from "@/features/documents/filters";
 export function DocumentPreviewPane({ state, file, onRefresh, onBack }: { readonly state: DocumentPreviewState; readonly file: { displayName: string; mimeType: string | null } | null; readonly onRefresh: () => void; readonly onBack: () => void }) {
   const back = useRef<HTMLButtonElement>(null);
-  useEffect(() => { if (file) { back.current?.focus(); back.current?.scrollIntoView({ block: "start" }); } }, [file]);
   const signedUrl = state.status === "ready" ? state.signedUrl : null;
   const image = ["image/png", "image/jpeg", "image/webp", "image/gif"].includes(file?.mimeType ?? "");
   const pdf = file?.mimeType === "application/pdf";
   const inlineOpen = image || pdf || file?.mimeType?.startsWith("text/");
   const href = signedUrl && !inlineOpen ? signedUrl + (signedUrl.includes("?") ? "&" : "?") + "download=" + encodeURIComponent(file?.displayName ?? "document") : signedUrl;
-  return <aside data-testid="documents-preview-pane" aria-label="Förhandsvisning" className="min-w-0 rounded-md border border-zinc-200 bg-white p-3">
+  return <Dialog open={!!file} variant="sheet" title="Förhandsvisning" onClose={onBack} initialFocusRef={back}>
+    <aside data-testid="documents-preview-pane" aria-label="Valt dokument" className="min-w-0 space-y-4 text-text-primary">
     {file ? <>
-      <button ref={back} data-testid="documents-preview-back" type="button" onClick={onBack} className="rounded border border-zinc-300 px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-blue-600">Tillbaka till listan</button>
-      <h2 className="my-3 break-words text-lg font-semibold text-zinc-900">{file.displayName}</h2>
+      <button ref={back} data-testid="documents-preview-back" type="button" onClick={onBack} className={previewControl}>Tillbaka till listan</button>
+      <h3 className="break-words text-ds-17 font-medium">{file.displayName}</h3>
       {state.status === "loading" ? <p role="status" data-testid="documents-preview-loading">Öppnar…</p> : null}
-      {state.error ? <p role={state.status === "expired" ? "status" : "alert"} className="my-2 text-sm text-zinc-700">{state.error}</p> : null}
+      {state.error ? <p role={state.status === "expired" ? "status" : "alert"} className={`rounded-control px-4 py-3 text-label ${state.status === "expired" ? "bg-warn-surface text-warn-text" : "bg-risk-surface text-risk-text"}`}>{state.error}</p> : null}
       {signedUrl && (image || pdf) ? <DocumentMedia key={signedUrl} url={signedUrl} name={file.displayName} pdf={pdf} onRetry={onRefresh} /> : null}
-      {href ? <a href={href} download={!inlineOpen ? file.displayName : undefined} target={!inlineOpen ? undefined : "_blank"} rel="noopener noreferrer" className="my-3 block w-fit text-blue-700 underline focus-visible:ring-2">Ladda ned</a> : null}
-      {state.selection?.mode === "active" ? <button type="button" disabled={state.status === "loading"} onClick={onRefresh} className="my-2 rounded border border-zinc-300 px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-blue-600 disabled:opacity-60">{state.retryable ? "Försök igen" : "Förnya åtkomst"}</button> : <p className="text-sm text-zinc-600">Arkiverade dokument visas utan filåtkomst.</p>}
+      {href ? <a href={href} download={!inlineOpen ? file.displayName : undefined} target={!inlineOpen ? undefined : "_blank"} rel="noopener noreferrer" className="flex min-h-11 w-fit items-center rounded-control text-label underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">Ladda ned</a> : null}
+      {state.selection?.mode === "active" ? <button type="button" disabled={state.status === "loading"} onClick={onRefresh} className={previewControl}>{state.retryable ? "Försök igen" : "Förnya åtkomst"}</button> : <p className="text-label text-text-secondary">Arkiverade dokument visas utan filåtkomst.</p>}
     </> : <p className="text-sm text-zinc-600">Välj ett dokument för att förhandsvisa.</p>}
-  </aside>;
+    </aside>
+  </Dialog>;
 }
+const previewControl = "min-h-11 rounded-control border border-border-strong bg-white px-4 py-2 text-label font-medium text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:bg-inset disabled:text-text-disabled";
 function DocumentMedia({ url, name, pdf, onRetry }: { url: string; name: string; pdf: boolean; onRetry: () => void }) {
   const [media, setMedia] = useState<{ status: "loading" | "ready" | "error"; objectUrl?: string }>({ status: "loading" });
   useEffect(() => {
@@ -48,6 +51,6 @@ function DocumentMedia({ url, name, pdf, onRetry }: { url: string; name: string;
   }, [pdf, url]);
   return <>
     {media.status === "loading" ? <p role="status" data-testid="documents-media-loading">Läser in förhandsvisning…</p> : null}
-    {media.status === "error" ? <div data-testid="documents-media-error"><p role="alert">Förhandsvisningen kunde inte läsas in. Försök igen eller ladda ned dokumentet.</p><button type="button" onClick={onRetry} className="rounded border px-3 py-2 text-sm">Försök igen</button></div> : pdf ? media.objectUrl && <iframe title={name} src={media.objectUrl} onError={() => setMedia({ status: "error" })} className="h-96 w-full border-0" /> : <img src={url} alt={name} onLoad={() => setMedia({ status: "ready" })} onError={() => setMedia({ status: "error" })} className="max-h-96 max-w-full object-contain" />}
+    {media.status === "error" ? <div data-testid="documents-media-error" className="space-y-3 rounded-control bg-risk-surface px-4 py-3 text-label text-risk-text"><p role="alert">Förhandsvisningen kunde inte läsas in. Försök igen eller ladda ned dokumentet.</p><button type="button" onClick={onRetry} className={previewControl}>Försök igen</button></div> : pdf ? media.objectUrl && <iframe title={name} src={media.objectUrl} onError={() => setMedia({ status: "error" })} className="h-96 w-full border-0" /> : <img src={url} alt={name} onLoad={() => setMedia({ status: "ready" })} onError={() => setMedia({ status: "error" })} className="max-h-96 max-w-full object-contain" />}
   </>;
 }
