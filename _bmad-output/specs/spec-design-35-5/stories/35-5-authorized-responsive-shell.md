@@ -2,7 +2,7 @@
 title: "Story 35.5: Authorized Responsive Shell"
 type: feature
 created: 2026-11-01
-status: in-review
+status: blocked
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 084bda7cac4315e70a4346d2d0f5549cda6328d6
@@ -215,6 +215,15 @@ Five context-free internal Sol High layers completed. Security returned `No find
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+### Build delegate HALT — blocked capture authorization
+
+Status: blocked. Blocking condition: automatic approval review rejected the new original-capture fixture mutations and strict deletion of owned Auth users because their authorization was conveyed through agent messages, requiring direct trusted human authorization. The rejected code was not applied; no new capture fixture mutation, deletion or original export occurred. No automatic retry or workaround is authorized. The concrete process-only proposal is retained at `../evidence/original-capture-permission-proposal.json`: twelve appended bounded cases, thirty-one frames, ten owned Auth users per case (up to 120 across the twelve new cases), strict deletion before attachment and fixed non-sensitive failure handling. The earlier twenty-nine-frame statement was arithmetic error, not implementation.
+
+Outcome: responsive shell source and its allocated fifteen-case acceptance suite are implemented and independently reviewed. Latest authorized product fix retains phone workspace height through a 4px header row gap; typecheck/lint/current build passed, actual current-gap runtime still pending for root's exact-head checkpoint. Existing test file is unchanged at SHA-256 `6034f59e921692e6ef56455828bd7490d53783421f6111726c0a8652c5a415cd`; product is `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`. Required ordinary PR browser failure from the prior head remains explicitly pending fresh verification; the 96px assertion is unchanged.
+
+Follow-up review recommendation: false (latest single medium patch, score 3; targeted High source/trail confirmation complete). Deferred review findings: 0. Open question: direct owner authorization for the exact rejected capture action; authenticated initial reference/visual acceptance remains a separate later gate after complete current evidence exists. Exhaustive release obligations remain tracked, never passed; release_ready=false. Canonical P6/P7/P8 and root-owned current CI/publication are not claimed complete by this delegate.
+
+Frontend-controller preflight was executed against recorded baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; with the new process receipt still uncommitted it correctly exited 1: “Commit the bounded candidate before claiming revision-bound acceptance; working-tree changes invalidate acceptance.” No completion transition was attempted. The root will verify the final clean candidate and current-head gates before any permission preview. Missing complete authenticated visual acceptance remains a development blocker, not deferred polish or a DONE result.
 ### Current phone-gap candidate and blocked original-capture proposal — 2026-11-01
 
 Status: in-review. The only latest product change is phone header row spacing, independently reviewed and statically built; actual restoration of the inherited 96px phone workspace requirement awaits current-head CI. Existing 15 functional cases remain unchanged. The prior 6f candidate passed all fifteen role cases and 3780 unit tests but failed the ordinary general-browser workspace assertion; it is not a full current-candidate PASS. The new original-capture expansion remains unapplied after the exact automatic-review rejection recorded above. Its concrete permission proposal is twelve cases/thirty-one frames using exclusively owned local synthetic fixtures and strict ten-user Auth deletion before any original attachment. No fixture mutation, deletion or original export was performed by that rejected action. Required current runtime and authenticated complete visual acceptance still block completion. No development-complete, release-ready or owner-reference-acceptance claim.
