@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/K35-5-shell/_bmad-output/specs/spec-design-35-5"
 story_id: 35-5
 branch: codex/story-35-5-responsive-shell
 status: in-progress
-updated_at: "2026-11-01T13:44:53Z"
+updated_at: "2026-11-01T15:28:47Z"
 started_at: "2026-11-01T12:19:57Z"
 completed_at: null
-active_seconds: 1230
-timing_anchor: 1793540693
+active_seconds: 7463
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -44,8 +44,8 @@ completed_phases: [0, 1, 2, 3, 4]
 spec_path: "C:/DEV/K35-5-shell/_bmad-output/specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md"
 spec_approved: true
 build:
-  status: ready-for-dev
-  blocking_condition: null
+  status: blocked
+  blocking_condition: "automatic approval review rejected the new original-capture fixture mutations and strict deletion of owned Auth users because their authorization was conveyed through agent messages, requiring direct trusted human authorization."
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
@@ -60,7 +60,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [6e9cd1d1, 12a707b2, d098533b, 5ab99e6e, d5ace22b, ade43fff]
+commits: [6e9cd1d1, 12a707b2, d098533b, 5ab99e6e, d5ace22b, ade43fff, 084bda7c, 61db68a2, c8628867, f11210f0, 61d21543, 6f2190fa, 05cba5db, b4ab52a2, d7cd490a]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -76,7 +76,7 @@ retro:
   verdict: null
   open_action_items: 0
 bmad_status_flipped_at: null
-pr_url: null
+pr_url: "https://github.com/rthunborg/Kopplas/pull/123"
 ci_run_url: null
 ci_status: unknown
 pr_merged: false
@@ -85,7 +85,9 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "Direct trusted human authorization required for the prepared 12-case/31-frame original visual capture plan, with strictly scoped owned Auth-user deletion before image attachment."
+  - "Complete initial revision-bound visual/reference package and authenticated owner acceptance remain required after authorized captures; no development-complete or review-ready claim."
 overrides:
   individual_story_authorization: Owner approved35.5 exact AppShell and existing role-aware test allocation
   merge_owner: Coordinator01a1160d performs final review and merge
@@ -97,4 +99,8 @@ overrides:
   operative_v2_approval: "2026-11-01 Rasmus explicitly approved exact reviewed state ownership correction via Coordinator01a1160d-b5b1-7623-a8e8-54ef3dc537ed: four Applies duties retired to inherited-only actual source behavior, error-retry retained via mounted SignOutButton"
   resume: "Reuse earned isolation/source/claim/preflight/test-design evidence; planning resumes after bounded actual-delta High confirmation"
   proposal_packet: "assessment393ee844ec828d4d6de7437e5b3e11f9b1b00ea364ea7e5e5810147fa28e2b89;binding697e8b923783723db43c02c0ecf927eba97026cc5ee47787945598276198f1fc;review4771093b3da5a9c5280ca8daafce0494060985880830206e3d69ae4b3cdc9ba0"
+  capture_stop: "Automatic approval rejected the ONE safeguarded appended capture patch because fixture-mutation/deletion authorization was conveyed through agent messages; no patch applied/retry/workaround."
+  native_verification: "Root will verify final committed checkpoint after this blocked report; no current phone-gap runtime PASS is claimed here."
+  publication: "One draft PR123 published as required reviewable visual-controller prerequisite, agent-fix verified; Coordinator retains finalreview/merge."
+  exact_capture_proposal: "12 cases,31 frames,10 newly owned Auth IDs per case (up to120), strict deletion before attachment; prior29 count was corrected arithmetic error, not implementation."
 constraints: []
