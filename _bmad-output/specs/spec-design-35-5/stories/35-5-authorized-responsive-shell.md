@@ -2,11 +2,13 @@
 title: "Story 35.5: Authorized Responsive Shell"
 type: feature
 created: 2026-11-01
-status: draft
+status: blocked
 review_loop_iteration: 0
+warnings: [oversized]
 context:
   - ../SPEC.md
   - ../source-binding.json
+  - ../../../../docs/process/review-order.md
   - ../../../implementation-artifacts/spec-35-5-authorized-responsive-shell.md
   - ../../../test-artifacts/dt-2026-10-23-test-design/slice-35-5.md
 ---
@@ -19,6 +21,112 @@ Implement only presentation in `src/components/app-shell/AppShell.tsx`; tests ma
 
 Current root ownership clearance and source pins are recorded in source-binding.json. Ordinary presentation is Sol Low; new auth, navigation authority, privacy or contract decisions require a recorded distinct Sol High delegate and independent sensitive review. Current development, candidate-bound initial visual acceptance and release responsibility gates remain; release_ready=false. This draft adapter starts no implementation or pipeline phase and grants no merge or deployment authority.
 
+
+## Operative planning contract — 2026-11-01
+
+This section governs this individually approved execution adapter. The canonical historical body below remains verbatim source evidence: its preparation-only status and prospective multi-path lists are historical, not the current allocation. This planning run stops before implementation. **Status: blocked — intent gap: owned state-to-caller binding remains incomplete.** No requirement is dropped or added to force readiness.
+
+<intent-contract>
+
+## Intent
+
+**Problem:** The authenticated shell needs accepted responsive composition while continuing to display exactly the current server-authorized destinations and tenant identity. The approved allocation is presentation in `src/components/app-shell/AppShell.tsx` and assertions in the existing `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts` only.
+
+**Approach:** Compose the received navigation into accessible presentation sections without changing its flattened order, hrefs, labels, icon data or grants. Reuse current semantic tokens, identity/profile/notification/sign-out consumers, protected ordinary links and existing authority regressions. Bind frozen AC/state/test IDs to actual callers before implementation admission.
+
+## Boundaries & Constraints
+
+**Always:** Preserve canonical E35-5-AC1–AC7, E35-5-T-AC1–AC7 and state/test identities and their original Applies/Inherited regression/N/A classifications. Preserve `AppShellContext`, supplied DTO, tenant resolution, live server checks, role landing, session/sign-out, every real destination and downstream protected-input/history decisions. Group only received items into contiguous presentation runs so concatenated links equal the supplied order exactly. Existing server authorization remains decisive after revocation; immediate push removal of stale rendered links is not required.
+
+**Block If:** An owned frozen row has no exact actual caller/trigger/assertion; a necessary behavior needs another production/test path; grouping needs changed authority/order; or execution would require an unsupported fixture, expanded payload or new auth/session/navigation contract. Record the precise bounded amendment needed rather than choosing a policy.
+
+**Never:** Edit any other product/test path, SQL, dependencies, stylesheets, workflows, source packets or source-binding pins. Add client grants, a capability map/fallback, identity selector, endpoint, shell fetch protocol, new pending/Phase C surface, offline queue, new editor/file flow, prototype data or fabricated runtime evidence. Planning performs no implementation, service launch, git mutation, PR, merge or deployment.
+
+## I/O & Edge-Case Matrix
+
+| Scenario | Input / State | Expected output / behavior | Error handling |
+| --- | --- | --- | --- |
+| Authorized navigation | Received role-filtered DTO plus display context | Each supplied destination appears once in original flattened order; tenant label/current route remain visible | Never backfill absent links |
+| Phone drawer | Connected 360×640; keyboard/touch open and close | Named modal drawer traps focus; Escape/explicit close restores trigger; active route is identified | Existing protected route decisions run before history commits |
+| Stale link | Authority revoked after render | Current destination/server denial wins; no privileged stale action succeeds | Generic denial, then fresh authorized projection; no immediate push promise |
+| Missing state binding | Frozen Applies row without actual caller/trigger/assertion | Preserve its identity and classification visibly | Block; do not manufacture API/state/fixture or mark inherited proof as owned coverage |
+
+</intent-contract>
+
+## Code Map
+
+All paths below resolve from `C:/DEV/K35-5-shell`; only the first two are implementation write allocations.
+
+- `src/components/app-shell/AppShell.tsx:31` — display-only context; `NavLinks:44` maps supplied DTO; `AppShell:105` receives resolved context/navigation; `closeDrawer:134`, `handleDrawerNavigate:140`, `onDrawerKeyDown:167` own drawer focus/close/keyboard behavior. Sidebar at 221, topbar at 241, main at 309 and named drawer at 333 are composition points. No request/status/retry/A–B selection API exists in these props.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:22` — existing seller expected order; `logIn:36`; tests at 54/66/81/91/101 preserve exact order, generic denial/no private data, withheld money, customer and quote affordance boundaries. Extend this file; retain existing test identities/assertions.
+- Read-only `src/app/(app)/layout.tsx:54`, `:69`, `:79` — tenant/job admission and supplied DTO; genuine unavailable branch. `src/server/authz/phase-a-surface.ts:11` derives navigation by filtering canonical order. `src/components/app-shell/nav-items.ts:29` remains canonical, read-only.
+- Read-only `src/components/app-shell/RouteAccessBoundary.tsx:21` — entry authority check, with distinct job unavailable/denied at 25–29. This is evidence of an existing seam, not an allocated edit.
+- Read-only `tests/e2e/global-setup.ts:1095` — established administrator/project-manager/finance identities; `:1102` serializes only `roleAware.saljare` and `.montor`. Never assume additional `roleAware` fields. `tests/factories/tenants/core.ts:262` provides isolated five-role fixture plus paired cleanup; revoke an isolated account, never a shared run-wide one.
+- Read-only `tests/e2e/jobs/job-workspace.e2e.spec.ts:418` (`16.5-E03`, cancel/sidebar/history checks at 488–527), `:564` (`16.5-E04`), `:661` (`16.5-E05`) preserve selected-child/draft/late-result regressions. Existing capture-phase anchor guards in `src/components/jobs/JobCardForm.tsx:64–104` must continue to receive ordinary links.
+- Read-only `tests/unit/server/authz/phase-a-surface.test.ts:9` and `tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts:145` — reuse actual authority/matrix/projection regressions; source presence is not execution evidence.
+- Read-only `src/app/globals.css` supplies current semantic color/font/spacing/radius/motion tokens. Accepted DESIGN.md layout at 208 and AppShell row at 234 require 248px sunken desktop sidebar, 56px header, white canvas and 2px ink selected marker. Use existing tokens through shell-local classes; no global edit. EXPERIENCE.md:62 preserves drawer and protected draft behavior.
+
+## Tasks & Acceptance
+
+**Execution, after the blocking contract resolution:**
+
+1. `src/components/app-shell/AppShell.tsx` — compose supplied navigation into labeled presentation sections; preserve flattened DTO order, identity, active marker, notification/profile/settings/sign-out destinations and existing links. Apply current accepted semantic tokens, desktop geometry and responsive shell-local sizing. Keep phone targets at least 44px, overflow labeled, keyboard/visible focus, 16px phone/24px desktop content gutters and reduced motion for actual changed motion. Preserve current medium rail behavior unless a verified screen-level composition choice is recorded.
+2. `src/components/app-shell/AppShell.tsx` — retain named drawer composition, opening focus, Tab wrap, Escape/explicit close/restoration, scroll cleanup and resize behavior. Ordinary route anchors must retain downstream dirty-input interception; avoid premature router/history changes. Do not introduce a new editor or dialog contract.
+3. `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts` — preserve existing assertions; add canonical test IDs to meaningful supplied-order/tenant/active-route, desktop/360×640, focus/close/reflow/target checks and isolated revoke-after-render authority assertions using actual fixture exports. Verify current sign-out behavior without changing session semantics. Reuse unchanged source-owner tests for inherited behavior rather than copying a new suite. Resolve the blocked owned-state matrix before selecting controlled failures/delays.
+4. This id-keyed story — implementation author records actual evidence, source-owner regression reuse with exact revision/counts/skips, and one final author-written Suggested Review Order after implementation. Root owns git, pipeline and publication.
+
+**Acceptance criteria — operative Given/When/Then bindings:**
+
+- **E35-5-AC1 / E35-5-T-AC1:** Given current server-filtered navigation for an established role, when the shell renders at desktop or phone, then grouped flattened destinations equal that DTO in order exactly, with tenant identity, active marker, notifications and real destinations preserved; pending/unbuilt actions remain absent.
+- **E35-5-AC2 / E35-5-T-AC2:** Given the authenticated shell, when keyboard/touch opens and closes the phone drawer, then its name, focus trap, Escape/explicit close and trigger restoration work; desktop uses 248px sidebar/56px topbar, and inherited cancel-protected navigation retains input/selection before history commit.
+- **E35-5-AC3 / E35-5-T-AC3:** Given current tenant/session/role resolution and an isolated rendered stale link, when authority is revoked and navigation attempted, then current server denial wins and fresh projection/role landing remains authoritative; selected-child return and sign-out keep existing semantics with no client identity switch or expanded payload.
+- **E35-5-AC4 / E35-5-T-AC4:** Given actual Swedish fixture identity connected at 360×640 and representative desktop, when the user traverses the bounded shell journey by keyboard/touch with text enlargement, then identity/actions/errors stay reachable, phone targets are at least 44px and overflow is labeled; no layout assertion substitutes for persisted-domain proof.
+- **E35-5-AC5 / E35-5-T-AC5:** Given the actual adapted drawer and affected existing consumers, when focus/close/protected navigation or late results occur, then existing name/trap/restoration and dirty/late guards remain; actual motion respects DESIGN and reduced motion without adding absent dialogs/editors.
+- **E35-5-AC6 / E35-5-T-AC6:** Given each original Applies row's resolved real caller and controlled authoritative outcome, when its trigger executes, then its original state/test identity and honest outcome hold; inherited regressions remain inherited and N/A rows instantiate no feature. This criterion is blocked by the table below, not waived.
+- **E35-5-AC7 / E35-5-T-AC7:** Given unchanged checked authority/domain consumers, when shell presentation and essential regressions run, then current permissions, withheld payload, money/provenance/transaction/file-lock contracts remain and evidence distinguishes development acceptance from separately owned release work; `release_ready=false`.
+
+## Design Notes
+
+Grouping is presentation over the received array; contiguous runs avoid importing a new client grant/route registry or changing canonical order. Shared existing controls may be sized by shell-local wrappers, without editing their owning consumers. No new screen reference or candidate acceptance is implied by the frozen design source.
+
+## Blocking state-to-caller decisions
+
+Distinct context-free assessment `/root/plan/sensitive_contract` used **gpt-6.1-sol / High**, after route/reason were recorded to root before dispatch. Reason: actual auth/navigation authority/privacy/contracts and meaningful revocation/fixture binding. It confirms the two-file presentation allocation is viable, but **readiness is not earned until these owned frozen rows have exact actual caller/trigger/assertion bindings**. This is not proof that expanded production scope is necessary.
+
+| Preserved Applies IDs | Actual seam and unresolved binding |
+| --- | --- |
+| `E35-5-STATE-loading` / `E35-5-T-loading` | AppShell receives resolved props, not an authoritative request lifecycle. Identify a real route/RSC transition with controlled delay and observable retained selected identity; no invented shell fetch API. |
+| `E35-5-STATE-unavailable` / `E35-5-T-unavailable` | Genuine job-admission unavailable feedback/retry exists in layout/RouteAccessBoundary. Confirm this composed caller is the intended owned binding and its exact fixture/trigger; absence of pending links alone is insufficient. |
+| `E35-5-STATE-connection-required` / `E35-5-T-connection-required` | SignOutButton has generic failure/session retention/retry, and NotificationBell has independent read/ack state. Neither observation by itself binds the frozen persistent connection explanation and retry requirement to an owned shell caller. |
+| `E35-5-STATE-error-retry` / `E35-5-T-error-retry` | Bind definite rejection/retry at an actual existing command, preserving that command's independent outcome. Do not invent a shell command or alter sign-out/notification semantics. |
+| `E35-5-STATE-late-result` / `E35-5-T-late-result` | Identify exact owned A/B route/RSC identity and controlled completion ordering; existing job selected-child late-result regression remains inherited and cannot silently replace an owned row. |
+
+`loaded`, `denied`, `revoked` and `focus-dialog` retain their Applies identities and available seams described above. Inherited `dirty-navigation`, `submitting`, `unknown`, `confirmed`, `stale` and N/A `empty`, `no-match`, `validation`, `locked`, plus no owned file command, remain exactly as classified in the canonical body.
+
+**Narrow question for source owner/Coordinator:** Which exact existing composed callers and authoritative triggers bind each unresolved owned row? If a row genuinely needs missing behavior, provide a bounded behavior/path amendment, or explicitly correct the source ownership/requirement. Do not authorize new auth/session behavior or reclassification by inference. Resume when these bindings are recorded and independently assessed at High; no broad census or repeat vote on settled decisions is needed.
+
+## Verification
+
+Planning evidence only: canonical spec SHA-256 `90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b` and test-slice SHA-256 `80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03` were rechecked and match source-binding.json. Root's native git reads (all exit 0) verify clean `codex/story-35-5-responsive-shell` at `d098533bcc54a3edaff5dfdcfdf784b5f0a7c5e9`; this delegate's sandbox git reads could not enter the worktree. No git mutation performed.
+
+Later implementation follows current required CI/completion policy: applicable typecheck/lint/unit/build/lock/audit/containment, full required integration/RLS with `SUPABASE_TEST_REQUIRED=1` and executed/skipped counts, focused allocated browser tests plus unchanged affected inherited regressions, guard-owned production-server 360×640/desktop evidence, independent review (High for sensitive scope), and `node scripts/quality/frontend-controller.mjs local --base <actual-full-recorded-baseline>` before completion. Use the existing completion wrapper for pipeline mutations; no direct helper bypass. Initial candidate-bound visual reference acceptance remains required; no rendered/functional pass exists from this planning run. UI implementation author owns REL-1 follow-up, QA/accessibility owns REL-2, Coordinator owns REL-3 in existing delivery/deferred ledger; exhaustive release work remains unexecuted and `release_ready=false`.
+
+## Spec Change Log
+
+2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
+
+## Review Triage Log
+
+No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
+
+## Auto Run Result
+
+Status: blocked
+Blocking condition: intent gap — five frozen Applies state/test rows lack exact actual owned caller/trigger/assertion binding under the two-file presentation allocation; see Blocking state-to-caller decisions. Halt after planning; implementation not started. No completed-implementation review trail required or manufactured.
+
+## Preserved canonical historical body
+
+The following source body is retained unchanged. Historical relative links resolve from `_bmad-output/implementation-artifacts/`, and historical approval/path/status language is superseded only for this assignment by the operative admission and planning contract above.
 
 # Story 35.5: Authorized Responsive Shell
 

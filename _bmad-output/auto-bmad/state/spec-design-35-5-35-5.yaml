@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/K35-5-shell/_bmad-output/specs/spec-design-35-5"
 story_id: 35-5
 branch: codex/story-35-5-responsive-shell
 status: in-progress
-updated_at: "2026-11-01T12:22:39Z"
+updated_at: "2026-11-01T12:27:18Z"
 started_at: "2026-11-01T12:19:57Z"
 completed_at: null
-active_seconds: 115
-timing_anchor: 1793535713
+active_seconds: 440
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -36,15 +36,15 @@ tea_rationale: Authorization/permissions role-aware navigation and preserved aut
 epic_story_count: 1
 stories_after_in_epic: 0
 completed_phases: [0, 1, 2]
-spec_path: null
+spec_path: "C:/DEV/K35-5-shell/_bmad-output/specs/spec-design-35-5/stories/35-5-authorized-responsive-shell.md"
 spec_approved: false
 build:
-  status: null
-  blocking_condition: null
+  status: blocked
+  blocking_condition: "intent gap — five frozen Applies state/test rows lack exact actual owned caller/trigger/assertion binding under the two-file presentation allocation"
   followup_review_recommended: false
   review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
 hitl_halt: null
 review_unverified: false
@@ -55,7 +55,7 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [6e9cd1d1]
+commits: [6e9cd1d1, 12a707b2, d098533b]
 phase8_steps:
   trace_gate: null
   nfr: null
@@ -80,11 +80,14 @@ merge_commit: null
 branch_deleted: false
 open_questions: []
 deferred_work: []
-blockers: []
+blockers:
+  - "Bind existing caller, trigger and assertion for loading/unavailable/connection-required/error-retry/late-result (AC6), or approve bounded source/scope correction."
 overrides:
   individual_story_authorization: Owner approved35.5 exact AppShell and existing role-aware test allocation
   merge_owner: Coordinator01a1160d performs final review and merge
   reuse_preparation: "Frozen prep and integrated35.4 binding reused; release_ready=false"
   branch: Explicit short owned worktree from fresh origin/main
   renderer_attempt_1: "Blocked before planning: uv temporary interpreter metadata Access denied; no story changes. Resume with bounded renderer require_escalated."
+  renderer_resolution: "Sandbox-local process TEMP/TMP/UV_CACHE_DIR succeeded; elevated uv rejected and not used"
+  coordinator_delivery: "Automatic approval review rejected cross-chat blocker delivery; no retry or indirect workaround"
 constraints: []
