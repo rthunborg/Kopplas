@@ -4,7 +4,7 @@ type: feature
 created: 2026-11-01
 status: in-review
 review_loop_iteration: 0
-followup_review_recommended: true
+followup_review_recommended: false
 baseline_revision: 084bda7cac4315e70a4346d2d0f5549cda6328d6
 warnings: [oversized]
 context:
@@ -142,6 +142,16 @@ Later implementation follows current required CI/completion policy: applicable t
 2026-11-01: Added operative bounded plan and preserved canonical body verbatim. Frozen owned-state binding gap blocks readiness; no acceptance identity/classification changed. Renderer attempt receipts remain in root pipeline history: initial sandbox interpreter metadata failure; elevated request rejected before launch; fresh default-sandbox invocation with workspace-local process TEMP/TMP/cache succeeded exit 0. No global environment change or elevated renderer execution occurred.
 
 ## Review Triage Log
+### 2026-11-01 — Recovered original external finding and targeted fix
+- intent_gap: 0
+- bad_spec: 0
+- patch: 1: (high 0, medium 1, low 0)
+- defer: 0
+- reject: 0
+- addressed_findings:
+  - `[medium]` `[patch]` Shell-local notification anchor sizing preserves actual consumer semantics and makes the real Visa alla target at least 44×44px; existing phone journeys assert its dimensions and any actually mounted item links.
+
+The original external command did save a 1497-byte substantive three-finding result. Matching original input-diff SHA-256 `29d181fb93b8fdeecb733333b9e63285f868dac6fb3a21350141aec344cdb6e2`, expected output path and input/output UTC timestamps support provenance. The wrapper native 1 is preserved; root proved its forward-slash `cmd TYPE` presentation failure with a harmless metadata probe. The saved model output was recovered read-only, never rerun. Two findings were already addressed (popover alignment and real text enlargement); the remaining notification-link target finding is now fixed and independently confirmed at Sol High. This resolves source-result availability; it does not turn the original findings into a No findings verdict or a runtime PASS. The original broad-round count remains one. Follow-up recommendation false for this pass (one medium patch, score 3); earlier recommended targeted follow-ups have been completed. Current product SHA-256 `e3a96ae4f8d2fe632b78a8f14d9105bee8022f0f2336d2e57796ec144a967dc1`; test SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`. Typecheck/lint native 0; root-bridged current product build native 0, compile 1.784s/TypeScript 3.0s/12 static pages. Corrected runtime remains pending; item-link iteration grants no populated-notification coverage when no item is mounted.
 ### 2026-11-01 — Consequential runtime-fix review (same broad round)
 - intent_gap: 0
 - bad_spec: 0
@@ -173,6 +183,9 @@ Five context-free internal Sol High layers completed. Security returned `No find
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+### Current corrected candidate after recovered external finding — 2026-11-01
+
+Status: in-review. Original external result availability is resolved by recovery of its genuine saved output; the wrapper failure remains historical evidence, and no reviewer was rerun. All original substantive source findings and bounded runtime-test fixes have targeted independent High confirmation. Current corrected files are AppShell SHA-256 `e3a96ae4f8d2fe632b78a8f14d9105bee8022f0f2336d2e57796ec144a967dc1` and allocated test SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`. Final typecheck/lint and current product build pass; the author trail resolves 12 verified stops. Latest pass patched one medium finding, score 3, so follow-up recommendation false; earlier targeted follow-up recommendations have been fulfilled. Deferred review findings: 0. Corrected exact-head CI, actual final captures/geometry, inherited browser evidence and authenticated frontend acceptance remain pending. The first 61db dashboard failures and DB results remain candidate-bound historical evidence, not a corrected-candidate PASS. No development-complete or release-ready claim.
 ### Corrected runtime candidate — 2026-11-01
 
 Status: in-review. The first actual hosted dashboard execution at 61db68a28b7ccc9050e92857ef291ca0bd212f0f failed four allocated assertions (dashboard 63 expected/4 unexpected/0 skipped/0 flaky; allocated 11 expected/4 unexpected). Those immutable failures drove three bounded test-only corrections, independently reviewed at Sol High: hidden-control negative-focus selection, exact existing fixture-mutation reuse without the unsupported alias import, and actual local browser Auth origin observation for logout interception. Original five authority tests remain exact. Product source is unchanged, so the settled product build remains applicable; final corrected typecheck/lint are native 0. Corrected runtime, full required CI and frontend acceptance are still pending. Four inline masked PNG bodies were retained by the failed original run, proving transport at that candidate only; they are not final acceptance images. Follow-up recommendation true, three medium patches/score 9, deferred findings 0. No development-complete, release-ready, external-review PASS or final visual claim.
@@ -337,20 +350,28 @@ The High author applied only bounded allocated-suite corrections, with root-appr
 
 Final corrected test SHA-256 is `895ecf076603697d07c4a20441a261ac8491f4c0e9a816dca0bf676b0e089d52`; the High author reports nonincremental project typecheck and focused ESLint native 0, with the original five-case block preserved exactly against `61db`. Current fix runtime count is zero; independent High targeted verification is pending. Product code is unchanged from the settled successful build, so no product rebuild is required for this test-only batch. Actual matcher/query, SDK rejection/session preservation, revocation and resized-focus outcomes must be rerun rather than inferred from static checks.
 
+### Recovered original external-review finding
+
+Root recovered the genuine original external-review output after its wrapper returned native 1. That recovery preserves the failed wrapper receipt and is neither a CLI rerun nor a new broad review round. Its unresolved medium finding identified actual phone NotificationBell anchors below the 44px floor: the existing shell wrapper sized buttons but not `Visa alla` or notification-item links.
+
+The bounded fix changes only that existing AppShell wrapper: descendant anchors now have flex layout, 44px minimum height/width, centered content and visible ink focus. The NotificationBell owner file, requests, item sources, hrefs and handlers remain unchanged. The High author adds actual mounted notification-dialog anchor target assertions at test lines 218–225 in the existing phone journey for both roles before real `Visa alla` navigation: that always-present link is asserted unconditionally, and any actual list-item links receive the same checks, with no fixture/query expansion. Final test SHA-256 is `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`; author and High-author post-fix project typecheck and focused ESLint passed native 0, with the original five tests unchanged. This product-class change invalidates the prior settled build for the current candidate; root's new build and corrected runtime are pending. No passing phone-target outcome is inferred from source or static checks.
+
+Root subsequently reports the final notification-target product rebuild passed native 0: compilation 1.784s, TypeScript 3.0s, 12/12 static pages. This is the current product-source build receipt; no product change followed it. The current corrected candidate still has zero runtime executions. Root additionally reports the old `61db` database lane at 2,163 passed, 52 pending, 0 failed; those pending cases are not coverage, and old database evidence does not convert its dashboard failures or the corrected candidate into a pass. Independent targeted confirmation and candidate commit remain root-owned and pending.
+
 Development completion is blocked pending corrected runtime/integration evidence, independent targeted confirmation, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
 
 ## Suggested Review Order
 
 Author: `/root/build/author` (presentation and trail), with sensitive-test decisions by `/root/build/sensitive_author`.
-Refreshed after the `61db` failed-runtime test-fix batch against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 `895ecf076603697d07c4a20441a261ac8491f4c0e9a816dca0bf676b0e089d52`.
+Refreshed after the recovered-original-review notification-target fix batch against the modified working tree over verified baseline `084bda7cac4315e70a4346d2d0f5549cda6328d6`; current test SHA-256 `5a38888160f800580b4e5ee6896c1203d87b7f54247738991c0e91494fe49d61`.
 
 ### Responsive presentation preserves supplied navigation
 
-Contiguous sections group only received items and retain their original flattened order and ordinary destinations. Existing tokens supply the accepted geometry; utility panels follow the row's `lg` breakpoint, and the minimum-height header grows for actual failure alerts.
+Contiguous sections group only received items and retain their original flattened order and ordinary destinations. Existing tokens supply the accepted geometry; utility panels follow the row's `lg` breakpoint, the header grows for failure alerts, and actual notification anchors gain the same 44px target floor as buttons.
 
 - `src/components/app-shell/AppShell.tsx:82` — `href={item.href}`: preserves the supplied ordinary anchor destination.
 - `src/components/app-shell/AppShell.tsx:263` — `min-h-14`: retains healthy geometry and permits error growth.
-- `src/components/app-shell/AppShell.tsx:298` — `lg:[&_[role=dialog]]:right-0`: aligns notification panels with the utility breakpoint.
+- `src/components/app-shell/AppShell.tsx:298` — `[&_a]:min-h-11`: sizes notification anchors without changing their handlers.
 - `src/components/app-shell/AppShell.tsx:303` — `lg:right-0`: anchors profile to the responsive utility row.
 
 ### Existing drawer and downstream decisions remain decisive
@@ -367,8 +388,8 @@ Reuse the existing named modal lifecycle, focus trap, explicit restoration and r
 AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, target reachability and drawer focus. The High-authored rejection test checks a definite undispatched local Auth failure, fresh server identity, then explicit real retry; its matcher/query and SDK outcomes still need execution.
 
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:131` — `assertNavOrder`: checks complete href order and a single current destination.
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:293` — `E35-5-T-focus-dialog`: binds focus, close, resize and reduced motion.
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:406` — `E35-5-T-revoked`: binds isolated current server authority.
-- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:455` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:302` — `E35-5-T-focus-dialog`: binds focus, close, resize and reduced motion.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:415` — `E35-5-T-revoked`: binds isolated current server authority.
+- `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:464` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
 
 Evidence: the author records 12 passed unit assertions, static checks and root-relayed production build. Root's immutable `61db` runtime receipt records dashboard 63 expected/4 unexpected/0 skipped/flaky, including allocated role suite 11 passed/4 failed/0 skipped. The bounded test fixes below have no runtime evidence yet. Four masked PNGs from that failed candidate establish preliminary transport only, not candidate visual acceptance. The main mask can cover overlapping lower drawer content; the supplementary element crop is not full-viewport evidence. Full integration/RLS, current exact-head CI, independent targeted confirmation and initial visual acceptance remain pending; no development-complete or release-ready claim. Unexecuted source-bound inherited tests are not reported as passed.

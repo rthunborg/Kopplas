@@ -214,6 +214,15 @@ test.describe("Story 35.5 authorized responsive shell", () => {
         const notifications = page.getByRole("dialog", { name: "Notiser", exact: true });
         await expect(notifications).toBeVisible();
         await expect(notifications.getByRole("link", { name: "Visa alla" })).toHaveAttribute("href", "/notifications");
+        if (viewport.name === "phone") {
+          // The always-present destination and any actual delivered item links
+          // must be touch targets; do not manufacture notifications for this check.
+          await assertPhoneTarget(notifications.getByRole("link", { name: "Visa alla", exact: true }));
+          for (const itemLink of await notifications.getByRole("list").getByRole("link").all()) {
+            await itemLink.scrollIntoViewIfNeeded();
+            await assertPhoneTarget(itemLink);
+          }
+        }
         await notifications.getByRole("link", { name: "Visa alla" }).click();
         await expect(page).toHaveURL(url => url.pathname === "/notifications");
         await expect(page.getByRole("main").getByRole("heading", { name: "Notiser", exact: true })).toBeVisible();

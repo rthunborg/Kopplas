@@ -295,7 +295,7 @@ export function AppShell({
                 (login-and-tenant-context.e2e.spec.ts). The `data-slot="primary-action"`
                 attribute is preserved as the owning-module action mount point. */}
             <div data-slot="primary-action" className="relative flex w-full min-w-0 flex-wrap items-center gap-2 lg:w-auto lg:flex-nowrap">
-              <div className="[&_button]:min-h-11 [&_button]:min-w-11 [&_button]:rounded-lg [&_button]:text-text-secondary [&_button]:focus-visible:outline-2 [&_button]:focus-visible:outline-offset-2 [&_button]:focus-visible:outline-ink [&_[role=dialog]]:left-0 [&_[role=dialog]]:right-auto [&_[role=dialog]]:max-w-[calc(100vw-2rem)] lg:[&_[role=dialog]]:left-auto lg:[&_[role=dialog]]:right-0">
+              <div className="[&_button]:min-h-11 [&_button]:min-w-11 [&_button]:rounded-lg [&_button]:text-text-secondary [&_button]:focus-visible:outline-2 [&_button]:focus-visible:outline-offset-2 [&_button]:focus-visible:outline-ink [&_a]:flex [&_a]:min-h-11 [&_a]:min-w-11 [&_a]:items-center [&_a]:rounded-control [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-2 [&_a]:focus-visible:outline-ink [&_[role=dialog]]:left-0 [&_[role=dialog]]:right-auto [&_[role=dialog]]:max-w-[calc(100vw-2rem)] lg:[&_[role=dialog]]:left-auto lg:[&_[role=dialog]]:right-0">
                 <NotificationBell />
               </div>
               <div>
