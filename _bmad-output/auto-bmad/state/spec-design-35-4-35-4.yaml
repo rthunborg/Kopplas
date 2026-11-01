@@ -5,51 +5,59 @@ epic_num: null
 story_num: null
 story_suffix: null
 story_source: stories
-spec_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas\\_bmad-output\\specs\\spec-design-35-4"
+spec_folder: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas-35-4-closeout\\_bmad-output\\specs\\spec-design-35-4"
 story_id: 35-4
 branch: codex/story-35-4-dialogs-feedback-files
-status: in-progress
-updated_at: "2026-10-30T14:52:20Z"
+status: done
+updated_at: "2026-11-01T10:58:28Z"
 started_at: "2026-10-30T10:01:38Z"
-completed_at: null
-active_seconds: 8025
-timing_anchor: 1793367604
+completed_at: "2026-11-01T10:55:00Z"
+active_seconds: 8897
+timing_anchor: null
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
 base_branch: main
-selected_phase: security_layer
-selected_role: security-reviewer
-selected_profile: critical
+selected_phase: followup_review
+selected_role: primary-reviewer
+selected_profile: standard
 selected_model: gpt-6.1-sol
-selected_effort: high
+selected_effort: low
 selected_host: codex
 selected_tier: subagents
 selected_route: subagent
-escalation_reason: "Automatic sensitive-task escalation: security"
+escalation_reason: "Independent consequential review of process-only canonical closeout metadata before its separate PR; no new product/source review round or followup counter increment."
 routing_ledger:
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: security\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary task uses Low effort\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"low\",\"escalation_reason\":\"Retain persisted low effort for the in-flight task\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
   - "{\"effort\":\"high\",\"escalation_reason\":\"Automatic sensitive-task escalation: security\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"security_layer\",\"profile\":\"critical\",\"role\":\"security-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Process-only canonical delivery and evidence reconciliation after merged product; no new implementation or broad code review.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"build\",\"profile\":\"standard\",\"role\":\"build-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Bounded process-only post-dev automation evidence reconciliation; reuse executed tests, no new sensitive implementation or broad audit.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_per_story\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Ordinary process-only reconciliation of existing review receipts; actual sensitive source reviews remain independently recorded Sol High, no new source-review invocation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Targeted named trace gate for selected-file authorization, stale-response and transaction-integrity evidence; reuse actual qualified reports, no new broad review/runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"high\",\"escalation_reason\":\"Bounded named NFR/test-quality assessment includes selected-file authorization and transaction-integrity evidence; reuse qualified sensitive High reviews, no new broad audit/runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"tea_epic_audit\",\"profile\":\"standard\",\"role\":\"tea-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Scoped35.4 release-ledger reconciliation only; preserve195 unrelated entries, no new code verification or sensitive implementation.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"deferred_reconcile\",\"profile\":\"standard\",\"role\":\"deferred-reconciler\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Named headless one-story adapter retrospective using actual merged evidence and explicit advisory/release limits; no new product review/runtime.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"retrospective\",\"profile\":\"default\",\"role\":\"retrospective-delegate\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
+  - "{\"effort\":\"low\",\"escalation_reason\":\"Independent consequential review of process-only canonical closeout metadata before its separate PR; no new product/source review round or followup counter increment.\",\"host\":\"codex\",\"model\":\"gpt-6.1-sol\",\"phase\":\"followup_review\",\"profile\":\"standard\",\"role\":\"primary-reviewer\",\"route\":\"subagent\",\"tier\":\"subagents\"}"
 tea_risk: high
 tea_selected: [atdd, automate]
 tea_rationale: Selected-source authorization and late-result/lifecycle concurrency regression duties
 epic_story_count: 1
 stories_after_in_epic: 0
-completed_phases: [0, 1, 2, 3, 4]
-spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas\\_bmad-output\\specs\\spec-design-35-4\\stories\\35-4-dialogs-feedback-and-selected-files.md"
+completed_phases: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+spec_path: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas-35-4-closeout\\_bmad-output\\specs\\spec-design-35-4\\stories\\35-4-dialogs-feedback-and-selected-files.md"
 spec_approved: true
 build:
-  status: blocked
-  blocking_condition: implementation verification failed
-  followup_review_recommended: true
-  review_loop_iteration: 1
+  status: done
+  blocking_condition: null
+  followup_review_recommended: false
+  review_loop_iteration: 0
   deferred_count: 0
-  warnings: []
+  warnings: [oversized]
 followup_passes: 0
-hitl_halt: null
+hitl_halt: "Reconciled from actual owner visual acceptance and Coordinator integration under standing conditional authority; no new review/halt invocation claimed."
 review_unverified: false
 story_trace: null
 legacy_review_resume: false
@@ -58,44 +66,60 @@ legacy_review_loop_done: false
 legacy_external_review_iterations: null
 legacy_convergence_unverified: false
 legacy_artifact_path: null
-commits: [c431cb5d, 08c7f443, 69fe2e54, fdcb6b5b, c7dca627, 5fe56848, a6aa7c57, 591dc9d3, 39ee18f2, 11abcafb, 9de04c50, "43603298", 959cfbab, ce45a928]
+commits: [c431cb5d, 08c7f443, 69fe2e54, fdcb6b5b, c7dca627, 5fe56848, a6aa7c57, 591dc9d3, 39ee18f2, 11abcafb, 9de04c50, "43603298", 959cfbab, ce45a928, cad0bb23, 80395e99, 9242c43e, 232ceb9d]
 phase8_steps:
-  trace_gate: null
-  nfr: null
-  test_review: null
-  reconcile: null
-  archive: null
-  retro: null
-gate_decision: null
+  trace_gate: done
+  nfr: done
+  test_review: done
+  reconcile: done
+  archive: done
+  retro: done
+gate_decision: PASS
 gate_iterations: 0
 deferred_work_archived: 0
 retro:
-  doc: null
-  verdict: null
-  open_action_items: 0
+  doc: "C:\\Users\\Rasmus\\.codex\\worktrees\\2856\\Kopplas-35-4-closeout\\_bmad-output\\specs\\spec-design-35-4\\RETROSPECTIVE.md"
+  verdict: accepted-with-open-items
+  open_action_items: null
 bmad_status_flipped_at: null
 pr_url: "https://github.com/rthunborg/Kopplas/pull/121"
-ci_run_url: null
-ci_status: unknown
-pr_merged: false
-merge_method: null
-merge_commit: null
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/41296065573"
+ci_status: passed
+pr_merged: true
+merge_method: merge
+merge_commit: 232ceb9d6d17200fcd4e2906b48a51222268f393
 branch_deleted: false
 open_questions: []
-deferred_work: []
-blockers:
-  - Complete projection-loading and EmptyState capture evidence requires successor execution
-  - GitHub PR-head mismatch and prior required-CI dispatch uncertainty
-  - Initial candidate visual acceptance pending
+deferred_work:
+  - "OPEN release: PDF iframe-interior Escape qualification; QA/accessibility owner, Coordinator assigns named person and release candidate."
+  - "OPEN release: nonselected exhaustive visual/device/manual/Dashboard/shared-consumer validation; UI/QA owners, Coordinator schedules exact candidate/results."
+  - "OPEN release: Phase B consolidation and approved performance/NFR measurement; Coordinator assigns owners/targets and obtains release validation/approval."
+blockers: []
 overrides:
   adapter_route: "gpt-6.1-sol low; ordinary one-to-one admission metadata"
   single_story: "35-4 only; no35.5"
-  merge: "Disabled; Coordinator final integration disposition required"
+  merge: "Product merged by Coordinator after exact-head acceptance and all required checks; process closeout authorizes no new product mutation."
   visual: Initial owner acceptance required after production-server rendering
   approval: "Coordinator relayed explicit Rasmus approval for four production and two existing browser-test paths; owner01a18c3f-da26-7ef2-be95-be71569284b7"
   owner_test_amendment: "Human approved bounded test amendment via async reply: controlled persisted empty-history fixture in owned Jobs test; tests/support/job-events-fetch-fault.cjs plus playwright.config.ts startup wiring only, exact fixture safe-projection request, pass-through/no fabricated responses, finally teardown; independent High review required. Production readers/routes unchanged."
+  process_closeout_branch: codex/story-35-4-process-closeout
+  process_closeout_baseline: 232ceb9d6d17200fcd4e2906b48a51222268f393
+  review_evidence_reuse: "Development completion policy permits verified unchanged review reuse. Full review01a18d76 at80395 plus targeted9242 follow-up PASS; distinct High source reviews retained. No new build-auto Phase7 invocation or numeric review-counter increment claimed."
+  timing_qualification: Only historical8025 recordedactive seconds plus supported currentcloseout interval are known. Dangling Oct30 interval discarded as unknown. Auto-rendered elapsed-minus-active idle estimate includes that unknown interval and is NOT validated human/idle duration.
+  product_vs_process_publication: "Canonical P9 facts refer to already integrated productPR121/accepted9242/merge232 and its passed41296065573CI. This docs-only persistence checkpoint has separate protected PRCI/merge requirements, never claimed prospectively passed."
 constraints:
   - "Human async approval: narrow test-only correction in tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts; respect existing montor /my-day login landing then explicitly navigate /dashboard; no product routing/permissions/assertion changes."
   - "Human async approval: modal compatibility in tests/e2e/files/documents-context-navigation.e2e.spec.ts; close preview before background controls, preserve identity/owner/bytes/navigation/filter assertions."
   - "Human async approval: one-setting absolute native JSON output path in tests/e2e/dashboard/playwright.ci.config.ts; preserve workflow/assertions/timeouts/strict upload checks."
   - "Human async approval: add .github/workflows/story-35-4-validation.yml for focused182-test lane; correct remote saveAs and existing installer landing expectations in documents.e2e.spec.ts/documents-context-navigation.e2e.spec.ts. Required CI/assertions/timeouts/product behavior unchanged; independent High review precedes publication."
+  - "Process closeout starts from actual merged main232ceb in isolated worktree. Accepted candidate9242 and merge232ceb share identical tree fa12d2b31ee440111e6b9978d1bdf462c7a2bf4c. Historical blocked state/report at main232ceb remains preserved in Git; operative resolved blockers removed only after actual evidence."
+  - "Dangling Oct30 timing anchor discarded by supported timing-start; recorded8025 active seconds retained, offline interval unknown and not charged."
+  - "Product acceptance owner6556809093 and controller124823596903 plus status passed on9242; required CI41296065573 and focused41296060468 passed; canonical delivery wrapper validated before operative author result reconciliation."
+  - "P7 process reconciliation reuses actual High reviews and original final reviewer targeted9242 PASS. Historical followup_passes0 and source review_loop_iteration0 are retained; last_review_pass remains absent, no review triage counts fabricated. Owner receipt6556809093 and Coordinator actual product integration satisfy existing continuation/merge authority, not a new manual code-review receipt."
+  - "Actual named P8 trace Create steps1-5 completed as bounded one-story adapter reconciliation: AC1-AC7 FULL,7/7,P0 4/4,P1 3/3;97native-passed cases mapped across5files,uncovered0. Artifacts35-4-closeout-traceability.md/gate-decision.json/e2e-trace-summary.json; releaseobligationsremain deferred. No new test/runtime or wholeEpic35claim."
+  - "P8 named NFR advisory completed with CONCERNS for unknown performance thresholds/operational measurements; no required35.4developmentblocker. Named test-review bounded reconciliation completed NOT_SCORED, no fresh numeric score/convention baseline/four-worker audit claimed. H5 >1000-line selected test is unscored maintainability advisory only."
+  - "Scoped ledger reconciliation appended ONLY35.4OPEN release entries195-197. Original195entries and163715-byte Windows checkout prefix preserved exactly(SHAe569361a...), normalizedGitparentmatch. CurrentledgerSHAc3473e1d...; resolved0/archive0 because all3ownedentries OPEN; unrelated195entries untouched."
+  - "Stories-mode pre-retro sprint flip does not exist; bmad_status_flipped_at remains null. P8 is not complete until actual scoped retrospective returns."
+  - "Actual named headless retrospective completed for one-storyspec-design-35-4adapter only; verdictaccepted-with-open-items, pendingstories0; no wholeEpic35/PhaseBcompletion or sprint-statusflip. Five proposed actions remain in scopedRETROSPECTIVE.md; stories-mode scriptedopen_action_itemscount staysnull."
+  - "Canonicalproductpipelinecloseout0-9 is reconciled only after actual guarded delivery/P6reuse/P7reuse/P8tracePASS/advisories/ledger/retrospective. Separate process-only publication is an outer persistence gate; its not-yet-run requiredCI is not represented by product ci_statuspassed. No further product/code/CI/workflow changes authorized here."
+  - "P8 ledgerSHAc3473e1d9fa4f2b829b0da93a72e3948f507bb8d106037a395c6c83e222a3c40 is the pre-format reconciliation snapshot. Final EOF-only whitespace cleanup yields ledgerSHA9005141d5c4edf8fe0264926c501865b1f62402cab9295c865dfe6300e890d48; all retained content/line endings and original163715-byte prefixSHAe569361a... unchanged,198entries/3ownedOPEN unchanged. NFR/test-review EOF cleanup likewise removes only empty ending lines."
