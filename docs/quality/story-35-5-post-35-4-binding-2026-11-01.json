@@ -1,0 +1,852 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-01",
+  "status": "preparation-only-individual-approval-pending",
+  "story": "35.5 Authorized Responsive Shell",
+  "trackingKey": "35-5-authorized-responsive-shell",
+  "preparationHEAD": "3bf808ac10964eac8ea934967040f6d19337fb1b",
+  "historicalProductBase": "783ab53f5de35c252f8264b56cda8d686068efa4",
+  "assessedMain": "232ceb9d6d17200fcd4e2906b48a51222268f393",
+  "predecessorProductPR": 121,
+  "predecessorProductIntegrated": true,
+  "predecessorProcessCloseout": "separate-not-inferred",
+  "historicalPacket": {
+    "path": "docs/quality/story-35-5-admission-2026-10-30.md",
+    "rawSHA256": "d63f8d066cd9deb9d6d2178ca729e2a43f4eca568721fe47daa813090fcca474",
+    "unchanged": true
+  },
+  "frozenSourcePins": [
+    {
+      "path": "_bmad-output/implementation-artifacts/spec-35-5-authorized-responsive-shell.md",
+      "rawSHA256": "90c20699b840d864f62769b6d4f51dce6ac7a77ee460571531ef0eb4ed31988b",
+      "preparationGitBlob": "6d35e4b2ad669d438c9f7df2f6b68cff15474499",
+      "presentAtAssessedMain": false
+    },
+    {
+      "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/slice-35-5.md",
+      "rawSHA256": "80578a8d8522ba2987b9963e6d2a7197b9c1ec9f5787635bfae944f8f6c65a03",
+      "preparationGitBlob": "d96bf98218bde5cd4b6e341827f2f19287555634",
+      "presentAtAssessedMain": false
+    }
+  ],
+  "assessmentEvidence": {
+    "kind": "bounded-read-only-high-assessment",
+    "privateEvidenceSHA256": "ebb9b51d23fc9a2a158a4d3bb48149a4cfa96124d64c63e7322a435903eb1998",
+    "identityMeaning": "gitBlob and gitRawSHA256 identify committed Git bytes, not platform-converted worktree bytes",
+    "identities": [
+      {
+        "path": "src/components/app-shell/AppShell.tsx",
+        "proposedFutureWrite": true,
+        "base": {
+          "gitBlob": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+          "gitRawSHA256": "f71f45a2f76c7a740e5274f591ce57e65f89aba7fc16c079e0a88113e8dac27a",
+          "bytes": 16757
+        },
+        "assessedMain": {
+          "gitBlob": "be0694d06bba6a8cc4df8026d1481f1790ceacf8",
+          "gitRawSHA256": "f71f45a2f76c7a740e5274f591ce57e65f89aba7fc16c079e0a88113e8dac27a",
+          "bytes": 16757
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts",
+        "proposedFutureWrite": true,
+        "base": {
+          "gitBlob": "06566fbfe9478207576346f39671ae4623d637a3",
+          "gitRawSHA256": "93fbd1867de3663d13742a70805b511dff3f1efae9ac29d0ba2494c4266ab978",
+          "bytes": 4767
+        },
+        "assessedMain": {
+          "gitBlob": "06566fbfe9478207576346f39671ae4623d637a3",
+          "gitRawSHA256": "93fbd1867de3663d13742a70805b511dff3f1efae9ac29d0ba2494c4266ab978",
+          "bytes": 4767
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/app-shell/nav-items.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "c78eca586608b70afe6039f2e0f718b871b2878c",
+          "gitRawSHA256": "39c3e0db94de5369fe2f39097fd33386e199736cd20267667107d91beb3fcf6e",
+          "bytes": 6395
+        },
+        "assessedMain": {
+          "gitBlob": "c78eca586608b70afe6039f2e0f718b871b2878c",
+          "gitRawSHA256": "39c3e0db94de5369fe2f39097fd33386e199736cd20267667107d91beb3fcf6e",
+          "bytes": 6395
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/app-shell/SignOutButton.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "b4b3809ff920352af6826b2a7a952d2e2266e0a6",
+          "gitRawSHA256": "cc4b4fab70721c262c7231e95cdd56188a145dea6133c1b5d7b2b18eb7b1db7a",
+          "bytes": 3040
+        },
+        "assessedMain": {
+          "gitBlob": "b4b3809ff920352af6826b2a7a952d2e2266e0a6",
+          "gitRawSHA256": "cc4b4fab70721c262c7231e95cdd56188a145dea6133c1b5d7b2b18eb7b1db7a",
+          "bytes": 3040
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/app-shell/RouteAccessBoundary.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "30473e412c8160df2c7f2a077520451e7967543f",
+          "gitRawSHA256": "358e248918440db1b53668de0a42f4d0e95c8799014dc918d8dabc49967a9f62",
+          "bytes": 1749
+        },
+        "assessedMain": {
+          "gitBlob": "30473e412c8160df2c7f2a077520451e7967543f",
+          "gitRawSHA256": "358e248918440db1b53668de0a42f4d0e95c8799014dc918d8dabc49967a9f62",
+          "bytes": 1749
+        },
+        "changed": false
+      },
+      {
+        "path": "src/app/(app)/layout.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "6a076dafa715218cf6596e4bb495ad9bf6c77e96",
+          "gitRawSHA256": "97352bd2f9082f709fe0a8feb86dc4c9a36ac0b0091a3a5e3f511bff461fae23",
+          "bytes": 4342
+        },
+        "assessedMain": {
+          "gitBlob": "6a076dafa715218cf6596e4bb495ad9bf6c77e96",
+          "gitRawSHA256": "97352bd2f9082f709fe0a8feb86dc4c9a36ac0b0091a3a5e3f511bff461fae23",
+          "bytes": 4342
+        },
+        "changed": false
+      },
+      {
+        "path": "src/server/authz/phase-a-surface.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "b91e8e207ee62b9c3080c0e4c23df30dbc69d930",
+          "gitRawSHA256": "bdefd27b4505893b80f3d5a1a37277e2616a4c952e82dbeeeb15bf9aafb7dd4f",
+          "bytes": 2184
+        },
+        "assessedMain": {
+          "gitBlob": "b91e8e207ee62b9c3080c0e4c23df30dbc69d930",
+          "gitRawSHA256": "bdefd27b4505893b80f3d5a1a37277e2616a4c952e82dbeeeb15bf9aafb7dd4f",
+          "bytes": 2184
+        },
+        "changed": false
+      },
+      {
+        "path": "src/server/auth/resolve-tenant-context.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+          "gitRawSHA256": "767a3ee06e8c309e3069f7a36d61c0c12cbaacd39f849c0c8f5008443c1e9e12",
+          "bytes": 13027
+        },
+        "assessedMain": {
+          "gitBlob": "4a244fb0f70a302d52c5b7d5de2b130ea3875565",
+          "gitRawSHA256": "767a3ee06e8c309e3069f7a36d61c0c12cbaacd39f849c0c8f5008443c1e9e12",
+          "bytes": 13027
+        },
+        "changed": false
+      },
+      {
+        "path": "src/scope/manifest.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "a198edfcc4c2ad09ae276316ca5404974bad7326",
+          "gitRawSHA256": "43ebb65f502c340daa9425639932c7ac799d560e414b00f05fa05446a491da7a",
+          "bytes": 18001
+        },
+        "assessedMain": {
+          "gitBlob": "a198edfcc4c2ad09ae276316ca5404974bad7326",
+          "gitRawSHA256": "43ebb65f502c340daa9425639932c7ac799d560e414b00f05fa05446a491da7a",
+          "bytes": 18001
+        },
+        "changed": false
+      },
+      {
+        "path": "src/scope/widget-registry.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "08ccde15cf9cd6875fca0cddcf835abb2237c430",
+          "gitRawSHA256": "e776fe1675baa24491e252c62780e45f4448919c34293c4ab4ad38f07d696ee2",
+          "bytes": 2160
+        },
+        "assessedMain": {
+          "gitBlob": "08ccde15cf9cd6875fca0cddcf835abb2237c430",
+          "gitRawSHA256": "e776fe1675baa24491e252c62780e45f4448919c34293c4ab4ad38f07d696ee2",
+          "bytes": 2160
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/notifications/NotificationBell.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "c7b3d1a825aacc2fc3ffab20e8d72fec9b5e1a0e",
+          "gitRawSHA256": "4ec0b0f27b3b27d1c7d3b0c756cd396434d44b4107c1e4f1222052ff321af5b6",
+          "bytes": 4609
+        },
+        "assessedMain": {
+          "gitBlob": "c7b3d1a825aacc2fc3ffab20e8d72fec9b5e1a0e",
+          "gitRawSHA256": "4ec0b0f27b3b27d1c7d3b0c756cd396434d44b4107c1e4f1222052ff321af5b6",
+          "bytes": 4609
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/crm/Dialog.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "95689b6ead312e75eed3a3cd5762cc21741a2795",
+          "gitRawSHA256": "afcd7c21b9ce5b5b8a1473ee5b1454668d82e6bdd958cd49bbeeeea33edd742e",
+          "bytes": 7957
+        },
+        "assessedMain": {
+          "gitBlob": "95689b6ead312e75eed3a3cd5762cc21741a2795",
+          "gitRawSHA256": "afcd7c21b9ce5b5b8a1473ee5b1454668d82e6bdd958cd49bbeeeea33edd742e",
+          "bytes": 7957
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/crm/CustomerDialog.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "a6a3fe3b746558c972daac8fbcb318617695a817",
+          "gitRawSHA256": "f1cb3b42d400adb0ba43bf2bcae0c8e5baba981f06ae9ecc4dea906b2cd8ab6f",
+          "bytes": 24238
+        },
+        "assessedMain": {
+          "gitBlob": "a6a3fe3b746558c972daac8fbcb318617695a817",
+          "gitRawSHA256": "f1cb3b42d400adb0ba43bf2bcae0c8e5baba981f06ae9ecc4dea906b2cd8ab6f",
+          "bytes": 24238
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/resources/BookingEditor.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "70cd66329c8bc0230a4ad9fb5ec4f50c66112f00",
+          "gitRawSHA256": "0321627f0fc5496a9ba1d15f8fb135a3f75d4b5a0639ec3489d1a3d40a4bfecf",
+          "bytes": 36761
+        },
+        "assessedMain": {
+          "gitBlob": "70cd66329c8bc0230a4ad9fb5ec4f50c66112f00",
+          "gitRawSHA256": "0321627f0fc5496a9ba1d15f8fb135a3f75d4b5a0639ec3489d1a3d40a4bfecf",
+          "bytes": 36761
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/jobs/JobWorkOrdersPanel.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "507e2cf5ebca0cbed0229013fa32aa9e6a23c92f",
+          "gitRawSHA256": "2dbca221eed988ff27a453335aa17413fc940adb28391440343baa17e7e4bddb",
+          "bytes": 8994
+        },
+        "assessedMain": {
+          "gitBlob": "507e2cf5ebca0cbed0229013fa32aa9e6a23c92f",
+          "gitRawSHA256": "2dbca221eed988ff27a453335aa17413fc940adb28391440343baa17e7e4bddb",
+          "bytes": 8994
+        },
+        "changed": false
+      },
+      {
+        "path": "src/components/documents/DocumentFilters.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "bffb7059ae6c994d831e36dc07e3990ecc94dfcc",
+          "gitRawSHA256": "1c80fcf0b1e332324c3a32decc7bb235802406de2330aa5d68af4e7820468097",
+          "bytes": 26286
+        },
+        "assessedMain": {
+          "gitBlob": "f89da8e7d60b6f776ebff124f18e182a4623d650",
+          "gitRawSHA256": "68532e5686d1677061c73bea1e2682c4ad21f76eb37b8ef5149a0fa535b85d71",
+          "bytes": 29378
+        },
+        "changed": true
+      },
+      {
+        "path": "src/components/documents/DocumentPreviewPane.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "90a65e345f6e3853d69aaaabd7d8e409be4a2112",
+          "gitRawSHA256": "b5ab3e04a9eef6ffc24bee45474469ab86a54ed67f39ed5a98ef3b2457be039a",
+          "bytes": 5347
+        },
+        "assessedMain": {
+          "gitBlob": "6acf0d7a0970d5d2cafb8821071bcc86fae2a1b8",
+          "gitRawSHA256": "2691d334b603abdeb1fd5eb3799a7da757090da3f50339bfb261d573067ec2ca",
+          "bytes": 5736
+        },
+        "changed": true
+      },
+      {
+        "path": "src/components/documents/DocumentLifecycleActions.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "c11a66e7192aa6b60a80f6c01525a51d3d93bf33",
+          "gitRawSHA256": "1652689b67eb94569c8e1ec400d7f6f329adb048c33a38a035a0330932909163",
+          "bytes": 826
+        },
+        "assessedMain": {
+          "gitBlob": "8a0b2f236e69fb434d43a970e355dc4cb9b0c28a",
+          "gitRawSHA256": "5ee05fdeca0d8322c78fb16796f4ec40d1cead7c8ee86751b634d49411cc83fb",
+          "bytes": 1731
+        },
+        "changed": true
+      },
+      {
+        "path": "src/components/jobs/JobEventsPanel.tsx",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "7c010c99a5dcd33b9a3cc234a7d33da3c399ec22",
+          "gitRawSHA256": "91c957488eca0001f23f9cc1614a722d79c599158b17169cbd5b92e547cd4fc6",
+          "bytes": 1638
+        },
+        "assessedMain": {
+          "gitBlob": "abba1d75251d724c3fe3e1e83027ba5a14e4a6e5",
+          "gitRawSHA256": "1f680aaad79d4c1858a1755ddc8463466fcf2a8fbbc8b7250ee79f6fb5c5caa2",
+          "bytes": 2277
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/unit/server/authz/phase-a-surface.test.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "73468af8f68b65bd06d22a5ba40fdca1f3d297ee",
+          "gitRawSHA256": "f0ffaef19ba06b32f6fa674f4feb6f13af504a1b6d8c7a3c8a4bca3a191a5b13",
+          "bytes": 4297
+        },
+        "assessedMain": {
+          "gitBlob": "73468af8f68b65bd06d22a5ba40fdca1f3d297ee",
+          "gitRawSHA256": "f0ffaef19ba06b32f6fa674f4feb6f13af504a1b6d8c7a3c8a4bca3a191a5b13",
+          "bytes": 4297
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/unit/scope/widget-registry.test.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "6ffdeb85b51098d98d0f621a2bb166a82d217801",
+          "gitRawSHA256": "789cef2295f92edf995f6443b957ffa218e706240e9fe44d49c8e0308b4a5893",
+          "bytes": 6135
+        },
+        "assessedMain": {
+          "gitBlob": "6ffdeb85b51098d98d0f621a2bb166a82d217801",
+          "gitRawSHA256": "789cef2295f92edf995f6443b957ffa218e706240e9fe44d49c8e0308b4a5893",
+          "bytes": 6135
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/unit/scope/manifest-coherence.test.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "bd40bbfb8ee9069923753450b5303945dfddfdb6",
+          "gitRawSHA256": "4687e6796282715897e5b9b38127202b7921df15fab946285dcd50a5940d4db2",
+          "bytes": 15750
+        },
+        "assessedMain": {
+          "gitBlob": "bd40bbfb8ee9069923753450b5303945dfddfdb6",
+          "gitRawSHA256": "4687e6796282715897e5b9b38127202b7921df15fab946285dcd50a5940d4db2",
+          "bytes": 15750
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/unit/scope/manifest-derivations.test.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "3299987d56afaf8fc5ed2206e72a3d2b2783c7fa",
+          "gitRawSHA256": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+          "bytes": 8854
+        },
+        "assessedMain": {
+          "gitBlob": "3299987d56afaf8fc5ed2206e72a3d2b2783c7fa",
+          "gitRawSHA256": "b8ba5583be4cc82aefde3357365f3a66e103ec8c39a6b87954afd75a7d3ddd6a",
+          "bytes": 8854
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/unit/guardrails/job-non-scope.test.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "30b158883620d530155acb267b1714e36023af4a",
+          "gitRawSHA256": "d1e5bd39c4d5a79a50fbdc04a4a2e5aa79a47febacf5d5f1422f517ffd11e2b4",
+          "bytes": 7148
+        },
+        "assessedMain": {
+          "gitBlob": "30b158883620d530155acb267b1714e36023af4a",
+          "gitRawSHA256": "d1e5bd39c4d5a79a50fbdc04a4a2e5aa79a47febacf5d5f1422f517ffd11e2b4",
+          "bytes": 7148
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/unit/guardrails/file-index-non-scope.test.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "9117ff965bea4c060dfadcadb2eccea07c2d7847",
+          "gitRawSHA256": "8763306956923cb18c92881afa2bf9e811dac91b886ec048539c6dbc863e77ce",
+          "bytes": 6622
+        },
+        "assessedMain": {
+          "gitBlob": "9117ff965bea4c060dfadcadb2eccea07c2d7847",
+          "gitRawSHA256": "8763306956923cb18c92881afa2bf9e811dac91b886ec048539c6dbc863e77ce",
+          "bytes": 6622
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/integration/rls/role-aware-phase-a-surface.atdd.int.test.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "d2b6971e7e42e176a0cc65d851e95c6e9cc92e6a",
+          "gitRawSHA256": "7989468fd6ea61d4ab6c0e90b1a5927bb56c63d67f3777ece028547ca58cd479",
+          "bytes": 18492
+        },
+        "assessedMain": {
+          "gitBlob": "d2b6971e7e42e176a0cc65d851e95c6e9cc92e6a",
+          "gitRawSHA256": "7989468fd6ea61d4ab6c0e90b1a5927bb56c63d67f3777ece028547ca58cd479",
+          "bytes": 18492
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/e2e/auth/login-and-tenant-context.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "d6ad6538d56e273419d8845e0db43e7b5eb5fafd",
+          "gitRawSHA256": "58f55da82b9ad4701edf10c632e0a00c08aa4434953a10c30d54b2949246c332",
+          "bytes": 24407
+        },
+        "assessedMain": {
+          "gitBlob": "d6ad6538d56e273419d8845e0db43e7b5eb5fafd",
+          "gitRawSHA256": "58f55da82b9ad4701edf10c632e0a00c08aa4434953a10c30d54b2949246c332",
+          "bytes": 24407
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/e2e/crm/customers.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+          "gitRawSHA256": "c8e7b24e10cbf9116695468e8b8cd121ea28fe615a10ae804d448f5e96956d23",
+          "bytes": 66176
+        },
+        "assessedMain": {
+          "gitBlob": "c71fd388cc2258366f3cfebc6c4802b57183bebd",
+          "gitRawSHA256": "c8e7b24e10cbf9116695468e8b8cd121ea28fe615a10ae804d448f5e96956d23",
+          "bytes": 66176
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/e2e/support/active-admin-navigation.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "b4fac9e251cc23c6f7bab9a41231e67e2443a29f",
+          "gitRawSHA256": "c3d585df83dcb428e52555d0a8eaa3296f55692f29df82e3d60ebbb9fc51796f",
+          "bytes": 1129
+        },
+        "assessedMain": {
+          "gitBlob": "b4fac9e251cc23c6f7bab9a41231e67e2443a29f",
+          "gitRawSHA256": "c3d585df83dcb428e52555d0a8eaa3296f55692f29df82e3d60ebbb9fc51796f",
+          "bytes": 1129
+        },
+        "changed": false
+      },
+      {
+        "path": "playwright.config.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "9457ea35425d200d0449fe96308ef9346b18a9a5",
+          "gitRawSHA256": "0e4526efa03be966025de7efce0685dd755863fa8806c91e3f11d7e14b3e1a31",
+          "bytes": 4780
+        },
+        "assessedMain": {
+          "gitBlob": "84e4938d445adde1cc7fbd4b5f422ad6096122bd",
+          "gitRawSHA256": "82d974a9810ab79fc0b841fe2d83c7d341eed129198fa06181d864b989f0ee4d",
+          "bytes": 5271
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/dashboard/playwright.ci.config.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "b0ea764c471b56444f71daa87449842b4d1909d0",
+          "gitRawSHA256": "213d45416043bea2a09e8247a80ef184d7bde829ef1f72395c79a18d7c2c3e08",
+          "bytes": 2578
+        },
+        "assessedMain": {
+          "gitBlob": "5d8122f374512e7c662f2cdd241588531916e85c",
+          "gitRawSHA256": "68a6fca120b9ec3087b7bf711a3df760a6d007422b4237940ac56b0b37f6e6f7",
+          "bytes": 2785
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/dashboard/dashboard-pipeline.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "48e945ead229532b380bb77e3e03698f48290517",
+          "gitRawSHA256": "0fcf0802c9914018a4dd219f9d23e1433a2815afcaaa67385c2a1ac3389c1a0e",
+          "bytes": 36382
+        },
+        "assessedMain": {
+          "gitBlob": "5611a4dab24b194d7d024978d99e2bca2c7f8063",
+          "gitRawSHA256": "3716c18ddde1f07ca60dfffce5b630bd57eb8b4c0a82513bc6f8d6d62258a10a",
+          "bytes": 36690
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/files/documents-context-navigation.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "419d1cf883355a6090fcc856aefbb55f4fd3792d",
+          "gitRawSHA256": "e116703289a3f36074f92f507893c7ade2f224c3afbbe6708a9cde2fdf82df1a",
+          "bytes": 61498
+        },
+        "assessedMain": {
+          "gitBlob": "ec32d476c0eec8f526bb8aaed2a3e302577e8bfe",
+          "gitRawSHA256": "9e8fdfee977189ef6cb32bee7122a057501fd7e66b15d1d95472412ad2175c43",
+          "bytes": 64235
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/files/documents-search-preview-lifecycle.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "707b7958c599e184a2b62cfb26aca4128049e66d",
+          "gitRawSHA256": "5501d3c78262b43b24755471a1522e7efff5329ade933440e7477ffd20e2fff7",
+          "bytes": 91078
+        },
+        "assessedMain": {
+          "gitBlob": "15d60741047896c0785ff112dbbe5fb1e6bfbd40",
+          "gitRawSHA256": "99be7ad10563f33ae9708c5d3066332e9cbe4427689acd1953bb11872e4bb512",
+          "bytes": 115578
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/files/documents.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "3218dc2ee508093f7306266e65294ce553ab8fe3",
+          "gitRawSHA256": "5b12dae7c885ec912c37865e03e309d41e17a11967dacb60723b8aa756fdc67d",
+          "bytes": 40339
+        },
+        "assessedMain": {
+          "gitBlob": "ae08074eafce5b740fe910114c3f557f9fa1c85e",
+          "gitRawSHA256": "6ab6b22378576f7a2fbf2f8663e1d5396a41ba5680982944ab41349b207eefce",
+          "bytes": 40650
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/jobs/job-workspace.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "d8e6e51b8805b58e4cc421bbff2b2e93c6551e65",
+          "gitRawSHA256": "096434ad22f9caa423fb2fa664a9a35edcbdda237e83a8b750763f6ee5ef63e6",
+          "bytes": 45250
+        },
+        "assessedMain": {
+          "gitBlob": "ed05e6e69477d31a4af6746866e390178bbe27dc",
+          "gitRawSHA256": "055bb21e4ddb38dca5413fc1e6e5c309f7cd4051558bca1c8b0fbaf830d1df9b",
+          "bytes": 60370
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/e2e/jobs/jobs-depth.e2e.spec.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "97c65a14e77e6191f34ff559986eacf0fe5a7be7",
+          "gitRawSHA256": "7ff4b6dfac108864267fe6eb4947f5846a461190791dbeafaf3d2ad2b913f306",
+          "bytes": 33667
+        },
+        "assessedMain": {
+          "gitBlob": "d27bc4c84300a8772633e7da7c488aa711169340",
+          "gitRawSHA256": "88cc45544f2f1627be8fe47845e1ffdaef49ffaa42a5231bc276df68ef9018b1",
+          "bytes": 34312
+        },
+        "changed": true
+      },
+      {
+        "path": "tests/support/job-events-fetch-fault.cjs",
+        "proposedFutureWrite": false,
+        "base": null,
+        "assessedMain": {
+          "gitBlob": "5acfd5112615dfe4974a09fec0f73989bfc15dd9",
+          "gitRawSHA256": "6185976d92be72f3a714cdeb92abcb29ad85362041676d83113c89e6c6af6fd6",
+          "bytes": 6800
+        },
+        "changed": true
+      },
+      {
+        "path": ".github/workflows/story-35-4-validation.yml",
+        "proposedFutureWrite": false,
+        "base": null,
+        "assessedMain": {
+          "gitBlob": "972b0c759293db19e1e0230cd6d97944390fc4a4",
+          "gitRawSHA256": "c52aac68b235fcd99197d08b11cc05826342a711331592410e507ced9866e641",
+          "bytes": 14488
+        },
+        "changed": true
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "cecfc6a1d55656bc81c9722bb75156ebd81e5715",
+          "gitRawSHA256": "9c9e10a502092606f039a1dd96728f442290fc12cbdd35095c7180966ce23317",
+          "bytes": 86125
+        },
+        "assessedMain": {
+          "gitBlob": "cecfc6a1d55656bc81c9722bb75156ebd81e5715",
+          "gitRawSHA256": "9c9e10a502092606f039a1dd96728f442290fc12cbdd35095c7180966ce23317",
+          "bytes": 86125
+        },
+        "changed": false
+      },
+      {
+        "path": "scripts/ci/checkpoint-dispatch.mjs",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "gitRawSHA256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+          "bytes": 19492
+        },
+        "assessedMain": {
+          "gitBlob": "157eb1fc5a50591d8ad1bcc308b3f7ff29338528",
+          "gitRawSHA256": "b353ad787983c480e2446bd7cc6976ffeff5027b746c8dea4f72e9e09b27c32f",
+          "bytes": 19492
+        },
+        "changed": false
+      },
+      {
+        "path": "scripts/ci/browser-runtime.mjs",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "5e072009310055a6c8c2d204f1adabc3767be7ff",
+          "gitRawSHA256": "6e458a649d018c0dfff6ca7f536c94e58e6b936eba804e7df032e024b6156d28",
+          "bytes": 7169
+        },
+        "assessedMain": {
+          "gitBlob": "5e072009310055a6c8c2d204f1adabc3767be7ff",
+          "gitRawSHA256": "6e458a649d018c0dfff6ca7f536c94e58e6b936eba804e7df032e024b6156d28",
+          "bytes": 7169
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/support/test-env.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "f30ddbeae604e9a383712edcea04fd2d8f4302cc",
+          "gitRawSHA256": "03d3b8abaf7e7546321b4fa9ed444174fbe8abb27915c26991c6b577a6d515a0",
+          "bytes": 12006
+        },
+        "assessedMain": {
+          "gitBlob": "f30ddbeae604e9a383712edcea04fd2d8f4302cc",
+          "gitRawSHA256": "03d3b8abaf7e7546321b4fa9ed444174fbe8abb27915c26991c6b577a6d515a0",
+          "bytes": 12006
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/e2e/global-setup.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "c2d8568caa99445343dfcf56ae247b64466f3cab",
+          "gitRawSHA256": "a970b722c29d37d87f83e29f33f9a78db0097201920916e5b5c32aa5bcd9705b",
+          "bytes": 58140
+        },
+        "assessedMain": {
+          "gitBlob": "c2d8568caa99445343dfcf56ae247b64466f3cab",
+          "gitRawSHA256": "a970b722c29d37d87f83e29f33f9a78db0097201920916e5b5c32aa5bcd9705b",
+          "bytes": 58140
+        },
+        "changed": false
+      },
+      {
+        "path": "tests/e2e/global-teardown.ts",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "3bff9253ef2cccf31d5ecb448e949163cf935c39",
+          "gitRawSHA256": "874c3f829358bd8df3e4ddc08119cb327a07bb17e215a6523a28a73561226428",
+          "bytes": 3651
+        },
+        "assessedMain": {
+          "gitBlob": "3bff9253ef2cccf31d5ecb448e949163cf935c39",
+          "gitRawSHA256": "874c3f829358bd8df3e4ddc08119cb327a07bb17e215a6523a28a73561226428",
+          "bytes": 3651
+        },
+        "changed": false
+      },
+      {
+        "path": "package.json",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "756a7413549a8cc9dd7f962458a5214c917242ed",
+          "gitRawSHA256": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+          "bytes": 2538
+        },
+        "assessedMain": {
+          "gitBlob": "756a7413549a8cc9dd7f962458a5214c917242ed",
+          "gitRawSHA256": "09ba1a0d2594d4112dd17281d9a1ed39361cc2bae847e8601bf5eecd47ccd66d",
+          "bytes": 2538
+        },
+        "changed": false
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "3c0ae6b01c1853d5478b9d0727bc64dba3eb8a12",
+          "gitRawSHA256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95",
+          "bytes": 162204
+        },
+        "assessedMain": {
+          "gitBlob": "3c0ae6b01c1853d5478b9d0727bc64dba3eb8a12",
+          "gitRawSHA256": "2c0502dba5caf17bb8851a849bb4b85b0039bf5d8da35b965412a6d78e7fee95",
+          "bytes": 162204
+        },
+        "changed": false
+      },
+      {
+        "path": ".nvmrc",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "2bd5a0a98a36cc08ada88b804d3be047e6aa5b8a",
+          "gitRawSHA256": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56",
+          "bytes": 3
+        },
+        "assessedMain": {
+          "gitBlob": "2bd5a0a98a36cc08ada88b804d3be047e6aa5b8a",
+          "gitRawSHA256": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56",
+          "bytes": 3
+        },
+        "changed": false
+      },
+      {
+        "path": "supabase/config.toml",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "1836067cabc316882815b657355b5b10f3eb5d25",
+          "gitRawSHA256": "d58e1f50153f8ce79ef34f17707ef48efaed10497e10c7a738a16c28a7bfd1a7",
+          "bytes": 17739
+        },
+        "assessedMain": {
+          "gitBlob": "1836067cabc316882815b657355b5b10f3eb5d25",
+          "gitRawSHA256": "d58e1f50153f8ce79ef34f17707ef48efaed10497e10c7a738a16c28a7bfd1a7",
+          "bytes": 17739
+        },
+        "changed": false
+      },
+      {
+        "path": "supabase/seed.sql",
+        "proposedFutureWrite": false,
+        "base": {
+          "gitBlob": "3764665adcbcabd21e6857b311eb466d79c3244f",
+          "gitRawSHA256": "a2d6f0ab9a1eb1e507971a0c936fd8f3b318550892ef8120fc41eb0a99c4f389",
+          "bytes": 12710
+        },
+        "assessedMain": {
+          "gitBlob": "3764665adcbcabd21e6857b311eb466d79c3244f",
+          "gitRawSHA256": "a2d6f0ab9a1eb1e507971a0c936fd8f3b318550892ef8120fc41eb0a99c4f389",
+          "bytes": 12710
+        },
+        "changed": false
+      },
+      {
+        "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/input-identity.json",
+        "proposedFutureWrite": false,
+        "base": null,
+        "assessedMain": {
+          "gitBlob": "f9befcd633f34fcf3f5fc296cccb4f54f93e9431",
+          "gitRawSHA256": "64c45ca97cb4c412e532b7b711ce0f2b4bc493a0152ea3d8b9ca69412fb05cef",
+          "bytes": 75149
+        },
+        "changed": true
+      },
+      {
+        "path": "_bmad-output/test-artifacts/dt-2026-10-23-test-design/file-and-inheritance-bindings.md",
+        "proposedFutureWrite": false,
+        "base": null,
+        "assessedMain": {
+          "gitBlob": "8034d2c3b2c0f3aff08d4363c68d17c9e79e94c7",
+          "gitRawSHA256": "c733c64fdc2da6ee613143a0e3eaaadec42dca128e007a6c45fdfe012ca76c90",
+          "bytes": 9478
+        },
+        "changed": true
+      }
+    ],
+    "privateSemanticReportSHA256": "2c02932ff814cb0894c5345f4bca088729b11fc199571c74e17e790dd629eb7f"
+  },
+  "allocation": {
+    "production": [
+      "src/components/app-shell/AppShell.tsx"
+    ],
+    "tests": [
+      "tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts"
+    ],
+    "status": "proposed-future-only-no-current-write-authority",
+    "expansion": "exact-bounded-amendment-required",
+    "authorityAndCanonicalOrder": "read-only",
+    "inheritedConsumers": "read-only"
+  },
+  "savedClaimSnapshot": {
+    "snapshotUTC": "2026-11-01T11:39:59.145649+01:00",
+    "access": "SQLite mode=ro, query_only, read transaction",
+    "savedRuns": 1,
+    "savedRunState": "finalized",
+    "savedClaims": 3,
+    "integratedClaims": 3,
+    "nonintegratedClaims": 0,
+    "exactProposedPathOverlap": false,
+    "sharedPathOverlap": false,
+    "legacyE15PlanningReservationExactOverlap": false,
+    "limits": "Saved registered scope only; no proof that unregistered writers stopped; coordinator owns semantic clearance and admission.",
+    "freshClearanceOwner": "Coordinator",
+    "freshClearance": "pending"
+  },
+  "remainingAdmission": [
+    "Individual human approval of the exact 35.5 packet",
+    "Named implementation and independent review ownership",
+    "Coordinator current claim and impacted E15/shell ownership clearance",
+    "Bind the admitted implementation base to assessed main or inspect any later exact delta",
+    "Candidate-bound initial owner visual acceptance and release responsibilities under existing gates"
+  ],
+  "handoff": "Conditional only after recorded admission: adapt AppShell presentation over supplied server-filtered navigation DTO; preserve canonical authority/order, downstream protected navigation and session contracts; use only allocated existing test path; stop for exact unallocated need.",
+  "individualApproval": "pending",
+  "implementationStarted": false,
+  "adapterCreated": false,
+  "enrollmentStarted": false,
+  "runtimeEvidence": false,
+  "release_ready": false,
+  "primaryWrites": false,
+  "servicesStarted": false,
+  "ciRun": false,
+  "pushPerformed": false,
+  "globalTrackingChanged": false,
+  "deltaConclusion": "No new identified blocker or initial two-path allocation expansion; Dialog/forms and shell authority contracts unchanged; changed inherited selected preview is modal and must close before background/filter actions.",
+  "inheritedTestConfig": "Production build/start retained, fresh next-start preload/nonce and reuseExistingServer=false; narrow local safe projection/job/actor transport fault; dashboard native JSON report path; updated real context/bytes/protected-state browser assertions. Predecessor workflow grants no 35.5 lane or execution credit."
+}
