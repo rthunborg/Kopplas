@@ -1,17 +1,17 @@
 {
   "policy_version": "2026-10-19",
-  "contract_reconciliation": "Same authorized blocked checkpoint, focused test/privacy/evidence repair only, not new broad review/P6. Seven ACs/sixteen state IDs/D1-D5 and frozen suffix preserved. All production/authority/shared/workflow/dependency/root-state sources read-only. Eleven active E35-6 source cases; expected98PNGs(92qualifying6supplemental), explicit72qualifying native attachment selection in current story <=80. No actual local captures/runtime(0executed0skipped), no done/helper/gate retry. Current targeted independent High review and actual exact-head authenticated runtime/visual/integration/RLS/recovery/storage evidence remain pending. Three release obligations deferred. Targeted High review of0c1a identified1medium missing post-resize target validation; fixed within existing helper/calls by explicitsemantic Locator targets and full per-qualifying-viewport in-view assertions. Not a new broad round2; historicalscore9/followuptrue/deferredreview[] retained. Expected98/selected72attachment names unchanged; same reviewer consequentialdelta pending.",
-  "evidence_revision": "0c1a78e31fd6bb2b245d3088e9e30fd82edbdedc plus final uncommitted targeted capture-repair fix; production source unchanged; current source/test hashes recorded below",
+  "contract_reconciliation": "Same authorized blocked checkpoint, focused capture-test/evidence repair baseline d369 to targeted0c1a finding to fixed clean-reviewed1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b. Current test evidence_revision is1a3; production unchanged reviewed9bb. Same independent SolHigh consequential delta/trail reviewer returned exactly No findings at1a3; capture-repair code review passed. Seven ACs/sixteen states/D1-D5/frozen suffix retained. Current runtime0executed0skipped/actualimages0;98sourcePNG/72package are plans. Existing real list-error/malformed-detail proof gaps, P6/follow-up, authenticatedvisual/current-headCI/requiredintegrationRLSrecoverystorage and completion remain pending. Storyblocked/followuptrue/historicalscore9/deferredreview[]/3releaseobligationsdeferred, no done/release claim.",
+  "evidence_revision": "1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b",
   "development_checks": [
     {
       "name": "typecheck",
       "status": "passed",
-      "evidence": "Post-target-binding-fix pnpm typecheck exit0 on0c1a plus final uncommitted test delta."
+      "evidence": "Post-target-binding-fix pnpm typecheck exit0 on final test source committed at1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b; this reconciliation docs-only."
     },
     {
       "name": "lint",
       "status": "passed",
-      "evidence": "Post-target-binding-fix pnpm exec eslint tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings."
+      "evidence": "Post-target-binding-fix pnpm exec eslint tests/e2e/crm/customers.e2e.spec.ts exit0 no warnings on final test source committed1a3; this reconciliation docs-only."
     },
     {
       "name": "build and bundle containment",
@@ -50,8 +50,8 @@
     }
   ],
   "independent_review": {
-    "status": "pending",
-    "evidence": "Prior six SolHigh Round1 routes at d42 and clean targeted independent High delta/trail review at9bb passed for their reviewed code (3mediumfixed,score9,deferred[]). Current focused capture-test/metadata/privacy/evidence delta on d369 requires targeted independent SolHigh review; no new broad review/P6. Production unchanged. Prior approval is not new test-delta review or runtime/visual acceptance. TargetedHigh0c1a capture review accepted1medium post-resize off-screen target finding; helper/call fix applied, consequential delta+trail pending same High reviewer. Not a new broad review round2."
+    "status": "passed",
+    "evidence": "Primary six SolHigh Round1 layers d42 and 3mediumfixed/clean9bb delta/trail remain historical reviewed production evidence. Focused capture-test repair baseline d369; independent SolHigh targeted review of0c1a identified1medium missing per-viewport semantic target visibility. Fixed helper/calls committed at1a3a4a7ec8a09672d47d2dca44d6c8a9c408625b. Same independent SolHigh consequential delta+refreshed trail review at1a3 returned exactly No findings. Current capture-repair code review passed; not new broad round2/P6, no runtime/visual/development-complete proof. Final actual source typecheck/focusedlint passed; author16refs and reviewer trail confirmation retained. P6/follow-up/actualvisual/current-headCI remain pending."
   },
   "deferred_release_validation": [
     {
