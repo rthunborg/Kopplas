@@ -501,7 +501,7 @@ test.describe("35.3 customer records acceptance (active RED, configured Chromium
     await page.getByLabel("Sök kund").fill("35.3-no-match");
     await expect(page.getByTestId("customers-no-results")).toBeVisible();
     await expect(page.getByLabel("Sök kund")).toHaveValue("35.3-no-match");
-    await captureRecordState(page,"customers-no-match", [page.getByTestId("customers-no-results")], ["no-match"]);
+    await captureRecordState(page,"customers-no-match", [page.getByTestId("customers-no-results").getByText("Inga träffar", { exact: true }), page.getByTestId("customers-no-results").getByText("Ingen kund matchar din sökning eller ditt filter. Justera och försök igen.", { exact: true })], ["no-match"]);
     await page.getByRole("button", { name: /återställ/i }).click();
     await expect(selectCompany).toBeChecked();
     await table.getByRole("link", { name: fixture.crm.company.displayName, exact: true }).click();
