@@ -383,6 +383,97 @@
       "dispatch_status": "completedbothactualFIX_CONFIRMED",
       "author_stopped": true,
       "holds": "DCL/newphysicaltargetdelete HOLD;prod27unchanged"
+    },
+    {
+      "phase": "Allowed normal-edit historical-current-newer capture follow-up",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T16:59:16.8697954Z",
+      "base_checkpoint": "4d46b29a87d29b5a31ec08cf2d65a164d3f640c7",
+      "authority": "Root latest clarification: do not hold normal current-newer UI scenario if nonprivileged normal real edit can make it after current review; no new user question for allocated nonprivileged work.",
+      "scope": "Same author existing two E2E files only, normal authenticated checked API edits plus legitimate same mounted receipt/current-read refresh, preserve all old asserts and four neighbor guard frames. PROD27 frozen. No opaque state injection, DCL or NEWphysicaltargetdelete.",
+      "dispatch_status": "recorded-before-same-author-handoff",
+      "method_holds": "DCL/NEWtargetdelete still pending explicit human; ONEtargetdelete totalperqualifiedCIjob including retries and bothviewports same mountedreceipt; not authorized by this note.",
+      "no_child_push_CI": true
+    },
+    {
+      "phase": "Current-newer phone original scrolled supplement correction",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T17:05:31.8538923Z",
+      "scope": "Same author existing pricingE2E only: reuse phone price supplement for current-newer, assert actual current41 visible in primary overview and retained31 visible in original scrolled supplement. Preserve old idle neighbor guard/all178oldexpects/fourneighborframes. Production27/package/settingsE2E/canonical9 unchanged; no privileged methods.",
+      "dispatch_status": "recorded-before-same-author-handoff",
+      "holds": "All DCL/newphysicaltargetdelete still pendingactualhuman; no authority by geometry/capture instruction.",
+      "no_runtime_credit": true
+    },
+    {
+      "phase": "Human-authorized bounded CI fault/deletion fixture implementation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T17:09:33.5535248Z",
+      "scope": "Same existing author, ONLY two allocated E2Es and operative metadata; finish current-newer phone then implement four one-at-a-time DCL cycles and ONE TOTAL job deletion after receipt. All strong ownership, ACL exact restore, persisted failclosed retry/deletion budget conditions apply. Production27/canonical9/package unchanged.",
+      "approval_record": "ci-bounded-method-owner-approval.json",
+      "dispatch_status": "actual same existing SolHigh author dispatched; source-only implementation running, no local target queries/resources/CI",
+      "no_child_CI_or_push": true,
+      "independent_High_review_before_runtime": true,
+      "implementation_author_task": "/root/producer_build/implementation_author"
+    },
+    {
+      "phase": "Independent targeted bounded CI method and current-newer phone confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T17:26:17.7336247Z",
+      "author_stopped": true,
+      "freeze": "author-bounded-method-frozen-checkpoint.json",
+      "freeze_sha256": "3a13423a89ef748679d6d5ba8fb93cb84482ee473d4394cf058561107f34cb47",
+      "source48_inventory_sha256": "b8fbb8a125454be54ad3c33e33d2e5072b3acb5ee696fca85e540f30089c6c67",
+      "pricing_sha256": "62ceb901b91bbbf2f274e9cd170d73629f756bb7ec867e6c8410218d30ba9b2e",
+      "diff_sha256": "050f2dfaa8ee28bd4072d0716bbc33c2961c0424f3f0ed006fc1ef10cf835b0f",
+      "scope": [
+        {
+          "task": "/root/producer_build/review_r1_verification",
+          "responsibility": "Read-only targeted new CI method source/risk: human-authorized bounds, actual wrapper/exclusive ownership identity, durable one-total budget and no damaged retry, complete ACL preflight/exact restore and ordinary read, deletion tenant/actor/revision/receipt/unreferenced guard, scenario plus cleanup errors. Verify actual pins/prod27/canonical9 and no runtime claim; assess concrete provisional <=80 selection/equivalence map with source anchors, no broad old-source audit."
+        },
+        {
+          "task": "/root/producer_build/review_r1_edges",
+          "responsibility": "Read-only targeted actual caller/state/capture definitions: appended current-newer after old idle neighbor flow, visible41/31 phone frames, new unavailable/missing/pending case real UI paths/held transports/viewport representativeness and assertion preservation/time budget. Source review only, no runtime/images/provider acceptance; cooperate on concrete provisional <=80 equivalent-frame map, preserve distinct states and all raw definitions."
+        }
+      ],
+      "dispatch_status": "recorded-before-existing-reviewer-followups",
+      "broad_round_count": 1,
+      "runtime_credit": 0,
+      "no_tests_writes_resources_CI": true
+    },
+    {
+      "phase": "Same-author targeted transport settlement fix and final metadata reconciliation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T17:31:25.266723Z",
+      "scope": "Only confirmed latest P-E5 held Request settlement on failure paths; preserve scenario/cleanup errors and exact bounded authority. Author may minimally anchor current-newer phone capture to actual current41/receipt region without changing flows. Then bounded truthful operative metadata/SRO/explicit staging list/source48 pins; all CI/images/visual/Step5 remain unearned.",
+      "review_receipt": "bounded-method-targeted-review-results.json",
+      "no_new_broad_audit": true,
+      "no_tests_resources_DB_CI_push": true,
+      "dispatch_status": "recorded-before-same-author-followup"
+    },
+    {
+      "phase": "Independent targeted fix-only settlement and framing confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T17:36:13.3419285Z",
+      "author_stopped": true,
+      "freeze": "author-bounded-method-fix-frozen-checkpoint.json",
+      "freeze_sha256": "02ec728024b7d0d12544e2b892be6ac6e8c2dc00fd36d5e0cc051949212fcf40",
+      "source48_inventory_sha256": "bce0ead5ca8d125e0fe00a97d87e91f9cd2761b309201e0bc40855c4fe980e8f",
+      "pricing_sha256": "e89255caeb8d83f4e161175805c8bfb6f4d2af04164061bb56c38115c46ffcf4",
+      "pricing_git_blob": "3d71fd052843b32610d9dd4c075a5e1cf8ccb252",
+      "reviewers": [
+        "/root/producer_build/review_r1_verification",
+        "/root/producer_build/review_r1_edges"
+      ],
+      "scope": "Only latest settlement/anchor regressions and unresolved consequential finding; verify exact frozen pins and truthful metadata/provisional79 map; no unchanged broad source or design review",
+      "dispatch_status": "actual both existing High reviewers completed FIX_CONFIRMED; no findings; source-only no runtime acceptance",
+      "broad_round_count": 1,
+      "no_runtime_credit": true
     }
   ],
   "implementation_author_dispatched": true,
