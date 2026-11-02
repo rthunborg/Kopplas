@@ -106,7 +106,7 @@ export const SCOPE_MANIFEST: ScopeManifest = {
       activatedAt: PHASE_A.E3,
       // work_roles/articles (pricing) live under the /settings/pricing sub-route → the settings module.
       navItems: [{ route: "/settings", group: "secondary", requiredCapability: "CompanySettings.View" }],
-      tenantTables: ["company_settings", "quote_terms", "work_roles", "articles"],
+      tenantTables: ["company_settings", "quote_terms", "work_roles", "articles", "settings_pricing_operations"],
       widgets: [],
       notificationCategories: [],
       publicSurfaces: [],

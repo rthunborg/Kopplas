@@ -1,0 +1,26 @@
+{
+  "task_id": "35.7-P",
+  "phase": "frozen source checkpoint implementation review",
+  "round": 1,
+  "round_cap": 3,
+  "status": "pre-dispatch",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "independent_from_author": true,
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "source_checkpoint_digest_sha256": "16c353e37912ed6f50b9a723f2ff092dede95bdba0e6bc1564261932997660db",
+  "frozen_manifest_sha256": "a569553247ae7bbb98b73010ba878d1bb2bbaae20e1914f5848319accd1ff90d",
+  "author_writes_stopped": true,
+  "known_readiness_blockers": [
+    "six unapproved fixture/metadata paths (all unchanged)",
+    "typecheck/build soleTS2741 at current checkpoint",
+    "fullunit3794total3781pass12fail1skip is failedprogressrun; baselineonly2failreproduction is notcandidatePASS",
+    "DBRLS82collected0executed/browser0/captures0",
+    "hostedCI/currentexactcandidatevisualacceptance outstanding"
+  ],
+  "review_route": "Build resolved3layer review, explicit Root-authorized sourcecheckpoint while Build remainsin-progress. No done/statusadvance to force review. No skill/source context reauthoring.",
+  "project_overrides": "Only concrete introduced productionreachable defects; check downstreamvalidators/constraints/locks before missingguard report; no forced10findings/no5loops; deterministicCIshape checks not findings; source/runtimeevidence limits explicit.",
+  "local_wip_commit_authorized_by": "Explicit Root taskinstruction before readonly source review; no push/PR/merge/deploy",
+  "runtime_resources_required_for_review": false,
+  "created_at_utc": "2026-11-02T12:53:36.484937+00:00"
+}

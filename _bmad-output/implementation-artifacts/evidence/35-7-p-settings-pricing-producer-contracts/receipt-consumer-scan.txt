@@ -1,0 +1,473 @@
+tests\unit\docs\sign-off-register-validators.test.ts:41: * validator's live-source discipline (TENANT_TABLES + ReadinessCode loaded live).
+tests\unit\docs\migration-runbook-validators.test.ts:31: * (`tests/integration/rls/tenant-table-inventory.ts` `TENANT_TABLES`) — never a hardcoded list —
+tests\unit\docs\migration-runbook-validators.test.ts:38: *  tenant-table-inventory.ts (TENANT_TABLES); src/features/calculations/readiness.ts
+tests\unit\docs\migration-runbook-validators.test.ts:86:  )) as { TENANT_TABLES: ReadonlyArray<{ table: string } | string> };
+tests\unit\docs\migration-runbook-validators.test.ts:87:  return mod.TENANT_TABLES.map((t) => (typeof t === "string" ? t : t.table));
+tests\unit\docs\migration-runbook-validators.test.ts:139:test("9.1-CLASS-01 (D2): every LIVE-bucket target table is one of the 24 real TENANT_TABLES (no live group exceeds the Phase A boundary)", async () => {
+tests\unit\docs\acceptance-gate-report-validators.test.ts:52: *  (24 TENANT_TABLES); docs/migration/pilot-fallback-cutover.md §4 (sign-off register);
+tests\unit\docs\acceptance-gate-report-validators.test.ts:172:  )) as { TENANT_TABLES: readonly string[] };
+tests\unit\docs\acceptance-gate-report-validators.test.ts:173:  return mod.TENANT_TABLES;
+tests\unit\lib\snapshots\dispatch.test.ts:88:  test("[P0] company_settings routes to buildCompanySettingsSnapshot", () => {
+tests\unit\lib\snapshots\dispatch.test.ts:89:    const viaDispatch = buildSnapshotSource("company_settings", companySettingsRow, { capturedAt: CAPTURED_AT });
+tests\unit\lib\snapshots\dispatch.test.ts:91:    assert.equal(viaDispatch.kind, "company_settings");
+tests\unit\lib\snapshots\dispatch.test.ts:96:  test("[P0] quote_terms routes to buildQuoteTermsSnapshot", () => {
+tests\unit\lib\snapshots\dispatch.test.ts:97:    const viaDispatch = buildSnapshotSource("quote_terms", quoteTermsRow, { capturedAt: CAPTURED_AT });
+tests\unit\lib\snapshots\dispatch.test.ts:99:    assert.equal(viaDispatch.kind, "quote_terms");
+tests\unit\lib\snapshots\build.test.ts:21: *   company_settings: vatRateBp (basis points), defaultVatDisplay (+ optional
+tests\unit\lib\snapshots\build.test.ts:23: *   quote_terms:      termsText, approvedAt|null (AS-IS), approvedBy|null
+tests\unit\lib\snapshots\build.test.ts:163:    assert.equal(snap.kind, "company_settings");
+tests\unit\lib\snapshots\build.test.ts:177:  test("[P0] company_settings null company_name stays null (minimal optional identity)", () => {
+tests\unit\lib\snapshots\build.test.ts:206:    assert.equal(snapNot.kind, "quote_terms");
+tests\unit\lib\snapshots\build.test.ts:371:  // invariant must hold identically for article / company_settings / quote_terms.
+tests\unit\lib\snapshots\build.test.ts:427:  test("[P0] company_settings: mutating the source AFTER build does NOT change the prior snapshot (copy-by-value)", () => {
+tests\unit\lib\snapshots\build.test.ts:455:  test("[P0] quote_terms: mutating the source AFTER build does NOT change the prior snapshot (copy-by-value)", () => {
+tests\unit\server\snapshots\resolve-source.test.ts:71:  work_role: "work_roles",
+tests\unit\server\snapshots\resolve-source.test.ts:72:  article: "articles",
+tests\unit\server\snapshots\resolve-source.test.ts:73:  company_settings: "company_settings",
+tests\unit\server\snapshots\resolve-source.test.ts:74:  quote_terms: "quote_terms",
+tests\unit\server\snapshots\resolve-source.test.ts:99:    const result = await resolveSnapshotSource({ client, kind: "company_settings", sourceId: "x" });
+tests\unit\server\snapshots\resolve-source.test.ts:109:    const result = await resolveSnapshotSource({ client, kind: "quote_terms", sourceId: "x" });
+tests\unit\server\bookings\series-plan.test.ts:182:    maybeSingle:async()=>{queries.push({table,filters});return{data:table==="work_roles"&&filters.tenant_id===tenant&&roles.has(filters.id!)?{id:filters.id,is_active:roles.get(filters.id!)}:null,error:null};}};return query;},
+tests\unit\server\bookings\series-plan.test.ts:233:  assert.ok(h.queries.some(q=>q.table==="work_roles"&&q.filters.tenant_id&&q.filters.id===h.role));
+tests\unit\server\bookings\series-plan.test.ts:273:    assert.ok(h.queries.some(q=>q.table==="work_roles"&&q.filters.tenant_id&&q.filters.id===h.role),"existing tenant role was read through the cookie-RLS port");
+tests\unit\scope\manifest-derivations.test.ts:43:const PINNED_TENANT_TABLES = [
+tests\unit\scope\manifest-derivations.test.ts:51:  "company_settings",
+tests\unit\scope\manifest-derivations.test.ts:52:  "quote_terms",
+tests\unit\scope\manifest-derivations.test.ts:53:  "work_roles",
+tests\unit\scope\manifest-derivations.test.ts:54:  "articles",
+tests\unit\scope\manifest-derivations.test.ts:75:  "job_required_work_roles",
+tests\unit\scope\manifest-derivations.test.ts:162:test("14.2-UNIT-DERIVE-05: TENANT_TABLES derives as the union of active modules' tenantTables == the pinned 58", async () => {
+tests\unit\scope\manifest-derivations.test.ts:173:    sortedUnique(PINNED_TENANT_TABLES),
+tests\unit\lib\money\vat.test.ts:273:    // A minimal mutable VAT source (mirrors the company_settings VAT half: rate + display mode).
+tests\unit\scope\manifest-shape.test.ts:48:const PINNED_TENANT_TABLES = [
+tests\unit\scope\manifest-shape.test.ts:56:  "company_settings",
+tests\unit\scope\manifest-shape.test.ts:57:  "quote_terms",
+tests\unit\scope\manifest-shape.test.ts:58:  "work_roles",
+tests\unit\scope\manifest-shape.test.ts:59:  "articles",
+tests\unit\scope\manifest-shape.test.ts:83:  "job_required_work_roles",
+tests\unit\scope\manifest-shape.test.ts:182:  assert.deepEqual(sortedUnique(tables), sortedUnique(PINNED_TENANT_TABLES));
+tests\unit\rls\inventory-gate-core.test.ts:163:  // And it surfaces as unenrolled until added to TENANT_TABLES.
+tests\unit\lib\money\tax.test.ts:29: *       `approved`. Mirrors the Epic 3 `quote_terms.approved_at` structural discipline.
+tests\factories\tenants\crm.ts:152:// `company_settings`/`quote_terms` rows via the loopback-gated superuser `pg` pool
+tests\factories\tenants\crm.ts:161: * Seed ONE `company_settings` row via the privileged superuser pg path (BYPASSRLS).
+tests\factories\tenants\crm.ts:175:      `insert into public.company_settings
+tests\factories\tenants\crm.ts:195: * Seed ONE `quote_terms` row via the privileged superuser pg path (BYPASSRLS).
+tests\factories\tenants\crm.ts:205:      `insert into public.quote_terms (tenant_id, terms_text)
+tests\factories\tenants\crm.ts:226:  table: "company_settings" | "quote_terms",
+tests\factories\tenants\crm.ts:240:// `work_roles`/`articles` rows via the loopback-gated superuser `pg` pool (BYPASSRLS)
+tests\factories\tenants\crm.ts:250: * Seed ONE `work_roles` row via the privileged superuser pg path (BYPASSRLS). Returns
+tests\factories\tenants\crm.ts:264:      `insert into public.work_roles
+tests\factories\tenants\crm.ts:284: * Seed ONE `articles` row via the privileged superuser pg path (BYPASSRLS). Returns the
+tests\factories\tenants\crm.ts:295:      `insert into public.articles (tenant_id, name, unit_price_ore)
+tests\factories\tenants\crm.ts:317: * closed/inventory-supplied set (work_roles.display_name / articles.name), never client
+tests\factories\tenants\crm.ts:321:  table: "work_roles" | "articles",
+tests\support\booking-conflicts-atdd.ts:132:    lockSql = "select id from public.work_roles where id=$1 for update"; lockParams = [workRoleId];
+tests\support\calendar-feed-atdd.ts:135:  editProjectedSource(id: string, source: "work_roles" | "jobs" | "customers" | "facilities", label: string, updatedAt: string): Promise<void>;
+tests\support\calendar-feed-atdd.ts:498:        const role=row.workRoleLabel===null?null:(await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,100,200) returning id",[tenant,row.workRoleLabel]))[0].id;
+tests\support\calendar-feed-atdd.ts:532:      const refs={work_roles:"work_role_id",jobs:"job_id",customers:"customer_id",facilities:"facility_id"} as const;
+tests\support\calendar-feed-atdd.ts:533:      const labels={work_roles:"display_name",jobs:"title",customers:"display_name",facilities:"address_line1"} as const;
+tests\support\calendar-feed-atdd.ts:667:  const tables=["calendar_feed_tokens","audit_events","time_reports","booking_conflict_resolutions","booking_conflicts","booking_assignees","bookings","booking_series","job_members","job_required_work_roles","job_access_windows","job_dependencies","jobs","facilities","contacts","customers","person_work_hours","person_profiles","work_roles"];
+tests\support\calendar-feed-atdd.ts:689:  const allowed:Record<string,string[]>={tenants:["id"],tenant_memberships:["id","tenant_id","user_id","status","role"],membership_roles:["tenant_id","membership_id","role"],person_profiles:["id","tenant_id","membership_id","archived_at"],booking_assignees:["tenant_id","booking_id","person_profile_id"],bookings:["id","tenant_id","starts_at","ends_at","all_day","updated_at","status","work_role_id","job_id","customer_id","facility_id"],jobs:["id","tenant_id","title","customer_id","facility_id","updated_at"],customers:["id","tenant_id","display_name","updated_at"],work_roles:["id","tenant_id","display_name","updated_at"],facilities:["id","tenant_id","address_line1","address_line2","postal_code","city","updated_at"],calendar_feed_tokens:["*"],calendar_feed_ip_windows:["*"]};
+tests\support\bookings-atdd.ts:223:    "insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'Electrician',20000,40000) returning id", [tenantId]);
+tests\unit\fixtures\golden\lovable\lovable-shape-guard.test.ts:99:      "settings-pricing": ["companySettings"], // + quote terms + work_roles
+tests\support\authz\role-harness.ts:7:import { TENANT_TABLES, type TenantTableName } from "../../integration/rls/tenant-table-inventory";
+tests\support\authz\role-harness.ts:22:  company_settings: "CompanySettings.View", quote_terms: "CompanySettings.View", work_roles: "Pricing.Edit", articles: "Pricing.Edit",
+tests\support\authz\role-harness.ts:27:  job_members: "Jobs.ViewAssigned", job_required_work_roles: "Jobs.ViewAssigned", job_access_windows: "Jobs.ViewAssigned", job_dependencies: "Jobs.ViewAssigned",
+tests\support\authz\role-harness.ts:39:export const TABLE_DIRECT_RLS_ALLOWED_ROLES: Readonly<Partial<Record<TenantTableName, readonly TenantRole[]>>> = {
+tests\support\authz\role-harness.ts:114:  const enrolledTables = new Set(TENANT_TABLES);
+tests\support\authz\role-harness.ts:129:        allowedRoles: TABLE_DIRECT_RLS_ALLOWED_ROLES[table as TenantTableName],
+tests\support\authz\role-harness.ts:197:function keyProjection(table: TenantTableName, key = "id", directReadDenied = false): TableRlsProjectionAdapter {
+tests\support\authz\role-harness.ts:205:const idProjection = (table: TenantTableName) => keyProjection(table);
+tests\support\authz\role-harness.ts:207:export const TABLE_RLS_PROJECTION_ADAPTERS: Readonly<Record<TenantTableName, TableRlsProjectionAdapter>> = {
+tests\support\authz\role-harness.ts:226:  company_settings: idProjection("company_settings"),
+tests\support\authz\role-harness.ts:227:  quote_terms: idProjection("quote_terms"),
+tests\support\authz\role-harness.ts:228:  work_roles: idProjection("work_roles"),
+tests\support\authz\role-harness.ts:229:  articles: idProjection("articles"),
+tests\support\authz\role-harness.ts:248:  job_required_work_roles: idProjection("job_required_work_roles"),
+tests\support\authz\role-harness.ts:259:  person_profiles: idProjection("person_profiles" as TenantTableName),
+tests\support\authz\role-harness.ts:260:  person_work_hours: idProjection("person_work_hours" as TenantTableName),
+tests\support\authz\role-harness.ts:261:  tenant_calendar_days: idProjection("tenant_calendar_days" as TenantTableName),
+tests\support\authz\role-harness.ts:264:  email_unsubscribe_tokens: keyProjection("email_unsubscribe_tokens" as TenantTableName, "id", true),
+tests\support\authz\role-harness.ts:265:  email_unsubscribe_rate_limits: keyProjection("email_unsubscribe_rate_limits" as TenantTableName, "id", true),
+tests\support\authz\role-harness.ts:266:} as unknown as Readonly<Record<TenantTableName, TableRlsProjectionAdapter>>;
+tests\support\authz\role-harness.ts:269:  const adapter = TABLE_RLS_PROJECTION_ADAPTERS[table as TenantTableName];
+tests\support\jobs-depth-atdd.ts:7: * (tenant_id,job_id,person_profile_id,archived_at); job_required_work_roles;
+tests\support\jobs-depth-atdd.ts:24:export const jobDepthTables = ["jobs", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"] as const;
+tests\support\jobs-depth-atdd.ts:47:    ["jobs", "jobs"], ["members", "job_members"], ["roles", "job_required_work_roles"],
+tests\support\jobs-depth-atdd.ts:279:  await adminQuery("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3)",[tenantId,jobId,workRoleId]);
+tests\e2e\booking-editor.e2e.spec.ts:90:    await adminQuery("update public.work_roles set is_active=false where id=$1 and tenant_id=$2",[s.workRoleId,s.tenantId]);
+tests\e2e\booking-editor.e2e.spec.ts:98:    await adminQuery("update public.work_roles set is_active=true where id=$1 and tenant_id=$2",[s.workRoleId,s.tenantId]);
+tests\e2e\booking-editor.e2e.spec.ts:138:    const articles=editor(page).getByTestId("booking-conflict-panel").locator("article"); await expect(articles).toHaveCount(1000);
+tests\e2e\booking-editor.e2e.spec.ts:139:    await articles.getByRole("checkbox").evaluateAll(inputs=>inputs.slice(0,1).forEach(input=>(input as HTMLInputElement).click()));
+tests\integration\snapshots\source-ownership.int.test.ts:6: * RLS-client SELECT) — across ALL FOUR Phase-A sources (work_roles, articles,
+tests\integration\snapshots\source-ownership.int.test.ts:7: * company_settings, quote_terms). Reuses the EXISTING two-tenant factories + admin
+tests\integration\snapshots\source-ownership.int.test.ts:59:const TABLE_FOR: Record<SnapshotKind, "work_roles" | "articles" | "company_settings" | "quote_terms"> = {
+tests\integration\snapshots\source-ownership.int.test.ts:60:  work_role: "work_roles",
+tests\integration\snapshots\source-ownership.int.test.ts:61:  article: "articles",
+tests\integration\snapshots\source-ownership.int.test.ts:62:  company_settings: "company_settings",
+tests\integration\snapshots\source-ownership.int.test.ts:63:  quote_terms: "quote_terms",
+tests\integration\snapshots\source-ownership.int.test.ts:84:  aId.company_settings = await adminInsertCompanySettings({ tenant_id: fixture.tenantA.id, company_name: "a-company-seed" });
+tests\integration\snapshots\source-ownership.int.test.ts:85:  aId.quote_terms = await adminInsertQuoteTerms({ tenant_id: fixture.tenantA.id, terms_text: "a-terms-seed (platshållartext)" });
+tests\integration\snapshots\source-ownership.int.test.ts:89:  bId.company_settings = await adminInsertCompanySettings({ tenant_id: fixture.tenantB.id, company_name: "b-company-seed" });
+tests\integration\snapshots\source-ownership.int.test.ts:90:  bId.quote_terms = await adminInsertQuoteTerms({ tenant_id: fixture.tenantB.id, terms_text: "b-terms-seed (platshållartext)" });
+tests\e2e\dashboard\setup.ts:73:        await adminQuery("insert into public.company_settings (tenant_id,company_name,org_nr,default_vat_display,vat_rate_bp) values ($1,'Dashboard fixture',$2,'company_togglable',2500)", [tenantId, number]);
+tests\e2e\dashboard\setup.ts:74:        await adminQuery("insert into public.quote_terms (tenant_id,terms_text) values ($1,'Synthetic fixture terms')", [tenantId]);
+tests\e2e\dashboard\setup.ts:78:          await adminQuery("insert into public.work_roles (tenant_id,display_name,cost_rate_ore,sell_rate_ore) values ($1,'Fixture role',0,0)", [tenantId]);
+tests\e2e\dashboard\setup.ts:90:      if (name.includes("-read-failure-")) tables.quote_terms = [{ outcome: "error" }];
+tests\e2e\scheduling-views.atdd.e2e.spec.ts:768:  const retired = await adminQuery<{ id: string }>("update public.work_roles set is_active=false where id=$1 and tenant_id=$2 and display_name=$3 returning id", [h.scenario.workRoleId, h.scenario.tenantId, h.scenario.description]);
+tests\e2e\support\calendar-feed-atdd.ts:663:          const [role] = await adminQuery<{ id: string }>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'Installation',20000,40000) returning id", [tenant]); roles.push(role.id);
+tests\e2e\support\calendar-feed-atdd.ts:840:              await query("delete from public.work_roles where tenant_id=any($1::uuid[]) and id=any($2::uuid[])", [ids, roles]);
+tests\e2e\support\booking-series-atdd.ts:171:  await adminQuery("insert into public.work_roles(id,tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,$3,20000,40000)",[roleId,tenantId,marker]);
+tests\e2e\settings\settings.e2e.spec.ts:17: *   - Sign-off WARNING (P0, AC2): a NOT-approved quote_terms record renders a clear,
+tests\e2e\seed-epic-12-browser-fixtures.ts:37:  await adminQuery(`insert into public.company_settings (tenant_id, company_name, org_nr, default_vat_display, vat_rate_bp) values ($1,'Onboarding E2E AB',$2,'company_togglable',2500)`, [base.tenantB.id, onboardingOrganisationNumber]);
+tests\e2e\seed-epic-12-browser-fixtures.ts:38:  await adminQuery(`insert into public.quote_terms (tenant_id, terms_text) values ($1,'Onboarding fixture terms')`, [base.tenantB.id]);
+tests\e2e\seed-epic-12-browser-fixtures.ts:39:  await adminQuery(`insert into public.work_roles (tenant_id, display_name, cost_rate_ore, sell_rate_ore) values ($1,'Onboarding role',0,0)`, [base.tenantB.id]);
+tests\e2e\support\booking-editor-atdd.ts:225:      await adminQuery("insert into public.work_roles(id,tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,$3,20000,40000)", [workRoleId, tenantId, token]);
+tests\e2e\support\booking-editor-atdd.ts:316:          await query("delete from public.work_roles where tenant_id=$1 and id=$2", [tenantId, owned.workRoleId]);
+tests\integration\scheduling\scheduling-read.atdd.int.test.ts:35:      const [role]=await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore,is_active) values($1,'Historisk elroll',10000,20000,false) returning id",[fx.base.tenantA.id]);
+tests\integration\scheduling\scheduling-read.atdd.int.test.ts:89:    tenant_calendar_days:[],work_roles:[],jobs:[],customers:[],facilities:[],contacts:[],
+tests\integration\scheduling\scheduling-read.atdd.int.test.ts:229:  test("own transport calls neither planner tables nor any RPC",async()=>{const h=transport(2,true);const result=await readScheduling(input("personal"),{client:h.client,conflictScan:h.conflictScan});expect(result.data.error).toBeNull();expect(h.batches).toEqual([]);expect(h.scanCalls).toEqual([]);expect(h.trace.some(t=>["person_profiles","person_work_hours","tenant_calendar_days","work_roles","jobs","customers"].includes(t.table))).toBe(false);});
+tests\e2e\pricing\pricing.e2e.spec.ts:3: * Prissättning: work roles + optional articles) against the REAL app + local Supabase
+tests\e2e\pricing\pricing.e2e.spec.ts:77:    await expect(page.getByTestId("articles-editor")).toBeVisible();
+tests\e2e\pricing\pricing.e2e.spec.ts:140:    const editor = page.getByTestId("articles-editor");
+tests\integration\scheduling\my-day.int.test.ts:226:          const jobTables = ["job_access_windows", "job_dependencies", "job_members", "job_required_work_roles", "jobs"];
+tests\integration\scheduling\my-day.int.test.ts:320:      const [other] = await adminQuery<{ id: string }>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'PRIVATE RESOURCE DEFAULT',10000,20000) returning id", [fx.base.tenantA.id]);
+tests\unit\server\commands\calc-source-validation.test.ts:100:    // company_settings/quote_terms are valid SnapshotKinds but NOT calc-row sources.
+tests\unit\server\commands\calc-source-validation.test.ts:101:    for (const kind of ["company_settings", "quote_terms", "supplier", "widget"]) {
+tests\integration\rls\audit-anon-mutation-enrollment.rls.test.ts:7: * (SELECT/INSERT/UPDATE/DELETE) are data-driven over the shared `TENANT_TABLES`
+tests\integration\rls\audit-anon-mutation-enrollment.rls.test.ts:10: * `TENANT_TABLES` × 4 verbs). This file adds the standing ENUMERATION-COMPLETENESS
+tests\integration\rls\audit-anon-mutation-enrollment.rls.test.ts:16: *   1. a PURE structural guard — `audit_events` is enrolled in `TENANT_TABLES` and its
+tests\integration\rls\audit-anon-mutation-enrollment.rls.test.ts:40:  TENANT_TABLES,
+tests\integration\rls\audit-anon-mutation-enrollment.rls.test.ts:89:  it("[P2] structural: audit_events is enrolled in the shared TENANT_TABLES inventory", () => {
+tests\integration\rls\audit-anon-mutation-enrollment.rls.test.ts:92:    expect((TENANT_TABLES as readonly string[]).includes(AUDIT_TABLE)).toBe(true);
+tests\integration\rls\approved-public-acl-repair.int.test.ts:17:  "company_settings",
+tests\integration\rls\approved-public-acl-repair.int.test.ts:18:  "quote_terms",
+tests\integration\rls\approved-public-acl-repair.int.test.ts:19:  "work_roles",
+tests\integration\rls\approved-public-acl-repair.int.test.ts:20:  "articles",
+tests\integration\rls\anon-path-isolation.rls.test.ts:7: * iterate the FULL `TENANT_TABLES` set (incl. `audit_events` — closing the 2-3
+tests\integration\rls\anon-path-isolation.rls.test.ts:10: * helpers. A new tenant-owned table enlists in `TENANT_TABLES` there, not here.
+tests\integration\rls\anon-path-isolation.rls.test.ts:42:  TENANT_TABLES,
+tests\integration\rls\anon-path-isolation.rls.test.ts:70:  for (const table of TENANT_TABLES) {
+tests\unit\features\calculations\source-select.test.ts:30:  articles: [{ id: "a1", name: "Kabel 3G1.5", priceOre: 1250 }],
+tests\unit\features\calculations\source-select.test.ts:64:  assert.equal(decodeSourceValue(`company_settings:${UUID}`), null);
+tests\unit\features\calculations\source-select.test.ts:80:// ── sourcesForRowType: labor→work roles, material→articles, else manual ────────
+tests\unit\features\calculations\source-select.test.ts:87:  assert.deepEqual(sourcesForRowType("material", LISTS), LISTS.articles);
+tests\unit\server\commands\pricing-validation.test.ts:21: *     (work roles) + unit_price_ore (articles) all flow through it → VALIDATION_FAILED
+tests\unit\server\commands\pricing-validation.test.ts:302:// ── validateArchive — id-only guard (work roles + articles share the shape) ──────
+tests\unit\features\calculations\source-options.test.ts:45:  assert.equal(lists.articles.length, 2);
+tests\unit\features\calculations\source-options.test.ts:47:  assert.equal(lists.articles[0].priceOre, 1250);
+tests\unit\features\calculations\source-options.test.ts:52:  assert.deepEqual(lists, { workRoles: [], articles: [] });
+tests\integration\rls\email-outbox.rls.atdd.int.test.ts:18:    const { TENANT_TABLES } = await import(["./tenant-table-inventory"].join("")); expect(TENANT_TABLES).toEqual(expect.arrayContaining(["email_outbox", "email_delivery_events", "email_suppressions"]));
+tests\integration\read-models\onboarding-checklist.int.test.ts:44:    `insert into public.company_settings
+tests\integration\read-models\onboarding-checklist.int.test.ts:50:    `insert into public.quote_terms (tenant_id, terms_text)
+tests\integration\read-models\onboarding-checklist.int.test.ts:55:    `insert into public.work_roles (tenant_id, display_name, cost_rate_ore, sell_rate_ore, is_active)
+tests\integration\rls\jobs-depth.rls.test.ts:142:      [["job_members", "job_required_work_roles", "job_access_windows", "job_dependencies"].map((t) => `public.${t}`)]);
+tests\integration\read-models\onboarding-authorization-boundaries.int.test.ts:40:    readonly active_work_roles: number;
+tests\integration\read-models\onboarding-authorization-boundaries.int.test.ts:57:              count(w.id) filter (where w.is_active)::int as active_work_roles
+tests\integration\read-models\onboarding-authorization-boundaries.int.test.ts:59:         left join public.company_settings c on c.tenant_id = t.id
+tests\integration\read-models\onboarding-authorization-boundaries.int.test.ts:60:         left join public.quote_terms q on q.tenant_id = t.id
+tests\integration\read-models\onboarding-authorization-boundaries.int.test.ts:61:         left join public.work_roles w on w.tenant_id = t.id
+tests\integration\journeys\first-admin-onboarding-lifecycle.int.test.ts:30:    adminQuery("select tenant_id,company_name,org_nr,default_vat_display,vat_rate_bp from public.company_settings where tenant_id=$1 order by id", [tenantId]),
+tests\integration\journeys\first-admin-onboarding-lifecycle.int.test.ts:31:    adminQuery("select tenant_id,terms_text,approved_at,approved_by from public.quote_terms where tenant_id=$1 order by id", [tenantId]),
+tests\integration\journeys\first-admin-onboarding-lifecycle.int.test.ts:32:    adminQuery("select tenant_id,display_name,cost_rate_ore,sell_rate_ore,is_active from public.work_roles where tenant_id=$1 order by id", [tenantId]),
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:9: * tenant-owned table enlists by enrolling in `TENANT_TABLES` there, NOT by a
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:72:  TENANT_TABLES,
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:79:  type TenantTableName,
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:90:let tenantBCompanySettingsId: string; // a seeded Tenant B company_settings (3.3 target)
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:91:let tenantBQuoteTermsId: string; // a seeded Tenant B quote_terms (3.3 target)
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:154:  // Seed REAL Tenant B settings rows (Story 3.3) so the company_settings/quote_terms
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:165:  // Seed REAL Tenant B pricing rows (Story 3.4) so the work_roles/articles cross-tenant
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:364:      "cross-tenant settings seed produced no id (company_settings/quote_terms) — the " +
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:370:      "cross-tenant pricing seed produced no id (work_roles/articles) — the pricing " +
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:452:  const [{id:ownRole}] = await adminQuery<{id:string}>("insert into public.work_roles(tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,'H4 own role',20000,40000) returning id",[fixture.tenantA.id]);
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:502:  const seededMutationTargets = new Set<TenantTableName>([
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:503:    "tenants", "tenant_memberships", "company_settings", "quote_terms", "work_roles", "articles",
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:515:    "company_settings",
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:516:    "quote_terms",
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:517:    "work_roles",
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:518:    "articles",
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:541:  for (const table of TENANT_TABLES) {
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:611:          if (table === "company_settings" || table === "quote_terms") {
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:616:          } else if (table === "work_roles" || table === "articles") {
+tests\integration\rls\cross-tenant-isolation.rls.test.ts:768:async function snapshotForeignRows(table: TenantTableName, column: string, value: string, requireRows = true): Promise<unknown> {
+tests\integration\jobs\job-runs.int.test.ts:5:import { TENANT_TABLES } from "../rls/tenant-table-inventory";
+tests\integration\jobs\job-runs.int.test.ts:45:    expect(TENANT_TABLES).toContain("job_runs");
+tests\integration\rls\migration-reset.int.test.ts:266:    // new settings policies: company_settings.{SELECT,INSERT,UPDATE} +
+tests\integration\rls\migration-reset.int.test.ts:267:    // quote_terms.{SELECT,INSERT,UPDATE} — SELECT/INSERT/UPDATE per table, NO DELETE
+tests\integration\rls\migration-reset.int.test.ts:271:    // articles.{SELECT,INSERT,UPDATE} (sorts FIRST alphabetically) +
+tests\integration\rls\migration-reset.int.test.ts:272:    // work_roles.{SELECT,INSERT,UPDATE} — SELECT/INSERT/UPDATE per table, NO DELETE
+tests\integration\rls\migration-reset.int.test.ts:302:    // grant/policy). Placed alphabetically (between quote_events and quote_terms). This is the ONLY
+tests\integration\rls\migration-reset.int.test.ts:314:      "articles.INSERT",
+tests\integration\rls\migration-reset.int.test.ts:315:      "articles.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:316:      "articles.UPDATE",
+tests\integration\rls\migration-reset.int.test.ts:333:      "company_settings.INSERT",
+tests\integration\rls\migration-reset.int.test.ts:334:      "company_settings.INSERT",
+tests\integration\rls\migration-reset.int.test.ts:335:      "company_settings.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:336:      "company_settings.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:337:      "company_settings.UPDATE",
+tests\integration\rls\migration-reset.int.test.ts:365:      "job_required_work_roles.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:394:      "quote_terms.INSERT",
+tests\integration\rls\migration-reset.int.test.ts:395:      "quote_terms.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:396:      "quote_terms.UPDATE",
+tests\integration\rls\migration-reset.int.test.ts:425:      "work_roles.INSERT",
+tests\integration\rls\migration-reset.int.test.ts:426:      "work_roles.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:427:      "work_roles.UPDATE",
+tests\integration\rls\migration-reset.int.test.ts:430:      "audit_events.INSERT", "booking_assignees.SELECT", "bookings.SELECT", "calendar_feed_ip_windows.ALL", "calendar_feed_tokens.ALL", "customers.SELECT", "facilities.SELECT", "jobs.SELECT", "membership_roles.SELECT", "person_profiles.SELECT", "tenant_memberships.SELECT", "tenants.SELECT", "work_roles.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:438:      "company_settings.INSERT",
+tests\integration\rls\migration-reset.int.test.ts:439:      "company_settings.SELECT",
+tests\integration\rls\migration-reset.int.test.ts:487:      "company_settings",
+tests\integration\rls\migration-reset.int.test.ts:488:      "quote_terms",
+tests\integration\rls\migration-reset.int.test.ts:489:      "work_roles",
+tests\integration\rls\migration-reset.int.test.ts:490:      "articles",
+tests\integration\rls\migration-reset.int.test.ts:515:    for (const t of ["person_profiles", "person_work_hours", "tenant_calendar_days", "bookings", "booking_assignees", "booking_conflicts", "job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "time_reports", "work_orders", "work_order_assignees", "work_order_dependencies"]) {
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:4: * `work_roles_and_articles` migration created `work_roles`/`articles` with the exact
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:25: * that file (add `articles.{SELECT,INSERT,UPDATE}` + `work_roles.{SELECT,INSERT,UPDATE}`
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:26: * alphabetically — `articles.*` sorts FIRST; add both tables to the group, renamed
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:38:const PRICING_TABLES = ["work_roles", "articles"] as const;
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:42:  work_roles: ["cost_rate_ore", "sell_rate_ore"],
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:43:  articles: ["unit_price_ore"],
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:54:describe("Pricing migration reset green — work_roles/articles (AC1/AC2/AC3)", () => {
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:209:    await expectEffectiveTableDml({ work_roles: ["SELECT"], articles: ["SELECT"] });
+tests\integration\rls\pricing-tables-migration-reset.int.test.ts:215:    // LOUD if a future change smuggles supplier scope into work_roles/articles.
+tests\integration\rls\provisioning-migration-reset.int.test.ts:35:              and t.tgname = 'tenant_provisioning_requests_apply_company_settings'
+tests\integration\rls\quote-follow-ups.rls.test.ts:22: * The `quote_follow_ups` table and its `TENANT_TABLES` enrolment are landed. This
+tests\integration\features\booking-read-actions.test.ts:36:    const facts={series:[],occurrences:[],bookings,workflow:(data.booking_conflicts??[]).filter(c=>c.tenant_id===tenant),detection:{bookings:bookings.map(b=>({id:b.id,...b.payload})),profiles:people.map(id=>({id,membershipId:id,defaultWorkRoleId:id===PERSON?ID:null,employmentPercentage:100,archivedAt:null})),memberships:people.map(id=>({id,userId:id,status:"active",role:"tenant_admin",roles:["tenant_admin"]})),hours:(data.person_work_hours??[]).filter(h=>h.tenant_id===tenant).map(h=>({id:h.id,personProfileId:h.person_profile_id,entryKind:h.entry_kind,weekday:h.weekday,localDate:h.local_date,exceptionKind:h.exception_kind,startsAt:h.starts_at,endsAt:h.ends_at})),calendarDays:(data.tenant_calendar_days??[]).filter(d=>d.tenant_id===tenant).map(d=>({date:d.local_date,variant:d.variant,reductionPercent:d.reduction_percent??null})),workRoles:(data.work_roles??[]).filter(r=>r.tenant_id===tenant).map(r=>({id:r.id,isActive:r.is_active===true||r.is_active==="true"})),jobInputs:[],rules:DEFAULT_SCHEDULING_RULES}};
+tests\integration\features\booking-read-actions.test.ts:94:      work_roles: [{ id: ID, tenant_id: TENANT, display_name: "Elektriker", is_active: "true", hourly_rate: "private" }],
+tests\integration\rls\quote-lost-reasons.rls.test.ts:17: * Task 2.2 enrolled `quote_lost_reasons` in `TENANT_TABLES` with its per-table spoof/insert/mutation/
+tests\integration\calendar-feed\public-feed.int.test.ts:46:      for (const source of ["work_roles", "jobs", "customers", "facilities"] as const) {
+tests\integration\rls\quote-pipeline-read-model.rls.test.ts:20: * `quote_follow_ups`, `quote_versions`) come from their EXISTING `TENANT_TABLES` enrolment + the shared
+tests\integration\rls\quote-pipeline-read-model.rls.test.ts:23: * table is added (TENANT_TABLES stays 26), so nothing is enrolled here.
+tests\integration\features\quotes\quote-pipeline-non-scope-guard.int.test.ts:12: *   - the governed `TENANT_TABLES` set derives from active manifest modules;
+tests\integration\features\quotes\quote-pipeline-non-scope-guard.int.test.ts:26:import { TENANT_TABLES } from "../../rls/tenant-table-inventory";
+tests\integration\features\quotes\quote-pipeline-non-scope-guard.int.test.ts:77:    expect([...TENANT_TABLES].sort()).toEqual(
+tests\integration\rls\resources.rls.test.ts:2:import { TENANT_TABLES } from "./tenant-table-inventory";
+tests\integration\rls\resources.rls.test.ts:8:    expect(TENANT_TABLES).toEqual(expect.arrayContaining(["person_profiles", "person_work_hours", "tenant_calendar_days"]));
+tests\integration\rls\rls-inventory-gate.int.test.ts:8: * cross-tenant negative suite (`TENANT_TABLES` in tenant-table-inventory.ts). CI
+tests\integration\rls\rls-inventory-gate.int.test.ts:33:  TENANT_TABLES,
+tests\integration\rls\rls-inventory-gate.int.test.ts:44:const EXPECTED_TENANT_OWNED = [...TENANT_TABLES].sort();
+tests\integration\rls\rls-inventory-gate.int.test.ts:72:    const unenrolled = findUnenrolledTenantTables(owned, TENANT_TABLES);
+tests\integration\rls\rls-inventory-gate.int.test.ts:86:    const shrunk = TENANT_TABLES.filter((t) => t !== "audit_events");
+tests\integration\rls\rls-inventory-gate.int.test.ts:96:    const unenrolled = findUnenrolledTenantTables(owned, TENANT_TABLES);
+tests\integration\rls\role-aware-phase-a-surface.atdd.int.test.ts:48:  { module: "settings", route: "/settings", table: "company_settings", policy: "company_settings_select_own", readCapability: ["settings", "CompanySettings.View"], writeCapability: ["settings", "CompanySettings.Edit"] },
+tests\integration\commands\booking-conflicts.int.test.ts:301:               (select display_name from public.work_roles where id=$3) as role_name from writer_facts`,
+tests\integration\rls\role-harness.atdd.int.test.ts:8:import type { TenantTableName } from "./tenant-table-inventory";
+tests\integration\rls\role-harness.atdd.int.test.ts:28:let ownTableIds: Record<TenantTableName, string>;
+tests\integration\rls\role-harness.atdd.int.test.ts:29:let foreignTableIds: Record<TenantTableName, string>;
+tests\integration\rls\role-harness.atdd.int.test.ts:30:let selfTableIds: Record<TenantRole, Pick<Record<TenantTableName, string>, "tenant_memberships" | "membership_roles">>;
+tests\integration\rls\role-harness.atdd.int.test.ts:33:let personalTableIds: Record<TenantRole, Pick<Record<TenantTableName, string>, "notifications" | "notification_preferences">>;
+tests\integration\rls\role-harness.atdd.int.test.ts:54:  }))) as Record<TenantRole, Pick<Record<TenantTableName, string>, "tenant_memberships" | "membership_roles">>;
+tests\integration\rls\role-harness.atdd.int.test.ts:74:  }))) as Record<TenantRole, Pick<Record<TenantTableName, string>, "notifications" | "notification_preferences">>;
+tests\integration\rls\role-harness.atdd.int.test.ts:86:async function seedEveryTenantTable(tenantId: string, actorId: string): Promise<Record<TenantTableName, string>> {
+tests\integration\rls\role-harness.atdd.int.test.ts:162:  const [jobRole] = await adminQuery<{id:string}>("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3) returning id", [tenantId,job,workRole]);
+tests\integration\rls\role-harness.atdd.int.test.ts:185:    customers: customer, facilities: facility, contacts: contact, company_settings: companySettings,
+tests\integration\rls\role-harness.atdd.int.test.ts:186:    quote_terms: quoteTerms, work_roles: workRole, articles: article, calculations: calculation,
+tests\integration\rls\role-harness.atdd.int.test.ts:193:    job_members: jobMember.id, job_required_work_roles: jobRole.id, job_access_windows: jobWindow.id, job_dependencies: jobDependency.id,
+tests\integration\rls\role-harness.atdd.int.test.ts:214:      const table = obligation.id.split(":").at(-1)! as TenantTableName;
+tests\integration\rls\role-harness.atdd.int.test.ts:313:    const own = await client.from("job_required_work_roles").select("id").eq("id", ownTableIds.job_required_work_roles);
+tests\integration\rls\role-harness.atdd.int.test.ts:314:    expect(own.data?.map((r) => r.id)).toEqual([ownTableIds.job_required_work_roles]);
+tests\integration\rls\settings-rls.int.test.ts:4: * (`company_settings`, `quote_terms`).
+tests\integration\rls\settings-rls.int.test.ts:10: * (`TENANT_TABLES` + the cross-tenant AND anon-path metadata seams) and EXTENDS the
+tests\integration\rls\settings-rls.int.test.ts:15: * iterate `TENANT_TABLES`, so enrolling the two new tables there AUTO-extends those
+tests\integration\rls\settings-rls.int.test.ts:21: *   - H4 single-enrollment (P0, AC3): BOTH new tables present in `TENANT_TABLES`; the
+tests\integration\rls\settings-rls.int.test.ts:25: *     public policy set grows by the 6 new entries (company_settings.SELECT/INSERT/
+tests\integration\rls\settings-rls.int.test.ts:26: *     UPDATE + quote_terms.SELECT/INSERT/UPDATE); NO DELETE policy anywhere.
+tests\integration\rls\settings-rls.int.test.ts:50:  TENANT_TABLES,
+tests\integration\rls\settings-rls.int.test.ts:56: * 🔴 RED contract: the two new settings tables MUST be enrolled in `TENANT_TABLES`.
+tests\integration\rls\settings-rls.int.test.ts:60:const NEW_SETTINGS_TABLES = ["company_settings", "quote_terms"] as const;
+tests\integration\rls\settings-rls.int.test.ts:77:    `insert into public.company_settings
+tests\integration\rls\settings-rls.int.test.ts:89:    `insert into public.quote_terms (tenant_id, terms_text)
+tests\integration\rls\settings-rls.int.test.ts:117:describe("Story 3.3 — H4 enrollment of company_settings + quote_terms (AC3)", () => {
+tests\integration\rls\settings-rls.int.test.ts:118:  it("[P0] both new settings tables are enrolled in TENANT_TABLES (the single source of truth)", () => {
+tests\integration\rls\settings-rls.int.test.ts:120:      expect(TENANT_TABLES as readonly string[]).toContain(t);
+tests\integration\rls\settings-rls.int.test.ts:130:    const unenrolled = findUnenrolledTenantTables(owned, TENANT_TABLES);
+tests\integration\rls\settings-rls.int.test.ts:137:    const shrunk = (TENANT_TABLES as readonly string[]).filter(
+tests\integration\rls\settings-rls.int.test.ts:138:      (t) => t !== "company_settings",
+tests\integration\rls\settings-rls.int.test.ts:141:    expect(unenrolled).toContain("company_settings");
+tests\integration\rls\settings-rls.int.test.ts:179:          and c.relname in ('company_settings', 'quote_terms')
+tests\integration\rls\settings-rls.int.test.ts:193:    await expectEffectiveTableDml({ company_settings: ["SELECT"], quote_terms: ["SELECT"] });
+tests\integration\rls\settings-rls.int.test.ts:200:         where table_schema = 'public' and table_name = 'company_settings'
+tests\integration\rls\settings-rls.int.test.ts:207:         where conrelid = 'public.company_settings'::regclass and contype = 'c'`,
+tests\integration\rls\settings-rls.int.test.ts:214:  it("[P0] quote_terms.approved_at is NULLABLE with NO default (not-approved is the absence of a sign-off)", async (testCtx) => {
+tests\integration\rls\settings-rls.int.test.ts:221:         where table_schema = 'public' and table_name = 'quote_terms'
+tests\integration\rls\settings-rls.int.test.ts:230:         where table_schema = 'public' and table_name = 'quote_terms'
+tests\integration\rls\settings-rls.int.test.ts:244:  it("[P0] SELECT: Tenant A reads ZERO of Tenant B's company_settings / quote_terms (no error leak)", async (testCtx) => {
+tests\integration\rls\settings-rls.int.test.ts:260:    const ownCompany = await a.from("company_settings").insert({
+tests\integration\rls\settings-rls.int.test.ts:267:    const spoofCompany = await a.from("company_settings").insert({
+tests\integration\rls\settings-rls.int.test.ts:274:    const ownTerms = await a.from("quote_terms").insert({
+tests\integration\rls\settings-rls.int.test.ts:279:    const spoofTerms = await a.from("quote_terms").insert({
+tests\integration\rls\settings-rls.int.test.ts:292:      .from("company_settings")
+tests\integration\rls\settings-rls.int.test.ts:299:      .from("company_settings")
+tests\integration\rls\settings-rls.int.test.ts:307:      `select company_name from public.company_settings where id = any($1::uuid[]) order by id`,
+tests\integration\rls\settings-rls.int.test.ts:320:      .from("quote_terms")
+tests\integration\rls\settings-rls.int.test.ts:326:    const rows = await adminQuery<{ id: string }>("select id from public.quote_terms where id = $1", [bTermsId]);
+tests\integration\rls\settings-rls.int.test.ts:337:describe("Story 3.3 — anon-DML-empty for company_settings + quote_terms (AC3)", () => {
+tests\integration\rls\settings-rls.int.test.ts:348:    const company = await anon.from("company_settings").insert({
+tests\integration\rls\settings-rls.int.test.ts:355:    const terms = await anon.from("quote_terms").insert({
+tests\integration\commands\booking-series.int.test.ts:795:      await adminQuery("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3)",[fx.base.tenantA.id,ids[2],parents.workRoleId]);
+tests\integration\commands\booking-series.int.test.ts:1080:      await adminQuery("insert into public.work_roles(id,tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,'Replacement',20000,40000)",[replacement,fx.base.tenantA.id]);
+tests\integration\commands\booking-series.int.test.ts:1085:      await adminQuery("update public.work_roles set is_active=false where id=$1 and tenant_id=$2",[parents.workRoleId,fx.base.tenantA.id]);
+tests\integration\commands\booking-series.int.test.ts:1153:      await adminQuery("insert into public.work_roles(id,tenant_id,display_name,cost_rate_ore,sell_rate_ore) values($1,$2,'Round2 replacement',20000,40000)",[replacement,fx.base.tenantA.id]);
+tests\integration\commands\booking-series.int.test.ts:1159:      await adminQuery("update public.work_roles set is_active=false where id=$1 and tenant_id=$2",[parents.workRoleId,fx.base.tenantA.id]);
+tests\integration\rls\tenant-table-inventory.ts:8: * (`rls-inventory-gate.int.test.ts`) all import `TENANT_TABLES` and the per-table
+tests\integration\rls\tenant-table-inventory.ts:47: * │ tenant-owned table MUST enroll it in `TENANT_TABLES` below with BOTH metadata │
+tests\integration\rls\tenant-table-inventory.ts:57: * settings (company_settings/quote_terms) + pricing (work_roles/articles) + calc
+tests\integration\rls\tenant-table-inventory.ts:89: * ADR-B003 §5.3 derivation 3 — see `TENANT_TABLES` below), and a derived `readonly string[]` cannot
+tests\integration\rls\tenant-table-inventory.ts:96: * union member order is irrelevant; the runtime `TENANT_TABLES` order follows the manifest.
+tests\integration\rls\tenant-table-inventory.ts:98:export type JobDepthTableName = "job_members" | "job_required_work_roles" | "job_access_windows" | "job_dependencies" | "work_orders" | "work_order_assignees" | "work_order_dependencies";
+tests\integration\rls\tenant-table-inventory.ts:99:function isJobDepthTable(table: TenantTableName): table is JobDepthTableName {
+tests\integration\rls\tenant-table-inventory.ts:100:  return ["job_members", "job_required_work_roles", "job_access_windows", "job_dependencies", "work_orders", "work_order_assignees", "work_order_dependencies"].includes(table);
+tests\integration\rls\tenant-table-inventory.ts:109:    case "job_required_work_roles": return {...base, work_role_id: crypto.randomUUID()};
+tests\integration\rls\tenant-table-inventory.ts:115:export type TenantTableName =
+tests\integration\rls\tenant-table-inventory.ts:140:  // Story 3.3 settings (one-row-per-tenant) + Story 3.4 pricing (many-rows-per-tenant; the articles
+tests\integration\rls\tenant-table-inventory.ts:143:  | "company_settings"
+tests\integration\rls\tenant-table-inventory.ts:144:  | "quote_terms"
+tests\integration\rls\tenant-table-inventory.ts:145:  | "work_roles"
+tests\integration\rls\tenant-table-inventory.ts:146:  | "articles"
+tests\integration\rls\tenant-table-inventory.ts:197: * The manifest lists exactly the same 31 tables, so the cast to `readonly TenantTableName[]` is
+tests\integration\rls\tenant-table-inventory.ts:200: * Only `TENANT_TABLES` re-sources; the introspection (`introspectTenantOwnedTables`) and every
+tests\integration\rls\tenant-table-inventory.ts:204:export const TENANT_TABLES: readonly TenantTableName[] =
+tests\integration\rls\tenant-table-inventory.ts:205:  tenantTablesFromManifest(SCOPE_MANIFEST) as readonly TenantTableName[];
+tests\integration\rls\tenant-table-inventory.ts:234:   * company_settings/quote_terms negatives point Tenant A at, so the denial is never
+tests\integration\rls\tenant-table-inventory.ts:243:   * work_roles/articles negatives point Tenant A at, so the denial is never vacuous
+tests\integration\rls\tenant-table-inventory.ts:345:export function updateDenialKind(table: TenantTableName): MutationDenialKind {
+tests\integration\rls\tenant-table-inventory.ts:383:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:384:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:385:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:386:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:422:export function deleteDenialKind(table: TenantTableName): MutationDenialKind {
+tests\integration\rls\tenant-table-inventory.ts:427:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:428:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:429:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:430:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:453: * `TenantTableName` members are handled, a FUTURE table added to `TENANT_TABLES`
+tests\integration\rls\tenant-table-inventory.ts:465:function assertNever(table: TenantTableName): never {
+tests\integration\rls\tenant-table-inventory.ts:482:  table: TenantTableName,
+tests\integration\rls\tenant-table-inventory.ts:616:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:617:      // A company_settings row forging Tenant B ownership. `authenticated` HAS an
+tests\integration\rls\tenant-table-inventory.ts:629:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:630:      // A quote_terms row forging Tenant B ownership. RLS INSERT WITH CHECK on
+tests\integration\rls\tenant-table-inventory.ts:638:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:639:      // A work_roles row forging Tenant B ownership. `authenticated` HAS an INSERT
+tests\integration\rls\tenant-table-inventory.ts:651:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:652:      // An articles row forging Tenant B ownership. RLS INSERT WITH CHECK on
+tests\integration\rls\tenant-table-inventory.ts:946:  table: TenantTableName,
+tests\integration\rls\tenant-table-inventory.ts:961:  table: TenantTableName,
+tests\integration\rls\tenant-table-inventory.ts:1014:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:1015:      // Target the SPECIFIC seeded Tenant B company_settings row by id — the
+tests\integration\rls\tenant-table-inventory.ts:1026:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:1035:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:1043:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:1214:  table: TenantTableName,
+tests\integration\rls\tenant-table-inventory.ts:1251:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:1253:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:1255:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:1257:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:1336:export function rlsInvisibleLabelColumn(table: TenantTableName): string {
+tests\integration\rls\tenant-table-inventory.ts:1349:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:1351:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:1353:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:1355:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:1462:  table: TenantTableName,
+tests\integration\rls\tenant-table-inventory.ts:1544:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:1545:      // Anon has NO grant on company_settings, so the INSERT is denied at the
+tests\integration\rls\tenant-table-inventory.ts:1555:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:1561:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:1562:      // Anon has NO grant on work_roles, so the INSERT is denied at the privilege
+tests\integration\rls\tenant-table-inventory.ts:1572:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:1573:      // Anon has NO grant on articles → 42501. ONLY the minimal manual columns appear
+tests\integration\rls\tenant-table-inventory.ts:1778:  table: TenantTableName,
+tests\integration\rls\tenant-table-inventory.ts:1818:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:1819:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:1820:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:1821:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:1847:  table: TenantTableName,
+tests\integration\rls\tenant-table-inventory.ts:1888:    case "company_settings":
+tests\integration\rls\tenant-table-inventory.ts:1890:    case "quote_terms":
+tests\integration\rls\tenant-table-inventory.ts:1892:    case "work_roles":
+tests\integration\rls\tenant-table-inventory.ts:1894:    case "articles":
+tests\integration\rls\tenant-table-inventory.ts:2137:    `merge — add it to TENANT_TABLES in ${INVENTORY_MODULE_PATH} AND supply BOTH ` +
+tests\integration\commands\calculation-row-source.int.test.ts:125:       from public.work_roles where id = $1`,
+tests\integration\commands\calculation-row-source.int.test.ts:239:      `select name, sku, unit, unit_price_ore from public.articles where id = $1`,
+tests\integration\commands\calculation-row-source.int.test.ts:314:      `update public.work_roles
+tests\integration\commands\calculation-row-source.int.test.ts:694:      `update public.articles set is_active = false where id = $1`,
+tests\integration\commands\conflict-resolver.int.test.ts:286:  await adminQuery("insert into public.job_required_work_roles(tenant_id,job_id,work_role_id) values($1,$2,$3)",[fx.base.tenantA.id,jobs[2],p.workRoleId]);
+tests\integration\commands\generate-quote-pdf-determinism.int.test.ts:108:    `insert into public.company_settings
+tests\integration\commands\generate-quote-pdf-retry-consistency.int.test.ts:181:    `insert into public.company_settings
+tests\integration\commands\generate-quote-pdf-source-of-truth.int.test.ts:7: * `company_settings`, `quote_terms`, `calculation_*`, `work_roles`, or `articles`.
+tests\integration\commands\generate-quote-pdf-source-of-truth.int.test.ts:77:    `insert into public.company_settings
+tests\integration\commands\generate-quote-pdf-source-of-truth.int.test.ts:181:      `update public.company_settings set company_name = 'MUTATED AB', email = 'changed@example.test' where tenant_id = $1`,
+tests\integration\commands\generate-quote-pdf-source-of-truth.int.test.ts:197:      `update public.quote_terms set terms_text = 'MUTATED TERMS' where tenant_id = $1`,
+tests\integration\commands\generate-quote-pdf-source-of-truth.int.test.ts:204:    // work_roles / articles: seed then mutate (proves the PDF ignores live pricing too).
+tests\integration\commands\jobs-depth.int.test.ts:114:      if(change==="roles-only") await adminQuery("delete from public.job_required_work_roles where tenant_id=$1 and job_id=$2",[f.fx.base.tenantA.id,first.id]);
+tests\integration\commands\non-admin-audit-authority.int.test.ts:26:import { upsertArticle } from "@/server/commands/pricing/articles";
+tests\integration\commands\non-admin-audit-authority.int.test.ts:476:        .from("work_roles")
+tests\integration\commands\pricing-commands.int.test.ts:10: * `archiveArticle`) and the `work_roles_and_articles` migration do NOT exist yet —
+tests\integration\commands\pricing-commands.int.test.ts:23: *        import { upsertArticle, archiveArticle } from "@/server/commands/pricing/articles";
+tests\integration\commands\pricing-commands.int.test.ts:34: *   - Collection (NOT singleton, P0, AC2): work_roles/articles are MANY-per-tenant —
+tests\integration\commands\pricing-commands.int.test.ts:70:} from "@/server/commands/pricing/articles";
+tests\integration\commands\pricing-commands.int.test.ts:105:  table: "work_roles" | "articles",
+tests\integration\commands\pricing-commands.int.test.ts:116:async function countPricingRows(table: "work_roles" | "articles", tenantId: string): Promise<number> {
+tests\integration\commands\pricing-commands.int.test.ts:125:// work_roles — collection create/update/archive + öre money + audit.
+tests\integration\commands\pricing-commands.int.test.ts:154:         from public.work_roles where id = $1`,
+tests\integration\commands\pricing-commands.int.test.ts:177:  it("[P0] a SECOND create INSERTs a SECOND row — work_roles are MANY-per-tenant (NO unique(tenant_id))", async (testCtx) => {
+tests\integration\commands\pricing-commands.int.test.ts:179:    const before = await countPricingRows("work_roles", fixture.tenantA.id);
+tests\integration\commands\pricing-commands.int.test.ts:189:    const after = await countPricingRows("work_roles", fixture.tenantA.id);
+tests\integration\commands\pricing-commands.int.test.ts:214:      `select id, sell_rate_ore from public.work_roles where id = $1`,
+tests\integration\commands\pricing-commands.int.test.ts:241:    const row = await adminSelectPricingRow("work_roles", id);
+tests\integration\commands\pricing-commands.int.test.ts:266:    expect((await adminSelectPricingRow("work_roles", id))?.is_active).toBe(false);
+tests\integration\commands\pricing-commands.int.test.ts:278:    const row = await adminSelectPricingRow("work_roles", id);
+tests\integration\commands\pricing-commands.int.test.ts:304:    const before = await countPricingRows("work_roles", fixture.tenantA.id);
+tests\integration\commands\pricing-commands.int.test.ts:313:    expect(await countPricingRows("work_roles", fixture.tenantA.id)).toBe(before); // nothing persisted
+tests\integration\commands\pricing-commands.int.test.ts:347:// articles — same collection create/update/archive shape + öre + audit + NO supplier.
+tests\integration\commands\pricing-commands.int.test.ts:366:      `select tenant_id, unit_price_ore, is_active from public.articles where id = $1`,
+tests\integration\commands\pricing-commands.int.test.ts:383:  it("[P0] a second create INSERTs a SECOND article — articles are MANY-per-tenant (NO unique(tenant_id))", async (testCtx) => {
+tests\integration\commands\pricing-commands.int.test.ts:385:    const before = await countPricingRows("articles", fixture.tenantA.id);
+tests\integration\commands\pricing-commands.int.test.ts:395:    expect(await countPricingRows("articles", fixture.tenantA.id)).toBe(before + 2);
+tests\integration\commands\pricing-commands.int.test.ts:417:    const row = await adminSelectPricingRow("articles", id);
+tests\integration\commands\pricing-commands.int.test.ts:441:    expect((await adminSelectPricingRow("articles", id))?.is_active).toBe(false);
+tests\integration\commands\pricing-commands.int.test.ts:452:    const row = await adminSelectPricingRow("articles", id);
+tests\integration\commands\pricing-commands.int.test.ts:477:    const before = await countPricingRows("articles", fixture.tenantA.id);
+tests\integration\commands\pricing-commands.int.test.ts:488:    expect(await countPricingRows("articles", fixture.tenantA.id)).toBe(before);
+tests\integration\commands\pricing-commands.int.test.ts:512:    const row = await adminSelectPricingRow("articles", id);
+tests\integration\commands\quote-version.int.test.ts:84: * company_settings identity + a quote_terms row (BYPASSRLS). The snapshot source.
+tests\integration\commands\quote-version.int.test.ts:147:  // company_settings is one-row-per-tenant; seed the full identity via a raw upsert.
+tests\integration\commands\quote-version.int.test.ts:149:    `insert into public.company_settings
+tests\integration\commands\quote-version.int.test.ts:375:      `update public.company_settings set company_name = 'MUTATED-CO', org_nr = '000000-0000' where tenant_id = $1`,
+tests\integration\commands\quote-version.int.test.ts:379:      `update public.quote_terms set terms_text = 'MUTATED-TERMS', approved_at = now() where tenant_id = $1`,
+tests\integration\commands\resources-boundaries.int.test.ts:56:    "insert into public.work_roles(id,tenant_id,display_name,cost_rate_ore,sell_rate_ore) " +
+tests\integration\commands\resources-boundaries.int.test.ts:104:    await adminQuery("delete from public.work_roles where tenant_id=any($1::uuid[])", [tenants]);
+tests\integration\commands\resources-boundaries.int.test.ts:114:    "(select count(*) from public.work_roles where tenant_id=any($1::uuid[])) +" +
+tests\integration\commands\resources-boundaries.int.test.ts:298:        "select id,tenant_id,is_active from public.work_roles where id=$1", [targets.roleB]))
+tests\integration\commands\resources-boundaries.int.test.ts:300:      expect(await adminQuery("select id from public.work_roles where id=$1", [missingRole])).toEqual([]);
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:433:    `insert into public.company_settings (
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2119:    await adminQuery("delete from public.company_settings where tenant_id = $1", [
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2122:    await adminQuery("delete from public.quote_terms where tenant_id = $1", [
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2127:      source: "company_settings" | "quote_terms",
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2179:          if (source === "company_settings") {
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2181:              "insert into public.company_settings (tenant_id, company_name) " +
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2187:              "insert into public.quote_terms (tenant_id, terms_text) " +
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2228:    await expectFirstInsertBlocked("company_settings");
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2229:    await expectFirstInsertBlocked("quote_terms");
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2232:      source: "company_settings" | "quote_terms",
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2245:          if (source === "company_settings") {
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2247:              "insert into public.company_settings (tenant_id, company_name) " +
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2253:              "insert into public.quote_terms (tenant_id, terms_text) " +
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2332:        if (source === "company_settings") {
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2333:          await adminQuery("delete from public.company_settings where tenant_id = $1", [
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2337:          await adminQuery("delete from public.quote_terms where tenant_id = $1", [
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2344:    await expectInsertFirstRescanned("company_settings");
+tests\integration\commands\tax-answer-reconciliation.int.test.ts:2345:    await expectInsertFirstRescanned("quote_terms");
+tests\integration\commands\settings-commands.int.test.ts:6: * (`company_settings`, `quote_terms`). It MIRRORS the Story 3.1 CRM command-coverage
+tests\integration\commands\settings-commands.int.test.ts:16: *   - Sign-off STOP-CONDITION (P0, AC2): `quote_terms.approved_at` DEFAULTS NULL
+tests\integration\commands\settings-commands.int.test.ts:71:/** Independent BYPASSRLS read of the tenant's single company_settings row. */
+tests\integration\commands\settings-commands.int.test.ts:83:       from public.company_settings where tenant_id = $1`,
+tests\integration\commands\settings-commands.int.test.ts:89:/** Independent BYPASSRLS read of the tenant's quote_terms row(s). */
+tests\integration\commands\settings-commands.int.test.ts:99:       from public.quote_terms where tenant_id = $1`,
+tests\integration\commands\settings-commands.int.test.ts:105:// company_settings — UPSERT-one-per-tenant + VAT (basis points) validation + audit.
+tests\integration\commands\settings-commands.int.test.ts:139:    expect(audits[0].event_type).toBe("company_settings.updated");
+tests\integration\commands\settings-commands.int.test.ts:140:    expect(audits[0].target_type).toBe("company_settings");
+tests\integration\commands\settings-commands.int.test.ts:303:// quote_terms — UPSERT terms text. The SIGN-OFF mechanics are the next block (P0).
+tests\integration\commands\settings-commands.int.test.ts:326:    expect(audits[0].event_type).toBe("quote_terms.updated");
+tests\integration\commands\settings-commands.int.test.ts:340:describe("quote_terms SIGN-OFF — never silently approved (Story 3.3 AC2, HARD STOP-CONDITION)", () => {
+tests\integration\commands\settings-commands.int.test.ts:482:      .from("company_settings")
+tests\integration\commands\settings-commands.int.test.ts:494:      .from("quote_terms")

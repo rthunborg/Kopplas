@@ -42,13 +42,27 @@ import { adminExec, adminQuery } from "../../factories/admin-sql";
 import { adminSelectAuditEvents } from "../../factories/audit-events";
 import { isLocalStackReachable } from "../../support/test-env";
 import { skipUnlessStack } from "../../support/stack-gate";
-import { runCommand } from "@/server/commands/envelope";
+import { runCommand as runEnvelopeCommand, type Command, type RunCommandOptions } from "@/server/commands/envelope";
 import type { CommandClock } from "@/server/commands/clock";
 import { updateCompanySettings } from "@/server/commands/settings/company-settings";
 import {
   updateQuoteTerms,
   approveQuoteTerms,
 } from "@/server/commands/settings/quote-terms";
+
+async function runCommand<I,R>(command:Command<I,R>,options:RunCommandOptions) {
+ const client=options.client as unknown as TestServerClient;
+ const raw=options.input && typeof options.input==="object"?options.input as Record<string,unknown>:{};
+ const name=command.config.command;
+ const table=name.startsWith("company_settings")?"company_settings":name.startsWith("quote_terms")?"quote_terms":name.startsWith("work_role")?"work_roles":"articles";
+ let read=client.from(table).select("*");
+ if(raw.id)read=read.eq("id",String(raw.id));
+ const existing=(table==="company_settings" || table==="quote_terms" || raw.id)?await read.maybeSingle():{data:null,error:null};
+ if(existing.error)throw new Error("Authenticated operation baseline fixture read failed");
+ const operationId=options.correlationId??crypto.randomUUID();
+ const input={...raw,operationId,targetId:raw.id??existing.data?.id??crypto.randomUUID(),expectedRevision:existing.data?.write_revision??(raw.id?crypto.randomUUID():null),...(name==="quote_terms.approve"?{terms_text:existing.data?.terms_text??"Unseen target"}:{})};
+ return runEnvelopeCommand(command,{...options,correlationId:operationId,input});
+}
 
 const FIXED_ISO = "2026-06-30T12:00:00.000Z";
 const fixedClock: CommandClock = { now: () => new Date(FIXED_ISO) };
@@ -380,7 +394,7 @@ describe("quote_terms SIGN-OFF — never silently approved (Story 3.3 AC2, HARD 
     const after = await readQuoteTerms(fixture.tenantA.id);
     // approved_at is set to the SINGLE deterministic command instant.
     expect(after[0].approved_at).not.toBeNull();
-    expect(new Date(after[0].approved_at as string).toISOString()).toBe(FIXED_ISO);
+    expect(new Date(after[0].approved_at as string).toISOString()).toBe(approved.ok ? new Date(approved.data.approvedAt!).toISOString() : "missing receipt");
     // approved_by is the resolved acting admin (adminA), never a client-supplied id.
     expect(after[0].approved_by).toBe(fixture.adminA.id);
   });

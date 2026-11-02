@@ -202,3 +202,134 @@ test.describe("Pricing UI — Work roles + Articles (Story 3.4 E2E)", () => {
     await expect(page.getByRole("link", { name: "Prissättning" })).toBeVisible();
   });
 });
+
+import { mkdir, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
+import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
+    const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
+    await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
+    const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
+    expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
+    expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
+    expect(Number.isSafeInteger(boot.serverPid)).toBe(true);
+    const viewport = page.viewportSize()!;
+    const dir = path.join(process.cwd(), "playwright-report", "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
+    await mkdir(dir, { recursive: true });
+    const file = path.join(dir, `${state}.png`);
+    const png = await page.screenshot({ path: file, fullPage: false });
+    const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading", configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+}
+async function operationIdOf(request: BrowserRequest) {
+    const body = request.postDataBuffer();
+    if (!body)
+        throw new Error("Missing server action body");
+    const form = await new globalThis.Request("http://capture.invalid", { method: "POST", headers: { "content-type": request.headers()["content-type"] }, body: new Uint8Array(body) }).formData();
+    let id: string | null = null;
+    form.forEach((value, key) => { if (key.endsWith("operationId") && typeof value === "string")
+        id = value; });
+    if (!id)
+        throw new Error("Missing captured operation identity before dispatch");
+    return id;
+}
+async function loseCommittedReply(page: Page, routePath: string, afterCommit = true) {
+    let release!: () => void, arrived!: () => void;
+    const gate = new Promise<void>(r => { release = r; }), seen = new Promise<void>(r => { arrived = r; });
+    const identities: string[] = [];
+    let first = true;
+    await page.route(`**${routePath}`, async (route) => {
+        if (route.request().method() !== "POST" || !route.request().headers()["next-action"]) {
+            await route.continue();
+            return;
+        }
+        identities.push(await operationIdOf(route.request()));
+        if (first) {
+            first = false;
+            if (afterCommit) {
+                const response = await route.fetch();
+                expect(response.ok()).toBe(true);
+            }
+            arrived();
+            await gate;
+            await route.abort("connectionfailed");
+        }
+        else
+            await route.continue();
+    });
+    return { seen, release, identities, clear: () => page.unroute(`**${routePath}`) };
+}
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
+    test(`P-E1/E2/E3 pricing all eight operation forms ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        const own = await createTwoTenantFixture();
+        await page.setViewportSize(viewport);
+        try {
+            await signIn(page, own.adminA.email, own.adminA.password);
+            await page.goto("/settings/pricing");
+            await waitForHydrated(page.getByLabel("Benämning"));
+            for (const spec of [{ id: "work-roles-editor", surface: "work-role", name: "Benämning", price: "Pris (kr/tim)", save: "Spara roll", archived: "work-roles-archived" }, { id: "articles-editor", surface: "article", name: "Artikelnamn", price: "Enhetspris (kr)", save: "Spara artikel", archived: "articles-archived" }]) {
+                const editor = page.getByTestId(spec.id);
+                await producerCapture(page, info, spec.surface, "empty");
+                await editor.getByLabel(spec.name).fill(`Synthetic ${spec.surface}`);
+                await editor.getByLabel(spec.price).fill("-1");
+                await editor.getByRole("button", { name: spec.save }).click();
+                await expect(editor.getByLabel(spec.price)).toHaveAttribute("aria-invalid", "true");
+                await producerCapture(page, info, spec.surface, "error");
+                await editor.getByLabel(spec.price).fill("12,50");
+                const createLoss = await loseCommittedReply(page, "/settings/pricing");
+                await editor.getByRole("button", { name: spec.save }).dblclick();
+                await createLoss.seen;
+                expect(createLoss.identities).toHaveLength(1);
+                await producerCapture(page, info, spec.surface, "loading");
+                createLoss.release();
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await expect(editor.getByRole("button", { name: "Ny post" })).toBeDisabled();
+                await producerCapture(page, info, spec.surface, "unknown");
+                await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                await expect(editor.getByTestId("settings-saved")).toBeVisible();
+                expect(new Set(createLoss.identities).size).toBe(1);
+                await createLoss.clear();
+                let row = editor.getByRole("listitem").filter({ hasText: `Synthetic ${spec.surface}` });
+                await expect(row).toHaveCount(1);
+                await row.getByRole("button", { name: "Redigera" }).click();
+                await editor.getByLabel(spec.price).fill("25,00");
+                const editLoss = await loseCommittedReply(page, "/settings/pricing", false);
+                await editor.getByRole("button", { name: spec.save }).click();
+                await editLoss.seen;
+                editLoss.release();
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await editor.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
+                await expect(editor.getByTestId("settings-saved")).toBeVisible();
+                expect(new Set(editLoss.identities).size).toBe(1);
+                await editLoss.clear();
+                await expect(row).toContainText("25,00");
+                const archiveLoss = await loseCommittedReply(page, "/settings/pricing");
+                await row.getByRole("button", { name: "Arkivera" }).click();
+                await archiveLoss.seen;
+                archiveLoss.release();
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                await expect(editor.getByTestId("operation-unconfirmed")).toHaveCount(0);
+                expect(new Set(archiveLoss.identities).size).toBe(1);
+                await archiveLoss.clear();
+                await editor.getByRole("button", { name: /Visa arkiverade/ }).click();
+                row = editor.getByTestId(spec.archived).getByRole("listitem").filter({ hasText: `Synthetic ${spec.surface}` });
+                const restoreLoss = await loseCommittedReply(page, "/settings/pricing");
+                await row.getByRole("button", { name: "Återaktivera" }).click();
+                await restoreLoss.seen;
+                restoreLoss.release();
+                await expect(editor.getByTestId("operation-unconfirmed")).toBeVisible();
+                await editor.getByRole("button", { name: "Kontrollera resultat" }).click();
+                await expect(editor.getByTestId("operation-unconfirmed")).toHaveCount(0);
+                expect(new Set(restoreLoss.identities).size).toBe(1);
+                await restoreLoss.clear();
+                await expect(editor.getByRole("list").first()).toContainText(`Synthetic ${spec.surface}`);
+                await producerCapture(page, info, spec.surface, "finished");
+            }
+        }
+        finally {
+            await cleanupFixture(own);
+        }
+    });

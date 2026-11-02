@@ -1,3 +1,4 @@
+import { resolveTenantContext } from "@/server/auth/resolve-tenant-context";
 /**
  * `/settings/pricing` (Prissättning) — work roles + optional minimal articles (Story
  * 3.4, Task 4.1; architecture §4).
@@ -25,6 +26,8 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function PricingSettingsPage() {
+  const contextResult = await resolveTenantContext();
+  const operationContext = contextResult.ok ? { tenantId: contextResult.data.tenantId, actorId: contextResult.data.userId } : null;
   const [
     { workRoles, error: workRolesError },
     { articles, error: articlesError },
@@ -36,6 +39,8 @@ export default async function PricingSettingsPage() {
     readArchivedWorkRoles(),
     readArchivedArticles(),
   ]);
+
+  const readToken = crypto.randomUUID();
 
   const error =
     workRolesError ??
@@ -70,10 +75,14 @@ export default async function PricingSettingsPage() {
       )}
 
       <WorkRolesEditor
+        readToken={readToken}
+        operationContext={operationContext}
         workRoles={workRoles}
         archivedWorkRoles={archivedWorkRoles}
       />
       <ArticlesEditor
+        readToken={readToken}
+        operationContext={operationContext}
         articles={articles}
         archivedArticles={archivedArticles}
       />

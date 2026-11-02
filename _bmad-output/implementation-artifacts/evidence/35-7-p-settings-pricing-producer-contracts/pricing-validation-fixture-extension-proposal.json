@@ -1,0 +1,26 @@
+{
+  "task_id": "35.7-P",
+  "status": "PROPOSED_NOT_AUTHORIZED",
+  "path": "tests/unit/server/commands/pricing-validation-edges.test.ts",
+  "sha256": "02c9eb1fede410ff04c1bd10fe2bf77b634477c03bf65da21011ef87e117d9f6",
+  "before": "Existing supplementary pure-validator fixtures omit operationId/targetId/expectedRevision; five positive cases now reject under the approved mandatory protocol. WorkRole UPDATE exact expected-key list currently includes only four business keys.",
+  "after": "Only local fixture preparation: alias imports of the two actual pricing validators, add one pure protocolFixture(raw) preserving primitives and every business value while adding a fixed valid operation UUID, target UUID equal existing valid id for updates or fixed proposed target for creates, and fixed valid expected revision for updates/explicit null for creates. Local wrappers call actual validators with that fixture. No validated output stripping. Extend ONLY the exact WorkRole UPDATE expected-key array with operationId,targetId,expectedRevision in sorted order, retaining every current business key and exact full-set equality. All other assertions/titles/value/range/supplier checks and their outcomes stay unchanged. No production fallback, dependency, factory/global setup or money/permission change.",
+  "verification": {
+    "evidence": "author-unit.log",
+    "native_exit": 1,
+    "all_tests": 3794,
+    "passed": 3781,
+    "failed": 12,
+    "skipped": 1,
+    "affected_positive_tests": 5,
+    "scope": "Remaining failures also include five pending-enrollment consumers and two unchanged local CRLF-sensitive calendar tests; this delta claims no runtime PASS."
+  },
+  "consumer_scan": "protocol-consumer-scan.txt",
+  "scan_result": "Only this unallocated file imports the changed pricing validators beyond allocated primary units/new protocol units. Other archive-name matches refer unrelated CRM/file validators; no additional consumer edit required.",
+  "contract_refs": [
+    "P-AC1/P-U1 mandatory immutable preconditions",
+    "P-AC7/P-R3 preserve integer-ore and no-supplier validation"
+  ],
+  "approval": null,
+  "release_ready": false
+}

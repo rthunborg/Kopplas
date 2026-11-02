@@ -1,0 +1,168 @@
+{
+  "task_id": "35.7-P",
+  "status": "PROPOSED_SHARED_HELPER_EXTENSION_NOT_OWNER_APPROVED_NOT_INDEPENDENTLY_CONFIRMED",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "additional_file": {
+    "path": "tests/support/booking-conflicts-atdd.ts",
+    "sha256": "73fbfab981b62391cfa1c5a7543d4eda14086c61a55dfdecb9f4316d740525d0"
+  },
+  "consumer_readonly": {
+    "path": "tests/integration/commands/booking-conflicts.int.test.ts",
+    "sha256": "d7ac1a145578394763d65bd91f8df314254c54c51a5e4d407ce6ff31d3f69ed5",
+    "registration_anchor": {
+      "path": "tests/integration/commands/booking-conflicts.int.test.ts",
+      "line": 552,
+      "literal": "for (const scenario of authorityScenarios) test(scenario.title, scenario.run);"
+    },
+    "preserved_race_block": {
+      "start_line": 268,
+      "end_line": 331,
+      "text": "for (const writer of [\"schedule\", \"profile\", \"calendar\", \"combined_form\", \"work_role_upsert\", \"work_role_active\", \"membership\", \"invitation_acceptance\"] as const) {\n  registerAuthorityScenario(\"race\", `[P0] AC10 ${writer} holds first gate before row lock; waiting finalize verifies coherent facts`, async () => {\n    const h = await harness(); const b = await h.loadConflictBindings();\n    await h.withConflictFixture(async (fx) => {\n      const prepared = await h.prepareConsumedWriter(fx, writer, b);\n      const input = h.bookingInput([fx.ownProfile.id]);\n      const snapshot = await b.snapshot(fx.adminClient, \"create\", input, crypto.randomUUID());\n      const attempt = await b.attest(snapshot, await b.detect(snapshot));\n      const before = await h.bookingSnapshot(fx.tenantIds);\n      await h.adminSession(async ({ query }) => {\n        await query(\"begin\"); let pendingWriter: ReturnType<typeof prepared.invoke> | undefined;\n        let pendingFinalize: ReturnType<typeof b.finalize> | undefined;\n        try {\n          const [owner] = await query<{ pid: number }>(\"select pg_backend_pid() as pid\");\n          expect(await query(prepared.lockSql, prepared.lockParams)).toHaveLength(1);\n          pendingWriter = prepared.invoke(); await h.waitForBlocked(owner.pid, 1);\n          // The real writer holds the first gate while waiting on our row.\n          pendingFinalize = b.finalize(fx.adminClient, input, attempt);\n          await h.waitForBlocked(owner.pid, 2);\n          expect(await h.bookingSnapshot(fx.tenantIds)).toEqual(before);\n          await query(\"commit\"); expect((await pendingWriter).error).toBeNull();\n          const finalizeResult = await pendingFinalize;\n           if (writer === \"work_role_upsert\") {\n             // This fixed fixture changes only display text: neither that text\n             // nor rates are detector facts. Its predetermined result is commit.\n             expect(finalizeResult).toEqual({ kind: \"committed\", bookingId: snapshot.bookingId });\n             expect(JSON.parse(attempt.outputText)).toEqual([]);\n             const [unchanged] = await h.adminQuery<{ factDigest: string; role_name: string }>(`with facts as (\n               select public.booking_detection_facts_internal($1) as value\n             ), writer_facts as (\n               select jsonb_set(value,'{bookings}',(select coalesce(jsonb_agg(b order by b->>'id'),'[]'::jsonb)\n                 from jsonb_array_elements(value->'bookings') b where b->>'id'<>$2)) as value from facts\n             ) select encode(extensions.digest(value::text,'sha256'),'hex') as \"factDigest\",\n               (select display_name from public.work_roles where id=$3) as role_name from writer_facts`,\n               [snapshot.tenantId, snapshot.bookingId, prepared.lockParams[0]]);\n             // Remove only this command's known inserted booking from current\n             // SQL facts: all remaining content must equal the pre-writer digest.\n             expect(unchanged.role_name).toBe(\"Renamed current role\");\n             expect(unchanged.factDigest).toBe(snapshot.factDigest);\n            const committed = await h.bookingSnapshot(fx.tenantIds);\n            expect(committed.bookings).toHaveLength(before.bookings.length + 1);\n            expect(committed.assignees).toHaveLength(before.assignees.length + 1);\n            expect(committed.bookings.find((row) => row.id === snapshot.bookingId)).toMatchObject({ create_command_id: input.commandId, create_result: { bookingId: snapshot.bookingId } });\n            expect(committed.audit.filter((row) => row.correlation_id === snapshot.correlationId)).toEqual([expect.objectContaining({ target_id: snapshot.bookingId })]);\n             expect(b.normalizedRows(committed.conflicts)).toEqual(await b.detect(snapshot));\n             expect(h.foreignState(committed, fx.base.tenantB.id)).toEqual(h.foreignState(before, fx.base.tenantB.id));\n            return;\n          }\n          expect(finalizeResult).toEqual({ kind: \"stale\" });\n          const afterWriter = await h.bookingSnapshot(fx.tenantIds);\n          expect(await h.bookingSnapshot(fx.tenantIds)).toEqual(afterWriter);\n          expect(afterWriter.bookings).toEqual(before.bookings);\n          expect(afterWriter.assignees).toEqual(before.assignees);\n          expect(afterWriter.conflicts).toEqual(before.conflicts);\n          const current = await b.snapshot(fx.adminClient, \"create\", input, snapshot.correlationId);\n\n          expect(current.factDigest).not.toBe(snapshot.factDigest);\n          const expected = await b.detect(current);\n          const retry = await b.finalize(fx.adminClient, input, await b.attest(current, expected));\n          expect(retry).toEqual({ kind: \"committed\", bookingId: current.bookingId });\n          expect(b.normalizedRows((await h.bookingSnapshot(fx.tenantIds)).conflicts)).toEqual(expected);\n        } finally {\n          await query(\"rollback\"); await Promise.allSettled([pendingWriter, pendingFinalize]);\n        }\n",
+      "lf_sha256": "e27b8cf3d0ede23724337e2b02bb49aceea8ddeafa4faaa53bf7551469895cb5"
+    }
+  },
+  "scope_constraint": {
+    "canonical_allocation": {
+      "path": "_bmad-output/specs/spec-settings-pricing-producer-contracts/producer-contract.md",
+      "line": 77,
+      "literal": "## Minimum allocation for the proposed task"
+    },
+    "closed_path_source": "_bmad-output/specs/spec-settings-pricing-producer-contracts/source-binding.json future_test_write_paths excludes tests/support/booking-conflicts-atdd.ts",
+    "read_only_rule": "Original author allocation keeps shared factories/global setup/helpers read-only. Actual owner addition2026-11-02 approves only the two named integration fixture files; it does not include this third shared helper. No implied authorization from general task or old caller existence.",
+    "frozen_sources_untouched": true
+  },
+  "why_helper_only": "Adapt exactly3oldRPCsites and their local pre-dispatch identity/revision/receipt projection in the shared helper so every existing consumer remains byte-for-byte. Do not edit booking-conflicts.int.test.ts or other consumers, assertions, writer-kind enumeration, barrier helpers, detection/proof code, factory/globalsetup, productionpermissions or oldgrantrevocation. No generic helper/framework introduced.",
+  "complete_inventory_evidence": "legacy-caller-compatibility-inventory.json",
+  "remaining_outside_allocation_count": 3,
+  "sites": [
+    {
+      "id": "HELP-1",
+      "source": {
+        "path": "tests/support/booking-conflicts-atdd.ts",
+        "line": 104,
+        "literal": "const saved = await fx.adminClient.rpc(\"upsert_work_role_with_audit\""
+      },
+      "function": "seedWorkRole",
+      "before_verbatim_lf": "export async function seedWorkRole(fx: BookingFixture) {\n  const saved = await fx.adminClient.rpc(\"upsert_work_role_with_audit\", {\n    p_tenant_id: fx.base.tenantA.id, p_actor_user_id: fx.base.adminA.id, p_correlation_id: crypto.randomUUID(),\n    p_work_role_id: null, p_display_name: \"Conflict fixture electrician\", p_cost_rate_ore: 20000, p_sell_rate_ore: 40000,\n  });\n  if (saved.error || typeof saved.data !== \"string\") throw new Error(\"Real work role fixture failed\");\n  return saved.data;\n}\n",
+      "after_semantics": {
+        "checked_rpc": "upsert_work_role_with_audit_v2 (approved RPC name)",
+        "identity": "Fresh operationUUID and proposed targetUUID allocated once before call; explicit proposed-target absence; company/actor args remain fx.base.tenantA.id/fx.base.adminA.id checked against fx.adminClient authentication",
+        "candidate": {
+          "display_name": "Conflict fixture electrician",
+          "cost_rate_ore": 20000,
+          "sell_rate_ore": 40000
+        },
+        "audit": "Original operationUUID used as correlation; no extra envelope/audit write",
+        "result_projection": "Validate actual committed receipt/result identity against captured operation/target and valid committedRevision. Return the same target UUID string from seedWorkRole; callers keep existing return/lock/parent-link shape. Replace old typeof data===string guard, not the success requirement.",
+        "labels": "Additional parameter/property labels are illustrative until actual v2 typed adapter/wire contract is implemented; no missing-precondition fallback."
+      },
+      "contract_refs": [
+        29,
+        31,
+        41,
+        45,
+        73,
+        93,
+        107
+      ],
+      "acs": [
+        "P-AC1",
+        "P-AC2",
+        "P-AC3",
+        "P-AC6",
+        "P-AC7"
+      ]
+    },
+    {
+      "id": "HELP-2",
+      "source": {
+        "path": "tests/support/booking-conflicts-atdd.ts",
+        "line": 143,
+        "literal": "case \"work_role_upsert\": return fx.adminClient.rpc"
+      },
+      "function": "prepareConsumedWriter returned invoke closure",
+      "before_verbatim_lf": "      case \"work_role_upsert\": return fx.adminClient.rpc(\"upsert_work_role_with_audit\", { ...common, p_work_role_id: workRoleId, p_display_name: \"Renamed current role\", p_cost_rate_ore: 20000, p_sell_rate_ore: 40000 });\n",
+      "after_semantics": {
+        "checked_rpc": "upsert_work_role_with_audit_v2",
+        "identity": "Capture one fresh operationUUID before closure return; existing target workRoleId from seeded result; original correlation for that operation equals the UUID",
+        "expected_facts": "Immediately after seed and before returning invoke/starting consumer row lock: actual authenticated fx.adminClient own-tenant select(id,write_revision).single() for workRoleId; require successful row and valid revision. Capture exact revision once; do not reread or allocate identity inside delayed invoke.",
+        "candidate": {
+          "display_name": "Renamed current role",
+          "cost_rate_ore": 20000,
+          "sell_rate_ore": 40000
+        },
+        "preserve": "Invoke remains actual authenticated checked production writer; returned RpcResult shape remains data:unknown/error. Keep prepareConsumedWriter lockSql/lockParams and all other writer branches unchanged.",
+        "labels": "New input spellings illustrative; actual target-update discriminator must preserve create/update distinction."
+      },
+      "contract_refs": [
+        29,
+        31,
+        41,
+        45,
+        59,
+        73,
+        93,
+        104,
+        107
+      ],
+      "acs": [
+        "P-AC1",
+        "P-AC3",
+        "P-AC4",
+        "P-AC7"
+      ]
+    },
+    {
+      "id": "HELP-3",
+      "source": {
+        "path": "tests/support/booking-conflicts-atdd.ts",
+        "line": 144,
+        "literal": "case \"work_role_active\": return fx.adminClient.rpc"
+      },
+      "function": "prepareConsumedWriter returned invoke closure",
+      "before_verbatim_lf": "      case \"work_role_active\": return fx.adminClient.rpc(\"set_work_role_active_with_audit\", { ...common, p_work_role_id: workRoleId, p_is_active: false });\n",
+      "after_semantics": {
+        "checked_rpc": "set_work_role_active_with_audit_v2",
+        "identity": "Fresh captured operationUUID distinct from seed; lifecycle target is workRoleId; use it as original correlation",
+        "expected_facts": "Same successful authenticated pre-barrier id/write_revision read, captured before closure return. No late rebase while row/tenant gate is blocked.",
+        "candidate": {
+          "is_active": false
+        },
+        "operation_kind": "work_role.archive (closed approved operation kind)",
+        "preserve": "Keep real RPC call/error result, common tenant-lock before row-lock contract, lockSql/lockParams and every consumer assertion. No alternate rawDML, mocked completion or service role.",
+        "labels": "Actual new wire argument names await bounded implementation, semantic requirement is fixed."
+      },
+      "contract_refs": [
+        29,
+        31,
+        41,
+        45,
+        59,
+        73,
+        93,
+        104,
+        107
+      ],
+      "acs": [
+        "P-AC1",
+        "P-AC3",
+        "P-AC4",
+        "P-AC7"
+      ]
+    }
+  ],
+  "lock_race_invariants": [
+    "prepareConsumedWriter runs before consumer adminSession begins and takes source row lock. Seed and baseline read must complete before that barrier.",
+    "invoke uses exact captured facts/operation; it still reaches real checked SQL and holds same common tenant advisory gate before blocking on row. Never replace result or perform late reread/rebase.",
+    "waitForBlocked observes one writer then two sessions, before-state equality through wait and pendingWriter.error null after commit remain unchanged.",
+    "work_role_upsert changes only display text with same rates; consumer expects committed booking, unchanged detector factDigest, correct renamed role, exactlyone booking/audit and foreignstate unchanged.",
+    "work_role_active archives required role; existing stale finalizer/noeffect/newcurrentreview/retry assertions remain unchanged. Other writer branches preserve previous semantics.",
+    "Distinct seed/update/archive operation UUIDs, fixed audit/money/tenant checks and expected revision guard cannot be skipped to satisfy race tests."
+  ],
+  "prior_two_file_approval_and_review": "Retained unchanged: allocation-extension-fixtures MD8a2b4a446c07de246a8f468708bddc23dad9f502d073e928919459296552fd4d JSON71ae1e0adabc4162c3979556ff4d5068312b73d4f77e881975d2db5f39ed619d; actual human approval and independent PASS_FOR_ALLOCATION_DECISION remain valid only for those six calls/two files.",
+  "independent_confirmation": "Not yet performed for this helper delta. Root will reuse distinct context-free SolHigh reviewer, narrow related-delta scope only; positive verdict PASS_FOR_ALLOCATION_DECISION, never implementation/runtime PASS.",
+  "product_test_writes": 0,
+  "runtime_tests": 0,
+  "build_state": "in-progress/incomplete, author not dispatched; new sharedhelper allocation blocker",
+  "release_ready": false
+}

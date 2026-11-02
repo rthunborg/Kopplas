@@ -195,3 +195,166 @@ test.describe("Settings UI — Company + Quote terms (Story 3.3 E2E)", () => {
     await expect(nav.getByRole("link", { name: "Prissättning" })).toHaveCount(0);
   });
 });
+
+import { mkdir, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import type { TestInfo, Request as BrowserRequest } from "@playwright/test";
+import { createTwoTenantFixture, cleanupFixture } from "../../factories/tenants";
+async function producerCapture(page: Page, info: TestInfo, surface: string, state: string) {
+    const anchor = surface === "company" ? page.locator("form").filter({ has: page.getByLabel("Företagsnamn") }) : surface === "terms" ? page.getByRole("heading", { name: "Offertvillkor", level: 1 }) : page.getByTestId(surface === "work-role" ? "work-roles-editor" : "articles-editor");
+    await anchor.evaluate(el => el.scrollIntoView({ block: "start" }));
+    const boot = JSON.parse(readFileSync(path.join(process.cwd(), "test-results/private/job-events-fetch-fault.json.startup.json"), "utf8"));
+    expect(boot.runId).toBe(process.env.E2E_JOB_EVENTS_FETCH_FAULT_RUN_ID);
+    expect(boot.applicationUrl).toBe(new URL(page.url()).origin);
+    expect(Number.isSafeInteger(boot.serverPid)).toBe(true);
+    const viewport = page.viewportSize()!;
+    const dir = path.join(process.cwd(), "playwright-report", "35-7-p", `${surface}-${viewport.width}x${viewport.height}`);
+    await mkdir(dir, { recursive: true });
+    const file = path.join(dir, `${state}.png`);
+    const png = await page.screenshot({ path: file, fullPage: false });
+    const candidate = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    await writeFile(path.join(dir, `${state}.json`), JSON.stringify({ candidateSha: candidate, buildSha: candidate, server: "next start", serverPid: boot.serverPid, runnerPid: boot.ownerPid, runId: boot.runId, serverStartedAt: boot.startedAt, controlledTransport: state === "unknown" || state === "loading", configuredCommand: "node node_modules/next/dist/bin/next build && node --require ./tests/support/job-events-fetch-fault.cjs node_modules/next/dist/bin/next start", configurationSha256: createHash("sha256").update(readFileSync("playwright.config.ts")).digest("hex"), synthetic: true, fixture: "test-owned createTwoTenantFixture; no external data", route: new URL(page.url()).pathname, surface, state, viewport, fullViewport: true, pngSha256: createHash("sha256").update(png).digest("hex"), test: info.title, project: info.project.name, result: "Actual configured production-server application capture after named state assertions", capturedAt: new Date().toISOString() }, null, 2));
+}
+async function operationIdOf(request: BrowserRequest) {
+    const body = request.postDataBuffer();
+    if (!body)
+        throw new Error("Missing server action body");
+    const form = await new globalThis.Request("http://capture.invalid", { method: "POST", headers: { "content-type": request.headers()["content-type"] }, body: new Uint8Array(body) }).formData();
+    let id: string | null = null;
+    form.forEach((value, key) => { if (key.endsWith("operationId") && typeof value === "string")
+        id = value; });
+    if (!id)
+        throw new Error("Missing captured operation identity before dispatch");
+    return id;
+}
+async function loseCommittedReply(page: Page, routePath: string, afterCommit = true) {
+    let release!: () => void, arrived!: () => void;
+    const gate = new Promise<void>(r => { release = r; }), seen = new Promise<void>(r => { arrived = r; });
+    const identities: string[] = [];
+    let first = true;
+    await page.route(`**${routePath}`, async (route) => {
+        if (route.request().method() !== "POST" || !route.request().headers()["next-action"]) {
+            await route.continue();
+            return;
+        }
+        identities.push(await operationIdOf(route.request()));
+        if (first) {
+            first = false;
+            if (afterCommit) {
+                const response = await route.fetch();
+                expect(response.ok()).toBe(true);
+            }
+            arrived();
+            await gate;
+            await route.abort("connectionfailed");
+        }
+        else
+            await route.continue();
+    });
+    return { seen, release, identities, clear: () => page.unroute(`**${routePath}`) };
+}
+for (const viewport of [{ width: 1440, height: 900 }, { width: 360, height: 640 }])
+    test(`P-E1/E2/E3/E4 settings capture/recover/stale ${viewport.width}x${viewport.height}`, async ({ page }, info) => {
+        const own = await createTwoTenantFixture();
+        await page.setViewportSize(viewport);
+        try {
+            await signIn(page, own.adminA.email, own.adminA.password);
+            await page.goto("/settings/company");
+            await waitForHydrated(page.getByLabel("Företagsnamn"));
+            await producerCapture(page, info, "company", "empty");
+            await page.getByLabel("Företagsnamn").fill("Synthetic producer company");
+            await page.getByLabel("Momssats").fill("250");
+            await page.getByRole("button", { name: "Spara", exact: true }).click();
+            await expect(page.getByLabel("Momssats")).toHaveAttribute("aria-invalid", "true");
+            await producerCapture(page, info, "company", "error");
+            await page.getByLabel("Momssats").fill("25");
+            let sent = 0;
+            page.on("request", request => { if (request.method() === "POST" && request.headers()["next-action"])
+                sent++; });
+            await page.context().setOffline(true);
+            await page.getByRole("button", { name: "Spara", exact: true }).click();
+            await expect(page.getByText("Du är offline. Ingen begäran skickades. Utkastet är inte sparat.")).toBeVisible();
+            expect(sent).toBe(0);
+            await page.context().setOffline(false);
+            const loss = await loseCommittedReply(page, "/settings/company");
+            await page.getByRole("button", { name: "Spara", exact: true }).dblclick();
+            await loss.seen;
+            expect(loss.identities).toHaveLength(1);
+            await producerCapture(page, info, "company", "loading");
+            loss.release();
+            await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
+            await producerCapture(page, info, "company", "unknown");
+            await expect(page.getByLabel("Företagsnamn")).toBeDisabled();
+            await page.getByRole("link", { name: "← Inställningar" }).click();
+            await expect(page).toHaveURL(/settings\/company$/);
+            await page.getByRole("button", { name: "Kontrollera resultat" }).click();
+            await expect(page.getByTestId("settings-saved")).toBeVisible();
+            expect(loss.identities.length).toBeGreaterThanOrEqual(2);
+            expect(new Set(loss.identities).size).toBe(1);
+            await loss.clear();
+            await producerCapture(page, info, "company", "finished");
+            await page.reload();
+            await page.getByLabel("Företagsnamn").fill("Retry before original reached server");
+            const absentLoss = await loseCommittedReply(page, "/settings/company", false);
+            await page.getByRole("button", { name: "Spara", exact: true }).click();
+            await absentLoss.seen;
+            absentLoss.release();
+            await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
+            await page.getByRole("button", { name: "Kontrollera resultat" }).click();
+            await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
+            await page.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
+            await expect(page.getByTestId("settings-saved")).toBeVisible();
+            expect(new Set(absentLoss.identities).size).toBe(1);
+            await absentLoss.clear();
+            await page.reload();
+            const other = await page.context().newPage();
+            await other.goto("/settings/company");
+            await waitForHydrated(other.getByLabel("Företagsnamn"));
+            await other.getByLabel("Företagsnamn").fill("Newer current company");
+            await other.getByRole("button", { name: "Spara", exact: true }).click();
+            await expect(other.getByTestId("settings-saved")).toBeVisible();
+            await page.getByLabel("Företagsnamn").fill("Retained stale draft");
+            await page.getByRole("button", { name: "Spara", exact: true }).click();
+            await expect(page.getByRole("button", { name: "Uppdatera och granska" })).toBeVisible();
+            await expect(page.getByLabel("Företagsnamn")).toHaveValue("Retained stale draft");
+            await producerCapture(page, info, "company", "stale");
+            await other.close();
+            await page.goto("/settings/quote-terms");
+            await waitForHydrated(page.getByLabel("Offertvillkor"));
+            await producerCapture(page, info, "terms", "empty");
+            await page.getByRole("button", { name: "Spara villkor" }).click();
+            await expect(page.getByLabel("Offertvillkor")).toHaveAttribute("aria-invalid", "true");
+            await producerCapture(page, info, "terms", "error");
+            await page.getByLabel("Offertvillkor").fill("Exact reviewed synthetic wording");
+            const saveLoss = await loseCommittedReply(page, "/settings/quote-terms");
+            await page.getByRole("button", { name: "Spara villkor" }).click();
+            await saveLoss.seen;
+            await producerCapture(page, info, "terms", "loading");
+            saveLoss.release();
+            await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
+            await producerCapture(page, info, "terms", "unknown");
+            await page.getByRole("button", { name: "Försök igen med samma uppgifter" }).click();
+            await expect(page.getByTestId("settings-saved")).toBeVisible();
+            expect(new Set(saveLoss.identities).size).toBe(1);
+            await saveLoss.clear();
+            await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeEnabled();
+            await page.getByLabel("Offertvillkor").fill("Unsaved dirty wording");
+            await expect(page.getByRole("button", { name: "Markera som godkänd" })).toBeDisabled();
+            await page.getByLabel("Offertvillkor").fill("Exact reviewed synthetic wording");
+            const approveLoss = await loseCommittedReply(page, "/settings/quote-terms");
+            await page.getByRole("button", { name: "Markera som godkänd" }).click();
+            await approveLoss.seen;
+            approveLoss.release();
+            await expect(page.getByTestId("operation-unconfirmed")).toBeVisible();
+            await page.getByRole("button", { name: "Kontrollera resultat" }).click();
+            await expect(page.getByTestId("quote-terms-approved-status")).toBeVisible();
+            expect(new Set(approveLoss.identities).size).toBe(1);
+            await approveLoss.clear();
+            await producerCapture(page, info, "terms", "finished");
+        }
+        finally {
+            await page.context().setOffline(false);
+            await cleanupFixture(own);
+        }
+    });

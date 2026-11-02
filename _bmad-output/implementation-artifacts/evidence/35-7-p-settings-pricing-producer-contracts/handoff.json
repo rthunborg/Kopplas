@@ -1,0 +1,19 @@
+{
+  "captured_at_utc": "2026-11-02T11:24:03.986371+00:00",
+  "head": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+  "branch": "codex/35-7-p-settings-pricing-producer-contracts",
+  "worktree_status": "?? _bmad-output/auto-bmad/delivery/task-35-7-p-settings-pricing-producer-contracts.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-decision.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/allocation-extension-decision.md\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/blocked-gate-results.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/dependency-install.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/ownership-preflight.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/ownership-reconciliation.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/prewrite-integrity.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/routing.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/source-migration-inventory.json\n?? _bmad-output/implementation-artifacts/evidence/35-7-p-settings-pricing-producer-contracts/step3-admission.json\n?? _bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md\n",
+  "changed_tracked_paths": [],
+  "execution_spec": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\spec-35-7-p-settings-pricing-producer-contracts.md",
+  "delivery_record": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\auto-bmad\\delivery\\task-35-7-p-settings-pricing-producer-contracts.json",
+  "build_state": "Step3 in-progress/incomplete; implementation not dispatched; blocked before product writes",
+  "review_state": "Imported exact-byte proposal review reused for design only; no implementation review performed",
+  "runtime_checks_executed": 0,
+  "resource_ids": [],
+  "frontend_gate": "native0 N/A for actual docs/evidence diff only",
+  "completion_gate": "native1 expected blocked delivery, no done transition",
+  "resume_condition": "Actual Coordinator/owner approves exact two-file fixture allocation extension, then refresh ownership and target/source state and dispatch sequential SolHigh implementation author",
+  "no_commit_push_pr_merge_deploy": true,
+  "release_ready": false
+}

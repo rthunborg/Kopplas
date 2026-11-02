@@ -1,0 +1,225 @@
+{
+  "task_id": "35.7-P",
+  "recorded_before_dispatch": true,
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "domains": [
+    "money-tax",
+    "transactional-integrity",
+    "tenant-isolation",
+    "authorization",
+    "rls"
+  ],
+  "route": "generic context-free High delegate; normal bmad-build canonical SPEC input; non-epic ADR task",
+  "ownership": "Delegate exclusively owns planning execution spec, allocated producer implementation/tests and own evidence/delivery record in isolated worktree; root coordination only; independent High review required.",
+  "scope_source": "_bmad-output/specs/spec-settings-pricing-producer-contracts/SPEC.md",
+  "wrapper_run_count": 1,
+  "reason": "Exactly-once mutations, receipts, money facts, tenant authorization and recovery.",
+  "workflow_snapshot": "C:/DEV/K35-7-P-producer/_bmad/render/bmad-build/k35-7-p-producer-8202ec0dddf7/e1779c204761b6f96818/workflow.md",
+  "nested_routes_before_dispatch": [
+    {
+      "phase": "SQL/read-only investigation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "ownership": "No writes; current SQL wrappers, locks, test fixtures and isolated DB conventions only"
+    },
+    {
+      "phase": "client/read-only investigation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "ownership": "No writes; allocated forms/actions/parsers/commands/read DTOs only"
+    },
+    {
+      "phase": "Build Step3 implementation author",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "reason": "Current authority locks, durable replay, money inputs, atomic receipt/audit and RLS",
+      "spec_file": "C:/DEV/K35-7-P-producer/_bmad-output/implementation-artifacts/spec-35-7-p-settings-pricing-producer-contracts.md",
+      "baseline_commit": "ce526a0ef58c6d54dc80dcad4c8ae4985ef5f657",
+      "sequential": true,
+      "dispatch_status": "actually dispatched",
+      "admission_record": "effective-allocation-admission.json",
+      "effective_extra_paths": [
+        "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+        "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+        "tests/support/booking-conflicts-atdd.ts"
+      ],
+      "actual_task": "/root/producer_build/implementation_author",
+      "dispatched_at_utc": "2026-11-02T12:01:12.860068+00:00"
+    },
+    {
+      "phase": "Independent confirmation of exact2test fixture allocation extension",
+      "dispatch_status": "completed by /root/fixture_extension_review; actual Root-relayed PASS_FOR_ALLOCATION_DECISION",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "fork_turns": "none",
+      "scope": "Read-only ONLY six-call protocol fixture proposal in two named test files; confirm company/terms source facts, semantic input completeness, minimality, exact preserved assertions/money/authority/lifecycle and cast limits. No implementation/broad review/tests or writes to product/test/frozen/source-binding.",
+      "proposal_artifacts": [
+        {
+          "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\allocation-extension-fixtures.md",
+          "sha256": "8a2b4a446c07de246a8f468708bddc23dad9f502d073e928919459296552fd4d"
+        },
+        {
+          "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\allocation-extension-fixtures.json",
+          "sha256": "71ae1e0adabc4162c3979556ff4d5068312b73d4f77e881975d2db5f39ed619d"
+        }
+      ],
+      "test_preimages": [
+        {
+          "path": "tests/integration/commands/non-admin-audit-authority.int.test.ts",
+          "sha256": "db8bf110be77128ced37fa3cba52781f42336c9de7c9631720621af7ae75ebb2"
+        },
+        {
+          "path": "tests/integration/journeys/first-admin-onboarding-lifecycle.int.test.ts",
+          "sha256": "f26efe671b07aef0050faa5d8cc51bb75345748e4a7b132b03877284e6c0dbb9"
+        }
+      ],
+      "positive_verdict": "PASS_FOR_ALLOCATION_DECISION only if warranted; not implementation PASS",
+      "existing_source_review": "Design provenance only, not this extension review",
+      "result_record": "allocation-extension-independent-confirmation.json"
+    },
+    {
+      "phase": "Independent confirmation of shared-helper compatibility delta",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "fork_turns": "none",
+      "dispatch_status": "completed by /root/fixture_extension_review related-delta SolHigh; actual Root-relayed PASS_FOR_ALLOCATION_DECISION",
+      "scope": "ONLY complete exact-name caller inventory and3legacyRPCsites/local capture/revision/result projection in tests/support/booking-conflicts-atdd.ts; actual enabled AC10 consumers/assertions read-only; preserve prior6callreview. No broadreview/implementation/runtime/product/test/frozen/source-binding writes.",
+      "proposal_artifacts": [
+        {
+          "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\shared-helper-compatibility-proposal.md",
+          "sha256": "cd05dd72e8f94bdd231671e3d4841a6e897bcc3b240a7404fd93e2e0b48a98c9"
+        },
+        {
+          "path": "C:\\DEV\\K35-7-P-producer\\_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\shared-helper-compatibility-proposal.json",
+          "sha256": "42d241e7a56116873b4c472ba70a12678213d1211267608cdef8d93dfdbfa1d7"
+        }
+      ],
+      "helper_preimage": {
+        "path": "tests/support/booking-conflicts-atdd.ts",
+        "sha256": "73fbfab981b62391cfa1c5a7543d4eda14086c61a55dfdecb9f4316d740525d0"
+      },
+      "consumer_readonly": {
+        "path": "tests/integration/commands/booking-conflicts.int.test.ts",
+        "sha256": "d7ac1a145578394763d65bd91f8df314254c54c51a5e4d407ce6ff31d3f69ed5"
+      },
+      "positive_verdict": "PASS_FOR_ALLOCATION_DECISION only if warranted",
+      "result_record": "shared-helper-independent-confirmation.json"
+    },
+    {
+      "phase": "Independent allocation confirmation of complete receipt enrollment delta",
+      "recorded_at_utc": "2026-11-02T12:17:35.690952+00:00",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "dispatch_status": "recorded-before-Root-dispatch; exact complete5file proposal, supersedes preliminary2filecount only",
+      "reviewer": "Root will reuse /root/fixture_extension_review for related delta, not broadimplementationreview",
+      "scope": "ONLY five proven closed receipt metadata/fixture/pinned-set consumers; preserve assertions/type/H4union/current authority/private receipt ACLs; full consumerscan/nativecompile+scopeunit failures. Prior2fixture+1helper approvals/reviews retained. No implementation/runtime PASS.",
+      "proposal_artifacts": [
+        {
+          "path": "_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\receipt-enrollment-extension-proposal.md",
+          "sha256": "39f993d46b1e2df23db5f9a141302dde4f6f6992559de275f282a87ca2262ae7"
+        },
+        {
+          "path": "_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\receipt-enrollment-extension-proposal.json",
+          "sha256": "02851c7814c645bb6ad13d7e25f0c0a8f7368a75b85664a5ca3475c3c541446a"
+        }
+      ],
+      "source_preimages": [
+        {
+          "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+          "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a"
+        },
+        {
+          "path": "tests/support/authz/role-harness.ts",
+          "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9"
+        },
+        {
+          "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+          "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f"
+        },
+        {
+          "path": "tests/unit/scope/manifest-shape.test.ts",
+          "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296"
+        },
+        {
+          "path": "tests/unit/scope/manifest-derivations.test.ts",
+          "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870"
+        }
+      ],
+      "positive_verdict": "PASS_FOR_ALLOCATION_DECISION only if warranted; no ownerapproval inferred"
+    },
+    {
+      "phase": "Independent receipt enrollment proposal latest-correction confirmation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T12:22:22.755482+00:00",
+      "dispatch_status": "completed actual separate SolHigh latest-correction PASS_FOR_ALLOCATION_DECISION, Root-relayed",
+      "scope": "Relateddelta ONLY explicit58to59 pinnedcount/title/diagnostic changes+boundedassertionpreservationexception and accurate7diagnostic progresslog provenance. Confirm actualmetadatahash changes only ifany. Existing sound5file enrollment assessment reused; no broadproducerreview or ownerapproval inferred.",
+      "proposal_artifacts": [
+        {
+          "path": "_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\receipt-enrollment-extension-proposal.md",
+          "sha256": "67169a4aac9ad305d51fe7eec26bce2177629eeabed303b33ccf98fb462194d9"
+        },
+        {
+          "path": "_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\receipt-enrollment-extension-proposal.json",
+          "sha256": "fe20e3449c43df5f2f102d02855c195bd8918f527109069aa0460f9b456954c3"
+        }
+      ],
+      "source_preimages": [
+        {
+          "path": "tests/integration/rls/role-harness.atdd.int.test.ts",
+          "sha256": "75688b1a77bc851a764bbbc485f5be3ad3306fd55ff7f309c261d144eed0444a"
+        },
+        {
+          "path": "tests/support/authz/role-harness.ts",
+          "sha256": "23a1897cc8fb9cda711f5fc3c95d86f68680f7c7bcba41ac3d484e394fbf1dc9"
+        },
+        {
+          "path": "tests/integration/rls/cross-tenant-isolation.rls.test.ts",
+          "sha256": "471ec572624326090089b3d3afdcef3963f7f4a3844923037b93d50af9ad572f"
+        },
+        {
+          "path": "tests/unit/scope/manifest-shape.test.ts",
+          "sha256": "4a516ad9d25a6effaa0e07156f9388491510640ac76f62c87249cf47cf114296"
+        },
+        {
+          "path": "tests/unit/scope/manifest-derivations.test.ts",
+          "sha256": "9a0a5e50e00cb6d6e254cd4c37e2f73850b55cd0e9725030a7faa9d7f364b870"
+        }
+      ],
+      "positive_verdict": "PASS_FOR_ALLOCATION_DECISION only if corrections warranted",
+      "result_record": "receipt-enrollment-independent-confirmation.json"
+    },
+    {
+      "phase": "Independent allocation confirmation of supplemental pricing validator fixture",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "recorded_at_utc": "2026-11-02T12:31:36.800846+00:00",
+      "dispatch_status": "completed actual separate SolHigh PASS_FOR_ALLOCATION_DECISION, Root-relayed",
+      "scope": "ONLY additional pricing-validation-edges unitfixture normalization for ALLpositive+negative calls and explicit3protocolkey fullset expectation addition; complete6validator/result/DTO consumer scan; existingmoney/supplier/idassertions meaningful and unchanged. Reuse prior5receiptfileassessment unchanged; no broadproducerreview/runtimePASS or ownerapproval.",
+      "proposal_artifacts": [
+        {
+          "path": "_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\pricing-validation-fixture-extension-proposal.md",
+          "sha256": "3aa6d997a2f15a10eada6976a644a242f3481aae10c07435f8a4fe7a6071154d"
+        },
+        {
+          "path": "_bmad-output\\implementation-artifacts\\evidence\\35-7-p-settings-pricing-producer-contracts\\pricing-validation-fixture-extension-proposal.json",
+          "sha256": "32e613bdd61f4860b411f5cd984462ce4c00e00edf0b79ad1a0eb2917edfbb1c"
+        }
+      ],
+      "positive_verdict": "PASS_FOR_ALLOCATION_DECISION only if warranted",
+      "result_record": "pricing-validation-fixture-independent-confirmation.json"
+    }
+  ],
+  "implementation_author_dispatched": true,
+  "implementation_author_task": "/root/producer_build/implementation_author",
+  "supplementary_root_diagnoses": [
+    {
+      "task_name_as_reported": "sql_investigation",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "scope": "READ-ONLY exact failing/prior calendar SQL body+ACL provenance and narrowly justified synthetic bootstrap disposition; no product or DB mutation",
+      "route_provenance": "Root reported actual High selection in its dispatch message; this supplemental file is recorded AFTER that report, not a fabricated before-dispatch file timestamp"
+    }
+  ]
+}

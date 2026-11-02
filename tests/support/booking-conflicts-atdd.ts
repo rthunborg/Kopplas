@@ -1,3 +1,4 @@
+import { readOperationReceipt, type OperationRpcArguments } from "@/server/commands/settings/settings-db";
 /** Story 14.3 production-bound fixtures. Privileged SQL is local test-only, never a client bypass.
  * Provider source: actual create/update Booking commands + envelope, booking-db,
  * 20261006113212_booking_replay_current_authority.sql; see binding contract below.
@@ -101,13 +102,15 @@ export async function seedAcceptedConflict(id: string, membershipId: string) {
   await adminQuery("update public.booking_conflicts set status='accepted',acceptance_reason='Existing approved coordination',accepted_by_membership_id=$2,accepted_at='2026-10-06T08:00:00.123456Z' where id=$1", [id, membershipId]);
 }
 export async function seedWorkRole(fx: BookingFixture) {
-  const saved = await fx.adminClient.rpc("upsert_work_role_with_audit", {
-    p_tenant_id: fx.base.tenantA.id, p_actor_user_id: fx.base.adminA.id, p_correlation_id: crypto.randomUUID(),
-    p_work_role_id: null, p_display_name: "Conflict fixture electrician", p_cost_rate_ore: 20000, p_sell_rate_ore: 40000,
-  });
-  if (saved.error || typeof saved.data !== "string") throw new Error("Real work role fixture failed");
-  return saved.data;
+  const operationId=crypto.randomUUID(),targetId=crypto.randomUUID();
+  const saved=await fx.adminClient.rpc("upsert_work_role_with_audit_v2",{
+    p_tenant_id:fx.base.tenantA.id,p_actor_user_id:fx.base.adminA.id,p_correlation_id:operationId,p_operation_id:operationId,p_target_id:targetId,p_expected_revision:null,
+    p_payload:{display_name:"Conflict fixture electrician",cost_rate_ore:20000,sell_rate_ore:40000},
+  } satisfies OperationRpcArguments);
+  if(saved.error)throw new Error("Real work role fixture failed");
+  return readOperationReceipt(saved.data,{operationId,targetId,expectedRevision:null}).targetId;
 }
+
 export const consumedWriterKinds = ["schedule", "profile", "calendar", "combined_form", "work_role_upsert", "work_role_active", "membership", "invitation_acceptance"] as const;
 export type WriterKind = typeof consumedWriterKinds[number];
 export type PreparedWriter = {
@@ -133,6 +136,11 @@ export async function prepareConsumedWriter(fx: BookingFixture, kind: WriterKind
   } else if (kind === "membership") {
     lockSql = "select id from public.tenant_memberships where id=$1 for update"; lockParams = [fx.coworkerProfile.membershipId];
   }
+  // Capture before returning invoke and before the consumer starts its row barrier.
+  const workRoleOperationId=crypto.randomUUID();
+  const baseline=await fx.adminClient.from("work_roles").select("id,write_revision").eq("tenant_id",fx.base.tenantA.id).eq("id",workRoleId).single();
+  if(baseline.error || !baseline.data || !/^[0-9a-f-]{36}$/i.test(baseline.data.write_revision))throw new Error("Real work role baseline failed");
+  const workRoleProtocol={p_tenant_id:fx.base.tenantA.id,p_actor_user_id:fx.base.adminA.id,p_correlation_id:workRoleOperationId,p_operation_id:workRoleOperationId,p_target_id:workRoleId,p_expected_revision:baseline.data.write_revision};
   const common = { p_tenant_id: fx.base.tenantA.id, p_actor_user_id: fx.base.adminA.id, p_correlation_id: crypto.randomUUID() };
   const invoke = async (): Promise<RpcResult> => {
     switch (kind) {
@@ -140,8 +148,8 @@ export async function prepareConsumedWriter(fx: BookingFixture, kind: WriterKind
       case "profile": return fx.adminClient.rpc("upsert_person_profile_with_audit", { ...common, p_membership_id: fx.ownProfile.membershipId, p_work_role_id: workRoleId, p_employment_percentage: 80 });
       case "calendar": return fx.adminClient.rpc("upsert_tenant_calendar_day_with_audit", { ...common, p_local_date: "2026-10-12", p_variant: "closed", p_reduction_percent: null });
       case "combined_form": return fx.adminClient.rpc("save_resource_profile_form_with_audit", { ...common, p_membership_id: fx.ownProfile.membershipId, p_work_role_id: workRoleId, p_employment_percentage: 80, p_schedule: [{ weekday: 1, start: "08:00", end: "16:00", breaks: [] }], p_exceptions: [{ kind: "blocked_time", date: "2026-10-12", start: "08:00", end: "12:00" }], p_calendar_day: null });
-      case "work_role_upsert": return fx.adminClient.rpc("upsert_work_role_with_audit", { ...common, p_work_role_id: workRoleId, p_display_name: "Renamed current role", p_cost_rate_ore: 20000, p_sell_rate_ore: 40000 });
-      case "work_role_active": return fx.adminClient.rpc("set_work_role_active_with_audit", { ...common, p_work_role_id: workRoleId, p_is_active: false });
+      case "work_role_upsert": return fx.adminClient.rpc("upsert_work_role_with_audit_v2", { ...workRoleProtocol, p_payload:{display_name:"Renamed current role",cost_rate_ore:20000,sell_rate_ore:40000} } satisfies OperationRpcArguments);
+      case "work_role_active": return fx.adminClient.rpc("set_work_role_active_with_audit_v2", { ...workRoleProtocol, p_payload:{is_active:false} } satisfies OperationRpcArguments);
       case "membership": return fx.adminClient.rpc("admin_manage_membership", { p_tenant_id: fx.base.tenantA.id, p_membership_id: fx.coworkerProfile.membershipId, p_action: "disable", p_roles: [], p_reason: "Consumed fact race", p_operation_id: crypto.randomUUID() });
     }
   };
