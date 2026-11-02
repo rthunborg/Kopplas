@@ -9,11 +9,11 @@ spec_folder: "C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec
 story_id: 35-6
 branch: codex/story-35-6-crm-record-journeys
 status: in-progress
-updated_at: "2026-11-02T15:39:32Z"
+updated_at: "2026-11-02T16:10:50Z"
 started_at: "2026-11-02T13:54:54Z"
 completed_at: null
 active_seconds: 4525
-timing_anchor: null
+timing_anchor: 1793635850
 is_first_in_epic: true
 is_last_in_epic: true
 git_mode: remote
@@ -72,8 +72,8 @@ retro:
   open_action_items: 0
 bmad_status_flipped_at: null
 pr_url: "https://github.com/rthunborg/Kopplas/pull/127"
-ci_run_url: null
-ci_status: unknown
+ci_run_url: "https://github.com/rthunborg/Kopplas/actions/runs/41473808206"
+ci_status: failed
 pr_merged: false
 merge_method: null
 merge_commit: null
@@ -81,10 +81,11 @@ branch_deleted: false
 open_questions: []
 deferred_work: []
 blockers:
-  - "Required current-head full runtime and visual evidence pending; oldnative31unexpected includes10owned and21unowned failures"
-  - Phase6 automation-summary coordinator allocation/reconciliation required
-  - Recommended follow-up review pending
-  - Authenticated current-head visual acceptance pending
+  - "Required exacthead CI fails unowned My-day15.6-E09 lateRSCtransport delivery; no waiver or blind rerun"
+  - B01 semantic no-match capture target correction admitted afterP6input freeze release
+  - Fresh repaired-head CRMruntime and visualcaptures unearned
+  - "Coordinator P6 final result historical772/b143 pending; CustomerList loadError/retry seam gap unresolved"
+  - Recommended follow-up review and authenticated visualacceptance pending
 overrides:
   approved_plan_reused: true
   done_checkpoint: true
@@ -100,7 +101,7 @@ review_state: native-fix-delta-reviewed-pending-followup
 review_revision: b1437128f186c9a840803066eac0144da6810d11
 visual_state: pending
 merge_state: not-requested
-publication_operation_json: "{\"evidence\":\"PR127 exact3eb observed; fullnative41469021274 executing; oldfull41463404500 terminal failure native473pass31fail22skip1flaky retained\",\"operation\":\"push\",\"status\":\"confirmed\",\"base\":\"main\",\"story_key\":\"spec-design-35-6-35-6\",\"run_id\":\"e35-6-20261102\",\"branch\":\"codex/story-35-6-crm-record-journeys\",\"head\":\"3eb9806cafb5531a81e8b947792610e00c08db9e\",\"pr_number\":127,\"repository\":\"rthunborg/Kopplas\"}"
+publication_operation_json: "{\"operation\":\"push\",\"head\":\"772c5241b82dc3a9ea517282f4c138938a01edbf\",\"base\":\"main\",\"story_key\":\"spec-design-35-6-35-6\",\"branch\":\"codex/story-35-6-crm-record-journeys\",\"evidence\":\"Provider PR127 head772 confirmed; exactheadCI41473808206 terminalfailed onlyMy-day15.6-E09 requiredbrowser; sourcefreeze772 released afterCoordinator SHA-pinned reads\",\"repository\":\"rthunborg/Kopplas\",\"status\":\"confirmed\",\"run_id\":\"e35-6-20261102\",\"pr_number\":127}"
 pr_number: 127
-candidate_revision: 3eb9806cafb5531a81e8b947792610e00c08db9e
-ci_revision: 3eb9806cafb5531a81e8b947792610e00c08db9e
+candidate_revision: 772c5241b82dc3a9ea517282f4c138938a01edbf
+ci_revision: 772c5241b82dc3a9ea517282f4c138938a01edbf
