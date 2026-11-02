@@ -235,3 +235,31 @@ read `sequential-pr-strategy.md`. Its isolated per-story publication, source
 checkpoint, pending/resume and retained-branch rules apply to a fresh ordinary
 sequential epic pinned `story-pr`. Single-story, legacy anchors without strategy,
 backend-only `epic-pr` and explicit parallel runs retain their existing route.
+
+## Schema-2 parallel publication ownership override
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](../../../../docs/process/spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+For an explicit admitted schema-2 stories/story-pr assignment only, a worker may
+perform the existing per-story report/checkpoint/push/create-PR route on its own
+claimed branch. This is the narrow exception to schema-1 worker Phase 8/9's
+publication prohibition. Keep immutable publication_identity_json and durable
+publication_operation_json, current-head validators and all existing executable
+CI/review/visual/authorization wrappers. A pending draft or open PR remains pending.
+Never execute worker aggregate Phase 8 gates, global ledger reconciliation,
+retrospective, aggregate completion, main merge or deployment. No sibling or
+aggregate state is staged. Schema-1 and ordinary sequential ownership are unchanged.
+
+The coordinator must acquire durable `prepare-pr-merge` custody before invoking
+the existing authorized merge-commit route. Quiesce every worker/fixer writer and
+keep it frozen through observation/verification. A local helper receipt grants no
+provider authority. Reconcile an uncertain provider result against the same intent;
+never blindly repeat merge or create a replacement PR. `observe-pr-merge` requires
+provider-merged facts and Git proof of exactly the prepared main first parent and
+prepared candidate second parent, reachable on refreshed qualified main. Base/head
+movement is a reconciliation blocker. Retain branches. Only exact-current-main
+combined verification releases the claim and merge custody.

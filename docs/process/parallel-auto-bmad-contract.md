@@ -1,6 +1,7 @@
 # Parallel Auto-BMAD helper contract
 
-Protocol: schema_version 1. The helper is
+Protocol: schema_version 1 remains operative for sprint/epic-PR. The restricted
+schema-2 stories/story-PR contract is below; synthetic qualification is complete; operational/adoption gates remain. The helper is
 `.agents/skills/auto-bmad/scripts/parallel_run.py` (mirrored under `.claude`).
 Use absolute paths and `python -X utf8` on Windows. Successful calls emit one JSON
 object with `ok: true`; a nonzero exit/refusal is not permission to continue.
@@ -479,3 +480,157 @@ current canonical stored plan, not by hashing a stale initial artifact. The
 coordinator owns source authority and receipt authenticity. Final helper invocation
 is the command above using this exact finalization-request.json; archive its full
 JSON response. Do not treat this assembly example as a check execution or approval.
+
+## Restricted schema-2 stories / story-PR contract
+
+> **Synthetic qualification complete; operational/adoption gates remain.**
+> See the [verification record](spec-parallel-pr-verification-2026-11-02.md).
+> This is not a product run, source-adoption decision or admission authority;
+> current product qualification remains coordinator-owned. Schema 1 is unchanged.
+
+
+This section overrides only schema-1 source/publication/base/integration behavior
+for an explicit reviewed schema-2 plan. All existing owner/generation checks,
+common-Git SQLite authority, legacy reservations, declared paths/domains, evidence
+integrity and the repository-wide cap of two remain. Pending PR-ready, blocked and
+merge-verification claims retain reservations. Existing schema-1 APIs and pinned
+fixtures remain supported; no active-run conversion or new scheduler/fixer machine.
+See [the reviewed adapter plan](spec-parallel-pr-plan-2026-11-02.md) for the source
+and merge-custody decisions. Always inspect current helper subcommand help before
+constructing an operational request; JSON artifacts are data, not authorization.
+
+### Plan/source delta
+
+Retain schema-1 plan/story ownership, contract, risk and check fields. Schema 2
+requires `schema_version: 2`, `story_source: stories`,
+`publication_strategy: story-pr`, `repository: owner/repository`,
+`base_branch: main`. The integration branch/worktree is coordinator control only.
+The grouping `epic` does not replace original source identities. Each story `id`
+is its unchanged story_plan key; its `source` records the original `spec_folder`,
+`story_id`, `story_key`, zero-based `position`, boolean `spec_checkpoint` and
+`done_checkpoint`, and `files` entries containing `path` and LF-normalized
+`sha256` for committed SPEC.md and stories.yaml. Existing spec_path/spec_revision
+pin the exact approved individual story file.
+Optional per-story `independent_of_pending` is boolean and defaults to false.
+When true, `concurrency_approval_ref` must be a nonempty reference to reviewed
+permission. Both ready_pairs reporting and actual concurrent claim admission require both
+stories to record this independence, in addition to dependency and path/domain checks. These fields
+record inspected source permission; they do not create it.
+
+
+Use story_plan.py's parser/resolver, never a looser duplicate YAML parser. Each selected folder must contain exactly one story entry; preserve its original
+position/checkpoints. Multi-entry continuation is unsupported. Full canonical
+repository-relative folder plus original source ID is authority; reject case/path
+aliases, escaping symlinks, ambiguous/prefix-colliding IDs and basename-derived
+state/report collisions. Multiple explicitly planned folders are supported. Source
+files/specs must already be committed on qualified main. Unresolved approval,
+checkpoint continuation or dependency evidence blocks admission. No new source
+status/dependency fields are added to stories.yaml.
+
+Protect SPEC.md, stories.yaml, .memlog.md, RETROSPECTIVE.md, aggregate spec reports,
+epic anchors/reports, global ledgers and workflow/configuration. Workers require
+exact own story spec/state/report ownership and may not own sibling bookkeeping.
+A copied parallel_run_id alone never bypasses registered inherited-base provenance.
+
+### Claim, publication and custody delta
+
+Schema-2 `claim` additionally supplies `--expected-head SHA`, the refreshed
+qualified origin/main revision and exact clean worker HEAD. Plan base must be its
+ancestor and pins unchanged. Operational fetch/CI qualification is still required.
+Dependencies need verified actual main merges; open PRs, branch CI and done markers
+are insufficient. Workers never branch from coordinator control HEAD or stack
+unmerged prerequisite code.
+
+Workers reuse the existing per-story story-PR pipeline and publication validators,
+including immutable publication_identity_json and durable publication_operation_json.
+This is the explicit exception to worker Phase 8/9 publication prohibition and the
+sequential reference's fresh-only scope. Preserve per-story delivery/closeout
+wrappers, operational CI/review/visual/authorization gates and frontend evidence;
+aggregate trace/reconcile/archive/retrospective and ledger remain coordinator-only.
+
+Submission retains worker evidence and adds provider-observed publication bound
+to repository, immutable PR number/URL, branch, main base and actual candidate head,
+with immutable observation reference and the existing pr_strategy publish snapshot.
+Accepted submission is `pr-ready`, never integrated. Before merge custody the same
+owner may resubmit a fixed candidate on the same PR identity; stale head receipts
+are invalidated. No replacement PR or automatic fixer authority is created.
+
+The coordinator prepares repository-wide durable merge custody before invoking
+the existing authorized provider merge route. Preparation requires exact candidate,
+refreshed expected main, existing merge validators and quiescent writer evidence;
+it freezes worker/fixer mutations. Observation must reuse that intent and bind
+actual provider-merged facts to a Git commit whose exact ordered parents are
+`[prepared_main, prepared_candidate]`, reachable on qualified main. Open/unknown
+outcomes, wrong identity or changed head/base retain custody and require
+reconciliation. A timeout never permits a second blind merge request.
+
+Combined verify evidence targets exact current qualified main Q, includes the
+stored merge/candidate ancestry and real checks/independent review. Moving main
+invalidates Q evidence. Only verified integration releases reservations/custody.
+Finalize requires every required claim integrated with real main ancestry and all
+exact-head final/trace/reconcile/retro/delivery obligations. No final epic product
+PR is created. Any closeout artifact publication follows existing separate gates.
+
+### Operational boundary
+
+No product source adapters are created by this contract. At the tooling planning
+checkpoint, 35.6/35.7 were blocked for enrollment. Current product source
+qualification, approved amendments and dependency interpretation belong to the
+coordinator. Historical proposed identities and preparation requirements are not
+current pins, claim authority or product approval; obtain current reviewed source
+and ownership evidence before admission.
+Auto-BMAD has no customize.toml surface for these step changes: retain the existing
+project extension/mirrors without invented configuration or global modifications.
+
+### Exact schema-2 command/payload additions
+
+```text
+python -X utf8 <skill-root>/scripts/parallel_run.py --repo <control-root> claim --run <run> --owner <owner> --story <canonical-key> --worker <worker> --branch <branch> --worktree <worker-root> --expected-head <qualified-main-sha>
+python -X utf8 <skill-root>/scripts/parallel_run.py --repo <control-root> prepare-pr-merge --run <run> --owner <owner> --story <canonical-key> --expected-head <candidate-sha> --expected-main <qualified-main-sha> --evidence <absolute-evidence.json>
+python -X utf8 <skill-root>/scripts/parallel_run.py --repo <control-root> observe-pr-merge --run <run> --owner <owner> --story <canonical-key> --request <absolute-observation.json>
+```
+
+These are templates, not commands to launch a product pilot. Retain exact actual
+identities and native command receipts. Schema 2 refuses schema-1 `integrate`,
+`repair`, `amend-blocked` and `finalize-exceptions`; do not route around refusal.
+
+Submit publication is the existing `pr_strategy.py publish` observation plus
+`repository`, integer `pr_number`, `pr_url`, `head_branch`, `base_branch: main`,
+`head` equal to result_sha, `observation_ref`, and boolean `visible_ui`.
+Preparation evidence contains exactly:
+
+```json
+{
+  "schema_version": 2,
+  "run_id": "ACTUAL_RUN",
+  "story_id": "ACTUAL_CANONICAL_KEY",
+  "worker": "ACTUAL_WORKER",
+  "generation": 1,
+  "request_id": "ONCE_CREATED_TOKEN",
+  "publication": {},
+  "quiescence": {
+    "complete_writer_inventory": true,
+    "writers": [{"identity": "ACTUAL_WORKER", "state": "stopped", "evidence_ref": "ACTUAL_TERMINAL_STATUS"}]
+  }
+}
+```
+
+`publication` must contain the current actual publication plus every existing
+pr_strategy merge gate field; the empty object above is a placeholder, never
+valid evidence. Inventory every writer/fixer, including the claim worker. A
+quiescence attestation must be independently inspected and remain true while
+custody is held. Do not fabricate human approval or provider observations.
+
+Observation request contains exactly `schema_version: 2`, `request_id`, `run_id`,
+`story_id`, `generation`, `repository`, integer `pr_number`, `pr_url`, `head_branch`,
+`base_branch: main`, `head_sha` (prepared candidate), `merged: true`, `merge_sha`,
+`observation_ref`, and `qualified_main_sha` (refreshed origin/main). Bind the same
+token/generation/identity; inspect provider facts independently. Combined verify
+and finalize retain the existing combined evidence shape with schema_version 2
+and integration_sha equal to exact current qualified origin/main.
+
+The bounded schema-2 source route accepts exactly one story entry per selected
+folder (up to two explicitly planned folders). Terminal done_checkpoint is
+preserved: stop after the own PR, retain pending status until verified main merge.
+Unfulfilled spec_checkpoint approval and multi-entry continuation fail closed;
+no new checkpoint scheduler or source flag rewrite is introduced.

@@ -4,6 +4,7 @@ import argparse
 import contextlib
 import copy
 import hashlib
+import importlib.util
 import json
 from pathlib import Path, PurePosixPath
 import re
@@ -182,6 +183,7 @@ def legacy_conflicts(repo,plan,s=None):
     return collisions
 
 def validate_plan(repo,p):
+    if isinstance(p,dict) and p.get('schema_version')==2: return stories_pr_plan(repo,p)
     keys(p,['schema_version','story_source','run_id','epic','coordinator','integration_branch','integration_worktree','base_sha','workflow_version','max_workers','stories','integrated_prerequisites','legacy_reservations','shared_paths','final_required_checks'])
     require(p['schema_version']==VERSION and type(p['schema_version']) is int,'Unsupported plan schema')
     require(p['story_source']=='sprint','Only explicit sprint story plans are supported; stories/cross-host/clones are unsupported')
@@ -262,6 +264,7 @@ def conflicts(a,b):
     return bool({x.casefold() for x in a['conflict_domains']} & {x.casefold() for x in b['conflict_domains']}) or any(overlap(x,y) for x in a['write_paths'] for y in b['write_paths'])
 
 def report(repo,p,claims=None):
+    if p.get('schema_version')==2: return stories_pr_report(repo,p,claims)
     head = sha(p['integration_worktree'],'HEAD')
     claims = claims or {}
     ready,blocked = [],{}
@@ -296,6 +299,7 @@ CREATE TRIGGER IF NOT EXISTS immutable_claim_amendments_delete BEFORE DELETE ON 
 CREATE TABLE IF NOT EXISTS finalization_adoptions(request_id TEXT PRIMARY KEY, run TEXT NOT NULL UNIQUE, request_hash TEXT NOT NULL, before_snapshot TEXT NOT NULL, request TEXT NOT NULL, receipts TEXT NOT NULL, final_evidence TEXT NOT NULL, response TEXT NOT NULL, created REAL NOT NULL);
 CREATE TRIGGER IF NOT EXISTS immutable_finalization_adoptions_update BEFORE UPDATE ON finalization_adoptions BEGIN SELECT RAISE(ABORT, 'Finalization adoption audit is append-only'); END;
 CREATE TRIGGER IF NOT EXISTS immutable_finalization_adoptions_delete BEFORE DELETE ON finalization_adoptions BEGIN SELECT RAISE(ABORT, 'Finalization adoption audit is append-only'); END;
+CREATE TABLE IF NOT EXISTS story_pr_publications(run TEXT NOT NULL, story TEXT NOT NULL, repository TEXT NOT NULL, pr_number INTEGER NOT NULL, pr_url TEXT NOT NULL, branch TEXT NOT NULL, base_branch TEXT NOT NULL, head_sha TEXT NOT NULL, state TEXT NOT NULL, intent_json TEXT, observation_json TEXT NOT NULL, merge_sha TEXT, verification_json TEXT, PRIMARY KEY(run,story));
 '''
 
 @contextlib.contextmanager
@@ -825,8 +829,354 @@ def finalize_exceptions(a):
         finalization_checkpoint()
         return response
 
+_STORY_PR_MODULES = {}
+
+def story_pr_module(name):
+    if name not in _STORY_PR_MODULES:
+        spec=importlib.util.spec_from_file_location('parallel_adapter_'+name,Path(__file__).with_name(name+'.py'))
+        module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
+        _STORY_PR_MODULES[name]=module
+    return _STORY_PR_MODULES[name]
+
+def stories_pr_requested(a):
+    if a.command in {'plan','init'}:
+        return read_json(a.plan).get('schema_version')==2
+    store=common(a.repo)/'auto-bmad-parallel.sqlite3'
+    if a.command=='version' or not store.is_file(): return False
+    with contextlib.closing(sqlite3.connect(store.as_uri()+'?mode=ro',uri=True)) as db:
+        row=db.execute('SELECT plan FROM runs WHERE run=?',(a.run,)).fetchone()
+        return bool(row and json.loads(row[0]).get('schema_version')==2)
+
+def story_pr_main(repo):
+    return sha(repo,'refs/remotes/origin/main')
+
+def story_pr_current_main(repo,p):
+    head=story_pr_main(repo)
+    require(workflow_version(repo,head)==p['workflow_version'],'Qualified main workflow differs from pinned workflow')
+    source_pins(repo,p,False,head)
+    return head
+
+def source_identity(s):
+    return (s['source']['spec_folder'].casefold(),s['source']['story_id'])
+
+def source_blob(repo,commit,path):
+    result=subprocess.run(['git','-C',str(repo),'show',commit+':'+path],capture_output=True,timeout=30)
+    require(result.returncode==0,'Missing committed source: '+path)
+    return result.stdout.replace(b'\r\n',b'\n')
+
+def source_pins(repo,p,include_specs=False,commit=None):
+    for s in p['stories']:
+        refs=s['source']['files']+([{'path':s['spec_path'],'sha256':s['spec_revision']}] if include_specs else [])
+        for ref in refs:
+            path=Path(repo)/ref['path']
+            require(path.resolve().is_relative_to(top(repo)),'Source path escapes worktree')
+            content=source_blob(repo,commit,ref['path']) if commit else path.read_bytes().replace(b'\r\n',b'\n')
+            require(hashlib.sha256(content).hexdigest()==ref['sha256'],'Frozen source revision mismatch: '+ref['path'])
+
+def stories_pr_plan(repo,p):
+    required=['schema_version','story_source','run_id','epic','coordinator','integration_branch','integration_worktree','base_sha','workflow_version','max_workers','stories','integrated_prerequisites','legacy_reservations','shared_paths','final_required_checks','publication_strategy','repository','base_branch']
+    keys(p,required)
+    require(type(p['schema_version']) is int and p['schema_version']==2 and p['story_source']=='stories' and p['publication_strategy']=='story-pr','Schema 2 requires stories / story-pr')
+    require(p['base_branch']=='main' and isinstance(p['repository'],str) and re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',p['repository']),'Explicit repository and main target required')
+    # Reuse the complete v1 ownership/contracts/base validator as an internal
+    # projection. No stored v1 plan, evidence, assignment or dispatch is migrated.
+    projection={k:copy.deepcopy(p[k]) for k in required if k not in {'publication_strategy','repository','base_branch'}}
+    projection['schema_version']=1; projection['story_source']='sprint'
+    folders={}; identities=set(); artifact_keys=set(); planner=story_pr_module('story_plan')
+    require(isinstance(p['stories'],list) and p['stories'],'stories must be nonempty')
+    for s,projected in zip(p['stories'],projection['stories']):
+        keys(s,['id','approved','spec_path','spec_revision','prerequisites','write_paths','conflict_domains','contracts','requires_contracts','risk_domains','required_checks','source'],['independent_of_pending','concurrency_approval_ref'])
+        src=s['source']; keys(src,['spec_folder','story_id','story_key','position','spec_checkpoint','done_checkpoint','files'])
+        folder=path_token(src['spec_folder']); require(not folder.endswith('/'),'Source folder must have no trailing slash')
+        path=(Path(repo)/folder).resolve()
+        require(path.is_relative_to(top(repo)) and path.relative_to(top(repo)).as_posix().casefold()==folder.casefold(),'Noncanonical or escaping source folder')
+        require(isinstance(src['story_id'],str) and src['story_id'] and s['id']==src['story_key'],'Original source ID/key required')
+        identity=source_identity(s)
+        require(identity not in identities,'Duplicate canonical source story identity'); identities.add(identity)
+        require(s['id'].casefold() not in artifact_keys,'Source artifact key collision'); artifact_keys.add(s['id'].casefold())
+        require(folder.casefold() not in folders,'Schema 2 supports one story per source folder')
+        folders[folder.casefold()]=folder
+        require(type(src['position']) is int and type(src['spec_checkpoint']) is bool and type(src['done_checkpoint']) is bool,'Invalid source order/checkpoint types')
+        require(isinstance(src['files'],list) and len(src['files'])==2,'SPEC.md and stories.yaml pins required')
+        for ref in src['files']:
+            keys(ref,['path','sha256']); path_token(ref['path'])
+            require(isinstance(ref['sha256'],str) and re.fullmatch('[0-9a-f]{64}',ref['sha256']),'Invalid source hash')
+        require({r['path'] for r in src['files']}=={folder+'/SPEC.md',folder+'/stories.yaml'},'Source pins must name exact SPEC.md and stories.yaml')
+        info,reason,_=planner.load_spec_folder(str(path)); require(not reason,'Invalid source: '+str(reason))
+        require(len(info['stories'])==1,'Schema 2 supports one-story folders; multi-entry continuation is unsupported')
+        resolved,code=planner.build_stories_resolve_result(str(path),src['story_id'])
+        require(code==0 and not resolved['hard_stop'],'Invalid source story: '+str(resolved.get('hard_stop_reason')))
+        require(not resolved['warnings'],'Source parser warnings require reconciliation: '+canonical(resolved['warnings']))
+        for field in ['story_id','story_key','position','spec_checkpoint','done_checkpoint']:
+            require(src[field]==resolved[field],'Source '+field+' does not match story_plan provenance')
+        require(not src['spec_checkpoint'],'Unfulfilled source spec_checkpoint; use existing approved checkpoint route')
+        require(resolved['story_file'] and Path(resolved['story_file']).resolve()==(Path(repo)/s['spec_path']).resolve(),'Approved spec must be exact folder+ID story file')
+        require(resolved['current_status'] in {'ready-for-dev','in-progress','review','done'},'Source story is not ready for development')
+        require(type(s.get('independent_of_pending',False)) is bool,'independent_of_pending must be boolean')
+        require(not s.get('independent_of_pending',False) or isinstance(s.get('concurrency_approval_ref'),str) and s['concurrency_approval_ref'].strip(),'Concurrent independence requires reviewed permission')
+        own={'_bmad-output/auto-bmad/state/'+s['id']+'.yaml','_bmad-output/auto-bmad/reports/'+s['id']+'.md',s['spec_path']}
+        require(own<=set(s['write_paths']),'Worker must own exact own spec/state/report paths')
+        for token in s['write_paths']:
+            if overlap(token,folder+'/'): require(token==s['spec_path'],'Worker may only own exact own story spec within source folder')
+            for prefix in ['_bmad-output/auto-bmad/state/','_bmad-output/auto-bmad/reports/']:
+                if overlap(token,prefix): require(token in own,'Worker ownership includes sibling or aggregate bookkeeping')
+        for field in ['source','independent_of_pending','concurrency_approval_ref']: projected.pop(field,None)
+    validate_plan(repo,projection)
+    slugs=set()
+    for folder in folders.values():
+        slug=planner.spec_slug_for(folder).casefold()
+        require(slug not in slugs,'Different source folders collide on aggregate artifact paths'); slugs.add(slug)
+    for s in p['stories']:
+        for other in p['stories']:
+            if other is s: continue
+            require(not any(overlap(token,other['source']['spec_folder']+'/') for token in s['write_paths']),'Worker ownership includes another source folder')
+    source_pins(repo,p,True,p['base_sha']); source_pins(repo,p,True)
+    head=story_pr_main(repo)
+    require(ancestor(repo,p['base_sha'],head),'Approved source base must already be on qualified main')
+    source_pins(repo,p,True,head)
+    require(workflow_version(repo,head)==p['workflow_version'],'Qualified main workflow differs from pinned workflow')
+    return p
+
+def story_pr_registered_anchor(repo,p,wt,anchor):
+    store=common(repo)/'auto-bmad-parallel.sqlite3'
+    if not store.is_file(): return False
+    with contextlib.closing(sqlite3.connect(store.as_uri()+'?mode=ro',uri=True)) as db:
+        row=db.execute('SELECT plan FROM runs WHERE run=?',(p['run_id'],)).fetchone()
+        if not row or digest(json.loads(row[0]))!=digest(p): return False
+        relative=anchor.relative_to(wt).as_posix()
+        claims=[dict(zip(['story','worktree','base_sha','result_sha'],x)) for x in db.execute('SELECT story,worktree,base_sha,result_sha FROM claims WHERE run=?',(p['run_id'],))]
+        own=next((c for c in claims if Path(c['worktree']).resolve()==wt),None)
+        aggregate={p['epic']}|{'spec-'+story_pr_module('story_plan').spec_slug_for(s['source']['spec_folder']) for s in p['stories']}
+        if anchor.parent.name=='epic' and anchor.stem in aggregate:
+            if wt==Path(p['integration_worktree']).resolve(): return True
+        elif own and relative=='_bmad-output/auto-bmad/state/'+own['story']+'.yaml': return True
+        elif not any(relative=='_bmad-output/auto-bmad/state/'+c['story']+'.yaml' and c['result_sha'] and own and ancestor(repo,c['result_sha'],own['base_sha']) for c in claims): return False
+        base=own['base_sha'] if own else story_pr_main(repo)
+        if not own and sha(wt,'HEAD')!=base: return False
+        try: content=source_blob(repo,base,relative)
+        except Refusal: return False
+        return content==anchor.read_bytes().replace(b'\r\n',b'\n') and scalar(content.decode('utf-8-sig'),'parallel_run_id')==p['run_id']
+
+def story_pr_legacy_conflicts(repo,p,s):
+    collisions=[]; identity=source_identity(s)
+    for r in p['legacy_reservations']:
+        if str(r['epic'])==p['epic'] or s['id'] in r['stories'] or s['source']['story_id'] in r['stories'] or conflicts(s,r):
+            collisions.append({'source':'reservation','path':r['worktree'],'reason':r['reason']})
+    for wt in worktrees(repo):
+        require(wt.is_dir(),'Registered worktree missing; cannot scan legacy ownership: '+str(wt))
+        state=wt/'_bmad-output/auto-bmad/state'
+        for anchor in list(state.glob('*.yaml'))+list((state/'epic').glob('*.yaml')):
+            content=anchor.read_text(encoding='utf-8-sig')
+            if scalar(content,'status') in {'done','completed','abandoned'}: continue
+            if scalar(content,'parallel_run_id')==p['run_id'] and story_pr_registered_anchor(repo,p,wt,anchor): continue
+            source=scalar(content,'spec_folder'); matching=False
+            if source:
+                path=Path(source); path=path if path.is_absolute() else wt/path
+                try: matching=path.resolve().relative_to(wt).as_posix().casefold()==identity[0]
+                except ValueError: matching=False
+            target=scalar(content,'story_key') or scalar(content,'active_story') or anchor.stem
+            if matching or target==s['id'] or scalar(content,'epic_num')==p['epic'] or scalar(content,'epic')==p['epic']:
+                collisions.append({'source':'legacy-anchor','path':str(anchor),'reason':'In-flight legacy ownership'})
+    return collisions
+
+def stories_pr_report(repo,p,claims=None):
+    claims=claims or {}; head=story_pr_current_main(repo,p); ready=[]; blocked={}; collisions=[]
+    external={e['id']:e for e in p['integrated_prerequisites']}
+    for s in p['stories']:
+        reasons=[]; old=story_pr_legacy_conflicts(repo,p,s); collisions.extend(old)
+        if old: reasons.append('legacy ownership collision')
+        if s['id'] in claims: reasons.append('already claimed: '+claims[s['id']]['state'])
+        for dep in s['prerequisites']:
+            item=external.get(dep) or claims.get(dep)
+            commit=item.get('commit') if dep in external else item.get('integration_sha') if item and item['state']=='integrated' else None
+            if not commit or not ancestor(repo,commit,head): reasons.append('prerequisite not verified main ancestor: '+dep)
+        if reasons: blocked[s['id']]=reasons
+        else: ready.append(s['id'])
+    byid={s['id']:s for s in p['stories']}
+    pairs=[[a,b] for i,a in enumerate(ready) for b in ready[i+1:] if not conflicts(byid[a],byid[b]) and byid[a].get('independent_of_pending',False) and byid[b].get('independent_of_pending',False)]
+    return {'schema_version':2,'run_id':p['run_id'],'qualified_main_sha':head,'ready':ready,'ready_pairs':pairs,'blocked':blocked,'legacy_conflicts':collisions}
+
+def story_pr_assignment(p,c):
+    result=assignment(p,c); s=story(p,c['story'])
+    result.update(schema_version=2,story_source='stories',publication_strategy='story-pr',repository=p['repository'],base_branch='main',source=copy.deepcopy(s['source']),source_namespace=s['source']['spec_folder'].casefold(),worker_phases=['test','build','independent-review','review-fix','publish-story-pr'],forbidden_phases=['epic-reconciliation','epic-finalization','merge-base'])
+    return result
+
+def story_pr_publication(p,c,observation,head,merging=False):
+    require(isinstance(observation,dict),'Publication observation required')
+    for field,expected in [('repository',p['repository']),('head_branch',c['branch']),('base_branch','main'),('head',head)]:
+        require(observation.get(field)==expected,'Publication '+field+' mismatch')
+    require(type(observation.get('pr_number')) is int and observation['pr_number']>0,'Observed PR number required')
+    require(observation.get('pr_url')=='https://github.com/'+p['repository']+'/pull/'+str(observation['pr_number']),'Observed PR URL/repository mismatch')
+    require(isinstance(observation.get('observation_ref'),str) and observation['observation_ref'].strip(),'Independent provider observation reference required')
+    require(type(observation.get('visible_ui')) is bool,'Actual intended visible scope observation required')
+    api=story_pr_module('pr_strategy'); errors=(api.merge_errors if merging else api.publish_errors)({'visible_ui':observation['visible_ui']},observation)
+    require(not errors,'Existing story PR gate: '+'; '.join(errors))
+
+def story_pr_evidence(repo,p,c,e):
+    keys(e,['schema_version','run_id','story_id','worker','generation','base_sha','result_sha','workflow_version','spec_revision','changed_paths','checks','review','routes','publication'])
+    require(type(e['schema_version']) is int and e['schema_version']==2,'Unsupported schema 2 evidence')
+    projected={k:v for k,v in e.items() if k!='publication'}; projected['schema_version']=1
+    result=validate_evidence(repo,p,c,projected)
+    source_pins(c['worktree'],p); story_pr_publication(p,c,e['publication'],result)
+    return result
+
+def story_pr_combined(p,c,e,head,final=False):
+    require(e.get('schema_version')==2 and type(e.get('schema_version')) is int,'Unsupported schema 2 combined evidence')
+    combined_evidence(p,c,{**e,'schema_version':1},head,final)
+
+def story_pr_merge_checkpoint():
+    """Synthetic crash hook after durable intent; never calls a provider."""
+
+def execute_story_pr(a):
+    require(a.command not in {'integrate','repair','amend-blocked','finalize-exceptions'},'Schema 2 does not support legacy integration or maintenance APIs')
+    if a.command=='plan': return stories_pr_report(a.repo,stories_pr_plan(a.repo,read_json(a.plan)))
+    with database(a.repo) as db:
+        if a.command=='init':
+            p=stories_pr_plan(a.repo,read_json(a.plan)); require(a.owner==p['coordinator'],'Plan coordinator mismatch')
+            clean(p['integration_worktree']); require(sha(p['integration_worktree'],'HEAD')==p['base_sha'],'Init requires exact plan base HEAD')
+            existing=db.execute('SELECT * FROM runs WHERE run=?',(p['run_id'],)).fetchone()
+            if existing: require(existing['owner']==a.owner and existing['plan_hash']==digest(p),'Run already owned or plan changed')
+            else:
+                own_sources={source_identity(s) for s in p['stories']}
+                own_keys={s['id'].casefold() for s in p['stories']}
+                own_folders={story_pr_module('story_plan').spec_slug_for(s['source']['spec_folder']).casefold() for s in p['stories']}
+                for row in db.execute("SELECT plan FROM runs WHERE state!='finalized'"):
+                    other=json.loads(row[0])
+                    require(other['integration_branch']!=p['integration_branch'] and Path(other['integration_worktree']).resolve()!=Path(p['integration_worktree']).resolve(),'Coordinator branch/worktree already owned')
+                    if other.get('schema_version')==2:
+                        require(not own_sources.intersection(source_identity(s) for s in other['stories']),'Canonical source already owned')
+                        require(not own_keys.intersection(s['id'].casefold() for s in other['stories']),'Source artifact key already owned')
+                        require(not own_folders.intersection(story_pr_module('story_plan').spec_slug_for(s['source']['spec_folder']).casefold() for s in other['stories']),'Source aggregate artifact namespace already owned')
+                require(not db.execute("SELECT 1 FROM claims WHERE worktree=? AND state!='integrated'",(str(Path(p['integration_worktree']).resolve()),)).fetchone(),'Coordinator checkout owned by worker')
+                db.execute('INSERT INTO runs VALUES(?,?,?,?,?,?,NULL)',(p['run_id'],p['epic'],a.owner,canonical(p),digest(p),'active'))
+            return {'schema_version':2,'run_id':p['run_id'],'state':'active','store':str(common(a.repo)/'auto-bmad-parallel.sqlite3')}
+        p=get_run(db,a); require(p['schema_version']==2,'Wrong protocol dispatch')
+        source_pins(p['integration_worktree'],p)
+        claims=rows(db,a.run)
+        if a.command=='status':
+            return {'schema_version':2,'run_id':a.run,'claims':[dict(story_pr_assignment(p,c),result_sha=c['result_sha'],integration_sha=c['integration_sha'],block_reason=c['block_reason'],heartbeat_age_seconds=round(time.time()-c['heartbeat'],2)) for c in claims.values()],'admission':stories_pr_report(a.repo,p,claims),'publications':[dict(r) for r in db.execute('SELECT * FROM story_pr_publications WHERE run=?',(a.run,))]}
+        require(branch(p['integration_worktree'])==p['integration_branch'],'Coordinator branch identity changed')
+        if a.command=='claim':
+            require(a.worker and a.generation==1,'New claims require worker and generation 1; automatic transfers are unsupported')
+            s=story(p,a.story); admission=stories_pr_report(a.repo,p,claims)
+            require(a.story in admission['ready'],'Story not ready: '+canonical(admission['blocked'].get(a.story,[])))
+            active=[dict(r) for r in db.execute("SELECT c.*,r.plan FROM claims c JOIN runs r ON c.run=r.run WHERE c.state!='integrated'")]
+            require(sum(c['run']==a.run for c in active)<p['max_workers'] and len(active)<2,'Worker capacity reached; pending and blocked claims retain ownership')
+            for other in active:
+                op=json.loads(other['plan']); os=story(op,other['story'])
+                require(not conflicts(s,os),'Ownership path or semantic conflict')
+                require(other['worker']!=a.worker,'Worker already owns active assignment')
+                if op.get('schema_version')==2:
+                    require(source_identity(s)!=source_identity(os),'Canonical source already claimed')
+                    require(s.get('independent_of_pending',False) and os.get('independent_of_pending',False),'Concurrent assignments require reviewed independence')
+            wt=Path(a.worktree).resolve()
+            require(wt in worktrees(a.repo) and common(wt)==common(a.repo),'Worker must use registered same-repository worktree')
+            require(not any(Path(json.loads(r[0])['integration_worktree']).resolve()==wt for r in db.execute("SELECT plan FROM runs WHERE state!='finalized'")),'Worker worktree owned by coordinator')
+            require(a.branch.startswith('codex/') and a.branch!=p['integration_branch'] and branch(wt)==a.branch,'Worker branch identity mismatch')
+            clean(wt); head=story_pr_current_main(a.repo,p)
+            require(a.expected_head==head and sha(wt,'HEAD')==head,'Worker must start at exact expected qualified main HEAD')
+            require(ancestor(a.repo,p['base_sha'],head),'Approved source base no longer main ancestor')
+            require(workflow_version(wt)==p['workflow_version'] and workflow_version(a.repo,head)==p['workflow_version'],'Worker or main workflow differs from pin')
+            source_pins(wt,p); source_pins(wt,p,False,head)
+            require(hashlib.sha256((wt/s['spec_path']).read_bytes().replace(b'\r\n',b'\n')).hexdigest()==s['spec_revision'],'Worker approved story spec changed')
+            for token in s['write_paths']: require((wt/token.rstrip('/')).resolve().is_relative_to(wt),'Owned path escapes worker checkout')
+            db.execute('INSERT INTO claims VALUES(?,?,?,?,?,?,?,?,?,NULL,NULL,NULL,NULL)',(a.run,a.story,a.worker,1,a.branch,str(wt),head,time.time(),'claimed'))
+            return story_pr_assignment(p,get_claim(db,a))
+        if a.command in {'heartbeat','block','submit'}:
+            c=get_claim(db,a,worker=True)
+            require(c['state'] in {'claimed','running','blocked','pr-ready'},'Worker frozen during merge custody or after integration')
+            require(workflow_version(c['worktree'])==p['workflow_version'],'Worker workflow changed since assignment')
+            source_pins(c['worktree'],p)
+            require(ancestor(a.repo,c['base_sha'],sha(c['worktree'],'HEAD')),'Worker no longer descends from claimed base')
+            if a.command=='heartbeat': db.execute('UPDATE claims SET heartbeat=?,state=? WHERE run=? AND story=?',(time.time(),'running' if c['state']=='claimed' else c['state'],a.run,a.story))
+            elif a.command=='block':
+                require(a.reason and a.reason.strip(),'Block needs reason')
+                db.execute("UPDATE claims SET state='blocked',block_reason=?,heartbeat=? WHERE run=? AND story=?",(a.reason,time.time(),a.run,a.story))
+            else:
+                clean(c['worktree']); e=read_json(a.evidence); result=story_pr_evidence(a.repo,p,c,e); obs=e['publication']
+                old=db.execute('SELECT * FROM story_pr_publications WHERE run=? AND story=?',(a.run,a.story)).fetchone()
+                if old:
+                    require(old['state']=='pr-ready','Publication frozen during merge custody')
+                    require(all(old[k]==obs[j] for k,j in [('repository','repository'),('pr_number','pr_number'),('pr_url','pr_url'),('branch','head_branch'),('base_branch','base_branch')]),'PR identity is immutable; reconcile existing artifacts')
+                    db.execute('UPDATE story_pr_publications SET head_sha=?,observation_json=?,verification_json=NULL WHERE run=? AND story=?',(result,canonical(obs),a.run,a.story))
+                else: db.execute('INSERT INTO story_pr_publications VALUES(?,?,?,?,?,?,?,?,?,NULL,?,NULL,NULL)',(a.run,a.story,p['repository'],obs['pr_number'],obs['pr_url'],c['branch'],'main',result,'pr-ready',canonical(obs)))
+                db.execute("UPDATE claims SET state='pr-ready',result_sha=?,evidence=?,heartbeat=?,block_reason=NULL WHERE run=? AND story=?",(result,canonical(e),time.time(),a.run,a.story))
+            return story_pr_assignment(p,get_claim(db,a))
+        if a.command=='prepare-pr-merge':
+            c=get_claim(db,a); pub=db.execute('SELECT * FROM story_pr_publications WHERE run=? AND story=?',(a.run,a.story)).fetchone()
+            require(c['state']=='pr-ready' and pub and pub['state']=='pr-ready','Story PR is not ready for merge preparation')
+            require(not db.execute("SELECT 1 FROM story_pr_publications WHERE state IN ('merge-prepared','merged')").fetchone(),'Repository has unresolved merge custody')
+            require(not db.execute("SELECT 1 FROM journal WHERE state='prepared'").fetchone(),'Repository has uncertain legacy integration')
+            clean(c['worktree']); head=sha(c['worktree'],'HEAD'); main=story_pr_current_main(a.repo,p)
+            require(a.expected_head==head==c['result_sha']==pub['head_sha'] and a.expected_main==main,'Candidate or qualified main changed before merge')
+            story_pr_evidence(a.repo,p,c,json.loads(c['evidence']))
+            e=read_json(a.evidence); keys(e,['schema_version','run_id','story_id','worker','generation','request_id','publication','quiescence'])
+            require(type(e['schema_version']) is int and e['schema_version']==2 and e['run_id']==a.run and e['story_id']==a.story and e['worker']==c['worker'] and type(e['generation']) is int and e['generation']==c['generation'],'Merge intent identity mismatch')
+            require(isinstance(e['request_id'],str) and e['request_id'].strip(),'Once-created merge request token required')
+            obs=e['publication']; story_pr_publication(p,c,obs,head,True)
+            require(obs['pr_number']==pub['pr_number'] and obs['pr_url']==pub['pr_url'],'Prepared PR differs from stored immutable identity')
+            q=e['quiescence']; keys(q,['complete_writer_inventory','writers'])
+            require(q['complete_writer_inventory'] is True and isinstance(q['writers'],list) and q['writers'],'Complete stopped writer inventory required')
+            identities=[]
+            for writer in q['writers']:
+                keys(writer,['identity','state','evidence_ref'])
+                require(all(isinstance(writer[k],str) and writer[k].strip() for k in ['identity','evidence_ref']) and writer['state']=='stopped','Merge requires stopped writers with evidence')
+                identities.append(writer['identity'])
+            require(c['worker'] in identities and len(identities)==len(set(identities)),'Claim worker missing or duplicate writer inventory')
+            intent={**e,'expected_head':head,'expected_main':main,'repository':p['repository'],'pr_number':pub['pr_number'],'pr_url':pub['pr_url'],'head_branch':c['branch'],'base_branch':'main'}
+            db.execute("UPDATE story_pr_publications SET state='merge-prepared',intent_json=? WHERE run=? AND story=?",(canonical(intent),a.run,a.story))
+            db.execute("UPDATE claims SET state='merge-prepared' WHERE run=? AND story=?",(a.run,a.story))
+            response={'state':'merge-prepared','request_id':e['request_id'],'expected_head':head,'expected_main':main,'next':'Use the existing authorized provider merge route once; reconcile uncertain outcomes before any retry'}
+        elif a.command=='observe-pr-merge':
+            c=get_claim(db,a); pub=db.execute('SELECT * FROM story_pr_publications WHERE run=? AND story=?',(a.run,a.story)).fetchone()
+            require(pub and pub['state'] in {'merge-prepared','merged'},'No unresolved prepared PR merge')
+            clean(c['worktree'])
+            intent=json.loads(pub['intent_json']); r=read_json(a.request)
+            keys(r,['schema_version','request_id','run_id','story_id','generation','repository','pr_number','pr_url','head_branch','base_branch','head_sha','merged','merge_sha','observation_ref','qualified_main_sha'])
+            require(type(r['schema_version']) is int and r['schema_version']==2 and r['merged'] is True and type(r['generation']) is int and type(r['pr_number']) is int,'Provider must confirm actual merged PR')
+            for field in ['request_id','run_id','story_id','generation','repository','pr_number','pr_url','head_branch','base_branch']:
+                require(r[field]==intent[field],'Merge observation '+field+' mismatch')
+            require(r['head_sha']==intent['expected_head'] and sha(c['worktree'],'HEAD')==r['head_sha'],'Observed candidate drifted from frozen head')
+            require(isinstance(r['observation_ref'],str) and r['observation_ref'].strip(),'Independent actual provider merge observation required')
+            main=story_pr_current_main(a.repo,p); require(r['qualified_main_sha']==main,'Qualified main changed during merge observation')
+            merge=sha(a.repo,r['merge_sha']); require(merge==r['merge_sha'],'Exact provider merge SHA required')
+            require(git(a.repo,'rev-list','--parents','-n','1',merge).split()[1:]==[intent['expected_main'],intent['expected_head']],'Provider merge has wrong head/base parents; reconcile custody')
+            require(ancestor(a.repo,merge,main),'Provider merge is not current qualified main ancestor')
+            if pub['merge_sha']: require(pub['merge_sha']==merge,'Observed merge identity changed')
+            db.execute("UPDATE story_pr_publications SET state='merged',merge_sha=?,observation_json=? WHERE run=? AND story=?",(merge,canonical(r),a.run,a.story))
+            db.execute("UPDATE claims SET state='awaiting-verification',integration_sha=? WHERE run=? AND story=?",(merge,a.run,a.story))
+            return {'state':'awaiting-verification','merge_sha':merge,'qualified_main_sha':main}
+        elif a.command=='verify':
+            c=get_claim(db,a); pub=db.execute('SELECT * FROM story_pr_publications WHERE run=? AND story=?',(a.run,a.story)).fetchone()
+            require(c['state']=='awaiting-verification' and pub and pub['state']=='merged','Story has no provider merge awaiting verification')
+            clean(c['worktree']); main=story_pr_current_main(a.repo,p); require(ancestor(a.repo,pub['merge_sha'],main),'Observed merge missing from qualified main')
+            intent=json.loads(pub['intent_json'])
+            require(git(a.repo,'rev-list','--parents','-n','1',pub['merge_sha']).split()[1:]==[intent['expected_main'],intent['expected_head']],'Stored merge parent identity changed')
+            require(sha(c['worktree'],'HEAD')==intent['expected_head'],'Frozen branch changed after provider merge')
+            e=read_json(a.evidence); story_pr_combined(p,c,e,main)
+            db.execute('INSERT OR REPLACE INTO verifications VALUES(?,?,?,?)',(a.run,a.story,main,canonical(e)))
+            db.execute("UPDATE story_pr_publications SET state='verified',verification_json=? WHERE run=? AND story=?",(canonical(e),a.run,a.story))
+            db.execute("UPDATE claims SET state='integrated',integration_sha=? WHERE run=? AND story=?",(main,a.run,a.story))
+            return {'state':'integrated','merge_sha':pub['merge_sha'],'integration_sha':main}
+        elif a.command=='finalize':
+            require(all(s['id'] in claims and claims[s['id']]['state']=='integrated' for s in p['stories']),'Required story PRs remain pending, blocked or unintegrated')
+            require(not db.execute("SELECT 1 FROM story_pr_publications WHERE state IN ('merge-prepared','merged')").fetchone(),'Repository has unresolved merge custody')
+            main=story_pr_current_main(a.repo,p); pubs=list(db.execute('SELECT * FROM story_pr_publications WHERE run=?',(a.run,)))
+            require(len(pubs)==len(p['stories']) and all(r['state']=='verified' and ancestor(a.repo,r['merge_sha'],main) for r in pubs),'Required verified PR merge ancestry missing')
+            require(all(ancestor(a.repo,c['integration_sha'],main) for c in claims.values()),'Verified integrated history missing from main')
+            e=read_json(a.evidence); story_pr_combined(p,None,e,main,True)
+            db.execute("UPDATE runs SET state='finalized',final_sha=? WHERE run=?",(main,a.run))
+            db.execute('INSERT INTO verifications VALUES(?,?,?,?)',(a.run,'__final__',main,canonical(e)))
+            return {'state':'finalized','integration_sha':main,'next':'Complete existing coordinator closeout bookkeeping; no epic product PR or deployment is created'}
+        else: raise Refusal('Unsupported schema 2 operation')
+    # The merge intent transaction is durable before the caller can perform the
+    # separately authorized provider operation. No Git/provider mutation occurs here.
+    story_pr_merge_checkpoint()
+    return response
+
 def execute(a):
     a.repo=str(top(a.repo))
+    if stories_pr_requested(a): return execute_story_pr(a)
     if a.command=='version': return {'schema_version':VERSION,'workflow_version':workflow_version(a.repo)}
     if a.command=='plan':
         return report(a.repo,validate_plan(a.repo,read_json(a.plan)))
@@ -926,12 +1276,12 @@ def parser():
     p=JsonParser(description=__doc__)
     p.add_argument('--repo',default='.')
     sub=p.add_subparsers(dest='command',required=True)
-    for name in ['version','plan','init','status','claim','heartbeat','block','submit','integrate','repair','verify','finalize','amend-blocked','finalize-exceptions']:
+    for name in ['version','plan','init','status','claim','heartbeat','block','submit','integrate','repair','verify','finalize','amend-blocked','finalize-exceptions','prepare-pr-merge','observe-pr-merge']:
         cmd=sub.add_parser(name)
         if name in {'plan','init'}: cmd.add_argument('--plan',required=True)
         if name not in {'version','plan'}: cmd.add_argument('--owner',required=True)
         if name not in {'version','plan','init'}: cmd.add_argument('--run',required=True)
-        if name in {'claim','heartbeat','block','submit','integrate','repair','verify','amend-blocked'}: cmd.add_argument('--story',required=True)
+        if name in {'claim','heartbeat','block','submit','integrate','repair','verify','amend-blocked','prepare-pr-merge','observe-pr-merge'}: cmd.add_argument('--story',required=True)
         if name=='finalize-exceptions': cmd.add_argument('--request',required=True)
         if name=='amend-blocked':
             cmd.add_argument('--worker',required=True); cmd.add_argument('--generation',type=int,required=True); cmd.add_argument('--request',required=True)
@@ -939,9 +1289,13 @@ def parser():
             cmd.add_argument('--worker',required=True); cmd.add_argument('--generation',type=int,default=1)
         if name=='claim':
             cmd.add_argument('--branch',required=True); cmd.add_argument('--worktree',required=True)
+            cmd.add_argument('--expected-head')
         if name=='block': cmd.add_argument('--reason',required=True)
         if name in {'submit','repair','verify','finalize'}: cmd.add_argument('--evidence',required=True)
         if name in {'integrate','repair'}: cmd.add_argument('--expected-head',required=True)
+        if name=='prepare-pr-merge':
+            cmd.add_argument('--expected-head',required=True); cmd.add_argument('--expected-main',required=True); cmd.add_argument('--evidence',required=True)
+        if name=='observe-pr-merge': cmd.add_argument('--request',required=True)
     return p
 
 def main(argv=None):
