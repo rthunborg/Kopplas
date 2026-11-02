@@ -1,0 +1,82 @@
+{
+  "domain": "reliability",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Error Handling: verified shell command",
+      "status": "PASS",
+      "description": "Controlled signout failure preserves currentserveridentity, enabledexplicitretry, success only after realretry.",
+      "evidence": [
+        "P6 exactundispatchedlogout500→freshprotectedserveridentity→explicitrealretry/login/protectedredirect passed37b",
+        "No providerfailure/responseloss claim"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Scoped Continuity and Evidence Custody",
+      "status": "PASS",
+      "description": "Downstream dirty/selectedchild/lateresult checks passed; Bufferattachments gatedby allcleanup/assertion success.",
+      "evidence": [
+        "Original16.5-E03/E04/E05passed attempt0",
+        "P6 context/profile/Authcleanup→onlyBufferattach; failgatesdiscard"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Inherited Error-State Limitation",
+      "status": "CONCERNS",
+      "description": "Bell coldGET500 error+emptycopy remains inheriteddisclosed; not healthyemptyproof/newintroduceddefect.",
+      "evidence": [
+        "P6 assumptionsAndLimits; unchangedBell source"
+      ],
+      "recommendations": [
+        "Releasevalidation owner retains qualification and obtains separately authorized disposition."
+      ]
+    },
+    {
+      "category": "Monitoring and Observability",
+      "status": "CONCERNS",
+      "description": "Production monitoring/errorratebaseline/alert effectiveness not assessed; private testdiagnostics are not productionobservability.",
+      "evidence": [
+        "NFR steps2–3 NOTASSESSED productionREDmetrics/tracing/telemetry"
+      ],
+      "recommendations": [
+        "Releasevalidation owner identifies applicable criteria and supplies operational evidence before readinessclaim."
+      ]
+    },
+    {
+      "category": "Fault Tolerance and Disaster Recovery",
+      "status": "CONCERNS",
+      "description": "Recovery1passed; failover/backuprestore/RTO/RPO unassessed.",
+      "evidence": [
+        "Native recovery1pass0pending; not platformDRcertification"
+      ],
+      "recommendations": [
+        "Releasevalidation owner establishes objectives and matching recoveryevidence before broaderresilienceclaims."
+      ]
+    },
+    {
+      "category": "Uptime and Availability",
+      "status": "CONCERNS",
+      "description": "Uptime/errorrate/MTTR target+measurementUNKNOWN; onesuccessretry0 is notburnin/availability.",
+      "evidence": [
+        "NFR step2 UNKNOWN; P6 no repeatedburnin/stress"
+      ],
+      "recommendations": [
+        "Releasevalidation owner defines objectives/observationperiod and matching measurements before release."
+      ]
+    }
+  ],
+  "compliance": {
+    "mapped_explicit_failure_retry": "PASS",
+    "mapped_server_session_authority": "PASS",
+    "uptime_error_rate_MTTR": "CONCERNS",
+    "production_observability": "CONCERNS",
+    "broader_disaster_recovery": "CONCERNS"
+  },
+  "priority_actions": [
+    "Release owner preserves scoped behavioralPASS and inheritedBell qualification.",
+    "Release owner establishes applicable operationalthresholds and monitoring/availability/recovery evidence before broad readinessclaim."
+  ],
+  "summary": "ReliabilityCONCERNS for operationalevidencegaps/inheritedlimit; exactbehavior supported37b, no criticalthresholdbreach/introduceddefect; readonly/runtime0."
+}

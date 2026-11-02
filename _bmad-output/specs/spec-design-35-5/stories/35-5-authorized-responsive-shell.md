@@ -2,7 +2,7 @@
 title: "Story 35.5: Authorized Responsive Shell"
 type: feature
 created: 2026-11-01
-status: blocked
+status: done
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 084bda7cac4315e70a4346d2d0f5549cda6328d6
@@ -13,6 +13,15 @@ context:
   - ../../../../docs/process/review-order.md
   - ../../../implementation-artifacts/spec-35-5-authorized-responsive-shell.md
   - ../../../test-artifacts/dt-2026-10-23-test-design/slice-35-5.md
+  - ../../../test-artifacts/35-5-automate-assessment.json
+  - ../../../test-artifacts/35-5-closeout-traceability.md
+  - ../../../test-artifacts/35-5-closeout-gate-decision.json
+  - ../../../test-artifacts/35-5-closeout-nfr-assessment.md
+  - ../../../test-artifacts/35-5-closeout-nfr-summary.json
+  - ../../../test-artifacts/35-5-closeout-test-review.md
+  - ../../../test-artifacts/35-5-closeout-test-review-summary.json
+  - ../../../implementation-artifacts/deferred-work.md
+  - ../RETROSPECTIVE.md
 ---
 
 ## Operative admission — 2026-11-01
@@ -215,6 +224,19 @@ Five context-free internal Sol High layers completed. Security returned `No find
 No code-review round executed. Distinct High planning assessment only; independent exact-candidate implementation review remains required.
 
 ## Auto Run Result
+Status: done
+Blocking condition: Provisional metadata batch; fresh final-head required CI/captures, exact-head digest package, authenticated owner acceptance and clean final controller remain mandatory before completion return.
+
+### Development closeout metadata — provisional pending final-head gate
+
+Direct human approval of the exact one-run metadata closeout batch authorizes this provisional metadata preparation after canonical delivery validation. This supersedes earlier current/pending summaries for current evidence only; all historical failed/rejected checkpoints remain preserved. Clean `37b31f875fd9ce273642807c41a18010be6aa3c7` has required PR five-job SUCCESS (qualified identical test-merge tree), units 3780 passed, ordinary browser 80 passed, integration 2163 passed/0 failed/52 pending of2215, and recovery1 passed. Pending tests are not coverage. Direct dashboard run41334071796/job124930569023 passed79/79, zero failed/skipped/flaky; original15 plus new12 all passed retry0 and released exactly31 originals after custody gates. Both owned-resource stops succeeded.
+
+Clean37b controller native0 recorded owner-manual acceptance comment6571422748 (authenticated user53317458,2026-11-02T07:18:44Z), digest `e997b6de5a9a06099ef093116f36248360bff9b0040ddcefab38ef27cc410fd6`; controller41405484613 and feedback41405484614 succeeded. Distinct independent sensitive/custody/package review and actual-image review passed as retained by root. This accepts the explicit limited INITIAL reference basis and complete current package only; no changed-head acceptance, universal JWT invalidation or stronger tenant-erasure claim.
+
+Two inherited visible child limitations remain disclosed: NotificationPreferences places its inline Obligatorisk notis caption adjacent to its label without a gap (unchanged blob e77cc8f559fbc2591b67adfe6a1d2d642325f107); NotificationBell cold failed GET renders its error alert together with empty/unread copy (unchanged blob c7b3d1a825aacc2fc3ffab20e8d72fec9b5e1a0e). Root High comparison proves both identical at084/fd95/37b. The Bell error capture is a controlled undispatched local GET500, not healthy backend-empty knowledge. These are inherited disclosed limitations, not fixes, waivers or a generic no-issues claim; established nonwaivable defects remain blocking.
+
+Run-scoped sequencing decision: the owner directly approved “Approve one metadata closeout batch” against the exact reviewed closeout-sequencing-proposal.md. Clean accepted37b supplies pre-batch admission; canonical delivery was written first and its actual validator returned native0 {ok:true, development_complete:true, errors:[], approval_granted:false}. The approved exception permits these identified metadata writes in one reviewed batch without repeated intermediate clean-head wrapper gates. Terminal markers are PROVISIONAL: root must retain independent metadata review, commit the reviewed batch, earn fresh required CI and exact-final-head captures, publish the exact-head/digest reviewable package, obtain authenticated owner acceptance, and pass the clean final controller before completion return/finalization. Prior37b acceptance never transfers to the changed head. Failure or a substantive defect stops this bounded path and follows normal scope/review requirements. No aggregate Phase6/7/8 completion, Coordinator review/merge, deployment or release approval is inferred. `release_ready=false`; REL1–3 remain deferred in canonical delivery.
+
 ### Build delegate HALT — blocked capture authorization
 
 Status: blocked
@@ -491,14 +513,14 @@ Root expressly authorized the necessary bounded admission and cleanup-order amen
 
 The resource schema's membership/profile FK is `ON DELETE RESTRICT` (`20260929120000_resource_person_profiles_and_work_hours.sql:16`), while Auth deletion cascades membership deletion. Accordingly the amended order is: close the owned context; delete only the registered own tenant/profile pair using the existing `tests/e2e/my-day.e2e.spec.ts:780` pattern; attempt **all ten** strict redacted Auth deletions even if profile cleanup failed; then run paired tenant cleanup. A separate own-profile cleanup gate prevents publication on any profile-delete error. All existing assertions, privacy diagnostics, retry/time limits and the 31-frame/120-Auth-user maximum remain unchanged. No application, schema, global identity or new query design changed.
 
-Exact existing SQL-literal equality checks passed native 0: membership lookup SHA-256 `a05f390c50ead4f8b695bbe420b80c302fbb397a51ef0e7080a6f613c9646c54`; profile insert `91b9de34477fee5ef0bed612df02c0c68ce4add3601d564b5eb7f9d97926ff6f`; tenant/profile cleanup `8c314409e5d789f00c5a209187fd12370afaf01f019f59b51e8a25717979fc52`. Current test SHA-256 is `171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e`. Post-fix nonincremental typecheck and allocated-test ESLint passed native 0; source verification retained the original fifteen-case exact byte prefix and zero parse diagnostics. The new admission/cleanup amendment has zero browser executions. Distinct targeted High review, corrected hosted execution, complete 31-frame inventory/private custody eligibility and owner acceptance remain pending. Failed receipts and private partial images are preserved without publication or acceptance transfer.
+Exact existing SQL-literal equality checks passed native 0: membership lookup SHA-256 `a05f390c50ead4f8b695bbe420b80c302fbb397a51ef0e7080a6f613c9646c54`; profile insert `91b9de34477fee5ef0bed612df02c0c68ce4add3601d564b5eb7f9d97926ff6f`; tenant/profile cleanup `8c314409e5d789f00c5a209187fd12370afaf01f019f59b51e8a25717979fc52`. Current test SHA-256 is `171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e`. Post-fix nonincremental typecheck and allocated-test ESLint passed native 0; source verification retained the original fifteen-case exact byte prefix and zero parse diagnostics. At that historical checkpoint the amendment had zero browser executions and the listed gates remained pending. The later clean37b receipt in Auto Run Result supersedes those pending conditions only for37b. Failed receipts and private partial images are preserved without publication or acceptance transfer.
 
-Development completion is blocked pending corrected required runtime/integration evidence, exact-head CI and candidate-bound initial visual acceptance. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
+Historical checkpoint: development completion was blocked pending corrected runtime/integration, exact-head CI and candidate visual acceptance. Clean37b later earned those gates; provisional metadata closeout remains gated by the approved final-head sequence above. `release_ready=false`. UI author owns E35-5-REL-1 follow-up, QA/accessibility owns REL-2 and Coordinator owns REL-3; exhaustive release/device/manual work remains deferred to their existing delivery/deferred-work records. No merge/deployment authority is inferred.
 
 ## Suggested Review Order
 
 Author: `/root/build/author` (presentation and earlier trail), with sensitive-test and current owned-capture decisions/trail by `/root/build/sensitive_author`.
-Refreshed after actual `54ce47a2` diagnosis and the authorized own-profile admission/cleanup amendment, over the verified `fd95f395fd06ff169b16b7ac08f5b5e66feba6ec` baseline. Current AppShell SHA-256 remains `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`; current test SHA-256 is `171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e`. Historical failures remain intact. Latest native execution passed 77/79, including all original fifteen; two owned My Day fixtures lacked required profile admission and withheld their images. The admission amendment preserves healthy-empty assertions but has no browser execution yet; 25 originals remain private, without complete-package or owner-acceptance credit.
+Final provisional metadata refresh after actual P6/P8 and retrospective, retaining clean37b execution/custody/initial acceptance; original recorded baseline remains `084bda7cac4315e70a4346d2d0f5549cda6328d6`. Current AppShell SHA-256 remains `3ca754a3dffdad94f85028384ecbd24b21454fba407878fc691460a81bbea8df`; current test SHA-256 is `171ab9d9bb4fc76cae268f212abe532d1d26bd4692d5781e5dc8c0b7f243816e`. Historical failures remain intact. Latest native37b execution passed79/79 including all original15 and new12 retry0, with31 custody-eligible originals. The own-profile admission correctly exercises healthy-empty My Day without assertion relaxation. Initial complete-package owner acceptance binds clean37b/digest only; the final metadata head requires fresh proof.
 
 ### Responsive presentation preserves supplied navigation
 
@@ -511,7 +533,7 @@ Contiguous named sections group only received items, retaining order and ordinar
 
 ### Existing drawer and downstream decisions remain decisive
 
-Reuse the existing named modal lifecycle, focus trap, explicit restoration and resize scroll cleanup. The shell still supplies ordinary links to downstream capture-phase draft guards; source inspection establishes that reuse, while the Jobs runtime regressions remain pending.
+Reuse the existing named modal lifecycle, focus trap, explicit restoration and resize scroll cleanup. The shell still supplies ordinary links to downstream capture-phase draft guards; source inspection establishes that reuse; required ordinary browser80passed at the qualified candidate-identical tree, without claiming unlisted exhaustive Jobs cases.
 
 - `src/components/app-shell/AppShell.tsx:156` — `const closeDrawer`: restores the existing trigger.
 - `src/components/app-shell/AppShell.tsx:189` — `const onDrawerKeyDown`: retains Escape and wrapped Tab behavior.
@@ -529,11 +551,27 @@ The new twelve cases own their identities and contexts. Only the two connected c
 
 ### Assertions and evidence have explicit limits
 
-AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, target reachability and drawer focus. All original fifteen cases, including actual Auth rejection/server identity/real retry, passed on `54ce47a2`; two My Day capture fixtures failed their healthy-empty precondition and withheld images. Their repair changes fixture admission, never those outcome assertions.
+AC1/3/6/7 bind supplied order, identity and authority; AC2/4/5 bind geometry, target reachability and drawer focus. All original fifteen cases, including actual Auth rejection/server identity/real retry, and all twelve owned capture cases passed on37b. The My Day repair changes fixture admission, never healthy-empty/no-alert assertions.
 
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:131` — `assertNavOrder`: checks complete href order and a single current destination.
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:302` — `E35-5-T-focus-dialog`: binds focus, close, resize and reduced motion.
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:415` — `E35-5-T-revoked`: binds isolated current server authority.
 - `tests/e2e/auth/role-aware-phase-a-surface.atdd.e2e.spec.ts:469` — `E35-5-T-error-retry`: binds rejection, independent identity and real retry.
 
-Evidence: historical failures and the local missing-fixture collection attempt remain preserved. Latest actual `54ce47a2` dashboard execution passed 77/79, zero skipped/flaky; all original fifteen passed and new twelve split ten passed/two failed at `connected-my-day-empty-defaults`, after one in-memory frame. All required old custody gates passed, failed cases attached zero images, and 25 originals remained private. Root reports successful owned-resource stop steps. The source-proven admission amendment passed typecheck/ESLint and exact query/prefix checks, but has zero browser executions. Complete 31-frame inventory, distinct High admission/cleanup review, private custody eligibility, corrected hosted evidence, exact-head CI and owner acceptance remain pending. No original PNG was published by this diagnosis, no development-complete/release-ready claim and no unexecuted inherited test reported as passed.
+Evidence: historical failed and missing-fixture receipts remain preserved. Current clean37b required native five-job gate passed; units3780, ordinary browser80, integration2163passed/52pending (not coverage), recovery1. Direct dashboard79passed/0failed/skipped/flaky includes all original15/new12retry0 and31 custody-gated originals; resource stops succeeded. Source query/prefix/static checks passed. Distinct sensitive/custody/package and actual-image reviews passed; authenticated comment6571422748/controller native0 accepts37b/digest only. The two inherited limitations and limited INITIAL comparison basis remain explicitly disclosed in Auto Run Result and delivery. This approved metadata batch applies provisional storydone without transferring acceptance. Fresh final-head proof, authenticated owner acceptance and the clean final controller remain mandatory before completion return; REL1–3 and release_ready=false persist.
+
+### Metadata outcomes preserve final-candidate and release boundaries
+
+P6 reuses earned coverage; P8 trace remains CONCERNS with product7/7 FULL and final condition PARTIAL. NFR remains CONCERNS (7 PASS/16 CONCERNS/0 FAIL), and fixed-rubric test quality remains ADVISORY Request Changes92/A (2 HIGH/1 MEDIUM/1 LOW); these are not quality passes or established introduced production defects.
+
+- `_bmad-output/test-artifacts/35-5-automate-assessment.json:2` — `bmad-testarch-automate`: records existing-suite reuse without new runtime.
+- `_bmad-output/test-artifacts/35-5-closeout-gate-decision.json:12` — `CONCERNS`: preserves the unresolved final-candidate condition.
+- `_bmad-output/test-artifacts/35-5-closeout-nfr-summary.json:11` — `CONCERNS`: retains unknown measurements and literal domain outcomes.
+- `_bmad-output/test-artifacts/35-5-closeout-test-review-summary.json:16` — `Request Changes`: preserves the advisory quality recommendation.
+
+The existing ledger owns OPEN REL1–3 IDs198–200; prior198historical entries remain preserved with no archive/resolve. Formal retrospective REJECTED with five remaining actions is this snapshot's final-candidate blocker, not37b product failure; the approved one-run metadata exception grants no acceptance transfer.
+
+- `_bmad-output/implementation-artifacts/deferred-work.md:570` — `Story 35.5 release validation`: preserves owned open release obligations.
+- `_bmad-output/specs/spec-design-35-5/RETROSPECTIVE.md:3` — `rejected`: records the time-bound formal verdict and five actions.
+
+No product, test or runtime changed in this refresh. Distinct targeted metadata review precedes the root's one commit; fresh final-head required CI/captures/exact package+digest/authenticated owner acceptance/clean controller and applicable completion admission remain mandatory before completion return. `release_ready=false`; Coordinator retains review, merge and release ownership.

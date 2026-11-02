@@ -1,0 +1,430 @@
+{
+  "workflow": "bmad-testarch-nfr",
+  "stepsCompleted": [
+    "step-01-load-context",
+    "step-02-define-thresholds",
+    "step-03-gather-evidence",
+    "step-04-evaluate-and-score",
+    "step-04e-aggregate-nfr",
+    "step-05-generate-report"
+  ],
+  "overall_status": "CONCERNS",
+  "overall_risk": "MEDIUM",
+  "assessment_date": "2026-11-02T08:06:48.946Z",
+  "domain_assessments": {
+    "security": {
+      "domain": "security",
+      "risk_level": "MEDIUM",
+      "findings": [
+        {
+          "category": "Server authorization and tenant isolation",
+          "status": "PASS",
+          "description": "Scoped37b evidence meets server authority, role projection, denial and tenant-isolation story criteria; no introduced vulnerability established.",
+          "evidence": [
+            "P6 AC3/AC7",
+            "Seven roleRLS cases include cross-tenant/missing-target/malformed-context/relationship-loss negatives",
+            "27role cases passed retry0"
+          ],
+          "recommendations": []
+        },
+        {
+          "category": "Session authority and revocation",
+          "status": "PASS",
+          "description": "Fresh protected-document denial after real role mutation and session authority during controlled signout failure/explicit retry demonstrated; not every provider/token lifecycle property.",
+          "evidence": [
+            "P6 revoked and error-retry mappings"
+          ],
+          "recommendations": []
+        },
+        {
+          "category": "Sensitive payload and evidence handling",
+          "status": "PASS",
+          "description": "Unentitled payload withholding and failclosed ownfixturecleanup before PNGattachment supported; no comprehensive tenant-erasure or independentAuthrecordrequery claim.",
+          "evidence": [
+            "P6 AC7/fixtureAndPrivacyAssessment",
+            "Contextclose→registeredownprofiledelete→ALL10strict redactedAuthdeletes→pairedcleanup→allgates→Bufferattach"
+          ],
+          "recommendations": []
+        },
+        {
+          "category": "Authentication hardening",
+          "status": "CONCERNS",
+          "description": "MFA/comprehensiveOAuthJWT/broader sessionhardening not assessed; no missingcontrol or introduceddefect established.",
+          "evidence": [
+            "NFR steps2–3 scoped exclusions"
+          ],
+          "recommendations": [
+            "Coordinator/security owner obtains separately authorized platform assurance when required; retain limits."
+          ]
+        },
+        {
+          "category": "Encryption and key management",
+          "status": "CONCERNS",
+          "description": "TLS/atrest/databaseencryption/keyrotation controls not verified by suppliedevidence.",
+          "evidence": [
+            "NFR steps2–3"
+          ],
+          "recommendations": [
+            "Security/release owner does not claim compliance without operational/config evidence."
+          ]
+        },
+        {
+          "category": "Input validation and API hardening",
+          "status": "CONCERNS",
+          "description": "No independent SQLinjection/XSS/CSRF/CORS/securityheader/ratelimit assurance; no bypass/vulnerability identified.",
+          "evidence": [
+            "ScopedRLSnegatives/P6; no comprehensivepenetrationtest supplied"
+          ],
+          "recommendations": [
+            "Security owner limits claims to demonstrated controls and separately authorized scope."
+          ]
+        },
+        {
+          "category": "Secrets management and security scanning",
+          "status": "CONCERNS",
+          "description": "Redaction/custody does not prove repositorywide secretabsence/rotation/fullscaninventory/vulnerabilitycounts.",
+          "evidence": [
+            "P6 controlledFailures; NFR step3 missingcompleteinventory"
+          ],
+          "recommendations": [
+            "Security owner records scan/rotation assurance unverified; successfulfunctionalCI does not mean0vulnerabilities."
+          ]
+        }
+      ],
+      "compliance": {
+        "SOC2": "NOT_ASSESSED",
+        "GDPR": "NOT_ASSESSED",
+        "HIPAA": "APPLICABILITY_NOT_ESTABLISHED",
+        "PCI-DSS": "APPLICABILITY_NOT_ESTABLISHED",
+        "ISO 27001": "NOT_ASSESSED"
+      },
+      "priority_actions": [
+        "Root preserves final-candidate CI/captures/digest/acceptance/controller/wrapper gate.",
+        "Retain strictownfixturecleanup andfailclosedattachments.",
+        "Coordinator/security owner tracks unverified assurance without inventing vulnerabilities/scope."
+      ],
+      "summary": "Scoped storysecurity controls PASS at37b; broadersecurityassurance CONCERNS/MEDIUM for missingevidence, not an exploit or regulatorycertification.37bacceptance doesnottransfer."
+    },
+    "performance": {
+      "domain": "performance",
+      "risk_level": "MEDIUM",
+      "findings": [
+        {
+          "category": "Response Times",
+          "status": "CONCERNS",
+          "description": "Story-specific latency targets and response-time measurements UNKNOWN; functional/visual evidence establishes no performance threshold.",
+          "evidence": [
+            "Story35.5 design NFR plan; NFR24 qualitative pilot responsiveness",
+            "P6 max3899ms is test duration, not application latency"
+          ],
+          "recommendations": [
+            "Coordinator/QA performance owner establishes approved pilot target and matching measurements before any quantitative claim."
+          ]
+        },
+        {
+          "category": "Throughput",
+          "status": "CONCERNS",
+          "description": "Capacity/concurrency/database performance targets and measurements UNKNOWN.",
+          "evidence": [
+            "NFR26 beyond-pilot targets deferred",
+            "No load-test evidence supplied"
+          ],
+          "recommendations": [
+            "Coordinator retains pilot-scale qualification and defines workload before broader capacity claims."
+          ]
+        },
+        {
+          "category": "Resource Usage",
+          "status": "CONCERNS",
+          "description": "CPU/memory/connection-pool targets and measurements UNKNOWN.",
+          "evidence": [
+            "No resource benchmark supplied; no runtime performed"
+          ],
+          "recommendations": [
+            "Assigned performance owner collects authorized resource baselines before capacity qualification."
+          ]
+        },
+        {
+          "category": "Optimization",
+          "status": "CONCERNS",
+          "description": "No measured caching/CDN/code-splitting/indexing effectiveness or applicable target supplied; no optimization defect demonstrated.",
+          "evidence": [
+            "Bounded existing evidence has no optimization benchmark"
+          ],
+          "recommendations": [
+            "Use approved measurements before prescribing changes."
+          ]
+        }
+      ],
+      "compliance": {
+        "NFR24_pilot_responsiveness": "CONCERNS",
+        "NFR26_beyond_pilot_deferred": "N/A"
+      },
+      "priority_actions": [
+        "Preserve UNKNOWN thresholds and CONCERNS; Coordinator assigns performance owner and approved workload/targets before broader claims."
+      ],
+      "summary": "Performance CONCERNS: missing targets/measurement, no observed threshold breach; no runtime/source review/resources/writes."
+    },
+    "reliability": {
+      "domain": "reliability",
+      "risk_level": "MEDIUM",
+      "findings": [
+        {
+          "category": "Error Handling: verified shell command",
+          "status": "PASS",
+          "description": "Controlled signout failure preserves currentserveridentity, enabledexplicitretry, success only after realretry.",
+          "evidence": [
+            "P6 exactundispatchedlogout500→freshprotectedserveridentity→explicitrealretry/login/protectedredirect passed37b",
+            "No providerfailure/responseloss claim"
+          ],
+          "recommendations": []
+        },
+        {
+          "category": "Scoped Continuity and Evidence Custody",
+          "status": "PASS",
+          "description": "Downstream dirty/selectedchild/lateresult checks passed; Bufferattachments gatedby allcleanup/assertion success.",
+          "evidence": [
+            "Original16.5-E03/E04/E05passed attempt0",
+            "P6 context/profile/Authcleanup→onlyBufferattach; failgatesdiscard"
+          ],
+          "recommendations": []
+        },
+        {
+          "category": "Inherited Error-State Limitation",
+          "status": "CONCERNS",
+          "description": "Bell coldGET500 error+emptycopy remains inheriteddisclosed; not healthyemptyproof/newintroduceddefect.",
+          "evidence": [
+            "P6 assumptionsAndLimits; unchangedBell source"
+          ],
+          "recommendations": [
+            "Releasevalidation owner retains qualification and obtains separately authorized disposition."
+          ]
+        },
+        {
+          "category": "Monitoring and Observability",
+          "status": "CONCERNS",
+          "description": "Production monitoring/errorratebaseline/alert effectiveness not assessed; private testdiagnostics are not productionobservability.",
+          "evidence": [
+            "NFR steps2–3 NOTASSESSED productionREDmetrics/tracing/telemetry"
+          ],
+          "recommendations": [
+            "Releasevalidation owner identifies applicable criteria and supplies operational evidence before readinessclaim."
+          ]
+        },
+        {
+          "category": "Fault Tolerance and Disaster Recovery",
+          "status": "CONCERNS",
+          "description": "Recovery1passed; failover/backuprestore/RTO/RPO unassessed.",
+          "evidence": [
+            "Native recovery1pass0pending; not platformDRcertification"
+          ],
+          "recommendations": [
+            "Releasevalidation owner establishes objectives and matching recoveryevidence before broaderresilienceclaims."
+          ]
+        },
+        {
+          "category": "Uptime and Availability",
+          "status": "CONCERNS",
+          "description": "Uptime/errorrate/MTTR target+measurementUNKNOWN; onesuccessretry0 is notburnin/availability.",
+          "evidence": [
+            "NFR step2 UNKNOWN; P6 no repeatedburnin/stress"
+          ],
+          "recommendations": [
+            "Releasevalidation owner defines objectives/observationperiod and matching measurements before release."
+          ]
+        }
+      ],
+      "compliance": {
+        "mapped_explicit_failure_retry": "PASS",
+        "mapped_server_session_authority": "PASS",
+        "uptime_error_rate_MTTR": "CONCERNS",
+        "production_observability": "CONCERNS",
+        "broader_disaster_recovery": "CONCERNS"
+      },
+      "priority_actions": [
+        "Release owner preserves scoped behavioralPASS and inheritedBell qualification.",
+        "Release owner establishes applicable operationalthresholds and monitoring/availability/recovery evidence before broad readinessclaim."
+      ],
+      "summary": "ReliabilityCONCERNS for operationalevidencegaps/inheritedlimit; exactbehavior supported37b, no criticalthresholdbreach/introduceddefect; readonly/runtime0."
+    },
+    "maintainability": {
+      "domain": "maintainability",
+      "risk_level": "MEDIUM",
+      "findings": [
+        {
+          "category": "Change scope and preserved tests",
+          "status": "PASS",
+          "description": "Two allocated product/testpaths and original15functionalcase preservation support boundedstorycriterion, not repositorywide conclusion.",
+          "evidence": [
+            "NFRsteps1–2",
+            "P6 original15prefix6034f59... and originalFunctionalCases15"
+          ],
+          "recommendations": []
+        },
+        {
+          "category": "Executed regression and build checks",
+          "status": "PASS",
+          "description": "Requiredstatic/buildCI and regressions passed;52pendingintegration notcoverage.",
+          "evidence": [
+            "P6 native5jobs;3780units/2163integrationpass+52pending"
+          ],
+          "recommendations": []
+        },
+        {
+          "category": "Measured test coverage",
+          "status": "CONCERNS",
+          "description": "Line/branchpercentages/trends notsupplied;7ACmap/passcounts not codecoverage;80%diagnostic not storySLO.",
+          "evidence": [
+            "NFRsteps2–3unknown"
+          ],
+          "recommendations": [
+            "Coordinator assigns qualityevidenceowner for separately authorized coverageassessment."
+          ]
+        },
+        {
+          "category": "Code duplication",
+          "status": "CONCERNS",
+          "description": "No jscpdpercentage/trend/regions supplied;5%diagnostic notmet/breached.",
+          "evidence": [
+            "NFRsteps2–3unknown"
+          ],
+          "recommendations": [
+            "Coordinator assigns evidenceowner if required; no refactor justifiedbyunknown."
+          ]
+        },
+        {
+          "category": "Dependency and vulnerability health",
+          "status": "CONCERNS",
+          "description": "Auditcounts/maintenance/remediationtiming not supplied;functionalCI is not0critical/high;noneintroducedestablished.",
+          "evidence": [
+            "No newdependencies; completeinventory not supplied"
+          ],
+          "recommendations": [
+            "Coordinator assigns security/dependencyowner for authorizedaudit; retainunknowncounts."
+          ]
+        },
+        {
+          "category": "Observability",
+          "status": "CONCERNS",
+          "description": "Private testdiagnostics do not prove productionlog/schema/errortracking.",
+          "evidence": [
+            "NFRsteps2–3notassessed"
+          ],
+          "recommendations": [
+            "Coordinator assigns platformevidenceowner for separately authorized operationalassurance."
+          ]
+        }
+      ],
+      "compliance": {
+        "allocated_change_scope": "PASS",
+        "executed_regression_and_build_checks": "PASS",
+        "coverage_80pct": "CONCERNS",
+        "duplication_5pct": "CONCERNS",
+        "vulnerability_scan": "CONCERNS",
+        "observability": "CONCERNS"
+      },
+      "priority_actions": [
+        "Preserve pending final-candidate proof/acceptance/controller/wrapper.",
+        "Coordinator recordsowners for unmeasuredcoverage/duplication/dependency/observability.",
+        "Distinguish ACcoverage/testcounts from measuredcodecoverage."
+      ],
+      "summary": "Boundedscope/regression/build PASS; unmeasuredcoverage/duplication/dependency/observability CONCERNS, no thresholdbreach/introducedvulnerability.37b is not finalcandidate."
+    }
+  },
+  "domain_status": {
+    "security": "CONCERNS",
+    "performance": "CONCERNS",
+    "reliability": "CONCERNS",
+    "maintainability": "CONCERNS"
+  },
+  "finding_counts": {
+    "PASS": 7,
+    "CONCERNS": 16,
+    "FAIL": 0,
+    "N/A": 0
+  },
+  "compliance_summary": {
+    "security.SOC2": "NOT_ASSESSED",
+    "security.GDPR": "NOT_ASSESSED",
+    "security.HIPAA": "APPLICABILITY_NOT_ESTABLISHED",
+    "security.PCI-DSS": "APPLICABILITY_NOT_ESTABLISHED",
+    "security.ISO 27001": "NOT_ASSESSED",
+    "performance.NFR24_pilot_responsiveness": "CONCERNS",
+    "performance.NFR26_beyond_pilot_deferred": "N/A",
+    "reliability.mapped_explicit_failure_retry": "PASS",
+    "reliability.mapped_server_session_authority": "PASS",
+    "reliability.uptime_error_rate_MTTR": "CONCERNS",
+    "reliability.production_observability": "CONCERNS",
+    "reliability.broader_disaster_recovery": "CONCERNS",
+    "maintainability.allocated_change_scope": "PASS",
+    "maintainability.executed_regression_and_build_checks": "PASS",
+    "maintainability.coverage_80pct": "CONCERNS",
+    "maintainability.duplication_5pct": "CONCERNS",
+    "maintainability.vulnerability_scan": "CONCERNS",
+    "maintainability.observability": "CONCERNS"
+  },
+  "cross_domain_risks": [
+    {
+      "domains": [
+        "reliability",
+        "maintainability"
+      ],
+      "description": "Missing operationalmeasurements/observability limit assurance of productionreliability; no actual outage/regressionestablished.",
+      "impact": "MEDIUM"
+    }
+  ],
+  "priority_actions": [
+    {
+      "domain": "security",
+      "action": "Root preserves final-candidate CI/captures/digest/acceptance/controller/wrapper gate.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "security",
+      "action": "Retain strictownfixturecleanup andfailclosedattachments.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "security",
+      "action": "Coordinator/security owner tracks unverified assurance without inventing vulnerabilities/scope.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "performance",
+      "action": "Preserve UNKNOWN thresholds and CONCERNS; Coordinator assigns performance owner and approved workload/targets before broader claims.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "reliability",
+      "action": "Release owner preserves scoped behavioralPASS and inheritedBell qualification.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "reliability",
+      "action": "Release owner establishes applicable operationalthresholds and monitoring/availability/recovery evidence before broad readinessclaim.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Preserve pending final-candidate proof/acceptance/controller/wrapper.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Coordinator recordsowners for unmeasuredcoverage/duplication/dependency/observability.",
+      "urgency": "NORMAL"
+    },
+    {
+      "domain": "maintainability",
+      "action": "Distinguish ACcoverage/testcounts from measuredcodecoverage.",
+      "urgency": "NORMAL"
+    }
+  ],
+  "subagent_execution": "SUBAGENT (4domains,2capacitywaves)",
+  "performance_gain": "not measured",
+  "evidence_revision": "37b31f875fd9ce273642807c41a18010be6aa3c7",
+  "final_candidate_verified": false,
+  "release_ready": false,
+  "newRuntime": 0,
+  "sourceTestSpecStatusGitChanges": 0
+}

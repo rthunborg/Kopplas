@@ -1,0 +1,60 @@
+{
+  "domain": "performance",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Response Times",
+      "status": "CONCERNS",
+      "description": "Story-specific latency targets and response-time measurements UNKNOWN; functional/visual evidence establishes no performance threshold.",
+      "evidence": [
+        "Story35.5 design NFR plan; NFR24 qualitative pilot responsiveness",
+        "P6 max3899ms is test duration, not application latency"
+      ],
+      "recommendations": [
+        "Coordinator/QA performance owner establishes approved pilot target and matching measurements before any quantitative claim."
+      ]
+    },
+    {
+      "category": "Throughput",
+      "status": "CONCERNS",
+      "description": "Capacity/concurrency/database performance targets and measurements UNKNOWN.",
+      "evidence": [
+        "NFR26 beyond-pilot targets deferred",
+        "No load-test evidence supplied"
+      ],
+      "recommendations": [
+        "Coordinator retains pilot-scale qualification and defines workload before broader capacity claims."
+      ]
+    },
+    {
+      "category": "Resource Usage",
+      "status": "CONCERNS",
+      "description": "CPU/memory/connection-pool targets and measurements UNKNOWN.",
+      "evidence": [
+        "No resource benchmark supplied; no runtime performed"
+      ],
+      "recommendations": [
+        "Assigned performance owner collects authorized resource baselines before capacity qualification."
+      ]
+    },
+    {
+      "category": "Optimization",
+      "status": "CONCERNS",
+      "description": "No measured caching/CDN/code-splitting/indexing effectiveness or applicable target supplied; no optimization defect demonstrated.",
+      "evidence": [
+        "Bounded existing evidence has no optimization benchmark"
+      ],
+      "recommendations": [
+        "Use approved measurements before prescribing changes."
+      ]
+    }
+  ],
+  "compliance": {
+    "NFR24_pilot_responsiveness": "CONCERNS",
+    "NFR26_beyond_pilot_deferred": "N/A"
+  },
+  "priority_actions": [
+    "Preserve UNKNOWN thresholds and CONCERNS; Coordinator assigns performance owner and approved workload/targets before broader claims."
+  ],
+  "summary": "Performance CONCERNS: missing targets/measurement, no observed threshold breach; no runtime/source review/resources/writes."
+}

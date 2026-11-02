@@ -1,0 +1,83 @@
+{
+  "domain": "maintainability",
+  "risk_level": "MEDIUM",
+  "findings": [
+    {
+      "category": "Change scope and preserved tests",
+      "status": "PASS",
+      "description": "Two allocated product/testpaths and original15functionalcase preservation support boundedstorycriterion, not repositorywide conclusion.",
+      "evidence": [
+        "NFRsteps1–2",
+        "P6 original15prefix6034f59... and originalFunctionalCases15"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Executed regression and build checks",
+      "status": "PASS",
+      "description": "Requiredstatic/buildCI and regressions passed;52pendingintegration notcoverage.",
+      "evidence": [
+        "P6 native5jobs;3780units/2163integrationpass+52pending"
+      ],
+      "recommendations": []
+    },
+    {
+      "category": "Measured test coverage",
+      "status": "CONCERNS",
+      "description": "Line/branchpercentages/trends notsupplied;7ACmap/passcounts not codecoverage;80%diagnostic not storySLO.",
+      "evidence": [
+        "NFRsteps2–3unknown"
+      ],
+      "recommendations": [
+        "Coordinator assigns qualityevidenceowner for separately authorized coverageassessment."
+      ]
+    },
+    {
+      "category": "Code duplication",
+      "status": "CONCERNS",
+      "description": "No jscpdpercentage/trend/regions supplied;5%diagnostic notmet/breached.",
+      "evidence": [
+        "NFRsteps2–3unknown"
+      ],
+      "recommendations": [
+        "Coordinator assigns evidenceowner if required; no refactor justifiedbyunknown."
+      ]
+    },
+    {
+      "category": "Dependency and vulnerability health",
+      "status": "CONCERNS",
+      "description": "Auditcounts/maintenance/remediationtiming not supplied;functionalCI is not0critical/high;noneintroducedestablished.",
+      "evidence": [
+        "No newdependencies; completeinventory not supplied"
+      ],
+      "recommendations": [
+        "Coordinator assigns security/dependencyowner for authorizedaudit; retainunknowncounts."
+      ]
+    },
+    {
+      "category": "Observability",
+      "status": "CONCERNS",
+      "description": "Private testdiagnostics do not prove productionlog/schema/errortracking.",
+      "evidence": [
+        "NFRsteps2–3notassessed"
+      ],
+      "recommendations": [
+        "Coordinator assigns platformevidenceowner for separately authorized operationalassurance."
+      ]
+    }
+  ],
+  "compliance": {
+    "allocated_change_scope": "PASS",
+    "executed_regression_and_build_checks": "PASS",
+    "coverage_80pct": "CONCERNS",
+    "duplication_5pct": "CONCERNS",
+    "vulnerability_scan": "CONCERNS",
+    "observability": "CONCERNS"
+  },
+  "priority_actions": [
+    "Preserve pending final-candidate proof/acceptance/controller/wrapper.",
+    "Coordinator recordsowners for unmeasuredcoverage/duplication/dependency/observability.",
+    "Distinguish ACcoverage/testcounts from measuredcodecoverage."
+  ],
+  "summary": "Boundedscope/regression/build PASS; unmeasuredcoverage/duplication/dependency/observability CONCERNS, no thresholdbreach/introducedvulnerability.37b is not finalcandidate."
+}
