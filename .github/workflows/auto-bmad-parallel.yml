@@ -30,7 +30,29 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     steps:
+      - name: Prepare Windows checkout Git environment
+        id: windows_checkout_git
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $raw = [Environment]::GetEnvironmentVariable('GIT_CONFIG_COUNT', 'Process')
+          $count = 0
+          if ($null -ne $raw -and $raw -ne '') {
+            if ($raw -notmatch '\A[0-9]+\z' -or -not [int]::TryParse($raw, [ref]$count) -or $count -eq [int]::MaxValue) {
+              throw 'Unsupported inherited GIT_CONFIG_COUNT; checkout environment was not changed.'
+            }
+          }
+          $key = "GIT_CONFIG_KEY_$count"
+          $value = "GIT_CONFIG_VALUE_$count"
+          if ((Test-Path -LiteralPath "Env:$key") -or (Test-Path -LiteralPath "Env:$value")) {
+            throw 'The Git configuration append slot is already occupied; no existing entry was changed.'
+          }
+          $overlay = [ordered]@{ GIT_CONFIG_COUNT = [string]($count + 1) }
+          $overlay[$key] = 'core.longpaths'
+          $overlay[$value] = 'true'
+          Add-Content -LiteralPath $env:GITHUB_OUTPUT -Value ('env=' + ($overlay | ConvertTo-Json -Compress)) -Encoding utf8
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        env: ${{ fromJSON(steps.windows_checkout_git.outputs.env || '{}') }}
         with:
           persist-credentials: false
       - uses: actions/setup-python@v5

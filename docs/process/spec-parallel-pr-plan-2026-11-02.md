@@ -216,6 +216,14 @@ synthetic tests do not resolve those decisions or authorize product claims.
    inspection also passed. No product enrollment, live store or provider behavior
    has been exercised. Source/provider evidence inputs remain observations verified
    operationally; they are not credentials or new merge authorization.
+6. The subsequently approved Windows checkout prerequisite has its author trail
+   in `docs/process/spec-parallel-pr-windows-checkout-proposal-2026-11-02.md`.
+   Its verified workflow stops are `.github/workflows/auto-bmad-parallel.yml:33`
+   (Windows-only environment projection), line 54 (unchanged checkout action pin)
+   and line 55 (checkout-scoped environment map). The 14-case native probe proves
+   local propagation/preservation; actual hosted Windows execution remains a
+   separate requirement. The exact approved block was applied without changing
+   this plan's helper/test content or reclassifying the earlier zero-test failure.
 
 Final helper identity, independently reread after the test results: LF-normalized
 SHA256 `12fe516baf4a3a01453c875491950afbe1e78dd250fcbac60967d69dd9d1b67e`;
