@@ -51,7 +51,7 @@
   ],
   "independent_review": {
     "status": "passed",
-    "evidence": "Primary review d42d66f247e6027a82c6d0d3da76f6e85b38efc2: all six SolHigh layers completed (nativeedge[],security nofindings,blind no concrete introduced defect,intent alignedD1-D5/runtimeunearned,verification-gap2medium,externalCLI executed1medium). All3medium patches committed at9bbf276cf695a0e127a864e442dbeb2e3a79eab6. Targeted independent SolHigh consequential delta+author trail review at9bb returned exactly No findings. Final cmdTYPE failure was display-only and recovered by nativepath read. Code review passed; no runtime/visual/development-complete/release proof. Author trail16references checked and reviewer confirmed at9bb."
+    "evidence": "Primary review d42d66f247e6027a82c6d0d3da76f6e85b38efc2: all six SolHigh layers completed (nativeedge[],security nofindings,blind no concrete introduced defect,intent alignedD1-D5/runtimeunearned,verification-gap1medium unchecked-primary edit,externalCLI executed1medium overflow; build verifier separately identified1medium fixed-viewport capture). All3medium patches committed at9bbf276cf695a0e127a864e442dbeb2e3a79eab6. Targeted independent SolHigh consequential delta+author trail review at9bb returned exactly No findings. Final cmdTYPE failure was display-only and recovered by nativepath read. Code review passed; no runtime/visual/development-complete/release proof. Author trail16references checked and reviewer confirmed at9bb."
   },
   "deferred_release_validation": [
     {

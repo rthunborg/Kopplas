@@ -18,6 +18,8 @@ context:
   - ../../../../docs/quality/frontend-quality-gate.md
   - ../../../implementation-artifacts/spec-35-6-crm-record-journeys.md
   - ../../../test-artifacts/dt-2026-10-23-test-design/slice-35-6.md
+followup_review_recommended: true
+deferred: []
 ---
 
 ## Operative normal Build plan — 2026-11-02
@@ -188,8 +190,10 @@ All six routes used gpt-6.1-sol / high, as recorded by the parent review handoff
 | Security | No findings. |
 | Blind | No concrete introduced defect reported. |
 | Intent | Aligned with D1-D5; broad journey/runtime evidence remains unearned. |
-| Verification-gap | Accepted medium checkbox-edit regression and fixed-viewport capture patches. |
+| Verification-gap | Accepted one medium unchecked-primary edit regression patch. |
 | External CLI | Executed review returned the medium short-viewport contact-dialog finding. Final cmd TYPE display failed with system-cannot-find-file; native-path PowerShell read recovered the retained review. This is not an unavailable review or a pass for the patched candidate. |
+
+The build verifier separately identified the medium fixed-viewport capture patch; it was not a second verification-gap-layer finding. The external layer identified the medium overflow patch.
 
 Classification: intent_gap=0, bad_spec=0, patch=3 (all medium), defer=0, reject=0. All accepted patches were handled in one bounded batch, without a new broad review or protected-boundary change.
 
