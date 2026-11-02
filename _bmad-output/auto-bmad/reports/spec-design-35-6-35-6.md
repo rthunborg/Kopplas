@@ -68,3 +68,38 @@
 3. Authenticated current-head visual acceptance remains pending actual images.
 
 **Next:** Push samePR checkpoint and dispatch isolated exacthead full validation. Preserve oldrun41463404500 and nativeartifacts.
+
+## Report — 2026-11-02T15:39:32Z (native repair checkpoint)
+
+**Story:** `spec-design-35-6-35-6` (spec design-35-6, story 35-6) — first-and-last-in-epic.
+**Spec:** `C:/DEV/Kopplas/tmp/private/e35-worker-35-6/_bmad-output/specs/spec-design-35-6/stories/35-6-crm-record-journeys.md`
+**Branch:** `codex/story-35-6-crm-record-journeys` (HEAD `891fa21`).
+**Pipeline status:** Blocked: native-proven owned repairs implemented and High-reviewed; current repair runtime and visual acceptance unearned, full browser lane has named unowned failures.
+**Continues:** Same PR127 and generation1 assignment; release_ready=false.
+
+**Timing:** started 2026-11-02T13:54:54Z; completed in progress — elapsed 1h 44m (≈1h 15m AI-run, ≈29m human/idle wait); resumed 2×.
+
+**Phases run:** Phase5 bounded native-failure repair and targeted High delta/trail review
+**Skipped:** Phase6 shared output awaits coordinator route; Phase7 follow-up pending; aggregatePhase8 coordinator-only
+
+**Overrides:** No completion or integration claim; no unowned fixes
+
+**TEA:** 11E35sourcecases; repairedruntime0executed0skipped;98plannedPNGs/72selectedpackage;actualcurrentheadimages0
+
+**Build:** Contact selectedfacility now retained on rejected submission. Valid observed archive timestamps retain exact ID/parent/tenant/audit assertions. Forward setup awaits visible document adoption; requested navigation/history assertions retained. Measured enlargement and separate occlusion replace CSS body-zoom proxy. Typecheck/focusedlint/build/bundle passed.
+
+**Review:** High targeted nativefix review and narrow finaltrail confirmation passed atb1437128. Frozenhistoryexact; SRO16references0errors. Initialsix-layer review retained; follow-up recommended=true.
+
+**Retrospective:** (none)
+
+**Open questions:** (none)
+
+**Deferred work:**
+1. Three role-owned release-validation items retained; no coverage credit for skipped tests.
+
+**⚠️ Needs human:**
+1. Coordinator: allocate/reconcile exact automation-summary output before requiredP6.
+2. Coordinator: route21unowned native browser failures (landingroutes, Booking, calendarfeed, notifications,scheduling) and provide supported fresh focusedCRM runtime route if full lane remains blocked.
+3. Currenthead realcaptures and authenticated visualacceptance still required; no stale/manual acceptance request made.
+
+**Next:** Push samePR nativefix checkpoint, obtain actual exacthead requiredPRchecks and retain second fullrun41469021274 artifacts; no blind repeat of known failing full lane.
